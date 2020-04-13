@@ -1,4 +1,8 @@
 {
+  "name": "mx-web",
+  "license": "MIT",
+  "private": false,
+  "version": "0.0.1",
   "scripts": {
     "start": "nodemon",
     "build": "next build && tsc && tsc --project tsconfig.server.json"
