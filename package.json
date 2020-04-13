@@ -5,22 +5,32 @@
   "version": "0.0.1",
   "scripts": {
     "start": "nodemon",
+    "dev": "next dev",
     "build": "next build && tsc && tsc --project tsconfig.server.json"
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "classnames": "^2.2.6",
     "express": "^4.17.1",
+    "inflection": "^1.12.0",
+    "mobx": "^5.15.4",
     "next": "9.3.4",
+    "next-seo": "^4.4.0",
+    "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.6",
+    "@types/inflection": "^1.5.28",
     "@types/next": "^9.0.0",
     "@types/node": "^13.11.1",
     "@types/react": "^16.9.34",
-    "@zeit/next-typescript": "^1.1.1",
+    "@typescript-eslint/eslint-plugin": "^2.27.0",
+    "@typescript-eslint/parser": "^2.27.0",
     "cross-env": "^7.0.2",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.19.0",
     "nodemon": "^2.0.3",
     "ts-node": "^8.8.2",
     "typescript": "^3.8.3"
