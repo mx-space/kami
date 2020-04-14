@@ -40,7 +40,10 @@ export default class Header extends React.Component<store> {
         <nav className="head-menu">
           {menu?.map((item: MenuModel) => {
             return (
-              <div className={item.subMenu ? 'has-child' : 'menu-link'}>
+              <div
+                className={item.subMenu ? 'has-child' : 'menu-link'}
+                key={item._id}
+              >
                 <Link href={item.path} as={item.path}>
                   <a>
                     {item.icon && <FontAwesomeIcon icon={item.icon} />}

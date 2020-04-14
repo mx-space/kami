@@ -1,13 +1,4 @@
-# nextjs with typeScript + express + nodemon example
+# web
 
-froked from [next.js/examples/custom-server-typecript](https://github.com/zeit/next.js/tree/canary/examples/custom-server-typescript) and build express
-
-Install it and run:
-
-```bash
-npm install
-npm run dev
-# or
-yarn
-yarn dev
-```
+[![CodeFactor](https://www.codefactor.io/repository/github/mx-space/web/badge)](https://www.codefactor.io/repository/github/mx-space/web)
+[![DeepScan grade](https://deepscan.io/api/teams/7938/projects/10822/branches/154495/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=7938&pid=10822&bid=154495)
