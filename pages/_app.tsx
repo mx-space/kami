@@ -3,7 +3,7 @@ import React from 'react'
 import Header from 'components/Header'
 import { Provider } from 'mobx-react'
 import 'kico-style'
-import 'assets/styles/paul.css'
+import 'kico-style/paul.css'
 import makeInspectable from 'mobx-devtools-mst'
 import createMobxStores from '../store'
 

@@ -6,10 +6,9 @@ import UserStore from 'store/user'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import styles from './index.module.scss'
 import SocialStore from 'store/social'
 
-interface store {
+interface Store {
   app?: AppStore
   master?: UserStore
   links?: SocialStore
@@ -21,7 +20,7 @@ interface store {
   links: store.socialStore,
 }))
 @observer
-export default class Header extends React.Component<store> {
+export default class Header extends React.Component<Store> {
   componentDidMount() {
     this.props.master?.fetchUser()
   }
@@ -70,11 +69,9 @@ export default class Header extends React.Component<store> {
         <nav className="head-social">
           {this.props.links?.socialLinks.map((link) => {
             return (
-              <Link href={link.url}>
-                <a title={link.title}>
-                  <FontAwesomeIcon icon={link.icon} />
-                </a>
-              </Link>
+              <a title={link.title} href={link.url} key={link.url}>
+                <FontAwesomeIcon icon={link.icon} />
+              </a>
             )
           })}
         </nav>
