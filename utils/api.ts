@@ -12,7 +12,7 @@ export enum AccessRoutesEnum {
   Project,
 }
 
-export const rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
+export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
   let pluralize = ['Master', 'Menu'].includes(rest)
     ? rest.toLowerCase()
     : inflection.pluralize(rest).toLowerCase()

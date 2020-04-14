@@ -1,7 +1,7 @@
 import axios from 'axios'
-
+import configs from 'configs'
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API,
+  baseURL: configs.apiUrl,
   // withCredentials: true,
   timeout: 5000,
 })

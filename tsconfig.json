@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "experimentalDecorators": true,
     "noEmit": true,
     "strict": true,
     "target": "esnext",
