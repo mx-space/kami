@@ -1,12 +1,30 @@
 import 'normalize.css/normalize.css'
 import React from 'react'
+import Header from 'components/Header'
+import { Provider } from 'mobx-react'
+import 'kico-style'
+import 'assets/styles/paul.css'
+import makeInspectable from 'mobx-devtools-mst'
+import createMobxStores from '../store'
 
-const Layout = ({ children }) => <div className="layout">{children}</div>
+const stores = createMobxStores()
+
+makeInspectable(stores)
+const BasicLayout = ({ children }) => {
+  return (
+    <>
+      <Header />
+      {children}
+    </>
+  )
+}
 
 export default function App({ Component, pageProps }) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <Provider {...stores}>
+      <BasicLayout>
+        <Component {...pageProps} />
+      </BasicLayout>
+    </Provider>
   )
 }
