@@ -17,6 +17,7 @@
     "add": "^2.0.6",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
+    "dayjs": "^1.8.24",
     "express": "^4.17.1",
     "inflection": "^1.12.0",
     "kico-style": "^1.1.0",

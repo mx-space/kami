@@ -1,17 +1,17 @@
-import 'normalize.css/normalize.css'
-import React, { PureComponent } from 'react'
 import Header from 'components/Header'
-import { inject, observer, Provider } from 'mobx-react'
 import 'kico-style'
 import 'kico-style/paul.css'
 import makeInspectable from 'mobx-devtools-mst'
-import createMobxStores from '../store'
-import { Rest } from '../utils/api'
+import { inject, observer, Provider } from 'mobx-react'
+import 'normalize.css/normalize.css'
+import React, { PureComponent } from 'react'
 import { PagesPagerRespDto } from '../models/dto/page'
+import createMobxStores from '../store'
 import AppStore from '../store/app'
-import UserStore from '../store/user'
 import PageStore from '../store/pages'
 import { PageModel, Stores } from '../store/types'
+import UserStore from '../store/user'
+import { Rest } from '../utils/api'
 
 const stores = createMobxStores()
 
