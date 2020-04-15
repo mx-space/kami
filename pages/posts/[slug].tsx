@@ -5,7 +5,7 @@ export default function Post() {
 
   return (
     <>
-      <h1>{router.query.id}</h1>
+      <h1>{router.query.slug}</h1>
       <p>This is the blog post content.</p>
     </>
   )

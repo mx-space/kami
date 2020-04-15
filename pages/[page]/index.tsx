@@ -1,12 +1,10 @@
-import { Component } from 'react'
-
-import { WithRouterProps } from 'next/dist/client/with-router'
-import { PageRespDto } from 'models/dto/page'
-import { Rest } from 'utils/api'
-
-import { NextPageContext } from 'next'
-import { ArticleLayout } from 'layouts/ArticleLayout'
 import Markdown from 'components/MD-render'
+import { ArticleLayout } from 'layouts/ArticleLayout'
+import { PageRespDto } from 'models/dto/page'
+import { NextPageContext } from 'next'
+import { WithRouterProps } from 'next/dist/client/with-router'
+import { Component } from 'react'
+import { Rest } from 'utils/api'
 
 class Page extends Component<WithRouterProps & PageRespDto> {
   static async getInitialProps(ctx: NextPageContext) {

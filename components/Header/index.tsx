@@ -1,12 +1,11 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { inject, observer } from 'mobx-react'
+import Link from 'next/link'
 import React from 'react'
 import AppStore from 'store/app'
-import { Stores, MenuModel } from 'store/types'
-import UserStore from 'store/user'
-import Link from 'next/link'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
 import SocialStore from 'store/social'
+import { MenuModel, Stores } from 'store/types'
+import UserStore from 'store/user'
 import PageStore from '../../store/pages'
 
 interface Store {

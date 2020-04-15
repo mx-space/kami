@@ -998,10 +998,10 @@
   dependencies:
     prop-types "^15.7.2"
 
-"@next/bundle-analyzer@^9.3.4":
-  version "9.3.4"
-  resolved "https://registry.yarnpkg.com/@next/bundle-analyzer/-/bundle-analyzer-9.3.4.tgz#78927a5656442ec21d38456ae87edb8eb66ddf15"
-  integrity sha512-POS+AmzT9hTCUymYV6CDJRzDv6MWq10wCJZBnTKWOdB82o7PourD0G9DpGR40TXzyD4LpcOUzksexG8NyL8V7g==
+"@next/bundle-analyzer@^9.3.5":
+  version "9.3.5"
+  resolved "https://registry.yarnpkg.com/@next/bundle-analyzer/-/bundle-analyzer-9.3.5.tgz#c35d92e03ac8b5ae05e2eabee4fae433f8cb448d"
+  integrity sha512-A1hewPnrObMgVJGBr8HhVsfKkYgrjHdLsPDuKV6Za3P2AB0UiG/A2sWEpORm29IwnLc6pz8uvOaangviAzoROg==
   dependencies:
     webpack-bundle-analyzer "3.6.1"
 
@@ -2593,6 +2593,11 @@ d@1, d@^1.0.1:
   dependencies:
     es5-ext "^0.10.50"
     type "^1.0.1"
+
+dayjs@^1.8.24:
+  version "1.8.24"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.24.tgz#2ef8a2ab9425eaf3318fe78825be1c571027488d"
+  integrity sha512-bImQZbBv86zcOWOq6fLg7r4aqMx8fScdmykA7cSh+gH1Yh8AM0Dbw0gHYrsOrza6oBBnkK+/OaR+UAa9UsMrDw==
 
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3:
   version "2.6.9"
