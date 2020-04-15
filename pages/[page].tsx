@@ -1,5 +1,4 @@
 import { Component } from 'react'
-import { withRouter } from 'next/router'
 
 import { WithRouterProps } from 'next/dist/client/with-router'
 import { PageRespDto } from 'models/dto/page'
@@ -12,7 +11,7 @@ import Markdown from 'components/MD-render'
 class Page extends Component<WithRouterProps & PageRespDto> {
   static async getInitialProps(ctx: NextPageContext) {
     const { data } = await Rest('Page', 'slug').get<PageRespDto>(
-      ctx.query.page as string
+      ctx.query.page as string,
     )
     return { data }
   }
@@ -28,4 +27,4 @@ class Page extends Component<WithRouterProps & PageRespDto> {
   }
 }
 
-export default withRouter(Page)
+export default Page

@@ -15,3 +15,18 @@ export interface PageRespDto extends BaseRespModel {
     id: string
   }
 }
+
+export interface PageDescriptionDto {
+  commentsIndex: number
+  order: number
+  _id: string
+  created: string
+  modified: string
+  title: string
+  slug: string
+  id: string
+}
+
+export interface PagesPagerRespDto extends BaseRespModel {
+  data: PageDescriptionDto[]
+}

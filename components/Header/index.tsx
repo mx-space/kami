@@ -7,28 +7,27 @@ import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import SocialStore from 'store/social'
+import PageStore from '../../store/pages'
 
 interface Store {
   app?: AppStore
   master?: UserStore
   links?: SocialStore
+  pages?: PageStore
 }
 
 @inject((store: Stores) => ({
   app: store.appStore,
   master: store.userStore,
   links: store.socialStore,
+  pages: store.pageStore,
 }))
 @observer
 export default class Header extends React.Component<Store> {
-  componentDidMount() {
-    this.props.master?.fetchUser()
-  }
-
   renderSubMenu(subMenu: MenuModel[]) {
     const menus = subMenu.map((menu) => {
       return (
-        <Link href={menu.path} key={menu._id}>
+        <Link href={'[page]'} as={menu.path} key={menu._id}>
           <a>
             {menu.icon && <FontAwesomeIcon icon={menu.icon} />}
             <span>{menu.title}</span>
@@ -44,7 +43,7 @@ export default class Header extends React.Component<Store> {
     const { menu } = app || {}
     return (
       <header>
-        <div className="head-toggle"></div>
+        <div className="head-toggle" />
         <div className="head-logo">
           <svg viewBox="0 0 200 200"></svg>
         </div>

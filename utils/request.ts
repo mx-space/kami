@@ -15,7 +15,7 @@ service.interceptors.request.use(
       console.log(error)
     }
     return Promise.reject(error)
-  }
+  },
 )
 
 service.interceptors.response.use(
@@ -26,7 +26,7 @@ service.interceptors.response.use(
   },
   (error) => {
     return Promise.reject(error)
-  }
+  },
 )
 
 export default service

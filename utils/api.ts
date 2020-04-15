@@ -17,8 +17,11 @@ export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
     ? rest.toLowerCase()
     : inflection.pluralize(rest).toLowerCase()
   pluralize = prefix ? pluralize + `/${prefix}` : pluralize
-  const apis = {
-    async getRecently<T = unknown>({ page = 1, size = 10 } = {}): Promise<T> {
+  return {
+    getRecently: async function <T = unknown>({
+      page = 1,
+      size = 10,
+    }: { page?: number; size?: number } = {}): Promise<T> {
       const data = await $axios({
         method: 'GET',
         url: `/${pluralize}`,
@@ -29,8 +32,8 @@ export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
       })
       return data as any
     },
-    async getOne<T = unknown>(id: string): Promise<T> {
-      const data = await $axios.get(`${pluralize}/${id}`)
+    async getOne<T = unknown>(id?: string): Promise<T> {
+      const data = await $axios.get(`${pluralize}/${id ?? ''}`)
       return data as any
     },
     async postNew<T = unknown>(body: Record<string, any>): Promise<T> {
@@ -39,7 +42,7 @@ export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
     },
     async modifyOne<T = unknown>(
       id: string,
-      body: Record<string, any>
+      body: Record<string, any>,
     ): Promise<T> {
       const data = await $axios.put(`${pluralize}/${id}`, body)
       return data as any
@@ -67,5 +70,4 @@ export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
       return this.deleteOne
     },
   }
-  return apis
 }

@@ -9,7 +9,8 @@ import {
   faTv,
 } from '@fortawesome/free-solid-svg-icons'
 import { action, observable } from 'mobx'
-import { MenuModel } from './types'
+import { MenuModel, PageModel } from './types'
+import { model } from 'mobx-state-tree/dist/types/complex-types/model'
 
 export default class AppStore {
   @observable menu: MenuModel[] = [
@@ -19,14 +20,7 @@ export default class AppStore {
       type: 'Home',
       path: '/',
       icon: faHome,
-      subMenu: [
-        {
-          _id: '1-1',
-          title: '关于',
-          type: 'Page',
-          path: '/about',
-        },
-      ],
+      subMenu: [],
     },
     {
       _id: '2',
@@ -77,5 +71,19 @@ export default class AppStore {
 
   @action setMenu(menu: MenuModel[]) {
     this.menu = menu
+  }
+
+  @action setPage(pages: PageModel[]) {
+    const homeMenu = this.menu.find((menu) => menu.type === 'Home')
+    const models: MenuModel[] = pages.map((page) => {
+      const { title, _id, slug } = page
+      return {
+        title,
+        _id,
+        path: '/' + slug,
+        type: 'Page',
+      }
+    })
+    homeMenu?.subMenu!.push(...models)
   }
 }
