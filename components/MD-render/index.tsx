@@ -11,13 +11,16 @@ class Markdown extends React.PureComponent<MdProps> {
   render() {
     const { value, ...rest } = this.props
     return (
-      <ReactMarkdown
-        source={value}
-        {...rest}
-        renderers={{
-          code: CodeBlock,
-        }}
-      />
+      <div id="write">
+        <ReactMarkdown
+          source={value}
+          {...rest}
+          renderers={{
+            code: CodeBlock,
+            pre: CodeBlock,
+          }}
+        />
+      </div>
     )
   }
 }

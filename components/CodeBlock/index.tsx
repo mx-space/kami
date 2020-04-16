@@ -23,7 +23,6 @@ export default class CodeBlock extends React.PureComponent<{
       <SyntaxHighlighter
         language={language}
         style={dark}
-        useInlineStyles={true}
         customStyle={{
           background: 'none',
         }}

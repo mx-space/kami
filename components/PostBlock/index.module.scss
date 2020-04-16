@@ -1,0 +1,35 @@
+.head {
+  // display: flex;
+  position: relative;
+  // align-items: center;
+  // justify-content: flex-start;
+  .title {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.btn {
+  padding: 0.7rem 1rem;
+  outline: 0;
+  color: #fff;
+  border-radius: 4rem;
+  animation: gradual-change infinite 3s ease both;
+}
+
+@keyframes gradual-change {
+  0%,
+  100% {
+    background: rgba(230, 126, 34, 1);
+  }
+  50% {
+    background: rgba(241, 196, 15, 0.8);
+  }
+}
+.navigator {
+  display: block;
+  text-align: center;
+  margin: 10px 0;
+}

@@ -9,8 +9,7 @@ import {
   faTv,
 } from '@fortawesome/free-solid-svg-icons'
 import { action, observable } from 'mobx'
-import { MenuModel, PageModel } from './types'
-import { model } from 'mobx-state-tree/dist/types/complex-types/model'
+import { MenuModel, PageModel, ViewportRecord } from './types'
 
 export default class AppStore {
   @observable menu: MenuModel[] = [
@@ -68,7 +67,7 @@ export default class AppStore {
     },
   ]
   @observable title = 'MX-space'
-
+  @observable viewport: Partial<ViewportRecord> = {}
   @action setMenu(menu: MenuModel[]) {
     this.menu = menu
   }
@@ -84,6 +83,18 @@ export default class AppStore {
         type: 'Page',
       }
     })
+
     homeMenu?.subMenu!.push(...models)
+  }
+  @action UpdateViewport() {
+    this.viewport = {
+      w: document.documentElement.getBoundingClientRect().width,
+      h: window.innerHeight,
+      mobile: window.screen.width <= 568 || window.innerWidth <= 568,
+      pad: window.innerWidth <= 768 && window.innerWidth > 568,
+      hpad: window.innerWidth <= 1024 && window.innerWidth > 768,
+      wider: window.innerWidth > 1024 && window.innerWidth < 1920,
+      widest: window.innerWidth >= 1920,
+    }
   }
 }

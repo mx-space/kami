@@ -33,6 +33,16 @@ export interface SocialLinkModel {
 
 export interface PageModel extends PageDescriptionDto {}
 
+export interface ViewportRecord {
+  w: number
+  h: number
+  mobile: boolean
+  pad: boolean
+  hpad: boolean
+  wider: boolean
+  widest: boolean
+}
+
 export interface Stores {
   appStore: AppStore
   userStore: UserStore

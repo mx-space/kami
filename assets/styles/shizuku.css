@@ -1,0 +1,296 @@
+:root {
+  background: var(--shizuku-background-color);
+  color: var(--shizuku-text-color);
+  --shizuku-background-color: #fff;
+  --shizuku-text-color: #333;
+  --shizuku-theme-color: #2bd;
+}
+
+#write {
+  font-family: 'Avenir Next', 'PingFang SC', 'Microsoft YaHei UI',
+    'Microsoft YaHei', sans-serif;
+  font-size: 16px;
+  word-wrap: break-word;
+  text-align: justify;
+}
+#write > *:first-child {
+  margin-top: 0 !important;
+}
+#write > *:last-child {
+  margin-bottom: 0 !important;
+}
+#write a,
+#write a:hover,
+#write a:active,
+#write a:focus,
+#write a:visited {
+  color: var(--shizuku-theme-color);
+  text-decoration: none;
+}
+#write a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+#write p,
+#write blockquote,
+#write ul,
+#write ol,
+#write dl,
+#write table,
+#write pre {
+  text-align: justify;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+#write hr {
+  display: inline-block;
+  width: 25px;
+  height: 1px;
+  line-height: 1px;
+  border: 0;
+  margin: 0;
+  background: rgba(128, 128, 128, 0.4);
+  vertical-align: middle;
+}
+#write .md-hr {
+  outline: none !important;
+}
+#write .md-hr.md-focus hr {
+  background: var(--shizuku-theme-color);
+}
+#write blockquote {
+  position: relative;
+}
+#write blockquote > p {
+  margin-bottom: 10px;
+}
+#write .loweralpha {
+  list-style-type: lower-alpha;
+}
+#write .md-blockmeta,
+#write .md-header-span {
+  font-style: normal;
+  font-weight: normal;
+  color: rgba(128, 128, 128, 0.4);
+}
+#write .md-header-span {
+  background: rgba(128, 128, 128, 0.2);
+}
+#write h1,
+#write h2,
+#write h3,
+#write h4,
+#write h5,
+#write h6 {
+  font-weight: bold;
+  line-height: 1.25;
+}
+#write h1,
+#write h2,
+#write h3,
+#write h4,
+#write h5,
+#write h6 {
+  vertical-align: baseline;
+}
+#write h1::before,
+#write h2::before,
+#write h3::before,
+#write h4::before,
+#write h5::before,
+#write h6::before {
+  border: 0 none !important;
+  border-radius: 0 !important;
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+  float: none !important;
+  padding-left: initial !important;
+  padding-right: initial !important;
+  vertical-align: inherit !important;
+
+  display: inline-block;
+  margin-left: -72px;
+  width: 60px;
+  margin-right: 12px;
+  height: 1em;
+  line-height: 1em;
+  text-align: right;
+  color: rgba(128, 128, 128, 0.4);
+  font-size: 14px;
+  font-weight: normal;
+}
+#write h1::before {
+  content: 'h1';
+}
+#write h2::before {
+  content: 'h2';
+}
+#write h3::before {
+  content: 'h3';
+}
+#write h4::before {
+  content: 'h4';
+}
+#write h5::before {
+  content: 'h5';
+}
+#write h6::before {
+  content: 'h6';
+}
+#write ul,
+#write ol {
+  padding-left: 2em;
+  font-size: 95%;
+}
+#write ul {
+  list-style-type: disc;
+}
+#write ol {
+  list-style-type: decimal;
+}
+#write > ul,
+#write > ol {
+  padding-left: 0;
+  font-size: inherit;
+}
+#write ul ul,
+#write ul ol,
+#write ol ol,
+#write ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#write li + li {
+  margin-top: 0.25em;
+}
+#write dl {
+  padding: 0;
+}
+#write dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+#write dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+#write .task-list-item {
+  padding-left: 0;
+}
+#write .task-list-item input[type='checkbox'] {
+  margin: 0.36em 5px;
+  margin-left: -24px;
+}
+#write table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  border-collapse: collapse;
+}
+#write table th {
+  font-weight: bold;
+}
+#write table th,
+#write table td {
+  padding: 5px 10px;
+  border: 1px solid rgba(128, 128, 128, 0.1);
+  border-collapse: collapse;
+}
+#write table tr {
+  border-top: 1px solid rgba(128, 128, 128, 0.4);
+  border-collapse: collapse;
+}
+#write img {
+  max-width: 100%;
+  box-sizing: content-box;
+}
+#write img[align='right'] {
+  padding-left: 20px;
+}
+#write img[align='left'] {
+  padding-right: 20px;
+}
+#write .emoji {
+  max-width: none;
+  vertical-align: text-top;
+  background-color: transparent;
+}
+#write span.frame {
+  display: block;
+  overflow: hidden;
+}
+#write span.frame > span {
+  display: block;
+  float: left;
+  width: auto;
+  padding: 7px;
+  margin: 13px 0 0;
+  overflow: hidden;
+  border: 1px solid rgba(128, 128, 128, 0.4);
+}
+#write span.frame span img {
+  display: block;
+  float: left;
+}
+#write span.frame span span {
+  display: block;
+  padding: 5px 0 0;
+  clear: both;
+  color: #333;
+}
+#write span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+#write span.align-center > span {
+  display: block;
+  margin: 13px auto 0;
+  overflow: hidden;
+  text-align: center;
+}
+#write span.align-center span img {
+  margin: 0 auto;
+  text-align: center;
+}
+#write span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+#write span.align-right > span {
+  display: block;
+  margin: 13px 0 0;
+  overflow: hidden;
+  text-align: right;
+}
+#write span.align-right span img {
+  margin: 0;
+  text-align: right;
+}
+#write span.float-left {
+  display: block;
+  float: left;
+  margin-right: 13px;
+  overflow: hidden;
+}
+#write span.float-left span {
+  margin: 13px 0 0;
+}
+#write span.float-right {
+  display: block;
+  float: right;
+  margin-left: 13px;
+  overflow: hidden;
+}
+#write span.float-right > span {
+  display: block;
+  margin: 13px auto 0;
+  overflow: hidden;
+  text-align: right;
+}

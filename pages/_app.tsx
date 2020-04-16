@@ -1,29 +1,28 @@
-import Header from 'components/Header'
 import 'kico-style'
 import 'kico-style/paul.css'
 import makeInspectable from 'mobx-devtools-mst'
 import { inject, observer, Provider } from 'mobx-react'
 import 'normalize.css/normalize.css'
-import React, { PureComponent } from 'react'
+import React, { PureComponent, createContext, FC, Component } from 'react'
 import { PagesPagerRespDto } from '../models/dto/page'
 import createMobxStores from '../store'
 import AppStore from '../store/app'
 import PageStore from '../store/pages'
-import { PageModel, Stores } from '../store/types'
+import { PageModel, Stores, ViewportRecord } from '../store/types'
 import UserStore from '../store/user'
 import { Rest } from '../utils/api'
+
+import 'assets/styles/shizuku.css'
+import { BasicLayout } from 'layouts/BasicLayout'
 
 const stores = createMobxStores()
 
 makeInspectable(stores)
-const BasicLayout = ({ children }) => {
-  return (
-    <>
-      <Header />
-      {children}
-    </>
-  )
-}
+
+const AppContext = createContext({
+  viewport: {},
+})
+
 @inject((store: Stores) => ({
   master: store.userStore,
   pages: store.pageStore,
@@ -38,10 +37,19 @@ class Context extends PureComponent<Store & { data: any }> {
       .then(({ data }) => {
         this.props.app?.setPage(data || [])
       })
+
+    window.onscroll = (e) => this.props.app?.UpdateViewport()
+    this.props.app?.UpdateViewport()
   }
 
   render() {
-    return <>{this.props.children}</>
+    return (
+      <AppContext.Provider
+        value={{ viewport: this.props.app?.viewport as ViewportRecord }}
+      >
+        {this.props.children}
+      </AppContext.Provider>
+    )
   }
 }
 

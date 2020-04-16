@@ -6,13 +6,24 @@ import { NextPageContext } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Rest } from 'utils/api'
+import { useState } from 'react'
 interface Post extends PagerModel {
   posts: PostResModel[]
 }
 
 export default function Post({ posts, page }: Post) {
   const router = useRouter()
+  const [postList, setPosts] = useState(posts)
   const { query } = router
+
+  const fetchNextPage = async () => {
+    const currentPage = page.currentPage
+    const { data } = await Rest('Post').gets<PostPagerDto>({
+      page: currentPage + 1,
+    })
+    setPosts(postList.concat(data))
+  }
+
   console.log(query.y)
   return (
     <ArticleLayout>
@@ -23,14 +34,29 @@ export default function Post({ posts, page }: Post) {
       </div>
 
       <article className="paul-note">
-        {posts.map((post) => {
-          const { text, created, title, _id } = post
+        {postList.map((post) => {
+          const { slug, text, created, title, _id } = post
 
           return (
-            <PostBlock title={title} date={created} key={_id} text={text} />
+            <PostBlock
+              title={title}
+              date={created}
+              key={_id}
+              text={text}
+              slug={slug}
+              // category={}
+            />
           )
         })}
       </article>
+
+      {page.hasNextPage && (
+        <section className="paul-more">
+          <button className="btn brown" onClick={() => fetchNextPage()}>
+            下一页
+          </button>
+        </section>
+      )}
     </ArticleLayout>
   )
 }
