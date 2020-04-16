@@ -1,9 +1,10 @@
-import AppStore from './app'
-import UserStore from './user'
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
-import SocialStore from './social'
-import { PageDescriptionDto, PagesPagerRespDto } from '../models/dto/page'
+import { PageDescriptionDto } from '../models/dto/page'
+import AppStore from './app'
+import CategoryStore from './category'
 import PageStore from './pages'
+import SocialStore from './social'
+import UserStore from './user'
 
 export enum LayoutType {
   Post,
@@ -48,4 +49,5 @@ export interface Stores {
   userStore: UserStore
   socialStore: SocialStore
   pageStore: PageStore
+  categoryStore: CategoryStore
 }

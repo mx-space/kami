@@ -1,0 +1,5 @@
+@for $var from 1 to 6 {
+  h#{$var} {
+    margin-top: 1rem;
+  }
+}
