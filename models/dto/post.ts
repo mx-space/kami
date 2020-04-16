@@ -1,4 +1,5 @@
 import { BaseRespModel, PagerModel } from './base'
+import { CategoryModel } from './category'
 
 export interface PostResModel {
   _id: string
@@ -10,8 +11,13 @@ export interface PostResModel {
   text: string
   slug: string
   categoryId: string
+  category: CategoryModel
 }
 
 export interface PostPagerDto extends BaseRespModel, PagerModel {
   data: PostResModel[]
+}
+
+export interface PostSingleDto extends BaseRespModel {
+  data: PostResModel
 }

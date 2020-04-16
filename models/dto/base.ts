@@ -13,3 +13,8 @@ export interface PagerModel {
     hasNextPage: boolean
   }
 }
+
+export interface TimeRecord {
+  created: string
+  modified: string
+}

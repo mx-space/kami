@@ -7,18 +7,24 @@ import { PostPagerDto, PostResModel } from 'models/dto/post'
 import { NextPageContext } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Rest } from 'utils/api'
+import { useStore } from 'store'
 interface Post extends PagerModel {
   posts: PostResModel[]
 }
 
 export default function Post({ posts, page }: Post) {
+  const store = useStore()
+  useEffect(() => {
+    store.categoryStore.fetchCategory()
+  })
+
   const router = useRouter()
   const [postList, setPosts] = useState(posts)
   const [loading, setLoading] = useState(false)
   const [pager, setPage] = useState(page)
-  const { query } = router
+  // const { query } = router
 
   const fetchNextPage = async () => {
     setLoading(true)
@@ -36,18 +42,17 @@ export default function Post({ posts, page }: Post) {
       },
       { shallow: true },
     )
-    // Router.push()
+
     setLoading(false)
   }
 
-  console.log(query.y)
   return (
     <ArticleLayout>
-      <div className="navigation">
+      {/* <div className="navigation">
         <Link href={{ pathname: 'posts', query: { y: '2020' } }}>
           <a className="active">2020</a>
         </Link>
-      </div>
+      </div> */}
 
       <article className="paul-note">
         {postList.map((post) => {
@@ -60,6 +65,7 @@ export default function Post({ posts, page }: Post) {
               key={_id}
               text={text}
               slug={slug}
+              raw={post}
               // category={}
             />
           )

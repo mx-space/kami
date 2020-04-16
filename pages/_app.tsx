@@ -1,19 +1,23 @@
 import 'kico-style'
 import 'kico-style/paul.css'
+import 'assets/styles/shizuku.css'
+import 'assets/styles/extra.scss'
+import { BasicLayout } from 'layouts/BasicLayout'
 import makeInspectable from 'mobx-devtools-mst'
 import { inject, observer, Provider } from 'mobx-react'
+import 'mobx-react-lite/batchingForReactDom'
+import Router from 'next/router'
 import 'normalize.css/normalize.css'
-import React, { PureComponent, createContext, FC, Component } from 'react'
+import React, { createContext, PureComponent } from 'react'
+import CategoryStore from 'store/category'
 import { PagesPagerRespDto } from '../models/dto/page'
-import createMobxStores from '../store'
+import createMobxStores, { StoreProvider } from '../store'
 import AppStore from '../store/app'
 import PageStore from '../store/pages'
 import { PageModel, Stores, ViewportRecord } from '../store/types'
 import UserStore from '../store/user'
 import { Rest } from '../utils/api'
-
-import 'assets/styles/shizuku.css'
-import { BasicLayout } from 'layouts/BasicLayout'
+import Loader from 'components/Loader'
 
 const stores = createMobxStores()
 
@@ -27,6 +31,7 @@ const AppContext = createContext({
   master: store.userStore,
   pages: store.pageStore,
   app: store.appStore,
+  category: store.categoryStore,
 }))
 @observer
 class Context extends PureComponent<Store & { data: any }> {
@@ -37,6 +42,16 @@ class Context extends PureComponent<Store & { data: any }> {
       .then(({ data }) => {
         this.props.app?.setPage(data || [])
       })
+    ;(window as any).store = stores
+
+    Router.events.on('routeChangeStart', () => {
+      this.props.app?.toggleLoading()
+    })
+
+    Router.events.on('routeChangeComplete', () => {
+      window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
+      this.props.app?.toggleLoading()
+    })
 
     window.onresize = (e) => this.props.app?.UpdateViewport()
     this.props.app?.UpdateViewport()
@@ -47,7 +62,10 @@ class Context extends PureComponent<Store & { data: any }> {
       <AppContext.Provider
         value={{ viewport: this.props.app?.viewport as ViewportRecord }}
       >
-        {this.props.children}
+        <StoreProvider value={stores}>
+          {this.props.children}
+          <Loader />
+        </StoreProvider>
       </AppContext.Provider>
     )
   }
@@ -57,6 +75,7 @@ interface Store {
   master?: UserStore
   pages?: PageStore
   app?: AppStore
+  category?: CategoryStore
 }
 interface DataModel {
   pageData: PageModel[]

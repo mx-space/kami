@@ -1,35 +1,44 @@
 import classNames from 'classnames'
 import { inject, observer } from 'mobx-react'
-import Router from 'next/router'
+import Router, { withRouter } from 'next/router'
 import React from 'react'
 import removeMd from 'remove-markdown'
 import { Stores, ViewportRecord } from 'store/types'
 import { parseDate } from 'utils/time'
 import styles from './index.module.scss'
+import CategoryStore from 'store/category'
+import { PostResModel } from 'models/dto/post'
 
 interface Props {
   date: Date | string
   title: string
   text: string
   slug: string
+  raw: PostResModel
+  map?: Map<string, string>
 }
 
 @inject((store: Stores) => ({
   viewport: store.appStore.viewport,
+  map: store.categoryStore.CategoryMap,
 }))
 @observer
 export class PostBlock extends React.Component<
   Props & { viewport?: ViewportRecord }
 > {
   render() {
-    const { date, title, text, slug, viewport } = this.props
+    const { date, title, text, slug, viewport, raw } = this.props
     const parsedTime = viewport?.mobile
       ? parseDate(date, 'MM-DD ddd')
       : parseDate(date, 'YYYY-MM-DD ddd')
     const [d, week] = parsedTime.split(' ')
 
     const goToPost = () => {
-      Router.push('/posts/[slug]', `/posts/${slug}`)
+      // console.log(this.props.map)
+      const category = this.props.map?.get(raw.categoryId)
+      // console.log(category)
+
+      Router.push('/posts/[category]/[slug]', `/posts/${category}/${slug}`)
     }
 
     return (

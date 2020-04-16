@@ -69,6 +69,13 @@ export default class AppStore {
   ]
   @observable title = configs.title || 'MX-space'
   @observable viewport: Partial<ViewportRecord> = {}
+  @observable loading = false
+
+  @action toggleLoading() {
+    document.body.classList.toggle('loading')
+    this.loading = !this.loading
+  }
+
   @action setMenu(menu: MenuModel[]) {
     this.menu = menu
   }
