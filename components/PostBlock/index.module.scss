@@ -10,8 +10,12 @@
     transform: translate(-50%, -50%);
   }
 }
+
 .text {
   line-height: 2;
+  .title {
+    text-align: center;
+  }
 }
 .btn {
   padding: 0.7rem 1rem;

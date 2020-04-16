@@ -1,7 +1,7 @@
 import axios from 'axios'
 import configs from 'configs'
 const service = axios.create({
-  baseURL: configs.apiUrl,
+  baseURL: process.env.apiUrl || configs.apiUrl || '/api',
   // withCredentials: true,
   timeout: 5000,
 })

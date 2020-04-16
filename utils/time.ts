@@ -15,11 +15,13 @@ export enum DateFormat {
   'H:mm:ss A',
   'YYYY-MM-DD',
   'YYYY-MM-DD dddd',
+  'YYYY-MM-DD ddd',
+  'MM-DD ddd',
 }
 
 export const parseDate = (
   time: string | Date,
-  format: keyof typeof DateFormat | string,
+  format: keyof typeof DateFormat,
 ) => dayjs(time).format(format)
 
 export const relativeTimeFromNow = (time: Date | string) =>

@@ -10,6 +10,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { action, observable } from 'mobx'
 import { MenuModel, PageModel, ViewportRecord } from './types'
+import configs from 'configs'
 
 export default class AppStore {
   @observable menu: MenuModel[] = [
@@ -66,7 +67,7 @@ export default class AppStore {
       ],
     },
   ]
-  @observable title = 'MX-space'
+  @observable title = configs.title || 'MX-space'
   @observable viewport: Partial<ViewportRecord> = {}
   @action setMenu(menu: MenuModel[]) {
     this.menu = menu

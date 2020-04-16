@@ -38,7 +38,7 @@ class Context extends PureComponent<Store & { data: any }> {
         this.props.app?.setPage(data || [])
       })
 
-    window.onscroll = (e) => this.props.app?.UpdateViewport()
+    window.onresize = (e) => this.props.app?.UpdateViewport()
     this.props.app?.UpdateViewport()
   }
 
