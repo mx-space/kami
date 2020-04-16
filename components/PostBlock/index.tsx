@@ -3,6 +3,7 @@ import removeMd from 'remove-markdown'
 import { parseDate } from 'utils/time'
 import styles from './index.module.scss'
 import Router from 'next/router'
+import classNames from 'classnames'
 interface Props {
   date: Date | string
   title: string
@@ -25,13 +26,13 @@ export const PostBlock: FC<Props> = ({ date, title, text, slug }) => {
         <small>（{week}）</small>
         <div className={styles.title}>{title}</div>
       </h1>
-      <div className="note-item">
+      <div className={classNames('note-item', styles.text)}>
         <article className="note-content">
           {removeMd(text).slice(0, 250) + '..'}
         </article>
         <section className={styles.navigator}>
           <button className={styles.btn} onClick={goToPost}>
-            加载更多
+            查看原文
           </button>
         </section>
       </div>
