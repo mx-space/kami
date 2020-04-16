@@ -20,7 +20,7 @@ export const ArticleLayout: FC<ArticleLayoutProps> = ({
           {subtitle && <h2>{subtitle}</h2>}
         </section>
       )}
-      <article className="post-content">{children}</article>
+      <article className="post-content paul-note">{children}</article>
       {comments && <div className="comments">{comments}</div>}
     </main>
   )
