@@ -1,6 +1,7 @@
 import Document, { Head, Main, NextScript } from 'next/document'
+import AppStore from 'store/app'
 
-export default class MyDocument extends Document {
+export default class MyDocument extends Document<{ app: AppStore }> {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx)
     return { ...initialProps }

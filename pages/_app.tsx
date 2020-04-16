@@ -1,6 +1,6 @@
-import 'assets/styles/shizuku.css'
 import 'kico-style'
 import 'kico-style/paul.css'
+import 'assets/styles/shizuku.css'
 import 'assets/styles/extra.scss'
 import { BasicLayout } from 'layouts/BasicLayout'
 import makeInspectable from 'mobx-devtools-mst'
@@ -17,6 +17,7 @@ import PageStore from '../store/pages'
 import { PageModel, Stores, ViewportRecord } from '../store/types'
 import UserStore from '../store/user'
 import { Rest } from '../utils/api'
+import Loader from 'components/Loader'
 
 const stores = createMobxStores()
 
@@ -43,10 +44,13 @@ class Context extends PureComponent<Store & { data: any }> {
       })
     ;(window as any).store = stores
 
-    Router.events.on('routeChangeStart', () => {})
+    Router.events.on('routeChangeStart', () => {
+      this.props.app?.toggleLoading()
+    })
 
     Router.events.on('routeChangeComplete', () => {
       window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
+      this.props.app?.toggleLoading()
     })
 
     window.onresize = (e) => this.props.app?.UpdateViewport()
@@ -58,7 +62,10 @@ class Context extends PureComponent<Store & { data: any }> {
       <AppContext.Provider
         value={{ viewport: this.props.app?.viewport as ViewportRecord }}
       >
-        <StoreProvider value={stores}>{this.props.children}</StoreProvider>
+        <StoreProvider value={stores}>
+          {this.props.children}
+          <Loader />
+        </StoreProvider>
       </AppContext.Provider>
     )
   }
