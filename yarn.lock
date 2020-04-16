@@ -4313,10 +4313,10 @@ keyv@^3.0.0:
   dependencies:
     json-buffer "3.0.0"
 
-kico-style@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/kico-style/-/kico-style-1.1.0.tgz#78ebaa43d465723ed1f214d6445ac06f270cc118"
-  integrity sha512-VhVF/ju2qMSdM65hzhxdIOE9yYNI4TS6rZWmKNUwyZBNZp2xr/0BcdCayTGhCiLujM3r9tTofaUKE0YGV1Ts1w==
+kico-style@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/kico-style/-/kico-style-1.1.1.tgz#d1ac0938956e8e5c3a6ec467150c412f79a6d3f5"
+  integrity sha512-gC5lGStjTUg++1Ia7U05m7b4Jj8DLBkx7zGBge21/0C6MGrmtADL1D4TVwp/3qfuiCBW5m2d51kMoimgnlSTWA==
 
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
