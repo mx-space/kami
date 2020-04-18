@@ -46,10 +46,18 @@ export class PostBlock extends React.Component<
         <h1 className={styles.head}>
           {d}
           <small>（{week}）</small>
-          {!viewport?.mobile && <div className={styles.title}>{title}</div>}
+          {!viewport?.mobile && (
+            <div className={styles.title} onClick={goToPost}>
+              {title}
+            </div>
+          )}
         </h1>
         <div className={classNames('note-item', styles.text)}>
-          {viewport?.mobile && <h2 className={styles.title}>{title}</h2>}
+          {viewport?.mobile && (
+            <h2 className={styles.title} onClick={goToPost}>
+              {title}
+            </h2>
+          )}
           <article className="note-content">
             {removeMd(text).slice(0, 250) + '..'}
           </article>

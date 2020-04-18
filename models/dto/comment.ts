@@ -12,7 +12,8 @@ export interface CommentModel extends TimeRecord {
   url: string
   key: string
   ref: string
-  __v: number
+  id: string
+  avatar: string
 }
 export interface CommentPager extends BaseRespModel, PagerModel {
   data: CommentModel[]

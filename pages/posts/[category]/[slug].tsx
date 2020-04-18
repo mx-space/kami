@@ -9,14 +9,23 @@ import { faUser, faComment } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react'
 import { CommentPager, CommentModel } from 'models/dto/comment'
 import CommentWrap from 'components/Comment'
+import { observer } from 'mobx-react'
 
 const PostView: NextPage<PostResModel & { comments: CommentModel[] }> = (
   props,
 ) => {
   const { text, title, comments } = props
-  const master = useStore()
-  const name = master.userStore.name
+  const { userStore } = useStore()
+  const name = userStore.name
   const [actions, setAction] = useState({} as ActionProps)
+
+  useEffect(() => {
+    Rest('Comment', 'ref')
+      .get<CommentPager>(props._id)
+      .then(({ data }) => {
+        console.log(data)
+      })
+  }, [])
   useEffect(() => {
     setAction({
       informs: [
@@ -35,7 +44,7 @@ const PostView: NextPage<PostResModel & { comments: CommentModel[] }> = (
         },
       ],
     })
-  }, [actions])
+  }, [name])
 
   return (
     <ArticleLayout title={title}>
@@ -60,4 +69,4 @@ PostView.getInitialProps = async (ctx: NextPageContext) => {
   return { ...data, comments }
 }
 
-export default PostView
+export default observer(PostView)

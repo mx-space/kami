@@ -1,3 +1,5 @@
+import 'antd/es/avatar/style/index.css'
+import 'antd/es/comment/style/index.css'
 import 'kico-style'
 import 'kico-style/paul.css'
 import 'assets/styles/shizuku.css'

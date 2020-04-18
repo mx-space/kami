@@ -1,6 +1,4 @@
 :root {
-  background: var(--shizuku-background-color);
-  color: var(--shizuku-text-color);
   --shizuku-background-color: #fff;
   --shizuku-text-color: #333;
   --shizuku-theme-color: #2bd;
@@ -116,7 +114,8 @@
   height: 1em;
   line-height: 1em;
   text-align: right;
-  color: rgba(128, 128, 128, 0.4);
+  color: var(--light-brown);
+  opacity: 0.5;
   font-size: 14px;
   font-weight: normal;
 }

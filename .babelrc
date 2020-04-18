@@ -29,6 +29,12 @@
       {
         "legacy": true
       }
+    ],
+    [
+      "import",
+      {
+        "libraryName": "antd"
+      }
     ]
   ]
 }
