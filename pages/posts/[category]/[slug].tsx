@@ -11,10 +11,8 @@ import { CommentPager, CommentModel } from 'models/dto/comment'
 import CommentWrap from 'components/Comment'
 import { observer } from 'mobx-react'
 
-const PostView: NextPage<PostResModel & { comments: CommentModel[] }> = (
-  props,
-) => {
-  const { text, title, comments } = props
+const PostView: NextPage<PostResModel> = (props) => {
+  const { text, title, _id } = props
   const { userStore } = useStore()
   const name = userStore.name
   const [actions, setAction] = useState({} as ActionProps)
@@ -48,9 +46,9 @@ const PostView: NextPage<PostResModel & { comments: CommentModel[] }> = (
 
   return (
     <ArticleLayout title={title}>
-      <Markdown value={text} />
+      <Markdown value={text} escapeHtml={false} />
       <Action {...actions} />
-      <CommentWrap comments={comments} />
+      <CommentWrap type={'Post'} id={_id} />
     </ArticleLayout>
   )
 }
@@ -61,12 +59,8 @@ PostView.getInitialProps = async (ctx: NextPageContext) => {
   const { data } = (await Rest('Post', category as string).get(
     slug as string,
   )) as PostSingleDto
-  let comments: CommentModel[] = []
-  try {
-    comments = (await Rest('Comment', 'ref').get<CommentPager>(data._id)).data
-    // eslint-disable-next-line no-empty
-  } catch {}
-  return { ...data, comments }
+
+  return { ...data }
 }
 
 export default observer(PostView)
