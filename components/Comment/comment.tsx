@@ -1,14 +1,13 @@
-import { Avatar, Comment, List } from 'antd'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Avatar, Comment } from 'antd'
 import Markdown from 'components/MD-render'
 import { CommentModel } from 'models/dto/comment'
-import { FC, useState, useContext, useEffect } from 'react'
-import CommentBox from './box'
-import { relativeTimeFromNow } from 'utils/time'
+import { FC, useContext, useState } from 'react'
 import { Rest } from 'utils/api'
-import { CommentContext } from '.'
+import { relativeTimeFromNow } from 'utils/time'
+import { CommentContext, openCommentMessage } from '.'
+import CommentBox from './box'
 
 const Comments: FC<{ comments: CommentModel[] }> = ({ comments }) => {
   const { refresh } = useContext(CommentContext)
@@ -23,7 +22,9 @@ const Comments: FC<{ comments: CommentModel[] }> = ({ comments }) => {
     children?: JSX.Element | JSX.Element[],
   ) => {
     const handleReply = async (model) => {
+      openCommentMessage()
       await Rest('Comment', 'reply/' + comment._id).post(model)
+      openCommentMessage.success()
       refresh()
     }
 

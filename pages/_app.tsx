@@ -1,6 +1,8 @@
 import 'antd/es/avatar/style/index.css'
 import 'antd/es/comment/style/index.css'
 import 'antd/es/input/style/index.css'
+import 'antd/es/pagination/style/index.css'
+import 'antd/es/message/style/index.css'
 // import 'antd/dist/antd.dark.css'
 import 'kico-style'
 import 'kico-style/paul.css'

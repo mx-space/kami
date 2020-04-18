@@ -5,6 +5,9 @@ export default class CategoryStore {
   @observable categories: CategoryModel[] = []
 
   @action async fetchCategory() {
+    if (this.categories.length > 0) {
+      return
+    }
     const { data } = await Rest('Category').gets<CategoriesResp>()
     this.categories.push(...data)
   }

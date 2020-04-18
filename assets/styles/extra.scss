@@ -79,3 +79,7 @@ iframe {
 .ant-comment-actions {
   margin-left: 0;
 }
+.ant-pagination-prev .ant-pagination-item-link,
+.ant-pagination-next .ant-pagination-item-link {
+  background: none;
+}

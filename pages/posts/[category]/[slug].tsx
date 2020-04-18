@@ -1,15 +1,15 @@
+import { faComment, faUser } from '@fortawesome/free-solid-svg-icons'
+import Action, { ActionProps } from 'components/Action'
+import CommentWrap from 'components/Comment'
+import Markdown from 'components/MD-render'
 import { ArticleLayout } from 'layouts/ArticleLayout'
+import { observer } from 'mobx-react'
+import { CommentPager } from 'models/dto/comment'
 import { PostResModel, PostSingleDto } from 'models/dto/post'
 import { NextPage, NextPageContext } from 'next/'
-import { Rest } from 'utils/api'
-import Markdown from 'components/MD-render'
-import Action, { ActionProps } from 'components/Action'
+import { useEffect, useState } from 'react'
 import { useStore } from 'store'
-import { faUser, faComment } from '@fortawesome/free-solid-svg-icons'
-import { useState, useEffect } from 'react'
-import { CommentPager, CommentModel } from 'models/dto/comment'
-import CommentWrap from 'components/Comment'
-import { observer } from 'mobx-react'
+import { Rest } from 'utils/api'
 
 const PostView: NextPage<PostResModel> = (props) => {
   const { text, title, _id } = props
@@ -17,13 +17,6 @@ const PostView: NextPage<PostResModel> = (props) => {
   const name = userStore.name
   const [actions, setAction] = useState({} as ActionProps)
 
-  useEffect(() => {
-    Rest('Comment', 'ref')
-      .get<CommentPager>(props._id)
-      .then(({ data }) => {
-        console.log(data)
-      })
-  }, [])
   useEffect(() => {
     setAction({
       informs: [
