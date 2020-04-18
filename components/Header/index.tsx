@@ -1,3 +1,4 @@
+import { faListUl } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { inject, observer } from 'mobx-react'
 import Link from 'next/link'
@@ -23,6 +24,10 @@ interface Store {
 }))
 @observer
 export default class Header extends React.Component<Store> {
+  state = {
+    menuOpen: false,
+  }
+
   renderSubMenu(subMenu: MenuModel[]) {
     const menus = subMenu.map((menu) => {
       return (
@@ -41,8 +46,23 @@ export default class Header extends React.Component<Store> {
     const app = this.props.app
     const { menu } = app || {}
     return (
-      <header>
-        <div className="head-toggle" />
+      <header className={this.state.menuOpen ? 'active' : ''}>
+        {app?.viewport.mobile && (
+          <div
+            onClick={() => this.setState({ menuOpen: !this.state.menuOpen })}
+            className="head-btn"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '1em',
+              cursor: 'pointer',
+            }}
+          >
+            <FontAwesomeIcon icon={faListUl} />
+          </div>
+        )}
+
         <div className="head-logo">
           <svg viewBox="0 0 200 200"></svg>
         </div>

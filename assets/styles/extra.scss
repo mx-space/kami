@@ -69,6 +69,11 @@ textarea {
   min-height: unset;
 }
 
+@media (max-width: 600px) {
+  .head-menu a {
+    display: inline-block;
+  }
+}
 img,
 svg,
 audio,
