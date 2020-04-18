@@ -12,5 +12,8 @@
 @media (max-width: 700px) {
   .comment-box-head {
     display: block;
+    > * {
+      margin-bottom: 14px;
+    }
   }
 }

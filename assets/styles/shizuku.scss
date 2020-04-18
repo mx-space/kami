@@ -137,6 +137,17 @@
 #write h6::before {
   content: 'h6';
 }
+
+@media screen and (max-width: 900px) {
+  @for $var from 1 to 7 {
+    #write {
+      h#{$var} {
+        margin-left: 2rem;
+      }
+    }
+  }
+}
+
 #write ul,
 #write ol {
   padding-left: 2em;
