@@ -14,6 +14,7 @@ import {
   WeatherMap,
   Weather,
   MoodMap,
+  Mood,
 } from 'models/dto/note'
 import { NextPage } from 'next'
 import { useStore } from 'store'
@@ -93,8 +94,7 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
       icon: faCloud,
     })
   }
-
-  if (mood && Object.keys(mood).includes(mood)) {
+  if (mood && Object.keys(Mood).includes(mood)) {
     actions.informs!.push({
       name: MoodMap[mood],
       icon: mood2icon(mood),
@@ -110,7 +110,7 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
     <>
       <NoteLayout title={title} meta={renderMeta} tips={tips}>
         <Markdown value={text} escapeHtml={false}></Markdown>
-        <Action {...actions} />
+        <Action {...actions} style={{ marginTop: '24px' }} />
       </NoteLayout>
       <ArticleLayout>
         <CommentWrap type={'Note'} id={_id} />

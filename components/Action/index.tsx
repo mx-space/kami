@@ -4,13 +4,15 @@ import {
 } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './index.module.scss'
+import { DetailedHTMLProps, HTMLAttributes } from 'react'
 
 type BaseAction = {
   icon: IconDefinition
   name: string
 }
 
-export interface ActionProps {
+export interface ActionProps
+  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   informs?: BaseAction[]
   actions?: (BaseAction & {
     callback: () => void
@@ -18,11 +20,11 @@ export interface ActionProps {
 }
 
 export default function Action(props: ActionProps) {
-  const { actions = [], informs = [] } = props
+  const { actions = [], informs = [], ...rest } = props
 
   return (
     <>
-      <div className="note-inform">
+      <div className="note-inform" {...rest}>
         {informs.map((inform, index) => {
           return (
             <span key={index}>
