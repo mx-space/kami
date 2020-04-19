@@ -12,7 +12,7 @@ service.interceptors.request.use(
   },
   (error) => {
     if (process.env.NODE_ENV === 'development') {
-      console.log(error)
+      console.log(error.message)
     }
     return Promise.reject(error)
   },

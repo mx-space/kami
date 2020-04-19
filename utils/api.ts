@@ -16,7 +16,7 @@ export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
   let pluralize = ['Master', 'Menu'].includes(rest)
     ? rest.toLowerCase()
     : inflection.pluralize(rest).toLowerCase()
-  pluralize = prefix ? pluralize + `/${prefix}` : pluralize
+  pluralize = prefix ? pluralize + `/${encodeURI(prefix)}` : pluralize
   return {
     getRecently: async function <T = unknown>({
       page = 1,
@@ -33,7 +33,7 @@ export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
       return data as any
     },
     async getOne<T = unknown>(id?: string): Promise<T> {
-      const data = await $axios.get(`${pluralize}/${id ?? ''}`)
+      const data = await $axios.get(`${pluralize}/${encodeURI(id || '') ?? ''}`)
       return data as any
     },
     async postNew<T = unknown>(body: Record<string, any>): Promise<T> {
