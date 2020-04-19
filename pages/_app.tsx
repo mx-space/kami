@@ -24,6 +24,7 @@ import { PageModel, Stores, ViewportRecord } from '../store/types'
 import UserStore from '../store/user'
 import { Rest } from '../utils/api'
 import Loader from 'components/Loader'
+import debounce from 'lodash/debounce'
 
 const stores = createMobxStores()
 
@@ -41,6 +42,10 @@ const AppContext = createContext({
 }))
 @observer
 class Context extends PureComponent<Store & { data: any }> {
+  scrollCb = debounce(() => {
+    this.props.app?.updatePosition()
+  }, 14)
+
   componentDidMount(): void {
     this.props.master?.fetchUser()
     Rest('Page')
@@ -48,7 +53,10 @@ class Context extends PureComponent<Store & { data: any }> {
       .then(({ data }) => {
         this.props.app?.setPage(data || [])
       })
-    ;(window as any).store = stores
+
+    if (process.env.NODE_ENV === 'development') {
+      ;(window as any).store = stores
+    }
 
     Router.events.on('routeChangeStart', () => {
       this.props.app?.toggleLoading()
@@ -61,6 +69,8 @@ class Context extends PureComponent<Store & { data: any }> {
 
     window.onresize = (e) => this.props.app?.UpdateViewport()
     this.props.app?.UpdateViewport()
+
+    document.addEventListener('scroll', this.scrollCb)
   }
 
   render() {

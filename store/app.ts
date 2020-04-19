@@ -8,7 +8,7 @@ import {
   faStar,
   faTv,
 } from '@fortawesome/free-solid-svg-icons'
-import { action, observable } from 'mobx'
+import { action, observable, computed } from 'mobx'
 import { MenuModel, PageModel, ViewportRecord } from './types'
 import configs from 'configs'
 
@@ -70,6 +70,18 @@ export default class AppStore {
   @observable title = configs.title || 'MX-space'
   @observable viewport: Partial<ViewportRecord> = {}
   @observable loading = false
+  @observable position = 0
+
+  @action updatePosition() {
+    this.position = document.documentElement.scrollTop
+  }
+
+  @computed get isOverflow() {
+    if (typeof window === 'undefined') {
+      return false
+    }
+    return this.position > window.innerHeight || this.position > screen.height
+  }
 
   @action toggleLoading() {
     document.body.classList.toggle('loading')
