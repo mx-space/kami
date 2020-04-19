@@ -26,6 +26,7 @@ const Comments: FC<{ comments: CommentModel[] }> = ({ comments }) => {
       await Rest('Comment', 'reply/' + comment._id).post(model)
       openCommentMessage.success()
       refresh()
+      setReplyId('')
     }
 
     return (
@@ -54,7 +55,9 @@ const Comments: FC<{ comments: CommentModel[] }> = ({ comments }) => {
           </span>,
         ]}
       >
-        {replyId === comment._id && <CommentBox onSubmit={handleReply} />}
+        {replyId === comment._id && (
+          <CommentBox onSubmit={handleReply} onCancel={() => setReplyId('')} />
+        )}
         {children}
       </Comment>
     )

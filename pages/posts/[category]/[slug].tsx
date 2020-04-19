@@ -9,9 +9,10 @@ import { NextPage, NextPageContext } from 'next/'
 import { useEffect, useState } from 'react'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
+import OutdateNotice from 'components/Outdate'
 
 const PostView: NextPage<PostResModel> = (props) => {
-  const { text, title, _id } = props
+  const { text, title, _id, modified } = props
   const { userStore } = useStore()
   const name = userStore.name
   const [actions, setAction] = useState({} as ActionProps)
@@ -38,6 +39,7 @@ const PostView: NextPage<PostResModel> = (props) => {
 
   return (
     <ArticleLayout title={title}>
+      <OutdateNotice time={modified} />
       <Markdown value={text} escapeHtml={false} />
       <Action {...actions} />
       <CommentWrap type={'Post'} id={_id} />

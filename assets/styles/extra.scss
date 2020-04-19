@@ -81,6 +81,13 @@ video,
 iframe {
   vertical-align: unset;
 }
+
+pre,
+code {
+  font-family: JetBrains Mono, Operator Mono, Monaco, Consolas, 'Courier New',
+    Courier, monospace !important;
+}
+
 .ant-comment-actions {
   margin-left: 0;
 }

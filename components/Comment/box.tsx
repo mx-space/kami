@@ -1,17 +1,42 @@
 import { GlobalOutlined, MailOutlined, UserOutlined } from '@ant-design/icons'
-import { Input } from 'antd'
+import { Input, message } from 'antd'
 import { FC, useState } from 'react'
 import styles from './index.module.scss'
 
 const { TextArea } = Input
 
-const CommentBox: FC<{ onSubmit: ({ text, author, mail, url }) => any }> = ({
-  onSubmit,
-}) => {
+const CommentBox: FC<{
+  onSubmit: ({ text, author, mail, url }) => any
+  onCancel?: () => any
+}> = ({ onSubmit, onCancel }) => {
   const [author, setAuthor] = useState('')
   const [mail, setMail] = useState('')
   const [url, setUrl] = useState('')
   const [text, setText] = useState('')
+  const reset = () => {
+    setAuthor('')
+    setMail('')
+    setText('')
+    setUrl('')
+  }
+
+  const handleCancel = () => {
+    onCancel?.()
+    reset()
+  }
+  const handleSubmit = () => {
+    if (!author || !text || !mail) {
+      message.error('亲亲, 能把信息填完整么')
+      return
+    }
+    onSubmit({
+      author: author || undefined,
+      text: text || undefined,
+      url: url || undefined,
+      mail: mail || undefined,
+    })
+    reset()
+  }
 
   return (
     <>
@@ -44,18 +69,18 @@ const CommentBox: FC<{ onSubmit: ({ text, author, mail, url }) => any }> = ({
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
+      <style jsx>{`
+        button {
+          margin-left: 12px;
+        }
+      `}</style>
       <div style={{ textAlign: 'right', marginTop: '5px' }}>
-        <button
-          className="btn yellow"
-          onClick={() =>
-            onSubmit({
-              author: author || undefined,
-              text: text || undefined,
-              url: url || undefined,
-              mail: mail || undefined,
-            })
-          }
-        >
+        {onCancel && (
+          <button className="btn red" onClick={handleCancel}>
+            取消回复
+          </button>
+        )}
+        <button className="btn yellow" onClick={handleSubmit}>
           发送
         </button>
       </div>

@@ -24,7 +24,9 @@ export const parseDate = (
   format: keyof typeof DateFormat,
 ) => dayjs(time).format(format)
 
-export const relativeTimeFromNow = (time: Date | string) =>
-  dayjs(new Date(time)).fromNow()
+export const relativeTimeFromNow = (
+  time: Date | string,
+  withoutSuffix?: boolean | undefined,
+) => dayjs(new Date(time)).fromNow(withoutSuffix)
 
 export default { parseDate, relativeTimeFromNow }
