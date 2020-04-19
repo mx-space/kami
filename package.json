@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon",
     "dev": "cross-env NODE_ENV=development next dev",
-    "build": "cross-env NODE_ENV=production ANALYZE=true BUNDLE_ANALYZE=browser next build && tsc && tsc --project tsconfig.server.json"
+    "build": "cross-env NODE_ENV=production ANALYZE=true BUNDLE_ANALYZE=browser next build && tsc && tsc --project tsconfig.server.json",
+    "lint": "eslint --ext .ts,.tsx --ignore-path .gitignore . --fix"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",

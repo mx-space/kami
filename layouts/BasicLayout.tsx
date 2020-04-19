@@ -14,7 +14,12 @@ export const BasicLayout = observer(({ children }) => {
       {children}
       <footer>
         <div className="action">
-          <button className={classNames('top', isOverflow ? 'active' : '')}>
+          <button
+            className={classNames('top', isOverflow ? 'active' : '')}
+            onClick={() =>
+              window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+            }
+          >
             <FontAwesomeIcon icon={faArrowUp} />
           </button>
         </div>

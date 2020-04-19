@@ -73,6 +73,11 @@ class Context extends PureComponent<Store & { data: any }> {
     document.addEventListener('scroll', this.scrollCb)
   }
 
+  componentWillUnmount() {
+    window.onresize = null
+    document.removeEventListener('scroll', this.scrollCb)
+  }
+
   render() {
     return (
       <AppContext.Provider

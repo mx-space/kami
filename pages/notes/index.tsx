@@ -15,7 +15,7 @@ const NotePage: NextPage<{
   const router = useRouter()
   useEffect(() => {
     router.push('/notes/[id]', `/notes/${props.data.nid}`, { shallow: true })
-  }, [])
+  }, [props.data.nid, router])
 
   return null
 }
