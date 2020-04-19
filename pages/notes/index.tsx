@@ -1,8 +1,8 @@
-import { NextPage } from 'next'
-import { Rest } from 'utils/api'
 import { NoteLastestResp, NoteModel } from 'models/dto/note'
+import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import { Rest } from 'utils/api'
 
 const NotePage: NextPage<{
   data: NoteModel

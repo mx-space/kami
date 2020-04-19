@@ -1,11 +1,11 @@
-import { FC, createContext, useState, useEffect } from 'react'
-import { CommentModel, CommentPager } from 'models/dto/comment'
-import styles from './index.module.scss'
-import Comment from './comment'
-import CommentBox from './box'
-import { Rest } from 'utils/api'
-import { Pagination, message } from 'antd'
+import { message, Pagination } from 'antd'
 import { PagerModel } from 'models/dto/base'
+import { CommentModel, CommentPager } from 'models/dto/comment'
+import { createContext, FC, useEffect, useState } from 'react'
+import { Rest } from 'utils/api'
+import CommentBox from './box'
+import Comment from './comment'
+import styles from './index.module.scss'
 
 export type CommentType = 'Note' | 'Post' | 'Page'
 

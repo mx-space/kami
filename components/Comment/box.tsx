@@ -1,4 +1,4 @@
-import { UserOutlined, MailOutlined, GlobalOutlined } from '@ant-design/icons'
+import { GlobalOutlined, MailOutlined, UserOutlined } from '@ant-design/icons'
 import { Input } from 'antd'
 import { FC, useState } from 'react'
 import styles from './index.module.scss'

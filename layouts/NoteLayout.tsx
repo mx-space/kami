@@ -1,4 +1,4 @@
-import { FC, Component } from 'react'
+import { Component, FC } from 'react'
 
 interface NoteLayoutProps {
   meta?: string | FC | React.ReactNode | Component

@@ -1,10 +1,10 @@
-import Header from 'components/Header'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { BackTop } from 'antd'
+import classNames from 'classnames'
+import Header from 'components/Header'
 import { observer } from 'mobx-react'
 import { useStore } from 'store'
-import classNames from 'classnames'
-import { BackTop } from 'antd'
 
 export const BasicLayout = observer(({ children }) => {
   const { appStore } = useStore()

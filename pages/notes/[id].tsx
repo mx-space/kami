@@ -1,33 +1,33 @@
+import { faSmile } from '@fortawesome/free-regular-svg-icons'
 import {
-  faClock,
-  faUser,
   faBookmark,
-  faHeart,
+  faClock,
   faCloud,
+  faHeart,
+  faUser,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Action, { ActionProps } from 'components/Action'
+import CommentWrap from 'components/Comment'
+import Markdown from 'components/MD-render'
+import { ArticleLayout } from 'layouts/ArticleLayout'
 import { NoteLayout } from 'layouts/NoteLayout'
 import { observer } from 'mobx-react'
 import {
+  Mood,
+  MoodMap,
   NoteModel,
   NoteResp,
-  WeatherMap,
   Weather,
-  MoodMap,
-  Mood,
+  WeatherMap,
 } from 'models/dto/note'
 import { NextPage } from 'next'
+import { useEffect, useState } from 'react'
+import RemoveMarkdown from 'remove-markdown'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
-import { relativeTimeFromNow, parseDate } from 'utils/time'
-import { useState, useEffect } from 'react'
-import RemoveMarkdown from 'remove-markdown'
-import Markdown from 'components/MD-render'
-import Action, { ActionProps } from 'components/Action'
-import { weather2icon, mood2icon } from 'utils/weather2icon'
-import { faSmile } from '@fortawesome/free-regular-svg-icons'
-import CommentWrap from 'components/Comment'
-import { ArticleLayout } from 'layouts/ArticleLayout'
+import { parseDate, relativeTimeFromNow } from 'utils/time'
+import { mood2icon, weather2icon } from 'utils/weather2icon'
 
 interface NoteViewProps {
   data: NoteModel

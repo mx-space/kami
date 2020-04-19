@@ -3,8 +3,8 @@ import {
   IconDefinition,
 } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import styles from './index.module.scss'
 import { DetailedHTMLProps, HTMLAttributes } from 'react'
+import styles from './index.module.scss'
 
 type BaseAction = {
   icon: IconDefinition

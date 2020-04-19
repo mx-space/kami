@@ -1,13 +1,12 @@
 import classNames from 'classnames'
 import { inject, observer } from 'mobx-react'
-import Router, { withRouter } from 'next/router'
+import { PostResModel } from 'models/dto/post'
+import Router from 'next/router'
 import React from 'react'
 import removeMd from 'remove-markdown'
 import { Stores, ViewportRecord } from 'store/types'
 import { parseDate } from 'utils/time'
 import styles from './index.module.scss'
-import CategoryStore from 'store/category'
-import { PostResModel } from 'models/dto/post'
 
 interface Props {
   date: Date | string
