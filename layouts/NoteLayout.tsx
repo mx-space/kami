@@ -8,7 +8,7 @@ interface NoteLayoutProps {
 
 const NoteLayout: FC<NoteLayoutProps> = ({ children, meta, title, tips }) => {
   return (
-    <main className="is-article is-note">
+    <main className="is-article is-note post-content paul-note">
       <style jsx global>{`
         .is-note #write {
           font-family: 'Noto Serif SC', 'PingFang SC', 'Hiragino Sans GB',

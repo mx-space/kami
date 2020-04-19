@@ -1,8 +1,20 @@
-import { faClock, faUser, faBookmark } from '@fortawesome/free-solid-svg-icons'
+import {
+  faClock,
+  faUser,
+  faBookmark,
+  faHeart,
+  faCloud,
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NoteLayout } from 'layouts/NoteLayout'
 import { observer } from 'mobx-react'
-import { NoteModel, NoteResp } from 'models/dto/note'
+import {
+  NoteModel,
+  NoteResp,
+  WeatherMap,
+  Weather,
+  MoodMap,
+} from 'models/dto/note'
 import { NextPage } from 'next'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
@@ -10,6 +22,11 @@ import { relativeTimeFromNow, parseDate } from 'utils/time'
 import { useState, useEffect } from 'react'
 import RemoveMarkdown from 'remove-markdown'
 import Markdown from 'components/MD-render'
+import Action, { ActionProps } from 'components/Action'
+import { weather2icon, mood2icon } from 'utils/weather2icon'
+import { faSmile } from '@fortawesome/free-regular-svg-icons'
+import CommentWrap from 'components/Comment'
+import { ArticleLayout } from 'layouts/ArticleLayout'
 
 interface NoteViewProps {
   data: NoteModel
@@ -60,10 +77,45 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
     )
   }, [text, data.created, data.modified, data.count.read, data.count.like])
 
+  const actions: ActionProps = {
+    informs: [],
+    actions: [{ name: '喜欢', icon: faHeart, callback: () => {} }],
+  }
+
+  if (weather && Object.keys(Weather).includes(weather)) {
+    actions.informs!.push({
+      name: WeatherMap[weather],
+      icon: weather2icon(weather),
+    })
+  } else if (weather) {
+    actions.informs!.push({
+      name: weather,
+      icon: faCloud,
+    })
+  }
+
+  if (mood && Object.keys(mood).includes(mood)) {
+    actions.informs!.push({
+      name: MoodMap[mood],
+      icon: mood2icon(mood),
+    })
+  } else if (mood) {
+    actions.informs!.push({
+      name: mood,
+      icon: faSmile,
+    })
+  }
+
   return (
-    <NoteLayout title={title} meta={renderMeta} tips={tips}>
-      <Markdown value={text} escapeHtml={false}></Markdown>
-    </NoteLayout>
+    <>
+      <NoteLayout title={title} meta={renderMeta} tips={tips}>
+        <Markdown value={text} escapeHtml={false}></Markdown>
+        <Action {...actions} />
+      </NoteLayout>
+      <ArticleLayout>
+        <CommentWrap type={'Note'} id={_id} />
+      </ArticleLayout>
+    </>
   )
 }
 

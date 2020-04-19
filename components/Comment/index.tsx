@@ -58,14 +58,16 @@ const CommentWrap: FC<{
         <CommentBox onSubmit={handleComment} />
         <Comment comments={comments} />
         <div style={{ textAlign: 'center' }}>
-          <Pagination
-            simple
-            current={page.currentPage || 1}
-            onChange={(page) => {
-              fetchComments(page)
-            }}
-            total={page.total}
-          />
+          {page?.totalPage !== 0 && (
+            <Pagination
+              simple
+              current={page.currentPage || 1}
+              onChange={(page) => {
+                fetchComments(page)
+              }}
+              total={page.total}
+            />
+          )}
         </div>
       </CommentContext.Provider>
     </article>

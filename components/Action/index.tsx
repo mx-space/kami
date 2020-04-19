@@ -11,8 +11,8 @@ type BaseAction = {
 }
 
 export interface ActionProps {
-  informs: BaseAction[]
-  actions: (BaseAction & {
+  informs?: BaseAction[]
+  actions?: (BaseAction & {
     callback: () => void
   })[]
 }

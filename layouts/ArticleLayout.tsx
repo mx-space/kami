@@ -3,14 +3,12 @@ import { FC, Component } from 'react'
 export interface ArticleLayoutProps {
   title?: string
   subtitle?: string
-  comments?: FC | Component
 }
 
 export const ArticleLayout: FC<ArticleLayoutProps> = ({
   children,
   title,
   subtitle,
-  comments,
 }) => {
   return (
     <main className="is-article">
@@ -21,7 +19,6 @@ export const ArticleLayout: FC<ArticleLayoutProps> = ({
         </section>
       )}
       <article className="post-content paul-note">{children}</article>
-      {comments && <div className="comments">{comments}</div>}
     </main>
   )
 }
