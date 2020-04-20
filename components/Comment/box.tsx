@@ -30,10 +30,10 @@ const CommentBox: FC<{
       return
     }
     onSubmit({
-      author: author || undefined,
-      text: text || undefined,
+      author: author,
+      text: text,
+      mail: mail,
       url: url || undefined,
-      mail: mail || undefined,
     })
     reset()
   }

@@ -1,4 +1,4 @@
-import { BaseRespModel, TimeRecord, PagerModel } from './base'
+import { BaseRespModel, PagerModel, TimeRecord } from './base'
 
 export interface CommentModel extends TimeRecord {
   _id: string

@@ -1,4 +1,4 @@
-import { TimeRecord, BaseRespModel } from './base'
+import { BaseRespModel, TimeRecord } from './base'
 export interface CountRecord {
   read: number
   like: number
