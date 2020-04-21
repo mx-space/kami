@@ -45,7 +45,7 @@
     "@types/inflection": "^1.5.28",
     "@types/lodash": "^4.14.150",
     "@types/next": "^9.0.0",
-    "@types/node": "^13.13.0",
+    "@types/node": "^13.13.1",
     "@types/react": "^16.9.34",
     "@types/react-syntax-highlighter": "^11.0.4",
     "@types/remove-markdown": "^0.1.1",
