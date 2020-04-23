@@ -1,39 +1,54 @@
-import $axios from './request'
+import $axios from 'utils/request'
 import inflection from 'inflection'
 
 export enum AccessRoutesEnum {
-  Post,
+  Aggregate,
   Category,
   Comment,
-  Note,
-  Page,
   Master,
   Menu,
+  Note,
+  Page,
+  Post,
   Project,
+  Say,
+}
+
+interface Gets {
+  page?: number
+  size?: number
+  select?: string
+  state?: 0 | 1 | 2
 }
 
 export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
-  let pluralize = ['Master', 'Menu'].includes(rest)
+  let pluralize = ['Master', 'Menu', 'Aggregate'].includes(rest)
     ? rest.toLowerCase()
     : inflection.pluralize(rest).toLowerCase()
-  pluralize = prefix ? pluralize + `/${encodeURI(prefix)}` : pluralize
-  return {
-    getRecently: async function <T = unknown>({
-      page = 1,
-      size = 10,
-    }: { page?: number; size?: number } = {}): Promise<T> {
+  pluralize = prefix ? pluralize + `/${prefix}` : pluralize
+  pluralize = encodeURI(pluralize)
+  const apis = {
+    async getRecently<T = unknown>({
+      page,
+      size,
+      select,
+      state,
+    }: Gets = {}): Promise<T> {
       const data = await $axios({
         method: 'GET',
         url: `/${pluralize}`,
         params: {
-          page,
-          size,
+          page: page || 1,
+          size: size || 10,
+          select,
+          state,
         },
       })
       return data as any
     },
-    async getOne<T = unknown>(id?: string): Promise<T> {
-      const data = await $axios.get(`${pluralize}/${encodeURI(id || '') ?? ''}`)
+    async getOne<T = unknown>(_id: string): Promise<T> {
+      const id = encodeURI(_id)
+      const data = await $axios.get(`${pluralize}/${id}`)
       return data as any
     },
     async postNew<T = unknown>(body: Record<string, any>): Promise<T> {
@@ -63,6 +78,10 @@ export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
     get update() {
       return this.modifyOne
     },
+    async patch<T = unknown>(id: string, body: any): Promise<T> {
+      const data = await $axios.patch(`${pluralize}/${id}`, body)
+      return data as any
+    },
     get del() {
       return this.deleteOne
     },
@@ -70,4 +89,5 @@ export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
       return this.deleteOne
     },
   }
+  return apis
 }

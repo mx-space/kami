@@ -7,6 +7,7 @@ import {
   faPen,
   faStar,
   faTv,
+  faComments,
 } from '@fortawesome/free-solid-svg-icons'
 import { action, observable, computed } from 'mobx'
 import { MenuModel, PageModel, ViewportRecord } from './types'
@@ -35,6 +36,13 @@ export default class AppStore {
       type: 'Note',
       path: '/notes',
       icon: faPen,
+    },
+    {
+      _id: '4',
+      title: '说说',
+      type: 'Custom',
+      path: '/says',
+      icon: faComments,
     },
     {
       _id: '4',
