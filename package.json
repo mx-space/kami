@@ -35,7 +35,7 @@
     "react-markdown": "^4.3.1",
     "react-syntax-highlighter": "^12.2.1",
     "remove-markdown": "^0.3.0",
-    "sass": "^1.26.3"
+    "sass": "^1.26.5"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.8.3",
