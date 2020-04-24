@@ -38,6 +38,7 @@ export class PostBlock extends React.Component<
       // console.log(category)
 
       Router.push('/posts/[category]/[slug]', `/posts/${category}/${slug}`)
+      window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
     }
 
     return (

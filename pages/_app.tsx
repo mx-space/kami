@@ -63,7 +63,7 @@ class Context extends PureComponent<Store & { data: any }> {
     })
 
     Router.events.on('routeChangeComplete', () => {
-      window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
+      // window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
       this.props.app?.toggleLoading()
     })
 

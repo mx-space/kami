@@ -45,28 +45,28 @@ export default class AppStore {
       icon: faComments,
     },
     {
-      _id: '4',
+      _id: '5',
       title: '项目',
       icon: faFlask,
       path: '/project',
       type: 'Project',
     },
     {
-      _id: '5',
+      _id: '6',
       title: '兴趣',
       icon: faStar,
       path: '/music',
       type: 'Custom',
       subMenu: [
         {
-          _id: '5-1',
+          _id: '6-1',
           title: '音乐',
           icon: faMusic,
           path: '/music',
           type: 'Music',
         },
         {
-          _id: '5-2',
+          _id: '6-2',
           title: '追番',
           icon: faTv,
           path: 'bangumi',

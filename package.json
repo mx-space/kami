@@ -5,7 +5,7 @@
   "version": "0.0.1",
   "scripts": {
     "start": "nodemon",
-    "dev": "cross-env NODE_ENV=development next dev",
+    "dev": "cross-env NODE_ENV=development next dev -p 2323",
     "build": "cross-env NODE_ENV=production ANALYZE=true BUNDLE_ANALYZE=browser next build && tsc && tsc --project tsconfig.server.json",
     "lint": "eslint --ext .ts,.tsx --ignore-path .gitignore . --fix"
   },
