@@ -13,6 +13,10 @@ export namespace Top {
     _id: string
     title: string
     slug: string
+    category: {
+      name: string
+      slug: string
+    }
   }
 
   export interface Project {

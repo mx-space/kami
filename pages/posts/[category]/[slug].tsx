@@ -11,7 +11,7 @@ import { useStore } from 'store'
 import { Rest } from 'utils/api'
 import OutdateNotice from 'components/Outdate'
 
-const PostView: NextPage<PostResModel> = (props) => {
+export const PostView: NextPage<PostResModel> = (props) => {
   const { text, title, _id, modified } = props
   const { userStore } = useStore()
   const name = userStore.name
