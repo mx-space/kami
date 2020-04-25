@@ -8,6 +8,13 @@ export default class CategoryStore {
     if (this.categories.length > 0) {
       return
     }
+    await this.updateCategory()
+  }
+
+  @action setCategory(categories: CategoryModel[]) {
+    this.categories = categories
+  }
+  @action async updateCategory() {
     const { data } = await Rest('Category').gets<CategoriesResp>()
     this.categories.push(...data)
   }

@@ -4,6 +4,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 module.exports = withBundleAnalyzer({
   env: {
-    apiUrl: 'http://47.114.54.60:2333/',
+    // apiUrl: 'http://47.114.54.60:2333/',
+    apiUrl: 'http://localhost:2333',
   },
 })

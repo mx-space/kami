@@ -9,15 +9,14 @@ export default class UserStore {
     this.master = model
   }
 
-  @action async fetchUser() {
-    const data = await Rest('Master').gets<UserDto>()
-    this.master = data
-  }
   @computed get username() {
     return this.master.username
   }
 
   @computed get name() {
     return this.master.name
+  }
+  @computed get introduce() {
+    return this.master.introduce || null
   }
 }

@@ -12,4 +12,5 @@ export interface UserDto extends BaseRespModel {
   lastLoginTime: string
   id: string
   avatar: string
+  introduce?: string
 }

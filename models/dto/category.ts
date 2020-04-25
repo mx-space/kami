@@ -1,6 +1,6 @@
 import { BaseRespModel } from './base'
 
-export interface CategoryModel extends BaseRespModel {
+export interface CategoryModel {
   type: string
   count: number
   _id: string
@@ -8,7 +8,6 @@ export interface CategoryModel extends BaseRespModel {
   slug: string
   name: string
   modified: string
-  id: string
 }
 
 export interface CategoriesResp extends BaseRespModel {

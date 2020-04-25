@@ -46,9 +46,9 @@ export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
       })
       return data as any
     },
-    async getOne<T = unknown>(_id: string): Promise<T> {
+    async getOne<T = unknown>(_id = ''): Promise<T> {
       const id = encodeURI(_id)
-      const data = await $axios.get(`${pluralize}/${id}`)
+      const data = await $axios.get(`${pluralize}${id ? '/' + id : ''}`)
       return data as any
     },
     async postNew<T = unknown>(body: Record<string, any>): Promise<T> {

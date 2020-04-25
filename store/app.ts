@@ -12,6 +12,7 @@ import {
 import { action, observable, computed } from 'mobx'
 import { MenuModel, PageModel, ViewportRecord } from './types'
 import configs from 'configs'
+import { Seo } from 'models/aggregate'
 
 export default class AppStore {
   @observable menu: MenuModel[] = [
@@ -75,10 +76,12 @@ export default class AppStore {
       ],
     },
   ]
-  @observable title = configs.title || 'MX-space'
+
   @observable viewport: Partial<ViewportRecord> = {}
   @observable loading = false
   @observable position = 0
+
+  @observable config = { seo: {} as Seo } as any
 
   @action updatePosition() {
     this.position = document.documentElement.scrollTop
@@ -124,5 +127,17 @@ export default class AppStore {
       wider: window.innerWidth > 1024 && window.innerWidth < 1920,
       widest: window.innerWidth >= 1920,
     }
+  }
+  @action setConfig(config: any) {
+    this.config = config
+  }
+  @computed get seo() {
+    return this.config.seo || {}
+  }
+  @computed get title() {
+    return this.seo?.title || configs.title || 'MX-space'
+  }
+  @computed get description() {
+    return this.seo.description
   }
 }

@@ -25,6 +25,8 @@ import PageStore from '../store/pages'
 import { PageModel, Stores, ViewportRecord } from '../store/types'
 import UserStore from '../store/user'
 import { Rest } from '../utils/api'
+import { AggregateResp } from 'models/aggregate'
+import { CategoryModel } from 'models/dto/category'
 
 const stores = createMobxStores()
 
@@ -47,11 +49,18 @@ class Context extends PureComponent<Store & { data: any }> {
   }, 14)
 
   componentDidMount(): void {
-    this.props.master?.fetchUser()
-    Rest('Page')
-      .gets<PagesPagerRespDto>()
-      .then(({ data }) => {
-        this.props.app?.setPage(data || [])
+    // get aggregate data
+    Rest('Aggregate')
+      .get<AggregateResp>()
+      .then((res) => {
+        const { seo, user, pageMeta, categories } = res
+        // set user
+        this.props.master?.setUser(user)
+        // set page
+        this.props.pages?.setPages(pageMeta as PageModel[])
+        this.props.app?.setPage(pageMeta as PageModel[])
+        this.props.category?.setCategory(categories)
+        this.props.app?.setConfig({ seo })
       })
 
     if (process.env.NODE_ENV === 'development') {
