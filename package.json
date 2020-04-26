@@ -7,7 +7,10 @@
     "start": "nodemon",
     "dev": "cross-env NODE_ENV=development next dev -p 2323",
     "build": "cross-env NODE_ENV=production ANALYZE=true BUNDLE_ANALYZE=browser next build && tsc && tsc --project tsconfig.server.json",
-    "lint": "eslint --ext .ts,.tsx --ignore-path .gitignore . --fix"
+    "lint": "eslint --ext .ts,.tsx --ignore-path .gitignore . --fix",
+    "prod": "cross-env NODE_ENV=production pm2-runtime start .next/server/index.js",
+    "prod:pm2": "cross-env NODE_ENV=production pm2 start ecosystem.config.js",
+    "prod:stop": "pm2 stop ecosystem.config.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
