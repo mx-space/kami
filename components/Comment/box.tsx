@@ -2,6 +2,8 @@ import { GlobalOutlined, MailOutlined, UserOutlined } from '@ant-design/icons'
 import { Input, message } from 'antd'
 import { FC, useState } from 'react'
 import styles from './index.module.scss'
+import isEmail from 'validator/es/lib/isEmail'
+import isUrl from 'validator/es/lib/isURL'
 
 const { TextArea } = Input
 
@@ -27,6 +29,22 @@ const CommentBox: FC<{
   const handleSubmit = () => {
     if (!author || !text || !mail) {
       message.error('亲亲, 能把信息填完整么')
+      return
+    }
+    if (url && !isUrl(url, { require_protocol: true })) {
+      message.error('亲亲, 网址格式不正确哦')
+      return
+    }
+    if (!isEmail(mail)) {
+      message.error('亲亲, 邮箱格式不正确哦')
+      return
+    }
+    if (author.length > 20) {
+      message.error('昵称太长了了啦, 服务器会坏掉的')
+      return
+    }
+    if (text.length > 200) {
+      message.error('内容太长了了啦, 服务器会坏掉的')
       return
     }
     onSubmit({
@@ -56,7 +74,7 @@ const CommentBox: FC<{
           onChange={(e) => setMail(e.target.value)}
         />
         <Input
-          placeholder={'网站'}
+          placeholder={'网站 https?://'}
           prefix={<GlobalOutlined className="site-form-item-icon" />}
           value={url}
           onChange={(e) => setUrl(e.target.value)}

@@ -69,7 +69,7 @@ const SectionNews: FC<SectionNewsProps> = (props) => {
             {title}
           </h3>
           <h3 className="more" style={{ backgroundColor: color }}>
-            <Link href={moreUrl} prefetch>
+            <Link href={moreUrl}>
               <a>
                 <FontAwesomeIcon icon={faChevronRight} />
               </a>
@@ -81,7 +81,7 @@ const SectionNews: FC<SectionNewsProps> = (props) => {
             {content.map((item, i) => {
               return (
                 <div className={`col-${size} col-m-3`} key={i}>
-                  <Link {...pick(item, ['href', 'as'])} prefetch>
+                  <Link {...pick(item, ['href', 'as'])}>
                     <a className="news-article">
                       <img
                         src={item.background ?? extraImages.pop()}
