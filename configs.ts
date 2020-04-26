@@ -11,4 +11,6 @@ export default {
     },
   ],
   homePage: 'https://innei.ren',
+  neteaseId: 84302804,
+  biliId: 26578164,
 }

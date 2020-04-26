@@ -13,4 +13,5 @@ export interface UserDto extends BaseRespModel {
   id: string
   avatar: string
   introduce?: string
+  socialIds?: Record<string, string | number>
 }
