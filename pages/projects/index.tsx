@@ -3,6 +3,7 @@ import defaultImage from 'assets/images/Kico.jpg'
 import { Rest } from 'utils/api'
 import { ProjectRespModel, ProjectModel } from 'models/dto/project'
 import Link from 'next/link'
+import { Image } from 'components/Image'
 
 interface ProjectViewProps {
   projects: ProjectModel[]
@@ -24,9 +25,10 @@ const ProjectView: NextPage<ProjectViewProps> = (props) => {
                   key={project._id}
                 >
                   <a>
-                    <img
+                    <Image
                       src={project.avatar ?? defaultImage}
                       alt={project.name}
+                      defaultImage={defaultImage}
                     />
                     <h4>{project.name}</h4>
                   </a>

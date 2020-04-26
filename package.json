@@ -35,6 +35,7 @@
     "randomcolor": "^0.5.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-image-lightbox": "^5.1.1",
     "react-markdown": "^4.3.1",
     "react-syntax-highlighter": "^12.2.1",
     "remove-markdown": "^0.3.0",
