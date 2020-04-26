@@ -24,7 +24,13 @@ export const BasicLayout = observer(({ children }) => {
                 <a href={configs.homePage ?? '#'} target="_blank">
                   {userStore.name}
                 </a>
-                .
+                .{' '}
+                <span>
+                  Design by <a href="//paul.ren">Paul.</a>{' '}
+                </span>
+                <span>
+                  Dev by <a href="//innei.ren">Innei</a>.
+                </span>
               </p>
             </div>
             <div className="col-m-6 right to-center">

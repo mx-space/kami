@@ -1,9 +1,9 @@
-import { BaseRespModel, TimeRecord } from './base'
+import { BaseRespModel, BaseModel } from './base'
 export interface CountRecord {
   read: number
   like: number
 }
-export interface NoteModel extends TimeRecord {
+export interface NoteModel extends BaseModel {
   commentsIndex: number
   hide: boolean
   count: CountRecord

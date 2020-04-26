@@ -14,7 +14,12 @@ export interface PagerModel {
   }
 }
 
-export interface TimeRecord {
+export interface BaseModel {
   created: string
   modified: string
+  _id: string
+}
+
+export interface BaseCommentIndexModel extends BaseModel {
+  commentsIndex?: number
 }
