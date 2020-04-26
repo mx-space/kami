@@ -1,12 +1,12 @@
 import { omit } from 'lodash'
-import { Top } from 'models/aggregate'
+import { Top, RandomImage } from 'models/aggregate'
 import { NextPage } from 'next'
 import { Rest } from 'utils/api'
 import { observer } from 'mobx-react'
 import { useStore } from 'store'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SectionNews, { SectionNewsProps } from 'components/SectionNews'
-import { faBookOpen } from '@fortawesome/free-solid-svg-icons'
+import { faBookOpen, faPencilAlt } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
 
 interface IndexViewProps {
@@ -14,6 +14,7 @@ interface IndexViewProps {
   notes: Top.Note[]
   says: Top.Say[]
   projects: Top.Project[]
+  randomImages: string[]
 }
 
 const IndexView: NextPage<IndexViewProps> = (props) => {
@@ -23,8 +24,8 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
   const { description } = appStore
   const { socialLinks } = socialStore
 
-  const { posts, notes, says, projects } = props
-
+  const { posts, notes, says, projects, randomImages } = props
+  const images = [...randomImages]
   const [sections, _] = useState({
     postSection: {
       title: '最新博文',
@@ -33,15 +34,26 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
       content: posts.slice(0, 4).map((p) => {
         return {
           title: p.title,
-          background: '',
+          background: images.pop(),
           _id: p._id,
           ...buildRoute('Post', p),
         }
       }),
-      // content: [],
+    } as SectionNewsProps,
+    noteSection: {
+      title: '随便写写',
+      icon: faPencilAlt,
+      moreUrl: 'notes',
+      content: notes.slice(0, 4).map((n) => {
+        return {
+          title: n.title,
+          background: images.pop(),
+          _id: n._id,
+          ...buildRoute('Note', n),
+        }
+      }),
     } as SectionNewsProps,
   })
-  // const PostSection: SectionNewsProps =
 
   return (
     <main>
@@ -73,8 +85,10 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
           </div>
         </div>
       </section>
-
-      <SectionNews {...sections.postSection} />
+      <section className="paul-news">
+        <SectionNews {...sections.postSection} />
+        <SectionNews {...sections.noteSection} />
+      </section>
     </main>
   )
 }
@@ -85,7 +99,7 @@ enum ContentType {
   Project,
 }
 
-function buildRoute<T extends { _id: string } & { nid?: string }>(
+function buildRoute<T extends { _id: string } & { nid?: number }>(
   type: keyof typeof ContentType,
   obj: T,
 ): { as: string; href: string } {
@@ -114,10 +128,19 @@ function buildRoute<T extends { _id: string } & { nid?: string }>(
   }
 }
 
-IndexView.getInitialProps = async () => {
-  const resp = (await Rest('Aggregate').get('top')) as Top.Aggregate
-
-  return omit(resp, ['ok', 'timestamp']) as IndexViewProps
+IndexView.getInitialProps = async (): Promise<IndexViewProps> => {
+  const aggregateData = (await Rest('Aggregate').get('top')) as Top.Aggregate
+  const randomImageData = (await Rest('Aggregate').get(
+    'random?type=3&imageType=2&size=8',
+  )) as { data: RandomImage.Image[] }
+  return {
+    ...(omit(aggregateData, ['ok', 'timestamp']) as IndexViewProps),
+    randomImages: randomImageData.data.map((image) => {
+      return image.locate !== RandomImage.Locate.Online
+        ? `${process.env.apiUrl}/uploads/background/${image.name}`
+        : `` // TODO online images
+    }),
+  }
 }
 
 export default observer(IndexView)

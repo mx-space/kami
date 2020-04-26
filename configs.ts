@@ -10,4 +10,5 @@ export default {
       icon: faGithub,
     },
   ],
+  homePage: 'https://innei.ren',
 }

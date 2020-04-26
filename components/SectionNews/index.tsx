@@ -8,6 +8,8 @@ import Link from 'next/link'
 import { pick } from 'lodash'
 import styles from './index.module.scss'
 import randomColor from 'randomcolor'
+import { shuffle } from 'lodash'
+
 export interface SectionNewsProps {
   title: string
   icon: IconDefinition
@@ -32,9 +34,14 @@ const SectionNews: FC<SectionNewsProps> = (props) => {
     size = 6,
     color = randomColor({ luminosity: 'dark' }),
   } = props
-
+  const extraImages = shuffle([
+    'https://i.loli.net/2020/04/26/9zMh7AqfTQ8SmwJ.jpg',
+    'https://i.loli.net/2020/04/26/GUJHa8wxXt3CScs.png',
+    'https://i.loli.net/2020/04/26/sRnTN6QGSyVPhlA.jpg',
+    'https://i.loli.net/2020/04/26/CAkdYgHIoabL3ns.png',
+  ])
   return (
-    <section className="paul-news">
+    <>
       <style jsx>{`
         svg {
           top: 0;
@@ -77,7 +84,7 @@ const SectionNews: FC<SectionNewsProps> = (props) => {
                   <Link {...pick(item, ['href', 'as'])}>
                     <a className="news-article">
                       <img
-                        src="//paul.ren/static/img/article/14.jpg"
+                        src={item.background ?? extraImages.pop()}
                         alt={item.title}
                       />
                       <h4>{item.title}</h4>
@@ -89,7 +96,7 @@ const SectionNews: FC<SectionNewsProps> = (props) => {
           </div>
         </div>
       </div>
-    </section>
+    </>
   )
 }
 

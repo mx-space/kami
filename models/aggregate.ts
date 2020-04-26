@@ -53,6 +53,28 @@ interface PageMeta {
   order?: number
 }
 
+export namespace RandomImage {
+  export interface Dimensions {
+    height: number
+    width: number
+    type: string
+  }
+
+  export enum Locate {
+    Local,
+    Online,
+  }
+  export interface Image {
+    _id: string
+    name: string
+    dimensions: Dimensions
+    filename: string
+    mime: string
+    type: number
+    locate?: Locate
+  }
+}
+
 export interface AggregateResp extends BaseRespModel {
   user: UserDto
   seo: Seo
