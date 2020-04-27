@@ -26,7 +26,7 @@
     "dayjs": "^1.8.25",
     "express": "^4.17.1",
     "inflection": "^1.12.0",
-    "kico-style": "^1.1.2",
+    "kico-style": "^1.1.3",
     "markdown-it": "^10.0.0",
     "mobx": "^5.15.4",
     "mobx-devtools-mst": "^0.9.21",

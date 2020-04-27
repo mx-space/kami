@@ -44,7 +44,7 @@ const BangumiView: NextPage<{ data: FavoriteBangumiType[] }> = (props) => {
 
 BangumiView.getInitialProps = async () => {
   const $api = axios.create({
-    baseURL: 'http://127.0.0.1:' + process.env.PORT || '2323',
+    baseURL: process.env.BASEURL,
   })
   const { data } = await $api.get('_extra/bangumi', {
     params: {
