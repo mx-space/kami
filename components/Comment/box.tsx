@@ -2,8 +2,8 @@ import { GlobalOutlined, MailOutlined, UserOutlined } from '@ant-design/icons'
 import { Input, message } from 'antd'
 import { FC, useState } from 'react'
 import styles from './index.module.scss'
-import isEmail from 'validator/es/lib/isEmail'
-import isUrl from 'validator/es/lib/isURL'
+import isEmail from 'validator/lib/isEmail'
+import isUrl from 'validator/lib/isURL'
 
 const { TextArea } = Input
 
