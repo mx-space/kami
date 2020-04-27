@@ -19,10 +19,12 @@ musicRouter.get('/music', async (req, res) => {
   await client.Login()
   const weekdata = await client.getWeekData()
   const alldata = await client.getAllData()
+  const playlist = await client.getFavorite()
   const uid = client.user.id
   res.send({
     weekdata,
     alldata,
+    playlist,
     uid,
   })
 })

@@ -2,29 +2,23 @@ import { NextPage } from 'next'
 import { FavoriteNav } from './components/nav'
 import axios from 'axios'
 import { SectionMusic } from 'components/SectionMusic'
+import { NextSeo } from 'next-seo'
+import { useStore } from 'store'
+import configs from 'configs'
+import { observer } from 'mobx-react'
+import { PersonalPlayListType, PlayListType } from '@mx-space/extra'
 interface MusicProps {
-  weekdata: {
-    id: number
-    time: string
-    picUrl: string
-    name: string
-    author: string
-    playCount: any
-  }[]
-  alldata: {
-    id: number
-    time: string
-    picUrl: string
-    name: string
-    author: string
-    playCount: any
-  }[]
+  weekdata: PlayListType[]
+  alldata: PlayListType[]
+  playlist: PersonalPlayListType
   uid: number
 }
 
 const MusicView: NextPage<MusicProps> = (props) => {
+  const { appStore } = useStore()
   return (
     <main>
+      <NextSeo title={`歌单 - ${appStore.title || configs.title}`} />
       <FavoriteNav index={0} />
       <SectionMusic
         {...{
@@ -42,6 +36,13 @@ const MusicView: NextPage<MusicProps> = (props) => {
           data: props.alldata,
         }}
       />
+      <SectionMusic
+        {...{
+          name: props.playlist.name,
+          src: props.playlist.coverImgUrl,
+          data: props.playlist.data.slice(0, 10),
+        }}
+      />
     </main>
   )
 }
@@ -55,4 +56,4 @@ MusicView.getInitialProps = async () => {
   return data as MusicProps
 }
 
-export default MusicView
+export default observer(MusicView)

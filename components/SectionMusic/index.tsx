@@ -1,14 +1,8 @@
 import { FC } from 'react'
+import { PlayListType } from '@mx-space/extra'
 
 interface SectionMusicProps {
-  data: {
-    id: number
-    time: string
-    picUrl: string
-    name: string
-    author: string
-    playCount: any
-  }[]
+  data: PlayListType[]
   src: string
   name: string
 }
@@ -20,6 +14,9 @@ export const SectionMusic: FC<SectionMusicProps> = (props) => {
         .sticky-cover {
           position: sticky;
           top: 5rem;
+        }
+        * {
+          font-size: 16px;
         }
       `}</style>
       <div className="music-cover">
@@ -33,7 +30,7 @@ export const SectionMusic: FC<SectionMusicProps> = (props) => {
         <ul className="clear">
           {props.data.map((i, index) => {
             return (
-              <li data-sid={i.id}>
+              <li data-sid={i.id} key={index}>
                 <span className={'num'}>{index + 1}</span>
                 {i.name}
                 <time>{i.time}</time>
