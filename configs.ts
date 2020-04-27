@@ -15,6 +15,9 @@ export default {
   apiUrl: '',
   title: "Innei's Space", // prefetch seo
   description: '欢迎来到我的小窝',
+  avatar:
+    'https://avatars2.githubusercontent.com/u/41265413?s=460&u=12cefe5e6d2d75766dc455cec96336e73d7b951b&v=4', // work on rss
+  url: 'https://innei.ren',
   social: [
     {
       url: 'https://github.com/Innei',
