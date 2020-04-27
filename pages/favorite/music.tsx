@@ -51,7 +51,7 @@ MusicView.getInitialProps = async () => {
   const $api = axios.create({
     baseURL: process.env.BASEURL,
   })
-  const { data } = await $api.get('_extra/music')
+  const { data } = await $api.get('/_extra/music')
 
   return data as MusicProps
 }

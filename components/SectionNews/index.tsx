@@ -9,7 +9,8 @@ import { pick } from 'lodash'
 import styles from './index.module.scss'
 import randomColor from 'randomcolor'
 import { shuffle } from 'lodash'
-
+import { Image } from 'components/Image'
+import LoadingImage from 'assets/images/load.gif'
 export interface SectionNewsProps {
   title: string
   icon: IconDefinition
@@ -61,6 +62,9 @@ const SectionNews: FC<SectionNewsProps> = (props) => {
           left: 0;
           top: 0;
         }
+        .news-article {
+          height: 9rem;
+        }
       `}</style>
       <div className="news-item">
         <div className="news-head">
@@ -83,9 +87,10 @@ const SectionNews: FC<SectionNewsProps> = (props) => {
                 <div className={`col-${size} col-m-3`} key={i}>
                   <Link {...pick(item, ['href', 'as'])}>
                     <a className="news-article">
-                      <img
+                      <Image
                         src={item.background ?? extraImages.pop()}
                         alt={item.title}
+                        defaultImage={LoadingImage}
                       />
                       <h4>{item.title}</h4>
                     </a>

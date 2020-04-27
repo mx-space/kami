@@ -46,7 +46,7 @@ BangumiView.getInitialProps = async () => {
   const $api = axios.create({
     baseURL: process.env.BASEURL,
   })
-  const { data } = await $api.get('_extra/bangumi', {
+  const { data } = await $api.get('/_extra/bangumi', {
     params: {
       uid: configs.biliId,
     },
