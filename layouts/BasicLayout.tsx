@@ -8,6 +8,12 @@ import { useStore } from 'store'
 import configs from 'configs'
 import Link from 'next/link'
 
+import dynamic from 'next/dynamic'
+
+const APlayer = dynamic(() => import('components/Player'), {
+  ssr: false,
+})
+
 export const BasicLayout = observer(({ children }) => {
   const { appStore, userStore } = useStore()
   const { isOverflow } = appStore
@@ -54,6 +60,7 @@ export const BasicLayout = observer(({ children }) => {
           </BackTop>
         </div>
       </footer>
+      <APlayer />
     </>
   )
 })

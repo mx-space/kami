@@ -5,6 +5,7 @@ import CategoryStore from './category'
 import PageStore from './pages'
 import SocialStore from './social'
 import UserStore from './user'
+import MusicStore from './music'
 
 export enum LayoutType {
   Post,
@@ -51,4 +52,5 @@ export interface Stores {
   socialStore: SocialStore
   pageStore: PageStore
   categoryStore: CategoryStore
+  musicStore: MusicStore
 }

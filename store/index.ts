@@ -5,6 +5,7 @@ import SocialStore from './social'
 import PageStore from './pages'
 import CategoryStore from './category'
 import { createContext, useContext } from 'react'
+import MusicStore from './music'
 export default function createMobxStores(): Stores {
   return {
     appStore: new AppStore(),
@@ -12,6 +13,7 @@ export default function createMobxStores(): Stores {
     socialStore: new SocialStore(),
     pageStore: new PageStore(),
     categoryStore: new CategoryStore(),
+    musicStore: new MusicStore(),
   }
 }
 
