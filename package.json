@@ -22,6 +22,7 @@
     "antd": "^4.1.4",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
+    "cors": "^2.8.5",
     "dayjs": "^1.8.25",
     "express": "^4.17.1",
     "inflection": "^1.12.0",

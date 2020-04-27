@@ -7,6 +7,7 @@ module.exports = withImages(
   withBundleAnalyzer({
     env: {
       // apiUrl: 'http://47.114.54.60:2333/',
+      PORT: 2323,
       apiUrl: 'http://localhost:2333',
     },
     assetPrefix: isProd
