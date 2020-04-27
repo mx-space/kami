@@ -6,6 +6,8 @@ import { Rest } from 'utils/api'
 import ReactMarkdown from 'react-markdown'
 import { useState } from 'react'
 import { SliderImagesPopup } from 'components/SliderImagesPopup'
+import { useStore } from 'store'
+import { NextSeo } from 'next-seo'
 
 type ProjectViewProps = ProjectModel
 
@@ -13,8 +15,16 @@ const ProjectView: NextPage<ProjectViewProps> = (props) => {
   const { name, avatar, images } = props
   const [photoIndex, setIndex] = useState(0)
   const [isOpen, setOpen] = useState(false)
+  const { appStore } = useStore()
+
   return (
     <main>
+      <NextSeo
+        {...{
+          title: props.name + ' - ' + appStore.title,
+          description: props.description,
+        }}
+      />
       <section className="project-head">
         <Image defaultImage={Kico} alt={name} src={avatar as string} />
         <h1>{name}</h1>

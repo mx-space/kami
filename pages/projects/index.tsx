@@ -4,6 +4,8 @@ import { Rest } from 'utils/api'
 import { ProjectRespModel, ProjectModel } from 'models/dto/project'
 import Link from 'next/link'
 import { Image } from 'components/Image'
+import { NextSeo } from 'next-seo'
+import { useStore } from 'store'
 
 interface ProjectViewProps {
   projects: ProjectModel[]
@@ -11,9 +13,10 @@ interface ProjectViewProps {
 
 const ProjectView: NextPage<ProjectViewProps> = (props) => {
   const { projects } = props
-
+  const { appStore } = useStore()
   return (
     <main>
+      <NextSeo {...{ title: '项目 - ' + appStore.title }} />
       <section className={'project-list'}>
         <div className="row">
           <div className="col-4 col-s-3 col-m-2">
