@@ -12,6 +12,7 @@ export interface PostResModel {
   slug: string
   categoryId: string
   category: CategoryModel
+  summary?: string
 }
 
 export interface PostPagerDto extends BaseRespModel, PagerModel {

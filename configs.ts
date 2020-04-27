@@ -1,4 +1,4 @@
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import {
   faHome,
   faBook,
@@ -9,18 +9,27 @@ import {
   faMusic,
   faTv,
 } from '@fortawesome/free-solid-svg-icons'
+import { SocialLinkModel } from 'store/types'
 
 export default {
   apiUrl: '',
-  title: "Innei's Space",
+  title: "Innei's Space", // prefetch seo
+  description: '欢迎来到我的小窝',
   social: [
     {
       url: 'https://github.com/Innei',
       title: 'GitHub',
       icon: faGithub,
+      color: '#000',
     },
-  ],
-  homePage: 'https://innei.ren',
+    {
+      url: 'https://twitter.com/',
+      title: 'Twitter',
+      icon: faTwitter,
+      color: '#00A3EC',
+    },
+  ] as SocialLinkModel[],
+  homePage: 'https://innei.ren', // footer link
   menu: [
     {
       _id: '1',

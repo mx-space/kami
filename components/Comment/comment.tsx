@@ -33,7 +33,10 @@ const Comments: FC<{ comments: CommentModel[] }> = ({ comments }) => {
       <Comment
         key={comment._id}
         author={
-          <a href={'//' + (comment.url?.replace(/^https?/, '') ?? '')}>
+          <a
+            href={'//' + (comment.url?.replace(/^https?/, '') ?? '')}
+            rel={'nofollow'}
+          >
             {comment.author}
           </a>
         }

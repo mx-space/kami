@@ -39,7 +39,7 @@ export const BasicLayout = observer(({ children }) => {
                   <a>关于我</a>
                 </Link>
                 ·
-                <a href="//feed" target="_blank">
+                <a href="/feed" target="_blank">
                   订阅
                 </a>
               </p>

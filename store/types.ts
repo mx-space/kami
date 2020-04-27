@@ -30,6 +30,7 @@ export interface SocialLinkModel {
   icon: IconDefinition
   title?: string
   url: string
+  color?: string
 }
 
 export interface PageModel extends PageDescriptionDto {}

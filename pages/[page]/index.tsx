@@ -1,28 +1,34 @@
 import Markdown from 'components/MD-render'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { PageRespDto } from 'models/dto/page'
-import { NextPageContext } from 'next'
-import { WithRouterProps } from 'next/dist/client/with-router'
-import { Component } from 'react'
+import { NextPage } from 'next'
+import { NextSeo } from 'next-seo'
+import RemoveMarkdown from 'remove-markdown'
+import { useStore } from 'store'
 import { Rest } from 'utils/api'
+import { observer } from 'mobx-react'
+import CommentWrap from 'components/Comment'
 
-class Page extends Component<WithRouterProps & PageRespDto> {
-  static async getInitialProps(ctx: NextPageContext) {
-    const { data } = await Rest('Page', 'slug').get<PageRespDto>(
-      ctx.query.page as string,
-    )
-    return { data }
-  }
-
-  render() {
-    const { data } = this.props
-    const { title, subtitle, text } = data
-    return (
-      <ArticleLayout title={title} subtitle={subtitle}>
-        <Markdown value={text} escapeHtml={false} />
-      </ArticleLayout>
-    )
-  }
+const Page: NextPage<PageRespDto> = (props) => {
+  const { data } = props
+  const { title, subtitle, text } = data
+  const { appStore } = useStore()
+  return (
+    <ArticleLayout title={title} subtitle={subtitle}>
+      <NextSeo
+        title={title + ' - ' + appStore.title}
+        description={RemoveMarkdown(text).slice(0, 100).replace('\n', '')}
+      />
+      <Markdown value={text} escapeHtml={false} />
+      <CommentWrap {...{ type: 'Page', id: props.data._id }} />
+    </ArticleLayout>
+  )
+}
+Page.getInitialProps = async (ctx) => {
+  const { data } = await Rest('Page', 'slug').get<PageRespDto>(
+    ctx.query.page as string,
+  )
+  return { data } as PageRespDto
 }
 
-export default Page
+export default observer(Page)

@@ -76,7 +76,9 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
                   href={item.url}
                   target="_blank"
                   ks-text={item.title}
+                  ks-tag="bottom"
                   key={item.title}
+                  style={item.color ? { color: item.color } : {}}
                 >
                   <FontAwesomeIcon icon={item.icon} />
                 </a>

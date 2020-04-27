@@ -28,6 +28,7 @@ import { useStore } from 'store'
 import { Rest } from 'utils/api'
 import { parseDate, relativeTimeFromNow } from 'utils/time'
 import { mood2icon, weather2icon } from 'utils/weather2icon'
+import { NextSeo } from 'next-seo'
 
 interface NoteViewProps {
   data: NoteModel
@@ -105,9 +106,22 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
       icon: faSmile,
     })
   }
-
+  const description = RemoveMarkdown(text).slice(0, 100)
   return (
     <>
+      <NextSeo
+        {...{
+          title,
+          description,
+          openGraph: {
+            title,
+            description,
+            profile: {
+              username: userStore.name,
+            },
+          },
+        }}
+      />
       <NoteLayout title={title} meta={renderMeta} tips={tips}>
         <Markdown value={text} escapeHtml={false}></Markdown>
         <Action {...actions} style={{ marginTop: '24px' }} />

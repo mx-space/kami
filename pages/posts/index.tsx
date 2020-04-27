@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
+import { NextSeo } from 'next-seo'
 interface Post extends PagerModel {
   posts: PostResModel[]
 }
@@ -44,9 +45,10 @@ export default function Post({ posts, page }: Post) {
 
     setLoading(false)
   }
-
+  const { appStore } = useStore()
   return (
     <ArticleLayout>
+      <NextSeo title={'博文 - ' + appStore.title} />
       {/* <div className="navigation">
         <Link href={{ pathname: 'posts', query: { y: '2020' } }}>
           <a className="active">2020</a>

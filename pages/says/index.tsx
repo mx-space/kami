@@ -4,6 +4,8 @@ import { Rest } from 'utils/api'
 import { SayRespDto, SayModel } from 'models/dto/say'
 import { PagerModel } from 'models/dto/base'
 import { relativeTimeFromNow } from 'utils/time'
+import { NextSeo } from 'next-seo'
+import { useStore } from 'store'
 
 interface SayViewProps {
   page: PagerModel
@@ -12,9 +14,14 @@ interface SayViewProps {
 
 const SayView: NextPage<SayViewProps> = (props) => {
   const { data } = props
-
+  const { appStore } = useStore()
   return (
     <main>
+      <NextSeo
+        {...{
+          title: '说说 - ' + appStore.title,
+        }}
+      />
       <style jsx>{`
         .author {
           position: relative;

@@ -29,7 +29,8 @@ import PageStore from '../store/pages'
 import { PageModel, Stores, ViewportRecord } from '../store/types'
 import UserStore from '../store/user'
 import { Rest } from '../utils/api'
-
+import configs from 'configs'
+import { NextSeo } from 'next-seo'
 const stores = createMobxStores()
 
 makeInspectable(stores)
@@ -95,6 +96,10 @@ class Context extends PureComponent<Store & { data: any }> {
         value={{ viewport: this.props.app?.viewport as ViewportRecord }}
       >
         <StoreProvider value={stores}>
+          <NextSeo
+            title={this.props.app?.title || configs.title}
+            description={this.props.app?.description || configs.description}
+          />
           {this.props.children}
           <Loader />
         </StoreProvider>
