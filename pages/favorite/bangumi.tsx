@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import { FavoriteNav } from './components/nav'
+import { FavoriteNav } from '../../components/Navigation/nav'
 import { FavoriteBangumiType } from '@mx-space/extra'
 import axios from 'axios'
 import configs from 'configs'

@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import { FavoriteNav } from './components/nav'
+import { FavoriteNav } from '../../components/Navigation/nav'
 import axios from 'axios'
 import { SectionMusic } from 'components/SectionMusic'
 import { NextSeo } from 'next-seo'
