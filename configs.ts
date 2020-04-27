@@ -32,6 +32,7 @@ export default {
       color: '#00A3EC',
     },
   ] as SocialLinkModel[],
+  biliId: 26578164,
   homePage: 'https://innei.ren', // footer link
   menu: [
     {

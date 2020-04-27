@@ -31,7 +31,7 @@ export default class Header extends React.Component<Store> {
   renderSubMenu(subMenu: MenuModel[]) {
     const menus = subMenu.map((menu) => {
       return (
-        <Link href={'[page]'} as={menu.path.replace(/^\//, '')} key={menu._id}>
+        <Link href={menu.path} as={menu.as} key={menu._id}>
           <a>
             {menu.icon && <FontAwesomeIcon icon={menu.icon} />}
             <span>{menu.title}</span>

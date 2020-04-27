@@ -39,7 +39,8 @@ export default class AppStore {
       return {
         title,
         _id,
-        path: '/' + slug,
+        path: '/[page]',
+        as: '/' + slug,
         type: 'Page',
       }
     })

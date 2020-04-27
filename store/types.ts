@@ -25,6 +25,8 @@ export interface MenuModel {
   path: string
   subMenu?: MenuModel[]
   icon?: IconDefinition
+  as?: string
+  independent?: boolean
 }
 
 export interface SocialLinkModel {
