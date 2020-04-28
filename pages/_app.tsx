@@ -50,6 +50,9 @@ const AppContext = createContext({
 class Context extends PureComponent<Store & { data: any }> {
   scrollCb = debounce(() => {
     this.props.app?.updatePosition()
+    document.body.style.backgroundPositionY = `${
+      document.documentElement.scrollTop / 36
+    }px`
   }, 14)
 
   componentDidMount(): void {
