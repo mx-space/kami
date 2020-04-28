@@ -27,11 +27,11 @@ service.interceptors.response.use(
     return res
   },
   (error) => {
-    if (Array.isArray(error.response?.data?.msg)) {
-      error.response?.data?.msg.map((m) => {
+    if (Array.isArray(error.response?.data?.message)) {
+      error.response?.data?.message.map((m) => {
         message.error(m)
       })
-    } else message.error(error.response?.data?.msg)
+    } else message.error(error.response?.data?.message)
     return Promise.reject(error)
   },
 )

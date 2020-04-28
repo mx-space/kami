@@ -17,11 +17,12 @@ const NotePage: NextPage<{
     router.push('/notes/[id]', `/notes/${props.data.nid}`, { shallow: true })
   }, [props.data.nid, router])
 
-  return null
+  return <main></main>
 }
 
-NotePage.getInitialProps = async () => {
+NotePage.getInitialProps = async (ctx) => {
   const { data, next } = (await Rest('Note').get('latest')) as NoteLastestResp
+
   return { data, next }
 }
 

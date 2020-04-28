@@ -61,6 +61,7 @@ const CommentWrap: FC<{
           {page?.totalPage !== 0 && (
             <Pagination
               simple
+              hideOnSinglePage
               current={page.currentPage || 1}
               onChange={(page) => {
                 fetchComments(page)

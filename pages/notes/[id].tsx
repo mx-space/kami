@@ -29,6 +29,7 @@ import { Rest } from 'utils/api'
 import { parseDate, relativeTimeFromNow } from 'utils/time'
 import { mood2icon, weather2icon } from 'utils/weather2icon'
 import { NextSeo } from 'next-seo'
+import { useRouter } from 'next/router'
 
 interface NoteViewProps {
   data: NoteModel
@@ -64,7 +65,7 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
       <span>{data.count.like}</span>
     </>
   )
-
+  const router = useRouter()
   const [tips, setTips] = useState(``)
   useEffect(() => {
     const wordCount = RemoveMarkdown(text).length
@@ -78,7 +79,9 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
       }`,
     )
   }, [text, data.created, data.modified, data.count.read, data.count.like])
-
+  useEffect(() => {
+    window.scroll({ top: 0, left: 0, behavior: 'smooth' })
+  })
   const actions: ActionProps = {
     informs: [],
     actions: [{ name: '喜欢', icon: faHeart, callback: () => {} }],
@@ -125,6 +128,31 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
       <NoteLayout title={title} meta={renderMeta} tips={tips}>
         <Markdown value={text} escapeHtml={false}></Markdown>
         <Action {...actions} style={{ marginTop: '24px' }} />
+
+        {(!!next || !!prev) && (
+          <section className="paul-more">
+            {!!next && (
+              <button
+                className="btn green"
+                onClick={() => {
+                  router.push('/notes/[id]', `/notes/${next.nid}`, {})
+                }}
+              >
+                前一篇
+              </button>
+            )}{' '}
+            {!!prev && (
+              <button
+                className="btn green"
+                onClick={() => {
+                  router.push('/notes/[id]', `/notes/${prev.nid}`, {})
+                }}
+              >
+                后一篇
+              </button>
+            )}
+          </section>
+        )}
       </NoteLayout>
       <ArticleLayout>
         <CommentWrap type={'Note'} id={_id} />
