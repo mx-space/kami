@@ -27,15 +27,7 @@ export const PostView: NextPage<PostResModel> = (props) => {
           name: name as string,
         },
       ],
-      actions: [
-        {
-          icon: faComment,
-          name: '评论',
-          callback: () => {
-            console.log('comment')
-          },
-        },
-      ],
+      actions: [],
     })
   }, [name])
 

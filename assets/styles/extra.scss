@@ -41,7 +41,7 @@
     --shizuku-theme-color: #3c946c;
   }
   blockquote {
-    background: rgba($color: var(--shizuku-background-color), $alpha: 0.5);
+    background: var(--shizuku-background-color);
     border-left: 5px solid var(--shizuku-theme-color);
   }
   article {
@@ -90,10 +90,34 @@ code {
 p {
   margin: 0.5rem 0;
 }
-.ant-comment-actions {
-  margin-left: 0;
+// aplayer restyle
+
+.aplayer {
+  color: #333;
 }
+
+// ant desion restyle
 .ant-pagination-prev .ant-pagination-item-link,
 .ant-pagination-next .ant-pagination-item-link {
   background: none;
+}
+.ant-comment-actions {
+  margin-left: 0;
+}
+.ant-input,
+.ant-input-affix-wrapper {
+  background-color: rgba(255, 255, 255, 0.274);
+}
+@media (prefers-color-scheme: dark) {
+  .ant-input,
+  .ant-input-affix-wrapper {
+    background-color: var(--light-bg) !important;
+    border-color: var(--shizuku-text-color);
+    color: var(--shizuku-text-color) !important;
+  }
+  .ant-comment-content-author-name {
+    > * {
+      color: var(--shizuku-text-color) !important;
+    }
+  }
 }

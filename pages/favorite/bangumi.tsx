@@ -4,6 +4,7 @@ import { FavoriteBangumiType } from '@mx-space/extra'
 import axios from 'axios'
 import configs from 'configs'
 import Head from 'next/head'
+import { NextSeo } from 'next-seo'
 const BangumiView: NextPage<{ data: FavoriteBangumiType[] }> = (props) => {
   return (
     <main>
@@ -11,6 +12,11 @@ const BangumiView: NextPage<{ data: FavoriteBangumiType[] }> = (props) => {
       <Head>
         <meta name="referrer" content="no-referrer" />
       </Head>
+      <NextSeo
+        {...{
+          title: '追番 - ' + configs.title,
+        }}
+      />
       <section className={'paul-bangumi'}>
         <div className="row">
           {props.data.map((bangumi) => {

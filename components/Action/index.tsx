@@ -24,6 +24,11 @@ export default function Action(props: ActionProps) {
 
   return (
     <>
+      <style jsx>{`
+        .note-action {
+          min-height: 1rem;
+        }
+      `}</style>
       <div className="note-inform" {...rest}>
         {informs.map((inform, index) => {
           return (
