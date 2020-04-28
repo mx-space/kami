@@ -1619,6 +1619,11 @@ anymatch@~3.1.1:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
+apicache@^1.5.3:
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/apicache/-/apicache-1.5.3.tgz#8977b358bf7d579d55fe3d183c907ae5dbcfb357"
+  integrity sha512-n1h39Bt7tMiJMV0u0tFlhigig8Uo/wJmKoj6WE/OwvZ+WbFchn7jnXleotZOzZTUBtr0Tg9iJshHnJDAGQbAEQ==
+
 aplayer@^1.10.0:
   version "1.10.1"
   resolved "https://registry.yarnpkg.com/aplayer/-/aplayer-1.10.1.tgz#318289206107452cc39e8f552fa6cc6cb459a90c"

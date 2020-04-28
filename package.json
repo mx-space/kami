@@ -20,6 +20,7 @@
     "@fortawesome/react-fontawesome": "^0.1.9",
     "@mx-space/extra": "^0.2.3",
     "antd": "^4.1.4",
+    "apicache": "^1.5.3",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "cors": "^2.8.5",

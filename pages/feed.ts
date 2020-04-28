@@ -1,15 +1,22 @@
-import { NextPage } from 'next'
-import markdown from 'markdown-it'
 import configs from 'configs'
-import { Rest } from 'utils/api'
-import { AggregateResp, Top } from 'models/aggregate'
-import { PostResModel } from 'models/dto/post'
+import markdown from 'markdown-it'
+import { AggregateResp } from 'models/aggregate'
 import { NoteModel } from 'models/dto/note'
+import { PostResModel } from 'models/dto/post'
+import { NextPage } from 'next'
+import { Rest } from 'utils/api'
 
 const FeedRSS: NextPage = (props) => {
   return null
 }
-
+const encodeHTML = function (str: string) {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
+}
 const genRSS = (props: RSSProps) => {
   const { title, url, author, data } = props
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -17,24 +24,24 @@ const genRSS = (props: RSSProps) => {
       <title>${title}</title>
       <link href="/atom.xml" rel="self"/>
       <link href="/feed" rel="self"/>
-      <link href="${url}"/>
-      <updated>${new Date()}</updated>
-      <id>${url}</id>
+      <link href="${encodeHTML(url)}"/>
+      <updated>${new Date().toISOString()}</updated>
+      <id>${encodeHTML(url)}</id>
       <author>
         <name>${author}</name>
       </author>
       <generator>${'Mix Space CMS'}</generator>
       <language>zh-CN</language>
       <image>
-          <url><![CDATA[${encodeURI(configs.avatar)}]]></url>
+          <url>${encodeHTML(configs.avatar)}</url>
           <title>${configs.title}</title>
-          <link>${url}</link>
+          <link>${encodeHTML(url)}</link>
       </image>
         ${data.map((item) => {
           return `<entry>
             <title>${item.title}</title>
-            <link href="${item.link}"/>
-            <id>${item.link}</id>
+            <link href="${encodeHTML(item.link)}"/>
+            <id>${encodeHTML(item.link)}</id>
             <published>${item.created}</published>
             <updated>${item.modified}</updated>
             <content type="html"><![CDATA[${new markdown().render(item.text)}]]>
