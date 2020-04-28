@@ -109,6 +109,7 @@ export default {
     'https://avatars2.githubusercontent.com/u/41265413?s=460&u=12cefe5e6d2d75766dc455cec96336e73d7b951b&v=4', // work on rss
   url: 'https://innei.ren',
   keywords: ['blog', 'space', 'mx-space', 'innei', '静之森', '静かな森'],
+  alwaysHTTPS: false,
   social,
   biliId: 26578164,
   homePage: 'https://innei.ren', // footer link

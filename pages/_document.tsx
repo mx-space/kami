@@ -16,10 +16,12 @@ export default class MyDocument extends Document<{ app: AppStore }> {
           <link rel="shortcut icon" href="/favicon.svg" />
           <link rel="icon" href="/favicon.svg" />
           <link rel="apple-touch-icon" href="/favicon.svg" />
-          <meta
-            http-equiv="Content-Security-Policy"
-            content="upgrade-insecure-requests"
-          />
+          {configs.alwaysHTTPS ? (
+            <meta
+              http-equiv="Content-Security-Policy"
+              content="upgrade-insecure-requests"
+            />
+          ) : null}
           <meta name="keywords" content={configs.keywords.join(',')} />
         </Head>
 
