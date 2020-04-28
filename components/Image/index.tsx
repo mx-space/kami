@@ -64,7 +64,9 @@ export const ImageLazy: FC<{ src: string; alt?: string } & LazyImageProps> = (
         )}
         loading={() => {
           console.log('loading')
-          return <img src={LoadImage} alt={'loading'} />
+          return (
+            <img src={LoadImage} alt={'loading'} style={{ height: '300px' }} />
+          )
         }}
         error={() => (
           <>

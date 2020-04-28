@@ -51,7 +51,6 @@ const genRSS = (props: RSSProps) => {
         })}
     </feed>`
 }
-
 interface RSSProps {
   title: string
   url: string

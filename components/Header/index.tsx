@@ -2,7 +2,7 @@ import { faListUl } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { inject, observer } from 'mobx-react'
 import Link from 'next/link'
-import React from 'react'
+import React, { MouseEvent } from 'react'
 import AppStore from 'store/app'
 import SocialStore from 'store/social'
 import { MenuModel, Stores } from 'store/types'
@@ -33,7 +33,7 @@ export default class Header extends React.Component<Store> {
     const menus = subMenu.map((menu) => {
       return (
         <Link href={menu.path} as={menu.as} key={menu._id}>
-          <a>
+          <a onClick={this.closeMenu}>
             {menu.icon && <FontAwesomeIcon icon={menu.icon} />}
             <span>{menu.title}</span>
           </a>
@@ -41,6 +41,15 @@ export default class Header extends React.Component<Store> {
       )
     })
     return <div className="sub-menu">{menus}</div>
+  }
+
+  closeMenu = (e: MouseEvent<HTMLDivElement | HTMLAnchorElement>) => {
+    if (this.props.app?.viewport.mobile) {
+      e.stopPropagation()
+      this.setState({
+        menuOpen: false,
+      })
+    }
   }
 
   render() {
@@ -73,6 +82,7 @@ export default class Header extends React.Component<Store> {
               <div
                 className={item.subMenu ? 'has-child' : 'menu-link'}
                 key={item._id}
+                onClick={this.closeMenu}
               >
                 <Link href={item.path} as={item.path}>
                   <a>
