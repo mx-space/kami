@@ -1,27 +1,28 @@
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { BackTop } from 'antd'
-import classNames from 'classnames'
+import { FooterActions } from 'components/Footer/actions'
 import Header from 'components/Header'
-import { observer } from 'mobx-react'
-import { useStore } from 'store'
 import configs from 'configs'
-import Link from 'next/link'
-
+import { observer } from 'mobx-react'
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
+import { useStore } from 'store'
 
 const APlayer = dynamic(() => import('components/Player'), {
   ssr: false,
 })
 
 export const BasicLayout = observer(({ children }) => {
-  const { appStore, userStore } = useStore()
-  const { isOverflow } = appStore
+  const { userStore } = useStore()
+
   return (
     <>
       <Header />
       {children}
       <footer>
+        <style jsx>{`
+          .row {
+            padding-bottom: 18px;
+          }
+        `}</style>
         <div className="wrap">
           <div className="row">
             <div className="col-m-6 left to-center">
@@ -52,13 +53,7 @@ export const BasicLayout = observer(({ children }) => {
             </div>
           </div>
         </div>
-        <div className="action">
-          <BackTop>
-            <button className={classNames('top', isOverflow ? 'active' : '')}>
-              <FontAwesomeIcon icon={faArrowUp} />
-            </button>
-          </BackTop>
-        </div>
+        <FooterActions />
       </footer>
       <APlayer />
     </>

@@ -10,6 +10,7 @@ import 'kico-style'
 import 'kico-style/paul.css'
 import 'assets/styles/shizuku.scss'
 import 'assets/styles/extra.scss'
+import '@openfonts/noto-serif-sc_vietnamese'
 // import 'antd/dist/antd.dark.css'
 // import 'assets/styles/main.scss'
 

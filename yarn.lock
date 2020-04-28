@@ -1047,6 +1047,11 @@
   dependencies:
     webpack-bundle-analyzer "3.6.1"
 
+"@openfonts/noto-serif-sc_vietnamese@^1.44.0":
+  version "1.44.0"
+  resolved "https://registry.yarnpkg.com/@openfonts/noto-serif-sc_vietnamese/-/noto-serif-sc_vietnamese-1.44.0.tgz#149b980d117c269fd7ffd17bd3592d9265e43b95"
+  integrity sha512-dRl4aaBwOJsCvmOAM0tS7a0AovD7QdtdlPJ0pphkq/IbMB591eG+r4y7IhBysayJTf2OsuT4PiN26yoGHj8FAg==
+
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"

@@ -19,6 +19,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.9",
     "@mx-space/extra": "^0.3.0",
+    "@openfonts/noto-serif-sc_vietnamese": "^1.44.0",
     "antd": "^4.1.4",
     "apicache": "^1.5.3",
     "axios": "^0.19.2",
