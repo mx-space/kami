@@ -1,7 +1,7 @@
 import { BiliClient } from '@mx-space/extra'
 import { Router } from 'express'
 export const biliRouter = Router()
-
+import axios from 'axios'
 biliRouter.get('/bangumi', async (req, res) => {
   const { uid, len = 30 } = req.query
   if (!uid || typeof parseInt(uid as any) !== 'number') {
@@ -40,4 +40,18 @@ biliRouter.get('/video', async (req, res) => {
   res.send({
     data,
   })
+})
+
+biliRouter.get('/cover', async (req, res) => {
+  const { src } = req.query
+  if (!src) {
+    return res.send()
+  }
+  const $api = axios.create()
+  $api
+    .get(src as string, { responseType: 'arraybuffer' })
+    .then((response) => Buffer.from(response.data, 'binary'))
+    .then((buffer) => {
+      res.send(buffer)
+    })
 })

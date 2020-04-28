@@ -24,7 +24,7 @@ const BangumiView: NextPage<{ data: FavoriteBangumiType[] }> = (props) => {
                   data-total={bangumi.count}
                   data-test=""
                 >
-                  <img src={bangumi.cover} />
+                  <img src={'/_extra/cover?src=' + bangumi.cover} />
                   <h4>
                     {bangumi.title}
                     <div className="bangumi-status">
@@ -32,7 +32,7 @@ const BangumiView: NextPage<{ data: FavoriteBangumiType[] }> = (props) => {
                       <p>{bangumi.countText}</p>
                     </div>
                   </h4>
-                </a>{' '}
+                </a>
               </div>
             )
           })}
