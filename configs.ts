@@ -23,7 +23,7 @@ export default {
       url: 'https://github.com/Innei',
       title: 'GitHub',
       icon: faGithub,
-      color: 'var(--light-font)',
+      color: 'var(--black)',
     },
     {
       url: 'https://twitter.com/',

@@ -1,2 +1,11 @@
 @import 'assets/styles/shizuku.scss';
 @import 'assets/styles/extra.scss';
+
+:root {
+  --black: #000;
+}
+@media screen and (prefers-color-scheme: dark) {
+  :root {
+    --black: #fff;
+  }
+}
