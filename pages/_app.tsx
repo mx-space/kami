@@ -71,12 +71,17 @@ class Context extends PureComponent<Store & { data: any }> {
     }
 
     Router.events.on('routeChangeStart', () => {
-      this.props.app?.toggleLoading()
+      this.props.app?.setLoading(true)
     })
 
     Router.events.on('routeChangeComplete', () => {
       // window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
-      this.props.app?.toggleLoading()
+      this.props.app?.setLoading(false)
+    })
+
+    Router.events.on('routeChangeError', () => {
+      // window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
+      this.props.app?.setLoading(false)
     })
 
     window.onresize = (e) => this.props.app?.UpdateViewport()

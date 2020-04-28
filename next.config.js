@@ -2,13 +2,13 @@ const isProd = process.env.NODE_ENV === 'production'
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
+const env = require('dotenv').config().parsed
 const withImages = require('next-images')
 module.exports = withImages(
   withBundleAnalyzer({
     env: {
-      apiUrl: 'http://47.114.54.60:2333/',
       PORT: 2323,
-      // apiUrl: 'http://localhost:2333',
+      ...env,
     },
     assetPrefix: isProd
       ? 'https://cdn.jsdelivr.net/gh/Innei/web-cdn@master'

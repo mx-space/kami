@@ -12,7 +12,7 @@ import {
 import { SocialLinkModel } from 'store/types'
 
 export default {
-  apiUrl: '',
+  APIURL: 'http://47.114.54.60:2333',
   title: "Innei's Space", // prefetch seo
   description: '欢迎来到我的小窝',
   avatar:

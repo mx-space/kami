@@ -1,8 +1,8 @@
-import axios from 'axios'
-import configs from 'configs'
 import { message } from 'antd'
+import axios from 'axios'
+
 const service = axios.create({
-  baseURL: process.env.apiUrl || configs.apiUrl || '/api',
+  baseURL: process.env.APIURL || '/api',
   // withCredentials: true,
   timeout: 5000,
 })

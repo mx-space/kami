@@ -16,10 +16,10 @@ const CommentBox: FC<{
   const [url, setUrl] = useState('')
   const [text, setText] = useState('')
   const reset = () => {
-    setAuthor('')
-    setMail('')
+    // setAuthor('')
+    // setMail('')
     setText('')
-    setUrl('')
+    // setUrl('')
   }
 
   const handleCancel = () => {
@@ -62,12 +62,14 @@ const CommentBox: FC<{
         <Input
           placeholder={'昵称 *'}
           required
+          name={'author'}
           prefix={<UserOutlined className="site-form-item-icon" />}
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
         />
         <Input
           placeholder={'邮箱 *'}
+          name={'mail'}
           required
           prefix={<MailOutlined className="site-form-item-icon" />}
           value={mail}
@@ -75,6 +77,7 @@ const CommentBox: FC<{
         />
         <Input
           placeholder={'网站 https?://'}
+          name={'website'}
           prefix={<GlobalOutlined className="site-form-item-icon" />}
           value={url}
           onChange={(e) => setUrl(e.target.value)}

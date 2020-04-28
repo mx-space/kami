@@ -139,7 +139,7 @@ IndexView.getInitialProps = async (): Promise<IndexViewProps> => {
     ...(omit(aggregateData, ['ok', 'timestamp']) as IndexViewProps),
     randomImages: randomImageData.data.map((image) => {
       return image.locate !== RandomImage.Locate.Online
-        ? `${process.env.apiUrl}/uploads/background/${image.name}`
+        ? `${process.env.APIURL}/uploads/background/${image.name}`
         : `` // TODO online images
     }),
   }

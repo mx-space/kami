@@ -27,7 +27,12 @@ export default class AppStore {
     document.body.classList.toggle('loading')
     this.loading = !this.loading
   }
-
+  @action setLoading(state: boolean) {
+    state
+      ? document.body.classList.add('loading')
+      : document.body.classList.remove('loading')
+    this.loading = state
+  }
   @action setMenu(menu: MenuModel[]) {
     this.menu = menu
   }
