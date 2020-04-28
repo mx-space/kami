@@ -10,7 +10,7 @@ export default class MusicStore {
   }
 
   async init() {
-    return await this.setPlaylist([1433810176, 456310390])
+    return this.setPlaylist([1433810176, 456310390])
   }
 
   @observable playlist: MusicModel[] = []
