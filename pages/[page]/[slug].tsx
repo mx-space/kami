@@ -9,5 +9,5 @@ export default function Post() {
     router.push({ pathname: '/posts/[slug]' }, `/posts/${slug}`)
   })
 
-  return null
+  return <main></main>
 }
