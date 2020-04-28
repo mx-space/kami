@@ -1,20 +1,31 @@
 import { action, observable } from 'mobx'
 import configs from 'configs'
 import { MusicModel } from 'models/music'
-
+import axios from 'axios'
 export default class MusicStore {
-  @observable playlist: MusicModel[] = [
-    {
-      name: '光るなら',
-      artist: 'Goose house',
-      url: 'https://moeplayer.b0.upaiyun.com/aplayer/hikarunara.mp3',
-      cover: 'https://moeplayer.b0.upaiyun.com/aplayer/hikarunara.jpg',
-      lrc: 'https://moeplayer.b0.upaiyun.com/aplayer/hikarunara.lrc',
-      theme: '#ebd0c2',
-    },
-  ]
+  constructor() {
+    this.setPlaylist([1433810176, 456310390])
+  }
 
-  @action setPlaylist(list: MusicModel[]) {
-    this.playlist = [...list]
+  @observable playlist: MusicModel[] = []
+
+  @action async setPlaylist(list: number[]) {
+    const $meting = axios.create({
+      baseURL: 'https://api.i-meto.com/meting/api',
+    })
+    const playlist: MusicModel[] = []
+    for await (const id of list) {
+      const data = (
+        await $meting.get('/', {
+          params: {
+            server: 'netease',
+            id,
+          },
+        })
+      ).data[0]
+
+      playlist.push(data)
+    }
+    this.playlist = playlist
   }
 }

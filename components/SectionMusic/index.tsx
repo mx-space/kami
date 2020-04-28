@@ -1,5 +1,7 @@
 import { FC } from 'react'
 import { PlayListType } from '@mx-space/extra'
+import { observer } from 'mobx-react'
+import { useStore } from 'store'
 
 interface SectionMusicProps {
   data: PlayListType[]
@@ -7,7 +9,11 @@ interface SectionMusicProps {
   name: string
 }
 
-export const SectionMusic: FC<SectionMusicProps> = (props) => {
+export const SectionMusic: FC<SectionMusicProps> = observer((props) => {
+  const { musicStore } = useStore()
+  const loadList = (id: number[]) => {
+    musicStore.setPlaylist(id)
+  }
   return (
     <section className={'paul-music'}>
       <style jsx>{`
@@ -30,7 +36,14 @@ export const SectionMusic: FC<SectionMusicProps> = (props) => {
         <ul className="clear">
           {props.data.map((i, index) => {
             return (
-              <li data-sid={i.id} key={index}>
+              <li
+                key={index}
+                onClick={(_) =>
+                  loadList(
+                    props.data.filter((_, i) => i >= index).map((i) => i.id),
+                  )
+                }
+              >
                 <span className={'num'}>{index + 1}</span>
                 {i.name}
                 <time>{i.time}</time>
@@ -41,4 +54,4 @@ export const SectionMusic: FC<SectionMusicProps> = (props) => {
       </div>
     </section>
   )
-}
+})

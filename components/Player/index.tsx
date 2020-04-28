@@ -1,36 +1,35 @@
-import { FC } from 'react'
-import ReactAplayer from 'react-aplayer'
 import { observer } from 'mobx-react'
+import { FC, useEffect } from 'react'
+import ReactAplayer from 'react-aplayer'
 import { useStore } from 'store'
-export const APlayer: FC = (props) => {
-  let aPlayer: any
+
+declare var window: any
+
+export const APlayer: FC = () => {
   const { musicStore } = useStore()
-  const onPlay = () => {
-    // console.log('on play')
-  }
 
-  const onPause = () => {
-    // console.log('on pause')
-  }
-
-  // example of access aplayer instance
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.aPlayer.list.clear()
+      musicStore.playlist.map((i) => {
+        window.aPlayer.list.add(i)
+      })
+      window.aPlayer.play()
+    }
+  }, [musicStore.playlist])
   const onInit = (ap) => {
-    aPlayer = ap
-    ;(window as any).aPlayer = ap
+    window.aPlayer = ap
+    if (typeof window !== 'undefined') {
+      musicStore.playlist.map((i) => {
+        window.aPlayer.list.add(i)
+      })
+    }
   }
   const options = {
     fixed: true,
     mini: true,
   }
-  return (
-    <ReactAplayer
-      {...options}
-      audio={musicStore.playlist}
-      onInit={onInit}
-      onPlay={onPlay}
-      onPause={onPause}
-    />
-  )
+  return <ReactAplayer {...options} onInit={onInit} />
 }
 
 export default observer(APlayer)
