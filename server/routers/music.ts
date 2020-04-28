@@ -50,5 +50,5 @@ musicRouter.get('/song', async (req, res) => {
     NETEASE_PHONE as string,
     NETEASE_PASSWORD as string,
   )
-  return await client.getMusicUrl(id)
+  return client.getMusicUrl(id)
 })
