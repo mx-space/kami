@@ -1031,10 +1031,10 @@
   dependencies:
     prop-types "^15.7.2"
 
-"@mx-space/extra@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@mx-space/extra/-/extra-0.2.3.tgz#e66b9e3e4c2783a2e468ce4f642b657e31ad70fc"
-  integrity sha512-4xVOeoNu362nfDsYY0hKml3Uid9kuVC08lF/c0b0OOVMIRD9+pakX2M5zED0yveHpQqj50taXzAwpXLObr1uWQ==
+"@mx-space/extra@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@mx-space/extra/-/extra-0.3.0.tgz#4055d6e79776e54c9c6f474938de7f1d56fd5e2b"
+  integrity sha512-KcyTGySb6nJz9WKSXF/SjAlifggFv4M935FvvBYr/TIrK9C9HQHnKTMaEWXaukjqWn4Z2run9xw2myS4bWNo6w==
   dependencies:
     axios "^0.19.2"
     date-fns "^2.12.0"

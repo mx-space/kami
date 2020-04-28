@@ -57,6 +57,12 @@ export default class Header extends React.Component<Store> {
     const { menu } = app || {}
     return (
       <header className={this.state.menuOpen ? 'active' : ''}>
+        <style jsx>{`
+          .head-logo {
+            display: flex;
+            align-items: center;
+          }
+        `}</style>
         {app?.viewport.mobile && (
           <div
             onClick={() => this.setState({ menuOpen: !this.state.menuOpen })}
