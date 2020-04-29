@@ -26,7 +26,7 @@ export const SectionMusic: FC<SectionMusicProps> = observer((props) => {
         }
       `}</style>
       <div className="music-cover">
-        <div className="sticky-cover">
+        <div className="sticky-cover fixed-cover">
           <img src={props.src}></img>
           <h3>{props.name}</h3>
         </div>

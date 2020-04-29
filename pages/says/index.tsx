@@ -17,6 +17,13 @@ const SayView: NextPage<SayViewProps> = (props) => {
   const { appStore } = useStore()
   return (
     <main>
+      <style jsx>{`
+        @media screen and (max-width: 600px) {
+          .paul-say {
+            columns: 1;
+          }
+        }
+      `}</style>
       <NextSeo
         {...{
           title: '说说 - ' + appStore.title,
