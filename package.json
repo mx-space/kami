@@ -36,7 +36,7 @@
     "mobx-devtools-mst": "^0.9.21",
     "mobx-react": "^6.2.2",
     "mobx-state-tree": "^3.16.0",
-    "next": "9.3.5",
+    "next": "9.3.6",
     "next-seo": "^4.4.0",
     "normalize.css": "^8.0.1",
     "randomcolor": "^0.5.4",
