@@ -15,7 +15,7 @@ import '@openfonts/noto-serif-sc_vietnamese'
 // import 'assets/styles/main.scss'
 
 import { BasicLayout } from 'layouts/BasicLayout'
-import debounce from 'lodash/debounce'
+import throttle from 'lodash/throttle'
 import makeInspectable from 'mobx-devtools-mst'
 import { inject, observer, Provider } from 'mobx-react'
 import 'mobx-react-lite/batchingForReactDom'
@@ -48,12 +48,12 @@ const AppContext = createContext({
 }))
 @observer
 class Context extends PureComponent<Store & { data: any }> {
-  scrollCb = debounce(() => {
+  scrollCb = throttle(() => {
     this.props.app?.updatePosition()
     document.body.style.backgroundPositionY = `${
       document.documentElement.scrollTop / 36
     }px`
-  }, 14)
+  }, 8)
 
   componentDidMount(): void {
     // get aggregate data

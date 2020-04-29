@@ -120,4 +120,14 @@ p {
       color: var(--shizuku-text-color) !important;
     }
   }
+  .ant-comment-actions > li > span {
+    color: var(--shizuku-text-color) !important;
+    opacity: 0.9;
+  }
+  .ant-message {
+    .ant-message-notice-content {
+      background-color: var(--shizuku-background-color);
+      color: var(--shizuku-text-color);
+    }
+  }
 }

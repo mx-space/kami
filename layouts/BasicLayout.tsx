@@ -11,7 +11,7 @@ const APlayer = dynamic(() => import('components/Player'), {
 })
 
 export const BasicLayout = observer(({ children }) => {
-  const { userStore } = useStore()
+  const { userStore, appStore } = useStore()
 
   return (
     <>
@@ -41,8 +41,10 @@ export const BasicLayout = observer(({ children }) => {
               </p>
             </div>
             <div className="col-m-6 right to-center">
-              <p>
-                <Link href="[page]" as="about">
+              <p
+                style={{ marginRight: appStore.viewport.mobile ? '' : '3rem' }}
+              >
+                <Link href="/[page]" as="/about">
                   <a>关于我</a>
                 </Link>
                 ·

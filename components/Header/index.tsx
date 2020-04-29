@@ -62,6 +62,11 @@ export default class Header extends React.Component<Store> {
             display: flex;
             align-items: center;
           }
+          @media screen and (max-width: 600px) {
+            .head-logo {
+              display: block;
+            }
+          }
         `}</style>
         {app?.viewport.mobile && (
           <div

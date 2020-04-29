@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import Lightbox, { ILightBoxProps } from 'react-image-lightbox'
 
 interface SliderImagesPopupProps {

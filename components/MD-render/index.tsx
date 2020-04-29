@@ -1,8 +1,7 @@
+import { ImageLazyWithPopup } from 'components/Image'
 import React from 'react'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import CodeBlock from '../CodeBlock'
-import dynamic from 'next/dynamic'
-import { ImageLazy } from 'components/Image'
 // const ImageLazy = dynamic(
 //   () => import('components/Image').then((mo) => mo.ImageLazy as any),
 //   {
@@ -25,7 +24,7 @@ class Markdown extends React.PureComponent<MdProps> {
           renderers={{
             code: CodeBlock,
             pre: CodeBlock,
-            image: ImageLazy,
+            image: ImageLazyWithPopup,
           }}
         />
       </div>

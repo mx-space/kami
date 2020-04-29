@@ -1,8 +1,16 @@
-import { FC, DetailedHTMLProps, ImgHTMLAttributes, useRef } from 'react'
+import {
+  FC,
+  DetailedHTMLProps,
+  ImgHTMLAttributes,
+  useRef,
+  useState,
+  MouseEvent,
+} from 'react'
 import { /* LazyImage ,*/ LazyImageProps } from 'react-lazy-images'
 import LoadImage from 'assets/images/load.gif'
 import 'intersection-observer'
 import dynamic from 'next/dynamic'
+import Lightbox, { ILightBoxProps } from 'react-image-lightbox'
 const LazyImage = dynamic(
   () => import('react-lazy-images').then((mo) => mo.LazyImage as any),
   { ssr: false },
@@ -37,9 +45,13 @@ export const Image: FC<
   )
 }
 
-export const ImageLazy: FC<{ src: string; alt?: string } & LazyImageProps> = (
-  props,
-) => {
+export const ImageLazy: FC<
+  {
+    src: string
+    alt?: string
+    onClick?: (e?: MouseEvent<HTMLImageElement>) => void
+  } & Partial<LazyImageProps>
+> = (props) => {
   return (
     <>
       <style jsx>{`
@@ -77,10 +89,33 @@ export const ImageLazy: FC<{ src: string; alt?: string } & LazyImageProps> = (
         actual={({ imageProps }) => (
           <img
             {...imageProps}
-            style={{ animation: 'fade-small-large 1s both' }}
+            style={{
+              animation: 'fade-in 1s both',
+              cursor: props.onClick ? 'pointer' : '',
+            }}
+            onClick={props.onClick}
           />
         )}
       />
+    </>
+  )
+}
+
+export const ImageLazyWithPopup: FC<
+  { src: string; alt?: string } & ILightBoxProps
+> = (props) => {
+  const [isOpen, setOpen] = useState(false)
+  return (
+    <>
+      <ImageLazy
+        {...{ src: props.src, alt: props.alt }}
+        onClick={() => {
+          setOpen(true)
+        }}
+      />
+      {isOpen && (
+        <Lightbox mainSrc={props.src} onCloseRequest={() => setOpen(false)} />
+      )}
     </>
   )
 }
