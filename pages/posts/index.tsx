@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
+import Link from 'next/link'
 interface Post extends PagerModel {
   posts: PostResModel[]
 }
@@ -50,8 +51,14 @@ export default function Post({ posts, page }: Post) {
     <ArticleLayout>
       <NextSeo title={'博文 - ' + appStore.title} />
       {/* <div className="navigation">
-        <Link href={{ pathname: 'posts', query: { y: '2020' } }}>
+        <Link href={{ pathname: 'posts' }}>
+          <a className="active">所有</a>
+        </Link>
+        <Link href={{ pathname: 'posts', query: { year: '2020' } }}>
           <a className="active">2020</a>
+        </Link>
+        <Link href={{ pathname: 'posts', query: { year: '2019' } }}>
+          <a className="active">2019</a>
         </Link>
       </div> */}
 
@@ -88,6 +95,7 @@ Post.getInitialProps = async (ctx: NextPageContext) => {
   const { page, year } = ctx.query
   const data = await Rest('Post', '').gets<PostPagerDto>({
     page: ((page as any) as number) || 1,
+    year: parseInt(year as string) || undefined,
   })
   return { page: data.page, posts: data.data }
 }

@@ -19,6 +19,7 @@ interface Gets {
   size?: number
   select?: string
   state?: 0 | 1 | 2
+  year?: number
 }
 
 export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
@@ -33,6 +34,7 @@ export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
       size,
       select,
       state,
+      year,
     }: Gets = {}): Promise<T> {
       const data = await $axios({
         method: 'GET',
@@ -42,6 +44,7 @@ export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
           size: size || 10,
           select,
           state,
+          year,
         },
       })
       return data as any
