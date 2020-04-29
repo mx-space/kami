@@ -8,7 +8,8 @@ import { NextPage } from 'next'
 import { useState } from 'react'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
-
+import Texty from 'rc-texty'
+import QueueAnim from 'rc-queue-anim'
 interface IndexViewProps {
   posts: Top.Post[]
   notes: Top.Note[]
@@ -67,29 +68,60 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
           <img src={avatar} alt={name} className="avatar" />
         </div>
         <div className="intro-info">
-          <h1>{name}</h1>
-          <p>{introduce || description || 'Hello World~'}</p>
-          <div className="social-icons">
-            {socialLinks.map((item) => {
-              return (
-                <a
-                  href={item.url}
-                  target="_blank"
-                  ks-text={item.title}
-                  ks-tag="bottom"
-                  key={item.title}
-                  style={item.color ? { color: item.color } : {}}
-                >
-                  <FontAwesomeIcon icon={item.icon} />
-                </a>
-              )
-            })}
-          </div>
+          <h1>
+            <Texty type={'mask-bottom'} mode={'smooth'}>
+              {name}
+            </Texty>
+          </h1>
+          <p>
+            <Texty type={'mask-bottom'} mode={'smooth'} delay={500}>
+              {introduce || description}
+            </Texty>
+          </p>
+
+          <QueueAnim
+            className="demo-content"
+            delay={500}
+            duration={500}
+            animConfig={[
+              { opacity: [1, 0], translateY: [0, 50] },
+              { opacity: [1, 0], translateY: [0, -50] },
+            ]}
+          >
+            <div className="social-icons" key={'a'}>
+              {socialLinks.map((item) => {
+                return (
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    ks-text={item.title}
+                    ks-tag="bottom"
+                    key={item.title}
+                    style={item.color ? { color: item.color } : {}}
+                  >
+                    <FontAwesomeIcon icon={item.icon} />
+                  </a>
+                )
+              })}
+            </div>
+          </QueueAnim>
         </div>
       </section>
-      <section className="paul-news">
-        <SectionNews {...sections.postSection} />
-        <SectionNews {...sections.noteSection} />
+      <section className="paul-news" style={{ minHeight: '34rem' }}>
+        <QueueAnim
+          className="demo-content"
+          delay={1200}
+          duration={500}
+          animConfig={[
+            { opacity: [1, 0], translateY: [0, 50] },
+            { opacity: [1, 0], translateY: [0, -50] },
+          ]}
+        >
+          {[
+            <SectionNews {...sections.postSection} key={1} />,
+            <SectionNews {...sections.noteSection} key={2} />,
+          ]}
+        </QueueAnim>
       </section>
     </main>
   )

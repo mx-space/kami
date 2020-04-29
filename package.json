@@ -6,10 +6,10 @@
   "scripts": {
     "start": "nodemon",
     "dev": "cross-env NODE_ENV=development next dev -p 2323",
-    "build": "cross-env NODE_ENV=production ANALYZE=true BUNDLE_ANALYZE=browser next build && tsc && tsc --project tsconfig.server.json",
+    "build": "cross-env NODE_ENV=production ANALYZE=true BUNDLE_ANALYZE=browser next build && tsc --project tsconfig.server.json",
     "lint": "eslint --ext .ts,.tsx --ignore-path .gitignore . --fix",
     "prod": "cross-env NODE_ENV=production pm2-runtime start .next/server/index.js",
-    "prod:pm2": "cross-env NODE_ENV=production pm2 start ecosystem.config.js",
+    "prod:pm2": "cross-env NODE_ENV=production pm2 restart ecosystem.config.js",
     "prod:stop": "pm2 stop ecosystem.config.js"
   },
   "dependencies": {
@@ -40,10 +40,13 @@
     "next-seo": "^4.4.0",
     "normalize.css": "^8.0.1",
     "randomcolor": "^0.5.4",
+    "rc-queue-anim": "^1.8.4",
+    "rc-texty": "^0.2.0",
     "react": "^16.13.1",
     "react-aplayer": "^1.0.0",
     "react-dom": "^16.13.1",
     "react-image-lightbox": "^5.1.1",
+    "react-intersection-observer": "^8.26.2",
     "react-lazy-images": "^1.1.0",
     "react-markdown": "^4.3.1",
     "react-scroll": "^1.7.16",

@@ -8,8 +8,12 @@ import { Rest } from 'utils/api'
 import { relativeTimeFromNow } from 'utils/time'
 import { CommentContext, openCommentMessage } from '.'
 import CommentBox from './box'
+import QueueAnim from 'rc-queue-anim'
 
-const Comments: FC<{ comments: CommentModel[] }> = ({ comments }) => {
+const Comments: FC<{ comments: CommentModel[]; inView: boolean }> = ({
+  comments,
+  inView,
+}) => {
   const { refresh } = useContext(CommentContext)
   const [replyId, setReplyId] = useState('')
 
@@ -78,11 +82,13 @@ const Comments: FC<{ comments: CommentModel[] }> = ({ comments }) => {
   }
 
   return (
-    <>
-      {comments.map((comment) => {
-        return renderComments(comment)
-      })}
-    </>
+    <QueueAnim type={['right', 'left']} leaveReverse>
+      {inView
+        ? comments.map((comment) => {
+            return renderComments(comment)
+          })
+        : null}
+    </QueueAnim>
   )
 }
 export default Comments

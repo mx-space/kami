@@ -6303,7 +6303,7 @@ querystring@0.2.0, querystring@^0.2.0:
   resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
   integrity sha1-sgmEkgO7Jd+CDadW50cAWHhSFiA=
 
-raf@^3.4.0, raf@^3.4.1:
+raf@^3.4.0, raf@^3.4.1, raf@~3.4.0:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/raf/-/raf-3.4.1.tgz#0742e99a4a6552f445d73e3ee0328af0ff1ede39"
   integrity sha512-Sq4CW4QhwOHE8ucn6J34MqtZCeWFP2aQSmrlroYgqAV1PjStIhJXxYuTgUIfkEk7zTLjmIjLmU5q+fbD1NnOJA==
@@ -6520,6 +6520,16 @@ rc-progress@~2.5.0:
     babel-runtime "6.x"
     prop-types "^15.5.8"
 
+rc-queue-anim@^1.8.4:
+  version "1.8.4"
+  resolved "https://registry.yarnpkg.com/rc-queue-anim/-/rc-queue-anim-1.8.4.tgz#ce6a3f9ebc864bb88140aa38cdef0ce180247483"
+  integrity sha512-HBVwdTcxqDsjDm7dIja7l4gi0gbHxBzNNeWuz+Nfg+KAmNTMKc7Z7O/qCkUq4SHgUhpqYmOfvCh019iMc1NcVg==
+  dependencies:
+    babel-runtime "6.x"
+    prop-types "^15.6.0"
+    rc-tween-one "^2.5.0"
+    react-lifecycles-compat "^3.0.4"
+
 rc-rate@~2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/rc-rate/-/rc-rate-2.5.1.tgz#55fc5fd23ea9dcc72250b9a889803479f4842961"
@@ -6608,6 +6618,15 @@ rc-tabs@~10.1.1:
     resize-observer-polyfill "^1.5.1"
     warning "^4.0.3"
 
+rc-texty@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/rc-texty/-/rc-texty-0.2.0.tgz#79af813523bfc314ba74af2bc086cda8b3296458"
+  integrity sha512-hGaXs8ZsSL/m7LEuCySxLWZtmFJ7bwldgtH5V90v6uBfy5eTLxSVLK5TpS2DPQHZrjl4sHXjRbKsCDk6v9x29A==
+  dependencies:
+    babel-runtime "6.x"
+    classnames "^2.2.6"
+    rc-tween-one "^2.2.0"
+
 rc-tooltip@^4.0.0, rc-tooltip@~4.0.2:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/rc-tooltip/-/rc-tooltip-4.0.3.tgz#728b760863643ec2e85827a2e7fb28d961b3b759"
@@ -6648,6 +6667,18 @@ rc-trigger@^4.0.0, rc-trigger@~4.0.0:
     rc-align "^3.0.0-rc.0"
     rc-animate "^2.10.2"
     rc-util "^4.20.0"
+
+rc-tween-one@^2.2.0, rc-tween-one@^2.5.0:
+  version "2.6.8"
+  resolved "https://registry.yarnpkg.com/rc-tween-one/-/rc-tween-one-2.6.8.tgz#75edf141af491a28b18812dc419efa6b0238e2a7"
+  integrity sha512-xb0gNGVq3LNMqT/VCvlEVlW4FQhvbe5LrcoMwGAn6LNcBZR6qzh3Ip8oIhx3iN4Lex2mKJ9HN9vopuxzSZRZGA==
+  dependencies:
+    babel-runtime "6.x"
+    prop-types "^15.6.1"
+    raf "~3.4.0"
+    react-lifecycles-compat "^3.0.4"
+    style-utils "~0.2.0"
+    tween-functions "~1.2.0"
 
 rc-upload@~3.0.4:
   version "3.0.4"
@@ -6721,6 +6752,13 @@ react-intersection-observer@^6.1.0:
   dependencies:
     "@babel/runtime" "^7.2.0"
     invariant "^2.2.4"
+
+react-intersection-observer@^8.26.2:
+  version "8.26.2"
+  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-8.26.2.tgz#0562ff0c06b2b10e809190c2fa9b6ded656e6e16"
+  integrity sha512-GmSjLNK+oV7kS+BHfrJSaA4wF61ELA33gizKHmN+tk59UT6/aW8kkqvlrFGPwxGoaIzLKS2evfG5fgkw5MIIsg==
+  dependencies:
+    tiny-invariant "^1.1.0"
 
 react-is@16.8.6:
   version "16.8.6"
@@ -7660,6 +7698,11 @@ style-loader@1.2.0:
     loader-utils "^2.0.0"
     schema-utils "^2.6.6"
 
+style-utils@~0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/style-utils/-/style-utils-0.2.0.tgz#3d8614931b8ff6e1eea0545f1dbfaf271bb1aa7e"
+  integrity sha512-XZkJdvmMK9DHaul0SW3FAOkDiTW9U+EoEtVctJBHEPVAsXbZC7RyIMuMgOB6a4DKdTO8JV3jvkkqCK+b6c1Cew==
+
 styled-jsx@3.2.5:
   version "3.2.5"
   resolved "https://registry.yarnpkg.com/styled-jsx/-/styled-jsx-3.2.5.tgz#0172a3e13a0d6d8bf09167dcaf32cf7102d932ca"
@@ -7826,6 +7869,11 @@ tiny-emitter@^2.0.0:
   resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.1.0.tgz#1d1a56edfc51c43e863cbb5382a72330e3555423"
   integrity sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==
 
+tiny-invariant@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.1.0.tgz#634c5f8efdc27714b7f386c35e6760991d230875"
+  integrity sha512-ytxQvrb1cPc9WBEI/HSeYYoGD0kWnGEOR8RY6KomWLBVhqz0RgTwVO9dLrGz7dC+nN9llyI7OKAgRq8Vq4ZBSw==
+
 tinycolor2@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.4.1.tgz#f4fad333447bc0b07d4dc8e9209d8f39a8ac77e8"
@@ -7959,6 +8007,11 @@ tty-browserify@0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/tty-browserify/-/tty-browserify-0.0.0.tgz#a157ba402da24e9bf957f9aa69d524eed42901a6"
   integrity sha1-oVe6QC2iTpv5V/mqadUk7tQpAaY=
+
+tween-functions@~1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/tween-functions/-/tween-functions-1.2.0.tgz#1ae3a50e7c60bb3def774eac707acbca73bbc3ff"
+  integrity sha1-GuOlDnxguz3vd06scHrLynO7w/8=
 
 type-check@~0.3.2:
   version "0.3.2"

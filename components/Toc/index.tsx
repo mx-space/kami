@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic'
 import { FC, useEffect, useState } from 'react'
 import { Link } from 'react-scroll'
 import { useStore } from 'store'
+import QueueAnim from 'rc-queue-anim'
 import styles from './index.module.scss'
 export const Toc: FC = observer(() => {
   const { appStore } = useStore()
@@ -41,19 +42,21 @@ export const Toc: FC = observer(() => {
   return (
     <section className="paul-lister">
       <div className="container">
-        {headings &&
-          headings.map((heading, i) => {
-            return (
-              <Link
-                to={heading}
-                key={i}
-                offset={-100}
-                activeClass={styles['active']}
-              >
-                <span className={styles['a-pointer']}>{heading}</span>
-              </Link>
-            )
-          })}
+        <QueueAnim>
+          {headings &&
+            headings.map((heading, i) => {
+              return (
+                <Link
+                  to={heading}
+                  key={i}
+                  offset={-100}
+                  activeClass={styles['active']}
+                >
+                  <span className={styles['a-pointer']}>{heading}</span>
+                </Link>
+              )
+            })}
+        </QueueAnim>
       </div>
     </section>
   )

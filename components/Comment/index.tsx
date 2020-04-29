@@ -6,6 +6,7 @@ import { Rest } from 'utils/api'
 import CommentBox from './box'
 import Comment from './comment'
 import styles from './index.module.scss'
+import { useInView } from 'react-intersection-observer'
 
 export type CommentType = 'Note' | 'Post' | 'Page'
 
@@ -51,12 +52,20 @@ const CommentWrap: FC<{
     openCommentMessage.success()
     fetchComments()
   }
+
+  const [ref, inView, entry] = useInView({
+    threshold: 0,
+    rootMargin: '-220px',
+  })
+
   return (
-    <article className={styles.wrap}>
+    <article className={styles.wrap} ref={ref}>
       <CommentContext.Provider value={{ type, refresh: fetchComments }}>
         <h1>共有{comments.length}条评论</h1>
         <CommentBox onSubmit={handleComment} />
-        <Comment comments={comments} />
+
+        <Comment comments={comments} inView={inView} />
+
         <div style={{ textAlign: 'center' }}>
           {page?.totalPage !== 0 && (
             <Pagination

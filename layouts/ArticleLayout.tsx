@@ -1,5 +1,5 @@
 import { FC } from 'react'
-
+import Texty from 'rc-texty'
 export interface ArticleLayoutProps {
   title?: string
   subtitle?: string
@@ -14,7 +14,12 @@ export const ArticleLayout: FC<ArticleLayoutProps> = ({
     <main className="is-article">
       {title && (
         <section className="post-title">
-          <h1>{title}</h1>
+          <h1>
+            <Texty type={'bottom'} mode={'smooth'}>
+              {title}
+            </Texty>
+          </h1>
+
           {subtitle && <h2>{subtitle}</h2>}
         </section>
       )}
