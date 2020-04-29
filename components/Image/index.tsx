@@ -75,7 +75,6 @@ export const ImageLazy: FC<
           <div className={'placeholder bg'} ref={ref} />
         )}
         loading={() => {
-          console.log('loading')
           return (
             <img src={LoadImage} alt={'loading'} style={{ height: '300px' }} />
           )

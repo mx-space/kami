@@ -1,8 +1,8 @@
+import classNames from 'classnames'
 import { observer } from 'mobx-react'
 import { FC, useEffect } from 'react'
 import ReactAplayer from 'react-aplayer'
 import { useStore } from 'store'
-import classNames from 'classnames'
 
 declare var window: any
 

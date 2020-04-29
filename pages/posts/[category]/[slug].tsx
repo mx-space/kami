@@ -44,7 +44,7 @@ export const PostView: NextPage<PostResModel> = (props) => {
       />
 
       <OutdateNotice time={modified} />
-      <Markdown value={text} escapeHtml={false} />
+      <Markdown value={text} escapeHtml={false} showTOC={true} />
       <Action {...actions} />
       <CommentWrap type={'Post'} id={_id} />
     </ArticleLayout>

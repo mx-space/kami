@@ -1,22 +1,36 @@
 import { ImageLazyWithPopup } from 'components/Image'
-import React from 'react'
+
+import React, {
+  FC,
+  createElement,
+  DOMAttributes,
+  memo,
+  HTMLAttributes,
+} from 'react'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import CodeBlock from '../CodeBlock'
-// const ImageLazy = dynamic(
-//   () => import('components/Image').then((mo) => mo.ImageLazy as any),
-//   {
-//     ssr: false,
-//   },
-// )
+import dynamic from 'next/dynamic'
+import Toc from 'components/Toc'
+
 interface MdProps extends ReactMarkdownProps {
   value: string
+  showTOC?: boolean
   [key: string]: any
 }
 
-class Markdown extends React.PureComponent<MdProps> {
-  render() {
-    const { value, ...rest } = this.props
-    return (
+const Heading: FC<{ level: 1 | 2 | 3 | 4 | 5 | 6; key?: number }> = (props) => {
+  return createElement<DOMAttributes<HTMLHeadingElement>, HTMLHeadingElement>(
+    `h${props.level}`,
+    { key: props.key, id: props.children?.[0].props.value } as any,
+    props.children,
+  )
+}
+
+const Markdown: FC<MdProps> = (props) => {
+  const { value, ...rest } = props
+
+  return (
+    <>
       <div id="write">
         <ReactMarkdown
           source={value}
@@ -25,11 +39,13 @@ class Markdown extends React.PureComponent<MdProps> {
             code: CodeBlock,
             pre: CodeBlock,
             image: ImageLazyWithPopup,
+            heading: Heading,
           }}
         />
+        {props.showTOC ? <Toc /> : null}
       </div>
-    )
-  }
+    </>
+  )
 }
 
-export default Markdown
+export default memo(Markdown)

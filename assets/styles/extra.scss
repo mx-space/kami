@@ -90,6 +90,20 @@ code {
 p {
   margin: 0.5rem 0;
 }
+
+// paul restyle
+.paul-lister {
+  top: 0;
+  right: -12px;
+  bottom: 0;
+  position: absolute;
+  .container {
+    position: sticky;
+    top: 6rem;
+    transform: translateX(100%);
+  }
+}
+
 // aplayer restyle
 
 .aplayer {

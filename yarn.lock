@@ -1047,6 +1047,11 @@
   dependencies:
     webpack-bundle-analyzer "3.6.1"
 
+"@openfonts/noto-sans-sc_vietnamese@^1.44.0":
+  version "1.44.0"
+  resolved "https://registry.yarnpkg.com/@openfonts/noto-sans-sc_vietnamese/-/noto-sans-sc_vietnamese-1.44.0.tgz#9ccafe7ed6d6fb205eda09a47bfd5e3affeee166"
+  integrity sha512-WnkNUGpsDvNK6+RvGfQTw7f40gndQhsMN348elFcjlurAhVa9TEnRn/2XICMyiTH7UNF7dBpdHwqpspBXONHYw==
+
 "@openfonts/noto-serif-sc_vietnamese@^1.44.0":
   version "1.44.0"
   resolved "https://registry.yarnpkg.com/@openfonts/noto-serif-sc_vietnamese/-/noto-serif-sc_vietnamese-1.44.0.tgz#149b980d117c269fd7ffd17bd3592d9265e43b95"
@@ -1194,6 +1199,13 @@
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@types/react-lifecycles-compat/-/react-lifecycles-compat-3.0.1.tgz#a0b1fe18cfb9435bd52737829a69cbe93faf32e2"
   integrity sha512-4KiU5s1Go4xRbf7t6VxUUpBeN5PGjpjpBv9VvET4uiPHC500VNYBclU13f8ehHkHoZL39b2cfwHu6RzbV3b44A==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-scroll@^1.5.4":
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/@types/react-scroll/-/react-scroll-1.5.4.tgz#c151b8e5320ba90dbb0adfbdfaa0823d57571746"
+  integrity sha512-EYJt9wDvyrcDZpZqI19eb2UlAzCoXBeoFu3yMkrBDC8zkwFXOhb8lv3tD9V9UAqptora096M7qWYktsWq1guEg==
   dependencies:
     "@types/react" "*"
 
@@ -4778,6 +4790,11 @@ lodash.memoize@^4.1.2:
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
   integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
 
+lodash.throttle@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
+  integrity sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=
+
 lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
@@ -6748,6 +6765,14 @@ react-modal@^3.8.1:
     prop-types "^15.5.10"
     react-lifecycles-compat "^3.0.0"
     warning "^4.0.3"
+
+react-scroll@^1.7.16:
+  version "1.7.16"
+  resolved "https://registry.yarnpkg.com/react-scroll/-/react-scroll-1.7.16.tgz#814f0b97ed171aad1f27e45dad16a8444817fec8"
+  integrity sha512-f4M5AdL+3cw3MJ7c/T0hPMY2iHCeQLDXV13lRanAFQ6JIt9xyAdHCpTH9mLUQt9SQh4pRarD+Qc7KhU6qMx3Yg==
+  dependencies:
+    lodash.throttle "^4.1.1"
+    prop-types "^15.5.8"
 
 react-syntax-highlighter@^12.2.1:
   version "12.2.1"
