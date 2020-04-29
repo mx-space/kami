@@ -1,5 +1,5 @@
-import { relativeTimeFromNow } from 'utils/time'
 import dayjs from 'dayjs'
+import { relativeTimeFromNow } from 'utils/time'
 
 export default function OutdateNotice({ time }: { time: string | Date }) {
   const relative = relativeTimeFromNow(time)

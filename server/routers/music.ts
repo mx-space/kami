@@ -32,7 +32,7 @@ musicRouter.get('/music', async (req, res) => {
 musicRouter.get('/song', async (req, res) => {
   const id = parseInt(req.query.id as string)
 
-  if (!id || typeof id !== 'number') {
+  if (!id || isNaN(id)) {
     return res.status(422).send({
       message: 'id 必须为数字',
     })

@@ -5,11 +5,11 @@ import { ArticleLayout } from 'layouts/ArticleLayout'
 import { PagerModel } from 'models/dto/base'
 import { PostPagerDto, PostResModel } from 'models/dto/post'
 import { NextPageContext } from 'next'
+import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
-import { NextSeo } from 'next-seo'
 interface Post extends PagerModel {
   posts: PostResModel[]
 }

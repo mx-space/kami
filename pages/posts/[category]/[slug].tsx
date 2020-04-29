@@ -1,4 +1,4 @@
-import { faComment, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 import Action, { ActionProps } from 'components/Action'
 import CommentWrap from 'components/Comment'
 import Markdown from 'components/MD-render'

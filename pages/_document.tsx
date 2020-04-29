@@ -1,6 +1,6 @@
+import configs from 'configs'
 import Document, { Head, Main, NextScript } from 'next/document'
 import AppStore from 'store/app'
-import configs from 'configs'
 
 export default class MyDocument extends Document<{ app: AppStore }> {
   static async getInitialProps(ctx) {

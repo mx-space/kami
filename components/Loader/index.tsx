@@ -1,5 +1,5 @@
-import { FC } from 'react'
 import { Logo } from 'components/Logo'
+import { FC } from 'react'
 
 const Loader: FC = () => {
   return (

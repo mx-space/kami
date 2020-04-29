@@ -1,11 +1,11 @@
-import { NextPage } from 'next'
 import { observer } from 'mobx-react'
-import { Rest } from 'utils/api'
-import { SayRespDto, SayModel } from 'models/dto/say'
 import { PagerModel } from 'models/dto/base'
-import { relativeTimeFromNow } from 'utils/time'
+import { SayModel, SayRespDto } from 'models/dto/say'
+import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import { useStore } from 'store'
+import { Rest } from 'utils/api'
+import { relativeTimeFromNow } from 'utils/time'
 
 interface SayViewProps {
   page: PagerModel

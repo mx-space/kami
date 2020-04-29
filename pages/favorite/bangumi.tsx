@@ -1,10 +1,10 @@
-import { NextPage } from 'next'
-import { FavoriteNav } from '../../components/Navigation/nav'
 import { FavoriteBangumiType } from '@mx-space/extra'
 import axios from 'axios'
 import configs from 'configs'
-import Head from 'next/head'
+import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
+import Head from 'next/head'
+import { FavoriteNav } from '../../components/Navigation/nav'
 const BangumiView: NextPage<{ data: FavoriteBangumiType[] }> = (props) => {
   return (
     <main>

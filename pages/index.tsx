@@ -1,13 +1,13 @@
-import { omit } from 'lodash'
-import { Top, RandomImage } from 'models/aggregate'
-import { NextPage } from 'next'
-import { Rest } from 'utils/api'
-import { observer } from 'mobx-react'
-import { useStore } from 'store'
+import { faBookOpen, faPencilAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SectionNews, { SectionNewsProps } from 'components/SectionNews'
-import { faBookOpen, faPencilAlt } from '@fortawesome/free-solid-svg-icons'
+import { omit } from 'lodash'
+import { observer } from 'mobx-react'
+import { RandomImage, Top } from 'models/aggregate'
+import { NextPage } from 'next'
 import { useState } from 'react'
+import { useStore } from 'store'
+import { Rest } from 'utils/api'
 
 interface IndexViewProps {
   posts: Top.Post[]

@@ -1,11 +1,11 @@
+import { createContext, useContext } from 'react'
 import AppStore from './app'
+import CategoryStore from './category'
+import MusicStore from './music'
+import PageStore from './pages'
+import SocialStore from './social'
 import { Stores } from './types'
 import UserStore from './user'
-import SocialStore from './social'
-import PageStore from './pages'
-import CategoryStore from './category'
-import { createContext, useContext } from 'react'
-import MusicStore from './music'
 export default function createMobxStores(): Stores {
   return {
     appStore: new AppStore(),

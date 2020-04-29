@@ -1,5 +1,6 @@
 import { faListUl } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Logo } from 'components/Logo'
 import { inject, observer } from 'mobx-react'
 import Link from 'next/link'
 import React, { MouseEvent } from 'react'
@@ -8,7 +9,6 @@ import SocialStore from 'store/social'
 import { MenuModel, Stores } from 'store/types'
 import UserStore from 'store/user'
 import PageStore from '../../store/pages'
-import { Logo } from 'components/Logo'
 
 interface Store {
   app?: AppStore

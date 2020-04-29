@@ -1,9 +1,9 @@
-import { FC } from 'react'
+import { faArrowUp, faHeadphones } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { BackTop } from 'antd'
 import classNames from 'classnames'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowUp, faHeadphones } from '@fortawesome/free-solid-svg-icons'
 import { observer } from 'mobx-react'
+import { FC } from 'react'
 import { useStore } from 'store'
 
 export const FooterActions: FC = observer(() => {

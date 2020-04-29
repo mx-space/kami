@@ -1,16 +1,16 @@
-import {
-  FC,
-  DetailedHTMLProps,
-  ImgHTMLAttributes,
-  useRef,
-  useState,
-  MouseEvent,
-} from 'react'
-import { /* LazyImage ,*/ LazyImageProps } from 'react-lazy-images'
 import LoadImage from 'assets/images/load.gif'
 import 'intersection-observer'
 import dynamic from 'next/dynamic'
+import {
+  DetailedHTMLProps,
+  FC,
+  ImgHTMLAttributes,
+  MouseEvent,
+  useRef,
+  useState,
+} from 'react'
 import Lightbox, { ILightBoxProps } from 'react-image-lightbox'
+import { /* LazyImage ,*/ LazyImageProps } from 'react-lazy-images'
 const LazyImage = dynamic(
   () => import('react-lazy-images').then((mo) => mo.LazyImage as any),
   { ssr: false },

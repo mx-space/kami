@@ -22,14 +22,14 @@ import {
   WeatherMap,
 } from 'models/dto/note'
 import { NextPage } from 'next'
+import { NextSeo } from 'next-seo'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import RemoveMarkdown from 'remove-markdown'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
 import { parseDate, relativeTimeFromNow } from 'utils/time'
 import { mood2icon, weather2icon } from 'utils/weather2icon'
-import { NextSeo } from 'next-seo'
-import { useRouter } from 'next/router'
 
 interface NoteViewProps {
   data: NoteModel
@@ -39,7 +39,7 @@ interface NoteViewProps {
 
 const NoteView: NextPage<NoteViewProps> = (props) => {
   const { data, prev, next } = props
-  const { title, nid, _id, text, mood, weather } = data
+  const { title, _id, text, mood, weather } = data
   const { userStore } = useStore()
 
   const renderMeta = (

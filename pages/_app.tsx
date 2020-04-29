@@ -1,29 +1,31 @@
+import '@openfonts/noto-sans-sc_vietnamese'
+import '@openfonts/noto-serif-sc_vietnamese'
 import 'antd/es/avatar/style/index.css'
 import 'antd/es/comment/style/index.css'
 import 'antd/es/input/style/index.css'
 import 'antd/es/message/style/index.css'
 import 'antd/es/pagination/style/index.css'
-import Loader from 'components/Loader'
-
-import 'react-image-lightbox/style.css'
 import 'kico-style'
 import 'kico-style/paul.css'
 import 'assets/styles/shizuku.scss'
 import 'assets/styles/extra.scss'
-import '@openfonts/noto-serif-sc_vietnamese'
-import '@openfonts/noto-sans-sc_vietnamese'
+
+import Loader from 'components/Loader'
+import configs from 'configs'
+
 // import 'antd/dist/antd.dark.css'
 // import 'assets/styles/main.scss'
-
 import { BasicLayout } from 'layouts/BasicLayout'
 import throttle from 'lodash/throttle'
 import makeInspectable from 'mobx-devtools-mst'
 import { inject, observer, Provider } from 'mobx-react'
 import 'mobx-react-lite/batchingForReactDom'
 import { AggregateResp } from 'models/aggregate'
+import { NextSeo } from 'next-seo'
 import Router from 'next/router'
 import 'normalize.css/normalize.css'
 import React, { createContext, PureComponent } from 'react'
+import 'react-image-lightbox/style.css'
 import CategoryStore from 'store/category'
 import createMobxStores, { StoreProvider } from '../store'
 import AppStore from '../store/app'
@@ -31,8 +33,7 @@ import PageStore from '../store/pages'
 import { PageModel, Stores, ViewportRecord } from '../store/types'
 import UserStore from '../store/user'
 import { Rest } from '../utils/api'
-import configs from 'configs'
-import { NextSeo } from 'next-seo'
+
 const stores = createMobxStores()
 
 makeInspectable(stores)

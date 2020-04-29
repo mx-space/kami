@@ -1,16 +1,8 @@
 import { ImageLazyWithPopup } from 'components/Image'
-
-import React, {
-  FC,
-  createElement,
-  DOMAttributes,
-  memo,
-  HTMLAttributes,
-} from 'react'
+import Toc from 'components/Toc'
+import React, { createElement, DOMAttributes, FC, memo } from 'react'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import CodeBlock from '../CodeBlock'
-import dynamic from 'next/dynamic'
-import Toc from 'components/Toc'
 
 interface MdProps extends ReactMarkdownProps {
   value: string

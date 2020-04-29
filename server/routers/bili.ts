@@ -2,19 +2,23 @@ import { BiliClient } from '@mx-space/extra'
 import { Router } from 'express'
 export const biliRouter = Router()
 import axios from 'axios'
+
+declare var isNaN: (number: any) => boolean
+
 biliRouter.get('/bangumi', async (req, res) => {
   const { uid, len = 30 } = req.query
-  if (!uid || typeof parseInt(uid as any) !== 'number') {
+  if (!uid || isNaN(uid)) {
     return res.status(422).send({
       message: 'uid 必须为数字',
     })
   }
 
-  if (typeof parseInt(len as string) !== 'number') {
+  if (isNaN(len)) {
     return res.status(422).send({
       message: 'len 必须为数字',
     })
   }
+
   const client = new BiliClient(parseInt(uid as any))
   const bangumi = await client.getFavoriteBangumi(parseInt(len as string))
   res.send({
@@ -24,13 +28,13 @@ biliRouter.get('/bangumi', async (req, res) => {
 
 biliRouter.get('/video', async (req, res) => {
   const { uid, len = 30 } = req.query
-  if (!uid || typeof parseInt(uid as any) !== 'number') {
+  if (!uid || isNaN(uid)) {
     return res.status(422).send({
       message: 'uid 必须为数字',
     })
   }
 
-  if (typeof parseInt(len as string) !== 'number') {
+  if (isNaN(len)) {
     return res.status(422).send({
       message: 'len 必须为数字',
     })

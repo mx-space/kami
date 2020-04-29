@@ -1,13 +1,13 @@
 import Kico from 'assets/images/Kico.jpg'
 import { Image } from 'components/Image'
+import { SliderImagesPopup } from 'components/SliderImagesPopup'
 import { ProjectModel } from 'models/dto/project'
 import { NextPage } from 'next'
-import { Rest } from 'utils/api'
-import ReactMarkdown from 'react-markdown'
-import { useState } from 'react'
-import { SliderImagesPopup } from 'components/SliderImagesPopup'
-import { useStore } from 'store'
 import { NextSeo } from 'next-seo'
+import { useState } from 'react'
+import ReactMarkdown from 'react-markdown'
+import { useStore } from 'store'
+import { Rest } from 'utils/api'
 
 type ProjectViewProps = ProjectModel
 
@@ -51,7 +51,7 @@ const ProjectView: NextPage<ProjectViewProps> = (props) => {
           )}
         </p>
       </section>
-      {images?.length && (
+      {!!images?.length && (
         <>
           <section className="project-screenshot">
             {images.map((image, i) => {

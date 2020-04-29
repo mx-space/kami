@@ -1,16 +1,15 @@
-import { FC } from 'react'
 import {
-  IconDefinition,
   faChevronRight,
+  IconDefinition,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Link from 'next/link'
-import { pick } from 'lodash'
-import styles from './index.module.scss'
-import randomColor from 'randomcolor'
-import { shuffle } from 'lodash'
-import { Image } from 'components/Image'
 import LoadingImage from 'assets/images/load.gif'
+import { Image } from 'components/Image'
+import { pick, shuffle } from 'lodash'
+import Link from 'next/link'
+import randomColor from 'randomcolor'
+import { FC } from 'react'
+import styles from './index.module.scss'
 export interface SectionNewsProps {
   title: string
   icon: IconDefinition

@@ -1,12 +1,12 @@
-import { NextPage } from 'next'
-import { FavoriteNav } from '../../components/Navigation/nav'
+import { PersonalPlayListType, PlayListType } from '@mx-space/extra'
 import axios from 'axios'
 import { SectionMusic } from 'components/SectionMusic'
-import { NextSeo } from 'next-seo'
-import { useStore } from 'store'
 import configs from 'configs'
 import { observer } from 'mobx-react'
-import { PersonalPlayListType, PlayListType } from '@mx-space/extra'
+import { NextPage } from 'next'
+import { NextSeo } from 'next-seo'
+import { useStore } from 'store'
+import { FavoriteNav } from '../../components/Navigation/nav'
 interface MusicProps {
   weekdata: PlayListType[]
   alldata: PlayListType[]

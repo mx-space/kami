@@ -1,4 +1,4 @@
-import { action, observable, computed } from 'mobx'
+import { action, computed, observable } from 'mobx'
 import { CategoriesResp, CategoryModel } from 'models/dto/category'
 import { Rest } from '../utils/api'
 export default class CategoryStore {

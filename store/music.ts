@@ -1,7 +1,6 @@
-import { action, observable } from 'mobx'
-import configs from 'configs'
-import { MusicModel } from 'models/music'
 import axios from 'axios'
+import { action, observable } from 'mobx'
+import { MusicModel } from 'models/music'
 export default class MusicStore {
   constructor() {
     if (!this.isHide) {

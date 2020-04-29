@@ -1,5 +1,5 @@
-import { FC } from 'react'
 import { HeaderNavigation } from 'components/Navigation'
+import { FC } from 'react'
 
 export const FavoriteNav: FC<{ index: number }> = (props) => {
   return (

@@ -1,13 +1,13 @@
+import CommentWrap from 'components/Comment'
 import Markdown from 'components/MD-render'
 import { ArticleLayout } from 'layouts/ArticleLayout'
+import { observer } from 'mobx-react'
 import { PageRespDto } from 'models/dto/page'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import RemoveMarkdown from 'remove-markdown'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
-import { observer } from 'mobx-react'
-import CommentWrap from 'components/Comment'
 
 const Page: NextPage<PageRespDto> = (props) => {
   const { data } = props

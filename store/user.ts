@@ -1,7 +1,5 @@
-import { observable, computed, action } from 'mobx'
-import { MenuModel } from './types'
+import { action, computed, observable } from 'mobx'
 import { UserDto } from 'models/dto/user'
-import { Rest } from 'utils/api'
 export default class UserStore {
   @observable master: Partial<UserDto> = {}
 

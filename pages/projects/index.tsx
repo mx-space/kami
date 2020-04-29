@@ -1,11 +1,11 @@
-import { NextPage } from 'next'
 import defaultImage from 'assets/images/Kico.jpg'
-import { Rest } from 'utils/api'
-import { ProjectRespModel, ProjectModel } from 'models/dto/project'
-import Link from 'next/link'
 import { Image } from 'components/Image'
+import { ProjectModel, ProjectRespModel } from 'models/dto/project'
+import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
+import Link from 'next/link'
 import { useStore } from 'store'
+import { Rest } from 'utils/api'
 
 interface ProjectViewProps {
   projects: ProjectModel[]

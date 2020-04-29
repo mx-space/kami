@@ -2,10 +2,10 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
 import { PageDescriptionDto } from '../models/dto/page'
 import AppStore from './app'
 import CategoryStore from './category'
+import MusicStore from './music'
 import PageStore from './pages'
 import SocialStore from './social'
 import UserStore from './user'
-import MusicStore from './music'
 
 export enum LayoutType {
   Post,

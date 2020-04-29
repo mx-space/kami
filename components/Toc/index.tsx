@@ -1,11 +1,12 @@
-import { FC, useState, useEffect } from 'react'
-import dynamic from 'next/dynamic'
-import range from 'lodash/range'
-import { Link } from 'react-scroll'
-import styles from './index.module.scss'
-import { observer } from 'mobx-react'
-import { useStore } from 'store'
 import isNull from 'lodash/isNull'
+import range from 'lodash/range'
+import throttle from 'lodash/throttle'
+import { observer } from 'mobx-react'
+import dynamic from 'next/dynamic'
+import { FC, useEffect, useState } from 'react'
+import { Link } from 'react-scroll'
+import { useStore } from 'store'
+import styles from './index.module.scss'
 export const Toc: FC = observer(() => {
   const { appStore } = useStore()
   const { viewport } = appStore
@@ -13,7 +14,7 @@ export const Toc: FC = observer(() => {
     return null
   }
   const [headings, setHeadings] = useState<null | string[]>([])
-  const getHeadings = () => {
+  const getHeadings = throttle(() => {
     const $write = document.getElementById('write')
     if (!$write) {
       return getHeadings()
@@ -30,7 +31,7 @@ export const Toc: FC = observer(() => {
         .map((d: HTMLHeadingElement) => d.innerText)
       setHeadings(headings.length === 0 ? null : headings)
     }
-  }
+  }, 20)
   useEffect(() => {
     setTimeout(() => {
       getHeadings()
