@@ -125,6 +125,11 @@ p {
   padding: 0px;
 }
 // paul restyle
+@media screen and (max-width: 600px) {
+  .paul-say {
+    columns: 1;
+  }
+}
 .paul-lister {
   top: 0;
   right: -12px;

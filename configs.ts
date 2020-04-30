@@ -106,7 +106,7 @@ export default {
   title: '示例站点', // prefetch seo
   description: '欢迎来到我的小窝',
   avatar:
-    'https://avatars2.githubusercontent.com/u/41265413?s=460&u=12cefe5e6d2d75766dc455cec96336e73d7b951b&v=4', // work on rss
+    'https://tu-1252943311.cos.ap-shanghai.myqcloud.com/%E5%A7%94%E6%89%98%E5%A4%B4%E5%83%8F.png', // work on rss
   url: 'https://innei.ren',
   keywords: ['blog', 'space', 'mx-space', 'innei', '静之森', '静かな森'],
   alwaysHTTPS: false,

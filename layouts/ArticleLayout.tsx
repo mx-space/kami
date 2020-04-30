@@ -21,16 +21,19 @@ export const ArticleLayout: FC<ArticleLayoutProps> = ({
             </Texty>
           </h1>
 
-          {subtitle && <h2>{subtitle}</h2>}
+          {subtitle && (
+            <h2>
+              <Texty type={'bottom'} mode={'smooth'} delay={500}>
+                {subtitle}
+              </Texty>
+            </h2>
+          )}
         </section>
       )}
       <QueueAnim
         delay={500}
         duration={500}
-        animConfig={[
-          { opacity: [1, 0], translateY: [0, 50] },
-          { opacity: [1, 0], translateY: [0, -50] },
-        ]}
+        animConfig={{ opacity: [1, 0], translateY: [0, 50] }}
       >
         <article className="post-content paul-note" key={'a'}>
           {children}

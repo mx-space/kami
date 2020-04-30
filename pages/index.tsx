@@ -10,6 +10,8 @@ import { useStore } from 'store'
 import { Rest } from 'utils/api'
 import Texty from 'rc-texty'
 import QueueAnim from 'rc-queue-anim'
+import configs from '../configs'
+
 interface IndexViewProps {
   posts: Top.Post[]
   notes: Top.Note[]
@@ -65,7 +67,7 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
       `}</style>
       <section className="paul-intro">
         <div className="intro-avatar ">
-          <img src={avatar} alt={name} className="avatar" />
+          <img src={configs.avatar || avatar} alt={name} className="avatar" />
         </div>
         <div className="intro-info">
           <h1>
@@ -82,10 +84,7 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
           <QueueAnim
             delay={500}
             duration={500}
-            animConfig={[
-              { opacity: [1, 0], translateY: [0, 50] },
-              { opacity: [1, 0], translateY: [0, -50] },
-            ]}
+            animConfig={{ opacity: [1, 0], translateY: [0, 50] }}
           >
             <div className="social-icons" key={'a'}>
               {socialLinks.map((item) => {

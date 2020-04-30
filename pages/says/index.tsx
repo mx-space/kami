@@ -6,7 +6,7 @@ import { NextSeo } from 'next-seo'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
 import { relativeTimeFromNow } from 'utils/time'
-
+import QueueAnim from 'rc-queue-anim'
 interface SayViewProps {
   page: PagerModel
   data: SayModel[]
@@ -17,13 +17,6 @@ const SayView: NextPage<SayViewProps> = (props) => {
   const { appStore } = useStore()
   return (
     <main>
-      <style jsx>{`
-        @media screen and (max-width: 600px) {
-          .paul-say {
-            columns: 1;
-          }
-        }
-      `}</style>
       <NextSeo
         {...{
           title: '说说 - ' + appStore.title,
@@ -40,23 +33,28 @@ const SayView: NextPage<SayViewProps> = (props) => {
         }
       `}</style>
       <article className="paul-say">
-        {data.map((say) => {
-          const hasSource = !!say.source
-          const hasAuthor = !!say.author
-          return (
-            <blockquote key={say._id}>
-              <p>{say.text}</p>
-              <p
-                className="author"
-                data-created={'发布于 ' + relativeTimeFromNow(say.created)}
-              >
-                {hasSource && ` 出自 “` + say.source + '”'}
-                {hasSource && hasAuthor && ', '}
-                {hasAuthor && '作者：' + say.author}
-              </p>
-            </blockquote>
-          )
-        })}
+        <QueueAnim
+          type={['bottom', 'right']}
+          ease={['easeOutQuart', 'easeInOutQuart']}
+        >
+          {data.map((say) => {
+            const hasSource = !!say.source
+            const hasAuthor = !!say.author
+            return (
+              <blockquote key={say._id}>
+                <p>{say.text}</p>
+                <p
+                  className="author"
+                  data-created={'发布于 ' + relativeTimeFromNow(say.created)}
+                >
+                  {hasSource && ` 出自 “` + say.source + '”'}
+                  {hasSource && hasAuthor && ', '}
+                  {hasAuthor && '作者：' + say.author}
+                </p>
+              </blockquote>
+            )
+          })}
+        </QueueAnim>
       </article>
     </main>
   )
