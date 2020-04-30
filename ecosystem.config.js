@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'MxSpace',
-      script: '.next/server/index.js',
+      script: 'build/server/index.js',
 
       instances: 1,
       autorestart: true,
