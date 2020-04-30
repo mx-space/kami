@@ -11,11 +11,7 @@ export const Toc: FC = () => {
   const containerRef = useRef<HTMLDivElement>(null)
 
   const [headings, setHeadings] = useState<null | string[]>([])
-  const getHeadings = throttle(() => {
-    const $write = document.getElementById('write')
-    if (!$write) {
-      return getHeadings()
-    }
+  const setMaxWidth = throttle(() => {
     if (containerRef.current) {
       containerRef.current.style.maxWidth =
         document.documentElement.getBoundingClientRect().width -
@@ -23,6 +19,13 @@ export const Toc: FC = () => {
         30 +
         'px'
     }
+  }, 14)
+  const getHeadings = throttle(() => {
+    const $write = document.getElementById('write')
+    if (!$write) {
+      return getHeadings()
+    }
+    setMaxWidth()
 
     const $headings = range(1, 6).map((h) =>
       Array.from($write.querySelectorAll('h' + h)),
@@ -40,7 +43,11 @@ export const Toc: FC = () => {
   useEffect(() => {
     setTimeout(() => {
       getHeadings()
+      window.addEventListener('resize', setMaxWidth)
     }, 1000)
+    return () => {
+      window.removeEventListener('resize', setMaxWidth)
+    }
   })
 
   return (
