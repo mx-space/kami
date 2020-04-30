@@ -7,7 +7,7 @@ import CommentBox from './box'
 import Comment from './comment'
 import styles from './index.module.scss'
 import { useInView } from 'react-intersection-observer'
-
+import LazyLoad from 'react-lazyload'
 export type CommentType = 'Note' | 'Post' | 'Page'
 
 export const CommentContext = createContext({
@@ -25,10 +25,11 @@ openCommentMessage.success = () => {
   message.success({ content: '成功啦', key, duration: 2 })
 }
 
-const CommentWrap: FC<{
+interface CommentWrapProps {
   type: CommentType
   id: string
-}> = (props) => {
+}
+const CommentWrap: FC<CommentWrapProps> = (props) => {
   const { type, id } = props
   const [comments, setComments] = useState([] as CommentModel[])
   const [page, setPage] = useState({} as PagerModel['page'])
@@ -53,7 +54,7 @@ const CommentWrap: FC<{
     fetchComments()
   }
 
-  const [ref, inView, entry] = useInView({
+  const [ref, inView, _] = useInView({
     threshold: 0,
     rootMargin: '-220px',
   })
@@ -81,6 +82,14 @@ const CommentWrap: FC<{
         </div>
       </CommentContext.Provider>
     </article>
+  )
+}
+
+export const CommentLazy: FC<CommentWrapProps> = (props) => {
+  return (
+    <LazyLoad once>
+      <CommentWrap {...props} />
+    </LazyLoad>
   )
 }
 

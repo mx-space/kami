@@ -1,6 +1,6 @@
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import Action, { ActionProps } from 'components/Action'
-import CommentWrap from 'components/Comment'
+import { CommentLazy } from 'components/Comment'
 import Markdown from 'components/MD-render'
 import OutdateNotice from 'components/Outdate'
 import { ArticleLayout } from 'layouts/ArticleLayout'
@@ -12,7 +12,6 @@ import { useEffect, useState } from 'react'
 import RemoveMarkdown from 'remove-markdown'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
-
 export const PostView: NextPage<PostResModel> = (props) => {
   const { text, title, _id, modified } = props
   const { userStore } = useStore()
@@ -46,7 +45,8 @@ export const PostView: NextPage<PostResModel> = (props) => {
       <OutdateNotice time={modified} />
       <Markdown value={text} escapeHtml={false} showTOC={true} />
       <Action {...actions} />
-      <CommentWrap type={'Post'} id={_id} />
+
+      <CommentLazy type={'Post'} id={_id} />
     </ArticleLayout>
   )
 }

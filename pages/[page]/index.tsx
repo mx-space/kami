@@ -1,4 +1,4 @@
-import CommentWrap from 'components/Comment'
+import CommentWrap, { CommentLazy } from 'components/Comment'
 import Markdown from 'components/MD-render'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { observer } from 'mobx-react'
@@ -20,7 +20,8 @@ const Page: NextPage<PageRespDto> = (props) => {
         description={RemoveMarkdown(text).slice(0, 100).replace('\n', '')}
       />
       <Markdown value={text} escapeHtml={false} />
-      <CommentWrap {...{ type: 'Page', id: props.data._id }} />
+
+      <CommentLazy {...{ type: 'Page', id: props.data._id }} />
     </ArticleLayout>
   )
 }
