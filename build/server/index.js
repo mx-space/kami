@@ -8,6 +8,8 @@ const next_1 = __importDefault(require("next"));
 const routers_1 = require("./routers");
 const cors_1 = __importDefault(require("cors"));
 const apicache_1 = __importDefault(require("apicache"));
+const mobx_react_1 = __importDefault(require("mobx-react"));
+mobx_react_1.default.useStaticRendering(true);
 const port = parseInt(process.env.PORT || '2323', 10);
 const dev = process.env.NODE_ENV !== 'production';
 const app = next_1.default({ dev });
