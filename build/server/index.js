@@ -19,13 +19,13 @@ app.prepare().then(() => {
         : () => (req, res, next) => next();
     server.use(cors_1.default());
     server.use('/_extra', routers_1.router);
-    server.get('/feed', cache('60 minutes'), (req, res) => {
+    server.get('/feed', cache('120 minutes'), (req, res) => {
         return handle(req, res);
     });
-    server.get('/atom.xml', cache('60 minutes'), (req, res) => {
+    server.get('/atom.xml', cache('120 minutes'), (req, res) => {
         return handle(req, res);
     });
-    server.get('*', cache('3 minutes'), (req, res) => {
+    server.get('*', cache('10 minutes'), (req, res) => {
         return handle(req, res);
     });
     server.listen(port, (err) => {
