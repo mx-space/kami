@@ -33,6 +33,7 @@ import PageStore from '../store/pages'
 import { PageModel, Stores, ViewportRecord } from '../store/types'
 import UserStore from '../store/user'
 import { Rest } from '../utils/api'
+import * as gtag from '../utils/gtag'
 
 const stores = createMobxStores()
 
@@ -90,10 +91,23 @@ class Context extends PureComponent<Store & { data: any }> {
       this.props.app?.setLoading(false)
     })
 
+    Router.events.on('routeChangeComplete', (url) => gtag.pageview(url))
+
     window.onresize = (e) => this.props.app?.UpdateViewport()
     this.props.app?.UpdateViewport()
 
     document.addEventListener('scroll', this.scrollCb)
+
+    console.log(
+      '%c Kico Style %c https://paugram.com ',
+      'color: #fff; margin: 1em 0; padding: 5px 0; background: #3498db;',
+      'margin: 1em 0; padding: 5px 0; background: #efefef;',
+    )
+    console.log(
+      '%c Mix Space %c https://innei.ren ',
+      'color: #fff; margin: 1em 0; padding: 5px 0; background: #2980b9;',
+      'margin: 1em 0; padding: 5px 0; background: #efefef;',
+    )
   }
 
   componentWillUnmount() {
