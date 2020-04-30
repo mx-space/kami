@@ -96,7 +96,9 @@ class Context extends PureComponent<Store & { data: any }> {
     window.onresize = (e) => this.props.app?.UpdateViewport()
     this.props.app?.UpdateViewport()
 
-    document.addEventListener('scroll', this.scrollCb)
+    if (typeof document !== 'undefined') {
+      document.addEventListener('scroll', this.scrollCb)
+    }
 
     console.log(
       '%c Kico Style %c https://paugram.com ',

@@ -13,7 +13,9 @@ export default class AppStore {
   @observable config = { seo: {} as Seo } as any
 
   @action updatePosition() {
-    this.position = document.documentElement.scrollTop
+    if (typeof document !== 'undefined') {
+      this.position = document.documentElement.scrollTop
+    }
   }
 
   @computed get isOverflow() {
