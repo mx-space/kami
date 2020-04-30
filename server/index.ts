@@ -3,7 +3,9 @@ import next from 'next'
 import { router } from './routers'
 import cors from 'cors'
 import apicache from 'apicache'
+import mobx from 'mobx-react'
 
+mobx.useStaticRendering(true)
 const port = parseInt(process.env.PORT || '2323', 10)
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
