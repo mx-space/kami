@@ -90,7 +90,40 @@ code {
 p {
   margin: 0.5rem 0;
 }
-
+//error page
+.error {
+  color: currentColor;
+  font-family: Helvetica, sans-serif;
+  height: calc(100vh - 16rem);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.error h1 {
+  display: inline-block;
+  border-right: 1px solid rgba(0, 0, 0, 0.3);
+  margin: 0px 20px 0px 0px;
+  padding: 10px 23px 10px 0px;
+  font-size: 24px;
+  font-weight: 500;
+  vertical-align: top;
+}
+.error .desc {
+  display: inline-block;
+  text-align: left;
+  line-height: 49px;
+  height: 49px;
+  vertical-align: middle;
+}
+.error .desc h2 {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: inherit;
+  margin: 0px;
+  padding: 0px;
+}
 // paul restyle
 .paul-lister {
   top: 0;
