@@ -1,7 +1,7 @@
 import { faBookOpen, faPencilAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SectionNews, { SectionNewsProps } from 'components/SectionNews'
-import { omit } from 'lodash'
+import omit from 'lodash/omit'
 import { observer } from 'mobx-react'
 import { RandomImage, Top } from 'models/aggregate'
 import { NextPage } from 'next'

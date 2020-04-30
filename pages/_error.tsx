@@ -7,7 +7,11 @@ function _Error({ statusCode }) {
       <div className="error_wrap">
         <h1>{statusCode}</h1>
         <div className="desc">
-          <h2>抱歉, 出了点小问题</h2>
+          {statusCode === 404 ? (
+            <h2>页面走丢了</h2>
+          ) : (
+            <h2>抱歉, 出了点小问题</h2>
+          )}
         </div>
       </div>
       <p>去别处看看?</p>

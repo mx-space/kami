@@ -1,5 +1,4 @@
 import LoadImage from 'assets/images/load.gif'
-import 'intersection-observer'
 import dynamic from 'next/dynamic'
 import {
   DetailedHTMLProps,

@@ -12,7 +12,7 @@ import 'assets/styles/shizuku.scss'
 import 'assets/styles/extra.scss'
 import Loader from 'components/Loader'
 import configs from 'configs'
-
+import 'intersection-observer'
 // import 'antd/dist/antd.dark.css'
 // import 'assets/styles/main.scss'
 import { BasicLayout } from 'layouts/BasicLayout'
