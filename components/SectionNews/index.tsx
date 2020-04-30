@@ -8,7 +8,7 @@ import { Image } from 'components/Image'
 import { pick, shuffle } from 'lodash'
 import Link from 'next/link'
 import randomColor from 'randomcolor'
-import { FC } from 'react'
+import { FC, forwardRef } from 'react'
 import styles from './index.module.scss'
 export interface SectionNewsProps {
   title: string
@@ -25,14 +25,16 @@ export interface SectionNewsProps {
   size?: 4 | 6
 }
 
-const SectionNews: FC<SectionNewsProps> = (props) => {
+const SectionNews: FC<SectionNewsProps> = forwardRef((props, ref: any) => {
   const {
     title,
     icon,
     moreUrl,
     content,
     size = 6,
-    color = randomColor({ luminosity: 'dark' }),
+    color = randomColor({
+      luminosity: 'dark',
+    }),
   } = props
   const extraImages = shuffle([
     'https://i.loli.net/2020/04/26/9zMh7AqfTQ8SmwJ.jpg',
@@ -65,13 +67,23 @@ const SectionNews: FC<SectionNewsProps> = (props) => {
           height: 9rem;
         }
       `}</style>
-      <div className="news-item">
+      <div className="news-item" ref={ref}>
         <div className="news-head">
-          <h3 className="title" style={{ backgroundColor: color }}>
+          <h3
+            className="title"
+            style={{
+              backgroundColor: color,
+            }}
+          >
             <FontAwesomeIcon icon={icon} className={styles.icon} />
             {title}
           </h3>
-          <h3 className="more" style={{ backgroundColor: color }}>
+          <h3
+            className="more"
+            style={{
+              backgroundColor: color,
+            }}
+          >
             <Link href={moreUrl}>
               <a>
                 <FontAwesomeIcon icon={faChevronRight} />
@@ -102,6 +114,6 @@ const SectionNews: FC<SectionNewsProps> = (props) => {
       </div>
     </>
   )
-}
+})
 
 export default SectionNews

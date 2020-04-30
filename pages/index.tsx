@@ -80,7 +80,6 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
           </p>
 
           <QueueAnim
-            className="demo-content"
             delay={500}
             duration={500}
             animConfig={[
