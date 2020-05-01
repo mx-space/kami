@@ -72,6 +72,7 @@ export namespace RandomImage {
     mime: string
     type: number
     locate?: Locate
+    url?: string
   }
 }
 
