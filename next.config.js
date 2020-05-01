@@ -10,8 +10,6 @@ module.exports = withImages(
       PORT: 2323,
       ...env,
     },
-    assetPrefix: isProd
-      ? 'https://cdn.jsdelivr.net/gh/Innei/web-cdn@master'
-      : '',
+    assetPrefix: isProd ? env.ASSETPREFIX || '' : '',
   }),
 )
