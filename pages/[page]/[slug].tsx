@@ -5,8 +5,8 @@ export default function Post() {
   const router = useRouter()
   useEffect(() => {
     const query = router.query
-    const { slug } = query
-    router.push({ pathname: '/posts/[slug]' }, `/posts/${slug}`)
+    const { slug, page } = query
+    router.replace('/posts/[category]/[slug]', `/posts/${page}/${slug}`)
   })
 
   return <main></main>
