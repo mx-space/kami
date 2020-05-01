@@ -2,7 +2,7 @@ const isProd = process.env.NODE_ENV === 'production'
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
-const env = require('dotenv').config().parsed
+const env = require('dotenv').config().parsed || {}
 const withImages = require('next-images')
 module.exports = withImages(
   withBundleAnalyzer({
