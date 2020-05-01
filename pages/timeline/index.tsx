@@ -4,6 +4,8 @@ import { CategoryModel } from '../../models/dto/category'
 import { Weather, Mood } from '../../models/dto/note'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { QueueAnim } from '../../components/Anime'
+import { ArticleLayout } from '../../layouts/ArticleLayout'
 
 type BaseType = {
   _id: string
@@ -92,69 +94,45 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
     }
   }, [map])
   return (
-    <main className={'is-article'}>
-      <section className={'post-title'}>
-        <h1>时间线</h1>
-
-        <h2>共有{posts.length + notes.length}篇文章, 再接再厉</h2>
-      </section>
+    <ArticleLayout
+      title={'时间线'}
+      subtitle={`共有${posts.length + notes.length}篇文章, 再接再厉`}
+    >
       {Array.from(map)
         .reverse()
-        .map(([year, value]) => {
+        .map(([year, value], j) => {
           return (
-            <article className="post-content paul-note" key={year}>
-              <style jsx>
-                {`
-                  h1 {
-                    margin: 10px 0 15px;
-                    font-size: 1.5rem;
-                    font-family: Helvetica;
-                  }
-                  ul {
-                    padding-left: 0.5em;
-                    list-style: circle;
-                    margin: 10px 0;
-                    line-height: 30px;
-                  }
-
-                  a {
-                    text-decoration: none;
-                    color: var(--shizuku-text-color);
-                    border-bottom: 1px solid rgba(0, 0, 0, 0);
-                    margin-right: 1em;
-                    transition: border 0.15s ease-out;
-                  }
-                  a:hover {
-                    border-color: var(--shizuku-text-color);
-                  }
-                  .date {
-                    margin-right: 0.5em;
-                  }
-                `}
-              </style>
+            <article className="post-content paul-note article-list" key={year}>
               <div className="note-item">
-                <h1>{year}</h1>
-
+                <QueueAnim delay={j * 1000}>
+                  <h1 key={1}>{year}</h1>
+                </QueueAnim>
                 <ul>
                   {value.map((item, i) => {
                     return (
-                      <li key={i}>
-                        <Link href={item.href} as={item.as}>
-                          <a>
-                            <span className={'date'}>
-                              {(item.date.getMonth() + 1)
-                                .toString()
-                                .padStart(2, '0')}
-                              /{item.date.getDate().toString().padStart(2, '0')}
-                            </span>
-                            <span className={'title'}>{item.title}</span>
-                          </a>
-                        </Link>
+                      <QueueAnim key={i} delay={100 * j * i + 500}>
+                        <li key={i * j}>
+                          <Link href={item.href} as={item.as}>
+                            <a>
+                              <span className={'date'}>
+                                {(item.date.getMonth() + 1)
+                                  .toString()
+                                  .padStart(2, '0')}
+                                /
+                                {item.date
+                                  .getDate()
+                                  .toString()
+                                  .padStart(2, '0')}
+                              </span>
+                              <span className={'title'}>{item.title}</span>
+                            </a>
+                          </Link>
 
-                        <span className={'meta'}>
-                          {item.meta.map((m, i) => (i === 0 ? m : '/' + m))}
-                        </span>
-                      </li>
+                          <span className={'meta'}>
+                            {item.meta.map((m, i) => (i === 0 ? m : '/' + m))}
+                          </span>
+                        </li>
+                      </QueueAnim>
                     )
                   })}
                 </ul>
@@ -162,7 +140,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
             </article>
           )
         })}
-    </main>
+    </ArticleLayout>
   )
 }
 

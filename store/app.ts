@@ -3,6 +3,7 @@ import configs from 'configs'
 import { action, computed, observable } from 'mobx'
 import { Seo } from 'models/aggregate'
 import { MenuModel, PageModel, ViewportRecord } from './types'
+import { CategoryModel } from '../models/dto/category'
 
 export default class AppStore {
   @observable menu: MenuModel[] = configs.menu as MenuModel[]
@@ -54,6 +55,22 @@ export default class AppStore {
 
     homeMenu?.subMenu!.push(...models)
   }
+
+  @action setCategories(categories: CategoryModel[]) {
+    const postMenu = this.menu.find((menu) => menu.type === 'Post')
+    const models: MenuModel[] = categories.map((category) => {
+      const { _id, slug, name } = category
+      return {
+        title: name,
+        _id,
+        path: '/category/[slug]',
+        as: '/category/' + category.name,
+        type: 'Custom',
+      }
+    })
+    postMenu?.subMenu!.push(...models)
+  }
+
   @action UpdateViewport() {
     this.viewport = {
       w: document.documentElement.getBoundingClientRect().width,

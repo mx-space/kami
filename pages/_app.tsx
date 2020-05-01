@@ -69,6 +69,7 @@ class Context extends PureComponent<Store & { data: any }> {
         // set page
         this.props.pages?.setPages(pageMeta as PageModel[])
         this.props.app?.setPage(pageMeta as PageModel[])
+        this.props.app?.setCategories(categories)
         this.props.category?.setCategory(categories)
         this.props.app?.setConfig({ seo })
       })

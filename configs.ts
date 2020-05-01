@@ -26,6 +26,7 @@ const menu: MenuModel[] = [
     title: '博文',
     type: 'Post',
     path: '/posts',
+    subMenu: [],
     icon: faBook,
   },
   {
