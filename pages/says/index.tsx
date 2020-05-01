@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react'
-import { PagerModel } from 'models/dto/base'
 import { SayModel, SayRespDto } from 'models/dto/say'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
@@ -8,7 +7,6 @@ import { Rest } from 'utils/api'
 import { relativeTimeFromNow } from 'utils/time'
 import QueueAnim from 'rc-queue-anim'
 interface SayViewProps {
-  page: PagerModel
   data: SayModel[]
 }
 
@@ -61,9 +59,9 @@ const SayView: NextPage<SayViewProps> = (props) => {
 }
 
 SayView.getInitialProps = async () => {
-  const resp = (await Rest('Say').gets({ page: 1, size: 50 })) as SayRespDto
-  const { page, data } = resp
-  return { page, data }
+  const resp = (await Rest('Say').get('all')) as SayRespDto
+  const { data } = resp
+  return { data }
 }
 
 export default observer(SayView)

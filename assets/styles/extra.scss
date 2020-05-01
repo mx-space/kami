@@ -146,6 +146,12 @@ p {
     margin: 10px 0 15px;
     font-size: 1.5rem;
     font-family: Helvetica;
+
+    &::before {
+      content: '';
+      padding-left: 0.75em;
+      border-left: 2px solid #ffc107;
+    }
   }
   ul {
     padding-left: 0.5em;

@@ -5,6 +5,7 @@ export enum AccessRoutesEnum {
   Aggregate,
   Category,
   Comment,
+  Link,
   Master,
   Menu,
   Note,
