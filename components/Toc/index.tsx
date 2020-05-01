@@ -4,8 +4,8 @@ import throttle from 'lodash/throttle'
 import dynamic from 'next/dynamic'
 import QueueAnim from 'rc-queue-anim'
 import { FC, useEffect, useRef, useState } from 'react'
-import { Link } from 'react-scroll'
 import styles from './index.module.scss'
+import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 export const Toc: FC = () => {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -57,15 +57,14 @@ export const Toc: FC = () => {
           {headings &&
             headings.map((heading, i) => {
               return (
-                <Link
-                  to={heading}
+                <AnchorLink
+                  offset={() => 200}
+                  href={'#' + heading}
                   key={i}
-                  offset={-100}
-                  activeClass={styles['active']}
                   className={styles['toc-link']}
                 >
                   <span className={styles['a-pointer']}>{heading}</span>
-                </Link>
+                </AnchorLink>
               )
             })}
         </QueueAnim>

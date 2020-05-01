@@ -44,16 +44,17 @@
     "rc-queue-anim": "^1.8.4",
     "rc-texty": "^0.2.0",
     "react": "^16.13.1",
+    "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-aplayer": "^1.0.0",
     "react-dom": "^16.13.1",
     "react-image-lightbox": "^5.1.1",
     "react-intersection-observer": "^8.26.2",
     "react-lazy-images": "^1.1.0",
     "react-markdown": "^4.3.1",
-    "react-scroll": "^1.7.16",
     "react-syntax-highlighter": "^12.2.1",
     "remove-markdown": "^0.3.0",
     "sass": "^1.26.3",
+    "scroll-to": "^0.0.2",
     "validator": "^13.0.0"
   },
   "devDependencies": {
