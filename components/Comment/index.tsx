@@ -8,6 +8,7 @@ import Comment from './comment'
 import styles from './index.module.scss'
 import { useInView } from 'react-intersection-observer'
 import LazyLoad from 'react-lazyload'
+import { AxiosError } from 'axios'
 export type CommentType = 'Note' | 'Post' | 'Page'
 
 export const CommentContext = createContext({
@@ -49,9 +50,13 @@ const CommentWrap: FC<CommentWrapProps> = (props) => {
 
   const handleComment = async (model) => {
     openCommentMessage()
-    await Rest('Comment', `${id}?ref=${type}`).post(model)
-    openCommentMessage.success()
-    fetchComments()
+    try {
+      await Rest('Comment', `${id}?ref=${type}`).post(model)
+      openCommentMessage.success()
+      fetchComments()
+    } catch {
+      message.destroy()
+    }
   }
 
   const [ref, inView, _] = useInView({

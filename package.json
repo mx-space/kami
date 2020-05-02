@@ -55,6 +55,7 @@
     "remove-markdown": "^0.3.0",
     "sass": "^1.26.3",
     "scroll-to": "^0.0.2",
+    "sitemap": "^6.1.2",
     "validator": "^13.0.0"
   },
   "devDependencies": {

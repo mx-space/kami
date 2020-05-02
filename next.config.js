@@ -11,5 +11,12 @@ module.exports = withImages(
       ...env,
     },
     assetPrefix: isProd ? env.ASSETPREFIX || '' : '',
+    experimental: {
+      modern: true,
+      async rewrites() {
+        return [{ source: '/sitemap.xml', destination: '/api/sitemap' }]
+      },
+      catchAllRouting: true,
+    },
   }),
 )

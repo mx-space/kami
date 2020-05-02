@@ -43,7 +43,7 @@ const CommentBox: FC<{
       message.error('昵称太长了了啦, 服务器会坏掉的')
       return
     }
-    if (text.length > 200) {
+    if (text.length > 500) {
       message.error('内容太长了了啦, 服务器会坏掉的')
       return
     }
