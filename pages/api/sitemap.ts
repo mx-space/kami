@@ -3,7 +3,7 @@ import { IncomingMessage, ServerResponse } from 'http'
 import { Rest } from '../../utils/api'
 
 async function fetchContentFromAPI() {
-  return await Rest('Aggregate').get('sitemap')
+  return Rest('Aggregate').get('sitemap')
 }
 
 export default async function sitemapFunc(

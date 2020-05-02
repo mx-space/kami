@@ -1,0 +1,33 @@
+@function pxTorem($px) {
+  @return $px / 14px * 1rem;
+}
+.timeline-wrap {
+  position: relative;
+
+  //   li:first-child::before {
+  //     border-left: 0;
+  //   }
+  > div li::before {
+    content: '';
+    position: absolute;
+
+    left: pxTorem(-15px);
+    bottom: 0;
+    border-left: 1px solid var(--yellow);
+  }
+  > div:not(:first-child):not(:last-child) li::before {
+    top: 0;
+  }
+  > div:first-child li::before {
+    top: 50%;
+  }
+  > div:last-child li::before {
+    bottom: 50%;
+    top: 0
+  }
+  li {
+    position: relative;
+    list-style-type: disc;
+    color: var(--yellow);
+  }
+}

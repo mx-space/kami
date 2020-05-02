@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { QueueAnim } from '../../components/Anime'
 import { ArticleLayout } from '../../layouts/ArticleLayout'
+import styles from './index.module.scss'
 
 type BaseType = {
   _id: string
@@ -41,6 +42,18 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
   const sortedMap = new Map<number, mapType[]>()
   const [map, setMap] = useState<typeof sortedMap>(new Map())
   const { posts, notes } = props
+
+  const getDelayTime = (year: number): number => {
+    const prevYear = year + 1
+    const itemsLength = sortedMap.get(prevYear)?.length
+
+    if (itemsLength) {
+      return itemsLength * 100 + getDelayTime(prevYear)
+    } else {
+      return 0
+    }
+  }
+
   posts /* .reverse() */
     .forEach((post) => {
       const date = new Date(post.created)
@@ -93,6 +106,8 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
       setMap(sortedMap)
     }
   }, [map])
+
+
   return (
     <ArticleLayout
       title={'时间线'}
@@ -104,13 +119,13 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
           return (
             <article className="post-content paul-note article-list" key={year}>
               <div className="note-item">
-                <QueueAnim delay={j * 1000}>
+                <QueueAnim delay={getDelayTime(year)}>
                   <h1 key={1}>{year}</h1>
                 </QueueAnim>
-                <ul>
+                <ul className={styles['timeline-wrap']}>
                   {value.map((item, i) => {
                     return (
-                      <QueueAnim key={i} delay={100 * j * i + 500}>
+                      <QueueAnim key={i} delay={(getDelayTime(year)) + i * 100}>
                         <li key={i * j}>
                           <Link href={item.href} as={item.as}>
                             <a>

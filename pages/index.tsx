@@ -60,14 +60,9 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
 
   return (
     <main>
-      <style jsx>{`
-        .avatar {
-          width: 100%;
-        }
-      `}</style>
       <section className="paul-intro">
         <div className="intro-avatar ">
-          <img src={configs.avatar || avatar} alt={name} className="avatar" />
+          <img src={configs.avatar || avatar} alt={name} style={{ width: "100%" }} />
         </div>
         <div className="intro-info">
           <h1>

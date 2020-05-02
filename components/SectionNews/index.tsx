@@ -44,29 +44,6 @@ const SectionNews: FC<SectionNewsProps> = forwardRef((props, ref: any) => {
   ])
   return (
     <>
-      <style jsx>{`
-        svg {
-          top: 0;
-          left: 0;
-          padding: 1rem 1em;
-          position: absolute;
-          border-radius: 1em;
-          background: rgba(0, 0, 0, 0.1);
-        }
-        .title::before {
-          content: '';
-          width: 3rem;
-          border-radius: 1rem;
-          height: 100%;
-          background: rgba(0, 0, 0, 0.2);
-          position: absolute;
-          left: 0;
-          top: 0;
-        }
-        .news-article {
-          height: 9rem;
-        }
-      `}</style>
       <div className="news-item" ref={ref}>
         <div className="news-head">
           <h3

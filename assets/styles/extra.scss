@@ -125,6 +125,23 @@ p {
   padding: 0px;
 }
 // paul restyle
+
+.news-item {
+  .title::before {
+    content: '';
+    width: 3rem;
+    border-radius: 1rem;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .news-article {
+    height: 9rem;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .paul-say {
     columns: 1;
@@ -172,6 +189,11 @@ p {
   }
   .date {
     margin-right: 0.5em;
+  }
+  .meta {
+    opacity: .88;
+    color: var(--shizuku-text-color);
+    font-size: 80%;
   }
 }
 // aplayer restyle
