@@ -6,13 +6,19 @@ import { useStore } from 'store'
 import { Rest } from 'utils/api'
 import { relativeTimeFromNow } from 'utils/time'
 import { SEO } from '../../components/SEO'
+import randomColor from 'randomcolor'
 interface SayViewProps {
   data: SayModel[]
 }
 
 const SayView: NextPage<SayViewProps> = (props) => {
   const { data } = props
-  const { appStore } = useStore()
+  const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  const getRandomColor = () => {
+    return randomColor({
+      luminosity: isDarkMode ? 'bright' : 'dark',
+    })
+  }
   return (
     <main>
       <SEO title={'说说'} />
@@ -35,7 +41,10 @@ const SayView: NextPage<SayViewProps> = (props) => {
             const hasSource = !!say.source
             const hasAuthor = !!say.author
             return (
-              <blockquote key={say._id}>
+              <blockquote
+                key={say._id}
+                style={{ borderLeftColor: getRandomColor() }}
+              >
                 <p>{say.text}</p>
                 <p
                   className="author"
