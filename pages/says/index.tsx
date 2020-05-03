@@ -1,11 +1,11 @@
 import { observer } from 'mobx-react'
 import { SayModel, SayRespDto } from 'models/dto/say'
 import { NextPage } from 'next'
-import { NextSeo } from 'next-seo'
+import QueueAnim from 'rc-queue-anim'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
 import { relativeTimeFromNow } from 'utils/time'
-import QueueAnim from 'rc-queue-anim'
+import { SEO } from '../../components/SEO'
 interface SayViewProps {
   data: SayModel[]
 }
@@ -15,11 +15,7 @@ const SayView: NextPage<SayViewProps> = (props) => {
   const { appStore } = useStore()
   return (
     <main>
-      <NextSeo
-        {...{
-          title: '说说 - ' + appStore.title,
-        }}
-      />
+      <SEO title={'说说'} />
       <style jsx>{`
         .author {
           position: relative;

@@ -30,6 +30,7 @@ import { useStore } from 'store'
 import { Rest } from 'utils/api'
 import { parseDate, relativeTimeFromNow } from 'utils/time'
 import { mood2icon, weather2icon } from 'utils/weather2icon'
+import configs from '../../configs'
 
 interface NoteViewProps {
   data: NoteModel
@@ -110,11 +111,12 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
     })
   }
   const description = RemoveMarkdown(text).slice(0, 100)
+  const { appStore } = useStore()
   return (
     <>
       <NextSeo
         {...{
-          title,
+          title: title + ' - ' + (configs.title || appStore.title),
           description,
           openGraph: {
             title,
@@ -125,6 +127,7 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
           },
         }}
       />
+
       <NoteLayout title={title} meta={renderMeta} tips={tips}>
         <Markdown value={text} escapeHtml={false}></Markdown>
         <Action {...actions} style={{ marginTop: '24px' }} />
@@ -140,7 +143,7 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
               >
                 前一篇
               </button>
-            )}{' '}
+            )}
             {!!prev && (
               <button
                 className="btn green"

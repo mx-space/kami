@@ -5,12 +5,11 @@ import { ArticleLayout } from 'layouts/ArticleLayout'
 import { PagerModel } from 'models/dto/base'
 import { PostPagerDto, PostResModel } from 'models/dto/post'
 import { NextPageContext } from 'next'
-import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
-import Link from 'next/link'
+import { SEO } from '../../components/SEO'
 interface Post extends PagerModel {
   posts: PostResModel[]
 }
@@ -46,10 +45,9 @@ export default function Post({ posts, page }: Post) {
 
     setLoading(false)
   }
-  const { appStore } = useStore()
   return (
     <ArticleLayout>
-      <NextSeo title={'博文 - ' + appStore.title} />
+      <SEO title={'博文'} />
       {/* <div className="navigation">
         <Link href={{ pathname: 'posts' }}>
           <a className="active">所有</a>

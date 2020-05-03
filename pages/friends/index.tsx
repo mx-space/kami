@@ -3,6 +3,7 @@ import { Rest } from '../../utils/api'
 import { LinkModel, LinkType } from '../../models/dto/link'
 import { ArticleLayout } from '../../layouts/ArticleLayout'
 import { QueueAnim } from '../../components/Anime'
+import { SEO } from '../../components/SEO'
 
 const FriendsView: NextPage<{ data: LinkModel[] }> = (props) => {
   const friends: LinkModel[] = []
@@ -51,6 +52,7 @@ const FriendsView: NextPage<{ data: LinkModel[] }> = (props) => {
 
   return (
     <ArticleLayout title={'朋友们'} subtitle={'海内存知己, 天涯若比邻'}>
+      <SEO title={'朋友们'} />
       <article className="post-content paul-note article-list">
         {friends.length > 0 && (
           <>

@@ -5,6 +5,7 @@ import { CategoryModel } from '../../models/dto/category'
 import { ArticleLayout } from '../../layouts/ArticleLayout'
 import Link from 'next/link'
 import { QueueAnim } from '../../components/Anime'
+import { SEO } from '../../components/SEO'
 
 interface CategoryListViewProps {
   category: CategoryModel
@@ -24,6 +25,7 @@ const CategoryListView: NextPage<CategoryListViewProps> = (props) => {
       title={'分类 - ' + category.name}
       subtitle={'当前共有' + children.length + '篇文章, 加油!'}
     >
+      <SEO title={'分类: ' + category.name} />
       <article className="post-content paul-note article-list">
         <ul>
           <QueueAnim delay={700} forcedReplay appear>

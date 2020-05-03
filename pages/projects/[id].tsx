@@ -8,6 +8,7 @@ import { useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
+import configs from '../../configs'
 
 type ProjectViewProps = ProjectModel
 
@@ -21,7 +22,7 @@ const ProjectView: NextPage<ProjectViewProps> = (props) => {
     <main>
       <NextSeo
         {...{
-          title: props.name + ' - ' + appStore.title,
+          title: props.name + ' - ' + configs.title || appStore.title,
           description: props.description,
         }}
       />

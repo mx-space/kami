@@ -1,11 +1,12 @@
 import { NextPage } from 'next'
-import { Rest } from '../../utils/api'
-import { CategoryModel } from '../../models/dto/category'
-import { Weather, Mood } from '../../models/dto/note'
-import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import { QueueAnim } from '../../components/Anime'
+import { SEO } from '../../components/SEO'
 import { ArticleLayout } from '../../layouts/ArticleLayout'
+import { CategoryModel } from '../../models/dto/category'
+import { Mood, Weather } from '../../models/dto/note'
+import { Rest } from '../../utils/api'
 import styles from './index.module.scss'
 
 type BaseType = {
@@ -107,25 +108,29 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
     }
   }, [map])
 
-
   return (
     <ArticleLayout
       title={'时间线'}
       subtitle={`共有${posts.length + notes.length}篇文章, 再接再厉`}
     >
+      <SEO title={'时间线'} />
       {Array.from(map)
         .reverse()
         .map(([year, value], j) => {
           return (
             <article className="post-content paul-note article-list" key={year}>
               <div className="note-item">
-                <QueueAnim delay={getDelayTime(year)}>
+                <QueueAnim delay={getDelayTime(year)} type={'bottom'}>
                   <h1 key={1}>{year}</h1>
                 </QueueAnim>
                 <ul className={styles['timeline-wrap']}>
                   {value.map((item, i) => {
                     return (
-                      <QueueAnim key={i} delay={(getDelayTime(year)) + i * 100}>
+                      <QueueAnim
+                        type={'bottom'}
+                        key={i}
+                        delay={getDelayTime(year) + i * 100}
+                      >
                         <li key={i * j}>
                           <Link href={item.href} as={item.as}>
                             <a>
