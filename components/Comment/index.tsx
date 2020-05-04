@@ -8,6 +8,8 @@ import { Rest } from 'utils/api'
 import CommentBox from './box'
 import Comment from './comment'
 import styles from './index.module.scss'
+import { useStore } from '../../store'
+import { observer } from 'mobx-react'
 export type CommentType = 'Note' | 'Post' | 'Page'
 
 export const CommentContext = createContext({
@@ -29,7 +31,7 @@ interface CommentWrapProps {
   type: CommentType
   id: string
 }
-const CommentWrap: FC<CommentWrapProps> = (props) => {
+const CommentWrap: FC<CommentWrapProps> = observer((props) => {
   const { type, id } = props
   const [comments, setComments] = useState([] as CommentModel[])
   const [page, setPage] = useState({} as PagerModel['page'])
@@ -54,10 +56,10 @@ const CommentWrap: FC<CommentWrapProps> = (props) => {
     openCommentMessage.success()
     fetchComments()
   }
-
+  const { appStore } = useStore()
   const [ref, inView, _] = useInView({
     threshold: 0,
-    rootMargin: '-220px',
+    rootMargin: appStore.viewport.mobile ? undefined : '-120px',
   })
 
   return (
@@ -84,7 +86,7 @@ const CommentWrap: FC<CommentWrapProps> = (props) => {
       </CommentContext.Provider>
     </article>
   )
-}
+})
 
 export const CommentLazy: FC<CommentWrapProps> = (props) => {
   return (
