@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react'
 import RemoveMarkdown from 'remove-markdown'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
+import configs from '../../../configs'
 export const PostView: NextPage<PostResModel> = (props) => {
   const { text, title, _id, modified } = props
   const { userStore } = useStore()
@@ -29,11 +30,11 @@ export const PostView: NextPage<PostResModel> = (props) => {
       actions: [],
     })
   }, [name])
-
+  const { appStore } = useStore()
   return (
     <ArticleLayout title={title}>
       <NextSeo
-        title={props.title}
+        title={props.title + ' - ' + (configs.title || appStore.title)}
         description={description}
         openGraph={{
           title: props.title,

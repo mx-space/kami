@@ -49,13 +49,10 @@ const CommentWrap: FC<CommentWrapProps> = (props) => {
 
   const handleComment = async (model) => {
     openCommentMessage()
-    try {
-      await Rest('Comment', `${id}?ref=${type}`).post(model)
-      openCommentMessage.success()
-      fetchComments()
-    } catch {
-      message.destroy()
-    }
+
+    await Rest('Comment', `${id}?ref=${type}`).post(model)
+    openCommentMessage.success()
+    fetchComments()
   }
 
   const [ref, inView, _] = useInView({
