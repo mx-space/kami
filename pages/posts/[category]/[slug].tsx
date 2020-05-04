@@ -1,4 +1,4 @@
-import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faCalendar } from '@fortawesome/free-solid-svg-icons'
 import Action, { ActionProps } from 'components/Action'
 import { CommentLazy } from 'components/Comment'
 import Markdown from 'components/MD-render'
@@ -13,6 +13,7 @@ import RemoveMarkdown from 'remove-markdown'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
 import configs from '../../../configs'
+import dayjs from 'dayjs'
 export const PostView: NextPage<PostResModel> = (props) => {
   const { text, title, _id, modified } = props
   const { userStore } = useStore()
@@ -25,6 +26,10 @@ export const PostView: NextPage<PostResModel> = (props) => {
         {
           icon: faUser,
           name: name as string,
+        },
+        {
+          icon: faCalendar,
+          name: dayjs(props.created).format('YYYY-MM-DD H:mm:ss'),
         },
       ],
       actions: [],

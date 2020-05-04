@@ -7,18 +7,25 @@ import { Rest } from 'utils/api'
 import { relativeTimeFromNow } from 'utils/time'
 import { SEO } from '../../components/SEO'
 import randomColor from 'randomcolor'
+
 interface SayViewProps {
   data: SayModel[]
 }
 
 const SayView: NextPage<SayViewProps> = (props) => {
   const { data } = props
-  const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-  const getRandomColor = () => {
-    return randomColor({
-      luminosity: isDarkMode ? 'bright' : 'dark',
-    })
+  let getRandomColor
+  if (typeof window !== 'undefined') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    getRandomColor = () => {
+      return randomColor({
+        luminosity: isDarkMode ? 'bright' : 'dark',
+        alpha: 0.05,
+        format: 'rgba',
+      })
+    }
   }
+
   return (
     <main>
       <SEO title={'说说'} />
@@ -43,7 +50,14 @@ const SayView: NextPage<SayViewProps> = (props) => {
             return (
               <blockquote
                 key={say._id}
-                style={{ borderLeftColor: getRandomColor() }}
+                style={{
+                  borderLeftColor: randomColor({
+                    luminosity: 'bright',
+                    alpha: 0.7,
+                    format: 'rgba',
+                  }),
+                  backgroundColor: getRandomColor?.() || '',
+                }}
               >
                 <p>{say.text}</p>
                 <p

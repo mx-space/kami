@@ -65,7 +65,11 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
   return (
     <article className={styles.wrap} ref={ref}>
       <CommentContext.Provider value={{ type, refresh: fetchComments }}>
-        <h1>共有{comments.length}条评论</h1>
+        <h1>
+          {comments.length
+            ? `共有${comments.length}条评论`
+            : '亲亲给个评论再走呗'}
+        </h1>
         <CommentBox onSubmit={handleComment} />
 
         <Comment comments={comments} inView={inView} />
