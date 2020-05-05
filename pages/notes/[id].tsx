@@ -31,6 +31,7 @@ import { Rest } from 'utils/api'
 import { parseDate, relativeTimeFromNow } from 'utils/time'
 import { mood2icon, weather2icon } from 'utils/weather2icon'
 import configs from '../../configs'
+import { message } from 'antd'
 
 interface NoteViewProps {
   data: NoteModel
@@ -85,7 +86,19 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
   })
   const actions: ActionProps = {
     informs: [],
-    actions: [{ name: '喜欢', icon: faHeart, callback: () => {} }],
+    actions: [
+      {
+        name: '喜欢',
+        icon: faHeart,
+        callback: () => {
+          Rest('Note')
+            .get<any>('like/' + _id, { withCredentials: true })
+            .then(() => {
+              message.success('感谢喜欢!')
+            })
+        },
+      },
+    ],
   }
 
   if (weather && Object.keys(Weather).includes(weather)) {

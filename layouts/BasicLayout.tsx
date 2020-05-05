@@ -31,13 +31,16 @@ export const BasicLayout = observer(({ children }) => {
                 <a href={configs.homePage ?? '#'} target="_blank">
                   {userStore.name}
                 </a>
-                .{' '}
+                .
                 <span>
                   Design by <a href="//paul.ren">Paul.</a>{' '}
                 </span>
                 <span>
                   Dev by <a href="//innei.ren">Innei</a>.
                 </span>
+              </p>
+              <p>
+                Powered by <a href="https://github.com/mx-space">mx-space</a>.
               </p>
             </div>
             <div className="col-m-6 right to-center">
@@ -50,6 +53,10 @@ export const BasicLayout = observer(({ children }) => {
                 ·
                 <a href="/feed" target="_blank">
                   订阅
+                </a>
+                ·
+                <a href="/sitemap.xml" target={'_blank'}>
+                  站点地图
                 </a>
               </p>
             </div>

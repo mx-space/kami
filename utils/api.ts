@@ -1,5 +1,6 @@
 import $axios from 'utils/request'
 import inflection from 'inflection'
+import { AxiosRequestConfig } from 'axios'
 
 declare enum AccessRoutesEnum {
   Aggregate,
@@ -50,9 +51,12 @@ export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
       })
       return data as any
     },
-    async getOne<T = unknown>(_id = ''): Promise<T> {
+    async getOne<T = unknown>(
+      _id = '',
+      config?: AxiosRequestConfig | undefined,
+    ): Promise<T> {
       const id = encodeURI(_id)
-      const data = await $axios.get(`${pluralize}${id ? '/' + id : ''}`)
+      const data = await $axios.get(`${pluralize}${id ? '/' + id : ''}`, config)
       return data as any
     },
     async postNew<T = unknown>(body: Record<string, any>): Promise<T> {
