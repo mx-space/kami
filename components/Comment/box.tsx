@@ -4,6 +4,7 @@ import { FC, useState } from 'react'
 import isEmail from 'validator/lib/isEmail'
 import isUrl from 'validator/lib/isURL'
 import styles from './index.module.scss'
+import { useStore } from '../../store'
 
 const { TextArea } = Input
 
@@ -15,6 +16,7 @@ const CommentBox: FC<{
   const [mail, setMail] = useState('')
   const [url, setUrl] = useState('')
   const [text, setText] = useState('')
+  const { userStore } = useStore()
   const reset = () => {
     // setAuthor('')
     // setMail('')
@@ -27,6 +29,9 @@ const CommentBox: FC<{
     reset()
   }
   const handleSubmit = () => {
+    if (author === userStore.name || author === userStore.username) {
+      return message.error('昵称与我主人重名了, 但是你好像并不是我的主人唉')
+    }
     if (!author || !text || !mail) {
       message.error('亲亲, 能把信息填完整么')
       return
@@ -86,6 +91,7 @@ const CommentBox: FC<{
       <TextArea
         rows={4}
         required
+        autoSize
         placeholder={'亲亲, 留个评论好不好嘛~'}
         value={text}
         onChange={(e) => setText(e.target.value)}

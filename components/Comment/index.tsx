@@ -52,7 +52,9 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
   const handleComment = async (model) => {
     openCommentMessage()
 
-    await Rest('Comment', `${id}?ref=${type}`).post(model)
+    await Rest('Comment', `${id}?ref=${type}&ts=${new Date().getTime()}`).post(
+      model,
+    )
     openCommentMessage.success()
     fetchComments()
   }
