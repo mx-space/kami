@@ -35,6 +35,7 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
   const { type, id } = props
   const [comments, setComments] = useState([] as CommentModel[])
   const [page, setPage] = useState({} as PagerModel['page'])
+  const [logged, setLogged] = useState(false)
   const fetchComments = (page = 1, size = 10) =>
     Rest('Comment', 'ref/' + id)
       .gets<CommentPager>({
@@ -47,14 +48,31 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
       })
   useEffect(() => {
     fetchComments()
+  }, [type, id])
+
+  const isLogin = async () => {
+    const { ok } = await Rest('Master', 'check_logged').get()
+    if (ok) {
+      setLogged(true)
+    }
+  }
+  useEffect(() => {
+    isLogin()
   }, [])
 
   const handleComment = async (model) => {
     openCommentMessage()
-
-    await Rest('Comment', `${id}?ref=${type}&ts=${new Date().getTime()}`).post(
-      model,
-    )
+    if (logged) {
+      await Rest(
+        'Comment',
+        `master/${id}?ref=${type}&ts=${new Date().getTime()}`,
+      ).post(model)
+    } else {
+      await Rest(
+        'Comment',
+        `${id}?ref=${type}&ts=${new Date().getTime()}`,
+      ).post(model)
+    }
     openCommentMessage.success()
     fetchComments()
   }

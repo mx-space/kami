@@ -1,10 +1,11 @@
 import { GlobalOutlined, MailOutlined, UserOutlined } from '@ant-design/icons'
 import { Input, message } from 'antd'
-import { FC, useState } from 'react'
+import { FC, useState, useEffect } from 'react'
 import isEmail from 'validator/lib/isEmail'
 import isUrl from 'validator/lib/isURL'
 import styles from './index.module.scss'
 import { useStore } from '../../store'
+import { Rest } from '../../utils/api'
 
 const { TextArea } = Input
 
@@ -16,6 +17,7 @@ const CommentBox: FC<{
   const [mail, setMail] = useState('')
   const [url, setUrl] = useState('')
   const [text, setText] = useState('')
+  const [logged, setLogged] = useState(false)
   const { userStore } = useStore()
   const reset = () => {
     // setAuthor('')
@@ -60,34 +62,44 @@ const CommentBox: FC<{
     })
     reset()
   }
-
+  const isLogin = async () => {
+    const { ok } = await Rest('Master', 'check_logged').get()
+    if (ok) {
+      setLogged(true)
+    }
+  }
+  useEffect(() => {
+    isLogin()
+  }, [])
   return (
     <>
-      <div className={styles['comment-box-head']}>
-        <Input
-          placeholder={'昵称 *'}
-          required
-          name={'author'}
-          prefix={<UserOutlined className="site-form-item-icon" />}
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-        />
-        <Input
-          placeholder={'邮箱 *'}
-          name={'mail'}
-          required
-          prefix={<MailOutlined className="site-form-item-icon" />}
-          value={mail}
-          onChange={(e) => setMail(e.target.value)}
-        />
-        <Input
-          placeholder={'网站 https?://'}
-          name={'website'}
-          prefix={<GlobalOutlined className="site-form-item-icon" />}
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-        />
-      </div>
+      {!logged && (
+        <div className={styles['comment-box-head']}>
+          <Input
+            placeholder={'昵称 *'}
+            required
+            name={'author'}
+            prefix={<UserOutlined className="site-form-item-icon" />}
+            value={author}
+            onChange={(e) => setAuthor(e.target.value)}
+          />
+          <Input
+            placeholder={'邮箱 *'}
+            name={'mail'}
+            required
+            prefix={<MailOutlined className="site-form-item-icon" />}
+            value={mail}
+            onChange={(e) => setMail(e.target.value)}
+          />
+          <Input
+            placeholder={'网站 https?://'}
+            name={'website'}
+            prefix={<GlobalOutlined className="site-form-item-icon" />}
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+          />
+        </div>
+      )}
       <TextArea
         rows={4}
         required

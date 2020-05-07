@@ -1,5 +1,6 @@
 import { message } from 'antd'
 import axios from 'axios'
+import { getToken } from './auth'
 
 const service = axios.create({
   baseURL: process.env.APIURL || '/api',
@@ -9,6 +10,10 @@ const service = axios.create({
 
 service.interceptors.request.use(
   (config) => {
+    const token = getToken()
+    if (token) {
+      config.headers['Authorization'] = 'bearer ' + getToken()
+    }
     return config
   },
   (error) => {

@@ -1,17 +1,17 @@
-import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faClock } from '@fortawesome/free-regular-svg-icons'
 import {
-  faHome,
   faBook,
-  faPen,
   faComments,
   faFlask,
-  faStar,
+  faHome,
   faMusic,
+  faPen,
+  faStar,
   faTv,
   faUserFriends,
 } from '@fortawesome/free-solid-svg-icons'
-import { SocialLinkModel, MenuModel } from 'store/types'
-import { faClock } from '@fortawesome/free-regular-svg-icons'
+import { MenuModel, SocialLinkModel } from 'store/types'
 const menu: MenuModel[] = [
   {
     _id: '1',
@@ -94,12 +94,6 @@ const social: SocialLinkModel[] = [
     title: 'GitHub',
     icon: faGithub,
     color: 'var(--black)',
-  },
-  {
-    url: 'https://twitter.com/',
-    title: 'Twitter',
-    icon: faTwitter,
-    color: '#00A3EC',
   },
 ]
 export default {
