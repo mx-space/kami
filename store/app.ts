@@ -64,7 +64,7 @@ export default class AppStore {
         title: name,
         _id,
         path: '/category/[slug]',
-        as: '/category/' + category.name,
+        as: '/category/' + category.slug,
         type: 'Custom',
       }
     })
