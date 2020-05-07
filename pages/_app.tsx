@@ -34,6 +34,7 @@ import { PageModel, Stores, ViewportRecord } from '../store/types'
 import UserStore from '../store/user'
 import { Rest } from '../utils/api'
 import * as gtag from '../utils/gtag'
+import { getToken, removeToken } from '../utils/auth'
 
 const stores = createMobxStores()
 
@@ -48,6 +49,7 @@ const AppContext = createContext({
   pages: store.pageStore,
   app: store.appStore,
   category: store.categoryStore,
+  user: store.userStore,
 }))
 @observer
 class Context extends PureComponent<Store & { data: any }> {
@@ -111,6 +113,17 @@ class Context extends PureComponent<Store & { data: any }> {
       'color: #fff; margin: 1em 0; padding: 5px 0; background: #2980b9;',
       'margin: 1em 0; padding: 5px 0; background: #efefef;',
     )
+
+    Rest('Master', 'check_logged')
+      .get<any>()
+      .then(({ ok }) => {
+        if (ok) {
+          this.props.user?.setLogged(true)
+          this.props.user?.setToken(getToken() as string)
+        } else {
+          removeToken()
+        }
+      })
   }
 
   componentWillUnmount() {
@@ -141,6 +154,7 @@ interface Store {
   pages?: PageStore
   app?: AppStore
   category?: CategoryStore
+  user?: UserStore
 }
 interface DataModel {
   pageData: PageModel[]

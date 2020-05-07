@@ -4,11 +4,12 @@ import { Rest } from '../../utils/api'
 import { setToken } from '../../utils/auth'
 import Router from 'next/router'
 import { message } from 'antd'
+import { useStore } from '../../store'
 
 const LoginView: NextPage = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-
+  const { userStore } = useStore()
   const handleLogin = async () => {
     const data = (await Rest('Master', 'login').post({
       username,
@@ -17,6 +18,8 @@ const LoginView: NextPage = () => {
     setToken(data.token, 7)
     Router.push('/')
     message.success('登陆成功')
+    userStore.setToken(data.token)
+    userStore.setLogged(true)
   }
 
   return (

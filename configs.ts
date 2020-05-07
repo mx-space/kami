@@ -1,4 +1,4 @@
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faGithub, faQq } from '@fortawesome/free-brands-svg-icons'
 import { faClock } from '@fortawesome/free-regular-svg-icons'
 import {
   faBook,
@@ -95,6 +95,12 @@ const social: SocialLinkModel[] = [
     icon: faGithub,
     color: 'var(--black)',
   },
+  {
+    url: 'https://jq.qq.com/?_wv=1027&k=5t9N0mw',
+    title: 'QQ',
+    icon: faQq,
+    color: '#12b7f5',
+  },
 ]
 export default {
   APIURL: 'http://example.com',
@@ -104,7 +110,7 @@ export default {
     'https://tu-1252943311.cos.ap-shanghai.myqcloud.com/%E5%A7%94%E6%89%98%E5%A4%B4%E5%83%8F.png', // work on rss
   url: 'https://innei.ren',
   keywords: ['blog', 'space', 'mx-space', 'innei', '静之森', '静かな森'],
-  alwaysHTTPS: false,
+  alwaysHTTPS: process.env.NODE_ENV === 'development' ? false : true,
   social,
   biliId: 26578164,
   homePage: 'https://innei.ren', // footer link

@@ -9,6 +9,7 @@ import { relativeTimeFromNow } from 'utils/time'
 import { CommentContext, openCommentMessage } from '.'
 import CommentBox from './box'
 import QueueAnim from 'rc-queue-anim'
+import { useStore } from '../../store'
 
 const Comments: FC<{ comments: CommentModel[]; inView: boolean }> = ({
   comments,
@@ -16,7 +17,8 @@ const Comments: FC<{ comments: CommentModel[]; inView: boolean }> = ({
 }) => {
   const { refresh } = useContext(CommentContext)
   const [replyId, setReplyId] = useState('')
-
+  const { userStore } = useStore()
+  const logged = userStore.isLogged
   if (comments.length === 0) {
     return null
   }
@@ -27,7 +29,11 @@ const Comments: FC<{ comments: CommentModel[]; inView: boolean }> = ({
   ) => {
     const handleReply = async (model) => {
       openCommentMessage()
-      await Rest('Comment', 'reply/' + comment._id).post(model)
+      if (logged) {
+        await Rest('Comment', 'master/reply/' + comment._id).post(model)
+      } else {
+        await Rest('Comment', 'reply/' + comment._id).post(model)
+      }
       openCommentMessage.success()
       refresh()
       setReplyId('')
