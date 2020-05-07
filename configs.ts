@@ -103,9 +103,9 @@ const social: SocialLinkModel[] = [
   },
 ]
 export default {
-  APIURL: 'http://47.114.54.60:2333',
-  title: '示例站点', // prefetch seo
-  description: '欢迎来到我的小窝',
+  APIURL: 'http://example.com',
+  title: '静かな森', // prefetch seo
+  description: '致虚极，守静笃。',
   avatar:
     'https://tu-1252943311.cos.ap-shanghai.myqcloud.com/%E5%A7%94%E6%89%98%E5%A4%B4%E5%83%8F.png', // work on rss
   url: 'https://innei.ren',
