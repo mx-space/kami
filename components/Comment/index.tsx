@@ -42,6 +42,7 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
       .gets<CommentPager>({
         page,
         size,
+        ts: new Date().getTime(),
       })
       .then(({ data, page }) => {
         setComments(data)
@@ -79,11 +80,15 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
         <h1>
           {comments.length
             ? `共有${comments.length}条评论`
-            : '亲亲给个评论再走呗'}
+            : '亲亲留个评论再走呗'}
         </h1>
         <CommentBox onSubmit={handleComment} />
 
-        <Comment comments={comments} inView={inView} />
+        <Comment
+          comments={comments}
+          inView={inView}
+          fetchComments={fetchComments}
+        />
 
         <div style={{ textAlign: 'center' }}>
           {page?.totalPage !== 0 && (

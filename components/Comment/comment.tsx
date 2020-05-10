@@ -1,6 +1,6 @@
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Avatar, Comment } from 'antd'
+import { Avatar, Comment, message, Popconfirm } from 'antd'
 import Markdown from 'components/MD-render'
 import { CommentModel } from 'models/dto/comment'
 import { FC, useContext, useState } from 'react'
@@ -11,10 +11,11 @@ import CommentBox from './box'
 import QueueAnim from 'rc-queue-anim'
 import { useStore } from '../../store'
 
-const Comments: FC<{ comments: CommentModel[]; inView: boolean }> = ({
-  comments,
-  inView,
-}) => {
+const Comments: FC<{
+  comments: CommentModel[]
+  inView: boolean
+  fetchComments: Function
+}> = ({ comments, inView, fetchComments }) => {
   const { refresh } = useContext(CommentContext)
   const [replyId, setReplyId] = useState('')
   const { userStore } = useStore()
@@ -38,7 +39,11 @@ const Comments: FC<{ comments: CommentModel[]; inView: boolean }> = ({
       refresh()
       setReplyId('')
     }
-
+    const handleDelete = (id: string) => async () => {
+      await Rest('Comment').del(id)
+      message.success('删除成功~')
+      fetchComments()
+    }
     return (
       <Comment
         key={comment._id}
@@ -66,6 +71,16 @@ const Comments: FC<{ comments: CommentModel[]; inView: boolean }> = ({
           >
             回复
           </span>,
+          logged ? (
+            <Popconfirm
+              title="真的要删除这条评论?"
+              onConfirm={handleDelete(comment._id)}
+              okText="嗯!"
+              cancelText="手抖了"
+            >
+              <span key="comment-list-delete">删除</span>
+            </Popconfirm>
+          ) : null,
         ]}
       >
         {replyId === comment._id && (
