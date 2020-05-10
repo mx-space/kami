@@ -27,7 +27,7 @@ app
             : apicache_1.default.middleware
         : () => (req, res, next) => next();
     server.use(cors_1.default());
-    server.use('/_extra', routers_1.router);
+    server.use('/_extra', cache('120 minutes'), routers_1.router);
     server.get('/feed', cache('120 minutes'), (req, res) => {
         return handle(req, res);
     });
