@@ -53,6 +53,7 @@
     "react-lazy-images": "^1.1.0",
     "react-markdown": "^4.3.1",
     "react-syntax-highlighter": "^12.2.1",
+    "redis": "^3.0.2",
     "remove-markdown": "^0.3.0",
     "sass": "^1.26.3",
     "scroll-to": "^0.0.2",
