@@ -6,7 +6,7 @@ import {
   faHeart,
   faUser,
 } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { message } from 'antd'
 import Action, { ActionProps } from 'components/Action'
 import CommentWrap from 'components/Comment'
 import Markdown from 'components/MD-render'
@@ -24,14 +24,13 @@ import {
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import RemoveMarkdown from 'remove-markdown'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
 import { parseDate, relativeTimeFromNow } from 'utils/time'
 import { mood2icon, weather2icon } from 'utils/weather2icon'
 import configs from '../../configs'
-import { message } from 'antd'
 
 interface NoteViewProps {
   data: NoteModel
@@ -39,34 +38,24 @@ interface NoteViewProps {
   next: Partial<NoteModel>
 }
 
+const renderLines: FC = (props) => {
+  return (
+    <p>
+      <style jsx>{`
+        span {
+          border-bottom: 1px solid #67676780;
+        }
+      `}</style>
+      <span>{props.children}</span>
+    </p>
+  )
+}
+
 const NoteView: NextPage<NoteViewProps> = (props) => {
   const { data, prev, next } = props
   const { title, _id, text, mood, weather } = data
   const { userStore } = useStore()
 
-  const renderMeta = (
-    <>
-      <FontAwesomeIcon icon={faUser} />
-      <span>{userStore.name}</span>
-      <FontAwesomeIcon icon={faClock} />
-      <span>{relativeTimeFromNow(data.created)}</span>
-      <FontAwesomeIcon icon={faBookmark} />
-      <span>{data.count.read}</span>
-      <svg
-        aria-hidden="true"
-        role="img"
-        xmlns="http://www.w3.org/2000/svg"
-        height="1em"
-        viewBox="0 0 512 512"
-      >
-        <path
-          fill="currentColor"
-          d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"
-        ></path>
-      </svg>
-      <span>{data.count.like}</span>
-    </>
-  )
   const router = useRouter()
   const [tips, setTips] = useState(``)
   useEffect(() => {
@@ -88,7 +77,7 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
     informs: [],
     actions: [
       {
-        name: '喜欢',
+        name: data.count.like !== 0 ? data.count.like.toString() : '喜欢',
         icon: faHeart,
         callback: () => {
           Rest('Note')
@@ -123,6 +112,21 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
       icon: faSmile,
     })
   }
+
+  actions.informs!.push(
+    {
+      name: userStore.name as string,
+      icon: faUser,
+    },
+    {
+      name: relativeTimeFromNow(data.created),
+      icon: faClock,
+    },
+    {
+      name: data.count.read.toString(),
+      icon: faBookmark,
+    },
+  )
   const description = RemoveMarkdown(text).slice(0, 100)
   const { appStore } = useStore()
   return (
@@ -141,9 +145,13 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
         }}
       />
 
-      <NoteLayout title={title} meta={renderMeta} tips={tips}>
-        <Markdown value={text} escapeHtml={false}></Markdown>
-        <Action {...actions} style={{ marginTop: '24px' }} />
+      <NoteLayout title={title} date={new Date(data.created)} tips={tips}>
+        <Markdown
+          value={text}
+          escapeHtml={false}
+          renderers={{ paragraph: renderLines }}
+        ></Markdown>
+        <Action {...actions} />
 
         {(!!next || !!prev) && (
           <section className="paul-more">

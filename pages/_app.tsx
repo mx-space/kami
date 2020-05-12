@@ -37,6 +37,7 @@ import UserStore from '../store/user'
 import { Rest } from '../utils/api'
 import * as gtag from '../utils/gtag'
 import { getToken, removeToken } from '../utils/auth'
+import { AntiDebug } from '../utils/forbidden'
 
 const stores = createMobxStores()
 
@@ -103,6 +104,13 @@ class Context extends PureComponent<Store & { data: any }> {
 
     if (typeof document !== 'undefined') {
       document.addEventListener('scroll', this.scrollCb)
+    }
+
+    // anti debug
+    if (process.env.NODE_ENV === 'production') {
+      AntiDebug.cyclingDebugger() as any
+
+      AntiDebug.checkDebug(() => console.log('请不要打开调试')) as any
     }
 
     console.log(

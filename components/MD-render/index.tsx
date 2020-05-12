@@ -1,6 +1,6 @@
 import { ImageLazyWithPopup } from 'components/Image'
 import Toc from 'components/Toc'
-import React, { createElement, DOMAttributes, FC, memo } from 'react'
+import React, { createElement, DOMAttributes, FC, memo, ReactType } from 'react'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import CodeBlock from '../CodeBlock'
 import { observer } from 'mobx-react'
@@ -10,6 +10,7 @@ interface MdProps extends ReactMarkdownProps {
   value: string
   showTOC?: boolean
   [key: string]: any
+  readonly renderers?: { [nodeType: string]: ReactType }
 }
 
 const Heading: FC<{ level: 1 | 2 | 3 | 4 | 5 | 6; key?: number }> = (props) => {
@@ -21,7 +22,7 @@ const Heading: FC<{ level: 1 | 2 | 3 | 4 | 5 | 6; key?: number }> = (props) => {
 }
 
 const Markdown: FC<MdProps> = observer((props) => {
-  const { value, ...rest } = props
+  const { value, renderers, ...rest } = props
   const { appStore } = useStore()
   const { viewport } = appStore
   return (
@@ -35,6 +36,7 @@ const Markdown: FC<MdProps> = observer((props) => {
             pre: CodeBlock,
             image: ImageLazyWithPopup,
             heading: Heading,
+            ...renderers,
           }}
         />
         {props.showTOC && !viewport.mobile && !viewport.pad ? <Toc /> : null}
