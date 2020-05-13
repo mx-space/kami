@@ -123,17 +123,18 @@ class Context extends PureComponent<Store & { data: any }> {
       'color: #fff; margin: 1em 0; padding: 5px 0; background: #2980b9;',
       'margin: 1em 0; padding: 5px 0; background: #efefef;',
     )
-
-    Rest('Master', 'check_logged')
-      .get<any>()
-      .then(({ ok }) => {
-        if (ok) {
-          this.props.user?.setLogged(true)
-          this.props.user?.setToken(getToken() as string)
-        } else {
-          removeToken()
-        }
-      })
+    if (this.props.user?.token) {
+      Rest('Master', 'check_logged')
+        .get<any>()
+        .then(({ ok }) => {
+          if (ok) {
+            this.props.user?.setLogged(true)
+            this.props.user?.setToken(getToken() as string)
+          } else {
+            removeToken()
+          }
+        })
+    }
   }
 
   componentWillUnmount() {
