@@ -27,7 +27,12 @@ const ProjectView: NextPage<ProjectViewProps> = (props) => {
         }}
       />
       <section className="project-head">
-        <Image defaultImage={Kico} alt={name} src={avatar as string} />
+        <Image
+          defaultImage={Kico}
+          alt={name}
+          src={avatar as string}
+          style={{ height: '10rem', width: '10em' }}
+        />
         <h1>{name}</h1>
         <p>{props.description}</p>
         <p>
