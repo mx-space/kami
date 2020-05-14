@@ -44,6 +44,13 @@ const SectionNews: FC<SectionNewsProps> = forwardRef((props, ref: any) => {
   ])
   return (
     <>
+      <style jsx>
+        {`
+          h3 {
+            transition: all 0.5s;
+          }
+        `}
+      </style>
       <div className="news-item" ref={ref}>
         <div className="news-head">
           <h3

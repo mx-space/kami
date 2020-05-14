@@ -4,7 +4,6 @@ import { router } from './routers'
 import cors from 'cors'
 import apicache from 'apicache'
 import redis from 'redis'
-import morgan from 'morgan'
 
 const port = parseInt(process.env.PORT || '2323', 10)
 const dev = process.env.NODE_ENV !== 'production'
@@ -18,7 +17,7 @@ app
   .prepare()
   .then(() => {
     const server = express()
-    server.use(dev ? morgan('dev') : morgan('short'))
+
     const cache =
       process.env.NODE_ENV === 'production'
         ? REDIS

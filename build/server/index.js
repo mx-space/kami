@@ -9,7 +9,6 @@ const routers_1 = require("./routers");
 const cors_1 = __importDefault(require("cors"));
 const apicache_1 = __importDefault(require("apicache"));
 const redis_1 = __importDefault(require("redis"));
-const morgan_1 = __importDefault(require("morgan"));
 const port = parseInt(process.env.PORT || '2323', 10);
 const dev = process.env.NODE_ENV !== 'production';
 const app = next_1.default({ dev });
@@ -20,7 +19,6 @@ app
     .prepare()
     .then(() => {
     const server = express_1.default();
-    server.use(dev ? morgan_1.default('dev') : morgan_1.default('short'));
     const cache = process.env.NODE_ENV === 'production'
         ? REDIS
             ? apicache_1.default.options({ redisClient: redis_1.default.createClient() }).middleware
