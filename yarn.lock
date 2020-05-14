@@ -6629,10 +6629,10 @@ rc-progress@~2.5.0:
     babel-runtime "6.x"
     prop-types "^15.5.8"
 
-rc-queue-anim@^1.8.4:
-  version "1.8.4"
-  resolved "https://registry.yarnpkg.com/rc-queue-anim/-/rc-queue-anim-1.8.4.tgz#ce6a3f9ebc864bb88140aa38cdef0ce180247483"
-  integrity sha512-HBVwdTcxqDsjDm7dIja7l4gi0gbHxBzNNeWuz+Nfg+KAmNTMKc7Z7O/qCkUq4SHgUhpqYmOfvCh019iMc1NcVg==
+rc-queue-anim@^1.8.5:
+  version "1.8.5"
+  resolved "https://registry.yarnpkg.com/rc-queue-anim/-/rc-queue-anim-1.8.5.tgz#01ef3872bdfa0b70bb915ef9a637fc404244a589"
+  integrity sha512-vTbZXBu7L3NcXUPjkFN7R80BE+1VYL1QBI10EioYYqZMk6A0iVbjoVAgfoK/Z4gIIxp399gJ8LqbMnQA1AhcXA==
   dependencies:
     babel-runtime "6.x"
     prop-types "^15.6.0"
