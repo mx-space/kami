@@ -42,7 +42,7 @@
     "next-seo": "^4.4.0",
     "normalize.css": "^8.0.1",
     "randomcolor": "^0.5.4",
-    "rc-queue-anim": "^1.8.4",
+    "rc-queue-anim": "^1.8.5",
     "rc-texty": "^0.2.0",
     "react": "^16.13.1",
     "react-anchor-link-smooth-scroll": "^1.0.12",
