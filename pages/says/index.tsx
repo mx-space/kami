@@ -1,12 +1,11 @@
 import { observer } from 'mobx-react'
 import { SayModel, SayRespDto } from 'models/dto/say'
 import { NextPage } from 'next'
+import randomColor from 'randomcolor'
 import QueueAnim from 'rc-queue-anim'
-import { useStore } from 'store'
 import { Rest } from 'utils/api'
 import { relativeTimeFromNow } from 'utils/time'
 import { SEO } from '../../components/SEO'
-import randomColor from 'randomcolor'
 
 interface SayViewProps {
   data: SayModel[]
