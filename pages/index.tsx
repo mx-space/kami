@@ -130,7 +130,6 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
                 icon: faUsers,
               }}
               key={3}
-              style={{ textAlign: 'center' }}
             >
               <FriendsSection />
             </SectionWrap>,
