@@ -3,3 +3,31 @@
   left: 0.8rem;
   z-index: 1;
 }
+.avatar-item {
+  text-align: center;
+  // &:not(:first-child) {
+  margin-left: 2rem;
+
+  display: inline-block;
+  width: 80px;
+  height: 150px;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  // }
+}
+.avatar-name {
+  display: inline-block;
+  margin-top: 12px;
+  width: 80px;
+  user-select: none;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.friends {
+  margin-top: 2rem;
+  width: 100%;
+  overflow: auto;
+  white-space: nowrap;
+  user-select: none;
+}

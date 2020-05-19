@@ -1,15 +1,21 @@
-import { faBookOpen, faPencilAlt } from '@fortawesome/free-solid-svg-icons'
+import {
+  faBookOpen,
+  faPencilAlt,
+  faUsers,
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SectionNews, { SectionNewsProps } from 'components/SectionNews'
 import omit from 'lodash/omit'
 import { observer } from 'mobx-react'
 import { RandomImage, Top } from 'models/aggregate'
 import { NextPage } from 'next'
+import QueueAnim from 'rc-queue-anim'
+import Texty from 'rc-texty'
 import { useState } from 'react'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
-import Texty from 'rc-texty'
-import QueueAnim from 'rc-queue-anim'
+import { FriendsSection } from '../components/SectionNews/friend'
+import { SectionWrap } from '../components/SectionNews/section'
 import configs from '../configs'
 
 interface IndexViewProps {
@@ -62,7 +68,11 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
     <main>
       <section className="paul-intro">
         <div className="intro-avatar ">
-          <img src={configs.avatar || avatar} alt={name} style={{ width: "100%" }} />
+          <img
+            src={configs.avatar || avatar}
+            alt={name}
+            style={{ width: '100%' }}
+          />
         </div>
         <div className="intro-info">
           <h1>
@@ -113,6 +123,17 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
           {[
             <SectionNews {...sections.postSection} key={1} />,
             <SectionNews {...sections.noteSection} key={2} />,
+            <SectionWrap
+              {...{
+                title: '朋友们',
+                moreUrl: 'friends',
+                icon: faUsers,
+              }}
+              key={3}
+              style={{ textAlign: 'center' }}
+            >
+              <FriendsSection />
+            </SectionWrap>,
           ]}
         </QueueAnim>
       </section>
