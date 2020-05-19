@@ -57,6 +57,7 @@ const SayView: NextPage<SayViewProps> = (props) => {
                     format: 'rgba',
                   }),
                   backgroundColor: getRandomColor?.() || '',
+                  transition: 'all 0.5s',
                 }}
               >
                 <p>{say.text}</p>
