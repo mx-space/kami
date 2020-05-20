@@ -1,20 +1,20 @@
+import 'kico-style'
+import 'kico-style/paul.css'
 import '@openfonts/noto-sans-sc_vietnamese'
 import '@openfonts/noto-serif-sc_vietnamese'
-import 'rc-texty/assets/index.css'
 import 'antd/es/avatar/style/index.css'
+import 'antd/es/button/style/index.css'
 import 'antd/es/comment/style/index.css'
 import 'antd/es/input/style/index.css'
 import 'antd/es/message/style/index.css'
-import 'antd/es/popover/style/index.css'
-import 'antd/es/button/style/index.css'
 import 'antd/es/pagination/style/index.css'
-import 'kico-style'
-import 'kico-style/paul.css'
+import 'antd/es/popover/style/index.css'
 import 'assets/styles/shizuku.scss'
 import 'assets/styles/extra.scss'
 import Loader from 'components/Loader'
 import configs from 'configs'
 import 'intersection-observer'
+
 // import 'antd/dist/antd.dark.css'
 // import 'assets/styles/main.scss'
 import { BasicLayout } from 'layouts/BasicLayout'
@@ -26,6 +26,7 @@ import { AggregateResp } from 'models/aggregate'
 import { NextSeo } from 'next-seo'
 import Router from 'next/router'
 import 'normalize.css/normalize.css'
+import 'rc-texty/assets/index.css'
 import React, { createContext, PureComponent } from 'react'
 import 'react-image-lightbox/style.css'
 import CategoryStore from 'store/category'
@@ -35,8 +36,9 @@ import PageStore from '../store/pages'
 import { PageModel, Stores, ViewportRecord } from '../store/types'
 import UserStore from '../store/user'
 import { Rest } from '../utils/api'
-import * as gtag from '../utils/gtag'
 import { getToken, removeToken } from '../utils/auth'
+import * as gtag from '../utils/gtag'
+import { getBrowserType } from '../utils/ua'
 import { AntiDebug } from '../utils/forbidden'
 
 const stores = createMobxStores()
@@ -106,8 +108,13 @@ class Context extends PureComponent<Store & { data: any }> {
       document.addEventListener('scroll', this.scrollCb)
     }
 
+    const browser = getBrowserType()
+    if (browser === 'ie') {
+      alert('哥哥, 换个 Chrome 再来吧')
+      location.href = 'https://www.google.com/chrome/'
+    }
     // anti debug
-    if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV !== 'development') {
       AntiDebug.cyclingDebugger() as any
 
       AntiDebug.checkDebug(() => console.log('请不要打开调试')) as any
