@@ -1,11 +1,13 @@
 import { GlobalOutlined, MailOutlined, UserOutlined } from '@ant-design/icons'
 import { Input, message } from 'antd'
-import { FC, useState } from 'react'
+import { FC, useState, useEffect } from 'react'
 import isEmail from 'validator/lib/isEmail'
 import isUrl from 'validator/lib/isURL'
 import { useStore } from '../../store'
 import styles from './index.module.scss'
+import omit from 'lodash/omit'
 
+const USER_PREFIX = 'mx-space-comment-author'
 const { TextArea } = Input
 
 const CommentBox: FC<{
@@ -57,15 +59,31 @@ const CommentBox: FC<{
       message.error('内容太长了了啦, 服务器会坏掉的')
       return
     }
-    onSubmit({
+    const model = {
       author: author,
       text: text,
       mail: mail,
       url: url || undefined,
-    })
+    }
+    onSubmit(model)
+    localStorage.setItem(USER_PREFIX, JSON.stringify(omit(model, ['text'])))
     reset()
   }
-
+  useEffect(() => {
+    const store = localStorage.getItem(USER_PREFIX)
+    if (store) {
+      try {
+        const model = JSON.parse(store) as {
+          author: string
+          mail: string
+          url: string
+        }
+        setMail(model.mail || '')
+        setAuthor(model.author || '')
+        setUrl(model.url || '')
+      } catch {}
+    }
+  }, [])
   return (
     <>
       {!logged && (

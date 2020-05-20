@@ -28,7 +28,7 @@ export const FriendsSection: FC = () => {
         const data = res.data as LinkModel[]
         setFriends(data.filter((i) => i.type === LinkType.Friend))
       })
-  })
+  }, [])
   return (
     <div className={styles['friends']}>
       {friends.map((item) => {
