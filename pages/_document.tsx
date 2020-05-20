@@ -35,9 +35,9 @@ export default class MyDocument extends Document<{ ua: string }> {
       <html>
         <Head lang={'zh-cn'}>
           <meta charSet="UTF-8" />
-          <link rel="shortcut icon" href="/favicon.svg" />
-          <link rel="icon" href="/favicon.svg" />
-          <link rel="apple-touch-icon" href="/favicon.svg" />
+          <link rel="shortcut icon" href="/custom-icon.svg" />
+          <link rel="icon" href="/custom-icon.svg" />
+          <link rel="apple-touch-icon" href="/custom-icon.svg" />
           {configs.alwaysHTTPS ? (
             <meta
               http-equiv="Content-Security-Policy"
