@@ -107,7 +107,7 @@ export default {
   title: '静かな森', // prefetch seo
   description: '致虚极，守静笃。',
   avatar:
-    'https://tu-1252943311.cos.ap-shanghai.myqcloud.com/%E5%A7%94%E6%89%98%E5%A4%B4%E5%83%8F.png', // work on rss
+    'https://tu-1252943311.cos.ap-shanghai.myqcloud.com/innei_avatar.png/avatar300', // work on rss
   url: 'https://innei.ren',
   keywords: ['blog', 'space', 'mx-space', 'innei', '静之森', '静かな森'],
   alwaysHTTPS: process.env.NODE_ENV === 'development' ? false : true,

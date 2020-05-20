@@ -7,6 +7,7 @@ import Document, {
 } from 'next/document'
 import { GA_TRACKING_ID } from '../utils/gtag'
 import { UAParser } from 'ua-parser-js'
+import { getBrowserType } from '../utils/ua'
 
 export default class MyDocument extends Document<{ ua: string }> {
   static async getInitialProps(ctx: DocumentContext) {
@@ -72,6 +73,7 @@ export default class MyDocument extends Document<{ ua: string }> {
           <body style={{ display: 'block !important' }}>
             <div>
               <p>哥哥换个 Chrome 嘛, 求你了</p>
+              <p>你的浏览器为 {getBrowserType(this.props.ua)}</p>
             </div>
           </body>
         )}

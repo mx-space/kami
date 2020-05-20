@@ -1,5 +1,5 @@
-export const getBrowserType = () => {
-  const explorer = window.navigator.userAgent
+export const getBrowserType = (ua?: string) => {
+  const explorer = ua ?? window.navigator.userAgent
   //判断是否为IE浏览器
   if (explorer.indexOf('MSIE') >= 0) {
     return 'ie'
