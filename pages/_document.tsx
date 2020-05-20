@@ -7,7 +7,6 @@ import Document, {
 } from 'next/document'
 import { GA_TRACKING_ID } from '../utils/gtag'
 import { UAParser } from 'ua-parser-js'
-import { getBrowserType } from '../utils/ua'
 
 export default class MyDocument extends Document<{ ua: string }> {
   static async getInitialProps(ctx: DocumentContext) {
@@ -15,22 +14,10 @@ export default class MyDocument extends Document<{ ua: string }> {
     const ua = ctx.req?.headers['user-agent']
     return { ...initialProps, ua }
   }
-  canStopRenderByBrowser(ua: string) {
-    const uaParser = new UAParser(ua)
-    const browser = uaParser.getBrowser().name
 
-    if (!browser) {
-      return true
-    }
-    if (browser.toLowerCase() === 'ie') {
-      return true
-    }
-    // todo version
-    return false
-  }
   render() {
     const ua = this.props.ua
-    const canStopRender = this.canStopRenderByBrowser(ua)
+
     return (
       <html>
         <Head lang={'zh-cn'}>
@@ -64,19 +51,10 @@ export default class MyDocument extends Document<{ ua: string }> {
           />
         </Head>
 
-        {!canStopRender ? (
-          <body id={'app'}>
-            <Main />
-            <NextScript />
-          </body>
-        ) : (
-          <body style={{ display: 'block !important' }}>
-            <div>
-              <p>哥哥换个 Chrome 嘛, 求你了</p>
-              <p>你的浏览器为 {getBrowserType(this.props.ua)}</p>
-            </div>
-          </body>
-        )}
+        <body id={'app'}>
+          <Main />
+          <NextScript />
+        </body>
       </html>
     )
   }

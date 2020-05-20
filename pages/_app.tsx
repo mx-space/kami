@@ -108,7 +108,7 @@ class Context extends PureComponent<Store & { data: any }> {
       document.addEventListener('scroll', this.scrollCb)
     }
 
-    const browser = getBrowserType()
+    const browser = getBrowserType(window.navigator.userAgent)
     if (browser === 'ie') {
       alert('哥哥, 换个 Chrome 再来吧')
       location.href = 'https://www.google.com/chrome/'
