@@ -22,7 +22,7 @@ interface Props {
   map: store.categoryStore.CategoryMap,
 }))
 @observer
-export class PostBlock extends React.Component<
+export class PostBlock extends React.PureComponent<
   Props & { viewport?: ViewportRecord }
 > {
   render() {

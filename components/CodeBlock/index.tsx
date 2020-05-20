@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import dark from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark'
+// import dark from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark'
 
 export default class CodeBlock extends React.PureComponent<{
   language: string
@@ -22,9 +22,9 @@ export default class CodeBlock extends React.PureComponent<{
     return (
       <SyntaxHighlighter
         language={language}
-        style={dark}
+        // style={dark}
         customStyle={{
-          background: 'none',
+          background: 'var(--code-bg)',
         }}
       >
         {value}

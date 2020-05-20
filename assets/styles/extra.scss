@@ -1,3 +1,26 @@
+:root {
+  --code-bg: transparent;
+  --black: #000;
+}
+@media screen and (prefers-color-scheme: dark) {
+  :root {
+    --shizuku-background-color: #212121;
+    --shizuku-text-color: #858585;
+    --shizuku-theme-color: #3c946c;
+    --black: #fff;
+  }
+  blockquote {
+    background: var(--shizuku-background-color);
+    border-left: 5px solid var(--shizuku-theme-color);
+  }
+  article {
+    color: var(--shizuku-text-color);
+  }
+}
+html {
+  font-size: 14px;
+}
+
 @for $var from 1 to 6 {
   h#{$var} {
     margin-top: 1rem;
@@ -34,25 +57,6 @@
   }
 }
 
-@media screen and (prefers-color-scheme: dark) {
-  :root {
-    --shizuku-background-color: #212121;
-    --shizuku-text-color: #858585;
-    --shizuku-theme-color: #3c946c;
-  }
-  blockquote {
-    background: var(--shizuku-background-color);
-    border-left: 5px solid var(--shizuku-theme-color);
-  }
-  article {
-    color: var(--shizuku-text-color);
-  }
-}
-
-html {
-  font-size: 14px;
-}
-
 input[type*='date'],
 input[type='email'],
 input[type='month'],
@@ -86,6 +90,14 @@ pre,
 code {
   font-family: JetBrains Mono, Operator Mono, Monaco, Consolas, 'Courier New',
     Courier, monospace !important;
+}
+pre,
+pre > code {
+  color: inherit !important;
+  text-shadow: none !important;
+  * {
+    background: none !important;
+  }
 }
 p {
   margin: 0.5rem 0;

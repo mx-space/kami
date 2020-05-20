@@ -41,6 +41,16 @@
   word-wrap: break-word;
   word-break: break-all;
 }
+#write pre::before,
+#write pre::after {
+  content: ' ';
+  display: block;
+  width: 25px;
+  height: 1px;
+  margin: 20px 0;
+  -webkit-user-select: none;
+  background: var(--shizuku-theme-color);
+}
 #write hr {
   display: inline-block;
   width: 25px;
