@@ -87,7 +87,7 @@
     "@types/randomcolor": "^0.5.4",
     "@types/react": "^16.9.35",
     "@types/react-lazyload": "^2.6.0",
-    "@types/react-scroll": "^1.5.4",
+    "@types/react-scroll": "^1.5.5",
     "@types/react-syntax-highlighter": "^11.0.4",
     "@types/remove-markdown": "^0.1.1",
     "@types/validator": "^13.0.0",
