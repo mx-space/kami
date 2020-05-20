@@ -1,6 +1,6 @@
 import { faListUl } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Logo } from 'components/Logo'
+import { CustomLogo } from 'components/Logo'
 import { inject, observer } from 'mobx-react'
 import Link from 'next/link'
 import React, { MouseEvent } from 'react'
@@ -85,7 +85,7 @@ export default class Header extends React.Component<Store> {
         )}
 
         <div className="head-logo">
-          <Logo />
+          <CustomLogo />
         </div>
         <nav className="head-menu">
           {menu?.map((item: MenuModel) => {

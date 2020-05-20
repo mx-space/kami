@@ -1,10 +1,10 @@
-import { Logo } from 'components/Logo'
+import { CustomLogo } from 'components/Logo'
 import { FC } from 'react'
 
 const Loader: FC = () => {
   return (
     <div className={'loader'}>
-      <Logo />
+      <CustomLogo />
     </div>
   )
 }
