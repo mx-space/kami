@@ -50,7 +50,7 @@ export const CustomLogo: FC = () => {
         stroke="none"
         strokeWidth="1"
         fill="none"
-        fill-rule="evenodd"
+        fillRule="evenodd"
       >
         <g id="forest" fill={'currentColor'} fillRule="nonzero">
           <path
