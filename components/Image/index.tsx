@@ -7,6 +7,7 @@ import {
   MouseEvent,
   useRef,
   useState,
+  memo,
 } from 'react'
 import Lightbox, { ILightBoxProps } from 'react-image-lightbox'
 import { /* LazyImage ,*/ LazyImageProps } from 'react-lazy-images'
@@ -60,6 +61,16 @@ export const ImageLazy: FC<
           background: #ccc;
           opacity: 0.6;
         }
+        .load-error {
+          height: 300px;
+          width: 100%;
+          background: #bbb;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #333;
+          border-radius: 12px;
+        }
       `}</style>
       <LazyImage
         src={props.src}
@@ -79,10 +90,9 @@ export const ImageLazy: FC<
           )
         }}
         error={() => (
-          <>
-            <img src={LoadImage} alt="error" />
-            <p>There was an error fetching this image :(</p>
-          </>
+          <div className="load-error">
+            <p>图片加载失败了~ 真是抱歉</p>
+          </div>
         )}
         actual={({ imageProps }) => (
           <img
@@ -101,7 +111,7 @@ export const ImageLazy: FC<
 
 export const ImageLazyWithPopup: FC<
   { src: string; alt?: string } & ILightBoxProps
-> = (props) => {
+> = memo((props) => {
   const [isOpen, setOpen] = useState(false)
   return (
     <>
@@ -116,4 +126,4 @@ export const ImageLazyWithPopup: FC<
       )}
     </>
   )
-}
+})

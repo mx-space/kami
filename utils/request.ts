@@ -33,11 +33,15 @@ service.interceptors.response.use(
   },
   (error) => {
     if (typeof document !== 'undefined') {
-      if (Array.isArray(error.response?.data?.message)) {
-        error.response?.data?.message.map((m) => {
-          message.error(m)
-        })
-      } else message.error(error.response?.data?.message)
+      if (error.response?.data?.message) {
+        if (Array.isArray(error.response.data.message)) {
+          error.response?.data?.message.map((m) => {
+            message.error(m)
+          })
+        } else message.error(error.response.data.message)
+      } else {
+        message.error('网络好像出现了点问题呢')
+      }
     }
 
     return Promise.reject(error)
