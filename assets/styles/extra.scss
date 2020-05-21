@@ -304,3 +304,11 @@ p {
     }
   }
 }
+.ant-comment-nested {
+  margin-left: 12px;
+}
+@media (max-width: 650px) {
+  .ant-comment-nested {
+    margin-left: 4px;
+  }
+}
