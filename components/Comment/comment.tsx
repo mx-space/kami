@@ -63,7 +63,7 @@ const Comments: FC<{
           />
         }
         content={<Markdown value={comment.text} />}
-        datetime={relativeTimeFromNow(comment.created)}
+        datetime={relativeTimeFromNow(comment.created) + ' ' + comment.key}
         actions={[
           <span
             key="comment-list-reply-to-0"
@@ -93,8 +93,8 @@ const Comments: FC<{
   const renderComments = (comment: CommentModel) => {
     if (comment.children.length > 0) {
       const children = comment.children
-      const childComments = children.map((comment: CommentModel) => {
-        return renderComments(comment)
+      const childComments = children.map((child: CommentModel) => {
+        return renderComments(child)
       })
 
       return renderSingleComment(comment, childComments)
