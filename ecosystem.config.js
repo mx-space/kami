@@ -1,3 +1,12 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-04-26 11:53:46
+ * @LastEditTime: 2020-05-22 14:39:00
+ * @LastEditors: Innei
+ * @FilePath: /mx-web/ecosystem.config.js
+ * @MIT
+ */
+
 module.exports = {
   apps: [
     {
@@ -7,7 +16,7 @@ module.exports = {
       instances: 1,
       autorestart: true,
       watch: false,
-      max_memory_restart: '100M',
+      max_memory_restart: '180M',
       env: {
         NODE_ENV: 'production',
       },
