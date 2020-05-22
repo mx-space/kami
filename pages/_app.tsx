@@ -131,6 +131,13 @@ class Context extends PureComponent<Store & { data: any }> {
       'color: #fff; margin: 1em 0; padding: 5px 0; background: #2980b9;',
       'margin: 1em 0; padding: 5px 0; background: #efefef;',
     )
+
+    window.addEventListener('beforeinstallprompt', (e: any) => {
+      e.preventDefault()
+
+      e && e.prompt?.()
+    })
+
     if (getToken()) {
       Rest('Master', 'check_logged')
         .get<any>()
