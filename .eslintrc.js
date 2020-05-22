@@ -1,3 +1,12 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-04-13 20:36:36
+ * @LastEditTime: 2020-05-22 19:53:46
+ * @LastEditors: Innei
+ * @FilePath: /mx-web/.eslintrc.js
+ * @MIT
+ */
+
 module.exports = {
   root: true,
   env: {
@@ -33,5 +42,6 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'prettier/prettier': 'off',
+    'react/jsx-no-target-blank': 'off',
   },
 }

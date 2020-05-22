@@ -4,44 +4,72 @@ import {
   DetailedHTMLProps,
   FC,
   ImgHTMLAttributes,
+  memo,
   MouseEvent,
   useRef,
   useState,
-  memo,
 } from 'react'
 import Lightbox, { ILightBoxProps } from 'react-image-lightbox'
 import { /* LazyImage ,*/ LazyImageProps } from 'react-lazy-images'
+import LazyLoad from 'react-lazyload'
 const LazyImage = dynamic(
   () => import('react-lazy-images').then((mo) => mo.LazyImage as any),
   { ssr: false },
 ) as React.StatelessComponent<LazyImageProps>
 interface ImageFCProps {
-  defaultImage: string
+  defaultImage?: string
   src: string
-  alt: string
+  alt?: string
+  height?: number
+  width?: number
 }
 
 export const Image: FC<
   ImageFCProps &
     DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
 > = (props) => {
-  const { defaultImage, src, alt, ...rest } = props
+  const { defaultImage, src, alt, height, width, ...rest } = props
 
   const realImageRef = useRef<HTMLImageElement>(null)
+  const placeholderRef = useRef<HTMLDivElement>(null)
+  const fakeImageRef = useRef<HTMLImageElement>(null)
   const onError = () => {}
   const onLoad = () => {
     realImageRef.current!.src = src
+    realImageRef.current!.classList.remove('image-hide')
+    if (fakeImageRef && fakeImageRef.current) {
+      fakeImageRef.current.remove()
+    }
+    if (placeholderRef && placeholderRef.current) {
+      placeholderRef.current.classList.add('hide')
+      setTimeout(() => {
+        placeholderRef.current!.remove()
+      }, 600)
+    }
   }
+
   return (
-    <>
-      <img src={defaultImage} alt={alt} {...rest} ref={realImageRef} />
+    <LazyLoad once placeholder={<div className="placeholder-image"></div>}>
+      {defaultImage ? (
+        <img src={defaultImage} alt={alt} {...rest} ref={realImageRef} />
+      ) : (
+        <div style={{ position: 'relative' }}>
+          <img ref={realImageRef} className={'image-hide'} {...rest} />
+          <div
+            className="placeholder-image"
+            ref={placeholderRef}
+            style={{ height, width, position: 'absolute' }}
+          ></div>
+        </div>
+      )}
       <img
         src={src}
         onError={onError}
         onLoad={onLoad}
         style={{ position: 'absolute', opacity: 0, zIndex: -99 }}
+        ref={fakeImageRef}
       />
-    </>
+    </LazyLoad>
   )
 }
 
@@ -115,12 +143,21 @@ export const ImageLazyWithPopup: FC<
   const [isOpen, setOpen] = useState(false)
   return (
     <>
-      <ImageLazy
+      {/* <ImageLazy
         {...{ src: props.src, alt: props.alt }}
         onClick={() => {
           setOpen(true)
         }}
-      />
+      /> */}
+      <Image
+        src={props.src}
+        alt={props.alt}
+        height={400}
+        onClick={() => {
+          setOpen(true)
+        }}
+        style={{ cursor: 'pointer' }}
+      ></Image>
       {isOpen && (
         <Lightbox mainSrc={props.src} onCloseRequest={() => setOpen(false)} />
       )}

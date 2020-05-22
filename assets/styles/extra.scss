@@ -208,7 +208,21 @@ p {
     height: 9rem;
   }
 }
-
+.placeholder-image {
+  height: 100%;
+  width: 100%;
+  background: #bbb;
+  border-radius: 1em;
+  transition: opacity 0.5s;
+  top: 0;
+  left: 0;
+}
+.placeholder-image.hide {
+  opacity: 0;
+}
+.image-hide {
+  display: none;
+}
 @media screen and (max-width: 600px) {
   .paul-say {
     columns: 1;

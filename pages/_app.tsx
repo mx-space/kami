@@ -135,7 +135,7 @@ class Context extends PureComponent<Store & { data: any }> {
     window.addEventListener('beforeinstallprompt', (e: any) => {
       e.preventDefault()
 
-      e && e.prompt?.()
+      e.prompt()
     })
 
     if (getToken()) {
