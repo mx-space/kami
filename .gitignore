@@ -7,3 +7,7 @@ node_modules/
 # typescript build output
 dist
 .env
+
+# pwa
+sw.js
+workbox-*.js

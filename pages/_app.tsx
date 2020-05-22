@@ -42,8 +42,9 @@ import { getBrowserType } from '../utils/ua'
 import { AntiDebug } from '../utils/forbidden'
 
 const stores = createMobxStores()
-
-makeInspectable(stores)
+if (process.env.NODE_ENV === 'development') {
+  makeInspectable(stores)
+}
 
 const AppContext = createContext({
   viewport: {},
