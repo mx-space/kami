@@ -1,0 +1,25 @@
+{
+  "name": "静かな森",
+  "short_name": "静かな森",
+  "theme_color": "#27ae60",
+  "description": "致虚极，守静笃。",
+  "background_color": "#2ecc71",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "lang": "zh-cmn-Hans",
+  "icons": [
+    {
+      "src": "manifest-icon-192.jpg",
+      "sizes": "192x192",
+      "type": "image/jpg",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "manifest-icon-512.jpg",
+      "sizes": "512x512",
+      "type": "image/jpg",
+      "purpose": "maskable any"
+    }
+  ]
+}

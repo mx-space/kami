@@ -10,10 +10,20 @@ type SEOProps = {
 
 export const SEO: FC<SEOProps> = observer((props) => {
   const { title, ...rest } = props
-  const { appStore } = useStore()
+  const { userStore, appStore } = useStore()
   return (
     <NextSeo
-      {...{ title: title + ' - ' + (configs.title || appStore.title), ...rest }}
+      {...{
+        title: title + ' - ' + (configs.title || appStore.title),
+        openGraph: {
+          type: 'website',
+          locale: 'zh-cn',
+          site_name: configs.title || appStore.title,
+          description:
+            configs.description || appStore.description || userStore.introduce,
+        },
+        ...rest,
+      }}
     />
   )
 })
