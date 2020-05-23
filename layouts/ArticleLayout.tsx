@@ -7,9 +7,9 @@ export interface ArticleLayoutProps {
 }
 
 export const ArticleLayout: FC<ArticleLayoutProps> = forwardRef(
-  ({ children, title, subtitle }) => {
+  ({ children, title, subtitle }, ref: any) => {
     return (
-      <main className="is-article">
+      <main className="is-article" ref={ref}>
         {title && (
           <section className="post-title">
             <h1>

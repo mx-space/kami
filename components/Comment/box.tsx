@@ -81,6 +81,7 @@ const CommentBox: FC<{
         setMail(model.mail || '')
         setAuthor(model.author || '')
         setUrl(model.url || '')
+        // eslint-disable-next-line no-empty
       } catch {}
     }
   }, [])

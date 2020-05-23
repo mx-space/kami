@@ -10,8 +10,9 @@ import {
   useState,
 } from 'react'
 import Lightbox, { ILightBoxProps } from 'react-image-lightbox'
-import { /* LazyImage ,*/ LazyImageProps } from 'react-lazy-images'
+import { LazyImageProps } from 'react-lazy-images'
 import LazyLoad from 'react-lazyload'
+
 const LazyImage = dynamic(
   () => import('react-lazy-images').then((mo) => mo.LazyImage as any),
   { ssr: false },
@@ -27,7 +28,7 @@ interface ImageFCProps {
 export const Image: FC<
   ImageFCProps &
     DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
-> = (props) => {
+> = memo((props) => {
   const { defaultImage, src, alt, height, width, ...rest } = props
 
   const realImageRef = useRef<HTMLImageElement>(null)
@@ -71,7 +72,7 @@ export const Image: FC<
       />
     </LazyLoad>
   )
-}
+})
 
 export const ImageLazy: FC<
   {
@@ -143,12 +144,6 @@ export const ImageLazyWithPopup: FC<
   const [isOpen, setOpen] = useState(false)
   return (
     <>
-      {/* <ImageLazy
-        {...{ src: props.src, alt: props.alt }}
-        onClick={() => {
-          setOpen(true)
-        }}
-      /> */}
       <Image
         src={props.src}
         alt={props.alt}

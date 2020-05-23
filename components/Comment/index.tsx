@@ -1,7 +1,7 @@
 import { message, Pagination } from 'antd'
 import { PagerModel } from 'models/dto/base'
 import { CommentModel, CommentPager } from 'models/dto/comment'
-import { createContext, FC, useEffect, useState } from 'react'
+import { createContext, FC, useEffect, useState, useCallback } from 'react'
 import { useInView } from 'react-intersection-observer'
 import LazyLoad from 'react-lazyload'
 import { Rest } from 'utils/api'
@@ -37,20 +37,23 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
   const [page, setPage] = useState({} as PagerModel['page'])
   const { userStore } = useStore()
   const logged = userStore.isLogged
-  const fetchComments = (page = 1, size = 10) =>
-    Rest('Comment', 'ref/' + id)
-      .gets<CommentPager>({
-        page,
-        size,
-        ts: new Date().getTime(),
-      })
-      .then(({ data, page }) => {
-        setComments(data)
-        setPage(page)
-      })
+  const fetchComments = useCallback(
+    (page = 1, size = 10) =>
+      Rest('Comment', 'ref/' + id)
+        .gets<CommentPager>({
+          page,
+          size,
+          ts: new Date().getTime(),
+        })
+        .then(({ data, page }) => {
+          setComments(data)
+          setPage(page)
+        }),
+    [id],
+  )
   useEffect(() => {
     fetchComments()
-  }, [type, id])
+  }, [type, id, fetchComments])
 
   const handleComment = async (model) => {
     openCommentMessage()

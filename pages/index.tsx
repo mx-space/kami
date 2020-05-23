@@ -4,11 +4,13 @@ import {
   faUsers,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import SectionNews, { SectionNewsProps } from 'components/SectionNews'
+import { SectionNewsProps } from 'components/SectionNews'
+import { shuffle } from 'lodash'
 import omit from 'lodash/omit'
 import { observer } from 'mobx-react'
 import { RandomImage, Top } from 'models/aggregate'
 import { NextPage } from 'next'
+import dynamic from 'next/dynamic'
 import QueueAnim from 'rc-queue-anim'
 import Texty from 'rc-texty'
 import { useState } from 'react'
@@ -18,6 +20,9 @@ import { FriendsSection } from '../components/SectionNews/friend'
 import { SectionWrap } from '../components/SectionNews/section'
 import configs from '../configs'
 
+const SectionNews = dynamic(() => import('components/SectionNews'), {
+  ssr: false,
+})
 interface IndexViewProps {
   posts: Top.Post[]
   notes: Top.Note[]
@@ -180,13 +185,34 @@ IndexView.getInitialProps = async (): Promise<IndexViewProps> => {
   const randomImageData = (await Rest('Aggregate').get(
     'random?type=3&imageType=2&size=8',
   )) as { data: RandomImage.Image[] }
+  const extraImages = [
+    'qsNmnC2zHB5FW41.jpg',
+    'GwJzq4SYtClRcZh.jpg',
+    '6nOYcygRGXvpsFd.jpg',
+    'Qr2ykmsEFpJn4BC.jpg',
+    'KiOuTlCzge7JHh3.jpg',
+    'sM2XCJTW8BdUe5i.jpg',
+    '18KQYP9fNGbrzJu.jpg',
+    'rdjZo6Sg2JReyiA.jpg',
+    'X2MVRDe1tyJil3O.jpg',
+    'EDoKvz5p7BXZ46U.jpg',
+    'EGk4qUvcXDygV2z.jpg',
+    '5QdwFC82gT3XPSZ.jpg',
+    'KPyTCARHBzpxJ46.jpg',
+    '7TOEIPwGrZB1qFb.jpg',
+    'Ihj5QAZgVMqr9fJ.jpg',
+    'KZ6jv8C92Vpwcih.jpg',
+  ].map((i) => 'https://i.loli.net/2020/05/22/' + i)
+
+  const randomImages = randomImageData.data.map((image) => {
+    return image.locate !== RandomImage.Locate.Online
+      ? `${process.env.APIURL}/uploads/background/${image.name}`
+      : (image.url as string)
+  })
+
   return {
     ...(omit(aggregateData, ['ok', 'timestamp']) as IndexViewProps),
-    randomImages: randomImageData.data.map((image) => {
-      return image.locate !== RandomImage.Locate.Online
-        ? `${process.env.APIURL}/uploads/background/${image.name}`
-        : (image.url as string)
-    }),
+    randomImages: shuffle([...randomImages, ...extraImages]),
   }
 }
 

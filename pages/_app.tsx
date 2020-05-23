@@ -164,7 +164,11 @@ class Context extends PureComponent<Store & { data: any }> {
       >
         <StoreProvider value={stores}>
           <NextSeo
-            title={this.props.app?.title || configs.title}
+            title={
+              (this.props.app?.title || configs.title) +
+              ' · ' +
+              (this.props.app?.description || configs.description)
+            }
             description={this.props.app?.description || configs.description}
           />
           {this.props.children}
