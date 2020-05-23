@@ -23,17 +23,19 @@ interface ImageFCProps {
   alt?: string
   height?: number
   width?: number
+  isAbsolute?: boolean
 }
 
 export const Image: FC<
   ImageFCProps &
     DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
 > = memo((props) => {
-  const { defaultImage, src, alt, height, width, ...rest } = props
+  const { defaultImage, src, alt, height, width, isAbsolute, ...rest } = props
 
   const realImageRef = useRef<HTMLImageElement>(null)
   const placeholderRef = useRef<HTMLDivElement>(null)
   const fakeImageRef = useRef<HTMLImageElement>(null)
+  const wrapRef = useRef<HTMLDivElement>(null)
   const onError = () => {}
   const onLoad = () => {
     realImageRef.current!.src = src
@@ -47,6 +49,9 @@ export const Image: FC<
         placeholderRef.current!.remove()
       }, 600)
     }
+    if (wrapRef && wrapRef.current) {
+      wrapRef.current.style.height = ''
+    }
   }
 
   return (
@@ -54,12 +59,23 @@ export const Image: FC<
       {defaultImage ? (
         <img src={defaultImage} alt={alt} {...rest} ref={realImageRef} />
       ) : (
-        <div style={{ position: 'relative' }}>
+        <div
+          style={{
+            position: 'relative',
+            // overflow: 'hidden',
+            height: height,
+          }}
+          ref={wrapRef}
+        >
           <img ref={realImageRef} className={'image-hide'} {...rest} />
           <div
             className="placeholder-image"
             ref={placeholderRef}
-            style={{ height, width, position: 'absolute' }}
+            style={{
+              height,
+              width,
+              position: 'absolute',
+            }}
           ></div>
         </div>
       )}

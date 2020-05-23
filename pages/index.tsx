@@ -4,13 +4,12 @@ import {
   faUsers,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { SectionNewsProps } from 'components/SectionNews'
+import SectionNews, { SectionNewsProps } from 'components/SectionNews'
 import { shuffle } from 'lodash'
 import omit from 'lodash/omit'
 import { observer } from 'mobx-react'
 import { RandomImage, Top } from 'models/aggregate'
 import { NextPage } from 'next'
-import dynamic from 'next/dynamic'
 import QueueAnim from 'rc-queue-anim'
 import Texty from 'rc-texty'
 import { useState } from 'react'
@@ -20,9 +19,6 @@ import { FriendsSection } from '../components/SectionNews/friend'
 import { SectionWrap } from '../components/SectionNews/section'
 import configs from '../configs'
 
-const SectionNews = dynamic(() => import('components/SectionNews'), {
-  ssr: false,
-})
 interface IndexViewProps {
   posts: Top.Post[]
   notes: Top.Note[]

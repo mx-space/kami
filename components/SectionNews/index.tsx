@@ -30,7 +30,11 @@ const SectionNews: FC<SectionNewsProps> = forwardRef((props, ref: any) => {
           <div className={`col-${size} col-m-3`} key={i}>
             <Link {...pick(item, ['href', 'as'])}>
               <a className="news-article">
-                <Image src={item.background} alt={item.title} />
+                <Image
+                  src={item.background}
+                  alt={item.title}
+                  isAbsolute={true}
+                />
                 <h4>{item.title}</h4>
               </a>
             </Link>
