@@ -6,6 +6,8 @@ import PageStore from './pages'
 import SocialStore from './social'
 import { Stores } from './types'
 import UserStore from './user'
+import GatewayStore from './gateway'
+export const gatewayStore = new GatewayStore()
 export default function createMobxStores(): Stores {
   return {
     appStore: new AppStore(),
@@ -14,6 +16,7 @@ export default function createMobxStores(): Stores {
     pageStore: new PageStore(),
     categoryStore: new CategoryStore(),
     musicStore: new MusicStore(),
+    gatewayStore,
   }
 }
 

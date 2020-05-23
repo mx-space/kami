@@ -277,6 +277,11 @@ p {
     font-size: 80%;
   }
 }
+@media screen and (max-width: 600px) {
+  footer::before {
+    background-size: 160%;
+  }
+}
 // aplayer restyle
 
 .aplayer {

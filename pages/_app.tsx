@@ -9,6 +9,7 @@ import 'antd/es/input/style/index.css'
 import 'antd/es/message/style/index.css'
 import 'antd/es/pagination/style/index.css'
 import 'antd/es/popover/style/index.css'
+import 'antd/es/notification/style/index.css'
 import 'assets/styles/shizuku.scss'
 import 'assets/styles/extra.scss'
 import Loader from 'components/Loader'
@@ -40,6 +41,7 @@ import { getToken, removeToken } from '../utils/auth'
 import * as gtag from '../utils/gtag'
 import { getBrowserType } from '../utils/ua'
 import { AntiDebug } from '../utils/forbidden'
+import client from '../socket'
 
 const stores = createMobxStores()
 if (process.env.NODE_ENV === 'development') {
@@ -67,88 +69,93 @@ class Context extends PureComponent<Store & { data: any }> {
   }, 8)
 
   componentDidMount(): void {
-    // get aggregate data
-    Rest('Aggregate')
-      .get<AggregateResp>()
-      .then((res) => {
-        const { seo, user, pageMeta, categories } = res
-        // set user
-        this.props.master?.setUser(user)
-        // set page
-        this.props.pages?.setPages(pageMeta as PageModel[])
-        this.props.app?.setPage(pageMeta as PageModel[])
-        this.props.app?.setCategories(categories)
-        this.props.category?.setCategory(categories)
-        this.props.app?.setConfig({ seo })
+    if (typeof window !== 'undefined') {
+      // get aggregate data
+      Rest('Aggregate')
+        .get<AggregateResp>()
+        .then((res) => {
+          const { seo, user, pageMeta, categories } = res
+          // set user
+          this.props.master?.setUser(user)
+          // set page
+          this.props.pages?.setPages(pageMeta as PageModel[])
+          this.props.app?.setPage(pageMeta as PageModel[])
+          this.props.app?.setCategories(categories)
+          this.props.category?.setCategory(categories)
+          this.props.app?.setConfig({ seo })
+        })
+
+      if (process.env.NODE_ENV === 'development') {
+        ;(window as any).store = stores
+      }
+
+      Router.events.on('routeChangeStart', () => {
+        this.props.app?.setLoading(true)
       })
 
-    if (process.env.NODE_ENV === 'development') {
-      ;(window as any).store = stores
-    }
+      Router.events.on('routeChangeComplete', () => {
+        // window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
+        this.props.app?.setLoading(false)
+      })
 
-    Router.events.on('routeChangeStart', () => {
-      this.props.app?.setLoading(true)
-    })
+      Router.events.on('routeChangeError', () => {
+        // window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
+        this.props.app?.setLoading(false)
+      })
 
-    Router.events.on('routeChangeComplete', () => {
-      // window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
-      this.props.app?.setLoading(false)
-    })
+      Router.events.on('routeChangeComplete', (url) => gtag.pageview(url))
 
-    Router.events.on('routeChangeError', () => {
-      // window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
-      this.props.app?.setLoading(false)
-    })
+      window.onresize = (e) => this.props.app?.UpdateViewport()
+      this.props.app?.UpdateViewport()
 
-    Router.events.on('routeChangeComplete', (url) => gtag.pageview(url))
+      if (typeof document !== 'undefined') {
+        document.addEventListener('scroll', this.scrollCb)
+      }
 
-    window.onresize = (e) => this.props.app?.UpdateViewport()
-    this.props.app?.UpdateViewport()
+      const browser = getBrowserType(window.navigator.userAgent)
+      if (browser === 'ie') {
+        alert('哥哥, 换个 Chrome 再来吧')
+        location.href = 'https://www.google.com/chrome/'
+      }
+      // anti debug
+      if (process.env.NODE_ENV !== 'development') {
+        AntiDebug.cyclingDebugger() as any
 
-    if (typeof document !== 'undefined') {
-      document.addEventListener('scroll', this.scrollCb)
-    }
+        AntiDebug.checkDebug(() => console.log('请不要打开调试')) as any
+      }
 
-    const browser = getBrowserType(window.navigator.userAgent)
-    if (browser === 'ie') {
-      alert('哥哥, 换个 Chrome 再来吧')
-      location.href = 'https://www.google.com/chrome/'
-    }
-    // anti debug
-    if (process.env.NODE_ENV !== 'development') {
-      AntiDebug.cyclingDebugger() as any
+      console.log(
+        '%c Kico Style %c https://paugram.com ',
+        'color: #fff; margin: 1em 0; padding: 5px 0; background: #3498db;',
+        'margin: 1em 0; padding: 5px 0; background: #efefef;',
+      )
+      console.log(
+        '%c Mix Space %c https://innei.ren ',
+        'color: #fff; margin: 1em 0; padding: 5px 0; background: #2980b9;',
+        'margin: 1em 0; padding: 5px 0; background: #efefef;',
+      )
 
-      AntiDebug.checkDebug(() => console.log('请不要打开调试')) as any
-    }
+      window.addEventListener('beforeinstallprompt', (e: any) => {
+        e.preventDefault()
 
-    console.log(
-      '%c Kico Style %c https://paugram.com ',
-      'color: #fff; margin: 1em 0; padding: 5px 0; background: #3498db;',
-      'margin: 1em 0; padding: 5px 0; background: #efefef;',
-    )
-    console.log(
-      '%c Mix Space %c https://innei.ren ',
-      'color: #fff; margin: 1em 0; padding: 5px 0; background: #2980b9;',
-      'margin: 1em 0; padding: 5px 0; background: #efefef;',
-    )
+        e.prompt()
+      })
 
-    window.addEventListener('beforeinstallprompt', (e: any) => {
-      e.preventDefault()
+      if (getToken()) {
+        Rest('Master', 'check_logged')
+          .get<any>()
+          .then(({ ok }) => {
+            if (ok) {
+              this.props.user?.setLogged(true)
+              this.props.user?.setToken(getToken() as string)
+            } else {
+              removeToken()
+            }
+          })
+      }
 
-      e.prompt()
-    })
-
-    if (getToken()) {
-      Rest('Master', 'check_logged')
-        .get<any>()
-        .then(({ ok }) => {
-          if (ok) {
-            this.props.user?.setLogged(true)
-            this.props.user?.setToken(getToken() as string)
-          } else {
-            removeToken()
-          }
-        })
+      // connect to ws
+      client.initIO()
     }
   }
 

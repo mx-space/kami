@@ -1,4 +1,3 @@
-import {} from '@fortawesome/free-brands-svg-icons'
 import configs from 'configs'
 import { action, computed, observable } from 'mobx'
 import { Seo } from 'models/aggregate'

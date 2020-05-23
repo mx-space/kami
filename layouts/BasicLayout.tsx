@@ -11,7 +11,7 @@ const APlayer = dynamic(() => import('components/Player'), {
 })
 
 export const BasicLayout = observer(({ children }) => {
-  const { userStore, appStore } = useStore()
+  const { userStore, appStore, gatewayStore } = useStore()
 
   return (
     <>
@@ -31,7 +31,7 @@ export const BasicLayout = observer(({ children }) => {
                 <a href={configs.homePage ?? '#'} target="_blank">
                   {userStore.name}
                 </a>
-                .
+                .{' '}
                 <span>
                   Design by <a href="//paul.ren">Paul.</a>{' '}
                 </span>
@@ -51,13 +51,22 @@ export const BasicLayout = observer(({ children }) => {
                   <a>关于我</a>
                 </Link>
                 ·
+                <Link href="/[page]" as="/message">
+                  <a>留言</a>
+                </Link>
+                ·
                 <a href="/feed" target="_blank">
-                  订阅
+                  RSS 订阅
                 </a>
                 ·
                 <a href="/sitemap.xml" target={'_blank'}>
                   站点地图
                 </a>
+              </p>
+              <p
+                style={{ marginRight: appStore.viewport.mobile ? '' : '3rem' }}
+              >
+                当前在线人数: {gatewayStore.online}
               </p>
             </div>
           </div>
