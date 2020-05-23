@@ -1,4 +1,4 @@
-import CommentWrap, { CommentLazy } from 'components/Comment'
+import { CommentLazy } from 'components/Comment'
 import Markdown from 'components/MD-render'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { observer } from 'mobx-react'

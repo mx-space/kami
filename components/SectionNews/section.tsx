@@ -1,11 +1,11 @@
-import { FC, forwardRef, DetailedHTMLProps, HTMLAttributes } from 'react'
 import {
-  IconDefinition,
   faChevronRight,
+  IconDefinition,
 } from '@fortawesome/free-solid-svg-icons'
-import randomColor from 'randomcolor'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
+import randomColor from 'randomcolor'
+import { DetailedHTMLProps, FC, forwardRef, HTMLAttributes } from 'react'
 import styles from './index.module.scss'
 export interface SectionNewsProps {
   title: string

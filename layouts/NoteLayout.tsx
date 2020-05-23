@@ -1,6 +1,6 @@
-import { Component, FC, forwardRef } from 'react'
-import { QueueAnim } from '../components/Anime'
 import dayjs from 'dayjs'
+import { FC, forwardRef } from 'react'
+import { QueueAnim } from '../components/Anime'
 
 interface NoteLayoutProps {
   title: string

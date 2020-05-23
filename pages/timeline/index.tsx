@@ -81,9 +81,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
         title: note.title,
         meta: [
           '这天的心情: ' + ((note.mood && Mood[note.mood]) || '一般'),
-          note.weather
-            ? '这天的天气: ' + (note.weather && Weather[note.weather])
-            : undefined,
+          note.weather ? '这天的天气: ' + Weather[note.weather] : undefined,
           '随记',
         ].filter((_) => _) as string[],
         date,

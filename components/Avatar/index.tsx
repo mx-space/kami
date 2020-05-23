@@ -1,5 +1,5 @@
-import { DetailedHTMLProps, FC, ImgHTMLAttributes, useRef } from 'react'
 import defaultAvatar from 'assets/images/default-avatar.png'
+import { DetailedHTMLProps, FC, ImgHTMLAttributes, useRef } from 'react'
 interface AvatarProps {
   url?: string
   imageUrl: string

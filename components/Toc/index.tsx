@@ -4,8 +4,8 @@ import throttle from 'lodash/throttle'
 import dynamic from 'next/dynamic'
 import QueueAnim from 'rc-queue-anim'
 import { FC, useEffect, useRef, useState } from 'react'
-import styles from './index.module.scss'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
+import styles from './index.module.scss'
 
 export const Toc: FC = () => {
   const containerRef = useRef<HTMLDivElement>(null)

@@ -1,9 +1,9 @@
-import { FC, useState, useEffect } from 'react'
+import defaultAvatar from 'assets/images/default-avatar.png'
+import { FC, useEffect, useState } from 'react'
+import { LinkModel, LinkType } from '../../models/dto/link'
+import { Rest } from '../../utils/api'
 import { Avatar } from '../Avatar'
 import styles from './index.module.scss'
-import { Rest } from '../../utils/api'
-import { LinkModel, LinkType } from '../../models/dto/link'
-import defaultAvatar from 'assets/images/default-avatar.png'
 export const FriendItem: FC<LinkModel> = (props) => {
   return (
     <a className={styles['avatar-item']} href={props.url} target={'_blank'}>

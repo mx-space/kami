@@ -1,13 +1,13 @@
-import { FC, forwardRef } from 'react'
-import Texty from 'rc-texty'
 import QueueAnim from 'rc-queue-anim'
+import Texty from 'rc-texty'
+import { FC, forwardRef } from 'react'
 export interface ArticleLayoutProps {
   title?: string
   subtitle?: string
 }
 
 export const ArticleLayout: FC<ArticleLayoutProps> = forwardRef(
-  ({ children, title, subtitle }, ref) => {
+  ({ children, title, subtitle }) => {
     return (
       <main className="is-article">
         {title && (

@@ -1,3 +1,12 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-04-29 17:27:02
+ * @LastEditTime: 2020-05-23 09:38:55
+ * @LastEditors: Innei
+ * @FilePath: /mx-web/server/routers/music.ts
+ * @MIT
+ */
+
 import { NeteaseMusic } from '@mx-space/extra'
 import { Router } from 'express'
 export const musicRouter = Router()
@@ -32,7 +41,7 @@ musicRouter.get('/music', async (req, res) => {
 musicRouter.get('/song', async (req, res) => {
   const id = parseInt(req.query.id as string)
 
-  if (!id || isNaN(id)) {
+  if (!id) {
     return res.status(422).send({
       message: 'id 必须为数字',
     })

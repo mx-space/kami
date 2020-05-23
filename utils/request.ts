@@ -1,3 +1,12 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-05-07 16:04:24
+ * @LastEditTime: 2020-05-23 09:36:44
+ * @LastEditors: Innei
+ * @FilePath: /mx-web/utils/request.ts
+ * @MIT
+ */
+
 import { message } from 'antd'
 import axios from 'axios'
 import { getToken } from './auth'
@@ -35,7 +44,7 @@ service.interceptors.response.use(
     if (typeof document !== 'undefined') {
       if (error.response?.data?.message) {
         if (Array.isArray(error.response.data.message)) {
-          error.response?.data?.message.map((m) => {
+          error.response.data.message.map((m) => {
             message.error(m)
           })
         } else message.error(error.response.data.message)

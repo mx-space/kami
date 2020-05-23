@@ -22,7 +22,7 @@ const ProjectView: NextPage<ProjectViewProps> = (props) => {
     <main>
       <NextSeo
         {...{
-          title: props.name + ' - ' + configs.title || appStore.title,
+          title: props.name + ' - ' + (configs.title || appStore.title),
           description: props.description,
         }}
       />
