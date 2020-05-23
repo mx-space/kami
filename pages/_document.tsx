@@ -11,7 +11,7 @@
  *
  * @Author: Innei
  * @Date: 2020-04-29 17:27:02
- * @LastEditTime: 2020-05-23 09:57:19
+ * @LastEditTime: 2020-05-23 19:08:13
  * @LastEditors: Innei
  * @FilePath: /mx-web/pages/_document.tsx
  * @MIT
@@ -213,7 +213,7 @@ export default class MyDocument extends Document<{ ua: string }> {
           />
         </Head>
 
-        <body id={'app'}>
+        <body id={'app'} className="loading">
           <Main />
           <NextScript />
         </body>

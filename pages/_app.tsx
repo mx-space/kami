@@ -67,7 +67,9 @@ class Context extends PureComponent<Store & { data: any }> {
       document.documentElement.scrollTop / 36
     }px`
   }, 8)
-
+  state = {
+    loading: true,
+  }
   componentDidMount(): void {
     if (typeof window !== 'undefined') {
       // get aggregate data
@@ -156,6 +158,11 @@ class Context extends PureComponent<Store & { data: any }> {
 
       // connect to ws
       client.initIO()
+
+      this.setState({
+        loading: false,
+      })
+      this.props.app?.setLoading(false)
     }
   }
 
@@ -178,7 +185,9 @@ class Context extends PureComponent<Store & { data: any }> {
             }
             description={this.props.app?.description || configs.description}
           />
-          {this.props.children}
+          <div id="next" style={{ display: this.state.loading ? 'none' : '' }}>
+            {this.props.children}
+          </div>
           <Loader />
         </StoreProvider>
       </AppContext.Provider>

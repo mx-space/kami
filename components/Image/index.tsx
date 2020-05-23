@@ -23,14 +23,13 @@ interface ImageFCProps {
   alt?: string
   height?: number
   width?: number
-  isAbsolute?: boolean
 }
 
 export const Image: FC<
   ImageFCProps &
     DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
 > = memo((props) => {
-  const { defaultImage, src, alt, height, width, isAbsolute, ...rest } = props
+  const { defaultImage, src, alt = src, height, width, ...rest } = props
 
   const realImageRef = useRef<HTMLImageElement>(null)
   const placeholderRef = useRef<HTMLDivElement>(null)
@@ -67,7 +66,12 @@ export const Image: FC<
           }}
           ref={wrapRef}
         >
-          <img ref={realImageRef} className={'image-hide'} {...rest} />
+          <img
+            ref={realImageRef}
+            className={'image-hide'}
+            {...rest}
+            alt={alt}
+          />
           <div
             className="placeholder-image"
             ref={placeholderRef}
@@ -85,6 +89,7 @@ export const Image: FC<
         onLoad={onLoad}
         style={{ position: 'absolute', opacity: 0, zIndex: -99 }}
         ref={fakeImageRef}
+        alt={alt}
       />
     </LazyLoad>
   )
@@ -119,7 +124,7 @@ export const ImageLazy: FC<
       `}</style>
       <LazyImage
         src={props.src}
-        alt={props.alt}
+        alt={props.alt || props.src}
         observerProps={{
           rootMargin: '100px',
           threshold: 0.3,
@@ -146,6 +151,7 @@ export const ImageLazy: FC<
               animation: 'fade-in 1s both',
               cursor: props.onClick ? 'pointer' : '',
             }}
+            alt={props.alt || props.src}
             onClick={props.onClick}
           />
         )}
@@ -162,7 +168,7 @@ export const ImageLazyWithPopup: FC<
     <>
       <Image
         src={props.src}
-        alt={props.alt}
+        alt={props.alt || props.src}
         height={400}
         onClick={() => {
           setOpen(true)
