@@ -1,5 +1,6 @@
 import defaultAvatar from 'assets/images/default-avatar.png'
 import { DetailedHTMLProps, FC, ImgHTMLAttributes, useRef } from 'react'
+import Lazy from 'react-lazyload'
 interface AvatarProps {
   url?: string
   imageUrl: string
@@ -40,14 +41,16 @@ export const Avatar: FC<
         href={props.url ?? 'javascript:;'}
         target={!props.url ? undefined : '_blank'}
       >
-        <img
-          src={props.imageUrl}
-          ref={imageRef}
-          {...rest}
-          onError={(_) => {
-            imageRef.current && (imageRef.current.src = defaultAvatar)
-          }}
-        />
+        <Lazy once placeholder={<div className={'placeholder-image'} />}>
+          <img
+            src={props.imageUrl}
+            ref={imageRef}
+            {...rest}
+            onError={(_) => {
+              imageRef.current && (imageRef.current.src = defaultAvatar)
+            }}
+          />
+        </Lazy>
       </a>
     </div>
   )

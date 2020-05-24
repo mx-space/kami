@@ -1,18 +1,21 @@
 import LoadImage from 'assets/images/load.gif'
+import { observer } from 'mobx-react'
 import dynamic from 'next/dynamic'
+import randomColor from 'randomcolor'
 import {
   DetailedHTMLProps,
   FC,
   ImgHTMLAttributes,
   memo,
   MouseEvent,
+  useEffect,
   useRef,
   useState,
 } from 'react'
 import Lightbox, { ILightBoxProps } from 'react-image-lightbox'
 import { LazyImageProps } from 'react-lazy-images'
 import LazyLoad from 'react-lazyload'
-
+import { useStore } from '../../store'
 const LazyImage = dynamic(
   () => import('react-lazy-images').then((mo) => mo.LazyImage as any),
   { ssr: false },
@@ -23,13 +26,22 @@ interface ImageFCProps {
   alt?: string
   height?: number
   width?: number
+  useRandomBackgroundColor?: boolean
 }
 
 export const Image: FC<
   ImageFCProps &
     DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
-> = memo((props) => {
-  const { defaultImage, src, alt = src, height, width, ...rest } = props
+> = observer((props) => {
+  const {
+    defaultImage,
+    src,
+    alt = src,
+    height,
+    width,
+    useRandomBackgroundColor,
+    ...rest
+  } = props
 
   const realImageRef = useRef<HTMLImageElement>(null)
   const placeholderRef = useRef<HTMLDivElement>(null)
@@ -39,22 +51,44 @@ export const Image: FC<
   const onLoad = () => {
     realImageRef.current!.src = src
     realImageRef.current!.classList.remove('image-hide')
-    if (fakeImageRef && fakeImageRef.current) {
-      fakeImageRef.current.remove()
-    }
-    if (placeholderRef && placeholderRef.current) {
-      placeholderRef.current.classList.add('hide')
-      setTimeout(() => {
-        placeholderRef.current!.remove()
-      }, 600)
-    }
-    if (wrapRef && wrapRef.current) {
-      wrapRef.current.style.height = ''
-    }
+    try {
+      if (fakeImageRef && fakeImageRef.current) {
+        fakeImageRef.current.remove()
+      }
+      if (placeholderRef && placeholderRef.current) {
+        placeholderRef.current.classList.add('hide')
+        setTimeout(() => {
+          placeholderRef.current!.remove()
+        }, 600)
+      }
+      if (wrapRef && wrapRef.current) {
+        wrapRef.current.style.height = ''
+      }
+      // eslint-disable-next-line no-empty
+    } catch {}
   }
+  const colorMode = useStore().appStore.colorMode
+  const [randColor, setRandColor] = useState(
+    randomColor({ luminosity: colorMode === 'light' ? 'light' : 'dark' }),
+  )
+  useEffect(() => {
+    setRandColor(
+      randomColor({ luminosity: colorMode === 'light' ? 'light' : 'dark' }),
+    )
+  }, [colorMode])
 
   return (
-    <LazyLoad once placeholder={<div className="placeholder-image"></div>}>
+    <LazyLoad
+      once
+      placeholder={
+        <div
+          className="placeholder-image"
+          style={{
+            backgroundColor: useRandomBackgroundColor ? randColor : '',
+          }}
+        ></div>
+      }
+    >
       {defaultImage ? (
         <img src={defaultImage} alt={alt} {...rest} ref={realImageRef} />
       ) : (
@@ -79,6 +113,7 @@ export const Image: FC<
               height,
               width,
               position: 'absolute',
+              backgroundColor: useRandomBackgroundColor ? randColor : '',
             }}
           ></div>
         </div>
@@ -94,7 +129,6 @@ export const Image: FC<
     </LazyLoad>
   )
 })
-
 export const ImageLazy: FC<
   {
     src: string
@@ -169,11 +203,12 @@ export const ImageLazyWithPopup: FC<
       <Image
         src={props.src}
         alt={props.alt || props.src}
-        height={400}
+        height={300}
         onClick={() => {
           setOpen(true)
         }}
         style={{ cursor: 'pointer' }}
+        useRandomBackgroundColor
       ></Image>
       {isOpen && (
         <Lightbox mainSrc={props.src} onCloseRequest={() => setOpen(false)} />

@@ -99,9 +99,15 @@ pre > code {
     background: none !important;
   }
 }
+
 p {
   margin: 0.5rem 0;
 }
+pre > code,
+pre {
+  transition: color 0.5s;
+}
+
 //error page
 .error {
   color: currentColor;
@@ -301,6 +307,10 @@ p {
   background-color: rgba(255, 255, 255, 0.274);
 }
 @media (prefers-color-scheme: dark) {
+  :not(pre) > code {
+    background-color: #3c3a3b;
+    color: var(--shizuku-theme-color);
+  }
   .ant-input,
   .ant-input-affix-wrapper {
     background-color: var(--light-bg) !important;

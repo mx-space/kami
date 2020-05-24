@@ -66,7 +66,7 @@ export const BasicLayout = observer(({ children }) => {
               <p
                 style={{ marginRight: appStore.viewport.mobile ? '' : '3rem' }}
               >
-                当前在线人数: {gatewayStore.online}
+                {gatewayStore.online} 个小伙伴正在浏览
               </p>
             </div>
           </div>

@@ -1,34 +1,26 @@
-import PropTypes from 'prop-types'
-import React from 'react'
+import { observer } from 'mobx-react'
+import React, { FC } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-// import dark from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark'
+import { useStore } from '../../store'
+import dark from 'react-syntax-highlighter/dist/cjs/styles/prism/tomorrow'
 
-export default class CodeBlock extends React.PureComponent<{
-  language: string
+interface CodeBlockProps {
+  language: string | undefined
   value: string
-}> {
-  static propTypes = {
-    value: PropTypes.string.isRequired,
-    language: PropTypes.string,
-  }
-
-  static defaultProps = {
-    language: null,
-  }
-
-  render() {
-    const { language, value } = this.props
-
-    return (
-      <SyntaxHighlighter
-        language={language}
-        // style={dark}
-        customStyle={{
-          background: 'var(--code-bg)',
-        }}
-      >
-        {value}
-      </SyntaxHighlighter>
-    )
-  }
 }
+const CodeBlock: FC<CodeBlockProps> = observer((props) => {
+  const { language, value } = props
+  const { colorMode } = useStore().appStore
+  return (
+    <SyntaxHighlighter
+      language={language}
+      style={colorMode === 'dark' ? dark : undefined}
+      customStyle={{
+        background: 'var(--code-bg) !important',
+      }}
+    >
+      {value}
+    </SyntaxHighlighter>
+  )
+})
+export default CodeBlock
