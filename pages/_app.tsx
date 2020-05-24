@@ -142,11 +142,17 @@ class Context extends PureComponent<Store & { data: any }> {
 
         e.prompt()
       })
+      const getColormode = (e: any) => {
+        this.props.app!.colorMode = e.matches ? 'dark' : 'light'
+        return this.props.app!.colorMode
+      }
+      this.props.app!.colorMode = getColormode(
+        window.matchMedia('(prefers-color-scheme: dark)'),
+      )
+
       window
         .matchMedia('(prefers-color-scheme: dark)')
-        .addEventListener('change', (e) => {
-          this.props.app!.colorMode = e.matches ? 'dark' : 'light'
-        })
+        .addEventListener('change', getColormode)
       if (getToken()) {
         Rest('Master', 'check_logged')
           .get<any>()

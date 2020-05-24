@@ -11,6 +11,7 @@ import {
   useEffect,
   useRef,
   useState,
+  useCallback,
 } from 'react'
 import Lightbox, { ILightBoxProps } from 'react-image-lightbox'
 import { LazyImageProps } from 'react-lazy-images'
@@ -48,7 +49,7 @@ export const Image: FC<
   const fakeImageRef = useRef<HTMLImageElement>(null)
   const wrapRef = useRef<HTMLDivElement>(null)
   const onError = () => {}
-  const onLoad = () => {
+  const onLoad = useCallback(() => {
     realImageRef.current!.src = src
     realImageRef.current!.classList.remove('image-hide')
     try {
@@ -66,10 +67,10 @@ export const Image: FC<
       }
       // eslint-disable-next-line no-empty
     } catch {}
-  }
+  }, [src])
   const colorMode = useStore().appStore.colorMode
   const [randColor, setRandColor] = useState(
-    randomColor({ luminosity: colorMode === 'light' ? 'light' : 'dark' }),
+    randomColor({ luminosity: colorMode === 'light' ? 'bright' : 'dark' }),
   )
   useEffect(() => {
     setRandColor(
@@ -114,6 +115,10 @@ export const Image: FC<
               width,
               position: 'absolute',
               backgroundColor: useRandomBackgroundColor ? randColor : '',
+              filter:
+                useRandomBackgroundColor && colorMode === 'dark'
+                  ? 'brightness(0.5)'
+                  : undefined,
             }}
           ></div>
         </div>

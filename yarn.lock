@@ -5346,10 +5346,10 @@ keyv@^3.0.0:
   dependencies:
     json-buffer "3.0.0"
 
-kico-style@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.npm.taobao.org/kico-style/download/kico-style-1.1.4.tgz#98a2930f0b02b4b511f3f2cfd532fc03b13486df"
-  integrity sha1-mKKTDwsCtLUR8/LP1TL8A7E0ht8=
+kico-style@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.npmjs.org/kico-style/-/kico-style-1.1.5.tgz#9d15444882571c226e431d16465d47abf210293b"
+  integrity sha512-0rU1nvh7MuEjEb+XlXDMRektWn39SQsed6RbuElUi1rFoq+uHJc0xX6a5097vgaM4JLwERvu0bYKUE9B2veYlQ==
 
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
