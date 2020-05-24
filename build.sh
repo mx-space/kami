@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 git pull
 yarn --ignore-engines
 rm -r .next

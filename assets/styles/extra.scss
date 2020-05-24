@@ -1,20 +1,38 @@
 :root {
   --code-bg: transparent;
   --black: #000;
+  --gray: #bbb;
 }
+
+html.dark {
+  --black: #fff !important;
+  --shizuku-background-color: #21212 !important;
+  --shizuku-text-color: #858585 !important;
+  --shizuku-theme-color: #3c946c !important;
+  --gray: #666;
+  blockquote {
+    background: var(--shizuku-background-color) !important;
+    border-left: 5px solid var(--shizuku-theme-color) !important;
+  }
+  article {
+    color: var(--shizuku-text-color) !important;
+  }
+}
+
 @media screen and (prefers-color-scheme: dark) {
-  :root {
+  :root:not(.light) {
+    --gray: #666;
     --shizuku-background-color: #212121;
     --shizuku-text-color: #858585;
     --shizuku-theme-color: #3c946c;
     --black: #fff;
-  }
-  blockquote {
-    background: var(--shizuku-background-color);
-    border-left: 5px solid var(--shizuku-theme-color);
-  }
-  article {
-    color: var(--shizuku-text-color);
+    blockquote {
+      background: var(--shizuku-background-color);
+      border-left: 5px solid var(--shizuku-theme-color);
+    }
+    article {
+      color: var(--shizuku-text-color);
+    }
   }
 }
 html {
@@ -306,7 +324,7 @@ pre {
 .ant-input-affix-wrapper {
   background-color: rgba(255, 255, 255, 0.274);
 }
-@media (prefers-color-scheme: dark) {
+html.dark {
   :not(pre) > code {
     background-color: #3c3a3b;
     color: var(--shizuku-theme-color);
@@ -330,6 +348,35 @@ pre {
     .ant-message-notice-content {
       background-color: var(--shizuku-background-color);
       color: var(--shizuku-text-color);
+    }
+  }
+}
+@media (prefers-color-scheme: dark) {
+  html:not(.light) {
+    :not(pre) > code {
+      background-color: #3c3a3b;
+      color: var(--shizuku-theme-color);
+    }
+    .ant-input,
+    .ant-input-affix-wrapper {
+      background-color: var(--light-bg) !important;
+      border-color: var(--shizuku-text-color);
+      color: var(--shizuku-text-color) !important;
+    }
+    .ant-comment-content-author-name {
+      > * {
+        color: var(--shizuku-text-color) !important;
+      }
+    }
+    .ant-comment-actions > li > span {
+      color: var(--shizuku-text-color) !important;
+      opacity: 0.9;
+    }
+    .ant-message {
+      .ant-message-notice-content {
+        background-color: var(--shizuku-background-color);
+        color: var(--shizuku-text-color);
+      }
     }
   }
 }

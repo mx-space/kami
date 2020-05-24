@@ -1,0 +1,39 @@
+.wrapper {
+  position: fixed;
+  right: 52px;
+  bottom: 12px;
+
+  height: 25rem;
+  width: 20rem;
+
+  background: var(--light-bg);
+  z-index: 10;
+  .header {
+    border-bottom: 1px solid var(--yellow);
+    line-height: 2;
+    text-align: center;
+    font-weight: 500;
+    font-size: 18px;
+  }
+  .container {
+    margin: 10px;
+    height: 18rem;
+    padding: 8px;
+    overflow: auto;
+  }
+  .footer {
+    margin: 0 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .text,
+  .container {
+    border: 1px solid var(--gray);
+  }
+  box-shadow: rgba($color: #000000, $alpha: 0.2) 0px 0px 20px;
+  &,
+  .text,
+  .container {
+    border-radius: 12px;
+  }
+}

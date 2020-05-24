@@ -1382,6 +1382,13 @@
   resolved "https://registry.npm.taobao.org/@types/range-parser/download/@types/range-parser-1.2.3.tgz?cache=0&sync_timestamp=1588201516817&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Frange-parser%2Fdownload%2F%40types%2Frange-parser-1.2.3.tgz#7ee330ba7caafb98090bece86a5ee44115904c2c"
   integrity sha1-fuMwunyq+5gJC+zoal7kQRWQTCw=
 
+"@types/react-dom@^16.9.8":
+  version "16.9.8"
+  resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-16.9.8.tgz#fe4c1e11dfc67155733dfa6aa65108b4971cb423"
+  integrity sha512-ykkPQ+5nFknnlU6lDd947WbQ6TE3NNzbQAkInC2EKY1qeYdTKp7onFusmYZb+ityzx2YviqT6BXSu+LyWWJwcA==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-lazyload@^2.6.0":
   version "2.6.0"
   resolved "https://registry.npm.taobao.org/@types/react-lazyload/download/@types/react-lazyload-2.6.0.tgz#41cd9cbb2c03dd810377518d4837794469a521d1"
@@ -5341,10 +5348,10 @@ keyv@^3.0.0:
   dependencies:
     json-buffer "3.0.0"
 
-kico-style@^1.1.5:
-  version "1.1.5"
-  resolved "https://registry.npmjs.org/kico-style/-/kico-style-1.1.5.tgz#9d15444882571c226e431d16465d47abf210293b"
-  integrity sha512-0rU1nvh7MuEjEb+XlXDMRektWn39SQsed6RbuElUi1rFoq+uHJc0xX6a5097vgaM4JLwERvu0bYKUE9B2veYlQ==
+kico-style@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/kico-style/-/kico-style-1.2.0.tgz#c6708618a39a21f57d46bc39decb4b6a9a0c7931"
+  integrity sha512-r/oj/EO8e59NHGx2RhxKlpgKaJde0GsscZZKV6yAYjKE2Uwtw5QLrselWaypdNMFLSYGBYDmfJnWd8jDXkbRTw==
 
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"

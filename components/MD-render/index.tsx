@@ -10,6 +10,7 @@ interface MdProps extends ReactMarkdownProps {
   value: string
   showTOC?: boolean
   [key: string]: any
+  style?: React.CSSProperties
   readonly renderers?: { [nodeType: string]: ReactType }
 }
 
@@ -22,12 +23,12 @@ const Heading: FC<{ level: 1 | 2 | 3 | 4 | 5 | 6; key?: number }> = (props) => {
 }
 
 const Markdown: FC<MdProps> = observer((props) => {
-  const { value, renderers, ...rest } = props
+  const { value, renderers, style, ...rest } = props
   const { appStore } = useStore()
   const { viewport } = appStore
   return (
     <>
-      <div id="write">
+      <div id="write" style={style}>
         <ReactMarkdown
           source={value}
           {...rest}

@@ -1,4 +1,4 @@
-import { faGithub, faQq } from '@fortawesome/free-brands-svg-icons'
+import { faGithub, faQq, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { faClock } from '@fortawesome/free-regular-svg-icons'
 import {
   faBook,
@@ -100,6 +100,12 @@ const social: SocialLinkModel[] = [
     title: 'QQ',
     icon: faQq,
     color: '#12b7f5',
+  },
+  {
+    url: 'https://twitter.com/_oQuery',
+    title: 'twitter',
+    icon: faTwitter,
+    color: '#02A4ED',
   },
 ]
 export default {
