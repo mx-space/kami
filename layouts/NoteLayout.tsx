@@ -13,7 +13,7 @@ const NoteLayout: FC<NoteLayoutProps> = forwardRef(
     const dateFormat = dayjs(date).format('YYYY-MM-DD')
     return (
       <main className="is-article is-note post-content paul-note" ref={ref}>
-        <QueueAnim type="bottom">
+        <QueueAnim type="bottom" delay={500}>
           <article key={'a'}>
             <h1>{dateFormat}</h1>
             <h2 style={{ textAlign: 'center' }}>{title}</h2>

@@ -13,7 +13,7 @@ export const ArticleLayout: FC<ArticleLayoutProps> = forwardRef(
         {title && (
           <section className="post-title">
             <h1>
-              <Texty type={'bottom'} mode={'smooth'}>
+              <Texty type={'bottom'} mode={'smooth'} delay={500}>
                 {title}
               </Texty>
             </h1>
@@ -28,7 +28,7 @@ export const ArticleLayout: FC<ArticleLayoutProps> = forwardRef(
           </section>
         )}
         <QueueAnim
-          delay={500}
+          delay={1000}
           duration={500}
           animConfig={{ opacity: [1, 0], translateY: [0, 50] }}
         >

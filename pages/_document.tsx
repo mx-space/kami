@@ -11,7 +11,7 @@
  *
  * @Author: Innei
  * @Date: 2020-04-29 17:27:02
- * @LastEditTime: 2020-05-23 19:08:13
+ * @LastEditTime: 2020-05-24 14:37:41
  * @LastEditors: Innei
  * @FilePath: /mx-web/pages/_document.tsx
  * @MIT
@@ -182,7 +182,11 @@ export default class MyDocument extends Document<{ ua: string }> {
             href="assets/apple-splash-1136-640.png"
             media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
           />
-
+          <link
+            href="https://fonts.googleapis.com/css?family=Noto+Serif+SC"
+            rel="stylesheet"
+            type="text/css"
+          />
           <link rel="shortcut icon" href="/custom-icon.svg" />
           <link rel="icon" href="/custom-icon.svg" />
           <link rel="apple-touch-icon" href="/custom-icon.svg" />

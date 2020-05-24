@@ -1151,11 +1151,6 @@
   resolved "https://registry.npm.taobao.org/@openfonts/noto-sans-sc_vietnamese/download/@openfonts/noto-sans-sc_vietnamese-1.44.0.tgz#9ccafe7ed6d6fb205eda09a47bfd5e3affeee166"
   integrity sha1-nMr+ftbW+yBe2gmke/1eOv/u4WY=
 
-"@openfonts/noto-serif-sc_vietnamese@^1.44.0":
-  version "1.44.0"
-  resolved "https://registry.npm.taobao.org/@openfonts/noto-serif-sc_vietnamese/download/@openfonts/noto-serif-sc_vietnamese-1.44.0.tgz#149b980d117c269fd7ffd17bd3592d9265e43b95"
-  integrity sha1-FJuYDRF8Jp/X/9F701ktkmXkO5U=
-
 "@rollup/plugin-node-resolve@^7.1.1":
   version "7.1.3"
   resolved "https://registry.npm.taobao.org/@rollup/plugin-node-resolve/download/@rollup/plugin-node-resolve-7.1.3.tgz#80de384edfbd7bfc9101164910f86078151a3eca"

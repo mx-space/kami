@@ -1,7 +1,6 @@
 import 'kico-style'
 import 'kico-style/paul.css'
 import '@openfonts/noto-sans-sc_vietnamese'
-import '@openfonts/noto-serif-sc_vietnamese'
 import 'antd/es/avatar/style/index.css'
 import 'antd/es/button/style/index.css'
 import 'antd/es/comment/style/index.css'
