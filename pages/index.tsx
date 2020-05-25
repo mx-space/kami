@@ -163,13 +163,13 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
               />
               <SectionCard
                 {...{
-                  title: '历史',
-                  desc: '时间飞逝',
+                  title: '关于',
+                  desc: '这里有我的小秘密',
                   src: images.pop() as string,
-                  href: '/message',
+                  href: '/about',
                   onClick: (e) => {
                     stopEventDefault(e)
-                    Router.push('/[page]', '/message')
+                    Router.push('/[page]', '/about')
                   },
                 }}
               />

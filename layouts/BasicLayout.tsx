@@ -1,9 +1,10 @@
-import { faSun, faMoon, faCogs } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle } from '@fortawesome/free-regular-svg-icons'
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { Footer } from 'components/Footer'
 import Header from 'components/Header'
 import { observer } from 'mobx-react'
 import dynamic from 'next/dynamic'
-import { useState, useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { NoticePanel } from '../components/Notice'
 import { PullSelect } from '../components/PullSelect'
 import { useStore } from '../store'
@@ -41,8 +42,8 @@ export const BasicLayout = observer(({ children }) => {
         : 'light'
       $html.classList.remove('dark', 'light')
       setTip({
-        text: '自动切换',
-        icon: faCogs,
+        text: '跟随系统',
+        icon: faCheckCircle,
       })
     }
     setNotice(!showNotice)
