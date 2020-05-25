@@ -39,9 +39,11 @@ interface NoteViewProps {
 }
 
 const renderLines: FC = (props) => {
+  console.log(props)
+  const isImage = !!((props.children as any)[0] as any)?.props?.src
   return (
-    <p>
-      <span>{props.children}</span>
+    <p className={isImage ? undefined : 'indent'}>
+      {isImage ? props.children : <span>{props.children}</span>}
     </p>
   )
 }
@@ -66,7 +68,14 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
         data.count.like
       }`,
     )
-  }, [text, data.created, data.modified, data.count.read, data.count.like])
+  }, [
+    text,
+    data.created,
+    data.modified,
+    data.count.read,
+    data.count.like,
+    removeMd.length,
+  ])
   useEffect(() => {
     window.scroll({ top: 0, left: 0, behavior: 'smooth' })
   })
