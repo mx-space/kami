@@ -1,9 +1,10 @@
 .select-container {
   width: 30px;
-  height: 70vh;
+  height: 80vh;
   position: fixed;
-  top: 0;
+  top: -10vh;
   right: 3rem;
+  transition: top 0.5s;
   // z-index: 3;
 }
 .select-line {
@@ -16,7 +17,7 @@
   .line {
     width: 3px;
     height: 100%;
-    background-image: linear-gradient(var(--brown) 8px, #f39c12 8px);
+    background-image: linear-gradient(#67492e 8px, #f39c12 8px);
     background-size: auto 16px;
     border-radius: 12px;
     background-repeat: repeat;
