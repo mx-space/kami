@@ -16,7 +16,7 @@ import { RandomImage, Top } from 'models/aggregate'
 import { NextPage } from 'next'
 import QueueAnim from 'rc-queue-anim'
 import Texty from 'rc-texty'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
 import { FriendsSection } from '../components/SectionNews/friend'
@@ -72,6 +72,12 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
     } as SectionNewsProps,
   })
 
+  const [like, setLike] = useState(0)
+  useEffect(() => {
+    service.get('like_this').then((number) => {
+      setLike(~~number)
+    })
+  }, [])
   return (
     <main>
       <section className="paul-intro">
@@ -175,7 +181,7 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
               />
               <SectionCard
                 {...{
-                  title: '点赞',
+                  title: `点赞 (${like})`,
                   desc: '如果你喜欢的话点个赞呗',
                   src: images.pop() as string,
                   href: '/like_this',
@@ -184,7 +190,8 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
                     service
                       .post('like_this', null, { withCredentials: true })
                       .then(() => {
-                        message.success('点赞成功')
+                        message.success('感谢喜欢 ❤️')
+                        setLike(like + 1)
                       })
                   },
                 }}

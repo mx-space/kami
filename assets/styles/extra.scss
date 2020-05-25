@@ -314,6 +314,9 @@ pre {
     background-size: 160%;
   }
 }
+html.light footer:before {
+  filter: none;
+}
 // aplayer restyle
 
 .aplayer {
