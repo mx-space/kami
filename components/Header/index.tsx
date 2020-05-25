@@ -91,7 +91,9 @@ export default class Header extends React.Component<Store> {
         <div
           className={classNames(
             styles['head-swiper'],
-            app?.headerNav.show && app.scrollDirection == 'down'
+            app?.headerNav.show &&
+              app.scrollDirection == 'down' &&
+              app.isOverflow
               ? styles['toggle']
               : null,
           )}
