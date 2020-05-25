@@ -21,7 +21,7 @@ export const PullSelect: FC<DetailedHTMLProps<
                   containerRef.current!.style.top = ''
                   // eslint-disable-next-line no-empty
                 } catch {}
-              }, 1000)
+              }, 500)
             }
           }}
         ></div>

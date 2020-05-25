@@ -42,7 +42,7 @@ type mapType = {
 const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
   const sortedMap = new Map<number, mapType[]>()
   const [map, setMap] = useState<typeof sortedMap>(new Map())
-  const { posts, notes } = props
+  const { posts = [], notes = [] } = props
 
   const getDelayTime = (year: number): number => {
     const prevYear = year + 1
@@ -106,7 +106,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
     if (!map.size) {
       setMap(sortedMap)
     }
-  }, [map])
+  }, [map, sortedMap])
 
   return (
     <ArticleLayout
@@ -164,8 +164,20 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
   )
 }
 
-TimeLineView.getInitialProps = async () => {
-  const resp = (await Rest('Aggregate').get('timeline')) as any
+enum TimelineType {
+  Post,
+  Note,
+}
+TimeLineView.getInitialProps = async (ctx) => {
+  const query = ctx.query
+  const { type, year } = query
+  const Type = {
+    post: TimelineType.Post,
+    note: TimelineType.Note,
+  }[type as any] as number | undefined
+  const resp = (await Rest('Aggregate').get('timeline', {
+    params: { type: Type, year },
+  })) as any
   return { ...(resp?.data || {}) } as TimeLineViewProps
 }
 export default TimeLineView
