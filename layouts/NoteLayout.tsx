@@ -10,7 +10,7 @@ interface NoteLayoutProps {
 
 const NoteLayout: FC<NoteLayoutProps> = forwardRef(
   ({ children, date, title, tips }, ref: any) => {
-    const dateFormat = dayjs(date).format('YYYY-MM-DD')
+    const dateFormat = dayjs(date).locale('en').format('YYYY-MM-DD ddd')
     return (
       <main className="is-article is-note post-content paul-note" ref={ref}>
         <QueueAnim type="bottom" delay={500}>

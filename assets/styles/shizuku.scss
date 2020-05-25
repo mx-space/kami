@@ -23,8 +23,10 @@
 #write a:active,
 #write a:focus,
 #write a:visited {
-  color: var(--shizuku-theme-color);
+  color: var(--blue);
   text-decoration: none;
+
+  margin: 0 2px;
 }
 #write a:not([href]) {
   color: inherit;

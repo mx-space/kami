@@ -164,10 +164,20 @@ pre {
 .is-note #write {
   font-family: 'Noto Serif SC', 'PingFang SC', 'Hiragino Sans GB', 'Heiti SC',
     'Microsoft YaHei', 'WenQuanYi Micro Hei';
+  color: var(--shizuku-text-color);
+  font-size: 16px;
+  line-height: 1.75;
+  word-wrap: break-word;
+  text-align: justify;
+  padding-top: 2rem;
+  > p:first-child {
+    margin-bottom: 2rem;
+  }
 }
 .is-note strong {
   font-family: 'Helvetica', 'PingFang SC';
 }
+
 .is-note .note-head {
   width: 100%;
   text-align: center;
@@ -191,14 +201,6 @@ pre {
   display: inline-block;
 }
 
-.is-note #write {
-  color: var(--shizuku-text-color);
-  font-size: 16px;
-  line-height: 1.75;
-  word-wrap: break-word;
-  text-align: justify;
-  padding-top: 2rem;
-}
 .is-note #write > p:first-child::first-letter {
   float: left;
   font-size: 2.4em;
