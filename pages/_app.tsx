@@ -147,21 +147,24 @@ class Context extends PureComponent<Store & { data: any }> {
 
         e.prompt()
       })
-      const getColormode = (e: any) => {
+      const getColormode = <T extends { matches: boolean }>(e: T) => {
         this.props.app!.colorMode = e.matches ? 'dark' : 'light'
         return this.props.app!.colorMode
       }
       this.props.app!.colorMode = getColormode(
         window.matchMedia('(prefers-color-scheme: dark)'),
       )
-
-      window
-        .matchMedia('(prefers-color-scheme: dark)')
-        .addEventListener('change', (e) => {
-          if (this.props.app?.autoToggleColorMode) {
-            getColormode(e)
-          }
-        })
+      try {
+        window
+          .matchMedia('(prefers-color-scheme: dark)')
+          // safari not support this lister please catch it
+          .addListener((e) => {
+            if (this.props.app?.autoToggleColorMode) {
+              getColormode(e)
+            }
+          })
+        // eslint-disable-next-line no-empty
+      } catch {}
 
       if (getToken()) {
         Rest('Master', 'check_logged')
