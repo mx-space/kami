@@ -178,7 +178,7 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
           </section>
         )}
       </NoteLayout>
-      <ArticleLayout>
+      <ArticleLayout style={{ minHeight: 'unset', paddingTop: '0' }}>
         <CommentWrap type={'Note'} id={_id} />
       </ArticleLayout>
     </>
