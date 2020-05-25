@@ -1,0 +1,111 @@
+.select-container {
+  width: 30px;
+  height: 70vh;
+  position: fixed;
+  top: 0;
+  right: 3rem;
+  // z-index: 3;
+}
+.select-line {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .line {
+    width: 3px;
+    height: 100%;
+    background-image: linear-gradient(var(--brown) 8px, #f39c12 8px);
+    background-size: auto 16px;
+    border-radius: 12px;
+    background-repeat: repeat;
+  }
+}
+
+.sakura-wrap {
+  animation: rotating 2s infinite linear;
+
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+.sakura {
+  transform: translate(-3px, -24px) scale(0.8);
+  height: 50px;
+
+  // .blossom {
+  //   height: 8px;
+  //   width: 8px;
+  //   z-index: 2;
+  //   position: absolute;
+  //   top: 50%;
+  //   left: 50%;
+  //   transform: translate(-50%, -50%);
+  //   border-radius: 50%;
+  //   background-color: #f693b9;
+  // }
+}
+
+.petals {
+  div:nth-child(2n) {
+    transform-origin: top;
+    transform: rotateZ(0deg);
+  }
+
+  div:nth-child(3n) {
+    transform: rotateZ(120deg);
+  }
+  div:nth-child(4n) {
+    transform: rotateZ(180deg);
+    transform-origin: right bottom;
+  }
+  div:nth-child(5n) {
+    transform: rotateZ(240deg);
+    transform-origin: right bottom;
+  }
+  div:nth-child(6n) {
+    transform: rotateZ(300deg);
+    transform-origin: right bottom;
+  }
+}
+.petal {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 0% 100% 0% 100% / 0% 100% 0% 100%;
+  background: #fcc;
+  transform: rotateZ(60deg);
+  transform-origin: right bottom;
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #fcc;
+    border-radius: 0% 100% 0% 100% / 0% 100% 0% 100%;
+    transform-origin: 100% 100%;
+    transform: rotate(15deg);
+  }
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.sakura-img {
+  background-image: url(./sakura.png);
+  height: 24px;
+  width: 24px;
+  background-size: cover;
+  left: 50%;
+  // transform: translateX(-48%);
+}

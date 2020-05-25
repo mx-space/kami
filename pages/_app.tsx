@@ -151,7 +151,12 @@ class Context extends PureComponent<Store & { data: any }> {
 
       window
         .matchMedia('(prefers-color-scheme: dark)')
-        .addEventListener('change', getColormode)
+        .addEventListener('change', (e) => {
+          if (this.props.app?.autoToggleColorMode) {
+            getColormode(e)
+          }
+        })
+
       if (getToken()) {
         Rest('Master', 'check_logged')
           .get<any>()

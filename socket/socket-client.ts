@@ -13,7 +13,7 @@ import { Notice } from '../utils/notice'
 import { EventTypes } from './types'
 import configs from '../configs'
 import { gatewayStore } from '../store'
-import { openNotification } from '../components/Notice'
+import { openNotification } from '../components/Notification'
 
 export class SocketClient {
   public socket!: SocketIOClient.Socket

@@ -1,33 +1,61 @@
-import { Button, notification } from 'antd'
-import { MouseEvent } from 'react'
-export interface NotificationProps {
-  key?: string
-  close?: () => void
-  message: string
-  description: string
-  showBtn?: boolean
-  callback?: (e: MouseEvent<HTMLElement, globalThis.MouseEvent>) => void
-  btnText?: string
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FC } from 'react'
+import ReactDOM from 'react-dom'
+import styles from './index.module.scss'
+import TweenOne from 'rc-tween-one'
+import type { IAnimObject } from 'rc-tween-one/typings/AnimObject'
+interface NoticePanelProps {
+  icon: IconDefinition
+  text: string | JSX.Element
 }
-export const openNotification = ({
-  key = `open${Date.now()}`,
-  close,
-  message,
-  description,
-  showBtn,
-  callback,
-  btnText,
-}: NotificationProps) => {
-  const btn = (
-    <Button type="primary" size="small" onClick={callback}>
-      {btnText}
-    </Button>
+
+const _Notice: FC<NoticePanelProps> = (props) => {
+  const { icon, text } = props
+  return (
+    <div className={styles['f-wrap']}>
+      <div className={styles['mask']}>
+        <div className={styles['notice-darwin']}>
+          <div className={styles['box']}>
+            <div className={styles['icon-wrap']}>
+              <div className={styles['icon']}>
+                <FontAwesomeIcon icon={icon} />
+              </div>
+            </div>
+
+            <div className={styles['notice-text']}>
+              <span>{text}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   )
-  notification.open({
-    message,
-    description,
-    btn: showBtn ? btn : null,
-    key,
-    onClose: close,
-  })
+}
+
+export const NoticePanel: FC<NoticePanelProps & { setShow: Function }> = (
+  props,
+) => {
+  if (typeof document === 'undefined') {
+    return null
+  }
+  const animation: IAnimObject[] = [
+    {
+      opacity: 0,
+    },
+    { opacity: 1 },
+    { opacity: 1, duration: 3000 },
+    {
+      opacity: 0,
+      onComplete: () => {
+        props.setShow(false)
+      },
+    },
+  ]
+  return ReactDOM.createPortal(
+    <TweenOne animation={animation} paused={false} style={{ opacity: 0 }}>
+      <_Notice {...props} />
+    </TweenOne>,
+    document.documentElement,
+  )
 }

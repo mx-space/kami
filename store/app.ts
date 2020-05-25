@@ -9,6 +9,7 @@ export default class AppStore {
   @observable viewport: Partial<ViewportRecord> = {}
   @observable loading = false
   @observable position = 0
+  @observable autoToggleColorMode = true
   @observable colorMode: 'light' | 'dark' = 'light'
   @observable config = { seo: {} as Seo } as any
 
