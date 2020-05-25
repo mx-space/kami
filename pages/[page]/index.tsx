@@ -8,11 +8,23 @@ import { NextSeo } from 'next-seo'
 import RemoveMarkdown from 'remove-markdown'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
+import { useEffect } from 'react'
 
 const Page: NextPage<PageRespDto> = (props) => {
   const { data } = props
   const { title, subtitle, text } = data
   const { appStore } = useStore()
+
+  useEffect(() => {
+    appStore.headerNav = {
+      title,
+      meta: subtitle,
+      show: true,
+    }
+    return () => {
+      appStore.headerNav.show = false
+    }
+  }, [appStore, subtitle, title])
   return (
     <ArticleLayout title={title} subtitle={subtitle}>
       <NextSeo

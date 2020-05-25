@@ -34,8 +34,20 @@ export const PostView: NextPage<PostResModel> = (props) => {
       ],
       actions: [],
     })
-  }, [name])
+  }, [name, props.created])
   const { appStore } = useStore()
+
+  useEffect(() => {
+    appStore.headerNav = {
+      title: props.title,
+      meta: props.category.name,
+      show: true,
+    }
+    return () => {
+      appStore.headerNav.show = false
+    }
+  }, [appStore, props.category.name, props.title])
+
   return (
     <ArticleLayout title={title}>
       <NextSeo

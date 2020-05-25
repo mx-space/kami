@@ -1,5 +1,7 @@
 import { ImageLazyWithPopup } from 'components/Image'
 import Toc from 'components/Toc'
+import { observer } from 'mobx-react'
+import Router from 'next/router'
 import React, {
   createElement,
   DOMAttributes,
@@ -9,11 +11,8 @@ import React, {
   useCallback,
 } from 'react'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
-import CodeBlock from '../CodeBlock'
-import { observer } from 'mobx-react'
 import { useStore } from 'store'
-import Router from 'next/router'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import CodeBlock from '../CodeBlock'
 
 interface MdProps extends ReactMarkdownProps {
   value: string

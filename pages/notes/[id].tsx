@@ -41,11 +41,6 @@ interface NoteViewProps {
 const renderLines: FC = (props) => {
   return (
     <p>
-      <style jsx>{`
-        span {
-          border-bottom: 1px solid #67676780;
-        }
-      `}</style>
       <span>{props.children}</span>
     </p>
   )
@@ -54,12 +49,14 @@ const renderLines: FC = (props) => {
 const NoteView: NextPage<NoteViewProps> = (props) => {
   const { data, prev, next } = props
   const { title, _id, text, mood, weather } = data
-  const { userStore } = useStore()
+  const { userStore, appStore } = useStore()
 
   const router = useRouter()
   const [tips, setTips] = useState(``)
+  const removeMd = RemoveMarkdown(text)
+  const description = removeMd.slice(0, 100)
   useEffect(() => {
-    const wordCount = RemoveMarkdown(text).length
+    const wordCount = removeMd.length
 
     setTips(
       `创建于 ${parseDate(data.created, 'YYYY-MM-DD dddd')}, 修改于 ${parseDate(
@@ -127,8 +124,18 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
       icon: faBookmark,
     },
   )
-  const description = RemoveMarkdown(text).slice(0, 100)
-  const { appStore } = useStore()
+
+  useEffect(() => {
+    appStore.headerNav = {
+      title,
+      meta: '日记',
+      show: true,
+    }
+    return () => {
+      appStore.headerNav.show = false
+    }
+  }, [appStore, title])
+
   return (
     <>
       <NextSeo

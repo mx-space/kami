@@ -9,7 +9,8 @@ import SocialStore from 'store/social'
 import { MenuModel, Stores } from 'store/types'
 import UserStore from 'store/user'
 import PageStore from '../../store/pages'
-
+import styles from './index.module.scss'
+import classNames from 'classnames'
 interface Store {
   app?: AppStore
   master?: UserStore
@@ -87,25 +88,41 @@ export default class Header extends React.Component<Store> {
         <div className="head-logo">
           <Logo />
         </div>
-        <nav className="head-menu">
-          {menu?.map((item: MenuModel) => {
-            return (
-              <div
-                className={item.subMenu ? 'has-child' : 'menu-link'}
-                key={item._id}
-                onClick={this.closeMenu}
-              >
-                <Link href={item.path} as={item.path}>
-                  <a>
-                    {item.icon && <FontAwesomeIcon icon={item.icon} />}
-                    <span>{item.title}</span>
-                  </a>
-                </Link>
-                {item.subMenu && this.renderSubMenu(item.subMenu)}
-              </div>
-            )
-          })}
-        </nav>
+        <div
+          className={classNames(
+            styles['head-swiper'],
+            app?.headerNav.show && app.scrollDirection == 'down'
+              ? styles['toggle']
+              : null,
+          )}
+        >
+          <nav className={styles['head-info']}>
+            <div className={styles['desc']}>
+              <div className={styles['meta']}>{app?.headerNav.meta}</div>
+              <div className={styles['title']}>{app?.headerNav.title}</div>
+            </div>
+          </nav>
+          <nav className={classNames('head-menu', styles['head-menu'])}>
+            {menu?.map((item: MenuModel) => {
+              return (
+                <div
+                  className={item.subMenu ? 'has-child' : 'menu-link'}
+                  key={item._id}
+                  onClick={this.closeMenu}
+                >
+                  <Link href={item.path} as={item.path}>
+                    <a>
+                      {item.icon && <FontAwesomeIcon icon={item.icon} />}
+                      <span>{item.title}</span>
+                    </a>
+                  </Link>
+                  {item.subMenu && this.renderSubMenu(item.subMenu)}
+                </div>
+              )
+            })}
+          </nav>
+        </div>
+
         <nav className="head-social">
           {this.props.links?.socialLinks.map((link) => {
             return (

@@ -222,6 +222,9 @@ pre {
 .is-note .btn:first-child {
   margin-right: 12px;
 }
+.is-note #write > p > span {
+  border-bottom: 1px solid #67676780;
+}
 .news-item {
   .title::before {
     content: '';

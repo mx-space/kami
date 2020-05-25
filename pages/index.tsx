@@ -1,10 +1,14 @@
 import {
   faBookOpen,
+  faHeart,
   faPencilAlt,
   faUsers,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import SectionNews, { SectionNewsProps } from 'components/SectionNews'
+import SectionNews, {
+  SectionNewsProps,
+  SectionCard,
+} from 'components/SectionNews'
 import { shuffle } from 'lodash'
 import omit from 'lodash/omit'
 import { observer } from 'mobx-react'
@@ -12,13 +16,16 @@ import { RandomImage, Top } from 'models/aggregate'
 import { NextPage } from 'next'
 import QueueAnim from 'rc-queue-anim'
 import Texty from 'rc-texty'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
 import { FriendsSection } from '../components/SectionNews/friend'
 import { SectionWrap } from '../components/SectionNews/section'
 import configs from '../configs'
-
+import Router from 'next/router'
+import { stopEventDefault } from '../utils/dom'
+import service from '../utils/request'
+import { message } from 'antd'
 interface IndexViewProps {
   posts: Top.Post[]
   notes: Top.Note[]
@@ -133,6 +140,63 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
               key={3}
             >
               <FriendsSection />
+            </SectionWrap>,
+            <SectionWrap
+              {...{
+                title: '了解更多',
+                icon: faHeart,
+                showMoreIcon: false,
+              }}
+              key={4}
+            >
+              <SectionCard
+                {...{
+                  title: '留言',
+                  desc: '你的话对我很重要',
+                  src: images.pop() as string,
+                  href: '/message',
+                  onClick: (e) => {
+                    stopEventDefault(e)
+                    Router.push('/[page]', '/message')
+                  },
+                }}
+              />
+              <SectionCard
+                {...{
+                  title: '历史',
+                  desc: '时间飞逝',
+                  src: images.pop() as string,
+                  href: '/message',
+                  onClick: (e) => {
+                    stopEventDefault(e)
+                    Router.push('/[page]', '/message')
+                  },
+                }}
+              />
+              <SectionCard
+                {...{
+                  title: '点赞',
+                  desc: '如果你喜欢的话点个赞呗',
+                  src: images.pop() as string,
+                  href: '/like_this',
+                  onClick: (e) => {
+                    stopEventDefault(e)
+                    service
+                      .post('like_this', null, { withCredentials: true })
+                      .then(() => {
+                        message.success('点赞成功')
+                      })
+                  },
+                }}
+              />
+              <SectionCard
+                {...{
+                  title: '订阅',
+                  desc: '关注订阅不亏哦',
+                  src: images.pop() as string,
+                  href: '/feed',
+                }}
+              />
             </SectionWrap>,
           ]}
         </QueueAnim>

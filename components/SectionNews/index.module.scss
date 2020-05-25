@@ -31,3 +31,19 @@
   white-space: nowrap;
   user-select: none;
 }
+
+.bt {
+  position: absolute;
+  top: 12px;
+  left: 2rem;
+  z-index: 3;
+}
+.mask {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.488) 30%, transparent);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  left: 0;
+}

@@ -9,13 +9,22 @@ export default class AppStore {
   @observable viewport: Partial<ViewportRecord> = {}
   @observable loading = false
   @observable position = 0
+  @observable scrollDirection: 'up' | 'down' | null = null
+
   @observable autoToggleColorMode = true
   @observable colorMode: 'light' | 'dark' = 'light'
   @observable config = { seo: {} as Seo } as any
 
-  @action updatePosition() {
+  @observable headerNav = {
+    title: '测试',
+    meta: '测试',
+    show: false,
+  }
+
+  @action updatePosition(direction: 'up' | 'down') {
     if (typeof document !== 'undefined') {
       this.position = document.documentElement.scrollTop
+      this.scrollDirection = direction
     }
   }
 
