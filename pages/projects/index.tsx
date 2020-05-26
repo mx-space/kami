@@ -1,5 +1,5 @@
 import defaultImage from 'assets/images/Kico.jpg'
-import { Image } from 'components/Image'
+import { ImageLazy } from 'components/Image'
 import { ProjectModel, ProjectRespModel } from 'models/dto/project'
 import { NextPage } from 'next'
 import Link from 'next/link'
@@ -29,7 +29,7 @@ const ProjectView: NextPage<ProjectViewProps> = (props) => {
                     key={project._id}
                   >
                     <a>
-                      <Image
+                      <ImageLazy
                         src={project.avatar ?? defaultImage}
                         alt={project.name}
                         defaultImage={defaultImage}

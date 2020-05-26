@@ -1,5 +1,5 @@
 import Kico from 'assets/images/Kico.jpg'
-import { Image } from 'components/Image'
+import { ImageLazy } from 'components/Image'
 import { SliderImagesPopup } from 'components/SliderImagesPopup'
 import { ProjectModel } from 'models/dto/project'
 import { NextPage } from 'next'
@@ -27,7 +27,7 @@ const ProjectView: NextPage<ProjectViewProps> = (props) => {
         }}
       />
       <section className="project-head">
-        <Image
+        <ImageLazy
           defaultImage={Kico}
           alt={name}
           src={avatar as string}

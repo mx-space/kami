@@ -2,8 +2,8 @@ import { observer } from 'mobx-react'
 import { SayModel, SayRespDto } from 'models/dto/say'
 import { NextPage } from 'next'
 import randomColor from 'randomcolor'
-import QueueAnim from 'rc-queue-anim'
 import { useEffect, useState } from 'react'
+import StackGrid, { transitions } from 'react-stack-grid'
 import { Rest } from 'utils/api'
 import { relativeTimeFromNow } from 'utils/time'
 import { SEO } from '../../components/SEO'
@@ -11,6 +11,8 @@ import { EventTypes } from '../../socket/types'
 import { useStore } from '../../store'
 import { hexToRGB } from '../../utils/color'
 import observable from '../../utils/observable'
+import { usePrevious } from '../../hooks/usePrevious'
+const { scaleUp } = transitions
 interface SayViewProps {
   data: SayModel[]
 }
@@ -21,19 +23,21 @@ const SayView: NextPage<SayViewProps> = (props) => {
   const { appStore } = useStore()
 
   const [colors, setColors] = useState<string[]>([])
-
+  const prevSays = usePrevious(says)
   useEffect(() => {
-    const colorMode = appStore.colorMode
+    if ((prevSays && prevSays.length < says.length) || !prevSays) {
+      const colorMode = appStore.colorMode
 
-    setColors(
-      randomColor({
-        luminosity: colorMode === 'light' ? 'bright' : 'dark',
-        count: says.length,
-      }),
-    )
-  }, [appStore.colorMode, says.length])
+      setColors(
+        randomColor({
+          luminosity: colorMode === 'light' ? 'bright' : 'dark',
+          count: says.length,
+        }),
+      )
+    }
+  }, [appStore.colorMode, prevSays, says.length])
   useEffect(() => {
-    const handler = (data) => {
+    const handler = (data: SayModel) => {
       setSays([data, ...says])
     }
     observable.on(EventTypes.SAY_CREATE, handler)
@@ -42,6 +46,22 @@ const SayView: NextPage<SayViewProps> = (props) => {
       observable.off(EventTypes.SAY_CREATE, handler)
     }
   }, [])
+
+  useEffect(() => {
+    const handler = (id: string) => {
+      setSays(
+        says.filter(({ _id }) => {
+          return _id !== id
+        }),
+      )
+    }
+    observable.on(EventTypes.SAY_DELETE, handler)
+    return () => {
+      // this should clean all handlers
+      observable.off(EventTypes.SAY_DELETE)
+    }
+  }, [])
+
   return (
     <main>
       <SEO title={'说说'} />
@@ -55,11 +75,20 @@ const SayView: NextPage<SayViewProps> = (props) => {
           left: 0;
         }
       `}</style>
-      <div className={'paul-say'} style={{ columns: 'unset' }}>
-        <QueueAnim
-          type={['bottom', 'right']}
-          ease={['easeOutQuart', 'easeInOutQuart']}
-          className={'row s'}
+
+      {
+        <StackGrid
+          columnWidth={appStore.viewport.mobile ? '100%' : '50%'}
+          className={'paul-say'}
+          style={{ columns: 'unset' }}
+          gutterWidth={10}
+          gutterHeight={10}
+          appear={scaleUp.appear}
+          appeared={scaleUp.appeared}
+          enter={scaleUp.enter}
+          entered={scaleUp.entered}
+          leaved={scaleUp.leaved}
+          duration={1000}
         >
           {says.map((say, i) => {
             const hasSource = !!say.source
@@ -88,8 +117,8 @@ const SayView: NextPage<SayViewProps> = (props) => {
               </div>
             )
           })}
-        </QueueAnim>
-      </div>
+        </StackGrid>
+      }
     </main>
   )
 }

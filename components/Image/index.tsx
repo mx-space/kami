@@ -1,26 +1,19 @@
-import LoadImage from 'assets/images/load.gif'
 import { observer } from 'mobx-react'
-import dynamic from 'next/dynamic'
 import randomColor from 'randomcolor'
 import {
   DetailedHTMLProps,
   FC,
   ImgHTMLAttributes,
   memo,
-  MouseEvent,
+  useCallback,
   useEffect,
   useRef,
   useState,
-  useCallback,
 } from 'react'
 import Lightbox, { ILightBoxProps } from 'react-image-lightbox'
-import { LazyImageProps } from 'react-lazy-images'
 import LazyLoad from 'react-lazyload'
 import { useStore } from '../../store'
-const LazyImage = dynamic(
-  () => import('react-lazy-images').then((mo) => mo.LazyImage as any),
-  { ssr: false },
-) as React.StatelessComponent<LazyImageProps>
+
 interface ImageFCProps {
   defaultImage?: string
   src: string
@@ -30,7 +23,7 @@ interface ImageFCProps {
   useRandomBackgroundColor?: boolean
 }
 
-export const Image: FC<
+export const ImageLazy: FC<
   ImageFCProps &
     DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
 > = observer((props) => {
@@ -59,7 +52,10 @@ export const Image: FC<
       if (placeholderRef && placeholderRef.current) {
         placeholderRef.current.classList.add('hide')
         setTimeout(() => {
-          placeholderRef.current!.remove()
+          try {
+            placeholderRef.current!.remove()
+            // eslint-disable-next-line no-empty
+          } catch {}
         }, 600)
       }
       if (wrapRef && wrapRef.current) {
@@ -134,70 +130,6 @@ export const Image: FC<
     </LazyLoad>
   )
 })
-export const ImageLazy: FC<
-  {
-    src: string
-    alt?: string
-    onClick?: (e?: MouseEvent<HTMLImageElement>) => void
-  } & Partial<LazyImageProps>
-> = (props) => {
-  return (
-    <>
-      <style jsx>{`
-        .placeholder.bg {
-          height: 300px;
-          width: 100px;
-          background: #ccc;
-          opacity: 0.6;
-        }
-        .load-error {
-          height: 300px;
-          width: 100%;
-          background: #bbb;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #333;
-          border-radius: 12px;
-        }
-      `}</style>
-      <LazyImage
-        src={props.src}
-        alt={props.alt || props.src}
-        observerProps={{
-          rootMargin: '100px',
-          threshold: 0.3,
-        }}
-        debounceDurationMs={1000}
-        // loadEagerly
-        placeholder={({ imageProps, ref }) => (
-          <div className={'placeholder bg'} ref={ref} />
-        )}
-        loading={() => {
-          return (
-            <img src={LoadImage} alt={'loading'} style={{ height: '300px' }} />
-          )
-        }}
-        error={() => (
-          <div className="load-error">
-            <p>图片加载失败了~ 真是抱歉</p>
-          </div>
-        )}
-        actual={({ imageProps }) => (
-          <img
-            {...imageProps}
-            style={{
-              animation: 'fade-in 1s both',
-              cursor: props.onClick ? 'pointer' : '',
-            }}
-            alt={props.alt || props.src}
-            onClick={props.onClick}
-          />
-        )}
-      />
-    </>
-  )
-}
 
 export const ImageLazyWithPopup: FC<
   { src: string; alt?: string } & ILightBoxProps
@@ -205,7 +137,7 @@ export const ImageLazyWithPopup: FC<
   const [isOpen, setOpen] = useState(false)
   return (
     <>
-      <Image
+      <ImageLazy
         src={props.src}
         alt={props.alt || props.src}
         height={300}
@@ -214,7 +146,7 @@ export const ImageLazyWithPopup: FC<
         }}
         style={{ cursor: 'pointer' }}
         useRandomBackgroundColor
-      ></Image>
+      ></ImageLazy>
       {isOpen && (
         <Lightbox mainSrc={props.src} onCloseRequest={() => setOpen(false)} />
       )}

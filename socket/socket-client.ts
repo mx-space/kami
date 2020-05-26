@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-23 13:18:30
- * @LastEditTime: 2020-05-26 17:29:48
+ * @LastEditTime: 2020-05-26 18:59:38
  * @LastEditors: Innei
  * @FilePath: /mx-web/socket/socket-client.ts
  * @MIT
@@ -55,7 +55,7 @@ export class SocketClient {
     this.socket.open()
   }
   handleEvent(type: EventTypes, data: any) {
-    observable.emit(type)
+    observable.emit(type, data)
     switch (type) {
       case EventTypes.VISITOR_ONLINE:
       case EventTypes.VISITOR_OFFLINE: {

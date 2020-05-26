@@ -1,5 +1,5 @@
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
-import { Image } from 'components/Image'
+import { ImageLazy } from 'components/Image'
 import { pick } from 'lodash'
 import Link from 'next/link'
 import { FC, forwardRef } from 'react'
@@ -31,7 +31,7 @@ const SectionNews: FC<SectionNewsProps> = forwardRef((props, ref: any) => {
           <div className={`col-${size} col-m-3`} key={i}>
             <Link {...pick(item, ['href', 'as'])}>
               <a className="news-article">
-                <Image src={item.background} alt={item.title} />
+                <ImageLazy src={item.background} alt={item.title} />
                 <h4>{item.title}</h4>
               </a>
             </Link>
@@ -64,7 +64,7 @@ export const SectionCard: FC<SectionCardProps> = ({
       <a href={href} className={'news-article'} onClick={onClick}>
         <div className={styles['mask']}></div>
         <h2 className={styles['bt']}>{title}</h2>
-        <Image src={src} alt={title} />
+        <ImageLazy src={src} alt={title} />
         <h4>
           <span style={{ marginLeft: '1rem' }}>{desc}</span>
         </h4>
