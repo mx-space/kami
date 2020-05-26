@@ -14,6 +14,7 @@ import { EventTypes } from './types'
 import configs from '../configs'
 import { gatewayStore, userStore } from '../store'
 import { openNotification } from '../components/Notification'
+import observable from '../utils/observable'
 
 export class SocketClient {
   public socket!: SocketIOClient.Socket
@@ -54,6 +55,7 @@ export class SocketClient {
     this.socket.open()
   }
   handleEvent(type: EventTypes, data: any) {
+    observable.emit(type)
     switch (type) {
       case EventTypes.VISITOR_ONLINE:
       case EventTypes.VISITOR_OFFLINE: {

@@ -7,6 +7,8 @@
  * @MIT
  */
 
+import { EventTypes } from '../socket/types'
+
 interface Observer {
   id: string
   callback: Function
@@ -29,7 +31,7 @@ export class Observable {
     }
   }
 
-  emit(event: string, payload?: any) {
+  emit(event: EventTypes, payload?: any) {
     this.observers.map(({ id, callback }) => {
       if (id === event) {
         callback.call(this, payload)

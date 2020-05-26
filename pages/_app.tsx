@@ -9,6 +9,7 @@ import 'antd/es/message/style/index.css'
 import 'antd/es/pagination/style/index.css'
 import 'antd/es/popover/style/index.css'
 import 'antd/es/notification/style/index.css'
+
 import 'assets/styles/shizuku.scss'
 import 'assets/styles/extra.scss'
 import Loader from 'components/Loader'
