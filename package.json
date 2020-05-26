@@ -31,7 +31,7 @@
     "@mx-space/extra": "^0.3.1",
     "@openfonts/noto-sans-sc_vietnamese": "^1.44.0",
     "@types/ua-parser-js": "^0.7.33",
-    "antd": "4.2.2",
+    "antd": "4.2.5",
     "apicache": "^1.5.3",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
