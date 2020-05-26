@@ -23,7 +23,6 @@
 #write a:active,
 #write a:focus,
 #write a:visited {
-  color: var(--blue);
   text-decoration: none;
 }
 #write a:not([href]) {

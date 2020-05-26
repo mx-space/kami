@@ -11,7 +11,7 @@
  *
  * @Author: Innei
  * @Date: 2020-04-29 17:27:02
- * @LastEditTime: 2020-05-24 14:37:41
+ * @LastEditTime: 2020-05-26 21:10:04
  * @LastEditors: Innei
  * @FilePath: /mx-web/pages/_document.tsx
  * @MIT
@@ -184,6 +184,11 @@ export default class MyDocument extends Document<{ ua: string }> {
           />
           <link
             href="https://fonts.googleapis.com/css?family=Noto+Serif+SC"
+            rel="stylesheet"
+            type="text/css"
+          />
+          <link
+            href="https://cdn.jsdelivr.net/gh/Innei/zshrc@0.1.1/webfont/OperatorMono.css"
             rel="stylesheet"
             type="text/css"
           />
