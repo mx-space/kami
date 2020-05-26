@@ -1,3 +1,12 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-04-29 17:27:02
+ * @LastEditTime: 2020-05-26 17:35:42
+ * @LastEditors: Innei
+ * @FilePath: /mx-web/store/index.ts
+ * @Copyright
+ */
+
 import { createContext, useContext } from 'react'
 import AppStore from './app'
 import CategoryStore from './category'
@@ -8,10 +17,11 @@ import { Stores } from './types'
 import UserStore from './user'
 import GatewayStore from './gateway'
 export const gatewayStore = new GatewayStore()
+export const userStore = new UserStore()
 export default function createMobxStores(): Stores {
   return {
     appStore: new AppStore(),
-    userStore: new UserStore(),
+    userStore,
     socialStore: new SocialStore(),
     pageStore: new PageStore(),
     categoryStore: new CategoryStore(),

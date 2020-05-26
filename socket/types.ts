@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
- * @Date: 2020-05-23 13:19:25
- * @LastEditTime: 2020-05-23 13:19:33
+ * @Date: 2020-05-21 11:05:42
+ * @LastEditTime: 2020-05-26 17:27:29
  * @LastEditors: Innei
  * @FilePath: /mx-web/socket/types.ts
  * @MIT
@@ -25,4 +25,8 @@ export enum EventTypes {
   NOTE_CREATE = 'NOTE_CREATE',
   NOTE_UPDATE = 'NOTE_UPDATE',
   NOTE_DELETE = 'NOTE_DELETE',
+
+  SAY_CREATE = 'SAY_CREATE',
+
+  DANMAKU_CREATE = 'DANMAKU_CREATE',
 }

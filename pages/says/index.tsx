@@ -6,6 +6,9 @@ import QueueAnim from 'rc-queue-anim'
 import { Rest } from 'utils/api'
 import { relativeTimeFromNow } from 'utils/time'
 import { SEO } from '../../components/SEO'
+import { useState, useEffect } from 'react'
+import { useStore } from '../../store'
+import { hexToRGB } from '../../utils/color'
 
 interface SayViewProps {
   data: SayModel[]
@@ -13,17 +16,20 @@ interface SayViewProps {
 
 const SayView: NextPage<SayViewProps> = (props) => {
   const { data } = props
-  let getRandomColor
-  if (typeof window !== 'undefined') {
-    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-    getRandomColor = () => {
-      return randomColor({
-        luminosity: isDarkMode ? 'bright' : 'dark',
-        alpha: 0.05,
-        format: 'rgba',
-      })
-    }
-  }
+  const { appStore } = useStore()
+
+  const [colors, setColors] = useState<string[]>([])
+
+  useEffect(() => {
+    const colorMode = appStore.colorMode
+
+    setColors(
+      randomColor({
+        luminosity: colorMode === 'light' ? 'bright' : 'dark',
+        count: props.data.length,
+      }),
+    )
+  }, [appStore.colorMode, props.data.length])
 
   return (
     <main>
@@ -43,19 +49,15 @@ const SayView: NextPage<SayViewProps> = (props) => {
           type={['bottom', 'right']}
           ease={['easeOutQuart', 'easeInOutQuart']}
         >
-          {data.map((say) => {
+          {data.map((say, i) => {
             const hasSource = !!say.source
             const hasAuthor = !!say.author
             return (
               <blockquote
                 key={say._id}
                 style={{
-                  borderLeftColor: randomColor({
-                    luminosity: 'bright',
-                    alpha: 0.7,
-                    format: 'rgba',
-                  }),
-                  backgroundColor: getRandomColor?.() || '',
+                  borderLeftColor: hexToRGB(colors[i] || '', 0.7),
+                  backgroundColor: hexToRGB(colors[i] || '', 0.05),
                   transition: 'all 0.5s',
                 }}
               >

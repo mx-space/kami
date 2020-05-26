@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-23 13:18:30
- * @LastEditTime: 2020-05-23 14:27:55
+ * @LastEditTime: 2020-05-26 17:29:48
  * @LastEditors: Innei
  * @FilePath: /mx-web/socket/socket-client.ts
  * @MIT
@@ -12,7 +12,7 @@ import io from 'socket.io-client'
 import { Notice } from '../utils/notice'
 import { EventTypes } from './types'
 import configs from '../configs'
-import { gatewayStore } from '../store'
+import { gatewayStore, userStore } from '../store'
 import { openNotification } from '../components/Notification'
 
 export class SocketClient {
@@ -63,14 +63,32 @@ export class SocketClient {
       }
       case EventTypes.POST_CREATE:
       case EventTypes.NOTE_CREATE: {
-        const message = '作者发布了新的文章: ' + data.title
+        const message = noticeHead('文章', data.title)
         this.#notice.notice(this.#title, message)
         openNotification({
           key: data._id,
           message,
-          description: data.text.slice(0, 20) + '...',
+          description: getDescription(data.text),
         })
+        break
+      }
+      case EventTypes.SAY_CREATE: {
+        const message = noticeHead('说说')
+        this.#notice.notice(this.#title, message)
+        openNotification({
+          key: data._id,
+          message,
+          description: getDescription(data.text),
+        })
+        break
       }
     }
   }
+}
+
+function noticeHead(type: string, title?: string) {
+  return `${userStore.name}发布了新的${type}${title ? ': ' + title : ''}`
+}
+function getDescription(text: string) {
+  return text.slice(0, 20) + '...'
 }
