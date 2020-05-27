@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Avatar, Comment, message, Popconfirm } from 'antd'
 import Markdown from 'components/MD-render'
 import { CommentModel } from 'models/dto/comment'
-import { FC, useContext, useState } from 'react'
+import { FC, useContext, useState, useCallback } from 'react'
 import { Rest } from 'utils/api'
 import { relativeTimeFromNow } from 'utils/time'
 import { CommentContext, openCommentMessage } from '.'
@@ -44,23 +44,31 @@ const Comments: FC<{
       message.success('删除成功~')
       fetchComments()
     }
+    const getUrl = () => {
+      try {
+        const host = new URL(comment.url).host
+        return '//' + host
+      } catch {
+        return 'javascript:;'
+      }
+    }
+    const url = getUrl()
     return (
       <Comment
         key={comment._id}
         author={
-          <a
-            href={'//' + (comment.url?.replace(/^https?/, '') ?? '')}
-            rel={'nofollow'}
-          >
+          <a href={url} rel={'nofollow'}>
             {comment.author}
           </a>
         }
         avatar={
-          <Avatar
-            icon={<FontAwesomeIcon icon={faUser} />}
-            src={comment.avatar}
-            alt={comment.author}
-          />
+          <a href={url} rel={'nofollow'}>
+            <Avatar
+              icon={<FontAwesomeIcon icon={faUser} />}
+              src={comment.avatar}
+              alt={comment.author}
+            />
+          </a>
         }
         content={<Markdown value={comment.text} />}
         datetime={relativeTimeFromNow(comment.created) + ' ' + comment.key}

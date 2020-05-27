@@ -115,9 +115,10 @@ const CommentBox: FC<{
         </div>
       )}
       <TextArea
+        maxLength={500}
         rows={4}
         required
-        autoSize
+        autoSize={{ minRows: 4 }}
         placeholder={'亲亲, 留个评论好不好嘛~'}
         value={text}
         onChange={(e) => setText(e.target.value)}
