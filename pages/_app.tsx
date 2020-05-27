@@ -146,7 +146,7 @@ class Context extends PureComponent<Store & { data: any }> {
       window.addEventListener('beforeinstallprompt', (e: any) => {
         e.preventDefault()
 
-        e.prompt()
+        // e.prompt()
       })
       const getColormode = <T extends { matches: boolean }>(e: T) => {
         this.props.app!.colorMode = e.matches ? 'dark' : 'light'
