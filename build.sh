@@ -1,7 +1,7 @@
 ###
 # @Author: Innei
 # @Date: 2020-05-10 10:35:55
-# @LastEditTime: 2020-05-26 19:48:35
+# @LastEditTime: 2020-05-27 10:17:15
 # @LastEditors: Innei
 # @FilePath: /mx-web/build.sh
 # @Copyright
@@ -20,4 +20,4 @@ git add _next
 git commit -m "update: $(date)"
 git remote add origin git@github.com:Innei/web-cdn.git
 git push -u origin master -f
-pm2 reload ecosystem.config.js
+yarn prod:reload
