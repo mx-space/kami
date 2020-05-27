@@ -139,7 +139,11 @@ export default class Header extends React.Component<Store> {
             {menu?.map((item: MenuModel) => {
               return (
                 <div
-                  className={item.subMenu ? 'has-child' : 'menu-link'}
+                  className={
+                    item.subMenu && item.subMenu.length > 0
+                      ? 'has-child'
+                      : 'menu-link'
+                  }
                   key={item._id}
                   onClick={this.closeMenu}
                 >

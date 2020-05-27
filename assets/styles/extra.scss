@@ -269,6 +269,33 @@ pre {
 .image-hide {
   display: none;
 }
+.lazyload-image {
+  animation: blur 0.8s forwards ease-in-out;
+}
+@media screen and (prefers-color-scheme: dark) {
+  .lazyload-image {
+    animation: blur-dark 0.8s forwards ease-in-out;
+  }
+}
+html.dark .lazyload-image {
+  animation: blur-dark 0.8s forwards ease-in-out;
+}
+@keyframes blur {
+  from {
+    filter: blur(10px);
+  }
+  to {
+    filter: blur(0);
+  }
+}
+@keyframes blur-dark {
+  from {
+    filter: blur(10px) brightness(0.6);
+  }
+  to {
+    filter: blur(0) brightness(0.6);
+  }
+}
 @media screen and (max-width: 600px) {
   .paul-say {
     columns: 1;

@@ -99,7 +99,7 @@ export const ImageLazy: FC<
         >
           <img
             ref={realImageRef}
-            className={'image-hide'}
+            className={'image-hide lazyload-image'}
             {...rest}
             alt={alt}
           />
@@ -116,7 +116,7 @@ export const ImageLazy: FC<
               filter:
                 useRandomBackgroundColor && colorMode === 'dark'
                   ? 'brightness(0.5)'
-                  : undefined,
+                  : 'brightness(1.5)',
             }}
           ></div>
         </div>

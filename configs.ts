@@ -97,6 +97,7 @@ const menu: MenuModel[] = [
       },
     ],
   },
+
   {
     _id: '8',
     title: '好友们',
