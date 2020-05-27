@@ -134,7 +134,11 @@ const CommentBox: FC<{
             取消回复
           </button>
         )}
-        <button className="btn yellow" onClick={handleSubmit}>
+        <button
+          className="btn yellow"
+          onClick={handleSubmit}
+          disabled={text.trim().length === 0}
+        >
           发送
         </button>
       </div>
