@@ -18,7 +18,7 @@ export default class MusicStore {
   }
 
   async init() {
-    return await this.setPlaylist([
+    return this.setPlaylist([
       28411764,
       1360122230,
       1341912654,
