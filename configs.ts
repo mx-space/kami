@@ -1,5 +1,5 @@
 import { faGithub, faQq, faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { faClock } from '@fortawesome/free-regular-svg-icons'
+import { faClock, faLifeRing } from '@fortawesome/free-regular-svg-icons'
 import {
   faBook,
   faComments,
@@ -10,6 +10,8 @@ import {
   faStar,
   faTv,
   faUserFriends,
+  faBookOpen,
+  faPenAlt,
 } from '@fortawesome/free-solid-svg-icons'
 import { MenuModel, SocialLinkModel } from 'store/types'
 const menu: MenuModel[] = [
@@ -31,7 +33,7 @@ const menu: MenuModel[] = [
   },
   {
     _id: '3',
-    title: '日记',
+    title: '生活',
     type: 'Note',
     path: '/notes',
     icon: faPen,
@@ -79,6 +81,22 @@ const menu: MenuModel[] = [
     icon: faClock,
     type: 'Custom',
     path: '/timeline',
+    subMenu: [
+      {
+        _id: '7-1',
+        title: '生活',
+        type: 'Note',
+        icon: faPen,
+        path: '/timeline?type=note',
+      },
+      {
+        _id: '7-2',
+        title: '博文',
+        type: 'Post',
+        icon: faBookOpen,
+        path: '/timeline?type=post',
+      },
+    ],
   },
   {
     _id: '8',

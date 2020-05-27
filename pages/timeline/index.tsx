@@ -38,6 +38,7 @@ type mapType = {
   href: string
   as: string
   type: ArticleType
+  id: string
 }
 const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
   const sortedMap = new Map<number, mapType[]>()
@@ -66,6 +67,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
         as: `/posts/${post.category.slug}/${post.slug}`,
         href: `/posts/[category]/[slug]`,
         type: ArticleType.Post,
+        id: post._id,
       }
       sortedMap.set(
         year,
@@ -88,6 +90,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
         as: `/notes/${note.nid}`,
         href: '/notes/[id]',
         type: ArticleType.Note,
+        id: note._id,
       }
 
       sortedMap.set(
@@ -103,10 +106,11 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
     )
   })
   useEffect(() => {
-    if (!map.size) {
-      setMap(sortedMap)
-    }
-  }, [map, sortedMap])
+    setMap(sortedMap)
+  }, [])
+  useEffect(() => {
+    setMap(sortedMap)
+  }, [props.posts, props.notes])
 
   return (
     <ArticleLayout
@@ -128,7 +132,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
                     return (
                       <QueueAnim
                         type={'bottom'}
-                        key={i}
+                        key={item.id}
                         delay={getDelayTime(year) + i * 100}
                       >
                         <li key={i * j}>

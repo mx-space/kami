@@ -16,8 +16,8 @@ export default class AppStore {
   @observable config = { seo: {} as Seo } as any
 
   @observable headerNav = {
-    title: '测试',
-    meta: '测试',
+    title: '',
+    meta: '',
     show: false,
   }
 

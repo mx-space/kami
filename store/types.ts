@@ -7,6 +7,7 @@ import PageStore from './pages'
 import SocialStore from './social'
 import UserStore from './user'
 import GatewayStore from './gateway'
+import { UrlObject } from 'url'
 
 export enum LayoutType {
   Post,
@@ -26,7 +27,7 @@ export interface MenuModel {
   path: string
   subMenu?: MenuModel[]
   icon?: IconDefinition
-  as?: string
+  as?: string | UrlObject
   independent?: boolean
 }
 
