@@ -1,7 +1,8 @@
 import { faGithub, faQq, faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { faClock, faLifeRing } from '@fortawesome/free-regular-svg-icons'
+import { faClock } from '@fortawesome/free-regular-svg-icons'
 import {
   faBook,
+  faBookOpen,
   faComments,
   faFlask,
   faHome,
@@ -10,8 +11,6 @@ import {
   faStar,
   faTv,
   faUserFriends,
-  faBookOpen,
-  faPenAlt,
 } from '@fortawesome/free-solid-svg-icons'
 import { MenuModel, SocialLinkModel } from 'store/types'
 const menu: MenuModel[] = [
