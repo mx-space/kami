@@ -11,6 +11,7 @@ import UserStore from 'store/user'
 import PageStore from '../../store/pages'
 import styles from './index.module.scss'
 import classNames from 'classnames'
+import Router from 'next/router'
 interface Store {
   app?: AppStore
   master?: UserStore
@@ -63,6 +64,10 @@ export default class Header extends React.Component<Store> {
             display: flex;
             align-items: center;
           }
+          header {
+            background-color: var(--light-bg-opacity);
+            backdrop-filter: blur(25px);
+          }
           @media screen and (max-width: 600px) {
             .head-logo {
               display: block;
@@ -85,7 +90,12 @@ export default class Header extends React.Component<Store> {
           </div>
         )}
 
-        <div className="head-logo">
+        <div
+          className="head-logo"
+          onClick={() => {
+            this.props.app?.viewport.mobile ? Router.push('/') : null
+          }}
+        >
           <Logo />
         </div>
         <div
