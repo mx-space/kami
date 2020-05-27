@@ -12,6 +12,7 @@ import PageStore from '../../store/pages'
 import styles from './index.module.scss'
 import classNames from 'classnames'
 import Router from 'next/router'
+
 interface Store {
   app?: AppStore
   master?: UserStore
@@ -58,7 +59,22 @@ export default class Header extends React.Component<Store> {
     const app = this.props.app
     const { menu } = app || {}
     return (
-      <header className={this.state.menuOpen ? 'active' : ''}>
+      <header
+        className={classNames(
+          this.state.menuOpen ? 'active' : '',
+          this.props.app?.viewport.mobile &&
+            this.props.app.scrollDirection == 'down' &&
+            this.props.app.isOverflow
+            ? 'hide'
+            : null,
+        )}
+        style={{
+          backdropFilter:
+            this.state.menuOpen && this.props.app?.viewport.mobile
+              ? 'unset'
+              : undefined,
+        }}
+      >
         <style jsx>{`
           .head-logo {
             display: flex;
@@ -67,6 +83,11 @@ export default class Header extends React.Component<Store> {
           header {
             background-color: var(--light-bg-opacity);
             backdrop-filter: blur(25px);
+            z-index: 5;
+            transition: transform 0.5s;
+          }
+          header.hide {
+            transform: translateY(-100%);
           }
           @media screen and (max-width: 600px) {
             .head-logo {

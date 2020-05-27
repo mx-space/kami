@@ -1,3 +1,12 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-04-29 17:27:02
+ * @LastEditTime: 2020-05-27 11:30:45
+ * @LastEditors: Innei
+ * @FilePath: /mx-web/store/music.ts
+ * @Copyright
+ */
+
 import axios from 'axios'
 import { action, observable } from 'mobx'
 import { MusicModel } from 'models/music'
@@ -9,7 +18,13 @@ export default class MusicStore {
   }
 
   async init() {
-    return await this.setPlaylist([1433810176, 456310390])
+    return await this.setPlaylist([
+      28411764,
+      1360122230,
+      1341912654,
+      785887,
+      472109066,
+    ])
   }
 
   @observable playlist: MusicModel[] = []

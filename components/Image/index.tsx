@@ -103,6 +103,8 @@ export const ImageLazy: FC<
             {...rest}
             alt={alt}
           />
+
+          {alt && alt.startsWith('!') && <p>{alt.slice(1)}</p>}
           <div
             className="placeholder-image"
             ref={placeholderRef}

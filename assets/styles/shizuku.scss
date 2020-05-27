@@ -235,6 +235,16 @@
 #write img[align='left'] {
   padding-right: 20px;
 }
+#write img + p {
+  text-align: center;
+  font-size: 14px;
+  color: var(--gary);
+  user-select: none;
+
+  &::before {
+    content: '⇡ ';
+  }
+}
 #write .emoji {
   max-width: none;
   vertical-align: text-top;

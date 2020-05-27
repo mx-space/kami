@@ -11,7 +11,7 @@
  *
  * @Author: Innei
  * @Date: 2020-04-29 17:27:02
- * @LastEditTime: 2020-05-26 21:10:04
+ * @LastEditTime: 2020-05-27 11:51:32
  * @LastEditors: Innei
  * @FilePath: /mx-web/pages/_document.tsx
  * @MIT
@@ -203,6 +203,11 @@ export default class MyDocument extends Document<{ ua: string }> {
             />
           ) : null}
           <meta name="keywords" content={configs.keywords.join(',')} />
+        </Head>
+
+        <body id={'app'} className="loading">
+          <Main />
+          <NextScript />
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           <script
             async
@@ -220,11 +225,6 @@ export default class MyDocument extends Document<{ ua: string }> {
           `,
             }}
           />
-        </Head>
-
-        <body id={'app'} className="loading">
-          <Main />
-          <NextScript />
         </body>
       </html>
     )

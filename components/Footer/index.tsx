@@ -58,6 +58,10 @@ export const Footer: FC = observer(() => {
               <a href="/sitemap.xml" target={'_blank'}>
                 站点地图
               </a>
+              ·
+              <a href="https://travellings.now.sh/" target={'_blank'}>
+                开往
+              </a>
             </p>
             <p style={{ marginRight: appStore.viewport.mobile ? '' : '3rem' }}>
               {gatewayStore.online} 个小伙伴正在浏览

@@ -4,7 +4,20 @@
   --gray: #bbb;
   --bg-opacity: rgba(255, 255, 255, 0.1);
 }
-
+html {
+  overflow: overlay;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ffc107;
+  background-clip: padding-box;
+  border: 3px solid transparent;
+  border-radius: 5px;
+}
 html.dark {
   --black: #fff;
   --shizuku-background-color: #21212;
@@ -323,7 +336,9 @@ html.light footer:before {
 .aplayer {
   color: #333;
 }
-
+.player {
+  right: calc(100vw - 166px);
+}
 // ant desion restyle
 .ant-pagination-prev .ant-pagination-item-link,
 .ant-pagination-next .ant-pagination-item-link {

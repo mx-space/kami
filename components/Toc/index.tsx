@@ -51,7 +51,7 @@ export const Toc: FC = () => {
   })
 
   return (
-    <section className="paul-lister">
+    <section className="paul-lister" style={{ zIndex: -1 }}>
       <div className="container" ref={containerRef}>
         <QueueAnim>
           {headings &&
