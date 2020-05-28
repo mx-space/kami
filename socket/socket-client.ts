@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-23 13:18:30
- * @LastEditTime: 2020-05-26 18:59:38
+ * @LastEditTime: 2020-05-28 18:55:24
  * @LastEditors: Innei
  * @FilePath: /mx-web/socket/socket-client.ts
  * @MIT
@@ -85,6 +85,15 @@ export class SocketClient {
         break
       }
     }
+  }
+  emit(event: EventTypes, payload: any) {
+    return new Promise((resolve, reject) => {
+      if (this.socket && this.socket.connected) {
+        this.socket.emit(event, payload, (payload) => {
+          resolve(payload)
+        })
+      }
+    })
   }
 }
 

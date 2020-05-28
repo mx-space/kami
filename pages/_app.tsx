@@ -42,6 +42,7 @@ import * as gtag from '../utils/gtag'
 import { getBrowserType } from '../utils/ua'
 import { AntiDebug } from '../utils/forbidden'
 import client from '../socket'
+import { listenerInit } from '../utils/danmaku'
 
 const stores = createMobxStores()
 if (process.env.NODE_ENV === 'development') {
@@ -132,17 +133,7 @@ class Context extends PureComponent<Store & { data: any }> {
         AntiDebug.checkDebug(() => console.log('请不要打开调试')) as any
       }
 
-      console.log(
-        '%c Kico Style %c https://paugram.com ',
-        'color: #fff; margin: 1em 0; padding: 5px 0; background: #3498db;',
-        'margin: 1em 0; padding: 5px 0; background: #efefef;',
-      )
-      console.log(
-        '%c Mix Space %c https://innei.ren ',
-        'color: #fff; margin: 1em 0; padding: 5px 0; background: #2980b9;',
-        'margin: 1em 0; padding: 5px 0; background: #efefef;',
-      )
-
+      this.printToConsole()
       window.addEventListener('beforeinstallprompt', (e: any) => {
         e.preventDefault()
 
@@ -182,7 +173,8 @@ class Context extends PureComponent<Store & { data: any }> {
 
       // connect to ws
       client.initIO()
-
+      // danmaku init
+      listenerInit()
       this.setState({
         loading: false,
       })
@@ -190,6 +182,18 @@ class Context extends PureComponent<Store & { data: any }> {
     }
   }
 
+  printToConsole() {
+    console.log(
+      '%c Kico Style %c https://paugram.com ',
+      'color: #fff; margin: 1em 0; padding: 5px 0; background: #3498db;',
+      'margin: 1em 0; padding: 5px 0; background: #efefef;',
+    )
+    console.log(
+      '%c Mix Space %c https://innei.ren ',
+      'color: #fff; margin: 1em 0; padding: 5px 0; background: #2980b9;',
+      'margin: 1em 0; padding: 5px 0; background: #efefef;',
+    )
+  }
   componentWillUnmount() {
     window.onresize = null
     document.removeEventListener('scroll', this.scrollCb)

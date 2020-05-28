@@ -1,32 +1,51 @@
-import { faPaperPlane, faCog } from '@fortawesome/free-solid-svg-icons'
+import { faCog, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import QueueAnim from 'rc-queue-anim'
-import { FC, forwardRef, useState, useRef } from 'react'
-import ReactDOM from 'react-dom'
-import { stopEventDefault } from '../../utils/dom'
-import { Message } from './components/message'
-import style from './index.module.scss'
-import { createDangmaku } from '../../utils/dangmaku'
-import { Setting, STORE_PREFIX } from './components/setting'
 import { message } from 'antd'
+import QueueAnim from 'rc-queue-anim'
+import { FC, forwardRef, useRef, useState, useEffect } from 'react'
+import ReactDOM from 'react-dom'
+import client from 'socket'
+import { EventTypes } from 'socket/types'
+import { stopEventDefault } from '../../utils/dom'
+import { OwnerMessage } from './components/message'
+import { Setting, STORE_PREFIX } from './components/setting'
+import style from './index.module.scss'
+
 const _ChatPanel: FC<any> = forwardRef((props, ref: any) => {
   const [value, setValue] = useState('')
   const [settingShow, setSettingShow] = useState(false)
   const SettingRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
   const [pos, setPos] = useState<{ x: number; y: number }>({} as any)
-
+  const inputRef = useRef<HTMLInputElement>(null)
+  const [isChineseInput, setComposition] = useState(false)
+  useEffect(() => {
+    inputRef.current?.focus()
+  }, [])
   const handleSend = () => {
     const json = localStorage.getItem(STORE_PREFIX) as string
 
     const store = JSON.parse(json || '{}')
-    if (store && store.color && store.author) {
-      createDangmaku({ text: store.author + ': ' + value, color: store.color })
+    if (store && store.color && store.author && value.trim().length > 0) {
       setValue('')
+      client
+        .emit(EventTypes.DANMAKU_CREATE, {
+          text: value,
+          author: store.author,
+          color: store.color,
+        })
+        .then((errors) => {
+          // console.log(errors)
+          // if (errors.length > 0) {
+          //   return
+          // }
+          // TODO
+        })
     } else {
       message.error('你还没有填写昵称啦')
     }
   }
+
   return (
     <>
       <div
@@ -37,7 +56,14 @@ const _ChatPanel: FC<any> = forwardRef((props, ref: any) => {
       >
         <div className={style['header']}>广播</div>
         <div className={style['container']}>
-          <Message />
+          <OwnerMessage
+            text={`在这里你可以发送弹幕, 并且广播给正在浏览本站的小伙伴, 点击左边的设置, 首先给自己起一个昵称吧`}
+            date={new Date()}
+          />
+          <OwnerMessage
+            text={`本站不会记录任何广播消息, 欢迎玩的开心呀!~`}
+            date={new Date()}
+          />
         </div>
         <div className={style['footer']}>
           <button
@@ -65,15 +91,22 @@ const _ChatPanel: FC<any> = forwardRef((props, ref: any) => {
             onChange={(e) => {
               setValue(e.target.value)
             }}
+            onCompositionStart={(e) => {
+              setComposition(true)
+            }}
+            onCompositionEnd={(e) => {
+              setComposition(false)
+            }}
             onContextMenu={(e) => e.stopPropagation()}
             onKeyDown={(e) => {
-              if (e.key === 'Enter') {
+              if (e.key === 'Enter' && !isChineseInput) {
                 handleSend()
               }
             }}
+            ref={inputRef}
           />
-          <button className="btn yellow" disabled>
-            发送 <FontAwesomeIcon icon={faPaperPlane} />
+          <button className="btn yellow" onClick={handleSend}>
+            biu~~ <FontAwesomeIcon icon={faPaperPlane} />
           </button>
         </div>
       </div>

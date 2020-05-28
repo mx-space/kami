@@ -31,8 +31,14 @@ export const Setting: FC<
 
   useEffect(() => {
     const json = localStorage.getItem(STORE_PREFIX) as string
+
     const store = JSON.parse(json || '{}')
-    if (store && store.color && store.author) {
+
+    if (
+      store &&
+      typeof store.color !== 'undefined' &&
+      typeof store.author !== 'undefined'
+    ) {
       setColor(store.color)
       setAuthor(store.author)
     }
@@ -60,6 +66,7 @@ export const Setting: FC<
               <span>颜色~</span>
               <button
                 className={'btn blue'}
+                style={{ backgroundColor: color }}
                 onClick={(e) => {
                   stopEventDefault(e)
                   setShow(!show)
@@ -95,6 +102,7 @@ export const Setting: FC<
                 STORE_PREFIX,
                 JSON.stringify({ color, author }),
               )
+
               props.setHide()
             }}
           >
