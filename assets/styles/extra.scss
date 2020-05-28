@@ -358,6 +358,19 @@ html.dark .lazyload-image {
 html.light footer:before {
   filter: none;
 }
+// dangmaku
+
+@keyframes dangmaku {
+  from {
+    right: 0;
+    transform: translateX(100%);
+  }
+  to {
+    right: 100vw;
+    transform: translateX(-100%);
+  }
+}
+
 // aplayer restyle
 
 .aplayer {

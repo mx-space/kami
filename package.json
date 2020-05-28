@@ -58,6 +58,7 @@
     "react": "^16.13.1",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-aplayer": "^1.0.0",
+    "react-color": "^2.18.1",
     "react-dom": "^16.13.1",
     "react-image-lightbox": "^5.1.1",
     "react-intersection-observer": "^8.26.2",

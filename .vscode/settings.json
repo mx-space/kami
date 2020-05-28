@@ -1,6 +1,7 @@
 {
   "eslint.enable": true,
   "cSpell.words": [
+    "Dangmaku",
     "mobx"
   ]
 }

@@ -23,12 +23,18 @@
   }
   .footer {
     margin: 0 10px;
-    display: flex;
-    justify-content: space-between;
+    // display: flex;
+    // justify-content: space-between;
+    display: grid;
+    grid-template-columns: 36px auto 6rem;
+    grid-gap: 6px;
   }
   .text,
   .container {
     border: 1px solid var(--gray);
+  }
+  .text {
+    width: 100%;
   }
   box-shadow: rgba($color: #000000, $alpha: 0.2) 0px 0px 20px;
   &,
