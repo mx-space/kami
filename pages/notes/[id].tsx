@@ -37,9 +37,11 @@ interface NoteViewProps {
   prev: Partial<NoteModel>
   next: Partial<NoteModel>
 }
-
+// FIXME crash
 const renderLines: FC = (props) => {
-  console.log(props)
+  if (!props.children) {
+    return null
+  }
   const isImage = !!((props.children as any)[0] as any)?.props?.src
   return (
     <p className={isImage ? undefined : 'indent'}>
@@ -58,16 +60,22 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
   const removeMd = RemoveMarkdown(text)
   const description = removeMd.slice(0, 100)
   useEffect(() => {
-    const wordCount = removeMd.length
+    try {
+      const wordCount = removeMd.length
 
-    setTips(
-      `创建于 ${parseDate(data.created, 'YYYY-MM-DD dddd')}, 修改于 ${parseDate(
-        data.modified,
-        'YYYY-MM-DD dddd',
-      )}, 全文字数: ${wordCount}, 阅读次数: ${data.count.read}, 喜欢次数: ${
-        data.count.like
-      }`,
-    )
+      setTips(
+        `创建于 ${parseDate(
+          data.created,
+          'YYYY-MM-DD dddd',
+        )}, 修改于 ${parseDate(
+          data.modified,
+          'YYYY-MM-DD dddd',
+        )}, 全文字数: ${wordCount}, 阅读次数: ${data.count.read}, 喜欢次数: ${
+          data.count.like
+        }`,
+      )
+      // eslint-disable-next-line no-empty
+    } catch {}
   }, [
     text,
     data.created,
@@ -175,7 +183,7 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
               <button
                 className="btn green"
                 onClick={() => {
-                  router.push('/notes/[id]', `/notes/${next.nid}`, {})
+                  router.push('/notes/[id]', `/notes/${next.nid}`)
                 }}
               >
                 前一篇
@@ -185,7 +193,7 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
               <button
                 className="btn green"
                 onClick={() => {
-                  router.push('/notes/[id]', `/notes/${prev.nid}`, {})
+                  router.push('/notes/[id]', `/notes/${prev.nid}`)
                 }}
               >
                 后一篇
