@@ -81,7 +81,7 @@
     "@types/express": "^4.17.6",
     "@types/inflection": "^1.5.28",
     "@types/js-cookie": "^2.2.6",
-    "@types/lodash": "^4.14.152",
+    "@types/lodash": "^4.14.153",
     "@types/markdown-it": "^10.0.1",
     "@types/morgan": "^1.9.0",
     "@types/next": "^9.0.0",
