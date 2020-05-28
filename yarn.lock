@@ -1103,10 +1103,10 @@
     date-fns "^2.12.0"
     netease-music-sdk "^0.3.3"
 
-"@next/bundle-analyzer@^9.4.1":
-  version "9.4.2"
-  resolved "https://registry.npm.taobao.org/@next/bundle-analyzer/download/@next/bundle-analyzer-9.4.2.tgz#0bb38111eb54254ec6f5edcb3467bff2764face7"
-  integrity sha1-C7OBEetUJU7G9e3LNGe/8nZPrOc=
+"@next/bundle-analyzer@^9.4.4":
+  version "9.4.4"
+  resolved "https://registry.yarnpkg.com/@next/bundle-analyzer/-/bundle-analyzer-9.4.4.tgz#09ac54a3a2c2a0275a36a502b335100f876997ac"
+  integrity sha512-MRBk0SYyKvnTet3g6vzMbqTGtcGFIwge7XA+iUpZp45wdePYYPCIdSNz4xv1Dk4iPZRKTEMScLprsUPmtXGXnw==
   dependencies:
     webpack-bundle-analyzer "3.6.1"
 
