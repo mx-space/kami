@@ -359,7 +359,9 @@ html.light footer:before {
   filter: none;
 }
 // dangmaku
-
+.shadow {
+  box-shadow: rgba($color: #000000, $alpha: 0.2) 0px 0px 20px;
+}
 @keyframes dangmaku {
   from {
     right: 0;

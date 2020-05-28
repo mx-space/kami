@@ -7,13 +7,26 @@ import { stopEventDefault } from '../../utils/dom'
 import { Message } from './components/message'
 import style from './index.module.scss'
 import { createDangmaku } from '../../utils/dangmaku'
-import { Setting } from './components/Setting'
+import { Setting, STORE_PREFIX } from './components/setting'
+import { message } from 'antd'
 const _ChatPanel: FC<any> = forwardRef((props, ref: any) => {
   const [value, setValue] = useState('')
   const [settingShow, setSettingShow] = useState(false)
   const SettingRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
   const [pos, setPos] = useState<{ x: number; y: number }>({} as any)
+
+  const handleSend = () => {
+    const json = localStorage.getItem(STORE_PREFIX) as string
+
+    const store = JSON.parse(json || '{}')
+    if (store && store.color && store.author) {
+      createDangmaku({ text: value, color: store.color })
+      setValue('')
+    } else {
+      message.error('你还没有填写昵称啦')
+    }
+  }
   return (
     <>
       <div
@@ -55,8 +68,7 @@ const _ChatPanel: FC<any> = forwardRef((props, ref: any) => {
             onContextMenu={(e) => e.stopPropagation()}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
-                createDangmaku({ text: value })
-                setValue('')
+                handleSend()
               }
             }}
           />
@@ -71,6 +83,9 @@ const _ChatPanel: FC<any> = forwardRef((props, ref: any) => {
             key={'setting'}
             ref={SettingRef}
             style={{ top: pos.y - 210 + 'px', left: pos.x - 105 + 'px' }}
+            setHide={() => {
+              setSettingShow(false)
+            }}
           />
         ) : null}
       </QueueAnim>

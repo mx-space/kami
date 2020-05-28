@@ -4,14 +4,20 @@ import {
   DetailedHTMLProps,
   HTMLAttributes,
   useState,
+  useEffect,
 } from 'react'
 import styles from './index.module.scss'
 import classNames from 'classnames'
-import { SketchPicker } from 'react-color'
+import { BlockPicker as Picker } from 'react-color'
 import ReactDOM from 'react-dom'
 import { stopEventDefault } from '../../../utils/dom'
 import QueueAnim from 'rc-queue-anim'
-interface SettingProps {}
+
+export const STORE_PREFIX = 'mx-space-web-dangmaku'
+
+interface SettingProps {
+  setHide: any
+}
 // @ts-ignore
 export const Setting: FC<
   SettingProps &
@@ -20,6 +26,17 @@ export const Setting: FC<
   const { ...rest } = props
   const [pos, setPos] = useState<{ x: number; y: number }>({} as any)
   const [show, setShow] = useState(false)
+  const [color, setColor] = useState('#2ccce4')
+  const [author, setAuthor] = useState('游客')
+
+  useEffect(() => {
+    const json = localStorage.getItem(STORE_PREFIX) as string
+    const store = JSON.parse(json || '{}')
+    if (store && store.color && store.author) {
+      setColor(store.color)
+      setAuthor(store.author)
+    }
+  }, [])
   return (
     <div className={styles['setting']} ref={ref} {...rest}>
       <div className={styles['setting-wrap']}>
@@ -31,7 +48,13 @@ export const Setting: FC<
           <form>
             <div className={styles['item']}>
               <span>昵称~</span>
-              <input type="text" />
+              <input
+                type="text"
+                value={author}
+                onChange={(e) => {
+                  setAuthor(e.target.value)
+                }}
+              />
             </div>
             <div className={styles['item']}>
               <span>颜色~</span>
@@ -51,19 +74,65 @@ export const Setting: FC<
                 选择
               </button>
               <QueueAnim>
-                {show ? <ColorPicker key={'picker'} /> : null}
+                {show ? (
+                  <ColorPicker
+                    key={'picker'}
+                    x={pos.x}
+                    y={pos.y - 240}
+                    color={color}
+                    setColor={setColor}
+                  />
+                ) : null}
               </QueueAnim>
             </div>
           </form>
         </section>
         <div className={styles['footer']}>
-          <button className={classNames('btn', 'green')}>保存</button>
+          <button
+            className={classNames('btn', 'green')}
+            onClick={(e) => {
+              localStorage.setItem(
+                STORE_PREFIX,
+                JSON.stringify({ color, author }),
+              )
+              props.setHide()
+            }}
+          >
+            保存
+          </button>
         </div>
       </div>
     </div>
   )
 })
 
-const ColorPicker = ({ x, y }: { x?: number; y?: number }) => {
-  return ReactDOM.createPortal(<SketchPicker />, document.body)
+const ColorPicker = ({
+  x,
+  y,
+  color,
+  setColor,
+}: {
+  x?: number
+  y?: number
+  color: string
+  setColor: (color: string) => void
+}) => {
+  return ReactDOM.createPortal(
+    <div
+      style={{
+        position: 'fixed',
+        zIndex: 23,
+        top: y ? y + 'px' : undefined,
+        left: x ? x + 'px' : undefined,
+      }}
+      className={'shadow'}
+    >
+      <Picker
+        triangle={'hide'}
+        color={color}
+        onChange={(color) => setColor(color.hex)}
+      />
+    </div>,
+    document.body,
+  )
 }
