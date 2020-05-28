@@ -4,41 +4,41 @@ import style from './index.module.scss'
 import Markdown from 'components/MD-render'
 
 import { relativeTimeFromNow } from '../../../utils/time'
-export const Message: FC = (props) => {
-  const time = new Date('2020-05-24 19:52:59')
-  return (
-    <div className={style['message']}>
-      <Avatar
-        size={35}
-        imageUrl={
-          'https://tu-1252943311.cos.ap-shanghai.myqcloud.com/innei_avatar.png/avatar300'
-        }
-      />
-      <div className={style['message-wrapper']}>
-        <div className={style['message-head']}>
-          <div className={style['author-name']}>Innei</div>
-          <time>{relativeTimeFromNow(time)}</time>
-        </div>
-        <div className={style['message-content']}>
-          <Markdown
-            style={{ fontSize: '12px' }}
-            skipHtml
-            disallowedTypes={[
-              'heading',
-              'imageReference',
-              'listItem',
-              'list',
-              'table',
-              'tableBody',
-              'tableHead',
-              'tableCell',
-              'tableRow',
-            ]}
-            unwrapDisallowed
-            value={`还在打理中哦 ψ(｀∇´)ψ`}
-          />
+import configs from '../../../configs'
+import { useStore } from '../../../store'
+import { observer } from 'mobx-react'
+export const OwnerMessage: FC<{ text: string; date: Date }> = observer(
+  ({ text, date }) => {
+    const { userStore } = useStore()
+    return (
+      <div className={style['message']}>
+        <Avatar size={35} imageUrl={configs.avatar} />
+        <div className={style['message-wrapper']}>
+          <div className={style['message-head']}>
+            <div className={style['author-name']}>{userStore.name}</div>
+            <time>{relativeTimeFromNow(date)}</time>
+          </div>
+          <div className={style['message-content']}>
+            <Markdown
+              style={{ fontSize: '12px' }}
+              skipHtml
+              disallowedTypes={[
+                'heading',
+                'imageReference',
+                'listItem',
+                'list',
+                'table',
+                'tableBody',
+                'tableHead',
+                'tableCell',
+                'tableRow',
+              ]}
+              unwrapDisallowed
+              value={text}
+            />
+          </div>
         </div>
       </div>
-    </div>
-  )
-}
+    )
+  },
+)
