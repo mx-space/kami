@@ -6,7 +6,7 @@ import { observer } from 'mobx-react'
 import dynamic from 'next/dynamic'
 import { useCallback, useState } from 'react'
 import { NoticePanel } from '../components/Notice'
-import { PullSelect } from '../components/PullSelect'
+import { Switch } from '../components/LampSwitch'
 import { useStore } from '../store'
 
 const APlayer = dynamic(() => import('components/Player'), {
@@ -55,7 +55,7 @@ export const BasicLayout = observer(({ children }) => {
       <Footer />
       <APlayer />
       {!(appStore.viewport.mobile || appStore.viewport.pad) && (
-        <PullSelect onClick={handleChangeColorMode} />
+        <Switch onClick={handleChangeColorMode} />
       )}
 
       {showNotice && (

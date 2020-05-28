@@ -1,6 +1,6 @@
 import { FC, DetailedHTMLProps, HTMLAttributes, useRef } from 'react'
 import styles from './index.module.scss'
-export const PullSelect: FC<DetailedHTMLProps<
+export const Switch: FC<DetailedHTMLProps<
   HTMLAttributes<HTMLDivElement>,
   HTMLDivElement
 >> = (props = {}) => {

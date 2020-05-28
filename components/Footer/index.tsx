@@ -35,6 +35,11 @@ export const Footer: FC = observer(() => {
             </p>
             <p>
               Powered by <a href="https://github.com/mx-space">mx-space</a>.{' '}
+              {!!configs.icp && !!configs.icp.name && !!configs.icp.url && (
+                <a href={configs.icp.url} target={'_blank'} rel={'noreferrer'}>
+                  {configs.icp.name}
+                </a>
+              )}
             </p>
           </div>
           <div className="col-m-6 right to-center">

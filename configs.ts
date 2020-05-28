@@ -138,4 +138,8 @@ export default {
   biliId: 26578164,
   homePage: 'https://innei.ren', // footer link
   menu,
+  icp: {
+    name: '萌ICP备 20200520520 号',
+    url: 'https://icp.gov.moe/?keyword=20200520520',
+  },
 }
