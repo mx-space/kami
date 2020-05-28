@@ -21,7 +21,7 @@ const _ChatPanel: FC<any> = forwardRef((props, ref: any) => {
 
     const store = JSON.parse(json || '{}')
     if (store && store.color && store.author) {
-      createDangmaku({ text: value, color: store.color })
+      createDangmaku({ text: store.author + ': ' + value, color: store.color })
       setValue('')
     } else {
       message.error('你还没有填写昵称啦')
