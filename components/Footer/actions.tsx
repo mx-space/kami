@@ -8,9 +8,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { BackTop } from 'antd'
 import classNames from 'classnames'
 import { observer } from 'mobx-react'
-import { FC, useState } from 'react'
+import { FC, useState, useEffect } from 'react'
 import { useStore } from 'store'
 import { ChatPanel } from '../Panel'
+import { usePrevious } from '../../hooks/usePrevious'
 
 // import { createPortal } from 'react-dom'
 // import { Panel } from '../Panel'
@@ -22,7 +23,8 @@ import { ChatPanel } from '../Panel'
 export const FooterActions: FC = observer(() => {
   const { appStore, musicStore } = useStore()
   const { isOverflow } = appStore
-  const [charShow, setChatShow] = useState(false)
+  const [chatShow, setChatShow] = useState(false)
+  const chatShowPrev = usePrevious(chatShow)
   return (
     <>
       <div className="action">
@@ -43,15 +45,15 @@ export const FooterActions: FC = observer(() => {
           <FontAwesomeIcon icon={faHeart} />
         </button> */}
         <button
-          onClick={() => {
-            setChatShow(!charShow)
+          onClick={(e) => {
+            setChatShow(!chatShow)
           }}
         >
           <FontAwesomeIcon icon={faPaperPlane} />
         </button>
       </div>
       {/* <ConfigPanel /> */}
-      <ChatPanel show={charShow} />
+      <ChatPanel show={chatShow} toggle={() => setChatShow(!chatShow)} />
     </>
   )
 })

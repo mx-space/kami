@@ -6,26 +6,28 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SectionNews, {
-  SectionNewsProps,
   SectionCard,
+  SectionNewsProps,
 } from 'components/SectionNews'
 import { shuffle } from 'lodash'
 import omit from 'lodash/omit'
 import { observer } from 'mobx-react'
 import { RandomImage, Top } from 'models/aggregate'
 import { NextPage } from 'next'
+import Router from 'next/router'
 import QueueAnim from 'rc-queue-anim'
 import Texty from 'rc-texty'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
+
 import { FriendsSection } from '../components/SectionNews/friend'
 import { SectionWrap } from '../components/SectionNews/section'
 import configs from '../configs'
-import Router from 'next/router'
 import { stopEventDefault } from '../utils/dom'
 import service from '../utils/request'
 import { message } from 'antd'
+
 interface IndexViewProps {
   posts: Top.Post[]
   notes: Top.Note[]
@@ -78,6 +80,7 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
       setLike(~~number)
     })
   }, [])
+
   return (
     <main>
       <section className="paul-intro">

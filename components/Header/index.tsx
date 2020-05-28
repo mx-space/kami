@@ -82,9 +82,9 @@ export default class Header extends React.Component<Store> {
           }
           header {
             background-color: var(--light-bg-opacity);
-            backdrop-filter: blur(25px);
+            backdrop-filter: blur(25px) brightness(1.2);
             z-index: 5;
-            transition: transform 0.5s;
+            transition: transform 0.5s, backdrop-filter 0.5s;
           }
           header.hide {
             transform: translateY(-100%);
@@ -93,6 +93,14 @@ export default class Header extends React.Component<Store> {
             .head-logo {
               display: block;
             }
+          }
+          @media screen and (prefers-color-scheme: dark) {
+            :root:not(.white) header {
+              backdrop-filter: blur(25px) brightness(0.5);
+            }
+          }
+          html.dark header {
+            backdrop-filter: blur(25px) brightness(0.5);
           }
         `}</style>
         {app?.viewport.mobile && (
