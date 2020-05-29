@@ -124,7 +124,7 @@ export class Notice {
         width: 100%;
         overflow: hidden;
         background: var(--bg-opacity);
-        border-radius: 12px;        
+        border-radius: 12px;
         backdrop-filter: blur(5px);
         user-select: none;
       `
@@ -164,7 +164,7 @@ export class Notice {
       $title.textContent = title
       $text.textContent = text
       $text.style.cssText = `
-      margin: 12px 0 18px;    
+      margin: 12px 0 18px;
       padding: 0 18px;
       color: var(--gray);
       font-size: 14px;
