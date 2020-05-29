@@ -11,12 +11,14 @@ import 'kico-style'
 import 'kico-style/paul.css'
 import 'assets/styles/shizuku.scss'
 import 'assets/styles/extra.scss'
-import Loader from 'components/Loader'
-import configs from 'configs'
+import 'rc-texty/assets/index.css'
+import 'react-image-lightbox/style.css'
+import 'normalize.css/normalize.css'
+
 import 'intersection-observer'
 
-// import 'antd/dist/antd.dark.css'
-// import 'assets/styles/main.scss'
+import Loader from 'components/Loader'
+import configs from 'configs'
 import { BasicLayout } from 'layouts/BasicLayout'
 import throttle from 'lodash/throttle'
 import makeInspectable from 'mobx-devtools-mst'
@@ -25,10 +27,9 @@ import 'mobx-react-lite/batchingForReactDom'
 import { AggregateResp } from 'models/aggregate'
 import { NextSeo } from 'next-seo'
 import Router from 'next/router'
-import 'normalize.css/normalize.css'
-import 'rc-texty/assets/index.css'
+
 import React, { createContext, PureComponent } from 'react'
-import 'react-image-lightbox/style.css'
+
 import CategoryStore from 'store/category'
 import client from '../socket'
 import createMobxStores, { StoreProvider } from '../store'
@@ -132,10 +133,13 @@ class Context extends PureComponent<Store & { data: any }> {
       }
 
       this.printToConsole()
+      let prompt = true
       window.addEventListener('beforeinstallprompt', (e: any) => {
         e.preventDefault()
-
-        // e.prompt()
+        if (prompt) {
+          e.prompt()
+          prompt = false
+        }
       })
       const getColormode = <T extends { matches: boolean }>(e: T) => {
         this.props.app!.colorMode = e.matches ? 'dark' : 'light'
