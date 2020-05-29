@@ -8,18 +8,12 @@
  */
 
 import io from 'socket.io-client'
-import configs from '../configs'
-import { gatewayStore, userStore } from '../store'
-import { createDangmaku } from '../utils/danmaku'
-import { Notice } from '../utils/notice'
 import observable from '../utils/observable'
+import { eventHandler } from './handler'
 import { EventTypes } from './types'
-
 export class SocketClient {
   public socket!: SocketIOClient.Socket
 
-  #title = configs.title
-  #notice = new Notice()
   constructor() {
     this.socket = io(
       (process.env.GATEWAY_URL || 'http://localhost:2333') + '/web',
@@ -55,51 +49,7 @@ export class SocketClient {
   }
   handleEvent(type: EventTypes, data: any) {
     observable.emit(type, data)
-    switch (type) {
-      case EventTypes.VISITOR_ONLINE:
-      case EventTypes.VISITOR_OFFLINE: {
-        const { online } = data
-        gatewayStore.online = online
-        break
-      }
-      case EventTypes.POST_CREATE:
-      case EventTypes.NOTE_CREATE: {
-        const message = noticeHead('文章', data.title)
-        this.#notice.notice({
-          title: this.#title,
-          body: message,
-          description: getDescription(data.text),
-        })
-
-        break
-      }
-      case EventTypes.SAY_CREATE: {
-        const message = noticeHead('说说')
-        this.#notice.notice({
-          title: this.#title,
-          body: message,
-          description: getDescription(data.text),
-        })
-
-        break
-      }
-      case EventTypes.DANMAKU_CREATE: {
-        createDangmaku({
-          text: data.author + ': ' + data.text,
-          color: data.color,
-        })
-
-        if (
-          data.author === userStore.name ||
-          data.author === userStore.username
-        ) {
-          this.#notice.notice({
-            title: userStore.name + ' 敲了你一下',
-            body: data.text,
-          })
-        }
-      }
-    }
+    eventHandler(type, data)
   }
   emit(event: EventTypes, payload: any) {
     return new Promise((resolve, reject) => {
@@ -110,11 +60,4 @@ export class SocketClient {
       }
     })
   }
-}
-
-function noticeHead(type: string, title?: string) {
-  return `${userStore.name}发布了新的${type}${title ? ': ' + title : ''}`
-}
-function getDescription(text: string) {
-  return text.slice(0, 20) + '...'
 }

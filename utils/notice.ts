@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-23 13:20:20
- * @LastEditTime: 2020-05-29 21:53:04
+ * @LastEditTime: 2020-05-29 22:25:39
  * @LastEditors: Innei
  * @FilePath: /mx-web/utils/notice.ts
  * @MIT
@@ -70,7 +70,7 @@ export class Notice {
   }: {
     title: string
     body: string
-    onclick?: ((this: Notification, ev: Event) => any) | null
+    onclick?: ((ev: Event) => any) | null
     description?: string
     options?: Omit<NotificationOptions, 'body'>
   }): Promise<Notification | undefined> {
@@ -85,9 +85,13 @@ export class Notice {
         if (b) {
           const notification = new Notification(title, {
             body,
+            image: origin + '/favicon.svg',
             ...options,
           })
-          notification.onclick = onclick
+          notification.onclick = (e) => {
+            onclick?.(e)
+            notification.close()
+          }
           r(notification)
         }
       })
@@ -171,7 +175,10 @@ export class Notice {
         $text.appendChild($desc)
       }
       $notification.appendChild($text)
-      $notification.onclick = (e) => onclick?.call(this, e)
+      $notification.onclick = (e) => {
+        onclick?.call(this, e)
+        this.closeNotification($notification)
+      }
       $wrap.appendChild($notification).animate(
         [
           {
@@ -187,10 +194,11 @@ export class Notice {
           this.closeNotification($notification)
         }, duration)
       }
+      return $notification
     }
   }
 
-  private closeNotification($notification: HTMLDivElement) {
+  closeNotification($notification: HTMLDivElement) {
     $notification.animate(
       [
         {
