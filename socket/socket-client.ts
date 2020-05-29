@@ -1,20 +1,20 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-23 13:18:30
- * @LastEditTime: 2020-05-28 18:55:24
+ * @LastEditTime: 2020-05-29 11:34:21
  * @LastEditors: Innei
  * @FilePath: /mx-web/socket/socket-client.ts
  * @MIT
  */
 
 import io from 'socket.io-client'
-
-import { Notice } from '../utils/notice'
-import { EventTypes } from './types'
+import { openNotification } from '../components/Notification'
 import configs from '../configs'
 import { gatewayStore, userStore } from '../store'
-import { openNotification } from '../components/Notification'
+import { createDangmaku } from '../utils/danmaku'
+import { Notice } from '../utils/notice'
 import observable from '../utils/observable'
+import { EventTypes } from './types'
 
 export class SocketClient {
   public socket!: SocketIOClient.Socket
@@ -83,6 +83,19 @@ export class SocketClient {
           description: getDescription(data.text),
         })
         break
+      }
+      case EventTypes.DANMAKU_CREATE: {
+        createDangmaku({
+          text: data.author + ': ' + data.text,
+          color: data.color,
+        })
+
+        if (
+          data.author === userStore.name ||
+          data.author === userStore.username
+        ) {
+          this.#notice.notice(userStore.name + ' 敲了你一下', data.text)
+        }
       }
     }
   }

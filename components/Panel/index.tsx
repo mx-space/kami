@@ -12,6 +12,7 @@ import { Setting, STORE_PREFIX } from './components/setting'
 import style from './index.module.scss'
 import { observer } from 'mobx-react'
 import { useStore } from '../../store'
+import observable from '../../utils/observable'
 
 const _ChatPanel: FC<any> = observer(
   forwardRef((props, ref: any) => {
@@ -27,17 +28,40 @@ const _ChatPanel: FC<any> = observer(
     useEffect(() => {
       inputRef.current?.focus()
     }, [])
+    const [messages, setMessages] = useState<{ text: string; id: number }[]>([])
+    useEffect(() => {
+      const handler = (data) => {
+        if (
+          data.author === userStore.name ||
+          data.author === userStore.username
+        ) {
+          setMessages([
+            ...messages,
+            {
+              text: data.text,
+              id: new Date().getTime(),
+            },
+          ])
+        }
+      }
+      observable.on(EventTypes.DANMAKU_CREATE, handler)
+
+      return () => {
+        observable.off(EventTypes.COMMENT_CREATE, handler)
+      }
+    }, [])
+
     const handleSend = () => {
       const json = localStorage.getItem(STORE_PREFIX) as string
 
       const store = JSON.parse(json || '{}')
-      if (store && store.color && store.author && value.trim().length > 0) {
+      if ((store.author || userStore.isLogged) && value.trim().length > 0) {
         setValue('')
         client
           .emit(EventTypes.DANMAKU_CREATE, {
             text: value,
-            author: store.author,
-            color: store.color,
+            author: userStore.isLogged ? userStore.name : store.author,
+            color: store.color || '#2CCCE4',
           })
           .then((errors) => {
             // console.log(errors)
@@ -47,7 +71,7 @@ const _ChatPanel: FC<any> = observer(
             // TODO
           })
       } else {
-        message.error('你还没有填写昵称啦')
+        message.error('你还没有填写昵称/正文啦')
       }
     }
 
@@ -75,6 +99,9 @@ const _ChatPanel: FC<any> = observer(
               text={`本站不会记录任何广播消息, 欢迎玩的开心呀!~`}
               date={new Date()}
             />
+            {messages.map(({ text, id }) => {
+              return <OwnerMessage text={text} key={id} date={new Date()} />
+            })}
           </div>
           <div className={style['footer']}>
             <button

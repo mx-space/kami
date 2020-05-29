@@ -1,15 +1,13 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-28 12:24:14
- * @LastEditTime: 2020-05-28 19:10:28
+ * @LastEditTime: 2020-05-29 11:42:37
  * @LastEditors: Innei
  * @FilePath: /mx-web/utils/danmaku.ts
  * @Copyright
  */
 import range from 'lodash/range'
 import sample from 'lodash/sample'
-import observable from './observable'
-import { EventTypes } from 'socket/types'
 const createDanmakuWrap = () => {
   const $root = document.documentElement
   const $wrap = document.getElementById('dangmaku')
@@ -64,16 +62,4 @@ export const createDangmaku = ({ color, duration, text }: DanmakuProps) => {
       (duration && duration / 1000 > 8 ? duration : 8) +
       's linear'
   })
-}
-
-export const listenerInit = () => {
-  observable.on(
-    EventTypes.DANMAKU_CREATE,
-    (data: DanmakuProps & { author: string }) => {
-      createDangmaku({
-        text: data.author + ': ' + data.text,
-        color: data.color,
-      })
-    },
-  )
 }

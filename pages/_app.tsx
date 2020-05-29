@@ -1,15 +1,14 @@
-import 'kico-style'
-import 'kico-style/paul.css'
 import '@openfonts/noto-sans-sc_vietnamese'
 import 'antd/es/avatar/style/index.css'
 import 'antd/es/button/style/index.css'
 import 'antd/es/comment/style/index.css'
 import 'antd/es/input/style/index.css'
 import 'antd/es/message/style/index.css'
+import 'antd/es/notification/style/index.css'
 import 'antd/es/pagination/style/index.css'
 import 'antd/es/popover/style/index.css'
-import 'antd/es/notification/style/index.css'
-
+import 'kico-style'
+import 'kico-style/paul.css'
 import 'assets/styles/shizuku.scss'
 import 'assets/styles/extra.scss'
 import Loader from 'components/Loader'
@@ -31,6 +30,7 @@ import 'rc-texty/assets/index.css'
 import React, { createContext, PureComponent } from 'react'
 import 'react-image-lightbox/style.css'
 import CategoryStore from 'store/category'
+import client from '../socket'
 import createMobxStores, { StoreProvider } from '../store'
 import AppStore from '../store/app'
 import PageStore from '../store/pages'
@@ -38,11 +38,9 @@ import { PageModel, Stores, ViewportRecord } from '../store/types'
 import UserStore from '../store/user'
 import { Rest } from '../utils/api'
 import { getToken, removeToken } from '../utils/auth'
+import { AntiDebug } from '../utils/forbidden'
 import * as gtag from '../utils/gtag'
 import { getBrowserType } from '../utils/ua'
-import { AntiDebug } from '../utils/forbidden'
-import client from '../socket'
-import { listenerInit } from '../utils/danmaku'
 
 const stores = createMobxStores()
 if (process.env.NODE_ENV === 'development') {
@@ -173,8 +171,7 @@ class Context extends PureComponent<Store & { data: any }> {
 
       // connect to ws
       client.initIO()
-      // danmaku init
-      listenerInit()
+
       this.setState({
         loading: false,
       })
