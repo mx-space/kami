@@ -1,14 +1,13 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-23 13:18:30
- * @LastEditTime: 2020-05-29 11:34:21
+ * @LastEditTime: 2020-05-29 20:28:25
  * @LastEditors: Innei
  * @FilePath: /mx-web/socket/socket-client.ts
  * @MIT
  */
 
 import io from 'socket.io-client'
-import { openNotification } from '../components/Notification'
 import configs from '../configs'
 import { gatewayStore, userStore } from '../store'
 import { createDangmaku } from '../utils/danmaku'
@@ -66,22 +65,22 @@ export class SocketClient {
       case EventTypes.POST_CREATE:
       case EventTypes.NOTE_CREATE: {
         const message = noticeHead('文章', data.title)
-        this.#notice.notice(this.#title, message)
-        openNotification({
-          key: data._id,
-          message,
+        this.#notice.notice({
+          title: this.#title,
+          body: message,
           description: getDescription(data.text),
         })
+
         break
       }
       case EventTypes.SAY_CREATE: {
         const message = noticeHead('说说')
-        this.#notice.notice(this.#title, message)
-        openNotification({
-          key: data._id,
-          message,
+        this.#notice.notice({
+          title: this.#title,
+          body: message,
           description: getDescription(data.text),
         })
+
         break
       }
       case EventTypes.DANMAKU_CREATE: {
@@ -94,7 +93,10 @@ export class SocketClient {
           data.author === userStore.name ||
           data.author === userStore.username
         ) {
-          this.#notice.notice(userStore.name + ' 敲了你一下', data.text)
+          this.#notice.notice({
+            title: userStore.name + ' 敲了你一下',
+            body: data.text,
+          })
         }
       }
     }

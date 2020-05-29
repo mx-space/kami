@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-07 16:04:24
- * @LastEditTime: 2020-05-23 09:36:44
+ * @LastEditTime: 2020-05-29 20:23:00
  * @LastEditors: Innei
  * @FilePath: /mx-web/utils/request.ts
  * @MIT
@@ -10,7 +10,7 @@
 import { message } from 'antd'
 import axios from 'axios'
 import { getToken } from './auth'
-
+import Package from 'package.json'
 const service = axios.create({
   baseURL: process.env.APIURL || '/api',
   // withCredentials: true,
@@ -22,6 +22,11 @@ service.interceptors.request.use(
     const token = getToken()
     if (token) {
       config.headers['Authorization'] = 'bearer ' + getToken()
+    }
+    if (typeof window === 'undefined') {
+      // on node side
+      config.headers['User-Agent'] =
+        'mx-space server client' + ` v${Package.version}`
     }
     return config
   },
