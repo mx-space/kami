@@ -51,7 +51,7 @@ export const SectionWrap: FC<
               className="title"
               style={{
                 backgroundColor: color,
-                filter: mode === 'dark' ? 'brightness(0.8)' : 'brightness(1.5)',
+                filter: mode === 'dark' ? 'brightness(0.8)' : undefined,
               }}
             >
               <FontAwesomeIcon icon={icon} className={styles.icon} />
@@ -62,8 +62,7 @@ export const SectionWrap: FC<
                 className="more"
                 style={{
                   backgroundColor: color,
-                  filter:
-                    mode === 'dark' ? 'brightness(0.8)' : 'brightness(1.5)',
+                  filter: mode === 'dark' ? 'brightness(0.8)' : undefined,
                 }}
               >
                 <Link href={moreUrl}>

@@ -3008,18 +3008,6 @@ component-bind@1.0.0:
   resolved "https://registry.npm.taobao.org/component-bind/download/component-bind-1.0.0.tgz#00c608ab7dcd93897c0009651b1d3a8e1e73bbd1"
   integrity sha1-AMYIq33Nk4l8AAllGx06jh5zu9E=
 
-component-clone@0.2.2:
-  version "0.2.2"
-  resolved "https://registry.npm.taobao.org/component-clone/download/component-clone-0.2.2.tgz#c7f5979822880fad8cfb0962ba29186d061ee04f"
-  integrity sha1-x/WXmCKID62M+wliuikYbQYe4E8=
-  dependencies:
-    component-type "*"
-
-component-emitter@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.npm.taobao.org/component-emitter/download/component-emitter-1.2.0.tgz#ccd113a86388d06482d03de3fc7df98526ba8efe"
-  integrity sha1-zNETqGOI0GSC0D3j/H35hSa6jv4=
-
 component-emitter@1.2.1:
   version "1.2.1"
   resolved "https://registry.npm.taobao.org/component-emitter/download/component-emitter-1.2.1.tgz#137918d6d78283f7df7a6b7c5a63e140e69425e6"
@@ -3034,31 +3022,6 @@ component-inherit@0.0.3:
   version "0.0.3"
   resolved "https://registry.npm.taobao.org/component-inherit/download/component-inherit-0.0.3.tgz#645fc4adf58b72b649d5cae65135619db26ff143"
   integrity sha1-ZF/ErfWLcrZJ1crmUTVhnbJv8UM=
-
-component-raf@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.npm.taobao.org/component-raf/download/component-raf-1.2.0.tgz#b2bc72d43f1b014fde7a4b3c447c764bc73ccbaa"
-  integrity sha1-srxy1D8bAU/eeks8RHx2S8c8y6o=
-
-component-tween@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.npm.taobao.org/component-tween/download/component-tween-1.2.0.tgz#cc39ce5dbab05b52825f41d1947638a0b01b2b8a"
-  integrity sha1-zDnOXbqwW1KCX0HRlHY4oLAbK4o=
-  dependencies:
-    component-clone "0.2.2"
-    component-emitter "1.2.0"
-    component-type "1.1.0"
-    ease-component "1.0.0"
-
-component-type@*:
-  version "1.2.1"
-  resolved "https://registry.npm.taobao.org/component-type/download/component-type-1.2.1.tgz#8a47901700238e4fc32269771230226f24b415a9"
-  integrity sha1-ikeQFwAjjk/DIml3EjAibyS0Fak=
-
-component-type@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npm.taobao.org/component-type/download/component-type-1.1.0.tgz#95b666aad53e5c8d1f2be135c45b5d499197c0c5"
-  integrity sha1-lbZmqtU+XI0fK+E1xFtdSZGXwMU=
 
 compose-function@3.0.3:
   version "3.0.3"
@@ -3751,11 +3714,6 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     inherits "^2.0.1"
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
-
-ease-component@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npm.taobao.org/ease-component/download/ease-component-1.0.0.tgz#b375726db0b5b04595b77440396fec7daa5d77c9"
-  integrity sha1-s3VybbC1sEWVt3RAOW/sfapdd8k=
 
 easy-css-transform-builder@^0.0.2:
   version "0.0.2"
@@ -8368,14 +8326,6 @@ scroll-into-view-if-needed@^2.2.20:
   integrity sha1-ErylMpkHab1QkRWkntz6dV6SoOo=
   dependencies:
     compute-scroll-into-view "^1.0.13"
-
-scroll-to@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.npm.taobao.org/scroll-to/download/scroll-to-0.0.2.tgz#936d398a9133660a2492145c2c0081dfcb0728f3"
-  integrity sha1-k205ipEzZgokkhRcLACB38sHKPM=
-  dependencies:
-    component-raf "1.2.0"
-    component-tween "1.2.0"
 
 select@^1.1.2:
   version "1.1.2"
