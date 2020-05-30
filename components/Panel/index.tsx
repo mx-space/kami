@@ -35,7 +35,7 @@ const _ChatPanel: FC<any> = observer(
           data.author === userStore.name ||
           data.author === userStore.username
         ) {
-          setMessages([
+          setMessages((messages) => [
             ...messages,
             {
               text: data.text,
@@ -153,7 +153,7 @@ const _ChatPanel: FC<any> = observer(
             <Setting
               key={'setting'}
               ref={SettingRef}
-              style={{ top: pos.y - 210 + 'px', left: pos.x - 105 + 'px' }}
+              style={{ top: pos.y - 210 + 'px', left: pos.x - 60 + 'px' }}
               setHide={() => {
                 setSettingShow(false)
               }}

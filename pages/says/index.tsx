@@ -39,7 +39,7 @@ const SayView: NextPage<SayViewProps> = (props) => {
   }, [appStore.colorMode, prevSays, says.length])
   useEffect(() => {
     const handler = (data: SayModel) => {
-      setSays([data, ...says])
+      setSays((says) => [data, ...says])
     }
     observable.on(EventTypes.SAY_CREATE, handler)
 
@@ -50,7 +50,7 @@ const SayView: NextPage<SayViewProps> = (props) => {
 
   useEffect(() => {
     const handler = (id: string) => {
-      setSays(
+      setSays((says) =>
         says.filter(({ _id }) => {
           return _id !== id
         }),
