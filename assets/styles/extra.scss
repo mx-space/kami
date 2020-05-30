@@ -358,6 +358,9 @@ html.dark .lazyload-image {
 html.light footer:before {
   filter: none;
 }
+html.light img:before {
+  filter: none;
+}
 // dangmaku
 .shadow {
   box-shadow: rgba($color: #000000, $alpha: 0.2) 0px 0px 20px;
