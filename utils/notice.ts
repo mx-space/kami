@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-23 13:20:20
- * @LastEditTime: 2020-05-29 22:25:39
+ * @LastEditTime: 2020-05-30 15:57:20
  * @LastEditors: Innei
  * @FilePath: /mx-web/utils/notice.ts
  * @MIT
@@ -10,6 +10,12 @@
 export class Notice {
   constructor() {
     this.initNotice()
+    this.createFrameNotification({
+      text: 't',
+      title: 't',
+      description: 't',
+      duration: 1000000000,
+    })
   }
   private $wrap?: HTMLDivElement
   initNotice(): Promise<boolean> {
@@ -125,7 +131,7 @@ export class Notice {
         overflow: hidden;
         background: var(--bg-opacity);
         border-radius: 12px;
-        backdrop-filter: blur(5px);
+        backdrop-filter: saturate(150%) blur(30px);
         user-select: none;
       `
       $header.style.cssText = `
@@ -144,8 +150,6 @@ export class Notice {
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 50%;
-        background: var(--bg-opacity);
         color: var(--black);
         cursor: pointer;
       `

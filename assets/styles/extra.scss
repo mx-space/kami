@@ -2,7 +2,7 @@
   --code-bg: transparent;
   --black: #000;
   --gray: #bbb;
-  --bg-opacity: rgba(255, 255, 255, 0.1);
+  --bg-opacity: rgba(255, 255, 255, 0.5);
 }
 html {
   overflow: overlay;
@@ -24,7 +24,7 @@ html.dark {
   --shizuku-text-color: #858585;
   --shizuku-theme-color: #3c946c;
   --gray: #666;
-  --bg-opacity: rgba(0, 0, 0, 0.4);
+  --bg-opacity: rgba(17, 17, 17, 0.5);
 
   blockquote {
     background: var(--shizuku-background-color);
@@ -41,7 +41,7 @@ html.dark {
     --shizuku-background-color: #212121;
     --shizuku-text-color: #858585;
     --shizuku-theme-color: #3c946c;
-    --bg-opacity: rgba(0, 0, 0, 0.4);
+    --bg-opacity: rgba(17, 17, 17, 0.5);
     --black: #fff;
     blockquote {
       background: var(--shizuku-background-color);

@@ -81,7 +81,7 @@ export default class Header extends React.Component<Store> {
             align-items: center;
           }
           header {
-            background-color: var(--light-bg-opacity);
+            background-color: var(--bg-opacity);
             backdrop-filter: blur(25px) brightness(1.2);
             z-index: 5;
             transition: transform 0.5s, backdrop-filter 0.5s;
@@ -94,13 +94,9 @@ export default class Header extends React.Component<Store> {
               display: block;
             }
           }
-          @media screen and (prefers-color-scheme: dark) {
-            :root:not(.white) header {
-              backdrop-filter: blur(25px) brightness(0.5);
-            }
-          }
+
           html.dark header {
-            backdrop-filter: blur(25px) brightness(0.5);
+            backdrop-filter: saturate(150%) blur(30px);
           }
         `}</style>
         {app?.viewport.mobile && (
