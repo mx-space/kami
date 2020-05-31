@@ -235,7 +235,7 @@
 #write img[align='left'] {
   padding-right: 20px;
 }
-#write img + p {
+#write .img-alt {
   text-align: center;
   font-size: 14px;
   color: var(--gary);

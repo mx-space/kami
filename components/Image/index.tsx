@@ -122,7 +122,7 @@ export const ImageLazy: FC<
         </div>
       )}
       {alt && alt.startsWith('!') && (
-        <p style={{ textAlign: 'center' }}>{alt.slice(1)}</p>
+        <p className={'img-alt'}>{alt.slice(1)}</p>
       )}
       <img
         src={src}
