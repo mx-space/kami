@@ -9,6 +9,7 @@ import RemoveMarkdown from 'remove-markdown'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
 import { useEffect } from 'react'
+import { imageSizesContext } from '../../context/ImageSizes'
 
 const Page: NextPage<PageRespDto> = (props) => {
   const { data } = props
@@ -31,7 +32,9 @@ const Page: NextPage<PageRespDto> = (props) => {
         title={title + ' - ' + appStore.title}
         description={RemoveMarkdown(text).slice(0, 100).replace('\n', '')}
       />
-      <Markdown value={text} escapeHtml={false} />
+      <imageSizesContext.Provider value={props.data.images}>
+        <Markdown value={text} escapeHtml={false} />
+      </imageSizesContext.Provider>
 
       <CommentLazy
         {...{

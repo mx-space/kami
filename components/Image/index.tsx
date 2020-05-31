@@ -9,6 +9,7 @@ import {
   useEffect,
   useRef,
   useState,
+  ClassAttributes,
 } from 'react'
 import Lightbox, { ILightBoxProps } from 'react-image-lightbox'
 import LazyLoad from 'react-lazyload'
@@ -43,20 +44,27 @@ export const ImageLazy: FC<
   const wrapRef = useRef<HTMLDivElement>(null)
   const onError = () => {}
   const onLoad = useCallback(() => {
-    realImageRef.current!.src = src
-    realImageRef.current!.classList.remove('image-hide')
+    try {
+      realImageRef.current!.src = src
+
+      realImageRef.current!.classList.remove('image-hide')
+      // eslint-disable-next-line no-empty
+    } catch {}
     try {
       if (fakeImageRef && fakeImageRef.current) {
         fakeImageRef.current.remove()
       }
       if (placeholderRef && placeholderRef.current) {
         placeholderRef.current.classList.add('hide')
-        setTimeout(() => {
-          try {
-            placeholderRef.current!.remove()
-            // eslint-disable-next-line no-empty
-          } catch {}
-        }, 600)
+        // setTimeout(() => {
+        //   try {
+        //     placeholderRef.current!.remove()
+        //     // eslint-disable-next-line no-empty
+        //   } catch {}
+        // }, 500)
+        placeholderRef.current.onanimationend = () => {
+          placeholderRef.current?.remove()
+        }
       }
       if (wrapRef && wrapRef.current) {
         wrapRef.current.style.height = ''
@@ -89,7 +97,7 @@ export const ImageLazy: FC<
       {defaultImage ? (
         <img src={defaultImage} alt={alt} {...rest} ref={realImageRef} />
       ) : (
-        <figure
+        <div
           style={{
             position: 'relative',
             // overflow: 'hidden',
@@ -118,10 +126,10 @@ export const ImageLazy: FC<
                   : 'brightness(1.3)',
             }}
           ></div>
-          {alt && alt.startsWith('!') && (
-            <figcaption>{alt.slice(1)}</figcaption>
-          )}
-        </figure>
+        </div>
+      )}
+      {alt && alt.startsWith('!') && (
+        <p style={{ textAlign: 'center' }}>{alt.slice(1)}</p>
       )}
       <img
         src={src}
@@ -136,7 +144,12 @@ export const ImageLazy: FC<
 })
 
 export const ImageLazyWithPopup: FC<
-  { src: string; alt?: string } & ILightBoxProps
+  { src: string; alt?: string } & Partial<ILightBoxProps> &
+    Partial<
+      ImageFCProps &
+        ClassAttributes<HTMLImageElement> &
+        ImgHTMLAttributes<HTMLImageElement>
+    >
 > = memo((props) => {
   const [isOpen, setOpen] = useState(false)
   return (
@@ -144,7 +157,8 @@ export const ImageLazyWithPopup: FC<
       <ImageLazy
         src={props.src}
         alt={props.alt || props.src}
-        height={300}
+        height={props.height || 300}
+        width={props.width}
         onClick={() => {
           setOpen(true)
         }}

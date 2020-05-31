@@ -31,6 +31,7 @@ import { Rest } from 'utils/api'
 import { parseDate, relativeTimeFromNow } from 'utils/time'
 import { mood2icon, weather2icon } from 'utils/weather2icon'
 import configs from '../../configs'
+import { imageSizesContext } from '../../context/ImageSizes'
 
 interface NoteViewProps {
   data: NoteModel
@@ -170,11 +171,14 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
       />
 
       <NoteLayout title={title} date={new Date(data.created)} tips={tips}>
-        <Markdown
-          value={text}
-          escapeHtml={false}
-          renderers={{ paragraph: renderLines }}
-        ></Markdown>
+        <imageSizesContext.Provider value={props.data.images}>
+          <Markdown
+            value={text}
+            escapeHtml={false}
+            renderers={{ paragraph: renderLines }}
+          />
+        </imageSizesContext.Provider>
+
         <Action {...actions} />
 
         {(!!next || !!prev) && (
