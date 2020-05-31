@@ -56,8 +56,6 @@ const RenderLink: FC<{
             break
           }
           case 'notes': {
-            console.log(toUrlParser.pathname)
-
             Router.push('/notes/[id]', toUrlParser.pathname)
             break
           }
@@ -133,7 +131,6 @@ const RenderImage: FC<{ src: string; alt?: string }> = ({ src, alt }) => {
   useEffect(() => {
     const size = images.shift()
     const cal = calculateDimensions(size?.width, size?.height)
-    console.log(cal)
 
     setCal(cal)
   }, [images])
@@ -141,7 +138,6 @@ const RenderImage: FC<{ src: string; alt?: string }> = ({ src, alt }) => {
     return null
   }
 
-  console.log(cal)
   return (
     <ImageLazyWithPopup
       src={src}
