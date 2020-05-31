@@ -119,6 +119,9 @@ const calculateDimensions = (width?: number, height?: number) => {
     if (height > MAX.height) {
       dimensions.height = MAX.height
       dimensions.width = (MAX.height / height) * width
+    } else if (height === width) {
+      dimensions.height = MAX.width
+      dimensions.width = dimensions.height
     }
   }
   return dimensions
@@ -130,6 +133,8 @@ const RenderImage: FC<{ src: string; alt?: string }> = ({ src, alt }) => {
   useEffect(() => {
     const size = images.shift()
     const cal = calculateDimensions(size?.width, size?.height)
+    console.log(cal)
+
     setCal(cal)
   }, [images])
   if (typeof document === 'undefined') {
