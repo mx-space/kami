@@ -2,7 +2,7 @@
   "name": "mx-web",
   "license": "MIT",
   "private": false,
-  "version": "0.3.0",
+  "version": "1.0.0-rc-3",
   "scripts": {
     "start": "nodemon",
     "dev": "cross-env NODE_ENV=development next dev -p 2323",

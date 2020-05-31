@@ -43,15 +43,8 @@ export const DefaultLogo: FC = () => {
 export const CustomLogo: FC = () => {
   return (
     <svg height="200px" viewBox="0 0 200 200" version="1.1">
-      <title>Custom Preset</title>
       <desc>Created with Sketch.</desc>
-      <g
-        id="Custom-Preset"
-        stroke="none"
-        strokeWidth="1"
-        fill="none"
-        fillRule="evenodd"
-      >
+      <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="forest" fill={'currentColor'} fillRule="nonzero">
           <path
             d="M116.799219,176.953125 C112.484375,176.953125 108.986719,180.450781 108.986719,184.765625 L108.986719,192.1875 C108.986719,196.502344 112.484375,200 116.799219,200 C121.114062,200 124.611719,196.502344 124.611719,192.1875 L124.611719,184.765625 C124.611719,180.450781 121.114063,176.953125 116.799219,176.953125 Z"
