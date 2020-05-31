@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-29 21:54:33
- * @LastEditTime: 2020-05-29 22:21:05
+ * @LastEditTime: 2020-05-31 10:33:25
  * @LastEditors: Innei
  * @FilePath: /mx-web/socket/handler.ts
  * @Code with Love
@@ -12,7 +12,7 @@ import { gatewayStore, userStore } from '../store'
 import { createDangmaku } from '../utils/danmaku'
 import { Notice } from '../utils/notice'
 import { EventTypes } from './types'
-import Router from 'next/router'
+// import Router from 'next/router'
 export const title = configs.title
 export const notice = new Notice()
 
@@ -39,12 +39,17 @@ export const eventHandler = (type: EventTypes, data: any) => {
         body: message,
         description: getDescription(data.text),
         onclick: () => {
-          Router.push(
-            _type[type] === 'post' ? '/posts/[category]/[slug]' : '/notes/[id]',
+          window.open(
             _type[type] === 'post'
               ? '/posts/' + data.category.slug + '/' + data.slug
               : '/notes/' + data.nid,
           )
+          // Router.push(
+          //   _type[type] === 'post' ? '/posts/[category]/[slug]' : '/notes/[id]',
+          //   _type[type] === 'post'
+          //     ? '/posts/' + data.category.slug + '/' + data.slug
+          //     : '/notes/' + data.nid,
+          // )
         },
       })
 
@@ -57,7 +62,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
         body: message,
         description: getDescription(data.text),
         onclick: () => {
-          Router.push('/says')
+          window.open('/says')
         },
       })
 
@@ -76,6 +81,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
         notice.notice({
           title: userStore.name + ' 敲了你一下',
           body: data.text,
+          options: { image: userStore.master.avatar },
         })
       }
     }

@@ -35,7 +35,6 @@ const SayView: NextPage<SayViewProps> = (props) => {
         }),
       )
     }
-    // FIXME
   }, [appStore.colorMode, prevSays, says.length])
   useEffect(() => {
     const handler = (data: SayModel) => {

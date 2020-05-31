@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-23 13:20:20
- * @LastEditTime: 2020-05-30 15:57:20
+ * @LastEditTime: 2020-05-31 10:40:30
  * @LastEditors: Innei
  * @FilePath: /mx-web/utils/notice.ts
  * @MIT
@@ -10,18 +10,21 @@
 export class Notice {
   constructor() {
     this.initNotice()
-    this.createFrameNotification({
-      text: 't',
-      title: 't',
-      description: 't',
-      duration: 1000000000,
-    })
   }
   private $wrap?: HTMLDivElement
   initNotice(): Promise<boolean> {
+    if (typeof document === 'undefined') {
+      return new Promise((r, j) => j('服务端渲染错误'))
+    }
     // create page notification wrap
-    const $wrap = this.$wrap
-    if (!$wrap && typeof document !== 'undefined') {
+    let $wrap = this.$wrap
+    const $$wrap = document.getElementById(
+      'notification-wrap',
+    ) as HTMLDivElement
+    if (!this.$wrap && $$wrap) {
+      $wrap = this.$wrap = $$wrap
+    }
+    if (!$wrap) {
       const $wrap = document.createElement('div')
       $wrap.id = 'notification-wrap'
       $wrap.style.cssText = `
@@ -91,7 +94,7 @@ export class Notice {
         if (b) {
           const notification = new Notification(title, {
             body,
-            image: origin + '/favicon.svg',
+            image: location.origin + '/logo.png',
             ...options,
           })
           notification.onclick = (e) => {
@@ -133,6 +136,7 @@ export class Notice {
         border-radius: 12px;
         backdrop-filter: saturate(150%) blur(30px);
         user-select: none;
+        margin-bottom: 12px;
       `
       $header.style.cssText = `
         color: var(--gray);
@@ -207,9 +211,11 @@ export class Notice {
       [
         {
           transform: 'translateX(0)',
+          opacity: '1',
         },
         {
           transform: 'translateX(100%)',
+          opacity: '0',
         },
       ],
       500,

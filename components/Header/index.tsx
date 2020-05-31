@@ -69,10 +69,8 @@ export default class Header extends React.Component<Store> {
             : null,
         )}
         style={{
-          backdropFilter:
-            this.state.menuOpen && this.props.app?.viewport.mobile
-              ? 'unset'
-              : undefined,
+          backdropFilter: this.props.app?.viewport.mobile ? 'unset' : undefined,
+          backgroundColor: 'var(--light-bg)',
         }}
       >
         <style jsx>{`
