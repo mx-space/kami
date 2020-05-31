@@ -17,10 +17,11 @@ export interface ActionProps
   actions?: (BaseAction & {
     callback: () => void
   })[]
+  copyright?: boolean
 }
 
 export default function Action(props: ActionProps) {
-  const { actions = [], informs = [], ...rest } = props
+  const { actions = [], informs = [], copyright = true, ...rest } = props
 
   return (
     <>
@@ -39,20 +40,21 @@ export default function Action(props: ActionProps) {
           )
         })}
 
-        <a
-          href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/"
-          style={{ color: 'currentColor' }}
-          // eslint-disable-next-line react/jsx-no-target-blank
-          target={'_blank'}
-        >
-          <span
-            title={
-              '署名-非商业性使用-相同方式共享 3.0 中国大陆 (CC BY-NC-SA 3.0 CN)'
-            }
+        {copyright && (
+          <a
+            href="https://creativecommons.org/licenses/by-nc-nd/4.0/"
+            style={{ color: 'currentColor' }}
+            // eslint-disable-next-line react/jsx-no-target-blank
+            target={'_blank'}
           >
-            <FontAwesomeIcon icon={faCreativeCommons} className={styles.icon} />
-          </span>
-        </a>
+            <span title={'创作共用保留署名-非商业-禁止演绎4.0国际许可证'}>
+              <FontAwesomeIcon
+                icon={faCreativeCommons}
+                className={styles.icon}
+              />
+            </span>
+          </a>
+        )}
       </div>
       <div className="note-action">
         {actions.map((action) => {

@@ -13,6 +13,7 @@ export interface PageRespDto extends BaseRespModel {
     slug: string
     subtitle: string
     id: string
+    allowComment?: boolean
   }
 }
 

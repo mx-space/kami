@@ -14,12 +14,15 @@ import { useStore } from 'store'
 import { Rest } from 'utils/api'
 import configs from '../../../configs'
 import dayjs from 'dayjs'
+import { Copyright, CopyrightProps } from '../../../build/Copyright'
 export const PostView: NextPage<PostResModel> = (props) => {
-  const { text, title, _id, modified } = props
+  const { text, title, _id } = props
   const { userStore } = useStore()
   const name = userStore.name
   const [actions, setAction] = useState({} as ActionProps)
+  const [copyrightInfo, setCopyright] = useState({} as CopyrightProps)
   const description = props.summary ?? RemoveMarkdown(props.text).slice(0, 100)
+
   useEffect(() => {
     setAction({
       informs: [
@@ -29,12 +32,13 @@ export const PostView: NextPage<PostResModel> = (props) => {
         },
         {
           icon: faCalendar,
-          name: dayjs(props.created).format('YYYY-MM-DD H:mm:ss'),
+          name: dayjs(props.created).format('YYYY年MM月DD日 H:mm'),
         },
       ],
       actions: [],
+      copyright: props.copyright,
     })
-  }, [name, props.created])
+  }, [name, props.copyright, props.created])
   const { appStore } = useStore()
 
   useEffect(() => {
@@ -48,6 +52,16 @@ export const PostView: NextPage<PostResModel> = (props) => {
     }
   }, [appStore, props.category.name, props.title])
 
+  useEffect(() => {
+    if (props.copyright) {
+      setCopyright({
+        date: dayjs(props.modified).format('YYYY年MM月DD日 H:mm'),
+        title,
+        link: new URL(location.pathname, configs.url).toString(),
+      })
+    }
+  }, [props, title])
+
   return (
     <ArticleLayout title={title}>
       <NextSeo
@@ -60,11 +74,16 @@ export const PostView: NextPage<PostResModel> = (props) => {
         }}
       />
 
-      <OutdateNotice time={modified} />
+      <OutdateNotice time={props.modified} />
       <Markdown value={text} escapeHtml={false} showTOC={true} />
+      {props.copyright ? <Copyright {...copyrightInfo} /> : null}
       <Action {...actions} />
 
-      <CommentLazy type={'Post'} id={_id} />
+      <CommentLazy
+        type={'Post'}
+        id={_id}
+        allowComment={props.allowComment ?? true}
+      />
     </ArticleLayout>
   )
 }

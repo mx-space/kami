@@ -33,7 +33,13 @@ const Page: NextPage<PageRespDto> = (props) => {
       />
       <Markdown value={text} escapeHtml={false} />
 
-      <CommentLazy {...{ type: 'Page', id: props.data._id }} />
+      <CommentLazy
+        {...{
+          type: 'Page',
+          id: props.data._id,
+          allowComment: props.data.allowComment ?? true,
+        }}
+      />
     </ArticleLayout>
   )
 }

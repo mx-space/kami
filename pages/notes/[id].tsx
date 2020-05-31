@@ -203,7 +203,11 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
         )}
       </NoteLayout>
       <ArticleLayout style={{ minHeight: 'unset', paddingTop: '0' }}>
-        <CommentWrap type={'Note'} id={_id} />
+        <CommentWrap
+          type={'Note'}
+          id={_id}
+          allowComment={props.data.allowComment ?? true}
+        />
       </ArticleLayout>
     </>
   )

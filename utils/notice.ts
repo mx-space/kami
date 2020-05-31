@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-23 13:20:20
- * @LastEditTime: 2020-05-31 10:40:30
+ * @LastEditTime: 2020-05-31 14:20:12
  * @LastEditors: Innei
  * @FilePath: /mx-web/utils/notice.ts
  * @MIT
@@ -14,7 +14,7 @@ export class Notice {
   private $wrap?: HTMLDivElement
   initNotice(): Promise<boolean> {
     if (typeof document === 'undefined') {
-      return new Promise((r, j) => j('服务端渲染错误'))
+      return new Promise((r) => r(false))
     }
     // create page notification wrap
     let $wrap = this.$wrap

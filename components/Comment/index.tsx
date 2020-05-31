@@ -30,9 +30,10 @@ openCommentMessage.success = () => {
 interface CommentWrapProps {
   type: CommentType
   id: string
+  allowComment: boolean
 }
 const CommentWrap: FC<CommentWrapProps> = observer((props) => {
-  const { type, id } = props
+  const { type, id, allowComment } = props
   const [comments, setComments] = useState([] as CommentModel[])
   const [page, setPage] = useState({} as PagerModel['page'])
   const { userStore } = useStore()
@@ -80,12 +81,19 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
   return (
     <article className={styles.wrap} ref={ref}>
       <CommentContext.Provider value={{ type, refresh: fetchComments }}>
-        <h1>
-          {comments.length
-            ? `共有${comments.length}条评论`
-            : '亲亲留个评论再走呗'}
-        </h1>
-        <CommentBox onSubmit={handleComment} />
+        {allowComment && (
+          <h1>
+            {comments.length
+              ? `共有${comments.length}条评论`
+              : '亲亲留个评论再走呗'}
+          </h1>
+        )}
+
+        {allowComment ? (
+          <CommentBox onSubmit={handleComment} />
+        ) : (
+          <h1>主人禁止了评论</h1>
+        )}
 
         <Comment
           comments={comments}

@@ -89,7 +89,7 @@ export const ImageLazy: FC<
       {defaultImage ? (
         <img src={defaultImage} alt={alt} {...rest} ref={realImageRef} />
       ) : (
-        <div
+        <figure
           style={{
             position: 'relative',
             // overflow: 'hidden',
@@ -104,7 +104,6 @@ export const ImageLazy: FC<
             alt={alt}
           />
 
-          {alt && alt.startsWith('!') && <p>{alt.slice(1)}</p>}
           <div
             className="placeholder-image"
             ref={placeholderRef}
@@ -116,10 +115,13 @@ export const ImageLazy: FC<
               filter:
                 useRandomBackgroundColor && colorMode === 'dark'
                   ? 'brightness(0.5)'
-                  : 'brightness(1.5)',
+                  : 'brightness(1.3)',
             }}
           ></div>
-        </div>
+          {alt && alt.startsWith('!') && (
+            <figcaption>{alt.slice(1)}</figcaption>
+          )}
+        </figure>
       )}
       <img
         src={src}

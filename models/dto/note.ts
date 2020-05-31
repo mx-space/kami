@@ -5,6 +5,7 @@ export interface CountRecord {
 }
 export interface NoteModel extends BaseModel {
   commentsIndex: number
+  allowComment?: boolean
   hide: boolean
   count: CountRecord
   _id: string
