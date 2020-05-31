@@ -56,15 +56,6 @@ export const ImageLazy: FC<
       }
       if (placeholderRef && placeholderRef.current) {
         placeholderRef.current.classList.add('hide')
-        // setTimeout(() => {
-        //   try {
-        //     placeholderRef.current!.remove()
-        //     // eslint-disable-next-line no-empty
-        //   } catch {}
-        // }, 500)
-        placeholderRef.current.onanimationend = () => {
-          placeholderRef.current?.remove()
-        }
       }
       if (wrapRef && wrapRef.current) {
         wrapRef.current.style.height = ''
@@ -90,6 +81,7 @@ export const ImageLazy: FC<
           className="placeholder-image"
           style={{
             backgroundColor: useRandomBackgroundColor ? randColor : '',
+            zIndex: -1,
           }}
         ></div>
       }
@@ -124,6 +116,7 @@ export const ImageLazy: FC<
                 useRandomBackgroundColor && colorMode === 'dark'
                   ? 'brightness(0.5)'
                   : 'brightness(1.3)',
+              zIndex: -1,
             }}
           ></div>
         </div>
