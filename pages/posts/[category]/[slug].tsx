@@ -1,4 +1,8 @@
-import { faCalendar, faUser } from '@fortawesome/free-solid-svg-icons'
+import {
+  faCalendar,
+  faUser,
+  faHashtag,
+} from '@fortawesome/free-solid-svg-icons'
 import Action, { ActionProps } from 'components/Action'
 import { CommentLazy } from 'components/Comment'
 import Markdown from 'components/MD-render'
@@ -36,11 +40,15 @@ export const PostView: NextPage<PostResModel> = (props) => {
           icon: faCalendar,
           name: dayjs(props.created).format('YYYY年MM月DD日 H:mm'),
         },
+        {
+          icon: faHashtag,
+          name: props.category.name,
+        },
       ],
       actions: [],
       copyright: props.copyright,
     })
-  }, [name, props.copyright, props.created])
+  }, [name, props.category.name, props.copyright, props.created])
   const { appStore } = useStore()
 
   useEffect(() => {
