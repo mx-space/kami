@@ -12,6 +12,7 @@ import { useStore } from '../../store'
 import { hexToRGB } from '../../utils/color'
 import observable from '../../utils/observable'
 import { usePrevious } from '../../hooks/usePrevious'
+import ReactMarkdown from 'react-markdown'
 const { scaleUp } = transitions
 interface SayViewProps {
   data: SayModel[]
@@ -103,7 +104,18 @@ const SayView: NextPage<SayViewProps> = (props) => {
                     transition: 'all 0.5s',
                   }}
                 >
-                  <p>{say.text}</p>
+                  <ReactMarkdown
+                    allowedTypes={[
+                      'paragraph',
+                      'link',
+                      'inlineCode',
+                      'strong',
+                      'text',
+                    ]}
+                    escapeHtml={false}
+                  >
+                    {say.text}
+                  </ReactMarkdown>
                   <p
                     className="author"
                     data-created={'发布于 ' + relativeTimeFromNow(say.created)}
