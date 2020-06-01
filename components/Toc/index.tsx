@@ -29,7 +29,7 @@ export const Toc: FC = () => {
 
     const $headings = range(1, 6).map((h) =>
       Array.from($write.querySelectorAll('h' + h)),
-    )
+    ) as HTMLHeadingElement[][]
     if (isNull(headings)) {
       return
     }
@@ -41,10 +41,13 @@ export const Toc: FC = () => {
     }
   }, 20)
   useEffect(() => {
-    setTimeout(() => {
-      getHeadings()
-      window.addEventListener('resize', setMaxWidth)
-    }, 1000)
+    try {
+      setTimeout(() => {
+        getHeadings()
+        window.addEventListener('resize', setMaxWidth)
+      }, 1000)
+      // eslint-disable-next-line no-empty
+    } catch {}
     return () => {
       window.removeEventListener('resize', setMaxWidth)
     }
