@@ -70,7 +70,9 @@ export default class Header extends React.Component<Store> {
         )}
         style={{
           backdropFilter: this.props.app?.viewport.mobile ? 'unset' : undefined,
-          backgroundColor: 'var(--light-bg)',
+          backgroundColor: this.props.app?.viewport.mobile
+            ? 'var(--light-bg)'
+            : undefined,
         }}
       >
         <style jsx>{`
@@ -80,7 +82,7 @@ export default class Header extends React.Component<Store> {
           }
           header {
             background-color: var(--bg-opacity);
-            backdrop-filter: blur(25px) brightness(1.2);
+            backdrop-filter: blur(25px) saturate(150%) brightness(1.1);
             z-index: 5;
             transition: transform 0.5s, backdrop-filter 0.5s;
           }

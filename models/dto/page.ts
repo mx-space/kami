@@ -1,4 +1,4 @@
-import { BaseRespModel } from './base'
+import { BaseRespModel, ImageSizeRecord } from './base'
 
 export interface PageRespDto extends BaseRespModel {
   data: {
@@ -14,6 +14,7 @@ export interface PageRespDto extends BaseRespModel {
     subtitle: string
     id: string
     allowComment?: boolean
+    images: ImageSizeRecord[]
   }
 }
 

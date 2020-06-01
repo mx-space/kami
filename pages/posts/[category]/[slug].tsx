@@ -1,8 +1,9 @@
-import { faUser, faCalendar } from '@fortawesome/free-solid-svg-icons'
+import { faCalendar, faUser } from '@fortawesome/free-solid-svg-icons'
 import Action, { ActionProps } from 'components/Action'
 import { CommentLazy } from 'components/Comment'
 import Markdown from 'components/MD-render'
 import OutdateNotice from 'components/Outdate'
+import dayjs from 'dayjs'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { observer } from 'mobx-react'
 import { PostResModel, PostSingleDto } from 'models/dto/post'
@@ -12,9 +13,10 @@ import { useEffect, useState } from 'react'
 import RemoveMarkdown from 'remove-markdown'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
-import configs from '../../../configs'
-import dayjs from 'dayjs'
 import { Copyright, CopyrightProps } from '../../../build/Copyright'
+import configs from '../../../configs'
+import { imageSizesContext } from '../../../context/ImageSizes'
+
 export const PostView: NextPage<PostResModel> = (props) => {
   const { text, title, _id } = props
   const { userStore } = useStore()
@@ -75,7 +77,9 @@ export const PostView: NextPage<PostResModel> = (props) => {
       />
 
       <OutdateNotice time={props.modified} />
-      <Markdown value={text} escapeHtml={false} showTOC={true} />
+      <imageSizesContext.Provider value={props.images}>
+        <Markdown value={text} escapeHtml={false} showTOC={true} />
+      </imageSizesContext.Provider>
       {props.copyright ? <Copyright {...copyrightInfo} /> : null}
       <Action {...actions} />
 

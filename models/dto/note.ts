@@ -1,4 +1,4 @@
-import { BaseRespModel, BaseModel } from './base'
+import { BaseRespModel, BaseModel, ImageSizeRecord } from './base'
 export interface CountRecord {
   read: number
   like: number
@@ -15,6 +15,7 @@ export interface NoteModel extends BaseModel {
   weather?: keyof typeof Weather
   nid: number
   id: string
+  images: ImageSizeRecord[]
 }
 
 export interface NoteLastestResp extends BaseRespModel {

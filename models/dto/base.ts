@@ -23,3 +23,9 @@ export interface BaseModel {
 export interface BaseCommentIndexModel extends BaseModel {
   commentsIndex?: number
 }
+
+export interface ImageSizeRecord {
+  type?: string
+  height?: number
+  width?: number
+}

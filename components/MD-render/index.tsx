@@ -9,10 +9,14 @@ import React, {
   memo,
   ReactType,
   useCallback,
+  useContext,
+  useEffect,
+  useState,
 } from 'react'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { useStore } from 'store'
 import CodeBlock from '../CodeBlock'
+import { imageSizesContext } from '../../context/ImageSizes'
 
 interface MdProps extends ReactMarkdownProps {
   value: string
@@ -52,8 +56,6 @@ const RenderLink: FC<{
             break
           }
           case 'notes': {
-            console.log(toUrlParser.pathname)
-
             Router.push('/notes/[id]', toUrlParser.pathname)
             break
           }
@@ -96,6 +98,55 @@ const RenderLink: FC<{
     </>
   )
 }
+
+const calculateDimensions = (width?: number, height?: number) => {
+  if (!width || !height) {
+    return { height: 300, width: undefined }
+  }
+  const MAX = {
+    width: document.getElementById('write')?.offsetWidth || 500,
+    height: 2000,
+  }
+  let dimensions = { width, height }
+  if (width > height) {
+    if (width > MAX.width) {
+      dimensions.width = MAX.width
+      dimensions.height = (MAX.width / width) * height
+    }
+  } else {
+    if (height > MAX.height) {
+      dimensions.height = MAX.height
+      dimensions.width = (MAX.height / height) * width
+    } else if (height === width) {
+      dimensions.height = MAX.width
+      dimensions.width = dimensions.height
+    }
+  }
+  return dimensions
+}
+
+const RenderImage: FC<{ src: string; alt?: string }> = ({ src, alt }) => {
+  const images = useContext(imageSizesContext)
+  const [cal, setCal] = useState({} as { height?: number; width?: number })
+  useEffect(() => {
+    const size = images.shift()
+    const cal = calculateDimensions(size?.width, size?.height)
+
+    setCal(cal)
+  }, [images])
+  if (typeof document === 'undefined') {
+    return null
+  }
+
+  return (
+    <ImageLazyWithPopup
+      src={src}
+      alt={alt}
+      height={cal.height}
+      width={cal.width}
+    />
+  )
+}
 const Markdown: FC<MdProps> = observer((props) => {
   const { value, renderers, style, ...rest } = props
   const { appStore } = useStore()
@@ -109,7 +160,7 @@ const Markdown: FC<MdProps> = observer((props) => {
           renderers={{
             code: CodeBlock,
             pre: CodeBlock,
-            image: ImageLazyWithPopup,
+            image: RenderImage,
             heading: Heading,
             link: RenderLink,
             ...renderers,

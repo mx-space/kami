@@ -7,7 +7,7 @@
  * @Coding with Love
  */
 
-import { BaseRespModel, PagerModel } from './base'
+import { BaseRespModel, PagerModel, ImageSizeRecord } from './base'
 import { CategoryModel } from './category'
 
 export interface PostResModel {
@@ -28,6 +28,7 @@ export interface PostResModel {
     read: number
     like: number
   }
+  images: ImageSizeRecord[]
 }
 
 export interface PostPagerDto extends BaseRespModel, PagerModel {
