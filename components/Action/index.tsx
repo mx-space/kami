@@ -8,7 +8,7 @@ import styles from './index.module.scss'
 
 type BaseAction = {
   icon: IconDefinition
-  name: string
+  name: string | number
 }
 
 export interface ActionProps

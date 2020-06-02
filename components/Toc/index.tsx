@@ -34,9 +34,12 @@ export const Toc: FC = () => {
       return
     }
     if (headings.length === 0) {
-      const headings = $headings
-        .flat(2)
-        .map((d: HTMLHeadingElement) => d.innerText)
+      console.log($headings.flat<HTMLHeadingElement>(2))
+      const headings = ($headings.flat<HTMLHeadingElement>(
+        2,
+      ) as HTMLHeadingElement[])
+        .sort((a, b) => parseInt(a.id) - parseInt(b.id))
+        .map((d: HTMLHeadingElement) => d.id)
       setHeadings(headings.length === 0 ? null : headings)
     }
   }, 20)
@@ -66,7 +69,9 @@ export const Toc: FC = () => {
                   key={i}
                   className={styles['toc-link']}
                 >
-                  <span className={styles['a-pointer']}>{heading}</span>
+                  <span className={styles['a-pointer']}>
+                    {heading.slice(heading.indexOf('¡') + 1)}
+                  </span>
                 </AnchorLink>
               )
             })}
