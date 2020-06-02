@@ -2,6 +2,7 @@ import {
   faCalendar,
   faUser,
   faHashtag,
+  faBookOpen,
 } from '@fortawesome/free-solid-svg-icons'
 import Action, { ActionProps } from 'components/Action'
 import { CommentLazy } from 'components/Comment'
@@ -44,11 +45,21 @@ export const PostView: NextPage<PostResModel> = (props) => {
           icon: faHashtag,
           name: props.category.name,
         },
+        {
+          icon: faBookOpen,
+          name: props.count?.read ?? 0,
+        },
       ],
       actions: [],
       copyright: props.copyright,
     })
-  }, [name, props.category.name, props.copyright, props.created])
+  }, [
+    name,
+    props.category.name,
+    props.copyright,
+    props.count.read,
+    props.created,
+  ])
   const { appStore } = useStore()
 
   useEffect(() => {

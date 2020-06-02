@@ -1,6 +1,6 @@
 import { faSmile } from '@fortawesome/free-regular-svg-icons'
 import {
-  faBookmark,
+  faBookOpen,
   faClock,
   faCloud,
   faHeart,
@@ -139,7 +139,7 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
     },
     {
       name: data.count.read.toString(),
-      icon: faBookmark,
+      icon: faBookOpen,
     },
   )
 

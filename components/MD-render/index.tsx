@@ -26,12 +26,20 @@ interface MdProps extends ReactMarkdownProps {
   readonly renderers?: { [nodeType: string]: ReactType }
 }
 
-const Heading: FC<{ level: 1 | 2 | 3 | 4 | 5 | 6; key?: number }> = (props) => {
-  return createElement<DOMAttributes<HTMLHeadingElement>, HTMLHeadingElement>(
-    `h${props.level}`,
-    { id: props.children?.[0].props.value } as any,
-    props.children,
-  )
+const Heading: () => FC<{
+  level: 1 | 2 | 3 | 4 | 5 | 6
+  key?: number
+}> = () => {
+  let index = 0
+  return function RenderHeading(props) {
+    return createElement<DOMAttributes<HTMLHeadingElement>, HTMLHeadingElement>(
+      `h${props.level}`,
+      {
+        id: index++ + '¡' + (props.children?.[0].props.value as string),
+      } as any,
+      props.children,
+    )
+  }
 }
 const RenderLink: FC<{
   href: string
@@ -104,20 +112,17 @@ const calculateDimensions = (width?: number, height?: number) => {
     return { height: 300, width: undefined }
   }
   const MAX = {
-    width: document.getElementById('write')?.offsetWidth || 500,
-    height: 2000,
+    width: document.getElementById('write')?.offsetWidth || 500, // 容器的宽度
+    height: Infinity, // 可选最大高度
   }
-  let dimensions = { width, height }
-  if (width > height) {
-    if (width > MAX.width) {
-      dimensions.width = MAX.width
-      dimensions.height = (MAX.width / width) * height
-    }
-  } else {
-    if (height > MAX.height) {
-      dimensions.height = MAX.height
-      dimensions.width = (MAX.height / height) * width
-    } else if (height === width) {
+  const dimensions = { width, height }
+  if (width > height && width > MAX.width) {
+    dimensions.width = MAX.width
+    dimensions.height = (MAX.width / width) * height
+  } else if (height === width) {
+    if (width <= MAX.width) {
+      dimensions.height = dimensions.width = height
+    } else {
       dimensions.height = MAX.width
       dimensions.width = dimensions.height
     }
@@ -161,7 +166,7 @@ const Markdown: FC<MdProps> = observer((props) => {
             code: CodeBlock,
             pre: CodeBlock,
             image: RenderImage,
-            heading: Heading,
+            heading: Heading(),
             link: RenderLink,
             ...renderers,
           }}
