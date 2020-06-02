@@ -34,10 +34,9 @@ export const Toc: FC = () => {
       return
     }
     if (headings.length === 0) {
-      console.log($headings.flat<HTMLHeadingElement>(2))
-      const headings = ($headings.flat<HTMLHeadingElement>(
-        2,
-      ) as HTMLHeadingElement[])
+      // @ts-ignore
+      const headings = $headings
+        .flat<HTMLHeadingElement>(2)
         .sort((a, b) => parseInt(a.id) - parseInt(b.id))
         .map((d: HTMLHeadingElement) => d.id)
       setHeadings(headings.length === 0 ? null : headings)
