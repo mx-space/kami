@@ -60,20 +60,15 @@ const AppContext = createContext({
 }))
 @observer
 class Context extends PureComponent<Store & { data: any }> {
+  currentY = 0
   scrollCb = throttle(() => {
     const currentY = document.documentElement.scrollTop
-    const direction = this.state.currentY >= currentY ? 'up' : 'down'
+    const direction = this.currentY >= currentY ? 'up' : 'down'
     this.props.app?.updatePosition(direction)
-    this.setState({
-      currentY: currentY,
-    })
-    document.body.style.backgroundPositionY = `-${
-      document.documentElement.scrollTop / 36
-    }px`
+    this.currentY = currentY
   }, 13)
   state = {
     loading: true,
-    currentY: 0,
   }
   componentDidMount(): void {
     if (typeof window !== 'undefined') {

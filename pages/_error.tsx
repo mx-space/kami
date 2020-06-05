@@ -15,8 +15,8 @@ const _Error: NextPage<{ statusCode: number }> = ({ statusCode }) => {
           )}
         </div>
       </div>
-      <p>去别处看看?</p>
-      <button className={'btn red'} onClick={(_) => router.push('/')}>
+      <p>去别处看看? | 刷新试试? </p>
+      <button className={'btn red'} onClick={() => router.push('/')}>
         回到首页
       </button>
     </div>
@@ -24,6 +24,8 @@ const _Error: NextPage<{ statusCode: number }> = ({ statusCode }) => {
 }
 
 _Error.getInitialProps = ({ res, err }) => {
+  console.info('resp code: ', res?.statusCode, 'err code: ', err?.statusCode)
+
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404
   return { statusCode } as { statusCode: number }
 }

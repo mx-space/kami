@@ -28,9 +28,13 @@ const BangumiView: NextPage<{ data: FavoriteBangumiType[] }> = (props) => {
                   target="_blank"
                   rel="nofollow"
                   data-total={bangumi.count}
-                  data-test=""
                 >
-                  <img src={'/_extra/cover?src=' + bangumi.cover} />
+                  <img
+                    src={
+                      'https://i0.wp.com/' +
+                      bangumi.cover.replace(/^https?:\/\//, '')
+                    }
+                  />
                   <h4>
                     {bangumi.title}
                     <div className="bangumi-status">
