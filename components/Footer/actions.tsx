@@ -19,8 +19,11 @@ export const FooterActions: FC = observer(() => {
   const [chatShow, setChatShow] = useState(false)
   const [newMessageCount, setCount] = useState(0)
   useEffect(() => {
-    const handler = () => {
-      if (!userStore.isLogged) {
+    const handler = (data: any) => {
+      if (
+        (!userStore.isLogged && data.author === userStore.name) ||
+        data.author === userStore.username
+      ) {
         setCount(newMessageCount + 1)
       }
     }

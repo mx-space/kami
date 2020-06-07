@@ -370,6 +370,10 @@ html.light img:before {
     right: 0;
     transform: translateX(100%);
   }
+  50% {
+    right: 50vw;
+    transform: translateX(-100%);
+  }
   to {
     right: 100vw;
     transform: translateX(-100%);

@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-28 12:24:14
- * @LastEditTime: 2020-05-29 11:42:37
+ * @LastEditTime: 2020-06-07 16:22:18
  * @LastEditors: Innei
  * @FilePath: /mx-web/utils/danmaku.ts
  * @Copyright
@@ -9,7 +9,7 @@
 import range from 'lodash/range'
 import sample from 'lodash/sample'
 const createDanmakuWrap = () => {
-  const $root = document.documentElement
+  const $root = document.body
   const $wrap = document.getElementById('dangmaku')
   if (!$wrap) {
     const $wrap = document.createElement('div')
@@ -42,10 +42,11 @@ export const createDangmaku = ({ color, duration, text }: DanmakuProps) => {
   dangmaku.textContent = text
   dangmaku.style.color = color ?? ''
   dangmaku.style.position = 'absolute'
-  dangmaku.style.fontSize = '14px'
+  dangmaku.style.fontSize = '16px'
   dangmaku.style.top =
     sample(range(0, Math.floor(wrapHeight / 16)) as any) * 14 + 'px'
-
+  // dangmaku.style.textShadow =
+  //   '0 1px var(--gray), 1px 0 var(--gray), -1px 0 var(--gray), 0 -1px var(--gray)'
   // dangmaku.style.right = '0'
   // dangmaku.style.transition =
   //   'right ' + (duration && duration / 1000 > 8 ? duration : 8) + 's linear'

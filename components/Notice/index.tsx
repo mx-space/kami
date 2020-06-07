@@ -56,6 +56,6 @@ export const NoticePanel: FC<NoticePanelProps & { setShow: Function }> = (
     <TweenOne animation={animation} paused={false} style={{ opacity: 0 }}>
       <_Notice {...props} />
     </TweenOne>,
-    document.documentElement,
+    document.body,
   )
 }

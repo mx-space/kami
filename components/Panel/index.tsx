@@ -171,6 +171,6 @@ export const ChatPanel: FC<{ show: boolean; toggle: () => void }> = (props) => {
     <QueueAnim>
       {show ? <_ChatPanel key={'chat'} toggle={props.toggle} /> : null}
     </QueueAnim>,
-    document.documentElement,
+    document.body,
   )
 }
