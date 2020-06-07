@@ -113,6 +113,6 @@
     "prettier": "2.0.5",
     "react-lazyload": "2.6.7",
     "ts-node": "8.10.2",
-    "typescript": "3.9.3"
+    "typescript": "3.9.5"
   }
 }
