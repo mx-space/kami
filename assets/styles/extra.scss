@@ -233,7 +233,7 @@ pre {
 .is-note p:not(:first-child).indent {
   text-indent: 2rem;
 }
-.is-note .btn:first-child {
+.is-note .btn:not(:last-child) {
   margin-right: 12px;
 }
 .is-note #write > p > span {

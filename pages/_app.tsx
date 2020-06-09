@@ -41,6 +41,7 @@ import { getToken, removeToken } from '../utils/auth'
 import { AntiDebug } from '../utils/forbidden'
 import * as gtag from '../utils/gtag'
 import { getBrowserType } from '../utils/ua'
+import { message } from 'antd'
 
 const stores = createMobxStores()
 if (process.env.NODE_ENV === 'development') {
@@ -92,17 +93,25 @@ class Context extends PureComponent<Store & { data: any }> {
       }
 
       Router.events.on('routeChangeStart', () => {
+        setTimeout(() => {
+          if (this.props.app?.loading) {
+            this.setState({ loading: true })
+          }
+        }, 500)
         this.props.app?.setLoading(true)
       })
 
       Router.events.on('routeChangeComplete', () => {
         // window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
+        this.setState({ loading: false })
         this.props.app?.setLoading(false)
       })
 
       Router.events.on('routeChangeError', () => {
         // window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
+        this.setState({ loading: false })
         this.props.app?.setLoading(false)
+        message.error('出现了未知错误, 刷新试试?')
       })
 
       Router.events.on('routeChangeComplete', (url) => gtag.pageview(url))

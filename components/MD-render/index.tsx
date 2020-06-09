@@ -139,6 +139,7 @@ const RenderImage: FC<{ src: string; alt?: string }> = ({ src, alt }) => {
 
     setCal(cal)
   }, [images])
+
   if (typeof document === 'undefined') {
     return null
   }

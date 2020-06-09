@@ -15,14 +15,14 @@ export const ArticleLayout: FC<
       {title && (
         <section className="post-title">
           <h1>
-            <Texty type={'bottom'} mode={'smooth'} delay={500}>
+            <Texty type={'mask-bottom'} mode={'smooth'}>
               {title}
             </Texty>
           </h1>
 
           {subtitle && (
             <h2>
-              <Texty type={'bottom'} mode={'smooth'} delay={500}>
+              <Texty type={'mask-bottom'} mode={'smooth'} delay={500}>
                 {subtitle}
               </Texty>
             </h2>
@@ -30,7 +30,7 @@ export const ArticleLayout: FC<
         </section>
       )}
       <QueueAnim
-        delay={1000}
+        delay={title && subtitle ? 1200 : title ? 700 : 300}
         duration={500}
         animConfig={{ opacity: [1, 0], translateY: [0, 50] }}
       >

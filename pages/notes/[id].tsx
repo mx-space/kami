@@ -193,6 +193,16 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
                 前一篇
               </button>
             )}
+            {
+              <button
+                className="btn yellow"
+                onClick={() => {
+                  router.push('/timeline?type=note')
+                }}
+              >
+                时间线
+              </button>
+            }
             {!!prev && (
               <button
                 className="btn green"

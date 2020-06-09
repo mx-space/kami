@@ -24,28 +24,17 @@ interface ImageFCProps {
   useRandomBackgroundColor?: boolean
 }
 
-export const ImageLazy: FC<
-  ImageFCProps &
-    DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
-> = observer((props) => {
-  const {
-    defaultImage,
-    src,
-    alt = src,
-    height,
-    width,
-    useRandomBackgroundColor,
-    ...rest
-  } = props
-
+const Image: FC<
+  DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> & {
+    placeholderRef: any
+    wrapRef: any
+  }
+> = ({ src, alt, placeholderRef, wrapRef, ...rest }) => {
   const realImageRef = useRef<HTMLImageElement>(null)
-  const placeholderRef = useRef<HTMLDivElement>(null)
   const fakeImageRef = useRef<HTMLImageElement>(null)
-  const wrapRef = useRef<HTMLDivElement>(null)
-  const onError = () => {}
   const onLoad = useCallback(() => {
     try {
-      realImageRef.current!.src = src
+      realImageRef.current!.src = src as string
 
       realImageRef.current!.classList.remove('image-hide')
       // eslint-disable-next-line no-empty
@@ -63,6 +52,44 @@ export const ImageLazy: FC<
       // eslint-disable-next-line no-empty
     } catch {}
   }, [src])
+  return (
+    <>
+      <img
+        ref={realImageRef}
+        className={'image-hide lazyload-image'}
+        {...rest}
+        alt={alt}
+      />
+      <img
+        src={src}
+        onLoad={onLoad}
+        style={{ position: 'absolute', opacity: 0, zIndex: -99 }}
+        ref={fakeImageRef}
+        alt={alt}
+      />
+    </>
+  )
+}
+
+export const ImageLazy: FC<
+  ImageFCProps &
+    DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
+> = observer((props) => {
+  const {
+    defaultImage,
+    src,
+    alt = src,
+    height,
+    width,
+    useRandomBackgroundColor,
+    ...rest
+  } = props
+
+  const realImageRef = useRef<HTMLImageElement>(null)
+  const placeholderRef = useRef<HTMLDivElement>(null)
+
+  const wrapRef = useRef<HTMLDivElement>(null)
+
   const colorMode = useStore().appStore.colorMode
   const [randColor, setRandColor] = useState(
     randomColor({ luminosity: colorMode === 'light' ? 'bright' : 'dark' }),
@@ -74,18 +101,7 @@ export const ImageLazy: FC<
   }, [colorMode])
 
   return (
-    <LazyLoad
-      once
-      placeholder={
-        <div
-          className="placeholder-image"
-          style={{
-            backgroundColor: useRandomBackgroundColor ? randColor : '',
-            zIndex: -1,
-          }}
-        ></div>
-      }
-    >
+    <>
       {defaultImage ? (
         <img src={defaultImage} alt={alt} {...rest} ref={realImageRef} />
       ) : (
@@ -93,16 +109,19 @@ export const ImageLazy: FC<
           style={{
             position: 'relative',
             // overflow: 'hidden',
-            height: height,
+            height,
           }}
           ref={wrapRef}
         >
-          <img
-            ref={realImageRef}
-            className={'image-hide lazyload-image'}
-            {...rest}
-            alt={alt}
-          />
+          <LazyLoad once debounce={500}>
+            <Image
+              className={'image-hide lazyload-image'}
+              {...rest}
+              src={src}
+              alt={alt}
+              {...{ placeholderRef, wrapRef }}
+            />
+          </LazyLoad>
 
           <div
             className="placeholder-image"
@@ -124,15 +143,7 @@ export const ImageLazy: FC<
       {alt && alt.startsWith('!') && (
         <p className={'img-alt'}>{alt.slice(1)}</p>
       )}
-      <img
-        src={src}
-        onError={onError}
-        onLoad={onLoad}
-        style={{ position: 'absolute', opacity: 0, zIndex: -99 }}
-        ref={fakeImageRef}
-        alt={alt}
-      />
-    </LazyLoad>
+    </>
   )
 })
 
