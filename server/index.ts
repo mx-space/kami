@@ -1,3 +1,12 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-04-30 11:04:43
+ * @LastEditTime: 2020-06-10 17:15:50
+ * @LastEditors: Innei
+ * @FilePath: /mx-web/server/index.ts
+ * @Coding with Love
+ */
+
 import express from 'express'
 import next from 'next'
 import { router } from './routers'
@@ -35,13 +44,7 @@ app
     server.get('*', cache('10 minutes'), (req, res) => {
       return handle(req, res)
     })
-    server.use((err, req, res, next) => {
-      if (dev) {
-        console.error(err)
-      } else {
-        console.log(err.message)
-      }
-    })
+
     server.listen(port, (err: any) => {
       if (err) throw err
       console.log(`> Ready on http://localhost:${port}`)

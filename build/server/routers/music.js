@@ -1,5 +1,14 @@
 "use strict";
+/*
+ * @Author: Innei
+ * @Date: 2020-04-29 17:27:02
+ * @LastEditTime: 2020-05-23 09:38:55
+ * @LastEditors: Innei
+ * @FilePath: /mx-web/server/routers/music.ts
+ * @MIT
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.musicRouter = void 0;
 const extra_1 = require("@mx-space/extra");
 const express_1 = require("express");
 exports.musicRouter = express_1.Router();
@@ -26,7 +35,7 @@ exports.musicRouter.get('/music', async (req, res) => {
 });
 exports.musicRouter.get('/song', async (req, res) => {
     const id = parseInt(req.query.id);
-    if (!id || isNaN(id)) {
+    if (!id) {
         return res.status(422).send({
             message: 'id 必须为数字',
         });

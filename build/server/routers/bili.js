@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.biliRouter = void 0;
 const extra_1 = require("@mx-space/extra");
 const express_1 = require("express");
 exports.biliRouter = express_1.Router();

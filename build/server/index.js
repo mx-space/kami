@@ -1,4 +1,12 @@
 "use strict";
+/*
+ * @Author: Innei
+ * @Date: 2020-04-30 11:04:43
+ * @LastEditTime: 2020-06-10 17:15:50
+ * @LastEditors: Innei
+ * @FilePath: /mx-web/server/index.ts
+ * @Coding with Love
+ */
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -34,14 +42,6 @@ app
     });
     server.get('*', cache('10 minutes'), (req, res) => {
         return handle(req, res);
-    });
-    server.use((err, req, res, next) => {
-        if (dev) {
-            console.error(err);
-        }
-        else {
-            console.log(err.message);
-        }
     });
     server.listen(port, (err) => {
         if (err)

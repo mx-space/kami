@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-07 16:04:24
- * @LastEditTime: 2020-05-29 20:23:00
+ * @LastEditTime: 2020-06-10 17:04:11
  * @LastEditors: Innei
  * @FilePath: /mx-web/utils/request.ts
  * @MIT
@@ -58,7 +58,10 @@ service.interceptors.response.use(
       }
     }
 
-    return Promise.reject(error)
+    return Promise.reject({
+      statusCode: error.response.status,
+      data: error.response.data,
+    })
   },
 )
 

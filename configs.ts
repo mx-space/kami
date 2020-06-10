@@ -133,7 +133,10 @@ export default {
   avatar: 'https://tu-1252943311.file.myqcloud.com/avatar.png', // work on rss
   url: 'https://innei.ren',
   keywords: ['blog', 'space', 'mx-space', 'innei', '静之森', '静かな森'],
-  alwaysHTTPS: process.env.NODE_ENV === 'development' ? false : true,
+  alwaysHTTPS:
+    process.env.NODE_ENV === 'development'
+      ? false
+      : process.env.ALWAYS_HTTPS && parseInt(process.env.ALWAYS_HTTPS) === 1,
   social,
   biliId: 26578164,
   homePage: 'https://innei.ren', // footer link
