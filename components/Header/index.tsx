@@ -101,7 +101,9 @@ export default class Header extends React.Component<Store> {
         `}</style>
         {app?.viewport.mobile && (
           <div
-            onClick={() => this.setState({ menuOpen: !this.state.menuOpen })}
+            onClick={() => {
+              this.setState({ menuOpen: !this.state.menuOpen })
+            }}
             className="head-btn"
             style={{
               display: 'flex',

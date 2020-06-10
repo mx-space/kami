@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-07 16:04:24
- * @LastEditTime: 2020-06-10 17:04:11
+ * @LastEditTime: 2020-06-10 18:52:09
  * @LastEditors: Innei
  * @FilePath: /mx-web/utils/request.ts
  * @MIT
@@ -47,7 +47,7 @@ service.interceptors.response.use(
   },
   (error) => {
     if (typeof document !== 'undefined') {
-      if (error.response?.data?.message) {
+      if (error.response.data?.message) {
         if (Array.isArray(error.response.data.message)) {
           error.response.data.message.map((m) => {
             message.error(m)

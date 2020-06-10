@@ -75,8 +75,6 @@ const RenderLink: FC<{
             Router.push(toUrlParser.pathname)
           }
         }
-
-        return false
       }
     },
     [props.href],

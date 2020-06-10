@@ -29,9 +29,9 @@ const getCode = (err, res) => {
   }
   if (res?.statusCode === 500 && err?.statusCode === 500) {
     return 500
-  } else if (err && err?.statusCode !== 500) {
+  } else if (err && err.statusCode !== 500) {
     return err.statusCode
-  } else if (res && res?.statusCode !== 500) {
+  } else if (res && res.statusCode !== 500) {
     return res.statusCode
   }
   return 500
