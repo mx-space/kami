@@ -152,10 +152,8 @@ const RenderImage: FC<{ src: string; alt?: string }> = ({ src, alt }) => {
   )
 }
 
-const RenderSpoiler: FC = (props) => {
-  console.log(props)
-
-  return null
+const RenderSpoiler: FC<{ value: string }> = (props) => {
+  return <span className={'spoiler'}>{props.value}</span>
 }
 const Markdown: FC<MdProps> = observer((props) => {
   const { value, renderers, style, ...rest } = props
@@ -173,6 +171,7 @@ const Markdown: FC<MdProps> = observer((props) => {
             image: RenderImage,
             heading: Heading(),
             link: RenderLink,
+            spoiler: RenderSpoiler,
             ...renderers,
           }}
           plugins={CustomRules}

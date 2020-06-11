@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-11 13:31:05
- * @LastEditTime: 2020-06-11 13:55:24
+ * @LastEditTime: 2020-06-11 17:44:49
  * @LastEditors: Innei
  * @FilePath: /mx-web/common/markdown/rules/spoiler.ts
  * @Coding with Love
@@ -16,8 +16,9 @@ function tokenizeSpoiler(eat: Eat, value: string, silent?: boolean): any {
       return true
     }
     return eat(match[0])({
-      type: 'html',
-      value: `<span class="spoiler">${match[1]}</span>`,
+      type: 'spoiler',
+      value: match[1],
+      // value: `<span class="spoiler">${match[1]}</span>`,
     })
   }
 }
