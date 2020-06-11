@@ -18,7 +18,7 @@ import { useEffect, useState } from 'react'
 import RemoveMarkdown from 'remove-markdown'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
-import { Copyright, CopyrightProps } from '../../../build/Copyright'
+import { Copyright, CopyrightProps } from '../../../components/Copyright'
 import configs from '../../../configs'
 import { imageSizesContext } from '../../../context/ImageSizes'
 

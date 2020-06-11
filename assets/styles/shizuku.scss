@@ -324,3 +324,10 @@
   overflow: hidden;
   text-align: right;
 }
+#write .spoiler {
+  background-color: currentColor;
+  transition: background 0.5s;
+  &:hover {
+    background-color: transparent;
+  }
+}

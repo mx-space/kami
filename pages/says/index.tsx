@@ -11,7 +11,7 @@ import { EventTypes } from '../../socket/types'
 import { useStore } from '../../store'
 import { hexToRGB } from '../../utils/color'
 import observable from '../../utils/observable'
-import { usePrevious } from '../../hooks/usePrevious'
+import { usePrevious } from '../../common/hooks/usePrevious'
 import ReactMarkdown from 'react-markdown'
 const { scaleUp } = transitions
 interface SayViewProps {

@@ -17,7 +17,7 @@ import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { useStore } from 'store'
 import CodeBlock from '../CodeBlock'
 import { imageSizesContext } from '../../context/ImageSizes'
-
+import CustomRules from 'common/markdown/rules'
 interface MdProps extends ReactMarkdownProps {
   value: string
   showTOC?: boolean
@@ -151,6 +151,12 @@ const RenderImage: FC<{ src: string; alt?: string }> = ({ src, alt }) => {
     />
   )
 }
+
+const RenderSpoiler: FC = (props) => {
+  console.log(props)
+
+  return null
+}
 const Markdown: FC<MdProps> = observer((props) => {
   const { value, renderers, style, ...rest } = props
   const { appStore } = useStore()
@@ -169,6 +175,7 @@ const Markdown: FC<MdProps> = observer((props) => {
             link: RenderLink,
             ...renderers,
           }}
+          plugins={CustomRules}
         />
         {props.showTOC && !viewport.mobile && !viewport.pad ? <Toc /> : null}
       </div>
