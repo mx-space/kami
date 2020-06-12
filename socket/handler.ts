@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-29 21:54:33
- * @LastEditTime: 2020-05-31 10:33:25
+ * @LastEditTime: 2020-06-12 15:53:02
  * @LastEditors: Innei
  * @FilePath: /mx-web/socket/handler.ts
  * @Code with Love
@@ -26,6 +26,9 @@ export const eventHandler = (type: EventTypes, data: any) => {
     }
     case EventTypes.POST_CREATE:
     case EventTypes.NOTE_CREATE: {
+      if (data.hide) {
+        break
+      }
       const message = noticeHead('文章', data.title)
       const _type: Record<
         EventTypes.POST_CREATE | EventTypes.NOTE_CREATE,
