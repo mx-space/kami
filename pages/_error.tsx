@@ -1,6 +1,19 @@
 import { useRouter } from 'next/router'
 import { NextPage } from 'next'
 
+const errorToText = (statusCode: number) => {
+  switch (statusCode) {
+    case 404:
+      return '抱歉啦, 页面走丢了'
+    case 403:
+      return '不要做一些不允许的事情啦'
+    case 401:
+      return '这是主人的小秘密哦, 你是我的主人吗'
+    default:
+      return '抱歉, 出了点小问题'
+  }
+}
+
 const _Error: NextPage<{ statusCode: number }> = ({ statusCode }) => {
   const router = useRouter()
   return (
@@ -8,17 +21,21 @@ const _Error: NextPage<{ statusCode: number }> = ({ statusCode }) => {
       <div className="error_wrap">
         <h1>{statusCode}</h1>
         <div className="desc">
-          {statusCode === 404 ? (
-            <h2>页面走丢了</h2>
-          ) : (
-            <h2>抱歉, 出了点小问题</h2>
-          )}
+          <h2>{errorToText(statusCode)}</h2>
         </div>
       </div>
-      <p>去别处看看? | 刷新试试? </p>
-      <button className={'btn red'} onClick={() => router.push('/')}>
-        回到首页
-      </button>
+      <div style={{ marginTop: '20px' }}>
+        <button
+          className={'btn red'}
+          style={{ marginRight: '12px' }}
+          onClick={() => router.push('/')}
+        >
+          回到首页
+        </button>
+        <button className={'btn yellow'} onClick={() => location.reload()}>
+          刷新
+        </button>
+      </div>
     </div>
   )
 }
