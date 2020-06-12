@@ -107,7 +107,7 @@ const RenderLink: FC<{
 
 const calculateDimensions = (width?: number, height?: number) => {
   if (!width || !height) {
-    return { height: 300, width: undefined }
+    return { height: undefined, width: undefined }
   }
   const MAX = {
     width: document.getElementById('write')?.offsetWidth || 500, // 容器的宽度
@@ -128,33 +128,41 @@ const calculateDimensions = (width?: number, height?: number) => {
   return dimensions
 }
 
-const RenderImage: FC<{ src: string; alt?: string }> = ({ src, alt }) => {
-  const images = useContext(imageSizesContext)
-  const [cal, setCal] = useState({} as { height?: number; width?: number })
-  useEffect(() => {
-    const size = images.shift()
-    const cal = calculateDimensions(size?.width, size?.height)
+const Image: () => FC<{ src: string; alt?: string }> = () => {
+  let index = 0
+  return function RenderImage({ src, alt }) {
+    const images = useContext(imageSizesContext)
+    const [cal, setCal] = useState({} as { height?: number; width?: number })
+    useEffect(() => {
+      const size = images[index++] || { height: undefined, width: undefined }
+      const cal = calculateDimensions(size?.width, size?.height)
 
-    setCal(cal)
-  }, [images])
+      setCal(cal)
+    }, [images])
 
-  if (typeof document === 'undefined') {
-    return null
+    if (typeof document === 'undefined') {
+      return null
+    }
+
+    return (
+      <ImageLazyWithPopup
+        src={src}
+        alt={alt}
+        height={cal.height}
+        width={cal.width}
+      />
+    )
   }
-
-  return (
-    <ImageLazyWithPopup
-      src={src}
-      alt={alt}
-      height={cal.height}
-      width={cal.width}
-    />
-  )
 }
 
 const RenderSpoiler: FC<{ value: string }> = (props) => {
   return <span className={'spoiler'}>{props.value}</span>
 }
+
+const RenderParagraph: FC<{}> = (props) => {
+  return <div className={'paragraph'}>{props.children}</div>
+}
+
 const Markdown: FC<MdProps> = observer((props) => {
   const { value, renderers, style, ...rest } = props
   const { appStore } = useStore()
@@ -168,10 +176,11 @@ const Markdown: FC<MdProps> = observer((props) => {
           renderers={{
             code: CodeBlock,
             pre: CodeBlock,
-            image: RenderImage,
+            image: Image(),
             heading: Heading(),
             link: RenderLink,
             spoiler: RenderSpoiler,
+            paragraph: RenderParagraph,
             ...renderers,
           }}
           plugins={CustomRules}

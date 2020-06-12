@@ -161,7 +161,7 @@ export const ImageLazyWithPopup: FC<
       <ImageLazy
         src={props.src}
         alt={props.alt || props.src}
-        height={props.height || 300}
+        height={props.height}
         width={props.width}
         onClick={() => {
           setOpen(true)

@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { NextPage } from 'next'
+import { sample } from 'lodash'
 
 const errorToText = (statusCode: number) => {
   switch (statusCode) {
@@ -9,12 +10,17 @@ const errorToText = (statusCode: number) => {
       return '不要做一些不允许的事情啦'
     case 401:
       return '这是主人的小秘密哦, 你是我的主人吗'
+    case 406:
+    case 418:
+      return '茶壶出现错误.'
     default:
       return '抱歉, 出了点小问题'
   }
 }
 
-const _Error: NextPage<{ statusCode: number }> = ({ statusCode }) => {
+const _Error: NextPage<{ statusCode: number }> = ({
+  statusCode = sample([406, 418]) as number,
+}) => {
   const router = useRouter()
   return (
     <div className="error">

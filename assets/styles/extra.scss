@@ -135,8 +135,10 @@ pre > code {
   }
 }
 
-p {
+p,
+.paragraph {
   margin: 0.5rem 0;
+  line-height: 1.8;
 }
 pre > code,
 pre {
@@ -187,7 +189,7 @@ pre {
   word-wrap: break-word;
   text-align: justify;
   padding-top: 2rem;
-  > p:first-child {
+  > .paragraph:first-child {
     margin-bottom: 2rem;
   }
 }
@@ -218,25 +220,25 @@ pre {
   display: inline-block;
 }
 
-.is-note #write > p:first-child::first-letter {
+.is-note #write > .paragraph:first-child::first-letter {
   float: left;
   font-size: 2.4em;
   margin: 0 0.2em 0 0;
 }
 
-.is-note #write > p {
+.is-note #write > .paragraph {
   clear: both;
 }
 // .is-note #write > p:not(:first-child)::first-letter {
 //   margin-left: 2rem;
 // }
-.is-note p:not(:first-child).indent {
+.is-note .paragraph:not(:first-child).indent {
   text-indent: 2rem;
 }
 .is-note .btn:not(:last-child) {
   margin-right: 12px;
 }
-.is-note #write > p > span {
+.is-note #write > .paragraph > span {
   border-bottom: 1px solid #00b8bb41;
 }
 .news-item {

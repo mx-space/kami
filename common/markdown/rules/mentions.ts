@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-11 13:01:08
- * @LastEditTime: 2020-06-11 13:57:07
+ * @LastEditTime: 2020-06-12 20:19:16
  * @LastEditors: Innei
  * @FilePath: /mx-web/common/markdown/rules/mentions.ts
  * @Coding with Love
@@ -21,12 +21,14 @@ function tokenizeMention(eat: Eat, value: string, silent?: boolean): any {
     if (silent) {
       return true
     }
-
-    return eat(match[0])({
-      type: 'link',
-      url: 'https://github.com/' + match[2],
-      children: [{ type: 'text', value: match[1] }],
-    })
+    try {
+      return eat(match[0])({
+        type: 'link',
+        url: 'https://github.com/' + match[2],
+        children: [{ type: 'text', value: match[1] }],
+      })
+      // eslint-disable-next-line no-empty
+    } catch {}
   }
 }
 tokenizeMention.notInLink = true

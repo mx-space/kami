@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-11 13:31:05
- * @LastEditTime: 2020-06-11 17:44:49
+ * @LastEditTime: 2020-06-12 20:18:36
  * @LastEditors: Innei
  * @FilePath: /mx-web/common/markdown/rules/spoiler.ts
  * @Coding with Love
@@ -9,17 +9,19 @@
 import type { Eat, Parser } from 'remark-parse'
 
 function tokenizeSpoiler(eat: Eat, value: string, silent?: boolean): any {
-  const match = /\|\|(.*?)\|\|/.exec(value)
+  const match = /\|\|(.*)\|\|/.exec(value)
 
   if (match) {
     if (silent) {
       return true
     }
-    return eat(match[0])({
-      type: 'spoiler',
-      value: match[1],
-      // value: `<span class="spoiler">${match[1]}</span>`,
-    })
+    try {
+      return eat(match[0])({
+        type: 'spoiler',
+        value: match[1],
+      })
+      // eslint-disable-next-line no-empty
+    } catch {}
   }
 }
 tokenizeSpoiler.notInLink = true
