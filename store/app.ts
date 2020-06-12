@@ -20,7 +20,7 @@ export default class AppStore {
     meta: '',
     show: false,
   }
-
+  @observable noteNid: null | number = null
   @action updatePosition(direction: 'up' | 'down') {
     if (typeof document !== 'undefined') {
       this.position = document.documentElement.scrollTop
@@ -73,7 +73,7 @@ export default class AppStore {
         title: name,
         _id,
         path: '/category/[slug]',
-        as: '/category/' + category.slug,
+        as: '/category/' + slug,
         type: 'Custom',
       }
     })
@@ -93,6 +93,10 @@ export default class AppStore {
   }
   @action setConfig(config: any) {
     this.config = config
+  }
+
+  @action setLastestNoteNid(nid: number) {
+    this.noteNid = nid
   }
   @computed get seo() {
     return this.config.seo || {}

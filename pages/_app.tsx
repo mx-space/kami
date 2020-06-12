@@ -77,7 +77,7 @@ class Context extends PureComponent<Store & { data: any }> {
       Rest('Aggregate')
         .get<AggregateResp>()
         .then((res) => {
-          const { seo, user, pageMeta, categories } = res
+          const { seo, user, pageMeta, categories, lastestNoteNid } = res
           // set user
           this.props.master?.setUser(user)
           // set page
@@ -86,6 +86,7 @@ class Context extends PureComponent<Store & { data: any }> {
           this.props.app?.setCategories(categories)
           this.props.category?.setCategory(categories)
           this.props.app?.setConfig({ seo })
+          this.props.app?.setLastestNoteNid(lastestNoteNid)
         })
         .then(() => {
           if (getToken()) {

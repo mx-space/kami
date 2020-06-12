@@ -1,29 +1,38 @@
-import { NoteLastestResp, NoteModel } from 'models/dto/note'
-import { NextPage } from 'next'
+import { observer } from 'mobx-react'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { Rest } from 'utils/api'
+import { useStore } from '../../store'
 
-const NotePage: NextPage<{
-  data: NoteModel
-  next: {
-    _id: string
-    nid: number
-    id: string
-  }
-}> = (props) => {
+// const NotePage: NextPage<{
+//   data: NoteModel
+//   next: {
+//     _id: string
+//     nid: number
+//     id: string
+//   }
+// }> = (props) => {
+//   const router = useRouter()
+//   useEffect(() => {
+//     router.push('/notes/[id]', `/notes/${props.data.nid}`, { shallow: true })
+//   }, [props.data.nid, router])
+
+//   return <main></main>
+// }
+
+// NotePage.getInitialProps = async (ctx) => {
+//   const { data, next } = (await Rest('Note').get('latest')) as NoteLastestResp
+
+//   return { data, next }
+// }
+const NotePage = observer(() => {
   const router = useRouter()
+  const { appStore } = useStore()
   useEffect(() => {
-    router.push('/notes/[id]', `/notes/${props.data.nid}`, { shallow: true })
-  }, [props.data.nid, router])
-
+    router.replace('/notes/[id]', `/notes/${appStore.noteNid}`, {
+      shallow: true,
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   return <main></main>
-}
-
-NotePage.getInitialProps = async (ctx) => {
-  const { data, next } = (await Rest('Note').get('latest')) as NoteLastestResp
-
-  return { data, next }
-}
-
+})
 export default NotePage

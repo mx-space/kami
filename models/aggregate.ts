@@ -81,4 +81,5 @@ export interface AggregateResp extends BaseRespModel {
   seo: Seo
   categories: CategoryModel[]
   pageMeta: PageMeta[]
+  lastestNoteNid: number
 }
