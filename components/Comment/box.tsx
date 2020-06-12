@@ -1,6 +1,6 @@
 import { GlobalOutlined, MailOutlined, UserOutlined } from '@ant-design/icons'
 import { Input, message } from 'antd'
-import { FC, useState, useEffect } from 'react'
+import { FC, useState, useEffect, memo } from 'react'
 import isEmail from 'validator/lib/isEmail'
 import isUrl from 'validator/lib/isURL'
 import { useStore } from '../../store'
@@ -13,7 +13,7 @@ const { TextArea } = Input
 const CommentBox: FC<{
   onSubmit: ({ text, author, mail, url }) => any
   onCancel?: () => any
-}> = ({ onSubmit, onCancel }) => {
+}> = memo(({ onSubmit, onCancel }) => {
   const [author, setAuthor] = useState('')
   const [mail, setMail] = useState('')
   const [url, setUrl] = useState('')
@@ -144,6 +144,6 @@ const CommentBox: FC<{
       </div>
     </>
   )
-}
+})
 
 export default CommentBox

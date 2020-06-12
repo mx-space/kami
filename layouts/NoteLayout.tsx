@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import { FC, forwardRef } from 'react'
+import { FC, forwardRef, memo } from 'react'
 import { QueueAnim } from '../components/Anime'
 
 interface NoteLayoutProps {
@@ -8,8 +8,8 @@ interface NoteLayoutProps {
   date: Date
 }
 
-const NoteLayout: FC<NoteLayoutProps> = forwardRef(
-  ({ children, date, title, tips }, ref: any) => {
+const NoteLayout: FC<NoteLayoutProps> = memo(
+  forwardRef(({ children, date, title, tips }, ref: any) => {
     const dateFormat = dayjs(date).locale('en').format('YYYY-MM-DD ddd')
     return (
       <main className="is-article is-note post-content paul-note" ref={ref}>
@@ -23,7 +23,7 @@ const NoteLayout: FC<NoteLayoutProps> = forwardRef(
         </QueueAnim>
       </main>
     )
-  },
+  }),
 )
 
 export { NoteLayout }

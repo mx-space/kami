@@ -1,12 +1,12 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
 type ArticleListProps = {
   title: string
   subtitle?: string
 }
 
-export const ArticleList: FC<ArticleListProps> = (props) => {
-  const { title, subtitle, children } = props
+export const ArticleList: FC<ArticleListProps> = memo((props) => {
+  const { title, subtitle } = props
   return (
     <main>
       <style jsx>
@@ -46,4 +46,4 @@ export const ArticleList: FC<ArticleListProps> = (props) => {
       {props.children}
     </main>
   )
-}
+})

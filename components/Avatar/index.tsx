@@ -1,5 +1,5 @@
 import defaultAvatar from 'assets/images/default-avatar.png'
-import { DetailedHTMLProps, FC, ImgHTMLAttributes, useRef } from 'react'
+import { DetailedHTMLProps, FC, ImgHTMLAttributes, useRef, memo } from 'react'
 import Lazy from 'react-lazyload'
 interface AvatarProps {
   url?: string
@@ -10,7 +10,7 @@ interface AvatarProps {
 export const Avatar: FC<
   AvatarProps &
     DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
-> = (props) => {
+> = memo((props) => {
   const { url, imageUrl, size, ...rest } = props
   const imageRef = useRef<HTMLImageElement>(null)
   return (
@@ -54,4 +54,4 @@ export const Avatar: FC<
       </a>
     </div>
   )
-}
+})

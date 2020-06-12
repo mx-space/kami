@@ -1,8 +1,14 @@
 import { message, Pagination } from 'antd'
 import { PagerModel } from 'models/dto/base'
 import { CommentModel, CommentPager } from 'models/dto/comment'
-import { createContext, FC, useEffect, useState, useCallback } from 'react'
-import { useInView } from 'react-intersection-observer'
+import {
+  createContext,
+  FC,
+  useEffect,
+  useState,
+  useCallback,
+  Fragment,
+} from 'react'
 import LazyLoad from 'react-lazyload'
 import { Rest } from 'utils/api'
 import CommentBox from './box'
@@ -10,6 +16,7 @@ import Comment from './comment'
 import styles from './index.module.scss'
 import { useStore } from '../../store'
 import { observer } from 'mobx-react'
+
 export type CommentType = 'Note' | 'Post' | 'Page'
 
 export const CommentContext = createContext({
@@ -72,14 +79,9 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
     openCommentMessage.success()
     fetchComments()
   }
-  const { appStore } = useStore()
-  const [ref, inView, _] = useInView({
-    threshold: 0,
-    rootMargin: appStore.viewport.mobile ? undefined : '-120px',
-  })
 
   return (
-    <article className={styles.wrap} ref={ref}>
+    <article className={styles.wrap}>
       <CommentContext.Provider value={{ type, refresh: fetchComments }}>
         {allowComment && (
           <h1>
@@ -94,26 +96,24 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
         ) : (
           <h1>主人禁止了评论</h1>
         )}
-
-        <Comment
-          comments={comments}
-          inView={inView}
-          fetchComments={fetchComments}
-        />
-
-        <div style={{ textAlign: 'center' }}>
-          {page?.totalPage !== 0 && (
-            <Pagination
-              simple
-              hideOnSinglePage
-              current={page.currentPage || 1}
-              onChange={(page) => {
-                fetchComments(page)
-              }}
-              total={page.total}
-            />
-          )}
-        </div>
+        <LazyLoad offset={50} once>
+          <Fragment>
+            <Comment comments={comments} fetchComments={fetchComments} />
+            <div style={{ textAlign: 'center' }}>
+              {page?.totalPage !== 0 && (
+                <Pagination
+                  simple
+                  hideOnSinglePage
+                  current={page.currentPage || 1}
+                  onChange={(page) => {
+                    fetchComments(page)
+                  }}
+                  total={page.total}
+                />
+              )}
+            </div>
+          </Fragment>
+        </LazyLoad>
       </CommentContext.Provider>
     </article>
   )

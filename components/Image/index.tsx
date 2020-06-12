@@ -29,7 +29,7 @@ const Image: FC<
     placeholderRef: any
     wrapRef: any
   }
-> = ({ src, alt, placeholderRef, wrapRef, ...rest }) => {
+> = memo(({ src, alt, placeholderRef, wrapRef, ...rest }) => {
   const realImageRef = useRef<HTMLImageElement>(null)
   const fakeImageRef = useRef<HTMLImageElement>(null)
   const onLoad = useCallback(() => {
@@ -69,7 +69,7 @@ const Image: FC<
       />
     </>
   )
-}
+})
 
 export const ImageLazy: FC<
   ImageFCProps &

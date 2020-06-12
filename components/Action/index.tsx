@@ -3,7 +3,7 @@ import {
   IconDefinition,
 } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { DetailedHTMLProps, HTMLAttributes } from 'react'
+import { DetailedHTMLProps, HTMLAttributes, memo } from 'react'
 import styles from './index.module.scss'
 
 type BaseAction = {
@@ -20,7 +20,7 @@ export interface ActionProps
   copyright?: boolean
 }
 
-export default function Action(props: ActionProps) {
+export default memo(function Action(props: ActionProps) {
   const { actions = [], informs = [], copyright = true, ...rest } = props
 
   return (
@@ -72,4 +72,4 @@ export default function Action(props: ActionProps) {
       </div>
     </>
   )
-}
+})

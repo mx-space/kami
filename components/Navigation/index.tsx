@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { FC } from 'react'
+import { FC, memo } from 'react'
 interface HeaderNavigationProps {
   items: {
     as?: string
@@ -9,7 +9,7 @@ interface HeaderNavigationProps {
   activeIndex: number
 }
 
-export const HeaderNavigation: FC<HeaderNavigationProps> = (props) => {
+export const HeaderNavigation: FC<HeaderNavigationProps> = memo((props) => {
   const { items, activeIndex } = props
   return (
     <nav className={'navigation'}>
@@ -22,4 +22,4 @@ export const HeaderNavigation: FC<HeaderNavigationProps> = (props) => {
       })}
     </nav>
   )
-}
+})

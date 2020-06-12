@@ -9,7 +9,7 @@ import SectionNews, {
   SectionCard,
   SectionNewsProps,
 } from 'components/SectionNews'
-import { shuffle } from 'lodash'
+import shuffle from 'lodash/shuffle'
 import omit from 'lodash/omit'
 import { observer } from 'mobx-react'
 import { RandomImage, Top } from 'models/aggregate'
@@ -43,7 +43,7 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
   const { description } = appStore
   const { socialLinks } = socialStore
 
-  const { posts, notes, says, projects, randomImages } = props
+  const { posts, notes, says, randomImages } = props
   const images = [...randomImages]
   const [sections, _] = useState({
     postSection: {

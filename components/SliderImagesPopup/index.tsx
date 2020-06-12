@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import Lightbox, { ILightBoxProps } from 'react-image-lightbox'
 
 interface SliderImagesPopupProps {
@@ -12,7 +12,7 @@ interface SliderImagesPopupProps {
 
 export const SliderImagesPopup: FC<
   SliderImagesPopupProps & Partial<ILightBoxProps>
-> = (props) => {
+> = memo((props) => {
   const {
     images,
     photoIndex,
@@ -34,4 +34,4 @@ export const SliderImagesPopup: FC<
       onMoveNextRequest={onMoveNextRequest}
     />
   ) : null
-}
+})

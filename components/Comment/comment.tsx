@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Avatar, Comment, message, Popconfirm } from 'antd'
 import Markdown from 'components/MD-render'
 import { CommentModel } from 'models/dto/comment'
-import { FC, useContext, useState } from 'react'
+import { FC, useContext, useState, memo } from 'react'
 import { Rest } from 'utils/api'
 import { relativeTimeFromNow } from 'utils/time'
 import { CommentContext, openCommentMessage } from '.'
@@ -13,9 +13,8 @@ import { useStore } from '../../store'
 
 const Comments: FC<{
   comments: CommentModel[]
-  inView: boolean
   fetchComments: Function
-}> = ({ comments, inView, fetchComments }) => {
+}> = memo(({ comments, fetchComments }) => {
   const { refresh } = useContext(CommentContext)
   const [replyId, setReplyId] = useState('')
   const { userStore } = useStore()
@@ -112,12 +111,10 @@ const Comments: FC<{
 
   return (
     <QueueAnim type={['right', 'left']} leaveReverse>
-      {inView
-        ? comments.map((comment) => {
-            return renderComments(comment)
-          })
-        : null}
+      {comments.map((comment) => {
+        return renderComments(comment)
+      })}
     </QueueAnim>
   )
-}
+})
 export default Comments

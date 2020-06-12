@@ -3,11 +3,11 @@ import range from 'lodash/range'
 import throttle from 'lodash/throttle'
 import dynamic from 'next/dynamic'
 import QueueAnim from 'rc-queue-anim'
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC, useEffect, useRef, useState, memo } from 'react'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 import styles from './index.module.scss'
 
-export const Toc: FC = () => {
+export const Toc: FC = memo(() => {
   const containerRef = useRef<HTMLDivElement>(null)
 
   const [headings, setHeadings] = useState<null | string[]>([])
@@ -78,7 +78,7 @@ export const Toc: FC = () => {
       </div>
     </section>
   )
-}
+})
 export default (dynamic(() => import('.').then((m) => m.Toc) as any, {
   ssr: false,
 }) as any) as typeof Toc

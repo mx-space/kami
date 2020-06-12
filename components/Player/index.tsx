@@ -4,7 +4,7 @@ import { FC, useEffect } from 'react'
 import ReactAplayer from 'react-aplayer'
 import { useStore } from 'store'
 
-declare var window: any
+declare const window: any
 
 export const APlayer: FC = () => {
   const { musicStore } = useStore()

@@ -1,7 +1,7 @@
 import { CustomLogo } from 'components/Logo'
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
-const Loader: FC = () => {
+const Loader: FC = memo(() => {
   return (
     <div className={'loader'}>
       <style jsx global>{`
@@ -43,6 +43,6 @@ const Loader: FC = () => {
       <CustomLogo />
     </div>
   )
-}
+})
 
 export default Loader

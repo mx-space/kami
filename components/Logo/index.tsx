@@ -1,6 +1,6 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
-export const DefaultLogo: FC = () => {
+export const DefaultLogo: FC = memo(() => {
   return (
     <svg viewBox="0 0 200 200" version="1.1">
       <desc>Created with Sketch.</desc>
@@ -38,9 +38,9 @@ export const DefaultLogo: FC = () => {
       </g>
     </svg>
   )
-}
+})
 
-export const CustomLogo: FC = () => {
+export const CustomLogo: FC = memo(() => {
   return (
     <svg height="200px" viewBox="0 0 200 200" version="1.1">
       <desc>Created with Sketch.</desc>
@@ -62,4 +62,4 @@ export const CustomLogo: FC = () => {
       </g>
     </svg>
   )
-}
+})

@@ -1,7 +1,7 @@
 import { HeaderNavigation } from 'components/Navigation'
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
-export const FavoriteNav: FC<{ index: number }> = (props) => {
+export const FavoriteNav: FC<{ index: number }> = memo((props) => {
   return (
     <HeaderNavigation
       {...{
@@ -19,4 +19,4 @@ export const FavoriteNav: FC<{ index: number }> = (props) => {
       }}
     />
   )
-}
+})

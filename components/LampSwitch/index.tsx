@@ -1,9 +1,9 @@
-import { FC, DetailedHTMLProps, HTMLAttributes, useRef } from 'react'
+import { FC, DetailedHTMLProps, HTMLAttributes, useRef, memo } from 'react'
 import styles from './index.module.scss'
 export const Switch: FC<DetailedHTMLProps<
   HTMLAttributes<HTMLDivElement>,
   HTMLDivElement
->> = (props = {}) => {
+>> = memo((props = {}) => {
   const containerRef = useRef<HTMLDivElement>(null)
   return (
     <div className={styles['select-container']} ref={containerRef}>
@@ -28,7 +28,7 @@ export const Switch: FC<DetailedHTMLProps<
       </div>
     </div>
   )
-}
+})
 
 const Sakura: FC = () => (
   <div className={styles['sakura-wrap']}>

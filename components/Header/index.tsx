@@ -27,7 +27,7 @@ interface Store {
   pages: store.pageStore,
 }))
 @observer
-export default class Header extends React.Component<Store> {
+export default class Header extends React.PureComponent<Store> {
   state = {
     menuOpen: false,
   }

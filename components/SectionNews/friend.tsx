@@ -1,10 +1,10 @@
 import defaultAvatar from 'assets/images/default-avatar.png'
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useState, memo } from 'react'
 import { LinkModel, LinkType } from '../../models/dto/link'
 import { Rest } from '../../utils/api'
 import { Avatar } from '../Avatar'
 import styles from './index.module.scss'
-export const FriendItem: FC<LinkModel> = (props) => {
+export const FriendItem: FC<LinkModel> = memo((props) => {
   return (
     <a className={styles['avatar-item']} href={props.url} target={'_blank'}>
       <Avatar
@@ -17,9 +17,9 @@ export const FriendItem: FC<LinkModel> = (props) => {
       <span className={styles['avatar-name']}>{props.name}</span>
     </a>
   )
-}
+})
 
-export const FriendsSection: FC = () => {
+export const FriendsSection: FC = memo(() => {
   const [friends, setFriends] = useState<LinkModel[]>([])
   useEffect(() => {
     Rest('Link')
@@ -36,4 +36,4 @@ export const FriendsSection: FC = () => {
       })}
     </div>
   )
-}
+})

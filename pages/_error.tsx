@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { NextPage } from 'next'
-import { sample } from 'lodash'
+import sample from 'lodash/sample'
 
 const errorToText = (statusCode: number) => {
   switch (statusCode) {
