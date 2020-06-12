@@ -111,7 +111,7 @@
     "next-images": "1.4.0",
     "nodemon": "2.0.4",
     "prettier": "2.0.5",
-    "react-lazyload": "2.6.7",
+    "react-lazyload": "2.6.8",
     "remark-parse": "8.0.2",
     "ts-node": "8.10.2",
     "typescript": "3.9.5"
