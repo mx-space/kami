@@ -62,7 +62,7 @@ const Comments: FC<{
           </a>
         }
         avatar={
-          <a href={url} rel={'nofollow'}>
+          <a href={url} rel={'nofollow'} target={'_blank'}>
             <Avatar
               icon={<FontAwesomeIcon icon={faUser} />}
               src={comment.avatar}
