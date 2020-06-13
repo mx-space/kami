@@ -1,0 +1,26 @@
+{
+  "extends": "./tsconfig.json",
+  "baseUrl": ".",
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2018",
+    "jsx": "react",
+    "sourceMap": false,
+    "experimentalDecorators": true,
+    "noImplicitUseStrict": true,
+    "removeComments": true,
+    "moduleResolution": "node",
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "out",
+    ".next"
+  ]
+}

@@ -1,4 +1,5 @@
-import { FC, memo } from 'react'
+/* eslint-disable react/display-name */
+import React, { FC, memo } from 'react'
 
 export const DefaultLogo: FC = memo(() => {
   return (

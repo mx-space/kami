@@ -37,6 +37,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "**/*.scss"
+    "**/*.scss",
+    "startTest.js"
   ]
 }
