@@ -28,7 +28,7 @@ const Loader: FC = memo(() => {
           position: fixed;
           border-radius: 50%;
           background: var(--green);
-          transition: transform 0.5s cubic-bezier(0, 0, 0.5, 1.25);
+          transition: transform 0.5s ease-in-out;
           transform: translate(-50%, -50%) scale(0);
         }
         body.loading .loader:before {

@@ -137,6 +137,7 @@ const ColorPicker = ({
   color: string
   setColor: (color: string) => void
 }) => {
+  // TODO picker 自己写
   return ReactDOM.createPortal(
     <div
       style={{
