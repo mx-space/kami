@@ -6,7 +6,8 @@
     {
       "updateTypes": [
         "patch",
-        "pin"
+        "pin",
+        "digest"
       ],
       "automerge": true
     }
