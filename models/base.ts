@@ -5,7 +5,7 @@
  * @LastEditors: Innei
  * @FilePath: /mx-web/models/base.ts
  * @Coding with Love
- */ 
+ */
 export interface BaseRespModel {
   ok: 0 | 1
   timestamp: string
