@@ -96,10 +96,10 @@ class Context extends PureComponent<Store & { data: any }> {
                 if (ok) {
                   this.props.user?.setLogged(true)
                   this.props.user?.setToken(getToken() as string)
-                  message.success('欢迎回来, ' + this.props.master?.name, 1500)
+                  message.success('欢迎回来, ' + this.props.master?.name, 1.5)
                 } else {
                   removeToken()
-                  message.warn('登陆身份过期了, 再登陆一下吧!', 2000)
+                  message.warn('登陆身份过期了, 再登陆一下吧!', 2)
                 }
               })
           }
