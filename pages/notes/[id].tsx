@@ -55,7 +55,7 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
   const { data, prev, next } = props
   const { title, _id, text, mood, weather } = data
   const { userStore, appStore } = useStore()
-
+  const [like, setLike] = useState(data.count.like ?? 0)
   const router = useRouter()
   const [tips, setTips] = useState(``)
   const removeMd = RemoveMarkdown(text)
@@ -87,18 +87,24 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
   ])
   useEffect(() => {
     window.scroll({ top: 0, left: 0, behavior: 'smooth' })
-  })
+    setLike(props.data.count.like ?? 0)
+  }, [props])
   const actions: ActionProps = {
     informs: [],
     actions: [
       {
-        name: data.count.like !== 0 ? data.count.like.toString() : '喜欢',
+        name: like !== 0 ? like : '喜欢',
         icon: faHeart,
+        color: like - 1 === data.count.like ? '#e74c3c' : undefined,
         callback: () => {
+          if (like - 1 === data.count.like) {
+            return message.error('你已经喜欢过啦!')
+          }
           Rest('Note')
             .get<any>('like/' + _id, { withCredentials: true })
             .then(() => {
               message.success('感谢喜欢!')
+              setLike(like + 1)
             })
         },
       },

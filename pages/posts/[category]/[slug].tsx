@@ -3,6 +3,7 @@ import {
   faUser,
   faHashtag,
   faBookOpen,
+  faThumbsUp,
 } from '@fortawesome/free-solid-svg-icons'
 import Action, { ActionProps } from 'components/Action'
 import { CommentLazy } from 'components/Comment'
@@ -21,6 +22,7 @@ import { Rest } from 'utils/api'
 import { Copyright, CopyrightProps } from '../../../components/Copyright'
 import configs from '../../../configs'
 import { imageSizesContext } from '../../../context/ImageSizes'
+import { message } from 'antd'
 
 export const PostView: NextPage<PostResModel> = (props) => {
   const { text, title, _id } = props
@@ -29,7 +31,10 @@ export const PostView: NextPage<PostResModel> = (props) => {
   const [actions, setAction] = useState({} as ActionProps)
   const [copyrightInfo, setCopyright] = useState({} as CopyrightProps)
   const description = props.summary ?? RemoveMarkdown(props.text).slice(0, 100)
-
+  const [thumbsUp, setThumbsUp] = useState(props.count.like || 0)
+  useEffect(() => {
+    setThumbsUp(props.count.like)
+  }, [props])
   useEffect(() => {
     setAction({
       informs: [
@@ -50,16 +55,31 @@ export const PostView: NextPage<PostResModel> = (props) => {
           name: props.count?.read ?? 0,
         },
       ],
-      actions: [],
+      actions: [
+        {
+          icon: faThumbsUp,
+          name: thumbsUp || '对我有帮助',
+          color: thumbsUp - 1 === props.count.like ? '#2980b9' : undefined,
+          callback: () => {
+            if (thumbsUp - 1 === props.count.like) {
+              return message.error('你已经支持过啦!')
+            }
+            Rest('Post')
+              .get('_thumbs-up', {
+                params: {
+                  id: props._id,
+                },
+              })
+              .then((_) => {
+                message.success('感谢支持!')
+                setThumbsUp(thumbsUp + 1)
+              })
+          },
+        },
+      ],
       copyright: props.copyright,
     })
-  }, [
-    name,
-    props.category.name,
-    props.copyright,
-    props.count.read,
-    props.created,
-  ])
+  }, [name, props, thumbsUp])
   const { appStore } = useStore()
 
   useEffect(() => {

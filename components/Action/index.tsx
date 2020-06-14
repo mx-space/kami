@@ -9,6 +9,7 @@ import styles from './index.module.scss'
 type BaseAction = {
   icon: IconDefinition
   name: string | number
+  color?: string
 }
 
 export interface ActionProps
@@ -34,7 +35,11 @@ export default memo(function Action(props: ActionProps) {
         {informs.map((inform, index) => {
           return (
             <span key={index}>
-              <FontAwesomeIcon icon={inform.icon} className={styles.icon} />
+              <FontAwesomeIcon
+                icon={inform.icon}
+                className={styles.icon}
+                color={inform.color}
+              />
               {inform.name}
             </span>
           )
@@ -64,7 +69,11 @@ export default memo(function Action(props: ActionProps) {
               style={{ cursor: 'pointer' }}
               onClick={action.callback}
             >
-              <FontAwesomeIcon icon={action.icon} className={styles.icon} />
+              <FontAwesomeIcon
+                icon={action.icon}
+                className={styles.icon}
+                color={action.color}
+              />
               {action.name}
             </span>
           )
