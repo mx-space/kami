@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-04-18 16:00:58
- * @LastEditTime: 2020-05-22 20:56:27
+ * @LastEditTime: 2020-06-14 21:05:54
  * @LastEditors: Innei
  * @FilePath: /mx-web/next.config.js
  * @MIT
@@ -23,7 +23,13 @@ const configs = withImages(
     assetPrefix: isProd ? env.ASSETPREFIX || '' : '',
     experimental: {
       async rewrites() {
-        return [{ source: '/sitemap.xml', destination: '/api/sitemap' }]
+        return [
+          { source: '/sitemap.xml', destination: '/api/sitemap' },
+          { source: '/feed.xml', destination: '/api/feed' },
+          { source: '/feed', destination: '/api/feed' },
+          { source: '/rss.xml', destination: '/api/feed' },
+          { source: '/atom.xml', destination: '/api/feed' },
+        ]
       },
     },
   }),

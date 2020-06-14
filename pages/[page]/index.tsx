@@ -5,10 +5,10 @@ import { observer } from 'mobx-react'
 import { PageRespDto } from 'models/page'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
+import { useEffect } from 'react'
 import RemoveMarkdown from 'remove-markdown'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
-import { useEffect } from 'react'
 import { imageSizesContext } from '../../common/context/ImageSizes'
 
 const Page: NextPage<PageRespDto> = (props) => {
@@ -50,6 +50,7 @@ Page.getInitialProps = async (ctx) => {
   const { data } = await Rest('Page', 'slug').get<PageRespDto>(
     ctx.query.page as string,
   )
+
   return { data } as PageRespDto
 }
 

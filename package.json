@@ -43,7 +43,6 @@
     "intersection-observer": "0.10.0",
     "js-cookie": "2.2.1",
     "kico-style": "1.2.0",
-    "markdown-it": "11.0.0",
     "mobx": "5.15.4",
     "mobx-devtools-mst": "0.9.22",
     "mobx-react": "6.2.2",
@@ -81,7 +80,6 @@
     "@types/inflection": "1.5.28",
     "@types/js-cookie": "2.2.6",
     "@types/lodash": "4.14.155",
-    "@types/markdown-it": "10.0.1",
     "@types/morgan": "1.9.0",
     "@types/next": "9.0.0",
     "@types/node": "13.13.9",
@@ -112,6 +110,7 @@
     "nodemon": "2.0.4",
     "prettier": "2.0.5",
     "react-lazyload": "2.6.8",
+    "remark-html": "^11.0.2",
     "remark-parse": "8.0.2",
     "ts-node": "8.10.2",
     "typescript": "3.9.5"

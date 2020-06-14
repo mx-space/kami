@@ -1,14 +1,24 @@
-import configs from 'configs'
-import markdown from 'markdown-it'
-import { AggregateResp } from 'models/aggregate'
-import { NoteModel } from 'models/note'
-import { PostResModel } from 'models/post'
-import { NextPage } from 'next'
-import { Rest } from 'utils/api'
+/*
+ * @Author: Innei
+ * @Date: 2020-06-14 20:57:01
+ * @LastEditTime: 2020-06-14 21:01:32
+ * @LastEditors: Innei
+ * @FilePath: /mx-web/pages/api/feed.ts
+ * @Coding with Love
+ */
 
-const FeedRSS: NextPage = (props) => {
-  return null
-}
+import unified from 'unified'
+import markdown from 'remark-parse'
+import html from 'remark-html'
+import rules from 'common/markdown/rules'
+const parser = unified().use(markdown).use(html).use(rules)
+
+import { IncomingMessage, ServerResponse } from 'http'
+import { Rest } from '../../utils/api'
+import configs from '../../configs'
+import { AggregateResp } from '../../models/aggregate'
+import { NoteModel } from '../../models/note'
+import { PostResModel } from '../../models/post'
 const encodeHTML = function (str: string) {
   return str
     .replace(/&/g, '&amp;')
@@ -44,13 +54,16 @@ const genRSS = (props: RSSProps) => {
             <id>${encodeHTML(item.link)}</id>
             <published>${item.created}</published>
             <updated>${item.modified}</updated>
-            <content type="html"><![CDATA[${new markdown().render(item.text)}]]>
+            <content type="html"><![CDATA[${parser
+              .processSync(item.text)
+              .toString()}]]>
             </content>
             </entry>
           `
         })}
     </feed>`
 }
+
 interface RSSProps {
   title: string
   url: string
@@ -63,9 +76,10 @@ interface RSSProps {
     text: string
   }[]
 }
-
-FeedRSS.getInitialProps = async (ctx) => {
-  const { res } = ctx
+export default async function RSSFunc(
+  req: IncomingMessage,
+  res: ServerResponse,
+) {
   const { seo, user } = (await Rest('Aggregate').get()) as AggregateResp
   const postsResp = (await Rest('Post').gets()) as any
   const notesResp = (await Rest('Note').get('latest')) as any
@@ -93,8 +107,8 @@ FeedRSS.getInitialProps = async (ctx) => {
     }),
   )
 
-  res?.setHeader('Content-Type', 'text/xml')
-  res?.write(
+  res.setHeader('Content-Type', 'text/xml')
+  res.write(
     genRSS({
       title: seo.title,
       url: configs.url,
@@ -102,6 +116,5 @@ FeedRSS.getInitialProps = async (ctx) => {
       data,
     }),
   )
-  res?.end()
+  res.end()
 }
-export default FeedRSS
