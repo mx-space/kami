@@ -8104,10 +8104,10 @@ regjsparser@^0.6.4:
   dependencies:
     jsesc "~0.5.0"
 
-remark-html@^11.0.2:
+remark-html@11.0.2:
   version "11.0.2"
-  resolved "https://registry.npm.taobao.org/remark-html/download/remark-html-11.0.2.tgz#76f6f7c8981c736f01cb65f8853dbe5c2e546dfa"
-  integrity sha1-dvb3yJgcc28By2X4hT2+XC5Ubfo=
+  resolved "https://registry.yarnpkg.com/remark-html/-/remark-html-11.0.2.tgz#76f6f7c8981c736f01cb65f8853dbe5c2e546dfa"
+  integrity sha512-U7qPKZq6Aai+UTpH5YrblLvqvdSUCRA4YmZYRTtbtknm/WUGmNUI0dvThbSuTNSf6TtC8btmbbScWi1wtUIxnw==
   dependencies:
     hast-util-sanitize "^2.0.0"
     hast-util-to-html "^7.0.0"
