@@ -2,7 +2,7 @@ import configs from 'configs'
 import { action, computed, observable } from 'mobx'
 import { Seo } from 'models/aggregate'
 import { MenuModel, PageModel, ViewportRecord } from './types'
-import { CategoryModel } from '../models/category'
+import { CategoryModel } from '../../models/category'
 
 export default class AppStore {
   @observable menu: MenuModel[] = configs.menu as MenuModel[]

@@ -6,7 +6,7 @@ import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import { useState } from 'react'
 import ReactMarkdown from 'react-markdown'
-import { useStore } from 'store'
+import { useStore } from 'common/store'
 import { Rest } from 'utils/api'
 import configs from '../../configs'
 

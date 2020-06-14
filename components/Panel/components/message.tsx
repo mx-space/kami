@@ -5,7 +5,7 @@ import Markdown from 'components/MD-render'
 
 import { relativeTimeFromNow } from '../../../utils/time'
 import configs from '../../../configs'
-import { useStore } from '../../../store'
+import { useStore } from '../../../common/store'
 import { observer } from 'mobx-react'
 export const OwnerMessage: FC<{ text: string; date: Date }> = observer(
   ({ text, date }) => {

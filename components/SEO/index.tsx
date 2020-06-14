@@ -2,7 +2,7 @@ import { observer } from 'mobx-react'
 import { NextSeo, NextSeoProps } from 'next-seo'
 import { FC } from 'react'
 import configs from '../../configs'
-import { useStore } from '../../store'
+import { useStore } from '../../common/store'
 
 type SEOProps = {
   title: string

@@ -13,7 +13,7 @@ import {
 } from 'react'
 import Lightbox, { ILightBoxProps } from 'react-image-lightbox'
 import LazyLoad from 'react-lazyload'
-import { useStore } from '../../store'
+import { useStore } from '../../common/store'
 
 interface ImageFCProps {
   defaultImage?: string

@@ -12,7 +12,7 @@ import {
   faTv,
   faUserFriends,
 } from '@fortawesome/free-solid-svg-icons'
-import { MenuModel, SocialLinkModel } from 'store/types'
+import { MenuModel, SocialLinkModel } from 'common/store/types'
 const menu: MenuModel[] = [
   {
     _id: '1',

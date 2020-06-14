@@ -9,7 +9,7 @@ import { relativeTimeFromNow } from 'utils/time'
 import { CommentContext, openCommentMessage } from '.'
 import CommentBox from './box'
 import QueueAnim from 'rc-queue-anim'
-import { useStore } from '../../store'
+import { useStore } from '../../common/store'
 
 const Comments: FC<{
   comments: CommentModel[]

@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import { observer } from 'mobx-react'
 import { FC, useEffect } from 'react'
 import ReactAplayer from 'react-aplayer'
-import { useStore } from 'store'
+import { useStore } from 'common/store'
 
 declare const window: any
 

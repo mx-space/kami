@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { useStore } from '../../store'
+import { useStore } from '../../common/store'
 
 // const NotePage: NextPage<{
 //   data: NoteModel

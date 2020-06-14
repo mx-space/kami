@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { observer } from 'mobx-react'
 import { FooterActions as _FooterActions } from './actions'
-import { useStore } from '../../store'
+import { useStore } from '../../common/store'
 import configs from '../../configs'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'

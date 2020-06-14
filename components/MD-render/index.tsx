@@ -14,7 +14,7 @@ import React, {
   useState,
 } from 'react'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
-import { useStore } from 'store'
+import { useStore } from 'common/store'
 import CodeBlock from '../CodeBlock'
 import { imageSizesContext } from '../../common/context/ImageSizes'
 import CustomRules from 'common/markdown/rules'

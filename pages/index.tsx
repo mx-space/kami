@@ -18,7 +18,7 @@ import Router from 'next/router'
 import QueueAnim from 'rc-queue-anim'
 import Texty from 'rc-texty'
 import { useEffect, useState } from 'react'
-import { useStore } from 'store'
+import { useStore } from 'common/store'
 import { Rest } from 'utils/api'
 
 import { FriendsSection } from '../components/SectionNews/friend'

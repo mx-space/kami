@@ -1,7 +1,7 @@
 import { PlayListType } from '@mx-space/extra'
 import { observer } from 'mobx-react'
 import { FC } from 'react'
-import { useStore } from 'store'
+import { useStore } from 'common/store'
 
 interface SectionMusicProps {
   data: PlayListType[]

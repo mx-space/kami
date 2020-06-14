@@ -1,5 +1,5 @@
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
-import { PageDescriptionDto } from '../models/page'
+import { PageDescriptionDto } from '../../models/page'
 import AppStore from './app'
 import CategoryStore from './category'
 import MusicStore from './music'

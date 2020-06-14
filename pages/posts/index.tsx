@@ -7,7 +7,7 @@ import { PostPagerDto, PostResModel } from 'models/post'
 import { NextPageContext } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { useStore } from 'store'
+import { useStore } from 'common/store'
 import { Rest } from 'utils/api'
 import { SEO } from '../../components/SEO'
 interface Post extends PagerModel {

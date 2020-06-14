@@ -8,7 +8,7 @@
  */
 
 import io from 'socket.io-client'
-import observable from '../utils/observable'
+import observable from '../../utils/observable'
 import { eventHandler } from './handler'
 import { EventTypes } from './types'
 export class SocketClient {

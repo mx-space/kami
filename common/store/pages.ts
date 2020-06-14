@@ -1,7 +1,7 @@
 import { action, observable } from 'mobx'
 import { AggregateResp } from 'models/aggregate'
-import { PagesPagerRespDto } from '../models/page'
-import { Rest } from '../utils/api'
+import { PagesPagerRespDto } from '../../models/page'
+import { Rest } from '../../utils/api'
 import { PageModel } from './types'
 export default class PageStore {
   @observable pages: PageModel[] | AggregateResp['pageMeta'][] = []

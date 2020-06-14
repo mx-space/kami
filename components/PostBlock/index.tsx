@@ -4,7 +4,7 @@ import { PostResModel } from 'models/post'
 import Router from 'next/router'
 import React from 'react'
 import removeMd from 'remove-markdown'
-import { Stores, ViewportRecord } from 'store/types'
+import { Stores, ViewportRecord } from 'common/store/types'
 import { parseDate } from 'utils/time'
 import styles from './index.module.scss'
 

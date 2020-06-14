@@ -1,13 +1,13 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-23 14:31:11
- * @LastEditTime: 2020-05-23 14:59:51
+ * @LastEditTime: 2020-06-14 21:20:20
  * @LastEditors: Innei
  * @FilePath: /mx-web/utils/observable.ts
  * @MIT
  */
 
-import { EventTypes } from '../socket/types'
+import { EventTypes } from '../common/socket/types'
 
 interface Observer {
   id: string

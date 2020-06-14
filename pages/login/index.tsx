@@ -4,7 +4,7 @@ import { Rest } from '../../utils/api'
 import { setToken } from '../../utils/auth'
 import Router from 'next/router'
 import { message } from 'antd'
-import { useStore } from '../../store'
+import { useStore } from '../../common/store'
 
 const LoginView: NextPage = () => {
   const [username, setUsername] = useState('')

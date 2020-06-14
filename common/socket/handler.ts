@@ -7,10 +7,10 @@
  * @Code with Love
  */
 
-import configs from '../configs'
+import configs from '../../configs'
 import { gatewayStore, userStore } from '../store'
-import { createDangmaku } from '../utils/danmaku'
-import { Notice } from '../utils/notice'
+import { createDangmaku } from '../../utils/danmaku'
+import { Notice } from '../../utils/notice'
 import { EventTypes } from './types'
 // import Router from 'next/router'
 export const title = configs.title

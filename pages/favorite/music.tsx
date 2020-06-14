@@ -5,7 +5,7 @@ import configs from 'configs'
 import { observer } from 'mobx-react'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
-import { useStore } from 'store'
+import { useStore } from 'common/store'
 import { FavoriteNav } from '../../components/Navigation/nav'
 interface MusicProps {
   weekdata: PlayListType[]

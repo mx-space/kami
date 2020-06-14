@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic'
 import { useCallback, useState } from 'react'
 import { NoticePanel } from '../components/Notice'
 import { Switch } from '../components/LampSwitch'
-import { useStore } from '../store'
+import { useStore } from '../common/store'
 
 const APlayer = dynamic(() => import('components/Player'), {
   ssr: false,

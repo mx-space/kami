@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react'
 import React, { FC } from 'react'
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { useStore } from '../../store'
+import { useStore } from '../../common/store'
 import dark from 'react-syntax-highlighter/dist/cjs/styles/prism/tomorrow'
 import javascript from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript'
 import css from 'react-syntax-highlighter/dist/cjs/languages/prism/css'

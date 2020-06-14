@@ -3,7 +3,7 @@ import { Input, message } from 'antd'
 import { FC, useState, useEffect, memo } from 'react'
 import isEmail from 'validator/lib/isEmail'
 import isUrl from 'validator/lib/isURL'
-import { useStore } from '../../store'
+import { useStore } from '../../common/store'
 import styles from './index.module.scss'
 import omit from 'lodash/omit'
 

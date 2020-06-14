@@ -7,7 +7,7 @@ import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import { useEffect } from 'react'
 import RemoveMarkdown from 'remove-markdown'
-import { useStore } from 'store'
+import { useStore } from 'common/store'
 import { Rest } from 'utils/api'
 import { imageSizesContext } from '../../common/context/ImageSizes'
 

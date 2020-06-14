@@ -1,6 +1,15 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-06-14 21:19:46
+ * @LastEditTime: 2020-06-14 21:20:45
+ * @LastEditors: Innei
+ * @FilePath: /mx-web/common/store/category.ts
+ * @Coding with Love
+ */
+
 import { action, computed, observable } from 'mobx'
 import { CategoriesResp, CategoryModel } from 'models/category'
-import { Rest } from '../utils/api'
+import { Rest } from '../../utils/api'
 export default class CategoryStore {
   @observable categories: CategoryModel[] = []
 

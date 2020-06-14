@@ -8,7 +8,7 @@ import randomColor from 'randomcolor'
 import { DetailedHTMLProps, FC, forwardRef, HTMLAttributes } from 'react'
 import styles from './index.module.scss'
 import { observer } from 'mobx-react'
-import { useStore } from '../../store'
+import { useStore } from '../../common/store'
 export interface SectionNewsProps {
   title: string
   icon: IconDefinition

@@ -14,7 +14,7 @@ import { Rest } from 'utils/api'
 import CommentBox from './box'
 import Comment from './comment'
 import styles from './index.module.scss'
-import { useStore } from '../../store'
+import { useStore } from '../../common/store'
 import { observer } from 'mobx-react'
 
 export type CommentType = 'Note' | 'Post' | 'Page'
