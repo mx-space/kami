@@ -1,6 +1,6 @@
 import { message, Pagination } from 'antd'
-import { PagerModel } from 'models/dto/base'
-import { CommentModel, CommentPager } from 'models/dto/comment'
+import { PagerModel } from 'models/base'
+import { CommentModel, CommentPager } from 'models/comment'
 import {
   createContext,
   FC,

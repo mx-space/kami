@@ -1,6 +1,6 @@
 import defaultImage from 'assets/images/Kico.jpg'
 import { ImageLazy } from 'components/Image'
-import { ProjectModel, ProjectRespModel } from 'models/dto/project'
+import { ProjectModel, ProjectRespModel } from 'models/project'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { Rest } from 'utils/api'

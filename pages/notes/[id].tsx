@@ -20,7 +20,7 @@ import {
   NoteResp,
   Weather,
   WeatherMap,
-} from 'models/dto/note'
+} from 'models/note'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
@@ -31,7 +31,7 @@ import { Rest } from 'utils/api'
 import { parseDate, relativeTimeFromNow } from 'utils/time'
 import { mood2icon, weather2icon } from 'utils/weather2icon'
 import configs from '../../configs'
-import { imageSizesContext } from '../../context/ImageSizes'
+import { imageSizesContext } from '../../common/context/ImageSizes'
 
 interface NoteViewProps {
   data: NoteModel

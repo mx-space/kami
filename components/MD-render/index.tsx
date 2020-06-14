@@ -16,7 +16,7 @@ import React, {
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { useStore } from 'store'
 import CodeBlock from '../CodeBlock'
-import { imageSizesContext } from '../../context/ImageSizes'
+import { imageSizesContext } from '../../common/context/ImageSizes'
 import CustomRules from 'common/markdown/rules'
 interface MdProps extends ReactMarkdownProps {
   value: string

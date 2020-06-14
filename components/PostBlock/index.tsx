@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { inject, observer } from 'mobx-react'
-import { PostResModel } from 'models/dto/post'
+import { PostResModel } from 'models/post'
 import Router from 'next/router'
 import React from 'react'
 import removeMd from 'remove-markdown'

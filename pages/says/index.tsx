@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react'
-import { SayModel, SayRespDto } from 'models/dto/say'
+import { SayModel, SayRespDto } from 'models/say'
 import { NextPage } from 'next'
 import randomColor from 'randomcolor'
 import { useEffect, useState } from 'react'

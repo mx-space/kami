@@ -1,5 +1,5 @@
 import { action, computed, observable } from 'mobx'
-import { CategoriesResp, CategoryModel } from 'models/dto/category'
+import { CategoriesResp, CategoryModel } from 'models/category'
 import { Rest } from '../utils/api'
 export default class CategoryStore {
   @observable categories: CategoryModel[] = []

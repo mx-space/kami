@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import { Rest } from '../../utils/api'
-import { LinkModel, LinkType } from '../../models/dto/link'
+import { LinkModel, LinkType } from '../../models/link'
 import { ArticleLayout } from '../../layouts/ArticleLayout'
 import { QueueAnim } from '../../components/Anime'
 import { SEO } from '../../components/SEO'

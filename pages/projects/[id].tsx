@@ -1,7 +1,7 @@
 import Kico from 'assets/images/Kico.jpg'
 import { ImageLazy } from 'components/Image'
 import { SliderImagesPopup } from 'components/SliderImagesPopup'
-import { ProjectModel } from 'models/dto/project'
+import { ProjectModel } from 'models/project'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import { useState } from 'react'

@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { ImageSizeRecord } from '../models/dto/base'
+import { ImageSizeRecord } from '../../models/base'
 
 /*
  * @Author: Innei

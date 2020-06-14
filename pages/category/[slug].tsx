@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { QueueAnim } from '../../components/Anime'
 import { SEO } from '../../components/SEO'
 import { ArticleLayout } from '../../layouts/ArticleLayout'
-import { CategoryModel } from '../../models/dto/category'
+import { CategoryModel } from '../../models/category'
 import { Rest } from '../../utils/api'
 
 interface CategoryListViewProps {

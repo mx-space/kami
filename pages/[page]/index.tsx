@@ -2,14 +2,14 @@ import { CommentLazy } from 'components/Comment'
 import Markdown from 'components/MD-render'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { observer } from 'mobx-react'
-import { PageRespDto } from 'models/dto/page'
+import { PageRespDto } from 'models/page'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import RemoveMarkdown from 'remove-markdown'
 import { useStore } from 'store'
 import { Rest } from 'utils/api'
 import { useEffect } from 'react'
-import { imageSizesContext } from '../../context/ImageSizes'
+import { imageSizesContext } from '../../common/context/ImageSizes'
 
 const Page: NextPage<PageRespDto> = (props) => {
   const { data } = props

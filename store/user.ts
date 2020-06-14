@@ -1,5 +1,5 @@
 import { action, computed, observable } from 'mobx'
-import { UserDto } from 'models/dto/user'
+import { UserDto } from 'models/user'
 export default class UserStore {
   @observable master: Partial<UserDto> = {}
   @observable token: string | null = null

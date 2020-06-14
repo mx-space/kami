@@ -1,8 +1,8 @@
 import configs from 'configs'
 import markdown from 'markdown-it'
 import { AggregateResp } from 'models/aggregate'
-import { NoteModel } from 'models/dto/note'
-import { PostResModel } from 'models/dto/post'
+import { NoteModel } from 'models/note'
+import { PostResModel } from 'models/post'
 import { NextPage } from 'next'
 import { Rest } from 'utils/api'
 

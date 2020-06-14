@@ -1,6 +1,6 @@
-import { BaseRespModel } from './dto/base'
-import { UserDto } from './dto/user'
-import { CategoryModel } from './dto/category'
+import { BaseRespModel } from './base'
+import { UserDto } from './user'
+import { CategoryModel } from './category'
 
 export namespace Top {
   export interface Note {

@@ -1,6 +1,15 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-04-30 20:59:02
+ * @LastEditTime: 2020-06-14 20:17:36
+ * @LastEditors: Innei
+ * @FilePath: /mx-web/utils/gtag.ts
+ * @Coding with Love
+ */
+
 export const GA_TRACKING_ID = process.env.TRACKING_ID
 
-declare var window: any
+declare const window: any
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = (url) => {
   window.gtag('config', GA_TRACKING_ID, {

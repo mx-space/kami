@@ -1,4 +1,4 @@
-import { Weather, Mood } from 'models/dto/note'
+import { Weather, Mood } from 'models/note'
 import {
   IconDefinition,
   faSun,

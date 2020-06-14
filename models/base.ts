@@ -1,3 +1,11 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-04-14 16:28:20
+ * @LastEditTime: 2020-06-14 20:24:23
+ * @LastEditors: Innei
+ * @FilePath: /mx-web/models/base.ts
+ * @Coding with Love
+ */ 
 export interface BaseRespModel {
   ok: 0 | 1
   timestamp: string
