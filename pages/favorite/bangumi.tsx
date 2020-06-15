@@ -4,6 +4,7 @@ import configs from 'configs'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import Head from 'next/head'
+import { ImageLazy } from '../../components/Image'
 import { FavoriteNav } from '../../components/Navigation/nav'
 const BangumiView: NextPage<{ data: FavoriteBangumiType[] }> = (props) => {
   return (
@@ -28,8 +29,12 @@ const BangumiView: NextPage<{ data: FavoriteBangumiType[] }> = (props) => {
                   target="_blank"
                   rel="nofollow"
                   data-total={bangumi.count}
+                  style={{ position: 'relative' }}
                 >
-                  <img
+                  <ImageLazy
+                    height={'100%'}
+                    width={'100%'}
+                    useRandomBackgroundColor
                     src={
                       'https://i0.wp.com/' +
                       bangumi.cover.replace(/^https?:\/\//, '')

@@ -19,8 +19,8 @@ interface ImageFCProps {
   defaultImage?: string
   src: string
   alt?: string
-  height?: number
-  width?: number
+  height?: number | string
+  width?: number | string
   useRandomBackgroundColor?: boolean
 }
 
@@ -110,6 +110,7 @@ export const ImageLazy: FC<
             position: 'relative',
             // overflow: 'hidden',
             height,
+            width,
           }}
           ref={wrapRef}
         >
