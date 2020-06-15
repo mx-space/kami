@@ -5,8 +5,8 @@
 }
 
 #write {
-  font-family: 'Avenir Next', 'PingFang SC', 'Microsoft YaHei UI',
-    'Microsoft YaHei', sans-serif;
+  font-family: 'PingFang SC', 'Microsoft YaHei UI', 'Microsoft YaHei',
+    sans-serif;
   font-size: 16px;
   word-wrap: break-word;
   text-align: justify;
@@ -240,9 +240,19 @@
   font-size: 14px;
   color: var(--gary);
   user-select: none;
-
+  position: relative;
   &::before {
     content: '⇡ ';
+  }
+  &::after {
+    content: '';
+    bottom: -4px;
+    position: absolute;
+    width: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gray);
+    height: 1px;
   }
 }
 #write .emoji {
@@ -329,5 +339,27 @@
   transition: background 0.5s;
   &:hover {
     background-color: transparent;
+  }
+}
+#write > blockquote:nth-child(1) {
+  background-color: unset !important;
+  border: none !important;
+  position: relative;
+  color: #6495ed;
+  font-family: 'Noto Serif SC', SongTi SC;
+  padding-bottom: 24px;
+  &::before {
+    content: '“';
+    position: absolute;
+    left: 0;
+    top: -2rem;
+    font-size: 3rem;
+  }
+  &::after {
+    content: '”';
+    font-size: 3rem;
+    position: absolute;
+    right: 0;
+    bottom: -2rem;
   }
 }

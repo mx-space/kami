@@ -168,26 +168,25 @@ const Markdown: FC<MdProps> = observer((props) => {
   const { appStore } = useStore()
   const { viewport } = appStore
   return (
-    <>
-      <div id="write" style={style}>
-        <ReactMarkdown
-          source={value}
-          {...rest}
-          renderers={{
-            code: CodeBlock,
-            pre: CodeBlock,
-            image: Image(),
-            heading: Heading(),
-            link: RenderLink,
-            spoiler: RenderSpoiler,
-            paragraph: RenderParagraph,
-            ...renderers,
-          }}
-          plugins={CustomRules}
-        />
-        {props.showTOC && !viewport.mobile && !viewport.pad ? <Toc /> : null}
-      </div>
-    </>
+    <div id="write" style={style}>
+      <ReactMarkdown
+        source={value}
+        {...rest}
+        renderers={{
+          code: CodeBlock,
+          pre: CodeBlock,
+          image: Image(),
+          heading: Heading(),
+          link: RenderLink,
+          spoiler: RenderSpoiler,
+          paragraph: RenderParagraph,
+          // eslint-disable-next-line react/display-name
+          ...renderers,
+        }}
+        plugins={CustomRules}
+      />
+      {props.showTOC && !viewport.mobile && !viewport.pad ? <Toc /> : null}
+    </div>
   )
 })
 

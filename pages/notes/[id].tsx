@@ -38,17 +38,18 @@ interface NoteViewProps {
   prev: Partial<NoteModel>
   next: Partial<NoteModel>
 }
-// FIXME crash
-const renderLines: FC = (props) => {
-  if (!props.children) {
-    return null
-  }
-  const isImage = !!((props.children as any)[0] as any)?.props?.src
-  return (
-    <p className={isImage ? undefined : 'indent'}>
-      {isImage ? props.children : <span>{props.children}</span>}
-    </p>
-  )
+
+const renderLines: FC<{ value: string }> = ({ value }) => {
+  // if (!props.children) {
+  //   return null
+  // }
+  // const isImage = !!((props.children as any)[0] as any)?.props?.src
+  // return (
+  //   <p className={isImage ? undefined : 'indent'}>
+  //     {isImage ? props.children : <span>{props.children}</span>}
+  //   </p>
+  // )
+  return <span className="indent">{value}</span>
 }
 
 const NoteView: NextPage<NoteViewProps> = (props) => {
@@ -89,6 +90,7 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
     window.scroll({ top: 0, left: 0, behavior: 'smooth' })
     setLike(props.data.count.like ?? 0)
   }, [props])
+
   const actions: ActionProps = {
     informs: [],
     actions: [
@@ -181,7 +183,7 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
           <Markdown
             value={text}
             escapeHtml={false}
-            renderers={{ paragraph: renderLines }}
+            renderers={{ text: renderLines }}
           />
         </imageSizesContext.Provider>
 
