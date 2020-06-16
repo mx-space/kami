@@ -87,7 +87,11 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
     removeMd.length,
   ])
   useEffect(() => {
-    window.scroll({ top: 0, left: 0, behavior: 'smooth' })
+    document.documentElement.scrollTop = 50
+    setTimeout(() => {
+      window.scroll({ top: 0, left: 0, behavior: 'smooth' })
+    }, 10)
+
     setLike(props.data.count.like ?? 0)
   }, [props])
 
@@ -232,7 +236,7 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
       </NoteLayout>
       <ArticleLayout
         style={{ minHeight: 'unset', paddingTop: '0' }}
-        delay={600}
+        delay={2000}
       >
         <CommentWrap
           type={'Note'}

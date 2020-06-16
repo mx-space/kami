@@ -1,11 +1,20 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-06-12 21:41:12
+ * @LastEditTime: 2020-06-16 19:12:30
+ * @LastEditors: Innei
+ * @FilePath: /mx-web/components/Toc/index.tsx
+ * @Coding with Love
+ */
+
 import isNull from 'lodash/isNull'
 import range from 'lodash/range'
 import throttle from 'lodash/throttle'
 import dynamic from 'next/dynamic'
 import QueueAnim from 'rc-queue-anim'
-import { FC, useEffect, useRef, useState, memo } from 'react'
-import AnchorLink from 'react-anchor-link-smooth-scroll'
+import { FC, memo, useEffect, useRef, useState } from 'react'
 import styles from './index.module.scss'
+declare const window: Window & typeof globalThis & { [key: string]: any }
 
 export const Toc: FC = memo(() => {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -62,16 +71,26 @@ export const Toc: FC = memo(() => {
           {headings &&
             headings.map((heading, i) => {
               return (
-                <AnchorLink
-                  offset={() => 200}
+                <a
+                  data-scroll
                   href={'#' + heading}
                   key={i}
                   className={styles['toc-link']}
+                  onClick={(e) => {
+                    if (typeof window.SmoothScroll === 'undefined') {
+                      e.preventDefault()
+                      const el = document.getElementById(heading)
+                      window.scrollTo({
+                        top: el?.getBoundingClientRect().top,
+                        behavior: 'smooth',
+                      })
+                    }
+                  }}
                 >
                   <span className={styles['a-pointer']}>
                     {heading.slice(heading.indexOf('¡') + 1)}
                   </span>
-                </AnchorLink>
+                </a>
               )
             })}
         </QueueAnim>

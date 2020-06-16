@@ -6,6 +6,7 @@
 }
 html {
   overflow: overlay;
+  scroll-behavior: unset;
 }
 ::-webkit-scrollbar {
   width: 10px;
@@ -503,4 +504,4 @@ html.dark {
   }
 }
 
-@import './tailwind.scss'
+@import './tailwind.scss';

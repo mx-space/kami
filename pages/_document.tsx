@@ -11,7 +11,7 @@
  *
  * @Author: Innei
  * @Date: 2020-04-29 17:27:02
- * @LastEditTime: 2020-05-27 11:51:32
+ * @LastEditTime: 2020-06-16 19:19:55
  * @LastEditors: Innei
  * @FilePath: /mx-web/pages/_document.tsx
  * @MIT
@@ -213,6 +213,24 @@ export default class MyDocument extends Document<{ ua: string }> {
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
           />
+          <script
+            src={`https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js`}
+          ></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `new SmoothScroll('a[href*="#"]', {
+                            speed: 500,
+                            offset: 150,
+                            easing: 'easeInOutCubic',
+                            durationMax: 1000,
+                            durationMin: 350,
+                            topOnEmptyHash: true,
+                            emitEvents: false,
+                            updateURL: false,
+                            popstate: false
+                          })`,
+            }}
+          ></script>
           <script
             dangerouslySetInnerHTML={{
               __html: `
