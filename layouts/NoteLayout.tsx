@@ -7,16 +7,26 @@ interface NoteLayoutProps {
   tips?: string
   date: Date
 }
+export const animatingClassName: [string, string] = ['', 'absolute padding-b100']
 
 const NoteLayout: FC<NoteLayoutProps> = memo(
   forwardRef(({ children, date, title, tips }, ref: any) => {
     const dateFormat = dayjs(date).locale('en').format('YYYY-MM-DD ddd')
     return (
       <main className="is-article is-note post-content paul-note" ref={ref}>
-        <QueueAnim type="bottom" delay={500}>
-          <article key={'a'}>
+        <QueueAnim
+          type={['bottom', 'alpha']}
+          delay={500}
+          forcedReplay
+          // leaveReverse
+          animatingClassName={animatingClassName}
+
+        >
+          <article key={dateFormat}>
             <h1>{dateFormat}</h1>
-            <h2 style={{ textAlign: 'center' }}>{title}</h2>
+            <h2 title={tips} style={{ textAlign: 'center' }}>
+              {title}
+            </h2>
 
             {children}
           </article>
@@ -27,3 +37,4 @@ const NoteLayout: FC<NoteLayoutProps> = memo(
 )
 
 export { NoteLayout }
+

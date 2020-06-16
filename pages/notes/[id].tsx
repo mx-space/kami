@@ -31,7 +31,7 @@ import { Rest } from 'utils/api'
 import { parseDate, relativeTimeFromNow } from 'utils/time'
 import { mood2icon, weather2icon } from 'utils/weather2icon'
 import configs from '../../configs'
-import { imageSizesContext } from '../../common/context/ImageSizes'
+import { imageSizesContext as ImageSizesContext } from '../../common/context/ImageSizes'
 
 interface NoteViewProps {
   data: NoteModel
@@ -112,44 +112,45 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
       },
     ],
   }
+  {
+    if (weather && Object.keys(Weather).includes(weather)) {
+      actions.informs!.push({
+        name: WeatherMap[weather],
+        icon: weather2icon(weather),
+      })
+    } else if (weather) {
+      actions.informs!.push({
+        name: weather,
+        icon: faCloud,
+      })
+    }
+    if (mood && Object.keys(Mood).includes(mood)) {
+      actions.informs!.push({
+        name: MoodMap[mood],
+        icon: mood2icon(mood),
+      })
+    } else if (mood) {
+      actions.informs!.push({
+        name: mood,
+        icon: faSmile,
+      })
+    }
 
-  if (weather && Object.keys(Weather).includes(weather)) {
-    actions.informs!.push({
-      name: WeatherMap[weather],
-      icon: weather2icon(weather),
-    })
-  } else if (weather) {
-    actions.informs!.push({
-      name: weather,
-      icon: faCloud,
-    })
+    actions.informs!.push(
+      {
+        name: userStore.name as string,
+        icon: faUser,
+      },
+      {
+        name: relativeTimeFromNow(data.created),
+        icon: faClock,
+      },
+      {
+        name: data.count.read.toString(),
+        icon: faBookOpen,
+      },
+    )
   }
-  if (mood && Object.keys(Mood).includes(mood)) {
-    actions.informs!.push({
-      name: MoodMap[mood],
-      icon: mood2icon(mood),
-    })
-  } else if (mood) {
-    actions.informs!.push({
-      name: mood,
-      icon: faSmile,
-    })
-  }
-
-  actions.informs!.push(
-    {
-      name: userStore.name as string,
-      icon: faUser,
-    },
-    {
-      name: relativeTimeFromNow(data.created),
-      icon: faClock,
-    },
-    {
-      name: data.count.read.toString(),
-      icon: faBookOpen,
-    },
-  )
 
   useEffect(() => {
     appStore.headerNav = {
@@ -179,13 +180,13 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
       />
 
       <NoteLayout title={title} date={new Date(data.created)} tips={tips}>
-        <imageSizesContext.Provider value={props.data.images}>
+        <ImageSizesContext.Provider value={props.data.images}>
           <Markdown
             value={text}
             escapeHtml={false}
             renderers={{ text: renderLines }}
           />
-        </imageSizesContext.Provider>
+        </ImageSizesContext.Provider>
 
         <Action {...actions} />
 
@@ -205,6 +206,11 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
               <button
                 className="btn yellow"
                 onClick={() => {
+                  window.scrollTo({
+                    left: 0,
+                    top: 0,
+                    behavior: 'smooth',
+                  })
                   router.push('/timeline?type=note')
                 }}
               >

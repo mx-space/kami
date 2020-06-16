@@ -1,6 +1,7 @@
 import QueueAnim from 'rc-queue-anim'
 import Texty from 'rc-texty'
 import { FC, forwardRef, DetailedHTMLProps, HTMLAttributes, memo } from 'react'
+import { animatingClassName } from './NoteLayout'
 export interface ArticleLayoutProps {
   title?: string
   subtitle?: string
@@ -18,26 +19,44 @@ export const ArticleLayout: FC<
         {title && (
           <section className="post-title">
             <h1>
-              <Texty type={'mask-bottom'} mode={'smooth'}>
-                {title}
-              </Texty>
+              <QueueAnim
+                type="alpha"
+                // animatingClassName={['absolute', 'absolute']}
+                leaveReverse
+                appear={false}
+              >
+                <Texty type={'mask-bottom'} mode={'smooth'} key={title}>
+                  {title}
+                </Texty>
+              </QueueAnim>
             </h1>
 
             {subtitle && (
               <h2>
-                <Texty type={'mask-bottom'} mode={'smooth'} delay={500}>
-                  {subtitle}
-                </Texty>
+                <QueueAnim
+                  type={'alpha'}
+                  // animatingClassName={['absolute', 'absolute']}
+                >
+                  <Texty
+                    type={'mask-bottom'}
+                    mode={'smooth'}
+                    delay={500}
+                    key={subtitle}
+                  >
+                    {subtitle}
+                  </Texty>
+                </QueueAnim>
               </h2>
             )}
           </section>
         )}
         <QueueAnim
-          delay={delay ?? (title && subtitle ? 1200 : title ? 700 : 300)}
+          delay={delay ?? 300}
           duration={500}
           animConfig={{ opacity: [1, 0], translateY: [0, 50] }}
+          animatingClassName={animatingClassName}
         >
-          <article className="post-content paul-note" key={'a'}>
+          <article className="post-content paul-note" key={title}>
             {children}
           </article>
         </QueueAnim>
