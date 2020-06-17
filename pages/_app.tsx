@@ -27,14 +27,14 @@ import { AggregateResp } from 'models/aggregate'
 import { NextSeo } from 'next-seo'
 import Router from 'next/router'
 
-import React, { createContext, PureComponent } from 'react'
+import React, { PureComponent, FC } from 'react'
 
 import CategoryStore from 'common/store/category'
 import client from '../common/socket'
 import createMobxStores, { StoreProvider } from '../common/store'
 import AppStore from '../common/store/app'
 import PageStore from '../common/store/pages'
-import { PageModel, Stores, ViewportRecord } from '../common/store/types'
+import { PageModel, Stores } from '../common/store/types'
 import UserStore from '../common/store/user'
 import { Rest } from '../utils/api'
 import { getToken, removeToken } from '../utils/auth'
@@ -48,10 +48,6 @@ if (process.env.NODE_ENV === 'development') {
   makeInspectable(stores)
 }
 
-const AppContext = createContext({
-  viewport: {},
-})
-
 @inject((store: Stores) => ({
   master: store.userStore,
   pages: store.pageStore,
@@ -62,7 +58,7 @@ const AppContext = createContext({
 @observer
 class Context extends PureComponent<Store & { data: any }> {
   currentY = 0
-  scrollCb = throttle(() => {
+  handleScroll = throttle(() => {
     const currentY = document.documentElement.scrollTop
     const direction = this.currentY >= currentY ? 'up' : 'down'
     this.props.app?.updatePosition(direction)
@@ -133,11 +129,11 @@ class Context extends PureComponent<Store & { data: any }> {
 
       Router.events.on('routeChangeComplete', (url) => gtag.pageview(url))
 
-      window.onresize = (e) => this.props.app?.UpdateViewport()
+      window.onresize = () => this.props.app?.UpdateViewport()
       this.props.app?.UpdateViewport()
 
       if (typeof document !== 'undefined') {
-        document.addEventListener('scroll', this.scrollCb)
+        document.addEventListener('scroll', this.handleScroll)
       }
 
       const browser = getBrowserType(window.navigator.userAgent)
@@ -204,29 +200,25 @@ class Context extends PureComponent<Store & { data: any }> {
   }
   componentWillUnmount() {
     window.onresize = null
-    document.removeEventListener('scroll', this.scrollCb)
+    document.removeEventListener('scroll', this.handleScroll)
   }
 
   render() {
     return (
-      <AppContext.Provider
-        value={{ viewport: this.props.app?.viewport as ViewportRecord }}
-      >
-        <StoreProvider value={stores}>
-          <NextSeo
-            title={
-              (this.props.app?.title || configs.title) +
-              ' · ' +
-              (this.props.app?.description || configs.description)
-            }
-            description={this.props.app?.description || configs.description}
-          />
-          <div id="next" style={{ display: this.state.loading ? 'none' : '' }}>
-            {this.props.children}
-          </div>
-          <Loader />
-        </StoreProvider>
-      </AppContext.Provider>
+      <StoreProvider value={stores}>
+        <NextSeo
+          title={
+            (this.props.app?.title || configs.title) +
+            ' · ' +
+            (this.props.app?.description || configs.description)
+          }
+          description={this.props.app?.description || configs.description}
+        />
+        <div id="next" style={{ display: this.state.loading ? 'none' : '' }}>
+          {this.props.children}
+        </div>
+        <Loader />
+      </StoreProvider>
     )
   }
 }
@@ -241,21 +233,17 @@ interface Store {
 interface DataModel {
   pageData: PageModel[]
 }
-class App extends React.Component<
-  DataModel & { Component: any; pageProps: any }
-> {
-  render() {
-    const { Component, pageProps, pageData } = this.props
-    return (
-      <Provider {...stores}>
-        <Context data={{ pages: pageData }}>
-          <BasicLayout>
-            <Component {...pageProps} />
-          </BasicLayout>
-        </Context>
-      </Provider>
-    )
-  }
+const App: FC<DataModel & { Component: any; pageProps: any }> = (props) => {
+  const { Component, pageProps, pageData } = props
+  return (
+    <Provider {...stores}>
+      <Context data={{ pages: pageData }}>
+        <BasicLayout>
+          <Component {...pageProps} />
+        </BasicLayout>
+      </Context>
+    </Provider>
+  )
 }
 
 export default App
