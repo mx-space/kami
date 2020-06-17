@@ -12,7 +12,7 @@ import styles from './index.module.scss'
 
 const Header: FC = observer(() => {
   const { appStore, socialStore } = useStore()
-  const { menu } = appStore || {}
+  const { menu } = appStore
   const isMobile = appStore.viewport.mobile
   const [menuOpen, setMenu] = useState(false)
   const closeMenu = (e: MouseEvent<HTMLDivElement | HTMLAnchorElement>) => {

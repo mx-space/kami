@@ -52,7 +52,7 @@ export const PostView: NextPage<PostResModel> = (props) => {
         },
         {
           icon: faBookOpen,
-          name: props.count?.read ?? 0,
+          name: props.count.read ?? 0,
         },
       ],
       actions: [
