@@ -1,3 +1,5 @@
+import CustomRules from 'common/markdown/rules'
+import { useStore } from 'common/store'
 import { ImageLazyWithPopup } from 'components/Image'
 import Toc from 'components/Toc'
 import { observer } from 'mobx-react'
@@ -6,7 +8,6 @@ import React, {
   createElement,
   DOMAttributes,
   FC,
-  memo,
   ReactType,
   useCallback,
   useContext,
@@ -14,10 +15,8 @@ import React, {
   useState,
 } from 'react'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
-import { useStore } from 'common/store'
-import CodeBlock from '../CodeBlock'
 import { imageSizesContext } from '../../common/context/ImageSizes'
-import CustomRules from 'common/markdown/rules'
+import CodeBlock from '../CodeBlock'
 interface MdProps extends ReactMarkdownProps {
   value: string
   showTOC?: boolean
@@ -53,7 +52,11 @@ const RenderLink: FC<{
 
       const toUrlParser = new URL(href)
 
-      if (toUrlParser.host === locateUrl.host) {
+      if (
+        toUrlParser.host === locateUrl.host ||
+        (process.env.NODE_ENV === 'development' &&
+          toUrlParser.host === 'innei.ren')
+      ) {
         e.preventDefault()
         const pathArr = toUrlParser.pathname.split('/').filter(Boolean)
         const headPath = pathArr[0]
@@ -105,12 +108,16 @@ const RenderLink: FC<{
   )
 }
 
-const calculateDimensions = (width?: number, height?: number) => {
+const calculateDimensions = (
+  width?: number,
+  height?: number,
+  max?: { width: number; height: number },
+) => {
   if (!width || !height) {
     return { height: undefined, width: undefined }
   }
-  const MAX = {
-    width: document.getElementById('write')?.offsetWidth || 500, // 容器的宽度
+  const MAX = max ?? {
+    width: 500, // 容器的宽度
     height: Infinity, // 可选最大高度
   }
   const dimensions = { width, height }
@@ -127,18 +134,34 @@ const calculateDimensions = (width?: number, height?: number) => {
   }
   return dimensions
 }
-
+// FIXME render problem
+const getContainerSize = () => {
+  const $0 = document.getElementById('article-wrap')
+  const computedStyle = getComputedStyle($0!)!
+  let elementWidth = $0!.clientWidth
+  elementWidth -=
+    parseFloat(computedStyle.paddingLeft) +
+    parseFloat(computedStyle.paddingRight)
+  return elementWidth
+}
 const Image: () => FC<{ src: string; alt?: string }> = () => {
   let index = 0
   return function RenderImage({ src, alt }) {
     const images = useContext(imageSizesContext)
     const [cal, setCal] = useState({} as { height?: number; width?: number })
+    const maxWidth = typeof document !== 'undefined' && getContainerSize()
+
     useEffect(() => {
       const size = images[index++] || { height: undefined, width: undefined }
-      const cal = calculateDimensions(size?.width, size?.height)
+      const max = {
+        width: (maxWidth ?? getContainerSize()) || 500,
+        // width: 10000,
+        height: Infinity,
+      }
+      const cal = calculateDimensions(size?.width, size?.height, max)
 
       setCal(cal)
-    }, [images])
+    }, [images, maxWidth])
 
     if (typeof document === 'undefined') {
       return null
@@ -156,7 +179,11 @@ const Image: () => FC<{ src: string; alt?: string }> = () => {
 }
 
 const RenderSpoiler: FC<{ value: string }> = (props) => {
-  return <span className={'spoiler'}>{props.value}</span>
+  return (
+    <span className={'spoiler'} title={'你知道的太多了'}>
+      {props.value}
+    </span>
+  )
 }
 
 const RenderParagraph: FC<{}> = (props) => {
@@ -190,4 +217,4 @@ const Markdown: FC<MdProps> = observer((props) => {
   )
 })
 
-export default memo(Markdown)
+export default Markdown

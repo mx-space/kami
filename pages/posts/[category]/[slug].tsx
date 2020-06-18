@@ -32,8 +32,10 @@ export const PostView: NextPage<PostResModel> = (props) => {
   const [copyrightInfo, setCopyright] = useState({} as CopyrightProps)
   const description = props.summary ?? RemoveMarkdown(props.text).slice(0, 100)
   const [thumbsUp, setThumbsUp] = useState(props.count.like || 0)
+
   useEffect(() => {
     setThumbsUp(props.count.like)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [props])
   useEffect(() => {
     setAction({

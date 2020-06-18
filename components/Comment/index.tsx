@@ -96,7 +96,11 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
         ) : (
           <h1>主人禁止了评论</h1>
         )}
-        <LazyLoad offset={50} once>
+        <LazyLoad
+          offset={50}
+          once
+          placeholder={<div style={{ minHeight: '15rem' }} />}
+        >
           <Fragment>
             <Comment comments={comments} fetchComments={fetchComments} />
             <div style={{ textAlign: 'center' }}>

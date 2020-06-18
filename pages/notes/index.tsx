@@ -30,12 +30,12 @@ const NotePage = observer(() => {
   const router = useRouter()
   const { appStore } = useStore()
   useEffect(() => {
+    message.info('正在跳往至最新, 请等待')
     if (appStore.noteNid) {
       router.replace('/notes/[id]', `/notes/${appStore.noteNid}`, {
         shallow: true,
       })
     } else {
-      message.info('正在跳往至最新, 请等待')
       Rest('Note')
         .get('latest')
         .then(({ data }: any) => {

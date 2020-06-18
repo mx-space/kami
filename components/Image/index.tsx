@@ -111,6 +111,7 @@ export const ImageLazy: FC<
             // overflow: 'hidden',
             height,
             width,
+            maxWidth: '100%',
           }}
           ref={wrapRef}
         >
@@ -130,6 +131,7 @@ export const ImageLazy: FC<
             style={{
               height,
               width,
+              maxWidth: '100%',
               position: 'absolute',
               backgroundColor: useRandomBackgroundColor ? randColor : '',
               filter:

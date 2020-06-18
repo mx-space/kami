@@ -9,24 +9,12 @@ import React, { FC, memo, MouseEvent, useState, Fragment } from 'react'
 import { useStore } from '../../common/store'
 import { MenuModel } from '../../common/store/types'
 import styles from './index.module.scss'
-
-const Header: FC = observer(() => {
-  const { appStore, socialStore } = useStore()
-  const { menu } = appStore
-  const isMobile = appStore.viewport.mobile
-  const [menuOpen, setMenu] = useState(false)
-  const closeMenu = (e: MouseEvent<HTMLDivElement | HTMLAnchorElement>) => {
-    if (appStore.viewport.mobile) {
-      e.stopPropagation()
-      setMenu(false)
-    }
-  }
-  // eslint-disable-next-line react/display-name
-  const SubMenu: FC<{ subMenu: MenuModel[] }> = memo(({ subMenu }) => {
+const SubMenu: FC<{ subMenu: MenuModel[]; onClick: any }> = observer(
+  ({ subMenu, onClick }) => {
     const menus = subMenu.map((menu) => {
       return (
         <Link href={menu.path} as={menu.as} key={menu._id}>
-          <a onClick={closeMenu}>
+          <a onClick={onClick}>
             {menu.icon && <FontAwesomeIcon icon={menu.icon} />}
             <span>{menu.title}</span>
           </a>
@@ -34,11 +22,14 @@ const Header: FC = observer(() => {
       )
     })
     return <div className="sub-menu">{menus}</div>
-  })
-  // eslint-disable-next-line react/display-name
-  const NavItems: FC = memo(() => (
+  },
+)
+const NavItems: FC<{ onClick: any }> = observer(({ onClick }) => {
+  const { appStore } = useStore()
+  const { menu } = appStore
+  return (
     <>
-      {menu?.map((item: MenuModel) => {
+      {menu.map((item: MenuModel) => {
         return (
           <div
             className={
@@ -47,7 +38,7 @@ const Header: FC = observer(() => {
                 : 'menu-link'
             }
             key={item._id}
-            onClick={closeMenu}
+            onClick={onClick}
           >
             <Link href={item.path} as={item.path}>
               <a>
@@ -55,26 +46,41 @@ const Header: FC = observer(() => {
                 <span>{item.title}</span>
               </a>
             </Link>
-            {item.subMenu && <SubMenu subMenu={item.subMenu} />}
+            {item.subMenu && (
+              <SubMenu subMenu={item.subMenu} onClick={onClick} />
+            )}
           </div>
         )
       })}
     </>
-  ))
+  )
+})
 
-  const Links: FC = memo(() => {
-    return (
-      <Fragment>
-        {socialStore.socialLinks.map((link) => {
-          return (
-            <a title={link.title} href={link.url} key={link.url}>
-              <FontAwesomeIcon icon={link.icon} />
-            </a>
-          )
-        })}
-      </Fragment>
-    )
-  })
+const Links: FC = observer(() => {
+  const { socialStore } = useStore()
+  return (
+    <Fragment>
+      {socialStore.socialLinks.map((link) => {
+        return (
+          <a title={link.title} href={link.url} key={link.url}>
+            <FontAwesomeIcon icon={link.icon} />
+          </a>
+        )
+      })}
+    </Fragment>
+  )
+})
+const Header: FC = observer(() => {
+  const { appStore } = useStore()
+
+  const isMobile = appStore.viewport.mobile
+  const [menuOpen, setMenu] = useState(false)
+  const closeMenu = (e: MouseEvent<HTMLDivElement | HTMLAnchorElement>) => {
+    if (appStore.viewport.mobile) {
+      e.stopPropagation()
+      setMenu(false)
+    }
+  }
 
   return (
     <header
@@ -156,7 +162,7 @@ const Header: FC = observer(() => {
           </div>
         </nav>
         <nav className={classNames('head-menu', styles['head-menu'])}>
-          <NavItems />
+          <NavItems onClick={closeMenu} />
         </nav>
       </div>
 

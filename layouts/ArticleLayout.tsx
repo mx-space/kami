@@ -15,7 +15,7 @@ export const ArticleLayout: FC<
 > = memo(
   forwardRef(({ children, title, subtitle, delay, ...rest }, ref: any) => {
     return (
-      <main className="is-article" ref={ref} {...rest}>
+      <main className="is-article" ref={ref} {...rest} id={'article-wrap'}>
         {title && (
           <section className="post-title">
             <h1>
