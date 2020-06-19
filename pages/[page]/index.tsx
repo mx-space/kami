@@ -26,6 +26,13 @@ const Page: NextPage<PageRespDto> = (props) => {
       appStore.headerNav.show = false
     }
   }, [appStore, subtitle, title])
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    })
+  }, [props])
   return (
     <ArticleLayout title={title} subtitle={subtitle}>
       <NextSeo

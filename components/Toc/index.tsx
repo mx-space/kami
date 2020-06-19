@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-12 21:41:12
- * @LastEditTime: 2020-06-16 19:12:30
+ * @LastEditTime: 2020-06-19 16:59:25
  * @LastEditors: Innei
  * @FilePath: /mx-web/components/Toc/index.tsx
  * @Coding with Love
@@ -80,10 +80,7 @@ export const Toc: FC = memo(() => {
                     if (typeof window.SmoothScroll === 'undefined') {
                       e.preventDefault()
                       const el = document.getElementById(heading)
-                      window.scrollTo({
-                        top: el?.getBoundingClientRect().top,
-                        behavior: 'smooth',
-                      })
+                      el?.scrollIntoView({ behavior: 'smooth' })
                     }
                   }}
                 >
