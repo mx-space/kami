@@ -83,6 +83,11 @@ class Context extends PureComponent<Store & { data: any }> {
           this.props.category?.setCategory(categories)
           this.props.app?.setConfig({ seo })
           this.props.app?.setLastestNoteNid(lastestNoteNid)
+
+          this.setState({
+            loading: false,
+          })
+          this.props.app?.setLoading(false)
         })
         .then(() => {
           if (getToken()) {
@@ -178,11 +183,6 @@ class Context extends PureComponent<Store & { data: any }> {
 
       // connect to ws
       client.initIO()
-
-      this.setState({
-        loading: false,
-      })
-      this.props.app?.setLoading(false)
     }
   }
 

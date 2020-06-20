@@ -1,13 +1,14 @@
-import { faListUl } from '@fortawesome/free-solid-svg-icons'
+import { faAnchor, faListUl } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
 import { DefaultLogo as Logo } from 'components/Logo'
 import { observer } from 'mobx-react'
 import Link from 'next/link'
 import Router from 'next/router'
-import React, { FC, memo, MouseEvent, useState, Fragment } from 'react'
+import React, { FC, Fragment, memo, MouseEvent, useState } from 'react'
 import { useStore } from '../../common/store'
 import { MenuModel } from '../../common/store/types'
+import configs from '../../configs'
 import styles from './index.module.scss'
 const SubMenu: FC<{ subMenu: MenuModel[]; onClick: any }> = observer(
   ({ subMenu, onClick }) => {
@@ -67,6 +68,11 @@ const Links: FC = observer(() => {
           </a>
         )
       })}
+      {configs.travellings && (
+        <a href="https://travellings.now.sh/" target={'_blank'} title="开往">
+          <FontAwesomeIcon icon={faAnchor} />
+        </a>
+      )}
     </Fragment>
   )
 })

@@ -145,4 +145,5 @@ export default {
     name: '萌ICP备 20200520520 号',
     url: 'https://icp.gov.moe/?keyword=20200520520',
   },
+  travellings: true, // 开往
 }
