@@ -1,12 +1,12 @@
 import { PersonalPlayListType, PlayListType } from '@mx-space/extra'
 import axios from 'axios'
+import { useStore } from 'common/store'
 import { SectionMusic } from 'components/SectionMusic'
 import configs from 'configs'
 import { observer } from 'mobx-react'
 import { NextPage } from 'next'
-import { NextSeo } from 'next-seo'
-import { useStore } from 'common/store'
 import { FavoriteNav } from '../../components/Navigation/nav'
+import { Seo } from '../../components/SEO'
 interface MusicProps {
   weekdata: PlayListType[]
   alldata: PlayListType[]
@@ -15,10 +15,9 @@ interface MusicProps {
 }
 
 const MusicView: NextPage<MusicProps> = (props) => {
-  const { appStore } = useStore()
   return (
     <main>
-      <NextSeo title={`歌单 - ${appStore.title || configs.title}`} />
+      <Seo title={`歌单`} openGraph={{ type: 'website' }} />
       <FavoriteNav index={0} />
       <SectionMusic
         {...{

@@ -27,6 +27,7 @@ import configs from '../configs'
 import { stopEventDefault } from '../utils/dom'
 import service from '../utils/request'
 import { message } from 'antd'
+import { getAnimationImages } from '../utils'
 
 interface IndexViewProps {
   posts: Top.Post[]
@@ -255,24 +256,7 @@ IndexView.getInitialProps = async (): Promise<IndexViewProps> => {
   const randomImageData = (await Rest('Aggregate').get(
     'random?type=3&imageType=2&size=8',
   )) as { data: RandomImage.Image[] }
-  const extraImages = [
-    'qsNmnC2zHB5FW41.jpg',
-    'GwJzq4SYtClRcZh.jpg',
-    '6nOYcygRGXvpsFd.jpg',
-    'Qr2ykmsEFpJn4BC.jpg',
-    'KiOuTlCzge7JHh3.jpg',
-    'sM2XCJTW8BdUe5i.jpg',
-    '18KQYP9fNGbrzJu.jpg',
-    'rdjZo6Sg2JReyiA.jpg',
-    'X2MVRDe1tyJil3O.jpg',
-    'EDoKvz5p7BXZ46U.jpg',
-    'EGk4qUvcXDygV2z.jpg',
-    '5QdwFC82gT3XPSZ.jpg',
-    'KPyTCARHBzpxJ46.jpg',
-    '7TOEIPwGrZB1qFb.jpg',
-    'Ihj5QAZgVMqr9fJ.jpg',
-    'KZ6jv8C92Vpwcih.jpg',
-  ].map((i) => 'https://i.loli.net/2020/05/22/' + i)
+  const extraImages = getAnimationImages()
 
   const randomImages = randomImageData.data.map((image) => {
     return image.locate !== RandomImage.Locate.Online

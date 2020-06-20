@@ -20,11 +20,11 @@ import Loader from 'components/Loader'
 import configs from 'configs'
 import { BasicLayout } from 'layouts/BasicLayout'
 import throttle from 'lodash/throttle'
-import makeInspectable from 'mobx-devtools-mst'
+
 import { inject, observer, Provider } from 'mobx-react'
 import 'mobx-react-lite/batchingForReactDom'
 import { AggregateResp } from 'models/aggregate'
-import { NextSeo } from 'next-seo'
+
 import Router from 'next/router'
 
 import React, { PureComponent, FC } from 'react'
@@ -42,11 +42,10 @@ import { AntiDebug } from '../utils/forbidden'
 import * as gtag from '../utils/gtag'
 import { getBrowserType } from '../utils/ua'
 import { message } from 'antd'
+import { SEO } from '../components/SEO'
+import { LogoJsonLd, SocialProfileJsonLd } from 'next-seo'
 
 const stores = createMobxStores()
-if (process.env.NODE_ENV === 'development') {
-  makeInspectable(stores)
-}
 
 @inject((store: Stores) => ({
   master: store.userStore,
@@ -206,7 +205,7 @@ class Context extends PureComponent<Store & { data: any }> {
   render() {
     return (
       <StoreProvider value={stores}>
-        <NextSeo
+        <SEO
           title={
             (this.props.app?.title || configs.title) +
             ' · ' +
@@ -214,6 +213,17 @@ class Context extends PureComponent<Store & { data: any }> {
           }
           description={this.props.app?.description || configs.description}
         />
+        <LogoJsonLd
+          logo={new URL('/custom-icon.svg', configs.url).toString()}
+          url={configs.url}
+        />
+        <SocialProfileJsonLd
+          type={'Person'}
+          name={configs.author}
+          url={configs.url}
+          sameAs={configs.social.map(({ url }) => url)}
+        />
+
         <div id="next" style={{ display: this.state.loading ? 'none' : '' }}>
           {this.props.children}
         </div>

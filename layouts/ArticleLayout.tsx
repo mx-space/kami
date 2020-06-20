@@ -2,10 +2,10 @@ import QueueAnim from 'rc-queue-anim'
 import Texty from 'rc-texty'
 import { FC, forwardRef, DetailedHTMLProps, HTMLAttributes, memo } from 'react'
 import { animatingClassName } from './NoteLayout'
+import { isClientSide } from '../utils'
 export interface ArticleLayoutProps {
   title?: string
   subtitle?: string
-
   delay?: number
 }
 // @ts-ignore
@@ -25,9 +25,13 @@ export const ArticleLayout: FC<
                 leaveReverse
                 appear={false}
               >
-                <Texty type={'mask-bottom'} mode={'smooth'} key={title}>
-                  {title}
-                </Texty>
+                {isClientSide() ? (
+                  <Texty type={'mask-bottom'} mode={'smooth'} key={title}>
+                    {title}
+                  </Texty>
+                ) : (
+                  title
+                )}
               </QueueAnim>
             </h1>
 
@@ -37,14 +41,18 @@ export const ArticleLayout: FC<
                   type={'alpha'}
                   // animatingClassName={['absolute', 'absolute']}
                 >
-                  <Texty
-                    type={'mask-bottom'}
-                    mode={'smooth'}
-                    delay={500}
-                    key={subtitle}
-                  >
-                    {subtitle}
-                  </Texty>
+                  {isClientSide() ? (
+                    <Texty
+                      type={'mask-bottom'}
+                      mode={'smooth'}
+                      delay={500}
+                      key={subtitle}
+                    >
+                      {subtitle}
+                    </Texty>
+                  ) : (
+                    subtitle
+                  )}
                 </QueueAnim>
               </h2>
             )}

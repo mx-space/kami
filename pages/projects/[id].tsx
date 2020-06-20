@@ -1,13 +1,13 @@
 import Kico from 'assets/images/Kico.jpg'
+import { useStore } from 'common/store'
 import { ImageLazy } from 'components/Image'
 import { SliderImagesPopup } from 'components/SliderImagesPopup'
 import { ProjectModel } from 'models/project'
 import { NextPage } from 'next'
-import { NextSeo } from 'next-seo'
 import { useState } from 'react'
 import ReactMarkdown from 'react-markdown'
-import { useStore } from 'common/store'
 import { Rest } from 'utils/api'
+import { SEO } from '../../components/SEO'
 import configs from '../../configs'
 
 type ProjectViewProps = ProjectModel
@@ -20,10 +20,13 @@ const ProjectView: NextPage<ProjectViewProps> = (props) => {
 
   return (
     <main>
-      <NextSeo
+      <SEO
         {...{
-          title: props.name + ' - ' + (configs.title || appStore.title),
+          title: props.name,
           description: props.description,
+          openGraph: {
+            type: 'website',
+          },
         }}
       />
       <section className="project-head">

@@ -7,6 +7,7 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons'
 import { message } from 'antd'
+import { useStore } from 'common/store'
 import Action, { ActionProps } from 'components/Action'
 import CommentWrap from 'components/Comment'
 import Markdown from 'components/MD-render'
@@ -22,16 +23,14 @@ import {
   WeatherMap,
 } from 'models/note'
 import { NextPage } from 'next'
-import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
-import RemoveMarkdown from 'remove-markdown'
-import { useStore } from 'common/store'
 import { Rest } from 'utils/api'
 import { parseDate, relativeTimeFromNow } from 'utils/time'
 import { mood2icon, weather2icon } from 'utils/weather2icon'
-import configs from '../../configs'
 import { imageSizesContext as ImageSizesContext } from '../../common/context/ImageSizes'
+import { Seo } from '../../components/SEO'
+import { getSummaryFromMd } from '../../utils'
 
 interface NoteViewProps {
   data: NoteModel
@@ -59,12 +58,10 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
   const [like, setLike] = useState(data.count.like ?? 0)
   const router = useRouter()
   const [tips, setTips] = useState(``)
-  const removeMd = RemoveMarkdown(text)
-  const description = removeMd.slice(0, 100)
+
+  const { description, wordCount } = getSummaryFromMd(text, { count: true })
   useEffect(() => {
     try {
-      const wordCount = removeMd.length
-
       setTips(
         `创建于 ${parseDate(
           data.created,
@@ -84,10 +81,12 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
     data.modified,
     data.count.read,
     data.count.like,
-    removeMd.length,
+    wordCount,
   ])
   useEffect(() => {
-    document.documentElement.scrollTop = 50
+    if (document.documentElement.scrollTop > 50) {
+      document.documentElement.scrollTop = 50
+    }
     setTimeout(() => {
       window.scroll({ top: 0, left: 0, behavior: 'smooth' })
     }, 10)
@@ -169,9 +168,9 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
 
   return (
     <>
-      <NextSeo
+      <Seo
         {...{
-          title: title + ' - ' + (configs.title || appStore.title),
+          title: title,
           description,
           openGraph: {
             title,
@@ -234,6 +233,7 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
           </section>
         )}
       </NoteLayout>
+
       <ArticleLayout
         style={{ minHeight: 'unset', paddingTop: '0' }}
         delay={2000}

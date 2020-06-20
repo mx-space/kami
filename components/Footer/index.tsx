@@ -14,6 +14,7 @@ const FooterActions = dynamic(
 export const Footer: FC = observer(() => {
   const { userStore, appStore, gatewayStore } = useStore()
   const thisYear = new Date().getFullYear()
+
   return (
     <footer>
       <style jsx>{`

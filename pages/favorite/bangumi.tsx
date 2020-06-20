@@ -2,10 +2,10 @@ import { FavoriteBangumiType } from '@mx-space/extra'
 import axios from 'axios'
 import configs from 'configs'
 import { NextPage } from 'next'
-import { NextSeo } from 'next-seo'
 import Head from 'next/head'
 import { ImageLazy } from '../../components/Image'
 import { FavoriteNav } from '../../components/Navigation/nav'
+import { Seo } from '../../components/SEO'
 const BangumiView: NextPage<{ data: FavoriteBangumiType[] }> = (props) => {
   return (
     <main>
@@ -13,9 +13,10 @@ const BangumiView: NextPage<{ data: FavoriteBangumiType[] }> = (props) => {
       <Head>
         <meta name="referrer" content="no-referrer" />
       </Head>
-      <NextSeo
+      <Seo
         {...{
-          title: '追番 - ' + configs.title,
+          title: '追番',
+          openGraph: { type: 'website' },
         }}
       />
       <section className={'paul-bangumi'}>

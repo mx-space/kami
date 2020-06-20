@@ -1,10 +1,12 @@
 import {
-  faCalendar,
-  faUser,
-  faHashtag,
   faBookOpen,
+  faCalendar,
+  faHashtag,
   faThumbsUp,
+  faUser,
 } from '@fortawesome/free-solid-svg-icons'
+import { message } from 'antd'
+import { useStore } from 'common/store'
 import Action, { ActionProps } from 'components/Action'
 import { CommentLazy } from 'components/Comment'
 import Markdown from 'components/MD-render'
@@ -13,16 +15,14 @@ import dayjs from 'dayjs'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { observer } from 'mobx-react'
 import { PostResModel, PostSingleDto } from 'models/post'
-import { NextSeo } from 'next-seo'
 import { NextPage, NextPageContext } from 'next/'
 import { useEffect, useState } from 'react'
-import RemoveMarkdown from 'remove-markdown'
-import { useStore } from 'common/store'
 import { Rest } from 'utils/api'
-import { Copyright, CopyrightProps } from '../../../components/Copyright'
-import configs from '../../../configs'
 import { imageSizesContext } from '../../../common/context/ImageSizes'
-import { message } from 'antd'
+import { Copyright, CopyrightProps } from '../../../components/Copyright'
+import { Seo } from '../../../components/SEO'
+import configs from '../../../configs'
+import { getSummaryFromMd } from '../../../utils'
 
 export const PostView: NextPage<PostResModel> = (props) => {
   const { text, title, _id } = props
@@ -30,7 +30,8 @@ export const PostView: NextPage<PostResModel> = (props) => {
   const name = userStore.name
   const [actions, setAction] = useState({} as ActionProps)
   const [copyrightInfo, setCopyright] = useState({} as CopyrightProps)
-  const description = props.summary ?? RemoveMarkdown(props.text).slice(0, 100)
+  const description =
+    props.summary ?? getSummaryFromMd(props.text).slice(0, 150)
   const [thumbsUp, setThumbsUp] = useState(props.count.like || 0)
 
   useEffect(() => {
@@ -107,13 +108,16 @@ export const PostView: NextPage<PostResModel> = (props) => {
 
   return (
     <ArticleLayout title={title}>
-      <NextSeo
-        title={props.title + ' - ' + (configs.title || appStore.title)}
+      <Seo
+        title={props.title}
         description={description}
         openGraph={{
-          title: props.title,
-          description: description,
           profile: { username: userStore.master.name },
+          article: {
+            publishedTime: props.created,
+            modifiedTime: props.modified,
+            section: props.category.name,
+          },
         }}
       />
 

@@ -1,15 +1,15 @@
+import { useStore } from 'common/store'
 import { CommentLazy } from 'components/Comment'
 import Markdown from 'components/MD-render'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { observer } from 'mobx-react'
 import { PageRespDto } from 'models/page'
 import { NextPage } from 'next'
-import { NextSeo } from 'next-seo'
 import { useEffect } from 'react'
 import RemoveMarkdown from 'remove-markdown'
-import { useStore } from 'common/store'
 import { Rest } from 'utils/api'
 import { imageSizesContext } from '../../common/context/ImageSizes'
+import { Seo } from '../../components/SEO'
 
 const Page: NextPage<PageRespDto> = (props) => {
   const { data } = props
@@ -35,8 +35,8 @@ const Page: NextPage<PageRespDto> = (props) => {
   }, [props])
   return (
     <ArticleLayout title={title} subtitle={subtitle}>
-      <NextSeo
-        title={title + ' - ' + appStore.title}
+      <Seo
+        title={title}
         description={RemoveMarkdown(text).slice(0, 100).replace('\n', '')}
       />
       <imageSizesContext.Provider value={props.data.images}>
