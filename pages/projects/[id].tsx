@@ -1,5 +1,4 @@
 import Kico from 'assets/images/Kico.jpg'
-import { useStore } from 'common/store'
 import { ImageLazy } from 'components/Image'
 import { SliderImagesPopup } from 'components/SliderImagesPopup'
 import { ProjectModel } from 'models/project'
@@ -8,7 +7,6 @@ import { useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { Rest } from 'utils/api'
 import { SEO } from '../../components/SEO'
-import configs from '../../configs'
 
 type ProjectViewProps = ProjectModel
 
@@ -16,7 +14,6 @@ const ProjectView: NextPage<ProjectViewProps> = (props) => {
   const { name, avatar, images } = props
   const [photoIndex, setIndex] = useState(0)
   const [isOpen, setOpen] = useState(false)
-  const { appStore } = useStore()
 
   return (
     <main>

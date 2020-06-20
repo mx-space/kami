@@ -1,8 +1,6 @@
 import { PersonalPlayListType, PlayListType } from '@mx-space/extra'
 import axios from 'axios'
-import { useStore } from 'common/store'
 import { SectionMusic } from 'components/SectionMusic'
-import configs from 'configs'
 import { observer } from 'mobx-react'
 import { NextPage } from 'next'
 import { FavoriteNav } from '../../components/Navigation/nav'
