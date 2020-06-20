@@ -2,7 +2,7 @@
   "name": "mx-web",
   "license": "MIT",
   "private": false,
-  "version": "1.0.0-rc-3",
+  "version": "1.0.0",
   "scripts": {
     "start": "nodemon",
     "prebuild": "rimraf .next",
