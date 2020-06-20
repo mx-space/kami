@@ -1,4 +1,4 @@
-import { faAnchor, faListUl } from '@fortawesome/free-solid-svg-icons'
+import { faListUl, faRoute } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
 import { DefaultLogo as Logo } from 'components/Logo'
@@ -70,7 +70,7 @@ const Links: FC = observer(() => {
       })}
       {configs.travellings && (
         <a href="https://travellings.now.sh/" target={'_blank'} title="开往">
-          <FontAwesomeIcon icon={faAnchor} />
+          <FontAwesomeIcon icon={faRoute} />
         </a>
       )}
     </Fragment>

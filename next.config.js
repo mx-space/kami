@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-04-18 16:00:58
- * @LastEditTime: 2020-06-14 21:05:54
+ * @LastEditTime: 2020-06-20 13:07:58
  * @LastEditors: Innei
  * @FilePath: /mx-web/next.config.js
  * @MIT
@@ -31,6 +31,7 @@ const configs = withImages(
           { source: '/atom.xml', destination: '/api/feed' },
         ]
       },
+      modern: true,
     },
   }),
 )

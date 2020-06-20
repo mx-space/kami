@@ -295,6 +295,7 @@ pre {
 html.dark .lazyload-image {
   animation: blur-dark 0.8s forwards ease-in-out;
 }
+
 @keyframes blur {
   from {
     filter: blur(10px);
@@ -356,6 +357,7 @@ html.dark .lazyload-image {
   a:hover {
     border-color: var(--shizuku-text-color);
   }
+
   .date {
     margin-right: 0.5em;
   }

@@ -5,6 +5,8 @@ import { useStore } from '../../common/store'
 import configs from '../../configs'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faReact, faNodeJs } from '@fortawesome/free-brands-svg-icons'
 const FooterActions = dynamic(
   () => import('components/Footer/actions').then((m) => m.FooterActions) as any,
   { ssr: false },
@@ -34,7 +36,9 @@ export const Footer: FC = observer(() => {
               </span>
             </p>
             <p>
-              Powered by <a href="https://github.com/mx-space">mx-space</a>.{' '}
+              Powered by <FontAwesomeIcon icon={faReact} />
+              <a href="https://github.com/mx-space">{' mx-space '}</a>
+              <FontAwesomeIcon icon={faNodeJs} />.{' '}
               {!!configs.icp && !!configs.icp.name && !!configs.icp.url && (
                 <a href={configs.icp.url} target={'_blank'} rel={'noreferrer'}>
                   {configs.icp.name}
