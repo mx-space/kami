@@ -42,8 +42,8 @@ import { AntiDebug } from '../utils/forbidden'
 import * as gtag from '../utils/gtag'
 import { getBrowserType } from '../utils/ua'
 import { message } from 'antd'
-import { SEO } from '../components/SEO'
-import { LogoJsonLd, SocialProfileJsonLd } from 'next-seo'
+
+import { LogoJsonLd, SocialProfileJsonLd, NextSeo } from 'next-seo'
 
 const stores = createMobxStores()
 
@@ -205,7 +205,7 @@ class Context extends PureComponent<Store & { data: any }> {
   render() {
     return (
       <StoreProvider value={stores}>
-        <SEO
+        <NextSeo
           title={
             (this.props.app?.title || configs.title) +
             ' · ' +

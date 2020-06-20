@@ -17,7 +17,7 @@ import { NextPage } from 'next'
 import Router from 'next/router'
 import QueueAnim from 'rc-queue-anim'
 import Texty from 'rc-texty'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useStore } from 'common/store'
 import { Rest } from 'utils/api'
 
@@ -44,9 +44,9 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
   const { description } = appStore
   const { socialLinks } = socialStore
 
-  const { posts, notes, says, randomImages } = props
+  const { posts, notes, randomImages } = props
   const images = [...randomImages]
-  const [sections, _] = useState({
+  const sections = useRef({
     postSection: {
       title: '最新博文',
       icon: faBookOpen,
@@ -139,8 +139,8 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
           ]}
         >
           {[
-            <SectionNews {...sections.postSection} key={1} />,
-            <SectionNews {...sections.noteSection} key={2} />,
+            <SectionNews {...sections.current.postSection} key={1} />,
+            <SectionNews {...sections.current.noteSection} key={2} />,
             <SectionWrap
               {...{
                 title: '朋友们',
