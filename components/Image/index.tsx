@@ -79,7 +79,7 @@ export const ImageLazy: FC<
     defaultImage,
     src,
     alt = src,
-    height,
+    height = 300,
     width,
     useRandomBackgroundColor,
     ...rest
