@@ -42,9 +42,12 @@ import { AntiDebug } from '../utils/forbidden'
 import * as gtag from '../utils/gtag'
 import { getBrowserType } from '../utils/ua'
 import { message } from 'antd'
-
+import App from 'next/app'
 import { LogoJsonLd, SocialProfileJsonLd, NextSeo } from 'next-seo'
-
+import { IncomingMessage } from 'http'
+import Axios from 'axios'
+import Package from 'package.json'
+import { isServerSide } from '../utils'
 const stores = createMobxStores()
 
 @inject((store: Stores) => ({
@@ -243,7 +246,7 @@ interface Store {
 interface DataModel {
   pageData: PageModel[]
 }
-const App: FC<DataModel & { Component: any; pageProps: any }> = (props) => {
+const app: FC<DataModel & { Component: any; pageProps: any }> = (props) => {
   const { Component, pageProps, pageData } = props
   return (
     <Provider {...stores}>
@@ -255,5 +258,27 @@ const App: FC<DataModel & { Component: any; pageProps: any }> = (props) => {
     </Provider>
   )
 }
+// @ts-ignore
+app.getInitialProps = async (props) => {
+  const appProps = await App.getInitialProps(props)
+  if (isServerSide()) {
+    const ctx = props.ctx
+    const request: IncomingMessage = ctx.req
+    let ip =
+      ((request.headers['x-forwarded-for'] ||
+        request.connection.remoteAddress ||
+        request.socket.remoteAddress) as string) || undefined
+    if (ip && ip.split(',').length > 0) {
+      ip = ip.split(',')[0]
+    }
+    Axios.defaults.headers['x-forwarded-for'] = ip
 
-export default App
+    Axios.defaults.headers['User-Agent'] =
+      request.headers['user-agent'] +
+      ' mx-space render server' +
+      `/v${Package.version}`
+  }
+
+  return { ...appProps }
+}
+export default app
