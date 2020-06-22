@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-07 16:04:24
- * @LastEditTime: 2020-06-10 18:52:09
+ * @LastEditTime: 2020-06-22 15:57:55
  * @LastEditors: Innei
  * @FilePath: /mx-web/utils/request.ts
  * @MIT
@@ -10,11 +10,10 @@
 import { message } from 'antd'
 import axios from 'axios'
 import { getToken } from './auth'
-import Package from 'package.json'
 const service = axios.create({
   baseURL: process.env.APIURL || '/api',
   // withCredentials: true,
-  // timeout: 5000,
+  timeout: 5000,
 })
 
 service.interceptors.request.use(
@@ -23,11 +22,7 @@ service.interceptors.request.use(
     if (token) {
       config.headers['Authorization'] = 'bearer ' + getToken()
     }
-    if (typeof window === 'undefined') {
-      // on node side
-      config.headers['User-Agent'] =
-        'mx-space server client' + ` v${Package.version}`
-    }
+
     return config
   },
   (error) => {
@@ -42,11 +37,13 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response) => {
     const res = response.data
-
     return res
   },
   (error) => {
     if (typeof document !== 'undefined') {
+      if (error.code === 'ECONNABORTED') {
+        return message.error('连接超时, 请检查一下网络哦!')
+      }
       if (error.response.data?.message) {
         if (Array.isArray(error.response.data.message)) {
           error.response.data.message.map((m) => {
