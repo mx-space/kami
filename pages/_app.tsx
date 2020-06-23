@@ -42,11 +42,10 @@ import { AntiDebug } from '../utils/forbidden'
 import * as gtag from '../utils/gtag'
 import { getBrowserType } from '../utils/ua'
 import { message } from 'antd'
-import App from 'next/app'
+import App, { AppContext } from 'next/app'
 import { LogoJsonLd, SocialProfileJsonLd, NextSeo } from 'next-seo'
-import { IncomingMessage } from 'http'
-import Axios from 'axios'
 import Package from 'package.json'
+import service from '../utils/request'
 import { isServerSide } from '../utils'
 const stores = createMobxStores()
 
@@ -259,11 +258,13 @@ const app: FC<DataModel & { Component: any; pageProps: any }> = (props) => {
   )
 }
 // @ts-ignore
-app.getInitialProps = async (props) => {
+app.getInitialProps = async (props: AppContext) => {
   const appProps = await App.getInitialProps(props)
-  if (isServerSide()) {
-    const ctx = props.ctx
-    const request: IncomingMessage = ctx.req
+
+  const ctx = props.ctx
+  const request = ctx.req
+
+  if (request && isServerSide()) {
     let ip =
       ((request.headers['x-forwarded-for'] ||
         request.connection.remoteAddress ||
@@ -271,12 +272,13 @@ app.getInitialProps = async (props) => {
     if (ip && ip.split(',').length > 0) {
       ip = ip.split(',')[0]
     }
-    Axios.defaults.headers['x-forwarded-for'] = ip
+    service.defaults.headers.common['x-forwarded-for'] = ip
 
-    Axios.defaults.headers['User-Agent'] =
+    service.defaults.headers.common['User-Agent'] =
       request.headers['user-agent'] +
       ' mx-space render server' +
       `/v${Package.version}`
+    console.log(service.defaults.headers.common)
   }
 
   return { ...appProps }
