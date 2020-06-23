@@ -278,7 +278,7 @@ app.getInitialProps = async (props: AppContext) => {
       request.headers['user-agent'] +
       ' mx-space render server' +
       `/v${Package.version}`
-    console.log(service.defaults.headers.common)
+    // console.log(service.defaults.headers.common)
   }
 
   return { ...appProps }

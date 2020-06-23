@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-07 16:04:24
- * @LastEditTime: 2020-06-22 15:57:55
+ * @LastEditTime: 2020-06-23 19:27:50
  * @LastEditors: Innei
  * @FilePath: /mx-web/utils/request.ts
  * @MIT
@@ -44,6 +44,12 @@ service.interceptors.response.use(
       if (error.code === 'ECONNABORTED') {
         return message.error('连接超时, 请检查一下网络哦!')
       }
+      if (!error.response) {
+        return Promise.reject({
+          statusCode: 500,
+          data: '发生未知错误',
+        })
+      }
       if (error.response.data?.message) {
         if (Array.isArray(error.response.data.message)) {
           error.response.data.message.map((m) => {
@@ -56,8 +62,8 @@ service.interceptors.response.use(
     }
 
     return Promise.reject({
-      statusCode: error.response.status,
-      data: error.response.data,
+      statusCode: error.response.status || 500,
+      data: error.response.data || '发生未知错误',
     })
   },
 )
