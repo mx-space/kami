@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-20 20:51:31
- * @LastEditTime: 2020-06-20 22:01:51
+ * @LastEditTime: 2020-06-23 15:32:29
  * @LastEditors: Innei
  * @FilePath: /mx-web/utils/utils.ts
  * @Coding with Love
@@ -37,7 +37,7 @@ export const getRandomImage = (count = 1) => {
 }
 
 export const isClientSide = () => {
-  return 'window' in globalThis
+  return typeof window === 'undefined'
 }
 export const isServerSide = () => {
   return !isClientSide()
