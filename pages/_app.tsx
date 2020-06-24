@@ -38,7 +38,7 @@ import { PageModel, Stores } from '../common/store/types'
 import UserStore from '../common/store/user'
 import { Rest } from '../utils/api'
 import { getToken, removeToken } from '../utils/auth'
-import { AntiDebug } from '../utils/forbidden'
+import { checkDevtools } from '../utils/forbidden'
 import * as gtag from '../utils/gtag'
 import { getBrowserType } from '../utils/ua'
 import { message } from 'antd'
@@ -71,123 +71,146 @@ class Context extends PureComponent<Store & { data: any }> {
   componentDidMount(): void {
     if (typeof window !== 'undefined') {
       // get aggregate data
-      Rest('Aggregate')
-        .get<AggregateResp>()
-        .then((res) => {
-          const { seo, user, pageMeta, categories, lastestNoteNid } = res
-          // set user
-          this.props.master?.setUser(user)
-          // set page
-          this.props.pages?.setPages(pageMeta as PageModel[])
-          this.props.app?.setPage(pageMeta as PageModel[])
-          this.props.app?.setCategories(categories)
-          this.props.category?.setCategory(categories)
-          this.props.app?.setConfig({ seo })
-          this.props.app?.setLastestNoteNid(lastestNoteNid)
-
-          this.setState({
-            loading: false,
-          })
-          this.props.app?.setLoading(false)
-        })
-        .then(() => {
-          if (getToken()) {
-            Rest('Master', 'check_logged')
-              .get<any>()
-              .then(({ ok }) => {
-                if (ok) {
-                  this.props.user?.setLogged(true)
-                  this.props.user?.setToken(getToken() as string)
-                  message.success('欢迎回来, ' + this.props.master?.name, 1.5)
-                } else {
-                  removeToken()
-                  message.warn('登陆身份过期了, 再登陆一下吧!', 2)
-                }
-              })
-          }
-        })
+      this.fetchData()
 
       if (process.env.NODE_ENV === 'development') {
         ;(window as any).store = stores
       }
+      checkDevtools()
 
-      Router.events.on('routeChangeStart', () => {
-        setTimeout(() => {
-          if (this.props.app?.loading) {
-            this.setState({ loading: true })
-          }
-        }, 500)
-        this.props.app?.setLoading(true)
-      })
-
-      Router.events.on('routeChangeComplete', () => {
-        // window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
-        this.setState({ loading: false })
-        this.props.app?.setLoading(false)
-      })
-
-      Router.events.on('routeChangeError', () => {
-        // window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
-        this.setState({ loading: false })
-        this.props.app?.setLoading(false)
-        message.error('出现了未知错误, 刷新试试?')
-      })
-
-      Router.events.on('routeChangeComplete', (url) => gtag.pageview(url))
-
-      window.onresize = () => this.props.app?.UpdateViewport()
-      this.props.app?.UpdateViewport()
-
-      if (typeof document !== 'undefined') {
-        document.addEventListener('scroll', this.handleScroll)
-      }
-
-      const browser = getBrowserType(window.navigator.userAgent)
-      if (browser === 'ie') {
-        alert('哥哥, 换个 Chrome 再来吧')
-        location.href = 'https://www.google.com/chrome/'
-      }
-      // anti debug
-      if (process.env.NODE_ENV !== 'development') {
-        AntiDebug.cyclingDebugger() as any
-
-        AntiDebug.checkDebug(() => console.log('请不要打开调试')) as any
-      }
-
+      this.registerRouterEvents()
+      this.registerScrollEvent()
+      this.checkBrowser()
       this.printToConsole()
-      let prompt = true
-      window.addEventListener('beforeinstallprompt', (e: any) => {
-        e.preventDefault()
-        if (prompt) {
-          e.prompt()
-          prompt = false
-        }
-      })
-      const getColormode = <T extends { matches: boolean }>(e: T) => {
-        this.props.app!.colorMode = e.matches ? 'dark' : 'light'
-        return this.props.app!.colorMode
-      }
-      this.props.app!.colorMode = getColormode(
-        window.matchMedia('(prefers-color-scheme: dark)'),
-      )
-      try {
-        window
-          .matchMedia('(prefers-color-scheme: dark)')
-          // safari not support this lister please catch it
-          .addListener((e) => {
-            if (this.props.app?.autoToggleColorMode) {
-              getColormode(e)
-            }
-          })
-        // eslint-disable-next-line no-empty
-      } catch {}
+      this.pwaPopup()
+
+      this.initColorMode()
 
       // connect to ws
       client.initIO()
     }
   }
 
+  private initColorMode() {
+    const getColormode = <T extends { matches: boolean }>(e: T) => {
+      this.props.app!.colorMode = e.matches ? 'dark' : 'light'
+      return this.props.app!.colorMode
+    }
+    this.props.app!.colorMode = getColormode(
+      window.matchMedia('(prefers-color-scheme: dark)'),
+    )
+    try {
+      window
+        .matchMedia('(prefers-color-scheme: dark)')
+        // safari not support this lister please catch it
+        .addListener((e) => {
+          if (this.props.app?.autoToggleColorMode) {
+            getColormode(e)
+          }
+        })
+    } catch {
+      // eslint-disable-next-line no-empty
+    }
+  }
+
+  private pwaPopup() {
+    let prompt = true
+    window.addEventListener('beforeinstallprompt', (e: any) => {
+      e.preventDefault()
+      if (prompt) {
+        e.prompt()
+        prompt = false
+      }
+    })
+  }
+
+  private checkBrowser() {
+    const browser = getBrowserType(window.navigator.userAgent)
+    if (browser === 'ie') {
+      alert('哥哥, 换个 Chrome 再来吧')
+      location.href = 'https://www.google.com/chrome/'
+    }
+  }
+
+  private registerScrollEvent() {
+    window.onresize = () => this.props.app?.UpdateViewport()
+    this.props.app?.UpdateViewport()
+
+    if (typeof document !== 'undefined') {
+      document.addEventListener('scroll', this.handleScroll)
+    }
+  }
+
+  private fetchData() {
+    Rest('Aggregate')
+      .get<AggregateResp>()
+      .then((res) => {
+        const { seo, user, pageMeta, categories, lastestNoteNid } = res
+        // set user
+        this.props.master?.setUser(user)
+        // set page
+        this.props.pages?.setPages(pageMeta as PageModel[])
+        this.props.app?.setPage(pageMeta as PageModel[])
+        this.props.app?.setCategories(categories)
+        this.props.category?.setCategory(categories)
+        this.props.app?.setConfig({ seo })
+        this.props.app?.setLastestNoteNid(lastestNoteNid)
+
+        this.setState({
+          loading: false,
+        })
+        this.props.app?.setLoading(false)
+      })
+      .then(() => {
+        if (getToken()) {
+          Rest('Master', 'check_logged')
+            .get<any>()
+            .then(({ ok }) => {
+              if (ok) {
+                this.props.user?.setLogged(true)
+                this.props.user?.setToken(getToken() as string)
+                message.success('欢迎回来, ' + this.props.master?.name, 1.5)
+              } else {
+                removeToken()
+                message.warn('登陆身份过期了, 再登陆一下吧!', 2)
+              }
+            })
+        }
+      })
+  }
+
+  private registerRouterEvents() {
+    Router.events.on('routeChangeStart', () => {
+      setTimeout(() => {
+        if (this.props.app?.loading) {
+          this.setState({ loading: true })
+        }
+      }, 500)
+      this.props.app?.setLoading(true)
+    })
+
+    Router.events.on('routeChangeComplete', () => {
+      // window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
+      this.setState({ loading: false })
+      this.props.app?.setLoading(false)
+    })
+
+    Router.events.on('routeChangeError', () => {
+      // window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
+      this.setState({ loading: false })
+      this.props.app?.setLoading(false)
+      message.error('出现了未知错误, 刷新试试?')
+    })
+
+    Router.events.on('routeChangeComplete', (url) => gtag.pageview(url))
+  }
+
   printToConsole() {
+    const text = `
+    This Blog Powered By Mix Space.
+    Stay hungry. Stay foolish. --Steve Jobs
+    `
+    document.documentElement.prepend(document.createComment(text))
     console.log(
       '%c Kico Style %c https://paugram.com ',
       'color: #fff; margin: 1em 0; padding: 5px 0; background: #3498db;',
