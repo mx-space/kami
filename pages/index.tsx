@@ -27,7 +27,7 @@ import configs from '../configs'
 import { stopEventDefault } from '../utils/dom'
 import service from '../utils/request'
 import { message } from 'antd'
-import { getAnimationImages, isClientSide } from '../utils'
+import { getAnimationImages } from '../utils'
 
 interface IndexViewProps {
   posts: Top.Post[]
@@ -128,92 +128,90 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
           </QueueAnim>
         </div>
       </section>
-      {isClientSide() && (
-        <section className="paul-news" style={{ minHeight: '34rem' }}>
-          <QueueAnim
-            className="demo-content"
-            delay={1200}
-            duration={500}
-            animConfig={[
-              { opacity: [1, 0], translateY: [0, 50] },
-              { opacity: [1, 0], translateY: [0, -50] },
-            ]}
-          >
-            {[
-              <SectionNews {...sections.current.postSection} key={1} />,
-              <SectionNews {...sections.current.noteSection} key={2} />,
-              <SectionWrap
+      <section className="paul-news" style={{ minHeight: '34rem' }}>
+        <QueueAnim
+          className="demo-content"
+          delay={1200}
+          duration={500}
+          animConfig={[
+            { opacity: [1, 0], translateY: [0, 50] },
+            { opacity: [1, 0], translateY: [0, -50] },
+          ]}
+        >
+          {[
+            <SectionNews {...sections.current.postSection} key={1} />,
+            <SectionNews {...sections.current.noteSection} key={2} />,
+            <SectionWrap
+              {...{
+                title: '朋友们',
+                moreUrl: 'friends',
+                icon: faUsers,
+              }}
+              key={3}
+            >
+              <FriendsSection />
+            </SectionWrap>,
+            <SectionWrap
+              {...{
+                title: '了解更多',
+                icon: faHeart,
+                showMoreIcon: false,
+              }}
+              key={4}
+            >
+              <SectionCard
                 {...{
-                  title: '朋友们',
-                  moreUrl: 'friends',
-                  icon: faUsers,
+                  title: '留言',
+                  desc: '你的话对我很重要',
+                  src: images.pop() as string,
+                  href: '/message',
+                  onClick: (e) => {
+                    stopEventDefault(e)
+                    Router.push('/[page]', '/message')
+                  },
                 }}
-                key={3}
-              >
-                <FriendsSection />
-              </SectionWrap>,
-              <SectionWrap
+              />
+              <SectionCard
                 {...{
-                  title: '了解更多',
-                  icon: faHeart,
-                  showMoreIcon: false,
+                  title: '关于',
+                  desc: '这里有我的小秘密',
+                  src: images.pop() as string,
+                  href: '/about',
+                  onClick: (e) => {
+                    stopEventDefault(e)
+                    Router.push('/[page]', '/about')
+                  },
                 }}
-                key={4}
-              >
-                <SectionCard
-                  {...{
-                    title: '留言',
-                    desc: '你的话对我很重要',
-                    src: images.pop() as string,
-                    href: '/message',
-                    onClick: (e) => {
-                      stopEventDefault(e)
-                      Router.push('/[page]', '/message')
-                    },
-                  }}
-                />
-                <SectionCard
-                  {...{
-                    title: '关于',
-                    desc: '这里有我的小秘密',
-                    src: images.pop() as string,
-                    href: '/about',
-                    onClick: (e) => {
-                      stopEventDefault(e)
-                      Router.push('/[page]', '/about')
-                    },
-                  }}
-                />
-                <SectionCard
-                  {...{
-                    title: `点赞 (${like})`,
-                    desc: '如果你喜欢的话点个赞呗',
-                    src: images.pop() as string,
-                    href: '/like_this',
-                    onClick: (e) => {
-                      stopEventDefault(e)
-                      service
-                        .post('like_this', null, { withCredentials: true })
-                        .then(() => {
-                          message.success('感谢喜欢 ❤️')
-                          setLike(like + 1)
-                        })
-                    },
-                  }}
-                />
-                <SectionCard
-                  {...{
-                    title: '订阅',
-                    desc: '关注订阅不亏哦',
-                    src: images.pop() as string,
-                    href: '/feed',
-                  }}
-                />
-              </SectionWrap>,
-            ]}
-          </QueueAnim>
-        </section>
-      )}
+              />
+              <SectionCard
+                {...{
+                  title: `点赞 (${like})`,
+                  desc: '如果你喜欢的话点个赞呗',
+                  src: images.pop() as string,
+                  href: '/like_this',
+                  onClick: (e) => {
+                    stopEventDefault(e)
+                    service
+                      .post('like_this', null, { withCredentials: true })
+                      .then(() => {
+                        message.success('感谢喜欢 ❤️')
+                        setLike(like + 1)
+                      })
+                  },
+                }}
+              />
+              <SectionCard
+                {...{
+                  title: '订阅',
+                  desc: '关注订阅不亏哦',
+                  src: images.pop() as string,
+                  href: '/feed',
+                }}
+              />
+            </SectionWrap>,
+          ]}
+        </QueueAnim>
+      </section>
     </main>
   )
 }
