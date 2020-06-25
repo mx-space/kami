@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-04-18 16:00:58
- * @LastEditTime: 2020-06-20 13:07:58
+ * @LastEditTime: 2020-06-25 15:17:51
  * @LastEditors: Innei
  * @FilePath: /mx-web/next.config.js
  * @MIT
@@ -13,7 +13,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 const env = require('dotenv').config().parsed || {}
 const withImages = require('next-images')
-const withPWA = require('next-pwa')
+const withOffline = require('next-offline')
 const configs = withImages(
   withBundleAnalyzer({
     env: {
@@ -25,10 +25,13 @@ const configs = withImages(
       async rewrites() {
         return [
           { source: '/sitemap.xml', destination: '/api/sitemap' },
-          { source: '/feed.xml', destination: '/api/feed' },
           { source: '/feed', destination: '/api/feed' },
-          { source: '/rss.xml', destination: '/api/feed' },
+          { source: '/rss', destination: '/api/feed' },
           { source: '/atom.xml', destination: '/api/feed' },
+          {
+            source: '/service-worker.js',
+            destination: '/_next/static/service-worker.js',
+          },
         ]
       },
       modern: true,
@@ -37,9 +40,23 @@ const configs = withImages(
 )
 
 module.exports = isProd
-  ? withPWA({
-      pwa: {
-        dest: 'public',
+  ? withOffline({
+      workboxOpts: {
+        swDest: process.env.NEXT_EXPORT
+          ? 'service-worker.js'
+          : 'static/service-worker.js',
+        runtimeCaching: [
+          {
+            urlPattern: /^https?.*/,
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'offlineCache',
+              expiration: {
+                maxEntries: 200,
+              },
+            },
+          },
+        ],
       },
       ...configs,
     })

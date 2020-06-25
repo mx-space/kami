@@ -114,14 +114,14 @@ class Context extends PureComponent<Store & { data: any }> {
   }
 
   private pwaPopup() {
-    let prompt = true
-    window.addEventListener('beforeinstallprompt', (e: any) => {
-      e.preventDefault()
-      if (prompt) {
-        e.prompt()
-        prompt = false
-      }
-    })
+    // let prompt = true
+    // window.addEventListener('beforeinstallprompt', (e: any) => {
+    //   e.preventDefault()
+    //   if (prompt) {
+    //     e.prompt()
+    //     prompt = false
+    //   }
+    // })
   }
 
   private checkBrowser() {
