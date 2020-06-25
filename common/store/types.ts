@@ -9,7 +9,7 @@ import UserStore from './user'
 import GatewayStore from './gateway'
 import { UrlObject } from 'url'
 
-export enum LayoutType {
+export declare enum LayoutType {
   Post,
   Note,
   Page,
@@ -22,8 +22,6 @@ export enum LayoutType {
 
 export interface MenuModel {
   title: string
-  type: keyof typeof LayoutType
-  _id: string
   path: string
   subMenu?: MenuModel[]
   icon?: IconDefinition

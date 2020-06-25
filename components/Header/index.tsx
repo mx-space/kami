@@ -14,7 +14,7 @@ const SubMenu: FC<{ subMenu: MenuModel[]; onClick: any }> = observer(
   ({ subMenu, onClick }) => {
     const menus = subMenu.map((menu) => {
       return (
-        <Link href={menu.path} as={menu.as} key={menu._id}>
+        <Link href={menu.path} as={menu.as} key={menu.title}>
           <a onClick={onClick}>
             {menu.icon && <FontAwesomeIcon icon={menu.icon} />}
             <span>{menu.title}</span>
@@ -38,7 +38,7 @@ const NavItems: FC<{ onClick: any }> = observer(({ onClick }) => {
                 ? 'has-child'
                 : 'menu-link'
             }
-            key={item._id}
+            key={item.title}
             onClick={onClick}
           >
             <Link href={item.path} as={item.path}>
