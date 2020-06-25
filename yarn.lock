@@ -6263,10 +6263,10 @@ next-images@1.4.0:
     file-loader "^6.0.0"
     url-loader "^4.0.0"
 
-next-offline@^5.0.2:
+next-offline@5.0.2:
   version "5.0.2"
-  resolved "https://registry.npm.taobao.org/next-offline/download/next-offline-5.0.2.tgz#54078e2626bcd4efeb674f5ac4d0b318e4d51b80"
-  integrity sha1-VAeOJia81O/rZ09axNCzGOTVG4A=
+  resolved "https://registry.yarnpkg.com/next-offline/-/next-offline-5.0.2.tgz#54078e2626bcd4efeb674f5ac4d0b318e4d51b80"
+  integrity sha512-8L2kMhKLSGLfB1k7NgZrAkCDOhFU1z+emT1p9QJb3kkHi+kHI376y+veqe6HwECutNP1b/LFErxDwlBqRSSIEA==
   dependencies:
     copy-webpack-plugin "~5.0.5"
     fs-extra "~8.1.0"
