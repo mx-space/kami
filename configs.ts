@@ -15,95 +15,76 @@ import {
 import { MenuModel, SocialLinkModel } from 'common/store/types'
 const menu: MenuModel[] = [
   {
-    _id: '1',
     title: '主页',
-    type: 'Home',
     path: '/',
+    type: 'Home',
     icon: faHome,
     subMenu: [],
   },
   {
-    _id: '2',
     title: '博文',
-    type: 'Post',
     path: '/posts',
+    type: 'Post',
     subMenu: [],
     icon: faBook,
   },
   {
-    _id: '3',
     title: '生活',
     type: 'Note',
     path: '/notes',
     icon: faPen,
   },
   {
-    _id: '4',
     title: '说说',
-    type: 'Custom',
     path: '/says',
     icon: faComments,
   },
   {
-    _id: '5',
-    title: '项目',
-    icon: faFlask,
-    path: '/projects',
-    type: 'Project',
-  },
-  {
-    _id: '6',
-    title: '兴趣',
-    icon: faStar,
-    path: '/favorite/music',
-    type: 'Custom',
-    subMenu: [
-      {
-        _id: '6-1',
-        title: '音乐',
-        icon: faMusic,
-        path: '/favorite/music',
-        type: 'Music',
-      },
-      {
-        _id: '6-2',
-        title: '追番',
-        icon: faTv,
-        path: '/favorite/bangumi',
-        type: 'Bangumi',
-      },
-    ],
-  },
-  {
-    _id: '7',
     title: '时间线',
     icon: faClock,
-    type: 'Custom',
     path: '/timeline',
     subMenu: [
       {
-        _id: '7-1',
         title: '生活',
-        type: 'Note',
         icon: faPen,
         path: '/timeline?type=note',
       },
       {
-        _id: '7-2',
         title: '博文',
-        type: 'Post',
         icon: faBookOpen,
         path: '/timeline?type=post',
       },
     ],
   },
-
   {
-    _id: '8',
     title: '好友们',
     icon: faUserFriends,
-    type: 'Custom',
     path: '/friends',
+  },
+  {
+    title: '更多',
+    icon: faStar,
+    path: '/favorite/music',
+    subMenu: [
+      {
+        title: '音乐',
+        icon: faMusic,
+        type: 'Music',
+        path: '/favorite/music',
+      },
+      {
+        title: '追番',
+        icon: faTv,
+        type: 'Bangumi',
+        path: '/favorite/bangumi',
+      },
+      {
+        title: '项目',
+        icon: faFlask,
+        type: 'Project',
+        path: '/projects',
+      },
+    ],
   },
 ]
 const social: SocialLinkModel[] = [
