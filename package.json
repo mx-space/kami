@@ -32,7 +32,7 @@
     "@fortawesome/react-fontawesome": "0.1.11",
     "@mx-space/extra": "0.3.1",
     "@openfonts/noto-sans-sc_vietnamese": "1.44.0",
-    "antd": "4.3.5",
+    "antd": "4.4.0",
     "apicache": "1.5.3",
     "axios": "0.19.2",
     "classnames": "2.2.6",
