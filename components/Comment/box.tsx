@@ -32,7 +32,7 @@ const CommentBox: FC<{
     onCancel?.()
     reset()
   }
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!logged) {
       if (author === userStore.name || author === userStore.username) {
         return message.error('昵称与我主人重名了, 但是你好像并不是我的主人唉')
@@ -65,8 +65,8 @@ const CommentBox: FC<{
       mail: mail,
       url: url || undefined,
     }
-    onSubmit(model)
     localStorage.setItem(USER_PREFIX, JSON.stringify(omit(model, ['text'])))
+    await onSubmit(model)
     reset()
   }
   useEffect(() => {
