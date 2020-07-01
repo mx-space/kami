@@ -76,8 +76,10 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
         `${id}?ref=${type}&ts=${new Date().getTime()}`,
       ).post(model)
     }
-    openCommentMessage.success()
-    fetchComments()
+    new Promise(() => {
+      openCommentMessage.success()
+      fetchComments()
+    })
   }
 
   return (

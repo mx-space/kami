@@ -65,9 +65,10 @@ const CommentBox: FC<{
       mail: mail,
       url: url || undefined,
     }
-    onSubmit(model)
     localStorage.setItem(USER_PREFIX, JSON.stringify(omit(model, ['text'])))
-    reset()
+    onSubmit(model).then(() => {
+      reset()
+    })
   }
   useEffect(() => {
     const store = localStorage.getItem(USER_PREFIX)
