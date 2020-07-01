@@ -38,7 +38,7 @@ import { PageModel, Stores } from '../common/store/types'
 import UserStore from '../common/store/user'
 import { Rest } from '../utils/api'
 import { getToken, removeToken } from '../utils/auth'
-import { checkDevtools } from '../utils/forbidden'
+// import { checkDevtools } from '../utils/forbidden'
 import * as gtag from '../utils/gtag'
 import { getBrowserType } from '../utils/ua'
 import { message } from 'antd'
@@ -76,7 +76,7 @@ class Context extends PureComponent<Store & { data: any }> {
       if (process.env.NODE_ENV === 'development') {
         ;(window as any).store = stores
       }
-      checkDevtools()
+      // checkDevtools()
 
       this.registerRouterEvents()
       this.registerScrollEvent()
