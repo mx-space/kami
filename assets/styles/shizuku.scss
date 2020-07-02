@@ -335,10 +335,20 @@
   text-align: right;
 }
 #write .spoiler {
-  background-color: currentColor;
-  transition: background 0.5s;
-  &:hover {
-    background-color: transparent;
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: currentColor;
+    z-index: -1;
+    transition: opacity 0.5s;
+  }
+  &:hover::before {
+    opacity: 0.15;
   }
 }
 #write > blockquote:nth-child(1) {

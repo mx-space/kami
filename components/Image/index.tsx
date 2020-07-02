@@ -112,6 +112,7 @@ export const ImageLazy: FC<
             height,
             width,
             maxWidth: '100%',
+            margin: 'auto',
           }}
           ref={wrapRef}
         >
@@ -169,11 +170,20 @@ export const ImageLazyWithPopup: FC<
         onClick={() => {
           setOpen(true)
         }}
-        style={{ cursor: 'pointer' }}
+        style={{ cursor: 'zoom-in' }}
         useRandomBackgroundColor
       ></ImageLazy>
       {isOpen && (
-        <Lightbox mainSrc={props.src} onCloseRequest={() => setOpen(false)} />
+        <Lightbox
+          mainSrc={props.src}
+          onAfterOpen={() => {
+            document.documentElement.style.overflow = 'hidden'
+          }}
+          onCloseRequest={() => {
+            document.documentElement.style.overflow = ''
+            setOpen(false)
+          }}
+        />
       )}
     </>
   )
