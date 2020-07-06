@@ -65,7 +65,7 @@
     "react-syntax-highlighter": "12.2.1",
     "redis": "3.0.2",
     "remove-markdown": "0.3.0",
-    "sass": "1.26.9",
+    "sass": "1.26.10",
     "sitemap": "6.1.7",
     "socket.io-client": "2.3.0",
     "ua-parser-js": "0.7.21",
