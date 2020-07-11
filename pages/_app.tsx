@@ -50,10 +50,12 @@ import { isServerSide } from '../utils'
 
 import * as Sentry from '@sentry/node'
 
-Sentry.init({
-  enabled: process.env.NODE_ENV === 'production',
-  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
-})
+if (process.env.CI !== 'true') {
+  Sentry.init({
+    enabled: process.env.NODE_ENV === 'production',
+    dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+  })
+}
 
 const stores = createMobxStores()
 
