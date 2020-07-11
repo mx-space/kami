@@ -1,6 +1,10 @@
+// @ts-nocheck
 import { useRouter } from 'next/router'
 import { NextPage } from 'next'
 import sample from 'lodash/sample'
+
+import * as Sentry from '@sentry/node'
+import NextErrorComponent from 'next/error'
 
 const errorToText = (statusCode: number) => {
   switch (statusCode) {
@@ -18,9 +22,18 @@ const errorToText = (statusCode: number) => {
   }
 }
 
-const _Error: NextPage<{ statusCode: number }> = ({
+const _Error: NextPage<{ statusCode: number; hasGetInitialPropsRun; err }> = ({
   statusCode = sample([406, 418]) as number,
+  hasGetInitialPropsRun,
+  err,
 }) => {
+  if (!hasGetInitialPropsRun && err) {
+    // getInitialProps is not called in case of
+    // https://github.com/vercel/next.js/issues/8592. As a workaround, we pass
+    // err via _app.js so it can be captured
+    Sentry.captureException(err)
+  }
+
   const router = useRouter()
   return (
     <div className="error">
@@ -46,7 +59,7 @@ const _Error: NextPage<{ statusCode: number }> = ({
   )
 }
 
-const getCode = (err, res) => {
+const getCode = (err, res): number => {
   if (!err && !res) {
     return 500
   }
@@ -60,10 +73,29 @@ const getCode = (err, res) => {
   return 500
 }
 
-_Error.getInitialProps = ({ res, err }) => {
+_Error.getInitialProps = async ({ res, err, asPath }) => {
+  const errorInitialProps = await NextErrorComponent.getInitialProps({
+    res,
+    err,
+  })
+  errorInitialProps.hasGetInitialPropsRun = true
   const statusCode = getCode(err, res)
-
-  return { statusCode } as { statusCode: number }
+  if (statusCode === 404) {
+    // Opinionated: do not record an exception in Sentry for 404
+    return { statusCode: 404 }
+  }
+  if (err) {
+    Sentry.captureException(err)
+    return errorInitialProps
+  }
+  Sentry.captureException(
+    new Error(`_error.js getInitialProps missing data at path: ${asPath}`),
+  )
+  return { ...errorInitialProps, statusCode } as {
+    statusCode: number
+    hasGetInitialPropsRun
+    err
+  }
 }
 
 export default _Error

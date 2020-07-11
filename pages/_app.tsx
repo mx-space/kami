@@ -47,6 +47,14 @@ import { LogoJsonLd, SocialProfileJsonLd, NextSeo } from 'next-seo'
 import Package from 'package.json'
 import service from '../utils/request'
 import { isServerSide } from '../utils'
+
+import * as Sentry from '@sentry/node'
+
+Sentry.init({
+  enabled: process.env.NODE_ENV === 'production',
+  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+})
+
 const stores = createMobxStores()
 
 @inject((store: Stores) => ({
@@ -268,13 +276,15 @@ interface Store {
 interface DataModel {
   pageData: PageModel[]
 }
-const app: FC<DataModel & { Component: any; pageProps: any }> = (props) => {
-  const { Component, pageProps, pageData } = props
+const app: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
+  props,
+) => {
+  const { Component, pageProps, pageData, err } = props
   return (
     <Provider {...stores}>
       <Context data={{ pages: pageData }}>
         <BasicLayout>
-          <Component {...pageProps} />
+          <Component {...pageProps} err={err} />
         </BasicLayout>
       </Context>
     </Provider>
