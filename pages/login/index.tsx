@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Rest } from '../../utils/api'
 import { setToken } from '../../utils/auth'
 import Router from 'next/router'
-import { message } from 'antd'
+import { Input, message } from 'antd'
 import { useStore } from '../../common/store'
 
 const LoginView: NextPage = () => {
@@ -41,7 +41,7 @@ const LoginView: NextPage = () => {
       <div className="login-wrap">
         <div className={'field'}>
           <span>用户名：</span>
-          <input
+          <Input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -49,7 +49,7 @@ const LoginView: NextPage = () => {
         </div>
         <div className={'field'}>
           <span>密码：</span>
-          <input
+          <Input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

@@ -127,4 +127,5 @@ export default {
     url: 'https://icp.gov.moe/?keyword=20200520520',
   },
   travellings: true, // 开往
+  donate: 'https://afdian.net/@Innei',
 }

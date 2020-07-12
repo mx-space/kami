@@ -1,0 +1,9 @@
+.wrap {
+  margin-top: 24px;
+
+  form {
+    > * {
+      margin-top: 12px;
+    }
+  }
+}

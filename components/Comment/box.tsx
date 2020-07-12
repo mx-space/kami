@@ -1,11 +1,13 @@
-import { GlobalOutlined, MailOutlined, UserOutlined } from '@ant-design/icons'
+import { faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons'
+import { faGlobeAsia } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Input, message } from 'antd'
-import { FC, useState, useEffect, memo } from 'react'
+import omit from 'lodash/omit'
+import { FC, memo, useEffect, useState } from 'react'
 import isEmail from 'validator/lib/isEmail'
 import isUrl from 'validator/lib/isURL'
 import { useStore } from '../../common/store'
 import styles from './index.module.scss'
-import omit from 'lodash/omit'
 
 const USER_PREFIX = 'mx-space-comment-author'
 const { TextArea } = Input
@@ -94,7 +96,7 @@ const CommentBox: FC<{
             placeholder={'昵称 *'}
             required
             name={'author'}
-            prefix={<UserOutlined className="site-form-item-icon" />}
+            prefix={<FontAwesomeIcon icon={faUser} />}
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
           />
@@ -102,14 +104,14 @@ const CommentBox: FC<{
             placeholder={'邮箱 *'}
             name={'mail'}
             required
-            prefix={<MailOutlined className="site-form-item-icon" />}
+            prefix={<FontAwesomeIcon icon={faEnvelope} />}
             value={mail}
             onChange={(e) => setMail(e.target.value)}
           />
           <Input
             placeholder={'网站 https?://'}
             name={'website'}
-            prefix={<GlobalOutlined className="site-form-item-icon" />}
+            prefix={<FontAwesomeIcon icon={faGlobeAsia} />}
             value={url}
             onChange={(e) => setUrl(e.target.value)}
           />

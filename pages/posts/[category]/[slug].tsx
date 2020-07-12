@@ -1,6 +1,7 @@
 import {
   faBookOpen,
   faCalendar,
+  faCoffee,
   faHashtag,
   faThumbsUp,
   faUser,
@@ -59,6 +60,13 @@ export const PostView: NextPage<PostResModel> = (props) => {
         },
       ],
       actions: [
+        {
+          icon: faCoffee,
+          name: '',
+          callback: () => {
+            window.open(configs.donate)
+          },
+        },
         {
           icon: faThumbsUp,
           name: thumbsUp || '对我有帮助',

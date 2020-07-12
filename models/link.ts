@@ -11,4 +11,6 @@ export interface LinkModel extends BaseModel {
   avatar?: string
   description?: string
   type?: LinkType
+
+  hide: boolean
 }

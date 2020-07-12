@@ -4,28 +4,13 @@ import { LinkModel, LinkType } from '../../models/link'
 import { ArticleLayout } from '../../layouts/ArticleLayout'
 import { QueueAnim } from '../../components/Anime'
 import { SEO } from '../../components/SEO'
-
-const FriendsView: NextPage<{ data: LinkModel[] }> = (props) => {
-  const friends: LinkModel[] = []
-  const collections: LinkModel[] = []
-
-  for (const link of props.data) {
-    switch (link.type) {
-      case LinkType.Friend: {
-        friends.push(link)
-        break
-      }
-      case LinkType.Collection: {
-        collections.push(link)
-      }
-    }
-  }
-
-  const renderSection = (data: LinkModel[]) => {
-    return (
-      <div className="note-item">
-        <ul>
-          <QueueAnim delay={700}>
+import { ApplyForLink } from '../../components/ApplyLink'
+const renderSection = (data: LinkModel[]) => {
+  return (
+    <div className="note-item">
+      <ul>
+        <QueueAnim delay={700}>
+          <div className="" key={data.length}>
             {data.map((link) => {
               return (
                 <li key={link._id}>
@@ -36,18 +21,39 @@ const FriendsView: NextPage<{ data: LinkModel[] }> = (props) => {
                 </li>
               )
             })}
-          </QueueAnim>
-        </ul>
-      </div>
-    )
-  }
+          </div>
+        </QueueAnim>
+      </ul>
+    </div>
+  )
+}
 
-  const renderTitle = (text: string, delay: number) => {
-    return (
-      <QueueAnim delay={delay} type="right">
-        <h1 key={delay}>{text}</h1>
-      </QueueAnim>
-    )
+const renderTitle = (text: string, delay: number) => {
+  return (
+    <QueueAnim delay={delay} type="right">
+      <strong key={delay} style={{ fontSize: '1.5rem' }}>
+        {text}
+      </strong>
+    </QueueAnim>
+  )
+}
+const FriendsView: NextPage<{ data: LinkModel[] }> = (props) => {
+  const friends: LinkModel[] = []
+  const collections: LinkModel[] = []
+
+  for (const link of props.data) {
+    if (link.hide) {
+      continue
+    }
+    switch (link.type) {
+      case LinkType.Friend: {
+        friends.push(link)
+        break
+      }
+      case LinkType.Collection: {
+        collections.push(link)
+      }
+    }
   }
 
   return (
@@ -62,17 +68,18 @@ const FriendsView: NextPage<{ data: LinkModel[] }> = (props) => {
         )}
         {collections.length > 0 && (
           <>
-            {friends.length !== 0 && renderTitle('个人收藏', 650)}
+            {friends.length !== 0 && renderTitle('个人收藏', 850)}
             {renderSection(collections)}
           </>
         )}
       </article>
+      <ApplyForLink />
     </ArticleLayout>
   )
 }
 
 FriendsView.getInitialProps = async () => {
-  const { data } = await Rest('Link').get('all')
+  const { data } = (await Rest('Link').get('all')) as any
 
   return { data } as { data: LinkModel[] }
 }

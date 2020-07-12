@@ -1,16 +1,14 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-23 13:20:20
- * @LastEditTime: 2020-05-31 14:20:12
+ * @LastEditTime: 2020-07-12 12:31:22
  * @LastEditors: Innei
  * @FilePath: /mx-web/utils/notice.ts
  * @MIT
  */
 
 export class Notice {
-  constructor() {
-    this.initNotice()
-  }
+  isInit = false
   private $wrap?: HTMLDivElement
   initNotice(): Promise<boolean> {
     if (typeof document === 'undefined') {
@@ -39,16 +37,16 @@ export class Notice {
       this.$wrap = $wrap
     }
 
-    return new Promise((r, j) => {
+    return new Promise((r) => {
       if (typeof window == 'undefined') {
         return
       }
       if (!('Notification' in window)) {
-        j('浏览器不支持发送通知')
+        r(false)
       } else if (Notification.permission !== 'denied') {
         try {
           Notification.requestPermission().then((p) =>
-            p === 'granted' ? r(true) : j('已拒绝通知'),
+            p === 'granted' ? r(true) : r(false),
           )
         } catch (error) {
           // Safari doesn't return a promise for requestPermissions and it
@@ -56,21 +54,21 @@ export class Notice {
           // instead.
           if (error instanceof TypeError) {
             Notification.requestPermission((p) =>
-              p === 'granted' ? r(true) : j('已拒绝通知'),
+              p === 'granted' ? r(true) : r(false),
             )
           } else {
             throw error
           }
         }
       } else if (Notification.permission === 'denied') {
-        return j('已拒绝通知')
+        return r(false)
       } else {
-        j(true)
+        r(true)
       }
     })
   }
 
-  notice({
+  async notice({
     title,
     body,
     description,
@@ -83,6 +81,9 @@ export class Notice {
     description?: string
     options?: Omit<NotificationOptions, 'body'>
   }): Promise<Notification | undefined> {
+    if (!this.isInit) {
+      this.isInit = await this.initNotice()
+    }
     this.createFrameNotification({
       title,
       text: body,
