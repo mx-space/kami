@@ -73,7 +73,9 @@ const FriendsView: NextPage<{ data: LinkModel[] }> = (props) => {
           </>
         )}
       </article>
-      <ApplyForLink />
+      <QueueAnim delay={1000}>
+        <ApplyForLink key={'link'} />
+      </QueueAnim>
     </ArticleLayout>
   )
 }
