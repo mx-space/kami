@@ -2,7 +2,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-04-30 11:04:43
- * @LastEditTime: 2020-06-10 17:15:50
+ * @LastEditTime: 2020-07-14 21:04:47
  * @LastEditors: Innei
  * @FilePath: /mx-web/server/index.ts
  * @Coding with Love
@@ -20,7 +20,7 @@ const redis_1 = __importDefault(require("redis"));
 const port = parseInt(process.env.PORT || '2323', 10);
 const dev = process.env.NODE_ENV !== 'production';
 const app = next_1.default({ dev });
-const handle = app.getRequestHandler();
+const handle = (req, res) => app.getRequestHandler()(req, res);
 // @ts-ignore
 const REDIS = Boolean(~~process.env.REDIS || 0);
 app
@@ -32,17 +32,13 @@ app
             ? apicache_1.default.options({ redisClient: redis_1.default.createClient() }).middleware
             : apicache_1.default.middleware
         : () => (req, res, next) => next();
-    server.use(cors_1.default());
+    if (process.env.NODE_ENV === 'development') {
+        server.use(cors_1.default());
+    }
     server.use('/_extra', cache('120 minutes'), routers_1.router);
-    server.get('/feed', cache('120 minutes'), (req, res) => {
-        return handle(req, res);
-    });
-    server.get('/atom.xml', cache('120 minutes'), (req, res) => {
-        return handle(req, res);
-    });
-    server.get('*', cache('10 minutes'), (req, res) => {
-        return handle(req, res);
-    });
+    server.get('/feed', cache('120 minutes'), handle);
+    server.get('/atom.xml', cache('120 minutes'), handle);
+    server.get('*', handle);
     server.listen(port, (err) => {
         if (err)
             throw err;
