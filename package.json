@@ -113,8 +113,8 @@
     "remark-parse": "8.0.2",
     "ts-node": "8.10.2",
     "typescript": "3.9.6",
-    "@sentry/browser": "5.19.1",
-    "@sentry/node": "5.19.1",
+    "@sentry/browser": "5.19.2",
+    "@sentry/node": "5.19.2",
     "@sentry/webpack-plugin": "1.12.0",
     "@zeit/next-source-maps": "0.0.4-canary.1"
   }
