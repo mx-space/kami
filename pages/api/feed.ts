@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-14 20:57:01
- * @LastEditTime: 2020-06-14 21:01:32
+ * @LastEditTime: 2020-07-16 21:05:28
  * @LastEditors: Innei
  * @FilePath: /mx-web/pages/api/feed.ts
  * @Coding with Love
@@ -80,41 +80,8 @@ export default async function RSSFunc(
   req: IncomingMessage,
   res: ServerResponse,
 ) {
-  const { seo, user } = (await Rest('Aggregate').get()) as AggregateResp
-  const postsResp = (await Rest('Post').gets()) as any
-  const notesResp = (await Rest('Note').get('latest')) as any
-  const latestNote = notesResp.data as NoteModel
-  const posts = postsResp.data as PostResModel[]
-
-  const data: RSSProps['data'] = []
-
-  data.push(
-    {
-      title: latestNote.title,
-      text: latestNote.text,
-      created: latestNote.created,
-      modified: latestNote.modified,
-      link: '/notes/' + latestNote.nid,
-    },
-    ...posts.map((post) => {
-      return {
-        title: post.title,
-        text: post.text,
-        created: post.created,
-        modified: post.modified,
-        link: '/posts' + `/${post.category.slug}/${post.slug}`, // todo prefix
-      }
-    }),
-  )
-
+  const rss = (await Rest('Aggregate').get('feed')) as RSSProps
   res.setHeader('Content-Type', 'text/xml')
-  res.write(
-    genRSS({
-      title: seo.title,
-      url: configs.url,
-      author: user.name,
-      data,
-    }),
-  )
+  res.write(genRSS(rss))
   res.end()
 }

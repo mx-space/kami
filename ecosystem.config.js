@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-04-26 11:53:46
- * @LastEditTime: 2020-05-22 14:39:00
+ * @LastEditTime: 2020-07-14 21:07:47
  * @LastEditors: Innei
  * @FilePath: /mx-web/ecosystem.config.js
  * @MIT
@@ -13,7 +13,8 @@ module.exports = {
       name: 'MxSpace',
       script: 'build/server/index.js',
 
-      instances: 1,
+      instances: 'max',
+      exec_mode: 'cluster',
       autorestart: true,
       watch: false,
       max_memory_restart: '180M',
