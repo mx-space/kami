@@ -111,13 +111,13 @@
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-prettier": "3.1.4",
     "eslint-plugin-react": "7.20.3",
-    "eslint-plugin-react-hooks": "4.0.6",
+    "eslint-plugin-react-hooks": "4.0.8",
     "next-images": "1.4.0",
     "nodemon": "2.0.4",
     "prettier": "2.0.5",
     "react-lazyload": "3.0.0",
     "remark-html": "11.0.2",
-    "remark-parse": "8.0.2",
+    "remark-parse": "8.0.3",
     "ts-node": "8.10.2",
     "typescript": "3.9.6"
   }
