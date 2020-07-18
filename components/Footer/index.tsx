@@ -38,7 +38,14 @@ export const Footer: FC = observer(() => {
             </p>
             <p>
               Powered by <FontAwesomeIcon icon={faReact} />
-              <a href="https://github.com/mx-space">{' mx-space '}</a>
+              <a
+                href="https://github.com/mx-space"
+                title={
+                  process.env.VERSION && '开发版本: ' + process.env.VERSION
+                }
+              >
+                {' mx-space '}
+              </a>
               <FontAwesomeIcon icon={faNodeJs} />.{' '}
               {!!configs.icp && !!configs.icp.name && !!configs.icp.url && (
                 <a href={configs.icp.url} target={'_blank'} rel={'noreferrer'}>
