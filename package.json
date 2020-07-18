@@ -76,7 +76,7 @@
     "validator": "13.1.1"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-decorators": "7.10.4",
+    "@babel/plugin-proposal-decorators": "7.10.5",
     "@next/bundle-analyzer": "9.4.4",
     "@sentry/browser": "5.19.2",
     "@sentry/node": "5.19.2",
