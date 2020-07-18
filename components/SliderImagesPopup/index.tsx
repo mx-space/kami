@@ -1,37 +1,20 @@
+import dynamic from 'next/dynamic'
 import { FC, memo } from 'react'
-import Lightbox, { ILightBoxProps } from 'react-image-lightbox'
-
+const Zmage = dynamic(() => import('react-zmage'), { ssr: false })
 interface SliderImagesPopupProps {
-  images: string[]
-  photoIndex: number
-  onMovePrevRequest: () => any
-  onMoveNextRequest: () => any
-  isOpen: boolean
-  onCloseRequest: () => any
+  images: { src: string; alt: string; className?: string }[]
 }
 
-export const SliderImagesPopup: FC<
-  SliderImagesPopupProps & Partial<ILightBoxProps>
-> = memo((props) => {
-  const {
-    images,
-    photoIndex,
-    onMovePrevRequest,
-    onMoveNextRequest,
-    onCloseRequest,
-    isOpen,
-    ...rest
-  } = props
-
-  return isOpen ? (
-    <Lightbox
-      {...rest}
-      mainSrc={images[photoIndex]}
-      nextSrc={images[(photoIndex + 1) % images.length]}
-      prevSrc={images[(photoIndex + images.length - 1) % images.length]}
-      onCloseRequest={onCloseRequest}
-      onMovePrevRequest={onMovePrevRequest}
-      onMoveNextRequest={onMoveNextRequest}
-    />
-  ) : null
+export const SliderImagesPopup: FC<SliderImagesPopupProps> = memo((props) => {
+  const { images } = props
+  return (
+    <>
+      {images.map((image, i) => {
+        const set = images.slice(i, images.length).concat(images.slice(0, i))
+        return (
+          <Zmage key={image.src} set={set} src={image.src} alt={image.alt} />
+        )
+      })}
+    </>
+  )
 })

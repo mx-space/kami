@@ -1,6 +1,9 @@
+import classNames from 'classnames'
 import { observer } from 'mobx-react'
+import dynamic from 'next/dynamic'
 import randomColor from 'randomcolor'
 import {
+  ClassAttributes,
   DetailedHTMLProps,
   FC,
   ImgHTMLAttributes,
@@ -9,12 +12,16 @@ import {
   useEffect,
   useRef,
   useState,
-  ClassAttributes,
 } from 'react'
-import Lightbox, { ILightBoxProps } from 'react-image-lightbox'
-import LazyLoad from 'react-lazyload'
-import { useStore } from '../../common/store'
 
+import type { LazyImage as LazyImageProps } from 'react-lazy-images'
+import { useStore } from '../../common/store'
+import { isClientSide } from '../../utils'
+
+const Zmage = dynamic(() => import('react-zmage'), { ssr: false })
+const LazyImage = (dynamic(() =>
+  import('react-lazy-images').then((mo: any) => mo.LazyImage),
+) as any) as typeof LazyImageProps
 interface ImageFCProps {
   defaultImage?: string
   src: string
@@ -22,23 +29,20 @@ interface ImageFCProps {
   height?: number | string
   width?: number | string
   useRandomBackgroundColor?: boolean
+  popup?: boolean
 }
 
 const Image: FC<
   DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> & {
     placeholderRef: any
     wrapRef: any
+    popup?: boolean
   }
-> = memo(({ src, alt, placeholderRef, wrapRef, ...rest }) => {
-  const realImageRef = useRef<HTMLImageElement>(null)
+> = memo(({ src, alt, placeholderRef, wrapRef, popup = false }) => {
+  const [loaded, setLoad] = useState(false)
   const fakeImageRef = useRef<HTMLImageElement>(null)
   const onLoad = useCallback(() => {
-    try {
-      realImageRef.current!.src = src as string
-
-      realImageRef.current!.classList.remove('image-hide')
-      // eslint-disable-next-line no-empty
-    } catch {}
+    setLoad(true)
     try {
       if (fakeImageRef && fakeImageRef.current) {
         fakeImageRef.current.remove()
@@ -51,15 +55,17 @@ const Image: FC<
       }
       // eslint-disable-next-line no-empty
     } catch {}
-  }, [src])
+  }, [placeholderRef, wrapRef])
   return (
     <>
-      <img
-        ref={realImageRef}
-        className={'image-hide lazyload-image'}
-        {...rest}
-        alt={alt}
-      />
+      <div className={classNames('lazyload-image', !loaded && 'image-hide')}>
+        {popup ? (
+          <Zmage src={src} alt={alt} backdrop={'var(--light-bg)'} />
+        ) : (
+          <img src={src} alt={alt} />
+        )}
+      </div>
+
       <img
         src={src}
         onLoad={onLoad}
@@ -82,6 +88,7 @@ export const ImageLazy: FC<
     height = 300,
     width,
     useRandomBackgroundColor,
+    popup = false,
     ...rest
   } = props
 
@@ -116,7 +123,7 @@ export const ImageLazy: FC<
           }}
           ref={wrapRef}
         >
-          <LazyLoad once debounce={500}>
+          {/* <LazyLoad once debounce={500}>
             <Image
               className={'image-hide lazyload-image'}
               {...rest}
@@ -124,7 +131,34 @@ export const ImageLazy: FC<
               alt={alt}
               {...{ placeholderRef, wrapRef }}
             />
-          </LazyLoad>
+          </LazyLoad> */}
+          <LazyImage
+            src={src}
+            alt={alt}
+            loadEagerly={!isClientSide()}
+            placeholder={({ ref }) => <div ref={ref} />}
+            actual={(props) => {
+              return (
+                <Image
+                  className={'image-hide lazyload-image'}
+                  {...rest}
+                  src={src}
+                  alt={alt}
+                  popup={popup}
+                  {...{ placeholderRef, wrapRef }}
+                  {...props}
+                />
+              )
+            }}
+            observerProps={
+              isClientSide()
+                ? {
+                    rootMargin: '100px',
+                    threshold: 0.3,
+                  }
+                : undefined
+            }
+          />
 
           <div
             className="placeholder-image"
@@ -152,39 +186,20 @@ export const ImageLazy: FC<
 })
 
 export const ImageLazyWithPopup: FC<
-  { src: string; alt?: string } & Partial<ILightBoxProps> &
-    Partial<
-      ImageFCProps &
-        ClassAttributes<HTMLImageElement> &
-        ImgHTMLAttributes<HTMLImageElement>
-    >
-> = memo((props) => {
-  const [isOpen, setOpen] = useState(false)
+  { src: string; alt?: string } & Partial<
+    ImageFCProps &
+      ClassAttributes<HTMLImageElement> &
+      ImgHTMLAttributes<HTMLImageElement>
+  >
+> = (props) => {
   return (
-    <>
-      <ImageLazy
-        src={props.src}
-        alt={props.alt || props.src}
-        height={props.height}
-        width={props.width}
-        onClick={() => {
-          setOpen(true)
-        }}
-        style={{ cursor: 'zoom-in' }}
-        useRandomBackgroundColor
-      ></ImageLazy>
-      {isOpen && (
-        <Lightbox
-          mainSrc={props.src}
-          onAfterOpen={() => {
-            document.documentElement.style.overflow = 'hidden'
-          }}
-          onCloseRequest={() => {
-            document.documentElement.style.overflow = ''
-            setOpen(false)
-          }}
-        />
-      )}
-    </>
+    <ImageLazy
+      src={props.src}
+      alt={props.alt || props.src}
+      height={props.height}
+      width={props.width}
+      useRandomBackgroundColor
+      popup
+    ></ImageLazy>
   )
-})
+}

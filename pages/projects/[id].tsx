@@ -12,8 +12,12 @@ type ProjectViewProps = ProjectModel
 
 const ProjectView: NextPage<ProjectViewProps> = (props) => {
   const { name, avatar, images } = props
-  const [photoIndex, setIndex] = useState(0)
-  const [isOpen, setOpen] = useState(false)
+  const imageSet = images?.map((image, i) => {
+    return {
+      src: image,
+      alt: name + ' - ' + i,
+    }
+  })
 
   return (
     <main>
@@ -57,33 +61,11 @@ const ProjectView: NextPage<ProjectViewProps> = (props) => {
           )}
         </p>
       </section>
-      {!!images?.length && (
+      {!!imageSet && (
         <>
           <section className="project-screenshot">
-            {images.map((image, i) => {
-              return (
-                <img
-                  src={image}
-                  key={i}
-                  onClick={() => {
-                    setIndex(i)
-                    setOpen(true)
-                  }}
-                  style={{ cursor: 'pointer' }}
-                />
-              )
-            })}
+            <SliderImagesPopup images={imageSet} />
           </section>
-          <SliderImagesPopup
-            images={images}
-            onCloseRequest={() => setOpen(false)}
-            isOpen={isOpen}
-            photoIndex={photoIndex}
-            onMovePrevRequest={() =>
-              setIndex((photoIndex + images.length - 1) % images.length)
-            }
-            onMoveNextRequest={() => setIndex((photoIndex + 1) % images.length)}
-          />
         </>
       )}
 

@@ -147,7 +147,7 @@ const getContainerSize = () => {
 const Image: () => FC<{ src: string; alt?: string }> = () => {
   let index = 0
   return function RenderImage({ src, alt }) {
-    const images = useContext(imageSizesContext)
+    const images = useContext(imageSizesContext) || []
     const [cal, setCal] = useState({} as { height?: number; width?: number })
     const maxWidth = typeof document !== 'undefined' && getContainerSize()
 
