@@ -230,23 +230,23 @@ function buildRoute<T extends { _id: string } & { nid?: number }>(
     case 'Post': {
       const { slug, category } = obj as any
       return {
-        as: `posts/${category.slug}/${slug}`,
-        href: `posts/[category]/[slug]`,
+        as: `/posts/${category.slug}/${slug}`,
+        href: `/posts/[category]/[slug]`,
       }
     }
     case 'Note': {
       const { nid } = obj
       return {
-        as: `notes/${nid}`,
-        href: `notes/[id]`,
+        as: `/notes/${nid}`,
+        href: `/notes/[id]`,
       }
     }
     case 'Say': {
-      return { as: `says`, href: `says` }
+      return { as: `/says`, href: `/says` }
     }
     case 'Project': {
       const { _id } = obj
-      return { as: `projects/${_id}`, href: `projects/[id]` }
+      return { as: `/projects/${_id}`, href: `/projects/[id]` }
     }
   }
 }

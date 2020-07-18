@@ -57,7 +57,7 @@ const menu: MenuModel[] = [
     ],
   },
   {
-    title: '好友们',
+    title: '朋友们',
     icon: faUserFriends,
     path: '/friends',
   },

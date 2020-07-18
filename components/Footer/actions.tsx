@@ -1,8 +1,4 @@
-import {
-  faArrowUp,
-  faHeadphones,
-  faPaperPlane,
-} from '@fortawesome/free-solid-svg-icons'
+import { faArrowUp, faHeadphones } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { BackTop } from 'antd'
 import classNames from 'classnames'
@@ -11,12 +7,11 @@ import { FC, useEffect, useState } from 'react'
 import { useStore } from 'common/store'
 import { EventTypes } from '../../common/socket/types'
 import observable from '../../utils/observable'
-import { ChatPanel } from '../Panel'
 
 export const FooterActions: FC = observer(() => {
   const { userStore, appStore, musicStore } = useStore()
   const { isOverflow } = appStore
-  const [chatShow, setChatShow] = useState(false)
+  // const [chatShow, setChatShow] = useState(false)
   const [newMessageCount, setCount] = useState(0)
   useEffect(() => {
     const handler = (data: any) => {
@@ -76,7 +71,7 @@ export const FooterActions: FC = observer(() => {
           <FontAwesomeIcon icon={faHeart} />
         </button> */}
 
-        <button
+        {/* <button
           onClick={(e) => {
             setChatShow(!chatShow)
             setCount(0)
@@ -88,10 +83,10 @@ export const FooterActions: FC = observer(() => {
           data-count={newMessageCount}
         >
           <FontAwesomeIcon icon={faPaperPlane} />
-        </button>
+        </button> */}
       </div>
       {/* <ConfigPanel /> */}
-      <ChatPanel show={chatShow} toggle={() => setChatShow(!chatShow)} />
+      {/* <ChatPanel show={chatShow} toggle={() => setChatShow(!chatShow)} /> */}
     </>
   )
 })

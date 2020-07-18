@@ -10,13 +10,17 @@ export const APlayer: FC = () => {
   const { musicStore } = useStore()
 
   useEffect(() => {
-    if (musicStore.isPlay) {
-      window.aPlayer.play()
-    } else {
-      window.aPlayer.pause()
-    }
-    if (musicStore.isHide) {
-      window.aPlayer.pause()
+    try {
+      if (musicStore.isPlay) {
+        window.aPlayer.play()
+      } else {
+        window.aPlayer.pause()
+      }
+      if (musicStore.isHide) {
+        window.aPlayer.pause()
+      }
+    } catch {
+      console.error('player crashed.')
     }
   }, [musicStore.isPlay, musicStore.isHide])
 

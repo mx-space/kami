@@ -23,7 +23,8 @@
     "last 8 Firefox versions",
     "not IE 11",
     "not IE_Mob 11",
-    "maintained node versions"
+    "maintained node versions",
+    "> 1%"
   ],
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.29",

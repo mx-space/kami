@@ -11,7 +11,7 @@ import 'kico-style/paul.css'
 import 'assets/styles/shizuku.scss'
 import 'assets/styles/extra.scss'
 import 'rc-texty/assets/index.css'
-import 'react-image-lightbox/style.css'
+
 import 'normalize.css/normalize.css'
 
 import 'intersection-observer'
@@ -89,7 +89,7 @@ class Context extends PureComponent<Store & { data: any }> {
       // checkDevtools()
 
       this.registerRouterEvents()
-      this.registerScrollEvent()
+      this.registerEvent()
       this.checkBrowser()
       this.printToConsole()
       this.pwaPopup()
@@ -136,15 +136,47 @@ class Context extends PureComponent<Store & { data: any }> {
 
   private checkBrowser() {
     const browser = getBrowserType(window.navigator.userAgent)
-    if (browser === 'ie') {
-      alert('哥哥, 换个 Chrome 再来吧')
-      location.href = 'https://www.google.com/chrome/'
+    const isOld: boolean = (() => {
+      if (browser === 'ie') {
+        return true
+      }
+      // check build-in methods
+      const ObjectMethods = ['fromEntries', 'entries']
+      const ArrayMethods = ['flat', 'flatMap']
+      if (
+        !window.Reflect ||
+        !(
+          ObjectMethods.every((m) => Reflect.has(Object, m)) &&
+          ArrayMethods.every((m) => Reflect.has(Array.prototype, m))
+        ) ||
+        !window.requestAnimationFrame ||
+        !window.Proxy
+      ) {
+        return true
+      }
+
+      return false
+    })()
+    if (isOld) {
+      alert('哥哥, 你的浏览器太老了, 这边建议更新哦!!')
+      class BrowserTooOldError extends Error {
+        constructor() {
+          super(
+            `User browser(${browser}) is too old. agent: ${navigator.userAgent}`,
+          )
+        }
+      }
+      throw new BrowserTooOldError()
+      // location.href = 'https://www.google.com/chrome/'
     }
   }
 
-  private registerScrollEvent() {
-    window.onresize = () => this.props.app?.UpdateViewport()
-    this.props.app?.UpdateViewport()
+  private registerEvent() {
+    const resizeHandler = throttle(() => {
+      this.props.app?.updateViewport()
+    }, 300)
+    window.onresize = resizeHandler
+    this.props.app?.updateViewport()
 
     if (typeof document !== 'undefined') {
       document.addEventListener('scroll', this.handleScroll)
@@ -216,21 +248,24 @@ class Context extends PureComponent<Store & { data: any }> {
   }
 
   printToConsole() {
-    const text = `
+    try {
+      const text = `
     This Blog Powered By Mix Space.
     Stay hungry. Stay foolish. --Steve Jobs
     `
-    document.documentElement.prepend(document.createComment(text))
-    console.log(
-      '%c Kico Style %c https://paugram.com ',
-      'color: #fff; margin: 1em 0; padding: 5px 0; background: #3498db;',
-      'margin: 1em 0; padding: 5px 0; background: #efefef;',
-    )
-    console.log(
-      '%c Mix Space %c https://innei.ren ',
-      'color: #fff; margin: 1em 0; padding: 5px 0; background: #2980b9;',
-      'margin: 1em 0; padding: 5px 0; background: #efefef;',
-    )
+      document.documentElement.prepend(document.createComment(text))
+      console.log(
+        '%c Kico Style %c https://paugram.com ',
+        'color: #fff; margin: 1em 0; padding: 5px 0; background: #3498db;',
+        'margin: 1em 0; padding: 5px 0; background: #efefef;',
+      )
+      console.log(
+        '%c Mix Space %c https://innei.ren ',
+        'color: #fff; margin: 1em 0; padding: 5px 0; background: #2980b9;',
+        'margin: 1em 0; padding: 5px 0; background: #efefef;',
+      )
+      // eslint-disable-next-line no-empty
+    } catch {}
   }
   componentWillUnmount() {
     window.onresize = null
