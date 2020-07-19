@@ -1,18 +1,15 @@
 {
   "extends": [
-    "config:base"
+    "config:base",
+    ":automergeDigest",
+    ":automergePatch",
+    ":automergeMinor",
+    ":automergeTypes",
+    ":automergeTesters",
+    ":automergeLinters",
+    ":rebaseStalePrs"
   ],
-  "automerge": true,
   "packageRules": [
-    {
-      "updateTypes": [
-        "minor",
-        "patch",
-        "pin",
-        "digest"
-      ],
-      "automerge": true
-    },
     {
       "updateTypes": [
         "major"
