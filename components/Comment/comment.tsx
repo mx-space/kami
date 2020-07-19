@@ -6,10 +6,11 @@ import { CommentModel } from 'models/comment'
 import { FC, useContext, useState, memo } from 'react'
 import { Rest } from 'utils/api'
 import { relativeTimeFromNow } from 'utils/time'
-import { CommentContext, openCommentMessage } from '.'
+import { CommentContext, minHeightProperty, openCommentMessage } from '.'
 import CommentBox from './box'
 import QueueAnim from 'rc-queue-anim'
 import { useStore } from '../../common/store'
+import { animatingClassName } from '../../layouts/NoteLayout'
 
 const Comments: FC<{
   comments: CommentModel[]
@@ -110,10 +111,18 @@ const Comments: FC<{
   }
 
   return (
-    <QueueAnim type={['right', 'left']} leaveReverse>
-      {comments.map((comment) => {
-        return renderComments(comment)
-      })}
+    <QueueAnim
+      delay={300}
+      duration={500}
+      animConfig={{ opacity: [1, 0], translateY: [0, 50] }}
+      animatingClassName={animatingClassName}
+      style={minHeightProperty}
+    >
+      <div key={comments.length}>
+        {comments.map((comment) => {
+          return renderComments(comment)
+        })}
+      </div>
     </QueueAnim>
   )
 })

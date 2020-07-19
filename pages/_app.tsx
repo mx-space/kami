@@ -142,7 +142,7 @@ class Context extends PureComponent<Store & { data: any }> {
       }
       // check build-in methods
       const ObjectMethods = ['fromEntries', 'entries']
-      const ArrayMethods = ['flat', 'flatMap']
+      const ArrayMethods = ['flat']
       if (
         !window.Reflect ||
         !(
@@ -158,7 +158,7 @@ class Context extends PureComponent<Store & { data: any }> {
       return false
     })()
     if (isOld) {
-      alert('哥哥, 你的浏览器太老了, 这边建议更新哦!!')
+      message.warn('欧尼酱, 乃的浏览器太老了, 更新一下啦（o´ﾟ□ﾟ`o）')
       class BrowserTooOldError extends Error {
         constructor() {
           super(
@@ -251,6 +251,7 @@ class Context extends PureComponent<Store & { data: any }> {
     try {
       const text = `
     This Blog Powered By Mix Space.
+    --------
     Stay hungry. Stay foolish. --Steve Jobs
     `
       document.documentElement.prepend(document.createComment(text))
@@ -260,7 +261,7 @@ class Context extends PureComponent<Store & { data: any }> {
         'margin: 1em 0; padding: 5px 0; background: #efefef;',
       )
       console.log(
-        '%c Mix Space %c https://innei.ren ',
+        `%c Mix Space ${process.env.VERSION || ''}%c https://innei.ren `,
         'color: #fff; margin: 1em 0; padding: 5px 0; background: #2980b9;',
         'margin: 1em 0; padding: 5px 0; background: #efefef;',
       )

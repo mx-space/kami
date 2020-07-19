@@ -8,12 +8,10 @@ import {
   FC,
   ImgHTMLAttributes,
   memo,
-  useCallback,
   useEffect,
   useRef,
   useState,
 } from 'react'
-
 import type { LazyImage as LazyImageProps } from 'react-lazy-images'
 import { useStore } from '../../common/store'
 import { isClientSide } from '../../utils'
@@ -35,27 +33,29 @@ interface ImageFCProps {
 const Image: FC<
   DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> & {
     placeholderRef: any
-    wrapRef: any
     popup?: boolean
   }
-> = memo(({ src, alt, placeholderRef, wrapRef, popup = false }) => {
+> = memo(({ src, alt, placeholderRef, popup = false }) => {
   const [loaded, setLoad] = useState(false)
-  const fakeImageRef = useRef<HTMLImageElement>(null)
-  const onLoad = useCallback(() => {
-    setLoad(true)
-    try {
-      if (fakeImageRef && fakeImageRef.current) {
-        fakeImageRef.current.remove()
+
+  useEffect(() => {
+    if (src) {
+      const image = new window.Image()
+      image.src = src as string
+      image.onload = () => {
+        setLoad(true)
+        try {
+          if (placeholderRef && placeholderRef.current) {
+            placeholderRef.current.classList.add('hide')
+          }
+          // if (wrapRef && wrapRef.current) {
+          //   wrapRef.current.style.height = ''
+          // }
+          // eslint-disable-next-line no-empty
+        } catch {}
       }
-      if (placeholderRef && placeholderRef.current) {
-        placeholderRef.current.classList.add('hide')
-      }
-      if (wrapRef && wrapRef.current) {
-        wrapRef.current.style.height = ''
-      }
-      // eslint-disable-next-line no-empty
-    } catch {}
-  }, [placeholderRef, wrapRef])
+    }
+  }, [placeholderRef, src])
   return (
     <>
       <div className={classNames('lazyload-image', !loaded && 'image-hide')}>
@@ -65,14 +65,6 @@ const Image: FC<
           <img src={src} alt={alt} />
         )}
       </div>
-
-      <img
-        src={src}
-        onLoad={onLoad}
-        style={{ position: 'absolute', opacity: 0, zIndex: -99 }}
-        ref={fakeImageRef}
-        alt={alt}
-      />
     </>
   )
 })
@@ -145,7 +137,7 @@ export const ImageLazy: FC<
                   src={src}
                   alt={alt}
                   popup={popup}
-                  {...{ placeholderRef, wrapRef }}
+                  {...{ placeholderRef }}
                   {...props}
                 />
               )

@@ -16,6 +16,7 @@ import Comment from './comment'
 import styles from './index.module.scss'
 import { useStore } from '../../common/store'
 import { observer } from 'mobx-react'
+import { CommentLoading } from './loding'
 
 export type CommentType = 'Note' | 'Post' | 'Page'
 
@@ -98,13 +99,18 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
         ) : (
           <h1>主人禁止了评论</h1>
         )}
+        <span id="comment-anchor"></span>
         <LazyLoad
           offset={50}
+          debounce
+          throttle
           once
-          placeholder={<div style={{ minHeight: '15rem' }} />}
+          placeholder={<CommentLoading />}
         >
           <Fragment>
-            <Comment comments={comments} fetchComments={fetchComments} />
+            {comments.length > 0 && (
+              <Comment comments={comments} fetchComments={fetchComments} />
+            )}
             <div style={{ textAlign: 'center' }}>
               {page?.totalPage !== 0 && (
                 <Pagination
@@ -112,7 +118,16 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
                   hideOnSinglePage
                   current={page.currentPage || 1}
                   onChange={(page) => {
-                    fetchComments(page)
+                    fetchComments(page).then(() => {
+                      setTimeout(() => {
+                        document
+                          .getElementById('comment-anchor')
+                          ?.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center',
+                          })
+                      }, 500)
+                    })
                   }}
                   total={page.total}
                 />
@@ -127,10 +142,18 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
 
 export const CommentLazy: FC<CommentWrapProps> = (props) => {
   return (
-    <LazyLoad once>
+    <LazyLoad
+      offset={-50}
+      once
+      debounce
+      throttle
+      placeholder={<div style={minHeightProperty} />}
+    >
       <CommentWrap {...props} />
     </LazyLoad>
   )
 }
+
+export const minHeightProperty = { minHeight: '400px' }
 
 export default CommentWrap

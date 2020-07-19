@@ -118,20 +118,32 @@ const calculateDimensions = (
   }
   const MAX = max ?? {
     width: 500, // 容器的宽度
-    height: Infinity, // 可选最大高度
   }
   const dimensions = { width, height }
-  if (width > height && width > MAX.width) {
-    dimensions.width = MAX.width
-    dimensions.height = (MAX.width / width) * height
-  } else if (height === width) {
+  // if (width > height && width > MAX.width) {
+  //   dimensions.width = MAX.width
+  //   dimensions.height = (MAX.width / width) * height
+  // } else if (height === width) {
+  //   if (width <= MAX.width) {
+  //     dimensions.height = dimensions.width = height
+  //   } else {
+  //     dimensions.height = MAX.width
+  //     dimensions.width = dimensions.height
+  //   }
+  // }
+
+  if (width === height) {
     if (width <= MAX.width) {
-      dimensions.height = dimensions.width = height
+      // pass
     } else {
       dimensions.height = MAX.width
-      dimensions.width = dimensions.height
+      dimensions.width = MAX.width
     }
+  } else if (width >= MAX.width) {
+    dimensions.height = (MAX.width / width) * height
+    dimensions.width = MAX.width
   }
+
   return dimensions
 }
 // FIXME render problem
