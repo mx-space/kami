@@ -6,11 +6,20 @@
   "packageRules": [
     {
       "updateTypes": [
+        "minor",
         "patch",
         "pin",
         "digest"
       ],
       "automerge": true
+    },
+    {
+      "updateTypes": [
+        "major"
+      ],
+      "labels": [
+        "UPDATE-MAJOR"
+      ]
     }
   ]
 }
