@@ -2,15 +2,16 @@
   "extends": [
     "config:base"
   ],
-  "automerge": true,
-  "packageRules": [
-    {
-      "updateTypes": [
-        "patch",
-        "pin",
-        "digest"
-      ],
-      "automerge": true
-    }
-  ]
+  "automerge": {
+    "packageRules": [
+      {
+        "updateTypes": [
+          "patch",
+          "pin",
+          "digest"
+        ],
+        "automerge": true
+      }
+    ]
+  }
 }
