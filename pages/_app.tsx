@@ -40,7 +40,7 @@ import { Rest } from '../utils/api'
 import { getToken, removeToken } from '../utils/auth'
 // import { checkDevtools } from '../utils/forbidden'
 import * as gtag from '../utils/gtag'
-import { getBrowserType } from '../utils/ua'
+
 import { message } from 'antd'
 import App, { AppContext } from 'next/app'
 import { LogoJsonLd, SocialProfileJsonLd, NextSeo } from 'next-seo'
@@ -49,6 +49,7 @@ import service from '../utils/request'
 import { isServerSide } from '../utils'
 
 import * as Sentry from '@sentry/node'
+import { UAParser } from 'ua-parser-js'
 
 if (process.env.CI !== 'true') {
   Sentry.init({
@@ -58,6 +59,8 @@ if (process.env.CI !== 'true') {
 }
 
 const stores = createMobxStores()
+
+const version = process.env.VERSION || `v${Package.version}` || ''
 
 @inject((store: Stores) => ({
   master: store.userStore,
@@ -112,12 +115,19 @@ class Context extends PureComponent<Store & { data: any }> {
     try {
       window
         .matchMedia('(prefers-color-scheme: dark)')
-        // safari not support this lister please catch it
-        .addListener((e) => {
+        .addEventListener('change', (e) => {
           if (this.props.app?.autoToggleColorMode) {
             getColormode(e)
           }
         })
+      // window
+      //   .matchMedia('(prefers-color-scheme: dark)')
+      //   // safari not support this lister please catch it
+      //   .addListener((e) => {
+      //     if (this.props.app?.autoToggleColorMode) {
+      //       getColormode(e)
+      //     }
+      //   })
     } catch {
       // eslint-disable-next-line no-empty
     }
@@ -135,9 +145,14 @@ class Context extends PureComponent<Store & { data: any }> {
   }
 
   private checkBrowser() {
-    const browser = getBrowserType(window.navigator.userAgent)
+    const parser = new UAParser(window.navigator.userAgent)
+    const browser = parser.getBrowser()
     const isOld: boolean = (() => {
-      if (browser === 'ie') {
+      if (browser.name === 'IE') {
+        alert(
+          '欧尼酱, 乃真的要使用 IE 浏览器吗, 不如换个 Chrome 好不好嘛（o´ﾟ□ﾟ`o）',
+        )
+        location.href = 'https://www.google.com/chrome/'
         return true
       }
       // check build-in methods
@@ -161,13 +176,13 @@ class Context extends PureComponent<Store & { data: any }> {
       message.warn('欧尼酱, 乃的浏览器太老了, 更新一下啦（o´ﾟ□ﾟ`o）')
       class BrowserTooOldError extends Error {
         constructor() {
+          const { name: osName, version: osVersion } = parser.getOS()
           super(
-            `User browser(${browser}) is too old. agent: ${navigator.userAgent}`,
+            `User browser(${browser.name} ${browser.version}) is too old. OS: ${osName}/${osVersion}`,
           )
         }
       }
       throw new BrowserTooOldError()
-      // location.href = 'https://www.google.com/chrome/'
     }
   }
 
@@ -261,7 +276,7 @@ class Context extends PureComponent<Store & { data: any }> {
         'margin: 1em 0; padding: 5px 0; background: #efefef;',
       )
       console.log(
-        `%c Mix Space ${process.env.VERSION || ''}%c https://innei.ren `,
+        `%c Mix Space ${version}%c https://innei.ren `,
         'color: #fff; margin: 1em 0; padding: 5px 0; background: #2980b9;',
         'margin: 1em 0; padding: 5px 0; background: #efefef;',
       )
@@ -346,9 +361,7 @@ app.getInitialProps = async (props: AppContext) => {
     service.defaults.headers.common['x-forwarded-for'] = ip
 
     service.defaults.headers.common['User-Agent'] =
-      request.headers['user-agent'] +
-      ' mx-space render server' +
-      `/v${Package.version}`
+      request.headers['user-agent'] + ' mx-space render server' + `/${version}`
     // console.log(service.defaults.headers.common)
   }
 

@@ -8,6 +8,17 @@ import { useCallback, useState } from 'react'
 import { NoticePanel } from '../components/Notice'
 import { Switch } from '../components/LampSwitch'
 import { useStore } from '../common/store'
+import { UAParser } from 'ua-parser-js'
+import {
+  faAndroid,
+  faApple,
+  faCentos,
+  faChrome,
+  faLinux,
+  faRedhat,
+  faUbuntu,
+  faWindows,
+} from '@fortawesome/free-brands-svg-icons'
 
 const APlayer = dynamic(() => import('components/Player'), {
   ssr: false,
@@ -41,9 +52,49 @@ export const BasicLayout = observer(({ children }) => {
         ? 'dark'
         : 'light'
       $html.classList.remove('dark', 'light')
+      const osName = new UAParser(navigator.userAgent).getOS().name
+      let icon = faCheckCircle
+      switch (osName) {
+        case 'Android': {
+          icon = faAndroid
+          break
+        }
+        case 'Mac OS':
+        case 'iOS': {
+          icon = faApple
+          break
+        }
+        case 'Windows': {
+          icon = faWindows
+          break
+        }
+        case 'Linux': {
+          icon = faLinux
+          break
+        }
+        case 'CentOS': {
+          icon = faCentos
+          break
+        }
+        case 'Chromium OS': {
+          icon = faChrome
+          break
+        }
+        case 'Ubuntu': {
+          icon = faUbuntu
+          break
+        }
+        case 'RedHat': {
+          icon = faRedhat
+          break
+        }
+        default: {
+          break
+        }
+      }
       setTip({
         text: '跟随系统',
-        icon: faCheckCircle,
+        icon,
       })
     }
     setNotice(!showNotice)
