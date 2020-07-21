@@ -1,0 +1,23 @@
+.pager {
+  width: 100%;
+  position: relative;
+  text-align: center;
+  margin: 12px 0;
+  padding: 0 12px;
+  .input {
+    width: 2rem;
+    margin-right: 4px;
+    border: none;
+    border-bottom: 1px solid var(--light-font);
+    border-radius: unset;
+  }
+}
+
+.icon {
+  margin: 0 4px;
+  cursor: pointer;
+}
+.nav {
+  margin: 0 12px;
+  display: inline-block;
+}

@@ -1,13 +1,14 @@
 /*
  * @Author: Innei
  * @Date: 2020-07-01 19:25:29
- * @LastEditTime: 2020-07-21 16:29:13
+ * @LastEditTime: 2020-07-21 21:19:01
  * @LastEditors: Innei
  * @FilePath: /mx-web/components/Comment/index.tsx
  * @Coding with Love
  */
 
-import { message, Pagination } from 'antd'
+import { message } from 'antd'
+import { Pagination } from '../Pagination'
 import { PagerModel } from 'models/base'
 import { CommentModel, CommentPager } from 'models/comment'
 import {
@@ -137,7 +138,6 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
             <div style={{ textAlign: 'center' }}>
               {page?.totalPage !== 0 && (
                 <Pagination
-                  simple
                   hideOnSinglePage
                   current={page.currentPage || 1}
                   onChange={(page) => {
@@ -152,7 +152,7 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
                       }, 500)
                     })
                   }}
-                  total={page.total}
+                  total={page.totalPage}
                 />
               )}
             </div>
