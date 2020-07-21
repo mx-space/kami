@@ -7,8 +7,8 @@ import Router from 'next/router'
 import React, {
   createElement,
   DOMAttributes,
+  ElementType,
   FC,
-  ReactType,
   useCallback,
   useContext,
   useEffect,
@@ -22,7 +22,7 @@ interface MdProps extends ReactMarkdownProps {
   showTOC?: boolean
   [key: string]: any
   style?: React.CSSProperties
-  readonly renderers?: { [nodeType: string]: ReactType }
+  readonly renderers?: { [nodeType: string]: ElementType }
 }
 
 const Heading: () => FC<{
@@ -202,6 +202,9 @@ const RenderParagraph: FC<{}> = (props) => {
   return <div className={'paragraph'}>{props.children}</div>
 }
 
+const RenderCommentAt: FC<{ value: string }> = ({ value }) => {
+  return <>@{value}</>
+}
 const Markdown: FC<MdProps> = observer((props) => {
   const { value, renderers, style, ...rest } = props
   const { appStore } = useStore()
@@ -220,6 +223,7 @@ const Markdown: FC<MdProps> = observer((props) => {
           spoiler: RenderSpoiler,
           paragraph: RenderParagraph,
           // eslint-disable-next-line react/display-name
+          commentAt: RenderCommentAt,
           ...renderers,
         }}
         plugins={CustomRules}

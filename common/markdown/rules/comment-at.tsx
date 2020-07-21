@@ -1,13 +1,14 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-11 13:01:08
- * @LastEditTime: 2020-06-12 20:19:16
+ * @LastEditTime: 2020-07-21 17:15:16
  * @LastEditors: Innei
- * @FilePath: /mx-web/common/markdown/rules/mentions.ts
+ * @FilePath: /mx-web/common/markdown/rules/comment-at.tsx
  * @Coding with Love
  */
 import type { Parser, Eat } from 'remark-parse'
 import type { Node } from 'unist'
+import isMongoId from 'validator/lib/isMongoId'
 /**
  * parse (@username) to github user profile
  */
@@ -15,17 +16,16 @@ import type { Node } from 'unist'
 function tokenizeMention(eat: Eat, value: string): Node | void
 function tokenizeMention(eat: Eat, value: string, silent: true): boolean | void
 function tokenizeMention(eat: Eat, value: string, silent?: boolean): any {
-  const match = /\((@(\w+\b))\)\s(?!\[.*?\])/.exec(value)
+  const match = /^@(.*?)\s/i.exec(value)
 
-  if (match) {
+  if (match && isMongoId(match[1])) {
     if (silent) {
       return true
     }
     try {
       return eat(match[0])({
-        type: 'link',
-        url: 'https://github.com/' + match[2],
-        children: [{ type: 'text', value: match[1] }],
+        type: 'commentAt',
+        value: match[1],
       })
       // eslint-disable-next-line no-empty
     } catch {}
@@ -42,9 +42,9 @@ function mentions(this: any) {
   const methods = Parser.prototype.inlineMethods
 
   // Add an inline tokenizer (defined in the following example).
-  tokenizers.mention = tokenizeMention
+  tokenizers.commentAt = tokenizeMention
 
   // Run it just before `text`.
-  methods.splice(methods.indexOf('text'), 0, 'mention')
+  methods.splice(methods.indexOf('text'), 0, 'commentAt')
 }
-export { mentions }
+export { mentions as commentAt }

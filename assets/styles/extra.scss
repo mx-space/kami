@@ -108,7 +108,9 @@ select,
 textarea {
   min-height: unset;
 }
-
+a {
+  cursor: pointer;
+}
 @media (max-width: 600px) {
   .head-menu a {
     display: inline-block;
@@ -474,11 +476,14 @@ html.dark {
   }
 }
 .ant-comment-nested {
-  margin-left: 12px;
+  margin-left: 24px;
+  .ant-comment-nested {
+    margin-left: 0;
+  }
 }
 @media (max-width: 650px) {
   .ant-comment-nested {
-    margin-left: 4px;
+    margin-left: 12px;
   }
 }
 .ant-message-notice-content {

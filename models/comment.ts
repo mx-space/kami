@@ -14,6 +14,8 @@ export interface CommentModel extends BaseModel {
   ref: string
   id: string
   avatar: string
+
+  parent?: string
 }
 export interface CommentPager extends BaseRespModel, PagerModel {
   data: CommentModel[]

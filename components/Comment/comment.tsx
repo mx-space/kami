@@ -3,23 +3,35 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Avatar, Comment, message, Popconfirm } from 'antd'
 import Markdown from 'components/MD-render'
 import { CommentModel } from 'models/comment'
-import { FC, useContext, useState, memo } from 'react'
+import QueueAnim from 'rc-queue-anim'
+import { FC, memo, useContext, useState } from 'react'
 import { Rest } from 'utils/api'
 import { relativeTimeFromNow } from 'utils/time'
 import { CommentContext, minHeightProperty, openCommentMessage } from '.'
-import CommentBox from './box'
-import QueueAnim from 'rc-queue-anim'
 import { useStore } from '../../common/store'
 import { animatingClassName } from '../../layouts/NoteLayout'
+import CommentBox from './box'
+import styles from './index.module.scss'
 
+function getCommentWrap<T extends { _id: string }>(comment: T) {
+  const $wrap = document.getElementById('comments-wrap')
+  if (!$wrap) {
+    return
+  }
+  const $parent = $wrap.querySelector<HTMLDivElement>(
+    '[data-comment-id="'.concat(comment._id, '"] #write'),
+  )
+  return $parent
+}
 const Comments: FC<{
   comments: CommentModel[]
   fetchComments: Function
 }> = memo(({ comments, fetchComments }) => {
-  const { refresh } = useContext(CommentContext)
+  const { refresh, collection } = useContext(CommentContext)
   const [replyId, setReplyId] = useState('')
   const { userStore } = useStore()
   const logged = userStore.isLogged
+
   if (comments.length === 0) {
     return null
   }
@@ -49,13 +61,14 @@ const Comments: FC<{
         const host = new URL(comment.url).host
         return '//' + host
       } catch {
-        return 'javascript:;'
+        return undefined
       }
     }
     const url = getUrl()
     return (
       <Comment
         key={comment._id}
+        data-comment-id={comment._id}
         author={
           <a href={url} rel={'nofollow'}>
             {comment.author}
@@ -70,7 +83,97 @@ const Comments: FC<{
             />
           </a>
         }
-        content={<Markdown value={comment.text} />}
+        content={
+          <Markdown
+            value={`${
+              comment.parent
+                ? `@${collection.get(comment.parent)?._id || ''} `
+                : ''
+            }${comment.text}`}
+            className={styles['comment']}
+            renderers={{
+              commentAt: ({ value }) => {
+                const comment = collection.get(value)
+                if (!comment) {
+                  return null
+                }
+
+                return (
+                  <a
+                    href={'javascript:;'}
+                    className={styles['comment-at']}
+                    onMouseOver={(e) => {
+                      e.stopPropagation()
+                      const $parent = getCommentWrap(comment)
+
+                      if (!$parent) {
+                        return
+                      }
+                      // $parent.classList.add('highlight')
+                      $parent.getAnimations?.().forEach((i) => i.cancel())
+                      const animate = $parent.animate(
+                        [
+                          {
+                            backgroundColor: 'transparent',
+                          },
+                          {
+                            backgroundColor: '#FFEBC9ee',
+                          },
+                        ],
+                        {
+                          duration: 1000,
+                          iterations: Infinity,
+                          direction: 'alternate',
+                          easing: 'linear',
+                          fill: 'both',
+                        },
+                      )
+
+                      if (typeof $parent.getAnimations === 'undefined') {
+                        $parent.getAnimations = () => {
+                          return [animate]
+                        }
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      e.stopPropagation()
+                      const $parent = getCommentWrap(comment)
+
+                      if (!$parent) {
+                        return
+                      }
+                      // $parent.classList.add('highlight')
+                      console.log($parent)
+                      // support only Chrome >= 79 (behind the Experimental Web Platform Features preference)
+                      $parent.getAnimations?.().forEach((a) => a.cancel())
+                    }}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      const $parent = getCommentWrap(comment)
+                      if (!$parent) {
+                        return
+                      }
+                      $parent.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center',
+                      })
+                      $parent.animate([
+                        {
+                          backgroundColor: '#FFEBC9',
+                        },
+                        {
+                          backgroundColor: 'transparent',
+                        },
+                      ])
+                    }}
+                  >
+                    @{comment.author}
+                  </a>
+                )
+              },
+            }}
+          />
+        }
         datetime={relativeTimeFromNow(comment.created) + ' ' + comment.key}
         actions={[
           <span
@@ -116,9 +219,9 @@ const Comments: FC<{
       duration={500}
       animConfig={{ opacity: [1, 0], translateY: [0, 50] }}
       animatingClassName={animatingClassName}
-      style={minHeightProperty}
+      style={{ ...minHeightProperty }}
     >
-      <div key={comments.length}>
+      <div key={comments.length} id={'comments-wrap'}>
         {comments.map((comment) => {
           return renderComments(comment)
         })}

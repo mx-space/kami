@@ -5,7 +5,14 @@ import { DefaultLogo as Logo } from 'components/Logo'
 import { observer } from 'mobx-react'
 import Link from 'next/link'
 import Router from 'next/router'
-import React, { FC, Fragment, memo, MouseEvent, useState } from 'react'
+import React, {
+  FC,
+  Fragment,
+  memo,
+  MouseEvent,
+  useCallback,
+  useState,
+} from 'react'
 import { useStore } from '../../common/store'
 import { MenuModel } from '../../common/store/types'
 import configs from '../../configs'
@@ -81,12 +88,15 @@ const Header: FC = observer(() => {
 
   const isMobile = appStore.viewport.mobile
   const [menuOpen, setMenu] = useState(false)
-  const closeMenu = (e: MouseEvent<HTMLDivElement | HTMLAnchorElement>) => {
-    if (appStore.viewport.mobile) {
-      e.stopPropagation()
-      setMenu(false)
-    }
-  }
+  const closeMenu = useCallback(
+    (e: MouseEvent<HTMLDivElement | HTMLAnchorElement>) => {
+      if (appStore.viewport.mobile) {
+        e.stopPropagation()
+        setMenu(false)
+      }
+    },
+    [appStore.viewport.mobile],
+  )
 
   return (
     <header

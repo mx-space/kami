@@ -9,6 +9,11 @@
     margin-right: 12px;
   }
 }
+
+.comment {
+  font-size: 14px;
+}
+
 @media (max-width: 700px) {
   .comment-box-head {
     display: block;
@@ -24,4 +29,8 @@
   align-items: center;
   min-height: 400px;
   flex-direction: column;
+}
+
+.comment-at {
+  margin-right: 12px;
 }

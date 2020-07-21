@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-20 20:51:31
- * @LastEditTime: 2020-06-23 18:24:52
+ * @LastEditTime: 2020-07-21 16:26:55
  * @LastEditors: Innei
  * @FilePath: /mx-web/utils/utils.ts
  * @Coding with Love
@@ -65,4 +65,16 @@ export function getSummaryFromMd(
     }
   }
   return description
+}
+
+export function flattenChildren<T extends { children: T[] }>(
+  data: T[],
+  level = 0,
+): Omit<T, 'children'>[] {
+  return data.reduce(
+    (arr, { children = [], ...rest }) =>
+      // @ts-ignore
+      arr.concat([{ ...rest }], flattenChildren(children, level + 1)),
+    [],
+  )
 }

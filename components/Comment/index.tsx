@@ -1,3 +1,12 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-07-01 19:25:29
+ * @LastEditTime: 2020-07-21 16:29:13
+ * @LastEditors: Innei
+ * @FilePath: /mx-web/components/Comment/index.tsx
+ * @Coding with Love
+ */
+
 import { message, Pagination } from 'antd'
 import { PagerModel } from 'models/base'
 import { CommentModel, CommentPager } from 'models/comment'
@@ -8,6 +17,7 @@ import {
   useState,
   useCallback,
   Fragment,
+  useMemo,
 } from 'react'
 import LazyLoad from 'react-lazyload'
 import { Rest } from 'utils/api'
@@ -18,11 +28,13 @@ import { useStore } from '../../common/store'
 import { observer } from 'mobx-react'
 import { CommentLoading } from './loding'
 
+import { flattenChildren } from '../../utils'
 export type CommentType = 'Note' | 'Post' | 'Page'
 
 export const CommentContext = createContext({
   type: '' as CommentType,
   refresh: {} as () => any,
+  collection: new Map<string, Omit<CommentModel, 'children'>>(),
 })
 
 const key = 'updatable'
@@ -46,6 +58,10 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
   const [page, setPage] = useState({} as PagerModel['page'])
   const { userStore } = useStore()
   const logged = userStore.isLogged
+  const collection = useMemo(
+    () => new Map<string, Omit<CommentModel, 'children'>>(),
+    [],
+  )
   const fetchComments = useCallback(
     (page = 1, size = 10) =>
       Rest('Comment', 'ref/' + id)
@@ -55,10 +71,15 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
           ts: new Date().getTime(),
         })
         .then(({ data, page }) => {
+          collection.clear()
+          flattenChildren(data).forEach((i) => {
+            collection.set(i._id, i)
+          })
+
           setComments(data)
           setPage(page)
         }),
-    [id],
+    [collection, id],
   )
   useEffect(() => {
     fetchComments()
@@ -85,7 +106,9 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
 
   return (
     <article className={styles.wrap}>
-      <CommentContext.Provider value={{ type, refresh: fetchComments }}>
+      <CommentContext.Provider
+        value={{ type, refresh: fetchComments, collection }}
+      >
         {allowComment && (
           <h1>
             {comments.length

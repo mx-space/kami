@@ -16,7 +16,6 @@ export const Copyright: FC<CopyrightProps> = memo((props) => {
       <p>
         文章链接: <span>{link}</span>{' '}
         <a
-          href={'javascript:;'}
           onClick={() => {
             const textarea = document.createElement('textarea')
             textarea.value = link
