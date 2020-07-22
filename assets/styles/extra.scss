@@ -7,6 +7,7 @@
 html {
   overflow: overlay;
   scroll-behavior: unset;
+  font-variant-numeric: tabular-nums;
 }
 ::-webkit-scrollbar {
   width: 10px;
@@ -331,10 +332,12 @@ html.dark .lazyload-image {
   }
 }
 .article-list {
+  font-family: Helvetica, pingfang sc, hiragino sans gb, microsoft yahei,
+    'sans-serif';
+
   h1 {
     margin: 10px 0 15px;
     font-size: 1.5rem;
-    font-family: Helvetica;
 
     &::before {
       content: '';
