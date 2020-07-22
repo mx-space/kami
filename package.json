@@ -39,7 +39,7 @@
     "axios": "0.19.2",
     "classnames": "2.2.6",
     "cors": "2.8.5",
-    "dayjs": "1.8.29",
+    "dayjs": "1.8.30",
     "express": "4.17.1",
     "gitlog": "4.0.0",
     "inflection": "1.12.0",
