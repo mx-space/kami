@@ -176,7 +176,7 @@ const Image: () => FC<{ src: string; alt?: string }> = () => {
     }, [images, maxWidth])
 
     if (typeof document === 'undefined') {
-      return null
+      return <img src={src} alt={alt} />
     }
 
     return (

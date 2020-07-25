@@ -7,7 +7,6 @@ import {
   DetailedHTMLProps,
   FC,
   ImgHTMLAttributes,
-  memo,
   useEffect,
   useRef,
   useState,
@@ -35,9 +34,10 @@ const Image: FC<
     placeholderRef: any
     popup?: boolean
   }
-> = memo(({ src, alt, placeholderRef, popup = false }) => {
+> = observer(({ src, alt, placeholderRef, popup = false }) => {
   const [loaded, setLoad] = useState(false)
-
+  const { appStore } = useStore()
+  const isMobile = appStore.viewport.mobile
   useEffect(() => {
     if (src) {
       const image = new window.Image()
@@ -60,7 +60,17 @@ const Image: FC<
     <>
       <div className={classNames('lazyload-image', !loaded && 'image-hide')}>
         {popup ? (
-          <Zmage src={src} alt={alt} backdrop={'var(--light-bg)'} />
+          isMobile ? (
+            <img
+              src={src}
+              alt={alt}
+              onClick={() => {
+                window.open(src)
+              }}
+            />
+          ) : (
+            <Zmage src={src} alt={alt} backdrop={'var(--light-bg)'} />
+          )
         ) : (
           <img src={src} alt={alt} />
         )}
@@ -77,7 +87,7 @@ export const ImageLazy: FC<
     defaultImage,
     src,
     alt = src,
-    height = 300,
+    height,
     width,
     useRandomBackgroundColor,
     popup = false,

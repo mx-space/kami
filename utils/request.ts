@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-07 16:04:24
- * @LastEditTime: 2020-06-24 18:17:07
+ * @LastEditTime: 2020-07-25 22:24:50
  * @LastEditors: Innei
  * @FilePath: /mx-web/utils/request.ts
  * @MIT
@@ -47,7 +47,7 @@ service.interceptors.response.use(
       })
     }
     if (typeof document !== 'undefined') {
-      if (error.code === 'ECONNABORTED') {
+      if (error.response.status === 408 || error.code === 'ECONNABORTED') {
         return message.error('连接超时, 请检查一下网络哦!')
       }
 
@@ -63,8 +63,8 @@ service.interceptors.response.use(
     }
 
     return Promise.reject({
-      statusCode: error.response.status || 500,
-      data: error.response.data || '发生未知错误',
+      statusCode: error.response.status || 408,
+      data: error.response.data || '请求超时',
     })
   },
 )

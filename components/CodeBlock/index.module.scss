@@ -1,0 +1,28 @@
+.code-wrap {
+  position: relative;
+}
+.copy-tip {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  opacity: 0.4;
+  font-size: 0.6em;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.5s;
+  will-change: opacity;
+  user-select: none;
+  &:hover {
+    opacity: 1;
+  }
+  &::after {
+    content: '';
+    bottom: -3px;
+    position: absolute;
+    left: 3px;
+    right: 3px;
+    height: 1px;
+    background-color: currentColor;
+  }
+}

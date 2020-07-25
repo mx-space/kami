@@ -1,4 +1,5 @@
 import { FC, memo } from 'react'
+import { copy } from '../../utils/dom'
 import styles from './index.module.scss'
 
 export interface CopyrightProps {
@@ -17,13 +18,7 @@ export const Copyright: FC<CopyrightProps> = memo((props) => {
         文章链接: <span>{link}</span>{' '}
         <a
           onClick={() => {
-            const textarea = document.createElement('textarea')
-            textarea.value = link
-            textarea.style.cssText = `position: absolute; top:0; z-index: -999`
-            document.documentElement.appendChild(textarea)
-            textarea.select()
-            document.execCommand('copy')
-            document.documentElement.removeChild(textarea)
+            copy(link)
           }}
         >
           [复制]

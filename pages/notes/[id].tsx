@@ -51,7 +51,7 @@ const renderLines: FC<{ value: string }> = ({ value }) => {
   return <span className="indent">{value}</span>
 }
 
-const NoteView: NextPage<NoteViewProps> = (props) => {
+const NoteView: NextPage<NoteViewProps> = observer((props) => {
   const { data, prev, next } = props
   const { title, _id, text, mood, weather } = data
   const { userStore, appStore } = useStore()
@@ -59,6 +59,19 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
   const router = useRouter()
   const [tips, setTips] = useState(``)
 
+  useEffect(() => {
+    document.oncopy = (e) => {
+      if (userStore.isLogged) {
+        return
+      }
+      e.preventDefault()
+      message.warn('禁止复制!')
+    }
+
+    return () => {
+      document.oncopy = null
+    }
+  }, [userStore.isLogged])
   const { description, wordCount } = getSummaryFromMd(text, { count: true })
   useEffect(() => {
     try {
@@ -246,12 +259,11 @@ const NoteView: NextPage<NoteViewProps> = (props) => {
       </ArticleLayout>
     </>
   )
-}
-
+})
 NoteView.getInitialProps = async ({ query }) => {
   const id = query.id as string
   const { data, prev, next } = await Rest('Note', 'nid').get<NoteResp>(id)
   return { data, prev, next }
 }
 
-export default observer(NoteView)
+export default NoteView

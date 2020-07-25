@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react'
-import React, { FC } from 'react'
+import React, { FC, useCallback } from 'react'
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { useStore } from '../../common/store'
 import dark from 'react-syntax-highlighter/dist/cjs/styles/prism/tomorrow'
@@ -39,6 +39,10 @@ import graphql from 'react-syntax-highlighter/dist/cjs/languages/prism/graphql'
 import pug from 'react-syntax-highlighter/dist/cjs/languages/prism/pug'
 import rest from 'react-syntax-highlighter/dist/cjs/languages/prism/rest'
 import http from 'react-syntax-highlighter/dist/cjs/languages/prism/http'
+
+import styles from './index.module.scss'
+import { message } from 'antd'
+import { copy } from '../../utils/dom'
 
 const lang = {
   javascript,
@@ -85,16 +89,27 @@ interface CodeBlockProps {
 const CodeBlock: FC<CodeBlockProps> = observer((props) => {
   const { language, value } = props
   const { colorMode } = useStore().appStore
+  const handleCopy = useCallback(() => {
+    copy(value)
+    message.success('COPIED! NOW YOU CAN ENJOY CV.')
+  }, [value])
   return (
-    <SyntaxHighlighter
-      language={language}
-      style={colorMode === 'dark' ? dark : light}
-      customStyle={{
-        background: 'var(--code-bg) !important',
-      }}
-    >
-      {value}
-    </SyntaxHighlighter>
+    <div className={styles['code-wrap']}>
+      <SyntaxHighlighter
+        language={language}
+        style={colorMode === 'dark' ? dark : light}
+        showLineNumbers={true}
+        showInlineLineNumbers={true}
+        customStyle={{
+          background: 'var(--code-bg) !important',
+        }}
+      >
+        {value}
+      </SyntaxHighlighter>
+      <div className={styles['copy-tip']} onClick={handleCopy}>
+        Copy
+      </div>
+    </div>
   )
 })
 export default CodeBlock
