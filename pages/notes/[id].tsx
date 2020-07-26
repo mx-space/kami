@@ -28,7 +28,7 @@ import { FC, useEffect, useState } from 'react'
 import { Rest } from 'utils/api'
 import { parseDate, relativeTimeFromNow } from 'utils/time'
 import { mood2icon, weather2icon } from 'utils/weather2icon'
-import { imageSizesContext as ImageSizesContext } from '../../common/context/ImageSizes'
+import { ImageSizesContext } from '../../common/context/ImageSizes'
 import { Seo } from '../../components/SEO'
 import { getSummaryFromMd } from '../../utils'
 

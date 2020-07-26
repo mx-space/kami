@@ -4,9 +4,9 @@ import { ImageSizeRecord } from '../../models/base'
 /*
  * @Author: Innei
  * @Date: 2020-05-31 17:33:14
- * @LastEditTime: 2020-05-31 18:00:17
+ * @LastEditTime: 2020-07-26 19:53:39
  * @LastEditors: Innei
- * @FilePath: /mx-web/context/ImageSizes.ts
+ * @FilePath: /mx-web/common/context/ImageSizes.ts
  * @Coding with Love
  */
-export const imageSizesContext = createContext([] as ImageSizeRecord[])
+export const ImageSizesContext = createContext([] as ImageSizeRecord[])

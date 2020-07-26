@@ -4,7 +4,7 @@ import { Avatar, Comment, message, Popconfirm } from 'antd'
 import Markdown from 'components/MD-render'
 import { CommentModel } from 'models/comment'
 import QueueAnim from 'rc-queue-anim'
-import { FC, memo, useContext, useState } from 'react'
+import { FC, memo, useContext, useEffect, useState } from 'react'
 import { Rest } from 'utils/api'
 import { relativeTimeFromNow } from 'utils/time'
 import { CommentContext, minHeightProperty, openCommentMessage } from '.'
@@ -25,13 +25,16 @@ function getCommentWrap<T extends { _id: string }>(comment: T) {
 }
 const Comments: FC<{
   comments: CommentModel[]
-  fetchComments: Function
-}> = memo(({ comments, fetchComments }) => {
+  onFetch: () => Promise<any>
+  id: string
+}> = memo(({ comments, onFetch: fetchComments, id }) => {
   const { refresh, collection } = useContext(CommentContext)
   const [replyId, setReplyId] = useState('')
   const { userStore } = useStore()
   const logged = userStore.isLogged
-
+  useEffect(() => {
+    fetchComments()
+  }, [fetchComments, id])
   if (comments.length === 0) {
     return null
   }
@@ -143,7 +146,7 @@ const Comments: FC<{
                         return
                       }
                       // $parent.classList.add('highlight')
-                      console.log($parent)
+
                       // support only Chrome >= 79 (behind the Experimental Web Platform Features preference)
                       $parent.getAnimations?.().forEach((a) => a.cancel())
                     }}

@@ -91,6 +91,7 @@ export const ImageLazy: FC<
     width,
     useRandomBackgroundColor,
     popup = false,
+    style,
     ...rest
   } = props
 
@@ -110,7 +111,7 @@ export const ImageLazy: FC<
   }, [colorMode])
 
   return (
-    <>
+    <div style={{ ...(style || {}) }}>
       {defaultImage ? (
         <img src={defaultImage} alt={alt} {...rest} ref={realImageRef} />
       ) : (
@@ -125,15 +126,6 @@ export const ImageLazy: FC<
           }}
           ref={wrapRef}
         >
-          {/* <LazyLoad once debounce={500}>
-            <Image
-              className={'image-hide lazyload-image'}
-              {...rest}
-              src={src}
-              alt={alt}
-              {...{ placeholderRef, wrapRef }}
-            />
-          </LazyLoad> */}
           <LazyImage
             src={src}
             alt={alt}
@@ -183,7 +175,7 @@ export const ImageLazy: FC<
       {alt && alt.startsWith('!') && (
         <p className={'img-alt'}>{alt.slice(1)}</p>
       )}
-    </>
+    </div>
   )
 })
 
@@ -194,14 +186,16 @@ export const ImageLazyWithPopup: FC<
       ImgHTMLAttributes<HTMLImageElement>
   >
 > = (props) => {
+  const { src, alt, height, width, ...rest } = props
   return (
     <ImageLazy
-      src={props.src}
-      alt={props.alt || props.src}
-      height={props.height}
-      width={props.width}
+      src={src}
+      alt={alt || src}
+      height={height}
+      width={width}
       useRandomBackgroundColor
       popup
+      {...rest}
     ></ImageLazy>
   )
 }

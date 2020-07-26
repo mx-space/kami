@@ -7,7 +7,7 @@ import { CategoryModel } from '../../models/category'
 export default class AppStore {
   @observable menu: MenuModel[] = configs.menu as MenuModel[]
   @observable viewport: Partial<ViewportRecord> = {}
-  @observable loading = false
+  @observable loading = true
   @observable position = 0
   @observable scrollDirection: 'up' | 'down' | null = null
 

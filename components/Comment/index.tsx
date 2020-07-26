@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-07-01 19:25:29
- * @LastEditTime: 2020-07-21 21:19:01
+ * @LastEditTime: 2020-07-26 20:53:18
  * @LastEditors: Innei
  * @FilePath: /mx-web/components/Comment/index.tsx
  * @Coding with Love
@@ -82,9 +82,6 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
         }),
     [collection, id],
   )
-  useEffect(() => {
-    fetchComments()
-  }, [type, id, fetchComments])
 
   const handleComment = async (model) => {
     openCommentMessage()
@@ -128,15 +125,14 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
           offset={50}
           debounce
           throttle
-          once
+          key={id}
+          unmountIfInvisible
           placeholder={<CommentLoading />}
         >
           <Fragment>
-            {comments.length > 0 && (
-              <Comment comments={comments} fetchComments={fetchComments} />
-            )}
+            <Comment comments={comments} onFetch={fetchComments} id={id} />
             <div style={{ textAlign: 'center' }}>
-              {page?.totalPage !== 0 && (
+              {page && page.totalPage !== 0 && (
                 <Pagination
                   hideOnSinglePage
                   current={page.currentPage || 1}

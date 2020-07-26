@@ -15,7 +15,7 @@ import React, {
   useState,
 } from 'react'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
-import { imageSizesContext } from '../../common/context/ImageSizes'
+import { ImageSizesContext } from '../../common/context/ImageSizes'
 import CodeBlock from '../CodeBlock'
 interface MdProps extends ReactMarkdownProps {
   value: string
@@ -108,72 +108,69 @@ const RenderLink: FC<{
   )
 }
 
-const calculateDimensions = (
-  width?: number,
-  height?: number,
-  max?: { width: number; height: number },
+export const calculateDimensions = (
+  width: number,
+  height: number,
+  max: { width: number; height: number },
 ) => {
-  if (!width || !height) {
-    return { height: undefined, width: undefined }
+  const { height: maxHeight, width: maxWidth } = max
+  const wRatio = maxWidth / width
+  const hRatio = maxHeight / height
+  let ratio = 1
+  if (maxWidth == Infinity && maxHeight == Infinity) {
+    ratio = 1
+  } else if (maxWidth == Infinity) {
+    if (hRatio < 1) ratio = hRatio
+  } else if (maxHeight == Infinity) {
+    if (wRatio < 1) ratio = wRatio
+  } else if (wRatio < 1 || hRatio < 1) {
+    ratio = wRatio <= hRatio ? wRatio : hRatio
   }
-  const MAX = max ?? {
-    width: 500, // 容器的宽度
-  }
-  const dimensions = { width, height }
-  // if (width > height && width > MAX.width) {
-  //   dimensions.width = MAX.width
-  //   dimensions.height = (MAX.width / width) * height
-  // } else if (height === width) {
-  //   if (width <= MAX.width) {
-  //     dimensions.height = dimensions.width = height
-  //   } else {
-  //     dimensions.height = MAX.width
-  //     dimensions.width = dimensions.height
-  //   }
-  // }
-
-  if (width === height) {
-    if (width <= MAX.width) {
-      // pass
-    } else {
-      dimensions.height = MAX.width
-      dimensions.width = MAX.width
+  if (ratio < 1) {
+    return {
+      width: width * ratio,
+      height: height * ratio,
     }
-  } else if (width >= MAX.width) {
-    dimensions.height = (MAX.width / width) * height
-    dimensions.width = MAX.width
   }
-
-  return dimensions
+  return {
+    width,
+    height,
+  }
 }
 // FIXME render problem
 const getContainerSize = () => {
-  const $0 = document.getElementById('article-wrap')
-  const computedStyle = getComputedStyle($0!)!
-  let elementWidth = $0!.clientWidth
-  elementWidth -=
-    parseFloat(computedStyle.paddingLeft) +
-    parseFloat(computedStyle.paddingRight)
-  return elementWidth
+  return document.getElementById('write')?.getBoundingClientRect().width
 }
 const Image: () => FC<{ src: string; alt?: string }> = () => {
   let index = 0
-  return function RenderImage({ src, alt }) {
-    const images = useContext(imageSizesContext) || []
+  return observer(function RenderImage({ src, alt }) {
+    const images = useContext(ImageSizesContext) || []
     const [cal, setCal] = useState({} as { height?: number; width?: number })
-    const maxWidth = typeof document !== 'undefined' && getContainerSize()
-
+    const { appStore } = useStore()
     useEffect(() => {
-      const size = images[index++] || { height: undefined, width: undefined }
-      const max = {
-        width: (maxWidth ?? getContainerSize()) || 500,
-        // width: 10000,
-        height: Infinity,
-      }
-      const cal = calculateDimensions(size?.width, size?.height, max)
+      if (!appStore.loading) {
+        const initImageSize = () => {
+          const maxWidth = typeof document !== 'undefined' && getContainerSize()
+          const size = images[index++] || {
+            height: undefined,
+            width: undefined,
+          }
+          const max = {
+            width: (maxWidth ?? getContainerSize()) || 500,
 
-      setCal(cal)
-    }, [images, maxWidth])
+            height: Infinity,
+          }
+          if (!(size.width && size.height)) {
+            return
+          }
+          const cal = calculateDimensions(size.width, size.height, max)
+
+          setCal(cal)
+        }
+
+        initImageSize()
+      }
+    }, [images, appStore.loading])
 
     if (typeof document === 'undefined') {
       return <img src={src} alt={alt} />
@@ -185,9 +182,10 @@ const Image: () => FC<{ src: string; alt?: string }> = () => {
         alt={alt}
         height={cal.height}
         width={cal.width}
+        style={{ padding: '1rem 0' }}
       />
     )
-  }
+  })
 }
 
 const RenderSpoiler: FC<{ value: string }> = (props) => {

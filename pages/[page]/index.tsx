@@ -8,7 +8,7 @@ import { NextPage } from 'next'
 import { useEffect } from 'react'
 import RemoveMarkdown from 'remove-markdown'
 import { Rest } from 'utils/api'
-import { imageSizesContext } from '../../common/context/ImageSizes'
+import { ImageSizesContext } from '../../common/context/ImageSizes'
 import { Seo } from '../../components/SEO'
 
 const Page: NextPage<PageRespDto> = (props) => {
@@ -39,9 +39,9 @@ const Page: NextPage<PageRespDto> = (props) => {
         title={title}
         description={RemoveMarkdown(text).slice(0, 100).replace('\n', '')}
       />
-      <imageSizesContext.Provider value={props.data.images}>
+      <ImageSizesContext.Provider value={props.data.images}>
         <Markdown value={text} escapeHtml={false} showTOC />
-      </imageSizesContext.Provider>
+      </ImageSizesContext.Provider>
 
       <CommentLazy
         {...{

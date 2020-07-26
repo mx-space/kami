@@ -19,7 +19,7 @@ import { PostResModel, PostSingleDto } from 'models/post'
 import { NextPage, NextPageContext } from 'next/'
 import { useEffect, useState } from 'react'
 import { Rest } from 'utils/api'
-import { imageSizesContext } from '../../../common/context/ImageSizes'
+import { ImageSizesContext } from '../../../common/context/ImageSizes'
 import { Copyright, CopyrightProps } from '../../../components/Copyright'
 import { Seo } from '../../../components/SEO'
 import configs from '../../../configs'
@@ -130,9 +130,9 @@ export const PostView: NextPage<PostResModel> = (props) => {
       />
 
       <OutdateNotice time={props.modified} />
-      <imageSizesContext.Provider value={props.images}>
+      <ImageSizesContext.Provider value={props.images}>
         <Markdown value={text} escapeHtml={false} showTOC={true} />
-      </imageSizesContext.Provider>
+      </ImageSizesContext.Provider>
       {props.copyright ? <Copyright {...copyrightInfo} /> : null}
       <Action {...actions} />
 
