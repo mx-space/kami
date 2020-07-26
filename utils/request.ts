@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-07 16:04:24
- * @LastEditTime: 2020-07-25 22:24:50
+ * @LastEditTime: 2020-07-26 21:28:33
  * @LastEditors: Innei
  * @FilePath: /mx-web/utils/request.ts
  * @MIT
@@ -10,6 +10,7 @@
 import { message } from 'antd'
 import axios, { AxiosError } from 'axios'
 import { getToken } from './auth'
+import { isClientSide, isServerSide } from './utils'
 const service = axios.create({
   baseURL: process.env.APIURL || '/api',
   // withCredentials: true,
@@ -40,17 +41,35 @@ service.interceptors.response.use(
     return res
   },
   (error: AxiosError<Record<string, any> | undefined>) => {
-    if (!error.response) {
-      return Promise.reject({
-        statusCode: 500,
-        data: '发生未知错误',
-      })
-    }
-    if (typeof document !== 'undefined') {
-      if (error.response.status === 408 || error.code === 'ECONNABORTED') {
-        return message.error('连接超时, 请检查一下网络哦!')
+    if (
+      !error.response ||
+      error.response.status === 408 ||
+      error.code === 'ECONNABORTED'
+    ) {
+      const next = ({
+        data,
+        statusCode,
+      }: {
+        data?: string
+        statusCode?: number
+      }) => {
+        if (typeof document !== 'undefined') {
+          data && message.error(data)
+        }
+        Promise.reject({
+          statusCode,
+          data,
+        })
       }
 
+      return next({
+        statusCode: 408,
+        data: isServerSide()
+          ? '上游服务器连接超时'
+          : '连接超时, 请检查一下网络哦!',
+      })
+    }
+    if (isClientSide()) {
       if (error.response.data?.message) {
         if (Array.isArray(error.response.data.message)) {
           error.response.data.message.map((m) => {
@@ -63,8 +82,8 @@ service.interceptors.response.use(
     }
 
     return Promise.reject({
-      statusCode: error.response.status || 408,
-      data: error.response.data || '请求超时',
+      statusCode: error.response.status,
+      data: error.response.data,
     })
   },
 )

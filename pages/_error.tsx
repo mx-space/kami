@@ -1,10 +1,9 @@
 // @ts-nocheck
-import { useRouter } from 'next/router'
-import { NextPage } from 'next'
-import sample from 'lodash/sample'
-
 import * as Sentry from '@sentry/node'
+import sample from 'lodash/sample'
+import { NextPage } from 'next'
 import NextErrorComponent from 'next/error'
+import { useRouter } from 'next/router'
 
 const errorToText = (statusCode: number) => {
   switch (statusCode) {
@@ -14,9 +13,13 @@ const errorToText = (statusCode: number) => {
       return '不要做一些不允许的事情啦'
     case 401:
       return '这是主人的小秘密哦, 你是我的主人吗'
+    case 408:
+      return '请求超时'
     case 406:
     case 418:
       return '茶壶出现错误.'
+
+    case 500:
     default:
       return '抱歉, 出了点小问题'
   }
@@ -35,12 +38,13 @@ const _Error: NextPage<{ statusCode: number; hasGetInitialPropsRun; err }> = ({
   }
 
   const router = useRouter()
+
   return (
     <div className="error">
       <div className="error_wrap">
         <h1>{statusCode}</h1>
         <div className="desc">
-          <h2>{errorToText(statusCode)}</h2>
+          <h2>{err?.message ?? errorToText(statusCode)}</h2>
         </div>
       </div>
       <div style={{ marginTop: '20px' }}>
@@ -51,7 +55,7 @@ const _Error: NextPage<{ statusCode: number; hasGetInitialPropsRun; err }> = ({
         >
           回到首页
         </button>
-        <button className={'btn yellow'} onClick={() => location.reload()}>
+        <button className={'btn yellow'} onClick={() => router.reload()}>
           刷新
         </button>
       </div>
