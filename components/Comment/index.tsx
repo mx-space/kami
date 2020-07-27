@@ -1,35 +1,35 @@
 /*
  * @Author: Innei
  * @Date: 2020-07-01 19:25:29
- * @LastEditTime: 2020-07-27 16:12:27
+ * @LastEditTime: 2020-07-27 19:21:56
  * @LastEditors: Innei
  * @FilePath: /mx-web/components/Comment/index.tsx
  * @Coding with Love
  */
 
 import { message } from 'antd'
-import { Pagination } from '../Pagination'
+import { observer } from 'mobx-react'
 import { PagerModel } from 'models/base'
 import { CommentModel, CommentPager } from 'models/comment'
 import {
   createContext,
   FC,
-  useEffect,
-  useState,
-  useCallback,
   Fragment,
+  useCallback,
+  useEffect,
   useMemo,
+  useState,
 } from 'react'
 import LazyLoad from 'react-lazyload'
 import { Rest } from 'utils/api'
+import { useStore } from '../../common/store'
+import { flattenChildren } from '../../utils'
+import { Pagination } from '../Pagination'
 import CommentBox from './box'
 import Comment from './comment'
 import styles from './index.module.scss'
-import { useStore } from '../../common/store'
-import { observer } from 'mobx-react'
 import { CommentLoading } from './loding'
 
-import { flattenChildren } from '../../utils'
 export type CommentType = 'Note' | 'Post' | 'Page'
 
 export const CommentContext = createContext({
@@ -53,6 +53,14 @@ interface CommentWrapProps {
   id: string
   allowComment: boolean
 }
+
+const commentsCache = {
+  id: null! as string,
+  data: [] as any[],
+  page: {} as PagerModel['page'],
+  timestamp: new Date(),
+}
+
 const CommentWrap: FC<CommentWrapProps> = observer((props) => {
   const { type, id, allowComment } = props
   const [comments, setComments] = useState([] as CommentModel[])
@@ -63,23 +71,44 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
     () => new Map<string, Omit<CommentModel, 'children'>>(),
     [],
   )
+  useEffect(() => {
+    commentsCache.id = null!
+  }, [id])
   const fetchComments = useCallback(
-    (page = 1, size = 10) =>
-      Rest('Comment', 'ref/' + id)
-        .gets<CommentPager>({
-          page,
-          size,
-          ts: new Date().getTime(),
-        })
-        .then(({ data, page }) => {
-          collection.clear()
-          flattenChildren(data).forEach((i) => {
-            collection.set(i._id, i)
+    (page = commentsCache.page.currentPage || 1, size = 10) => {
+      if (
+        id !== commentsCache.id ||
+        page !== commentsCache.page.currentPage ||
+        Math.abs(commentsCache.timestamp.getTime() - new Date().getTime()) >
+          3600000
+      ) {
+        Rest('Comment', 'ref/' + id)
+          .gets<CommentPager>({
+            page,
+            size,
+            ts: new Date().getTime(),
           })
+          .then(({ data, page }) => {
+            collection.clear()
+            flattenChildren(data).forEach((i) => {
+              collection.set(i._id, i)
+            })
 
-          setComments(data)
-          setPage(page)
-        }),
+            setComments(data)
+            setPage(page)
+
+            {
+              commentsCache.data = data
+              commentsCache.page = page
+              commentsCache.id = id
+              commentsCache.timestamp = new Date()
+            }
+          })
+      } else {
+        setComments(commentsCache.data)
+        setPage(commentsCache.page)
+      }
+    },
     [collection, id],
   )
 
@@ -126,7 +155,7 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
           debounce
           throttle
           key={id}
-          once
+          unmountIfInvisible
           placeholder={<CommentLoading />}
         >
           <Fragment>
@@ -137,15 +166,12 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
                   hideOnSinglePage
                   current={page.currentPage || 1}
                   onChange={(page) => {
-                    fetchComments(page).then(() => {
-                      setTimeout(() => {
-                        document
-                          .getElementById('comment-anchor')
-                          ?.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'center',
-                          })
-                      }, 500)
+                    document.getElementById('comment-anchor')?.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'center',
+                    })
+                    requestAnimationFrame(() => {
+                      fetchComments(page)
                     })
                   }}
                   total={page.totalPage}

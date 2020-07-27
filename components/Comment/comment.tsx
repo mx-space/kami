@@ -14,6 +14,11 @@ import { animatingClassName } from '../../layouts/NoteLayout'
 import CommentBox from './box'
 import styles from './index.module.scss'
 
+const generateColorFromMode = (
+  mode: 'bright' | 'light' | 'dark' | 'random' | undefined,
+) => {
+  return rc({ luminosity: mode, alpha: 0.28, format: 'hex' })
+}
 type AvatarProps = {
   src: string
 }
@@ -32,9 +37,9 @@ const Avatar: FC<AvatarProps> = observer(({ src }) => {
   const { appStore } = useStore()
   const randomColor = useMemo(() => {
     if (appStore.colorMode === 'dark') {
-      return rc({ luminosity: 'dark', alpha: 0.8 })
+      return generateColorFromMode('dark')
     } else {
-      return rc({ luminosity: 'bright', alpha: 0.8 })
+      return generateColorFromMode('light')
     }
   }, [appStore.colorMode])
 
@@ -65,9 +70,10 @@ function getCommentWrap<T extends { _id: string }>(comment: T) {
   )
   return $parent
 }
+
 const Comments: FC<{
   comments: CommentModel[]
-  onFetch: () => Promise<any>
+  onFetch: () => void
   id: string
 }> = memo(({ comments, onFetch: fetchComments, id }) => {
   const { refresh, collection } = useContext(CommentContext)
