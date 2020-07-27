@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-07-01 19:25:29
- * @LastEditTime: 2020-07-26 20:53:18
+ * @LastEditTime: 2020-07-27 16:12:27
  * @LastEditors: Innei
  * @FilePath: /mx-web/components/Comment/index.tsx
  * @Coding with Love
@@ -126,7 +126,7 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
           debounce
           throttle
           key={id}
-          unmountIfInvisible
+          once
           placeholder={<CommentLoading />}
         >
           <Fragment>
