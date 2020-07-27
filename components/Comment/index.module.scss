@@ -34,3 +34,23 @@
 .comment-at {
   margin-right: 12px;
 }
+
+.guest-avatar {
+  height: 39.6px;
+  width: 39.8px;
+  position: relative;
+  border-radius: 50%;
+  box-shadow: 4px 3px 20px -1px var(--gray);
+  overflow: hidden;
+  .avatar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    transition: opacity 0.5s;
+    opacity: 0;
+  }
+}

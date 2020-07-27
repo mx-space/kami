@@ -4,6 +4,7 @@
   a {
     cursor: alias;
     overflow: hidden;
+    position: relative;
   }
   a::after {
     content: '';
@@ -39,10 +40,10 @@
     top: 0;
     left: 0;
     transform: translateY(0%) scale(0);
-    background-color: var(--light-font);
+    background-color: var(--shizuku-background-color);
 
     z-index: 2;
-    color: var(--light-bg);
+    color: var(--shizuku-text-color);
     font-size: 0.26em;
     padding: 0.5em 1.2em;
     border-radius: 6px;

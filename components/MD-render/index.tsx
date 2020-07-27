@@ -110,9 +110,9 @@ const RenderLink: FC<{
     <div className={styles['link']}>
       <a href={props.href} target={'_blank'} onClick={handleRedirect}>
         {props.children}
-        {ExtendIcon}
       </a>
       <div className={styles['popup']}>{props.href}</div>
+      {ExtendIcon}
     </div>
   )
 }

@@ -1,5 +1,4 @@
 import '@openfonts/noto-sans-sc_vietnamese'
-import 'antd/es/avatar/style/index.css'
 import 'antd/es/button/style/index.css'
 import 'antd/es/comment/style/index.css'
 import 'antd/es/input/style/index.css'

@@ -1,10 +1,11 @@
-import { faUser } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Avatar, Comment, message, Popconfirm } from 'antd'
+import { Comment, message, Popconfirm } from 'antd'
 import Markdown from 'components/MD-render'
+import { observer } from 'mobx-react'
 import { CommentModel } from 'models/comment'
+import rc from 'randomcolor'
 import QueueAnim from 'rc-queue-anim'
-import { FC, memo, useContext, useEffect, useState } from 'react'
+import { FC, memo, useContext, useEffect, useMemo, useState } from 'react'
+import LazyLoad from 'react-lazyload'
 import { Rest } from 'utils/api'
 import { relativeTimeFromNow } from 'utils/time'
 import { CommentContext, minHeightProperty, openCommentMessage } from '.'
@@ -12,6 +13,47 @@ import { useStore } from '../../common/store'
 import { animatingClassName } from '../../layouts/NoteLayout'
 import CommentBox from './box'
 import styles from './index.module.scss'
+
+type AvatarProps = {
+  src: string
+}
+
+const Avatar: FC<AvatarProps> = observer(({ src }) => {
+  const [ready, setReady] = useState(false)
+
+  useEffect(() => {
+    const image = new Image()
+    image.src = src
+    image.crossOrigin = 'anonymous'
+    image.onload = () => {
+      setReady(true)
+    }
+  }, [src])
+  const { appStore } = useStore()
+  const randomColor = useMemo(() => {
+    if (appStore.colorMode === 'dark') {
+      return rc({ luminosity: 'dark', alpha: 0.8 })
+    } else {
+      return rc({ luminosity: 'bright', alpha: 0.8 })
+    }
+  }, [appStore.colorMode])
+
+  return (
+    <div
+      className={styles['guest-avatar']}
+      style={ready ? undefined : { backgroundColor: randomColor }}
+    >
+      <LazyLoad offset={250}>
+        <div
+          className={styles['avatar']}
+          style={
+            ready ? { backgroundImage: `url(${src})`, opacity: 1 } : undefined
+          }
+        ></div>
+      </LazyLoad>
+    </div>
+  )
+})
 
 function getCommentWrap<T extends { _id: string }>(comment: T) {
   const $wrap = document.getElementById('comments-wrap')
@@ -77,15 +119,7 @@ const Comments: FC<{
             {comment.author}
           </a>
         }
-        avatar={
-          <a href={url} rel={'nofollow'} target={'_blank'}>
-            <Avatar
-              icon={<FontAwesomeIcon icon={faUser} />}
-              src={comment.avatar}
-              alt={comment.author}
-            />
-          </a>
-        }
+        avatar={<Avatar src={comment.avatar} />}
         content={
           <Markdown
             value={`${

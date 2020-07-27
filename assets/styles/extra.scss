@@ -411,7 +411,9 @@ html.light img:before {
   right: calc(100vw - 322px);
 }
 // ant desion restyle
-
+.ant-comment-avatar {
+  cursor: unset;
+}
 .ant-comment-actions {
   margin-left: 0;
 }
