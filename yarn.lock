@@ -2041,10 +2041,10 @@ ansi-styles@^4.1.0:
     "@types/color-name" "^1.1.1"
     color-convert "^2.0.1"
 
-antd@4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-4.5.0.tgz#e2d4a73e9799e5296ed06f1b8ee05305a8ffba4f"
-  integrity sha512-upEc2c3Fvyeiozk7aNHdv8T/0yQTQuchUEO4/DRLKjMEwR4lqj9NRadkxYbvPXcUdFZTY/9BSPSegn28dbHPDg==
+antd@4.5.1:
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-4.5.1.tgz#c4fe51a9bb68e10735d1995ad70cd0f90426fbc8"
+  integrity sha512-9gw6pKxr28H0RlLqcHlIPbZVfosKBGDRiJCEHNT6TVzWOWfFI4EfghdGhaA3mSZb1BTnjYenmlMgaezo5hXgTg==
   dependencies:
     "@ant-design/css-animation" "^1.7.2"
     "@ant-design/icons" "^4.2.1"
