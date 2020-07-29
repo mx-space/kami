@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-04-18 16:00:58
- * @LastEditTime: 2020-07-11 11:36:25
+ * @LastEditTime: 2020-07-29 16:43:59
  * @LastEditors: Innei
  * @FilePath: /mx-web/next.config.js
  * @MIT
@@ -92,6 +92,7 @@ const configs = withSourceMaps(
             },
           ]
         },
+        granularChunks: true,
         modern: true,
       },
     }),
