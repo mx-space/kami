@@ -4,7 +4,7 @@ import sample from 'lodash/sample'
 import { NextPage } from 'next'
 import NextErrorComponent from 'next/error'
 import { useRouter } from 'next/router'
-
+import { isServerSide } from '../utils'
 const errorToText = (statusCode: number) => {
   switch (statusCode) {
     case 404:
@@ -14,11 +14,12 @@ const errorToText = (statusCode: number) => {
     case 401:
       return '这是主人的小秘密哦, 你是我的主人吗'
     case 408:
-      return '请求超时'
+      return isServerSide()
+        ? '上游服务器连接超时'
+        : '连接超时, 请检查一下网络哦!'
     case 406:
     case 418:
       return '茶壶出现错误.'
-
     case 500:
     default:
       return '抱歉, 出了点小问题'
@@ -44,7 +45,7 @@ const _Error: NextPage<{ statusCode: number; hasGetInitialPropsRun; err }> = ({
       <div className="error_wrap">
         <h1>{statusCode}</h1>
         <div className="desc">
-          <h2>{err?.message ?? errorToText(statusCode)}</h2>
+          <h2>{errorToText(statusCode)}</h2>
         </div>
       </div>
       <div style={{ marginTop: '20px' }}>
