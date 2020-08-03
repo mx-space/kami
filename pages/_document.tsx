@@ -11,7 +11,7 @@
  *
  * @Author: Innei
  * @Date: 2020-04-29 17:27:02
- * @LastEditTime: 2020-06-16 19:19:55
+ * @LastEditTime: 2020-08-03 21:57:27
  * @LastEditors: Innei
  * @FilePath: /mx-web/pages/_document.tsx
  * @MIT
@@ -50,10 +50,6 @@ export default class MyDocument extends Document<{ ua: string }> {
           <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
           <meta name="msapplication-starturl" content="/" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-          />
 
           <link
             rel="apple-touch-icon"

@@ -2,32 +2,30 @@ import { faArrowUp, faHeadphones } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { BackTop } from 'antd'
 import classNames from 'classnames'
-import { observer } from 'mobx-react'
-import { FC, useEffect, useState } from 'react'
 import { useStore } from 'common/store'
-import { EventTypes } from '../../common/socket/types'
-import observable from '../../utils/observable'
+import { observer } from 'mobx-react'
+import { FC } from 'react'
 
 export const FooterActions: FC = observer(() => {
-  const { userStore, appStore, musicStore } = useStore()
+  const { /* userStore, */ appStore, musicStore } = useStore()
   const { isOverflow } = appStore
   // const [chatShow, setChatShow] = useState(false)
-  const [newMessageCount, setCount] = useState(0)
-  useEffect(() => {
-    const handler = (data: any) => {
-      if (
-        (!userStore.isLogged && data.author === userStore.name) ||
-        data.author === userStore.username
-      ) {
-        setCount(newMessageCount + 1)
-      }
-    }
-    observable.on(EventTypes.DANMAKU_CREATE, handler)
+  // const [newMessageCount, setCount] = useState(0)
+  // useEffect(() => {
+  //   const handler = (data: any) => {
+  //     if (
+  //       (!userStore.isLogged && data.author === userStore.name) ||
+  //       data.author === userStore.username
+  //     ) {
+  //       setCount(newMessageCount + 1)
+  //     }
+  //   }
+  //   observable.on(EventTypes.DANMAKU_CREATE, handler)
 
-    return () => {
-      observable.off(EventTypes.DANMAKU_CREATE, handler)
-    }
-  }, [])
+  //   return () => {
+  //     observable.off(EventTypes.DANMAKU_CREATE, handler)
+  //   }
+  // }, [])
   return (
     <>
       <style jsx>
@@ -59,14 +57,22 @@ export const FooterActions: FC = observer(() => {
             <FontAwesomeIcon icon={faArrowUp} />
           </button>
         </BackTop>
+        {appStore.actions.map((action, i) => {
+          return (
+            <button key={i} onClick={action.onClick}>
+              {action.icon}
+            </button>
+          )
+        })}
         <button
-          onClick={(e) => {
+          onClick={() => {
             musicStore.isHide = !musicStore.isHide
             musicStore.isHide ? null : musicStore.play()
           }}
         >
           <FontAwesomeIcon icon={faHeadphones} />
         </button>
+
         {/* <button>
           <FontAwesomeIcon icon={faHeart} />
         </button> */}
