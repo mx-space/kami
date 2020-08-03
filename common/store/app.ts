@@ -3,6 +3,7 @@ import { action, computed, observable } from 'mobx'
 import { Seo } from 'models/aggregate'
 import { MenuModel, PageModel, ViewportRecord } from './types'
 import { CategoryModel } from '../../models/category'
+import { FootAction } from './types/actions'
 
 export default class AppStore {
   @observable menu: MenuModel[] = configs.menu as MenuModel[]
@@ -21,6 +22,8 @@ export default class AppStore {
     show: false,
   }
   @observable noteNid: null | number = null
+
+  @observable actions: FootAction[] = []
   @action updatePosition(direction: 'up' | 'down') {
     if (typeof document !== 'undefined') {
       this.position = document.documentElement.scrollTop
@@ -112,6 +115,16 @@ export default class AppStore {
   @action setLastestNoteNid(nid: number) {
     this.noteNid = nid
   }
+
+  @action resetActions() {
+    this.actions = []
+  }
+
+  @action setActions(actions: FootAction[]) {
+    this.resetActions()
+    this.actions.push(...actions)
+  }
+
   @computed get seo() {
     return this.config.seo || {}
   }

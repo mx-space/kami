@@ -49,6 +49,7 @@ import { isServerSide } from '../utils'
 
 import * as Sentry from '@sentry/node'
 import { UAParser } from 'ua-parser-js'
+import Head from 'next/head'
 
 if (process.env.CI !== 'true') {
   Sentry.init({
@@ -290,6 +291,12 @@ class Context extends PureComponent<Store & { data: any }> {
   render() {
     return (
       <StoreProvider value={stores}>
+        <Head>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          />
+        </Head>
         <NextSeo
           title={
             (this.props.app?.title || configs.title) +

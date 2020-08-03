@@ -1,0 +1,16 @@
+.tag {
+  padding: 1em 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 24px;
+  display: inline-block;
+  word-break: break-all;
+  cursor: pointer;
+  &:nth-child(2) {
+    margin-left: 6px;
+  }
+  &:not(:first-child):not(:last-child) {
+    margin-right: 6px;
+  }
+}

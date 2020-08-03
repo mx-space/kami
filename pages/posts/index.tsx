@@ -1,30 +1,45 @@
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { faSpinner, faTags } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { PostBlock } from 'components/PostBlock'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { PagerModel } from 'models/base'
 import { PostPagerDto, PostResModel } from 'models/post'
-import { NextPageContext } from 'next'
+import { NextPage, NextPageContext } from 'next'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useStore } from 'common/store'
 import { Rest } from 'utils/api'
 import { SEO } from '../../components/SEO'
-interface Post extends PagerModel {
+import { observer } from 'mobx-react'
+import { OverLay } from 'components/Overlay'
+import { BigTag } from 'components/Tag'
+import { QueueAnim } from 'components/Anime'
+interface PostProps extends PagerModel {
   posts: PostResModel[]
 }
 
-export default function Post({ posts, page }: Post) {
+const Post: NextPage<PostProps> = observer((props) => {
+  const { page, posts } = props
   const store = useStore()
+  const { appStore, categoryStore } = store
+  const [showTags, setShowTags] = useState(false)
   useEffect(() => {
-    store.categoryStore.fetchCategory()
-  })
-
+    categoryStore.fetchCategory()
+  }, [categoryStore])
+  useEffect(() => {
+    appStore.setActions([
+      {
+        icon: <FontAwesomeIcon icon={faTags} />,
+        onClick: () => {
+          setShowTags(true)
+        },
+      },
+    ])
+  }, [appStore])
   const router = useRouter()
   const [postList, setPosts] = useState(posts)
   const [loading, setLoading] = useState(false)
   const [pager, setPage] = useState(page)
-  // const { query } = router
 
   const fetchNextPage = async () => {
     setLoading(true)
@@ -47,6 +62,22 @@ export default function Post({ posts, page }: Post) {
   }
   return (
     <ArticleLayout>
+      {showTags && (
+        <OverLay
+          onClose={() => {
+            setShowTags(false)
+          }}
+        >
+          <QueueAnim type="scale">
+            <BigTag key={'tag-1'} tagName={'tag-1'} />
+            <BigTag key={'tag-12'} tagName={'tag-12'} />
+            <BigTag key={'tag-13'} tagName={'tag-13'} />
+            <BigTag key={'tag-14'} tagName={'tag-14'} />
+            <BigTag key={'tag-15'} tagName={'tag-15'} />
+          </QueueAnim>
+        </OverLay>
+      )}
+
       <SEO title={'博文'} />
       {/* <div className="navigation">
         <Link href={{ pathname: 'posts' }}>
@@ -87,7 +118,7 @@ export default function Post({ posts, page }: Post) {
       )}
     </ArticleLayout>
   )
-}
+})
 
 Post.getInitialProps = async (ctx: NextPageContext) => {
   const { page, year } = ctx.query
@@ -97,3 +128,5 @@ Post.getInitialProps = async (ctx: NextPageContext) => {
   })
   return { page: data.page, posts: data.data }
 }
+
+export default Post
