@@ -123,8 +123,8 @@ export default {
   homePage: 'https://innei.ren', // footer link
   menu,
   icp: {
-    name: '萌ICP备 20200520520 号',
-    url: 'https://icp.gov.moe/?keyword=20200520520',
+    name: '浙ICP备 20028356 号',
+    url: 'http://www.beian.miit.gov.cn/',
   },
   travellings: true, // 开往
   donate: 'https://afdian.net/@Innei',

@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-07-01 19:25:29
- * @LastEditTime: 2020-07-27 19:21:56
+ * @LastEditTime: 2020-08-03 10:45:00
  * @LastEditors: Innei
  * @FilePath: /mx-web/components/Comment/index.tsx
  * @Coding with Love
@@ -161,7 +161,7 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
           <Fragment>
             <Comment comments={comments} onFetch={fetchComments} id={id} />
             <div style={{ textAlign: 'center' }}>
-              {page && page.totalPage !== 0 && (
+              {page && page.totalPage !== 0 && page.total !== undefined && (
                 <Pagination
                   hideOnSinglePage
                   current={page.currentPage || 1}
