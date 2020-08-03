@@ -31,6 +31,14 @@
   flex-direction: column;
 }
 
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  line-height: 2rem;
+}
+
 .comment-at {
   margin-right: 12px;
 }
