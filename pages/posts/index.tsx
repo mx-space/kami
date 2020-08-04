@@ -1,4 +1,4 @@
-import { faSpinner, faTags } from '@fortawesome/free-solid-svg-icons'
+import { faTags } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useStore } from 'common/store'
 import { QueueAnim } from 'components/Anime'
@@ -24,6 +24,15 @@ const Post: NextPage<PostProps> = observer((props) => {
   const store = useStore()
   const { appStore, categoryStore } = store
   const [showTags, setShowTags] = useState(false)
+  const router = useRouter()
+
+  const {
+    query: { page: currentPage },
+  } = router
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [currentPage])
 
   useEffect(() => {
     categoryStore.fetchCategory()
@@ -56,30 +65,7 @@ const Post: NextPage<PostProps> = observer((props) => {
       appStore.resetActions()
     }
   }, [appStore, fetchTags, tags.length])
-  const router = useRouter()
-  const [postList, setPosts] = useState(posts)
-  const [loading, setLoading] = useState(false)
-  const [pager, setPage] = useState(page)
 
-  const fetchNextPage = async () => {
-    setLoading(true)
-    const currentPage = pager.currentPage
-    const { data, page } = await Rest('Post').gets<PostPagerDto>({
-      page: currentPage + 1,
-    })
-    setPosts(postList.concat(data))
-    setPage(page)
-    router.push(
-      '/posts/index',
-      {
-        pathname: 'posts',
-        query: { page: currentPage + 1 },
-      },
-      { shallow: true },
-    )
-
-    setLoading(false)
-  }
   const [postWithTag, setTagPost] = useState<
     Pick<
       PostSingleDto['data'],
@@ -167,7 +153,7 @@ const Post: NextPage<PostProps> = observer((props) => {
         </Link>
       </div> */}
       <article className="paul-note">
-        {postList.map((post) => {
+        {posts.map((post) => {
           const { slug, text, created, title, _id } = post
 
           return (
@@ -183,19 +169,43 @@ const Post: NextPage<PostProps> = observer((props) => {
           )
         })}
       </article>
-      {pager.hasNextPage && (
+
+      {
         <section className="paul-more">
-          <button className="btn brown" onClick={() => fetchNextPage()}>
-            {!loading ? '下一页' : <FontAwesomeIcon icon={faSpinner} />}
-          </button>
+          {page.hasPrevPage && (
+            <button
+              className="btn brown"
+              onClick={() => {
+                router.push('/posts?page=' + (page.currentPage - 1))
+              }}
+            >
+              上一页
+            </button>
+          )}
+          {page.hasNextPage && (
+            <button
+              className="btn brown"
+              style={
+                page.hasNextPage && page.hasPrevPage
+                  ? { marginLeft: '6px' }
+                  : undefined
+              }
+              onClick={() => {
+                router.push('/posts?page=' + (page.currentPage + 1))
+              }}
+            >
+              下一页
+            </button>
+          )}
         </section>
-      )}
+      }
     </ArticleLayout>
   )
 })
 
 Post.getInitialProps = async (ctx: NextPageContext) => {
   const { page, year } = ctx.query
+
   const data = await Rest('Post', '').gets<PostPagerDto>({
     page: ((page as any) as number) || 1,
     year: parseInt(year as string) || undefined,
