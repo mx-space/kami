@@ -2049,10 +2049,10 @@ ansi-styles@^4.1.0:
     "@types/color-name" "^1.1.1"
     color-convert "^2.0.1"
 
-antd@4.5.1:
-  version "4.5.1"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-4.5.1.tgz#c4fe51a9bb68e10735d1995ad70cd0f90426fbc8"
-  integrity sha512-9gw6pKxr28H0RlLqcHlIPbZVfosKBGDRiJCEHNT6TVzWOWfFI4EfghdGhaA3mSZb1BTnjYenmlMgaezo5hXgTg==
+antd@4.5.2:
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-4.5.2.tgz#0551b2999d5c9827d996b860e827974d50d87ed9"
+  integrity sha512-XDI4ywKpj2LfvvQjHxkdItzLH0zlVvm3wKHyko03BoSzYVinZ9MWap3PXraclb8xBKH8d/14BRJSGmIsvxzkfg==
   dependencies:
     "@ant-design/css-animation" "^1.7.2"
     "@ant-design/icons" "^4.2.1"
@@ -2078,11 +2078,11 @@ antd@4.5.1:
     rc-menu "~8.5.0"
     rc-notification "~4.4.0"
     rc-pagination "~2.4.1"
-    rc-picker "~1.15.0"
+    rc-picker "~1.15.1"
     rc-progress "~3.0.0"
     rc-rate "~2.8.2"
     rc-resize-observer "^0.2.3"
-    rc-select "^11.0.10"
+    rc-select "~11.0.10"
     rc-slider "~9.3.0"
     rc-steps "~4.1.0"
     rc-switch "~3.2.0"
@@ -7456,10 +7456,10 @@ rc-pagination@~2.4.1:
     "@babel/runtime" "^7.10.1"
     classnames "^2.2.1"
 
-rc-picker@~1.15.0:
-  version "1.15.0"
-  resolved "https://registry.yarnpkg.com/rc-picker/-/rc-picker-1.15.0.tgz#489b2ba83fc53c4f95b72c0593fdfea2afe8bce5"
-  integrity sha512-iGFLk/ny+odwxRLdgbW8X8jz4ZyfZVDhokUuU1oJGDJRZ3cpAKjtqZ9I7JyeTY2dpfemZBOWV6q4/Mkbuomk1g==
+rc-picker@~1.15.1:
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/rc-picker/-/rc-picker-1.15.1.tgz#b0d647f3827468f844bc95c9255436ea787d26ce"
+  integrity sha512-YW6I91R1rMDTKpWY2yYjUk3mX4ttk7l8dx5fuojGBj86TGPj0R5vh+wFoRNzOeA4qAHcRzGWGPP60HFnoxL1TA==
   dependencies:
     "@babel/runtime" "^7.10.1"
     classnames "^2.2.1"
@@ -7507,7 +7507,7 @@ rc-resize-observer@^0.2.0, rc-resize-observer@^0.2.1, rc-resize-observer@^0.2.3:
     rc-util "^5.0.0"
     resize-observer-polyfill "^1.5.1"
 
-rc-select@^11.0.10, rc-select@^11.0.4:
+rc-select@^11.0.4, rc-select@~11.0.10:
   version "11.0.11"
   resolved "https://registry.yarnpkg.com/rc-select/-/rc-select-11.0.11.tgz#97d0d88aed3f40563b0f0eee6c7cc88dfff0a98d"
   integrity sha512-7xW5U6fyjr5j6CG3/Bl0ceUKzpNDOctJiIcK1eyLYq7Va+KFB0kNFMYULHPI41m/TJJIKDCW3N08K3rd2Z2SIA==
