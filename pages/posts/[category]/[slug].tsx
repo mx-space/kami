@@ -24,7 +24,17 @@ import { Copyright, CopyrightProps } from '../../../components/Copyright'
 import { Seo } from '../../../components/SEO'
 import configs from '../../../configs'
 import { getSummaryFromMd } from '../../../utils'
+import Cookie from 'js-cookie'
 
+const ThumbsUpPrefix = 'THUMBSUP_'
+const storeThumbsUpCookie = (id: string) => {
+  const key = `${ThumbsUpPrefix}${id}`
+  Cookie.set(key, id, { expires: 1 })
+}
+const isThumbsUpBefore = (id: string) => {
+  const key = `${ThumbsUpPrefix}${id}`
+  return !!Cookie.get(key)
+}
 export const PostView: NextPage<PostResModel> = (props) => {
   const { text, title, _id } = props
   const { userStore } = useStore()
@@ -37,6 +47,7 @@ export const PostView: NextPage<PostResModel> = (props) => {
 
   useEffect(() => {
     setThumbsUp(props.count?.like || 0)
+
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [props])
   useEffect(() => {
@@ -48,11 +59,17 @@ export const PostView: NextPage<PostResModel> = (props) => {
         },
         {
           icon: faCalendar,
-          name: dayjs(props.created).format('YYYY年MM月DD日 H:mm'),
+          name: dayjs(props.created).format('YY/MM/DD H:mm'),
         },
         {
           icon: faHashtag,
-          name: props.category.name,
+          name:
+            props.category.name +
+            `${
+              props.tags && props.tags.length > 0
+                ? '[' + props.tags.join('-') + ']'
+                : ''
+            }`,
         },
         {
           icon: faBookOpen,
@@ -69,10 +86,10 @@ export const PostView: NextPage<PostResModel> = (props) => {
         },
         {
           icon: faThumbsUp,
-          name: thumbsUp || '对我有帮助',
-          color: thumbsUp - 1 === props.count.like ? '#2980b9' : undefined,
+          name: thumbsUp || '',
+          color: isThumbsUpBefore(props._id) ? '#f1c40f' : undefined,
           callback: () => {
-            if (thumbsUp - 1 === props.count.like) {
+            if (isThumbsUpBefore(props._id)) {
               return message.error('你已经支持过啦!')
             }
             Rest('Post')
@@ -81,8 +98,9 @@ export const PostView: NextPage<PostResModel> = (props) => {
                   id: props._id,
                 },
               })
-              .then((_) => {
+              .then(() => {
                 message.success('感谢支持!')
+                storeThumbsUpCookie(props._id)
                 setThumbsUp(thumbsUp + 1)
               })
           },

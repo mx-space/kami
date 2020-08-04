@@ -1,9 +1,9 @@
 /*
  * @Author: Innei
  * @Date: 2020-04-16 19:29:33
- * @LastEditTime: 2020-05-31 14:38:06
+ * @LastEditTime: 2020-08-04 12:48:25
  * @LastEditors: Innei
- * @FilePath: /mx-web/models/dto/post.ts
+ * @FilePath: /mx-web/models/post.ts
  * @Coding with Love
  */
 
@@ -28,6 +28,7 @@ export interface PostResModel {
     read: number
     like: number
   }
+  tags: string[] | null
   images: ImageSizeRecord[]
 }
 
