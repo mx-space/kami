@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-14 21:19:46
- * @LastEditTime: 2020-06-14 21:20:45
+ * @LastEditTime: 2020-08-04 12:59:01
  * @LastEditors: Innei
  * @FilePath: /mx-web/common/store/category.ts
  * @Coding with Love
@@ -24,7 +24,11 @@ export default class CategoryStore {
     this.categories = categories
   }
   @action async updateCategory() {
-    const { data } = await Rest('Category').gets<CategoriesResp>()
+    const { data } = await Rest('Category').get<CategoriesResp>(undefined, {
+      params: {
+        type: 'Category',
+      },
+    })
     this.categories.push(...data)
   }
 

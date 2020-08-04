@@ -26,11 +26,6 @@ export default memo(function Action(props: ActionProps) {
 
   return (
     <>
-      <style jsx>{`
-        .note-action {
-          min-height: 1rem;
-        }
-      `}</style>
       <div className="note-inform" {...rest}>
         {informs.map((inform, index) => {
           return (
@@ -61,7 +56,7 @@ export default memo(function Action(props: ActionProps) {
           </a>
         )}
       </div>
-      <div className="note-action">
+      <div className="note-action" style={{ minHeight: '1rem' }}>
         {actions.map((action) => {
           return (
             <span

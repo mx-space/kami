@@ -7,10 +7,19 @@
   display: inline-block;
   word-break: break-all;
   cursor: pointer;
+  transition: transform 0.1s ease-in;
+  color: inherit;
+  margin-bottom: 6px;
   &:nth-child(2) {
     margin-left: 6px;
   }
   &:not(:first-child):not(:last-child) {
     margin-right: 6px;
+  }
+  &:hover {
+    color: inherit;
+  }
+  &:active {
+    transform: scale(0.8);
   }
 }

@@ -1,19 +1,20 @@
 import { faSpinner, faTags } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { PostBlock } from 'components/PostBlock'
-import { ArticleLayout } from 'layouts/ArticleLayout'
-import { PagerModel } from 'models/base'
-import { PostPagerDto, PostResModel } from 'models/post'
-import { NextPage, NextPageContext } from 'next'
-import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
 import { useStore } from 'common/store'
+import { QueueAnim } from 'components/Anime'
+import { OverLay } from 'components/Overlay'
+import { PostBlock } from 'components/PostBlock'
+import { BigTag } from 'components/Tag'
+import { ArticleLayout } from 'layouts/ArticleLayout'
+import { observer } from 'mobx-react'
+import { PagerModel } from 'models/base'
+import { PostPagerDto, PostResModel, PostSingleDto } from 'models/post'
+import { NextPage, NextPageContext } from 'next'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Rest } from 'utils/api'
 import { SEO } from '../../components/SEO'
-import { observer } from 'mobx-react'
-import { OverLay } from 'components/Overlay'
-import { BigTag } from 'components/Tag'
-import { QueueAnim } from 'components/Anime'
 interface PostProps extends PagerModel {
   posts: PostResModel[]
 }
@@ -23,19 +24,38 @@ const Post: NextPage<PostProps> = observer((props) => {
   const store = useStore()
   const { appStore, categoryStore } = store
   const [showTags, setShowTags] = useState(false)
+
   useEffect(() => {
     categoryStore.fetchCategory()
   }, [categoryStore])
+
+  const [tags, setTags] = useState<{ _id: string; name: string }[]>([])
+  const fetchTags = useCallback(async () => {
+    const { data: tags } = (await Rest('Category').get(undefined, {
+      params: {
+        type: 'Tag',
+      },
+    })) as any
+    setTags(tags)
+  }, [])
+
   useEffect(() => {
     appStore.setActions([
       {
         icon: <FontAwesomeIcon icon={faTags} />,
         onClick: () => {
+          if (tags.length == 0) {
+            fetchTags()
+          }
           setShowTags(true)
         },
       },
     ])
-  }, [appStore])
+
+    return () => {
+      appStore.resetActions()
+    }
+  }, [appStore, fetchTags, tags.length])
   const router = useRouter()
   const [postList, setPosts] = useState(posts)
   const [loading, setLoading] = useState(false)
@@ -60,23 +80,79 @@ const Post: NextPage<PostProps> = observer((props) => {
 
     setLoading(false)
   }
+  const [postWithTag, setTagPost] = useState<
+    Pick<
+      PostSingleDto['data'],
+      '_id' | 'title' | 'slug' | 'created' | 'category'
+    >[]
+  >([])
+  const fetchPostsWithTag = useCallback(async (tagName: string) => {
+    setTagPost(null!)
+    const { data: posts } = (await Rest('Category').get(tagName, {
+      params: {
+        tag: 'true',
+      },
+    })) as any
+
+    setTagPost(posts)
+  }, [])
+
   return (
     <ArticleLayout>
-      {showTags && (
-        <OverLay
-          onClose={() => {
-            setShowTags(false)
-          }}
-        >
+      <OverLay
+        show={showTags}
+        onClose={() => {
+          setShowTags(false)
+          setTagPost([])
+        }}
+      >
+        <div style={{ maxWidth: '50vw' }}>
           <QueueAnim type="scale">
-            <BigTag key={'tag-1'} tagName={'tag-1'} />
-            <BigTag key={'tag-12'} tagName={'tag-12'} />
-            <BigTag key={'tag-13'} tagName={'tag-13'} />
-            <BigTag key={'tag-14'} tagName={'tag-14'} />
-            <BigTag key={'tag-15'} tagName={'tag-15'} />
+            {tags.map(({ _id, name }) => {
+              return (
+                <BigTag
+                  tagName={name}
+                  key={_id}
+                  onClick={() => {
+                    fetchPostsWithTag(name)
+                  }}
+                />
+              )
+            })}
           </QueueAnim>
-        </OverLay>
-      )}
+          <div className="tags-posts">
+            <article className="post-content paul-note article-list">
+              <ul>
+                <QueueAnim delay={700} forcedReplay appear>
+                  {postWithTag ? (
+                    postWithTag.map((child) => {
+                      const date = new Date(child.created)
+
+                      return (
+                        <li key={child._id}>
+                          <Link
+                            href={'/posts/[category]/[slug]'}
+                            as={`/posts/${child.category.slug}/${child.slug}`}
+                          >
+                            <a>{child.title}</a>
+                          </Link>
+                          <span className={'meta'}>
+                            {(date.getMonth() + 1).toString().padStart(2, '0')}/
+                            {date.getDate().toString().padStart(2, '0')}/
+                            {date.getFullYear()}
+                          </span>
+                        </li>
+                      )
+                    })
+                  ) : (
+                    <span>载入中.</span>
+                  )}
+                </QueueAnim>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </OverLay>
 
       <SEO title={'博文'} />
       {/* <div className="navigation">
@@ -90,7 +166,6 @@ const Post: NextPage<PostProps> = observer((props) => {
           <a className="active">2019</a>
         </Link>
       </div> */}
-
       <article className="paul-note">
         {postList.map((post) => {
           const { slug, text, created, title, _id } = post
@@ -108,7 +183,6 @@ const Post: NextPage<PostProps> = observer((props) => {
           )
         })}
       </article>
-
       {pager.hasNextPage && (
         <section className="paul-more">
           <button className="btn brown" onClick={() => fetchNextPage()}>

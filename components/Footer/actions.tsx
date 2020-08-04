@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { BackTop } from 'antd'
 import classNames from 'classnames'
 import { useStore } from 'common/store'
+import { QueueAnim } from 'components/Anime'
 import { observer } from 'mobx-react'
 import { FC } from 'react'
 
@@ -57,13 +58,16 @@ export const FooterActions: FC = observer(() => {
             <FontAwesomeIcon icon={faArrowUp} />
           </button>
         </BackTop>
-        {appStore.actions.map((action, i) => {
-          return (
-            <button key={i} onClick={action.onClick}>
-              {action.icon}
-            </button>
-          )
-        })}
+        <QueueAnim type="scale" leaveReverse forcedReplay>
+          {appStore.actions.map((action, i) => {
+            return (
+              <button key={i} onClick={action.onClick}>
+                {action.icon}
+              </button>
+            )
+          })}
+        </QueueAnim>
+
         <button
           onClick={() => {
             musicStore.isHide = !musicStore.isHide
