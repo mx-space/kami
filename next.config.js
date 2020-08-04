@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-04-18 16:00:58
- * @LastEditTime: 2020-07-29 16:43:59
+ * @LastEditTime: 2020-08-04 15:43:05
  * @LastEditors: Innei
  * @FilePath: /mx-web/next.config.js
  * @MIT
@@ -79,19 +79,19 @@ const configs = withSourceMaps(
         ...env,
       },
       assetPrefix: isProd ? env.ASSETPREFIX || '' : '',
+      async rewrites() {
+        return [
+          { source: '/sitemap.xml', destination: '/api/sitemap' },
+          { source: '/feed', destination: '/api/feed' },
+          { source: '/rss', destination: '/api/feed' },
+          { source: '/atom.xml', destination: '/api/feed' },
+          {
+            source: '/service-worker.js',
+            destination: '/_next/static/service-worker.js',
+          },
+        ]
+      },
       experimental: {
-        async rewrites() {
-          return [
-            { source: '/sitemap.xml', destination: '/api/sitemap' },
-            { source: '/feed', destination: '/api/feed' },
-            { source: '/rss', destination: '/api/feed' },
-            { source: '/atom.xml', destination: '/api/feed' },
-            {
-              source: '/service-worker.js',
-              destination: '/_next/static/service-worker.js',
-            },
-          ]
-        },
         granularChunks: true,
         modern: true,
       },
