@@ -1,7 +1,7 @@
 ###
 # @Author: Innei
 # @Date: 2020-05-10 10:35:55
-# @LastEditTime: 2020-07-29 16:43:18
+# @LastEditTime: 2020-08-04 19:29:11
 # @LastEditors: Innei
 # @FilePath: /mx-web/build.sh
 # @Copyright
@@ -10,7 +10,7 @@
 set -e
 export NODE_OPTIONS="--max_old_space_size=512"
 git pull
-yarn --ignore-engines
+yarn
 rm -r .next
 yarn build
 cd .next

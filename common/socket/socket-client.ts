@@ -1,9 +1,9 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-23 13:18:30
- * @LastEditTime: 2020-05-29 20:28:25
+ * @LastEditTime: 2020-08-05 10:13:23
  * @LastEditors: Innei
- * @FilePath: /mx-web/socket/socket-client.ts
+ * @FilePath: /mx-web/common/socket/socket-client.ts
  * @MIT
  */
 
@@ -21,7 +21,8 @@ export class SocketClient {
         timeout: 10000,
         reconnectionDelay: 3000,
         autoConnect: false,
-        forceNew: true,
+        reconnectionAttempts: 3,
+        transports: ['websocket'],
       },
     )
   }
@@ -52,7 +53,7 @@ export class SocketClient {
     eventHandler(type, data)
   }
   emit(event: EventTypes, payload: any) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       if (this.socket && this.socket.connected) {
         this.socket.emit(event, payload, (payload) => {
           resolve(payload)
