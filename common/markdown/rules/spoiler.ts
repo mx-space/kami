@@ -9,7 +9,7 @@
 import type { Eat, Parser } from 'remark-parse'
 
 function tokenizeSpoiler(eat: Eat, value: string, silent?: boolean): any {
-  const match = /\|\|(.*)\|\|/.exec(value)
+  const match = /\|\|(.*?)\|\|/.exec(value)
 
   if (match) {
     if (silent) {

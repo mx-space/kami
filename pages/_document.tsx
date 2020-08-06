@@ -11,7 +11,7 @@
  *
  * @Author: Innei
  * @Date: 2020-04-29 17:27:02
- * @LastEditTime: 2020-08-03 21:57:27
+ * @LastEditTime: 2020-08-05 12:52:14
  * @LastEditors: Innei
  * @FilePath: /mx-web/pages/_document.tsx
  * @MIT
@@ -38,7 +38,7 @@ export default class MyDocument extends Document<{ ua: string }> {
       <html>
         <Head lang={'zh-cn'}>
           <meta charSet="UTF-8" />
-          <link rel="manifest" href="manifest.json" />
+          <link rel="manifest" href="/manifest.json" />
 
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
