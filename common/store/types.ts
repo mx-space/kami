@@ -8,6 +8,7 @@ import SocialStore from './social'
 import UserStore from './user'
 import GatewayStore from './gateway'
 import { UrlObject } from 'url'
+import ActionStore from './action'
 
 export declare enum LayoutType {
   Post,
@@ -57,4 +58,6 @@ export interface Stores {
   categoryStore: CategoryStore
   musicStore: MusicStore
   gatewayStore: GatewayStore
+
+  actionStore: ActionStore
 }

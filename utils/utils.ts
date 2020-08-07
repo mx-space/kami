@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-20 20:51:31
- * @LastEditTime: 2020-07-21 16:26:55
+ * @LastEditTime: 2020-08-07 17:05:35
  * @LastEditors: Innei
  * @FilePath: /mx-web/utils/utils.ts
  * @Coding with Love
@@ -77,4 +77,22 @@ export function flattenChildren<T extends { children: T[] }>(
       arr.concat([{ ...rest }], flattenChildren(children, level + 1)),
     [],
   )
+}
+
+export function _uuid() {
+  let d = Date.now()
+  if (
+    typeof performance !== 'undefined' &&
+    typeof performance.now === 'function'
+  ) {
+    d += performance.now() //use high-precision timer if available
+  }
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    const r = (d + Math.random() * 16) % 16 | 0
+    d = Math.floor(d / 16)
+    return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16)
+  })
+}
+export class UUID {
+  public uuid = _uuid()
 }

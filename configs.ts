@@ -1,52 +1,52 @@
 import { faGithub, faQq, faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { faClock } from '@fortawesome/free-regular-svg-icons'
+import { faDotCircle } from '@fortawesome/free-regular-svg-icons'
 import {
-  faBook,
   faBookOpen,
+  faCircleNotch,
   faComments,
+  faFeatherAlt,
   faFlask,
-  faHome,
+  faGlasses,
+  faHistory,
   faMusic,
-  faPen,
-  faStar,
   faTv,
   faUserFriends,
 } from '@fortawesome/free-solid-svg-icons'
 import { MenuModel, SocialLinkModel } from 'common/store/types'
 const menu: MenuModel[] = [
   {
-    title: '主页',
+    title: '源',
     path: '/',
     type: 'Home',
-    icon: faHome,
+    icon: faDotCircle,
     subMenu: [],
   },
   {
-    title: '博文',
+    title: '文',
     path: '/posts',
     type: 'Post',
     subMenu: [],
-    icon: faBook,
+    icon: faGlasses,
   },
   {
-    title: '生活',
+    title: '记',
     type: 'Note',
     path: '/notes',
-    icon: faPen,
+    icon: faFeatherAlt,
   },
   {
-    title: '说说',
+    title: '言',
     path: '/says',
     icon: faComments,
   },
   {
-    title: '时间线',
-    icon: faClock,
+    title: '览',
+    icon: faHistory,
     path: '/timeline',
     subMenu: [
       {
         title: '生活',
-        icon: faPen,
+        icon: faFeatherAlt,
         path: '/timeline?type=note',
       },
       {
@@ -57,13 +57,13 @@ const menu: MenuModel[] = [
     ],
   },
   {
-    title: '朋友们',
+    title: '友',
     icon: faUserFriends,
     path: '/friends',
   },
   {
-    title: '更多',
-    icon: faStar,
+    title: '趣',
+    icon: faCircleNotch,
     path: '/favorite/music',
     subMenu: [
       {

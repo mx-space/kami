@@ -184,6 +184,9 @@ pre {
   padding: 0px;
 }
 // paul restyle
+.news-article h4 {
+  backdrop-filter: blur(5px);
+}
 .is-note #write {
   font-family: 'Noto Serif SC', 'PingFang SC', 'Hiragino Sans GB', 'Heiti SC',
     'Microsoft YaHei', 'WenQuanYi Micro Hei';

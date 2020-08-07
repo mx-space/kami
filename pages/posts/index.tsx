@@ -12,7 +12,8 @@ import { PostPagerDto, PostResModel, PostSingleDto } from 'models/post'
 import { NextPage, NextPageContext } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { UUID } from 'utils'
 import { Rest } from 'utils/api'
 import { SEO } from '../../components/SEO'
 interface PostProps extends PagerModel {
@@ -22,7 +23,7 @@ interface PostProps extends PagerModel {
 const Post: NextPage<PostProps> = observer((props) => {
   const { page, posts } = props
   const store = useStore()
-  const { appStore, categoryStore } = store
+  const { appStore, actionStore, categoryStore } = store
   const [showTags, setShowTags] = useState(false)
   const router = useRouter()
 
@@ -47,24 +48,26 @@ const Post: NextPage<PostProps> = observer((props) => {
     })) as any
     setTags(tags)
   }, [])
-
+  const actionsUUID = useMemo(() => new UUID(), [])
   useEffect(() => {
-    appStore.setActions([
-      {
-        icon: <FontAwesomeIcon icon={faTags} />,
-        onClick: () => {
-          if (tags.length == 0) {
-            fetchTags()
-          }
-          setShowTags(true)
-        },
+    actionStore.removeActionByUUID(actionsUUID)
+    const action = {
+      icon: <FontAwesomeIcon icon={faTags} />,
+      id: actionsUUID,
+      onClick: () => {
+        if (tags.length == 0) {
+          fetchTags()
+        }
+        setShowTags(true)
       },
-    ])
+    }
+
+    actionStore.appendActions(action)
 
     return () => {
-      appStore.resetActions()
+      actionStore.removeActionByUUID(actionsUUID)
     }
-  }, [appStore, fetchTags, tags.length])
+  }, [actionStore, actionsUUID, fetchTags, tags.length])
 
   const [postWithTag, setTagPost] = useState<
     Pick<

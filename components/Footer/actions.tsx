@@ -8,7 +8,7 @@ import { observer } from 'mobx-react'
 import { FC } from 'react'
 
 export const FooterActions: FC = observer(() => {
-  const { /* userStore, */ appStore, musicStore } = useStore()
+  const { /* userStore, */ appStore, actionStore, musicStore } = useStore()
   const { isOverflow } = appStore
   // const [chatShow, setChatShow] = useState(false)
   // const [newMessageCount, setCount] = useState(0)
@@ -58,8 +58,8 @@ export const FooterActions: FC = observer(() => {
             <FontAwesomeIcon icon={faArrowUp} />
           </button>
         </BackTop>
-        <QueueAnim type="scale" leaveReverse forcedReplay>
-          {appStore.actions.map((action, i) => {
+        <QueueAnim type="scale" leaveReverse ease="easeInQuart" forcedReplay>
+          {actionStore.actions.map((action, i) => {
             return (
               <button key={i} onClick={action.onClick}>
                 {action.icon}

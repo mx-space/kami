@@ -16,6 +16,7 @@ import SocialStore from './social'
 import { Stores } from './types'
 import UserStore from './user'
 import GatewayStore from './gateway'
+import ActionStore from './action'
 export const gatewayStore = new GatewayStore()
 export const userStore = new UserStore()
 export default function createMobxStores(): Stores {
@@ -27,6 +28,7 @@ export default function createMobxStores(): Stores {
     categoryStore: new CategoryStore(),
     musicStore: new MusicStore(),
     gatewayStore,
+    actionStore: new ActionStore(),
   }
 }
 

@@ -4,7 +4,7 @@ import { Footer } from 'components/Footer'
 import Header from 'components/Header'
 import { observer } from 'mobx-react'
 import dynamic from 'next/dynamic'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { NoticePanel } from '../components/Notice'
 import { Switch } from '../components/LampSwitch'
 import { useStore } from '../common/store'
@@ -19,13 +19,15 @@ import {
   faUbuntu,
   faWindows,
 } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { UUID } from 'utils'
 
 const APlayer = dynamic(() => import('components/Player'), {
   ssr: false,
 })
 
 export const BasicLayout = observer(({ children }) => {
-  const { appStore } = useStore()
+  const { appStore, actionStore } = useStore()
   const { autoToggleColorMode, colorMode } = appStore
   const [showNotice, setNotice] = useState(false)
   const [tip, setTip] = useState({
@@ -99,6 +101,36 @@ export const BasicLayout = observer(({ children }) => {
     }
     setNotice(!showNotice)
   }, [appStore, autoToggleColorMode, colorMode, showNotice])
+  const actionUUID = useMemo(() => {
+    return new UUID()
+  }, [])
+  useEffect(() => {
+    actionStore.removeActionByUUID(actionUUID)
+    if (appStore.viewport.mobile || appStore.viewport.pad) {
+      const action = {
+        id: actionUUID,
+        icon:
+          appStore.colorMode === 'dark' ? (
+            <FontAwesomeIcon icon={faSun} />
+          ) : (
+            <FontAwesomeIcon icon={faMoon} />
+          ),
+        onClick: handleChangeColorMode,
+      }
+      actionStore.appendActions(action)
+
+      return () => {
+        actionStore.removeAction(action)
+      }
+    }
+  }, [
+    actionStore,
+    actionUUID,
+    appStore.colorMode,
+    appStore.viewport.mobile,
+    appStore.viewport.pad,
+    handleChangeColorMode,
+  ])
   return (
     <>
       <Header />
