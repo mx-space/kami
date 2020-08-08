@@ -21,6 +21,31 @@ export interface SectionNewsProps {
   size?: 4 | 6
 }
 
+interface CardProps {
+  cover: string
+  shade?: boolean
+  title?: string
+}
+
+const Card: FC<CardProps> = (props) => {
+  const { cover, shade = true, title, children } = props
+  return (
+    <div className={styles['card-container']}>
+      <div className={styles['card-cover-wrap']}>
+        <ImageLazy src={cover} />
+      </div>
+      <div className={styles['card-header']}></div>
+      {title && (
+        <div className={styles['card-title']}>
+          <h3>{title}</h3>
+        </div>
+      )}
+      <div className={styles['card-body']}>{children}</div>
+      {shade && <div className={styles['text-shade']} />}
+    </div>
+  )
+}
+
 const SectionNews: FC<SectionNewsProps> = memo(
   forwardRef((props, ref: any) => {
     const { content, size = 6, ...rest } = props
@@ -31,9 +56,10 @@ const SectionNews: FC<SectionNewsProps> = memo(
           return (
             <div className={`col-${size} col-m-3`} key={i}>
               <Link {...pick(item, ['href', 'as'])}>
-                <a className="news-article">
-                  <ImageLazy src={item.background} alt={item.title} />
-                  <h4>{item.title}</h4>
+                <a className={styles['news-article']}>
+                  <Card cover={item.background}>
+                    <span>{item.title}</span>
+                  </Card>
                 </a>
               </Link>
             </div>
@@ -58,13 +84,10 @@ export const SectionCard: FC<SectionCardProps> = memo(
   ({ title, desc, src, onClick, href }) => {
     return (
       <div className={`col-6 col-m-3`} style={{ marginTop: '2rem' }}>
-        <a href={href} className={'news-article'} onClick={onClick}>
-          <div className={styles['mask']}></div>
-          <h2 className={styles['bt']}>{title}</h2>
-          <ImageLazy src={src} alt={title} />
-          <h4>
-            <span style={{ marginLeft: '1rem' }}>{desc}</span>
-          </h4>
+        <a className={styles['news-article']} href={href} onClick={onClick}>
+          <Card cover={src} title={title}>
+            <span>{desc}</span>
+          </Card>
         </a>
       </div>
     )

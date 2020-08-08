@@ -155,7 +155,7 @@ export const ImageLazy: FC<
           />
 
           <div
-            className="placeholder-image"
+            className={classNames('placeholder-image', props.className)}
             ref={placeholderRef}
             style={{
               height,

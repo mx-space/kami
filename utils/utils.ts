@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-20 20:51:31
- * @LastEditTime: 2020-08-07 17:05:35
+ * @LastEditTime: 2020-08-08 13:25:44
  * @LastEditors: Innei
  * @FilePath: /mx-web/utils/utils.ts
  * @Coding with Love
@@ -95,4 +95,8 @@ export function _uuid() {
 }
 export class UUID {
   public uuid = _uuid()
+
+  public equal(uuid: UUID) {
+    return uuid.uuid === this.uuid
+  }
 }

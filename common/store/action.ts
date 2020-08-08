@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-08-07 16:56:07
- * @LastEditTime: 2020-08-07 17:06:09
+ * @LastEditTime: 2020-08-08 13:26:25
  * @LastEditors: Innei
  * @FilePath: /mx-web/common/store/action.ts
  * @Coding with Love
@@ -45,7 +45,7 @@ export default class ActionStore {
   }
 
   @action removeActionByUUID(id: UUID) {
-    const index = this._actions.findIndex((i) => i.id.uuid === id.uuid)
+    const index = this._actions.findIndex((i) => id.equal(i.id))
     this.removeActionByIndex(index)
   }
   @computed get actions() {

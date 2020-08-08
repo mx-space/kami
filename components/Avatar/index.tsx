@@ -30,10 +30,10 @@ export const Avatar: FC<
           border-radius: 50%;
           overflow: hidden;
           box-shadow: 1px 2px 9px 0px rgba(0, 0, 0, 0.32);
-        }
-        img {
-          width: 100%;
-          height: auto;
+          -webkit-backface-visibility: hidden;
+          -moz-backface-visibility: hidden;
+          -webkit-transform: translate3d(0, 0, 0);
+          -moz-transform: translate3d(0, 0, 0);
         }
       `}</style>
       <a

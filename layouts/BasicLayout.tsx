@@ -120,7 +120,7 @@ export const BasicLayout = observer(({ children }) => {
       actionStore.appendActions(action)
 
       return () => {
-        actionStore.removeAction(action)
+        actionStore.removeActionByUUID(actionUUID)
       }
     }
   }, [
