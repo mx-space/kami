@@ -3,12 +3,10 @@ import 'antd/es/button/style/index.css'
 import 'antd/es/comment/style/index.css'
 import 'antd/es/input/style/index.css'
 import 'antd/es/message/style/index.css'
-
 import 'antd/es/popover/style/index.css'
-import 'kico-style'
-import 'kico-style/paul.css'
-import 'assets/styles/shizuku.scss'
-import 'assets/styles/extra.scss'
+
+// import 'kico-style'
+import 'assets/styles/main.scss'
 import 'rc-texty/assets/index.css'
 
 import 'normalize.css/normalize.css'

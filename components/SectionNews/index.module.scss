@@ -24,8 +24,9 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
-.friends {
+.friends-wrap {
   margin-top: 2rem;
+  min-height: 11.1rem;
   width: 100%;
   overflow: auto;
   white-space: nowrap;
