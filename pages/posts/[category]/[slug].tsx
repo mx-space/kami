@@ -17,7 +17,7 @@ import { ArticleLayout } from 'layouts/ArticleLayout'
 import { observer } from 'mobx-react'
 import { PostResModel, PostSingleDto } from 'models/post'
 import { NextPage, NextPageContext } from 'next/'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Rest } from 'utils/api'
 import { ImageSizesContext } from '../../../common/context/ImageSizes'
 import { Copyright, CopyrightProps } from '../../../components/Copyright'
@@ -25,6 +25,7 @@ import { Seo } from '../../../components/SEO'
 import configs from '../../../configs'
 import { getSummaryFromMd } from '../../../utils'
 import Cookie from 'js-cookie'
+import { NumberRecorder } from 'components/NumberRecorder'
 
 const ThumbsUpPrefix = 'THUMBSUP_'
 const storeThumbsUpCookie = (id: string) => {
@@ -86,7 +87,7 @@ export const PostView: NextPage<PostResModel> = (props) => {
         },
         {
           icon: faThumbsUp,
-          name: thumbsUp || '',
+          name: <NumberRecorder number={thumbsUp || 0} />,
           color: isThumbsUpBefore(props._id) ? '#f1c40f' : undefined,
           callback: () => {
             if (isThumbsUpBefore(props._id)) {

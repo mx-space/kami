@@ -50,6 +50,12 @@
   border-radius: 50%;
   box-shadow: 4px 3px 20px -1px var(--gray);
   overflow: hidden;
+  // https://stackoverflow.com/questions/42297303/css-opacity-transition-ignoring-overflowhidden-in-chrome-safari
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+
   .avatar {
     position: absolute;
     left: 0;

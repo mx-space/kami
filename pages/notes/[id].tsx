@@ -11,6 +11,7 @@ import { useStore } from 'common/store'
 import Action, { ActionProps } from 'components/Action'
 import CommentWrap from 'components/Comment'
 import Markdown from 'components/MD-render'
+import { NumberRecorder } from 'components/NumberRecorder'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { NoteLayout } from 'layouts/NoteLayout'
 import { observer } from 'mobx-react'
@@ -106,14 +107,15 @@ const NoteView: NextPage<NoteViewProps> = observer((props) => {
 
     setLike(props.data.count.like ?? 0)
   }, [props])
-
+  const [isLiked, setLiked] = useState(false)
   const actions: ActionProps = {
     informs: [],
     actions: [
       {
-        name: like !== 0 ? like : '喜欢',
+        // name: like !== 0 ? like : '喜欢',
+        name: <NumberRecorder number={like || 0} />,
         icon: faHeart,
-        color: like - 1 === data.count.like ? '#e74c3c' : undefined,
+        color: like - 1 === data.count.like || isLiked ? '#e74c3c' : undefined,
         callback: () => {
           if (like - 1 === data.count.like) {
             return message.error('你已经喜欢过啦!')
@@ -123,6 +125,9 @@ const NoteView: NextPage<NoteViewProps> = observer((props) => {
             .then(() => {
               message.success('感谢喜欢!')
               setLike(like + 1)
+            })
+            .catch(() => {
+              setLiked(true)
             })
         },
       },

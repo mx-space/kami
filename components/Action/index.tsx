@@ -8,7 +8,7 @@ import styles from './index.module.scss'
 
 type BaseAction = {
   icon: IconDefinition
-  name: string | number
+  name: string | number | JSX.Element
   color?: string
 }
 
@@ -57,10 +57,10 @@ export default memo(function Action(props: ActionProps) {
         )}
       </div>
       <div className="note-action" style={{ minHeight: '1rem' }}>
-        {actions.map((action) => {
+        {actions.map((action, i) => {
           return (
             <span
-              key={action.name}
+              key={i}
               style={{ cursor: 'pointer' }}
               onClick={action.callback}
             >

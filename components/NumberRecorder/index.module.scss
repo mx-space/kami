@@ -1,0 +1,26 @@
+.recorder {
+  height: 1rem;
+  width: 2rem;
+  max-width: 3rem;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+
+  .numbers {
+    span {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      white-space: nowrap;
+    }
+    position: absolute;
+    top: 0;
+    transform: translateY(-1rem);
+    transition: transform 0.5s;
+    line-height: 1;
+    // left: 0;
+    display: flex;
+    flex-direction: column;
+  }
+}
