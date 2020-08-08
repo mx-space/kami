@@ -20,6 +20,8 @@ const errorToText = (statusCode: number) => {
     case 406:
     case 418:
       return '茶壶出现错误.'
+    case 666:
+      return '你在干什么呀'
     case 500:
     default:
       return '抱歉, 出了点小问题'
