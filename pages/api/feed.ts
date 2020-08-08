@@ -1,24 +1,21 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-14 20:57:01
- * @LastEditTime: 2020-07-16 21:05:28
+ * @LastEditTime: 2020-08-08 16:40:43
  * @LastEditors: Innei
  * @FilePath: /mx-web/pages/api/feed.ts
  * @Coding with Love
  */
 
-import unified from 'unified'
-import markdown from 'remark-parse'
-import html from 'remark-html'
 import rules from 'common/markdown/rules'
+import { IncomingMessage, ServerResponse } from 'http'
+import html from 'remark-html'
+import markdown from 'remark-parse'
+import unified from 'unified'
+import configs from '../../configs'
+import { Rest } from '../../utils/api'
 const parser = unified().use(markdown).use(html).use(rules)
 
-import { IncomingMessage, ServerResponse } from 'http'
-import { Rest } from '../../utils/api'
-import configs from '../../configs'
-import { AggregateResp } from '../../models/aggregate'
-import { NoteModel } from '../../models/note'
-import { PostResModel } from '../../models/post'
 const encodeHTML = function (str: string) {
   return str
     .replace(/&/g, '&amp;')
@@ -54,9 +51,11 @@ const genRSS = (props: RSSProps) => {
             <id>${encodeHTML(item.link)}</id>
             <published>${item.created}</published>
             <updated>${item.modified}</updated>
-            <content type="html"><![CDATA[${parser
-              .processSync(item.text)
-              .toString()}]]>
+            <content type="html"><![CDATA[
+              <blockquote>该渲染由 unified 生成, 可能存在部分语句不通或者排版问题, 最佳体验请前往: <a href=${encodeHTML(
+                item.link,
+              )}>${encodeHTML(item.link)}</a></blockquote>
+              ${parser.processSync(item.text).toString()}]]>
             </content>
             </entry>
           `
