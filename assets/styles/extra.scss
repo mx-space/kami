@@ -441,7 +441,7 @@ html.dark {
     }
   }
   .ant-comment-actions > li > span {
-    color: var(--shizuku-text-color) !important;
+    color: var(--shizuku-text-color);
     opacity: 0.9;
   }
   .ant-message {
@@ -469,7 +469,7 @@ html.dark {
       }
     }
     .ant-comment-actions > li > span {
-      color: var(--shizuku-text-color) !important;
+      color: var(--shizuku-text-color);
       opacity: 0.9;
     }
     .ant-message {

@@ -1,8 +1,6 @@
 import '@openfonts/noto-sans-sc_vietnamese'
-import 'antd/es/button/style/index.css'
 import 'antd/es/comment/style/index.css'
 import 'antd/es/message/style/index.css'
-import 'antd/es/popover/style/index.css'
 
 // import 'kico-style'
 import 'assets/styles/main.scss'

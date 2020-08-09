@@ -1,11 +1,19 @@
-import { Comment, message, Popconfirm } from 'antd'
+import { Comment, message } from 'antd'
 import Markdown from 'components/MD-render'
 import sample from 'lodash/sample'
 import { observer } from 'mobx-react'
 import { CommentModel } from 'models/comment'
 import rc from 'randomcolor'
 import QueueAnim from 'rc-queue-anim'
-import { FC, memo, useContext, useEffect, useMemo, useState } from 'react'
+import {
+  FC,
+  Fragment,
+  memo,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import LazyLoad from 'react-lazyload'
 import { Rest } from 'utils/api'
 import { relativeTimeFromNow } from 'utils/time'
@@ -130,7 +138,7 @@ function getCommentWrap<T extends { _id: string }>(comment: T) {
 
 const Comments: FC<{
   comments: CommentModel[]
-  onFetch: () => void
+  onFetch: (page?: number, size?: number, force?: boolean) => void
   id: string
 }> = memo(({ comments, onFetch: fetchComments, id }) => {
   const { refresh, collection } = useContext(CommentContext)
@@ -140,10 +148,10 @@ const Comments: FC<{
   useEffect(() => {
     fetchComments()
   }, [fetchComments, id])
+  const [sure, setSure] = useState(false)
   if (comments.length === 0) {
     return <Empty />
   }
-
   const renderSingleComment = (
     comment: CommentModel,
     children?: JSX.Element | JSX.Element[],
@@ -162,7 +170,7 @@ const Comments: FC<{
     const handleDelete = (id: string) => async () => {
       await Rest('Comment').del(id)
       message.success('删除成功~')
-      fetchComments()
+      fetchComments(undefined, undefined, true)
     }
     const getUrl = () => {
       try {
@@ -173,6 +181,7 @@ const Comments: FC<{
       }
     }
     const url = getUrl()
+
     return (
       <Comment
         key={comment._id}
@@ -191,6 +200,8 @@ const Comments: FC<{
                 : ''
             }${comment.text}`}
             className={styles['comment']}
+            skipHtml
+            escapeHtml
             renderers={{
               commentAt: ({ value }) => {
                 const comment = collection.get(value)
@@ -283,20 +294,56 @@ const Comments: FC<{
             回复
           </span>,
           logged ? (
-            <Popconfirm
-              title="真的要删除这条评论?"
-              onConfirm={handleDelete(comment._id)}
-              okText="嗯!"
-              cancelText="手抖了"
-            >
-              <span key="comment-list-delete">删除</span>
-            </Popconfirm>
+            <Fragment>
+              {!sure && (
+                <span
+                  key="comment-list-delete"
+                  onClick={() => {
+                    setSure(true)
+                    setTimeout(() => {
+                      try {
+                        setSure(false)
+                        // eslint-disable-next-line no-empty
+                      } catch {}
+                    }, 8000)
+                  }}
+                >
+                  删除
+                </span>
+              )}
+              {sure && (
+                <span
+                  key="comment-list-delete"
+                  onClick={() => {
+                    handleDelete(comment._id)()
+                    setSure(false)
+                  }}
+                  style={{ color: '#e74c3c' }}
+                >
+                  真的需要删除?
+                </span>
+              )}
+            </Fragment>
           ) : null,
         ]}
       >
-        {replyId === comment._id && (
-          <CommentBox onSubmit={handleReply} onCancel={() => setReplyId('')} />
-        )}
+        <QueueAnim
+          appear
+          forcedReplay
+          leaveReverse
+          type={'bottom'}
+          duration={500}
+          animatingClassName={animatingClassName}
+        >
+          {replyId === comment._id && (
+            <CommentBox
+              key={'box'}
+              onSubmit={handleReply}
+              onCancel={() => setReplyId('')}
+            />
+          )}
+        </QueueAnim>
+
         {children}
       </Comment>
     )

@@ -123,7 +123,9 @@ const CommentBox: FC<{
         // @ts-ignore
         rows={4}
         required
-        placeholder={'亲亲, 留个评论好不好嘛~'}
+        placeholder={
+          !logged ? '亲亲, 留个评论好不好嘛~' : '主人, 说点什么好呢? '
+        }
         value={text}
         onChange={(e) => setText(e.target.value)}
       />

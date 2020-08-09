@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-07-01 19:25:29
- * @LastEditTime: 2020-08-03 10:45:00
+ * @LastEditTime: 2020-08-09 21:10:31
  * @LastEditors: Innei
  * @FilePath: /mx-web/components/Comment/index.tsx
  * @Coding with Love
@@ -75,8 +75,9 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
     commentsCache.id = null!
   }, [id])
   const fetchComments = useCallback(
-    (page = commentsCache.page.currentPage || 1, size = 10) => {
+    (page = commentsCache.page.currentPage || 1, size = 10, force = false) => {
       if (
+        force ||
         id !== commentsCache.id ||
         page !== commentsCache.page.currentPage ||
         Math.abs(commentsCache.timestamp.getTime() - new Date().getTime()) >
