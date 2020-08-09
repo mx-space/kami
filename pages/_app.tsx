@@ -49,7 +49,7 @@ import * as Sentry from '@sentry/node'
 import { UAParser } from 'ua-parser-js'
 import Head from 'next/head'
 
-if (process.env.CI !== 'true') {
+if (process.env.CI !== 'true' && process.env.NODE_ENV === 'production') {
   Sentry.init({
     enabled: process.env.NODE_ENV === 'production',
     dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,

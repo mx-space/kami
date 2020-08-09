@@ -17,10 +17,10 @@ const NumberRecorder: FC<NumberRecorderProps> = (props) => {
     const animate = numbersRef.current.animate(
       [
         {
-          transform: 'translateY(-1rem)',
+          transform: 'translateY(-1em)',
         },
         {
-          transform: `translateY(${number === n + 1 ? -2 : 0}rem)`,
+          transform: `translateY(${number === n + 1 ? -2 : 0}em)`,
         },
       ],
       { duration: 500, easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' },
@@ -32,7 +32,10 @@ const NumberRecorder: FC<NumberRecorderProps> = (props) => {
   }, [n, number])
 
   return (
-    <div className={styles['recorder']}>
+    <div
+      className={styles['recorder']}
+      style={{ width: `${n.toString().length}em` }}
+    >
       <div className={styles['numbers']} ref={numbersRef}>
         {n - 1 < 0 ? <span></span> : <span>{n - 1}</span>}
         <span>{n}</span>
