@@ -1,9 +1,7 @@
 {
   "extends": [
     "config:base",
-    ":automergeDigest",
     ":automergePatch",
-    ":automergeMinor",
     ":automergeTypes",
     ":automergeTesters",
     ":automergeLinters",
