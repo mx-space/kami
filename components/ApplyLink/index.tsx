@@ -1,7 +1,8 @@
 import { faUserCircle, faUser } from '@fortawesome/free-regular-svg-icons'
 import { faGlobeAsia, faPen } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Input, message } from 'antd'
+import { message } from 'antd'
+import { Input } from '../Input'
 import { FC, useCallback, useState } from 'react'
 import isURL from 'validator/lib/isURL'
 import { Rest } from '../../utils'
@@ -101,8 +102,8 @@ const ApplyForLink: FC = () => {
             setAvatar(e.target.value)
           }}
         />
-        <Input.TextArea
-          autoSize={{ minRows: 2 }}
+        <Input
+          multi
           maxLength={50}
           placeholder={'描述'}
           name={'friend-desc'}

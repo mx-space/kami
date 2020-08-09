@@ -1,16 +1,16 @@
 import { faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons'
 import { faGlobeAsia } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Input, message } from 'antd'
+import { message } from 'antd'
 import omit from 'lodash/omit'
-import { FC, memo, useEffect, useState } from 'react'
+import React, { FC, memo, useEffect, useState } from 'react'
 import isEmail from 'validator/lib/isEmail'
 import isUrl from 'validator/lib/isURL'
 import { useStore } from '../../common/store'
+import { Input } from '../Input'
 import styles from './index.module.scss'
 
 const USER_PREFIX = 'mx-space-comment-author'
-const { TextArea } = Input
 
 const CommentBox: FC<{
   onSubmit: ({ text, author, mail, url }) => any
@@ -117,11 +117,12 @@ const CommentBox: FC<{
           />
         </div>
       )}
-      <TextArea
+      <Input
+        multi
         maxLength={500}
+        // @ts-ignore
         rows={4}
         required
-        autoSize={{ minRows: 4 }}
         placeholder={'亲亲, 留个评论好不好嘛~'}
         value={text}
         onChange={(e) => setText(e.target.value)}

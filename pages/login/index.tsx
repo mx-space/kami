@@ -3,7 +3,8 @@ import { useState } from 'react'
 import { Rest } from '../../utils/api'
 import { setToken } from '../../utils/auth'
 import Router from 'next/router'
-import { Input, message } from 'antd'
+import { message } from 'antd'
+import { Input } from 'components/Input'
 import { useStore } from '../../common/store'
 
 const LoginView: NextPage = () => {
@@ -27,28 +28,26 @@ const LoginView: NextPage = () => {
       <style jsx>{`
         .login-wrap {
           position: absolute;
-
-          top: 35%;
-          left: 0;
+          top: 50%;
+          left: 50%;
           right: 0;
           text-align: center;
-          transfrom: translateY(-50%);
+          transform: translate(-50%, -50%);
+          width: 20em;
         }
         .field {
-          margin: 24px 0;
+          margin: 6px 0;
         }
       `}</style>
       <div className="login-wrap">
-        <div className={'field'}>
-          <span>用户名：</span>
+        <div className="field">
           <Input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
-        <div className={'field'}>
-          <span>密码：</span>
+        <div className="field">
           <Input
             type="password"
             value={password}
@@ -56,6 +55,7 @@ const LoginView: NextPage = () => {
             onKeyDown={(e) => (e.keyCode === 13 ? handleLogin() : '')}
           />
         </div>
+
         <button className="btn blue" onClick={() => handleLogin()}>
           登陆
         </button>

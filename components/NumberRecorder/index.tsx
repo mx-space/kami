@@ -37,7 +37,7 @@ const NumberRecorder: FC<NumberRecorderProps> = (props) => {
       style={{ width: `${n.toString().length}em` }}
     >
       <div className={styles['numbers']} ref={numbersRef}>
-        {n - 1 < 0 ? <span></span> : <span>{n - 1}</span>}
+        {n - 1 < 0 ? <span>0</span> : <span>{n - 1}</span>}
         <span>{n}</span>
         <span>{n + 1}</span>
       </div>
