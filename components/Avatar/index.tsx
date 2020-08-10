@@ -37,10 +37,17 @@ export const Avatar: FC<
         }
       `}</style>
       <a
+        style={{
+          position: 'relative',
+          display: 'inline-block',
+          height: '100%',
+          width: '100%',
+        }}
         href={props.url ?? 'javascript:;'}
         target={!props.url ? undefined : '_blank'}
       >
         <ImageLazy
+          style={{ position: 'relative', height: '100%', width: '100%' }}
           src={props.imageUrl}
           height={'100%'}
           width={'100%'}

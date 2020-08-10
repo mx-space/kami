@@ -301,7 +301,9 @@ pre {
 html.dark .lazyload-image {
   animation: blur-dark 0.8s forwards ease-in-out;
 }
-
+html.light .lazyload-image {
+  animation: blur 0.8s forwards ease-in-out;
+}
 @keyframes blur {
   from {
     filter: blur(10px);
@@ -318,6 +320,7 @@ html.dark .lazyload-image {
     filter: blur(0) brightness(0.6);
   }
 }
+
 @media screen and (max-width: 600px) {
   .paul-say {
     columns: 1;
@@ -420,21 +423,13 @@ html.light img:before {
 .ant-comment-actions {
   margin-left: 0;
 }
-.ant-input,
-.ant-input-affix-wrapper {
-  background-color: rgba(255, 255, 255, 0.274);
-}
+
 html.dark {
   :not(pre) > code {
     background-color: #3c3a3b;
     color: var(--shizuku-theme-color);
   }
-  .ant-input,
-  .ant-input-affix-wrapper {
-    background-color: var(--light-bg) !important;
-    border-color: var(--shizuku-text-color);
-    color: var(--shizuku-text-color) !important;
-  }
+
   .ant-comment-content-author-name {
     > * {
       color: var(--shizuku-text-color) !important;
@@ -457,12 +452,7 @@ html.dark {
       background-color: #3c3a3b;
       color: var(--shizuku-theme-color);
     }
-    .ant-input,
-    .ant-input-affix-wrapper {
-      background-color: var(--light-bg) !important;
-      border-color: var(--shizuku-text-color);
-      color: var(--shizuku-text-color) !important;
-    }
+
     .ant-comment-content-author-name {
       > * {
         color: var(--shizuku-text-color) !important;
