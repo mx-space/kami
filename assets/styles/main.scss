@@ -184,6 +184,7 @@ header {
 }
 .has-child {
   position: relative;
+  z-index: 1;
 }
 .has-child:hover .sub-menu {
   opacity: 1;
@@ -256,6 +257,7 @@ header {
     transform: perspective(600px) rotateX(-20deg);
     transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
     transform-origin: top;
+    z-index: 1;
   }
   .head-toggle {
     display: none;

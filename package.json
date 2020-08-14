@@ -37,6 +37,7 @@
     "@sentry/webpack-plugin": "1.12.1",
     "@zeit/next-source-maps": "0.0.4-canary.1",
     "antd": "4.5.4",
+    "animate-uri": "1.2.0",
     "apicache": "1.5.3",
     "axios": "0.19.2",
     "classnames": "2.2.6",

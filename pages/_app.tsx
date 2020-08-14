@@ -46,6 +46,9 @@ import * as Sentry from '@sentry/node'
 import { UAParser } from 'ua-parser-js'
 import Head from 'next/head'
 
+import { animateUriFactory } from 'animate-uri/publish/index.esm'
+const animateInstance = animateUriFactory()
+
 if (process.env.CI !== 'true' && process.env.NODE_ENV === 'production') {
   Sentry.init({
     enabled: process.env.NODE_ENV === 'production',
@@ -85,6 +88,13 @@ class Context extends PureComponent<Store & { data: any }> {
         ;(window as any).store = stores
       }
       // checkDevtools()
+      window.onload = () => {
+        const curUri = location.pathname
+        animateInstance?.start('/Welcome-To-My-Space!!~').then(() => {
+          animateInstance.start(curUri)
+        })
+        window.onload = null
+      }
 
       this.registerRouterEvents()
       this.registerEvent()
@@ -232,7 +242,9 @@ class Context extends PureComponent<Store & { data: any }> {
   }
 
   private registerRouterEvents() {
-    Router.events.on('routeChangeStart', () => {
+    Router.events.on('routeChangeStart', (url) => {
+      animateInstance?.start(url)
+
       setTimeout(() => {
         if (this.props.app?.loading) {
           this.setState({ loading: true })
@@ -244,6 +256,7 @@ class Context extends PureComponent<Store & { data: any }> {
     Router.events.on('routeChangeComplete', () => {
       // window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
       this.setState({ loading: false })
+      animateInstance?.stop()
       this.props.app?.setLoading(false)
     })
 
