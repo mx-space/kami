@@ -53,7 +53,7 @@ export const SEO: FC<SEOProps> = observer((props) => {
           appStore.description ||
           userStore.introduce,
         twitter: {
-          cardType: 'summary_large_image',
+          cardType: 'summary',
           site: configs.url,
         },
 
