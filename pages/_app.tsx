@@ -1,54 +1,33 @@
-import '@openfonts/noto-sans-sc_vietnamese'
-import 'antd/es/comment/style/index.css'
-import 'antd/es/message/style/index.css'
-
-// import 'kico-style'
+import * as Sentry from '@sentry/node'
+import { animateUriFactory } from 'animate-uri/publish/index.esm'
+import { message } from 'antd'
 import 'assets/styles/main.scss'
-import 'rc-texty/assets/index.css'
-
-import 'normalize.css/normalize.css'
-
-import 'intersection-observer'
-
 import Loader from 'components/Loader'
 import configs from 'configs'
+import 'intersection-observer'
 import { BasicLayout } from 'layouts/BasicLayout'
 import throttle from 'lodash/throttle'
-
-import { inject, observer, Provider } from 'mobx-react'
-import 'mobx-react-lite/batchingForReactDom'
+import { observer } from 'mobx-react'
+import 'mobx-react/batchingForReactDom'
 import { AggregateResp } from 'models/aggregate'
-
+import { LogoJsonLd, NextSeo, SocialProfileJsonLd } from 'next-seo'
+import App, { AppContext } from 'next/app'
+import Head from 'next/head'
 import Router from 'next/router'
-
-import React, { PureComponent, FC } from 'react'
-
-import CategoryStore from 'common/store/category'
+import Package from 'package.json'
+import React, { FC, useCallback, useState } from 'react'
+import { useMount, useUnmount } from 'react-use'
+import { UAParser } from 'ua-parser-js'
 import client from '../common/socket'
-import createMobxStores, { StoreProvider } from '../common/store'
-import AppStore from '../common/store/app'
-import PageStore from '../common/store/pages'
-import { PageModel, Stores } from '../common/store/types'
-import UserStore from '../common/store/user'
+import createMobxStores, { useStore } from '../common/store'
+import { PageModel } from '../common/store/types'
+import { isServerSide } from '../utils'
 import { Rest } from '../utils/api'
 import { getToken, removeToken } from '../utils/auth'
 // import { checkDevtools } from '../utils/forbidden'
 import * as gtag from '../utils/gtag'
-
-import { message } from 'antd'
-import App, { AppContext } from 'next/app'
-import { LogoJsonLd, SocialProfileJsonLd, NextSeo } from 'next-seo'
-import Package from 'package.json'
 import service from '../utils/request'
-import { isServerSide } from '../utils'
-
-import * as Sentry from '@sentry/node'
-import { UAParser } from 'ua-parser-js'
-import Head from 'next/head'
-
-import { animateUriFactory } from 'animate-uri/publish/index.esm'
 const animateInstance = animateUriFactory()
-
 if (process.env.CI !== 'true' && process.env.NODE_ENV === 'production') {
   Sentry.init({
     enabled: process.env.NODE_ENV === 'production',
@@ -60,96 +39,97 @@ const stores = createMobxStores()
 
 const version = process.env.VERSION || `v${Package.version}` || ''
 
-@inject((store: Stores) => ({
-  master: store.userStore,
-  pages: store.pageStore,
-  app: store.appStore,
-  category: store.categoryStore,
-  user: store.userStore,
-}))
-@observer
-class Context extends PureComponent<Store & { data: any }> {
-  currentY = 0
-  handleScroll = throttle(() => {
-    const currentY = document.documentElement.scrollTop
-    const direction = this.currentY >= currentY ? 'up' : 'down'
-    this.props.app?.updatePosition(direction)
-    this.currentY = currentY
-  }, 13)
-  state = {
-    loading: true,
-  }
-  componentDidMount(): void {
-    if (typeof window !== 'undefined') {
-      // get aggregate data
-      this.fetchData()
+function printToConsole() {
+  try {
+    const text = `
+    This Blog Powered By Mix Space.
+    --------
+    Stay hungry. Stay foolish. --Steve Jobs
+    `
+    document.documentElement.prepend(document.createComment(text))
+    console.log(
+      '%c Kico Style %c https://paugram.com ',
+      'color: #fff; margin: 1em 0; padding: 5px 0; background: #3498db;',
+      'margin: 1em 0; padding: 5px 0; background: #efefef;',
+    )
+    console.log(
+      `%c Mix Space ${version} %c https://innei.ren `,
+      'color: #fff; margin: 1em 0; padding: 5px 0; background: #2980b9;',
+      'margin: 1em 0; padding: 5px 0; background: #efefef;',
+    )
+    // eslint-disable-next-line no-empty
+  } catch {}
+}
 
-      if (process.env.NODE_ENV === 'development') {
-        ;(window as any).store = stores
-      }
-      // checkDevtools()
-      window.onload = () => {
-        const curUri = location.pathname
-        animateInstance?.start('/Welcome-To-My-Space!!~').then(() => {
-          animateInstance.start(curUri)
-        })
-        window.onload = null
-      }
+let _currentY = 0
+const Content: FC = observer((props) => {
+  const {
+    appStore: app,
+    userStore: master,
+    categoryStore: category,
+    pageStore: pages,
+  } = useStore()
+  const handleScroll = useCallback(
+    throttle(() => {
+      const currentY = document.documentElement.scrollTop
+      const direction = _currentY >= currentY ? 'up' : 'down'
+      app.updatePosition(direction)
+      _currentY = currentY
+    }, 13),
+    [],
+  )
+  const [loading, setLoading] = useState(true)
+  useMount(() => {
+    // get aggregate data
+    fetchData()
 
-      this.registerRouterEvents()
-      this.registerEvent()
-      this.checkBrowser()
-      this.printToConsole()
-      this.pwaPopup()
-
-      this.initColorMode()
-
-      // connect to ws
-      client.initIO()
+    if (process.env.NODE_ENV === 'development') {
+      ;(window as any).store = stores
     }
-  }
+    // checkDevtools()
+    window.onload = () => {
+      const curUri = location.pathname
+      animateInstance?.start('/Welcome-To-My-Space!!~').then(() => {
+        animateInstance.start(curUri)
+      })
+      window.onload = null
+    }
 
-  private initColorMode() {
+    registerRouterEvents()
+    registerEvent()
+    checkBrowser()
+    printToConsole()
+
+    initColorMode()
+
+    // connect to ws
+    client.initIO()
+  })
+  useUnmount(() => {
+    window.onresize = null
+    document.removeEventListener('scroll', handleScroll)
+  })
+  const initColorMode = useCallback(() => {
     const getColormode = <T extends { matches: boolean }>(e: T) => {
-      this.props.app!.colorMode = e.matches ? 'dark' : 'light'
-      return this.props.app!.colorMode
+      app.colorMode = e.matches ? 'dark' : 'light'
+      return app.colorMode
     }
-    this.props.app!.colorMode = getColormode(
+    app.colorMode = getColormode(
       window.matchMedia('(prefers-color-scheme: dark)'),
     )
     try {
       window
         .matchMedia('(prefers-color-scheme: dark)')
         .addEventListener('change', (e) => {
-          if (this.props.app?.autoToggleColorMode) {
+          if (app.autoToggleColorMode) {
             getColormode(e)
           }
         })
-      // window
-      //   .matchMedia('(prefers-color-scheme: dark)')
-      //   // safari not support this lister please catch it
-      //   .addListener((e) => {
-      //     if (this.props.app?.autoToggleColorMode) {
-      //       getColormode(e)
-      //     }
-      //   })
-    } catch {
       // eslint-disable-next-line no-empty
-    }
-  }
+    } catch {}
+  }, [])
 
-  private pwaPopup() {
-    // let prompt = true
-    // window.addEventListener('beforeinstallprompt', (e: any) => {
-    //   e.preventDefault()
-    //   if (prompt) {
-    //     e.prompt()
-    //     prompt = false
-    //   }
-    // })
-  }
-
-  private checkBrowser() {
+  const checkBrowser = useCallback(() => {
     const parser = new UAParser(window.navigator.userAgent)
     const browser = parser.getBrowser()
     const isOld: boolean = (() => {
@@ -189,39 +169,37 @@ class Context extends PureComponent<Store & { data: any }> {
       }
       throw new BrowserTooOldError()
     }
-  }
+  }, [])
 
-  private registerEvent() {
+  const registerEvent = useCallback(() => {
     const resizeHandler = throttle(() => {
-      this.props.app?.updateViewport()
+      app.updateViewport()
     }, 300)
     window.onresize = resizeHandler
-    this.props.app?.updateViewport()
+    app.updateViewport()
 
     if (typeof document !== 'undefined') {
-      document.addEventListener('scroll', this.handleScroll)
+      document.addEventListener('scroll', handleScroll)
     }
-  }
+  }, [])
 
-  private fetchData() {
+  const fetchData = useCallback(() => {
     Rest('Aggregate')
       .get<AggregateResp>()
       .then((res) => {
         const { seo, user, pageMeta, categories, lastestNoteNid } = res
         // set user
-        this.props.master?.setUser(user)
+        master.setUser(user)
         // set page
-        this.props.pages?.setPages(pageMeta as PageModel[])
-        this.props.app?.setPage(pageMeta as PageModel[])
-        this.props.app?.setCategories(categories)
-        this.props.category?.setCategory(categories)
-        this.props.app?.setConfig({ seo })
-        this.props.app?.setLastestNoteNid(lastestNoteNid)
+        pages.setPages(pageMeta as PageModel[])
+        app.setPage(pageMeta as PageModel[])
+        app.setCategories(categories)
+        category.setCategory(categories)
+        app.setConfig({ seo })
+        app.setLastestNoteNid(lastestNoteNid)
+        setLoading(false)
 
-        this.setState({
-          loading: false,
-        })
-        this.props.app?.setLoading(false)
+        app.setLoading(false)
       })
       .then(() => {
         if (getToken()) {
@@ -229,9 +207,9 @@ class Context extends PureComponent<Store & { data: any }> {
             .get<any>()
             .then(({ ok }) => {
               if (ok) {
-                this.props.user?.setLogged(true)
-                this.props.user?.setToken(getToken() as string)
-                message.success('欢迎回来, ' + this.props.master?.name, 1.5)
+                master.setLogged(true)
+                master.setToken(getToken() as string)
+                message.success('欢迎回来, ' + master.name, 1.5)
               } else {
                 removeToken()
                 message.warn('登陆身份过期了, 再登陆一下吧!', 2)
@@ -239,122 +217,86 @@ class Context extends PureComponent<Store & { data: any }> {
             })
         }
       })
-  }
+  }, [])
 
-  private registerRouterEvents() {
+  const registerRouterEvents = useCallback(() => {
     Router.events.on('routeChangeStart', (url) => {
       animateInstance?.start(url)
 
       setTimeout(() => {
-        if (this.props.app?.loading) {
-          this.setState({ loading: true })
+        if (app.loading) {
+          setLoading(true)
         }
       }, 500)
-      this.props.app?.setLoading(true)
+      app.setLoading(true)
     })
 
     Router.events.on('routeChangeComplete', () => {
       // window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
-      this.setState({ loading: false })
+
+      setLoading(false)
       animateInstance?.stop()
-      this.props.app?.setLoading(false)
+      app.setLoading(false)
     })
 
     Router.events.on('routeChangeError', () => {
       // window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
-      this.setState({ loading: false })
-      this.props.app?.setLoading(false)
+      setLoading(false)
+      app.setLoading(false)
       message.error('出现了未知错误, 刷新试试?')
     })
 
     Router.events.on('routeChangeComplete', (url) => gtag.pageview(url))
-  }
+  }, [])
 
-  printToConsole() {
-    try {
-      const text = `
-    This Blog Powered By Mix Space.
-    --------
-    Stay hungry. Stay foolish. --Steve Jobs
-    `
-      document.documentElement.prepend(document.createComment(text))
-      console.log(
-        '%c Kico Style %c https://paugram.com ',
-        'color: #fff; margin: 1em 0; padding: 5px 0; background: #3498db;',
-        'margin: 1em 0; padding: 5px 0; background: #efefef;',
-      )
-      console.log(
-        `%c Mix Space ${version} %c https://innei.ren `,
-        'color: #fff; margin: 1em 0; padding: 5px 0; background: #2980b9;',
-        'margin: 1em 0; padding: 5px 0; background: #efefef;',
-      )
-      // eslint-disable-next-line no-empty
-    } catch {}
-  }
-  componentWillUnmount() {
-    window.onresize = null
-    document.removeEventListener('scroll', this.handleScroll)
-  }
-
-  render() {
-    return (
-      <StoreProvider value={stores}>
-        <Head>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-          />
-        </Head>
-        <NextSeo
-          title={
-            (this.props.app?.title || configs.title) +
-            ' · ' +
-            (this.props.app?.description || configs.description)
-          }
-          description={this.props.app?.description || configs.description}
+  return (
+    <>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        <LogoJsonLd
-          logo={new URL('/custom-icon.svg', configs.url).toString()}
-          url={configs.url}
-        />
-        <SocialProfileJsonLd
-          type={'Person'}
-          name={configs.author}
-          url={configs.url}
-          sameAs={configs.social.map(({ url }) => url)}
-        />
+      </Head>
+      <NextSeo
+        title={
+          (app.title || configs.title) +
+          ' · ' +
+          (app.description || configs.description)
+        }
+        description={app.description || configs.description}
+      />
+      <LogoJsonLd
+        logo={new URL('/custom-icon.svg', configs.url).toString()}
+        url={configs.url}
+      />
+      <SocialProfileJsonLd
+        type={'Person'}
+        name={configs.author}
+        url={configs.url}
+        sameAs={configs.social.map(({ url }) => url)}
+      />
 
-        <div id="next" style={{ display: this.state.loading ? 'none' : '' }}>
-          {this.props.children}
-        </div>
-        <Loader />
-      </StoreProvider>
-    )
-  }
-}
+      <div id="next" style={{ display: loading ? 'none' : '' }}>
+        {props.children}
+      </div>
+      <Loader />
+    </>
+  )
+})
 
-interface Store {
-  master?: UserStore
-  pages?: PageStore
-  app?: AppStore
-  category?: CategoryStore
-  user?: UserStore
-}
 interface DataModel {
   pageData: PageModel[]
 }
 const app: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
   props,
 ) => {
-  const { Component, pageProps, pageData, err } = props
+  const { Component, pageProps, err } = props
   return (
-    <Provider {...stores}>
-      <Context data={{ pages: pageData }}>
-        <BasicLayout>
-          <Component {...pageProps} err={err} />
-        </BasicLayout>
-      </Context>
-    </Provider>
+    <Content>
+      <BasicLayout>
+        <Component {...pageProps} err={err} />
+      </BasicLayout>
+    </Content>
   )
 }
 // @ts-ignore

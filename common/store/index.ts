@@ -1,9 +1,9 @@
 /*
  * @Author: Innei
  * @Date: 2020-04-29 17:27:02
- * @LastEditTime: 2020-05-26 17:35:42
+ * @LastEditTime: 2020-08-16 20:40:06
  * @LastEditors: Innei
- * @FilePath: /mx-web/store/index.ts
+ * @FilePath: /mx-web/common/store/index.ts
  * @Copyright
  */
 
@@ -32,6 +32,6 @@ export default function createMobxStores(): Stores {
   }
 }
 
-export const StoreContext = createContext<Stores>({} as Stores)
+export const StoreContext = createContext<Stores>(createMobxStores())
 export const StoreProvider = StoreContext.Provider
 export const useStore = (): Stores => useContext(StoreContext)
