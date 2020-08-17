@@ -2029,10 +2029,10 @@ ally.js@1.4.1:
     css.escape "^1.5.0"
     platform "1.3.3"
 
-animate-uri@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/animate-uri/-/animate-uri-1.2.0.tgz#5d8d4d504f91617c159859588ec608390ddb8af7"
-  integrity sha512-Dx7wdSE311NIX1VuVTqrFmRutAUu2uG2JUbEJMUq0O68SC7UAilEyEoPdlBm4TPDZscPmg7uc00eK+rHqNlWAA==
+animate-uri@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/animate-uri/-/animate-uri-1.3.0.tgz#b0839fb7a0aba31b2f98fc79db356a07f41a821a"
+  integrity sha512-tzPJT6os2aUaF3hqGOnuwVhwPXB1X3Kvs/YHnMMfYSCplY2YepIDwB0TEGEgo22jxBKL21ByI/GfYG9m8KmsTg==
 
 anser@1.4.9:
   version "1.4.9"
@@ -3901,10 +3901,10 @@ eslint-plugin-prettier@3.1.4:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-eslint-plugin-react-hooks@4.0.8:
-  version "4.0.8"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.0.8.tgz#a9b1e3d57475ccd18276882eff3d6cba00da7a56"
-  integrity sha512-6SSb5AiMCPd8FDJrzah+Z4F44P2CdOaK026cXFV+o/xSRzfOiV1FNFeLl2z6xm3yqWOQEZ5OfVgiec90qV2xrQ==
+eslint-plugin-react-hooks@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.1.0.tgz#6323fbd5e650e84b2987ba76370523a60f4e7925"
+  integrity sha512-36zilUcDwDReiORXmcmTc6rRumu9JIM3WjSvV0nclHoUQ0CNrX866EwONvLR/UqaeqFutbAnVu8PEmctdo2SRQ==
 
 eslint-plugin-react@7.20.6:
   version "7.20.6"
@@ -5848,10 +5848,10 @@ mobx-state-tree@3.17.2:
   resolved "https://registry.yarnpkg.com/mobx-state-tree/-/mobx-state-tree-3.17.2.tgz#130ab4d450fc4dd6e2571b7385af1350c82def37"
   integrity sha512-X0+xO7yEvBvPmLU2Z6cp81sD0xQaMXgLD4lGZoKSasOhNJSQPyKlu/LFxJTS6Wgw7J3gkWq9MMfQ4pO6wGMVfw==
 
-mobx@5.15.5:
-  version "5.15.5"
-  resolved "https://registry.yarnpkg.com/mobx/-/mobx-5.15.5.tgz#69715dc8662f64d153309bfe95169b8df4b4be4b"
-  integrity sha512-hzk17T+/IIYLPWClRcfoA6Q5aZhFpDCr1oh8RZzu+esWP77IX/lS0V/Ee1Np+aOPKFfbSInF0reHH0L/aFfSrw==
+mobx@5.15.6:
+  version "5.15.6"
+  resolved "https://registry.yarnpkg.com/mobx/-/mobx-5.15.6.tgz#24750af56f87bcf9c3cf82ece4c79eb91bb71968"
+  integrity sha512-U5nnx3UNdRkUjntpwzO060VWifGVx/JZeu/aMw4y28dTjDNjoY3vNKs6tFNm7z1qIfcPInsd9L9HIm8H0zTDqg==
 
 moment@^2.24.0, moment@^2.25.3:
   version "2.27.0"
