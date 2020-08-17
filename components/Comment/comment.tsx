@@ -1,7 +1,7 @@
 import { Comment, message } from 'antd'
 import Markdown from 'components/MD-render'
 import sample from 'lodash/sample'
-import { observer } from 'mobx-react'
+import { observer } from 'utils/mobx'
 import { CommentModel } from 'models/comment'
 import rc from 'randomcolor'
 import QueueAnim from 'rc-queue-anim'

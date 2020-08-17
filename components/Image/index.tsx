@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { observer } from 'mobx-react'
+import { observer } from 'utils/mobx'
 import dynamic from 'next/dynamic'
 import randomColor from 'randomcolor'
 import {

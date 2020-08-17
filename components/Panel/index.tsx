@@ -10,7 +10,7 @@ import { stopEventDefault } from '../../utils/dom'
 import { OwnerMessage } from './components/message'
 import { Setting, STORE_PREFIX } from './components/setting'
 import style from './index.module.scss'
-import { observer } from 'mobx-react'
+import { observer } from 'utils/mobx'
 import { useStore } from '../../common/store'
 import observable from '../../utils/observable'
 

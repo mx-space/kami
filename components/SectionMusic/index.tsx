@@ -1,5 +1,5 @@
 import { PlayListType } from '@mx-space/extra'
-import { observer } from 'mobx-react'
+import { observer } from 'utils/mobx'
 import { FC } from 'react'
 import { useStore } from 'common/store'
 

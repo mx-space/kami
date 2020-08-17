@@ -2,7 +2,7 @@ import CustomRules from 'common/markdown/rules'
 import { useStore } from 'common/store'
 import { ImageLazyWithPopup } from 'components/Image'
 import Toc from 'components/Toc'
-import { observer } from 'mobx-react'
+import { observer } from 'utils/mobx'
 import Router from 'next/router'
 import React, {
   createElement,

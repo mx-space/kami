@@ -11,7 +11,7 @@ import SectionNews, {
 } from 'components/SectionNews'
 import shuffle from 'lodash/shuffle'
 import omit from 'lodash/omit'
-import { observer } from 'mobx-react'
+import { observer } from 'utils/mobx'
 import { RandomImage, Top } from 'models/aggregate'
 import { NextPage } from 'next'
 import Router from 'next/router'

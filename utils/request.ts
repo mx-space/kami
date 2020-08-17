@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-07 16:04:24
- * @LastEditTime: 2020-08-01 15:23:03
+ * @LastEditTime: 2020-08-16 21:43:44
  * @LastEditors: Innei
  * @FilePath: /mx-web/utils/request.ts
  * @MIT
@@ -14,7 +14,7 @@ import { isClientSide, isServerSide } from './utils'
 const service = axios.create({
   baseURL: process.env.APIURL || '/api',
   // withCredentials: true,
-  timeout: 5000,
+  timeout: 10000,
 })
 
 service.interceptors.request.use(

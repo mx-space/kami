@@ -1,4 +1,4 @@
-import { observer } from 'mobx-react'
+import { observer } from 'utils/mobx'
 import React, { FC, useCallback } from 'react'
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { useStore } from '../../common/store'
