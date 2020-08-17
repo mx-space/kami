@@ -49,7 +49,7 @@
     "intersection-observer": "0.11.0",
     "js-cookie": "2.2.1",
     "kico-style": "1.2.0",
-    "mobx": "5.15.5",
+    "mobx": "5.15.6",
     "mobx-devtools-mst": "0.9.22",
     "mobx-react": "6.2.5",
     "mobx-state-tree": "3.17.2",
