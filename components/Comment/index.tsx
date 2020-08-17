@@ -8,7 +8,7 @@
  */
 
 import { message } from 'antd'
-import { observer } from 'mobx-react'
+import { observer } from 'utils/mobx'
 import { PagerModel } from 'models/base'
 import { CommentModel, CommentPager } from 'models/comment'
 import {

@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { observer } from 'mobx-react'
+import { observer } from 'utils/mobx'
 import { FC, useEffect } from 'react'
 import ReactAplayer from 'react-aplayer'
 import { useStore } from 'common/store'

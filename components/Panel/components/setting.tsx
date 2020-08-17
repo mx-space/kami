@@ -13,7 +13,7 @@ import ReactDOM from 'react-dom'
 import { stopEventDefault } from '../../../utils/dom'
 import QueueAnim from 'rc-queue-anim'
 import { useStore } from '../../../common/store'
-import { observer } from 'mobx-react'
+import { observer } from 'utils/mobx'
 import { message } from 'antd'
 
 export const STORE_PREFIX = 'mx-space-web-dangmaku'

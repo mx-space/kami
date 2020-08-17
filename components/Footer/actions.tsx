@@ -4,7 +4,7 @@ import { BackTop } from 'antd'
 import classNames from 'classnames'
 import { useStore } from 'common/store'
 import { QueueAnim } from 'components/Anime'
-import { observer } from 'mobx-react'
+import { observer } from 'utils/mobx'
 import { FC } from 'react'
 
 export const FooterActions: FC = observer(() => {

@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { useStore } from 'common/store'
-import { observer } from 'mobx-react'
+import { observer } from 'utils/mobx'
 import { PostResModel } from 'models/post'
 import Router from 'next/router'
 import React, { FC } from 'react'

@@ -1,7 +1,7 @@
 import styles from './index.module.scss'
 import rc from 'randomcolor'
 import { FC, useMemo } from 'react'
-import { observer } from 'mobx-react'
+import { observer } from 'utils/mobx'
 import { useStore } from 'common/store'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTag } from '@fortawesome/free-solid-svg-icons'

@@ -2,7 +2,7 @@ import { faListUl, faRoute } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
 import { DefaultLogo as Logo } from 'components/Logo'
-import { observer } from 'mobx-react'
+import { observer } from 'utils/mobx'
 import Link from 'next/link'
 import Router from 'next/router'
 import React, {

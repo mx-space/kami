@@ -1,4 +1,4 @@
-import { observer } from 'mobx-react'
+import { observer } from 'utils/mobx'
 import { SayModel, SayRespDto } from 'models/say'
 import { NextPage } from 'next'
 import randomColor from 'randomcolor'

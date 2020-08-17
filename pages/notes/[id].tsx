@@ -14,7 +14,7 @@ import Markdown from 'components/MD-render'
 import { NumberRecorder } from 'components/NumberRecorder'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { NoteLayout } from 'layouts/NoteLayout'
-import { observer } from 'mobx-react'
+import { observer } from 'utils/mobx'
 import {
   Mood,
   MoodMap,

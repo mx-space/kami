@@ -1,5 +1,5 @@
 import { FC, Fragment } from 'react'
-import { observer } from 'mobx-react'
+import { observer } from 'utils/mobx'
 import { FooterActions as _FooterActions } from './actions'
 import { useStore } from '../../common/store'
 import configs from '../../configs'

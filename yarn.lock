@@ -1281,6 +1281,15 @@
   resolved "https://registry.yarnpkg.com/@icons/material/-/material-0.2.4.tgz#e90c9f71768b3736e76d7dd6783fc6c2afa88bc8"
   integrity sha512-QPcGmICAPbGLGb6F/yNf/KzKqvFx8z5qx3D1yFqVAjoFmXK35EgyW+cJ57Te3CNsmzblwtzakLGFqHPqrfb4Tw==
 
+"@innei/react-zmage@0.8.5":
+  version "0.8.5"
+  resolved "https://registry.yarnpkg.com/@innei/react-zmage/-/react-zmage-0.8.5.tgz#61bb28d19520df865b554e25e47f4a5d1c47a1e9"
+  integrity sha512-TS47v/9YsuhkaGiYxamLJG7dAUBch0l+5mKYgJOVIjk7xj3qbgr1wPkC4XX5qJjVe/QXHxlnoe0VKgyHS38z2g==
+  dependencies:
+    classnames "^2.2.6"
+    lodash.memoize "^4.1.2"
+    prop-types "^15.6.2"
+
 "@mx-space/extra@0.3.1":
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/@mx-space/extra/-/extra-0.3.1.tgz#fb69d665abff26cf75f3256d707acc1a79c0f767"
@@ -5829,17 +5838,10 @@ mobx-devtools-mst@0.9.22:
   resolved "https://registry.yarnpkg.com/mobx-devtools-mst/-/mobx-devtools-mst-0.9.22.tgz#51c7695064d78d31a9c416e7bc58c90a185575cc"
   integrity sha512-Yi0zoZjy/HcpIYQSttJfzjP8sWvSDxwtemGB99wSvKCSITvWk0CRCeT149Ynhud6sJ9XUgZMdsSAd/kIuZ8vOQ==
 
-mobx-react@2.0.7, mobx-react-lite@>=2.0.6:
+mobx-react-lite@2.0.7:
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/mobx-react/-/mobx-react-2.0.7.tgz#1bfb3b4272668e288047cf0c7940b14e91cba284"
   integrity sha512-YKAh2gThC6WooPnVZCoC+rV1bODAKFwkhxikzgH18wpBjkgTkkR9Sb0IesQAH5QrAEH/JQVmy47jcpQkf2Au3Q==
-
-mobx-react@6.2.5:
-  version "6.2.5"
-  resolved "https://registry.yarnpkg.com/mobx-react/-/mobx-react-6.2.5.tgz#9020a17b79cc6dc3d124ad89ab36eb9ea540a45b"
-  integrity sha512-LxtXXW0GkOAO6VOIg2m/6WL6ZuKlzOWwESIFdrWelI0ZMIvtKCMZVUuulcO5GAWSDsH0ApaMkGLoaPqKjzyziQ==
-  dependencies:
-    mobx-react-lite ">=2.0.6"
 
 mobx-state-tree@3.17.2:
   version "3.17.2"

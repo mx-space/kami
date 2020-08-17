@@ -1,5 +1,5 @@
 import { message } from 'antd'
-import { observer } from 'mobx-react'
+import { observer } from 'utils/mobx'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { useStore } from '../../common/store'

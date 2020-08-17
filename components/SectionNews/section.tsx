@@ -7,7 +7,7 @@ import Link from 'next/link'
 import randomColor from 'randomcolor'
 import { DetailedHTMLProps, FC, forwardRef, HTMLAttributes } from 'react'
 import styles from './index.module.scss'
-import { observer } from 'mobx-react'
+import { observer } from 'utils/mobx'
 import { useStore } from '../../common/store'
 export interface SectionNewsProps {
   title: string
