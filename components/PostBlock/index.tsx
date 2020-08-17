@@ -20,6 +20,7 @@ interface Props {
 export const PostBlock: FC<Props> = observer((props) => {
   const {
     appStore: { viewport },
+    categoryStore: { CategoryMap },
   } = useStore()
   const { date, title, text, slug, raw } = props
   const parsedTime = viewport?.mobile
@@ -28,11 +29,8 @@ export const PostBlock: FC<Props> = observer((props) => {
   const [d, week] = parsedTime.split(' ')
 
   const goToPost = () => {
-    // console.log(this.props.map)
-    const category = props.map?.get(raw.categoryId)
-    // console.log(category)
-
-    Router.push('/posts/[category]/[slug]', `/posts/${category}/${slug}`)
+    const categorySlug = raw.category?.slug ?? CategoryMap.get(raw.categoryId)
+    Router.push('/posts/[category]/[slug]', `/posts/${categorySlug}/${slug}`)
     window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
   }
 

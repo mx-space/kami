@@ -23,7 +23,7 @@ interface PostProps extends PagerModel {
 const Post: NextPage<PostProps> = observer((props) => {
   const { page, posts } = props
   const store = useStore()
-  const { appStore, actionStore, categoryStore } = store
+  const { actionStore, categoryStore } = store
   const [showTags, setShowTags] = useState(false)
   const router = useRouter()
 
