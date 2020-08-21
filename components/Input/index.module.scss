@@ -8,7 +8,7 @@
   border: 1px solid var(--gray);
   display: inline-flex;
   align-items: center;
-
+  color: var(--shizuku-text-color);
   &:hover {
     border-color: var(--yellow);
     border-right-width: 1px !important;
@@ -55,6 +55,7 @@
     // padding: 0;
     display: flex;
     align-items: center;
+    color: inherit;
   }
   // .has-prefix {
   // }

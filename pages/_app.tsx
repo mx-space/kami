@@ -89,13 +89,6 @@ const Content: FC = observer((props) => {
       ;(window as any).store = stores
     }
     // checkDevtools()
-    window.onload = () => {
-      const curUri = location.pathname
-      animateInstance?.start('/Welcome-To-My-Space!!~').then(() => {
-        animateInstance.start(curUri)
-      })
-      window.onload = null
-    }
 
     registerRouterEvents()
     registerEvent()

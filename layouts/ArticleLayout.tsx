@@ -62,6 +62,13 @@ export const ArticleLayout: FC<
           delay={delay ?? 300}
           duration={500}
           animConfig={{ opacity: [1, 0], translateY: [0, 50] }}
+          onEnd={(e) => {
+            const { target, type } = e
+            if (type === 'enter') {
+              const $t = target as HTMLDivElement
+              $t.style.transform = ''
+            }
+          }}
           animatingClassName={animatingClassName}
         >
           <article className="post-content paul-note" key={title}>

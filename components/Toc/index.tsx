@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-12 21:41:12
- * @LastEditTime: 2020-06-19 16:59:25
+ * @LastEditTime: 2020-08-21 20:44:25
  * @LastEditors: Innei
  * @FilePath: /mx-web/components/Toc/index.tsx
  * @Coding with Love
@@ -65,7 +65,7 @@ export const Toc: FC = memo(() => {
   })
 
   return (
-    <section className="paul-lister" style={{ zIndex: -1 }}>
+    <section className="paul-lister" style={{ zIndex: 3 }}>
       <div className="container" ref={containerRef}>
         <QueueAnim>
           {headings &&

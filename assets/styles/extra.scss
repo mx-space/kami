@@ -304,20 +304,36 @@ html.dark .lazyload-image {
 html.light .lazyload-image {
   animation: blur 0.8s forwards ease-in-out;
 }
+// @keyframes blur {
+//   from {
+//     filter: blur(10px);
+//   }
+//   to {
+//     filter: blur(0);
+//   }
+// }
+// @keyframes blur-dark {
+//   from {
+//     filter: blur(10px) brightness(0.6);
+//   }
+//   to {
+//     filter: blur(0) brightness(0.6);
+//   }
+// }
 @keyframes blur {
   from {
-    filter: blur(10px);
+    opacity: 0;
   }
   to {
-    filter: blur(0);
+    opacity: 1;
   }
 }
 @keyframes blur-dark {
   from {
-    filter: blur(10px) brightness(0.6);
+    opacity: 0;
   }
   to {
-    filter: blur(0) brightness(0.6);
+    opacity: 1;
   }
 }
 

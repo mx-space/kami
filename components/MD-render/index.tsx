@@ -2,7 +2,6 @@ import CustomRules from 'common/markdown/rules'
 import { useStore } from 'common/store'
 import { ImageLazyWithPopup } from 'components/Image'
 import Toc from 'components/Toc'
-import { observer } from 'utils/mobx'
 import Router from 'next/router'
 import React, {
   createElement,
@@ -16,6 +15,7 @@ import React, {
   useState,
 } from 'react'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
+import { observer } from 'utils/mobx'
 import { ImageSizesContext } from '../../common/context/ImageSizes'
 import CodeBlock from '../CodeBlock'
 import styles from './index.module.scss'
@@ -184,7 +184,6 @@ const Image: () => FC<{ src: string; alt?: string }> = () => {
     if (typeof document === 'undefined') {
       return <img src={src} alt={alt} />
     }
-
     return (
       <ImageLazyWithPopup
         src={src}
@@ -212,10 +211,16 @@ const RenderParagraph: FC<{}> = (props) => {
 const RenderCommentAt: FC<{ value: string }> = ({ value }) => {
   return <>@{value}</>
 }
-const Markdown: FC<MdProps> = observer((props) => {
-  const { value, renderers, style, ...rest } = props
+
+const _TOC = () => {
   const { appStore } = useStore()
   const { viewport } = appStore
+  return !viewport.mobile && !viewport.pad ? <Toc /> : null
+}
+
+const Markdown: FC<MdProps> = observer((props) => {
+  const { value, renderers, style, ...rest } = props
+
   return (
     <div id="write" style={style}>
       <ReactMarkdown
@@ -235,7 +240,7 @@ const Markdown: FC<MdProps> = observer((props) => {
         }}
         plugins={CustomRules}
       />
-      {props.showTOC && !viewport.mobile && !viewport.pad ? <Toc /> : null}
+      {props.showTOC && <_TOC />}
     </div>
   )
 })

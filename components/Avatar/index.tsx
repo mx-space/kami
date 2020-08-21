@@ -1,5 +1,15 @@
-import { DetailedHTMLProps, FC, ImgHTMLAttributes, memo } from 'react'
-import { ImageLazy } from '../Image'
+import rc from 'randomcolor'
+import {
+  DetailedHTMLProps,
+  FC,
+  ImgHTMLAttributes,
+  memo,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
+import styles from './index.module.scss'
 interface AvatarProps {
   url?: string
   imageUrl: string
@@ -11,48 +21,41 @@ export const Avatar: FC<
     DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
 > = memo((props) => {
   // const { url, imageUrl, size, ...rest } = props
-
+  const avatarRef = useRef<HTMLDivElement>(null)
+  const randomColor = useMemo(() => rc({ luminosity: 'light' }), [])
+  const [loaded, setLoaded] = useState(false)
+  useEffect(() => {
+    const image = new Image()
+    image.src = props.imageUrl as string
+    image.onload = () => {
+      setLoaded(true)
+    }
+  }, [props.imageUrl])
   return (
     <div
-      className="avatar"
+      className={styles['avatar-wrap']}
+      ref={avatarRef}
       style={
         props.size
           ? { height: props.size + 'px', width: props.size + 'px' }
           : undefined
       }
     >
-      <style jsx>{`
-        .avatar {
-          width: 80px;
-          height: 80px;
-          box-sizing: border-box;
-          border: 3px #bbb solid;
-          border-radius: 50%;
-          overflow: hidden;
-          box-shadow: 1px 2px 9px 0px rgba(0, 0, 0, 0.32);
-          -webkit-backface-visibility: hidden;
-          -moz-backface-visibility: hidden;
-          -webkit-transform: translate3d(0, 0, 0);
-          -moz-transform: translate3d(0, 0, 0);
-        }
-      `}</style>
       <a
         style={{
-          position: 'relative',
-          display: 'inline-block',
-          height: '100%',
-          width: '100%',
+          backgroundColor: loaded ? undefined : randomColor,
         }}
+        className={styles['avatar']}
         href={props.url ?? 'javascript:;'}
         target={!props.url ? undefined : '_blank'}
       >
-        <ImageLazy
-          style={{ position: 'relative', height: '100%', width: '100%' }}
-          src={props.imageUrl}
-          height={'100%'}
-          width={'100%'}
-          useRandomBackgroundColor
-        />
+        <div
+          className={styles['image']}
+          style={{
+            backgroundImage: `url(${props.imageUrl})`,
+            opacity: loaded ? 1 : 0,
+          }}
+        ></div>
       </a>
     </div>
   )

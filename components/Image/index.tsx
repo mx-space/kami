@@ -1,5 +1,4 @@
 import classNames from 'classnames'
-import { observer } from 'utils/mobx'
 import dynamic from 'next/dynamic'
 import randomColor from 'randomcolor'
 import {
@@ -12,6 +11,7 @@ import {
   useState,
 } from 'react'
 import type { LazyImage as LazyImageProps } from 'react-lazy-images'
+import { observer } from 'utils/mobx'
 import { useStore } from '../../common/store'
 import { isClientSide } from '../../utils'
 
