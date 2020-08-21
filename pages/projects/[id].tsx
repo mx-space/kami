@@ -3,7 +3,6 @@ import { ImageLazy } from 'components/Image'
 import { SliderImagesPopup } from 'components/SliderImagesPopup'
 import { ProjectModel } from 'models/project'
 import { NextPage } from 'next'
-import { useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { Rest } from 'utils/api'
 import { SEO } from '../../components/SEO'
@@ -79,7 +78,7 @@ const ProjectView: NextPage<ProjectViewProps> = (props) => {
 ProjectView.getInitialProps = async (ctx) => {
   const { query } = ctx
   const id = query.id as string
-  const { data } = await Rest('Project').get(id)
+  const { data } = (await Rest('Project').get(id)) as any
   return data
 }
 
