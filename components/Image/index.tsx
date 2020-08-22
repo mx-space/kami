@@ -148,7 +148,6 @@ export const ImageLazy: FC<
               isClientSide()
                 ? {
                     rootMargin: '100px',
-                    threshold: 0.3,
                   }
                 : undefined
             }

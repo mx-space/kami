@@ -123,4 +123,8 @@ export default class AppStore {
   @computed get description() {
     return this.seo.description
   }
+
+  @computed get isPadOrMobile() {
+    return this.viewport.pad || this.viewport.mobile
+  }
 }

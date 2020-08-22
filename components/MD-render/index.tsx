@@ -212,12 +212,11 @@ const RenderCommentAt: FC<{ value: string }> = ({ value }) => {
   return <>@{value}</>
 }
 
-const _TOC = () => {
+const _TOC = observer(() => {
   const { appStore } = useStore()
-  const { viewport } = appStore
-  return !viewport.mobile && !viewport.pad ? <Toc /> : null
-}
-
+  const { isPadOrMobile } = appStore
+  return !isPadOrMobile ? <Toc /> : null
+})
 const Markdown: FC<MdProps> = observer((props) => {
   const { value, renderers, style, ...rest } = props
 
