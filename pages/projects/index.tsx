@@ -20,14 +20,10 @@ const ProjectView: NextPage<ProjectViewProps> = (props) => {
       <QueueAnim type={'bottom'}>
         <section className={'project-list'} key={'a'}>
           <div className="row">
-            <div className="col-4 col-s-3 col-m-2">
-              {projects.map((project) => {
-                return (
-                  <Link
-                    href="projects/[id]"
-                    as={`projects/${project._id}`}
-                    key={project._id}
-                  >
+            {projects.map((project) => {
+              return (
+                <div className="col-4 col-s-3 col-m-2" key={project._id}>
+                  <Link href="projects/[id]" as={`projects/${project._id}`}>
                     <a>
                       <ImageLazy
                         src={project.avatar ?? defaultImage}
@@ -37,9 +33,9 @@ const ProjectView: NextPage<ProjectViewProps> = (props) => {
                       <h4>{project.name}</h4>
                     </a>
                   </Link>
-                )
-              })}
-            </div>
+                </div>
+              )
+            })}
           </div>
         </section>
       </QueueAnim>

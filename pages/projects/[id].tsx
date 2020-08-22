@@ -34,31 +34,44 @@ const ProjectView: NextPage<ProjectViewProps> = (props) => {
           defaultImage={Kico}
           alt={name}
           src={avatar as string}
-          style={{ height: '10rem', width: '10em' }}
+          style={{
+            height: '10rem',
+            width: '10em',
+            float: 'left',
+            marginRight: '3rem',
+          }}
         />
-        <h1>{name}</h1>
-        <p>{props.description}</p>
-        <p>
-          {props.previewUrl && (
-            <a href={props.previewUrl} className="btn blue" target="_blank">
-              预览站点
-            </a>
-          )}
-          {props.projectUrl && (
-            <a
-              href={props.projectUrl}
-              className="btn transparent"
-              target="_blank"
-            >
-              获取项目
-            </a>
-          )}
-          {props.docUrl && (
-            <a href={props.docUrl} className="btn transparent" target="_blank">
-              项目文档
-            </a>
-          )}
-        </p>
+        <div
+          style={{ display: 'flex', flexDirection: 'column', float: 'left' }}
+        >
+          <h1>{name}</h1>
+          <p>{props.description}</p>
+          <p>
+            {props.previewUrl && (
+              <a href={props.previewUrl} className="btn blue" target="_blank">
+                预览站点
+              </a>
+            )}
+            {props.projectUrl && (
+              <a
+                href={props.projectUrl}
+                className="btn transparent"
+                target="_blank"
+              >
+                获取项目
+              </a>
+            )}
+            {props.docUrl && (
+              <a
+                href={props.docUrl}
+                className="btn transparent"
+                target="_blank"
+              >
+                项目文档
+              </a>
+            )}
+          </p>
+        </div>
       </section>
       {!!imageSet && (
         <>
