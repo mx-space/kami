@@ -1,9 +1,9 @@
 /*
  * @Author: Innei
  * @Date: 2020-04-29 17:27:02
- * @LastEditTime: 2020-05-27 11:30:45
+ * @LastEditTime: 2020-08-26 20:25:23
  * @LastEditors: Innei
- * @FilePath: /mx-web/store/music.ts
+ * @FilePath: /mx-web/common/store/music.ts
  * @Copyright
  */
 
@@ -19,11 +19,10 @@ export default class MusicStore {
 
   async init() {
     return await this.setPlaylist([
-      28411764,
-      1360122230,
-      1341912654,
-      785887,
-      472109066,
+      563534789,
+      1447327083,
+      528658316,
+      1450252250,
     ])
   }
 
