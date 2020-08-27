@@ -13,7 +13,8 @@
 }
 body {
   padding-top: 4em;
-  background: url(~assets/images/background.png) top center fixed;
+  background: url(https://gitee.com/xun7788/my-imagination/raw/master/cdn/background.png)
+    top center fixed;
 }
 body.gray {
   -webkit-filter: grayscale(100%);
@@ -94,7 +95,8 @@ html.light {
   color: inherit;
 }
 html.light body {
-  background: url(~assets/images/background.png) top center fixed !important;
+  background: url(https://gitee.com/xun7788/my-imagination/raw/master/cdn/background.png)
+    top center fixed !important;
 }
 html.light img {
   filter: brightness(1) !important;
@@ -112,7 +114,9 @@ html.dark {
   --light-font: #ddd !important;
 }
 html.dark body {
-  background: #000 url(~assets/images/background-night.png) top center fixed !important;
+  background: #000
+    url(https://gitee.com/xun7788/my-imagination/raw/master/cdn/background-night.png)
+    top center fixed !important;
 }
 html.dark img {
   filter: brightness(0.6) !important;
@@ -132,7 +136,9 @@ html.dark img {
     --light-font: #ddd;
   }
   body {
-    background: #000 url(~assets/images/background-night.png) top center fixed;
+    background: #000
+      url(https://gitee.com/xun7788/my-imagination/raw/master/cdn/background-night.png)
+      top center fixed;
   }
   img {
     filter: brightness(0.6);
@@ -882,7 +888,8 @@ footer:before {
   content: '';
   z-index: -1;
   position: absolute;
-  background: url(~assets/images/footer.png) top/cover;
+  background: url(https://gitee.com/xun7788/my-imagination/raw/master/cdn/footer.png)
+    top/cover;
 }
 @media screen and (max-width: 600px) {
   footer {

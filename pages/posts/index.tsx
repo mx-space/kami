@@ -95,21 +95,40 @@ const Post: NextPage<PostProps> = observer((props) => {
           setTagPost([])
         }}
       >
-        <div style={{ maxWidth: '50vw' }}>
-          <QueueAnim type="scale">
-            {tags.map(({ _id, name }) => {
-              return (
-                <BigTag
-                  tagName={name}
-                  key={_id}
-                  onClick={() => {
-                    fetchPostsWithTag(name)
-                  }}
-                />
-              )
-            })}
-          </QueueAnim>
-          <div className="tags-posts">
+        <div
+          style={{
+            maxWidth: '50vw',
+            margin: 'auto',
+            position: 'relative',
+            height: '100%',
+          }}
+        >
+          <div
+            style={{
+              position: 'absolute',
+              zIndex: 3,
+              bottom: '50vh',
+              top: 0,
+              display: 'flex',
+              alignItems: 'flex-end',
+            }}
+          >
+            <QueueAnim type="scale">
+              {tags.map(({ _id, name }) => {
+                return (
+                  <BigTag
+                    tagName={name}
+                    key={_id}
+                    onClick={() => {
+                      fetchPostsWithTag(name)
+                    }}
+                  />
+                )
+              })}
+            </QueueAnim>
+          </div>
+
+          <div style={{ position: 'absolute', top: '50vh', bottom: 0 }}>
             <article className="post-content paul-note article-list">
               <ul>
                 <QueueAnim delay={700} forcedReplay appear>

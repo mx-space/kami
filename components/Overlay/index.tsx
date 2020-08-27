@@ -1,4 +1,5 @@
-import { QueueAnim, TweenOne } from 'components/Anime'
+import classNames from 'classnames'
+import { QueueAnim } from 'components/Anime'
 import { FC, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { isServerSide } from 'utils'
@@ -6,9 +7,10 @@ import styles from './index.module.scss'
 
 interface OverLayProps {
   onClose: () => void
+  center?: boolean
 }
 
-const _OverLay: FC<OverLayProps> = ({ children, onClose }) => {
+const _OverLay: FC<OverLayProps> = ({ children, onClose, center }) => {
   useEffect(() => {
     document.documentElement.style.overflow = 'hidden'
 
@@ -17,7 +19,9 @@ const _OverLay: FC<OverLayProps> = ({ children, onClose }) => {
     }
   }, [])
   return (
-    <div className={styles['container']}>
+    <div
+      className={classNames(styles['container'], center && styles['center'])}
+    >
       <QueueAnim type="alpha">
         <div
           className={styles['overlay']}

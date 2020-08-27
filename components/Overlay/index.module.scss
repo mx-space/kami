@@ -5,10 +5,12 @@
   right: 0;
   bottom: 0;
   z-index: 61;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  &.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
   .overlay {
     position: absolute;
     top: -20px;
