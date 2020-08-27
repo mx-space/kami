@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/node'
-import { animateUriFactory } from 'animate-uri/publish/index.esm'
+// import { animateUriFactory } from 'animate-uri/publish/index.esm'
 import { message } from 'antd'
 import 'assets/styles/main.scss'
 import 'normalize.css/normalize.css'
@@ -29,7 +29,7 @@ import { getToken, removeToken } from '../utils/auth'
 import * as gtag from '../utils/gtag'
 import service from '../utils/request'
 
-const animateInstance = animateUriFactory()
+// const animateInstance = animateUriFactory({ shouldPushState: false })
 if (process.env.CI !== 'true' && process.env.NODE_ENV === 'production') {
   Sentry.init({
     enabled: process.env.NODE_ENV === 'production',
@@ -216,7 +216,7 @@ const Content: FC = observer((props) => {
 
   const registerRouterEvents = useCallback(() => {
     Router.events.on('routeChangeStart', (url) => {
-      animateInstance?.start(url)
+      // animateInstance?.start(url)
 
       setTimeout(() => {
         if (app.loading) {
@@ -225,12 +225,14 @@ const Content: FC = observer((props) => {
       }, 500)
       app.setLoading(true)
     })
-
+    // Router.events.on('beforeHistoryChange', (url) => {
+    //   animateInstance?.stop()
+    // })
     Router.events.on('routeChangeComplete', () => {
       // window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
 
       setLoading(false)
-      animateInstance?.stop()
+
       app.setLoading(false)
     })
 
