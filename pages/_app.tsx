@@ -64,7 +64,7 @@ function printToConsole() {
 }
 
 let _currentY = 0
-const Content: FC = observer((props) => {
+const Content: FC<DataModel> = observer((props) => {
   const {
     appStore: app,
     userStore: master,
@@ -81,10 +81,25 @@ const Content: FC = observer((props) => {
     [],
   )
   const [loading, setLoading] = useState(true)
-  useMount(() => {
-    // get aggregate data
-    fetchData()
+  {
+    const data = props.initData
 
+    const { seo, user, pageMeta, categories, lastestNoteNid } = data
+    // set user
+    master.setUser(user)
+
+    // set page
+    pages.setPages(pageMeta as PageModel[])
+    app.setPage(pageMeta as PageModel[])
+    app.setCategories(categories)
+    category.setCategory(categories)
+    app.setConfig({ seo })
+    app.setLastestNoteNid(lastestNoteNid)
+  }
+  useMount(() => {
+    checkLogin()
+    setLoading(false)
+    app.setLoading(false)
     if (process.env.NODE_ENV === 'development') {
       ;(window as any).store = stores
     }
@@ -162,6 +177,7 @@ const Content: FC = observer((props) => {
           )
         }
       }
+
       throw new BrowserTooOldError()
     }
   }, [])
@@ -178,40 +194,23 @@ const Content: FC = observer((props) => {
     }
   }, [])
 
-  const fetchData = useCallback(() => {
-    Rest('Aggregate')
-      .get<AggregateResp>()
-      .then((res) => {
-        const { seo, user, pageMeta, categories, lastestNoteNid } = res
-        // set user
-        master.setUser(user)
-        // set page
-        pages.setPages(pageMeta as PageModel[])
-        app.setPage(pageMeta as PageModel[])
-        app.setCategories(categories)
-        category.setCategory(categories)
-        app.setConfig({ seo })
-        app.setLastestNoteNid(lastestNoteNid)
-        setLoading(false)
-
-        app.setLoading(false)
-      })
-      .then(() => {
-        if (getToken()) {
-          Rest('Master', 'check_logged')
-            .get<any>()
-            .then(({ ok }) => {
-              if (ok) {
-                master.setLogged(true)
-                master.setToken(getToken() as string)
-                message.success('欢迎回来, ' + master.name, 1.5)
-              } else {
-                removeToken()
-                message.warn('登陆身份过期了, 再登陆一下吧!', 2)
-              }
-            })
-        }
-      })
+  const checkLogin = useCallback(() => {
+    requestAnimationFrame(() => {
+      if (getToken()) {
+        Rest('Master', 'check_logged')
+          .get<any>()
+          .then(({ ok }) => {
+            if (ok) {
+              master.setLogged(true)
+              master.setToken(getToken() as string)
+              message.success('欢迎回来, ' + master.name, 1.5)
+            } else {
+              removeToken()
+              message.warn('登陆身份过期了, 再登陆一下吧!', 2)
+            }
+          })
+      }
+    })
   }, [])
 
   const registerRouterEvents = useCallback(() => {
@@ -282,14 +281,14 @@ const Content: FC = observer((props) => {
 })
 
 interface DataModel {
-  pageData: PageModel[]
+  initData: AggregateResp
 }
 const app: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
   props,
 ) => {
-  const { Component, pageProps, err } = props
+  const { initData, Component, pageProps, err } = props
   return (
-    <Content>
+    <Content initData={initData}>
       <BasicLayout>
         <Component {...pageProps} err={err} />
       </BasicLayout>
@@ -314,10 +313,10 @@ app.getInitialProps = async (props: AppContext) => {
     service.defaults.headers.common['x-forwarded-for'] = ip
 
     service.defaults.headers.common['User-Agent'] =
-      request.headers['user-agent'] + ' mx-space render server' + `/${version}`
+      request.headers['user-agent'] + ' mx-space SSR server' + `/${version}`
     // console.log(service.defaults.headers.common)
   }
-
-  return { ...appProps }
+  const initData = await Rest('Aggregate').get<AggregateResp>()
+  return { ...appProps, initData }
 }
 export default app

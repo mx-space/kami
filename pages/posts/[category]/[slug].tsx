@@ -140,10 +140,12 @@ export const PostView: NextPage<PostResModel> = (props) => {
         description={description}
         openGraph={{
           profile: { username: userStore.master.name },
+          type: 'article',
           article: {
             publishedTime: props.created,
             modifiedTime: props.modified,
             section: props.category.name,
+            tags: props.tags ?? [],
           },
         }}
       />

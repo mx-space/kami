@@ -5,29 +5,28 @@ import {
   faUsers,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { message } from 'antd'
+import { useStore } from 'common/store'
 import SectionNews, {
   SectionCard,
   SectionNewsProps,
 } from 'components/SectionNews'
-import shuffle from 'lodash/shuffle'
 import omit from 'lodash/omit'
-import { observer } from 'utils/mobx'
-import { RandomImage, Top } from 'models/aggregate'
+import shuffle from 'lodash/shuffle'
+import { Top } from 'models/aggregate'
 import { NextPage } from 'next'
 import Router from 'next/router'
 import QueueAnim from 'rc-queue-anim'
 import Texty from 'rc-texty'
-import { useEffect, useState, useRef } from 'react'
-import { useStore } from 'common/store'
+import { useEffect, useRef, useState } from 'react'
 import { Rest } from 'utils/api'
-
+import { observer } from 'utils/mobx'
 import { FriendsSection } from '../components/SectionNews/friend'
 import { SectionWrap } from '../components/SectionNews/section'
 import configs from '../configs'
+import { getAnimationImages as getAnimeImages } from '../utils'
 import { stopEventDefault } from '../utils/dom'
 import service from '../utils/request'
-import { message } from 'antd'
-import { getAnimationImages } from '../utils'
 
 interface IndexViewProps {
   posts: Top.Post[]
@@ -253,20 +252,20 @@ function buildRoute<T extends { _id: string } & { nid?: number }>(
 
 IndexView.getInitialProps = async (): Promise<IndexViewProps> => {
   const aggregateData = (await Rest('Aggregate').get('top')) as Top.Aggregate
-  const randomImageData = (await Rest('Aggregate').get(
-    'random?type=3&imageType=2&size=8',
-  )) as { data: RandomImage.Image[] }
-  const extraImages = getAnimationImages()
+  // const randomImageData = (await Rest('Aggregate').get(
+  //   'random?type=3&imageType=2&size=8',
+  // )) as { data: RandomImage.Image[] }
+  const extraImages = getAnimeImages()
 
-  const randomImages = randomImageData.data.map((image) => {
-    return image.locate !== RandomImage.Locate.Online
-      ? `${process.env.APIURL}/uploads/background/${image.name}`
-      : (image.url as string)
-  })
+  // const randomImages = randomImageData.data.map((image) => {
+  //   return image.locate !== RandomImage.Locate.Online
+  //     ? `${process.env.APIURL}/uploads/background/${image.name}`
+  //     : (image.url as string)
+  // })
 
   return {
     ...(omit(aggregateData, ['ok', 'timestamp']) as IndexViewProps),
-    randomImages: shuffle([...randomImages, ...extraImages]),
+    randomImages: shuffle([/* ...randomImages, */ ...extraImages]),
   }
 }
 
