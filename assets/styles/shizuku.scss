@@ -336,19 +336,10 @@
 }
 #write .spoiler {
   position: relative;
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    background: currentColor;
-    z-index: -1;
-    transition: opacity 0.5s;
-  }
-  &:hover::before {
-    opacity: 0.15;
+  background: currentColor;
+  transition: background 0.5s;
+  &:hover {
+    background: transparent;
   }
 }
 #write > blockquote:nth-child(1) {

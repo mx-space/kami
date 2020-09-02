@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-11 13:31:05
- * @LastEditTime: 2020-06-12 20:18:36
+ * @LastEditTime: 2020-09-02 20:03:18
  * @LastEditors: Innei
  * @FilePath: /mx-web/common/markdown/rules/spoiler.ts
  * @Coding with Love
@@ -9,7 +9,7 @@
 import type { Eat, Parser } from 'remark-parse'
 
 function tokenizeSpoiler(eat: Eat, value: string, silent?: boolean): any {
-  const match = /\|\|(.*?)\|\|/.exec(value)
+  const match = /^\|\|([\s\S]+?)\|\|(?!\|)/.exec(value)
 
   if (match) {
     if (silent) {
