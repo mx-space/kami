@@ -1,11 +1,11 @@
-import { NextPage } from 'next'
-import { useState } from 'react'
-import { Rest } from '../../utils/api'
-import { setToken } from '../../utils/auth'
-import Router from 'next/router'
 import { message } from 'antd'
 import { Input } from 'components/Input'
+import { NextPage } from 'next'
+import Router from 'next/router'
+import { useState } from 'react'
 import { useStore } from '../../common/store'
+import { Rest } from '../../utils/api'
+import { setToken } from '../../utils/auth'
 
 const LoginView: NextPage = () => {
   const [username, setUsername] = useState('')

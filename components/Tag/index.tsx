@@ -1,10 +1,10 @@
-import styles from './index.module.scss'
+import { faTag } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useStore } from 'common/store'
 import rc from 'randomcolor'
 import { FC, useMemo } from 'react'
 import { observer } from 'utils/mobx'
-import { useStore } from 'common/store'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTag } from '@fortawesome/free-solid-svg-icons'
+import styles from './index.module.scss'
 
 interface BigTagProps {
   tagName: string

@@ -14,7 +14,6 @@ import Markdown from 'components/MD-render'
 import { NumberRecorder } from 'components/NumberRecorder'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { NoteLayout } from 'layouts/NoteLayout'
-import { observer } from 'utils/mobx'
 import {
   Mood,
   MoodMap,
@@ -27,6 +26,7 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
 import { Rest } from 'utils/api'
+import { observer } from 'utils/mobx'
 import { parseDate, relativeTimeFromNow } from 'utils/time'
 import { mood2icon, weather2icon } from 'utils/weather2icon'
 import { ImageSizesContext } from '../../common/context/ImageSizes'

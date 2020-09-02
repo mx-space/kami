@@ -13,7 +13,6 @@ import { AggregateResp } from 'models/aggregate'
 import html from 'remark-html'
 import markdown from 'remark-parse'
 import unified from 'unified'
-import configs from '../../configs'
 import { Rest } from '../../utils/api'
 const parser = unified().use(markdown).use(html).use(rules)
 

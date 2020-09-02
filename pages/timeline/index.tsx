@@ -1,6 +1,5 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
 import { QueueAnim } from '../../components/Anime'
 import { SEO } from '../../components/SEO'
 import { ArticleLayout } from '../../layouts/ArticleLayout'

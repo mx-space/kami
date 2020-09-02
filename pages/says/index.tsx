@@ -1,18 +1,18 @@
-import { observer } from 'utils/mobx'
 import { SayModel, SayRespDto } from 'models/say'
 import { NextPage } from 'next'
 import randomColor from 'randomcolor'
 import { useEffect, useState } from 'react'
+import ReactMarkdown from 'react-markdown'
 import StackGrid, { transitions } from 'react-stack-grid'
 import { Rest } from 'utils/api'
+import { observer } from 'utils/mobx'
 import { relativeTimeFromNow } from 'utils/time'
-import { SEO } from '../../components/SEO'
+import { usePrevious } from '../../common/hooks/usePrevious'
 import { EventTypes } from '../../common/socket/types'
 import { useStore } from '../../common/store'
+import { SEO } from '../../components/SEO'
 import { hexToRGB } from '../../utils/color'
 import observable from '../../utils/observable'
-import { usePrevious } from '../../common/hooks/usePrevious'
-import ReactMarkdown from 'react-markdown'
 const { scaleUp } = transitions
 interface SayViewProps {
   data: SayModel[]

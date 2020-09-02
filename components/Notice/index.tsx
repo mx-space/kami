@@ -1,10 +1,10 @@
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import TweenOne from 'rc-tween-one'
+import type { IAnimObject } from 'rc-tween-one/typings/AnimObject'
 import { FC } from 'react'
 import ReactDOM from 'react-dom'
 import styles from './index.module.scss'
-import TweenOne from 'rc-tween-one'
-import type { IAnimObject } from 'rc-tween-one/typings/AnimObject'
 interface NoticePanelProps {
   icon: IconDefinition
   text: string | JSX.Element

@@ -1,7 +1,7 @@
 import { message } from 'antd'
-import { observer } from 'utils/mobx'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import { observer } from 'utils/mobx'
 import { useStore } from '../../common/store'
 import { Rest } from '../../utils/api'
 

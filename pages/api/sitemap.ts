@@ -1,5 +1,5 @@
-import { SitemapStream, streamToPromise } from 'sitemap'
 import { IncomingMessage, ServerResponse } from 'http'
+import { SitemapStream, streamToPromise } from 'sitemap'
 import { Rest } from '../../utils/api'
 
 async function fetchContentFromAPI() {

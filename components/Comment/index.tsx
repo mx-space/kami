@@ -8,7 +8,6 @@
  */
 
 import { message } from 'antd'
-import { observer } from 'utils/mobx'
 import { PagerModel } from 'models/base'
 import { CommentModel, CommentPager } from 'models/comment'
 import {
@@ -22,6 +21,7 @@ import {
 } from 'react'
 import LazyLoad from 'react-lazyload'
 import { Rest } from 'utils/api'
+import { observer } from 'utils/mobx'
 import { useStore } from '../../common/store'
 import { flattenChildren } from '../../utils'
 import { Pagination } from '../Pagination'

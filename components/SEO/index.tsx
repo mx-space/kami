@@ -1,12 +1,12 @@
+import { useInitialData } from 'common/context/InitialDataContext'
 import merge from 'lodash/merge'
-import { observer } from 'utils/mobx'
 import { NextSeo, NextSeoProps } from 'next-seo'
 import type { OpenGraph } from 'next-seo/lib/types'
 import { FC } from 'react'
+import { observer } from 'utils/mobx'
 import { useStore } from '../../common/store'
 import configs from '../../configs'
 import { getRandomImage } from '../../utils/utils'
-import { useInitialData } from 'common/context/InitialDataContext'
 type SEOProps = {
   title: string
   description?: string

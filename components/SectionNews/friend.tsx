@@ -1,5 +1,5 @@
 import defaultAvatar from 'assets/images/default-avatar.png'
-import { FC, useEffect, useState, memo } from 'react'
+import { FC, memo, useEffect, useState } from 'react'
 import { LinkModel, LinkType } from '../../models/link'
 import { Rest } from '../../utils/api'
 import { Avatar } from '../Avatar'

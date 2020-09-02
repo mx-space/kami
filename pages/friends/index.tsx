@@ -1,10 +1,10 @@
 import { NextPage } from 'next'
-import { Rest } from '../../utils/api'
-import { LinkModel, LinkType } from '../../models/link'
-import { ArticleLayout } from '../../layouts/ArticleLayout'
 import { QueueAnim } from '../../components/Anime'
-import { SEO } from '../../components/SEO'
 import { ApplyForLink } from '../../components/ApplyLink'
+import { SEO } from '../../components/SEO'
+import { ArticleLayout } from '../../layouts/ArticleLayout'
+import { LinkModel, LinkType } from '../../models/link'
+import { Rest } from '../../utils/api'
 const renderSection = (data: LinkModel[]) => {
   return (
     <div className="note-item">
