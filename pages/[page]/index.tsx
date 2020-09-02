@@ -37,6 +37,7 @@ const Page: NextPage<PageRespDto> = (props) => {
     <ArticleLayout title={title} subtitle={subtitle}>
       <Seo
         title={title}
+        openGraph={{ type: 'article' }}
         description={RemoveMarkdown(text).slice(0, 100).replace('\n', '')}
       />
       <ImageSizesContext.Provider value={props.data.images}>

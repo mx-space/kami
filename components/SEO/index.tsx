@@ -6,6 +6,7 @@ import { FC } from 'react'
 import { useStore } from '../../common/store'
 import configs from '../../configs'
 import { getRandomImage } from '../../utils/utils'
+import { useInitialData } from 'common/context/InitialDataContext'
 type SEOProps = {
   title: string
   description?: string
@@ -15,43 +16,47 @@ type SEOProps = {
 export const SEO: FC<SEOProps> = observer((props) => {
   const { title, description, openGraph, ...rest } = props
   const { userStore, appStore } = useStore()
-  const Title = title + ' - ' + (configs.title || appStore.title)
+  const { seo, user } = useInitialData()
+  const Title = title + ' - ' + appStore.title
   return (
     <NextSeo
       {...{
         title,
-        titleTemplate: '%s - ' + (configs.title || appStore.title),
+        titleTemplate: '%s - ' + seo.title || appStore.title,
         openGraph: merge(
           {
+            profile: {
+              username: user.name || user.username,
+            },
             type: 'article',
             locale: 'zh-cn',
-            site_name: configs.title || appStore.title,
+            site_name: seo.title || appStore.title,
             description:
               description ||
-              configs.description ||
+              seo.description ||
               appStore.description ||
-              userStore.introduce,
+              userStore.introduce ||
+              '',
             article: {
-              authors: [
-                (userStore.name as string) || configs.author,
-                'mx-space',
-              ],
+              authors: [user.name || (userStore.name as string)],
             },
             title: Title,
             images: [
               {
                 url: getRandomImage().pop() as string,
-                alt: title + ' - ' + (configs.title || appStore.title),
+                alt: title + ' - ' + seo.title || appStore.title,
               },
             ],
-          },
+          } as OpenGraph,
           openGraph,
         ),
         description:
           description ||
-          configs.description ||
+          seo.description ||
+          user.introduce ||
           appStore.description ||
-          userStore.introduce,
+          userStore.introduce ||
+          '',
         twitter: {
           cardType: 'summary',
           site: configs.url,

@@ -13,7 +13,7 @@ export default class AppStore {
 
   @observable autoToggleColorMode = true
   @observable colorMode: 'light' | 'dark' = 'light'
-  @observable config = { seo: {} as Seo } as any
+  @observable config = { seo: {} as Seo }
 
   @observable headerNav = {
     title: '',
@@ -118,7 +118,7 @@ export default class AppStore {
     return this.config.seo || {}
   }
   @computed get title() {
-    return this.seo?.title || configs.title || 'MX-space'
+    return this.seo.title || 'MX-space'
   }
   @computed get description() {
     return this.seo.description

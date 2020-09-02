@@ -3,6 +3,7 @@ import * as Sentry from '@sentry/node'
 import { message } from 'antd'
 import 'assets/styles/main.scss'
 import 'normalize.css/normalize.css'
+import { InitialContext } from 'common/context/InitialDataContext'
 import Loader from 'components/Loader'
 import configs from 'configs'
 import 'intersection-observer'
@@ -81,25 +82,26 @@ const Content: FC<DataModel> = observer((props) => {
     [],
   )
   const [loading, setLoading] = useState(true)
-  {
-    const data = props.initData
 
-    const { seo, user, pageMeta, categories, lastestNoteNid } = data
-    // set user
-    master.setUser(user)
-
-    // set page
-    pages.setPages(pageMeta as PageModel[])
-    app.setPage(pageMeta as PageModel[])
-    app.setCategories(categories)
-    category.setCategory(categories)
-    app.setConfig({ seo })
-    app.setLastestNoteNid(lastestNoteNid)
-  }
   useMount(() => {
+    {
+      const data = props.initData
+
+      const { seo, user, pageMeta, categories, lastestNoteNid } = data
+      // set user
+      master.setUser(user)
+      setLoading(false)
+      app.setLoading(false)
+      // set page
+      pages.setPages(pageMeta as PageModel[])
+      app.setPage(pageMeta as PageModel[])
+      app.setCategories(categories)
+      category.setCategory(categories)
+      app.setConfig({ seo })
+      app.setLastestNoteNid(lastestNoteNid)
+    }
     checkLogin()
-    setLoading(false)
-    app.setLoading(false)
+
     if (process.env.NODE_ENV === 'development') {
       ;(window as any).store = stores
     }
@@ -252,14 +254,13 @@ const Content: FC<DataModel> = observer((props) => {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
+        <meta name="keywords" content={props.initData.seo.keywords.join(',')} />
       </Head>
       <NextSeo
         title={
-          (app.title || configs.title) +
-          ' · ' +
-          (app.description || configs.description)
+          props.initData.seo.title + ' · ' + props.initData.seo.description
         }
-        description={app.description || configs.description}
+        description={props.initData.seo.description}
       />
       <LogoJsonLd
         logo={new URL('/custom-icon.svg', configs.url).toString()}
@@ -267,7 +268,7 @@ const Content: FC<DataModel> = observer((props) => {
       />
       <SocialProfileJsonLd
         type={'Person'}
-        name={configs.author}
+        name={master.name || ''}
         url={configs.url}
         sameAs={configs.social.map(({ url }) => url)}
       />
@@ -288,11 +289,13 @@ const app: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
 ) => {
   const { initData, Component, pageProps, err } = props
   return (
-    <Content initData={initData}>
-      <BasicLayout>
-        <Component {...pageProps} err={err} />
-      </BasicLayout>
-    </Content>
+    <InitialContext.Provider value={initData}>
+      <Content initData={initData}>
+        <BasicLayout>
+          <Component {...pageProps} err={err} />
+        </BasicLayout>
+      </Content>
+    </InitialContext.Provider>
   )
 }
 // @ts-ignore

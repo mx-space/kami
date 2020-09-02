@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-07-01 19:25:29
- * @LastEditTime: 2020-08-09 21:10:31
+ * @LastEditTime: 2020-09-02 13:55:15
  * @LastEditors: Innei
  * @FilePath: /mx-web/components/Comment/index.tsx
  * @Coding with Love
@@ -188,15 +188,15 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
 
 export const CommentLazy: FC<CommentWrapProps> = (props) => {
   return (
-    <LazyLoad
-      offset={-50}
-      once
-      debounce
-      throttle
-      placeholder={<div style={minHeightProperty} />}
-    >
-      <CommentWrap {...props} />
-    </LazyLoad>
+    // <LazyLoad
+    //   offset={-50}
+    //   once
+    //   debounce
+    //   throttle
+    //   placeholder={<div style={minHeightProperty} />}
+    // >
+    <CommentWrap {...props} />
+    // </LazyLoad>
   )
 }
 

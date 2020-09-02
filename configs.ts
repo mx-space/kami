@@ -108,12 +108,12 @@ const social: SocialLinkModel[] = [
   },
 ]
 export default {
-  title: '静かな森', // prefetch seo
-  description: '致虚极，守静笃。',
-  avatar: 'https://tu-1252943311.file.myqcloud.com/avatar.png', // work on rss
+  // title: '静かな森', // prefetch seo
+  // description: '致虚极，守静笃。',
+  // avatar: 'https://tu-1252943311.file.myqcloud.com/avatar.png', // work on rss
   url: 'https://innei.ren',
-  keywords: ['blog', 'space', 'mx-space', 'innei', '静之森', '静かな森'],
-  author: 'Innei', // for ssr render
+  // keywords: ['blog', 'space', 'mx-space', 'innei', '静之森', '静かな森'],
+  // author: 'Innei', // for ssr render
   alwaysHTTPS:
     process.env.NODE_ENV === 'development'
       ? false

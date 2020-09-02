@@ -6,6 +6,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { message } from 'antd'
+import { useInitialData } from 'common/context/InitialDataContext'
 import { useStore } from 'common/store'
 import SectionNews, {
   SectionCard,
@@ -80,13 +81,13 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
       setLike(~~number)
     })
   }, [])
-
+  const { user } = useInitialData()
   return (
     <main>
       <section className="paul-intro">
         <div className="intro-avatar ">
           <img
-            src={configs.avatar || avatar}
+            src={user.avatar || avatar}
             alt={name}
             style={{ width: '100%' }}
           />

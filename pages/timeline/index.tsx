@@ -42,7 +42,7 @@ type mapType = {
 }
 const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
   const sortedMap = new Map<number, mapType[]>()
-  const [map, setMap] = useState<typeof sortedMap>(new Map())
+
   const { posts = [], notes = [] } = props
 
   const getDelayTime = (year: number): number => {
@@ -105,12 +105,6 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
       val.sort((a, b) => b.date.getTime() - a.date.getTime()),
     )
   })
-  useEffect(() => {
-    setMap(sortedMap)
-  }, [])
-  useEffect(() => {
-    setMap(sortedMap)
-  }, [props.posts, props.notes])
 
   return (
     <ArticleLayout
@@ -118,7 +112,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
       subtitle={`共有${posts.length + notes.length}篇文章, 再接再厉`}
     >
       <SEO title={'时间线'} />
-      {Array.from(map)
+      {Array.from(sortedMap)
         .reverse()
         .map(([year, value], j) => {
           return (

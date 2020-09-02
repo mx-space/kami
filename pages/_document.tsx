@@ -198,7 +198,6 @@ export default class MyDocument extends Document<{ ua: string }> {
               content="upgrade-insecure-requests"
             />
           ) : null}
-          <meta name="keywords" content={configs.keywords.join(',')} />
         </Head>
 
         <body id={'app'} className="loading">

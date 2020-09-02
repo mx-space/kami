@@ -190,14 +190,12 @@ const NoteView: NextPage<NoteViewProps> = observer((props) => {
         {...{
           title: title,
           description,
+
           openGraph: {
             title,
+            type: 'article',
             description,
-            profile: {
-              username: userStore.name,
-            },
             article: {
-              authors: [userStore.name || 'mx-space'],
               publishedTime: data.created,
               modifiedTime: data.modified,
               tags: ['Note of Life'],

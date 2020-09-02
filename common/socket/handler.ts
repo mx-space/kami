@@ -1,22 +1,22 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-29 21:54:33
- * @LastEditTime: 2020-06-12 15:53:02
+ * @LastEditTime: 2020-09-02 13:40:39
  * @LastEditors: Innei
- * @FilePath: /mx-web/socket/handler.ts
+ * @FilePath: /mx-web/common/socket/handler.ts
  * @Code with Love
  */
 
-import configs from '../../configs'
-import { gatewayStore, userStore } from '../store'
 import { createDangmaku } from '../../utils/danmaku'
 import { Notice } from '../../utils/notice'
+import { appStore, gatewayStore, userStore } from '../store'
 import { EventTypes } from './types'
 // import Router from 'next/router'
-export const title = configs.title
+
 export const notice = new Notice()
 
 export const eventHandler = (type: EventTypes, data: any) => {
+  const title = appStore.seo.title
   switch (type) {
     case EventTypes.VISITOR_ONLINE:
     case EventTypes.VISITOR_OFFLINE: {

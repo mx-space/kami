@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-14 20:57:01
- * @LastEditTime: 2020-08-08 16:40:43
+ * @LastEditTime: 2020-09-02 13:26:53
  * @LastEditors: Innei
  * @FilePath: /mx-web/pages/api/feed.ts
  * @Coding with Love
@@ -9,6 +9,7 @@
 
 import rules from 'common/markdown/rules'
 import { IncomingMessage, ServerResponse } from 'http'
+import { AggregateResp } from 'models/aggregate'
 import html from 'remark-html'
 import markdown from 'remark-parse'
 import unified from 'unified'
@@ -24,8 +25,11 @@ const encodeHTML = function (str: string) {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&apos;')
 }
-const genRSS = (props: RSSProps) => {
-  const { title, url, author, data } = props
+const genRSS = async (props: RSSProps) => {
+  const { url, author, data } = props
+  const aggregate = await Rest('Aggregate').get<AggregateResp>()
+  const avatar = aggregate.user.avatar
+  const title = aggregate.seo.title
   return `<?xml version="1.0" encoding="UTF-8"?>
     <feed xmlns="http://www.w3.org/2005/Atom">
       <title>${title}</title>
@@ -40,8 +44,8 @@ const genRSS = (props: RSSProps) => {
       <generator>${'Mix Space CMS'}</generator>
       <language>zh-CN</language>
       <image>
-          <url>${encodeHTML(configs.avatar)}</url>
-          <title>${configs.title}</title>
+          <url>${encodeHTML(avatar)}</url>
+          <title>${title}</title>
           <link>${encodeHTML(url)}</link>
       </image>
         ${data.map((item) => {
@@ -81,6 +85,6 @@ export default async function RSSFunc(
 ) {
   const rss = (await Rest('Aggregate').get('feed')) as RSSProps
   res.setHeader('Content-Type', 'text/xml')
-  res.write(genRSS(rss))
+  res.write(await genRSS(rss))
   res.end()
 }

@@ -19,9 +19,10 @@ import GatewayStore from './gateway'
 import ActionStore from './action'
 export const gatewayStore = new GatewayStore()
 export const userStore = new UserStore()
+export const appStore = new AppStore()
 export default function createMobxStores(): Stores {
   return {
-    appStore: new AppStore(),
+    appStore,
     userStore,
     socialStore: new SocialStore(),
     pageStore: new PageStore(),
