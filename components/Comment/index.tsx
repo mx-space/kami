@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-07-01 19:25:29
- * @LastEditTime: 2020-09-02 13:55:15
+ * @LastEditTime: 2020-09-03 17:36:46
  * @LastEditors: Innei
  * @FilePath: /mx-web/components/Comment/index.tsx
  * @Coding with Love
@@ -19,7 +19,7 @@ import {
   useMemo,
   useState,
 } from 'react'
-import LazyLoad from 'react-lazyload'
+import { useInView } from 'react-intersection-observer'
 import { Rest } from 'utils/api'
 import { observer } from 'utils/mobx'
 import { useStore } from '../../common/store'
@@ -132,8 +132,28 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
     })
   }
 
+  const [commentShow, setCommentShow] = useState(false)
+
+  const [ref, inView, entry] = useInView({
+    /* Optional options */
+    threshold: 0.5,
+  })
+  useEffect(() => {
+    if (inView) {
+      setCommentShow(true)
+    }
+  }, [inView])
+  useEffect(() => {
+    if (commentShow) {
+      fetchComments()
+    }
+  }, [commentShow])
+  useEffect(() => {
+    setComments([])
+    setCommentShow(false)
+  }, [id])
   return (
-    <article className={styles.wrap}>
+    <article className={styles.wrap} ref={ref}>
       <CommentContext.Provider
         value={{ type, refresh: fetchComments, collection }}
       >
@@ -151,14 +171,7 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
           <h1>主人禁止了评论</h1>
         )}
         <span id="comment-anchor"></span>
-        <LazyLoad
-          offset={50}
-          debounce
-          throttle
-          key={id}
-          unmountIfInvisible
-          placeholder={<CommentLoading />}
-        >
+        {commentShow ? (
           <Fragment>
             <Comment comments={comments} onFetch={fetchComments} id={id} />
             <div style={{ textAlign: 'center' }}>
@@ -180,7 +193,9 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
               )}
             </div>
           </Fragment>
-        </LazyLoad>
+        ) : (
+          <CommentLoading />
+        )}
       </CommentContext.Provider>
     </article>
   )

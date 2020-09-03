@@ -145,9 +145,7 @@ const Comments: FC<{
   const [replyId, setReplyId] = useState('')
   const { userStore } = useStore()
   const logged = userStore.isLogged
-  useEffect(() => {
-    fetchComments()
-  }, [fetchComments, id])
+
   const [sure, setSure] = useState(false)
   if (comments.length === 0) {
     return <Empty />
