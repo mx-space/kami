@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-07-01 19:25:29
- * @LastEditTime: 2020-09-03 17:36:46
+ * @LastEditTime: 2020-09-03 18:16:59
  * @LastEditors: Innei
  * @FilePath: /mx-web/components/Comment/index.tsx
  * @Coding with Love
@@ -54,13 +54,6 @@ interface CommentWrapProps {
   allowComment: boolean
 }
 
-const commentsCache = {
-  id: null! as string,
-  data: [] as any[],
-  page: {} as PagerModel['page'],
-  timestamp: new Date(),
-}
-
 const CommentWrap: FC<CommentWrapProps> = observer((props) => {
   const { type, id, allowComment } = props
   const [comments, setComments] = useState([] as CommentModel[])
@@ -71,44 +64,24 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
     () => new Map<string, Omit<CommentModel, 'children'>>(),
     [],
   )
-  useEffect(() => {
-    commentsCache.id = null!
-  }, [id])
+
   const fetchComments = useCallback(
-    (page = commentsCache.page.currentPage || 1, size = 10, force = false) => {
-      if (
-        force ||
-        id !== commentsCache.id ||
-        page !== commentsCache.page.currentPage ||
-        Math.abs(commentsCache.timestamp.getTime() - new Date().getTime()) >
-          3600000
-      ) {
-        Rest('Comment', 'ref/' + id)
-          .gets<CommentPager>({
-            page,
-            size,
-            ts: new Date().getTime(),
+    (page = 1, size = 10) => {
+      Rest('Comment', 'ref/' + id)
+        .gets<CommentPager>({
+          page,
+          size,
+          ts: new Date().getTime(),
+        })
+        .then(({ data, page }) => {
+          collection.clear()
+          flattenChildren(data).forEach((i) => {
+            collection.set(i._id, i)
           })
-          .then(({ data, page }) => {
-            collection.clear()
-            flattenChildren(data).forEach((i) => {
-              collection.set(i._id, i)
-            })
 
-            setComments(data)
-            setPage(page)
-
-            {
-              commentsCache.data = data
-              commentsCache.page = page
-              commentsCache.id = id
-              commentsCache.timestamp = new Date()
-            }
-          })
-      } else {
-        setComments(commentsCache.data)
-        setPage(commentsCache.page)
-      }
+          setComments(data)
+          setPage(page)
+        })
     },
     [collection, id],
   )
@@ -201,20 +174,20 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
   )
 })
 
-export const CommentLazy: FC<CommentWrapProps> = (props) => {
-  return (
-    // <LazyLoad
-    //   offset={-50}
-    //   once
-    //   debounce
-    //   throttle
-    //   placeholder={<div style={minHeightProperty} />}
-    // >
-    <CommentWrap {...props} />
-    // </LazyLoad>
-  )
-}
-
+// export const CommentLazy: FC<CommentWrapProps> = (props) => {
+//   return (
+//     // <LazyLoad
+//     //   offset={-50}
+//     //   once
+//     //   debounce
+//     //   throttle
+//     //   placeholder={<div style={minHeightProperty} />}
+//     // >
+//     <CommentWrap {...props} />
+//     // </LazyLoad>
+//   )
+// }
+export const CommentLazy = CommentWrap
 export const minHeightProperty = { minHeight: '400px' }
 
 export default CommentWrap
