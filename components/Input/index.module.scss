@@ -23,6 +23,9 @@
     .rect {
       transition: 0.5s;
     }
+    .border {
+      visibility: visible;
+    }
   }
   svg {
     width: 100%;
@@ -41,6 +44,7 @@
     stroke-dashoffset: 0px;
   }
   .border {
+    visibility: hidden;
     position: absolute;
     top: 0;
     bottom: 0;
