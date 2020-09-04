@@ -1,6 +1,6 @@
 import defaultAvatar from 'assets/images/default-avatar.png'
 import { FC, memo, useEffect, useState } from 'react'
-import { LinkModel, LinkType } from '../../models/link'
+import { LinkModel, LinkState, LinkType } from '../../models/link'
 import { Rest } from '../../utils/api'
 import { Avatar } from '../Avatar'
 import styles from './index.module.scss'
@@ -26,7 +26,13 @@ export const FriendsSection: FC = memo(() => {
       .gets({ page: 1, size: 20 })
       .then((res: any) => {
         const data = res.data as LinkModel[]
-        setFriends(data.filter((i) => i.type === LinkType.Friend))
+        setFriends(
+          data.filter(
+            (i) =>
+              i.type === LinkType.Friend &&
+              (i.state !== LinkState.Audit || i.hide),
+          ),
+        )
       })
   }, [])
   return (

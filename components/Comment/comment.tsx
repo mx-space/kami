@@ -331,7 +331,6 @@ const Comments: FC<{
           leaveReverse
           type={'bottom'}
           duration={500}
-          animatingClassName={animatingClassName}
         >
           {replyId === comment._id && (
             <CommentBox

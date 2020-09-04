@@ -299,6 +299,11 @@ const app: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
     </InitialContext.Provider>
   )
 }
+let initData: any = null
+// cache 60 mins
+setInterval(() => {
+  initData = null
+}, 1000 * 60)
 // @ts-ignore
 app.getInitialProps = async (props: AppContext) => {
   const appProps = await App.getInitialProps(props)
@@ -320,7 +325,8 @@ app.getInitialProps = async (props: AppContext) => {
       request.headers['user-agent'] + ' mx-space SSR server' + `/${version}`
     // console.log(service.defaults.headers.common)
   }
-  const initData = await Rest('Aggregate').get<AggregateResp>()
+
+  initData = initData || (await Rest('Aggregate').get<AggregateResp>())
   return { ...appProps, initData }
 }
 export default app

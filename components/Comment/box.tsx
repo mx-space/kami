@@ -89,7 +89,7 @@ const CommentBox: FC<{
     }
   }, [])
   return (
-    <>
+    <div>
       {!logged && (
         <div className={styles['comment-box-head']}>
           <Input
@@ -148,7 +148,7 @@ const CommentBox: FC<{
           发送
         </button>
       </div>
-    </>
+    </div>
   )
 })
 

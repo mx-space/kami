@@ -17,6 +17,7 @@ const renderSection = (data: LinkModel[]) => {
                   <a href={link.url} target={'_blank'}>
                     {link.name}
                   </a>
+
                   <span className="meta">{link.description || ''}</span>
                 </li>
               )
