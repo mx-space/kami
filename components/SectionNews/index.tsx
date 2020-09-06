@@ -57,7 +57,9 @@ const SectionNews: FC<SectionNewsProps> = memo(
               <Link {...pick(item, ['href', 'as'])}>
                 <a className={styles['news-article']}>
                   <Card cover={item.background}>
-                    <span>{item.title}</span>
+                    <div className={styles['text-mask']}>
+                      <span>{item.title}</span>
+                    </div>
                   </Card>
                 </a>
               </Link>

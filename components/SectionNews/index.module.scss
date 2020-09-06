@@ -116,3 +116,26 @@
   transition: all 0.2s ease-out;
   z-index: 0;
 }
+
+.text-mask {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  white-space: nowrap;
+  @supports (-webkit-mask-image: inherit) or (mask-image: inherit) {
+    & {
+      text-overflow: clip;
+      -webkit-mask-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 1) calc(100% - 2em),
+        transparent
+      );
+      mask-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 1) calc(100% - 2em),
+        transparent
+      );
+    }
+  }
+}
