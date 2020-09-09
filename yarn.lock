@@ -7504,10 +7504,10 @@ react-dom@16.13.1, react-dom@^16.12.0:
     prop-types "^15.6.2"
     scheduler "^0.19.1"
 
-react-intersection-observer@8.28.2:
-  version "8.28.2"
-  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-8.28.2.tgz#6504423575905bb9312be6ff0d22e7bbc78af63f"
-  integrity sha512-JzyBn3QylXSJmM7P9dxxAioC4F3xHt4Uc3A6ZBXY27PeSNFraqnsd9jBdo7LJOMtzeXxyfJ6rYdDTl35LQ5TnQ==
+react-intersection-observer@8.28.3:
+  version "8.28.3"
+  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-8.28.3.tgz#e98c701095765b093783b8178c57e5575838cd0a"
+  integrity sha512-sy4iiqAHGPHcmTy4Q4JZWrcWbFruIuSHgJriC0oXyHLaf5T7gMjp/o2HvKI2tAgJUUQ4jslKZVwLarGq0iHyeg==
 
 react-intersection-observer@^6.1.0:
   version "6.4.2"
