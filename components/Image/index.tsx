@@ -14,8 +14,8 @@ import type { LazyImage as LazyImageProps } from 'react-lazy-images'
 import { observer } from 'utils/mobx'
 import { useStore } from '../../common/store'
 import { isClientSide } from '../../utils'
+import Zoom from 'react-medium-image-zoom'
 
-const Zmage = dynamic(() => import('react-zmage'), { ssr: false })
 const LazyImage = (dynamic(() =>
   import('react-lazy-images').then((mo: any) => mo.LazyImage),
 ) as any) as typeof LazyImageProps
@@ -69,7 +69,9 @@ const Image: FC<
               }}
             />
           ) : (
-            <Zmage src={src} alt={alt} backdrop={'var(--light-bg)'} />
+            <Zoom overlayBgColorEnd={'var(--light-bg)'}>
+              <img src={src} alt={alt} />
+            </Zoom>
           )
         ) : (
           <img src={src} alt={alt} />
@@ -111,13 +113,14 @@ export const ImageLazy: FC<
   }, [colorMode])
 
   return (
-    <div style={{ ...(style || {}) }}>
+    <div style={{ ...(style || {}), display: 'inline-block' }}>
       {defaultImage ? (
         <img src={defaultImage} alt={alt} {...rest} ref={realImageRef} />
       ) : (
         <div
           style={{
             position: 'relative',
+            display: 'inline-block',
             // overflow: 'hidden',
             height,
             width,
