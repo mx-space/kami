@@ -16,15 +16,20 @@ body {
   background: url(https://gitee.com/xun7788/my-imagination/raw/master/cdn/background.png)
     top center fixed;
 }
-body.gray {
-  -webkit-filter: grayscale(100%);
-  filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: var(--light-bg);
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
 }
-body.has-player {
-  margin-bottom: 5em;
-}
-body.has-player action {
-  bottom: 6rem;
+body.focus::before {
+  opacity: 0.7;
 }
 ::-webkit-scrollbar {
   width: 4px;
@@ -36,6 +41,9 @@ body.has-player action {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #ff9800;
+}
+::-webkit-scrollbar-corner {
+  background: var(--light-bg);
 }
 a {
   color: #28b9be;
@@ -110,7 +118,7 @@ html.dark {
   --brown: #c6aa9f !important;
   --light-brown: #bc9c8f !important;
   --purple: #561494 !important;
-  --light-bg: #373737 !important;
+  --light-bg: #333 !important;
   --light-font: #ddd !important;
 }
 html.dark body {
@@ -132,7 +140,7 @@ html.dark img {
     --brown: #c6aa9f;
     --light-brown: #bc9c8f;
     --purple: #561494;
-    --light-bg: #373737;
+    --light-bg: #333333;
     --light-font: #ddd;
   }
   body {

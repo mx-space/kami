@@ -23,7 +23,7 @@ interface PostProps extends PagerModel {
 const Post: NextPage<PostProps> = observer((props) => {
   const { page, posts } = props
   const store = useStore()
-  const { actionStore, categoryStore } = store
+  const { actionStore } = store
   const [showTags, setShowTags] = useState(false)
   const router = useRouter()
 
@@ -34,10 +34,6 @@ const Post: NextPage<PostProps> = observer((props) => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [currentPage])
-
-  useEffect(() => {
-    categoryStore.fetchCategory()
-  }, [categoryStore])
 
   const [tags, setTags] = useState<{ _id: string; name: string }[]>([])
   const fetchTags = useCallback(async () => {

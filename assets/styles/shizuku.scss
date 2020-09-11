@@ -40,6 +40,9 @@
   word-wrap: break-word;
   word-break: break-all;
 }
+#write pre > code {
+  max-height: 70vh;
+}
 #write pre::before,
 #write pre::after {
   content: ' ';

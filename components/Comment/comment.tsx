@@ -1,12 +1,14 @@
-import { Comment, message } from 'antd'
+import { message } from 'antd'
 import Markdown from 'components/MD-render'
 import sample from 'lodash/sample'
 import { CommentModel } from 'models/comment'
 import rc from 'randomcolor'
 import QueueAnim from 'rc-queue-anim'
 import {
+  DetailedHTMLProps,
   FC,
   Fragment,
+  HTMLAttributes,
   memo,
   useContext,
   useEffect,
@@ -22,6 +24,47 @@ import { useStore } from '../../common/store'
 import { animatingClassName } from '../../layouts/NoteLayout'
 import CommentBox from './box'
 import styles from './index.module.scss'
+
+interface CommentProps {
+  author: JSX.Element
+  avatar: JSX.Element
+  content: JSX.Element
+  datetime: string
+  actions?: (JSX.Element | null)[]
+}
+
+const Comment: FC<
+  CommentProps &
+    DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+> = (props) => {
+  const {
+    actions,
+    author,
+    children,
+    avatar,
+    content,
+    datetime,
+    ...rest
+  } = props
+  return (
+    <div className={styles['comment']} {...rest}>
+      <div className={styles['inner']}>
+        <div className={styles['comment-avatar']}>{avatar}</div>
+        <div className={styles['content']}>
+          <div className={styles['content-author']}>
+            <span className={styles['name']}>{author}</span>
+            <span className={styles['datetime']}>{datetime}</span>
+          </div>
+          <div className={styles['detail']}>{content}</div>
+          <ul className={styles['actions']}>
+            {actions && actions.map((action, i) => <li key={i}>{action}</li>)}
+          </ul>
+        </div>
+      </div>
+      <div className={styles['nested']}>{children}</div>
+    </div>
+  )
+}
 
 const generateColorFromMode = (
   mode: 'bright' | 'light' | 'dark' | 'random' | undefined,
@@ -100,21 +143,6 @@ const Empty: FC = () => {
             />
           </g>
         </g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
       </svg>
       {sample([
         '这里空空如也...',
@@ -189,7 +217,7 @@ const Comments: FC<{
             {comment.author}
           </a>
         }
-        avatar={<Avatar src={comment.avatar} />}
+        avatar={<Avatar src={comment.avatar?.concat('?d=identicon')} />}
         content={
           <Markdown
             value={`${
@@ -287,9 +315,12 @@ const Comments: FC<{
         actions={[
           <span
             key="comment-list-reply-to-0"
-            onClick={() => setReplyId(comment._id)}
+            onClick={() => {
+              if (replyId !== comment.id) setReplyId(comment._id)
+              else setReplyId('')
+            }}
           >
-            回复
+            {replyId !== comment.id ? '回复' : '取消回复'}
           </span>,
           logged ? (
             <Fragment>

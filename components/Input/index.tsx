@@ -1,6 +1,5 @@
 import classNames from 'classnames'
 import {
-  createElement,
   DetailedHTMLProps,
   FC,
   InputHTMLAttributes,
@@ -61,22 +60,24 @@ export const Input: FC<
       ref={inputWrapRef}
     >
       {prefix && <div className={styles['prefix-wrap']}>{prefix}</div>}
-      <div className={styles['border']}>
-        <svg>
-          <rect
-            height={size.height}
-            width={size.width}
-            // x={1}
-            // y={0}
-            style={{
-              strokeDasharray: `${C}px`,
-              strokeDashoffset: !focused ? `${C}px` : undefined,
-              // '--C': `${C}px`,
-            }}
-            className={styles['rect']}
-          ></rect>
-        </svg>
-      </div>
+      {C && (
+        <div className={styles['border']}>
+          <svg>
+            <rect
+              height={size.height}
+              width={size.width}
+              // x={1}
+              // y={0}
+              style={{
+                strokeDasharray: `${C}px`,
+                strokeDashoffset: !focused ? `${C}px` : undefined,
+                // '--C': `${C}px`,
+              }}
+              className={styles['rect']}
+            ></rect>
+          </svg>
+        </div>
+      )}
       <I
         value={value}
         {...rest}

@@ -134,7 +134,7 @@ export const PostView: NextPage<PostResModel> = (props) => {
   }, [props, title])
 
   return (
-    <ArticleLayout title={title}>
+    <ArticleLayout title={title} focus>
       <Seo
         title={props.title}
         description={description}

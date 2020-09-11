@@ -432,13 +432,6 @@ html.light img:before {
 .player {
   right: calc(100vw - 322px);
 }
-// ant desion restyle
-.ant-comment-avatar {
-  cursor: unset;
-}
-.ant-comment-actions {
-  margin-left: 0;
-}
 
 html.dark {
   :not(pre) > code {
@@ -446,15 +439,6 @@ html.dark {
     color: var(--shizuku-theme-color);
   }
 
-  .ant-comment-content-author-name {
-    > * {
-      color: var(--shizuku-text-color) !important;
-    }
-  }
-  .ant-comment-actions > li > span {
-    color: var(--shizuku-text-color);
-    opacity: 0.9;
-  }
   .ant-message {
     .ant-message-notice-content {
       background-color: var(--shizuku-background-color);
@@ -469,15 +453,6 @@ html.dark {
       color: var(--shizuku-theme-color);
     }
 
-    .ant-comment-content-author-name {
-      > * {
-        color: var(--shizuku-text-color) !important;
-      }
-    }
-    .ant-comment-actions > li > span {
-      color: var(--shizuku-text-color);
-      opacity: 0.9;
-    }
     .ant-message {
       .ant-message-notice-content {
         background-color: var(--shizuku-background-color);
@@ -486,17 +461,7 @@ html.dark {
     }
   }
 }
-.ant-comment-nested {
-  margin-left: 24px;
-  .ant-comment-nested {
-    margin-left: 0;
-  }
-}
-@media (max-width: 650px) {
-  .ant-comment-nested {
-    margin-left: 12px;
-  }
-}
+
 .ant-message-notice-content {
   border-radius: 24px;
   animation: fade-small-large 0.3s both;

@@ -259,6 +259,7 @@ const NoteView: NextPage<NoteViewProps> = observer((props) => {
       <ArticleLayout
         style={{ minHeight: 'unset', paddingTop: '0' }}
         delay={2000}
+        focus
       >
         <CommentWrap
           type={'Note'}
