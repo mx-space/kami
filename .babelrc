@@ -18,12 +18,6 @@
       {
         "legacy": true
       }
-    ],
-    [
-      "import",
-      {
-        "libraryName": "antd"
-      }
     ]
   ],
   "presets": [

@@ -1,6 +1,5 @@
 import { faArrowUp, faHeadphones } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { BackTop } from 'antd'
 import classNames from 'classnames'
 import { useStore } from 'common/store'
 import { QueueAnim } from 'components/Anime'
@@ -53,11 +52,23 @@ export const FooterActions: FC = observer(() => {
         `}
       </style>
       <div className="action">
-        <BackTop>
-          <button className={classNames('top', isOverflow ? 'active' : '')}>
-            <FontAwesomeIcon icon={faArrowUp} />
-          </button>
-        </BackTop>
+        <button
+          className={classNames('top', isOverflow ? 'active' : '')}
+          onClick={(e) => {
+            // @ts-ignore
+
+            e.preventDefault()
+
+            window.scrollTo({
+              top: 0,
+              left: 0,
+              behavior: 'smooth',
+            })
+          }}
+        >
+          <FontAwesomeIcon icon={faArrowUp} />
+        </button>
+
         <QueueAnim type="scale" leaveReverse ease="easeInQuart" forcedReplay>
           {actionStore.actions.map((action, i) => {
             return (
