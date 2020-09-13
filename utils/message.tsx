@@ -25,7 +25,7 @@ const getContainerNode: () => HTMLElement = () => {
 //@ts-ignore
 
 const message: MessageInstance = {}
-;['success', 'error', 'warn', 'info', 'loading'].forEach((type) => {
+;['success', 'error', 'warn', 'info', 'loading', 'warning'].forEach((type) => {
   message[type] = (content, duration) => {
     let message: string
     const time = content?.duration ?? duration
@@ -70,5 +70,6 @@ export interface MessageInstance {
   success(content: JointContent, duration?: ConfigDuration): void
   error(content: JointContent, duration?: ConfigDuration): void
   warning(content: JointContent, duration?: ConfigDuration): void
+  warn(content: JointContent, duration?: ConfigDuration): void
   loading(content: JointContent, duration?: ConfigDuration): void
 }
