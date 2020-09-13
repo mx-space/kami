@@ -1,7 +1,7 @@
 import { faUser, faUserCircle } from '@fortawesome/free-regular-svg-icons'
 import { faGlobeAsia, faPen } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { message } from 'antd'
+import { message } from 'utils/message'
 import { FC, useCallback, useState } from 'react'
 import isURL from 'validator/lib/isURL'
 import { Rest } from '../../utils'

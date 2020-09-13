@@ -1,13 +1,13 @@
 /*
  * @Author: Innei
  * @Date: 2020-07-01 19:25:29
- * @LastEditTime: 2020-09-03 18:16:59
+ * @LastEditTime: 2020-09-13 17:47:16
  * @LastEditors: Innei
  * @FilePath: /mx-web/components/Comment/index.tsx
  * @Coding with Love
  */
 
-import { message } from 'antd'
+import { message } from 'utils/message'
 import { PagerModel } from 'models/base'
 import { CommentModel, CommentPager } from 'models/comment'
 import {
@@ -38,14 +38,12 @@ export const CommentContext = createContext({
   collection: new Map<string, Omit<CommentModel, 'children'>>(),
 })
 
-const key = 'updatable'
-
 export const openCommentMessage = () => {
-  message.loading({ content: '发送中', key })
+  message.loading({ content: '发送中', duration: 500 })
 }
 
 openCommentMessage.success = () => {
-  message.success({ content: '成功啦', key, duration: 2 })
+  message.success({ content: '成功啦', duration: 2000 })
 }
 
 interface CommentWrapProps {

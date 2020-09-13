@@ -1,4 +1,4 @@
-import { message } from 'antd'
+import { message } from 'utils/message'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { observer } from 'utils/mobx'

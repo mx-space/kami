@@ -41,7 +41,7 @@ import rest from 'react-syntax-highlighter/dist/cjs/languages/prism/rest'
 import http from 'react-syntax-highlighter/dist/cjs/languages/prism/http'
 
 import styles from './index.module.scss'
-import { message } from 'antd'
+import { message } from 'utils/message'
 import { copy } from '../../utils/dom'
 
 const lang = {

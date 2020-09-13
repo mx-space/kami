@@ -1,6 +1,6 @@
 import * as Sentry from '@sentry/node'
 // import { animateUriFactory } from 'animate-uri/publish/index.esm'
-import { message } from 'antd'
+import { message } from 'utils/message'
 import 'assets/styles/main.scss'
 import 'normalize.css/normalize.css'
 import { InitialContext } from 'common/context/InitialDataContext'

@@ -1,7 +1,7 @@
 import { faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons'
 import { faGlobeAsia } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { message } from 'antd'
+import { message } from 'utils/message'
 import omit from 'lodash/omit'
 import React, { FC, memo, useEffect, useState } from 'react'
 import isEmail from 'validator/lib/isEmail'

@@ -1,6 +1,6 @@
 import { faCog, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { message } from 'antd'
+import { message } from 'utils/message'
 import QueueAnim from 'rc-queue-anim'
 import { FC, forwardRef, useRef, useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'

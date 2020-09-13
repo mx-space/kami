@@ -7,7 +7,7 @@
  * @MIT
  */
 
-import { message } from 'antd'
+import { message } from 'utils/message'
 import axios, { AxiosError } from 'axios'
 import { getToken } from './auth'
 import { isClientSide, isServerSide } from './utils'

@@ -5,7 +5,7 @@ import {
   faUsers,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { message } from 'antd'
+import { message } from 'utils/message'
 import { useInitialData } from 'common/context/InitialDataContext'
 import { useStore } from 'common/store'
 import SectionNews, {
@@ -27,7 +27,7 @@ import { SectionWrap } from '../components/SectionNews/section'
 import { getAnimationImages as getAnimeImages } from '../utils'
 import { stopEventDefault } from '../utils/dom'
 import service from '../utils/request'
-
+import '../utils/message'
 interface IndexViewProps {
   posts: Top.Post[]
   notes: Top.Note[]

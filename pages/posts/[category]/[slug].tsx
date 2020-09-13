@@ -6,7 +6,7 @@ import {
   faThumbsUp,
   faUser,
 } from '@fortawesome/free-solid-svg-icons'
-import { message } from 'antd'
+import { message } from 'utils/message'
 import { useStore } from 'common/store'
 import Action, { ActionProps } from 'components/Action'
 import { CommentLazy } from 'components/Comment'

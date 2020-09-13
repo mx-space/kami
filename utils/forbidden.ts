@@ -8,7 +8,7 @@
  */
 
 // https://stackoverflow.com/questions/7798748/find-out-whether-chrome-console-is-open
-import { message } from 'antd'
+import { message } from 'utils/message'
 import throttle from 'lodash/throttle'
 
 const _message = '嘿, 你打开了控制台, 请不要做一些骚操作哦!'

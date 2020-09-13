@@ -14,7 +14,7 @@ import { stopEventDefault } from '../../../utils/dom'
 import QueueAnim from 'rc-queue-anim'
 import { useStore } from '../../../common/store'
 import { observer } from 'utils/mobx'
-import { message } from 'antd'
+import { message } from 'utils/message'
 
 export const STORE_PREFIX = 'mx-space-web-dangmaku'
 

@@ -1,4 +1,4 @@
-import { message } from 'antd'
+import { message } from 'utils/message'
 import Markdown from 'components/MD-render'
 import sample from 'lodash/sample'
 import { CommentModel } from 'models/comment'

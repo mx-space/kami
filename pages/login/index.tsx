@@ -1,4 +1,4 @@
-import { message } from 'antd'
+import { message } from 'utils/message'
 import { Input } from 'components/Input'
 import { NextPage } from 'next'
 import Router from 'next/router'
@@ -6,6 +6,8 @@ import { useState } from 'react'
 import { useStore } from '../../common/store'
 import { Rest } from '../../utils/api'
 import { setToken } from '../../utils/auth'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 
 const LoginView: NextPage = () => {
   const [username, setUsername] = useState('')
@@ -42,6 +44,7 @@ const LoginView: NextPage = () => {
       <div className="login-wrap">
         <div className="field">
           <Input
+            prefix={<FontAwesomeIcon icon={faUser} />}
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -49,6 +52,7 @@ const LoginView: NextPage = () => {
         </div>
         <div className="field">
           <Input
+            prefix={<FontAwesomeIcon icon={faLock} />}
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

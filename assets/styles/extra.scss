@@ -438,13 +438,6 @@ html.dark {
     background-color: #3c3a3b;
     color: var(--shizuku-theme-color);
   }
-
-  .ant-message {
-    .ant-message-notice-content {
-      background-color: var(--shizuku-background-color);
-      color: var(--shizuku-text-color);
-    }
-  }
 }
 @media (prefers-color-scheme: dark) {
   html:not(.light) {
@@ -452,20 +445,9 @@ html.dark {
       background-color: #3c3a3b;
       color: var(--shizuku-theme-color);
     }
-
-    .ant-message {
-      .ant-message-notice-content {
-        background-color: var(--shizuku-background-color);
-        color: var(--shizuku-text-color);
-      }
-    }
   }
 }
 
-.ant-message-notice-content {
-  border-radius: 24px;
-  animation: fade-small-large 0.3s both;
-}
 @keyframes fade-small-large {
   from {
     opacity: 0;
