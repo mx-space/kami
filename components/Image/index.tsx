@@ -69,7 +69,7 @@ const Image: FC<
               }}
             />
           ) : (
-            <Zoom overlayBgColorEnd={'var(--light-bg)'}>
+            <Zoom overlayBgColorEnd={'var(--light-bg)'} zoomMargin={50}>
               <img src={src} alt={alt} />
             </Zoom>
           )
@@ -113,14 +113,13 @@ export const ImageLazy: FC<
   }, [colorMode])
 
   return (
-    <div style={{ ...(style || {}), display: 'inline-block' }}>
+    <div style={{ ...(style || {}) }}>
       {defaultImage ? (
         <img src={defaultImage} alt={alt} {...rest} ref={realImageRef} />
       ) : (
         <div
           style={{
             position: 'relative',
-            display: 'inline-block',
             // overflow: 'hidden',
             height,
             width,
