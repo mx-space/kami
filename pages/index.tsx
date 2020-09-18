@@ -98,7 +98,12 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
             </Texty>
           </h1>
           <p>
-            <Texty type={'mask-bottom'} mode={'smooth'} delay={500}>
+            <Texty
+              type={'mask-bottom'}
+              mode={'smooth'}
+              delay={500}
+              duration={10}
+            >
               {introduce || description}
             </Texty>
           </p>

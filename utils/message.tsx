@@ -16,6 +16,7 @@ const getContainerNode: () => HTMLElement = () => {
     const $f = document.createDocumentFragment()
     ReactDOM.render(<MessageContainer />, $f)
     document.body.appendChild($f)
+
     containerNode = document.getElementById(MessageContainerPrefixId)
     return containerNode
   }
@@ -27,26 +28,30 @@ const getContainerNode: () => HTMLElement = () => {
 const message: MessageInstance = {}
 ;['success', 'error', 'warn', 'info', 'loading', 'warning'].forEach((type) => {
   message[type] = (content, duration) => {
-    let message: string
-    const time = content?.duration ?? duration
+    try {
+      let message: string
+      const time = content?.duration ?? duration
 
-    if (typeof content === 'string') {
-      message = content
-    } else {
-      message = content.content
-    }
-    if (!message) {
-      return
-    }
-    const container = getContainerNode()
-    const fragment = document.createDocumentFragment()
+      if (typeof content === 'string') {
+        message = content
+      } else {
+        message = content.content
+      }
+      if (!message) {
+        return
+      }
+      const container = getContainerNode()
 
-    ReactDOM.render(
-      <Message type={type as any} duration={time} message={message} />,
-      fragment,
-    )
-    container.appendChild(fragment)
-    return fragment
+      const fragment = document.createDocumentFragment()
+
+      ReactDOM.render(
+        <Message type={type as any} duration={time} message={message} />,
+        fragment,
+      )
+      container.appendChild(fragment)
+      return fragment
+      // eslint-disable-next-line no-empty
+    } catch {}
   }
 })
 
