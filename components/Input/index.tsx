@@ -60,7 +60,7 @@ export const Input: FC<
       ref={inputWrapRef}
     >
       {prefix && <div className={styles['prefix-wrap']}>{prefix}</div>}
-      {typeof C === 'number' && (
+      {typeof C === 'number' && C && (
         <div className={styles['border']}>
           <svg>
             <rect

@@ -174,7 +174,7 @@ const Comments: FC<{
   const { userStore } = useStore()
   const logged = userStore.isLogged
 
-  const [sure, setSure] = useState(false)
+  const [sure, setSure] = useState<null | string>(null)
   if (comments.length === 0) {
     return <Empty />
   }
@@ -324,14 +324,14 @@ const Comments: FC<{
           </span>,
           logged ? (
             <Fragment>
-              {!sure && (
+              {sure !== comment._id && (
                 <span
                   key="comment-list-delete"
                   onClick={() => {
-                    setSure(true)
+                    setSure(comment.id)
                     setTimeout(() => {
                       try {
-                        setSure(false)
+                        setSure(null)
                         // eslint-disable-next-line no-empty
                       } catch {}
                     }, 8000)
@@ -340,12 +340,12 @@ const Comments: FC<{
                   删除
                 </span>
               )}
-              {sure && (
+              {sure === comment._id && (
                 <span
                   key="comment-list-delete"
                   onClick={() => {
                     handleDelete(comment._id)()
-                    setSure(false)
+                    setSure(null)
                   }}
                   style={{ color: '#e74c3c' }}
                 >
