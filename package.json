@@ -74,7 +74,7 @@
     "sitemap": "6.3.0",
     "socket.io-client": "2.3.0",
     "ua-parser-js": "0.7.22",
-    "validator": "13.1.1"
+    "validator": "13.1.17"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "7.10.5",
