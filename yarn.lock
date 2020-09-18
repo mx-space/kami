@@ -5957,10 +5957,10 @@ netease-music-sdk@^0.3.3:
     axios "^0.17.1"
     big-integer "^1.6.26"
 
-next-images@1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/next-images/-/next-images-1.4.2.tgz#647f3e5576e599c7c2e06f8ac6a9b3760e4d53b6"
-  integrity sha512-ZE00N53gYlqxqiyNSGbNj19TP65iBi+ZFMwXASZAh6S2D4rYS/NajeHD30eToSlQ+BZg+vKPJSSPVUFIM0/eLQ==
+next-images@1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/next-images/-/next-images-1.5.0.tgz#6095932ace676b06c92ca639bfdee261d8ece8af"
+  integrity sha512-vpYUk149Luvm+80Xm6Q1n38clWh/XxIim9egbdpyuvoFv/3jiMoxOxjamo5B6xHUtzSFoyfLotFm5uJLi9Z9CQ==
   dependencies:
     file-loader "^6.0.0"
     url-loader "^4.0.0"
