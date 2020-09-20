@@ -39,16 +39,18 @@ export const Input: FC<
   })
   const C = useMemo(() => (size.height + size.width) * 2, [size])
   useEffect(() => {
-    if (!inputWrapRef.current) {
-      return
-    }
-    const $input = inputWrapRef.current
+    requestAnimationFrame(() => {
+      if (!inputWrapRef.current) {
+        return
+      }
+      const $input = inputWrapRef.current
 
-    const size = {
-      height: $input.clientHeight,
-      width: $input.clientWidth,
-    }
-    setSize(size)
+      const size = {
+        height: $input.clientHeight,
+        width: $input.clientWidth,
+      }
+      setSize(size)
+    })
   }, [inputWrapRef])
   const I = (multi ? 'textarea' : 'input') as keyof JSX.IntrinsicElements
   return (
@@ -60,7 +62,7 @@ export const Input: FC<
       ref={inputWrapRef}
     >
       {prefix && <div className={styles['prefix-wrap']}>{prefix}</div>}
-      {typeof C === 'number' && C && (
+      {typeof C === 'number' && !!C && (
         <div className={styles['border']}>
           <svg>
             <rect
