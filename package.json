@@ -71,7 +71,7 @@
     "redis": "3.0.2",
     "remove-markdown": "0.3.0",
     "sass": "1.26.11",
-    "sitemap": "6.3.0",
+    "sitemap": "6.3.1",
     "socket.io-client": "2.3.0",
     "ua-parser-js": "0.7.22",
     "validator": "13.1.17"
