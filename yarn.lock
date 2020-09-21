@@ -7676,10 +7676,10 @@ signal-exit@^3.0.2:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.3.tgz#a1410c2edd8f077b08b4e253c8eacfcaf057461c"
   integrity sha512-VUJ49FC8U1OxwZLxIbTTrDvLnf/6TDgxZcK8wxR8zs13xpx7xbG60ndBlhNrFi2EMuFRoeDoJO7wthSLq42EjA==
 
-sitemap@6.3.1:
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/sitemap/-/sitemap-6.3.1.tgz#256932c90bfe4ed06aa5a8320bb99227d34d824e"
-  integrity sha512-w8kK1mlnJdEOKzKtX3VoVScAs7FhoippfFgRWTPGTQiPyZ8Kpd5HgKuXQqeGzNMZjz0GseVGULGo4bx5T92+fQ==
+sitemap@6.3.2:
+  version "6.3.2"
+  resolved "https://registry.yarnpkg.com/sitemap/-/sitemap-6.3.2.tgz#a72b9b3a522acf889c1c5965364e5d66f2ef32cf"
+  integrity sha512-JmOG+bYzUfqXFfvh4JZocRvjrPGJddCWuDqiCTDe8me28CGCkWHYRtTFyTnmZu4x0SoD/6KNDGd88Fc5wBYlfQ==
   dependencies:
     "@types/node" "^14.11.1"
     "@types/sax" "^1.2.1"
