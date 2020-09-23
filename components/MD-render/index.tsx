@@ -25,6 +25,10 @@ interface MdProps extends ReactMarkdownProps {
   [key: string]: any
   style?: React.CSSProperties
   readonly renderers?: { [nodeType: string]: ElementType }
+  warpperProps?: React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+  >
 }
 
 const Heading: () => FC<{
@@ -218,10 +222,10 @@ const _TOC = observer(() => {
   return !isPadOrMobile ? <Toc /> : null
 })
 const Markdown: FC<MdProps> = observer((props) => {
-  const { value, renderers, style, ...rest } = props
+  const { value, renderers, style, warpperProps = {}, ...rest } = props
 
   return (
-    <div id="write" style={style}>
+    <div id="write" style={style} {...warpperProps}>
       <ReactMarkdown
         source={value}
         {...rest}

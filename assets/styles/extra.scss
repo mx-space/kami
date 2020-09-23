@@ -183,10 +183,35 @@ pre {
   margin: 0px;
   padding: 0px;
 }
+
+#write.focus::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  opacity: 0.8;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: -30px -40px 0 -40px;
+  padding: 30px 40px 0 40px;
+  background-color: var(--light-bg);
+  border-radius: 1.5em;
+}
+
 // paul restyle
 .news-article h4 {
   backdrop-filter: blur(5px);
 }
+
+.is-note .note-article {
+  background-color: var(--light-bg);
+  margin: -30px -45px;
+  padding: 30px 45px;
+  border-radius: 2rem;
+  box-shadow: 0 0 1px var(--gray), 3px 3px 21px -5px var(--gray);
+}
+
 .is-note #write {
   font-family: 'Noto Serif SC', 'PingFang SC', 'Hiragino Sans GB', 'Heiti SC',
     'Microsoft YaHei', 'WenQuanYi Micro Hei';

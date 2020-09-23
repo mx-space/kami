@@ -151,7 +151,12 @@ export const PostView: NextPage<PostResModel> = (props) => {
 
       <OutdateNotice time={props.modified} />
       <ImageSizesContext.Provider value={props.images}>
-        <Markdown value={text} escapeHtml={false} showTOC={true} />
+        <Markdown
+          value={text}
+          escapeHtml={false}
+          showTOC={true}
+          warpperProps={{ className: 'focus' }}
+        />
       </ImageSizesContext.Provider>
       {props.copyright ? <Copyright {...copyrightInfo} /> : null}
       <Action {...actions} />
