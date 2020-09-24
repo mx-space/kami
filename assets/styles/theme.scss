@@ -116,7 +116,7 @@ html.dark {
   --brown: #c6aa9f !important;
   --light-brown: #bc9c8f !important;
   --purple: #561494 !important;
-  --light-bg: #333 !important;
+  --light-bg: #111 !important;
   --light-font: #ddd !important;
 }
 html.dark body {
@@ -138,7 +138,7 @@ html.dark img {
     --brown: #c6aa9f;
     --light-brown: #bc9c8f;
     --purple: #561494;
-    --light-bg: #333333;
+    --light-bg: #111;
     --light-font: #ddd;
   }
   body {
@@ -263,7 +263,7 @@ header {
     background: var(--light-bg);
     visibility: hidden;
     border-radius: 0.5em;
-    box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 1em rgba(#333, 0.1);
     transform: perspective(600px) rotateX(-20deg);
     transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
     transform-origin: top;
