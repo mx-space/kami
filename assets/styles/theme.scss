@@ -500,17 +500,21 @@ article > h1 small {
 .is-article {
   position: relative;
 }
+
 .paul-lister {
-  top: 16em;
-  right: 0;
+  top: 0;
+  right: -12px;
+  bottom: 0;
   position: absolute;
-}
-.paul-lister .container {
-  color: #888;
-  position: fixed;
-  font-size: 0.85em;
-  padding-left: 1em;
-  border-left: 2px var(--yellow) solid;
+  transform: translateX(100%);
+  .container {
+    color: #888;
+    font-size: 0.85em;
+    padding-left: 1em;
+    border-left: 2px var(--yellow) solid;
+    position: sticky;
+    top: 6rem;
+  }
 }
 .paul-lister a {
   display: block;
