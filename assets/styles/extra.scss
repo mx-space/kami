@@ -9,9 +9,11 @@ html {
   scroll-behavior: unset;
   font-variant-numeric: tabular-nums;
 }
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+@media (max-width: 799px) {
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
 }
 ::-webkit-scrollbar {
   width: 10px;
