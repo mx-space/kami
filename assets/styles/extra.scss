@@ -169,8 +169,8 @@ pre {
 .error h1 {
   display: inline-block;
   border-right: 1px solid rgba(0, 0, 0, 0.3);
-  margin: 0px 20px 0px 0px;
-  padding: 10px 23px 10px 0px;
+  margin: 0 20px 0 0;
+  padding: 10px 23px 10px 0;
   font-size: 24px;
   font-weight: 500;
   vertical-align: top;
@@ -186,8 +186,8 @@ pre {
   font-size: 14px;
   font-weight: normal;
   line-height: inherit;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
 
 #write.focus::before {
@@ -199,8 +199,8 @@ pre {
   bottom: 0;
   right: 0;
   left: 0;
-  margin: -30px -50px -10px -50px;
-  padding: 30px 50px 10px 50px;
+  margin: -30px -50px -10px;
+  padding: 30px 50px 10px;
   background-color: var(--light-bg);
   border-radius: 1.5em;
 }
@@ -449,7 +449,7 @@ html.light img:before {
 }
 // dangmaku
 .shadow {
-  box-shadow: rgba($color: #000000, $alpha: 0.2) 0px 0px 20px;
+  box-shadow: rgba($color: #000000, $alpha: 0.2) 0 0 20px;
 }
 @keyframes dangmaku {
   from {
