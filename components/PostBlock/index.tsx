@@ -33,7 +33,7 @@ export const PostBlock: FC<Props> = observer((props) => {
     Router.push('/posts/[category]/[slug]', `/posts/${categorySlug}/${slug}`)
     window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
   }
-
+  const hasImage = props.raw.images?.length > 0 && props.raw.images[0].src
   return (
     <>
       <h1 className={styles.head}>
@@ -51,8 +51,20 @@ export const PostBlock: FC<Props> = observer((props) => {
             {title}
           </h2>
         )}
-        <article className="note-content">
-          {removeMd(text).slice(0, 250) + '..'}
+        <article
+          className={classNames(
+            'note-content',
+            hasImage ? styles['has-image'] : null,
+          )}
+        >
+          <div>{removeMd(text).slice(0, 250) + '..'}</div>
+
+          {hasImage && (
+            <div
+              className={styles['post-image-preview']}
+              style={{ backgroundImage: `url(${hasImage})` }}
+            />
+          )}
         </article>
         <section className={styles.navigator}>
           <button className={styles.btn} onClick={goToPost}>

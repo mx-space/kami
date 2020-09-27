@@ -5,7 +5,8 @@
  * @LastEditors: Innei
  * @FilePath: /mx-web/models/base.ts
  * @Coding with Love
- */ 
+ */
+
 export interface BaseRespModel {
   ok: 0 | 1
   timestamp: string
@@ -36,4 +37,5 @@ export interface ImageSizeRecord {
   type?: string
   height?: number
   width?: number
+  src?: string
 }

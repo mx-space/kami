@@ -1,4 +1,6 @@
-import { FC, memo } from 'react'
+import { useStore } from 'common/store'
+import { FC } from 'react'
+import { observer } from 'utils/mobx'
 import { copy } from '../../utils/dom'
 import styles from './index.module.scss'
 
@@ -8,12 +10,15 @@ export interface CopyrightProps {
   date: string
 }
 
-export const Copyright: FC<CopyrightProps> = memo((props) => {
+export const Copyright: FC<CopyrightProps> = observer((props) => {
   const { title, link, date } = props
-
+  const {
+    userStore: { name },
+  } = useStore()
   return (
     <section className={styles['copyright-session']}>
       <p>文章标题: {title}</p>
+      <p>文章作者: {name}</p>
       <p>
         文章链接: <span>{link}</span>{' '}
         <a

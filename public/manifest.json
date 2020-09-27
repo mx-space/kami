@@ -1,9 +1,9 @@
 {
   "name": "静かな森",
   "short_name": "静かな森",
-  "theme_color": "#1abc9c",
+  "theme_color": "#39c5bb",
   "description": "致虚极，守静笃。",
-  "background_color": "#ecf0f1",
+  "background_color": "#39c5bb",
   "display": "standalone",
   "scope": "/",
   "start_url": "/",

@@ -300,10 +300,10 @@ const app: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
   )
 }
 let initData: any = null
-// cache 60 mins
+// cache 5 mins
 setInterval(() => {
   initData = null
-}, 1000 * 60)
+}, 1000 * 60 * 5)
 // @ts-ignore
 app.getInitialProps = async (props: AppContext) => {
   const appProps = await App.getInitialProps(props)

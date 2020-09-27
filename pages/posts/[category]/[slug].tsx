@@ -4,9 +4,7 @@ import {
   faCoffee,
   faHashtag,
   faThumbsUp,
-  faUser,
 } from '@fortawesome/free-solid-svg-icons'
-import { message } from 'utils/message'
 import { useStore } from 'common/store'
 import Action, { ActionProps } from 'components/Action'
 import { CommentLazy } from 'components/Comment'
@@ -20,6 +18,7 @@ import { PostResModel, PostSingleDto } from 'models/post'
 import { NextPage, NextPageContext } from 'next/'
 import React, { useEffect, useState } from 'react'
 import { Rest } from 'utils/api'
+import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
 import { ImageSizesContext } from '../../../common/context/ImageSizes'
 import { Copyright, CopyrightProps } from '../../../components/Copyright'
@@ -55,12 +54,8 @@ export const PostView: NextPage<PostResModel> = (props) => {
     setAction({
       informs: [
         {
-          icon: faUser,
-          name: name as string,
-        },
-        {
           icon: faCalendar,
-          name: dayjs(props.created).format('YY/MM/DD H:mm'),
+          name: dayjs(props.created).locale('cn').format('YYYY年M月DD日'),
         },
         {
           icon: faHashtag,

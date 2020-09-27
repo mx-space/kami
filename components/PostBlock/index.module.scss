@@ -30,7 +30,11 @@
   outline: 0;
   color: #fff;
   border-radius: 4rem;
-  animation: gradual-change infinite 3s ease both;
+  background-color: rgba(230, 126, 34, 1);
+
+  &:hover {
+    animation: gradual-change infinite 3s ease both;
+  }
 }
 
 @keyframes gradual-change {
@@ -46,4 +50,18 @@
   display: block;
   text-align: center;
   margin: 10px 0;
+}
+
+.post-image-preview {
+  float: right;
+  width: 100px;
+  height: 100px;
+  background-position: center;
+  background-size: cover;
+}
+.has-image {
+  display: grid;
+  grid-template-columns: calc(100% - 120px) 100px;
+  grid-gap: 20px;
+  position: relative;
 }

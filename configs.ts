@@ -61,31 +61,31 @@ const menu: MenuModel[] = [
     icon: faUserFriends,
     path: '/friends',
   },
-  {
-    title: '趣',
-    icon: faCircleNotch,
-    path: '/favorite/music',
-    subMenu: [
-      {
-        title: '音乐',
-        icon: faMusic,
-        type: 'Music',
-        path: '/favorite/music',
-      },
-      {
-        title: '追番',
-        icon: faTv,
-        type: 'Bangumi',
-        path: '/favorite/bangumi',
-      },
-      {
-        title: '项目',
-        icon: faFlask,
-        type: 'Project',
-        path: '/projects',
-      },
-    ],
-  },
+  // {
+  //   title: '趣',
+  //   icon: faCircleNotch,
+  //   path: '/favorite/music',
+  //   subMenu: [
+  //     {
+  //       title: '音乐',
+  //       icon: faMusic,
+  //       type: 'Music',
+  //       path: '/favorite/music',
+  //     },
+  //     {
+  //       title: '追番',
+  //       icon: faTv,
+  //       type: 'Bangumi',
+  //       path: '/favorite/bangumi',
+  //     },
+  //     {
+  //       title: '项目',
+  //       icon: faFlask,
+  //       type: 'Project',
+  //       path: '/projects',
+  //     },
+  //   ],
+  // },
 ]
 const social: SocialLinkModel[] = [
   {
