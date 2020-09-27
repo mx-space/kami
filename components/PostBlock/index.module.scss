@@ -57,7 +57,8 @@
   width: 100px;
   height: 100px;
   background-position: center;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .has-image {
   display: grid;

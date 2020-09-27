@@ -4,9 +4,7 @@ import {
   faClock,
   faCloud,
   faHeart,
-  faUser,
 } from '@fortawesome/free-solid-svg-icons'
-import { message } from 'utils/message'
 import { useStore } from 'common/store'
 import Action, { ActionProps } from 'components/Action'
 import CommentWrap from 'components/Comment'
@@ -26,6 +24,7 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
 import { Rest } from 'utils/api'
+import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
 import { parseDate, relativeTimeFromNow } from 'utils/time'
 import { mood2icon, weather2icon } from 'utils/weather2icon'
@@ -158,10 +157,6 @@ const NoteView: NextPage<NoteViewProps> = observer((props) => {
     }
 
     actions.informs!.push(
-      {
-        name: userStore.name as string,
-        icon: faUser,
-      },
       {
         name: relativeTimeFromNow(data.created),
         icon: faClock,
