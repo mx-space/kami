@@ -1,9 +1,9 @@
 /*
  * @Author: Innei
  * @Date: 2020-04-26 11:53:46
- * @LastEditTime: 2020-07-14 21:07:47
+ * @LastEditTime: 2020-09-28 21:34:38
  * @LastEditors: Innei
- * @FilePath: /mx-web/ecosystem.config.js
+ * @FilePath: /web/ecosystem.config.js
  * @MIT
  */
 const meta = require('./version')
@@ -11,7 +11,7 @@ module.exports = {
   apps: [
     {
       name: 'MxSpace',
-      script: 'build/server/index.js',
+      script: 'npm run next start',
 
       instances: 'max',
       exec_mode: 'cluster',

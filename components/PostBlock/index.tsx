@@ -57,14 +57,14 @@ export const PostBlock: FC<Props> = observer((props) => {
             hasImage ? styles['has-image'] : null,
           )}
         >
-          <div>{removeMd(text).slice(0, 250) + '..'}</div>
-
           {hasImage && (
             <div
               className={styles['post-image-preview']}
               style={{ backgroundImage: `url(${hasImage})` }}
             />
           )}
+          <div>{removeMd(text).slice(0, 250) + '..'}</div>
+          <div className=""></div>
         </article>
         <section className={styles.navigator}>
           <button className={styles.btn} onClick={goToPost}>

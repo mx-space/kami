@@ -61,8 +61,5 @@
   background-repeat: no-repeat;
 }
 .has-image {
-  display: grid;
-  grid-template-columns: calc(100% - 120px) 100px;
-  grid-gap: 20px;
-  position: relative;
+  float: right;
 }
