@@ -95,7 +95,7 @@
     "@types/react-lazyload": "2.6.0",
     "@types/react-syntax-highlighter": "11.0.5",
     "@types/remove-markdown": "0.1.1",
-    "@types/socket.io-client": "1.4.33",
+    "@types/socket.io-client": "1.4.34",
     "@types/ua-parser-js": "0.7.33",
     "@types/validator": "13.1.0",
     "@typescript-eslint/eslint-plugin": "4.3.0",
