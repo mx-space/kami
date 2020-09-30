@@ -20,7 +20,7 @@ const LoginView: NextPage = () => {
     })) as any
     setToken(data.token, 7)
     Router.push('/')
-    message.success('登陆成功')
+    message.success('登录成功')
     userStore.setToken(data.token)
     userStore.setLogged(true)
   }
@@ -61,7 +61,7 @@ const LoginView: NextPage = () => {
         </div>
 
         <button className="btn blue" onClick={() => handleLogin()}>
-          登陆
+          登录
         </button>
       </div>
     </main>

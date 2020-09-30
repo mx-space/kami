@@ -209,7 +209,7 @@ const Content: FC<DataModel> = observer((props) => {
               message.success('欢迎回来, ' + master.name, 1500)
             } else {
               removeToken()
-              message.warn('登陆身份过期了, 再登陆一下吧!', 2)
+              message.warn('登录身份过期了, 再登录一下吧!', 2)
             }
           })
       }
