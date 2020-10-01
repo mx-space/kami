@@ -52,7 +52,7 @@
     "mobx-react-lite": "2.2.2",
     "next": "9.5.3",
     "next-offline": "5.0.2",
-    "next-seo": "4.7.3",
+    "next-seo": "4.10.0",
     "normalize.css": "8.0.1",
     "randomcolor": "0.6.2",
     "rc-queue-anim": "1.8.5",
