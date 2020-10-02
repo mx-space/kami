@@ -43,7 +43,7 @@
     "cors": "2.8.5",
     "dayjs": "1.9.1",
     "express": "4.17.1",
-    "gitlog": "4.0.1",
+    "gitlog": "4.0.2",
     "inflection": "1.12.0",
     "intersection-observer": "0.11.0",
     "js-cookie": "2.2.1",
