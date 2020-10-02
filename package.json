@@ -66,7 +66,7 @@
     "react-markdown": "4.3.1",
     "react-medium-image-zoom": "4.3.1",
     "react-stack-grid": "0.7.1",
-    "react-syntax-highlighter": "13.5.3",
+    "react-syntax-highlighter": "14.0.0",
     "react-use": "15.3.4",
     "redis": "3.0.2",
     "remove-markdown": "0.3.0",
