@@ -6992,10 +6992,10 @@ react-stack-grid@0.7.1:
     react-transition-group "^1.2.0"
     shallowequal "^1.0.1"
 
-react-syntax-highlighter@14.0.2:
-  version "14.0.2"
-  resolved "https://registry.yarnpkg.com/react-syntax-highlighter/-/react-syntax-highlighter-14.0.2.tgz#e30ade80dc09fc901799d8f663e3b0617f46029e"
-  integrity sha512-hsib7OyzwLqdDdR7LiyjG5OdlLJ3jeqDL4uvXvQuGIqve/iZMLrxD3F0KWKcGfUwtzm5CxSZMJ8FNKSkQ//gbQ==
+react-syntax-highlighter@15.1.0:
+  version "15.1.0"
+  resolved "https://registry.yarnpkg.com/react-syntax-highlighter/-/react-syntax-highlighter-15.1.0.tgz#06f1d6877b1964061da58cb8a547c1c522ce30e7"
+  integrity sha512-+K7PKhXgtL3EJ2jnJEkpZe4dfXWA4OXDODxnQQLl6g4wXY3IpCiL2wy7bPMSiXFMvDtuBmIiHztrMKnEkQnXUQ==
   dependencies:
     "@babel/runtime" "^7.3.1"
     highlight.js "^10.1.1"
