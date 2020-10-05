@@ -4512,10 +4512,10 @@ get-value@^2.0.3, get-value@^2.0.6:
   resolved "https://registry.yarnpkg.com/get-value/-/get-value-2.0.6.tgz#dc15ca1c672387ca76bd37ac0a395ba2042a2c28"
   integrity sha1-3BXKHGcjh8p2vTesCjlbogQqLCg=
 
-gitlog@4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/gitlog/-/gitlog-4.0.2.tgz#473d49cd0016a09df469012226372985a8bf8cec"
-  integrity sha512-Pw2Otj1OT5rPlcCgPZyhUqp0EvuwkWvFqSYinGqX1ccUUWjyFykAsgQImMP6TBENBuggANNG9yf+Hz6ahz0Z3w==
+gitlog@4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/gitlog/-/gitlog-4.0.3.tgz#36422e6910fccaa1e5d8413f62245797161743cc"
+  integrity sha512-rWejI3r/UXo2egYMJRwI3w/lTVNjP8yT9oz29hkv69qlatKj3Y0PmUYU1x+3fILx+qJJBKjEEHgYTFygOV3a+Q==
   dependencies:
     debug "^4.1.1"
     tslib "^1.11.1"
