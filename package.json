@@ -50,7 +50,7 @@
     "kico-style": "1.2.0",
     "mobx": "6.0.1",
     "mobx-react-lite": "3.0.0",
-    "next": "9.5.3",
+    "next": "9.5.4",
     "next-offline": "5.0.2",
     "next-seo": "4.10.1",
     "normalize.css": "8.0.1",
@@ -78,7 +78,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "7.10.5",
-    "@next/bundle-analyzer": "9.5.3",
+    "@next/bundle-analyzer": "9.5.4",
     "@sentry/browser": "5.25.0",
     "@sentry/node": "5.25.0",
     "@types/classnames": "2.2.10",
