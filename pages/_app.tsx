@@ -9,7 +9,7 @@ import configs from 'configs'
 import 'intersection-observer'
 import { BasicLayout } from 'layouts/BasicLayout'
 import throttle from 'lodash/throttle'
-import 'mobx-react-lite/batchingForReactDom'
+
 import { AggregateResp } from 'models/aggregate'
 import { LogoJsonLd, NextSeo, SocialProfileJsonLd } from 'next-seo'
 import App, { AppContext } from 'next/app'

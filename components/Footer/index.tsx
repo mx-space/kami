@@ -7,29 +7,27 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faReact, faNodeJs } from '@fortawesome/free-brands-svg-icons'
+import { useInitialData } from 'common/context/InitialDataContext'
 const FooterActions = dynamic(
   () => import('components/Footer/actions').then((m) => m.FooterActions) as any,
   { ssr: false },
 ) as typeof _FooterActions
 export const Footer: FC = observer(() => {
-  const { userStore, appStore, gatewayStore } = useStore()
+  const {  appStore, gatewayStore } = useStore()
   const thisYear = new Date().getFullYear()
-
+  const initialData = useInitialData()
+  const name = initialData.user.name
   return (
     <footer>
-      <style jsx>{`
-        .row {
-          padding-bottom: 18px;
-        }
-      `}</style>
+      
       <div className="wrap">
-        <div className="row">
+        <div className={'row'} style={{'paddingBottom': '18px'}}>
           <div className="col-m-6 left to-center">
             <p>
               © {thisYear !== 2020 && '2020-'}
               {thisYear}{' '}
               <a href={configs.homePage ?? '#'} target="_blank">
-                {userStore.name}
+                {name}
               </a>
               .{' '}
               <span title={'Stay hungry. Stay foolish. -- Steve Jobs'}>

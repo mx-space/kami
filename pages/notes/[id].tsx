@@ -7,6 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { useStore } from 'common/store'
 import Action, { ActionProps } from 'components/Action'
+import { QueueAnim } from 'components/Anime'
 import CommentWrap from 'components/Comment'
 import Markdown from 'components/MD-render'
 import { NumberRecorder } from 'components/NumberRecorder'
@@ -251,17 +252,19 @@ const NoteView: NextPage<NoteViewProps> = observer((props) => {
         )}
       </NoteLayout>
 
-      <ArticleLayout
-        style={{ minHeight: 'unset', paddingTop: '0' }}
-        delay={2000}
-        focus
-      >
-        <CommentWrap
-          type={'Note'}
-          id={_id}
-          allowComment={props.data.allowComment ?? true}
-        />
-      </ArticleLayout>
+      <QueueAnim delay={500} type={'alpha'}>
+        <ArticleLayout
+          style={{ minHeight: 'unset', paddingTop: '0' }}
+          focus
+          key={'at'}
+        >
+          <CommentWrap
+            type={'Note'}
+            id={_id}
+            allowComment={props.data.allowComment ?? true}
+          />
+        </ArticleLayout>
+      </QueueAnim>
     </>
   )
 })

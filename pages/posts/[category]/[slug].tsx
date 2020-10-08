@@ -37,8 +37,7 @@ const isThumbsUpBefore = (id: string) => {
 }
 export const PostView: NextPage<PostResModel> = (props) => {
   const { text, title, _id } = props
-  const { userStore } = useStore()
-  const name = userStore.name
+
   const [actions, setAction] = useState({} as ActionProps)
   const [copyrightInfo, setCopyright] = useState({} as CopyrightProps)
   const description =
@@ -104,7 +103,15 @@ export const PostView: NextPage<PostResModel> = (props) => {
       ],
       copyright: props.copyright,
     })
-  }, [name, props, thumbsUp])
+  }, [
+    props._id,
+    props.category.name,
+    props.copyright,
+    props.count.read,
+    props.created,
+    props.tags,
+    thumbsUp,
+  ])
   const { appStore } = useStore()
 
   useEffect(() => {

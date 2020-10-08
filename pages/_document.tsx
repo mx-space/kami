@@ -11,9 +11,9 @@
  *
  * @Author: Innei
  * @Date: 2020-04-29 17:27:02
- * @LastEditTime: 2020-09-02 14:10:34
+ * @LastEditTime: 2020-10-08 11:11:28
  * @LastEditors: Innei
- * @FilePath: /mx-web/pages/_document.tsx
+ * @FilePath: /web/pages/_document.tsx
  * @MIT
  */
 
@@ -21,6 +21,7 @@ import configs from 'configs'
 import Document, {
   DocumentContext,
   Head,
+  Html,
   Main,
   NextScript,
 } from 'next/document'
@@ -35,7 +36,7 @@ export default class MyDocument extends Document<{ ua: string }> {
 
   render() {
     return (
-      <html>
+      <Html>
         <Head lang={'zh-cn'}>
           <meta charSet="UTF-8" />
           <link rel="manifest" href="/manifest.json" />
@@ -239,7 +240,7 @@ export default class MyDocument extends Document<{ ua: string }> {
             }}
           />
         </body>
-      </html>
+      </Html>
     )
   }
 }
