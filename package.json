@@ -11,7 +11,6 @@
     "build": "cross-env NODE_ENV=production next build",
     "build:ci": "cross-env NODE_ENV=production CI=true next build",
     "lint": "eslint --ext .ts,.tsx --ignore-path .gitignore . --fix",
-    "prod": "cross-env NODE_ENV=production pm2-runtime start build/server/index.js",
     "prod:pm2": "cross-env NODE_ENV=production pm2 restart ecosystem.config.js",
     "prod:stop": "pm2 stop ecosystem.config.js",
     "prod:reload": "pm2 reload ecosystem.config.js"

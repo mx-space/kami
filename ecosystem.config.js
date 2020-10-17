@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-04-26 11:53:46
- * @LastEditTime: 2020-09-28 21:34:38
+ * @LastEditTime: 2020-10-17 22:33:02
  * @LastEditors: Innei
  * @FilePath: /web/ecosystem.config.js
  * @MIT
@@ -10,11 +10,10 @@ const meta = require('./version')
 module.exports = {
   apps: [
     {
-      name: 'MxSpace',
-      script: 'npm run next start',
+      name: 'mx-web',
+      script: 'yarn run next start -p 2323',
 
       instances: 'max',
-      exec_mode: 'cluster',
       autorestart: true,
       watch: false,
       max_memory_restart: '180M',
