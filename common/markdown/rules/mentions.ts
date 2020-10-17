@@ -6,15 +6,13 @@
  * @FilePath: /mx-web/common/markdown/rules/mentions.ts
  * @Coding with Love
  */
-import type { Parser, Eat } from 'remark-parse'
+
 import type { Node } from 'unist'
 /**
  * parse (@username) to github user profile
  */
-// @ts-ignore
-function tokenizeMention(eat: Eat, value: string): Node | void
-function tokenizeMention(eat: Eat, value: string, silent: true): boolean | void
-function tokenizeMention(eat: Eat, value: string, silent?: boolean): any {
+
+function tokenizeMention(eat: any, value: string, silent?: boolean): any {
   const match = /\((@(\w+\b))\)\s(?!\[.*?\])/.exec(value)
 
   if (match) {
@@ -37,7 +35,7 @@ function locateMention(value, fromIndex) {
   return value.indexOf('@', fromIndex)
 }
 function mentions(this: any) {
-  const Parser = this.Parser as { prototype: Parser }
+  const Parser = this.Parser as any
   const tokenizers = Parser.prototype.inlineTokenizers
   const methods = Parser.prototype.inlineMethods
 

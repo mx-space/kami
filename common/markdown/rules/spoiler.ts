@@ -6,9 +6,8 @@
  * @FilePath: /mx-web/common/markdown/rules/spoiler.ts
  * @Coding with Love
  */
-import type { Eat, Parser } from 'remark-parse'
 
-function tokenizeSpoiler(eat: Eat, value: string, silent?: boolean): any {
+function tokenizeSpoiler(eat: any, value: string, silent?: boolean): any {
   const match = /^\|\|([\s\S]+?)\|\|(?!\|)/.exec(value)
 
   if (match) {
@@ -30,7 +29,7 @@ tokenizeSpoiler.locator = function (value, fromIndex) {
 }
 
 function spoiler(this: any) {
-  const Parser = this.Parser as { prototype: Parser }
+  const Parser = this.Parser as any
   const tokenizers = Parser.prototype.inlineTokenizers
   const methods = Parser.prototype.inlineMethods
 

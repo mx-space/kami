@@ -1,21 +1,18 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-11 13:01:08
- * @LastEditTime: 2020-07-21 17:15:16
+ * @LastEditTime: 2020-10-17 20:02:42
  * @LastEditors: Innei
- * @FilePath: /mx-web/common/markdown/rules/comment-at.tsx
+ * @FilePath: /web/common/markdown/rules/comment-at.tsx
  * @Coding with Love
  */
-import type { Parser, Eat } from 'remark-parse'
-import type { Node } from 'unist'
+
 import isMongoId from 'validator/lib/isMongoId'
 /**
  * parse (@username) to github user profile
  */
 // @ts-ignore
-function tokenizeMention(eat: Eat, value: string): Node | void
-function tokenizeMention(eat: Eat, value: string, silent: true): boolean | void
-function tokenizeMention(eat: Eat, value: string, silent?: boolean): any {
+function tokenizeMention(eat: any, value: string, silent?: boolean): any {
   const match = /^@(.*?)\s/i.exec(value)
 
   if (match && isMongoId(match[1])) {
@@ -37,7 +34,7 @@ function locateMention(value, fromIndex) {
   return value.indexOf('@', fromIndex)
 }
 function mentions(this: any) {
-  const Parser = this.Parser as { prototype: Parser }
+  const Parser = this.Parser as any
   const tokenizers = Parser.prototype.inlineTokenizers
   const methods = Parser.prototype.inlineMethods
 
