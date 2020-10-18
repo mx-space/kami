@@ -210,9 +210,9 @@ header {
     justify-content: center;
   }
   .head-logo {
-    left: 0;
-    right: 0;
-    z-index: -1;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
     color: inherit;
     background: 0 0;
     position: absolute;
