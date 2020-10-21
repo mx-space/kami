@@ -255,7 +255,12 @@ const Content: FC<DataModel> = observer((props) => {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        <meta name="keywords" content={props.initData.seo.keywords.join(',')} />
+        {props.initData.seo.keywords && (
+          <meta
+            name="keywords"
+            content={props.initData.seo.keywords.join(',')}
+          />
+        )}
       </Head>
       <NextSeo
         title={

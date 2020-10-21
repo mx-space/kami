@@ -171,21 +171,28 @@ const Post: NextPage<PostProps> = observer((props) => {
         </Link>
       </div> */}
       <article className="paul-note">
-        {posts.map((post) => {
-          const { slug, text, created, title, _id } = post
+        {posts.length > 0 ? (
+          posts.map((post) => {
+            const { slug, text, created, title, _id } = post
 
-          return (
-            <PostBlock
-              title={title}
-              date={created}
-              key={_id}
-              text={text}
-              slug={slug}
-              raw={post}
-              // category={}
-            />
-          )
-        })}
+            return (
+              <PostBlock
+                title={title}
+                date={created}
+                key={_id}
+                text={text}
+                slug={slug}
+                raw={post}
+                // category={}
+              />
+            )
+          })
+        ) : (
+          <div>
+            <p>站长没有写过一篇文章啦</p>
+            <p>稍后来看看吧!</p>
+          </div>
+        )}
       </article>
 
       {
