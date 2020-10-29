@@ -68,7 +68,7 @@
     "react-use": "15.3.4",
     "redis": "3.0.2",
     "remove-markdown": "0.3.0",
-    "sass": "1.27.1",
+    "sass": "1.27.2",
     "sitemap": "6.3.2",
     "socket.io-client": "2.3.1",
     "ua-parser-js": "0.7.22",
