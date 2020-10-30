@@ -83,7 +83,7 @@
     "@types/express": "4.17.8",
     "@types/inflection": "1.5.28",
     "@types/js-cookie": "2.2.6",
-    "@types/lodash": "4.14.163",
+    "@types/lodash": "4.14.164",
     "@types/node": "13.13.9",
     "@types/node-fetch": "2.5.7",
     "@types/randomcolor": "0.5.5",
