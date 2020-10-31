@@ -76,7 +76,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "7.12.1",
-    "@next/bundle-analyzer": "9.5.5",
+    "@next/bundle-analyzer": "10.0.0",
     "@sentry/browser": "5.27.2",
     "@sentry/node": "5.27.2",
     "@types/classnames": "2.2.11",
