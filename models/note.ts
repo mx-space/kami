@@ -16,8 +16,13 @@ export interface NoteModel extends BaseModel {
   nid: number
   id: string
   images: ImageSizeRecord[]
+  music?: NoteMusicRecord[]
 }
 
+export interface NoteMusicRecord {
+  type: string
+  id: string
+}
 export interface NoteLastestResp extends BaseRespModel {
   data: NoteModel
   next: { _id: string; nid: number; id: string }

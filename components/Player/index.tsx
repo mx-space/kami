@@ -6,7 +6,7 @@ import { useStore } from 'common/store'
 
 declare const window: any
 
-export const APlayer: FC = () => {
+export const APlayer: FC = observer(() => {
   const { musicStore } = useStore()
 
   useEffect(() => {
@@ -60,6 +60,6 @@ export const APlayer: FC = () => {
       <ReactAplayer {...options} onInit={onInit} />
     </div>
   )
-}
+})
 
-export default observer(APlayer)
+export default APlayer

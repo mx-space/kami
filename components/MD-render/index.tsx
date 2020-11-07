@@ -8,6 +8,7 @@ import React, {
   DOMAttributes,
   ElementType,
   FC,
+  forwardRef,
   useCallback,
   useContext,
   useEffect,
@@ -221,11 +222,11 @@ const _TOC = observer(() => {
   const { isPadOrMobile } = appStore
   return !isPadOrMobile ? <Toc /> : null
 })
-const Markdown: FC<MdProps> = observer((props) => {
+const Markdown = forwardRef<HTMLDivElement, MdProps>((props, ref) => {
   const { value, renderers, style, warpperProps = {}, ...rest } = props
 
   return (
-    <div id="write" style={style} {...warpperProps}>
+    <div id="write" style={style} {...warpperProps} ref={ref}>
       <ReactMarkdown
         source={value}
         {...rest}

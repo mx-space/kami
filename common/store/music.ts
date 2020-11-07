@@ -52,15 +52,17 @@ export default class MusicStore {
 
   @action async setPlaylist(list: number[]) {
     this.playlist = await this.getList(list)
+
     this.play()
   }
 
   @action play() {
     if (this.playlist.length > 0) {
-      this.isPlay = true
       this.isHide = false
+      this.isPlay = true
     } else {
       this.init().then(() => {
+        this.isHide = false
         this.isPlay = true
       })
     }
