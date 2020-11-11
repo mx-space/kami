@@ -6224,15 +6224,15 @@ mkdirp@^1.0.3, mkdirp@^1.0.4:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
-mobx-react-lite@2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/mobx-react-lite/-/mobx-react-lite-2.2.2.tgz#87c217dc72b4e47b22493daf155daf3759f868a6"
-  integrity sha512-2SlXALHIkyUPDsV4VTKVR9DW7K3Ksh1aaIv3NrNJygTbhXe2A9GrcKHZ2ovIiOp/BXilOcTYemfHHZubP431dg==
+mobx-react-lite@3.1.5:
+  version "3.1.5"
+  resolved "https://registry.yarnpkg.com/mobx-react-lite/-/mobx-react-lite-3.1.5.tgz#c8023a1ea881a6b936df2f9d72fc3490036b2fb5"
+  integrity sha512-LWub3+lURIvZ3LrAEqyxN4nG5Zr7mUHV5L48PIQdT0+CXLXmGHHV7iB+RDzm3TySr4XbazISgo0wkHdOlrrRWA==
 
-mobx@5.15.5:
-  version "5.15.5"
-  resolved "https://registry.yarnpkg.com/mobx/-/mobx-5.15.5.tgz#69715dc8662f64d153309bfe95169b8df4b4be4b"
-  integrity sha512-hzk17T+/IIYLPWClRcfoA6Q5aZhFpDCr1oh8RZzu+esWP77IX/lS0V/Ee1Np+aOPKFfbSInF0reHH0L/aFfSrw==
+mobx@6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/mobx/-/mobx-6.0.3.tgz#cec784bb41acf9eb87b449f1181c9dd8c77ccc0b"
+  integrity sha512-DBMd0NXsMn25HJMUAWBndgJ2wRjOJPbpn6wdzUvZW0PVsyTnrw028XwQfzsjnxnKG+bAXGVNb38rvd+1o0G9uQ==
 
 move-concurrently@^1.0.1:
   version "1.0.1"
@@ -6359,10 +6359,10 @@ next-offline@5.0.3:
     fs-extra "~8.1.0"
     workbox-webpack-plugin "^5.0.0"
 
-next-seo@4.15.1:
-  version "4.15.1"
-  resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-4.15.1.tgz#d1cb51615739690040110b581bfb51d979307a1f"
-  integrity sha512-jRYUOKbSFirwNRTaYFThu0BLBA1oWJIUq076QQ8uXBP6GG6Eh2/aPcXDoeOt33S1qghTJ60MwW1BkCbN889MIg==
+next-seo@4.17.0:
+  version "4.17.0"
+  resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-4.17.0.tgz#fb3dbe0ed7414aa9d83872ef5d8510980a6dae7e"
+  integrity sha512-/hnb3oq7bhi8s7bup7+Lm6VzzgRucj+JrWtp+dJiYs/04H0N/NhmE9MpepixQ16fFj6G/39JLYxhzsO/QZG/Kw==
 
 next-tick@~1.0.0:
   version "1.0.0"
@@ -7945,10 +7945,10 @@ sass-loader@10.0.2:
     schema-utils "^2.7.1"
     semver "^7.3.2"
 
-sass@1.28.0:
-  version "1.28.0"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.28.0.tgz#546f1308ff74cc4ec2ad735fd35dc18bc3f51f72"
-  integrity sha512-9FWX/0wuE1KxwfiP02chZhHaPzu6adpx9+wGch7WMOuHy5npOo0UapRI3FNSHva2CczaYJu2yNUBN8cCSqHz/A==
+sass@1.29.0:
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.29.0.tgz#ec4e1842c146d8ea9258c28c141b8c2b7c6ab7f1"
+  integrity sha512-ZpwAUFgnvAUCdkjwPREny+17BpUj8nh5Yr6zKPGtLNTLrmtoRYIjm7njP24COhjJldjwW1dcv52Lpf4tNZVVRA==
   dependencies:
     chokidar ">=2.0.0 <4.0.0"
 

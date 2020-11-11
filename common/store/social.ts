@@ -1,11 +1,14 @@
 import configs from 'configs'
-import { action, observable } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { SocialLinkModel } from './types'
 
 export default class SocialStore {
-  @observable socialLinks: SocialLinkModel[] = configs.social
+  constructor() {
+    makeAutoObservable(this)
+  }
+  socialLinks: SocialLinkModel[] = configs.social
 
-  @action setSocialLinks(links: SocialLinkModel[]) {
+  setSocialLinks(links: SocialLinkModel[]) {
     this.socialLinks = links
   }
 }

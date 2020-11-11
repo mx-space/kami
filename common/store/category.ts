@@ -7,23 +7,26 @@
  * @Coding with Love
  */
 
-import { action, computed, observable } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { CategoriesResp, CategoryModel } from 'models/category'
 import { Rest } from '../../utils/api'
 export default class CategoryStore {
-  @observable categories: CategoryModel[] = []
+  constructor() {
+    makeAutoObservable(this)
+  }
+  categories: CategoryModel[] = []
 
-  @action async fetchCategory() {
+  async fetchCategory() {
     if (this.categories.length > 0) {
       return
     }
     await this.updateCategory()
   }
 
-  @action setCategory(categories: CategoryModel[]) {
+  setCategory(categories: CategoryModel[]) {
     this.categories = categories
   }
-  @action async updateCategory() {
+  async updateCategory() {
     const { data } = await Rest('Category').get<CategoriesResp>(undefined, {
       params: {
         type: 'Category',
@@ -32,7 +35,7 @@ export default class CategoryStore {
     this.categories.push(...data)
   }
 
-  @computed get CategoryMap() {
+  get CategoryMap() {
     const map = new Map()
 
     this.categories.map((category) => {

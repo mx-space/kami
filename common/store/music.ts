@@ -8,10 +8,11 @@
  */
 
 import axios from 'axios'
-import { action, observable } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { MusicModel } from 'models/music'
 export default class MusicStore {
   constructor() {
+    makeAutoObservable(this)
     if (!this.isHide) {
       this.init()
     }
@@ -26,9 +27,9 @@ export default class MusicStore {
     ])
   }
 
-  @observable playlist: MusicModel[] = []
-  @observable isPlay = false
-  @observable isHide = true
+  playlist: MusicModel[] = []
+  isPlay = false
+  isHide = true
 
   async getList(list: number[]): Promise<MusicModel[]> {
     const $meting = axios.create({
@@ -50,13 +51,13 @@ export default class MusicStore {
     return playlist
   }
 
-  @action async setPlaylist(list: number[]) {
+  async setPlaylist(list: number[]) {
     this.playlist = await this.getList(list)
 
     this.play()
   }
 
-  @action play() {
+  play() {
     if (this.playlist.length > 0) {
       this.isHide = false
       this.isPlay = true

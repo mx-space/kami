@@ -1,56 +1,59 @@
 import configs from 'configs'
-import { action, computed, observable } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { Seo } from 'models/aggregate'
 import { CategoryModel } from '../../models/category'
 import { MenuModel, PageModel, ViewportRecord } from './types'
 
 export default class AppStore {
-  @observable menu: MenuModel[] = configs.menu as MenuModel[]
-  @observable viewport: Partial<ViewportRecord> = {}
-  @observable loading = true
-  @observable position = 0
-  @observable scrollDirection: 'up' | 'down' | null = null
+  constructor() {
+    makeAutoObservable(this)
+  }
+  menu: MenuModel[] = configs.menu as MenuModel[]
+  viewport: Partial<ViewportRecord> = {}
+  loading = true
+  position = 0
+  scrollDirection: 'up' | 'down' | null = null
 
-  @observable autoToggleColorMode = true
-  @observable colorMode: 'light' | 'dark' = 'light'
-  @observable config = { seo: {} as Seo }
+  autoToggleColorMode = true
+  colorMode: 'light' | 'dark' = 'light'
+  config = { seo: {} as Seo }
 
-  @observable headerNav = {
+  headerNav = {
     title: '',
     meta: '',
     show: false,
   }
-  @observable noteNid: null | number = null
+  noteNid: null | number = null
 
-  @action updatePosition(direction: 'up' | 'down') {
+  updatePosition(direction: 'up' | 'down') {
     if (typeof document !== 'undefined') {
       this.position = document.documentElement.scrollTop
       this.scrollDirection = direction
     }
   }
 
-  @computed get isOverflow() {
+  get isOverflow() {
     if (typeof window === 'undefined') {
       return false
     }
     return this.position > window.innerHeight || this.position > screen.height
   }
 
-  @action toggleLoading() {
+  toggleLoading() {
     document.body.classList.toggle('loading')
     this.loading = !this.loading
   }
-  @action setLoading(state: boolean) {
+  setLoading(state: boolean) {
     state
       ? document.body.classList.add('loading')
       : document.body.classList.remove('loading')
     this.loading = state
   }
-  @action setMenu(menu: MenuModel[]) {
+  setMenu(menu: MenuModel[]) {
     this.menu = menu
   }
 
-  @action setPage(pages: PageModel[]) {
+  setPage(pages: PageModel[]) {
     const homeMenu = this.menu.find((menu) => menu.type === 'Home')
     const models: MenuModel[] = pages.map((page) => {
       const { title, _id, slug } = page
@@ -66,7 +69,7 @@ export default class AppStore {
     homeMenu?.subMenu!.push(...models)
   }
 
-  @action setCategories(categories: CategoryModel[]) {
+  setCategories(categories: CategoryModel[]) {
     const postMenu = this.menu.find((menu) => menu.type === 'Post')
     const models: MenuModel[] = categories.map((category) => {
       const { _id, slug, name } = category
@@ -81,7 +84,7 @@ export default class AppStore {
     postMenu?.subMenu!.push(...models)
   }
 
-  @action updateViewport() {
+  updateViewport() {
     const innerHeight = window.innerHeight
     const width = document.documentElement.getBoundingClientRect().width
     const { hpad, pad, mobile } = this.viewport
@@ -106,25 +109,25 @@ export default class AppStore {
       widest: window.innerWidth >= 1920,
     }
   }
-  @action setConfig(config: any) {
+  setConfig(config: any) {
     this.config = config
   }
 
-  @action setLastestNoteNid(nid: number) {
+  setLastestNoteNid(nid: number) {
     this.noteNid = nid
   }
 
-  @computed get seo() {
+  get seo() {
     return this.config.seo || {}
   }
-  @computed get title() {
+  get title() {
     return this.seo.title || 'MX-space'
   }
-  @computed get description() {
+  get description() {
     return this.seo.description
   }
 
-  @computed get isPadOrMobile() {
+  get isPadOrMobile() {
     return this.viewport.pad || this.viewport.mobile
   }
 }

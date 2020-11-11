@@ -30,7 +30,8 @@ import { getToken, removeToken } from '../utils/auth'
 // import { checkDevtools } from '../utils/forbidden'
 import * as gtag from '../utils/gtag'
 import service from '../utils/request'
-
+import { enableStaticRendering } from 'mobx-react-lite'
+enableStaticRendering(isServerSide() ? true : false)
 // const animateInstance = animateUriFactory({ shouldPushState: false })
 if (process.env.CI !== 'true' && process.env.NODE_ENV === 'production') {
   Sentry.init({
