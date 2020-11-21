@@ -4,7 +4,7 @@ import { QueueAnim } from '../../components/Anime'
 import { SEO } from '../../components/SEO'
 import { ArticleLayout } from '../../layouts/ArticleLayout'
 import { CategoryModel } from '../../models/category'
-import { Mood, Weather } from '../../models/note'
+
 import { Rest } from '../../utils/api'
 import styles from './index.module.scss'
 
@@ -22,8 +22,8 @@ interface TimeLineViewProps {
   } & BaseType)[]
   notes: ({
     nid: number
-    weather?: Weather
-    mood?: Mood
+    weather?: string
+    mood?: string
   } & BaseType)[]
 }
 enum ArticleType {
@@ -81,10 +81,10 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
       const data: mapType = {
         title: note.title,
         meta: [
-          '这天的心情: ' + ((note.mood && Mood[note.mood]) || '一般'),
-          note.weather ? '这天的天气: ' + Weather[note.weather] : undefined,
+          note.mood ? '这天的心情: ' + note.mood : undefined,
+          note.weather ? '这天的天气: ' + note.weather : undefined,
           '随记',
-        ].filter((_) => _) as string[],
+        ].filter(Boolean) as string[],
         date,
         as: `/notes/${note.nid}`,
         href: '/notes/[id]',
