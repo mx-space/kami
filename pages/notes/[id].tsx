@@ -13,14 +13,7 @@ import Markdown from 'components/MD-render'
 import { NumberRecorder } from 'components/NumberRecorder'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { NoteLayout } from 'layouts/NoteLayout'
-import {
-  Mood,
-  MoodMap,
-  NoteModel,
-  NoteResp,
-  Weather,
-  WeatherMap,
-} from 'models/note'
+import { NoteModel, NoteResp } from 'models/note'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { FC, useEffect, useRef, useState } from 'react'
@@ -28,7 +21,7 @@ import { Rest } from 'utils/api'
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
 import { parseDate, relativeTimeFromNow } from 'utils/time'
-import { mood2icon, weather2icon } from 'utils/weather2icon'
+import { mood2icon, weather2icon } from 'utils/meta'
 import { ImageSizesContext } from '../../common/context/ImageSizes'
 import { Seo } from '../../components/SEO'
 import { getSummaryFromMd } from '../../utils'
@@ -143,26 +136,16 @@ const NoteView: NextPage<NoteViewProps> = observer(
       ],
     }
     {
-      if (weather && Object.keys(Weather).includes(weather)) {
-        actions.informs!.push({
-          name: WeatherMap[weather],
-          icon: weather2icon(weather),
-        })
-      } else if (weather) {
+      if (weather) {
         actions.informs!.push({
           name: weather,
-          icon: faCloud,
+          icon: weather2icon(weather),
         })
       }
-      if (mood && Object.keys(Mood).includes(mood)) {
-        actions.informs!.push({
-          name: MoodMap[mood],
-          icon: mood2icon(mood),
-        })
-      } else if (mood) {
+      if (mood) {
         actions.informs!.push({
           name: mood,
-          icon: faSmile,
+          icon: mood2icon(mood),
         })
       }
 
