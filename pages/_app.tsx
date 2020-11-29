@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/node'
 // import { animateUriFactory } from 'animate-uri/publish/index.esm'
 import { message } from 'utils/message'
 import 'assets/styles/main.scss'
@@ -32,13 +31,6 @@ import * as gtag from '../utils/gtag'
 import service from '../utils/request'
 import { enableStaticRendering } from 'mobx-react-lite'
 enableStaticRendering(isServerSide() ? true : false)
-// const animateInstance = animateUriFactory({ shouldPushState: false })
-if (process.env.CI !== 'true' && process.env.NODE_ENV === 'production') {
-  Sentry.init({
-    enabled: process.env.NODE_ENV === 'production',
-    dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
-  })
-}
 
 const stores = createMobxStores()
 

@@ -2,14 +2,10 @@ import { faGithub, faQq, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { faDotCircle } from '@fortawesome/free-regular-svg-icons'
 import {
   faBookOpen,
-  faCircleNotch,
   faComments,
   faFeatherAlt,
-  faFlask,
   faGlasses,
   faHistory,
-  faMusic,
-  faTv,
   faUserFriends,
 } from '@fortawesome/free-solid-svg-icons'
 import { MenuModel, SocialLinkModel } from 'common/store/types'
