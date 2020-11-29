@@ -3,12 +3,13 @@ import { faGlobeAsia } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { message } from 'utils/message'
 import omit from 'lodash/omit'
-import React, { FC, memo, useEffect, useState } from 'react'
+import React, { FC, memo, useEffect, useRef, useState } from 'react'
 import isEmail from 'validator/lib/isEmail'
 import isUrl from 'validator/lib/isURL'
 import { useStore } from '../../common/store'
 import { Input } from '../Input'
 import styles from './index.module.scss'
+import { shuffle } from 'lodash'
 
 const USER_PREFIX = 'mx-space-comment-author'
 
@@ -20,21 +21,50 @@ const CommentBox: FC<{
   const [mail, setMail] = useState('')
   const [url, setUrl] = useState('')
   const [text, setText] = useState('')
+  const taRef = useRef<HTMLTextAreaElement>(null)
 
   const { userStore } = useStore()
   const logged = userStore.isLogged
   const reset = () => {
-    // setAuthor('')
-    // setMail('')
-    setText('')
-    // setUrl('')
+    if (taRef.current) {
+      taRef.current.value = ''
+    }
+  }
+
+  const handleInsertEmoji = (emoji: string) => {
+    if (!taRef.current) {
+      return
+    }
+
+    const $ta = taRef.current
+    const start = $ta.selectionStart
+    const end = $ta.selectionEnd
+
+    $ta.value =
+      $ta.value.substring(0, start) +
+      ` ${emoji} ` +
+      $ta.value.substring(end, $ta.value.length)
+    setText($ta.value) // force update react state.
+    requestAnimationFrame(() => {
+      const shouldMoveToPos = start + emoji.length + 2
+      $ta.selectionStart = shouldMoveToPos
+      $ta.selectionEnd = shouldMoveToPos
+
+      $ta.focus()
+    })
   }
 
   const handleCancel = () => {
     onCancel?.()
     reset()
   }
+
   const handleSubmit = () => {
+    if (!taRef.current) {
+      return
+    }
+    const text = taRef.current.value
+
     if (!logged) {
       if (author === userStore.name || author === userStore.username) {
         return message.error('昵称与我主人重名了, 但是你好像并不是我的主人唉')
@@ -88,6 +118,7 @@ const CommentBox: FC<{
       } catch {}
     }
   }, [])
+
   return (
     <div>
       {!logged && (
@@ -118,38 +149,86 @@ const CommentBox: FC<{
         </div>
       )}
       <Input
+        // @ts-ignore
+        ref={taRef}
         multi
         maxLength={500}
         // @ts-ignore
         rows={4}
         required
+        onChange={(e) => {
+          setText(e.target.value)
+        }}
         placeholder={
-          !logged ? '亲亲, 留个评论好不好嘛~' : '主人, 说点什么好呢? '
+          !logged
+            ? '嘿 ︿(￣︶￣)︿, 留个评论好不好嘛~'
+            : '主人, 说点什么好呢? '
         }
-        value={text}
-        onChange={(e) => setText(e.target.value)}
       />
-      <style jsx>{`
-        button {
-          margin-left: 12px;
-        }
-      `}</style>
-      <div style={{ textAlign: 'right', marginTop: '5px' }}>
-        {onCancel && (
-          <button className="btn red" onClick={handleCancel}>
-            取消回复
+
+      <div className={styles['actions-wrapper']}>
+        <div className={styles['emoji-wrapper']}>
+          <div className={styles['emojis']}>
+            {EMOJI_LIST.map((emoji, i) => (
+              <button
+                className={styles['emoji']}
+                key={i}
+                onClick={() => handleInsertEmoji(emoji)}
+              >
+                {emoji}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          {onCancel && (
+            <button className="btn red" onClick={handleCancel}>
+              取消回复
+            </button>
+          )}
+          <button
+            className="btn yellow"
+            onClick={handleSubmit}
+            disabled={text.trim().length === 0}
+          >
+            发送
           </button>
-        )}
-        <button
-          className="btn yellow"
-          onClick={handleSubmit}
-          disabled={text.trim().length === 0}
-        >
-          发送
-        </button>
+        </div>
       </div>
     </div>
   )
 })
 
 export default CommentBox
+
+const EMOJI_LIST = shuffle([
+  '(๑•̀ㅂ•́)و✧',
+  '(°ー°〃)',
+  'o(￣ヘ￣o＃)',
+  '(๑¯◡¯๑)',
+  '( •̀ .̫ •́ )✧',
+  '(つд⊂)',
+  '(o´ω`o)',
+  '(•౪• )',
+  '(>▽<)',
+
+  '(๑•̀ㅂ•́) ✧',
+  'ლ(╹◡╹ლ)',
+  '_(:з」∠)_',
+  'Ծ‸Ծ',
+  ' ʕ •̀ o •́ ʔ',
+  ' (⑉･̆⌓･̆⑉)',
+  ' ♫.(◕∠◕).♫',
+  ' | •́ ▾ •̀ |',
+  ' 〳 ° ▾ ° 〵',
+  ' | •́ ▾ •̀ |',
+  ' ⋋╏ ❛ ◡ ❛ ╏⋌',
+  ' (・∀・)',
+  ' (^・ω・^ )',
+  '(´･ω･`)  ',
+  '(๑´ㅂ`๑) ',
+  '(๑˘ ₃˘๑) ',
+  '(●’ω`●）',
+  '(´･ω･`)  ',
+])

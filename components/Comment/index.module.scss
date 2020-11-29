@@ -155,3 +155,55 @@
     }
   }
 }
+
+.actions-wrapper {
+  & button {
+    margin-left: 12px;
+  }
+  position: relative;
+  margin-top: 0.5rem;
+  display: grid;
+  grid-template-columns: auto 6rem;
+
+  & .emoji-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: overlay;
+    display: flex;
+    align-items: center;
+
+    .emojis {
+      display: flex;
+      width: 100%;
+      animation: run 120s both infinite linear;
+
+      &:hover {
+        animation-play-state: paused;
+      }
+    }
+
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+  }
+
+  & .emoji {
+    color: var(--blue);
+    background: transparent;
+    margin-right: 1rem;
+    white-space: nowrap;
+  }
+}
+
+@keyframes run {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
