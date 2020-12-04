@@ -84,15 +84,18 @@ export class Notice {
     if (!this.isInit) {
       this.isInit = await this.initNotice()
     }
-    this.createFrameNotification({
-      title,
-      text: body,
-      description,
-      onclick,
-    })
+    if (document.hasFocus()) {
+      this.createFrameNotification({
+        title,
+        text: body,
+        description,
+        onclick,
+      })
+    }
+
     return new Promise((r) => {
       this.initNotice().then((b) => {
-        if (b) {
+        if (b && !document.hasFocus()) {
           const notification = new Notification(title, {
             body,
             image: location.origin + '/logo.png',

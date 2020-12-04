@@ -13,20 +13,12 @@ declare type LinkDto = {
   url: string
   avatar?: string
   description?: string
-  author: string
 }
 
-const buildSchema = ({
-  author,
-  site,
-  avatar,
-  description,
-  title,
-}: any): LinkDto => {
+const buildSchema = ({ site, avatar, description, title }: any): LinkDto => {
   const validate = (() => {
     if (
       !(
-        author.trim() &&
         title.trim() &&
         isURL(site, { require_protocol: true }) &&
         isURL(avatar, { require_protocol: true })
@@ -40,10 +32,10 @@ const buildSchema = ({
   if (!validate) {
     message.error('输入有误')
     throw new TypeError(
-      '输入有误' + JSON.stringify({ author, site, avatar, description }),
+      '输入有误' + JSON.stringify({ site, avatar, description }),
     )
   }
-  return { name: author, url: site, avatar, description, author }
+  return { name: title, url: site, avatar, description }
 }
 const ApplyForLink: FC = () => {
   const [author, setAuthor] = useState('')
@@ -52,7 +44,7 @@ const ApplyForLink: FC = () => {
   const [avatar, setAvatar] = useState('')
   const [description, setDesc] = useState('')
   const handleSubmit = () => {
-    Rest('Link', 'audit')
+    Rest('Link', `audit?author=${author}`)
       .post(buildSchema({ author, site, avatar, description, title }))
       .then(() => {
         message.success('感谢你能和我交朋友~')
