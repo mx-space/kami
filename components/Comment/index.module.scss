@@ -162,8 +162,12 @@
   }
   position: relative;
   margin-top: 0.5rem;
-  display: grid;
-  grid-template-columns: auto 6rem;
+  display: flex;
+
+  & .submit-wrapper {
+    flex: 1;
+    white-space: nowrap;
+  }
 
   & .emoji-wrapper {
     position: relative;

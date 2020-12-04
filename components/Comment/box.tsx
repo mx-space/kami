@@ -181,7 +181,7 @@ const CommentBox: FC<{
           </div>
         </div>
 
-        <div>
+        <div className={styles['submit-wrapper']}>
           {onCancel && (
             <button className="btn red" onClick={handleCancel}>
               取消回复
