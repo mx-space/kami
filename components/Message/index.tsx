@@ -39,8 +39,6 @@ export const Message: FC<MessageProps> = (props) => {
   const [isAppeared, setAppear] = useState(true)
   const wrapRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
-    console.log(duration)
-
     const timer = setTimeout(() => {
       if (!wrapRef.current) {
         return

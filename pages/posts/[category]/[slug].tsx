@@ -5,6 +5,7 @@ import {
   faHashtag,
   faThumbsUp,
 } from '@fortawesome/free-solid-svg-icons'
+import { EventTypes } from 'common/socket/types'
 import { useStore } from 'common/store'
 import Action, { ActionProps } from 'components/Action'
 import { CommentLazy } from 'components/Comment'
@@ -14,12 +15,14 @@ import OutdateNotice from 'components/Outdate'
 import dayjs from 'dayjs'
 import Cookie from 'js-cookie'
 import { ArticleLayout } from 'layouts/ArticleLayout'
-import { PostResModel, PostSingleDto } from 'models/post'
+import { PostModel, PostRespModel } from 'models/post'
 import { NextPage, NextPageContext } from 'next/'
+import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { Rest } from 'utils/api'
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
+import observable from 'utils/observable'
 import { ImageSizesContext } from '../../../common/context/ImageSizes'
 import { Copyright, CopyrightProps } from '../../../components/Copyright'
 import { Seo } from '../../../components/SEO'
@@ -35,8 +38,33 @@ const isThumbsUpBefore = (id: string) => {
   const key = `${ThumbsUpPrefix}${id}`
   return !!Cookie.get(key)
 }
-export const PostView: NextPage<PostResModel> = (props) => {
-  const { text, title, _id } = props
+export const PostView: NextPage<PostModel> = (props) => {
+  const [{ text, title, _id }, update] = useState(props)
+  const router = useRouter()
+  useEffect(() => {
+    update(props)
+  }, [props])
+
+  useEffect(() => {
+    const handler = (data: PostModel) => {
+      if (data._id === props._id) {
+        if (
+          data.categoryId !== props.categoryId ||
+          data.slug !== props.slug ||
+          data.hide
+        ) {
+          message.error('文章已删除或隐藏')
+          router.push('/posts')
+          return
+        }
+        message.info('文章已更新')
+        update(data)
+      }
+    }
+    observable.on(EventTypes.POST_UPDATE, handler)
+
+    return () => observable.off(EventTypes.POST_UPDATE, handler)
+  }, [props._id, props.categoryId, props.slug, router])
 
   const [actions, setAction] = useState({} as ActionProps)
   const [copyrightInfo, setCopyright] = useState({} as CopyrightProps)
@@ -177,7 +205,7 @@ PostView.getInitialProps = async (ctx: NextPageContext) => {
   const { category, slug } = query
   const { data } = (await Rest('Post', category as string).get(
     slug as string,
-  )) as PostSingleDto
+  )) as PostRespModel
 
   return { ...data }
 }

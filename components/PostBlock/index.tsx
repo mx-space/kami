@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { useStore } from 'common/store'
 import { observer } from 'utils/mobx'
-import { PostResModel } from 'models/post'
+import { PostModel } from 'models/post'
 import Router from 'next/router'
 import React, { FC } from 'react'
 import removeMd from 'remove-markdown'
@@ -13,7 +13,7 @@ interface Props {
   title: string
   text: string
   slug: string
-  raw: PostResModel
+  raw: PostModel
   map?: Map<string, string>
 }
 

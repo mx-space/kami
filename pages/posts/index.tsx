@@ -7,7 +7,7 @@ import { PostBlock } from 'components/PostBlock'
 import { BigTag } from 'components/Tag'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { PagerModel } from 'models/base'
-import { PostPagerDto, PostResModel, PostSingleDto } from 'models/post'
+import { PostPagerDto, PostModel, PostRespModel } from 'models/post'
 import { NextPage, NextPageContext } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -17,7 +17,7 @@ import { Rest } from 'utils/api'
 import { observer } from 'utils/mobx'
 import { SEO } from '../../components/SEO'
 interface PostProps extends PagerModel {
-  posts: PostResModel[]
+  posts: PostModel[]
 }
 
 const Post: NextPage<PostProps> = observer((props) => {
@@ -67,7 +67,7 @@ const Post: NextPage<PostProps> = observer((props) => {
 
   const [postWithTag, setTagPost] = useState<
     Pick<
-      PostSingleDto['data'],
+      PostRespModel['data'],
       '_id' | 'title' | 'slug' | 'created' | 'category'
     >[]
   >([])

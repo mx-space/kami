@@ -10,7 +10,7 @@
 import { BaseRespModel, PagerModel, ImageSizeRecord } from './base'
 import { CategoryModel } from './category'
 
-export interface PostResModel {
+export interface PostModel {
   _id: string
   created: string
   modified: string
@@ -33,9 +33,9 @@ export interface PostResModel {
 }
 
 export interface PostPagerDto extends BaseRespModel, PagerModel {
-  data: PostResModel[]
+  data: PostModel[]
 }
 
-export interface PostSingleDto extends BaseRespModel {
-  data: PostResModel
+export interface PostRespModel extends BaseRespModel {
+  data: PostModel
 }

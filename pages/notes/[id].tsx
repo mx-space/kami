@@ -1,10 +1,5 @@
-import { faSmile } from '@fortawesome/free-regular-svg-icons'
-import {
-  faBookOpen,
-  faClock,
-  faCloud,
-  faHeart,
-} from '@fortawesome/free-solid-svg-icons'
+import { faBookOpen, faClock, faHeart } from '@fortawesome/free-solid-svg-icons'
+import { EventTypes } from 'common/socket/types'
 import { useStore } from 'common/store'
 import Action, { ActionProps } from 'components/Action'
 import { QueueAnim } from 'components/Anime'
@@ -19,9 +14,10 @@ import { useRouter } from 'next/router'
 import { FC, useEffect, useRef, useState } from 'react'
 import { Rest } from 'utils/api'
 import { message } from 'utils/message'
-import { observer } from 'utils/mobx'
-import { parseDate, relativeTimeFromNow } from 'utils/time'
 import { mood2icon, weather2icon } from 'utils/meta'
+import { observer } from 'utils/mobx'
+import observable from 'utils/observable'
+import { parseDate, relativeTimeFromNow } from 'utils/time'
 import { ImageSizesContext } from '../../common/context/ImageSizes'
 import { Seo } from '../../components/SEO'
 import { getSummaryFromMd } from '../../utils'
@@ -47,11 +43,41 @@ const renderLines: FC<{ value: string }> = ({ value }) => {
 
 const NoteView: NextPage<NoteViewProps> = observer(
   (props): JSX.Element => {
-    const { data, prev, next } = props
-    const { title, _id, text, mood, weather } = data
-    const { userStore, appStore, musicStore } = useStore()
-    const [like, setLike] = useState(data.count.like ?? 0)
+    const { prev, next } = props
+    const [data, update] = useState(props.data)
+
     const router = useRouter()
+    const { userStore, appStore, musicStore } = useStore()
+    useEffect(() => {
+      update(props.data)
+    }, [props.data])
+
+    useEffect(() => {
+      const handler = (payload: NoteModel) => {
+        console.log(payload)
+
+        if (payload._id === data._id) {
+          if (payload.hide && !userStore.isLogged) {
+            router.push('/notes')
+            message.error('该日记已删除或隐藏')
+            return
+          }
+          message.info('日记已更新')
+          update(payload)
+        }
+      }
+
+      observable.on(EventTypes.NOTE_UPDATE, handler)
+
+      return () => {
+        observable.off(EventTypes.NOTE_UPDATE, handler)
+      }
+    }, [data._id, router, userStore.isLogged])
+
+    const { title, _id, text, mood, weather } = data
+
+    const [like, setLike] = useState(data.count.like ?? 0)
+
     const [tips, setTips] = useState(``)
 
     // prevent guest copy text.
