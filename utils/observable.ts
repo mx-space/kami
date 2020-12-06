@@ -16,6 +16,7 @@ interface Observer {
 export class Observable {
   observers: Observer[] = []
 
+  on(event: EventTypes, handler: any): void
   on(event: string, handler: (...rest: any) => void) {
     const isExist = this.observers.some(({ id, callback }) => {
       if (id === event && handler === callback) {

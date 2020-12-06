@@ -10,6 +10,7 @@ import { useStore } from '../../common/store'
 import { Input } from '../Input'
 import styles from './index.module.scss'
 import { shuffle } from 'lodash'
+import { isDev } from 'utils'
 
 const USER_PREFIX = 'mx-space-comment-author'
 
@@ -17,11 +18,20 @@ const CommentBox: FC<{
   onSubmit: ({ text, author, mail, url }) => any
   onCancel?: () => any
 }> = memo(({ onSubmit, onCancel }) => {
-  const [author, setAuthor] = useState('')
-  const [mail, setMail] = useState('')
-  const [url, setUrl] = useState('')
+  const [author, setAuthor] = useState(isDev ? '测试昵称' : '')
+  const [mail, setMail] = useState(isDev ? 'test@innei.ren' : '')
+  const [url, setUrl] = useState(isDev ? 'https://test.innei.ren' : '')
   const [text, setText] = useState('')
   const taRef = useRef<HTMLTextAreaElement>(null)
+
+  useEffect(() => {
+    if (taRef.current) {
+      const testText =
+        '幻なんかじゃない 人生は夢じゃない 僕達ははっきりと生きてるんだ'
+      taRef.current.value = testText
+      setText(testText)
+    }
+  }, [])
 
   const { userStore } = useStore()
   const logged = userStore.isLogged

@@ -1,4 +1,4 @@
-import { message } from 'utils/message'
+import { EventTypes } from 'common/socket/types'
 import Markdown from 'components/MD-render'
 import sample from 'lodash/sample'
 import { CommentModel } from 'models/comment'
@@ -17,7 +17,9 @@ import {
 } from 'react'
 import LazyLoad from 'react-lazyload'
 import { Rest } from 'utils/api'
+import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
+import observable from 'utils/observable'
 import { relativeTimeFromNow } from 'utils/time'
 import { CommentContext, minHeightProperty, openCommentMessage } from '.'
 import { useStore } from '../../common/store'
@@ -30,6 +32,7 @@ interface CommentProps {
   avatar: JSX.Element
   content: JSX.Element
   datetime: string
+  commentKey: string
   actions?: (JSX.Element | null)[]
 }
 
@@ -44,8 +47,23 @@ const Comment: FC<
     avatar,
     content,
     datetime,
+    commentKey,
     ...rest
   } = props
+
+  const [relativeTime, updateRelativeTime] = useState(
+    relativeTimeFromNow(datetime),
+  )
+
+  useEffect(() => {
+    let timer: any = setInterval(() => {
+      updateRelativeTime(relativeTimeFromNow(datetime))
+    }, 20000)
+    return () => {
+      timer = clearInterval(timer)
+    }
+  }, [datetime])
+
   return (
     <div className={styles['comment']} {...rest}>
       <div className={styles['inner']}>
@@ -53,7 +71,9 @@ const Comment: FC<
         <div className={styles['content']}>
           <div className={styles['content-author']}>
             <span className={styles['name']}>{author}</span>
-            <span className={styles['datetime']}>{datetime}</span>
+            <span className={styles['datetime']}>
+              {relativeTime} {commentKey}
+            </span>
           </div>
           <div className={styles['detail']}>{content}</div>
           <ul className={styles['actions']}>
@@ -164,17 +184,95 @@ function getCommentWrap<T extends { _id: string }>(comment: T) {
   return $parent
 }
 
+function search(
+  children: CommentModel[],
+  searched: CommentModel,
+  insertData: CommentModel,
+) {
+  children.some((comment) => {
+    if (Array.isArray(comment.children) && comment.children.length) {
+      return search(comment.children, searched, insertData)
+    }
+
+    if (comment._id === ((searched.parent as any) as CommentModel).id) {
+      if (!Array.isArray(comment.children)) {
+        comment.children = [insertData]
+      } else {
+        comment.children.unshift(insertData)
+      }
+
+      return true
+    }
+    return false
+  })
+}
+
+type IdType = string
+
 const Comments: FC<{
   comments: CommentModel[]
   onFetch: (page?: number, size?: number, force?: boolean) => void
   id: string
-}> = memo(({ comments, onFetch: fetchComments, id }) => {
+}> = memo(({ comments: c, onFetch: fetchComments, id }) => {
+  const [comments, setComments] = useState(c)
   const { refresh, collection } = useContext(CommentContext)
   const [replyId, setReplyId] = useState('')
   const { userStore } = useStore()
   const logged = userStore.isLogged
 
-  const [sure, setSure] = useState<null | string>(null)
+  const [sure, setSure] = useState<null | IdType>(null)
+
+  // observer gateway event
+
+  useEffect(() => {
+    const handler = (data: CommentModel) => {
+      // insert new comment to head
+      if (data.ref === id) {
+        if (!data.parent) {
+          setComments((prev) => {
+            prev.unshift(data)
+            return [...prev]
+          })
+        } else {
+          const clone = [...comments]
+
+          const index = clone.findIndex((comment) => {
+            return comment._id === ((data.parent as any) as CommentModel)._id
+          })
+
+          if (index !== -1) {
+            if (!Array.isArray(clone[index].children)) {
+              clone[index].children = [data]
+            } else {
+              clone[index].children.unshift(data)
+            }
+            setComments(clone)
+          } else {
+            // deep scan
+            clone.some((comment) => {
+              if (Array.isArray(comment.children) && comment.children.length) {
+                return search(
+                  comment.children,
+                  (data as any) as CommentModel,
+                  data,
+                )
+              }
+            })
+
+            setComments(clone)
+          }
+        }
+      }
+    }
+    observable.on(EventTypes.COMMENT_CREATE, handler)
+
+    return () => observable.off(EventTypes.COMMENT_CREATE, handler)
+  }, [comments, id])
+
+  useEffect(() => {
+    setComments(c)
+  }, [c])
+
   if (comments.length === 0) {
     return <Empty />
   }
@@ -222,7 +320,11 @@ const Comments: FC<{
           <Markdown
             value={`${
               comment.parent
-                ? `@${collection.get(comment.parent)?._id || ''} `
+                ? `@${
+                    collection.get(comment.parent)?._id ??
+                    ((comment.parent as any) as CommentModel)?._id ??
+                    ''
+                  } `
                 : ''
             }${comment.text}`}
             className={styles['comment']}
@@ -230,7 +332,8 @@ const Comments: FC<{
             escapeHtml
             renderers={{
               commentAt: ({ value }) => {
-                const comment = collection.get(value)
+                const comment =
+                  typeof value === 'string' ? collection.get(value) : value
                 if (!comment) {
                   return null
                 }
@@ -311,7 +414,8 @@ const Comments: FC<{
             }}
           />
         }
-        datetime={relativeTimeFromNow(comment.created) + ' ' + comment.key}
+        datetime={comment.created}
+        commentKey={comment.key}
         actions={[
           <span
             key="comment-list-reply-to-0"
