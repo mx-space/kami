@@ -25,7 +25,7 @@ const CommentBox: FC<{
   const taRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
-    if (taRef.current) {
+    if (taRef.current && isDev) {
       const testText =
         '幻なんかじゃない 人生は夢じゃない 僕達ははっきりと生きてるんだ'
       taRef.current.value = testText
