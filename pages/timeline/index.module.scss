@@ -42,3 +42,16 @@
     background-color: var(--yellow);
   }
 }
+h1 .count {
+  opacity: 0;
+  visibility: hidden;
+  font-size: 12px;
+  margin-left: 12px;
+  transition: opacity 0.3s, visibility 0.3s;
+  color: var(--shizuku-text-color);
+}
+
+h1:hover .count {
+  opacity: 0.8;
+  visibility: visible;
+}

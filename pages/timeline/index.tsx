@@ -118,7 +118,10 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
             <article className="post-content paul-note article-list" key={year}>
               <div className="note-item">
                 <QueueAnim delay={getDelayTime(year)} type={'bottom'}>
-                  <h1 key={1}>{year}</h1>
+                  <h1 key={1}>
+                    {year}
+                    <small className={styles['count']}>({value.length})</small>
+                  </h1>
                 </QueueAnim>
                 <ul className={styles['timeline-wrap']}>
                   {value.map((item, i) => {

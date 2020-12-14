@@ -223,7 +223,7 @@ const NoteView: NextPage<NoteViewProps> = observer(
           musicStore.isHide = true
         })
       }
-    }, [props.data.nid])
+    }, [props.data.music, props.data.nid])
 
     return (
       <>
