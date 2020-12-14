@@ -11,7 +11,14 @@ import { PostPagerDto, PostModel, PostRespModel } from 'models/post'
 import { NextPage, NextPageContext } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import RcQueueAnim from 'rc-queue-anim'
+import React, {
+  Fragment,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import { UUID } from 'utils'
 import { Rest } from 'utils/api'
 import { observer } from 'utils/mobx'
@@ -170,30 +177,34 @@ const Post: NextPage<PostProps> = observer((props) => {
           <a className="active">2019</a>
         </Link>
       </div> */}
-      <article className="paul-note">
-        {posts.length > 0 ? (
-          posts.map((post) => {
-            const { slug, text, created, title, _id } = post
+      <RcQueueAnim type={['bottom', 'alpha']}>
+        <article className="paul-note" key={'note'}>
+          {posts.length > 0 ? (
+            <Fragment>
+              {posts.map((post) => {
+                const { slug, text, created, title, _id } = post
 
-            return (
-              <PostBlock
-                title={title}
-                date={created}
-                key={_id}
-                text={text}
-                slug={slug}
-                raw={post}
-                // category={}
-              />
-            )
-          })
-        ) : (
-          <div>
-            <p>站长没有写过一篇文章啦</p>
-            <p>稍后来看看吧!</p>
-          </div>
-        )}
-      </article>
+                return (
+                  <PostBlock
+                    title={title}
+                    date={created}
+                    key={_id}
+                    text={text}
+                    slug={slug}
+                    raw={post}
+                    // category={}
+                  />
+                )
+              })}
+            </Fragment>
+          ) : (
+            <div>
+              <p>站长没有写过一篇文章啦</p>
+              <p>稍后来看看吧!</p>
+            </div>
+          )}
+        </article>
+      </RcQueueAnim>
 
       {
         <section className="paul-more">

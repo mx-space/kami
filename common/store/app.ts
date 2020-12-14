@@ -10,7 +10,7 @@ export default class AppStore {
   }
   menu: MenuModel[] = configs.menu as MenuModel[]
   viewport: Partial<ViewportRecord> = {}
-  loading = true
+
   position = 0
   scrollDirection: 'up' | 'down' | null = null
 
@@ -39,16 +39,6 @@ export default class AppStore {
     return this.position > window.innerHeight || this.position > screen.height
   }
 
-  toggleLoading() {
-    document.body.classList.toggle('loading')
-    this.loading = !this.loading
-  }
-  setLoading(state: boolean) {
-    state
-      ? document.body.classList.add('loading')
-      : document.body.classList.remove('loading')
-    this.loading = state
-  }
   setMenu(menu: MenuModel[]) {
     this.menu = menu
   }

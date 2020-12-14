@@ -30,11 +30,14 @@ import { getToken, removeToken } from '../utils/auth'
 import * as gtag from '../utils/gtag'
 import service from '../utils/request'
 import { enableStaticRendering } from 'mobx-react-lite'
+import QP from 'qier-progress'
 enableStaticRendering(isServerSide() ? true : false)
 
 const stores = createMobxStores()
 
 const version = process.env.VERSION || `v${Package.version}` || ''
+
+const Progress = new QP()
 
 function printToConsole() {
   try {
@@ -75,7 +78,6 @@ const Content: FC<DataModel> = observer((props) => {
     }, 13),
     [],
   )
-  const [loading, setLoading] = useState(true)
 
   useMount(() => {
     {
@@ -84,8 +86,9 @@ const Content: FC<DataModel> = observer((props) => {
       const { seo, user, pageMeta, categories, lastestNoteNid } = data
       // set user
       master.setUser(user)
-      setLoading(false)
-      app.setLoading(false)
+
+      document.body.classList.remove('loading')
+
       // set page
       pages.setPages(pageMeta as PageModel[])
       app.setPage(pageMeta as PageModel[])
@@ -212,29 +215,20 @@ const Content: FC<DataModel> = observer((props) => {
   const registerRouterEvents = useCallback(() => {
     Router.events.on('routeChangeStart', (url) => {
       // animateInstance?.start(url)
-
-      setTimeout(() => {
-        if (app.loading) {
-          setLoading(true)
-        }
-      }, 500)
-      app.setLoading(true)
+      Progress.start()
     })
     // Router.events.on('beforeHistoryChange', (url) => {
     //   animateInstance?.stop()
     // })
     Router.events.on('routeChangeComplete', () => {
       // window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
-
-      setLoading(false)
-
-      app.setLoading(false)
+      Progress.finish()
     })
 
     Router.events.on('routeChangeError', () => {
+      Progress.finish()
       // window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
-      setLoading(false)
-      app.setLoading(false)
+
       message.error('出现了未知错误, 刷新试试?')
     })
 
@@ -272,9 +266,7 @@ const Content: FC<DataModel> = observer((props) => {
         sameAs={configs.social.map(({ url }) => url)}
       />
 
-      <div id="next" style={{ display: loading ? 'none' : '' }}>
-        {props.children}
-      </div>
+      <div id="next">{props.children}</div>
       <Loader />
     </>
   )

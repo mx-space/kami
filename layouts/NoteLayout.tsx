@@ -18,7 +18,7 @@ const NoteLayout: FC<NoteLayoutProps> = memo(
     return (
       <main className="is-article is-note post-content paul-note" ref={ref}>
         <QueueAnim
-          type={['right', 'alpha']}
+          type={['bottom', 'alpha']}
           delay={500}
           forcedReplay
           // leaveReverse

@@ -6706,6 +6706,11 @@ pupa@^2.0.1:
   dependencies:
     escape-goat "^2.0.0"
 
+qier-progress@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/qier-progress/-/qier-progress-1.0.4.tgz#ff32504d9409bcce20898014b0fdb423874fbc10"
+  integrity sha512-gCxgoM2wxW7GCo/iEpOlaunVo2cf+/AJfG6wtYIbYz18GXtUhFjgZjX2s+otWh/P8ppVgGULASkWtXfZQEd2FQ==
+
 qs@6.7.0:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
