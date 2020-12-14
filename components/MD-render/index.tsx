@@ -160,31 +160,29 @@ const Image: () => FC<{ src: string; alt?: string }> = () => {
   return observer(function RenderImage({ src, alt }) {
     const images = useContext(ImageSizesContext) || []
     const [cal, setCal] = useState({} as { height?: number; width?: number })
-    const { appStore } = useStore()
+
     useEffect(() => {
-      if (!appStore.loading) {
-        const initImageSize = () => {
-          const maxWidth = typeof document !== 'undefined' && getContainerSize()
-          const size = images[index++] || {
-            height: undefined,
-            width: undefined,
-          }
-          const max = {
-            width: (maxWidth ?? getContainerSize()) || 500,
-
-            height: Infinity,
-          }
-          if (!(size.width && size.height)) {
-            return
-          }
-          const cal = calculateDimensions(size.width, size.height, max)
-
-          setCal(cal)
+      const initImageSize = () => {
+        const maxWidth = typeof document !== 'undefined' && getContainerSize()
+        const size = images[index++] || {
+          height: undefined,
+          width: undefined,
         }
+        const max = {
+          width: (maxWidth ?? getContainerSize()) || 500,
 
-        initImageSize()
+          height: Infinity,
+        }
+        if (!(size.width && size.height)) {
+          return
+        }
+        const cal = calculateDimensions(size.width, size.height, max)
+
+        setCal(cal)
       }
-    }, [images, appStore.loading])
+
+      initImageSize()
+    }, [images])
 
     if (typeof document === 'undefined') {
       return <img src={src} alt={alt} />
