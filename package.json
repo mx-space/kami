@@ -70,7 +70,7 @@
     "sass": "1.29.0",
     "sitemap": "6.3.3",
     "socket.io-client": "2.3.1",
-    "ua-parser-js": "0.7.22",
+    "ua-parser-js": "0.7.23",
     "validator": "13.5.2"
   },
   "devDependencies": {
@@ -91,7 +91,7 @@
     "@types/react-syntax-highlighter": "13.5.0",
     "@types/remove-markdown": "0.1.1",
     "@types/socket.io-client": "1.4.34",
-    "@types/ua-parser-js": "0.7.33",
+    "@types/ua-parser-js": "0.7.35",
     "@types/validator": "13.1.1",
     "@typescript-eslint/eslint-plugin": "4.9.0",
     "@typescript-eslint/parser": "4.9.0",
