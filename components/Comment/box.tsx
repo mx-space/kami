@@ -13,11 +13,13 @@ import { shuffle } from 'lodash'
 import { isDev } from 'utils'
 
 const USER_PREFIX = 'mx-space-comment-author'
+const USER_DRAFT = 'mx-space-comment-draft'
 
 const CommentBox: FC<{
   onSubmit: ({ text, author, mail, url }) => any
   onCancel?: () => any
-}> = memo(({ onSubmit, onCancel }) => {
+  autoFocus?: boolean
+}> = memo(({ onSubmit, onCancel, autoFocus = false }) => {
   const [author, setAuthor] = useState(isDev ? '测试昵称' : '')
   const [mail, setMail] = useState(isDev ? 'test@innei.ren' : '')
   const [url, setUrl] = useState(isDev ? 'https://test.innei.ren' : '')
@@ -25,11 +27,24 @@ const CommentBox: FC<{
   const taRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
-    if (taRef.current && isDev) {
-      const testText =
-        '幻なんかじゃない 人生は夢じゃない 僕達ははっきりと生きてるんだ'
-      taRef.current.value = testText
-      setText(testText)
+    const $ref = taRef.current
+    if ($ref && isDev) {
+      if (isDev) {
+        const testText =
+          '幻なんかじゃない 人生は夢じゃない 僕達ははっきりと生きてるんだ'
+        $ref.value = testText
+        setText(testText)
+      } else {
+        const draftText = localStorage.getItem(USER_DRAFT) ?? ''
+        $ref.value = draftText
+        setText(draftText)
+      }
+    }
+
+    return () => {
+      if ($ref && $ref.value) {
+        localStorage.setItem(USER_DRAFT, $ref.value)
+      }
     }
   }, [])
 
@@ -38,6 +53,7 @@ const CommentBox: FC<{
   const reset = () => {
     if (taRef.current) {
       taRef.current.value = ''
+      setText('')
     }
   }
 
@@ -169,6 +185,7 @@ const CommentBox: FC<{
         onChange={(e) => {
           setText(e.target.value)
         }}
+        autoFocus={autoFocus}
         placeholder={
           !logged
             ? '嘿 ︿(￣︶￣)︿, 留个评论好不好嘛~'

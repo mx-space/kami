@@ -469,6 +469,7 @@ const Comments: FC<{
         >
           {replyId === comment._id && (
             <CommentBox
+              autoFocus
               key={'box'}
               onSubmit={handleReply}
               onCancel={() => setReplyId('')}
