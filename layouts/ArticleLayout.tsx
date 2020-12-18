@@ -88,7 +88,7 @@ export const ArticleLayout: FC<
             }}
             animatingClassName={animatingClassName}
           >
-            <article className="post-content paul-note" key={title}>
+            <article className="post-content kami-note" key={title}>
               {children}
             </article>
           </QueueAnim>

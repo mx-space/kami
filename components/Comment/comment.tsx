@@ -39,7 +39,7 @@ interface CommentProps {
 const Comment: FC<
   CommentProps &
     DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
-> = (props) => {
+> = memo((props) => {
   const {
     actions,
     author,
@@ -84,7 +84,7 @@ const Comment: FC<
       <div className={styles['nested']}>{children}</div>
     </div>
   )
-}
+})
 
 const generateColorFromMode = (
   mode: 'bright' | 'light' | 'dark' | 'random' | undefined,

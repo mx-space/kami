@@ -132,7 +132,7 @@ const Post: NextPage<PostProps> = observer((props) => {
           </div>
 
           <div style={{ position: 'absolute', top: '50vh', bottom: 0 }}>
-            <article className="post-content paul-note article-list">
+            <article className="post-content kami-note article-list">
               <ul>
                 <QueueAnim delay={700} forcedReplay appear>
                   {postWithTag ? (
@@ -178,7 +178,7 @@ const Post: NextPage<PostProps> = observer((props) => {
         </Link>
       </div> */}
       <RcQueueAnim type={['bottom', 'alpha']}>
-        <article className="paul-note" key={'note'}>
+        <article className="kami-note" key={'note'}>
           {posts.length > 0 ? (
             <Fragment>
               {posts.map((post) => {
@@ -207,7 +207,7 @@ const Post: NextPage<PostProps> = observer((props) => {
       </RcQueueAnim>
 
       {
-        <section className="paul-more">
+        <section className="kami-more">
           {page.hasPrevPage && (
             <button
               className="btn brown"
@@ -239,14 +239,21 @@ const Post: NextPage<PostProps> = observer((props) => {
   )
 })
 
-Post.getInitialProps = async (ctx: NextPageContext) => {
-  const { page, year } = ctx.query
+export async function getServerSideProps(ctx: NextPageContext) {
+  try {
+    const { page, year } = ctx.query
 
-  const data = await Rest('Post', '').gets<PostPagerDto>({
-    page: ((page as any) as number) || 1,
-    year: parseInt(year as string) || undefined,
-  })
-  return { page: data.page, posts: data.data }
+    const data = await Rest('Post', '').gets<PostPagerDto>({
+      page: ((page as any) as number) || 1,
+      year: parseInt(year as string) || undefined,
+    })
+    return {
+      props: { page: data.page, posts: data.data },
+    }
+  } catch {
+    return {
+      notFound: true,
+    }
+  }
 }
-
 export default Post

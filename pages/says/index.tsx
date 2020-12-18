@@ -80,7 +80,7 @@ const SayView: NextPage<SayViewProps> = (props) => {
       {
         <StackGrid
           columnWidth={appStore.viewport.mobile ? '100%' : '50%'}
-          className={'paul-say'}
+          className={'kami-say'}
           style={{ columns: 'unset' }}
           gutterWidth={10}
           gutterHeight={10}

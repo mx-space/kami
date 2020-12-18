@@ -1,7 +1,7 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import styles from './index.module.scss'
 
-const Loading: FC = () => {
+const Loading: FC = memo(() => {
   return (
     <div className={styles['loading']}>
       <div className="icon">
@@ -32,6 +32,5 @@ const Loading: FC = () => {
       <span>正在加载评论区...</span>
     </div>
   )
-}
-
+})
 export { Loading as CommentLoading }

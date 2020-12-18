@@ -204,10 +204,10 @@ pre {
   background-color: var(--light-bg);
   border-radius: 1.5em;
 }
-#write.focus .paul-lister {
+#write.focus .kami-lister {
   right: -55px;
 }
-// paul restyle
+
 .news-article h4 {
   backdrop-filter: blur(5px);
 }
@@ -390,7 +390,7 @@ html.light .lazyload-image {
 }
 
 @media screen and (max-width: 600px) {
-  .paul-say {
+  .kami-say {
     columns: 1;
   }
 }

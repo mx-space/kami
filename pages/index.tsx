@@ -83,7 +83,7 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
   const { user } = useInitialData()
   return (
     <main>
-      <section className="paul-intro">
+      <section className="kami-intro">
         <div className="intro-avatar ">
           <img
             src={user.avatar || avatar}
@@ -132,7 +132,7 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
           </QueueAnim>
         </div>
       </section>
-      <section className="paul-news" style={{ minHeight: '34rem' }}>
+      <section className="kami-news" style={{ minHeight: '34rem' }}>
         <QueueAnim
           className="demo-content"
           delay={1200}

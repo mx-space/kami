@@ -115,7 +115,7 @@ export default {
   menu,
   icp: {
     name: '浙ICP备 20028356 号',
-    url: 'http://www.beian.miit.gov.cn/',
+    url: 'http://beian.miit.gov.cn/',
   },
   travellings: true, // 开往
   donate: 'https://afdian.net/@Innei',

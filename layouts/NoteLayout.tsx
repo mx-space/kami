@@ -16,7 +16,7 @@ const NoteLayout: FC<NoteLayoutProps> = memo(
   forwardRef(({ children, date, title, tips }, ref: any) => {
     const dateFormat = dayjs(date).locale('cn').format('YYYY年M月DD日 dddd')
     return (
-      <main className="is-article is-note post-content paul-note" ref={ref}>
+      <main className="is-article is-note post-content kami-note" ref={ref}>
         <QueueAnim
           type={['bottom', 'alpha']}
           delay={500}

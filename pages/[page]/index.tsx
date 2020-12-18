@@ -3,7 +3,7 @@ import { CommentLazy } from 'components/Comment'
 import Markdown from 'components/MD-render'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { PageRespDto } from 'models/page'
-import { NextPage } from 'next'
+import { GetServerSideProps, NextPage } from 'next'
 import { useEffect } from 'react'
 import RemoveMarkdown from 'remove-markdown'
 import { Rest } from 'utils/api'
@@ -54,12 +54,20 @@ const Page: NextPage<PageRespDto> = (props) => {
     </ArticleLayout>
   )
 }
-Page.getInitialProps = async (ctx) => {
-  const { data } = await Rest('Page', 'slug').get<PageRespDto>(
-    ctx.query.page as string,
-  )
 
-  return { data } as PageRespDto
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  try {
+    const { data } = await Rest('Page', 'slug').get<PageRespDto>(
+      ctx.query.page as string,
+    )
+
+    return {
+      props: { data },
+    }
+  } catch {
+    return {
+      notFound: true,
+    }
+  }
 }
-
 export default observer(Page)

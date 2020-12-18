@@ -258,7 +258,7 @@ const NoteView: NextPage<NoteViewProps> = observer(
           <Action {...actions} />
 
           {(!!next || !!prev) && (
-            <section className="paul-more">
+            <section className="kami-more">
               {!!next && (
                 <button
                   className="btn green"
@@ -315,10 +315,18 @@ const NoteView: NextPage<NoteViewProps> = observer(
     )
   },
 )
-NoteView.getInitialProps = async ({ query }) => {
-  const id = query.id as string
-  const { data, prev, next } = await Rest('Note', 'nid').get<NoteResp>(id)
-  return { data, prev, next }
-}
 
+export async function getServerSideProps({ query }) {
+  const id = query.id as string
+  try {
+    const { data, prev, next } = await Rest('Note', 'nid').get<NoteResp>(id)
+    return {
+      props: { data, prev, next }, // will be passed to the page component as props
+    }
+  } catch {
+    return {
+      notFound: true,
+    }
+  }
+}
 export default NoteView

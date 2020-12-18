@@ -19,14 +19,22 @@ export default class MusicStore {
   }
 
   async init() {
-    return await this.setPlaylist([
-      563534789,
-      1447327083,
-      528658316,
-      1450252250,
-    ])
+    if (!this.initPlaylist) {
+      const list = await this.setPlaylist([
+        563534789,
+        1447327083,
+        528658316,
+        1450252250,
+      ])
+      this.initPlaylist = list
+    } else {
+      this.playlist = this.initPlaylist
+    }
+
+    return
   }
 
+  initPlaylist: MusicModel[] = []
   playlist: MusicModel[] = []
   isPlay = false
   isHide = true
@@ -55,6 +63,8 @@ export default class MusicStore {
     this.playlist = await this.getList(list)
 
     this.play()
+
+    return this.playlist
   }
 
   play() {

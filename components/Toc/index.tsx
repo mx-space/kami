@@ -65,7 +65,7 @@ export const Toc: FC = memo(() => {
   })
 
   return (
-    <section className="paul-lister" style={{ zIndex: 3 }}>
+    <section className="kami-lister" style={{ zIndex: 3 }}>
       <div className="container" ref={containerRef}>
         <QueueAnim>
           {headings &&
@@ -95,6 +95,6 @@ export const Toc: FC = memo(() => {
     </section>
   )
 })
-export default (dynamic(() => import('.').then((m) => m.Toc) as any, {
+export default dynamic(() => Promise.resolve(Toc), {
   ssr: false,
-}) as any) as typeof Toc
+})

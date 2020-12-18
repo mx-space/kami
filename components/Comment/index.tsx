@@ -79,6 +79,7 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
 
           setComments(data)
           setPage(page)
+          setCommentShow(true)
         })
     },
     [collection, id],
@@ -110,15 +111,11 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
     threshold: 0.5,
   })
   useEffect(() => {
-    if (inView) {
-      setCommentShow(true)
-    }
-  }, [inView])
-  useEffect(() => {
-    if (commentShow) {
+    if (inView && !commentShow) {
       fetchComments()
     }
-  }, [commentShow])
+  }, [inView])
+
   useEffect(() => {
     setComments([])
     setCommentShow(false)

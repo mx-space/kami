@@ -320,55 +320,55 @@ main.is-gallery {
   background: #28b9be;
   background: var(--green);
 }
-.paul-intro {
+.kami-intro {
   display: flex;
   margin-bottom: 5em;
 }
-.paul-intro p {
+.kami-intro p {
   color: #aaa;
 }
-.paul-intro img {
+.kami-intro img {
   border-radius: 66%;
 }
-.paul-intro .intro-avatar {
+.kami-intro .intro-avatar {
   flex: 0 0 9em;
   max-width: 9em;
   margin-right: 2em;
 }
-.paul-intro .social-icons {
+.kami-intro .social-icons {
   display: flex;
   font-size: 1.2em;
   user-select: none;
   margin-top: 1.25em;
 }
-.paul-intro .social-icons a {
+.kami-intro .social-icons a {
   margin-right: 1em;
   display: inline-block;
 }
-.paul-intro .social-icons a:last-child {
+.kami-intro .social-icons a:last-child {
   margin-right: 0;
 }
-.paul-intro .social-icons svg {
+.kami-intro .social-icons svg {
   width: 1em;
 }
 @media screen and (max-width: 600px) {
-  .paul-intro {
+  .kami-intro {
     flex-direction: column;
   }
-  .paul-intro .intro-avatar {
+  .kami-intro .intro-avatar {
     margin: 0 auto 1.5em;
   }
-  .paul-intro .intro-info {
+  .kami-intro .intro-info {
     text-align: center;
   }
-  .paul-intro .social-icons {
+  .kami-intro .social-icons {
     justify-content: center;
   }
 }
-.paul-news .news-item {
+.kami-news .news-item {
   margin-bottom: 5em;
 }
-.paul-news .news-item:last-child {
+.kami-news .news-item:last-child {
   margin-bottom: 0;
 }
 .news-head h3 {
@@ -501,7 +501,7 @@ article > h1 small {
   position: relative;
 }
 
-.paul-lister {
+.kami-lister {
   top: 0;
   right: -12px;
   bottom: 0;
@@ -516,12 +516,12 @@ article > h1 small {
     top: 6rem;
   }
 }
-.paul-lister a {
+.kami-lister a {
   display: block;
   color: currentColor;
   margin-bottom: 0.75em;
 }
-.paul-lister a:last-child {
+.kami-lister a:last-child {
   margin-bottom: 0;
 }
 .note-content {
@@ -579,30 +579,30 @@ article > h1 small {
 .note-content pre > code {
   max-height: 25em;
 }
-.paul-note .note-inform,
-.paul-note .note-action {
+.kami-note .note-inform,
+.kami-note .note-action {
   color: #888;
   text-align: right;
   user-select: none;
   font-weight: lighter;
 }
-.paul-note .note-inform {
+.kami-note .note-inform {
   float: left;
 }
-.paul-note .note-action a {
+.kami-note .note-action a {
   color: inherit;
 }
-.paul-note .note-inform span {
+.kami-note .note-inform span {
   cursor: pointer;
   margin-right: 1em;
 }
-.paul-note .note-action span {
+.kami-note .note-action span {
   cursor: pointer;
   margin-left: 1em;
   position: relative;
 }
-.paul-note .note-inform span:before,
-.paul-note .note-action span:before {
+.kami-note .note-inform span:before,
+.kami-note .note-action span:before {
   margin-right: 0.5em;
 }
 
@@ -610,54 +610,54 @@ article > h1 small {
   margin-top: 2em;
   text-align: center;
 }
-.paul-more {
+.kami-more {
   margin-top: 2em;
   text-align: center;
 }
-.paul-more .fa-spinner {
+.kami-more .fa-spinner {
   animation: rotate 1.5s linear infinite;
 }
-.paul-say {
+.kami-say {
   columns: 2;
 }
-.paul-say blockquote {
+.kami-say blockquote {
   -webkit-column-break-inside: avoid;
   break-inside: avoid;
   background: rgba(52, 152, 219, 0.05);
 }
-.paul-say blockquote:nth-child(2n) {
+.kami-say blockquote:nth-child(2n) {
   border-left-color: #ffc107;
   border-left-color: var(--yellow);
   background: rgba(255, 193, 7, 0.05);
 }
-.paul-say blockquote:nth-child(3n) {
+.kami-say blockquote:nth-child(3n) {
   border-left-color: #9acd32;
   background: rgba(154, 205, 50, 0.05);
 }
-.paul-say blockquote:nth-child(4n) {
+.kami-say blockquote:nth-child(4n) {
   border-left-color: #40e0d0;
   background: rgba(64, 224, 208, 0.05);
 }
-.paul-say blockquote:nth-child(5n) {
+.kami-say blockquote:nth-child(5n) {
   border-left-color: #ff4500;
   background: rgba(255, 69, 0, 0.05);
 }
-.paul-say blockquote:nth-child(6n) {
+.kami-say blockquote:nth-child(6n) {
   border-left-color: #8a2be2;
   background: rgba(138, 43, 226, 0.05);
 }
-.paul-say .author {
+.kami-say .author {
   opacity: 0.6;
   font-size: 0.85em;
   text-align: right;
   font-style: italic;
 }
-.paul-project {
+.kami-project {
   display: grid;
   grid-gap: 1.5em;
   grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
 }
-.paul-project .gallery-item {
+.kami-project .gallery-item {
   padding-top: 80%;
 }
 .project-list {
@@ -771,12 +771,12 @@ article > h1 small {
   position: absolute;
   background: crimson;
 }
-.paul-music {
+.kami-music {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 3em;
 }
-.paul-music.active .music-list {
+.kami-music.active .music-list {
   max-height: 100%;
 }
 .music-cover {

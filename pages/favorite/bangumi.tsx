@@ -19,7 +19,7 @@ const BangumiView: NextPage<{ data: FavoriteBangumiType[] }> = (props) => {
           openGraph: { type: 'website' },
         }}
       />
-      <section className={'paul-bangumi'}>
+      <section className={'kami-bangumi'}>
         <div className="row">
           {props.data.map((bangumi) => {
             return (

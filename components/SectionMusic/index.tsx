@@ -15,7 +15,7 @@ export const SectionMusic: FC<SectionMusicProps> = observer((props) => {
     musicStore.setPlaylist(id)
   }
   return (
-    <section className={'paul-music'}>
+    <section className={'kami-music'}>
       <style jsx>{`
         .sticky-cover {
           position: sticky;
