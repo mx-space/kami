@@ -28,6 +28,7 @@ import { getAnimationImages as getAnimeImages } from '../utils'
 import { stopEventDefault } from '../utils/dom'
 import service from '../utils/request'
 import '../utils/message'
+import { SayModel } from 'models/say'
 interface IndexViewProps {
   posts: Top.Post[]
   notes: Top.Note[]
@@ -81,6 +82,17 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
     })
   }, [])
   const { user } = useInitialData()
+
+  const [say, setSay] = useState('')
+
+  useEffect(() => {
+    Rest('Say')
+      .get<any>('random')
+      .then(({ data }: { data: SayModel }) => {
+        setSay(`${data.text}  ——${data.author ?? data.source ?? '站长说'}`)
+      })
+  }, [])
+
   return (
     <main>
       <section className="kami-intro">
@@ -132,6 +144,13 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
           </QueueAnim>
         </div>
       </section>
+
+      <p style={{ color: '#aaa', marginTop: '-3rem' }}>
+        <Texty appear leave={false} type={'alpha'}>
+          {say}
+        </Texty>
+      </p>
+
       <section className="kami-news" style={{ minHeight: '34rem' }}>
         <QueueAnim
           className="demo-content"
