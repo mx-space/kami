@@ -7796,10 +7796,10 @@ sirv@^1.0.7:
     mime "^2.3.1"
     totalist "^1.0.0"
 
-sitemap@6.3.4:
-  version "6.3.4"
-  resolved "https://registry.yarnpkg.com/sitemap/-/sitemap-6.3.4.tgz#f8e7196667a7a8a8a8858741cf86fa2622b9075b"
-  integrity sha512-xvNByKt4raMQuuKWveiYxBOeLOq6t5DQlPF5UTDDDGR2Xk/F35w70NWSGufxJDPwNP9bmZIyfRsvnJGpWCeVcw==
+sitemap@6.3.5:
+  version "6.3.5"
+  resolved "https://registry.yarnpkg.com/sitemap/-/sitemap-6.3.5.tgz#3d39618fa149f95303c151b8f884046695219c3f"
+  integrity sha512-uLz8c5nI31bd4/+nccVWhJx18JxLF+1bAKhhxMv0IYKClSK8wWtANKsl9FOluqmz37ObeBLGVVgNOpg3r+yz/g==
   dependencies:
     "@types/node" "^14.14.14"
     "@types/sax" "^1.2.1"
