@@ -189,9 +189,9 @@ export default class MyDocument extends Document<{ ua: string }> {
             rel="stylesheet"
             type="text/css"
           />
-          <link rel="shortcut icon" href="/custom-icon.svg" />
-          <link rel="icon" href="/custom-icon.svg" />
-          <link rel="apple-touch-icon" href="/custom-icon.svg" />
+          <link rel="shortcut icon" href="/favicon.svg" />
+          <link rel="icon" href="/favicon.svg" />
+          <link rel="apple-touch-icon" href="/favicon.svg" />
           <link rel="sitemap" href="/sitemap.xml" />
           {configs.alwaysHTTPS ? (
             <meta
