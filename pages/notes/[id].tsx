@@ -13,6 +13,7 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { FC, useEffect, useRef, useState } from 'react'
 import { Rest } from 'utils/api'
+import { imagesRecord2Map } from 'utils/images'
 import { message } from 'utils/message'
 import { mood2icon, weather2icon } from 'utils/meta'
 import { observer } from 'utils/mobx'
@@ -246,7 +247,9 @@ const NoteView: NextPage<NoteViewProps> = observer(
         />
 
         <NoteLayout title={title} date={new Date(data.created)} tips={tips}>
-          <ImageSizesContext.Provider value={props.data.images}>
+          <ImageSizesContext.Provider
+            value={imagesRecord2Map(props.data.images)}
+          >
             <Markdown
               ref={mdRef}
               value={text}

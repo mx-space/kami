@@ -2,6 +2,7 @@ import CustomRules from 'common/markdown/rules'
 import { useStore } from 'common/store'
 import { ImageLazyWithPopup } from 'components/Image'
 import Toc from 'components/Toc'
+import dynamic from 'next/dynamic'
 import Router from 'next/router'
 import React, {
   createElement,
@@ -11,9 +12,7 @@ import React, {
   forwardRef,
   useCallback,
   useContext,
-  useEffect,
   useMemo,
-  useState,
 } from 'react'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { observer } from 'utils/mobx'
@@ -153,51 +152,49 @@ export const calculateDimensions = (
 }
 // FIXME render problem
 const getContainerSize = () => {
-  return document.getElementById('write')?.getBoundingClientRect().width
+  const $wrap = document.getElementById('article-wrap')
+  if (!$wrap) {
+    return
+  }
+  return (
+    $wrap.getBoundingClientRect().width -
+    // padding 2em left and right 2 * 2
+    parseFloat(getComputedStyle(document.body).fontSize) * 2 * 2
+  )
 }
-const Image: () => FC<{ src: string; alt?: string }> = () => {
-  let index = 0
-  return observer(function RenderImage({ src, alt }) {
-    const images = useContext(ImageSizesContext) || []
-    const [cal, setCal] = useState({} as { height?: number; width?: number })
+const _Image: FC<{ src: string; alt?: string }> = ({ src, alt }) => {
+  const images = useContext(ImageSizesContext)
 
-    useEffect(() => {
-      const initImageSize = () => {
-        const maxWidth = typeof document !== 'undefined' && getContainerSize()
-        const size = images[index++] || {
-          height: undefined,
-          width: undefined,
-        }
-        const max = {
-          width: (maxWidth ?? getContainerSize()) || 500,
+  const maxWidth = getContainerSize()
+  const size = images.get(src) || {
+    height: undefined,
+    width: undefined,
+  }
+  const max = {
+    width: (maxWidth ?? getContainerSize()) || 500,
 
-          height: Infinity,
-        }
-        if (!(size.width && size.height)) {
-          return
-        }
-        const cal = calculateDimensions(size.width, size.height, max)
+    height: Infinity,
+  }
 
-        setCal(cal)
-      }
+  let cal = {} as any
+  if (size.width && size.height) {
+    cal = calculateDimensions(size.width, size.height, max)
+  }
 
-      initImageSize()
-    }, [images])
-
-    if (typeof document === 'undefined') {
-      return <img src={src} alt={alt} />
-    }
-    return (
-      <ImageLazyWithPopup
-        src={src}
-        alt={alt}
-        height={cal.height}
-        width={cal.width}
-        style={{ padding: '1rem 0' }}
-      />
-    )
-  })
+  return (
+    <ImageLazyWithPopup
+      src={src}
+      alt={alt}
+      height={cal.height}
+      width={cal.width}
+      style={{ padding: '1rem 0' }}
+    />
+  )
 }
+const Image =
+  typeof document === 'undefined'
+    ? ({ src, alt }) => <img src={src} alt={alt} />
+    : dynamic(() => Promise.resolve(_Image), { ssr: false })
 
 const RenderSpoiler: FC<{ value: string }> = (props) => {
   return (
@@ -231,7 +228,7 @@ const Markdown = forwardRef<HTMLDivElement, MdProps>((props, ref) => {
         renderers={{
           code: CodeBlock,
           pre: CodeBlock,
-          image: Image(),
+          image: Image,
           heading: Heading(),
           link: RenderLink,
           spoiler: RenderSpoiler,
@@ -242,6 +239,7 @@ const Markdown = forwardRef<HTMLDivElement, MdProps>((props, ref) => {
         }}
         plugins={CustomRules}
       />
+
       {props.showTOC && <_TOC />}
     </div>
   )

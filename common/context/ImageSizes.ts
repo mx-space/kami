@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { ImageSizeRecord } from '../../models/base'
+import { ImageMap } from '../../models/base'
 
 /*
  * @Author: Innei
@@ -9,4 +9,4 @@ import { ImageSizeRecord } from '../../models/base'
  * @FilePath: /mx-web/common/context/ImageSizes.ts
  * @Coding with Love
  */
-export const ImageSizesContext = createContext([] as ImageSizeRecord[])
+export const ImageSizesContext = createContext(new Map() as ImageMap)

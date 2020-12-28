@@ -20,6 +20,7 @@ import { NextPage, NextPageContext } from 'next/'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { Rest } from 'utils/api'
+import { imagesRecord2Map } from 'utils/images'
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
 import observable from 'utils/observable'
@@ -180,7 +181,7 @@ export const PostView: NextPage<PostModel> = (props) => {
       />
 
       <OutdateNotice time={props.modified} />
-      <ImageSizesContext.Provider value={props.images}>
+      <ImageSizesContext.Provider value={imagesRecord2Map(props.images)}>
         <Markdown
           value={text}
           escapeHtml={false}

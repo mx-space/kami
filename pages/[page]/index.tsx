@@ -7,6 +7,7 @@ import { GetServerSideProps, NextPage } from 'next'
 import { useEffect } from 'react'
 import RemoveMarkdown from 'remove-markdown'
 import { Rest } from 'utils/api'
+import { imagesRecord2Map } from 'utils/images'
 import { observer } from 'utils/mobx'
 import { ImageSizesContext } from '../../common/context/ImageSizes'
 import { Seo } from '../../components/SEO'
@@ -40,7 +41,7 @@ const Page: NextPage<PageRespDto> = (props) => {
         openGraph={{ type: 'article' }}
         description={RemoveMarkdown(text).slice(0, 100).replace('\n', '')}
       />
-      <ImageSizesContext.Provider value={props.data.images}>
+      <ImageSizesContext.Provider value={imagesRecord2Map(props.data.images)}>
         <Markdown value={text} escapeHtml={false} showTOC />
       </ImageSizesContext.Provider>
 

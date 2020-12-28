@@ -32,10 +32,18 @@ export interface BaseModel {
 export interface BaseCommentIndexModel extends BaseModel {
   commentsIndex?: number
 }
-
-export interface ImageSizeRecord {
+export type ImageSizeRecord = {
   type?: string
   height?: number
   width?: number
-  src?: string
+  src: string
 }
+export type ImageMap = Map<
+  string,
+  {
+    type?: string
+    height?: number
+    width?: number
+    src?: string
+  }
+>
