@@ -13,6 +13,7 @@ export interface NoteModel extends BaseModel {
   text: string
   mood?: string
   weather?: string
+  hasMemory?: boolean
   nid: number
   id: string
   images: ImageSizeRecord[]

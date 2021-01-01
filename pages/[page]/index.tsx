@@ -42,7 +42,7 @@ const Page: NextPage<PageRespDto> = (props) => {
         description={RemoveMarkdown(text).slice(0, 100).replace('\n', '')}
       />
       <ImageSizesContext.Provider value={imagesRecord2Map(props.data.images)}>
-        <Markdown value={text} escapeHtml={false} showTOC />
+        <Markdown value={text} escapeHtml={false} toc />
       </ImageSizesContext.Provider>
 
       <CommentLazy

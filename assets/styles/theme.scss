@@ -8,6 +8,7 @@
   --purple: #8a2be2;
   --light-bg: #fff;
   --light-font: #fff;
+
   font: 14px/1.15 noto sans sc, pingfang sc, hiragino sans gb, microsoft yahei,
     'sans-serif';
 }
@@ -124,10 +125,13 @@ html.dark body {
     url(https://gitee.com/xun7788/my-imagination/raw/master/cdn/background-night.png)
     top center fixed !important;
 }
+
 html.dark img {
   filter: brightness(0.6) !important;
 }
-
+body * {
+  transition: color 0.2s, background 0.2s, border 0.2s;
+}
 @media screen and (prefers-color-scheme: dark) {
   :root {
     color: #ddd;
@@ -507,6 +511,7 @@ article > h1 small {
   bottom: 0;
   position: absolute;
   transform: translateX(100%);
+  font-family: sans-serif;
   .container {
     color: #888;
     font-size: 0.85em;

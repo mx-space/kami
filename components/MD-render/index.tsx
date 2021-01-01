@@ -21,7 +21,7 @@ import CodeBlock from '../CodeBlock'
 import styles from './index.module.scss'
 interface MdProps extends ReactMarkdownProps {
   value: string
-  showTOC?: boolean
+  toc?: boolean
   [key: string]: any
   style?: React.CSSProperties
   readonly renderers?: { [nodeType: string]: ElementType }
@@ -217,7 +217,7 @@ const _TOC = observer(() => {
   const { isPadOrMobile } = appStore
   return !isPadOrMobile ? <Toc /> : null
 })
-const Markdown = forwardRef<HTMLDivElement, MdProps>((props, ref) => {
+export const Markdown = forwardRef<HTMLDivElement, MdProps>((props, ref) => {
   const { value, renderers, style, warpperProps = {}, ...rest } = props
 
   return (
@@ -240,7 +240,7 @@ const Markdown = forwardRef<HTMLDivElement, MdProps>((props, ref) => {
         plugins={CustomRules}
       />
 
-      {props.showTOC && <_TOC />}
+      {props.toc && <_TOC />}
     </div>
   )
 })

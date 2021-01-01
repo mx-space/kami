@@ -215,13 +215,73 @@ pre {
   backdrop-filter: blur(5px);
 }
 
+@media screen and (prefers-color-scheme: dark) {
+  .is-note .note-article::after {
+    background-image: linear-gradient(-45deg, transparent 50%, #333 0);
+    border-left: 1px solid #555;
+    border-top: 1px solid #555;
+  }
+}
+
+html.dark {
+  .is-note .note-article::after {
+    background-image: linear-gradient(-45deg, transparent 50%, #333 0);
+    border-left: 1px solid #555;
+    border-top: 1px solid #555;
+  }
+}
+
 .is-note .note-article {
   background-color: var(--light-bg);
+
   margin: -30px -45px;
   padding: 30px 45px;
-  border-radius: 2rem;
-  box-shadow: 0 0 1px rgba(#333, 0.2), 2px 3px 21px -5px rgba(#333, 0.2);
+  border-radius: 0 1em 1em 0;
+  box-shadow: 3px 5px 6px -5px rgba(51, 51, 51, 0.2),
+    2px 3px 8px -5px rgba(51, 51, 51, 0.2);
 
+  @for $var from 1 to 6 {
+    #write h#{$var} {
+      margin-left: 1.5em;
+    }
+  }
+
+  .kami-lister {
+    right: -5em;
+  }
+
+  @media (min-width: 599px) {
+    border: 1px solid rgba(#bbb, 0.2);
+
+    &::before,
+    &::after {
+      position: absolute;
+      width: 3em;
+      height: 3em;
+      right: 0;
+      bottom: 0;
+      content: '';
+    }
+    &::before {
+      // background-color: #3c946c;
+      height: 4.2em;
+      transform: rotate(45deg) translateX(2em) translateY(0.5em);
+      border-left: 1px solid #cccccc;
+      z-index: 1;
+    }
+
+    &::after {
+      background-image: linear-gradient(
+        -45deg,
+        transparent 50%,
+        rgba(238, 238, 238, 0.548) 0
+      );
+      border-left: 1px solid #ccc;
+      border-top: 1px solid #ccc;
+      border-top-left-radius: 1em;
+      transition: border 0.2s, background 0.2s;
+    }
+  }
   @media (max-width: 599px) {
     & {
       margin: 0;
@@ -243,8 +303,9 @@ pre {
 }
 
 .is-note #write {
-  font-family: 'Noto Serif SC', 'PingFang SC', 'Hiragino Sans GB', 'Heiti SC',
-    'Microsoft YaHei', 'WenQuanYi Micro Hei';
+  font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC',
+    'Source Han Serif', source-han-serif-sc, 'PingFang SC', 'Hiragino Sans GB',
+    'Heiti SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei';
   color: var(--shizuku-text-color);
   font-size: 16px;
   line-height: 1.75;

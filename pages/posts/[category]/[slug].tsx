@@ -185,7 +185,7 @@ export const PostView: NextPage<PostModel> = (props) => {
         <Markdown
           value={text}
           escapeHtml={false}
-          showTOC={true}
+          toc
           warpperProps={{ className: 'focus' }}
         />
       </ImageSizesContext.Provider>

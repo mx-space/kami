@@ -16,10 +16,17 @@ import { FC, memo, useEffect, useRef, useState } from 'react'
 import styles from './index.module.scss'
 declare const window: Window & typeof globalThis & { [key: string]: any }
 
-export const Toc: FC = memo(() => {
+const _Toc: FC = memo(() => {
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const [headings, setHeadings] = useState<null | string[]>([])
+  const [headings, setHeadings] = useState<
+    | null
+    | {
+        id: string
+        depth: number
+      }[]
+  >([])
+  const [rootDepth, setDepth] = useState(Infinity)
   const setMaxWidth = throttle(() => {
     if (containerRef.current) {
       containerRef.current.style.maxWidth =
@@ -43,26 +50,34 @@ export const Toc: FC = memo(() => {
       return
     }
     if (headings.length === 0) {
+      let _rootDepth = rootDepth
       // @ts-ignore
       const headings = $headings
         .flat<HTMLHeadingElement>(2)
         .sort((a, b) => parseInt(a.id) - parseInt(b.id))
-        .map((d: HTMLHeadingElement) => d.id)
+        .map((d: HTMLHeadingElement) => {
+          const depth = ~~d.tagName.toLowerCase().slice(1)
+          if (depth < _rootDepth) {
+            _rootDepth = depth
+          }
+
+          return {
+            id: d.id,
+            depth,
+          }
+        })
+      setDepth(_rootDepth)
       setHeadings(headings.length === 0 ? null : headings)
     }
   }, 20)
+
   useEffect(() => {
-    try {
-      setTimeout(() => {
-        getHeadings()
-        window.addEventListener('resize', setMaxWidth)
-      }, 1000)
-      // eslint-disable-next-line no-empty
-    } catch {}
+    window.addEventListener('resize', setMaxWidth)
+    getHeadings()
     return () => {
       window.removeEventListener('resize', setMaxWidth)
     }
-  })
+  }, [setMaxWidth])
 
   return (
     <section className="kami-lister" style={{ zIndex: 3 }}>
@@ -73,19 +88,26 @@ export const Toc: FC = memo(() => {
               return (
                 <a
                   data-scroll
-                  href={'#' + heading}
+                  href={'#' + heading.id}
                   key={i}
                   className={styles['toc-link']}
+                  style={{
+                    paddingLeft:
+                      heading.depth > rootDepth
+                        ? `${1.2 * heading.depth - rootDepth}rem`
+                        : undefined,
+                  }}
+                  data-depth={heading.depth}
                   onClick={(e) => {
                     if (typeof window.SmoothScroll === 'undefined') {
                       e.preventDefault()
-                      const el = document.getElementById(heading)
+                      const el = document.getElementById(heading.id)
                       el?.scrollIntoView({ behavior: 'smooth' })
                     }
                   }}
                 >
                   <span className={styles['a-pointer']}>
-                    {heading.slice(heading.indexOf('¡') + 1)}
+                    {heading.id.slice(heading.id.indexOf('¡') + 1)}
                   </span>
                 </a>
               )
@@ -95,6 +117,9 @@ export const Toc: FC = memo(() => {
     </section>
   )
 })
-export default dynamic(() => Promise.resolve(Toc), {
+
+const Toc = dynamic(() => Promise.resolve(_Toc), {
   ssr: false,
 })
+
+export default Toc

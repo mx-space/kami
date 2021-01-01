@@ -246,7 +246,13 @@ const NoteView: NextPage<NoteViewProps> = observer(
           }}
         />
 
-        <NoteLayout title={title} date={new Date(data.created)} tips={tips}>
+        <NoteLayout
+          title={title}
+          date={new Date(data.created)}
+          tips={tips}
+          bookmark={data.hasMemory}
+          id={data._id}
+        >
           <ImageSizesContext.Provider
             value={imagesRecord2Map(props.data.images)}
           >
@@ -255,6 +261,7 @@ const NoteView: NextPage<NoteViewProps> = observer(
               value={text}
               escapeHtml={false}
               renderers={{ text: renderLines }}
+              toc
             />
           </ImageSizesContext.Provider>
 
