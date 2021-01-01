@@ -12,7 +12,8 @@ import { animatingClassName } from './NoteLayout'
 import { isClientSide } from '../utils'
 export interface ArticleLayoutProps {
   title?: string
-  subtitle?: string
+  subtitle?: string | string[]
+  subtitleAnimation?: boolean
   delay?: number
   focus?: boolean
 }
@@ -22,7 +23,19 @@ export const ArticleLayout: FC<
     DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
 > = memo(
   forwardRef(
-    ({ children, title, focus, subtitle, delay, ...rest }, ref: any) => {
+    (
+      {
+        children,
+        title,
+        focus,
+        subtitle,
+        delay,
+        subtitleAnimation = true,
+
+        ...rest
+      },
+      ref: any,
+    ) => {
       useEffect(() => {
         if (focus) {
           document.body.classList.add('focus')
@@ -43,9 +56,11 @@ export const ArticleLayout: FC<
                   appear={false}
                 >
                   {isClientSide() ? (
-                    <Texty type={'mask-bottom'} mode={'smooth'} key={title}>
-                      {title}
-                    </Texty>
+                    <>
+                      <Texty type={'mask-bottom'} mode={'smooth'} key={title}>
+                        {title}
+                      </Texty>
+                    </>
                   ) : (
                     title
                   )}
@@ -58,15 +73,29 @@ export const ArticleLayout: FC<
                     type={'alpha'}
                     // animatingClassName={['absolute', 'absolute']}
                   >
-                    {isClientSide() ? (
-                      <Texty
-                        type={'mask-bottom'}
-                        mode={'smooth'}
-                        delay={500}
-                        key={subtitle}
-                      >
-                        {subtitle}
-                      </Texty>
+                    {isClientSide() && subtitleAnimation ? (
+                      typeof subtitle === 'string' ? (
+                        <Texty
+                          type={'mask-bottom'}
+                          mode={'smooth'}
+                          delay={500}
+                          key={subtitle}
+                        >
+                          {subtitle}
+                        </Texty>
+                      ) : (
+                        subtitle.map((str, index) => (
+                          <Texty
+                            className={'mb-2'}
+                            type={'mask-bottom'}
+                            mode={'smooth'}
+                            delay={500 * index}
+                            key={index}
+                          >
+                            {str}
+                          </Texty>
+                        ))
+                      )
                     ) : (
                       subtitle
                     )}
