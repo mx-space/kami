@@ -15,6 +15,11 @@
     bottom: 0;
     border-left: 1px solid var(--yellow);
   }
+
+  > div:first-child:last-child li::before {
+    border-left: 0;
+  }
+
   > div:not(:first-child):not(:last-child) li::before {
     top: 0;
   }
