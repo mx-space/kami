@@ -22,7 +22,7 @@ export const animatingClassName: [string, string] = [
 
 const NoteLayout: FC<NoteLayoutProps> = observer(
   forwardRef(({ children, date, title, tips, bookmark, id }, ref: any) => {
-    const dateFormat = dayjs(date).locale('cn').format('YYYY年M月DD日 dddd')
+    const dateFormat = dayjs(date).locale('cn').format('YYYY年M月D日 dddd')
     const {
       userStore: { isLogged },
     } = useStore()

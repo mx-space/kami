@@ -1,0 +1,12 @@
+.editor {
+  background-color: #eee;
+  padding: 1em 2em;
+  font-size: 16px;
+  font-family: sans-serif;
+  line-height: 1.5;
+  border-radius: 1em;
+
+  overflow: auto;
+  max-height: calc(100vh - 14rem);
+  color: #333;
+}

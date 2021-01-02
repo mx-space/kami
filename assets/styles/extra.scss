@@ -210,7 +210,9 @@ pre {
 #write.focus .kami-lister {
   right: -55px;
 }
-
+#write:focus {
+  outline: 0;
+}
 .news-article h4 {
   backdrop-filter: blur(5px);
 }

@@ -257,6 +257,10 @@ const NoteView: NextPage<NoteViewProps> = observer(
             value={imagesRecord2Map(props.data.images)}
           >
             <Markdown
+              onEditFinish={(md) => {
+                Rest('Note').update(data._id, { text: md })
+              }}
+              canEdit
               ref={mdRef}
               value={text}
               escapeHtml={false}

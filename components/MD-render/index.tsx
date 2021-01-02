@@ -1,6 +1,7 @@
 import CustomRules from 'common/markdown/rules'
 import { useStore } from 'common/store'
 import { ImageLazyWithPopup } from 'components/Image'
+import { OverLay } from 'components/Overlay'
 import Toc from 'components/Toc'
 import dynamic from 'next/dynamic'
 import Router from 'next/router'
@@ -13,13 +14,16 @@ import React, {
   useCallback,
   useContext,
   useMemo,
+  useState,
 } from 'react'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
+import { listItem as defaultListItem } from 'react-markdown/lib/renderers'
 import { observer } from 'utils/mobx'
 import { ImageSizesContext } from '../../common/context/ImageSizes'
 import CodeBlock from '../CodeBlock'
+import { DraftEditor } from './editor'
 import styles from './index.module.scss'
-interface MdProps extends ReactMarkdownProps {
+type MdProps = ReactMarkdownProps & {
   value: string
   toc?: boolean
   [key: string]: any
@@ -29,7 +33,10 @@ interface MdProps extends ReactMarkdownProps {
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   >
-}
+} & (
+    | { canEdit: true; onEditFinish: (md: string) => void }
+    | { canEdit?: false; onEditFinish?: (md: string) => void }
+  )
 
 const Heading: () => FC<{
   level: 1 | 2 | 3 | 4 | 5 | 6
@@ -150,7 +157,7 @@ export const calculateDimensions = (
     height,
   }
 }
-// FIXME render problem
+
 const getContainerSize = () => {
   const $wrap = document.getElementById('article-wrap')
   if (!$wrap) {
@@ -212,37 +219,96 @@ const RenderCommentAt: FC<{ value: string }> = ({ value }) => {
   return <>@{value}</>
 }
 
+const RenderListItem: FC<any> = (props) => {
+  if (props.checked !== null && props.checked !== undefined) {
+    return (
+      <div data-checkbox={props.children[0]?.props.value}>
+        {defaultListItem(props)}
+      </div>
+    )
+  }
+  // otherwise default to list item
+  return defaultListItem(props)
+}
+
 const _TOC = observer(() => {
   const { appStore } = useStore()
   const { isPadOrMobile } = appStore
   return !isPadOrMobile ? <Toc /> : null
 })
-export const Markdown = forwardRef<HTMLDivElement, MdProps>((props, ref) => {
-  const { value, renderers, style, warpperProps = {}, ...rest } = props
+export const Markdown: FC<MdProps> = observer(
+  forwardRef<HTMLDivElement, MdProps>((props, ref) => {
+    const {
+      value,
+      renderers,
+      style,
+      warpperProps = {},
+      canEdit,
+      onEditFinish,
+      ...rest
+    } = props
+    const {
+      userStore: { isLogged },
+    } = useStore()
+    const [editMode, setEditMode] = useState(false)
 
-  return (
-    <div id="write" style={style} {...warpperProps} ref={ref}>
-      <ReactMarkdown
-        source={value}
-        {...rest}
-        renderers={{
-          code: CodeBlock,
-          pre: CodeBlock,
-          image: Image,
-          heading: Heading(),
-          link: RenderLink,
-          spoiler: RenderSpoiler,
-          paragraph: RenderParagraph,
-          // eslint-disable-next-line react/display-name
-          commentAt: RenderCommentAt,
-          ...renderers,
-        }}
-        plugins={CustomRules}
-      />
+    const openEditMode = (e) => {
+      e.preventDefault()
 
-      {props.toc && <_TOC />}
-    </div>
-  )
-})
+      if (isLogged && canEdit) {
+        setEditMode(true)
+      }
+    }
+    return (
+      <div
+        id="write"
+        style={style}
+        {...warpperProps}
+        ref={ref}
+        onDoubleClick={openEditMode}
+      >
+        <ReactMarkdown
+          source={value}
+          {...rest}
+          renderers={{
+            code: CodeBlock,
+            pre: CodeBlock,
+            image: Image,
+            heading: Heading(),
+            listItem: RenderListItem,
+            link: RenderLink,
+            spoiler: RenderSpoiler,
+            paragraph: RenderParagraph,
+            // eslint-disable-next-line react/display-name
+            commentAt: RenderCommentAt,
+            ...renderers,
+          }}
+          plugins={CustomRules}
+        />
+
+        {props.toc && <_TOC />}
+        <OverLay
+          onClose={() => {
+            setEditMode(false)
+          }}
+          show={editMode}
+        >
+          <div className={styles['editor-wrapper']}>
+            <DraftEditor
+              md={props.value}
+              onCancel={() => {
+                setEditMode(false)
+              }}
+              onFinish={(md) => {
+                onEditFinish?.(md)
+                setEditMode(false)
+              }}
+            />
+          </div>
+        </OverLay>
+      </div>
+    )
+  }),
+)
 
 export default Markdown
