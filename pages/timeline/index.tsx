@@ -182,7 +182,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
       {!props.memory && (
         <div style={{ marginTop: '-3rem', marginBottom: '3rem' }}>
           <Progress />
-          <p>珍惜眼下</p>
+          <p>活在当下，珍惜眼下</p>
         </div>
       )}
       <SEO title={'时间线'} />

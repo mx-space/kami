@@ -1,5 +1,5 @@
 import { faGithub, faQq, faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { faDotCircle } from '@fortawesome/free-regular-svg-icons'
+import { faCircle, faDotCircle } from '@fortawesome/free-regular-svg-icons'
 import {
   faBookOpen,
   faComments,
@@ -49,6 +49,11 @@ const menu: MenuModel[] = [
         title: '博文',
         icon: faBookOpen,
         path: '/timeline?type=post',
+      },
+      {
+        title: '回忆',
+        icon: faCircle,
+        path: '/timeline?memory=1',
       },
     ],
   },
