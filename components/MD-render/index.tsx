@@ -232,7 +232,7 @@ const RenderListItem: FC<any> = (props) => {
   return defaultListItem(props)
 }
 
-const _TOC = observer(() => {
+const _TOC: FC = observer(() => {
   const { appStore } = useStore()
   const { isPadOrMobile } = appStore
   return !isPadOrMobile ? <Toc /> : null

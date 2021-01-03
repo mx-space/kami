@@ -11,6 +11,7 @@ import isNull from 'lodash/isNull'
 import range from 'lodash/range'
 import throttle from 'lodash/throttle'
 import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router'
 import QueueAnim from 'rc-queue-anim'
 import { FC, memo, useEffect, useRef, useState } from 'react'
 import styles from './index.module.scss'
@@ -71,6 +72,8 @@ const _Toc: FC = memo(() => {
     }
   }, 20)
 
+  const router = useRouter()
+  const { asPath } = router
   useEffect(() => {
     window.addEventListener('resize', setMaxWidth)
     getHeadings()
@@ -78,6 +81,13 @@ const _Toc: FC = memo(() => {
       window.removeEventListener('resize', setMaxWidth)
     }
   }, [setMaxWidth])
+
+  useEffect(() => {
+    setHeadings(null)
+    setTimeout(() => {
+      getHeadings()
+    }, 1000)
+  }, [asPath])
 
   return (
     <section className="kami-lister" style={{ zIndex: 3 }}>
