@@ -19,7 +19,7 @@ import { mood2icon, weather2icon } from 'utils/meta'
 import { observer } from 'utils/mobx'
 import observable from 'utils/observable'
 import { parseDate, relativeTimeFromNow } from 'utils/time'
-import { ImageSizesContext } from '../../common/context/ImageSizes'
+import { ImageSizeMetaContext } from '../../common/context/ImageSizes'
 import { Seo } from '../../components/SEO'
 import { getSummaryFromMd } from '../../utils'
 
@@ -253,7 +253,7 @@ const NoteView: NextPage<NoteViewProps> = observer(
           bookmark={data.hasMemory}
           id={data._id}
         >
-          <ImageSizesContext.Provider
+          <ImageSizeMetaContext.Provider
             value={imagesRecord2Map(props.data.images)}
           >
             <Markdown
@@ -267,7 +267,7 @@ const NoteView: NextPage<NoteViewProps> = observer(
               renderers={{ text: renderLines }}
               toc
             />
-          </ImageSizesContext.Provider>
+          </ImageSizeMetaContext.Provider>
 
           <Action {...actions} />
 

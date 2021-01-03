@@ -26,6 +26,7 @@ interface ImageFCProps {
   height?: number | string
   width?: number | string
   useRandomBackgroundColor?: boolean
+  backgroundColor?: string
   popup?: boolean
 }
 
@@ -92,6 +93,7 @@ export const ImageLazy: FC<
     height,
     width,
     useRandomBackgroundColor,
+    backgroundColor,
     popup = false,
     style,
     ...rest
@@ -163,11 +165,15 @@ export const ImageLazy: FC<
               width,
               maxWidth: '100%',
               position: 'absolute',
-              backgroundColor: useRandomBackgroundColor ? randColor : '',
-              filter:
-                useRandomBackgroundColor && colorMode === 'dark'
-                  ? 'brightness(0.5)'
-                  : 'brightness(1.3)',
+              backgroundColor:
+                backgroundColor ?? (useRandomBackgroundColor ? randColor : ''),
+              filter: backgroundColor
+                ? colorMode === 'dark'
+                  ? 'brightness(0.8)'
+                  : undefined
+                : useRandomBackgroundColor && colorMode === 'dark'
+                ? 'brightness(0.5)'
+                : 'brightness(1.3)',
               zIndex: -1,
             }}
           ></div>

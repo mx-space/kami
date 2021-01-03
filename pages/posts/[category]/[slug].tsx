@@ -24,7 +24,7 @@ import { imagesRecord2Map } from 'utils/images'
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
 import observable from 'utils/observable'
-import { ImageSizesContext } from '../../../common/context/ImageSizes'
+import { ImageSizeMetaContext } from '../../../common/context/ImageSizes'
 import { Copyright, CopyrightProps } from '../../../components/Copyright'
 import { Seo } from '../../../components/SEO'
 import configs from '../../../configs'
@@ -181,14 +181,14 @@ export const PostView: NextPage<PostModel> = (props) => {
       />
 
       <OutdateNotice time={props.modified} />
-      <ImageSizesContext.Provider value={imagesRecord2Map(props.images)}>
+      <ImageSizeMetaContext.Provider value={imagesRecord2Map(props.images)}>
         <Markdown
           value={text}
           escapeHtml={false}
           toc
           warpperProps={{ className: 'focus' }}
         />
-      </ImageSizesContext.Provider>
+      </ImageSizeMetaContext.Provider>
       {props.copyright ? <Copyright {...copyrightInfo} /> : null}
       <Action {...actions} />
 

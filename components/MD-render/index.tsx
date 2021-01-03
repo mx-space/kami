@@ -19,7 +19,7 @@ import React, {
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { listItem as defaultListItem } from 'react-markdown/lib/renderers'
 import { observer } from 'utils/mobx'
-import { ImageSizesContext } from '../../common/context/ImageSizes'
+import { ImageSizeMetaContext } from '../../common/context/ImageSizes'
 import CodeBlock from '../CodeBlock'
 import { DraftEditor } from './editor'
 import styles from './index.module.scss'
@@ -170,10 +170,10 @@ const getContainerSize = () => {
   )
 }
 const _Image: FC<{ src: string; alt?: string }> = ({ src, alt }) => {
-  const images = useContext(ImageSizesContext)
+  const images = useContext(ImageSizeMetaContext)
 
   const maxWidth = getContainerSize()
-  const size = images.get(src) || {
+  const { accent, height, width } = images.get(src) || {
     height: undefined,
     width: undefined,
   }
@@ -184,14 +184,15 @@ const _Image: FC<{ src: string; alt?: string }> = ({ src, alt }) => {
   }
 
   let cal = {} as any
-  if (size.width && size.height) {
-    cal = calculateDimensions(size.width, size.height, max)
+  if (width && height) {
+    cal = calculateDimensions(width, height, max)
   }
 
   return (
     <ImageLazyWithPopup
       src={src}
       alt={alt}
+      backgroundColor={accent}
       height={cal.height}
       width={cal.width}
       style={{ padding: '1rem 0' }}

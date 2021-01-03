@@ -45,5 +45,6 @@ export type ImageMap = Map<
     height?: number
     width?: number
     src?: string
+    accent?: string
   }
 >

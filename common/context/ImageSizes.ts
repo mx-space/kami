@@ -9,4 +9,4 @@ import { ImageMap } from '../../models/base'
  * @FilePath: /mx-web/common/context/ImageSizes.ts
  * @Coding with Love
  */
-export const ImageSizesContext = createContext(new Map() as ImageMap)
+export const ImageSizeMetaContext = createContext(new Map() as ImageMap)
