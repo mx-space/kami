@@ -16,7 +16,7 @@ export const Copyright: FC<CopyrightProps> = observer((props) => {
     userStore: { name },
   } = useStore()
   return (
-    <section className={styles['copyright-session']}>
+    <section className={styles['copyright-session']} id="copyright">
       <p>文章标题: {title}</p>
       <p>文章作者: {name}</p>
       <p>
@@ -25,6 +25,7 @@ export const Copyright: FC<CopyrightProps> = observer((props) => {
           onClick={() => {
             copy(link)
           }}
+          data-hide-print
         >
           [复制]
         </a>

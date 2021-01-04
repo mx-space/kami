@@ -1,5 +1,5 @@
 import { observer } from 'utils/mobx'
-import React, { FC, useCallback } from 'react'
+import React, { FC, useCallback, useEffect, useMemo, useState } from 'react'
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { useStore } from '../../common/store'
 import dark from 'react-syntax-highlighter/dist/cjs/styles/prism/tomorrow'
@@ -43,6 +43,7 @@ import http from 'react-syntax-highlighter/dist/cjs/languages/prism/http'
 import styles from './index.module.scss'
 import { message } from 'utils/message'
 import { copy } from '../../utils/dom'
+import dynamic from 'next/dynamic'
 
 const lang = {
   javascript,
@@ -93,11 +94,13 @@ const CodeBlock: FC<CodeBlockProps> = observer((props) => {
     copy(value)
     message.success('COPIED! NOW YOU CAN ENJOY CV.')
   }, [value])
+  const isPrintMode = window.matchMedia('print').matches
+
   return (
     <div className={styles['code-wrap']}>
       <SyntaxHighlighter
         language={language}
-        style={colorMode === 'dark' ? dark : light}
+        style={colorMode === 'dark' && !isPrintMode ? dark : light}
         showLineNumbers={true}
         showInlineLineNumbers={true}
         customStyle={{
@@ -112,4 +115,4 @@ const CodeBlock: FC<CodeBlockProps> = observer((props) => {
     </div>
   )
 })
-export default CodeBlock
+export default dynamic(() => Promise.resolve(CodeBlock), { ssr: false })

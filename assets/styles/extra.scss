@@ -547,7 +547,7 @@ html.dark {
     color: var(--shizuku-theme-color);
   }
 }
-@media (prefers-color-scheme: dark) {
+@media screen and (prefers-color-scheme: dark) {
   html:not(.light) {
     :not(pre) > code {
       background-color: #3c3a3b;
@@ -578,3 +578,85 @@ html.dark {
 }
 
 @import './tailwind.scss';
+
+// for print
+
+@media print {
+  p,
+  div,
+  article {
+    font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC',
+      'Source Han Serif', source-han-serif-sc, 'PingFang SC', 'Hiragino Sans GB',
+      'Heiti SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei' !important;
+  }
+  h1,
+  h1 *,
+  h2,
+  h2 *,
+  h3,
+  h3 *,
+  h4,
+  h4 *,
+  h5,
+  h5 *,
+  h6,
+  h6 * {
+    font-family: sans-serif !important;
+  }
+
+  nav,
+  header,
+  footer,
+  #comment-wrapper,
+  .kami-news,
+  .kami-lister,
+  .note-inform,
+  .note-action,
+  .loader,
+  *[data-hide-print] {
+    display: none;
+  }
+  body {
+    background: none;
+  }
+  .is-note .note-article {
+    box-shadow: none;
+    border: 0;
+
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+  .kami-intro {
+    margin-top: 30%;
+    transform: translateY(-50%);
+    max-width: 30em;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  button.btn {
+    display: none;
+  }
+  button {
+    opacity: 0;
+  }
+  .is-note #write > ul .indent,
+  .is-note #write > .paragraph .indent {
+    border: 0;
+  }
+
+  main {
+    padding: 0;
+  }
+
+  #copyright * {
+    color: #bbb !important;
+  }
+  #write pre > code {
+    max-height: none !important;
+  }
+}

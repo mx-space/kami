@@ -121,7 +121,7 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
     setCommentShow(false)
   }, [id])
   return (
-    <article className={styles.wrap} ref={ref}>
+    <article className={styles.wrap} ref={ref} data-hide-print>
       <CommentContext.Provider
         value={{ type, refresh: fetchComments, collection }}
       >

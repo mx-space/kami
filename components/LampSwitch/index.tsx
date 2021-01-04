@@ -1,12 +1,15 @@
 import { FC, DetailedHTMLProps, HTMLAttributes, useRef, memo } from 'react'
 import styles from './index.module.scss'
-export const Switch: FC<DetailedHTMLProps<
-  HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->> = memo((props = {}) => {
+export const Switch: FC<
+  DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+> = memo((props = {}) => {
   const containerRef = useRef<HTMLDivElement>(null)
   return (
-    <div className={styles['select-container']} ref={containerRef}>
+    <div
+      className={styles['select-container']}
+      ref={containerRef}
+      data-hide-print
+    >
       <div className={styles['select-line']}>
         <div className={styles['line']}></div>
       </div>
