@@ -2,7 +2,7 @@
   "name": "mx-web",
   "license": "MIT",
   "private": false,
-  "version": "1.6.0",
+  "version": "1.7.0",
   "scripts": {
     "start": "npm run dev",
     "prebuild": "rimraf .next",
