@@ -172,6 +172,12 @@ const getContainerSize = () => {
 const _Image: FC<{ src: string; alt?: string }> = ({ src, alt }) => {
   const images = useContext(ImageSizeMetaContext)
 
+  const isPrintMode = window.matchMedia('print').matches
+
+  if (isPrintMode) {
+    return <img src={src} alt={alt}></img>
+  }
+
   const maxWidth = getContainerSize()
   const { accent, height, width } = images.get(src) || {
     height: undefined,
