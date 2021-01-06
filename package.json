@@ -35,7 +35,7 @@
     "@openfonts/noto-sans-sc_vietnamese": "1.44.0",
     "axios": "0.21.1",
     "classnames": "2.2.6",
-    "dayjs": "1.10.1",
+    "dayjs": "1.10.2",
     "draft-js": "0.11.7",
     "gitlog": "4.0.4",
     "inflection": "1.12.0",
