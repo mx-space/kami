@@ -6856,10 +6856,10 @@ react-use@13.27.0:
     ts-easing "^0.2.0"
     tslib "^1.10.0"
 
-react-use@15.3.4:
-  version "15.3.4"
-  resolved "https://registry.yarnpkg.com/react-use/-/react-use-15.3.4.tgz#f853d310bd71f75b38900a8caa3db93f6dc6e872"
-  integrity sha512-cHq1dELW6122oi1+xX7lwNyE/ugZs5L902BuO8eFJCfn2api1KeuPVG1M/GJouVARoUf54S2dYFMKo5nQXdTag==
+react-use@15.3.6:
+  version "15.3.6"
+  resolved "https://registry.yarnpkg.com/react-use/-/react-use-15.3.6.tgz#9c9845fcac7df333c46d0f1b4560094446a530a0"
+  integrity sha512-LlvFJK3FBEhiHmo1wXIIQGAke4U3vUHNQJmmjedLUbdXvG6SccF4CtwbL//SYF/pNaGr+3qtPQxEN0VwEQYQwg==
   dependencies:
     "@types/js-cookie" "2.2.6"
     "@xobotyi/scrollbar-width" "1.9.5"
