@@ -170,7 +170,7 @@ const getContainerSize = () => {
   //   parseFloat(getComputedStyle(document.body).fontSize) * 2 * 2
   // )
 
-  const $wrap = document.querySelector('main article')
+  const $wrap = document.getElementById('write')
   if (!$wrap) {
     return
   }
