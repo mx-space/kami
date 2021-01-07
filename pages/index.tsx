@@ -19,7 +19,7 @@ import { NextPage } from 'next'
 import Router from 'next/router'
 import QueueAnim from 'rc-queue-anim'
 import Texty from 'rc-texty'
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Rest } from 'utils/api'
 import { observer } from 'utils/mobx'
 import { FriendsSection } from '../components/SectionNews/friend'
@@ -29,6 +29,7 @@ import { stopEventDefault } from '../utils/dom'
 import service from '../utils/request'
 import '../utils/message'
 import { SayModel } from 'models/say'
+import { NextSeo } from 'next-seo'
 interface IndexViewProps {
   posts: Top.Post[]
   notes: Top.Note[]
@@ -92,9 +93,13 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
         setSay(`${data.text}  ——${data.author ?? data.source ?? '站长说'}`)
       })
   }, [])
-
+  const initData = useInitialData()
   return (
     <main>
+      <NextSeo
+        title={initData.seo.title + ' · ' + initData.seo.description}
+        description={initData.seo.description}
+      />
       <section className="kami-intro">
         <div className="intro-avatar ">
           <img

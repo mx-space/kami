@@ -6,6 +6,7 @@ import {
   DetailedHTMLProps,
   FC,
   ImgHTMLAttributes,
+  RefObject,
   useEffect,
   useRef,
   useState,
@@ -32,7 +33,7 @@ interface ImageFCProps {
 
 const Image: FC<
   DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> & {
-    placeholderRef: any
+    placeholderRef: RefObject<HTMLDivElement>
     popup?: boolean
   }
 > = observer(({ src, alt, placeholderRef, popup = false }) => {
@@ -52,6 +53,18 @@ const Image: FC<
           // if (wrapRef && wrapRef.current) {
           //   wrapRef.current.style.height = ''
           // }
+          // eslint-disable-next-line no-empty
+        } catch {}
+      }
+      image.onerror = () => {
+        try {
+          if (placeholderRef && placeholderRef.current) {
+            placeholderRef.current.innerHTML = `
+            <span style="color: currentColor; filter: invert(100%) brightness(1.5)">图片加载失败!</span>
+            <a href="${image.src}" target="_blank">${image.src}
+            </a>
+            `
+          }
           // eslint-disable-next-line no-empty
         } catch {}
       }
@@ -122,7 +135,7 @@ export const ImageLazy: FC<
         <div
           style={{
             position: 'relative',
-            // overflow: 'hidden',
+            transition: 'height .3s, width .3s',
             height,
             width,
             maxWidth: '100%',
@@ -165,8 +178,9 @@ export const ImageLazy: FC<
               width,
               maxWidth: '100%',
               position: 'absolute',
-              backgroundColor:
+              color:
                 backgroundColor ?? (useRandomBackgroundColor ? randColor : ''),
+              backgroundColor: 'currentColor',
               filter: backgroundColor
                 ? colorMode === 'dark'
                   ? 'brightness(0.8)'

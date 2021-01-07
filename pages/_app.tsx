@@ -1,27 +1,28 @@
 // import { animateUriFactory } from 'animate-uri/publish/index.esm'
-import { message } from 'utils/message'
 import 'assets/styles/main.scss'
-import 'normalize.css/normalize.css'
 import { InitialContext } from 'common/context/InitialDataContext'
 import Loader from 'components/Loader'
 import configs from 'configs'
 import 'intersection-observer'
 import { BasicLayout } from 'layouts/BasicLayout'
 import throttle from 'lodash/throttle'
-
+import { enableStaticRendering } from 'mobx-react-lite'
 import { AggregateResp } from 'models/aggregate'
 import { LogoJsonLd, NextSeo, SocialProfileJsonLd } from 'next-seo'
 import App, { AppContext } from 'next/app'
 import Head from 'next/head'
 import Router from 'next/router'
+import 'normalize.css/normalize.css'
 import Package from 'package.json'
-import React, { FC, useCallback } from 'react'
+import QP from 'qier-progress'
+import React, { FC, useCallback, useEffect } from 'react'
 import useMount from 'react-use/lib/useMount'
 import useUnmount from 'react-use/lib/useUnmount'
 import { UAParser } from 'ua-parser-js'
+import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
 import client from '../common/socket'
-import createMobxStores, { useStore } from '../common/store'
+import { useStore } from '../common/store'
 import { PageModel } from '../common/store/types'
 import { isServerSide } from '../utils'
 import { Rest } from '../utils/api'
@@ -29,11 +30,8 @@ import { getToken, removeToken } from '../utils/auth'
 // import { checkDevtools } from '../utils/forbidden'
 import * as gtag from '../utils/gtag'
 import service from '../utils/request'
-import { enableStaticRendering } from 'mobx-react-lite'
-import QP from 'qier-progress'
-enableStaticRendering(isServerSide() ? true : false)
 
-const stores = createMobxStores()
+enableStaticRendering(isServerSide() ? true : false)
 
 const version = process.env.VERSION || `v${Package.version}` || ''
 
@@ -42,11 +40,13 @@ const Progress = new QP()
 function printToConsole() {
   try {
     const text = `
-    This Blog Powered By Mix Space.
+    This Personal Space Powered By Mix Space.
+    Written by TypeScript, Coding with Love.
     --------
     Stay hungry. Stay foolish. --Steve Jobs
     `
     document.documentElement.prepend(document.createComment(text))
+
     console.log(
       '%c Kico Style %c https://paugram.com ',
       'color: #fff; margin: 1em 0; padding: 5px 0; background: #3498db;',
@@ -57,6 +57,7 @@ function printToConsole() {
       'color: #fff; margin: 1em 0; padding: 5px 0; background: #2980b9;',
       'margin: 1em 0; padding: 5px 0; background: #efefef;',
     )
+
     // eslint-disable-next-line no-empty
   } catch {}
 }
@@ -99,17 +100,12 @@ const Content: FC<DataModel> = observer((props) => {
     }
     checkLogin()
 
-    if (process.env.NODE_ENV === 'development') {
-      ;(window as any).store = stores
-    }
     // checkDevtools()
 
     registerRouterEvents()
     registerEvent()
     checkBrowser()
     printToConsole()
-
-    initColorMode()
 
     // connect to ws
     client.initIO()
@@ -118,24 +114,43 @@ const Content: FC<DataModel> = observer((props) => {
     window.onresize = null
     document.removeEventListener('scroll', handleScroll)
   })
-  const initColorMode = useCallback(() => {
+
+  // initMediaListener
+  useEffect(() => {
     const getColormode = <T extends { matches: boolean }>(e: T) => {
       app.colorMode = e.matches ? 'dark' : 'light'
       return app.colorMode
     }
-    app.colorMode = getColormode(
-      window.matchMedia('(prefers-color-scheme: dark)'),
-    )
+
+    const getMediaType = <T extends { matches: boolean }>(e: T) => {
+      app.mediaType = e.matches ? 'screen' : 'print'
+      return app.mediaType
+    }
+    getColormode(window.matchMedia('(prefers-color-scheme: dark)'))
+    getMediaType(window.matchMedia('screen'))
+    const cb1 = (e: MediaQueryListEvent): void => {
+      if (app.autoToggleColorMode) {
+        getColormode(e)
+      }
+    }
+    const cb2 = (e: MediaQueryListEvent): void => {
+      getMediaType(e)
+    }
     try {
       window
         .matchMedia('(prefers-color-scheme: dark)')
-        .addEventListener('change', (e) => {
-          if (app.autoToggleColorMode) {
-            getColormode(e)
-          }
-        })
+        .addEventListener('change', cb1)
+
+      window.matchMedia('screen').addEventListener('change', cb2)
       // eslint-disable-next-line no-empty
     } catch {}
+
+    return () => {
+      window
+        .matchMedia('(prefers-color-scheme: dark)')
+        .removeEventListener('change', cb1)
+      window.matchMedia('screen').removeEventListener('change', cb2)
+    }
   }, [])
 
   const checkBrowser = useCallback(() => {

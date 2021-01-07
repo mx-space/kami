@@ -17,7 +17,7 @@ interface NoteLayoutProps {
 }
 export const animatingClassName: [string, string] = [
   '',
-  'absolute padding-b100',
+  'absolute padding-b100 max-w-full',
 ]
 
 const NoteLayout: FC<NoteLayoutProps> = observer(

@@ -1,5 +1,5 @@
 import CustomRules from 'common/markdown/rules'
-import { useStore } from 'common/store'
+import { appStore, useStore } from 'common/store'
 import { ImageLazyWithPopup } from 'components/Image'
 import { OverLay } from 'components/Overlay'
 import Toc from 'components/Toc'
@@ -13,6 +13,7 @@ import React, {
   forwardRef,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from 'react'
@@ -159,32 +160,49 @@ export const calculateDimensions = (
 }
 
 const getContainerSize = () => {
-  const $wrap = document.getElementById('article-wrap')
+  // const $wrap = document.getElementById('article-wrap')
+  // if (!$wrap) {
+  //   return
+  // }
+  // return (
+  //   $wrap.getBoundingClientRect().width -
+  //   // padding 2em left and right 2 * 2
+  //   parseFloat(getComputedStyle(document.body).fontSize) * 2 * 2
+  // )
+
+  const $wrap = document.querySelector('main article')
   if (!$wrap) {
     return
   }
-  return (
-    $wrap.getBoundingClientRect().width -
-    // padding 2em left and right 2 * 2
-    parseFloat(getComputedStyle(document.body).fontSize) * 2 * 2
-  )
+
+  return $wrap.getBoundingClientRect().width
 }
-const _Image: FC<{ src: string; alt?: string }> = ({ src, alt }) => {
+const _Image: FC<{ src: string; alt?: string }> = observer(({ src, alt }) => {
   const images = useContext(ImageSizeMetaContext)
 
-  const isPrintMode = window.matchMedia('print').matches
+  const isPrintMode = appStore.mediaType === 'print'
+
+  const [maxWidth, setMaxWidth] = useState(getContainerSize())
+
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      setMaxWidth(getContainerSize())
+    }, 1200) as any
+    return () => {
+      timer = clearTimeout(timer)
+    }
+  }, [])
 
   if (isPrintMode) {
     return <img src={src} alt={alt}></img>
   }
 
-  const maxWidth = getContainerSize()
   const { accent, height, width } = images.get(src) || {
     height: undefined,
     width: undefined,
   }
   const max = {
-    width: (maxWidth ?? getContainerSize()) || 500,
+    width: maxWidth ?? 500,
 
     height: Infinity,
   }
@@ -204,7 +222,7 @@ const _Image: FC<{ src: string; alt?: string }> = ({ src, alt }) => {
       style={{ padding: '1rem 0' }}
     />
   )
-}
+})
 const Image =
   typeof document === 'undefined'
     ? ({ src, alt }) => <img src={src} alt={alt} />
@@ -224,18 +242,6 @@ const RenderParagraph: FC<{}> = (props) => {
 
 const RenderCommentAt: FC<{ value: string }> = ({ value }) => {
   return <>@{value}</>
-}
-
-const RenderListItem: FC<any> = (props) => {
-  if (props.checked !== null && props.checked !== undefined) {
-    return (
-      <div data-checkbox={props.children[0]?.props.value}>
-        {defaultListItem(props)}
-      </div>
-    )
-  }
-  // otherwise default to list item
-  return defaultListItem(props)
 }
 
 const _TOC: FC = observer(() => {
@@ -282,7 +288,7 @@ export const Markdown: FC<MdProps> = observer(
             pre: CodeBlock,
             image: Image,
             heading: Heading(),
-            listItem: RenderListItem,
+
             link: RenderLink,
             spoiler: RenderSpoiler,
             paragraph: RenderParagraph,

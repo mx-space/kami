@@ -17,7 +17,7 @@ import { useStore } from '../../common/store'
 import { MenuModel } from '../../common/store/types'
 import configs from '../../configs'
 import styles from './index.module.scss'
-const SubMenu: FC<{ subMenu: MenuModel[]; onClick: any }> = observer(
+const SubMenu: FC<{ subMenu: MenuModel[]; onClick: any }> = memo(
   ({ subMenu, onClick }) => {
     const menus = subMenu.map((menu) => {
       return (
@@ -35,6 +35,7 @@ const SubMenu: FC<{ subMenu: MenuModel[]; onClick: any }> = observer(
 const NavItems: FC<{ onClick: any }> = observer(({ onClick }) => {
   const { appStore } = useStore()
   const { menu } = appStore
+
   return (
     <>
       {menu.map((item: MenuModel) => {
@@ -188,4 +189,4 @@ const Header: FC = observer(() => {
     </header>
   )
 })
-export default memo(Header)
+export default Header

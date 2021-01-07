@@ -16,6 +16,8 @@ export default class AppStore {
 
   autoToggleColorMode = true
   colorMode: 'light' | 'dark' = 'light'
+  mediaType: 'screen' | 'print' = 'screen'
+
   config = { seo: {} as Seo }
 
   headerNav = {

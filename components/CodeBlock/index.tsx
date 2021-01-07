@@ -1,7 +1,7 @@
 import { observer } from 'utils/mobx'
 import React, { FC, useCallback, useEffect, useMemo, useState } from 'react'
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { useStore } from '../../common/store'
+import { appStore, useStore } from '../../common/store'
 import dark from 'react-syntax-highlighter/dist/cjs/styles/prism/tomorrow'
 import light from 'react-syntax-highlighter/dist/cjs/styles/prism/prism'
 import javascript from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript'
@@ -94,7 +94,7 @@ const CodeBlock: FC<CodeBlockProps> = observer((props) => {
     copy(value)
     message.success('COPIED! NOW YOU CAN ENJOY CV.')
   }, [value])
-  const isPrintMode = window.matchMedia('print').matches
+  const isPrintMode = appStore.mediaType === 'print'
 
   return (
     <div className={styles['code-wrap']}>

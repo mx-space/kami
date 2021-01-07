@@ -49,15 +49,3 @@ export interface ViewportRecord {
   wider: boolean
   widest: boolean
 }
-
-export interface Stores {
-  appStore: AppStore
-  userStore: UserStore
-  socialStore: SocialStore
-  pageStore: PageStore
-  categoryStore: CategoryStore
-  musicStore: MusicStore
-  gatewayStore: GatewayStore
-
-  actionStore: ActionStore
-}
