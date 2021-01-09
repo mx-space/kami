@@ -207,7 +207,7 @@ pre {
   background-color: var(--light-bg);
   border-radius: 1.5em;
 }
-#write.focus .kami-lister {
+#write.focus .kami-toc {
   right: -55px;
 }
 #write:focus {
@@ -242,13 +242,17 @@ html.dark {
   box-shadow: 3px 5px 6px -5px rgba(51, 51, 51, 0.2),
     2px 3px 8px -5px rgba(51, 51, 51, 0.2);
 
+  h1:first-child {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
   @for $var from 1 to 6 {
     #write h#{$var} {
       margin-left: 1.5em;
     }
   }
 
-  .kami-lister {
+  .kami-toc {
     right: -5em;
   }
 
@@ -319,7 +323,7 @@ html.dark {
   }
 }
 .is-note strong {
-  font-family: 'Helvetica', 'PingFang SC';
+  font-family: 'Helvetica', 'PingFang SC', sans-serif;
 }
 
 .is-note .note-head {
@@ -589,9 +593,10 @@ html.dark {
   p,
   div,
   article {
-    font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC',
-      'Source Han Serif', source-han-serif-sc, 'PingFang SC', 'Hiragino Sans GB',
-      'Heiti SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei' !important;
+    font-family: Helvetica, Arial, 'Noto Serif CJK SC', 'Noto Serif SC',
+      'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc,
+      'PingFang SC', 'Hiragino Sans GB', 'Heiti SC', 'Microsoft YaHei',
+      'WenQuanYi Micro Hei' !important;
   }
   h1,
   h1 *,
@@ -613,7 +618,7 @@ html.dark {
   footer,
   #comment-wrapper,
   .kami-news,
-  .kami-lister,
+  .kami-toc,
   .note-inform,
   .note-action,
   .loader,

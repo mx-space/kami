@@ -17,9 +17,11 @@ import React, {
   useMemo,
   useState,
 } from 'react'
+import { useInView } from 'react-intersection-observer'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
-import { listItem as defaultListItem } from 'react-markdown/lib/renderers'
+import { isServerSide } from 'utils'
 import { observer } from 'utils/mobx'
+import observable from 'utils/observable'
 import { ImageSizeMetaContext } from '../../common/context/ImageSizes'
 import CodeBlock from '../CodeBlock'
 import { DraftEditor } from './editor'
@@ -39,20 +41,70 @@ type MdProps = ReactMarkdownProps & {
     | { canEdit?: false; onEditFinish?: (md: string) => void }
   )
 
+function getElementViewTop<T extends HTMLElement>(element: T) {
+  let actualTop = element.offsetTop
+  let current = element.offsetParent as HTMLElement
+
+  while (current !== null) {
+    actualTop += current.offsetTop
+    current = current.offsetParent as HTMLElement
+  }
+  let elementScrollTop = 0
+  if (document.compatMode == 'BackCompat') {
+    elementScrollTop = document.body.scrollTop
+  } else {
+    elementScrollTop = document.documentElement.scrollTop
+  }
+
+  return actualTop - elementScrollTop
+}
+
 const Heading: () => FC<{
   level: 1 | 2 | 3 | 4 | 5 | 6
   key?: number
 }> = () => {
   let index = 0
-  return function RenderHeading(props) {
+  if (isServerSide()) {
+    return (props) => createElement(`h${props.level}`, null, props.children)
+  }
+  return observer(function RenderHeading(props) {
+    const currentIndex = useMemo(() => index++, [])
+    const id = useMemo(
+      () => currentIndex + '¡' + (props.children?.[0].props.value as string),
+      [props.children],
+    )
+    // const [offset, setOffset] = useState<null | number>(null)
+    // const ref = useRef<HTMLHeadElement>(null)
+    // useEffect(() => {
+    //   setTimeout(() => {
+    //     requestAnimationFrame(() => {
+    //       if (!ref.current) {
+    //         return
+    //       }
+    //       const offset = getElementViewTop(ref.current)
+    //       setOffset(offset)
+    //     })
+    //   }, 1000)
+    // }, [ref.current])
+    const [ref, inView] = useInView({ rootMargin: '-250px' })
+    const { scrollDirection } = appStore
+    useEffect(() => {
+      if (inView && scrollDirection === 'down') {
+        observable.emit('hoc', currentIndex)
+      } else if (!inView && scrollDirection === 'up') {
+        observable.emit('hoc', currentIndex - 1)
+      }
+    }, [inView, scrollDirection])
     return createElement<DOMAttributes<HTMLHeadingElement>, HTMLHeadingElement>(
       `h${props.level}`,
       {
-        id: index++ + '¡' + (props.children?.[0].props.value as string),
+        id,
+        ref,
+        // ...(offset ? { 'data-offset': offset } : {}),
       } as any,
       props.children,
     )
-  }
+  })
 }
 const RenderLink: FC<{
   href: string
@@ -70,11 +122,11 @@ const RenderLink: FC<{
         height="15"
       >
         <path
-          fill="var(--shizuku-text-color)"
+          fill="const(--shizuku-text-color)"
           d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"
         ></path>
         <polygon
-          fill="var(--shizuku-text-color)"
+          fill="const(--shizuku-text-color)"
           points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"
         ></polygon>
       </svg>

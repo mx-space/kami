@@ -1,9 +1,9 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-23 14:31:11
- * @LastEditTime: 2020-06-14 21:20:20
+ * @LastEditTime: 2021-01-09 12:37:37
  * @LastEditors: Innei
- * @FilePath: /mx-web/utils/observable.ts
+ * @FilePath: /web/utils/observable.ts
  * @MIT
  */
 
@@ -17,6 +17,7 @@ export class Observable {
   observers: Observer[] = []
 
   on(event: EventTypes, handler: any): void
+  on(event: string, handler: any): void
   on(event: string, handler: (...rest: any) => void) {
     const isExist = this.observers.some(({ id, callback }) => {
       if (id === event && handler === callback) {
@@ -32,6 +33,8 @@ export class Observable {
     }
   }
 
+  emit(event: string, payload?: any): void
+  emit(event: EventTypes, payload?: any): void
   emit(event: EventTypes, payload?: any) {
     this.observers.map(({ id, callback }) => {
       if (id === event) {

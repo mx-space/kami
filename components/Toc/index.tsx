@@ -1,24 +1,87 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-12 21:41:12
- * @LastEditTime: 2020-08-21 20:44:25
+ * @LastEditTime: 2021-01-09 14:05:10
  * @LastEditors: Innei
- * @FilePath: /mx-web/components/Toc/index.tsx
+ * @FilePath: /web/components/Toc/index.tsx
  * @Coding with Love
  */
 
+import classNames from 'classnames'
 import isNull from 'lodash/isNull'
 import range from 'lodash/range'
 import throttle from 'lodash/throttle'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import QueueAnim from 'rc-queue-anim'
-import { FC, memo, useEffect, useRef, useState } from 'react'
+import { FC, memo, PureComponent, useEffect, useRef, useState } from 'react'
+import observable from 'utils/observable'
 import styles from './index.module.scss'
 declare const window: Window & typeof globalThis & { [key: string]: any }
 
+class Item extends PureComponent<{
+  id: string
+  depth: number
+  active: boolean
+  rootDepth: number
+  onClick: () => void
+}> {
+  // componentDidUpdate() {}
+  render() {
+    const { active, depth, id, rootDepth, onClick } = this.props
+
+    return (
+      <a
+        data-scroll
+        href={'#' + id}
+        className={classNames(styles['toc-link'], active && styles['active'])}
+        style={{
+          paddingLeft:
+            depth > rootDepth ? `${1.2 * depth - rootDepth}rem` : undefined,
+        }}
+        data-depth={depth}
+        onClick={(e) => {
+          onClick()
+          if (typeof window.SmoothScroll === 'undefined') {
+            e.preventDefault()
+            const el = document.getElementById(id)
+            el?.scrollIntoView({ behavior: 'smooth' })
+          }
+        }}
+      >
+        <span className={styles['a-pointer']}>
+          {id.slice(id.indexOf('¡') + 1)}
+        </span>
+      </a>
+    )
+  }
+}
+
 const _Toc: FC = memo(() => {
   const containerRef = useRef<HTMLDivElement>(null)
+
+  // useEffect(() => {
+  //   const handler = throttle(() => {
+  //     const top = document.body.scrollTop
+  //     headings?.some((h) => h.top > top)
+  //   }, 30)
+
+  //   window.addEventListener('scroll', handler)
+
+  //   return () => {
+  //     window.removeEventListener('scroll', handler)
+  //   }
+  // }, [])
+  const [index, setIndex] = useState(-1)
+  useEffect(() => {
+    const handler = (index: number) => {
+      setIndex(index)
+    }
+    observable.on('hoc', handler)
+    return () => {
+      observable.off('hoc', handler)
+    }
+  }, [])
 
   const [headings, setHeadings] = useState<
     | null
@@ -27,6 +90,7 @@ const _Toc: FC = memo(() => {
         depth: number
       }[]
   >([])
+
   const [rootDepth, setDepth] = useState(Infinity)
   const setMaxWidth = throttle(() => {
     if (containerRef.current) {
@@ -65,6 +129,9 @@ const _Toc: FC = memo(() => {
           return {
             id: d.id,
             depth,
+            isActive: false,
+            // @ts-ignore
+            // top: ~~d.dataset['offset'] as number,
           }
         })
       setDepth(_rootDepth)
@@ -90,36 +157,30 @@ const _Toc: FC = memo(() => {
   }, [asPath])
 
   return (
-    <section className="kami-lister" style={{ zIndex: 3 }}>
-      <div className="container" ref={containerRef}>
-        <QueueAnim>
+    <section
+      className={classNames('kami-toc', styles['toc'])}
+      style={{ zIndex: 3 }}
+    >
+      <div
+        className={classNames('container', styles['container'])}
+        ref={containerRef}
+      >
+        <QueueAnim className={styles['anime-wrapper']}>
           {headings &&
             headings.map((heading, i) => {
               return (
-                <a
-                  data-scroll
-                  href={'#' + heading.id}
-                  key={i}
-                  className={styles['toc-link']}
-                  style={{
-                    paddingLeft:
-                      heading.depth > rootDepth
-                        ? `${1.2 * heading.depth - rootDepth}rem`
-                        : undefined,
+                <Item
+                  onClick={() => {
+                    setTimeout(() => {
+                      setIndex(i)
+                    }, 350)
                   }}
-                  data-depth={heading.depth}
-                  onClick={(e) => {
-                    if (typeof window.SmoothScroll === 'undefined') {
-                      e.preventDefault()
-                      const el = document.getElementById(heading.id)
-                      el?.scrollIntoView({ behavior: 'smooth' })
-                    }
-                  }}
-                >
-                  <span className={styles['a-pointer']}>
-                    {heading.id.slice(heading.id.indexOf('¡') + 1)}
-                  </span>
-                </a>
+                  active={i === index}
+                  depth={heading.depth}
+                  id={heading.id}
+                  key={heading.id}
+                  rootDepth={rootDepth}
+                />
               )
             })}
         </QueueAnim>

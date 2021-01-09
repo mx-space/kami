@@ -243,6 +243,7 @@
   color: var(--gary);
   user-select: none;
   position: relative;
+  margin: 12px 0;
   &::before {
     content: '⇡ ';
   }

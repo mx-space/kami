@@ -128,7 +128,7 @@ export const ImageLazy: FC<
   }, [colorMode])
 
   return (
-    <div style={{ ...(style || {}) }}>
+    <figure style={{ ...(style || {}) }}>
       {defaultImage ? (
         <img src={defaultImage} alt={alt} {...rest} ref={realImageRef} />
       ) : (
@@ -193,10 +193,10 @@ export const ImageLazy: FC<
           ></div>
         </div>
       )}
-      {alt && alt.startsWith('!') && (
-        <p className={'img-alt'}>{alt.slice(1)}</p>
+      {alt && (alt.startsWith('!') || alt.startsWith('¡')) && (
+        <figcaption className={'img-alt'}>{alt.slice(1)}</figcaption>
       )}
-    </div>
+    </figure>
   )
 })
 
