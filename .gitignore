@@ -13,3 +13,4 @@ sw.js
 sw.js.*
 workbox-*.js
 workbox-*.js.*
+pages/debug.tsx

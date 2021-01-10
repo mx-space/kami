@@ -1,7 +1,10 @@
 import classNames from 'classnames'
+import { merge } from 'lodash'
 import {
+  createContext,
   DetailedHTMLProps,
   ForwardedRef,
+  HTMLAttributes,
   InputHTMLAttributes,
   useEffect,
   useMemo,
@@ -14,6 +17,10 @@ import styles from './index.module.scss'
 interface InputProps {
   prefix?: JSX.Element
   multi?: boolean
+  wrapperProps?: DetailedHTMLProps<
+    HTMLAttributes<HTMLSpanElement>,
+    HTMLSpanElement
+  >
 }
 type IInputProps = Omit<
   DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
@@ -27,12 +34,23 @@ type IInputProps = Omit<
     >,
     'prefix'
   >
+
+export const InputContext = createContext({
+  setFocus(state: boolean) {},
+})
 export const Input = ensuredForwardRef<
   HTMLInputElement | HTMLTextAreaElement,
   IInputProps
 >((props, ref) => {
   // const [value, setValue] = useState(props.value)
-  const { prefix, value, onChange, multi = false, ...rest } = props
+  const {
+    prefix,
+    value,
+    onChange,
+    multi = false,
+    wrapperProps,
+    ...rest
+  } = props
   const [focused, setFocus] = useState(false)
   const inputWrapRef = useRef<HTMLSpanElement>(null)
   const [size, setSize] = useState({
@@ -57,10 +75,17 @@ export const Input = ensuredForwardRef<
 
   return (
     <span
-      className={classNames(
-        styles['input-wrap'],
-        focused ? styles['focus'] : undefined,
-      )}
+      {...merge(props.wrapperProps, {
+        className: classNames(
+          styles['input-wrap'],
+
+          wrapperProps?.className,
+        ),
+      })}
+      // className={classNames(
+      //   styles['input-wrap'],
+      //   focused ? styles['focus'] : undefined,
+      // )}
       ref={inputWrapRef}
     >
       {prefix && <div className={styles['prefix-wrap']}>{prefix}</div>}
@@ -82,7 +107,17 @@ export const Input = ensuredForwardRef<
           </svg>
         </div>
       )}
-      {multi ? (
+      {props.children ? (
+        <InputContext.Provider
+          value={{
+            setFocus: (state: boolean) => {
+              setFocus(state)
+            },
+          }}
+        >
+          {props.children}
+        </InputContext.Provider>
+      ) : multi ? (
         <textarea
           ref={ref as ForwardedRef<HTMLTextAreaElement>}
           value={value}

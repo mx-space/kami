@@ -9,13 +9,13 @@ import throttle from 'lodash/throttle'
 import { enableStaticRendering } from 'mobx-react-lite'
 import { AggregateResp } from 'models/aggregate'
 import { LogoJsonLd, NextSeo, SocialProfileJsonLd } from 'next-seo'
-import App, { AppContext } from 'next/app'
+import NextApp, { AppContext } from 'next/app'
 import Head from 'next/head'
-import Router from 'next/router'
+import Router, { useRouter } from 'next/router'
 import 'normalize.css/normalize.css'
 import Package from 'package.json'
 import QP from 'qier-progress'
-import React, { FC, useCallback, useEffect } from 'react'
+import React, { FC, useCallback, useEffect, useMemo } from 'react'
 import useMount from 'react-use/lib/useMount'
 import useUnmount from 'react-use/lib/useUnmount'
 import { UAParser } from 'ua-parser-js'
@@ -295,17 +295,30 @@ const Content: FC<DataModel> = observer((props) => {
 interface DataModel {
   initData: AggregateResp
 }
-const app: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
+const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
   props,
 ) => {
   const { initData, Component, pageProps, err } = props
+
+  const router = useRouter()
+
+  const Comp = useMemo(() => {
+    switch (router.route) {
+      case '/debug':
+        return <Component {...pageProps} err={err} />
+
+      default:
+        return (
+          <BasicLayout>
+            <Component {...pageProps} err={err} />
+          </BasicLayout>
+        )
+    }
+  }, [Component, err, pageProps, router.basePath])
+
   return (
     <InitialContext.Provider value={initData}>
-      <Content initData={initData}>
-        <BasicLayout>
-          <Component {...pageProps} err={err} />
-        </BasicLayout>
-      </Content>
+      <Content initData={initData}>{Comp}</Content>
     </InitialContext.Provider>
   )
 }
@@ -315,8 +328,8 @@ setInterval(() => {
   initData = null
 }, 1000 * 60 * 5)
 // @ts-ignore
-app.getInitialProps = async (props: AppContext) => {
-  const appProps = await App.getInitialProps(props)
+App.getInitialProps = async (props: AppContext) => {
+  const appProps = await NextApp.getInitialProps(props)
 
   const ctx = props.ctx
   const request = ctx.req
@@ -339,4 +352,4 @@ app.getInitialProps = async (props: AppContext) => {
   initData = initData || (await Rest('Aggregate').get<AggregateResp>())
   return { ...appProps, initData }
 }
-export default app
+export default App

@@ -90,9 +90,9 @@ const Heading: () => FC<{
     const { scrollDirection } = appStore
     useEffect(() => {
       if (inView && scrollDirection === 'down') {
-        observable.emit('hoc', currentIndex)
+        observable.emit('toc', currentIndex)
       } else if (!inView && scrollDirection === 'up') {
-        observable.emit('hoc', currentIndex - 1)
+        observable.emit('toc', currentIndex - 1)
       }
     }, [inView, scrollDirection])
     return createElement<DOMAttributes<HTMLHeadingElement>, HTMLHeadingElement>(

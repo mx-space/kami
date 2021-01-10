@@ -44,7 +44,7 @@
   padding: 0.37em 0 0.37em 1em;
   position: relative;
   transition: opacity 0.5s;
-  opacity: 0.4 !important;
+  opacity: 0.75 !important;
 
   & span {
     transition: margin-left 0.5s;
@@ -59,7 +59,8 @@
     }
   }
 
-  &.active::before {
+  &.active::before,
+  &.active {
     opacity: 1;
   }
 

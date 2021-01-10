@@ -6,6 +6,7 @@ import {
   EditorState,
 } from 'draft-js'
 import { draftToMarkdown, markdownToDraft } from 'markdown-draft-js'
+import dynamic from 'next/dynamic'
 import React, { createRef, PureComponent } from 'react'
 import styles from './editor.module.scss'
 
@@ -21,7 +22,7 @@ interface Props {
   onCancel: () => void
 }
 
-export class DraftEditor extends PureComponent<Props, State> {
+class _DraftEditor extends PureComponent<Props, State> {
   constructor(props: Props) {
     super(props)
 
@@ -127,3 +128,6 @@ export class DraftEditor extends PureComponent<Props, State> {
     )
   }
 }
+export const DraftEditor = dynamic(() => Promise.resolve(_DraftEditor), {
+  ssr: false,
+})

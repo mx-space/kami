@@ -78,9 +78,9 @@ const _Toc: FC = memo(() => {
     const handler = (index: number) => {
       setIndex(index)
     }
-    observable.on('hoc', handler)
+    observable.on('toc', handler)
     return () => {
-      observable.off('hoc', handler)
+      observable.off('toc', handler)
     }
   }, [])
 
