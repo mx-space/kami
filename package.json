@@ -66,13 +66,13 @@
     "react-syntax-highlighter": "15.4.3",
     "react-use": "15.3.8",
     "remove-markdown": "0.3.0",
-    "sass": "1.32.2",
     "sitemap": "6.3.5",
     "socket.io-client": "2.4.0",
     "ua-parser-js": "0.7.23",
     "validator": "13.5.2"
   },
   "devDependencies": {
+    "sass": "1.32.2",
     "@babel/plugin-proposal-decorators": "7.12.12",
     "@next/bundle-analyzer": "10.0.5",
     "@types/classnames": "2.2.11",

@@ -11,7 +11,7 @@
  *
  * @Author: Innei
  * @Date: 2020-04-29 17:27:02
- * @LastEditTime: 2020-10-08 11:11:28
+ * @LastEditTime: 2021-01-09 22:36:39
  * @LastEditors: Innei
  * @FilePath: /web/pages/_document.tsx
  * @MIT
@@ -221,7 +221,7 @@ export default class MyDocument extends Document<{ ua: string }> {
                             durationMax: 1000,
                             durationMin: 350,
                             topOnEmptyHash: true,
-                            emitEvents: false,
+                            emitEvents: true,
                             updateURL: false,
                             popstate: false
                           })`,

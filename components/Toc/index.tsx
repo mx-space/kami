@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-12 21:41:12
- * @LastEditTime: 2021-01-09 14:05:10
+ * @LastEditTime: 2021-01-10 11:03:04
  * @LastEditors: Innei
  * @FilePath: /web/components/Toc/index.tsx
  * @Coding with Love
@@ -34,6 +34,7 @@ class Item extends PureComponent<{
       <a
         data-scroll
         href={'#' + id}
+        data-index={id.split('¡').shift()}
         className={classNames(styles['toc-link'], active && styles['active'])}
         style={{
           paddingLeft:
@@ -155,6 +156,23 @@ const _Toc: FC = memo(() => {
       getHeadings()
     }, 1000)
   }, [asPath])
+
+  useEffect(() => {
+    const handler = (e) => {
+      try {
+        // @ts-ignore
+        const index = parseInt(e.detail.toggle as HTMLElement).dataset['index']
+        if (!isNaN(index)) {
+          setIndex(index)
+        }
+        // eslint-disable-next-line no-empty
+      } catch {}
+    }
+    document.addEventListener('scrollStop', handler, false)
+    return () => {
+      document.removeEventListener('scrollStop', handler, false)
+    }
+  }, [])
 
   return (
     <section
