@@ -233,22 +233,62 @@ const Content: FC<DataModel> = observer((props) => {
   }, [])
 
   const registerRouterEvents = useCallback(() => {
+    const getMainWrapper = () => {
+      const $main = document.querySelector('main')
+
+      if (!$main) {
+        return null
+      }
+      return $main
+    }
+
+    // let animate: Animation | null = null
+
+    const animation = (status: 'in' | 'out') => {
+      const $main = getMainWrapper()
+      if ($main) {
+        status === 'out'
+          ? $main.classList.add('loading')
+          : $main.classList.remove('loading')
+      }
+      // if ($main) {
+      //   if (animate) {
+      //     animate.cancel()
+      //     animate = null
+      //   }
+      //   const keyframe = [
+      //     {
+      //       opacity: 0,
+      //       transform: 'translateY(50px)',
+      //     },
+      //     {
+      //       opacity: 1,
+      //       transform: 'translateY(0)',
+      //     },
+      //   ]
+      //   animate = $main.animate(
+      //     status === 'in' ? keyframe : keyframe.reverse(),
+      //     {
+      //       duration: 250,
+      //       fill: 'forwards',
+      //     },
+      //   )
+      // }
+    }
+
     Router.events.on('routeChangeStart', (url) => {
-      // animateInstance?.start(url)
+      animation('out')
+
       Progress.start()
     })
-    // Router.events.on('beforeHistoryChange', (url) => {
-    //   animateInstance?.stop()
-    // })
+
     Router.events.on('routeChangeComplete', () => {
-      // window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
+      animation('in')
       Progress.finish()
     })
 
     Router.events.on('routeChangeError', () => {
       Progress.finish()
-      // window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
-
       message.error('出现了未知错误, 刷新试试?')
     })
 

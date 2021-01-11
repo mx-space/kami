@@ -295,12 +295,19 @@ main {
   transition: transform 0.3s, opacity 0.3s;
   min-height: calc(100vh - 10vw - 7.75em);
 }
+
+main.loading {
+  transform: translateY(50px);
+  opacity: 0;
+}
+
 main.is-article {
   max-width: 50em;
 }
 main.is-gallery {
   max-width: 90em;
 }
+
 @media screen and (max-width: 900px) {
   main {
     padding: 3em 1.25em;
