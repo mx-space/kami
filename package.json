@@ -72,7 +72,7 @@
     "validator": "13.5.2"
   },
   "devDependencies": {
-    "sass": "1.32.3",
+    "sass": "1.32.4",
     "@babel/plugin-proposal-decorators": "7.12.12",
     "@next/bundle-analyzer": "10.0.5",
     "@types/classnames": "2.2.11",
