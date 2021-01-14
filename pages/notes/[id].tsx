@@ -4,6 +4,7 @@ import { useStore } from 'common/store'
 import Action, { ActionProps } from 'components/Action'
 import { QueueAnim } from 'components/Anime'
 import CommentWrap from 'components/Comment'
+import { LikeButton } from 'components/LikeButton'
 import Markdown from 'components/MD-render'
 import { NumberRecorder } from 'components/NumberRecorder'
 import { ArticleLayout } from 'layouts/ArticleLayout'
@@ -11,7 +12,7 @@ import { NoteLayout } from 'layouts/NoteLayout'
 import { NoteModel, NoteResp } from 'models/note'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { FC, useEffect, useRef, useState } from 'react'
+import React, { FC, Fragment, useEffect, useRef, useState } from 'react'
 import { Rest } from 'utils/api'
 import { imagesRecord2Map } from 'utils/images'
 import { message } from 'utils/message'
@@ -134,6 +135,7 @@ const NoteView: NextPage<NoteViewProps> = observer(
       }, 10)
 
       setLike(props.data.count.like ?? 0)
+      setLiked(false)
     }, [props])
     const [isLiked, setLiked] = useState(false)
     const actions: ActionProps = {
@@ -141,10 +143,18 @@ const NoteView: NextPage<NoteViewProps> = observer(
       actions: [
         {
           // name: like !== 0 ? like : '喜欢',
-          name: <NumberRecorder number={like || 0} />,
-          icon: faHeart,
+          name: (
+            <div style={{ display: 'inline-flex', alignItems: 'center' }}>
+              <LikeButton
+                checked={like - 1 === data.count.like || isLiked}
+                width={'2rem'}
+              />
+              <NumberRecorder number={like || 0} />
+            </div>
+          ),
           color:
             like - 1 === data.count.like || isLiked ? '#e74c3c' : undefined,
+
           callback: () => {
             if (like - 1 === data.count.like) {
               return message.error('你已经喜欢过啦!')

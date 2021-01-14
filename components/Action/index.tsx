@@ -7,7 +7,7 @@ import { DetailedHTMLProps, HTMLAttributes, memo } from 'react'
 import styles from './index.module.scss'
 
 type BaseAction = {
-  icon: IconDefinition
+  icon?: IconDefinition
   name: string | number | JSX.Element
   color?: string
 }
@@ -30,11 +30,13 @@ export default memo(function Action(props: ActionProps) {
         {informs.map((inform, index) => {
           return (
             <span key={index}>
-              <FontAwesomeIcon
-                icon={inform.icon}
-                className={styles.icon}
-                color={inform.color}
-              />
+              {inform.icon && (
+                <FontAwesomeIcon
+                  icon={inform.icon}
+                  className={styles.icon}
+                  color={inform.color}
+                />
+              )}
               {inform.name}
             </span>
           )
@@ -64,11 +66,13 @@ export default memo(function Action(props: ActionProps) {
               style={{ cursor: 'pointer' }}
               onClick={action.callback}
             >
-              <FontAwesomeIcon
-                icon={action.icon}
-                className={styles.icon}
-                color={action.color}
-              />
+              {action.icon && (
+                <FontAwesomeIcon
+                  icon={action.icon}
+                  className={styles.icon}
+                  color={action.color}
+                />
+              )}
               {action.name}
             </span>
           )
