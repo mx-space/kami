@@ -1,9 +1,9 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-24 17:03:12
- * @LastEditTime: 2020-05-24 17:08:58
+ * @LastEditTime: 2021-01-14 13:16:05
  * @LastEditors: Innei
- * @FilePath: /mx-web/utils/dom.ts
+ * @FilePath: /web/utils/dom.ts
  * @Copyright
  */
 
@@ -22,4 +22,22 @@ export const copy = (value: string) => {
   textarea.select()
   document.execCommand('copy')
   document.documentElement.removeChild(textarea)
+}
+
+export function getElementViewTop<T extends HTMLElement>(element: T) {
+  let actualTop = element.offsetTop
+  let current = element.offsetParent as HTMLElement
+
+  while (current !== null) {
+    actualTop += current.offsetTop
+    current = current.offsetParent as HTMLElement
+  }
+  let elementScrollTop = 0
+  if (document.compatMode == 'BackCompat') {
+    elementScrollTop = document.body.scrollTop
+  } else {
+    elementScrollTop = document.documentElement.scrollTop
+  }
+
+  return actualTop - elementScrollTop
 }

@@ -24,7 +24,7 @@ import { observer } from 'utils/mobx'
 import observable from 'utils/observable'
 import { ImageSizeMetaContext } from '../../common/context/ImageSizes'
 import CodeBlock from '../CodeBlock'
-import { DraftEditor } from './editor'
+
 import styles from './index.module.scss'
 type MdProps = ReactMarkdownProps & {
   value: string
@@ -36,27 +36,6 @@ type MdProps = ReactMarkdownProps & {
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   >
-} & (
-    | { canEdit: true; onEditFinish: (md: string) => void }
-    | { canEdit?: false; onEditFinish?: (md: string) => void }
-  )
-
-function getElementViewTop<T extends HTMLElement>(element: T) {
-  let actualTop = element.offsetTop
-  let current = element.offsetParent as HTMLElement
-
-  while (current !== null) {
-    actualTop += current.offsetTop
-    current = current.offsetParent as HTMLElement
-  }
-  let elementScrollTop = 0
-  if (document.compatMode == 'BackCompat') {
-    elementScrollTop = document.body.scrollTop
-  } else {
-    elementScrollTop = document.documentElement.scrollTop
-  }
-
-  return actualTop - elementScrollTop
 }
 
 const Heading: () => FC<{
@@ -303,35 +282,10 @@ const _TOC: FC = observer(() => {
 })
 export const Markdown: FC<MdProps> = observer(
   forwardRef<HTMLDivElement, MdProps>((props, ref) => {
-    const {
-      value,
-      renderers,
-      style,
-      warpperProps = {},
-      canEdit,
-      onEditFinish,
-      ...rest
-    } = props
-    const {
-      userStore: { isLogged },
-    } = useStore()
-    const [editMode, setEditMode] = useState(false)
+    const { value, renderers, style, warpperProps = {}, ...rest } = props
 
-    const openEditMode = (e) => {
-      e.preventDefault()
-
-      if (isLogged && canEdit) {
-        setEditMode(true)
-      }
-    }
     return (
-      <div
-        id="write"
-        style={style}
-        {...warpperProps}
-        ref={ref}
-        onDoubleClick={openEditMode}
-      >
+      <div id="write" style={style} {...warpperProps} ref={ref}>
         <ReactMarkdown
           source={value}
           {...rest}
@@ -352,25 +306,6 @@ export const Markdown: FC<MdProps> = observer(
         />
 
         {props.toc && <_TOC />}
-        <OverLay
-          onClose={() => {
-            setEditMode(false)
-          }}
-          show={editMode}
-        >
-          <div className={styles['editor-wrapper']}>
-            <DraftEditor
-              md={props.value}
-              onCancel={() => {
-                setEditMode(false)
-              }}
-              onFinish={(md) => {
-                onEditFinish?.(md)
-                setEditMode(false)
-              }}
-            />
-          </div>
-        </OverLay>
       </div>
     )
   }),
