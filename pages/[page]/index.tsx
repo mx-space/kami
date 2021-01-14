@@ -35,7 +35,12 @@ const Page: NextPage<PageRespDto> = (props) => {
     })
   }, [props])
   return (
-    <ArticleLayout title={title} subtitle={subtitle}>
+    <ArticleLayout
+      title={title}
+      subtitle={subtitle}
+      id={props.data._id}
+      type="page"
+    >
       <Seo
         title={title}
         openGraph={{ type: 'article' }}

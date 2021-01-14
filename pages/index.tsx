@@ -30,6 +30,7 @@ import service from '../utils/request'
 import '../utils/message'
 import { SayModel } from 'models/say'
 import { NextSeo } from 'next-seo'
+import configs from 'configs'
 interface IndexViewProps {
   posts: Top.Post[]
   notes: Top.Note[]
@@ -39,11 +40,10 @@ interface IndexViewProps {
 }
 
 const IndexView: NextPage<IndexViewProps> = (props) => {
-  const { userStore, appStore, socialStore } = useStore()
+  const { userStore, appStore } = useStore()
   const { name, introduce, master } = userStore
   const { avatar } = master
   const { description } = appStore
-  const { socialLinks } = socialStore
 
   const { posts, notes, randomImages } = props
   const images = [...randomImages]
@@ -131,7 +131,7 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
             animConfig={{ opacity: [1, 0], translateY: [0, 50] }}
           >
             <div className="social-icons" key={'a'}>
-              {socialLinks.map((item) => {
+              {configs.social.map((item) => {
                 return (
                   <a
                     href={item.url}

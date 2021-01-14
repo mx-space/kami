@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useStore } from 'common/store'
 import dayjs from 'dayjs'
 import { FC, forwardRef, memo, useCallback } from 'react'
-import { Rest } from 'utils'
+import { resolveUrl, Rest } from 'utils'
 import { observer } from 'utils/mobx'
 import { QueueAnim } from '../components/Anime'
 
@@ -24,7 +24,7 @@ const NoteLayout: FC<NoteLayoutProps> = observer(
   forwardRef(({ children, date, title, tips, bookmark, id }, ref: any) => {
     const dateFormat = dayjs(date).locale('cn').format('YYYY年M月D日 dddd')
     const {
-      userStore: { isLogged },
+      userStore: { isLogged, url },
     } = useStore()
 
     const onMarkToggle = useCallback(() => {
@@ -58,6 +58,15 @@ const NoteLayout: FC<NoteLayoutProps> = observer(
 
             <h2 title={tips} style={{ textAlign: 'center' }}>
               {title}
+              {isLogged && url ? (
+                <a
+                  className="edit-link"
+                  target="_blank"
+                  href={resolveUrl('/#/notes/edit?id=' + id, url.adminUrl)!}
+                >
+                  编辑
+                </a>
+              ) : null}
             </h2>
 
             {children}

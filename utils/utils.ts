@@ -1,9 +1,9 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-20 20:51:31
- * @LastEditTime: 2020-08-08 13:25:44
+ * @LastEditTime: 2021-01-14 13:57:43
  * @LastEditors: Innei
- * @FilePath: /mx-web/utils/utils.ts
+ * @FilePath: /web/utils/utils.ts
  * @Coding with Love
  */
 
@@ -101,4 +101,10 @@ export class UUID {
   public equal(uuid: UUID) {
     return uuid.uuid === this.uuid
   }
+}
+
+export const resolveUrl = (pathname: string | undefined, base: string) => {
+  const _URL = new URL(base)
+
+  return pathname ? _URL.origin.concat(pathname) : _URL.origin
 }

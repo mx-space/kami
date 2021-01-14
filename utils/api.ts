@@ -14,6 +14,7 @@ declare enum AccessRoutesEnum {
   Post,
   Project,
   Say,
+  Option,
 }
 
 interface Gets {

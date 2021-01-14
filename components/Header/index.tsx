@@ -65,11 +65,10 @@ const NavItems: FC<{ onClick: any }> = observer(({ onClick }) => {
   )
 })
 
-const Links: FC = observer(() => {
-  const { socialStore } = useStore()
+const Links: FC = () => {
   return (
     <Fragment>
-      {socialStore.socialLinks.map((link) => {
+      {configs.social.map((link) => {
         return (
           <a title={link.title} href={link.url} key={link.url}>
             <FontAwesomeIcon icon={link.icon} />
@@ -83,7 +82,7 @@ const Links: FC = observer(() => {
       )}
     </Fragment>
   )
-})
+}
 const Header: FC = observer(() => {
   const { appStore } = useStore()
 

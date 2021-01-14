@@ -220,7 +220,6 @@ const Content: FC<DataModel> = observer((props) => {
           .get<any>()
           .then(({ ok }) => {
             if (ok) {
-              master.setLogged(true)
               master.setToken(getToken() as string)
               message.success('欢迎回来, ' + master.name, 1500)
             } else {

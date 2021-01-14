@@ -22,7 +22,6 @@ const LoginView: NextPage = () => {
     Router.push('/')
     message.success('登录成功')
     userStore.setToken(data.token)
-    userStore.setLogged(true)
   }
 
   return (

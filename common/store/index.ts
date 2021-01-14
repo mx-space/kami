@@ -1,9 +1,9 @@
 /*
  * @Author: Innei
  * @Date: 2020-04-29 17:27:02
- * @LastEditTime: 2020-08-16 20:40:06
+ * @LastEditTime: 2021-01-14 13:21:23
  * @LastEditors: Innei
- * @FilePath: /mx-web/common/store/index.ts
+ * @FilePath: /web/common/store/index.ts
  * @Copyright
  */
 
@@ -12,7 +12,7 @@ import AppStore from './app'
 import CategoryStore from './category'
 import MusicStore from './music'
 import PageStore from './pages'
-import SocialStore from './social'
+
 import UserStore from './user'
 import GatewayStore from './gateway'
 import ActionStore from './action'
@@ -20,8 +20,6 @@ import { isClientSide } from 'utils'
 export const gatewayStore = new GatewayStore()
 export const userStore = new UserStore()
 export const appStore = new AppStore()
-
-export const socialStore = new SocialStore()
 
 export const categoryStore = new CategoryStore()
 
@@ -32,7 +30,6 @@ export const actionStore = new ActionStore()
 export const stores = {
   appStore,
   userStore,
-  socialStore,
   pageStore,
   categoryStore,
   musicStore,
@@ -44,5 +41,5 @@ if (process.env.NODE_ENV === 'development' && isClientSide()) {
 }
 
 export const StoreContext = createContext(stores)
-export const StoreProvider = StoreContext.Provider
+
 export const useStore = () => useContext(StoreContext)

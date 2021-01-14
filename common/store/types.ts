@@ -1,14 +1,14 @@
+/*
+ * @Author: Innei
+ * @Date: 2021-01-07 20:13:09
+ * @LastEditTime: 2021-01-14 13:37:29
+ * @LastEditors: Innei
+ * @FilePath: /web/common/store/types.ts
+ * @Mark: Coding with Love
+ */
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
-import { PageDescriptionDto } from '../../models/page'
-import AppStore from './app'
-import CategoryStore from './category'
-import MusicStore from './music'
-import PageStore from './pages'
-import SocialStore from './social'
-import UserStore from './user'
-import GatewayStore from './gateway'
 import { UrlObject } from 'url'
-import ActionStore from './action'
+import { PageDescriptionDto } from '../../models/page'
 
 export declare enum LayoutType {
   Post,
