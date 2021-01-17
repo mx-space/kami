@@ -12,7 +12,6 @@ import {
   useRef,
   useState,
 } from 'react'
-import { ensuredForwardRef } from 'react-use/lib/useEnsuredForwardedRef'
 import styles from './index.module.scss'
 
 interface InputProps {
