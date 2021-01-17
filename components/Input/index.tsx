@@ -4,6 +4,7 @@ import {
   createContext,
   DetailedHTMLProps,
   ForwardedRef,
+  forwardRef,
   HTMLAttributes,
   InputHTMLAttributes,
   useEffect,
@@ -38,7 +39,7 @@ type IInputProps = Omit<
 export const InputContext = createContext({
   setFocus(state: boolean) {},
 })
-export const Input = ensuredForwardRef<
+export const Input = forwardRef<
   HTMLInputElement | HTMLTextAreaElement,
   IInputProps
 >((props, ref) => {

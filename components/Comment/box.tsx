@@ -96,15 +96,15 @@ const CommentBox: FC<{
         return message.error('昵称与我主人重名了, 但是你好像并不是我的主人唉')
       }
       if (!author || !text || !mail) {
-        message.error('亲亲, 能把信息填完整么')
+        message.error('小可爱, 能把信息填完整么')
         return
       }
       if (url && !isUrl(url, { require_protocol: true })) {
-        message.error('亲亲, 网址格式不正确哦')
+        message.error('小可爱, 网址格式不正确哦')
         return
       }
       if (!isEmail(mail)) {
-        message.error('亲亲, 邮箱格式不正确哦')
+        message.error('小可爱, 邮箱格式不正确哦')
         return
       }
       if (author.length > 20) {
