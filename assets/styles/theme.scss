@@ -292,13 +292,15 @@ main {
   margin: 0 auto;
   max-width: 75em;
   padding: 5em 2em;
-  transition: transform 0.3s, opacity 0.3s;
+  transition: transform 0.3s, opacity 0.3s, visibility 0.3s;
   min-height: calc(100vh - 10vw - 7.75em);
+  visibility: visible;
 }
 
 main.loading {
   transform: translateY(50px);
   opacity: 0;
+  visibility: hidden;
 }
 
 main.is-article {

@@ -287,6 +287,7 @@ const Content: FC<DataModel> = observer((props) => {
     })
 
     Router.events.on('routeChangeError', () => {
+      animation('in')
       Progress.finish()
       message.error('出现了未知错误, 刷新试试?')
     })
