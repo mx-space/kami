@@ -493,14 +493,17 @@ article {
 article > h1 {
   margin-top: 5em;
 }
-article > h1:first-child {
+article > h1:first-child,
+h1.headline {
   margin-top: 0;
+
+  &::before {
+    content: '';
+    padding-left: 0.75em;
+    border-left: 2px solid #ffc107;
+  }
 }
-article > h1:before {
-  content: '';
-  padding-left: 0.75em;
-  border-left: 2px solid #ffc107;
-}
+
 article > h1:hover small {
   opacity: 1;
 }
@@ -574,7 +577,7 @@ article > h1 small {
   color: #888;
   text-align: right;
   user-select: none;
-  font-weight: lighter;
+  font-weight: normal;
 }
 .kami-note .note-inform {
   float: left;

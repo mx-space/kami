@@ -14,22 +14,14 @@ import { Rest } from '../../utils'
 import { Input } from '../Input'
 import styles from './index.module.scss'
 
-type Field =
-  | 'friend-author'
-  | 'friend-avatar'
-  | 'friend-desc'
-  | 'friend-email'
-  | 'friend-name'
-  | 'friend-url'
+type Field = `friend-${'author' | 'avatar' | 'desc' | 'email' | 'url' | 'name'}`
 
-const ApplyForLink: FC = () => {
+export const ApplyForLink: FC = () => {
   const { register, handleSubmit: submitHook, reset } = useForm({
     shouldFocusError: true,
   })
   const handleSubmit = submitHook(
     (d: Record<Field, string>) => {
-      console.log(d)
-
       Rest('Link', `audit?author=${d['friend-author']}`)
         .post({
           author: d['friend-author'],
@@ -132,5 +124,3 @@ const ApplyForLink: FC = () => {
     </article>
   )
 }
-
-export { ApplyForLink }

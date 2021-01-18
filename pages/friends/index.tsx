@@ -1,4 +1,16 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-12-18 12:15:37
+ * @LastEditTime: 2021-01-18 18:26:51
+ * @LastEditors: Innei
+ * @FilePath: /web/pages/friends/index.tsx
+ * @Mark: Coding with Love
+ */
+import { useInitialData } from 'common/context/InitialDataContext'
+import Markdown from 'components/MD-render'
 import { NextPage } from 'next'
+import dynamic from 'next/dynamic'
+import { createElement, FC } from 'react'
 import { QueueAnim } from '../../components/Anime'
 import { ApplyForLink } from '../../components/ApplyLink'
 import { SEO } from '../../components/SEO'
@@ -17,7 +29,6 @@ const renderSection = (data: LinkModel[]) => {
                   <a href={link.url} target={'_blank'}>
                     {link.name}
                   </a>
-
                   <span className="meta">{link.description || ''}</span>
                 </li>
               )
@@ -74,13 +85,58 @@ const FriendsView: NextPage<{ data: LinkModel[] }> = (props) => {
           </>
         )}
       </article>
-      <QueueAnim delay={1000}>
-        <ApplyForLink key={'link'} />
-      </QueueAnim>
+      <Footer />
     </ArticleLayout>
   )
 }
 
+const _Footer: FC = () => {
+  const {
+    seo,
+    user: { avatar, name },
+  } = useInitialData()
+  return (
+    <QueueAnim delay={1000}>
+      <ApplyForLink key={'link'} />
+
+      <Markdown
+        key="md"
+        warpperProps={{ id: undefined, style: { whiteSpace: 'pre-line' } }}
+        renderers={{
+          heading: (props) => {
+            return createElement(
+              `h${props.level}`,
+              { className: 'headline' },
+              props.children,
+            )
+          },
+        }}
+        escapeHtml={false}
+        value={`
+          **在申请友链之前请先将本站加入贵站的友链中**
+
+          **填写邮箱后, 待通过申请后会发送邮件**
+
+<br />
+
+          # 本站信息
+
+          **站点标题**: [${seo.title}](${
+          location.protocol + '//' + location.host
+        })
+          **站点描述**: ${seo.description}
+          **主人头像**: ${avatar}
+          **主人名字**: ${name}
+           `
+          .split('\n')
+          .map((i) => i.trim())
+          .join('\n')}
+      ></Markdown>
+    </QueueAnim>
+  )
+}
+
+const Footer = dynamic(() => Promise.resolve(_Footer), { ssr: false })
 FriendsView.getInitialProps = async () => {
   const { data } = (await Rest('Link').get('all')) as any
 

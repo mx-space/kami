@@ -294,7 +294,6 @@ export const Markdown: FC<MdProps> = observer(
             pre: CodeBlock,
             image: Image,
             heading: Heading(),
-
             link: RenderLink,
             spoiler: RenderSpoiler,
             paragraph: RenderParagraph,
