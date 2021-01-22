@@ -39,6 +39,7 @@ const configs = withImages(
     experimental: {
       granularChunks: true,
       modern: true,
+      scrollRestoration: true,
     },
   }),
 )

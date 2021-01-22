@@ -263,7 +263,6 @@ const Content: FC<DataModel> = observer((props) => {
 
     Router.events.on('routeChangeComplete', () => {
       animation('in')
-      console.log(history.backPath)
 
       Progress.finish()
     })
