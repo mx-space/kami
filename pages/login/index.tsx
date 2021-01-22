@@ -1,3 +1,11 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-09-30 16:57:04
+ * @LastEditTime: 2021-01-22 11:05:30
+ * @LastEditors: Innei
+ * @FilePath: /web/pages/login/index.tsx
+ * @Mark: Coding with Love
+ */
 import { message } from 'utils/message'
 import { Input } from 'components/Input'
 import { NextPage } from 'next'
@@ -19,7 +27,11 @@ const LoginView: NextPage = () => {
       password,
     })) as any
     setToken(data.token, 7)
-    Router.push('/')
+    if (history.backPath && history.backPath.length) {
+      Router.push(history.backPath.pop()!)
+    } else {
+      Router.push('/')
+    }
     message.success('登录成功')
     userStore.setToken(data.token)
   }

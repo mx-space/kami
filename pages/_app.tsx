@@ -250,44 +250,27 @@ const Content: FC<DataModel> = observer((props) => {
           ? $main.classList.add('loading')
           : $main.classList.remove('loading')
       }
-      // if ($main) {
-      //   if (animate) {
-      //     animate.cancel()
-      //     animate = null
-      //   }
-      //   const keyframe = [
-      //     {
-      //       opacity: 0,
-      //       transform: 'translateY(50px)',
-      //     },
-      //     {
-      //       opacity: 1,
-      //       transform: 'translateY(0)',
-      //     },
-      //   ]
-      //   animate = $main.animate(
-      //     status === 'in' ? keyframe : keyframe.reverse(),
-      //     {
-      //       duration: 250,
-      //       fill: 'forwards',
-      //     },
-      //   )
-      // }
     }
 
-    Router.events.on('routeChangeStart', (url) => {
+    Router.events.on('routeChangeStart', () => {
       animation('out')
 
       Progress.start()
+      history.backPath = history.backPath
+        ? [...history.backPath, history.state.as]
+        : [history.state.as]
     })
 
     Router.events.on('routeChangeComplete', () => {
       animation('in')
+      console.log(history.backPath)
+
       Progress.finish()
     })
 
     Router.events.on('routeChangeError', () => {
       animation('in')
+      history.backPath?.pop()
       Progress.finish()
       message.error('出现了未知错误, 刷新试试?')
     })

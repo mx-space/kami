@@ -13,7 +13,7 @@ import React, {
   useState,
 } from 'react'
 import { observer } from 'utils/mobx'
-import { useStore } from '../../common/store'
+import { userStore, useStore } from '../../common/store'
 import { MenuModel } from '../../common/store/types'
 import configs from '../../configs'
 import styles from './index.module.scss'
@@ -157,6 +157,11 @@ const Header: FC = observer(() => {
         className="head-logo"
         onClick={() => {
           appStore?.viewport.mobile ? Router.push('/') : null
+        }}
+        onDoubleClick={() => {
+          if (!userStore.isLogged) {
+            Router.push('/login')
+          }
         }}
       >
         <Logo />
