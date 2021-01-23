@@ -42,7 +42,7 @@
     "js-cookie": "2.2.1",
     "kico-style": "1.2.0",
     "mobx": "6.0.5",
-    "mobx-react-lite": "3.1.6",
+    "mobx-react-lite": "3.1.7",
     "next": "10.0.5",
     "next-offline": "5.0.3",
     "next-seo": "4.17.0",
