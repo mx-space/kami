@@ -1,9 +1,17 @@
+/*
+ * @Author: Innei
+ * @Date: 2021-01-07 20:13:09
+ * @LastEditTime: 2021-01-23 20:35:34
+ * @LastEditors: Innei
+ * @FilePath: /web/layouts/NoteLayout.tsx
+ * @Mark: Coding with Love
+ */
 import { faBookmark } from '@fortawesome/free-regular-svg-icons'
 import { faBookmark as faBookmarkSolid } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useStore } from 'common/store'
 import dayjs from 'dayjs'
-import { FC, forwardRef, memo, useCallback } from 'react'
+import { FC, forwardRef, useCallback } from 'react'
 import { resolveUrl, Rest } from 'utils'
 import { observer } from 'utils/mobx'
 import { QueueAnim } from '../components/Anime'

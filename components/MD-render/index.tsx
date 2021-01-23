@@ -1,7 +1,6 @@
 import CustomRules from 'common/markdown/rules'
 import { appStore, useStore } from 'common/store'
 import { ImageLazyWithPopup } from 'components/Image'
-import { OverLay } from 'components/Overlay'
 import Toc from 'components/Toc'
 import dynamic from 'next/dynamic'
 import Router from 'next/router'
@@ -24,8 +23,8 @@ import { observer } from 'utils/mobx'
 import observable from 'utils/observable'
 import { ImageSizeMetaContext } from '../../common/context/ImageSizes'
 import CodeBlock from '../CodeBlock'
-
 import styles from './index.module.scss'
+
 type MdProps = ReactMarkdownProps & {
   value: string
   toc?: boolean
