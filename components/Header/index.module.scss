@@ -15,6 +15,34 @@
     .head-info {
       opacity: 1;
       visibility: visible;
+
+      .desc {
+        position: relative;
+        overflow: hidden;
+        > div {
+          position: relative;
+          animation: swipe-up 1s ease-in-out forwards;
+          bottom: -5rem;
+        }
+        > div:nth-child(1) {
+          opacity: 0;
+          animation-delay: 0.2s;
+        }
+
+        > div:nth-child(2) {
+          opacity: 0.5;
+          animation-delay: 0.3s;
+          animation-duration: 0.6s;
+          animation-timing-function: ease;
+        }
+      }
+
+      @keyframes swipe-up {
+        to {
+          opacity: 1;
+          bottom: 0;
+        }
+      }
     }
   }
 }
