@@ -1,4 +1,4 @@
-import { faBookOpen, faClock, faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faBookOpen, faClock } from '@fortawesome/free-solid-svg-icons'
 import { EventTypes } from 'common/socket/types'
 import { useStore } from 'common/store'
 import Action, { ActionProps } from 'components/Action'
@@ -7,19 +7,20 @@ import CommentWrap from 'components/Comment'
 import { LikeButton } from 'components/LikeButton'
 import Markdown from 'components/MD-render'
 import { NumberRecorder } from 'components/NumberRecorder'
+import { RelativeTime } from 'components/Time'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { NoteLayout } from 'layouts/NoteLayout'
 import { NoteModel, NoteResp } from 'models/note'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React, { FC, Fragment, useEffect, useRef, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
 import { Rest } from 'utils/api'
 import { imagesRecord2Map } from 'utils/images'
 import { message } from 'utils/message'
 import { mood2icon, weather2icon } from 'utils/meta'
 import { observer } from 'utils/mobx'
 import observable from 'utils/observable'
-import { parseDate, relativeTimeFromNow } from 'utils/time'
+import { parseDate } from 'utils/time'
 import { ImageSizeMetaContext } from '../../common/context/ImageSizes'
 import { Seo } from '../../components/SEO'
 import { getSummaryFromMd } from '../../utils'
@@ -188,7 +189,7 @@ const NoteView: NextPage<NoteViewProps> = observer(
 
       actions.informs!.push(
         {
-          name: relativeTimeFromNow(data.created),
+          name: <RelativeTime date={new Date(data.created)} />,
           icon: faClock,
         },
         {
