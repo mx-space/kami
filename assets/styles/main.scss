@@ -1,10 +1,13 @@
-@import '~@openfonts/noto-sans-sc_vietnamese';
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import '@openfonts/noto-sans-sc_vietnamese';
 
-@import '~rc-texty/assets/index.css';
+@import 'rc-texty/assets/index.css';
 
-@import '~kico-style';
+@import 'kico-style';
 @import './theme.scss';
 @import './extra.scss';
 @import './shizuku.scss';
 @import './tailwind.scss';
-@import '~react-medium-image-zoom/dist/styles.css';
+@import 'react-medium-image-zoom/dist/styles.css';
