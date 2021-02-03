@@ -1,7 +1,6 @@
 import configs from 'configs'
 import { makeAutoObservable } from 'mobx'
 import { Seo } from 'models/aggregate'
-import { CategoryModel } from '../../models/category'
 import { MenuModel, PageModel, ViewportRecord } from './types'
 
 export default class AppStore {
@@ -34,15 +33,11 @@ export default class AppStore {
     }
   }
 
-  get isOverflow() {
+  get isOverFirstScreenHeight() {
     if (typeof window === 'undefined') {
       return false
     }
     return this.position > window.innerHeight || this.position > screen.height
-  }
-
-  setMenu(menu: MenuModel[]) {
-    this.menu = menu
   }
 
   setPage(pages: PageModel[]) {
@@ -59,21 +54,6 @@ export default class AppStore {
     })
 
     homeMenu?.subMenu!.push(...models)
-  }
-
-  setCategories(categories: CategoryModel[]) {
-    const postMenu = this.menu.find((menu) => menu.type === 'Post')
-    const models: MenuModel[] = categories.map((category) => {
-      const { _id, slug, name } = category
-      return {
-        title: name,
-        _id,
-        path: '/category/[slug]',
-        as: '/category/' + slug,
-        type: 'Custom',
-      }
-    })
-    postMenu?.subMenu!.push(...models)
   }
 
   updateViewport() {

@@ -8,7 +8,7 @@ import { FC } from 'react'
 
 export const FooterActions: FC = observer(() => {
   const { /* userStore, */ appStore, actionStore, musicStore } = useStore()
-  const { isOverflow } = appStore
+  const { isOverFirstScreenHeight: isOverflow } = appStore
   // const [chatShow, setChatShow] = useState(false)
   // const [newMessageCount, setCount] = useState(0)
   // useEffect(() => {

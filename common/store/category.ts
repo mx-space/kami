@@ -9,7 +9,9 @@
 
 import { makeAutoObservable } from 'mobx'
 import { CategoriesResp, CategoryModel } from 'models/category'
+import { appStore } from '.'
 import { Rest } from '../../utils/api'
+import { MenuModel } from './types'
 export default class CategoryStore {
   constructor() {
     makeAutoObservable(this)
@@ -24,6 +26,18 @@ export default class CategoryStore {
   }
 
   setCategory(categories: CategoryModel[]) {
+    const postMenu = appStore.menu.find((menu) => menu.type === 'Post')
+    const models: MenuModel[] = categories.map((category) => {
+      const { _id, slug, name } = category
+      return {
+        title: name,
+        _id,
+        path: '/category/[slug]',
+        as: '/category/' + slug,
+        type: 'Custom',
+      }
+    })
+    postMenu?.subMenu!.push(...models)
     this.categories = categories
   }
   async updateCategory() {

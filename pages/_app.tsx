@@ -93,7 +93,7 @@ const Content: FC<DataModel> = observer((props) => {
       // set page
       pages.setPages(pageMeta as PageModel[])
       app.setPage(pageMeta as PageModel[])
-      app.setCategories(categories)
+
       category.setCategory(categories)
       app.setConfig({ seo })
       app.setLastestNoteNid(lastestNoteNid)

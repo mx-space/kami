@@ -102,7 +102,9 @@ const Header: FC = observer(() => {
     <header
       className={classNames(
         menuOpen ? 'active' : '',
-        isMobile && appStore.scrollDirection == 'down' && appStore.isOverflow
+        isMobile &&
+          appStore.scrollDirection == 'down' &&
+          appStore.isOverFirstScreenHeight
           ? 'hide'
           : null,
       )}
@@ -171,7 +173,7 @@ const Header: FC = observer(() => {
           styles['head-swiper'],
           appStore.headerNav.show &&
             appStore.scrollDirection == 'down' &&
-            appStore.isOverflow
+            appStore.isOverFirstScreenHeight
             ? styles['toggle']
             : null,
         )}
