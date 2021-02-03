@@ -1,12 +1,13 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-20 20:51:31
- * @LastEditTime: 2021-01-14 13:57:43
+ * @LastEditTime: 2021-02-03 21:25:58
  * @LastEditors: Innei
  * @FilePath: /web/utils/utils.ts
  * @Coding with Love
  */
 
+import classNames from 'classnames'
 import shuffle from 'lodash/shuffle'
 import RemoveMarkdown from 'remove-markdown'
 
@@ -107,4 +108,17 @@ export const resolveUrl = (pathname: string | undefined, base: string) => {
   const _URL = new URL(base)
 
   return pathname ? _URL.origin.concat(pathname) : _URL.origin
+}
+
+export const combineClassName = (scss: any, css: any) => {
+  return (new Proxy(
+    { op: (key) => classNames(scss[key], css[key]) },
+    {
+      get(target, key: string) {
+        return target.op(key)
+      },
+    },
+  ) as any) as Record<string, string>
+
+  // return (key: string) => classNames(scss[key], css[key])
 }

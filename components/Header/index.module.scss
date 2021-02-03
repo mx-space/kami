@@ -1,3 +1,23 @@
+.header {
+  height: 56px;
+  z-index: 5;
+  background-color: var(--bg-opacity);
+  backdrop-filter: blur(25px) saturate(150%) brightness(1.1);
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s, backdrop-filter 0.5s;
+}
+.head-logo {
+  padding: 0.5em;
+  display: inline-block;
+}
+.head-logo svg {
+  height: 3em;
+}
+.more-button {
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 6px;
+}
 .head-swiper {
   height: 4rem;
   // transform: translateY(-100%);

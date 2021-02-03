@@ -1,5 +1,23 @@
 .header {
-  @apply fixed top-0 left-0 right-0 bg-white;
+  @apply fixed top-0 left-0 right-0;
+}
 
-  height: 50px;
+.head-swiper {
+  @apply relative flex items-center;
+}
+
+.title {
+  @apply relative inline-block text-xl font-medium mt-0 ml-4;
+}
+
+@screen phone {
+  .more-button {
+    @apply absolute right-0 visible;
+  }
+}
+.more-button {
+  @apply invisible;
+}
+.header nav {
+  @apply mx-20 relative;
 }

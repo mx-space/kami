@@ -130,7 +130,7 @@ html.dark img {
   filter: brightness(0.6) !important;
 }
 body * {
-  transition: color 0.2s, background 0.2s, border 0.2s;
+  transition: color 0.1s ease-in, background 0.1s ease-in, border 0.1s ease-in;
 }
 @media screen and (prefers-color-scheme: dark) {
   :root {
@@ -154,7 +154,9 @@ body * {
     filter: brightness(0.6);
   }
 }
-
+html.dark .header-top-navbar {
+  backdrop-filter: saturate(150%) blur(30px);
+}
 main {
   margin: 0 auto;
   max-width: 75em;
