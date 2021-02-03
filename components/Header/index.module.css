@@ -10,14 +10,49 @@
   @apply relative inline-block text-xl font-medium mt-0 ml-4;
 }
 
+.more-button {
+  @apply invisible hidden;
+}
+
 @screen phone {
   .more-button {
-    @apply absolute right-0 visible;
+    @apply absolute right-0 visible block cursor-pointer py-4 pl-4;
   }
 }
-.more-button {
-  @apply invisible;
-}
+
 .header nav {
-  @apply mx-20 relative;
+  @apply mx-20 relative flex items-center justify-between;
+}
+
+@screen phone {
+  .header nav {
+    @apply mx-4;
+  }
+
+  .header-logo svg {
+    height: 2rem;
+  }
+
+  .title {
+    @apply ml-1;
+  }
+}
+.link-group {
+  @apply relative inline-flex items-center;
+
+  height: 4rem;
+}
+
+@screen phone {
+  .link-group {
+    @apply hidden;
+  }
+}
+
+.link-item {
+  @apply inline-flex items-center ml-8 h-full cursor-pointer;
+}
+
+.link-title {
+  @apply ml-3;
 }

@@ -112,7 +112,7 @@ export const resolveUrl = (pathname: string | undefined, base: string) => {
 
 export const combineClassName = (scss: any, css: any) => {
   return (new Proxy(
-    { op: (key) => classNames(scss[key], css[key]) },
+    { op: (key) => classNames(scss[key], css[key], 'global-' + key) },
     {
       get(target, key: string) {
         return target.op(key)
