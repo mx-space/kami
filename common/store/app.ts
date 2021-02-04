@@ -1,6 +1,7 @@
 import configs from 'configs'
 import { makeAutoObservable } from 'mobx'
 import { Seo } from 'models/aggregate'
+import { isClientSide } from 'utils'
 import { MenuModel, PageModel, ViewportRecord } from './types'
 
 export default class AppStore {
@@ -34,10 +35,20 @@ export default class AppStore {
   }
 
   get isOverFirstScreenHeight() {
-    if (typeof window === 'undefined') {
-      return false
+    if (!isClientSide()) {
+      return
     }
     return this.position > window.innerHeight || this.position > screen.height
+  }
+
+  get isOverFirstScreenHalfHeight() {
+    if (!isClientSide()) {
+      return
+    }
+    return (
+      this.position > window.innerHeight / 2 ||
+      this.position > screen.height / 2
+    )
   }
 
   setPage(pages: PageModel[]) {

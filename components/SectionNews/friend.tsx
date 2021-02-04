@@ -1,3 +1,11 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-12-22 20:17:50
+ * @LastEditTime: 2021-02-04 10:56:08
+ * @LastEditors: Innei
+ * @FilePath: /web/components/SectionNews/friend.tsx
+ * @Mark: Coding with Love
+ */
 import defaultAvatar from 'assets/images/default-avatar.png'
 import { FC, memo, useEffect, useState } from 'react'
 import { LinkModel, LinkState, LinkType } from '../../models/link'
@@ -6,7 +14,7 @@ import { Avatar } from '../Avatar'
 import styles from './index.module.scss'
 export const FriendItem: FC<LinkModel> = memo((props) => {
   return (
-    <a className={styles['avatar-item']} href={props.url} target={'_blank'}>
+    <div className={styles['avatar-item']}>
       <Avatar
         {...{
           imageUrl: props.avatar || defaultAvatar,
@@ -15,7 +23,7 @@ export const FriendItem: FC<LinkModel> = memo((props) => {
         }}
       />
       <span className={styles['avatar-name']}>{props.name}</span>
-    </a>
+    </div>
   )
 })
 

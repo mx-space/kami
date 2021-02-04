@@ -4,6 +4,8 @@
 
 .head-swiper {
   @apply relative flex items-center;
+
+  height: 4rem;
 }
 
 .title {
@@ -20,17 +22,19 @@
   }
 }
 
-.header nav {
-  @apply mx-20 relative flex items-center justify-between;
+.nav-container {
+  height: 4rem;
+
+  @apply mx-20 relative overflow-hidden;
+}
+
+.header-logo svg {
+  height: 2rem;
 }
 
 @screen phone {
   .header nav {
     @apply mx-4;
-  }
-
-  .header-logo svg {
-    height: 2rem;
   }
 
   .title {
@@ -41,6 +45,10 @@
   @apply relative inline-flex items-center;
 
   height: 4rem;
+
+  & .anchor-ball {
+    @apply absolute left-0;
+  }
 }
 
 @screen phone {
@@ -50,7 +58,7 @@
 }
 
 .link-item {
-  @apply inline-flex items-center ml-8 h-full cursor-pointer;
+  @apply inline-flex items-center ml-8 h-full cursor-pointer py-4;
 }
 
 .link-title {

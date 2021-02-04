@@ -114,7 +114,7 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
               {name}
             </Texty>
           </h1>
-          <p>
+          <div className="paragraph">
             <Texty
               type={'mask-bottom'}
               mode={'smooth'}
@@ -123,7 +123,7 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
             >
               {introduce || description}
             </Texty>
-          </p>
+          </div>
 
           <QueueAnim
             delay={500}
@@ -150,11 +150,11 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
         </div>
       </section>
 
-      <p style={{ color: '#aaa', marginTop: '-3rem' }}>
+      <div className="paragraph" style={{ color: '#aaa', marginTop: '-3rem' }}>
         <Texty appear leave={false} type={'alpha'}>
           {say}
         </Texty>
-      </p>
+      </div>
 
       <section className="kami-news" style={{ minHeight: '34rem' }}>
         <QueueAnim

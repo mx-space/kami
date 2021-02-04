@@ -98,6 +98,7 @@ const RenderLink: FC<{
         viewBox="0 0 100 100"
         width="15"
         height="15"
+        style={{ display: 'inline' }}
       >
         <path
           fill="const(--shizuku-text-color)"
