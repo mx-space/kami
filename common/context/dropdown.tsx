@@ -1,12 +1,13 @@
 /*
  * @Author: Innei
  * @Date: 2021-02-04 13:27:29
- * @LastEditTime: 2021-02-04 14:05:32
+ * @LastEditTime: 2021-02-04 14:36:41
  * @LastEditors: Innei
  * @FilePath: /web/common/context/dropdown.tsx
  * @Mark: Coding with Love
  */
 import { DropDown, DropDownProps } from 'components/Dropdown'
+import { useRouter } from 'next/router'
 import RcQueueAnim from 'rc-queue-anim'
 import {
   createContext,
@@ -62,6 +63,19 @@ export const DropdownProvider: FC = memo((props) => {
       timer = clearTimeout(timer)
     }
   }, [option, el])
+
+  const router = useRouter()
+  useEffect(() => {
+    const handler = () => {
+      setEl(null)
+    }
+    router.events.on('routeChangeStart', handler)
+
+    return () => {
+      router.events.off('routeChangeStart', handler)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router])
   const disposer = () => setEl(null)
   return (
     <Fragment>
