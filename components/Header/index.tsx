@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2021-02-03 20:33:57
- * @LastEditTime: 2021-02-04 14:34:49
+ * @LastEditTime: 2021-02-04 15:23:14
  * @LastEditors: Innei
  * @FilePath: /web/components/Header/index.tsx
  * @Mark: Coding with Love
@@ -12,6 +12,7 @@ import classNames from 'classnames'
 import { useDropdown } from 'common/context/dropdown'
 import { useInitialData } from 'common/context/InitialDataContext'
 import { useStore } from 'common/store'
+import { LikeButton } from 'components/LikeButton'
 import { CustomLogo as Logo } from 'components/Logo'
 import { OverLay } from 'components/Overlay'
 import { throttle } from 'lodash'
@@ -22,49 +23,127 @@ import { useRouter } from 'next/router'
 import React, {
   FC,
   Fragment,
+  memo,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from 'react'
 import { createPortal } from 'react-dom'
-import { combineClassName } from 'utils'
+import { combineClassName, Rest } from 'utils'
+import { message } from 'utils/message'
 import css from './index.module.css'
 import scss from './index.module.scss'
 const styles = combineClassName(css, scss)
 
-const _HeaderDrawer: FC<{ show: boolean; onExit: () => void }> = ({
-  children,
-  onExit,
-  show,
-}) => {
-  const router = useRouter()
-  useEffect(() => {
-    const handler = () => {
-      onExit()
-    }
-    router.events.on('routeChangeStart', handler)
-
-    return () => {
-      router.events.off('routeChangeStart', handler)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router])
-  return createPortal(
-    <Fragment>
-      <OverLay show={show} onClose={onExit}></OverLay>
-      <div
-        className={classNames(styles['drawer'], show ? styles['show'] : null)}
-        onClick={(e) => {
-          console.log(e.target, (e.target as HTMLElement).tagName)
-        }}
-      >
-        {children}
-      </div>
-    </Fragment>,
-    document.body,
+const HeaderActionButton: FC<
+  React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+> = (props) => {
+  return (
+    <div
+      className="flex items-center rounded-full px-3 bg-shallow cursor-pointer"
+      {...props}
+    ></div>
   )
 }
+const HeaderActionButtonsContainer = memo((props) => {
+  return (
+    <div
+      className="absolute top-0 bottom-0 flex items-center"
+      style={{ transform: 'translateX(calc(-100% - 20px))' }}
+    >
+      {props.children}
+    </div>
+  )
+})
+
+const HeaderActionLikeButtonForNote: FC<{ id: number }> = memo((props) => {
+  const { id } = props
+  const [liked, setLiked] = useState(false)
+  const router = useRouter()
+  useEffect(() => {
+    setLiked(false)
+  }, [router])
+  const onLike = () =>
+    Rest('Note')
+      .get<any>('like/' + id, { withCredentials: true })
+      .then(() => {
+        message.success('感谢喜欢!')
+        setLiked(true)
+      })
+      .catch(() => {
+        setLiked(true)
+      })
+
+  return (
+    <div onClick={onLike} className="flex items-center">
+      <LikeButton checked={liked} />
+      <span className="flex-shrink-0">喜欢</span>
+    </div>
+  )
+})
+const HeaderActionBasedOnRouterPath: FC = memo(() => {
+  const router = useRouter()
+  const asPath = router.asPath
+
+  const firstPath = asPath.split('/')[1] || ''
+
+  const Comp = (() => {
+    switch (firstPath) {
+      case 'notes': {
+        const id = parseInt(router.query.id as any)
+
+        if (id && typeof id === 'number') {
+          return (
+            <>
+              <HeaderActionButtonsContainer>
+                <HeaderActionButton style={{ height: '2.5rem', width: '5rem' }}>
+                  <HeaderActionLikeButtonForNote id={id} />
+                </HeaderActionButton>
+              </HeaderActionButtonsContainer>
+              <span>{id}</span>
+            </>
+          )
+        }
+        return null
+      }
+    }
+    return null
+  })()
+
+  return <Fragment>{Comp}</Fragment>
+})
+
+const _HeaderDrawer: FC<{ show: boolean; onExit: () => void }> = memo(
+  ({ children, onExit, show }) => {
+    const router = useRouter()
+    useEffect(() => {
+      const handler = () => {
+        onExit()
+      }
+      router.events.on('routeChangeStart', handler)
+
+      return () => {
+        router.events.off('routeChangeStart', handler)
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [router])
+    return createPortal(
+      <Fragment>
+        <OverLay show={show} onClose={onExit}></OverLay>
+        <div
+          className={classNames(styles['drawer'], show ? styles['show'] : null)}
+          onClick={(e) => {
+            console.log(e.target, (e.target as HTMLElement).tagName)
+          }}
+        >
+          {children}
+        </div>
+      </Fragment>,
+      document.body,
+    )
+  },
+)
 
 const HeaderDrawer = dynamic(() => Promise.resolve(_HeaderDrawer), {
   ssr: false,
@@ -227,7 +306,11 @@ export const _Header: FC = observer(() => {
           </ul>
         </div>
         <div
-          className={classNames(styles['head-swiper'], 'flex justify-between')}
+          className={classNames(
+            styles['head-swiper'],
+            styles['swiper-metawrapper'],
+            'flex justify-between',
+          )}
         >
           <div className={styles['head-info']}>
             <div className={styles['desc']}>
@@ -235,8 +318,9 @@ export const _Header: FC = observer(() => {
               <div className={styles['title']}>{appStore.headerNav.title}</div>
             </div>
           </div>
-          <div className={styles['site-info']}>
-            <div className="">{title}</div>
+          <div className={styles['right-wrapper']}>
+            <HeaderActionBasedOnRouterPath />
+            <div className={styles['site-info']}>{title}</div>
           </div>
         </div>
       </nav>

@@ -8,7 +8,7 @@
   --purple: #8a2be2;
   --light-bg: #fff;
   --light-font: #fff;
-
+  --shallow: #eee;
   font: 14px/1.15 Arial, Helvetica, noto sans sc, pingfang sc, hiragino sans gb,
     microsoft yahei, 'sans-serif';
 }
@@ -99,6 +99,7 @@ html.light {
   --purple: #8a2be2 !important;
   --light-bg: #fff !important;
   --light-font: #fff !important;
+  --shallow: #eee !important;
   color: inherit;
 }
 html.light body {
@@ -119,6 +120,7 @@ html.dark {
   --purple: #561494 !important;
   --light-bg: #111 !important;
   --light-font: #ddd !important;
+  --shallow: #333 !important;
 }
 html.dark body {
   background: #000
@@ -144,6 +146,7 @@ body * {
     --purple: #561494;
     --light-bg: #111;
     --light-font: #ddd;
+    --shallow: #333 !important;
   }
   body {
     background: #000

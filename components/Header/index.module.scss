@@ -82,7 +82,7 @@
   height: 4rem;
   display: flex;
   align-items: center;
-  margin-left: 4rem;
+
   .meta {
     color: var(--gray);
     font-size: 0.8rem;
@@ -98,8 +98,8 @@
 .site-info {
   color: #aaa;
 }
-@media (max-width: 650px) {
-  .head-info {
-    display: none;
-  }
+
+.swiper-metawrapper {
+  max-width: 65em;
+  margin: auto;
 }

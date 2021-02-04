@@ -15,3 +15,11 @@
 .max-w-full {
   max-width: 100%;
 }
+
+button:focus,
+input:focus,
+div:focus,
+article:focus,
+textarea:focus {
+  outline: 0 !important;
+}

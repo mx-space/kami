@@ -64,6 +64,7 @@ module.exports = {
         'light-font': 'var(--light-font)',
         'bg-opacity': 'var(--bg-opacity)',
         gray: 'var(--gray)',
+        shallow: 'var(--shallow)',
         shizuku: {
           text: 'var(--shizuku-text-color)',
           theme: 'var(--shizuku-theme-color)',

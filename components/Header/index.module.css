@@ -8,6 +8,12 @@
   height: 4rem;
 }
 
+@screen phone {
+  .head-info {
+    display: none;
+  }
+}
+
 .title {
   @apply relative inline-block text-xl font-medium mt-0 ml-4;
 }
