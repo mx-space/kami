@@ -73,7 +73,7 @@
 
 .drawer {
   @apply fixed z-90 top-0 bottom-0 right-0 bg-light-bg;
-  @apply transition-transform duration-300 ease-in p-6 text-light-brown;
+  @apply transition-transform duration-300 p-6 text-light-brown;
 
   width: 300px;
   max-width: 80vw;

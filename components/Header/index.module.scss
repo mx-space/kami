@@ -5,6 +5,10 @@
   backdrop-filter: blur(25px) saturate(150%) brightness(1.1);
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
   transition: transform 0.5s, backdrop-filter 0.5s;
+
+  &.hide {
+    transform: translateY(-100%);
+  }
 }
 .header-logo {
   padding: 0.5em;
@@ -54,17 +58,15 @@
         overflow: hidden;
         > div {
           position: relative;
-          animation: swipe-up 1s ease-in-out forwards;
+          animation: swipe-up 0.5s ease-in-out forwards;
           bottom: -5rem;
         }
         > div:nth-child(1) {
           opacity: 0;
-          animation-delay: 0.2s;
         }
 
         > div:nth-child(2) {
           opacity: 0.5;
-          animation-duration: 0.6s;
           animation-timing-function: ease;
         }
       }

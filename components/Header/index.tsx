@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2021-02-03 20:33:57
- * @LastEditTime: 2021-02-04 15:23:14
+ * @LastEditTime: 2021-02-04 17:16:44
  * @LastEditors: Innei
  * @FilePath: /web/components/Header/index.tsx
  * @Mark: Coding with Love
@@ -204,7 +204,17 @@ export const _Header: FC = observer(() => {
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   return (
-    <header className={classNames(styles['header'], 'header-top-navbar')}>
+    <header
+      className={classNames(
+        styles['header'],
+        'header-top-navbar',
+        !appStore.headerNav.show &&
+          appStore.isOverFirstScreenHeight &&
+          appStore.viewport.mobile
+          ? styles['hide']
+          : null,
+      )}
+    >
       <nav
         className={classNames(
           styles['nav-container'],
@@ -216,12 +226,14 @@ export const _Header: FC = observer(() => {
         )}
       >
         <div className={classNames(styles['head-swiper'], 'justify-between')}>
-          <div className={'flex items-center justify-center'}>
+          <div
+            className={'flex items-center justify-center cursor-pointer'}
+            onClick={() => {
+              router.push('/')
+            }}
+          >
             <div
               className={styles['header-logo']}
-              onClick={() => {
-                appStore?.viewport.mobile ? router.push('/') : null
-              }}
               onDoubleClick={() => {
                 if (!userStore.isLogged) {
                   router.push('/login')
