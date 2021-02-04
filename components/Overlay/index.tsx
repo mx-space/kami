@@ -1,5 +1,14 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-09-17 14:02:24
+ * @LastEditTime: 2021-02-04 14:13:50
+ * @LastEditors: Innei
+ * @FilePath: /web/components/Overlay/index.tsx
+ * @Mark: Coding with Love
+ */
 import classNames from 'classnames'
 import { QueueAnim } from 'components/Anime'
+import dynamic from 'next/dynamic'
 import { FC, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { isServerSide } from 'utils'
@@ -34,13 +43,10 @@ const _OverLay: FC<OverLayProps> = ({ children, onClose, center }) => {
   )
 }
 
-export const OverLay: FC<OverLayProps & { show: boolean }> = ({
+const __OverLay: FC<OverLayProps & { show: boolean }> = ({
   show,
   ...props
 }) => {
-  if (isServerSide()) {
-    return null
-  }
   return ReactDOM.createPortal(
     <QueueAnim type={'alpha'} leaveReverse duration={500} forcedReplay>
       {show ? <_OverLay {...props} key={'real'} /> : null}
@@ -48,3 +54,4 @@ export const OverLay: FC<OverLayProps & { show: boolean }> = ({
     document.body,
   )
 }
+export const OverLay = dynamic(() => Promise.resolve(__OverLay), { ssr: false })

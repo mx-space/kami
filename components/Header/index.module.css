@@ -64,3 +64,42 @@
 .link-title {
   @apply ml-3;
 }
+
+.drawer {
+  @apply fixed z-90 top-0 bottom-0 right-0 bg-light-bg;
+  @apply transition-transform duration-300 ease-in p-6 text-light-brown;
+
+  width: 300px;
+  max-width: 80vw;
+  transform: translateX(100%);
+
+  &.show {
+    transform: translateX(0);
+  }
+
+  & a {
+    color: inherit;
+  }
+
+  & .parent,
+  & .children {
+    @apply py-2;
+  }
+
+  & .parent {
+    @apply font-medium;
+    @apply text-xl;
+  }
+  & .children-wrapper {
+    @apply grid;
+
+    grid-template-columns: 1fr 1fr;
+  }
+  svg {
+    @apply mr-4;
+  }
+}
+
+.link-section {
+  @apply mb-4;
+}

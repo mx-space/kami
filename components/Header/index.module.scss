@@ -80,7 +80,6 @@
 }
 .head-info {
   height: 4rem;
-  position: absolute;
   display: flex;
   align-items: center;
   margin-left: 4rem;
@@ -96,7 +95,9 @@
     line-height: 1.5;
   }
 }
-
+.site-info {
+  color: #aaa;
+}
 @media (max-width: 650px) {
   .head-info {
     display: none;

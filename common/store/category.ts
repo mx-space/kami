@@ -1,12 +1,13 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-14 21:19:46
- * @LastEditTime: 2020-08-04 12:59:01
+ * @LastEditTime: 2021-02-04 13:53:39
  * @LastEditors: Innei
- * @FilePath: /mx-web/common/store/category.ts
+ * @FilePath: /web/common/store/category.ts
  * @Coding with Love
  */
 
+import { uniqBy } from 'lodash'
 import { makeAutoObservable } from 'mobx'
 import { CategoriesResp, CategoryModel } from 'models/category'
 import { appStore } from '.'
@@ -27,17 +28,21 @@ export default class CategoryStore {
 
   setCategory(categories: CategoryModel[]) {
     const postMenu = appStore.menu.find((menu) => menu.type === 'Post')
+    if (!postMenu || !postMenu.subMenu) {
+      return
+    }
     const models: MenuModel[] = categories.map((category) => {
       const { _id, slug, name } = category
       return {
         title: name,
         _id,
-        path: '/category/[slug]',
-        as: '/category/' + slug,
+
+        path: '/category/' + slug,
         type: 'Custom',
       }
     })
-    postMenu?.subMenu!.push(...models)
+    const old = postMenu.subMenu
+    postMenu.subMenu = uniqBy([...models, ...old!], '_id')
     this.categories = categories
   }
   async updateCategory() {

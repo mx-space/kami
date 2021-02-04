@@ -1,4 +1,5 @@
 import configs from 'configs'
+import { uniqBy, uniqWith } from 'lodash'
 import { makeAutoObservable } from 'mobx'
 import { Seo } from 'models/aggregate'
 import { isClientSide } from 'utils'
@@ -53,18 +54,21 @@ export default class AppStore {
 
   setPage(pages: PageModel[]) {
     const homeMenu = this.menu.find((menu) => menu.type === 'Home')
+    if (!homeMenu || !homeMenu.subMenu) {
+      return
+    }
     const models: MenuModel[] = pages.map((page) => {
       const { title, _id, slug } = page
       return {
         title,
         _id,
-        path: '/[page]',
-        as: '/' + slug,
+        path: '/' + slug,
         type: 'Page',
       }
     })
 
-    homeMenu?.subMenu!.push(...models)
+    const old = homeMenu.subMenu
+    homeMenu.subMenu = uniqBy([...old, ...models], '_id')
   }
 
   updateViewport() {

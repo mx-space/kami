@@ -1,5 +1,6 @@
 // import { animateUriFactory } from 'animate-uri/publish/index.esm'
 import 'assets/styles/main.scss'
+import { DropdownProvider } from 'common/context/dropdown'
 import { InitialContext } from 'common/context/InitialDataContext'
 import Loader from 'components/Loader'
 import configs from 'configs'
@@ -340,7 +341,9 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
 
   return (
     <InitialContext.Provider value={initData}>
-      <Content initData={initData}>{Comp}</Content>
+      <DropdownProvider>
+        <Content initData={initData}>{Comp}</Content>
+      </DropdownProvider>
     </InitialContext.Provider>
   )
 }

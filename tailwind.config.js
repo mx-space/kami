@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2021-02-03 20:37:04
- * @LastEditTime: 2021-02-03 20:40:59
+ * @LastEditTime: 2021-02-04 12:37:52
  * @LastEditors: Innei
  * @FilePath: /web/tailwind.config.js
  * @Mark: Coding with Love
@@ -52,7 +52,24 @@ module.exports = {
         100: 100,
         auto: 'auto',
       },
-      colors: {},
+      colors: {
+        red: 'var(--red)',
+        yellow: 'var(--yellow)',
+        blue: 'var(--blue)',
+        green: 'var(--green)',
+        brown: 'var(--brown)',
+        'light-brown': 'var(--light-brown)',
+        purple: 'var(--purple)',
+        'light-bg': 'var(--light-bg)',
+        'light-font': 'var(--light-font)',
+        'bg-opacity': 'var(--bg-opacity)',
+        gray: 'var(--gray)',
+        shizuku: {
+          text: 'var(--shizuku-text-color)',
+          theme: 'var(--shizuku-theme-color)',
+          bg: 'var(--shizuku-background-color)',
+        },
+      },
     },
   },
   variants: {},
