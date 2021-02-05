@@ -105,7 +105,7 @@
     "postcss": "8.2.4",
     "postcss-flexbugs-fixes": "5.0.2",
     "postcss-import": "13.0.0",
-    "postcss-loader": "4.2.0",
+    "postcss-loader": "5.0.0",
     "postcss-nested": "5.0.3",
     "postcss-preset-env": "6.7.0",
     "prettier": "2.2.1",
