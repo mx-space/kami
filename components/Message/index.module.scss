@@ -36,12 +36,18 @@
 
 .container {
   position: fixed;
-  top: 8px;
   right: 0;
+  top: 8px;
   left: 0;
   z-index: 999;
   user-select: none;
   pointer-events: none;
+}
+
+@media (max-width: 568px) {
+  .container {
+    top: calc(3.5rem + 8px);
+  }
 }
 
 .rotate {

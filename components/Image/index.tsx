@@ -38,8 +38,7 @@ const Image: FC<
   }
 > = observer(({ src, alt, placeholderRef, popup = false }) => {
   const [loaded, setLoad] = useState(false)
-  const { appStore } = useStore()
-  const isMobile = appStore.viewport.mobile
+
   useEffect(() => {
     if (src) {
       const image = new window.Image()
@@ -74,19 +73,9 @@ const Image: FC<
     <>
       <div className={classNames('lazyload-image', !loaded && 'image-hide')}>
         {popup ? (
-          isMobile ? (
-            <img
-              src={src}
-              alt={alt}
-              onClick={() => {
-                window.open(src)
-              }}
-            />
-          ) : (
-            <Zoom overlayBgColorEnd={'var(--light-bg)'} zoomMargin={50}>
-              <img src={src} alt={alt} />
-            </Zoom>
-          )
+          <Zoom overlayBgColorEnd={'var(--light-bg)'} zoomMargin={50}>
+            <img src={src} alt={alt} />
+          </Zoom>
         ) : (
           <img src={src} alt={alt} />
         )}

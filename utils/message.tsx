@@ -1,3 +1,11 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-09-25 21:36:04
+ * @LastEditTime: 2021-02-07 20:30:31
+ * @LastEditors: Innei
+ * @FilePath: /web/utils/message.tsx
+ * @Mark: Coding with Love
+ */
 import {
   Message,
   MessageContainer,
@@ -13,6 +21,11 @@ const getContainerNode: () => HTMLElement = () => {
     return
   }
   if (!containerNode) {
+    const $root = document.getElementById(MessageContainerPrefixId)
+    if ($root) {
+      containerNode = $root
+      return $root
+    }
     const $f = document.createDocumentFragment()
     ReactDOM.render(<MessageContainer />, $f)
     document.body.appendChild($f)
@@ -43,18 +56,34 @@ const message: MessageInstance = {}
       const container = getContainerNode()
 
       const fragment = document.createDocumentFragment()
-
+      // `time` not millisecond because antd-message implementation, please times 1000
       ReactDOM.render(
         <Message type={type as any} duration={time} message={message} />,
         fragment,
       )
+      setTimeout(() => {
+        cleanEmptyMessageWrapper()
+      }, time * 1000)
       container.appendChild(fragment)
       return fragment
       // eslint-disable-next-line no-empty
     } catch {}
   }
 })
+const cleanEmptyMessageWrapper = () => {
+  const $root = getContainerNode()
+  for (let i = 0; i < $root.children.length; i++) {
+    const $item = $root.children.item(i)
 
+    if (!$item) {
+      continue
+    }
+    const isEmpty = ($item as HTMLElement).innerHTML === ''
+    if (isEmpty) {
+      $root.removeChild($item)
+    }
+  }
+}
 export { message }
 if ('window' in globalThis) {
   // @ts-ignore

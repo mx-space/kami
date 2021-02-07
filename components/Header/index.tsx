@@ -1,23 +1,21 @@
 /*
  * @Author: Innei
  * @Date: 2021-02-03 20:33:57
- * @LastEditTime: 2021-02-07 16:03:01
+ * @LastEditTime: 2021-02-07 20:23:46
  * @LastEditors: Innei
  * @FilePath: /web/components/Header/index.tsx
  * @Mark: Coding with Love
  */
-import { faListUl } from '@fortawesome/free-solid-svg-icons'
+import { faListUl, faMinus, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
-import { DisposerMethodsType, useDropdown } from 'common/context/dropdown'
 import { useInitialData } from 'common/context/InitialDataContext'
 import { useStore } from 'common/store'
 import { DropdownBase } from 'components/Dropdown'
 import { LikeButton } from 'components/LikeButton'
 import { CustomLogo as Logo } from 'components/Logo'
 import { OverLay } from 'components/Overlay'
-import { throttle } from 'lodash'
-import { makeAutoObservable, reaction } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
@@ -135,10 +133,13 @@ const _HeaderDrawer: FC<{ show: boolean; onExit: () => void }> = memo(
         <OverLay show={show} onClose={onExit}></OverLay>
         <div
           className={classNames(styles['drawer'], show ? styles['show'] : null)}
-          onClick={(e) => {
-            console.log(e.target, (e.target as HTMLElement).tagName)
-          }}
         >
+          <div className="pb-4 text-right">
+            <span className={'p-4 inline-block -mr-5 -mt-4'} onClick={onExit}>
+              <FontAwesomeIcon icon={faTimes} />
+            </span>
+          </div>
+
           {children}
         </div>
       </Fragment>,
@@ -155,12 +156,7 @@ class Menu {
   selection: number | null = null
 }
 const menu = new Menu()
-reaction(
-  () => menu.selection,
-  (selection) => {
-    console.log(selection)
-  },
-)
+
 const MenuList: FC<{ showSub?: boolean }> = observer(({ showSub }) => {
   const { appStore } = useStore()
   const groupRef = useRef<HTMLUListElement>(null)
@@ -194,19 +190,22 @@ const MenuList: FC<{ showSub?: boolean }> = observer(({ showSub }) => {
       }
     }
   }, [router])
-  const ballOffsetLeft = useMemo(() => {
+  const [ballOffsetLeft, setBallOffsetLeft] = useState(0)
+  useEffect(() => {
     if (!groupRef.current || typeof ballIndex === 'undefined') {
       return
     }
     const $group = groupRef.current
-    const $child = $group.children
-      .item(ballIndex)
-      ?.children.item(0) as HTMLElement
+    const $child = $group.children.item(ballIndex) as HTMLElement
+
     // console.log($child)
 
-    return $child.offsetLeft + $child.getBoundingClientRect().width / 2
-  }, [ballIndex, groupRef.current])
+    setBallOffsetLeft(
+      $child.offsetLeft + $child.getBoundingClientRect().width / 2,
+    )
+  }, [ballIndex])
 
+  // console.log(ballOffsetLeft, ballIndex)
   return (
     <ul className={styles['link-group']} ref={groupRef}>
       {appStore.menu.map((m, selection) => {
@@ -317,7 +316,8 @@ export const _Header: FC = observer(() => {
           className={classNames(
             styles['nav-container'],
             appStore.headerNav.show &&
-              appStore.scrollDirection == 'down' &&
+              (appStore.scrollDirection == 'down' ||
+                appStore.viewport.mobile) &&
               appStore.isOverFirstScreenHalfHeight
               ? styles['toggle']
               : null,
