@@ -126,3 +126,10 @@
     display: block;
   }
 }
+
+.fake-header {
+  z-index: 4;
+  background: unset;
+  box-shadow: unset;
+  backdrop-filter: unset;
+}

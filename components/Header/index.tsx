@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2021-02-03 20:33:57
- * @LastEditTime: 2021-02-07 15:53:40
+ * @LastEditTime: 2021-02-07 16:03:01
  * @LastEditors: Innei
  * @FilePath: /web/components/Header/index.tsx
  * @Mark: Coding with Love
@@ -273,8 +273,8 @@ const HeaderFake: FC = observer(() => {
       className={classNames(
         styles['header'],
         'header-top-navbar overflow-visible',
+        styles['fake-header'],
       )}
-      style={{ zIndex: 4 }}
     >
       <nav
         className={classNames(
