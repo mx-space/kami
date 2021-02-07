@@ -22,7 +22,19 @@ export type DropDownProps = {
   onLeave: () => void
   onEnter?: () => void
 }
-
+export const DropdownBase: FC<
+  React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+> = (props) => {
+  const { className, ...rest } = props
+  return (
+    <div
+      className={classNames('fixed', styles['dropdown'], className)}
+      {...rest}
+    >
+      {props.children}
+    </div>
+  )
+}
 const _DropDown: FC<DropDownProps> = (props) => {
   const { onLeave, width, x, y } = props
 

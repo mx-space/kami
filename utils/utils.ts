@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-20 20:51:31
- * @LastEditTime: 2021-02-03 21:25:58
+ * @LastEditTime: 2021-02-07 14:50:21
  * @LastEditors: Innei
  * @FilePath: /web/utils/utils.ts
  * @Coding with Love
@@ -9,6 +9,8 @@
 
 import classNames from 'classnames'
 import shuffle from 'lodash/shuffle'
+import dynamic from 'next/dynamic'
+import { ComponentType } from 'react'
 import RemoveMarkdown from 'remove-markdown'
 
 const animeImages = [
@@ -122,3 +124,6 @@ export const combineClassName = (scss: any, css: any) => {
 
   // return (key: string) => classNames(scss[key], css[key])
 }
+
+export const NoSSR = <T>(comp: ComponentType<T>) =>
+  dynamic(() => Promise.resolve(comp), { ssr: false })

@@ -64,7 +64,9 @@
 }
 
 .link-item {
-  @apply inline-flex items-center ml-8 h-full cursor-pointer py-4;
+  @apply inline-flex items-center px-4 cursor-pointer;
+
+  height: 4rem;
 }
 
 .link-title {
@@ -108,4 +110,7 @@
 
 .link-section {
   @apply mb-4;
+}
+.nav-fake {
+  @apply overflow-visible;
 }

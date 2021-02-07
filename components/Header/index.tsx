@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2021-02-03 20:33:57
- * @LastEditTime: 2021-02-04 17:16:44
+ * @LastEditTime: 2021-02-07 15:53:40
  * @LastEditors: Innei
  * @FilePath: /web/components/Header/index.tsx
  * @Mark: Coding with Love
@@ -9,13 +9,15 @@
 import { faListUl } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
-import { useDropdown } from 'common/context/dropdown'
+import { DisposerMethodsType, useDropdown } from 'common/context/dropdown'
 import { useInitialData } from 'common/context/InitialDataContext'
 import { useStore } from 'common/store'
+import { DropdownBase } from 'components/Dropdown'
 import { LikeButton } from 'components/LikeButton'
 import { CustomLogo as Logo } from 'components/Logo'
 import { OverLay } from 'components/Overlay'
 import { throttle } from 'lodash'
+import { makeAutoObservable, reaction } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
@@ -30,7 +32,7 @@ import React, {
   useState,
 } from 'react'
 import { createPortal } from 'react-dom'
-import { combineClassName, Rest } from 'utils'
+import { combineClassName, NoSSR, Rest } from 'utils'
 import { message } from 'utils/message'
 import css from './index.module.css'
 import scss from './index.module.scss'
@@ -145,15 +147,24 @@ const _HeaderDrawer: FC<{ show: boolean; onExit: () => void }> = memo(
   },
 )
 
-const HeaderDrawer = dynamic(() => Promise.resolve(_HeaderDrawer), {
-  ssr: false,
-})
-export const _Header: FC = observer(() => {
-  const {
-    seo: { title },
-  } = useInitialData()
+const HeaderDrawer = NoSSR(_HeaderDrawer)
+class Menu {
+  constructor() {
+    makeAutoObservable(this)
+  }
+  selection: number | null = null
+}
+const menu = new Menu()
+reaction(
+  () => menu.selection,
+  (selection) => {
+    console.log(selection)
+  },
+)
+const MenuList: FC<{ showSub?: boolean }> = observer(({ showSub }) => {
+  const { appStore } = useStore()
+  const groupRef = useRef<HTMLUListElement>(null)
   const router = useRouter()
-  const { appStore, userStore } = useStore()
 
   const ballIndex = useMemo(() => {
     const asPath = router.asPath
@@ -183,10 +194,6 @@ export const _Header: FC = observer(() => {
       }
     }
   }, [router])
-
-  // console.log(ballIndex)
-  const groupRef = useRef<HTMLUListElement>(null)
-
   const ballOffsetLeft = useMemo(() => {
     if (!groupRef.current || typeof ballIndex === 'undefined') {
       return
@@ -199,180 +206,213 @@ export const _Header: FC = observer(() => {
 
     return $child.offsetLeft + $child.getBoundingClientRect().width / 2
   }, [ballIndex, groupRef.current])
-  const { present } = useDropdown()
 
-  const [drawerOpen, setDrawerOpen] = useState(false)
+  return (
+    <ul className={styles['link-group']} ref={groupRef}>
+      {appStore.menu.map((m, selection) => {
+        const isFontAwesomeIconDefine =
+          m.icon && m.icon.icon && m.icon.prefix && m.icon.iconName
 
+        return (
+          <div className="relative" key={m.title}>
+            <Link href={m.path}>
+              <a>
+                <li
+                  className={styles['link-item']}
+                  onMouseEnter={() => {
+                    menu.selection = selection
+                  }}
+                  onMouseLeave={() => {
+                    menu.selection = null
+                  }}
+                >
+                  {isFontAwesomeIconDefine && (
+                    <FontAwesomeIcon icon={m.icon!} />
+                  )}
+                  <span className={styles['link-title']}>{m.title}</span>
+                </li>
+              </a>
+            </Link>
+            {showSub && m.subMenu && (
+              <DropdownBase
+                className={classNames(
+                  styles['sub-dropdown'],
+                  selection === menu.selection ? styles['active'] : null,
+                )}
+              >
+                {m.subMenu.map((m) => {
+                  return (
+                    <Link href={m.path} key={m.path}>
+                      <a>
+                        <li key={m.title}>
+                          {m.icon && <FontAwesomeIcon icon={m.icon} />}
+                          <span>{m.title}</span>
+                        </li>
+                      </a>
+                    </Link>
+                  )
+                })}
+              </DropdownBase>
+            )}
+          </div>
+        )
+      })}
+
+      {ballOffsetLeft && (
+        <div
+          className={styles['anchor-ball']}
+          style={{ left: ballOffsetLeft + 'px' }}
+        ></div>
+      )}
+    </ul>
+  )
+})
+const HeaderFake: FC = observer(() => {
   return (
     <header
       className={classNames(
         styles['header'],
-        'header-top-navbar',
-        !appStore.headerNav.show &&
-          appStore.isOverFirstScreenHeight &&
-          appStore.viewport.mobile
-          ? styles['hide']
-          : null,
+        'header-top-navbar overflow-visible',
       )}
+      style={{ zIndex: 4 }}
     >
       <nav
         className={classNames(
           styles['nav-container'],
-          appStore.headerNav.show &&
-            appStore.scrollDirection == 'down' &&
-            appStore.isOverFirstScreenHalfHeight
-            ? styles['toggle']
+          styles['nav-fake'],
+          'justify-end flex',
+        )}
+      >
+        <MenuList showSub />
+      </nav>
+    </header>
+  )
+})
+export const _Header: FC = observer(() => {
+  const {
+    seo: { title },
+  } = useInitialData()
+  const { appStore, userStore } = useStore()
+
+  // console.log(ballIndex)
+  const router = useRouter()
+  // const { present, wantToDisposer } = useDropdown()
+
+  const [drawerOpen, setDrawerOpen] = useState(false)
+
+  return (
+    <>
+      <header
+        className={classNames(
+          styles['header'],
+          'header-top-navbar',
+          !appStore.headerNav.show &&
+            appStore.isOverFirstScreenHeight &&
+            appStore.viewport.mobile
+            ? styles['hide']
             : null,
         )}
       >
-        <div className={classNames(styles['head-swiper'], 'justify-between')}>
-          <div
-            className={'flex items-center justify-center cursor-pointer'}
-            onClick={() => {
-              router.push('/')
-            }}
-          >
-            <div
-              className={styles['header-logo']}
-              onDoubleClick={() => {
-                if (!userStore.isLogged) {
-                  router.push('/login')
-                }
-              }}
-            >
-              <Logo />
-            </div>
-            <h1 className={styles['title']}>{title}</h1>
-          </div>
-
-          <div
-            className={styles['more-button']}
-            onClick={() => {
-              setDrawerOpen(true)
-            }}
-          >
-            <FontAwesomeIcon icon={faListUl} />
-          </div>
-          <ul className={styles['link-group']} ref={groupRef}>
-            {appStore.menu.map((m) => {
-              const isFontAwesomeIconDefine =
-                m.icon && m.icon.icon && m.icon.prefix && m.icon.iconName
-
-              const onMouseEnter = throttle(
-                (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
-                  if (!m.subMenu || !m.subMenu.length) {
-                    return
-                  }
-                  const menu = m.subMenu!
-                  const {
-                    x,
-                    y,
-                    width,
-                  } = (e.target as HTMLElement).getBoundingClientRect()
-                  present(
-                    <Fragment>
-                      {menu.map((m) => {
-                        return (
-                          <Link href={m.path} key={m.path}>
-                            <a>
-                              <li>
-                                {m.icon && <FontAwesomeIcon icon={m.icon} />}
-                                <span>{m.title}</span>
-                              </li>
-                            </a>
-                          </Link>
-                        )
-                      })}
-                    </Fragment>,
-                    {
-                      x: x + width / 2 - 150 / 2,
-                      y: y + 50,
-                      width: 150,
-                      id: m.title,
-                      autoHideDuration: 5000,
-                    },
-                  )
-                },
-                50,
-              )
-              return (
-                <Link href={m.path} key={m.title}>
-                  <a onMouseEnter={onMouseEnter}>
-                    <li className={styles['link-item']}>
-                      {isFontAwesomeIconDefine && (
-                        <FontAwesomeIcon icon={m.icon!} />
-                      )}
-                      <span className={styles['link-title']}>{m.title}</span>
-                    </li>
-                  </a>
-                </Link>
-              )
-            })}
-
-            {ballOffsetLeft && (
-              <div
-                className={styles['anchor-ball']}
-                style={{ left: ballOffsetLeft + 'px' }}
-              ></div>
-            )}
-          </ul>
-        </div>
-        <div
+        <nav
           className={classNames(
-            styles['head-swiper'],
-            styles['swiper-metawrapper'],
-            'flex justify-between',
+            styles['nav-container'],
+            appStore.headerNav.show &&
+              appStore.scrollDirection == 'down' &&
+              appStore.isOverFirstScreenHalfHeight
+              ? styles['toggle']
+              : null,
           )}
         >
-          <div className={styles['head-info']}>
-            <div className={styles['desc']}>
-              <div className={styles['meta']}>{appStore.headerNav.meta}</div>
-              <div className={styles['title']}>{appStore.headerNav.title}</div>
+          <div className={classNames(styles['head-swiper'], 'justify-between')}>
+            <div
+              className={'flex items-center justify-center cursor-pointer'}
+              onClick={() => {
+                router.push('/')
+              }}
+            >
+              <div
+                className={styles['header-logo']}
+                onDoubleClick={() => {
+                  if (!userStore.isLogged) {
+                    router.push('/login')
+                  }
+                }}
+              >
+                <Logo />
+              </div>
+              <h1 className={styles['title']}>{title}</h1>
             </div>
+
+            <div
+              className={styles['more-button']}
+              onClick={() => {
+                setDrawerOpen(true)
+              }}
+            >
+              <FontAwesomeIcon icon={faListUl} />
+            </div>
+            <MenuList />
           </div>
-          <div className={styles['right-wrapper']}>
-            <HeaderActionBasedOnRouterPath />
-            <div className={styles['site-info']}>{title}</div>
-          </div>
-        </div>
-      </nav>
-      <HeaderDrawer
-        show={drawerOpen}
-        onExit={() => {
-          setDrawerOpen(false)
-        }}
-      >
-        {appStore.menu.map((m) => {
-          return (
-            <div key={m.title} className={styles['link-section']}>
-              <Link href={m.path}>
-                <a>
-                  <div className={styles['parent']}>
-                    {m.icon && <FontAwesomeIcon icon={m.icon} />}
-                    <span>{m.title}</span>
-                  </div>
-                </a>
-              </Link>
-              <div className={styles['children-wrapper']}>
-                {m.subMenu &&
-                  m.subMenu.map((m) => {
-                    return (
-                      <Link href={m.path} key={m.title}>
-                        <a>
-                          <div className={styles['children']}>
-                            {m.icon && <FontAwesomeIcon icon={m.icon} />}
-                            <span>{m.title}</span>
-                          </div>
-                        </a>
-                      </Link>
-                    )
-                  })}
+          <div
+            className={classNames(
+              styles['head-swiper'],
+              styles['swiper-metawrapper'],
+              'flex justify-between',
+            )}
+          >
+            <div className={styles['head-info']}>
+              <div className={styles['desc']}>
+                <div className={styles['meta']}>{appStore.headerNav.meta}</div>
+                <div className={styles['title']}>
+                  {appStore.headerNav.title}
+                </div>
               </div>
             </div>
-          )
-        })}
-      </HeaderDrawer>
-    </header>
+            <div className={styles['right-wrapper']}>
+              <HeaderActionBasedOnRouterPath />
+              <div className={styles['site-info']}>{title}</div>
+            </div>
+          </div>
+        </nav>
+        <HeaderDrawer
+          show={drawerOpen}
+          onExit={() => {
+            setDrawerOpen(false)
+          }}
+        >
+          {appStore.menu.map((m) => {
+            return (
+              <div key={m.title} className={styles['link-section']}>
+                <Link href={m.path}>
+                  <a>
+                    <div className={styles['parent']}>
+                      {m.icon && <FontAwesomeIcon icon={m.icon} />}
+                      <span>{m.title}</span>
+                    </div>
+                  </a>
+                </Link>
+                <div className={styles['children-wrapper']}>
+                  {m.subMenu &&
+                    m.subMenu.map((m) => {
+                      return (
+                        <Link href={m.path} key={m.title}>
+                          <a>
+                            <div className={styles['children']}>
+                              {m.icon && <FontAwesomeIcon icon={m.icon} />}
+                              <span>{m.title}</span>
+                            </div>
+                          </a>
+                        </Link>
+                      )
+                    })}
+                </div>
+              </div>
+            )
+          })}
+        </HeaderDrawer>
+      </header>
+      <HeaderFake />
+    </>
   )
 })
 

@@ -38,8 +38,6 @@
     background-color: var(--yellow);
   }
 }
-.link-item {
-}
 
 .nav-container {
   height: 4rem;
@@ -104,4 +102,27 @@
 .swiper-metawrapper {
   max-width: 65em;
   margin: auto;
+}
+
+.sub-dropdown {
+  width: 130px;
+  left: -50%;
+  top: 4rem;
+  z-index: 19;
+  position: absolute;
+  transform: perspective(600px) rotateX(-20deg);
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s, visibility 0.3s;
+  visibility: hidden;
+  &.active,
+  &:hover {
+    opacity: 1;
+    visibility: visible;
+    transform: perspective(0) rotateX(0);
+  }
+
+  a {
+    position: relative;
+    display: block;
+  }
 }

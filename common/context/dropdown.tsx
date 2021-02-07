@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2021-02-04 13:27:29
- * @LastEditTime: 2021-02-04 14:36:41
+ * @LastEditTime: 2021-02-05 15:50:05
  * @LastEditors: Innei
  * @FilePath: /web/common/context/dropdown.tsx
  * @Mark: Coding with Love
@@ -19,10 +19,20 @@ import {
   useState,
 } from 'react'
 
-export const DropdownContext = createContext<{
-  present(el: JSX.Element, option: Partial<OptionType>): void
-}>({
-  present() {},
+export type DisposerMethodsType = {
+  disposer: Function
+  wantToDisposer: Function
+}
+export const DropdownContext = createContext<
+  {
+    present(el: JSX.Element, option: Partial<OptionType>): DisposerMethodsType
+  } & DisposerMethodsType
+>({
+  present() {
+    return { disposer() {}, wantToDisposer() {} }
+  },
+  disposer() {},
+  wantToDisposer() {},
 })
 
 export const useDropdown = () => useContext(DropdownContext)
@@ -43,24 +53,24 @@ export const DropdownProvider: FC = memo((props) => {
   const [active, setActive] = useState(false)
 
   useEffect(() => {
-    setActive(false)
+    // setActive(false)
+    timer = clearTimeout(timer)
   }, [el])
   useEffect(() => {
     if (active) {
       timer = clearTimeout(timer)
+      setActive(false)
     }
   }, [active])
   useEffect(() => {
     if (
       option.autoHideDuration &&
-      typeof option.autoHideDuration === 'number'
+      typeof option.autoHideDuration === 'number' &&
+      !timer
     ) {
       timer = setTimeout(() => {
         setEl(null)
       }, option.autoHideDuration)
-    }
-    return () => {
-      timer = clearTimeout(timer)
     }
   }, [option, el])
 
@@ -77,13 +87,30 @@ export const DropdownProvider: FC = memo((props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router])
   const disposer = () => setEl(null)
+
+  const disposerMethods: DisposerMethodsType = {
+    disposer() {
+      return disposer()
+    },
+
+    wantToDisposer() {
+      if (active) {
+        return
+      } else {
+        disposer()
+      }
+    },
+  }
+
   return (
     <Fragment>
-      <RcQueueAnim type={'top'}>
+      <RcQueueAnim type={'bottom'}>
         {el ? (
           <DropDown
             onLeave={disposer}
-            onEnter={() => setActive(true)}
+            onEnter={() => {
+              setActive(true)
+            }}
             {...option}
             key={option.id}
           >
@@ -98,7 +125,10 @@ export const DropdownProvider: FC = memo((props) => {
 
             // @ts-ignore
             setOption(op)
+
+            return disposerMethods
           },
+          ...disposerMethods,
         }}
       >
         {props.children}
