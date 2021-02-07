@@ -71,14 +71,16 @@ const Content: FC<DataModel> = observer((props) => {
     categoryStore: category,
     pageStore: pages,
   } = useStore()
-  const handleScroll = useCallback(
-    throttle(() => {
+
+  const handleScroll = throttle(
+    () => {
       const currentY = document.documentElement.scrollTop
       const direction = _currentY >= currentY ? 'up' : 'down'
       app.updatePosition(direction)
       _currentY = currentY
-    }, 13),
-    [],
+    },
+    50,
+    { leading: true },
   )
 
   useMount(() => {
