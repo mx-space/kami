@@ -68,7 +68,7 @@
     "remove-markdown": "0.3.0",
     "sitemap": "6.3.5",
     "socket.io-client": "2.4.0",
-    "tailwindcss": "2.0.2",
+    "tailwindcss": "2.0.3",
     "ua-parser-js": "0.7.23",
     "validator": "13.5.2"
   },
