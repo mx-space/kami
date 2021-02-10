@@ -7517,10 +7517,10 @@ react-use@13.27.0:
     ts-easing "^0.2.0"
     tslib "^1.10.0"
 
-react-use@17.1.0:
-  version "17.1.0"
-  resolved "https://registry.yarnpkg.com/react-use/-/react-use-17.1.0.tgz#a2db05f7cca2f09a6b90b2151cd4c620e9582fe8"
-  integrity sha512-BVVG5FWXYhfkQcGhtSYNx3wPh5bvOZieH2iq1h6/WYTDCScade1JqoM5XRHPkYXfFzAzhb8QlAtt9Suj8yAumA==
+react-use@17.1.1:
+  version "17.1.1"
+  resolved "https://registry.yarnpkg.com/react-use/-/react-use-17.1.1.tgz#f4c3667f1833e1848417dffe3538a3ec9d7fdcfe"
+  integrity sha512-DfDRlODcjO8shjz37cjyS99c+JDXvMNvasGiHNCGUpSp1ZEU+dxthf5Cvz0GuUFNGZayu81t86IjolsX/Fj+8g==
   dependencies:
     "@xobotyi/scrollbar-width" "^1.9.5"
     copy-to-clipboard "^3.3.1"
