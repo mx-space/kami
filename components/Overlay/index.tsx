@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-09-17 14:02:24
- * @LastEditTime: 2021-02-04 14:13:50
+ * @LastEditTime: 2021-02-11 15:42:31
  * @LastEditors: Innei
  * @FilePath: /web/components/Overlay/index.tsx
  * @Mark: Coding with Love
@@ -11,15 +11,20 @@ import { QueueAnim } from 'components/Anime'
 import dynamic from 'next/dynamic'
 import { FC, useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import { isServerSide } from 'utils'
 import styles from './index.module.scss'
 
 interface OverLayProps {
   onClose: () => void
   center?: boolean
+  darkness?: number
 }
 
-const _OverLay: FC<OverLayProps> = ({ children, onClose, center }) => {
+const _OverLay: FC<OverLayProps> = ({
+  children,
+  onClose,
+  center,
+  darkness,
+}) => {
   useEffect(() => {
     document.documentElement.style.overflow = 'hidden'
 
@@ -34,6 +39,11 @@ const _OverLay: FC<OverLayProps> = ({ children, onClose, center }) => {
       <QueueAnim type="alpha">
         <div
           className={styles['overlay']}
+          style={
+            darkness
+              ? { backgroundColor: `rgba(0,0,0,${darkness})` }
+              : undefined
+          }
           onClick={onClose}
           key="overlay"
         ></div>

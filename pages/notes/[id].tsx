@@ -7,6 +7,7 @@ import CommentWrap from 'components/Comment'
 import { LikeButton } from 'components/LikeButton'
 import Markdown from 'components/MD-render'
 import { NumberRecorder } from 'components/NumberRecorder'
+import { OverLay } from 'components/Overlay'
 import { RelativeTime } from 'components/Time'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { NoteLayout } from 'layouts/NoteLayout'
@@ -95,7 +96,7 @@ const NoteView: NextPage<NoteViewProps> = observer(
           return
         }
         e.preventDefault()
-        message.warn('禁止复制!')
+        setShowCopyWarn(true)
       }
 
       return () => {
@@ -237,6 +238,7 @@ const NoteView: NextPage<NoteViewProps> = observer(
       }
     }, [props.data.music, props.data.nid])
 
+    const [showCopyWarn, setShowCopyWarn] = useState(false)
     return (
       <>
         <Seo
@@ -318,7 +320,19 @@ const NoteView: NextPage<NoteViewProps> = observer(
             </section>
           )}
         </NoteLayout>
-
+        <OverLay
+          onClose={() => {
+            setShowCopyWarn(false)
+          }}
+          show={showCopyWarn}
+          center
+          darkness={0.8}
+        >
+          <h1 className={'mt-0 text-red pointer-events-none'}>注意: </h1>
+          <div className="mb-0 text-white text-opacity-80 pointer-events-none">
+            <p>本文章为站长原创, 保留版权所有, 禁止复制.</p>
+          </div>
+        </OverLay>
         <QueueAnim delay={500} type={'alpha'}>
           <ArticleLayout
             style={{ minHeight: 'unset', paddingTop: '0' }}
