@@ -8,6 +8,7 @@
  */
 
 import classNames from 'classnames'
+import type { ServerResponse } from 'http'
 import shuffle from 'lodash/shuffle'
 import dynamic from 'next/dynamic'
 import { ComponentType } from 'react'
@@ -127,3 +128,14 @@ export const combineClassName = (scss: any, css: any) => {
 
 export const NoSSR = <T>(comp: ComponentType<T>) =>
   dynamic(() => Promise.resolve(comp), { ssr: false })
+
+// for api server
+export const writeBody = (
+  res: ServerResponse,
+  bodyJSON: any,
+  code?: number,
+) => {
+  res.writeHead(code ?? 200, { 'Content-Type': 'application/json' })
+  const json = JSON.stringify(bodyJSON)
+  res.end(json)
+}

@@ -1,3 +1,11 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-12-18 12:15:37
+ * @LastEditTime: 2021-02-11 15:26:45
+ * @LastEditors: Innei
+ * @FilePath: /web/pages/favorite/bangumi.tsx
+ * @Mark: Coding with Love
+ */
 import { FavoriteBangumiType } from '@mx-space/extra'
 import axios from 'axios'
 import configs from 'configs'
@@ -58,11 +66,18 @@ const BangumiView: NextPage<{ data: FavoriteBangumiType[] }> = (props) => {
   )
 }
 
-BangumiView.getInitialProps = async () => {
+BangumiView.getInitialProps = async (ctx) => {
+  const baseUrl = configs.url
   const $api = axios.create({
-    baseURL: process.env.BASEURL,
+    baseURL:
+      baseUrl ??
+      // @ts-ignore
+      (ctx.req?.connection?.encrypted ? 'https' : 'http') +
+        '://' +
+        ctx.req?.headers.host,
   })
-  const { data } = await $api.get('/_extra/bangumi', {
+
+  const { data } = await $api.get('/api/bilibili/bangumi', {
     params: {
       uid: configs.biliId,
     },

@@ -1,3 +1,11 @@
+/*
+ * @Author: Innei
+ * @Date: 2021-01-01 16:00:14
+ * @LastEditTime: 2021-02-11 13:30:08
+ * @LastEditors: Innei
+ * @FilePath: /web/pages/[page]/index.tsx
+ * @Mark: Coding with Love
+ */
 import { useStore } from 'common/store'
 import { CommentLazy } from 'components/Comment'
 import Markdown from 'components/MD-render'

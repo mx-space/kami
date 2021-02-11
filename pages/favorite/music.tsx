@@ -1,6 +1,15 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-09-17 14:02:24
+ * @LastEditTime: 2021-02-11 15:28:57
+ * @LastEditors: Innei
+ * @FilePath: /web/pages/favorite/music.tsx
+ * @Mark: Coding with Love
+ */
 import { PersonalPlayListType, PlayListType } from '@mx-space/extra'
 import axios from 'axios'
 import { SectionMusic } from 'components/SectionMusic'
+import configs from 'configs'
 import { NextPage } from 'next'
 import { observer } from 'utils/mobx'
 import { FavoriteNav } from '../../components/Navigation/nav'
@@ -44,11 +53,18 @@ const MusicView: NextPage<MusicProps> = (props) => {
   )
 }
 
-MusicView.getInitialProps = async () => {
+MusicView.getInitialProps = async (ctx) => {
+  const baseUrl = configs.url
   const $api = axios.create({
-    baseURL: process.env.BASEURL,
+    baseURL:
+      baseUrl ??
+      // @ts-ignore
+      (ctx.req?.connection?.encrypted ? 'https' : 'http') +
+        '://' +
+        ctx.req?.headers.host,
   })
-  const { data } = await $api.get('/_extra/music')
+
+  const { data } = await $api.get('/api/netease/music')
 
   return data as MusicProps
 }

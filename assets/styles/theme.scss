@@ -16,18 +16,7 @@ body {
   padding-top: 4em;
   background: url(https://gitee.com/xun7788/my-imagination/raw/master/cdn/background.png)
     top center fixed;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
   background-color: var(--light-bg);
-  opacity: 0;
-  transition: opacity 0.5s ease-in;
 }
 
 ::-webkit-scrollbar {
