@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2021-02-03 20:33:57
- * @LastEditTime: 2021-02-07 20:23:46
+ * @LastEditTime: 2021-02-11 12:51:46
  * @LastEditors: Innei
  * @FilePath: /web/components/Header/index.tsx
  * @Mark: Coding with Love
@@ -257,12 +257,12 @@ const MenuList: FC<{ showSub?: boolean }> = observer(({ showSub }) => {
         )
       })}
 
-      {ballOffsetLeft && (
+      {ballOffsetLeft ? (
         <div
           className={styles['anchor-ball']}
           style={{ left: ballOffsetLeft + 'px' }}
         ></div>
-      )}
+      ) : null}
     </ul>
   )
 })
