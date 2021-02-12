@@ -1,3 +1,11 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-09-28 21:46:27
+ * @LastEditTime: 2021-02-12 21:13:23
+ * @LastEditors: Innei
+ * @FilePath: /web/components/PostBlock/index.tsx
+ * @Mark: Coding with Love
+ */
 import classNames from 'classnames'
 import { useStore } from 'common/store'
 import { observer } from 'utils/mobx'
@@ -36,7 +44,7 @@ export const PostBlock: FC<Props> = observer((props) => {
   const hasImage = props.raw.images?.length > 0 && props.raw.images[0].src
   return (
     <>
-      <h1 className={styles.head}>
+      <h1 className={classNames(styles.head, 'headline')}>
         {d}
         <small>（{week}）</small>
         {!viewport?.mobile && (
@@ -72,6 +80,7 @@ export const PostBlock: FC<Props> = observer((props) => {
           </button>
         </section>
       </div>
+      <div className="pb-8"></div>
     </>
   )
 })
