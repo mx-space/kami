@@ -33,15 +33,6 @@ interface NoteViewProps {
 }
 
 const renderLines: FC<{ value: string }> = ({ value }) => {
-  // if (!props.children) {
-  //   return null
-  // }
-  // const isImage = !!((props.children as any)[0] as any)?.props?.src
-  // return (
-  //   <p className={isImage ? undefined : 'indent'}>
-  //     {isImage ? props.children : <span>{props.children}</span>}
-  //   </p>
-  // )
   return <span className="indent">{value}</span>
 }
 
@@ -52,6 +43,18 @@ const NoteView: NextPage<NoteViewProps> = observer(
 
     const router = useRouter()
     const { userStore, appStore, musicStore } = useStore()
+
+    useEffect(() => {
+      appStore.shareData = {
+        text: data.text,
+        title: data.title,
+        url: location.href,
+      }
+      return () => {
+        appStore.shareData = null
+      }
+    }, [data.text, data.title])
+
     useEffect(() => {
       update(props.data)
     }, [props.data])

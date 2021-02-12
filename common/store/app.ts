@@ -26,6 +26,9 @@ export default class AppStore {
     meta: '',
     show: false,
   }
+
+  shareData: { title: string; text: string; url: string } | null = null
+
   noteNid: null | number = null
 
   updatePosition(direction: 'up' | 'down') {

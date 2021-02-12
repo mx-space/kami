@@ -93,6 +93,8 @@
     color: var(--black);
     font-size: 1.2rem;
     line-height: 1.5;
+    flex-shrink: 1;
+    white-space: nowrap;
   }
 }
 .site-info {
@@ -132,4 +134,8 @@
   background: unset;
   box-shadow: unset;
   backdrop-filter: unset;
+}
+
+.right-wrapper {
+  flex-shrink: 0;
 }

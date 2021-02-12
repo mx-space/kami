@@ -47,6 +47,17 @@ export const PostView: NextPage<PostModel> = (props) => {
   }, [props])
 
   useEffect(() => {
+    appStore.shareData = {
+      text,
+      title,
+      url: location.href,
+    }
+    return () => {
+      appStore.shareData = null
+    }
+  }, [_id, text, title])
+
+  useEffect(() => {
     const handler = (data: PostModel) => {
       if (data._id === props._id) {
         if (

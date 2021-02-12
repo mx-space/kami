@@ -1,16 +1,23 @@
 /*
  * @Author: Innei
  * @Date: 2021-02-03 20:33:57
- * @LastEditTime: 2021-02-11 12:51:46
+ * @LastEditTime: 2021-02-12 20:12:33
  * @LastEditors: Innei
  * @FilePath: /web/components/Header/index.tsx
  * @Mark: Coding with Love
  */
-import { faListUl, faMinus, faTimes } from '@fortawesome/free-solid-svg-icons'
+import {
+  faListUl,
+  faMinus,
+  faShare,
+  faShareAltSquare,
+  faTimes,
+  IconDefinition,
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
 import { useInitialData } from 'common/context/InitialDataContext'
-import { useStore } from 'common/store'
+import { appStore, useStore } from 'common/store'
 import { DropdownBase } from 'components/Dropdown'
 import { LikeButton } from 'components/LikeButton'
 import { CustomLogo as Logo } from 'components/Logo'
@@ -82,15 +89,49 @@ const HeaderActionLikeButtonForNote: FC<{ id: number }> = memo((props) => {
     </div>
   )
 })
+
+const HeaderActionButtonWithIcon: FC<{
+  icon: IconDefinition
+  title: string
+  onClick: () => void
+}> = memo(({ icon, title, onClick }) => {
+  return (
+    <div
+      onClick={onClick}
+      className="flex items-center justify-center text-shizuku-text text-opacity-95"
+    >
+      <FontAwesomeIcon icon={icon} className={'mr-2'} />
+
+      <span className="flex-shrink-0">{title}</span>
+    </div>
+  )
+})
+const HeaderActionShareButton: FC = observer(() => {
+  const hasShare = 'share' in navigator
+  return hasShare && appStore.shareData ? (
+    <HeaderActionButtonsContainer>
+      <HeaderActionButton style={{ height: '2.5rem', width: '5rem' }}>
+        <HeaderActionButtonWithIcon
+          onClick={() => {
+            navigator
+              .share(appStore.shareData!)
+              .then(() => {})
+              .catch(() => {})
+          }}
+          icon={faShare}
+          title={'分享'}
+        />
+      </HeaderActionButton>
+    </HeaderActionButtonsContainer>
+  ) : null
+})
 const HeaderActionBasedOnRouterPath: FC = memo(() => {
   const router = useRouter()
-  const asPath = router.asPath
-
-  const firstPath = asPath.split('/')[1] || ''
+  const pathname = router.pathname
 
   const Comp = (() => {
-    switch (firstPath) {
-      case 'notes': {
+    switch (pathname) {
+      case '/notes/[id]': {
         const id = parseInt(router.query.id as any)
 
         if (id && typeof id === 'number') {
@@ -107,8 +148,19 @@ const HeaderActionBasedOnRouterPath: FC = memo(() => {
         }
         return null
       }
+
+      case '/[page]': {
+        return (
+          <Fragment>
+            <HeaderActionShareButton />
+            <span>/{router.query.page}</span>
+          </Fragment>
+        )
+      }
+      default: {
+        return <HeaderActionShareButton />
+      }
     }
-    return null
   })()
 
   return <Fragment>{Comp}</Fragment>
@@ -357,7 +409,7 @@ export const _Header: FC = observer(() => {
             className={classNames(
               styles['head-swiper'],
               styles['swiper-metawrapper'],
-              'flex justify-between',
+              'flex justify-between truncate',
             )}
           >
             <div className={styles['head-info']}>
@@ -416,5 +468,5 @@ export const _Header: FC = observer(() => {
   )
 })
 
-const Header = dynamic(() => Promise.resolve(_Header), { ssr: true })
+const Header = dynamic(() => Promise.resolve(_Header), { ssr: false })
 export default Header

@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2021-01-01 16:00:14
- * @LastEditTime: 2021-02-11 13:30:08
+ * @LastEditTime: 2021-02-12 20:04:17
  * @LastEditors: Innei
  * @FilePath: /web/pages/[page]/index.tsx
  * @Mark: Coding with Love
@@ -24,7 +24,16 @@ const Page: NextPage<PageRespDto> = (props) => {
   const { data } = props
   const { title, subtitle, text } = data
   const { appStore } = useStore()
-
+  useEffect(() => {
+    appStore.shareData = {
+      text,
+      title,
+      url: location.href,
+    }
+    return () => {
+      appStore.shareData = null
+    }
+  }, [text, title])
   useEffect(() => {
     appStore.headerNav = {
       title,
