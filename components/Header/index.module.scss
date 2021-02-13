@@ -29,8 +29,7 @@
     width: 6px;
     border-radius: 50%;
     background-color: currentColor;
-    transition: left 0.5s ease-in-out, opacity 0.3s, background-color 0.3s,
-      border 0.3s, width 0.3s, height 0.3s;
+    transition: all 0.3s;
     bottom: 8px;
     opacity: 0.3;
   }
