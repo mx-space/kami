@@ -7930,10 +7930,10 @@ react-lazy-images@1.1.0:
     react-intersection-observer "^6.1.0"
     unionize "^2.1.2"
 
-react-lazyload@3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/react-lazyload/-/react-lazyload-3.1.1.tgz#e355f3f3ae88e8fe8262800bc685a100f9580b3b"
-  integrity sha512-NWd+8TCrvNv7O+xY/lLd3vB1ThOAY8kuh3hY9fEpIlOgZ6RO/3q1SaYQeIYOQMSFltZhg++58hSfxzZRxlGpsw==
+react-lazyload@3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/react-lazyload/-/react-lazyload-3.2.0.tgz#497bd06a6dbd7015e3376e1137a67dc47d2dd021"
+  integrity sha512-zJlrG8QyVZz4+xkYZH5v1w3YaP5wEFaYSUWC4CT9UXfK75IfRAIEdnyIUF+dXr3kX2MOtL1lUaZmaQZqrETwgw==
 
 react-lifecycles-compat@^3.0.4:
   version "3.0.4"
