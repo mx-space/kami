@@ -20,6 +20,7 @@ import React, { FC, useCallback, useEffect, useMemo } from 'react'
 import useMount from 'react-use/lib/useMount'
 import useUnmount from 'react-use/lib/useUnmount'
 import { UAParser } from 'ua-parser-js'
+import { forbiddenDevtools, printToConsole } from 'utils/console'
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
 import client from '../common/socket'
@@ -37,31 +38,6 @@ enableStaticRendering(isServerSide() ? true : false)
 const version = process.env.VERSION || `v${Package.version}` || ''
 
 const Progress = new QP()
-
-function printToConsole() {
-  try {
-    const text = `
-    This Personal Space Powered By Mix Space.
-    Written by TypeScript, Coding with Love.
-    --------
-    Stay hungry. Stay foolish. --Steve Jobs
-    `
-    document.documentElement.prepend(document.createComment(text))
-
-    console.log(
-      '%c Kico Style %c https://paugram.com ',
-      'color: #fff; margin: 1em 0; padding: 5px 0; background: #3498db;',
-      'margin: 1em 0; padding: 5px 0; background: #efefef;',
-    )
-    console.log(
-      `%c Mix Space ${version} %c https://innei.ren `,
-      'color: #fff; margin: 1em 0; padding: 5px 0; background: #2980b9;',
-      'margin: 1em 0; padding: 5px 0; background: #efefef;',
-    )
-
-    // eslint-disable-next-line no-empty
-  } catch {}
-}
 
 let _currentY = 0
 const Content: FC<DataModel> = observer((props) => {
@@ -230,6 +206,8 @@ const Content: FC<DataModel> = observer((props) => {
               message.warn('登录身份过期了, 再登录一下吧!', 2)
             }
           })
+      } else {
+        forbiddenDevtools()
       }
     })
   }, [])

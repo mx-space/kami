@@ -89,6 +89,7 @@ const NoteView: NextPage<NoteViewProps> = observer(
 
     // prevent guest copy text.
     const mdRef = useRef<HTMLDivElement>(null)
+
     useEffect(() => {
       if (!mdRef.current) {
         return
