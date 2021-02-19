@@ -1737,10 +1737,10 @@ NeteaseCloudMusicApi@4.0.3:
     qrcode "^1.4.4"
     tunnel "^0.0.6"
 
-NeteaseCloudMusicApi@4.0.4:
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/NeteaseCloudMusicApi/-/NeteaseCloudMusicApi-4.0.4.tgz#397cea85b9a079685590df21ca454de314b9af0c"
-  integrity sha512-qllwORdrkDAo2B0ehWWB1cTYHOgDQNDy9oSQCL0jR53b7RwWAVWxlD5th/VQJ97JWz9gax278EgjIiiIfPMMXw==
+NeteaseCloudMusicApi@4.0.5:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/NeteaseCloudMusicApi/-/NeteaseCloudMusicApi-4.0.5.tgz#e65f50a1246ba1cb77536151e22061722d3b3514"
+  integrity sha512-y99oFiH6gE3zUmh0k5K/BW2wXwS7AfMVkmdJo0sxBYKEJ82hXy3m5Tt90HiDudx0tYGzP+vzzeaN9kgN23VAOg==
   dependencies:
     axios "^0.21.1"
     express "^4.17.1"
