@@ -1,9 +1,9 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-29 21:54:33
- * @LastEditTime: 2020-09-02 13:40:39
+ * @LastEditTime: 2021-02-24 20:23:58
  * @LastEditors: Innei
- * @FilePath: /mx-web/common/socket/handler.ts
+ * @FilePath: /web/common/socket/handler.ts
  * @Code with Love
  */
 
@@ -78,8 +78,8 @@ export const eventHandler = (type: EventTypes, data: any) => {
       })
 
       if (
-        data.author === userStore.name ||
-        data.author === userStore.username
+        (data.author == userStore.name || data.author == userStore.username) &&
+        !userStore.isLogged
       ) {
         notice.notice({
           title: userStore.name + ' 敲了你一下',

@@ -1,31 +1,38 @@
-import { faArrowUp, faHeadphones } from '@fortawesome/free-solid-svg-icons'
+import {
+  faArrowUp,
+  faHeadphones,
+  faPaperPlane,
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
-import { useStore } from 'common/store'
+import { userStore, useStore } from 'common/store'
 import { QueueAnim } from 'components/Anime'
 import { observer } from 'utils/mobx'
-import { FC } from 'react'
+import React, { FC, useEffect, useState } from 'react'
+import { EventTypes } from 'common/socket/types'
+import { ChatPanel } from 'components/Chat'
+import observable from 'utils/observable'
 
 export const FooterActions: FC = observer(() => {
   const { /* userStore, */ appStore, actionStore, musicStore } = useStore()
   const { isOverFirstScreenHeight: isOverflow } = appStore
-  // const [chatShow, setChatShow] = useState(false)
-  // const [newMessageCount, setCount] = useState(0)
-  // useEffect(() => {
-  //   const handler = (data: any) => {
-  //     if (
-  //       (!userStore.isLogged && data.author === userStore.name) ||
-  //       data.author === userStore.username
-  //     ) {
-  //       setCount(newMessageCount + 1)
-  //     }
-  //   }
-  //   observable.on(EventTypes.DANMAKU_CREATE, handler)
+  const [chatShow, setChatShow] = useState(false)
+  const [newMessageCount, setCount] = useState(0)
+  useEffect(() => {
+    const handler = (data: any) => {
+      if (
+        (!userStore.isLogged && data.author === userStore.name) ||
+        data.author === userStore.username
+      ) {
+        setCount(newMessageCount + 1)
+      }
+    }
+    observable.on(EventTypes.DANMAKU_CREATE, handler)
 
-  //   return () => {
-  //     observable.off(EventTypes.DANMAKU_CREATE, handler)
-  //   }
-  // }, [])
+    return () => {
+      observable.off(EventTypes.DANMAKU_CREATE, handler)
+    }
+  }, [])
   return (
     <>
       <style jsx>
@@ -92,7 +99,7 @@ export const FooterActions: FC = observer(() => {
           <FontAwesomeIcon icon={faHeart} />
         </button> */}
 
-        {/* <button
+        <button
           onClick={(e) => {
             setChatShow(!chatShow)
             setCount(0)
@@ -104,10 +111,10 @@ export const FooterActions: FC = observer(() => {
           data-count={newMessageCount}
         >
           <FontAwesomeIcon icon={faPaperPlane} />
-        </button> */}
+        </button>
       </div>
       {/* <ConfigPanel /> */}
-      {/* <ChatPanel show={chatShow} toggle={() => setChatShow(!chatShow)} /> */}
+      <ChatPanel show={chatShow} toggle={() => setChatShow(!chatShow)} />
     </>
   )
 })

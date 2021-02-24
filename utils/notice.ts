@@ -1,9 +1,9 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-23 13:20:20
- * @LastEditTime: 2020-07-12 12:31:22
+ * @LastEditTime: 2021-02-24 20:29:37
  * @LastEditors: Innei
- * @FilePath: /mx-web/utils/notice.ts
+ * @FilePath: /web/utils/notice.ts
  * @MIT
  */
 
@@ -84,6 +84,7 @@ export class Notice {
     if (!this.isInit) {
       this.isInit = await this.initNotice()
     }
+
     if (document.hasFocus()) {
       this.createFrameNotification({
         title,
@@ -161,7 +162,7 @@ export class Notice {
         color: var(--black);
         cursor: pointer;
       `
-      $close.textContent = '✖'
+      $close.textContent = '×'
       $close.onclick = () => this.closeNotification($notification)
       $header.appendChild($title)
       $header.appendChild($close)
@@ -222,7 +223,11 @@ export class Notice {
           opacity: '0',
         },
       ],
-      500,
+      {
+        duration: 230,
+        composite: 'replace',
+        easing: 'cubic-bezier(0.5, 0, 0.75, 0)',
+      },
     ).onfinish = () => {
       $notification.remove()
     }

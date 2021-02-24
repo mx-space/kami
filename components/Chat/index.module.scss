@@ -26,7 +26,8 @@
     // display: flex;
     // justify-content: space-between;
     display: grid;
-    grid-template-columns: 36px auto 6rem;
+    // grid-template-columns: 36px auto 6rem;
+    grid-template-columns: auto 6rem;
     grid-gap: 6px;
   }
   .text,
@@ -35,6 +36,8 @@
   }
   .text {
     width: 100%;
+    background-color: var(--light-bg);
+    color: var(--shizuku-text-color);
   }
   box-shadow: rgba($color: #000000, $alpha: 0.2) 0px 0px 20px;
   &,

@@ -1,8 +1,16 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-09-17 14:02:24
+ * @LastEditTime: 2021-02-24 20:36:52
+ * @LastEditors: Innei
+ * @FilePath: /web/components/Chat/components/message.tsx
+ * @Mark: Coding with Love
+ */
 import Markdown from 'components/MD-render'
+import { RelativeTime } from 'components/Time'
 import { FC } from 'react'
 import { observer } from 'utils/mobx'
 import { useStore } from '../../../common/store'
-import { relativeTimeFromNow } from '../../../utils/time'
 import { Avatar } from '../../Avatar'
 import style from './index.module.scss'
 
@@ -15,7 +23,9 @@ export const OwnerMessage: FC<{ text: string; date: Date }> = observer(
         <div className={style['message-wrapper']}>
           <div className={style['message-head']}>
             <div className={style['author-name']}>{userStore.name}</div>
-            <time>{relativeTimeFromNow(date)}</time>
+            <time>
+              <RelativeTime date={date} />
+            </time>
           </div>
           <div className={style['message-content']}>
             <Markdown

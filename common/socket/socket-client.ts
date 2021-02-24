@@ -1,9 +1,9 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-23 13:18:30
- * @LastEditTime: 2020-08-05 10:13:23
+ * @LastEditTime: 2021-02-24 20:39:35
  * @LastEditors: Innei
- * @FilePath: /mx-web/common/socket/socket-client.ts
+ * @FilePath: /web/common/socket/socket-client.ts
  * @MIT
  */
 
@@ -30,6 +30,7 @@ export class SocketClient {
     if (!this.socket) {
       return
     }
+    this.socket.close()
     this.socket.open()
     this.socket.on(
       'message',
