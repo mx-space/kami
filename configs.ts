@@ -105,7 +105,7 @@ const social: SocialLinkModel[] = [
     color: '#12b7f5',
   },
   {
-    url: 'https://twitter.com/_oQuery',
+    url: 'https://twitter.com/__oQuery',
     title: 'twitter',
     icon: faTwitter,
     color: '#02A4ED',
