@@ -125,7 +125,7 @@ const _Footer: FC = () => {
           location.protocol + '//' + location.host
         })
           **站点描述**: ${seo.description}
-          **主人头像**: ${avatar}
+          **主人头像**: [点击下载](${avatar})
           **主人名字**: ${name}
            `
           .split('\n')

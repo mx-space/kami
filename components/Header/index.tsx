@@ -23,7 +23,7 @@ import { LikeButton } from 'components/LikeButton'
 import { CustomLogo as Logo } from 'components/Logo'
 import { OverLay } from 'components/Overlay'
 import { makeAutoObservable } from 'mobx'
-import { observer } from 'mobx-react-lite'
+import { Observer, observer, useLocalStore } from 'mobx-react-lite'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -209,7 +209,7 @@ class Menu {
 }
 const menu = new Menu()
 
-const MenuList: FC<{ showSub?: boolean }> = observer(({ showSub }) => {
+const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
   const { appStore } = useStore()
   const groupRef = useRef<HTMLUListElement>(null)
   const router = useRouter()
@@ -260,54 +260,60 @@ const MenuList: FC<{ showSub?: boolean }> = observer(({ showSub }) => {
   // console.log(ballOffsetLeft, ballIndex)
   return (
     <ul className={styles['link-group']} ref={groupRef}>
-      {appStore.menu.map((m, selection) => {
-        const isFontAwesomeIconDefine =
-          m.icon && m.icon.icon && m.icon.prefix && m.icon.iconName
+      <Observer>
+        {() => (
+          <Fragment>
+            {appStore.menu.map((m, selection) => {
+              const isFontAwesomeIconDefine =
+                m.icon && m.icon.icon && m.icon.prefix && m.icon.iconName
 
-        return (
-          <div className="relative" key={m.title}>
-            <Link href={m.path}>
-              <a>
-                <li
-                  className={styles['link-item']}
-                  onMouseEnter={() => {
-                    menu.selection = selection
-                  }}
-                  onMouseLeave={() => {
-                    menu.selection = null
-                  }}
-                >
-                  {isFontAwesomeIconDefine && (
-                    <FontAwesomeIcon icon={m.icon!} />
+              return (
+                <div className="relative" key={m.title}>
+                  <Link href={m.path}>
+                    <a>
+                      <li
+                        className={styles['link-item']}
+                        onMouseEnter={() => {
+                          menu.selection = selection
+                        }}
+                        onMouseLeave={() => {
+                          menu.selection = null
+                        }}
+                      >
+                        {isFontAwesomeIconDefine && (
+                          <FontAwesomeIcon icon={m.icon!} />
+                        )}
+                        <span className={styles['link-title']}>{m.title}</span>
+                      </li>
+                    </a>
+                  </Link>
+                  {showSub && m.subMenu && (
+                    <DropdownBase
+                      className={classNames(
+                        styles['sub-dropdown'],
+                        selection === menu.selection ? styles['active'] : null,
+                      )}
+                    >
+                      {m.subMenu.map((m) => {
+                        return (
+                          <Link href={m.path} key={m.path}>
+                            <a>
+                              <li key={m.title}>
+                                {m.icon && <FontAwesomeIcon icon={m.icon} />}
+                                <span>{m.title}</span>
+                              </li>
+                            </a>
+                          </Link>
+                        )
+                      })}
+                    </DropdownBase>
                   )}
-                  <span className={styles['link-title']}>{m.title}</span>
-                </li>
-              </a>
-            </Link>
-            {showSub && m.subMenu && (
-              <DropdownBase
-                className={classNames(
-                  styles['sub-dropdown'],
-                  selection === menu.selection ? styles['active'] : null,
-                )}
-              >
-                {m.subMenu.map((m) => {
-                  return (
-                    <Link href={m.path} key={m.path}>
-                      <a>
-                        <li key={m.title}>
-                          {m.icon && <FontAwesomeIcon icon={m.icon} />}
-                          <span>{m.title}</span>
-                        </li>
-                      </a>
-                    </Link>
-                  )
-                })}
-              </DropdownBase>
-            )}
-          </div>
-        )
-      })}
+                </div>
+              )
+            })}
+          </Fragment>
+        )}
+      </Observer>
 
       {ballOffsetLeft ? (
         <div
