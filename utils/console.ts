@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-12 08:54:09
- * @LastEditTime: 2021-03-07 10:47:16
+ * @LastEditTime: 2021-03-07 11:12:52
  * @LastEditors: Innei
  * @FilePath: /web/utils/console.ts
  * @Coding with Love
@@ -15,6 +15,7 @@ const version = process.env.VERSION || `v${Package.version}` || ''
 
 export function releaseDevtools() {
   Manager.stopDevToolMonitoring()
+  Manager.freezeWhenDevToolsOpened(false)
 }
 // export function forbiddenDevtools() {
 //   if (isDev) {
@@ -73,31 +74,34 @@ export function forbiddenDevtools() {
   }
 
   Manager.alwaysConsoleClear(false)
-  Manager.startDevToolMonitoring((isOpened, orientation) => {
-    if (isOpened) {
-      document.body.textContent = '你打开了控制台, 请关闭后刷新'
-      document.body.style.cssText = `
-              background: #fff;
-              color: #000;
-              display: flex;
-              position: absolute;
-              top: 0;
-              bottom: 0;
-              left: 0;
-              right: 0;
-              align-items: center;
-              justify-content: center;
-              font-size: 36px;
-              font-weight: 800;
-              padding: 0;
-              margin: 0;
-              `
+  Manager.freezeWhenDevToolsOpened(true)
+  // Manager.startDevToolMonitoring((isOpened, orientation) => {
+  //   // alert(orientation)
 
-      Manager.stopDevToolMonitoring()
-      console.clear()
-      printToConsole()
-    }
-  })
+  //   if (isOpened) {
+  //     // document.body.textContent = '你打开了控制台, 请关闭后刷新'
+  //     // document.body.style.cssText = `
+  //     //         background: #fff;
+  //     //         color: #000;
+  //     //         display: flex;
+  //     //         position: absolute;
+  //     //         top: 0;
+  //     //         bottom: 0;
+  //     //         left: 0;
+  //     //         right: 0;
+  //     //         align-items: center;
+  //     //         justify-content: center;
+  //     //         font-size: 36px;
+  //     //         font-weight: 800;
+  //     //         padding: 0;
+  //     //         margin: 0;
+  //     //         `
+
+  //     Manager.stopDevToolMonitoring()
+  //     console.clear()
+  //     printToConsole()
+  //   }
+  // })
 }
 
 const motto = `
