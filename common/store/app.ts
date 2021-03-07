@@ -45,14 +45,12 @@ export default class AppStore {
     return this.position > window.innerHeight || this.position > screen.height
   }
 
-  get isOverFirstScreenHalfHeight() {
+  get isOverPostTitleHeight() {
     if (!isClientSide()) {
       return
     }
-    return (
-      this.position > window.innerHeight / 2 ||
-      this.position > screen.height / 2
-    )
+
+    return this.position > 126 || this.position > screen.height / 3
   }
 
   setPage(pages: PageModel[]) {

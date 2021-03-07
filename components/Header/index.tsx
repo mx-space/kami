@@ -376,7 +376,7 @@ export const _Header: FC = observer(() => {
             appStore.headerNav.show &&
               (appStore.scrollDirection == 'down' ||
                 appStore.viewport.mobile) &&
-              appStore.isOverFirstScreenHalfHeight
+              appStore.isOverPostTitleHeight
               ? styles['toggle']
               : null,
           )}

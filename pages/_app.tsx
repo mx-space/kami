@@ -51,7 +51,7 @@ const Content: FC<DataModel> = observer((props) => {
   const handleScroll = throttle(
     () => {
       const currentY = document.documentElement.scrollTop
-      const direction = _currentY >= currentY ? 'up' : 'down'
+      const direction = _currentY > currentY ? 'up' : 'down'
       app.updatePosition(direction)
       _currentY = currentY
     },
