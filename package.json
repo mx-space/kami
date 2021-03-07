@@ -36,6 +36,7 @@
     "@types/classnames": "2.2.11",
     "NeteaseCloudMusicApi": "4.0.8",
     "axios": "0.21.1",
+    "browser-detect-devtools": "1.0.4",
     "clsx": "1.1.1",
     "dayjs": "1.10.4",
     "gitlog": "4.0.4",

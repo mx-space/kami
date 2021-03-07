@@ -4,6 +4,12 @@
   --gray: #bbb;
   --bg-opacity: rgba(255, 255, 255, 0.5);
 }
+
+@supports not (backdrop-filter: blur(1px)) {
+  :root {
+    --bg-opacity: #fff;
+  }
+}
 html {
   overflow: overlay;
   scroll-behavior: unset;
@@ -17,6 +23,11 @@ html {
 }
 body::-webkit-scrollbar {
   height: 0;
+}
+// for firefox
+:root {
+  scrollbar-color: rgb(255, 193, 7) transparent;
+  scrollbar-width: thin;
 }
 ::-webkit-scrollbar {
   width: 10px;
@@ -37,6 +48,12 @@ html.dark {
   --gray: #666;
   --bg-opacity: rgba(17, 17, 17, 0.5);
 
+  @supports not (backdrop-filter: blur(1px)) {
+    & {
+      --bg-opacity: rgba(17, 17, 17, 0.98);
+    }
+  }
+
   blockquote {
     background: var(--shizuku-background-color);
     border-left: 5px solid var(--shizuku-theme-color);
@@ -54,6 +71,13 @@ html.dark {
     --shizuku-theme-color: #3c946c;
     --bg-opacity: rgba(17, 17, 17, 0.5);
     --black: #fff;
+
+    @supports not (backdrop-filter: blur(1px)) {
+      & {
+        --bg-opacity: rgba(17, 17, 17, 0.98);
+      }
+    }
+
     blockquote {
       background: var(--shizuku-background-color);
       border-left: 5px solid var(--shizuku-theme-color);

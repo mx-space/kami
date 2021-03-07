@@ -2403,6 +2403,13 @@ brorand@^1.0.1:
   resolved "https://registry.yarnpkg.com/brorand/-/brorand-1.1.0.tgz#12c25efe40a45e3c323eb8675a0a0ce57b22371f"
   integrity sha1-EsJe/kCkXjwyPrhnWgoM5XsiNx8=
 
+browser-detect-devtools@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/browser-detect-devtools/-/browser-detect-devtools-1.0.4.tgz#9938f8a1a986b7854b617959071b270f54ecb3c3"
+  integrity sha512-xlmdy27IgZ1aY3PKk3lZshuw2EvFK/7oOObE51P9LNWGYl8hbv5olfzvMu5Mj3e+Pj9x4jOj/ZiD3R0XOBlU4g==
+  dependencies:
+    reflect-metadata "^0.1.12"
+
 browserify-aes@^1.0.0, browserify-aes@^1.0.4:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/browserify-aes/-/browserify-aes-1.2.0.tgz#326734642f403dabc3003209853bb70ad428ef48"
@@ -8179,6 +8186,11 @@ reduce-css-calc@^2.1.8:
   dependencies:
     css-unit-converter "^1.1.1"
     postcss-value-parser "^3.3.0"
+
+reflect-metadata@^0.1.12:
+  version "0.1.13"
+  resolved "https://registry.yarnpkg.com/reflect-metadata/-/reflect-metadata-0.1.13.tgz#67ae3ca57c972a2aa1642b10fe363fe32d49dc08"
+  integrity sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==
 
 refractor@^3.2.0:
   version "3.2.0"
