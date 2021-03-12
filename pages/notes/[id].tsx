@@ -9,6 +9,7 @@ import Markdown from 'components/MD-render'
 import { NumberRecorder } from 'components/NumberRecorder'
 import { OverLay } from 'components/Overlay'
 import { RelativeTime } from 'components/Time'
+import dayjs from 'dayjs'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { NoteLayout } from 'layouts/NoteLayout'
 import { NoteModel, NoteResp } from 'models/note'
@@ -243,6 +244,9 @@ const NoteView: NextPage<NoteViewProps> = observer(
     }, [props.data.music, props.data.nid])
 
     const [showCopyWarn, setShowCopyWarn] = useState(false)
+    const isSecret = props.data.secret
+      ? dayjs(props.data.secret).isAfter(new Date())
+      : false
     return (
       <>
         <Seo
@@ -270,19 +274,27 @@ const NoteView: NextPage<NoteViewProps> = observer(
           bookmark={data.hasMemory}
           id={data._id}
         >
-          <ImageSizeMetaContext.Provider
-            value={imagesRecord2Map(props.data.images)}
-          >
-            <Markdown
-              ref={mdRef}
-              value={text}
-              escapeHtml={false}
-              renderers={{ text: renderLines }}
-              toc
-            />
-          </ImageSizeMetaContext.Provider>
+          {!isSecret ? (
+            <ImageSizeMetaContext.Provider
+              value={imagesRecord2Map(props.data.images)}
+            >
+              <Markdown
+                ref={mdRef}
+                value={text}
+                escapeHtml={false}
+                renderers={{ text: renderLines }}
+                toc
+              />
+            </ImageSizeMetaContext.Provider>
+          ) : (
+            <p className="text-center my-8">
+              这篇文章暂时没有公开呢，再过{' '}
+              {dayjs(props.data.secret!).fromNow(true)}
+              就解锁了哦
+            </p>
+          )}
 
-          <Action {...actions} />
+          {!isSecret && <Action {...actions} />}
 
           {(!!next || !!prev) && (
             <section className="kami-more">
@@ -337,19 +349,21 @@ const NoteView: NextPage<NoteViewProps> = observer(
             <p>本文章为站长原创, 保留版权所有, 禁止复制.</p>
           </div>
         </OverLay>
-        <QueueAnim delay={500} type={'alpha'}>
-          <ArticleLayout
-            style={{ minHeight: 'unset', paddingTop: '0' }}
-            focus
-            key={'at'}
-          >
-            <CommentWrap
-              type={'Note'}
-              id={_id}
-              allowComment={props.data.allowComment ?? true}
-            />
-          </ArticleLayout>
-        </QueueAnim>
+        {!isSecret && (
+          <QueueAnim delay={500} type={'alpha'}>
+            <ArticleLayout
+              style={{ minHeight: 'unset', paddingTop: '0' }}
+              focus
+              key={'at'}
+            >
+              <CommentWrap
+                type={'Note'}
+                id={_id}
+                allowComment={props.data.allowComment ?? true}
+              />
+            </ArticleLayout>
+          </QueueAnim>
+        )}
       </>
     )
   },

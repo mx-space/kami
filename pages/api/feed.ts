@@ -1,9 +1,9 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-14 20:57:01
- * @LastEditTime: 2020-09-02 13:26:53
+ * @LastEditTime: 2021-03-12 11:28:11
  * @LastEditors: Innei
- * @FilePath: /mx-web/pages/api/feed.ts
+ * @FilePath: /web/pages/api/feed.ts
  * @Coding with Love
  */
 
@@ -14,7 +14,7 @@ import html from 'remark-html'
 import markdown from 'remark-parse'
 import unified from 'unified'
 import { Rest } from '../../utils/api'
-const parser = unified().use(markdown).use(html).use(rules)
+const parser = unified().use(markdown).use(html)
 
 const encodeHTML = function (str: string) {
   return str
