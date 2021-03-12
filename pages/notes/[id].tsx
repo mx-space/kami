@@ -247,6 +247,7 @@ const NoteView: NextPage<NoteViewProps> = observer(
     const isSecret = props.data.secret
       ? dayjs(props.data.secret).isAfter(new Date())
       : false
+    const afterDay = isSecret ? dayjs(props.data.secret!).fromNow(true) : ''
     return (
       <>
         <Seo
@@ -274,10 +275,20 @@ const NoteView: NextPage<NoteViewProps> = observer(
           bookmark={data.hasMemory}
           id={data._id}
         >
-          {!isSecret && !userStore.isLogged ? (
+          {isSecret && !userStore.isLogged ? (
+            <p className="text-center my-8">
+              这篇文章暂时没有公开呢，再过 {afterDay}
+              就解锁了哦
+            </p>
+          ) : (
             <ImageSizeMetaContext.Provider
               value={imagesRecord2Map(props.data.images)}
             >
+              {isSecret && (
+                <span className={'flex justify-center -mb-3.5'}>
+                  这是一篇非公开的文章。({afterDay}后解锁)
+                </span>
+              )}
               <Markdown
                 ref={mdRef}
                 value={text}
@@ -286,12 +297,6 @@ const NoteView: NextPage<NoteViewProps> = observer(
                 toc
               />
             </ImageSizeMetaContext.Provider>
-          ) : (
-            <p className="text-center my-8">
-              这篇文章暂时没有公开呢，再过{' '}
-              {dayjs(props.data.secret!).fromNow(true)}
-              就解锁了哦
-            </p>
           )}
 
           {!isSecret && <Action {...actions} />}
@@ -369,17 +374,11 @@ const NoteView: NextPage<NoteViewProps> = observer(
   },
 )
 
-export async function getServerSideProps({ query }) {
-  const id = query.id as string
-  try {
-    const { data, prev, next } = await Rest('Note', 'nid').get<NoteResp>(id)
-    return {
-      props: { data, prev, next }, // will be passed to the page component as props
-    }
-  } catch {
-    return {
-      notFound: true,
-    }
-  }
+NoteView.getInitialProps = async (ctx) => {
+  const id = ctx.query.id as string
+
+  const res = await Rest('Note', 'nid').get<NoteResp>(id)
+  return res
 }
+
 export default NoteView
