@@ -274,7 +274,7 @@ const NoteView: NextPage<NoteViewProps> = observer(
           bookmark={data.hasMemory}
           id={data._id}
         >
-          {!isSecret ? (
+          {!isSecret && !userStore.isLogged ? (
             <ImageSizeMetaContext.Provider
               value={imagesRecord2Map(props.data.images)}
             >
