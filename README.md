@@ -10,3 +10,9 @@ Kami 是 mx-space 的默认前端主题. 使用 React NextJS 开发.
 Live Demo:
 
 - <https://innei.ren>
+
+[使用文档](https://wibus.gitee.io/docs/mix-space/#/)
+
+## 鸣谢
+
+[@wibus-wee](https://github.com/wibus-wee)
