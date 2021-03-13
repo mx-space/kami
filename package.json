@@ -34,7 +34,7 @@
     "@mx-space/extra": "0.4.0",
     "@openfonts/noto-sans-sc_vietnamese": "1.44.0",
     "@types/classnames": "2.2.11",
-    "NeteaseCloudMusicApi": "4.0.8",
+    "NeteaseCloudMusicApi": "4.0.9",
     "axios": "0.21.1",
     "browser-detect-devtools": "1.0.4",
     "clsx": "1.1.1",
