@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-14 20:57:01
- * @LastEditTime: 2021-03-12 11:28:11
+ * @LastEditTime: 2021-03-14 13:56:51
  * @LastEditors: Innei
  * @FilePath: /web/pages/api/feed.ts
  * @Coding with Love
@@ -14,7 +14,28 @@ import html from 'remark-html'
 import markdown from 'remark-parse'
 import unified from 'unified'
 import { Rest } from '../../utils/api'
-const parser = unified().use(markdown).use(html)
+const parser = unified()
+  .use(markdown)
+  .use(rules)
+  .use(html, {
+    handlers: {
+      spoiler: (h, node) => {
+        return h(
+          node,
+          'del',
+          {
+            class: 'spoiler',
+          },
+          [
+            {
+              type: 'text',
+              value: node.value,
+            },
+          ],
+        )
+      },
+    },
+  })
 
 const encodeHTML = function (str: string) {
   return str
