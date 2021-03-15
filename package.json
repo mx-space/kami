@@ -75,7 +75,7 @@
     "validator": "13.5.2"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-decorators": "7.12.13",
+    "@babel/plugin-proposal-decorators": "7.13.5",
     "@next/bundle-analyzer": "10.0.5",
     "@types/inflection": "1.5.28",
     "@types/js-cookie": "2.2.6",
