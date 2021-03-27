@@ -49,7 +49,6 @@
   width: 25px;
   height: 1px;
   margin: 20px 0;
-  -webkit-user-select: none;
   background: var(--shizuku-theme-color);
 }
 #write hr {
@@ -349,7 +348,8 @@
   background-color: unset !important;
   border: none !important;
   position: relative;
-  color: #6495ed;
+  color: #d35400;
+
   font-family: 'Noto Serif SC', SongTi SC;
   padding-bottom: 24px;
   &::before {

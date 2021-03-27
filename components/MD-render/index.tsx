@@ -288,6 +288,7 @@ export const Markdown: FC<MdProps> = observer(
       <div id="write" style={style} {...warpperProps} ref={ref}>
         <ReactMarkdown
           source={value}
+          // source={TestText}
           {...rest}
           renderers={{
             code: CodeBlock,

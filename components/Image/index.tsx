@@ -63,6 +63,7 @@ const Image: FC<
             <a href="${image.src}" target="_blank">${image.src}
             </a>
             `
+            placeholderRef.current.style.zIndex = '2'
           }
           // eslint-disable-next-line no-empty
         } catch {}

@@ -407,6 +407,20 @@ html.dark {
 .is-note .btn:not(:last-child) {
   margin-right: 12px;
 }
+
+.is-note blockquote:not(:first-child) {
+  margin-left: -3em;
+  margin-right: -3em;
+  border: none;
+  padding: 1em 5em;
+
+  @media screen and (max-width: 900px) {
+    margin-left: -1.25em;
+    margin-right: -1.25em;
+    padding: 1em 3em;
+  }
+}
+
 .news-item {
   .title::before {
     content: '';
