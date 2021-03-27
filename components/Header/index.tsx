@@ -8,9 +8,7 @@
  */
 import {
   faListUl,
-  faMinus,
   faShare,
-  faShareAltSquare,
   faTimes,
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons'
@@ -23,7 +21,7 @@ import { LikeButton } from 'components/LikeButton'
 import { CustomLogo as Logo } from 'components/Logo'
 import { OverLay } from 'components/Overlay'
 import { makeAutoObservable } from 'mobx'
-import { Observer, observer, useLocalStore } from 'mobx-react-lite'
+import { Observer, observer } from 'mobx-react-lite'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'

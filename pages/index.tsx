@@ -231,7 +231,7 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
               <SectionCard
                 {...{
                   title: '订阅',
-                  desc: '关注订阅不亏哦',
+                  desc: '关注订阅不迷路哦',
                   src: images.pop() as string,
                   href: '/feed',
                 }}
