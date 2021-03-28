@@ -39,21 +39,26 @@ export const createDangmaku = ({ color, duration, text }: DanmakuProps) => {
   const $wrap = createDanmakuWrap()
   const wrapHeight = $wrap.getBoundingClientRect().height
   const dangmaku = document.createElement('div')
-  dangmaku.textContent = text
-  dangmaku.style.color = color ?? ''
-  dangmaku.style.position = 'absolute'
-  dangmaku.style.fontSize = '16px'
-  dangmaku.style.top =
-    sample(range(0, Math.floor(wrapHeight / 16)) as any) * 14 + 'px'
-  // dangmaku.style.textShadow =
-  //   '0 1px var(--gray), 1px 0 var(--gray), -1px 0 var(--gray), 0 -1px var(--gray)'
-  // dangmaku.style.right = '0'
-  // dangmaku.style.transition =
-  //   'right ' + (duration && duration / 1000 > 8 ? duration : 8) + 's linear'
-  // dangmaku.style.transform = 'translateX(100%)'
-  dangmaku.onanimationend = (e) => {
-    dangmaku.remove()
-  }
+
+  Object.assign<CSSStyleDeclaration, Partial<CSSStyleDeclaration>>(
+    dangmaku.style,
+    {
+      color: color ?? '',
+      position: 'absolute',
+      fontSize: '16px',
+      top: sample(range(0, wrapHeight >> 8) as any) * 14 + 'px',
+    },
+  )
+
+  Object.assign(dangmaku, {
+    textContent: text,
+    onanimationend: (e) => {
+      dangmaku.remove()
+    },
+  })
+
+  console.log(dangmaku)
+
   $wrap.appendChild(dangmaku)
 
   requestAnimationFrame(() => {

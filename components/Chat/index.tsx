@@ -88,11 +88,11 @@ const _ChatPanel: FC<any> = observer(
             <OwnerMessage
               text={`${(() => {
                 const hour = new Date().getHours()
-                if (hour < 11) {
+                if (hour >= 3 && hour < 11) {
                   return 'おはよう'
                 } else if (hour < 17) {
                   return 'こんにちは'
-                } else if (hour < 23) {
+                } else if (hour < 24 || hour < 3) {
                   return 'こんばんは'
                 }
               })()}~正在浏览本站的 ${gatewayStore.online} 个小伙伴${
