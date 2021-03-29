@@ -1468,10 +1468,10 @@
     "@types/node" "*"
     safe-buffer "*"
 
-"@types/remove-markdown@0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@types/remove-markdown/-/remove-markdown-0.1.1.tgz#c79d3000df412526186b2af3808b85bee68bc907"
-  integrity sha512-SCYOFMHUqyiJU5M0V2gBB6UDdBhPwma34j0vYX0JgWaqp/74ila2Ops1jt5tB/C1UQXVXqK+is61884bITn3LQ==
+"@types/remove-markdown@0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@types/remove-markdown/-/remove-markdown-0.3.0.tgz#8014f12e4c45637c4cd190ae66afde189bec41d1"
+  integrity sha512-dmEUST4Olsw+S8OpQW6pyk3BBxogBb0qa6gqHJqmQ94zqhqSn1PnG592vcDbNnBDiQPiqCBagOaYqMduzO3oHA==
 
 "@types/resolve@0.0.8":
   version "0.0.8"

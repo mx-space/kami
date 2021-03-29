@@ -88,7 +88,7 @@
     "@types/react-dom": "17.0.3",
     "@types/react-lazyload": "3.1.0",
     "@types/react-syntax-highlighter": "13.5.0",
-    "@types/remove-markdown": "0.1.1",
+    "@types/remove-markdown": "0.3.0",
     "@types/socket.io-client": "1.4.36",
     "@types/ua-parser-js": "0.7.35",
     "@types/validator": "13.1.3",
