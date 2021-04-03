@@ -120,7 +120,7 @@ const RecentlyPage: NextPage = () => {
                     {isLogged && (
                       <span
                         className={clsx(
-                          'text-red absolute left-0 opacity-0 cursor-pointer transition-opacity',
+                          'text-red float-left opacity-0 cursor-pointer transition-opacity',
                           styles['del'],
                         )}
                         onClick={() => handleDelete(d._id)}
