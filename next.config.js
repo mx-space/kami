@@ -42,7 +42,7 @@ const configs = withImages(
       scrollRestoration: true,
     },
     future: {
-      webpack5: false,
+      webpack5: true,
     },
   }),
 )

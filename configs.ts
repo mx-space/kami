@@ -3,6 +3,7 @@ import { faCircle, faDotCircle } from '@fortawesome/free-regular-svg-icons'
 import {
   faBookOpen,
   faCircleNotch,
+  faComment,
   faComments,
   faFeatherAlt,
   faGlasses,
@@ -64,6 +65,11 @@ const menu: MenuModel[] = [
     title: '友',
     icon: faUserFriends,
     path: '/friends',
+  },
+  {
+    title: '诉',
+    icon: faComment,
+    path: '/recently',
   },
   {
     title: '',

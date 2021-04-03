@@ -1,0 +1,7 @@
+.loading {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 400px;
+  flex-direction: column;
+}

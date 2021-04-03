@@ -24,6 +24,17 @@ export const eventHandler = (type: EventTypes, data: any) => {
       gatewayStore.online = online
       break
     }
+    case EventTypes.RECENTLY_CREATE: {
+      notice.notice({
+        title,
+        body: '站长发布一条新动态',
+        description: data.content,
+        onclick: () => {
+          window.open('/recently')
+        },
+      })
+      break
+    }
     case EventTypes.POST_CREATE:
     case EventTypes.NOTE_CREATE: {
       if (data.hide) {
@@ -87,6 +98,11 @@ export const eventHandler = (type: EventTypes, data: any) => {
           options: { image: userStore.master.avatar },
         })
       }
+
+      break
+    }
+    default: {
+      console.log(type, data)
     }
   }
 }

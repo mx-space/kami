@@ -238,6 +238,9 @@ const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
       case 'friends': {
         return 5
       }
+      case 'recently': {
+        return 6
+      }
     }
   }, [router])
   const [ballOffsetLeft, setBallOffsetLeft] = useState(0)

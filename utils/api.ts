@@ -14,6 +14,7 @@ declare enum AccessRoutesEnum {
   Post,
   Project,
   Say,
+  Recently,
   Option,
 }
 
@@ -27,7 +28,7 @@ interface Gets {
 }
 
 export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
-  let pluralize = ['Master', 'Menu', 'Aggregate'].includes(rest)
+  let pluralize = ['Master', 'Menu', 'Aggregate', 'Recently'].includes(rest)
     ? rest.toLowerCase()
     : inflection.pluralize(rest).toLowerCase()
   pluralize = prefix ? pluralize + `/${prefix}` : pluralize

@@ -9,59 +9,54 @@
 
 import { EventTypes } from '../common/socket/types'
 
-interface Observer {
-  id: string
-  callback: Function
-}
 export class Observable {
-  observers: Observer[] = []
+  private observers: Record<string, Function[]> = {}
 
   on(event: EventTypes, handler: any): void
   on(event: string, handler: any): void
   on(event: string, handler: (...rest: any) => void) {
-    const isExist = this.observers.some(({ id, callback }) => {
-      if (id === event && handler === callback) {
-        return true
-      }
-      return false
+    const queue = this.observers[event]
+    if (!queue) {
+      this.observers[event] = [handler]
+      return
+    }
+    const isExist = queue.some((func) => {
+      return func === handler
     })
     if (!isExist) {
-      this.observers.push({
-        id: event,
-        callback: handler,
-      })
+      this.observers[event].push(handler)
     }
   }
 
   emit(event: string, payload?: any): void
   emit(event: EventTypes, payload?: any): void
   emit(event: EventTypes, payload?: any) {
-    this.observers.map(({ id, callback }) => {
-      if (id === event) {
-        callback.call(this, payload)
-      }
-    })
+    const queue = this.observers[event]
+    if (!queue) {
+      return
+    }
+    for (const func of queue) {
+      func.call(this, payload)
+    }
   }
 
   off(event: string, handler?: (...rest: any) => void) {
+    const queue = this.observers[event]
+    if (!queue) {
+      return
+    }
+
     if (handler) {
-      const index = this.observers.findIndex(({ id, callback }) => {
-        return id === event && callback === handler
+      const index = queue.findIndex((func) => {
+        return func === handler
       })
       if (index !== -1) {
-        this.observers.splice(index, 1)
+        queue.splice(index, 1)
       }
     } else {
-      const observers = [] as Observer[]
-      this.observers.map((observer) => {
-        if (observer.id !== event) {
-          observers.push(observer)
-        }
-      })
-
-      this.observers = observers
+      queue.length = 0
     }
   }
 }
-
-export default new Observable()
+export const EventBus = new Observable()
+export default EventBus

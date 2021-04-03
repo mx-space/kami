@@ -1,0 +1,12 @@
+.recently-wrapper {
+  margin-bottom: 1.5rem;
+  padding: 1rem 2rem;
+  background-color: var(--bg-opacity);
+  border-radius: 8px;
+
+  &:hover {
+    .del {
+      opacity: 1;
+    }
+  }
+}
