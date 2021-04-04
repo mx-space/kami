@@ -35,6 +35,7 @@ type MdProps = ReactMarkdownProps & {
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   >
+  codeBlockFully?: boolean
 }
 
 const Heading: () => FC<{
@@ -282,10 +283,23 @@ const _TOC: FC = observer(() => {
 })
 export const Markdown: FC<MdProps> = observer(
   forwardRef<HTMLDivElement, MdProps>((props, ref) => {
-    const { value, renderers, style, warpperProps = {}, ...rest } = props
+    const {
+      value,
+      renderers,
+      style,
+      warpperProps = {},
+      codeBlockFully = false,
+      ...rest
+    } = props
 
     return (
-      <div id="write" style={style} {...warpperProps} ref={ref}>
+      <div
+        id="write"
+        style={style}
+        {...warpperProps}
+        ref={ref}
+        className={codeBlockFully ? styles['code-fully'] : undefined}
+      >
         <ReactMarkdown
           source={value}
           // source={TestText}

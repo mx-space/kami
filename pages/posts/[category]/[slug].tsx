@@ -194,6 +194,7 @@ export const PostView: NextPage<PostModel> = (props) => {
       <OutdateNotice time={props.modified} />
       <ImageSizeMetaContext.Provider value={imagesRecord2Map(props.images)}>
         <Markdown
+          codeBlockFully
           value={text}
           escapeHtml={false}
           toc

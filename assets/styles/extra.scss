@@ -169,7 +169,11 @@ pre > code {
   color: inherit !important;
   text-shadow: none !important;
   * {
-    background: none !important;
+    background: var(--light-bg);
+  }
+  .linenumber {
+    position: sticky;
+    left: 0;
   }
 }
 

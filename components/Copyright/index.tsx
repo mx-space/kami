@@ -23,7 +23,8 @@ export const Copyright: FC<CopyrightProps> = observer((props) => {
         文章链接: <span>{link}</span>{' '}
         <a
           onClick={() => {
-            copy(link)
+            // copy(link)
+            navigator.clipboard.writeText(link)
           }}
           data-hide-print
         >

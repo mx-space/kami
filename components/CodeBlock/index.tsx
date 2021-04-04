@@ -1,49 +1,48 @@
-import { observer } from 'utils/mobx'
-import React, { FC, useCallback, useEffect, useMemo, useState } from 'react'
+import dynamic from 'next/dynamic'
+import React, { FC, useCallback } from 'react'
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { appStore, useStore } from '../../common/store'
-import dark from 'react-syntax-highlighter/dist/cjs/styles/prism/tomorrow'
-import light from 'react-syntax-highlighter/dist/cjs/styles/prism/prism'
-import javascript from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript'
-import css from 'react-syntax-highlighter/dist/cjs/languages/prism/css'
-import java from 'react-syntax-highlighter/dist/cjs/languages/prism/java'
-import typescript from 'react-syntax-highlighter/dist/cjs/languages/prism/typescript'
-import tsx from 'react-syntax-highlighter/dist/cjs/languages/prism/tsx'
-import jsx from 'react-syntax-highlighter/dist/cjs/languages/prism/jsx'
-import csharp from 'react-syntax-highlighter/dist/cjs/languages/prism/csharp'
-import swift from 'react-syntax-highlighter/dist/cjs/languages/prism/swift'
-import objectivec from 'react-syntax-highlighter/dist/cjs/languages/prism/objectivec'
-import c from 'react-syntax-highlighter/dist/cjs/languages/prism/c'
-import clike from 'react-syntax-highlighter/dist/cjs/languages/prism/clike'
-import cpp from 'react-syntax-highlighter/dist/cjs/languages/prism/cpp'
-import rust from 'react-syntax-highlighter/dist/cjs/languages/prism/rust'
-import go from 'react-syntax-highlighter/dist/cjs/languages/prism/go'
-import python from 'react-syntax-highlighter/dist/cjs/languages/prism/python'
-import extras from 'react-syntax-highlighter/dist/cjs/languages/prism/css-extras'
-import sass from 'react-syntax-highlighter/dist/cjs/languages/prism/sass'
-import scss from 'react-syntax-highlighter/dist/cjs/languages/prism/scss'
+import apacheconf from 'react-syntax-highlighter/dist/cjs/languages/prism/apacheconf'
 import applescript from 'react-syntax-highlighter/dist/cjs/languages/prism/applescript'
 import bash from 'react-syntax-highlighter/dist/cjs/languages/prism/bash'
+import c from 'react-syntax-highlighter/dist/cjs/languages/prism/c'
+import clike from 'react-syntax-highlighter/dist/cjs/languages/prism/clike'
 import coffeescript from 'react-syntax-highlighter/dist/cjs/languages/prism/coffeescript'
-import json from 'react-syntax-highlighter/dist/cjs/languages/prism/json'
-import nginx from 'react-syntax-highlighter/dist/cjs/languages/prism/nginx'
-import apacheconf from 'react-syntax-highlighter/dist/cjs/languages/prism/apacheconf'
-import git from 'react-syntax-highlighter/dist/cjs/languages/prism/git'
-import docker from 'react-syntax-highlighter/dist/cjs/languages/prism/docker'
-import yaml from 'react-syntax-highlighter/dist/cjs/languages/prism/yaml'
-import vim from 'react-syntax-highlighter/dist/cjs/languages/prism/vim'
-import php from 'react-syntax-highlighter/dist/cjs/languages/prism/php'
+import cpp from 'react-syntax-highlighter/dist/cjs/languages/prism/cpp'
+import csharp from 'react-syntax-highlighter/dist/cjs/languages/prism/csharp'
+import css from 'react-syntax-highlighter/dist/cjs/languages/prism/css'
+import extras from 'react-syntax-highlighter/dist/cjs/languages/prism/css-extras'
 import dart from 'react-syntax-highlighter/dist/cjs/languages/prism/dart'
-import kotlin from 'react-syntax-highlighter/dist/cjs/languages/prism/kotlin'
+import docker from 'react-syntax-highlighter/dist/cjs/languages/prism/docker'
+import git from 'react-syntax-highlighter/dist/cjs/languages/prism/git'
+import go from 'react-syntax-highlighter/dist/cjs/languages/prism/go'
 import graphql from 'react-syntax-highlighter/dist/cjs/languages/prism/graphql'
-import pug from 'react-syntax-highlighter/dist/cjs/languages/prism/pug'
-import rest from 'react-syntax-highlighter/dist/cjs/languages/prism/rest'
 import http from 'react-syntax-highlighter/dist/cjs/languages/prism/http'
-
-import styles from './index.module.scss'
+import java from 'react-syntax-highlighter/dist/cjs/languages/prism/java'
+import javascript from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript'
+import json from 'react-syntax-highlighter/dist/cjs/languages/prism/json'
+import jsx from 'react-syntax-highlighter/dist/cjs/languages/prism/jsx'
+import kotlin from 'react-syntax-highlighter/dist/cjs/languages/prism/kotlin'
+import nginx from 'react-syntax-highlighter/dist/cjs/languages/prism/nginx'
+import objectivec from 'react-syntax-highlighter/dist/cjs/languages/prism/objectivec'
+import php from 'react-syntax-highlighter/dist/cjs/languages/prism/php'
+import pug from 'react-syntax-highlighter/dist/cjs/languages/prism/pug'
+import python from 'react-syntax-highlighter/dist/cjs/languages/prism/python'
+import rest from 'react-syntax-highlighter/dist/cjs/languages/prism/rest'
+import rust from 'react-syntax-highlighter/dist/cjs/languages/prism/rust'
+import sass from 'react-syntax-highlighter/dist/cjs/languages/prism/sass'
+import scss from 'react-syntax-highlighter/dist/cjs/languages/prism/scss'
+import swift from 'react-syntax-highlighter/dist/cjs/languages/prism/swift'
+import tsx from 'react-syntax-highlighter/dist/cjs/languages/prism/tsx'
+import typescript from 'react-syntax-highlighter/dist/cjs/languages/prism/typescript'
+import vim from 'react-syntax-highlighter/dist/cjs/languages/prism/vim'
+import yaml from 'react-syntax-highlighter/dist/cjs/languages/prism/yaml'
+import light from 'react-syntax-highlighter/dist/cjs/styles/prism/prism'
+import dark from 'react-syntax-highlighter/dist/cjs/styles/prism/tomorrow'
 import { message } from 'utils/message'
+import { observer } from 'utils/mobx'
+import { appStore, useStore } from '../../common/store'
 import { copy } from '../../utils/dom'
-import dynamic from 'next/dynamic'
+import styles from './index.module.scss'
 
 const lang = {
   javascript,
@@ -91,8 +90,8 @@ const CodeBlock: FC<CodeBlockProps> = observer((props) => {
   const { language, value } = props
   const { colorMode } = useStore().appStore
   const handleCopy = useCallback(() => {
-    copy(value)
-    message.success('COPIED! NOW YOU CAN ENJOY CV.')
+    navigator.clipboard.writeText(value)
+    message.success('COPIED!')
   }, [value])
   const isPrintMode = appStore.mediaType === 'print'
 
@@ -105,6 +104,7 @@ const CodeBlock: FC<CodeBlockProps> = observer((props) => {
         showInlineLineNumbers={true}
         customStyle={{
           background: 'var(--code-bg) !important',
+          padding: 0,
         }}
       >
         {value}

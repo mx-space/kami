@@ -1,10 +1,15 @@
 .code-wrap {
   position: relative;
+
+  pre > code {
+    padding: 0 !important;
+    background-color: var(--light-bg) !important;
+  }
 }
 .copy-tip {
   position: absolute;
-  right: 0;
-  top: 40px;
+  right: 2em;
+  top: 5em;
   opacity: 0.4;
   font-size: 0.6em;
   font-weight: 600;

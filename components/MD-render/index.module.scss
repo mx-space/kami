@@ -58,3 +58,7 @@
   padding-top: 7rem;
   margin: auto;
 }
+
+.code-fully pre > code {
+  max-height: unset !important;
+}
