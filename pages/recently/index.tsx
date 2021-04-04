@@ -109,7 +109,7 @@ const RecentlyPage: NextPage = () => {
               {data.map((d) => (
                 <div key={d._id} className={styles['recently-wrapper']}>
                   <div className={clsx(styles['content'], 'my-2')}>
-                    <Markdown value={d.content} />
+                    <Markdown escapeHtml={false} value={d.content} />
                   </div>
                   <div
                     className={clsx(
@@ -205,7 +205,6 @@ const RecentlyBox: FC = memo(() => {
       </div>
       <Input
         multi
-        maxLength={500}
         // @ts-ignore
         ref={taRef}
         // @ts-ignore
