@@ -33,7 +33,7 @@ import { getToken, removeToken } from '../utils/auth'
 import * as gtag from '../utils/gtag'
 import service from '../utils/request'
 
-enableStaticRendering(isServerSide() ? true : false)
+enableStaticRendering(isServerSide())
 
 const version = process.env.VERSION || `v${Package.version}` || ''
 

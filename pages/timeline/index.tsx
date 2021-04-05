@@ -262,8 +262,7 @@ TimeLineView.getInitialProps = async (ctx) => {
   })) as any
   return {
     ...(resp?.data || {}),
-    // @ts-ignore
-    memory: memory ? true : false,
+    memory: !!memory,
   } as TimeLineViewProps
 }
 export default TimeLineView
