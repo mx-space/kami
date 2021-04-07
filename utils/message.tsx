@@ -72,8 +72,9 @@ const message: MessageInstance = {}
 })
 const cleanEmptyMessageWrapper = () => {
   const $root = getContainerNode()
-  for (let i = 0; i < $root.children.length; i++) {
-    const $item = $root.children.item(i)
+  const children = Array.from($root.children)
+  for (let i = 0, len = children.length; i < len; i++) {
+    const $item = children[i]
 
     if (!$item) {
       continue
