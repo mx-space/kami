@@ -8,6 +8,7 @@
  */
 
 module.exports = {
+  mode: 'jit',
   purge: {
     content: [
       './components/**/*.{js,ts,jsx,tsx}',
