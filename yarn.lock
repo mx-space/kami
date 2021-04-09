@@ -1536,10 +1536,10 @@
   resolved "https://registry.yarnpkg.com/@xobotyi/scrollbar-width/-/scrollbar-width-1.9.5.tgz#80224a6919272f405b87913ca13b92929bdf3c4d"
   integrity sha512-N8tkAACJx2ww8vFMneJmaAgmjAG1tnVBZJRLRcx061tmsLRZHSEZSLuGWnwPtunsSLvSqXQ2wfp7Mgqg1I+2dQ==
 
-NeteaseCloudMusicApi@4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/NeteaseCloudMusicApi/-/NeteaseCloudMusicApi-4.0.3.tgz#5744c132faafe032438e9579bd042fd0f1d7d886"
-  integrity sha512-tghf9qbozfr4H9Dj1kqMYD07B2TOl/V8+N6rLfj8ShRdG8XTe1NmoW/XACR5IEc2CKH/9Bpxv40arLfJ7CpRxw==
+NeteaseCloudMusicApi@4.0.10:
+  version "4.0.10"
+  resolved "https://registry.yarnpkg.com/NeteaseCloudMusicApi/-/NeteaseCloudMusicApi-4.0.10.tgz#5b27e97ce5192e6f9d6d60074b3a9a804a294a9f"
+  integrity sha512-xjRLwjpHCI2a/C/iL6TD0/dXKeN8xzFBBW7lmSm0wLQZIkSsbu9qhFIzbgY3aubOgfvV+P6uTdlaYy+5TmzgKQ==
   dependencies:
     axios "^0.21.1"
     express "^4.17.1"
@@ -1550,10 +1550,10 @@ NeteaseCloudMusicApi@4.0.3:
     qrcode "^1.4.4"
     tunnel "^0.0.6"
 
-NeteaseCloudMusicApi@4.0.9:
-  version "4.0.9"
-  resolved "https://registry.yarnpkg.com/NeteaseCloudMusicApi/-/NeteaseCloudMusicApi-4.0.9.tgz#81c4fd23d92f791066878de90928d8f1a7472b7f"
-  integrity sha512-wxS40+j3iKYUknaHWSyhkRDp/kvIB2exfqtVCwoDYFHZYZi1LJ9TehP5mjTWf6fplClgcCcWb0ln+jbzh9aEyg==
+NeteaseCloudMusicApi@4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/NeteaseCloudMusicApi/-/NeteaseCloudMusicApi-4.0.3.tgz#5744c132faafe032438e9579bd042fd0f1d7d886"
+  integrity sha512-tghf9qbozfr4H9Dj1kqMYD07B2TOl/V8+N6rLfj8ShRdG8XTe1NmoW/XACR5IEc2CKH/9Bpxv40arLfJ7CpRxw==
   dependencies:
     axios "^0.21.1"
     express "^4.17.1"
