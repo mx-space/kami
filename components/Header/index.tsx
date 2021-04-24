@@ -73,11 +73,16 @@ const HeaderActionLikeButtonForNote: FC<{ id: number }> = memo((props) => {
   useEffect(() => {
     setLiked(isLikedBefore(id.toString()))
 
-    observable.on('like', (nid) => {
+    const handler = (nid) => {
       if (id === nid) {
         setLiked(true)
       }
-    })
+    }
+    observable.on('like', handler)
+
+    return () => {
+      observable.off('like', handler)
+    }
   }, [id])
   const onLike = () =>
     Rest('Note')

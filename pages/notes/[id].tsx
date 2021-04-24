@@ -149,11 +149,16 @@ const NoteView: NextPage<NoteViewProps> = observer(
     const [isLiked, setLiked] = useState(false)
     useEffect(() => {
       setLiked(isLikedBefore(data.nid.toString()))
-      observable.on('like', (nid) => {
+      const handler = (nid) => {
         if (data.nid === nid) {
           setLiked(true)
         }
-      })
+      }
+      observable.on('like', handler)
+
+      return () => {
+        observable.off('like', handler)
+      }
     }, [data.nid])
 
     const actions: ActionProps = {
