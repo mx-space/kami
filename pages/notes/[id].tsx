@@ -85,7 +85,7 @@ const NoteView: NextPage<NoteViewProps> = observer(
 
     const { title, _id, text, mood, weather } = data
 
-    const [like, setLike] = useState(data.count.like ?? 0)
+    const [like, setLikeCount] = useState(data.count.like ?? 0)
 
     const [tips, setTips] = useState(``)
 
@@ -142,7 +142,7 @@ const NoteView: NextPage<NoteViewProps> = observer(
         window.scroll({ top: 0, left: 0, behavior: 'smooth' })
       }, 10)
 
-      setLike(props.data.count.like ?? 0)
+      setLikeCount(props.data.count.like ?? 0)
       setLiked(false)
     }, [props])
 
@@ -152,6 +152,7 @@ const NoteView: NextPage<NoteViewProps> = observer(
       const handler = (nid) => {
         if (data.nid === nid) {
           setLiked(true)
+          setLikeCount((like) => like + 1)
         }
       }
       observable.on('like', handler)
@@ -188,7 +189,6 @@ const NoteView: NextPage<NoteViewProps> = observer(
                 message.success('感谢喜欢!')
                 observable.emit('like', data.nid)
                 setLikeId(data.nid.toString())
-                setLike(like + 1)
               })
               .catch(() => {
                 setLiked(true)

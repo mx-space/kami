@@ -13,7 +13,6 @@ import Markdown from 'components/MD-render'
 import { NumberRecorder } from 'components/NumberRecorder'
 import OutdateNotice from 'components/Outdate'
 import dayjs from 'dayjs'
-import Cookie from 'js-cookie'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { PostModel, PostRespModel } from 'models/post'
 import { NextPage, NextPageContext } from 'next/'
@@ -28,16 +27,13 @@ import { ImageSizeMetaContext } from '../../../common/context/ImageSizes'
 import { Copyright, CopyrightProps } from '../../../components/Copyright'
 import { Seo } from '../../../components/SEO'
 import configs from '../../../configs'
-import { getSummaryFromMd } from '../../../utils'
+import { getSummaryFromMd, isLikedBefore, setLikeId } from '../../../utils'
 
-const ThumbsUpPrefix = 'THUMBSUP_'
 const storeThumbsUpCookie = (id: string) => {
-  const key = `${ThumbsUpPrefix}${id}`
-  Cookie.set(key, id, { expires: 1 })
+  return setLikeId(id)
 }
 const isThumbsUpBefore = (id: string) => {
-  const key = `${ThumbsUpPrefix}${id}`
-  return !!Cookie.get(key)
+  return isLikedBefore(id)
 }
 export const PostView: NextPage<PostModel> = (props) => {
   const [{ text, title, _id }, update] = useState(props)
