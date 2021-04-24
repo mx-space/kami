@@ -135,6 +135,7 @@ export const PostView: NextPage<PostModel> = (props) => {
               })
               .then(() => {
                 message.success('感谢支持!')
+
                 storeThumbsUpCookie(props._id)
                 setThumbsUp(thumbsUp + 1)
               })

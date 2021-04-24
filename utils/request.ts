@@ -9,7 +9,7 @@
 
 import { message } from 'utils/message'
 import axios, { AxiosError } from 'axios'
-import { getToken } from './auth'
+import { getToken } from './cookie'
 import { isClientSide, isServerSide } from './utils'
 const service = axios.create({
   baseURL: process.env.APIURL || '/api',

@@ -10,6 +10,7 @@ import { NumberRecorder } from 'components/NumberRecorder'
 import { OverLay } from 'components/Overlay'
 import { RelativeTime } from 'components/Time'
 import dayjs from 'dayjs'
+import Cookies from 'js-cookie'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { NoteLayout } from 'layouts/NoteLayout'
 import { NoteModel, NoteResp } from 'models/note'
@@ -25,7 +26,7 @@ import observable from 'utils/observable'
 import { parseDate } from 'utils/time'
 import { ImageSizeMetaContext } from '../../common/context/ImageSizes'
 import { Seo } from '../../components/SEO'
-import { getSummaryFromMd } from '../../utils'
+import { getSummaryFromMd, isLikedBefore, setLikeId } from '../../utils'
 
 interface NoteViewProps {
   data: NoteModel
@@ -144,7 +145,17 @@ const NoteView: NextPage<NoteViewProps> = observer(
       setLike(props.data.count.like ?? 0)
       setLiked(false)
     }, [props])
+
     const [isLiked, setLiked] = useState(false)
+    useEffect(() => {
+      setLiked(isLikedBefore(data.nid.toString()))
+      observable.on('like', (nid) => {
+        if (data.nid === nid) {
+          setLiked(true)
+        }
+      })
+    }, [data.nid])
+
     const actions: ActionProps = {
       informs: [],
       actions: [
@@ -163,13 +174,15 @@ const NoteView: NextPage<NoteViewProps> = observer(
             like - 1 === data.count.like || isLiked ? '#e74c3c' : undefined,
 
           callback: () => {
-            if (like - 1 === data.count.like) {
+            if (like - 1 === data.count.like || isLiked) {
               return message.error('你已经喜欢过啦!')
             }
             Rest('Note')
-              .get<any>('like/' + _id, { withCredentials: true })
+              .get<any>('like/' + _id)
               .then(() => {
                 message.success('感谢喜欢!')
+                observable.emit('like', data.nid)
+                setLikeId(data.nid.toString())
                 setLike(like + 1)
               })
               .catch(() => {

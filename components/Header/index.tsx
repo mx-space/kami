@@ -35,8 +35,9 @@ import React, {
   useState,
 } from 'react'
 import { createPortal } from 'react-dom'
-import { combineClassName, NoSSR, Rest } from 'utils'
+import { combineClassName, isLikedBefore, NoSSR, Rest, setLikeId } from 'utils'
 import { message } from 'utils/message'
+import observable from 'utils/observable'
 import css from './index.module.css'
 import scss from './index.module.scss'
 const styles = combineClassName(css, scss)
@@ -69,12 +70,23 @@ const HeaderActionLikeButtonForNote: FC<{ id: number }> = memo((props) => {
   useEffect(() => {
     setLiked(false)
   }, [router])
+  useEffect(() => {
+    setLiked(isLikedBefore(id.toString()))
+
+    observable.on('like', (nid) => {
+      if (id === nid) {
+        setLiked(true)
+      }
+    })
+  }, [id])
   const onLike = () =>
     Rest('Note')
-      .get<any>('like/' + id, { withCredentials: true })
+      .get<any>('like/' + id)
       .then(() => {
         message.success('感谢喜欢!')
-        setLiked(true)
+        observable.emit('like', id)
+        setLikeId(id.toString())
+        // setLiked(true)
       })
       .catch(() => {
         setLiked(true)

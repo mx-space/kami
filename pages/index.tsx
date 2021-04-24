@@ -219,12 +219,10 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
                   href: '/like_this',
                   onClick: (e) => {
                     stopEventDefault(e)
-                    service
-                      .post('like_this', null, { withCredentials: true })
-                      .then(() => {
-                        message.success('感谢喜欢 ❤️')
-                        setLike(like + 1)
-                      })
+                    service.post('like_this', null).then(() => {
+                      message.success('感谢喜欢 ❤️')
+                      setLike(like + 1)
+                    })
                   },
                 }}
               />
