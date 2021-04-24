@@ -53,7 +53,7 @@ const BangumiView: NextPage<{ data: FavoriteBangumiType[] }> = (props) => {
                     {bangumi.title}
                     <div className="bangumi-status">
                       <div className="bangumi-status-bar"></div>
-                      <p>{bangumi.countText}</p>
+                      <p>{bangumi.countText ?? 'N/A'}</p>
                     </div>
                   </h4>
                 </a>

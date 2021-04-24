@@ -98,6 +98,7 @@ const RecentlyPage: NextPage = () => {
       <h1>动态</h1>
       <h2 className="text-opacity-80">谢谢你听我诉说</h2>
       {isLogged && <RecentlyBox />}
+      <div className="pb-4"></div>
       {data.length === 0 && loading ? (
         <Loading />
       ) : (
@@ -219,7 +220,10 @@ const RecentlyBox: FC = memo(() => {
       <div className="mt-3 text-right">
         <button
           className="btn yellow"
-          onClick={handleSubmit}
+          onClick={(e) => {
+            e.preventDefault()
+            handleSubmit()
+          }}
           disabled={content.trim().length === 0}
         >
           发送
