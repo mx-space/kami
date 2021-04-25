@@ -239,21 +239,33 @@ const Post: NextPage<PostProps> = observer((props) => {
   )
 })
 
-export async function getServerSideProps(ctx: NextPageContext) {
-  try {
-    const { page, year } = ctx.query
+Post.getInitialProps = async (ctx) => {
+  const { page, year } = ctx.query
 
-    const data = await Rest('Post', '').gets<PostPagerDto>({
-      page: ((page as any) as number) || 1,
-      year: parseInt(year as string) || undefined,
-    })
-    return {
-      props: { page: data.page, posts: data.data },
-    }
-  } catch {
-    return {
-      notFound: true,
-    }
+  const data = await Rest('Post', '').gets<PostPagerDto>({
+    page: ((page as any) as number) || 1,
+    year: parseInt(year as string) || undefined,
+  })
+  return {
+    page: data.page,
+    posts: data.data,
   }
 }
+// export async function getServerSideProps(ctx: NextPageContext) {
+//   try {
+//     const { page, year } = ctx.query
+
+//     const data = await Rest('Post', '').gets<PostPagerDto>({
+//       page: ((page as any) as number) || 1,
+//       year: parseInt(year as string) || undefined,
+//     })
+//     return {
+//       props: { page: data.page, posts: data.data },
+//     }
+//   } catch {
+//     return {
+//       notFound: true,
+//     }
+//   }
+// }
 export default Post
