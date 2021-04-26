@@ -184,7 +184,9 @@ const NoteView: NextPage<NoteViewProps> = observer(
               return message.error('你已经喜欢过啦!')
             }
             Rest('Note')
-              .get<any>('like/' + _id)
+              .get<any>('like/' + _id, {
+                params: { ts: performance.timeOrigin + performance.now() },
+              })
               .then(() => {
                 message.success('感谢喜欢!')
                 observable.emit('like', data.nid)

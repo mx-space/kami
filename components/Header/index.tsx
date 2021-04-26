@@ -86,7 +86,11 @@ const HeaderActionLikeButtonForNote: FC<{ id: number }> = memo((props) => {
   }, [id])
   const onLike = () =>
     Rest('Note')
-      .get<any>('like/' + id)
+      .get<any>('like/' + id, {
+        params: {
+          ts: performance.timeOrigin + performance.now(),
+        },
+      })
       .then(() => {
         message.success('感谢喜欢!')
         observable.emit('like', id)

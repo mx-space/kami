@@ -216,7 +216,10 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
                   title: `点赞 (${like})`,
                   desc: '如果你喜欢的话点个赞呗',
                   src: images.pop() as string,
-                  href: '/like_this',
+                  href:
+                    '/like_this?ts=' +
+                    performance.timeOrigin +
+                    performance.now(),
                   onClick: (e) => {
                     stopEventDefault(e)
                     service.post('like_this', null).then(() => {

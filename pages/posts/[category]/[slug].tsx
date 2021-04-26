@@ -127,6 +127,7 @@ export const PostView: NextPage<PostModel> = (props) => {
               .get('_thumbs-up', {
                 params: {
                   id: props._id,
+                  ts: performance.timeOrigin + performance.now(),
                 },
               })
               .then(() => {
