@@ -2,13 +2,14 @@ import { faTags } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useStore } from 'common/store'
 import { QueueAnim } from 'components/Anime'
+import { Loading } from 'components/Loading'
 import { OverLay } from 'components/Overlay'
 import { PostBlock } from 'components/PostBlock'
 import { BigTag } from 'components/Tag'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { PagerModel } from 'models/base'
-import { PostPagerDto, PostModel, PostRespModel } from 'models/post'
-import { NextPage, NextPageContext } from 'next'
+import { PostModel, PostPagerDto, PostRespModel } from 'models/post'
+import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import RcQueueAnim from 'rc-queue-anim'
@@ -19,7 +20,7 @@ import React, {
   useMemo,
   useState,
 } from 'react'
-import { UUID } from 'utils'
+import { NoSSR, UUID } from 'utils'
 import { Rest } from 'utils/api'
 import { observer } from 'utils/mobx'
 import { SEO } from '../../components/SEO'
@@ -28,7 +29,9 @@ interface PostProps extends PagerModel {
 }
 
 const Post: NextPage<PostProps> = observer((props) => {
-  const { page, posts } = props
+  // const { page, posts } = props
+  const [page, setPage] = useState<PagerModel['page'] | null>(null)
+  const [posts, setPosts] = useState<PostModel[]>([])
   const store = useStore()
   const { actionStore } = store
   const [showTags, setShowTags] = useState(false)
@@ -41,6 +44,18 @@ const Post: NextPage<PostProps> = observer((props) => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [currentPage])
+  useEffect(() => {
+    fetch()
+  }, [router.query.page, router.query.year])
+  const fetch = async () => {
+    const { page, year } = router.query
+    const data = await Rest('Post', '').gets<PostPagerDto>({
+      page: ((page as any) as number) || 1,
+      year: parseInt(year as string) || undefined,
+    })
+    setPage(data.page)
+    setPosts(data.data)
+  }
 
   const [tags, setTags] = useState<{ _id: string; name: string }[]>([])
   const fetchTags = useCallback(async () => {
@@ -197,22 +212,28 @@ const Post: NextPage<PostProps> = observer((props) => {
                 )
               })}
             </Fragment>
-          ) : (
+          ) : page ? (
             <div>
               <p>站长没有写过一篇文章啦</p>
               <p>稍后来看看吧!</p>
             </div>
+          ) : (
+            <Loading loadingText="正在加载.." />
           )}
         </article>
       </RcQueueAnim>
 
-      {
+      {page && (
         <section className="kami-more">
           {page.hasPrevPage && (
             <button
               className="btn brown"
               onClick={() => {
-                router.push('/posts?page=' + (page.currentPage - 1))
+                router.push(
+                  '/posts?page=' + (page.currentPage - 1),
+                  undefined,
+                  { shallow: true },
+                )
               }}
             >
               上一页
@@ -227,30 +248,34 @@ const Post: NextPage<PostProps> = observer((props) => {
                   : undefined
               }
               onClick={() => {
-                router.push('/posts?page=' + (page.currentPage + 1))
+                router.push(
+                  '/posts?page=' + (page.currentPage + 1),
+                  undefined,
+                  { shallow: true },
+                )
               }}
             >
               下一页
             </button>
           )}
         </section>
-      }
+      )}
     </ArticleLayout>
   )
 })
 
-Post.getInitialProps = async (ctx) => {
-  const { page, year } = ctx.query
+// Post.getInitialProps = async (ctx) => {
+//   const { page, year } = ctx.query
 
-  const data = await Rest('Post', '').gets<PostPagerDto>({
-    page: ((page as any) as number) || 1,
-    year: parseInt(year as string) || undefined,
-  })
-  return {
-    page: data.page,
-    posts: data.data,
-  }
-}
+//   const data = await Rest('Post', '').gets<PostPagerDto>({
+//     page: ((page as any) as number) || 1,
+//     year: parseInt(year as string) || undefined,
+//   })
+//   return {
+//     page: data.page,
+//     posts: data.data,
+//   }
+// }
 // export async function getServerSideProps(ctx: NextPageContext) {
 //   try {
 //     const { page, year } = ctx.query
@@ -268,4 +293,4 @@ Post.getInitialProps = async (ctx) => {
 //     }
 //   }
 // }
-export default Post
+export default NoSSR(Post)

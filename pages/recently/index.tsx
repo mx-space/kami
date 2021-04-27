@@ -14,7 +14,7 @@ import { RecentlyModel } from 'models/recently'
 import { NextPage } from 'next'
 import React, { FC, Fragment, memo, useEffect, useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { EventBus, Rest } from 'utils'
+import { EventBus, NoSSR, Rest } from 'utils'
 import styles from './index.module.scss'
 
 const FETCH_SIZE = 10
@@ -232,4 +232,4 @@ const RecentlyBox: FC = memo(() => {
     </form>
   )
 })
-export default observer(RecentlyPage)
+export default NoSSR(observer(RecentlyPage))

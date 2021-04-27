@@ -214,29 +214,12 @@ export default class MyDocument extends Document<{ ua: string }> {
           ></script>
           <script
             dangerouslySetInnerHTML={{
-              __html: `new SmoothScroll('a[href*="#"]', {
-                            speed: 500,
-                            offset: 150,
-                            easing: 'easeInOutCubic',
-                            durationMax: 1000,
-                            durationMin: 350,
-                            topOnEmptyHash: true,
-                            emitEvents: true,
-                            updateURL: false,
-                            popstate: false
-                          })`,
+              __html: `new SmoothScroll('a[href*="#"]', {speed: 500,offset: 150,easing: 'easeInOutCubic',durationMax: 1000,durationMin: 350,topOnEmptyHash: true,emitEvents: true,updateURL: false,popstate: false})`,
             }}
           ></script>
           <script
             dangerouslySetInnerHTML={{
-              __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-            });
-          `,
+              __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${GA_TRACKING_ID}', {page_path: window.location.pathname,});`,
             }}
           />
         </body>
