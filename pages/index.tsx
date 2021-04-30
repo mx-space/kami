@@ -281,14 +281,19 @@ const _Sections: FC<IndexViewProps> = ({ randomImages, notes, posts }) => {
                 title: `点赞 (${like})`,
                 desc: '如果你喜欢的话点个赞呗',
                 src: images.pop() as string,
-                href:
-                  '/like_this?ts=' + performance.timeOrigin + performance.now(),
+                href: '/like_this',
                 onClick: (e) => {
                   stopEventDefault(e)
-                  service.post('like_this', null).then(() => {
-                    message.success('感谢喜欢 ❤️')
-                    setLike(like + 1)
-                  })
+                  service
+                    .post(
+                      'like_this?ts=' +
+                        ((performance.now() + performance.timeOrigin) | 0),
+                      null,
+                    )
+                    .then(() => {
+                      message.success('感谢喜欢 ❤️')
+                      setLike(like + 1)
+                    })
                 },
               }}
             />
