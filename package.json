@@ -1,6 +1,6 @@
 {
   "name": "mx-web",
-  "license": "MIT",
+  "license": "GPLv3",
   "private": false,
   "version": "1.12.0",
   "scripts": {

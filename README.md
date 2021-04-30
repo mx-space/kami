@@ -13,6 +13,10 @@ Live Demo:
 
 [使用文档](https://wibus.gitee.io/docs/mix-space/#/)
 
+## 忠告
+
+可以在此基础上保留署名进行二次创作, 禁止用于以盈利为目的一切活动.
+
 ## 鸣谢
 
 [@wibus-wee](https://github.com/wibus-wee)
