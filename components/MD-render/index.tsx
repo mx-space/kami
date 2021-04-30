@@ -48,10 +48,9 @@ const Heading: () => FC<{
   }
   return observer(function RenderHeading(props) {
     const currentIndex = useMemo(() => index++, [])
-    const id = useMemo(
-      () => currentIndex + '¡' + (props.children?.[0].props.value as string),
-      [props.children],
-    )
+
+    const title = props.children?.[0].props.value
+    const data_id_title = useMemo(() => currentIndex + '¡' + title, [title])
     // const [offset, setOffset] = useState<null | number>(null)
     // const ref = useRef<HTMLHeadElement>(null)
     // useEffect(() => {
@@ -74,10 +73,13 @@ const Heading: () => FC<{
         observable.emit('toc', currentIndex - 1)
       }
     }, [inView, scrollDirection])
+    console.log(props)
+
     return createElement<DOMAttributes<HTMLHeadingElement>, HTMLHeadingElement>(
       `h${props.level}`,
       {
-        id,
+        'data-id-title': data_id_title,
+        id: title,
         ref,
         // ...(offset ? { 'data-offset': offset } : {}),
       } as any,

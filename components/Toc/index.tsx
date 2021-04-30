@@ -20,7 +20,7 @@ import styles from './index.module.scss'
 declare const window: Window & typeof globalThis & { [key: string]: any }
 
 class Item extends PureComponent<{
-  id: string
+  title: string
   depth: number
   active: boolean
   rootDepth: number
@@ -28,13 +28,13 @@ class Item extends PureComponent<{
 }> {
   // componentDidUpdate() {}
   render() {
-    const { active, depth, id, rootDepth, onClick } = this.props
+    const { active, depth, title, rootDepth, onClick } = this.props
 
     return (
       <a
         data-scroll
-        href={'#' + id}
-        data-index={id.split('¡').shift()}
+        href={'#' + title}
+        data-index={depth}
         className={classNames(styles['toc-link'], active && styles['active'])}
         style={{
           paddingLeft:
@@ -45,14 +45,12 @@ class Item extends PureComponent<{
           onClick()
           if (typeof window.SmoothScroll === 'undefined') {
             e.preventDefault()
-            const el = document.getElementById(id)
+            const el = document.getElementById(title)
             el?.scrollIntoView({ behavior: 'smooth' })
           }
         }}
       >
-        <span className={styles['a-pointer']}>
-          {id.slice(id.indexOf('¡') + 1)}
-        </span>
+        <span className={styles['a-pointer']}>{title}</span>
       </a>
     )
   }
@@ -61,18 +59,6 @@ class Item extends PureComponent<{
 const _Toc: FC = memo(() => {
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // useEffect(() => {
-  //   const handler = throttle(() => {
-  //     const top = document.body.scrollTop
-  //     headings?.some((h) => h.top > top)
-  //   }, 30)
-
-  //   window.addEventListener('scroll', handler)
-
-  //   return () => {
-  //     window.removeEventListener('scroll', handler)
-  //   }
-  // }, [])
   const [index, setIndex] = useState(-1)
   useEffect(() => {
     const handler = (index: number) => {
@@ -87,7 +73,7 @@ const _Toc: FC = memo(() => {
   const [headings, setHeadings] = useState<
     | null
     | {
-        id: string
+        title: string
         depth: number
       }[]
   >([])
@@ -120,15 +106,22 @@ const _Toc: FC = memo(() => {
       // @ts-ignore
       const headings = $headings
         .flat<HTMLHeadingElement>(2)
-        .sort((a, b) => parseInt(a.id) - parseInt(b.id))
+        .sort(
+          (a, b) =>
+            parseInt(a.dataset['data-id-title'] as any) -
+            parseInt(b.dataset['data-id-title'] as any),
+        )
         .map((d: HTMLHeadingElement) => {
           const depth = ~~d.tagName.toLowerCase().slice(1)
           if (depth < _rootDepth) {
             _rootDepth = depth
           }
-
+          const title =
+            (d.children.length == 0
+              ? d.textContent
+              : d.children.item(0)!.textContent) ?? ''
           return {
-            id: d.id,
+            title: title,
             depth,
             isActive: false,
             // @ts-ignore
@@ -157,23 +150,6 @@ const _Toc: FC = memo(() => {
     }, 1000)
   }, [asPath])
 
-  useEffect(() => {
-    const handler = (e) => {
-      try {
-        // @ts-ignore
-        const index = parseInt(e.detail.toggle as HTMLElement).dataset['index']
-        if (!isNaN(index)) {
-          setIndex(index)
-        }
-        // eslint-disable-next-line no-empty
-      } catch {}
-    }
-    document.addEventListener('scrollStop', handler, false)
-    return () => {
-      document.removeEventListener('scrollStop', handler, false)
-    }
-  }, [])
-
   return (
     <section
       className={classNames('kami-toc', styles['toc'])}
@@ -195,8 +171,8 @@ const _Toc: FC = memo(() => {
                   }}
                   active={i === index}
                   depth={heading.depth}
-                  id={heading.id}
-                  key={heading.id}
+                  title={heading.title}
+                  key={heading.title}
                   rootDepth={rootDepth}
                 />
               )
