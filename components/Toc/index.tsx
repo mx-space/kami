@@ -14,7 +14,15 @@ import throttle from 'lodash/throttle'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import QueueAnim from 'rc-queue-anim'
-import { FC, memo, PureComponent, useEffect, useRef, useState } from 'react'
+import {
+  FC,
+  memo,
+  PureComponent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import observable from 'utils/observable'
 import styles from './index.module.scss'
 declare const window: Window & typeof globalThis & { [key: string]: any }
@@ -24,11 +32,12 @@ class Item extends PureComponent<{
   depth: number
   active: boolean
   rootDepth: number
-  onClick: () => void
+  onClick: (i: number) => void
+  index: number
 }> {
   // componentDidUpdate() {}
   render() {
-    const { active, depth, title, rootDepth, onClick } = this.props
+    const { index, active, depth, title, rootDepth, onClick } = this.props
 
     return (
       <a
@@ -42,7 +51,7 @@ class Item extends PureComponent<{
         }}
         data-depth={depth}
         onClick={(e) => {
-          onClick()
+          onClick(index)
           if (typeof window.SmoothScroll === 'undefined') {
             e.preventDefault()
             const el = document.getElementById(title)
@@ -150,6 +159,12 @@ const _Toc: FC = memo(() => {
     }, 1000)
   }, [asPath])
 
+  const handleItemClick = useCallback((i) => {
+    setTimeout(() => {
+      setIndex(i)
+    }, 350)
+  }, [])
+
   return (
     <section
       className={classNames('kami-toc', styles['toc'])}
@@ -164,11 +179,8 @@ const _Toc: FC = memo(() => {
             headings.map((heading, i) => {
               return (
                 <Item
-                  onClick={() => {
-                    setTimeout(() => {
-                      setIndex(i)
-                    }, 350)
-                  }}
+                  index={i}
+                  onClick={handleItemClick}
                   active={i === index}
                   depth={heading.depth}
                   title={heading.title}
