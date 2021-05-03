@@ -22,7 +22,7 @@ import { isServerSide } from 'utils'
 import { observer } from 'utils/mobx'
 import observable from 'utils/observable'
 import { ImageSizeMetaContext } from '../../common/context/ImageSizes'
-import CodeBlock from '../CodeBlock'
+import CodeBlock from '../CodeHighlighter'
 import styles from './index.module.scss'
 
 type MdProps = ReactMarkdownProps & {
@@ -264,9 +264,9 @@ const Image =
 
 const RenderSpoiler: FC<{ value: string }> = (props) => {
   return (
-    <span className={'spoiler'} title={'你知道的太多了'}>
+    <del className={'spoiler'} title={'你知道的太多了'}>
       {props.value}
-    </span>
+    </del>
   )
 }
 

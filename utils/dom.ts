@@ -15,13 +15,17 @@ export const stopEventDefault = <T extends BaseSyntheticEvent>(e: T) => {
 }
 
 export const copy = (value: string) => {
-  const textarea = document.createElement('textarea')
-  textarea.value = value
-  textarea.style.cssText = `position: absolute; top:0; z-index: -999`
-  document.documentElement.appendChild(textarea)
-  textarea.select()
-  document.execCommand('copy')
-  document.documentElement.removeChild(textarea)
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(value)
+  } else {
+    const textarea = document.createElement('textarea')
+    textarea.value = value
+    textarea.style.cssText = `position: absolute; top:0; z-index: -999`
+    document.documentElement.appendChild(textarea)
+    textarea.select()
+    document.execCommand('copy')
+    document.documentElement.removeChild(textarea)
+  }
 }
 
 export function getElementViewTop<T extends HTMLElement>(element: T) {

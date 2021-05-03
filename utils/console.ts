@@ -7,16 +7,16 @@
  * @Coding with Love
  */
 //stackoverflow.com/questions/7798748/find-out-whether-chrome-console-is-open/48287643#48287643
-import throttle from 'lodash/throttle'
-import { isDev } from './utils'
-import { Manager } from 'browser-detect-devtools'
+// import throttle from 'lodash/throttle'
+// import { isDev } from './utils'
+// // import { Manager } from 'browser-detect-devtools'
 import Package from './../package.json'
 const version = process.env.VERSION || `v${Package.version}` || ''
 
-export function releaseDevtools() {
-  Manager.stopDevToolMonitoring()
-  Manager.freezeWhenDevToolsOpened(false)
-}
+// export function releaseDevtools() {
+//   Manager.stopDevToolMonitoring()
+//   Manager.freezeWhenDevToolsOpened(false)
+// }
 // export function forbiddenDevtools() {
 //   if (isDev) {
 //     return
@@ -68,41 +68,41 @@ export function releaseDevtools() {
 //   )
 // }
 
-export function forbiddenDevtools() {
-  if (isDev) {
-    return
-  }
+// export function forbiddenDevtools() {
+//   if (isDev) {
+//     return
+//   }
 
-  Manager.alwaysConsoleClear(false)
-  Manager.freezeWhenDevToolsOpened(true)
-  // Manager.startDevToolMonitoring((isOpened, orientation) => {
-  //   // alert(orientation)
+//   Manager.alwaysConsoleClear(false)
+//   Manager.freezeWhenDevToolsOpened(true)
+//   // Manager.startDevToolMonitoring((isOpened, orientation) => {
+//   //   // alert(orientation)
 
-  //   if (isOpened) {
-  //     // document.body.textContent = '你打开了控制台, 请关闭后刷新'
-  //     // document.body.style.cssText = `
-  //     //         background: #fff;
-  //     //         color: #000;
-  //     //         display: flex;
-  //     //         position: absolute;
-  //     //         top: 0;
-  //     //         bottom: 0;
-  //     //         left: 0;
-  //     //         right: 0;
-  //     //         align-items: center;
-  //     //         justify-content: center;
-  //     //         font-size: 36px;
-  //     //         font-weight: 800;
-  //     //         padding: 0;
-  //     //         margin: 0;
-  //     //         `
+//   //   if (isOpened) {
+//   //     // document.body.textContent = '你打开了控制台, 请关闭后刷新'
+//   //     // document.body.style.cssText = `
+//   //     //         background: #fff;
+//   //     //         color: #000;
+//   //     //         display: flex;
+//   //     //         position: absolute;
+//   //     //         top: 0;
+//   //     //         bottom: 0;
+//   //     //         left: 0;
+//   //     //         right: 0;
+//   //     //         align-items: center;
+//   //     //         justify-content: center;
+//   //     //         font-size: 36px;
+//   //     //         font-weight: 800;
+//   //     //         padding: 0;
+//   //     //         margin: 0;
+//   //     //         `
 
-  //     Manager.stopDevToolMonitoring()
-  //     console.clear()
-  //     printToConsole()
-  //   }
-  // })
-}
+//   //     Manager.stopDevToolMonitoring()
+//   //     console.clear()
+//   //     printToConsole()
+//   //   }
+//   // })
+// }
 
 const motto = `
     This Personal Space Powered By Mix Space.

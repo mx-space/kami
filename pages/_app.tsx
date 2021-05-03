@@ -20,7 +20,7 @@ import React, { FC, useCallback, useEffect, useMemo } from 'react'
 import useMount from 'react-use/lib/useMount'
 import useUnmount from 'react-use/lib/useUnmount'
 import { UAParser } from 'ua-parser-js'
-import { forbiddenDevtools, printToConsole } from 'utils/console'
+import { printToConsole } from 'utils/console'
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
 import client from '../common/socket'
@@ -207,7 +207,7 @@ const Content: FC<DataModel> = observer((props) => {
             }
           })
       } else {
-        forbiddenDevtools()
+        // forbiddenDevtools()
       }
     })
   }, [])

@@ -16,7 +16,7 @@ import { Rest } from '../../utils/api'
 import { setToken } from '../../utils/cookie'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
-import { releaseDevtools } from 'utils/console'
+// import { releaseDevtools } from 'utils/console'
 
 const LoginView: NextPage = () => {
   const [username, setUsername] = useState('')
@@ -35,7 +35,7 @@ const LoginView: NextPage = () => {
     }
     message.success('登录成功')
     userStore.setToken(data.token)
-    releaseDevtools()
+    // releaseDevtools()
   }
 
   return (

@@ -41,7 +41,6 @@ import dark from 'react-syntax-highlighter/dist/cjs/styles/prism/tomorrow'
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
 import { appStore, useStore } from '../../common/store'
-import { copy } from '../../utils/dom'
 import styles from './index.module.scss'
 
 const lang = {
@@ -82,11 +81,11 @@ const lang = {
   http,
 }
 Object.entries(lang).map(([k, v]) => SyntaxHighlighter.registerLanguage(k, v))
-interface CodeBlockProps {
+interface Props {
   language: string | undefined
   value: string
 }
-const CodeBlock: FC<CodeBlockProps> = observer((props) => {
+const HighLighter: FC<Props> = observer((props) => {
   const { language, value } = props
   const { colorMode } = useStore().appStore
   const handleCopy = useCallback(() => {
@@ -115,4 +114,4 @@ const CodeBlock: FC<CodeBlockProps> = observer((props) => {
     </div>
   )
 })
-export default dynamic(() => Promise.resolve(CodeBlock), { ssr: false })
+export default dynamic(() => Promise.resolve(HighLighter), { ssr: false })
