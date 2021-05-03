@@ -144,7 +144,7 @@ export const ImageLazy: FC<
                   className={'image-hide lazyload-image'}
                   {...rest}
                   src={src}
-                  alt={alt}
+                  alt={alt.replace(/^[!¡]/, '')}
                   popup={popup}
                   {...{ placeholderRef }}
                   {...props}

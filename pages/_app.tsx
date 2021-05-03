@@ -4,10 +4,8 @@ import { DropdownProvider } from 'common/context/dropdown'
 import { InitialContext } from 'common/context/InitialDataContext'
 import Loader from 'components/Loader'
 import configs from 'configs'
-import 'intersection-observer'
 import { BasicLayout } from 'layouts/BasicLayout'
 import throttle from 'lodash/throttle'
-import { enableStaticRendering } from 'mobx-react-lite'
 import { AggregateResp } from 'models/aggregate'
 import { LogoJsonLd, NextSeo, SocialProfileJsonLd } from 'next-seo'
 import NextApp, { AppContext } from 'next/app'
@@ -33,11 +31,9 @@ import { getToken, removeToken } from '../utils/cookie'
 import * as gtag from '../utils/gtag'
 import service from '../utils/request'
 
-enableStaticRendering(isServerSide())
-
 const version = process.env.VERSION || `v${Package.version}` || ''
 
-const Progress = new QP()
+const Progress = new QP({ colorful: false, color: '#ffc107' })
 
 let _currentY = 0
 const Content: FC<DataModel> = observer((props) => {
@@ -154,6 +150,8 @@ const Content: FC<DataModel> = observer((props) => {
         ) ||
         !window.requestAnimationFrame ||
         !window.Proxy ||
+        !window.IntersectionObserver ||
+        !window.ResizeObserver ||
         typeof globalThis === 'undefined' ||
         typeof Set === 'undefined' ||
         typeof Map === 'undefined'

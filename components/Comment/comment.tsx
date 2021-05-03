@@ -1,5 +1,5 @@
 import { EventTypes } from 'common/socket/types'
-import Markdown from 'components/MD-render'
+import Markdown from 'components/Markdown'
 import sample from 'lodash/sample'
 import { CommentModel } from 'models/comment'
 import rc from 'randomcolor'

@@ -7,7 +7,7 @@
  * @Mark: Coding with Love
  */
 import { useInitialData } from 'common/context/InitialDataContext'
-import Markdown from 'components/MD-render'
+import Markdown from 'components/Markdown'
 import { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { createElement, FC } from 'react'

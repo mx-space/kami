@@ -8,7 +8,7 @@
  */
 import { useStore } from 'common/store'
 import { CommentLazy } from 'components/Comment'
-import Markdown from 'components/MD-render'
+import Markdown from 'components/Markdown'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { PageRespDto } from 'models/page'
 import { GetServerSideProps, NextPage } from 'next'

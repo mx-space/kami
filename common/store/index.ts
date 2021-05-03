@@ -16,7 +16,16 @@ import PageStore from './pages'
 import UserStore from './user'
 import GatewayStore from './gateway'
 import ActionStore from './action'
-import { isClientSide } from 'utils'
+import { isClientSide, isServerSide } from 'utils'
+import { enableStaticRendering } from 'mobx-react-lite'
+import { configure } from 'mobx'
+
+configure({
+  useProxies: 'always',
+})
+
+enableStaticRendering(isServerSide())
+
 export const gatewayStore = new GatewayStore()
 export const userStore = new UserStore()
 export const appStore = new AppStore()

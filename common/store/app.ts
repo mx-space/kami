@@ -10,7 +10,7 @@ export default class AppStore {
     makeAutoObservable(this)
   }
   menu: MenuModel[] = configs.menu as MenuModel[]
-  viewport: Partial<ViewportRecord> = {}
+  viewport: ViewportRecord = {} as any
 
   position = 0
   scrollDirection: 'up' | 'down' | null = null

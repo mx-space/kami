@@ -6,7 +6,7 @@
  * @FilePath: /web/components/Chat/components/message.tsx
  * @Mark: Coding with Love
  */
-import Markdown from 'components/MD-render'
+import Markdown from 'components/Markdown'
 import { RelativeTime } from 'components/Time'
 import { FC } from 'react'
 import { observer } from 'utils/mobx'
