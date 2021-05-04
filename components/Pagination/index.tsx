@@ -1,7 +1,5 @@
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { message } from 'utils/message'
 import { FC, useEffect, useState } from 'react'
+import { message } from 'utils/message'
 import styles from './index.module.scss'
 interface PaginationProps {
   total: number

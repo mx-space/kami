@@ -1,27 +1,23 @@
-import { FC, Fragment } from 'react'
+import { faNodeJs, faReact } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useInitialData } from 'common/context/InitialDataContext'
+import Link from 'next/link'
+import React, { FC, Fragment } from 'react'
+import { NoSSR } from 'utils'
 import { observer } from 'utils/mobx'
-import { FooterActions as _FooterActions } from './actions'
 import { useStore } from '../../common/store'
 import configs from '../../configs'
-import Link from 'next/link'
-import dynamic from 'next/dynamic'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faReact, faNodeJs } from '@fortawesome/free-brands-svg-icons'
-import { useInitialData } from 'common/context/InitialDataContext'
-const FooterActions = dynamic(
-  () => import('components/Footer/actions').then((m) => m.FooterActions) as any,
-  { ssr: false },
-) as typeof _FooterActions
-export const Footer: FC = observer(() => {
-  const {  appStore, gatewayStore } = useStore()
+import { FooterActions } from './actions'
+
+const _Footer: FC = observer(() => {
+  const { appStore, gatewayStore } = useStore()
   const thisYear = new Date().getFullYear()
   const initialData = useInitialData()
   const name = initialData.user.name
   return (
     <footer>
-      
       <div className="wrap">
-        <div className={'row'} style={{'paddingBottom': '18px'}}>
+        <div className={'row'} style={{ paddingBottom: '18px' }}>
           <div className="col-m-6 left to-center">
             <p>
               © {thisYear !== 2020 && '2020-'}
@@ -92,3 +88,5 @@ export const Footer: FC = observer(() => {
     </footer>
   )
 })
+/// FIXME: 2021-05-04 12:08:05 好像也开始丢 CSS 了
+export const Footer = NoSSR(_Footer)
