@@ -1,5 +1,6 @@
 import { EventTypes } from 'common/socket/types'
 import Markdown from 'components/Markdown'
+import { RelativeTime } from 'components/RelativeTime'
 import sample from 'lodash/sample'
 import { CommentModel } from 'models/comment'
 import rc from 'randomcolor'
@@ -51,19 +52,6 @@ const Comment: FC<
     ...rest
   } = props
 
-  const [relativeTime, updateRelativeTime] = useState(
-    relativeTimeFromNow(datetime),
-  )
-
-  useEffect(() => {
-    let timer: any = setInterval(() => {
-      updateRelativeTime(relativeTimeFromNow(datetime))
-    }, 20000)
-    return () => {
-      timer = clearInterval(timer)
-    }
-  }, [datetime])
-
   return (
     <div className={styles['comment']} {...rest}>
       <div className={styles['inner']}>
@@ -72,7 +60,7 @@ const Comment: FC<
           <div className={styles['content-author']}>
             <span className={styles['name']}>{author}</span>
             <span className={styles['datetime']}>
-              {relativeTime} {commentKey}
+              <RelativeTime date={new Date(datetime)} /> {commentKey}
             </span>
           </div>
           <div className={styles['detail']}>{content}</div>

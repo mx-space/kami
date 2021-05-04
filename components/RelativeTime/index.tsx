@@ -6,6 +6,7 @@
  * @FilePath: /web/components/Time/index.tsx
  * @Mark: Coding with Love
  */
+import dayjs from 'dayjs'
 import { FC, useEffect, useState } from 'react'
 import { relativeTimeFromNow } from 'utils'
 
@@ -19,7 +20,18 @@ export const RelativeTime: FC<{ date: Date }> = (props) => {
     setRelative(relativeTimeFromNow(props.date))
     let timer: any = setInterval(() => {
       setRelative(relativeTimeFromNow(props.date))
-    }, 20000)
+    }, 1000)
+
+    if (Math.abs(dayjs(props.date).diff(new Date(), 'd')) > 29) {
+      timer = clearInterval(timer)
+      setRelative(
+        Intl.DateTimeFormat('en-us', {
+          day: '2-digit',
+          month: '2-digit',
+          year: '2-digit',
+        }).format(props.date),
+      )
+    }
     return () => {
       timer = clearInterval(timer)
     }

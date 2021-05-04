@@ -21,26 +21,32 @@ export const Pagination: FC<PaginationProps> = (props) => {
 
   return (
     <div className={styles['pager']}>
-      {
-        <FontAwesomeIcon
-          icon={faArrowLeft}
-          className={styles['icon']}
-          style={
-            current - 1 <= 0
-              ? {
-                  cursor: 'not-allowed',
-                  opacity: '0.8',
-                }
-              : undefined
+      <svg
+        width="2em"
+        height="2em"
+        viewBox="0 0 24 24"
+        className={styles['icon']}
+        style={
+          current - 1 <= 0
+            ? {
+                cursor: 'not-allowed',
+                opacity: '0.8',
+              }
+            : undefined
+        }
+        onClick={() => {
+          const prev = current - 1
+          if (prev > 0) {
+            onChange(current - 1)
           }
-          onClick={() => {
-            const prev = current - 1
-            if (prev > 0) {
-              onChange(current - 1)
-            }
-          }}
-        />
-      }
+        }}
+      >
+        <path
+          d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6l6 6l1.41-1.41z"
+          fill="currentColor"
+        ></path>
+      </svg>
+
       <div className={styles['nav']}>
         <input
           value={value}
@@ -50,7 +56,7 @@ export const Pagination: FC<PaginationProps> = (props) => {
             setValue(e.target.value)
           }}
           onKeyDown={(e) => {
-            if (e.keyCode === 13) {
+            if (e.keyCode === 13 || e.key == 'Enter' || e.code == 'Enter') {
               const _value = parseInt(value)
               if (_value > total || _value <= 0) {
                 return message.error(
@@ -62,10 +68,12 @@ export const Pagination: FC<PaginationProps> = (props) => {
             }
           }}
         />
-        / {total}
+        <span>/ {total}</span>
       </div>
-      <FontAwesomeIcon
-        icon={faArrowRight}
+      <svg
+        width="2em"
+        height="2em"
+        viewBox="0 0 24 24"
         className={styles['icon']}
         onClick={() => {
           const next = current + 1
@@ -81,7 +89,12 @@ export const Pagination: FC<PaginationProps> = (props) => {
               }
             : undefined
         }
-      />
+      >
+        <path
+          d="M8.59 16.59L13.17 12L8.59 7.41L10 6l6 6l-6 6l-1.41-1.41z"
+          fill="currentColor"
+        ></path>
+      </svg>
     </div>
   )
 }

@@ -7,7 +7,7 @@
  * @Mark: Coding with Love
  */
 import Markdown from 'components/Markdown'
-import { RelativeTime } from 'components/Time'
+import { RelativeTime } from 'components/RelativeTime'
 import { FC } from 'react'
 import { observer } from 'utils/mobx'
 import { useStore } from '../../../common/store'

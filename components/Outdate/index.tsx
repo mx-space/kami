@@ -6,7 +6,7 @@
  * @FilePath: /web/components/Outdate/index.tsx
  * @Mark: Coding with Love
  */
-import { RelativeTime } from 'components/Time'
+import { RelativeTime } from 'components/RelativeTime'
 import dayjs from 'dayjs'
 import React from 'react'
 
