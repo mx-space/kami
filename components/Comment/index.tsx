@@ -23,7 +23,7 @@ import { useInView } from 'react-intersection-observer'
 import { Rest } from 'utils/api'
 import { observer } from 'utils/mobx'
 import { useStore } from '../../common/store'
-import { flattenChildren } from '../../utils'
+import { flattenChildren, NoSSR } from '../../utils'
 import { Pagination } from '../Pagination'
 import CommentBox from './box'
 import Comment from './comment'
@@ -52,7 +52,7 @@ interface CommentWrapProps {
   allowComment: boolean
 }
 
-const CommentWrap: FC<CommentWrapProps> = observer((props) => {
+const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
   const { type, id, allowComment } = props
   const [comments, setComments] = useState([] as CommentModel[])
   const [page, setPage] = useState({} as PagerModel['page'])
@@ -182,6 +182,7 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
 //     // </LazyLoad>
 //   )
 // }
+const CommentWrap = NoSSR(_CommentWrap)
 export const CommentLazy = CommentWrap
 export const minHeightProperty = { minHeight: '400px' }
 

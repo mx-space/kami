@@ -102,17 +102,17 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
   const sortedMap = new Map<number, MapType[]>()
 
   const { posts = [], notes = [] } = props
+  // const duration = 20
+  // const getDelayTime = (year: number): number => {
+  //   const prevYear = year + 1
+  //   const itemsLength = sortedMap.get(prevYear)?.length
 
-  const getDelayTime = (year: number): number => {
-    const prevYear = year + 1
-    const itemsLength = sortedMap.get(prevYear)?.length
-
-    if (itemsLength) {
-      return itemsLength * 100 + getDelayTime(prevYear)
-    } else {
-      return 0
-    }
-  }
+  //   if (itemsLength) {
+  //     return itemsLength * 100 + getDelayTime(prevYear)
+  //   } else {
+  //     return 0
+  //   }
+  // }
 
   if (!props.memory) {
     posts.forEach((post) => {
@@ -190,31 +190,41 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
         return (
           <article className="post-content kami-note article-list" key={year}>
             <div className="note-item">
-              <QueueAnim delay={getDelayTime(year)} type={'bottom'}>
-                <h1 key={1}>
-                  {year}
-                  <small className={styles['count']}>({value.length})</small>
-                </h1>
-              </QueueAnim>
+              {/* <QueueAnim
+                delay={getDelayTime(year)}
+                type={'bottom'}
+                duration={duration}
+              > */}
+              <h1 key={1}>
+                {year}
+                <small className={styles['count']}>({value.length})</small>
+              </h1>
+              {/* </QueueAnim> */}
               <ul className={styles['timeline-wrap']}>
                 {value.map((item, i) => {
                   return (
-                    <QueueAnim
-                      type={'bottom'}
-                      key={item.id}
-                      delay={getDelayTime(year) + i * 100}
-                    >
+                    // <QueueAnim
+                    //   duration={duration}
+                    //   type={'bottom'}
+                    //   key={item.id}
+                    //   delay={getDelayTime(year) + i * 100}
+                    // >
+                    // replace with `QueueAnim`
+                    <div key={item.id}>
                       <li
-                        key={i * j}
-                        style={{ display: 'flex', alignItems: 'center' }}
+                        key={item.id}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                        }}
                       >
                         <Link href={item.href} as={item.as}>
                           <a>
                             <span className={'date'}>
-                              {(item.date.getMonth() + 1)
-                                .toString()
-                                .padStart(2, '0')}
-                              /{item.date.getDate().toString().padStart(2, '0')}
+                              {Intl.DateTimeFormat('en-us', {
+                                month: '2-digit',
+                                day: '2-digit',
+                              }).format(item.date)}
                             </span>
                             <span className={'title'}>{item.title}</span>
                           </a>
@@ -234,7 +244,9 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
                           {item.meta.map((m, i) => (i === 0 ? m : '/' + m))}
                         </span>
                       </li>
-                    </QueueAnim>
+                    </div>
+
+                    // </QueueAnim>
                   )
                 })}
               </ul>

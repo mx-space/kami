@@ -1,6 +1,6 @@
 import { faTags } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useStore } from 'common/store'
+import { appStore, useStore } from 'common/store'
 import { QueueAnim } from 'components/Anime'
 import { Loading } from 'components/Loading'
 import { OverLay } from 'components/Overlay'
@@ -107,6 +107,8 @@ const Post: NextPage<PostProps> = observer((props) => {
   return (
     <ArticleLayout>
       <OverLay
+        blur
+        darkness={0.6}
         show={showTags}
         onClose={() => {
           setShowTags(false)
@@ -115,29 +117,31 @@ const Post: NextPage<PostProps> = observer((props) => {
       >
         <div
           style={{
-            maxWidth: '50vw',
-            margin: 'auto',
-            position: 'relative',
-            height: '100%',
+            maxWidth:
+              appStore.viewport.w > 800 ? '50vw' : 'calc(100vw - 100px)',
+          }}
+          className="m-auto relative h-full"
+          onClick={() => {
+            setShowTags(false)
+            setTagPost([])
           }}
         >
           <div
             style={{
-              position: 'absolute',
               zIndex: 3,
               bottom: '50vh',
-              top: 0,
-              display: 'flex',
-              alignItems: 'flex-end',
+              top: '100px',
             }}
+            className="absolute"
           >
-            <QueueAnim type="scale">
+            <QueueAnim type="scale" className="flex items-end flex-wrap">
               {tags.map(({ _id, name }) => {
                 return (
                   <BigTag
                     tagName={name}
                     key={_id}
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation()
                       fetchPostsWithTag(name)
                     }}
                   />
@@ -146,8 +150,13 @@ const Post: NextPage<PostProps> = observer((props) => {
             </QueueAnim>
           </div>
 
-          <div style={{ position: 'absolute', top: '50vh', bottom: 0 }}>
-            <article className="post-content kami-note article-list">
+          <div style={{ top: '50vh' }} className="bottom absolute">
+            <article className="post-content kami-note article-list overlay-list">
+              <style
+                dangerouslySetInnerHTML={{
+                  __html: `.overlay-list * {color: #fff!important;}`,
+                }}
+              ></style>
               <ul>
                 <QueueAnim delay={700} forcedReplay appear>
                   {postWithTag ? (
@@ -163,9 +172,7 @@ const Post: NextPage<PostProps> = observer((props) => {
                             <a>{child.title}</a>
                           </Link>
                           <span className={'meta'}>
-                            {(date.getMonth() + 1).toString().padStart(2, '0')}/
-                            {date.getDate().toString().padStart(2, '0')}/
-                            {date.getFullYear()}
+                            {Intl.DateTimeFormat('en-US').format(date)}
                           </span>
                         </li>
                       )

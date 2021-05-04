@@ -115,11 +115,12 @@ const _Toc: FC = memo(() => {
       // @ts-ignore
       const headings = $headings
         .flat<HTMLHeadingElement>(2)
-        .sort(
-          (a, b) =>
-            parseInt(a.dataset['data-id-title'] as any) -
-            parseInt(b.dataset['data-id-title'] as any),
-        )
+        .sort((a, b) => {
+          return (
+            parseInt(a.dataset['idTitle'] as any) -
+            parseInt(b.dataset['idTitle'] as any)
+          )
+        })
         .map((d: HTMLHeadingElement) => {
           const depth = ~~d.tagName.toLowerCase().slice(1)
           if (depth < _rootDepth) {
@@ -132,11 +133,12 @@ const _Toc: FC = memo(() => {
           return {
             title: title,
             depth,
-            isActive: false,
+            // isActive: false,
             // @ts-ignore
             // top: ~~d.dataset['offset'] as number,
           }
         })
+
       setDepth(_rootDepth)
       setHeadings(headings.length === 0 ? null : headings)
     }

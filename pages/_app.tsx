@@ -17,7 +17,6 @@ import QP from 'qier-progress'
 import React, { FC, useCallback, useEffect, useMemo } from 'react'
 import useMount from 'react-use/lib/useMount'
 import useUnmount from 'react-use/lib/useUnmount'
-import { UAParser } from 'ua-parser-js'
 import { printToConsole } from 'utils/console'
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
@@ -30,6 +29,7 @@ import { getToken, removeToken } from '../utils/cookie'
 // import { checkDevtools } from '../utils/forbidden'
 import * as gtag from '../utils/gtag'
 import service from '../utils/request'
+import { checkOldBrowser } from 'utils'
 
 const version = process.env.VERSION || `v${Package.version}` || ''
 
@@ -129,48 +129,14 @@ const Content: FC<DataModel> = observer((props) => {
   }, [])
 
   const checkBrowser = useCallback(() => {
-    const parser = new UAParser(window.navigator.userAgent)
-    const browser = parser.getBrowser()
-    const isOld: boolean = (() => {
-      if (browser.name === 'IE') {
-        alert(
-          '欧尼酱, 乃真的要使用 IE 浏览器吗, 不如换个 Chrome 好不好嘛（o´ﾟ□ﾟ`o）',
-        )
-        location.href = 'https://www.google.com/chrome/'
-        return true
-      }
-      // check build-in methods
-      const ObjectMethods = ['fromEntries', 'entries']
-      const ArrayMethods = ['flat']
-      if (
-        !window.Reflect ||
-        !(
-          ObjectMethods.every((m) => Reflect.has(Object, m)) &&
-          ArrayMethods.every((m) => Reflect.has(Array.prototype, m))
-        ) ||
-        !window.requestAnimationFrame ||
-        !window.Proxy ||
-        !window.IntersectionObserver ||
-        !window.ResizeObserver ||
-        typeof globalThis === 'undefined' ||
-        typeof Set === 'undefined' ||
-        typeof Map === 'undefined'
-      ) {
-        return true
-      }
-
-      return false
-    })()
+    const { isOld, msg: errMsg } = checkOldBrowser()
     if (isOld) {
       const msg = '欧尼酱, 乃的浏览器太老了, 更新一下啦（o´ﾟ□ﾟ`o）'
       alert(msg)
       message.warn(msg, Infinity)
       class BrowserTooOldError extends Error {
         constructor() {
-          const { name: osName, version: osVersion } = parser.getOS()
-          super(
-            `User browser(${browser.name} ${browser.version}) is too old. OS: ${osName}/${osVersion}`,
-          )
+          super(errMsg)
         }
       }
 
@@ -211,28 +177,28 @@ const Content: FC<DataModel> = observer((props) => {
   }, [])
 
   const registerRouterEvents = useCallback(() => {
-    const getMainWrapper = () => {
-      const $main = document.querySelector('main')
+    // const getMainWrapper = () => {
+    //   const $main = document.querySelector('main')
 
-      if (!$main) {
-        return null
-      }
-      return $main
-    }
+    //   if (!$main) {
+    //     return null
+    //   }
+    //   return $main
+    // }
 
     // let animate: Animation | null = null
 
-    const animation = (status: 'in' | 'out') => {
-      const $main = getMainWrapper()
-      if ($main) {
-        status === 'out'
-          ? $main.classList.add('loading')
-          : $main.classList.remove('loading')
-      }
-    }
+    // const animation = (status: 'in' | 'out') => {
+    //   const $main = getMainWrapper()
+    //   if ($main) {
+    //     status === 'out'
+    //       ? $main.classList.add('loading')
+    //       : $main.classList.remove('loading')
+    //   }
+    // }
 
     Router.events.on('routeChangeStart', () => {
-      animation('out')
+      // animation('out')
 
       Progress.start()
       history.backPath = history.backPath
@@ -241,13 +207,13 @@ const Content: FC<DataModel> = observer((props) => {
     })
 
     Router.events.on('routeChangeComplete', () => {
-      animation('in')
+      // animation('in')
 
       Progress.finish()
     })
 
     Router.events.on('routeChangeError', () => {
-      animation('in')
+      // animation('in')
       history.backPath?.pop()
       Progress.finish()
       message.error('出现了未知错误, 刷新试试?')

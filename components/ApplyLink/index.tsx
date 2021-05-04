@@ -51,7 +51,7 @@ export const ApplyForLink: FC = () => {
   }, [])
   return (
     <article className={styles.wrap}>
-      <h1>我想和你交朋友!</h1>
+      <h1>我想和你交朋友！</h1>
       <form action="#" onSubmit={handleSubmit}>
         <Input
           placeholder={'昵称 *'}

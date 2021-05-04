@@ -8,8 +8,9 @@
  */
 import classNames from 'classnames'
 import { QueueAnim } from 'components/Anime'
+import { merge } from 'lodash'
 import dynamic from 'next/dynamic'
-import { FC, useEffect } from 'react'
+import { CSSProperties, FC, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import styles from './index.module.scss'
 
@@ -17,6 +18,7 @@ interface OverLayProps {
   onClose: () => void
   center?: boolean
   darkness?: number
+  blur?: boolean
 }
 
 const _OverLay: FC<OverLayProps> = ({
@@ -24,6 +26,7 @@ const _OverLay: FC<OverLayProps> = ({
   onClose,
   center,
   darkness,
+  blur = false,
 }) => {
   useEffect(() => {
     document.documentElement.style.overflow = 'hidden'
@@ -39,11 +42,10 @@ const _OverLay: FC<OverLayProps> = ({
       <QueueAnim type="alpha">
         <div
           className={styles['overlay']}
-          style={
-            darkness
-              ? { backgroundColor: `rgba(0,0,0,${darkness})` }
-              : undefined
-          }
+          style={merge<Partial<CSSProperties>, Partial<CSSProperties>>(
+            darkness ? { backgroundColor: `rgba(0,0,0,${darkness})` } : {},
+            blur ? { backdropFilter: 'blur(5px)' } : {},
+          )}
           onClick={onClose}
           key="overlay"
         ></div>
