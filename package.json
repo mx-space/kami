@@ -1,6 +1,6 @@
 {
   "name": "mx-web",
-  "license": "GPLv3",
+  "license": "GPL-3.0",
   "private": false,
   "version": "1.13.0",
   "scripts": {

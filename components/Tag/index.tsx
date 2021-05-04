@@ -2,13 +2,13 @@ import { faTag } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useStore } from 'common/store'
 import rc from 'randomcolor'
-import { FC, useMemo, MouseEvent } from 'react'
+import { FC, MouseEventHandler, useMemo } from 'react'
 import { observer } from 'utils/mobx'
 import styles from './index.module.scss'
 
 interface BigTagProps {
   tagName: string
-  onClick?: (e: MouseEvent<HTMLAnchorElement, MouseEvent>) => void
+  onClick?: MouseEventHandler<HTMLAnchorElement> | undefined
 }
 export const BigTag: FC<BigTagProps> = observer(({ tagName, onClick }) => {
   const { appStore } = useStore()
