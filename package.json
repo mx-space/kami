@@ -16,14 +16,14 @@
     "prod:reload": "pm2 reload ecosystem.config.js"
   },
   "browserslist": [
-    "chrome >70",
-    "safari >12",
-    "last 2 versions",
-    "last 8 Firefox versions",
-    "not IE 11",
-    "not IE_Mob 11",
+    "chrome >=88",
+    "safari >=14",
+    "last 2 Firefox versions",
     "maintained node versions",
-    "> 1%"
+    "iOS 14",
+    "cover 50% in us",
+    "cover 70% in cn",
+    "> 1% in cn"
   ],
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.35",
