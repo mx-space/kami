@@ -24,8 +24,10 @@ export const parseDate = (
   format: keyof typeof DateFormat,
 ) => dayjs(time).format(format)
 
-export const relativeTimeFromNow = (time: Date | string) => {
-  const current = new Date()
+export const relativeTimeFromNow = (
+  time: Date | string,
+  current = new Date(),
+) => {
   time = new Date(time)
   const msPerMinute = 60 * 1000
   const msPerHour = msPerMinute * 60

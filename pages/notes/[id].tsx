@@ -10,13 +10,12 @@ import { NumberRecorder } from 'components/NumberRecorder'
 import { OverLay } from 'components/Overlay'
 import { RelativeTime } from 'components/RelativeTime'
 import dayjs from 'dayjs'
-import Cookies from 'js-cookie'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { NoteLayout } from 'layouts/NoteLayout'
 import { NoteModel, NoteResp } from 'models/note'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React, { FC, useEffect, useRef, useState } from 'react'
+import React, { FC, useEffect, useMemo, useRef, useState } from 'react'
 import { Rest } from 'utils/api'
 import { imagesRecord2Map } from 'utils/images'
 import { message } from 'utils/message'
@@ -267,7 +266,28 @@ const NoteView: NextPage<NoteViewProps> = observer(
     const isSecret = props.data.secret
       ? dayjs(props.data.secret).isAfter(new Date())
       : false
-    const afterDay = isSecret ? dayjs(props.data.secret!).fromNow(true) : ''
+    const secretDate = useMemo(() => new Date(props.data.secret!), [
+      props.data.secret,
+    ])
+    const dateFormat = Intl.DateTimeFormat('zh-cn', {
+      hour12: false,
+      hour: 'numeric',
+      minute: 'numeric',
+      year: 'numeric',
+      day: 'numeric',
+      month: 'long',
+    }).format(secretDate)
+    useEffect(() => {
+      let timer = undefined as any
+      if (isSecret) {
+        timer = setTimeout(() => {
+          message.info('刷新以查看解锁的文章', 3)
+        }, +secretDate - +new Date())
+      }
+      return () => {
+        clearTimeout(timer)
+      }
+    }, [isSecret, secretDate])
     return (
       <>
         <Seo
@@ -297,8 +317,7 @@ const NoteView: NextPage<NoteViewProps> = observer(
         >
           {isSecret && !userStore.isLogged ? (
             <p className="text-center my-8">
-              这篇文章暂时没有公开呢，再过 {afterDay}
-              就解锁了哦
+              这篇文章暂时没有公开呢，将会在 {dateFormat} 解锁，再等等哦
             </p>
           ) : (
             <ImageSizeMetaContext.Provider
@@ -306,7 +325,7 @@ const NoteView: NextPage<NoteViewProps> = observer(
             >
               {isSecret && (
                 <span className={'flex justify-center -mb-3.5'}>
-                  这是一篇非公开的文章。({afterDay}后解锁)
+                  这是一篇非公开的文章。(在 {dateFormat} 解锁)
                 </span>
               )}
               <Markdown
