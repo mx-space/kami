@@ -256,9 +256,8 @@ const NoteView: NextPage<NoteViewProps> = observer(
       // eslint-disable-next-line react-hooks/exhaustive-deps
 
       return () => {
-        musicStore.init().then(() => {
-          musicStore.isHide = true
-        })
+        musicStore.init()
+        musicStore.setHide(true)
       }
     }, [props.data.music, props.data.nid])
 

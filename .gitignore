@@ -15,3 +15,5 @@ workbox-*.js
 workbox-*.js.*
 pages/debug.tsx
 /temp
+
+pages/dev

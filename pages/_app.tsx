@@ -270,18 +270,15 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
   const router = useRouter()
 
   const Comp = useMemo(() => {
-    switch (router.route) {
-      case '/debug':
-        return <Component {...pageProps} err={err} />
-
-      default:
-        return (
-          <BasicLayout>
-            <Component {...pageProps} err={err} />
-          </BasicLayout>
-        )
+    if (router.route.startsWith('/dev')) {
+      return <Component {...pageProps} err={err} />
     }
-  }, [Component, err, pageProps, router.basePath])
+    return (
+      <BasicLayout>
+        <Component {...pageProps} err={err} />
+      </BasicLayout>
+    )
+  }, [Component, err, pageProps, router.route])
 
   return (
     <InitialContext.Provider value={initData}>

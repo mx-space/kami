@@ -8,7 +8,6 @@ import {
 } from 'react'
 import styles from './index.module.scss'
 import classNames from 'classnames'
-import { BlockPicker as Picker } from 'react-color'
 import ReactDOM from 'react-dom'
 import { stopEventDefault } from '../../../utils/dom'
 import QueueAnim from 'rc-queue-anim'
@@ -148,11 +147,12 @@ const ColorPicker = ({
       }}
       className={'shadow'}
     >
-      <Picker
+      {/* <Picker
         triangle={'hide'}
         color={color}
         onChange={(color) => setColor(color.hex)}
-      />
+      /> */}
+      <span>Picker</span>
     </div>,
     document.body,
   )

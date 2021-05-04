@@ -11,6 +11,7 @@
 // import { isDev } from './utils'
 // // import { Manager } from 'browser-detect-devtools'
 import Package from './../package.json'
+import { isDev } from './utils'
 const version = process.env.VERSION || `v${Package.version}` || ''
 
 // export function releaseDevtools() {
@@ -130,4 +131,10 @@ export function printToConsole() {
 
     // eslint-disable-next-line no-empty
   } catch {}
+}
+
+export const log = (...args) => {
+  if (isDev) {
+    console.dir(...args)
+  }
 }

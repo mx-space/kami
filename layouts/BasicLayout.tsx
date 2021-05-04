@@ -1,14 +1,3 @@
-import { faCheckCircle } from '@fortawesome/free-regular-svg-icons'
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
-import { Footer } from 'components/Footer'
-import Header from 'components/Header'
-import { observer } from 'utils/mobx'
-import dynamic from 'next/dynamic'
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import { NoticePanel } from '../components/Notice'
-import { Switch } from '../components/LampSwitch'
-import { useStore } from '../common/store'
-import { UAParser } from 'ua-parser-js'
 import {
   faAndroid,
   faApple,
@@ -19,12 +8,19 @@ import {
   faUbuntu,
   faWindows,
 } from '@fortawesome/free-brands-svg-icons'
+import { faCheckCircle } from '@fortawesome/free-regular-svg-icons'
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Footer } from 'components/Footer'
+import Header from 'components/Header'
+import { MusicMiniPlayerStoreControlled } from 'components/Player'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { UAParser } from 'ua-parser-js'
 import { UUID } from 'utils'
-
-const APlayer = dynamic(() => import('components/Player'), {
-  ssr: false,
-})
+import { observer } from 'utils/mobx'
+import { useStore } from '../common/store'
+import { Switch } from '../components/LampSwitch'
+import { NoticePanel } from '../components/Notice'
 
 export const BasicLayout = observer(({ children }) => {
   const { appStore, actionStore } = useStore()
@@ -136,7 +132,7 @@ export const BasicLayout = observer(({ children }) => {
       <Header />
       {children}
       <Footer />
-      <APlayer />
+      <MusicMiniPlayerStoreControlled />
       {!(appStore.viewport.mobile || appStore.viewport.pad) && (
         <Switch onClick={handleChangeColorMode} />
       )}

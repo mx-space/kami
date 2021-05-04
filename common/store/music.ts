@@ -7,9 +7,7 @@
  * @Copyright
  */
 
-import axios from 'axios'
-import { makeAutoObservable } from 'mobx'
-import { MusicModel } from 'models/music'
+import { makeAutoObservable, runInAction } from 'mobx'
 export default class MusicStore {
   constructor() {
     makeAutoObservable(this)
@@ -18,64 +16,37 @@ export default class MusicStore {
     }
   }
 
-  async init() {
-    if (!this.initPlaylist) {
-      const list = await this.setPlaylist([
-        563534789,
-        1447327083,
-        528658316,
-        1450252250,
-      ])
-      this.initPlaylist = list
-    } else {
-      this.playlist = this.initPlaylist
-    }
+  list: number[] = []
+  isHide = true
+  isPlay = false
 
-    return
+  init() {
+    this.list = [563534789, 1447327083, 1450252250]
   }
 
-  initPlaylist: MusicModel[] = []
-  playlist: MusicModel[] = []
-  isPlay = false
-  isHide = true
-
-  async getList(list: number[]): Promise<MusicModel[]> {
-    const $meting = axios.create({
-      baseURL: 'https://api.i-meto.com/meting/api',
+  setHide(hide: boolean) {
+    runInAction(() => {
+      this.isHide = hide
+      !hide && this.play()
     })
-    const playlist: MusicModel[] = []
-    for await (const id of list) {
-      const data = (
-        await $meting.get('/', {
-          params: {
-            server: 'netease',
-            id,
-          },
-        })
-      ).data[0]
-
-      playlist.push(data)
-    }
-    return playlist
   }
 
   async setPlaylist(list: number[]) {
-    this.playlist = await this.getList(list)
+    this.list = [...list]
 
     this.play()
 
-    return this.playlist
+    return this.list
   }
 
   play() {
-    if (this.playlist.length > 0) {
+    runInAction(() => {
+      if (this.list.length == 0) {
+        this.init()
+      }
+
       this.isHide = false
       this.isPlay = true
-    } else {
-      this.init().then(() => {
-        this.isHide = false
-        this.isPlay = true
-      })
-    }
+    })
   }
 }

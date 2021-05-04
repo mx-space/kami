@@ -1,0 +1,60 @@
+.player.hide {
+  transform: translateX(-100%);
+}
+
+.player {
+  @apply fixed z-10 bottom-0 left-0;
+
+  transform: translateX(0);
+  transition: transform 0.5s;
+}
+
+.root {
+  @apply rounded-lg;
+}
+
+.cover {
+  height: 66px;
+  width: 66px;
+
+  @apply relative bg-gray bg-opacity-80 rounded-r-lg rounded-b-lg  overflow-hidden;
+}
+
+.control-btn {
+  @apply absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center z-10 text-white;
+  @apply shadow-lg cursor-pointer transition-all;
+
+  font-size: 35px;
+
+  > svg {
+    @apply shadow-2xl;
+
+    filter: drop-shadow(0px 0px 6px black);
+  }
+}
+
+.control-btn.is-play {
+  font-size: 24px;
+
+  @apply justify-end items-end;
+}
+
+.cover:hover + .tip,
+.tip:hover {
+  @apply opacity-100;
+}
+
+.tip {
+  @apply absolute top-0 bottom-0 whitespace-nowrap truncate;
+  @apply flex flex-col justify-around py-3 cursor-pointer;
+  @apply transition-opacity opacity-0 duration-300;
+
+  margin-left: 66px;
+  padding-left: 1.5em;
+  min-width: 150px;
+  max-width: calc(50vw - 66px);
+
+  & > p {
+    @apply m-0 leading-6;
+  }
+}

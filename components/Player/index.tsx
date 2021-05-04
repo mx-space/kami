@@ -1,65 +1,226 @@
 import classNames from 'classnames'
-import { observer } from 'utils/mobx'
-import { FC, useEffect } from 'react'
-import ReactAplayer from 'react-aplayer'
+import clsx from 'clsx'
 import { useStore } from 'common/store'
+import { reaction } from 'mobx'
+import { observer } from 'mobx-react-lite'
+import {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react'
+import { useAudio } from 'react-use'
+import { hms } from 'utils'
+import { log } from 'utils/console'
+import styles from './index.module.css'
 
-declare const window: any
+const API_BASE_URL = 'https://api.i-meto.com/meting/api'
 
-export const APlayer: FC = observer(() => {
-  const { musicStore } = useStore()
+type MetingPayloadType = {
+  author: string
+  /**
+   * 歌词 url
+   */
+  lrc: string
+  /**
+   * 封面 url
+   */
+  pic: string
+  title: string
+  /**
+   * 音源
+   */
+  url: string
+}
+
+export interface MusicPlayerRef {
+  play(): void
+  pause(): void
+  setCursor(cursor: number): void
+
+  next(): void
+  prev(): void
+  seek(time: number): void
+}
+export const MusicMiniPlayer = forwardRef<
+  MusicPlayerRef,
+  { playlist: number[]; hide?: boolean }
+>(({ playlist, hide = false }, ref) => {
+  const len = playlist.length
+
+  const [cur, setCur] = useState<null | (MetingPayloadType & { id: number })>(
+    null,
+  )
+
+  const [cursor, setCursor] = useState(0)
+
+  const fetchData = async (id: number, type = 'netease') => {
+    if (!id) {
+      return
+    }
+    const stream = await fetch(`${API_BASE_URL}/?server=${type}&id=${id}`)
+    const json = (await stream.json()) as MetingPayloadType[]
+
+    setCur({ ...json[0], id })
+  }
 
   useEffect(() => {
-    try {
-      if (musicStore.isPlay) {
-        window.aPlayer.play()
-      } else {
-        window.aPlayer.pause()
-      }
-      if (musicStore.isHide) {
-        window.aPlayer.pause()
-      }
-    } catch {
-      console.error('player crashed.')
-    }
-  }, [musicStore.isPlay, musicStore.isHide])
+    log(playlist[cursor], cursor)
+
+    fetchData(playlist[cursor])
+  }, [cursor, playlist])
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.aPlayer.list.clear()
-      musicStore.playlist.map((i) => {
-        window.aPlayer.list.add(i)
-      })
-    }
-  }, [musicStore.playlist])
+    setCur(null)
+    setCursor(0)
+    fetchData(playlist[0])
+  }, [playlist])
 
-  const onInit = (ap) => {
-    window.aPlayer = ap
-    if (typeof window !== 'undefined') {
-      musicStore.playlist.map((i) => {
-        window.aPlayer.list.add(i)
-      })
+  const onChangeAudio = useCallback((e) => {
+    log('changed')
+
+    const el = e.target as HTMLAudioElement
+    if (el.autoplay && el.paused) {
+      el.play()
     }
-  }
-  const options = {
-    fixed: true,
-    mini: true,
-  }
+  }, [])
+
+  const [audioEl, state, controls, __ref] = useAudio({
+    src: cur?.url!,
+    autoPlay: true,
+    loop: false,
+    onEnded() {
+      setCursor((cursor) => {
+        log('play-end')
+        return ++cursor % len
+      })
+    },
+    onLoadedData: onChangeAudio,
+    onDurationChange: onChangeAudio,
+    onLoad: onChangeAudio,
+  })
+
+  useImperativeHandle(ref, () => ({
+    pause: controls.pause,
+    play: controls.play,
+    setCursor(cursor) {
+      setCursor(cursor % len)
+    },
+    next() {
+      setCursor((c) => ++c % len)
+    },
+    prev() {
+      setCursor((c) => --c % len)
+    },
+    seek(time) {
+      controls.seek(time)
+    },
+  }))
+
   return (
-    <div className={classNames('player', musicStore.isHide ? 'hide' : '')}>
-      <style jsx>{`
-        .player.hide {
-          transform: translateX(-100%);
-        }
-        .player {
-          transform: translateX(0);
-          transition: transform 0.5s;
-          background: transparent;
-        }
-      `}</style>
-      <ReactAplayer {...options} onInit={onInit} />
+    <div className={classNames(styles['player'], hide && styles['hide'])}>
+      <div className={styles['root']}>
+        <div className={styles['cover']}>
+          <div
+            className={clsx(
+              styles['pic'],
+              'bg-cover bg-center bg-no-repeat h-full w-full',
+            )}
+            style={{ backgroundImage: `url(${cur?.pic})` }}
+          ></div>
+
+          <div
+            className={clsx(
+              styles['control-btn'],
+              !state.paused && styles['is-play'],
+            )}
+            onClick={() => {
+              if (state.paused) {
+                controls.play()
+              } else {
+                controls.pause()
+              }
+            }}
+          >
+            {state.paused ? (
+              <svg width="1em" height="1em" viewBox="0 0 24 24">
+                <path
+                  d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18a1 1 0 0 0 0-1.69L9.54 5.98A.998.998 0 0 0 8 6.82z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            ) : (
+              <svg width="1em" height="1em" viewBox="0 0 32 32">
+                <path
+                  d="M12 6h-2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2z"
+                  fill="currentColor"
+                ></path>
+                <path
+                  d="M22 6h-2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            )}
+          </div>
+
+          {cur && audioEl}
+        </div>
+
+        {/* end cover */}
+
+        {/* tip */}
+        {cur && (
+          <div
+            className={styles['tip']}
+            onClick={() => {
+              window.open(cur.url)
+            }}
+          >
+            <p>{cur.title}</p>
+            <p className="text-sm text-gray">{cur.author}</p>
+            <p className="text-xs text-opacity-80">
+              {hms(state.time | 0)}/{hms(state.duration | 0)}
+            </p>
+          </div>
+        )}
+      </div>
     </div>
   )
 })
 
-export default APlayer
+export const MusicMiniPlayerStoreControlled = observer(() => {
+  const { musicStore } = useStore()
+
+  const ref = useRef<MusicPlayerRef>(null)
+
+  useEffect(() => {
+    const disposer1 = reaction(
+      () => musicStore.isPlay,
+      (isPlay) => {
+        if (isPlay) {
+          ref.current?.play()
+        } else [ref.current?.pause()]
+      },
+    )
+    const disposer2 = reaction(
+      () => musicStore.isHide,
+      (isHide) => isHide && ref.current?.pause(),
+    )
+    return () => {
+      disposer1()
+      disposer2()
+    }
+  }, [])
+
+  return (
+    <MusicMiniPlayer
+      ref={ref}
+      playlist={musicStore.list}
+      hide={musicStore.isHide}
+    />
+  )
+})
+
+export default MusicMiniPlayer

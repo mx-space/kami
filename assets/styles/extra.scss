@@ -803,15 +803,6 @@ html.light img:before {
   }
 }
 
-// aplayer restyle
-
-.aplayer {
-  color: #333;
-}
-.player {
-  right: calc(100vw - 322px);
-}
-
 html.dark {
   :not(pre) > code {
     background-color: #3c3a3b;

@@ -88,8 +88,7 @@ export const FooterActions: FC = observer(() => {
 
         <button
           onClick={() => {
-            musicStore.isHide = !musicStore.isHide
-            musicStore.isHide ? null : musicStore.play()
+            musicStore.setHide(!musicStore.isHide)
           }}
         >
           <FontAwesomeIcon icon={faHeadphones} />
