@@ -339,6 +339,7 @@
 #write .spoiler {
   position: relative;
   background: currentColor;
+  filter: invert(50%);
   transition: background 0.5s;
   text-decoration: none;
   &:hover {
