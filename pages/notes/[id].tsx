@@ -268,14 +268,16 @@ const NoteView: NextPage<NoteViewProps> = observer(
     const secretDate = useMemo(() => new Date(props.data.secret!), [
       props.data.secret,
     ])
-    const dateFormat = Intl.DateTimeFormat('zh-cn', {
-      hour12: false,
-      hour: 'numeric',
-      minute: 'numeric',
-      year: 'numeric',
-      day: 'numeric',
-      month: 'long',
-    }).format(secretDate)
+    const dateFormat = props.data.secret
+      ? Intl.DateTimeFormat('zh-cn', {
+          hour12: false,
+          hour: 'numeric',
+          minute: 'numeric',
+          year: 'numeric',
+          day: 'numeric',
+          month: 'long',
+        }).format(secretDate)
+      : ''
     useEffect(() => {
       let timer = undefined as any
       if (isSecret) {

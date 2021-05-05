@@ -369,3 +369,43 @@
     bottom: -2rem;
   }
 }
+
+#write summary {
+  cursor: pointer;
+}
+
+#write del {
+  text-decoration: none;
+  position: relative;
+
+  // background-image: linear-gradient(
+  //   to top,
+  //   currentColor,
+  //   currentColor 3px,
+  //   transparent 3px
+  // );
+  // background-position-y: calc(0.5em + 6px);
+
+  &:not(.spoiler) {
+    position: relative;
+    display: inline-block;
+    &::before,
+    &::after {
+      content: '';
+      width: 100%;
+      position: absolute;
+      right: 0;
+      top: 50%;
+    }
+    &::before {
+      border-bottom: 2px solid var(--gray);
+      -webkit-transform: skewY(-10deg);
+      transform: skewY(-10deg);
+    }
+    &::after {
+      border-bottom: 2px solid var(--gray);
+      -webkit-transform: skewY(10deg);
+      transform: skewY(10deg);
+    }
+  }
+}
