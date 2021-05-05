@@ -21,13 +21,16 @@
 }
 
 .control-btn {
-  @apply absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center z-10 text-white;
+  @apply absolute top-0 left-0 right-0 bottom-0 z-10 text-white;
   @apply shadow-lg cursor-pointer transition-all;
 
   font-size: 35px;
 
-  > svg {
-    @apply shadow-2xl;
+  & > svg {
+    @apply shadow-2xl absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-500;
+
+    top: 50%;
+    left: 50%;
 
     filter: drop-shadow(0px 0px 6px black);
   }
@@ -37,6 +40,11 @@
   font-size: 24px;
 
   @apply justify-end items-end;
+
+  & > svg {
+    top: calc(80%);
+    left: calc(80%);
+  }
 }
 
 .cover:hover + .tip,
