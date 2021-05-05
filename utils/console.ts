@@ -110,12 +110,12 @@ This Personal Space Powered By Mix Space.
 Written by TypeScript, Coding with Love.
 --------
 Stay hungry. Stay foolish. --Steve Jobs
-`.trim()
+`
 
 export function printToConsole() {
   try {
-    if (document.documentElement.firstChild?.nodeType !== Node.COMMENT_NODE) {
-      document.documentElement.prepend(document.createComment(motto))
+    if (document.firstChild?.nodeType !== Node.COMMENT_NODE) {
+      document.prepend(document.createComment(motto))
     }
 
     console.log(

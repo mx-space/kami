@@ -26,7 +26,8 @@ import Document, {
   NextScript,
 } from 'next/document'
 import { GA_TRACKING_ID } from '../utils/gtag'
-import { version } from 'package.json'
+import Package from 'package.json'
+const { version } = Package
 
 export default class MyDocument extends Document<{ ua: string }> {
   static async getInitialProps(ctx: DocumentContext) {
@@ -202,7 +203,7 @@ export default class MyDocument extends Document<{ ua: string }> {
           ) : null}
           <script
             dangerouslySetInnerHTML={{
-              __html: `window.version = 'v${process.env.VERSION || version}'`,
+              __html: `window.version = '${process.env.VERSION || version}'`,
             }}
           />
         </Head>

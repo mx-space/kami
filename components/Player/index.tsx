@@ -67,7 +67,7 @@ export const MusicMiniPlayer = forwardRef<
   }
 
   useEffect(() => {
-    log(playlist[cursor], cursor)
+    // log(playlist[cursor], cursor)
 
     fetchData(playlist[cursor])
   }, [cursor, playlist])
@@ -79,7 +79,7 @@ export const MusicMiniPlayer = forwardRef<
   }, [playlist])
 
   const onChangeAudio = useCallback((e) => {
-    log('changed')
+    // log('changed')
 
     const el = e.target as HTMLAudioElement
     if (el.autoplay && el.paused) {
@@ -93,7 +93,7 @@ export const MusicMiniPlayer = forwardRef<
     loop: false,
     onEnded() {
       setCursor((cursor) => {
-        log('play-end')
+        // log('play-end')
         return ++cursor % len
       })
     },

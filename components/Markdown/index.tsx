@@ -1,13 +1,16 @@
+import clsx from 'clsx'
 import CustomRules from 'common/markdown/rules'
-import React, { ElementType, FC, forwardRef } from 'react'
+import React, { ElementType, FC, RefObject, useEffect } from 'react'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
+import { ensuredForwardRef } from 'react-use'
 import { observer } from 'utils/mobx'
 import CodeBlock from '../CodeHighlighter'
-import { Image } from './Image'
 import { Heading } from './Heading'
+import { Image } from './Image'
 import styles from './index.module.scss'
 import { RenderLink } from './Link'
-import { RenderSpoiler, RenderParagraph, RenderCommentAt, _TOC } from './Other'
+import { RenderCommentAt, RenderParagraph, RenderSpoiler, _TOC } from './Other'
+import { processDetails } from './process-tag'
 
 type MdProps = ReactMarkdownProps & {
   value: string
@@ -23,7 +26,7 @@ type MdProps = ReactMarkdownProps & {
 }
 
 export const Markdown: FC<MdProps> = observer(
-  forwardRef<HTMLDivElement, MdProps>((props, ref) => {
+  ensuredForwardRef<HTMLDivElement, MdProps>((props, ref) => {
     const {
       value,
       renderers,
@@ -33,13 +36,25 @@ export const Markdown: FC<MdProps> = observer(
       ...rest
     } = props
 
+    useEffect(() => {
+      const _ = ref as RefObject<HTMLElement>
+      if (!_.current) {
+        return
+      }
+      const $ = _.current as HTMLElement
+      // handle process raw html tag
+      processDetails($)
+    }, [ref])
     return (
       <div
         id="write"
         style={style}
         {...warpperProps}
         ref={ref}
-        className={codeBlockFully ? styles['code-fully'] : undefined}
+        className={clsx(
+          styles['md'],
+          codeBlockFully ? styles['code-fully'] : undefined,
+        )}
       >
         <ReactMarkdown
           source={value}

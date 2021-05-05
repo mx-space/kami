@@ -30,7 +30,7 @@ import { getToken, removeToken } from '../utils/cookie'
 import * as gtag from '../utils/gtag'
 import service from '../utils/request'
 import { checkOldBrowser } from 'utils'
-
+import '@openfonts/noto-sans-sc_vietnamese'
 const version = process.env.VERSION || `v${Package.version}` || ''
 
 const Progress = new QP({ colorful: false, color: '#27ae60' })
