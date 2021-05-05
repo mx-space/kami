@@ -35,6 +35,7 @@ const configs = withImages(
           destination: '/_next/static/service-worker.js',
         },
       ]
+      // this can remove after test
       if (isProd && env.ASSETPREFIX) {
         base.push({
           source: '/autostatic/:path*',
@@ -60,6 +61,15 @@ module.exports = isProd
         swDest: process.env.NEXT_EXPORT
           ? 'service-worker.js'
           : 'static/service-worker.js',
+        modifyURLPrefix: {
+          // @see: https://github.com/hanford/next-offline/issues/263#issuecomment-738155607
+          'autostatic/':
+            (env.ASSETPREFIX ? env.ASSETPREFIX + '/' : '') + '_next/static/', // new addition
+          'static/':
+            (env.ASSETPREFIX ? env.ASSETPREFIX + '/' : '') + '_next/static/',
+          'public/':
+            (env.ASSETPREFIX ? env.ASSETPREFIX + '/' : '') + '_next/public/',
+        },
         runtimeCaching: [
           {
             urlPattern: /^https?.*/,
