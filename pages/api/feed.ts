@@ -13,20 +13,61 @@ import { AggregateResp } from 'models/aggregate'
 import html from 'remark-html'
 import markdown from 'remark-parse'
 import unified from 'unified'
+import { escapeHTMLTag } from 'utils'
 import { Rest } from '../../utils/api'
+const u = require('unist-builder')
+import normalize from 'mdurl/encode.js'
 const parser = unified()
   .use(markdown)
   .use(rules)
   .use(html, {
+    allowDangerousHtml: true,
     handlers: {
+      image: (h, node) => {
+        // console.log(node)
+
+        const src = node.url as string
+        const _alt = node.alt as string | undefined
+        const alt = _alt?.match(/^[!¡]/) ? _alt!.replace(/^[¡!]/, '') : ''
+        if (!alt) {
+          return h(node, 'img', { src })
+        }
+        return h(node, 'figure', {}, [
+          h(node, 'img', { src: normalize(src) }),
+          h.augment(
+            node,
+            u(
+              'raw',
+              `<figcaption style="text-align: center; margin: 1em auto;">${escapeHTMLTag(
+                alt,
+              )}</figcaption>`,
+            ),
+          ),
+        ])
+      },
       spoiler: (h, node) => {
         return h(
           node,
           'del',
           {
             class: 'spoiler',
+            style: 'filter: invert(25%);',
           },
           [
+            h.augment(
+              node,
+              u(
+                'raw',
+                `<style>
+            .spoiler {
+              background-color: currentColor;transition: all .5s;text-decoration: none;
+            }
+            .spoiler:hover {
+              background-color: transparent;
+            }
+            </style>`,
+              ),
+            ),
             {
               type: 'text',
               value: node.value,
@@ -37,14 +78,7 @@ const parser = unified()
     },
   })
 
-const encodeHTML = function (str: string) {
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&apos;')
-}
+const encodeHTML = escapeHTMLTag
 const genRSS = async (props: RSSProps) => {
   const { url, author, data } = props
   const aggregate = await Rest('Aggregate').get<AggregateResp>()

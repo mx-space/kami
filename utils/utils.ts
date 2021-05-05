@@ -188,3 +188,16 @@ export function checkOldBrowser() {
 
   return { isOld: false, msg: '' }
 }
+
+export const escapeHTMLTag = (html: string) => {
+  const lt = /</g,
+    gt = />/g,
+    ap = /'/g,
+    ic = /"/g
+  return html
+    .toString()
+    .replace(lt, '&lt;')
+    .replace(gt, '&gt;')
+    .replace(ap, '&#39;')
+    .replace(ic, '&#34;')
+}
