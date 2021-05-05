@@ -25,7 +25,7 @@ const configs = withImages(
     },
     assetPrefix: isProd ? env.ASSETPREFIX || '' : '',
     async rewrites() {
-      return [
+      const base = [
         { source: '/sitemap.xml', destination: '/api/sitemap' },
         { source: '/feed', destination: '/api/feed' },
         { source: '/rss', destination: '/api/feed' },
@@ -34,14 +34,14 @@ const configs = withImages(
           source: '/service-worker.js',
           destination: '/_next/static/service-worker.js',
         },
-        // e.g. https://cdn.jsdelivr.net/gh/Innei/web-cdn@master
-        ...(env.ASSETPREFIX
-          ? {
-              source: '/autostatic/:path*',
-              destination: env.ASSETPREFIX + '/_next/static/:path*',
-            }
-          : {}),
       ]
+      if (isProd && env.ASSETPREFIX) {
+        base.push({
+          source: '/autostatic/:path*',
+          destination: env.ASSETPREFIX + '/_next/static/:path*',
+        })
+      }
+      return base
     },
     experimental: {
       granularChunks: true,
