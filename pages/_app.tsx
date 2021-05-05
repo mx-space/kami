@@ -33,7 +33,7 @@ import { checkOldBrowser } from 'utils'
 
 const version = process.env.VERSION || `v${Package.version}` || ''
 
-const Progress = new QP({ colorful: false, color: '#ffc107' })
+const Progress = new QP({ colorful: false, color: '#27ae60' })
 
 let _currentY = 0
 const Content: FC<DataModel> = observer((props) => {

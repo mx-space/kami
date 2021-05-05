@@ -13,6 +13,7 @@ import shuffle from 'lodash/shuffle'
 import dynamic from 'next/dynamic'
 import { ComponentType } from 'react'
 import RemoveMarkdown from 'remove-markdown'
+import { UAParser } from 'ua-parser-js'
 
 const animeImages = [
   'qsNmnC2zHB5FW41.jpg',
@@ -139,9 +140,6 @@ export const writeBody = (
   const json = JSON.stringify(bodyJSON)
   res.end(json)
 }
-
-import { UAParser } from 'ua-parser-js'
-import { message } from 'utils/message'
 
 export function checkOldBrowser() {
   const parser = new UAParser(window.navigator.userAgent)

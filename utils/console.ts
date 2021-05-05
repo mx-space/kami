@@ -106,11 +106,11 @@ const version = process.env.VERSION || `v${Package.version}` || ''
 // }
 
 const motto = `
-    This Personal Space Powered By Mix Space.
-    Written by TypeScript, Coding with Love.
-    --------
-    Stay hungry. Stay foolish. --Steve Jobs
-    `
+This Personal Space Powered By Mix Space.
+Written by TypeScript, Coding with Love.
+--------
+Stay hungry. Stay foolish. --Steve Jobs
+`.trim()
 
 export function printToConsole() {
   try {
@@ -126,6 +126,11 @@ export function printToConsole() {
     console.log(
       `%c Mix Space ${version} %c https://innei.ren `,
       'color: #fff; margin: 1em 0; padding: 5px 0; background: #2980b9;',
+      'margin: 1em 0; padding: 5px 0; background: #efefef;',
+    )
+    console.log(
+      `%c Kami ${(<any>window).version} %c https://innei.ren `,
+      'color: #fff; margin: 1em 0; padding: 5px 0; background: #27ae60;',
       'margin: 1em 0; padding: 5px 0; background: #efefef;',
     )
 

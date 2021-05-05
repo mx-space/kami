@@ -9,6 +9,8 @@ import { useStore } from '../../common/store'
 import configs from '../../configs'
 import { FooterActions } from './actions'
 
+declare const window: any
+
 const _Footer: FC = observer(() => {
   const { appStore, gatewayStore } = useStore()
   const thisYear = new Date().getFullYear()
@@ -34,9 +36,7 @@ const _Footer: FC = observer(() => {
               Powered by <FontAwesomeIcon icon={faReact} />
               <a
                 href="https://github.com/mx-space"
-                title={
-                  process.env.VERSION && '开发版本: ' + process.env.VERSION
-                }
+                title={window.version && '开发版本: ' + window.version}
               >
                 {' mx-space '}
               </a>
