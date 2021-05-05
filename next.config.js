@@ -34,6 +34,13 @@ const configs = withImages(
           source: '/service-worker.js',
           destination: '/_next/static/service-worker.js',
         },
+        // e.g. https://cdn.jsdelivr.net/gh/Innei/web-cdn@master
+        ...(env.ASSETPREFIX
+          ? {
+              source: '/autostatic/:path*',
+              destination: env.ASSETPREFIX + '/_next/static/:path*',
+            }
+          : {}),
       ]
     },
     experimental: {

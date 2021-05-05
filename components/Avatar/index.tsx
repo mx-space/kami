@@ -48,6 +48,7 @@ export const Avatar: FC<
         className={styles['avatar']}
         href={props.url ?? 'javascript:;'}
         target={!props.url ? undefined : '_blank'}
+        rel="noreferrer"
       >
         <div
           className={styles['image']}

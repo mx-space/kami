@@ -9,5 +9,14 @@
   "start_url": "/",
   "lang": "zh-cmn-Hans",
   "prefer_related_applications": true,
-  "icons": []
+  "icons": [
+    {
+      "src": "manifest-icon-192.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "manifest-icon-512.png",
+      "sizes": "512x512"
+    }
+  ]
 }

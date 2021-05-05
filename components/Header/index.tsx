@@ -230,7 +230,7 @@ const menu = new Menu()
 
 const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
   const { appStore } = useStore()
-  const groupRef = useRef<HTMLUListElement>(null)
+  const groupRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
 
   const ballIndex = useMemo(() => {
@@ -281,7 +281,7 @@ const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
 
   // console.log(ballOffsetLeft, ballIndex)
   return (
-    <ul className={styles['link-group']} ref={groupRef}>
+    <div className={styles['link-group']} ref={groupRef}>
       <Observer>
         {() => (
           <Fragment>
@@ -293,7 +293,7 @@ const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
                 <div className="relative" key={m.title}>
                   <Link href={m.path}>
                     <a>
-                      <li
+                      <span
                         className={styles['link-item']}
                         onMouseEnter={() => {
                           menu.selection = selection
@@ -306,7 +306,7 @@ const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
                           <FontAwesomeIcon icon={m.icon!} />
                         )}
                         <span className={styles['link-title']}>{m.title}</span>
-                      </li>
+                      </span>
                     </a>
                   </Link>
                   {showSub && m.subMenu && (
@@ -343,7 +343,7 @@ const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
           style={{ left: ballOffsetLeft + 'px' }}
         ></div>
       ) : null}
-    </ul>
+    </div>
   )
 })
 const HeaderFake: FC = observer(() => {
