@@ -15,7 +15,7 @@ import { Rest } from '../../utils/api'
 import styles from './index.module.scss'
 
 type BaseType = {
-  _id: string
+  id: string
   title: string
   created: string
 }
@@ -125,7 +125,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
         as: `/posts/${post.category.slug}/${post.slug}`,
         href: `/posts/[category]/[slug]`,
         type: ArticleType.Post,
-        id: post._id,
+        id: post.id,
       }
       sortedMap.set(
         year,
@@ -150,7 +150,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
         as: `/notes/${note.nid}`,
         href: '/notes/[id]',
         type: ArticleType.Note,
-        id: note._id,
+        id: note.id,
         important: note.hasMemory,
       }
 

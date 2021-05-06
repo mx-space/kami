@@ -4,13 +4,13 @@ import { CategoryModel } from './category'
 
 export namespace Top {
   export interface Note {
-    _id: string
+    id: string
     title: string
     nid: number
   }
 
   export interface Post {
-    _id: string
+    id: string
     title: string
     slug: string
     category: {
@@ -20,12 +20,12 @@ export namespace Top {
   }
 
   export interface Project {
-    _id: string
+    id: string
     name: string
     avatar: string
   }
   export interface Say {
-    _id: string
+    id: string
     source: string
     text: string
     author: string
@@ -47,7 +47,7 @@ export interface Seo {
 }
 
 interface PageMeta {
-  _id: string
+  id: string
   title: string
   slug: string
   order?: number
@@ -65,7 +65,7 @@ export namespace RandomImage {
     Online,
   }
   export interface Image {
-    _id: string
+    id: string
     name: string
     dimensions: Dimensions
     filename: string

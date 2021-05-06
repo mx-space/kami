@@ -11,7 +11,7 @@ import { BaseRespModel, PagerModel, ImageSizeRecord } from './base'
 import { CategoryModel } from './category'
 
 export interface PostModel {
-  _id: string
+  id: string
   created: string
   modified: string
   hide: boolean

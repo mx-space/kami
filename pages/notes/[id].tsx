@@ -64,7 +64,7 @@ const NoteView: NextPage<NoteViewProps> = observer(
       const handler = (payload: NoteModel) => {
         console.log(payload)
 
-        if (payload._id === data._id) {
+        if (payload.id === data.id) {
           if (payload.hide && !userStore.isLogged) {
             router.push('/notes')
             message.error('该日记已删除或隐藏')
@@ -80,9 +80,9 @@ const NoteView: NextPage<NoteViewProps> = observer(
       return () => {
         observable.off(EventTypes.NOTE_UPDATE, handler)
       }
-    }, [data._id, router, userStore.isLogged])
+    }, [data.id, router, userStore.isLogged])
 
-    const { title, _id, text, mood, weather } = data
+    const { title, id, text, mood, weather } = data
 
     const [like, setLikeCount] = useState(data.count.like ?? 0)
 
@@ -183,7 +183,7 @@ const NoteView: NextPage<NoteViewProps> = observer(
               return message.error('你已经喜欢过啦!')
             }
             Rest('Note')
-              .get<any>('like/' + _id, {
+              .get<any>('like/' + id, {
                 params: { ts: performance.timeOrigin + performance.now() },
               })
               .then(() => {
@@ -314,7 +314,7 @@ const NoteView: NextPage<NoteViewProps> = observer(
           date={new Date(data.created)}
           tips={tips}
           bookmark={data.hasMemory}
-          id={data._id}
+          id={data.id}
         >
           {isSecret && !userStore.isLogged ? (
             <p className="text-center my-8">
@@ -403,7 +403,7 @@ const NoteView: NextPage<NoteViewProps> = observer(
             >
               <CommentWrap
                 type={'Note'}
-                id={_id}
+                id={id}
                 allowComment={props.data.allowComment ?? true}
               />
             </ArticleLayout>

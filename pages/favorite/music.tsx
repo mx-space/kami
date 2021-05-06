@@ -7,7 +7,6 @@
  * @Mark: Coding with Love
  */
 import { PersonalPlayListType, PlayListType } from '@mx-space/extra'
-import axios from 'axios'
 import { SectionMusic } from 'components/SectionMusic'
 import configs from 'configs'
 import { NextPage } from 'next'
@@ -55,16 +54,14 @@ const MusicView: NextPage<MusicProps> = (props) => {
 
 MusicView.getInitialProps = async (ctx) => {
   const baseUrl = configs.url
-  const $api = axios.create({
-    baseURL:
-      baseUrl ??
-      // @ts-ignore
-      (ctx.req?.connection?.encrypted ? 'https' : 'http') +
-        '://' +
-        ctx.req?.headers.host,
-  })
+  const prefixUrl =
+    baseUrl ??
+    // @ts-ignore
+    (ctx.req?.connection?.encrypted ? 'https' : 'http') +
+      '://' +
+      ctx.req?.headers.host
 
-  const { data } = await $api.get('/api/netease/music')
+  const { data } = await (await fetch(prefixUrl + '/api/netease/music')).json()
 
   return data as MusicProps
 }

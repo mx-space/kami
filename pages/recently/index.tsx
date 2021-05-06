@@ -35,7 +35,7 @@ const RecentlyPage: NextPage = () => {
     }
 
     const del = ({ id }) => {
-      const index = data.findIndex((d) => d._id === id)
+      const index = data.findIndex((d) => d.id === id)
       if (index != -1) {
         data.splice(index, 1)
         setData([...data])
@@ -85,7 +85,7 @@ const RecentlyPage: NextPage = () => {
 
   useEffect(() => {
     if (inView && hasNext) {
-      fetch({ before: data[data.length - 1]._id })?.then((newData) => {
+      fetch({ before: data[data.length - 1].id })?.then((newData) => {
         setData(data.concat(newData))
       })
     }
@@ -108,7 +108,7 @@ const RecentlyPage: NextPage = () => {
           ) : (
             <Fragment>
               {data.map((d) => (
-                <div key={d._id} className={styles['recently-wrapper']}>
+                <div key={d.id} className={styles['recently-wrapper']}>
                   <div className={clsx(styles['content'], 'my-2')}>
                     <Markdown escapeHtml={false} value={d.content} />
                   </div>
@@ -124,7 +124,7 @@ const RecentlyPage: NextPage = () => {
                           'text-red float-left opacity-0 cursor-pointer transition-opacity',
                           styles['del'],
                         )}
-                        onClick={() => handleDelete(d._id)}
+                        onClick={() => handleDelete(d.id)}
                       >
                         删除
                       </span>

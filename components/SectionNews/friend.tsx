@@ -46,7 +46,7 @@ export const FriendsSection: FC = memo(() => {
   return (
     <div className={styles['friends-wrap']}>
       {friends.map((item) => {
-        return <FriendItem {...item} key={item._id} />
+        return <FriendItem {...item} key={item.id} />
       })}
     </div>
   )

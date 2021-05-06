@@ -20,14 +20,14 @@ export const Heading = () => {
     const currentIndex = useMemo(() => index++, [])
 
     const title = props.children?.[0].props.value
-    const data_id_title = useMemo(() => currentIndex + '¡' + title, [title])
+    const dataid_title = useMemo(() => currentIndex + '¡' + title, [title])
 
     return (
       <Fragment>
         {createElement<DOMAttributes<HTMLHeadingElement>, HTMLHeadingElement>(
           `h${props.level}`,
           {
-            'data-id-title': data_id_title,
+            'data-id-title': dataid_title,
             id: title,
           } as any,
           props.children,

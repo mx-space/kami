@@ -1,7 +1,7 @@
 import { BaseRespModel } from './base'
 
 export interface UserDto extends BaseRespModel {
-  _id: string
+  id: string
   username: string
   mail: string
   name: string

@@ -57,7 +57,7 @@ const Post: NextPage<PostProps> = observer((props) => {
     setPosts(data.data)
   }
 
-  const [tags, setTags] = useState<{ _id: string; name: string }[]>([])
+  const [tags, setTags] = useState<{ id: string; name: string }[]>([])
   const fetchTags = useCallback(async () => {
     const { data: tags } = (await Rest('Category').get(undefined, {
       params: {
@@ -90,7 +90,7 @@ const Post: NextPage<PostProps> = observer((props) => {
   const [postWithTag, setTagPost] = useState<
     Pick<
       PostRespModel['data'],
-      '_id' | 'title' | 'slug' | 'created' | 'category'
+      'id' | 'title' | 'slug' | 'created' | 'category'
     >[]
   >([])
   const fetchPostsWithTag = useCallback(async (tagName: string) => {
@@ -135,11 +135,11 @@ const Post: NextPage<PostProps> = observer((props) => {
             className="absolute"
           >
             <QueueAnim type="scale" className="flex items-end flex-wrap">
-              {tags.map(({ _id, name }) => {
+              {tags.map(({ id, name }) => {
                 return (
                   <BigTag
                     tagName={name}
-                    key={_id}
+                    key={id}
                     onClick={(e) => {
                       e.stopPropagation()
                       fetchPostsWithTag(name)
@@ -164,7 +164,7 @@ const Post: NextPage<PostProps> = observer((props) => {
                       const date = new Date(child.created)
 
                       return (
-                        <li key={child._id}>
+                        <li key={child.id}>
                           <Link
                             href={'/posts/[category]/[slug]'}
                             as={`/posts/${child.category.slug}/${child.slug}`}
@@ -204,13 +204,13 @@ const Post: NextPage<PostProps> = observer((props) => {
           {posts.length > 0 ? (
             <Fragment>
               {posts.map((post) => {
-                const { slug, text, created, title, _id } = post
+                const { slug, text, created, title, id } = post
 
                 return (
                   <PostBlock
                     title={title}
                     date={created}
-                    key={_id}
+                    key={id}
                     text={text}
                     slug={slug}
                     raw={post}

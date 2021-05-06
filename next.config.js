@@ -14,45 +14,48 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const env = require('dotenv').config().parsed || {}
 const withImages = require('next-images')
 const withOffline = require('next-offline')
-const configs = withImages(
-  withBundleAnalyzer({
-    webpack: (config, options) => {
-      return config
-    },
-    env: {
-      PORT: 2323,
-      ...env,
-    },
-    assetPrefix: isProd ? env.ASSETPREFIX || '' : '',
-    async rewrites() {
-      const base = [
-        { source: '/sitemap.xml', destination: '/api/sitemap' },
-        { source: '/feed', destination: '/api/feed' },
-        { source: '/rss', destination: '/api/feed' },
-        { source: '/atom.xml', destination: '/api/feed' },
-        {
-          source: '/service-worker.js',
-          destination: '/_next/static/service-worker.js',
-        },
-      ]
-      // this can remove after test
-      if (isProd && env.ASSETPREFIX) {
-        base.push({
-          source: '/autostatic/:path*',
-          destination: env.ASSETPREFIX + '/_next/static/:path*',
-        })
-      }
-      return base
-    },
-    experimental: {
-      granularChunks: true,
-      modern: true,
-      scrollRestoration: true,
-    },
-    future: {
-      webpack5: true,
-    },
-  }),
+const withTM = require('next-transpile-modules')(['ky'])
+const configs = withTM(
+  withImages(
+    withBundleAnalyzer({
+      webpack: (config, options) => {
+        return config
+      },
+      env: {
+        PORT: 2323,
+        ...env,
+      },
+      assetPrefix: isProd ? env.ASSETPREFIX || '' : '',
+      async rewrites() {
+        const base = [
+          { source: '/sitemap.xml', destination: '/api/sitemap' },
+          { source: '/feed', destination: '/api/feed' },
+          { source: '/rss', destination: '/api/feed' },
+          { source: '/atom.xml', destination: '/api/feed' },
+          {
+            source: '/service-worker.js',
+            destination: '/_next/static/service-worker.js',
+          },
+        ]
+        // this can remove after test
+        if (isProd && env.ASSETPREFIX) {
+          base.push({
+            source: '/autostatic/:path*',
+            destination: env.ASSETPREFIX + '/_next/static/:path*',
+          })
+        }
+        return base
+      },
+      experimental: {
+        granularChunks: true,
+        modern: true,
+        scrollRestoration: true,
+      },
+      future: {
+        webpack5: true,
+      },
+    }),
+  ),
 )
 
 module.exports = isProd

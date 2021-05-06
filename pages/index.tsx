@@ -131,7 +131,7 @@ enum ContentType {
   Project,
 }
 
-function buildRoute<T extends { _id: string } & { nid?: number }>(
+function buildRoute<T extends { id: string } & { nid?: number }>(
   type: keyof typeof ContentType,
   obj: T,
 ): { as: string; href: string } {
@@ -154,8 +154,8 @@ function buildRoute<T extends { _id: string } & { nid?: number }>(
       return { as: `/says`, href: `/says` }
     }
     case 'Project': {
-      const { _id } = obj
-      return { as: `/projects/${_id}`, href: `/projects/[id]` }
+      const { id } = obj
+      return { as: `/projects/${id}`, href: `/projects/[id]` }
     }
   }
 }
@@ -193,7 +193,7 @@ const _Sections: FC<IndexViewProps> = ({ randomImages, notes, posts }) => {
         return {
           title: p.title,
           background: images.pop(),
-          _id: p._id,
+          id: p.id,
           ...buildRoute('Post', p),
         }
       }),
@@ -206,7 +206,7 @@ const _Sections: FC<IndexViewProps> = ({ randomImages, notes, posts }) => {
         return {
           title: n.title,
           background: images.pop(),
-          _id: n._id,
+          id: n.id,
           ...buildRoute('Note', n),
         }
       }),
@@ -288,7 +288,6 @@ const _Sections: FC<IndexViewProps> = ({ randomImages, notes, posts }) => {
                     .post(
                       'like_this?ts=' +
                         ((performance.now() + performance.timeOrigin) | 0),
-                      null,
                     )
                     .then(() => {
                       message.success('感谢喜欢 ❤️')

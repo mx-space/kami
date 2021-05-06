@@ -59,17 +59,17 @@ export default class AppStore {
       return
     }
     const models: MenuModel[] = pages.map((page) => {
-      const { title, _id, slug } = page
+      const { title, id, slug } = page
       return {
         title,
-        _id,
+        id,
         path: '/' + slug,
         type: 'Page',
       }
     })
 
     const old = homeMenu.subMenu
-    homeMenu.subMenu = uniqBy([...old, ...models], '_id')
+    homeMenu.subMenu = uniqBy([...old, ...models], 'id')
   }
 
   updateViewport() {

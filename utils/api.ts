@@ -1,6 +1,7 @@
-import $axios from 'utils/request'
 import inflection from 'inflection'
-import { AxiosRequestConfig } from 'axios'
+import { Options } from 'ky/distribution/types/options'
+import { omitBy } from 'lodash'
+import { ky$ } from 'utils/request'
 
 declare enum AccessRoutesEnum {
   Aggregate,
@@ -27,12 +28,16 @@ interface Gets {
   [key: string]: string | number | undefined
 }
 
-export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
+export const Rest = (
+  rest: keyof typeof AccessRoutesEnum,
+  prefix?: string,
+  kyOption: Options = {},
+) => {
   let pluralize = ['Master', 'Menu', 'Aggregate', 'Recently'].includes(rest)
     ? rest.toLowerCase()
     : inflection.pluralize(rest).toLowerCase()
   pluralize = prefix ? pluralize + `/${prefix}` : pluralize
-  pluralize = encodeURI(pluralize)
+  pluralize = encodeURI(pluralize).replace(/^\//, '')
   const apis = {
     async getRecently<T = unknown>({
       page,
@@ -42,42 +47,70 @@ export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
       year,
       ...rest
     }: Gets = {}): Promise<T> {
-      const data = await $axios({
-        method: 'GET',
-        url: `/${pluralize}`,
-        params: {
-          page: page || 1,
-          size: size || 10,
-          select,
-          state,
-          year,
-          ...rest,
-        },
+      const res = await ky$.get(`${pluralize}`, {
+        searchParams: new URLSearchParams(
+          // @ts-ignore
+          omitBy(
+            {
+              page: page || 1,
+              size: size || 10,
+              select,
+              state,
+              year,
+              ...rest,
+            },
+            (i) => typeof i == 'undefined',
+          ),
+        ),
+        ...kyOption,
       })
-      return data as any
+      return res.json() as any
     },
     async getOne<T = unknown>(
-      _id = '',
-      config?: AxiosRequestConfig | undefined,
+      id = '',
+      config?: (Options & { params: Record<string, any> }) | undefined,
     ): Promise<T> {
-      const id = encodeURI(_id)
-      const data = await $axios.get(`${pluralize}${id ? '/' + id : ''}`, config)
-      return data as any
+      id = encodeURI(id)
+
+      // axios compatibly
+      // handle params
+      let searchParams
+      if (config?.params) {
+        searchParams = new URLSearchParams(
+          omitBy({ ...config?.params }, (i) => typeof i == 'undefined'),
+        )
+      }
+
+      const res = await ky$.get(`${pluralize}${id ? '/' + id : ''}`, {
+        ...config,
+        searchParams,
+      })
+      return res.json() as any
     },
     async postNew<T = unknown>(body: Record<string, any>): Promise<T> {
-      const data = await $axios.post(`${pluralize}`, body)
-      return data as any
+      const res = await ky$.post(`${pluralize}`, { json: body, ...kyOption })
+      return res.json() as any
     },
     async modifyOne<T = unknown>(
       id: string,
       body: Record<string, any>,
     ): Promise<T> {
-      const data = await $axios.put(`${pluralize}/${id}`, body)
-      return data as any
+      const res = await ky$.put(`${pluralize}/${id}`, {
+        json: body,
+        ...kyOption,
+      })
+      return res.json() as any
+    },
+    async patch<T = unknown>(id: string, body: any): Promise<T> {
+      const res = await ky$.patch(`${pluralize}/${id}`, {
+        json: body,
+        ...kyOption,
+      })
+      return res.json() as any
     },
     async deleteOne<T = unknown>(id: string): Promise<T> {
-      const data = await $axios.delete(`${pluralize}/${id}`)
-      return data as any
+      const res = await ky$.delete(`${pluralize}/${id}`, kyOption)
+      return res.json() as any
     },
     get gets() {
       return this.getRecently
@@ -91,10 +124,7 @@ export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
     get update() {
       return this.modifyOne
     },
-    async patch<T = unknown>(id: string, body: any): Promise<T> {
-      const data = await $axios.patch(`${pluralize}/${id}`, body)
-      return data as any
-    },
+
     get del() {
       return this.deleteOne
     },
@@ -104,3 +134,5 @@ export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
   }
   return apis
 }
+// @ts-ignore
+globalThis.api = Rest

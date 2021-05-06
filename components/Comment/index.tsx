@@ -74,7 +74,7 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
         .then(({ data, page }) => {
           collection.clear()
           flattenChildren(data).forEach((i) => {
-            collection.set(i._id, i)
+            collection.set(i.id, i)
           })
 
           setComments(data)

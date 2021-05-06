@@ -51,8 +51,8 @@ const SayView: NextPage<SayViewProps> = (props) => {
   useEffect(() => {
     const handler = (id: string) => {
       setSays((says) =>
-        says.filter(({ _id }) => {
-          return _id !== id
+        says.filter(({ id }) => {
+          return id !== id
         }),
       )
     }
@@ -95,9 +95,9 @@ const SayView: NextPage<SayViewProps> = (props) => {
             const hasSource = !!say.source
             const hasAuthor = !!say.author
             return (
-              <div className={'col-6'} key={say._id}>
+              <div className={'col-6'} key={say.id}>
                 <blockquote
-                  key={say._id}
+                  key={say.id}
                   style={{
                     borderLeftColor: hexToRGB(colors[i] || '', 0.7),
                     backgroundColor: hexToRGB(colors[i] || '', 0.05),

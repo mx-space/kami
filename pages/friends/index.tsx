@@ -25,7 +25,7 @@ const renderSection = (data: LinkModel[]) => {
           <div className="" key={data.length}>
             {data.map((link) => {
               return (
-                <li key={link._id}>
+                <li key={link.id}>
                   <a href={link.url} target={'_blank'}>
                     {link.name}
                   </a>

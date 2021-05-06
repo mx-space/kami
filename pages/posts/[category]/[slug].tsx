@@ -36,7 +36,7 @@ const isThumbsUpBefore = (id: string) => {
   return isLikedBefore(id)
 }
 export const PostView: NextPage<PostModel> = (props) => {
-  const [{ text, title, _id }, update] = useState(props)
+  const [{ text, title, id }, update] = useState(props)
   const router = useRouter()
   useEffect(() => {
     update(props)
@@ -51,11 +51,11 @@ export const PostView: NextPage<PostModel> = (props) => {
     return () => {
       appStore.shareData = null
     }
-  }, [_id, text, title])
+  }, [id, text, title])
 
   useEffect(() => {
     const handler = (data: PostModel) => {
-      if (data._id === props._id) {
+      if (data.id === props.id) {
         if (
           data.categoryId !== props.categoryId ||
           data.slug !== props.slug ||
@@ -72,7 +72,7 @@ export const PostView: NextPage<PostModel> = (props) => {
     observable.on(EventTypes.POST_UPDATE, handler)
 
     return () => observable.off(EventTypes.POST_UPDATE, handler)
-  }, [props._id, props.categoryId, props.slug, router])
+  }, [props.id, props.categoryId, props.slug, router])
 
   const [actions, setAction] = useState({} as ActionProps)
   const [copyrightInfo, setCopyright] = useState({} as CopyrightProps)
@@ -118,22 +118,22 @@ export const PostView: NextPage<PostModel> = (props) => {
         {
           icon: faThumbsUp,
           name: <NumberRecorder number={thumbsUp || 0} />,
-          color: isThumbsUpBefore(props._id) ? '#f1c40f' : undefined,
+          color: isThumbsUpBefore(props.id) ? '#f1c40f' : undefined,
           callback: () => {
-            if (isThumbsUpBefore(props._id)) {
+            if (isThumbsUpBefore(props.id)) {
               return message.error('你已经支持过啦!')
             }
             Rest('Post')
               .get('_thumbs-up', {
                 params: {
-                  id: props._id,
+                  id: props.id,
                   ts: performance.timeOrigin + performance.now(),
                 },
               })
               .then(() => {
                 message.success('感谢支持!')
 
-                storeThumbsUpCookie(props._id)
+                storeThumbsUpCookie(props.id)
                 setThumbsUp(thumbsUp + 1)
               })
           },
@@ -142,7 +142,7 @@ export const PostView: NextPage<PostModel> = (props) => {
       copyright: props.copyright,
     })
   }, [
-    props._id,
+    props.id,
     props.category.name,
     props.copyright,
     props.count.read,
@@ -174,7 +174,7 @@ export const PostView: NextPage<PostModel> = (props) => {
   }, [props, title])
 
   return (
-    <ArticleLayout title={title} focus id={props._id} type="post">
+    <ArticleLayout title={title} focus id={props.id} type="post">
       <Seo
         title={props.title}
         description={description}
@@ -204,7 +204,7 @@ export const PostView: NextPage<PostModel> = (props) => {
 
       <CommentLazy
         type={'Post'}
-        id={_id}
+        id={id}
         allowComment={props.allowComment ?? true}
       />
     </ArticleLayout>

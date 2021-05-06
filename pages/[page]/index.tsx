@@ -55,7 +55,7 @@ const Page: NextPage<PageRespDto> = (props) => {
     <ArticleLayout
       title={title}
       subtitle={subtitle}
-      id={props.data._id}
+      id={props.data.id}
       type="page"
     >
       <Seo
@@ -72,7 +72,7 @@ const Page: NextPage<PageRespDto> = (props) => {
       <CommentLazy
         {...{
           type: 'Page',
-          id: props.data._id,
+          id: props.data.id,
           allowComment: props.data.allowComment ?? true,
         }}
       />

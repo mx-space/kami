@@ -1,7 +1,7 @@
 import { BaseRespModel, PagerModel, BaseModel } from './base'
 
 export interface CommentModel extends BaseModel {
-  _id: string
+  id: string
   refType: string
   state: number
   children: any[]

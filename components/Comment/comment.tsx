@@ -161,13 +161,13 @@ const Empty: FC = () => {
   )
 }
 
-function getCommentWrap<T extends { _id: string }>(comment: T) {
+function getCommentWrap<T extends { id: string }>(comment: T) {
   const $wrap = document.getElementById('comments-wrap')
   if (!$wrap) {
     return
   }
   const $parent = $wrap.querySelector<HTMLDivElement>(
-    '[data-comment-id="'.concat(comment._id, '"] #write'),
+    '[data-comment-id="'.concat(comment.id, '"] #write'),
   )
   return $parent
 }
@@ -182,7 +182,7 @@ function search(
       return search(comment.children, searched, insertData)
     }
 
-    if (comment._id === ((searched.parent as any) as CommentModel).id) {
+    if (comment.id === ((searched.parent as any) as CommentModel).id) {
       if (!Array.isArray(comment.children)) {
         comment.children = [insertData]
       } else {
@@ -225,7 +225,7 @@ const Comments: FC<{
           const clone = [...comments]
 
           const index = clone.findIndex((comment) => {
-            return comment._id === ((data.parent as any) as CommentModel)._id
+            return comment.id === ((data.parent as any) as CommentModel).id
           })
 
           if (index !== -1) {
@@ -271,9 +271,9 @@ const Comments: FC<{
     const handleReply = async (model) => {
       openCommentMessage()
       if (logged) {
-        await Rest('Comment', 'master/reply/' + comment._id).post(model)
+        await Rest('Comment', 'master/reply/' + comment.id).post(model)
       } else {
-        await Rest('Comment', 'reply/' + comment._id).post(model)
+        await Rest('Comment', 'reply/' + comment.id).post(model)
       }
       openCommentMessage.success()
       refresh()
@@ -296,8 +296,8 @@ const Comments: FC<{
 
     return (
       <Comment
-        key={comment._id}
-        data-comment-id={comment._id}
+        key={comment.id}
+        data-comment-id={comment.id}
         author={
           <a href={url} rel={'nofollow'}>
             {comment.author}
@@ -309,8 +309,8 @@ const Comments: FC<{
             value={`${
               comment.parent
                 ? `@${
-                    collection.get(comment.parent)?._id ??
-                    ((comment.parent as any) as CommentModel)?._id ??
+                    collection.get(comment.parent)?.id ??
+                    ((comment.parent as any) as CommentModel)?.id ??
                     ''
                   } `
                 : ''
@@ -408,7 +408,7 @@ const Comments: FC<{
           <span
             key="comment-list-reply-to-0"
             onClick={() => {
-              if (replyId !== comment.id) setReplyId(comment._id)
+              if (replyId !== comment.id) setReplyId(comment.id)
               else setReplyId('')
             }}
           >
@@ -416,7 +416,7 @@ const Comments: FC<{
           </span>,
           logged ? (
             <Fragment>
-              {sure !== comment._id && (
+              {sure !== comment.id && (
                 <span
                   key="comment-list-delete"
                   onClick={() => {
@@ -432,11 +432,11 @@ const Comments: FC<{
                   删除
                 </span>
               )}
-              {sure === comment._id && (
+              {sure === comment.id && (
                 <span
                   key="comment-list-delete"
                   onClick={() => {
-                    handleDelete(comment._id)()
+                    handleDelete(comment.id)()
                     setSure(null)
                   }}
                   style={{ color: '#e74c3c' }}
@@ -455,7 +455,7 @@ const Comments: FC<{
           type={'bottom'}
           duration={500}
         >
-          {replyId === comment._id && (
+          {replyId === comment.id && (
             <CommentBox
               autoFocus
               key={'box'}
