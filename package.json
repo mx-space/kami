@@ -92,7 +92,7 @@
     "@typescript-eslint/parser": "4.22.1",
     "babel-plugin-lodash": "3.3.4",
     "cross-env": "7.0.3",
-    "dotenv": "8.5.1",
+    "dotenv": "8.6.0",
     "eslint": "7.25.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-prettier": "3.4.0",
