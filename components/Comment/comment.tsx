@@ -21,7 +21,6 @@ import { Rest } from 'utils/api'
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
 import observable from 'utils/observable'
-import { relativeTimeFromNow } from 'utils/time'
 import { CommentContext, minHeightProperty, openCommentMessage } from '.'
 import { useStore } from '../../common/store'
 import { animatingClassName } from '../../layouts/NoteLayout'
@@ -154,7 +153,7 @@ const Empty: FC = () => {
       </svg>
       {sample([
         '这里空空如也...',
-        '客观, 感觉如何?',
+        '客官, 感觉如何?',
         '嘿, 小可爱, 说点什么呢?',
       ])}
     </div>
