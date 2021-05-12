@@ -783,9 +783,9 @@ html.dark footer::before {
   color: #fff;
   position: fixed;
   visibility: hidden;
-  transform: translate(-50%, -50%) scale(0);
-  transition: opacity 0.3s, transform 0.5s cubic-bezier(0.5, 0, 0.5, 1.5),
-    visibility 0.3s;
+  transform: translate(-50%, -50%) scale(120);
+  transition: opacity 0.8s, transform 0.8s cubic-bezier(0.5, 0, 0.5, 1.5),
+    visibility 0.8s;
 }
 .loader:before {
   top: 50%;
@@ -797,11 +797,13 @@ html.dark footer::before {
   position: fixed;
   border-radius: 50%;
   background: var(--green);
-  transition: transform 0.5s cubic-bezier(0.83, 0, 0.17, 1);
-  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.5s cubic-bezier(0.83, 0, 0.17, 1), opacity 0.8s;
+  transform: translate(-50%, -50%);
+  opacity: 0;
 }
 body.loading .loader:before {
   transform: translate(-50%, -50%) scale(1.5);
+  opacity: 1;
 }
 body.loading .loader svg {
   opacity: 1;

@@ -43,7 +43,6 @@ export const DefaultLogo: FC = memo(() => {
 export const CustomLogo: FC = memo(() => {
   return (
     <svg height="200px" viewBox="0 0 200 200" version="1.1">
-      <desc>Created with Sketch.</desc>
       <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="forest" fill={'currentColor'} fillRule="nonzero">
           <path
