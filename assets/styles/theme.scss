@@ -789,6 +789,7 @@ html.dark footer::before {
 }
 .loader:before {
   top: 50%;
+  pointer-events: none;
   left: 50%;
   z-index: 99;
   content: '';
