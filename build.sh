@@ -11,8 +11,7 @@ set -e
 export NODE_OPTIONS="--max_old_space_size=512"
 git pull
 yarn
-rm -r .next
-set -e
+rm -rf .next
 yarn build
 cd .next
 git init
