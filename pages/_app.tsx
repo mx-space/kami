@@ -31,6 +31,8 @@ import * as gtag from '../utils/gtag'
 import service from '../utils/request'
 import { checkOldBrowser } from 'utils'
 import '@openfonts/noto-sans-sc_vietnamese'
+import smoothscroll from 'smoothscroll-polyfill'
+
 const version = process.env.VERSION || `v${Package.version}` || ''
 
 const Progress = new QP({ colorful: false, color: '#27ae60' })
@@ -57,6 +59,9 @@ const Content: FC<DataModel> = observer((props) => {
 
   useMount(() => {
     {
+      // kick off the polyfill!
+      smoothscroll.polyfill()
+
       const data = props.initData
 
       const { seo, user, pageMeta, categories, lastestNoteNid } = data

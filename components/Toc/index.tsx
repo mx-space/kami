@@ -52,11 +52,9 @@ class Item extends PureComponent<{
         data-depth={depth}
         onClick={(e) => {
           onClick(index)
-          if (typeof window.SmoothScroll === 'undefined') {
-            e.preventDefault()
-            const el = document.getElementById(title)
-            el?.scrollIntoView({ behavior: 'smooth' })
-          }
+          e.preventDefault()
+          const el = document.getElementById(title)
+          el?.scrollIntoView({ behavior: 'smooth' })
         }}
       >
         <span className={styles['a-pointer']}>{title}</span>

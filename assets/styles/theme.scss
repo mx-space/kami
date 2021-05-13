@@ -17,6 +17,8 @@ body {
   background: url(https://gitee.com/xun7788/my-imagination/raw/master/cdn/background.png)
     top center fixed;
   background-color: var(--light-bg);
+  scroll-behavior: smooth;
+  scroll-margin-top: 100px;
 }
 
 ::-webkit-scrollbar {
