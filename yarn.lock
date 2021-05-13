@@ -1365,6 +1365,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-stack-grid@0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@types/react-stack-grid/-/react-stack-grid-0.7.0.tgz#f7509a56f70eb2064522f2b6c545454020b8f6f1"
+  integrity sha512-MD/A9eNIz0Uu1i1k9eTBDASlpvsZ4jyDPiBL0v0Zy60JHMhspW7M1J6EWChx45V0rY+4LoqQxhH9hRzprN1lnw==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-syntax-highlighter@13.5.0":
   version "13.5.0"
   resolved "https://registry.yarnpkg.com/@types/react-syntax-highlighter/-/react-syntax-highlighter-13.5.0.tgz#b93c05f28844e7c35a5f1d38d3819099ffa82fbd"

@@ -9,6 +9,7 @@ import { DetailedHTMLProps, FC, forwardRef, HTMLAttributes } from 'react'
 import styles from './index.module.scss'
 import { observer } from 'utils/mobx'
 import { useStore } from '../../common/store'
+
 export interface SectionNewsProps {
   title: string
   icon: IconDefinition
@@ -38,13 +39,6 @@ export const SectionWrap: FC<
     const mode = appStore.colorMode
     return (
       <>
-        <style jsx>
-          {`
-            h3 {
-              transition: all 0.5s;
-            }
-          `}
-        </style>
         <div className="news-item" ref={ref as any}>
           <div className="news-head">
             <h3

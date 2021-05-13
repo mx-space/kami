@@ -17,6 +17,7 @@ import { setToken } from '../../utils/cookie'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 // import { releaseDevtools } from 'utils/console'
+import styles from './index.module.css'
 
 const LoginView: NextPage = () => {
   const [username, setUsername] = useState('')
@@ -40,22 +41,8 @@ const LoginView: NextPage = () => {
 
   return (
     <main>
-      <style jsx>{`
-        .login-wrap {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          right: 0;
-          text-align: center;
-          transform: translate(-50%, -50%);
-          width: 20em;
-        }
-        .field {
-          margin: 6px 0;
-        }
-      `}</style>
-      <div className="login-wrap">
-        <div className="field">
+      <div className={styles['login-wrap']}>
+        <div className={styles['field']}>
           <Input
             prefix={<FontAwesomeIcon icon={faUser} />}
             type="text"
@@ -63,7 +50,7 @@ const LoginView: NextPage = () => {
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
-        <div className="field">
+        <div className={styles['field']}>
           <Input
             prefix={<FontAwesomeIcon icon={faLock} />}
             type="password"

@@ -416,7 +416,9 @@ const NoteView: NextPage<NoteViewProps> = observer(
 
 NoteView.getInitialProps = async (ctx) => {
   const id = ctx.query.id as string
-
+  if (id == 'latest') {
+    return await Rest('Note').get<NoteResp>(id)
+  }
   const res = await Rest('Note', 'nid').get<NoteResp>(id)
   return res
 }

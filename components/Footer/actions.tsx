@@ -12,6 +12,7 @@ import React, { FC, useEffect, useState } from 'react'
 import { EventTypes } from 'common/socket/types'
 import { ChatPanel } from 'components/Chat'
 import observable from 'utils/observable'
+import styles from './actions.module.scss'
 
 export const FooterActions: FC = observer(() => {
   const { /* userStore, */ appStore, actionStore, musicStore } = useStore()
@@ -35,29 +36,6 @@ export const FooterActions: FC = observer(() => {
   }, [])
   return (
     <>
-      <style jsx>
-        {`
-          .message-btn {
-            position: relative;
-          }
-          .message-btn.count::before {
-            content: attr(data-count);
-            position: absolute;
-            right: 0;
-            top: 0;
-            height: 1rem;
-            width: 1rem;
-            background: var(--red);
-            border-radius: 50%;
-            font-size: 0.8rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            animation: fade-small-large 0.5s both;
-          }
-        `}
-      </style>
       <div className="action">
         <button
           className={classNames('top', isOverflow ? 'active' : '')}
@@ -104,7 +82,7 @@ export const FooterActions: FC = observer(() => {
             setCount(0)
           }}
           className={classNames(
-            'message-btn',
+            styles['message-btn'],
             newMessageCount ? 'count' : null,
           )}
           data-count={newMessageCount}

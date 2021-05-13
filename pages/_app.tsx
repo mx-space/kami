@@ -252,7 +252,14 @@ const Content: FC<DataModel> = observer((props) => {
         url={configs.url}
         sameAs={configs.social.map(({ url }) => url)}
       />
-
+      {/* <button
+        style={{ position: 'fixed', zIndex: 3e10 }}
+        onClick={() => {
+          document.body.classList.toggle('loading')
+        }}
+      >
+        toggle
+      </button> */}
       <div id="next">{props.children}</div>
       <Loader />
     </>

@@ -40,9 +40,9 @@ export const DefaultLogo: FC = memo(() => {
   )
 })
 
-export const CustomLogo: FC = memo(() => {
+export const CustomLogo: FC<JSX.IntrinsicElements['svg']> = memo((props) => {
   return (
-    <svg height="200px" viewBox="0 0 200 200" version="1.1">
+    <svg height="200px" viewBox="0 0 200 200" version="1.1" {...props}>
       <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="forest" fill={'currentColor'} fillRule="nonzero">
           <path

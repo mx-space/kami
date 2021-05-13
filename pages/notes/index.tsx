@@ -7,23 +7,25 @@ import { Rest } from '../../utils/api'
 
 const NotePage = observer(() => {
   const router = useRouter()
-  const { appStore } = useStore()
+  // const { appStore } = useStore()
   useEffect(() => {
-    message.success('正在跳往至最新, 请等待')
-    if (appStore.noteNid) {
-      router.replace('/notes/[id]', `/notes/${appStore.noteNid}`, {
-        shallow: true,
-      })
-    } else {
-      Rest('Note')
-        .get('latest')
-        .then(({ data }: any) => {
-          router.push('/notes/[id]', `/notes/${data.nid}`, {
-            shallow: true,
-          })
-        })
-    }
-
+    // message.success('正在跳往至最新, 请等待')
+    // if (appStore.noteNid) {
+    //   router.replace('/notes/[id]', `/notes/${appStore.noteNid}`, {
+    //     shallow: true,
+    //   })
+    // } else {
+    //   Rest('Note')
+    //     .get('latest')
+    //     .then(({ data }: any) => {
+    //       router.push('/notes/[id]', `/notes/${data.nid}`, {
+    //         shallow: true,
+    //       })
+    //     })
+    // }
+    router.replace('/notes/latest', undefined, {
+      shallow: true,
+    })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return <main></main>

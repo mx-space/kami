@@ -2,6 +2,8 @@ import { PlayListType } from '@mx-space/extra'
 import { observer } from 'utils/mobx'
 import { FC } from 'react'
 import { useStore } from 'common/store'
+import styles from './index.module.scss'
+import clsx from 'clsx'
 
 interface SectionMusicProps {
   data: PlayListType[]
@@ -15,25 +17,16 @@ export const SectionMusic: FC<SectionMusicProps> = observer((props) => {
     musicStore.setPlaylist(id)
   }
   return (
-    <section className={'kami-music'}>
-      <style jsx>{`
-        .sticky-cover {
-          position: sticky;
-          top: 5rem;
-        }
-        * {
-          font-size: 16px;
-        }
-      `}</style>
-      <div className="music-cover">
-        <div className="sticky-cover fixed-cover">
+    <section className={styles['kami-music']}>
+      <div className={styles['music-cover']}>
+        <div className={clsx(styles['fixed-cover'], styles['sticky-cover'])}>
           <img src={props.src}></img>
           <h3>{props.name}</h3>
         </div>
       </div>
 
-      <div className="music-list">
-        <ul className="clear">
+      <div className={styles['music-list']}>
+        <ul className="">
           {props.data.map((i, index) => {
             return (
               <li
@@ -44,7 +37,7 @@ export const SectionMusic: FC<SectionMusicProps> = observer((props) => {
                   )
                 }
               >
-                <span className={'num'}>{index + 1}</span>
+                <span className={styles['num']}>{index + 1}</span>
                 {i.name}
                 <time>{i.time}</time>
               </li>

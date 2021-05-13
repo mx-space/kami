@@ -13,7 +13,9 @@ import { useStore } from '../../common/store'
 import { SEO } from '../../components/SEO'
 import { hexToRGB } from '../../utils/color'
 import observable from '../../utils/observable'
-const { scaleUp } = transitions
+import styles from './index.module.css'
+
+const { flip } = transitions
 interface SayViewProps {
   data: SayModel[]
 }
@@ -66,71 +68,58 @@ const SayView: NextPage<SayViewProps> = (props) => {
   return (
     <main>
       <SEO title={'说说'} />
-      <style jsx>{`
-        .author {
-          position: relative;
-        }
-        .author::before {
-          content: attr(data-created);
-          position: absolute;
-          left: 0;
-        }
-      `}</style>
 
-      {
-        <StackGrid
-          columnWidth={appStore.viewport.mobile ? '100%' : '50%'}
-          className={'kami-say'}
-          style={{ columns: 'unset' }}
-          gutterWidth={10}
-          gutterHeight={10}
-          appear={scaleUp.appear}
-          appeared={scaleUp.appeared}
-          enter={scaleUp.enter}
-          entered={scaleUp.entered}
-          leaved={scaleUp.leaved}
-          duration={1000}
-        >
-          {says.map((say, i) => {
-            const hasSource = !!say.source
-            const hasAuthor = !!say.author
-            return (
-              <div className={'col-6'} key={say._id}>
-                <blockquote
-                  key={say._id}
-                  style={{
-                    borderLeftColor: hexToRGB(colors[i] || '', 0.7),
-                    backgroundColor: hexToRGB(colors[i] || '', 0.05),
-                    transition: 'all 0.5s',
-                  }}
+      <StackGrid
+        columnWidth={appStore.viewport.mobile ? '100%' : '50%'}
+        className={styles['kami-say']}
+        gutterWidth={10}
+        gutterHeight={10}
+        appear={flip.appear}
+        appeared={flip.appeared}
+        enter={flip.enter}
+        entered={flip.entered}
+        leaved={flip.leaved}
+        duration={1000}
+      >
+        {says.map((say, i) => {
+          const hasSource = !!say.source
+          const hasAuthor = !!say.author
+          return (
+            <div className={'col-6'} key={say._id}>
+              <blockquote
+                key={say._id}
+                style={{
+                  borderLeftColor: hexToRGB(colors[i] || '', 0.7),
+                  backgroundColor: hexToRGB(colors[i] || '', 0.05),
+                  transition: 'all 0.5s',
+                }}
+              >
+                <ReactMarkdown
+                  allowedTypes={[
+                    'paragraph',
+                    'link',
+                    'inlineCode',
+                    'strong',
+                    'text',
+                  ]}
+                  escapeHtml={false}
                 >
-                  <ReactMarkdown
-                    allowedTypes={[
-                      'paragraph',
-                      'link',
-                      'inlineCode',
-                      'strong',
-                      'text',
-                    ]}
-                    escapeHtml={false}
-                  >
-                    {say.text}
-                  </ReactMarkdown>
-                  <p
-                    className="author"
-                    data-created={'发布于 ' + relativeTimeFromNow(say.created)}
-                  >
-                    {hasSource && ` 出自 “` + say.source + '”'}
-                    {hasSource && hasAuthor && ', '}
-                    {hasAuthor && '作者：' + say.author}
-                    {!hasAuthor && !hasSource && '站长说'}
-                  </p>
-                </blockquote>
-              </div>
-            )
-          })}
-        </StackGrid>
-      }
+                  {say.text}
+                </ReactMarkdown>
+                <p
+                  className={styles['author']}
+                  data-created={'发布于 ' + relativeTimeFromNow(say.created)}
+                >
+                  {hasSource && ` 出自 “` + say.source + '”'}
+                  {hasSource && hasAuthor && ', '}
+                  {hasAuthor && '作者：' + say.author}
+                  {!hasAuthor && !hasSource && '站长说'}
+                </p>
+              </blockquote>
+            </div>
+          )
+        })}
+      </StackGrid>
     </main>
   )
 }
