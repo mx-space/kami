@@ -14,6 +14,7 @@ html {
   overflow: overlay;
   scroll-behavior: unset;
   font-variant-numeric: tabular-nums;
+  font-display: swap;
 }
 @media (max-width: 799px) {
   body {
