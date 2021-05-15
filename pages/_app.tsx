@@ -1,13 +1,13 @@
 // import { animateUriFactory } from 'animate-uri/publish/index.esm'
+import '@openfonts/noto-sans-sc_vietnamese'
 import 'assets/styles/main.scss'
 import { DropdownProvider } from 'common/context/dropdown'
 import { InitialContext } from 'common/context/InitialDataContext'
 import Loader from 'components/Loader'
-import configs from 'configs'
 import { BasicLayout } from 'layouts/BasicLayout'
 import throttle from 'lodash/throttle'
 import { AggregateResp } from 'models/aggregate'
-import { LogoJsonLd, NextSeo, SocialProfileJsonLd } from 'next-seo'
+import { NextSeo } from 'next-seo'
 import NextApp, { AppContext } from 'next/app'
 import Head from 'next/head'
 import Router, { useRouter } from 'next/router'
@@ -17,6 +17,7 @@ import QP from 'qier-progress'
 import React, { FC, useCallback, useEffect, useMemo } from 'react'
 import useMount from 'react-use/lib/useMount'
 import useUnmount from 'react-use/lib/useUnmount'
+import { checkOldBrowser } from 'utils'
 import { printToConsole } from 'utils/console'
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
@@ -29,8 +30,6 @@ import { getToken, removeToken } from '../utils/cookie'
 // import { checkDevtools } from '../utils/forbidden'
 import * as gtag from '../utils/gtag'
 import service from '../utils/request'
-import { checkOldBrowser } from 'utils'
-import '@openfonts/noto-sans-sc_vietnamese'
 const version = process.env.VERSION || `v${Package.version}` || ''
 
 const Progress = new QP({ colorful: false, color: '#27ae60' })
@@ -242,16 +241,7 @@ const Content: FC<DataModel> = observer((props) => {
         }
         description={props.initData.seo.description}
       />
-      <LogoJsonLd
-        logo={new URL('/custom-icon.svg', configs.url).toString()}
-        url={configs.url}
-      />
-      <SocialProfileJsonLd
-        type={'Person'}
-        name={master.name || ''}
-        url={configs.url}
-        sameAs={configs.social.map(({ url }) => url)}
-      />
+
       {/* <button
         style={{ position: 'fixed', zIndex: 3e10 }}
         onClick={() => {

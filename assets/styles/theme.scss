@@ -683,11 +683,15 @@ html.dark footer::before {
   position: fixed;
   transform: translate(-50%, -50%);
   transition: transform 0.8s cubic-bezier(0.5, 0, 0.5, 1.5);
+  perspective: 1500px;
 }
 .loader-logo .animation {
-  animation: zoom-in 1s linear backwards;
+  animation: zoom-in 1s ease-out backwards;
   position: relative;
   z-index: 999;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  // perspective: 3000px;
 }
 .loader:before {
   top: 50%;
@@ -700,15 +704,14 @@ html.dark footer::before {
   position: fixed;
   border-radius: 50%;
   background: var(--green);
-  transition: opacity 1.2s;
   transform: translate(-50%, -50%) scale(1.5);
-  opacity: 0;
-  // opacity: 1;
+  animation: fade-out 1s ease-out;
 }
 body.loading .loader:before {
   pointer-events: all;
   opacity: 1;
   transition: opacity 0.2s;
+  animation: none;
 }
 body.loading .loader-logo {
   transform: translate(-50%, -50%) scale(1);
@@ -719,23 +722,27 @@ body.loading .loader-logo .animation {
   animation: none;
 }
 @keyframes zoom-in {
-  10% {
-    transform: scale(0.9);
+  60% {
+    transform: translate3d(0, 0, -300px);
+    opacity: 1;
   }
-  20% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(120);
-    // width: 250%;
+
+  to {
+    transform: translate3d(0, 0, 1500px);
     opacity: 0;
   }
 }
 @keyframes fade-out {
-  0%,
-  85% {
+  30% {
     opacity: 1;
   }
+  60% {
+    opacity: 1;
+  }
+  // 80% {
+  //   transform: translate3d(0, 0, 1000px);
+  //   opacity: 0.5;
+  // }
   100% {
     opacity: 0;
   }

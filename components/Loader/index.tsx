@@ -14,7 +14,6 @@ const Loader: FC = memo(() => {
         <CustomLogo
           className="animation"
           height="150px"
-          // viewBox="0 0 100 100"
           onAnimationEnd={(e) => {
             ref.current?.remove()
             ;(e.target as any)?.remove()

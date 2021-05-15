@@ -5,33 +5,32 @@ import {
   faUsers,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { message } from 'utils/message'
 import { useInitialData } from 'common/context/InitialDataContext'
 import { useStore } from 'common/store'
 import SectionNews, {
   SectionCard,
   SectionNewsProps,
 } from 'components/SectionNews'
+import configs from 'configs'
 import omit from 'lodash/omit'
 import shuffle from 'lodash/shuffle'
 import { Top } from 'models/aggregate'
+import { SayModel } from 'models/say'
 import { NextPage } from 'next'
+import { NextSeo } from 'next-seo'
 import Router from 'next/router'
 import QueueAnim from 'rc-queue-anim'
 import Texty from 'rc-texty'
-import React, { FC, useEffect, useMemo, useRef, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
 import { Rest } from 'utils/api'
+import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
 import { FriendsSection } from '../components/SectionNews/friend'
 import { SectionWrap } from '../components/SectionNews/section'
 import { getAnimationImages as getAnimeImages, NoSSR } from '../utils'
 import { stopEventDefault } from '../utils/dom'
-import service from '../utils/request'
 import '../utils/message'
-import { SayModel } from 'models/say'
-import { NextSeo } from 'next-seo'
-import configs from 'configs'
-import { useAsyncFn } from 'react-use'
+import service from '../utils/request'
 interface IndexViewProps {
   posts: Top.Post[]
   notes: Top.Note[]
@@ -88,29 +87,7 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
               {introduce || description}
             </Texty>
           </div>
-
-          <QueueAnim
-            delay={500}
-            duration={500}
-            animConfig={{ opacity: [1, 0], translateY: [0, 50] }}
-          >
-            <div className="social-icons" key={'a'}>
-              {configs.social.map((item) => {
-                return (
-                  <a
-                    href={item.url}
-                    target="_blank"
-                    ks-text={item.title}
-                    ks-tag="bottom"
-                    key={item.title}
-                    style={item.color ? { color: item.color } : {}}
-                  >
-                    <FontAwesomeIcon icon={item.icon} />
-                  </a>
-                )
-              })}
-            </div>
-          </QueueAnim>
+          <Social />
         </div>
       </section>
 
@@ -313,3 +290,30 @@ const _Sections: FC<IndexViewProps> = ({ randomImages, notes, posts }) => {
 }
 
 const Sections = NoSSR(_Sections)
+
+const Social = NoSSR(() => {
+  return (
+    <QueueAnim
+      delay={500}
+      duration={500}
+      animConfig={{ opacity: [1, 0], translateY: [0, 50] }}
+    >
+      <div className="social-icons" key={'a'}>
+        {configs.social.map((item) => {
+          return (
+            <a
+              href={item.url}
+              target="_blank"
+              ks-text={item.title}
+              ks-tag="bottom"
+              key={item.title}
+              style={item.color ? { color: item.color } : {}}
+            >
+              <FontAwesomeIcon icon={item.icon} />
+            </a>
+          )
+        })}
+      </div>
+    </QueueAnim>
+  )
+})

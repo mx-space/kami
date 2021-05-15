@@ -11,7 +11,7 @@ import {
   useState,
 } from 'react'
 import { useAudio } from 'react-use'
-import { hms } from 'utils'
+import { hms, NoSSR } from 'utils'
 import styles from './index.module.css'
 
 const API_BASE_URL = 'https://api.i-meto.com/meting/api'
@@ -48,9 +48,8 @@ export const MusicMiniPlayer = forwardRef<
 >(({ playlist, hide = false }, ref) => {
   const len = playlist.length
 
-  const [cur, setCur] = useState<null | (MetingPayloadType & { id: number })>(
-    null,
-  )
+  const [cur, setCur] =
+    useState<null | (MetingPayloadType & { id: number })>(null)
 
   const [cursor, setCursor] = useState(0)
 
@@ -121,13 +120,15 @@ export const MusicMiniPlayer = forwardRef<
     <div className={classNames(styles['player'], hide && styles['hide'])}>
       <div className={styles['root']}>
         <div className={styles['cover']}>
-          <div
-            className={clsx(
-              styles['pic'],
-              'bg-cover bg-center bg-no-repeat h-full w-full',
-            )}
-            style={{ backgroundImage: `url(${cur?.pic})` }}
-          ></div>
+          {cur?.pic && (
+            <div
+              className={clsx(
+                styles['pic'],
+                'bg-cover bg-center bg-no-repeat h-full w-full',
+              )}
+              style={{ backgroundImage: `url(${cur.pic})` }}
+            ></div>
+          )}
 
           <div
             className={clsx(
@@ -188,7 +189,7 @@ export const MusicMiniPlayer = forwardRef<
   )
 })
 
-export const MusicMiniPlayerStoreControlled = observer(() => {
+export const _MusicMiniPlayerStoreControlled = observer(() => {
   const ref = useRef<MusicPlayerRef>(null)
 
   // useEffect(() => {
@@ -225,4 +226,7 @@ export const MusicMiniPlayerStoreControlled = observer(() => {
   )
 })
 
-export default MusicMiniPlayer
+export const MusicMiniPlayerStoreControlled = NoSSR(
+  _MusicMiniPlayerStoreControlled,
+)
+export default NoSSR(MusicMiniPlayer)
