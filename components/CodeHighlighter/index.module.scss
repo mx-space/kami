@@ -31,3 +31,11 @@
     background-color: currentColor;
   }
 }
+
+.language-tip {
+  position: absolute;
+  right: 0;
+  transform: translate(-0.5em, 1em);
+  font-size: 0.8em;
+  opacity: 0.7;
+}

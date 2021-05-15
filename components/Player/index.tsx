@@ -1,7 +1,6 @@
 import classNames from 'classnames'
 import clsx from 'clsx'
-import { useStore } from 'common/store'
-import { reaction } from 'mobx'
+import { musicStore } from 'common/store'
 import { observer } from 'mobx-react-lite'
 import {
   forwardRef,
@@ -13,7 +12,6 @@ import {
 } from 'react'
 import { useAudio } from 'react-use'
 import { hms } from 'utils'
-import { log } from 'utils/console'
 import styles from './index.module.css'
 
 const API_BASE_URL = 'https://api.i-meto.com/meting/api'
@@ -191,28 +189,32 @@ export const MusicMiniPlayer = forwardRef<
 })
 
 export const MusicMiniPlayerStoreControlled = observer(() => {
-  const { musicStore } = useStore()
-
   const ref = useRef<MusicPlayerRef>(null)
 
-  useEffect(() => {
-    const disposer1 = reaction(
-      () => musicStore.isPlay,
-      (isPlay) => {
-        if (isPlay) {
-          ref.current?.play()
-        } else [ref.current?.pause()]
-      },
-    )
-    const disposer2 = reaction(
-      () => musicStore.isHide,
-      (isHide) => isHide && ref.current?.pause(),
-    )
-    return () => {
-      disposer1()
-      disposer2()
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (musicStore.isPlay) {
+  //     ref.current?.play()
+  //   } else {
+  //     ref.current?.pause()
+  //   }
+  // }, [musicStore.isPlay])
+
+  // useEffect(() => {
+  // }, [])
+  if (musicStore.isPlay) {
+    ref.current?.play()
+  } else {
+    ref.current?.pause()
+  }
+
+  // console.log(musicStore.isHide, musicStore.isPlay)
+
+  // musicStore.isHide && ref.current?.pause()
+  if (!musicStore.isHide) {
+    ref.current?.play()
+  } else {
+    ref.current?.pause()
+  }
 
   return (
     <MusicMiniPlayer

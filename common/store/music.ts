@@ -17,17 +17,25 @@ export default class MusicStore {
   }
 
   list: number[] = []
-  isHide = true
+  _isHide = true
   isPlay = false
 
   init() {
     this.list = [563534789, 1447327083, 1450252250]
   }
 
+  empty() {
+    this.list = []
+  }
+
   setHide(hide: boolean) {
     runInAction(() => {
-      this.isHide = hide
-      !hide && this.play()
+      this._isHide = hide
+      if (hide) {
+        this.isPlay = false
+      } else {
+        this.play()
+      }
     })
   }
 
@@ -45,8 +53,12 @@ export default class MusicStore {
         this.init()
       }
 
-      this.isHide = false
+      this._isHide = false
       this.isPlay = true
     })
+  }
+
+  get isHide() {
+    return this._isHide && !this.isPlay
   }
 }

@@ -88,11 +88,16 @@ const _Image: FC<{ src: string; alt?: string }> = observer(({ src, alt }) => {
 
   // 因为有动画开始不能获取到大小 , 直到获取到 container 的大小
   useEffect(() => {
-    let timer = setTimeout(() => {
-      setMaxWidth(getContainerSize())
-    }, 1200) as any
+    let timer = requestAnimationFrame(function a() {
+      const size = getContainerSize()
+      if (!size) {
+        requestAnimationFrame(a)
+      } else {
+        setMaxWidth(size)
+      }
+    }) as any
     return () => {
-      timer = clearTimeout(timer)
+      timer = cancelAnimationFrame(timer)
     }
   }, [])
 

@@ -109,7 +109,10 @@ const NoteView: NextPage<NoteViewProps> = observer(
       }
     }, [userStore.isLogged])
 
-    const { description, wordCount } = getSummaryFromMd(text, { count: true })
+    const { description, wordCount } = getSummaryFromMd(text, {
+      count: true,
+      length: 150,
+    })
     useEffect(() => {
       try {
         setTips(
@@ -256,7 +259,7 @@ const NoteView: NextPage<NoteViewProps> = observer(
       // eslint-disable-next-line react-hooks/exhaustive-deps
 
       return () => {
-        musicStore.init()
+        musicStore.empty()
         musicStore.setHide(true)
       }
     }, [props.data.music, props.data.nid])
@@ -326,7 +329,7 @@ const NoteView: NextPage<NoteViewProps> = observer(
             >
               {isSecret && (
                 <span className={'flex justify-center -mb-3.5'}>
-                  这是一篇非公开的文章。(在 {dateFormat} 解锁)
+                  这是一篇非公开的文章。(将在 {dateFormat} 解锁)
                 </span>
               )}
               <Markdown
@@ -395,19 +398,19 @@ const NoteView: NextPage<NoteViewProps> = observer(
           </div>
         </OverLay>
         {!isSecret && (
-          <QueueAnim delay={500} type={'alpha'}>
-            <ArticleLayout
-              style={{ minHeight: 'unset', paddingTop: '0' }}
-              focus
-              key={'at'}
-            >
-              <CommentWrap
-                type={'Note'}
-                id={_id}
-                allowComment={props.data.allowComment ?? true}
-              />
-            </ArticleLayout>
-          </QueueAnim>
+          // <QueueAnim delay={500} type={'alpha'}>
+          <ArticleLayout
+            style={{ minHeight: 'unset', paddingTop: '0' }}
+            focus
+            key={'at'}
+          >
+            <CommentWrap
+              type={'Note'}
+              id={_id}
+              allowComment={props.data.allowComment ?? true}
+            />
+          </ArticleLayout>
+          // </QueueAnim>
         )}
       </>
     )

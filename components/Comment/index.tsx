@@ -14,6 +14,7 @@ import {
   createContext,
   FC,
   Fragment,
+  RefObject,
   useCallback,
   useEffect,
   useMemo,
@@ -120,13 +121,24 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
     setComments([])
     setCommentShow(false)
   }, [id])
+
+  useEffect(() => {
+    if (location.hash.includes('comments')) {
+      requestAnimationFrame(() => {
+        document.getElementById('comments')?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        })
+      })
+    }
+  }, [id])
   return (
-    <article className={styles.wrap} ref={ref} data-hide-print>
+    <div className={styles.wrap} ref={ref} data-hide-print id="comments">
       <CommentContext.Provider
         value={{ type, refresh: fetchComments, collection }}
       >
         {allowComment && (
-          <h1>
+          <h1 className="headline">
             {comments.length
               ? `共有${comments.length}条评论`
               : '亲亲留个评论再走呗'}
@@ -165,7 +177,7 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
           <CommentLoading />
         )}
       </CommentContext.Provider>
-    </article>
+    </div>
   )
 })
 

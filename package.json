@@ -62,6 +62,7 @@
     "react-medium-image-zoom": "4.3.1",
     "react-stack-grid": "0.7.1",
     "react-syntax-highlighter": "15.4.3",
+    "react-transition-group": "4.4.1",
     "react-use": "17.2.4",
     "remove-markdown": "0.3.0",
     "sitemap": "7.0.0",
@@ -85,6 +86,7 @@
     "@types/react-lazyload": "3.1.0",
     "@types/react-stack-grid": "0.7.0",
     "@types/react-syntax-highlighter": "13.5.0",
+    "@types/react-transition-group": "4.4.1",
     "@types/remove-markdown": "0.3.0",
     "@types/socket.io-client": "1.4.36",
     "@types/ua-parser-js": "0.7.36",
@@ -119,6 +121,7 @@
     "unified": "9.2.1"
   },
   "resolutions": {
-    "react-use": "17.2.4"
+    "react-use": "17.2.4",
+    "react-stack-grid/react-transition-group": "4.4.1"
   }
 }
