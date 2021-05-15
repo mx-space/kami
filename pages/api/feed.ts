@@ -110,10 +110,14 @@ const genRSS = async (props: RSSProps) => {
             <published>${item.created}</published>
             <updated>${item.modified}</updated>
             <content type="html"><![CDATA[
-              <blockquote>该渲染由 unified 生成, 可能存在部分语句不通或者排版问题, 最佳体验请前往: <a href=${encodeHTML(
+              <blockquote>该渲染由 unified 生成, 可能存在部分语句不通或者排版问题, 最佳体验请前往: <a href="${encodeHTML(
                 item.link,
-              )}>${encodeHTML(item.link)}</a></blockquote>
-              ${parser.processSync(item.text).toString()}]]>
+              )}">${encodeHTML(item.link)}</a></blockquote>
+              ${parser.processSync(item.text).toString()}
+              <p>
+              <a href="${encodeHTML(item.link) + '#comments'}">评论</a>
+              </p>
+            ]]>
             </content>
             </entry>
           `

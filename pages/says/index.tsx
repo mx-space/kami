@@ -3,7 +3,7 @@ import { NextPage } from 'next'
 import randomColor from 'randomcolor'
 import { useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
-import StackGrid, { transitions } from 'react-stack-grid'
+import StackGrid, { transitions } from '@innei/react-stack-grid'
 import { Rest } from 'utils/api'
 import { observer } from 'utils/mobx'
 import { relativeTimeFromNow } from 'utils/time'
@@ -74,11 +74,7 @@ const SayView: NextPage<SayViewProps> = (props) => {
         className={styles['kami-say']}
         gutterWidth={10}
         gutterHeight={10}
-        appear={flip.appear}
-        appeared={flip.appeared}
-        enter={flip.enter}
-        entered={flip.entered}
-        leaved={flip.leaved}
+        transitions={{ ...flip }}
         duration={1000}
       >
         {says.map((say, i) => {
