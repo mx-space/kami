@@ -17,6 +17,9 @@ const withOffline = require('next-offline')
 const configs = withImages(
   withBundleAnalyzer({
     webpack: (config, options) => {
+      config.experiments = {
+        topLevelAwait: true,
+      }
       return config
     },
     env: {

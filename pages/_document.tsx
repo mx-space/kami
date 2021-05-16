@@ -116,6 +116,11 @@ export default class MyDocument extends Document<{ ua: string }> {
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
           />
           <script
+            dangerouslySetInnerHTML={{
+              __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${GA_TRACKING_ID}', {page_path: window.location.pathname,});`,
+            }}
+          />
+          <script
             src={`https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js`}
           ></script>
           <script
@@ -123,11 +128,6 @@ export default class MyDocument extends Document<{ ua: string }> {
               __html: `new SmoothScroll('a[href*="#"]', {speed: 500,offset: 150,easing: 'easeInOutCubic',durationMax: 1000,durationMin: 350,topOnEmptyHash: true,emitEvents: true,updateURL: false,popstate: false})`,
             }}
           ></script>
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${GA_TRACKING_ID}', {page_path: window.location.pathname,});`,
-            }}
-          />
         </body>
       </Html>
     )

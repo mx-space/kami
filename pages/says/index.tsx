@@ -3,7 +3,7 @@ import { NextPage } from 'next'
 import randomColor from 'randomcolor'
 import { useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
-import StackGrid, { transitions } from '@innei/react-stack-grid'
+// import StackGrid, { transitions } from '@innei/react-stack-grid/lib'
 import { Rest } from 'utils/api'
 import { observer } from 'utils/mobx'
 import { relativeTimeFromNow } from 'utils/time'
@@ -14,7 +14,9 @@ import { SEO } from '../../components/SEO'
 import { hexToRGB } from '../../utils/color'
 import observable from '../../utils/observable'
 import styles from './index.module.css'
-
+const { default: StackGrid, transitions } = await import(
+  '@innei/react-stack-grid'
+)
 const { flip } = transitions
 interface SayViewProps {
   data: SayModel[]

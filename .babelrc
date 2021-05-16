@@ -15,13 +15,22 @@
     "lodash"
   ],
   "presets": [
-    [
-      "@babel/env",
-      {
-        "targets": {
-          "node": 14
-        }
-      }
-    ]
+    "next/babel"
   ]
+  // "presets": [
+  //   [
+  //     "next/babel",
+  //     {
+  //       "preset-env": {},
+  //       "transform-runtime": {},
+  //       "styled-jsx": {},
+  //       "class-properties": {},
+  //       "module": false,
+  //       "targets": {
+  //         "chrome": "78",
+  //         "safari": "14"
+  //       }
+  //     }
+  //   ]
+  // ]
 }
