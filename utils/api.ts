@@ -35,7 +35,7 @@ export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
   pluralize = encodeURI(pluralize)
 
   if (restManager.has(pluralize)) {
-    return restManager.get(pluralize)
+    return restManager.get(pluralize)!
   }
 
   const apis = apiBuilder(pluralize)
