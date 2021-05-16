@@ -17,7 +17,6 @@ export interface NoteModel extends BaseModel {
   secret?: Date | null | undefined
   hide: boolean
   count: CountRecord
-  id: string
   title: string
   text: string
   mood?: string
@@ -35,7 +34,7 @@ export interface NoteMusicRecord {
 }
 export interface NoteLastestResp extends BaseRespModel {
   data: NoteModel
-  next: { id: string; nid: number; id: string }
+  next: { id: string; nid: number }
 }
 
 export interface NoteResp extends BaseRespModel {

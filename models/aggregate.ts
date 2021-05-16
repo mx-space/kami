@@ -31,7 +31,6 @@ export namespace Top {
     author: string
     created: Date
     modified: Date
-    id: string
   }
   export interface Aggregate {
     notes: Note[]

@@ -12,7 +12,6 @@ export interface CommentModel extends BaseModel {
   url: string
   key: string
   ref: string
-  id: string
   avatar: string
 
   parent?: string

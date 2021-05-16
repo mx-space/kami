@@ -5,7 +5,6 @@ export interface PageRespDto extends BaseRespModel {
     commentsIndex: number
     order: number
     type: string
-    id: string
     created: string
     modified: string
     title: string
@@ -26,7 +25,6 @@ export interface PageDescriptionDto {
   modified: string
   title: string
   slug: string
-  id: string
 }
 
 export interface PagesPagerRespDto extends BaseRespModel {
