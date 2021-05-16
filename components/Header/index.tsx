@@ -244,6 +244,8 @@ const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
     // console.log(firstPath)
 
     switch (firstPath) {
+      case 'category':
+      case 'login':
       case 'posts': {
         return 1
       }
@@ -261,6 +263,10 @@ const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
       }
       case 'recently': {
         return 6
+      }
+      case 'projects':
+      case 'favorite': {
+        return 7
       }
     }
   }, [router])

@@ -72,7 +72,7 @@ const menu: MenuModel[] = [
     path: '/recently',
   },
   {
-    title: '',
+    title: '余',
     icon: faCircleNotch,
     path: '/favorite/music',
     subMenu: [
