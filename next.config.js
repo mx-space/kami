@@ -48,6 +48,9 @@ const configs = withImages(
       granularChunks: true,
       modern: true,
       scrollRestoration: true,
+      // 小水管就算了吧
+      // __NEXT_OPTIMIZE_FONTS=true 暂时
+      optimizeFonts: false,
     },
     future: {
       webpack5: true,
