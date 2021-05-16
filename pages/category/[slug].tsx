@@ -10,7 +10,7 @@ import { Rest } from '../../utils/api'
 interface CategoryListViewProps {
   category: CategoryModel
   children: {
-    _id: string
+    id: string
     title: string
     slug: string
     created: string
@@ -33,7 +33,7 @@ const CategoryListView: NextPage<CategoryListViewProps> = (props) => {
               const date = new Date(child.created)
 
               return (
-                <li key={child._id}>
+                <li key={child.id}>
                   <Link
                     href={'/posts/[category]/[slug]'}
                     as={`/posts/${category.slug}/${child.slug}`}

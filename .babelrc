@@ -13,12 +13,6 @@
   },
   "plugins": [
     "lodash"
-    // [
-    //   "@babel/plugin-proposal-decorators",
-    //   {
-    //     "legacy": true
-    //   }
-    // ]
   ],
   "presets": [
     [

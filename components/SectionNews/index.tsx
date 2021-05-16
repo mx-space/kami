@@ -11,7 +11,7 @@ export interface SectionNewsProps {
   moreUrl: string
   color?: string
   content: {
-    _id: string
+    id: string
     title: string
     href: string
     as?: string

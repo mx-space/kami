@@ -26,14 +26,26 @@ interface Gets {
   year?: number
   [key: string]: string | number | undefined
 }
-
+export const restManager = new Map<string, ReturnType<typeof apiBuilder>>()
 export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
   let pluralize = ['Master', 'Menu', 'Aggregate', 'Recently'].includes(rest)
     ? rest.toLowerCase()
     : inflection.pluralize(rest).toLowerCase()
   pluralize = prefix ? pluralize + `/${prefix}` : pluralize
   pluralize = encodeURI(pluralize)
-  const apis = {
+
+  if (restManager.has(pluralize)) {
+    return restManager.get(pluralize)
+  }
+
+  const apis = apiBuilder(pluralize)
+
+  restManager.set(pluralize, apis)
+  return apis
+}
+
+function apiBuilder(pluralize: string) {
+  return {
     async getRecently<T = unknown>({
       page,
       size,
@@ -57,10 +69,10 @@ export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
       return data as any
     },
     async getOne<T = unknown>(
-      _id = '',
+      id = '',
       config?: AxiosRequestConfig | undefined,
     ): Promise<T> {
-      const id = encodeURI(_id)
+      id = encodeURI(id)
       const data = await $axios.get(`${pluralize}${id ? '/' + id : ''}`, config)
       return data as any
     },
@@ -102,5 +114,4 @@ export const Rest = (rest: keyof typeof AccessRoutesEnum, prefix?: string) => {
       return this.deleteOne
     },
   }
-  return apis
 }

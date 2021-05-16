@@ -1,5 +1,5 @@
 export interface RecentlyModel {
-  _id: string
+  id: string
   content: string
 
   language?: string

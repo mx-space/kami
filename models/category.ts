@@ -3,7 +3,7 @@ import { BaseRespModel } from './base'
 export interface CategoryModel {
   type: string
   count: number
-  _id: string
+  id: string
   created: string
   slug: string
   name: string

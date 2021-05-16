@@ -37,6 +37,7 @@
     "@types/classnames": "2.3.0",
     "NeteaseCloudMusicApi": "4.0.12",
     "axios": "0.21.1",
+    "camelcase-keys": "6.2.2",
     "clsx": "1.1.1",
     "dayjs": "1.10.4",
     "gitlog": "4.0.4",
@@ -72,7 +73,6 @@
     "validator": "13.6.0"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-decorators": "7.14.2",
     "@next/bundle-analyzer": "10.2.0",
     "@types/inflection": "1.5.28",
     "@types/js-cookie": "2.2.6",

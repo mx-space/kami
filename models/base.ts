@@ -26,7 +26,7 @@ export interface PagerModel {
 export interface BaseModel {
   created: string
   modified: string
-  _id: string
+  id: string
 }
 
 export interface BaseCommentIndexModel extends BaseModel {

@@ -22,8 +22,8 @@ const ProjectView: NextPage<ProjectViewProps> = (props) => {
           <div className="row">
             {projects.map((project) => {
               return (
-                <div className="col-4 col-s-3 col-m-2" key={project._id}>
-                  <Link href="projects/[id]" as={`projects/${project._id}`}>
+                <div className="col-4 col-s-3 col-m-2" key={project.id}>
+                  <Link href="projects/[id]" as={`projects/${project.id}`}>
                     <a>
                       <ImageLazy
                         src={project.avatar ?? defaultImage}

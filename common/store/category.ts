@@ -32,17 +32,17 @@ export default class CategoryStore {
       return
     }
     const models: MenuModel[] = categories.map((category) => {
-      const { _id, slug, name } = category
+      const { id, slug, name } = category
       return {
         title: name,
-        _id,
+        id,
 
         path: '/category/' + slug,
         type: 'Custom',
       }
     })
     const old = postMenu.subMenu
-    postMenu.subMenu = uniqBy([...models, ...old!], '_id')
+    postMenu.subMenu = uniqBy([...models, ...old!], 'id')
     this.categories = categories
   }
   async updateCategory() {
@@ -58,7 +58,7 @@ export default class CategoryStore {
     const map = new Map()
 
     this.categories.map((category) => {
-      map.set(category._id, category.slug)
+      map.set(category.id, category.slug)
     })
     return new Map(map)
   }

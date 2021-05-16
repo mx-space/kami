@@ -11,6 +11,7 @@ import { message } from 'utils/message'
 import axios, { AxiosError } from 'axios'
 import { getToken } from './cookie'
 import { isClientSide, isServerSide } from './utils'
+import camelcaseKeys from 'camelcase-keys'
 const service = axios.create({
   baseURL: process.env.APIURL || '/api',
   // withCredentials: true,
@@ -37,7 +38,7 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   (response) => {
-    const res = response.data
+    const res = camelcaseKeys(response.data, { deep: true })
     return res
   },
   (error: AxiosError<Record<string, any> | undefined>) => {
