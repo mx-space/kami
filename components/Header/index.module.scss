@@ -97,6 +97,9 @@
   .meta {
     color: var(--gray);
     font-size: 0.8rem;
+    flex-shrink: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
   .title {
     font-weight: 500;
