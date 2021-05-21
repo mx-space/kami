@@ -5,7 +5,7 @@ import { Seo } from 'models/aggregate'
 import { isClientSide } from 'utils'
 import { MenuModel, PageModel, ViewportRecord } from './types'
 
-export default class AppStore {
+export default class AppUIStore {
   constructor() {
     makeAutoObservable(this)
   }
@@ -31,6 +31,8 @@ export default class AppStore {
 
   noteNid: null | number = null
 
+  pages: PageModel[] = []
+
   updatePosition(direction: 'up' | 'down') {
     if (typeof document !== 'undefined') {
       this.position = document.documentElement.scrollTop
@@ -54,6 +56,7 @@ export default class AppStore {
   }
 
   setPage(pages: PageModel[]) {
+    this.pages = pages
     const homeMenu = this.menu.find((menu) => menu.type === 'Home')
     if (!homeMenu || !homeMenu.subMenu) {
       return

@@ -1,24 +1,31 @@
 /*
  * @Author: Innei
  * @Date: 2021-01-01 16:00:14
- * @LastEditTime: 2021-02-12 20:04:17
+ * @LastEditTime: 2021-05-21 22:15:09
  * @LastEditors: Innei
  * @FilePath: /web/pages/[page]/index.tsx
  * @Mark: Coding with Love
  */
+import {
+  faArrowAltCircleLeft,
+  faArrowAltCircleRight,
+} from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useStore } from 'common/store'
 import { CommentLazy } from 'components/Comment'
 import Markdown from 'components/Markdown'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { PageRespDto } from 'models/page'
 import { GetServerSideProps, NextPage } from 'next'
-import { useEffect } from 'react'
+import Link from 'next/link'
+import React, { Fragment, useEffect } from 'react'
 import RemoveMarkdown from 'remove-markdown'
 import { Rest } from 'utils/api'
 import { imagesRecord2Map } from 'utils/images'
 import { observer } from 'utils/mobx'
 import { ImageSizeMetaContext } from '../../common/context/ImageSizes'
 import { Seo } from '../../components/SEO'
+import styles from './index.module.scss'
 
 const Page: NextPage<PageRespDto> = (props) => {
   const { data } = props
@@ -51,6 +58,11 @@ const Page: NextPage<PageRespDto> = (props) => {
       behavior: 'smooth',
     })
   }, [props])
+  const pages = appStore.pages
+  const indexInPages = pages.findIndex((i) => i.title == props.data.title)
+  const n = pages.length
+  const hasNext = indexInPages + 1 < n
+  const hasPrev = indexInPages - 1 >= 0
   return (
     <ArticleLayout
       title={title}
@@ -68,7 +80,40 @@ const Page: NextPage<PageRespDto> = (props) => {
       >
         <Markdown value={text} escapeHtml={false} toc />
       </ImageSizeMetaContext.Provider>
-
+      <div className={styles['pagination']}>
+        <div className="">
+          {hasPrev && (
+            <Fragment>
+              {/* <FontAwesomeIcon
+                icon={faArrowAltCircleLeft}
+                className="mr-3 text-2xl"
+              /> */}
+              <Link href={`/${pages[indexInPages - 1].slug}`}>
+                <a className="flex flex-col justify-end">
+                  <h2 className="text-indigo-400">回顾一下：</h2>
+                  <p className="text-left">{pages[indexInPages - 1].title}</p>
+                </a>
+              </Link>
+            </Fragment>
+          )}
+        </div>
+        <div className="">
+          {hasNext && (
+            <Fragment>
+              <Link href={`/${pages[indexInPages + 1].slug}`}>
+                <a className="flex flex-col justify-end">
+                  <h2 className="text-indigo-400">继续了解：</h2>
+                  <p className="text-right">{pages[indexInPages + 1].title}</p>
+                </a>
+              </Link>
+              {/* <FontAwesomeIcon
+                icon={faArrowAltCircleRight}
+                className="ml-3 text-2xl"
+              /> */}
+            </Fragment>
+          )}
+        </div>
+      </div>
       <CommentLazy
         {...{
           type: 'Page',

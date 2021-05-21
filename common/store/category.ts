@@ -10,7 +10,7 @@
 import { uniqBy } from 'lodash'
 import { makeAutoObservable } from 'mobx'
 import { CategoriesResp, CategoryModel } from 'models/category'
-import { appStore } from '.'
+import { appUIStore } from '.'
 import { Rest } from '../../utils/api'
 import { MenuModel } from './types'
 export default class CategoryStore {
@@ -27,7 +27,7 @@ export default class CategoryStore {
   }
 
   setCategory(categories: CategoryModel[]) {
-    const postMenu = appStore.menu.find((menu) => menu.type === 'Post')
+    const postMenu = appUIStore.menu.find((menu) => menu.type === 'Post')
     if (!postMenu || !postMenu.subMenu) {
       return
     }

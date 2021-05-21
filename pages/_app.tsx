@@ -14,7 +14,7 @@ import Router, { useRouter } from 'next/router'
 import 'normalize.css/normalize.css'
 import Package from 'package.json'
 import QP from 'qier-progress'
-import React, { FC, useCallback, useEffect, useMemo } from 'react'
+import React, { FC, useCallback, useEffect, useMemo, useRef } from 'react'
 import useMount from 'react-use/lib/useMount'
 import useUnmount from 'react-use/lib/useUnmount'
 import { checkOldBrowser } from 'utils'
@@ -34,21 +34,20 @@ const version = process.env.VERSION || `v${Package.version}` || ''
 
 const Progress = new QP({ colorful: false, color: '#27ae60' })
 
-let _currentY = 0
 const Content: FC<DataModel> = observer((props) => {
+  const _currentY = useRef(0)
   const {
     appStore: app,
     userStore: master,
     categoryStore: category,
-    pageStore: pages,
   } = useStore()
 
   const handleScroll = throttle(
     () => {
       const currentY = document.documentElement.scrollTop
-      const direction = _currentY > currentY ? 'up' : 'down'
+      const direction = _currentY.current > currentY ? 'up' : 'down'
       app.updatePosition(direction)
-      _currentY = currentY
+      _currentY.current = currentY
     },
     50,
     { leading: true },
@@ -65,7 +64,6 @@ const Content: FC<DataModel> = observer((props) => {
       document.body.classList.remove('loading')
 
       // set page
-      pages.setPages(pageMeta as PageModel[])
       app.setPage(pageMeta as PageModel[])
 
       category.setCategory(categories)

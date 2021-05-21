@@ -1,17 +1,16 @@
 /*
  * @Author: Innei
  * @Date: 2020-04-29 17:27:02
- * @LastEditTime: 2021-01-14 13:21:23
+ * @LastEditTime: 2021-05-21 21:45:10
  * @LastEditors: Innei
  * @FilePath: /web/common/store/index.ts
  * @Copyright
  */
 
 import { createContext, useContext } from 'react'
-import AppStore from './app'
+import AppUIStore from './app'
 import CategoryStore from './category'
 import MusicStore from './music'
-import PageStore from './pages'
 
 import UserStore from './user'
 import GatewayStore from './gateway'
@@ -28,18 +27,16 @@ enableStaticRendering(isServerSide())
 
 export const gatewayStore = new GatewayStore()
 export const userStore = new UserStore()
-export const appStore = new AppStore()
+export const appUIStore = new AppUIStore()
 
 export const categoryStore = new CategoryStore()
 
-export const pageStore = new PageStore()
 export const musicStore = new MusicStore()
 
 export const actionStore = new ActionStore()
 export const stores = {
-  appStore,
+  appStore: appUIStore,
   userStore,
-  pageStore,
   categoryStore,
   musicStore,
   gatewayStore,

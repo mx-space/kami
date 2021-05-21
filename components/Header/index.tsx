@@ -15,7 +15,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
 import { useInitialData } from 'common/context/InitialDataContext'
-import { appStore, useStore } from 'common/store'
+import { appUIStore, useStore } from 'common/store'
 import { DropdownBase } from 'components/Dropdown'
 import { LikeButton } from 'components/LikeButton'
 import { CustomLogo as Logo } from 'components/Logo'
@@ -120,13 +120,13 @@ const HeaderActionButtonWithIcon: FC<{
 })
 const HeaderActionShareButton: FC = observer(() => {
   const hasShare = 'share' in navigator
-  return hasShare && appStore.shareData ? (
+  return hasShare && appUIStore.shareData ? (
     <HeaderActionButtonsContainer>
       <HeaderActionButton style={{ height: '2.5rem', width: '5rem' }}>
         <HeaderActionButtonWithIcon
           onClick={() => {
             navigator
-              .share(appStore.shareData!)
+              .share(appUIStore.shareData!)
               .then(() => {})
               .catch(() => {})
           }}

@@ -30,7 +30,7 @@ import dark from 'react-syntax-highlighter/dist/cjs/styles/prism/tomorrow'
 
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
-import { appStore, useStore } from '../../common/store'
+import { appUIStore, useStore } from '../../common/store'
 import styles from './index.module.scss'
 
 const lang = {
@@ -71,7 +71,7 @@ const HighLighter: FC<Props> = observer((props) => {
     navigator.clipboard.writeText(value)
     message.success('COPIED!')
   }, [value])
-  const isPrintMode = appStore.mediaType === 'print'
+  const isPrintMode = appUIStore.mediaType === 'print'
 
   return (
     <div className={styles['code-wrap']}>

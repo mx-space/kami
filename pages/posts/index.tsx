@@ -1,6 +1,6 @@
 import { faTags } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { appStore, useStore } from 'common/store'
+import { appUIStore, useStore } from 'common/store'
 import { QueueAnim } from 'components/Anime'
 import { Loading } from 'components/Loading'
 import { OverLay } from 'components/Overlay'
@@ -118,7 +118,7 @@ const Post: NextPage<PostProps> = observer((props) => {
         <div
           style={{
             maxWidth:
-              appStore.viewport.w > 800 ? '50vw' : 'calc(100vw - 100px)',
+              appUIStore.viewport.w > 800 ? '50vw' : 'calc(100vw - 100px)',
           }}
           className="m-auto relative h-full"
           onClick={() => {

@@ -9,14 +9,14 @@
 
 import { createDangmaku } from '../../utils/danmaku'
 import { Notice } from '../../utils/notice'
-import { appStore, gatewayStore, userStore } from '../store'
+import { appUIStore, gatewayStore, userStore } from '../store'
 import { EventTypes } from './types'
 // import Router from 'next/router'
 
 export const notice = new Notice()
 
 export const eventHandler = (type: EventTypes, data: any) => {
-  const title = appStore.seo.title
+  const title = appUIStore.seo.title
   switch (type) {
     case EventTypes.VISITOR_ONLINE:
     case EventTypes.VISITOR_OFFLINE: {

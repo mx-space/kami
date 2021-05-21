@@ -1,4 +1,4 @@
-import { appStore } from 'common/store'
+import { appUIStore } from 'common/store'
 import { ImageLazyWithPopup } from 'components/Image'
 import { reaction } from 'mobx'
 import dynamic from 'next/dynamic'
@@ -70,7 +70,7 @@ const _Image: FC<{ src: string; alt?: string }> = observer(({ src, alt }) => {
 
   useEffect(() => {
     const disposer = reaction(
-      () => appStore.viewport.w | appStore.viewport.h,
+      () => appUIStore.viewport.w | appUIStore.viewport.h,
       () => {
         setMaxWidth(getContainerSize())
       },
@@ -82,7 +82,7 @@ const _Image: FC<{ src: string; alt?: string }> = observer(({ src, alt }) => {
   }, [])
   const images = useContext(ImageSizeMetaContext)
 
-  const isPrintMode = appStore.mediaType === 'print'
+  const isPrintMode = appUIStore.mediaType === 'print'
 
   const [maxWidth, setMaxWidth] = useState(getContainerSize())
 
