@@ -93,15 +93,10 @@
 #write h6 {
   font-weight: bold;
   line-height: 1.25;
-}
-#write h1,
-#write h2,
-#write h3,
-#write h4,
-#write h5,
-#write h6 {
   vertical-align: baseline;
+  margin: 2rem 0;
 }
+
 #write h1::before,
 #write h2::before,
 #write h3::before,

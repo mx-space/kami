@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2021-02-03 20:33:57
- * @LastEditTime: 2021-02-12 20:12:33
+ * @LastEditTime: 2021-05-21 11:14:04
  * @LastEditors: Innei
  * @FilePath: /web/components/Header/index.tsx
  * @Mark: Coding with Love
@@ -53,14 +53,7 @@ const HeaderActionButton: FC<
   )
 }
 const HeaderActionButtonsContainer = memo((props) => {
-  return (
-    <div
-      className="absolute top-0 bottom-0 flex items-center"
-      style={{ transform: 'translateX(calc(-100% - 20px))' }}
-    >
-      {props.children}
-    </div>
-  )
+  return <div className="mr-3 flex items-center">{props.children}</div>
 })
 
 const HeaderActionLikeButtonForNote: FC<{ id: number }> = memo((props) => {
@@ -147,8 +140,12 @@ const HeaderActionShareButton: FC = observer(() => {
 const HeaderActionBasedOnRouterPath: FC = memo(() => {
   const router = useRouter()
   const pathname = router.pathname
+  const {
+    seo: { title },
+  } = useInitialData()
 
   const Comp = (() => {
+    const titleComp = <div className={styles['site-info']}>{title}</div>
     switch (pathname) {
       case '/notes/[id]': {
         const id = parseInt(router.query.id as any)
@@ -161,7 +158,10 @@ const HeaderActionBasedOnRouterPath: FC = memo(() => {
                   <HeaderActionLikeButtonForNote id={id} />
                 </HeaderActionButton>
               </HeaderActionButtonsContainer>
-              <span>{id}</span>
+              <div className="flex flex-col flex-shrink-0">
+                <span>{id}</span>
+                {titleComp}
+              </div>
             </>
           )
         }
@@ -172,12 +172,20 @@ const HeaderActionBasedOnRouterPath: FC = memo(() => {
         return (
           <Fragment>
             <HeaderActionShareButton />
-            <span>/{router.query.page}</span>
+            <div className="flex flex-col flex-shrink-0">
+              <span>/{router.query.page}</span>
+              {titleComp}
+            </div>
           </Fragment>
         )
       }
       default: {
-        return <HeaderActionShareButton />
+        return (
+          <Fragment>
+            <HeaderActionShareButton />
+            {titleComp}
+          </Fragment>
+        )
       }
     }
   })()
@@ -456,7 +464,6 @@ export const _Header: FC = observer(() => {
             </div>
             <div className={styles['right-wrapper']}>
               <HeaderActionBasedOnRouterPath />
-              <div className={styles['site-info']}>{title}</div>
             </div>
           </div>
         </nav>
