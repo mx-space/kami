@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2021-02-03 20:33:57
- * @LastEditTime: 2021-05-21 11:14:04
+ * @LastEditTime: 2021-05-21 21:10:51
  * @LastEditors: Innei
  * @FilePath: /web/components/Header/index.tsx
  * @Mark: Coding with Love
@@ -419,7 +419,9 @@ export const _Header: FC = observer(() => {
         >
           <div className={classNames(styles['head-swiper'], 'justify-between')}>
             <div
-              className={'flex items-center justify-center cursor-pointer'}
+              className={
+                'flex items-center justify-center cursor-pointer select-none'
+              }
               onClick={() => {
                 router.push('/')
               }}
