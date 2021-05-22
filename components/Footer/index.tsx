@@ -1,3 +1,11 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-09-17 14:02:24
+ * @LastEditTime: 2021-05-22 16:18:28
+ * @LastEditors: Innei
+ * @FilePath: /web/components/Footer/index.tsx
+ * Mark: Coding with Love
+ */
 import { faNodeJs, faReact } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useInitialData } from 'common/context/InitialDataContext'
@@ -72,7 +80,7 @@ const _Footer: FC = observer(() => {
               {configs.travellings && (
                 <Fragment>
                   ·
-                  <a href="https://travellings.now.sh/" target={'_blank'}>
+                  <a href="//travellings.vercel.app" target={'_blank'}>
                     开往
                   </a>
                 </Fragment>
