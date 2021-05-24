@@ -1387,10 +1387,10 @@
   resolved "https://registry.yarnpkg.com/@xobotyi/scrollbar-width/-/scrollbar-width-1.9.5.tgz#80224a6919272f405b87913ca13b92929bdf3c4d"
   integrity sha512-N8tkAACJx2ww8vFMneJmaAgmjAG1tnVBZJRLRcx061tmsLRZHSEZSLuGWnwPtunsSLvSqXQ2wfp7Mgqg1I+2dQ==
 
-NeteaseCloudMusicApi@4.0.12:
-  version "4.0.12"
-  resolved "https://registry.yarnpkg.com/NeteaseCloudMusicApi/-/NeteaseCloudMusicApi-4.0.12.tgz#20ad04abbb270a260129e0039f9a2ba3c463d726"
-  integrity sha512-+xxjPIBHOZSHnXy8OM8IZKO7QkeN68ZvI0h0A+xrFunEdHFC7UbIfI0HtyWhOWosSyBmczpT45bnqr+i8Za/Ew==
+NeteaseCloudMusicApi@4.0.13:
+  version "4.0.13"
+  resolved "https://registry.yarnpkg.com/NeteaseCloudMusicApi/-/NeteaseCloudMusicApi-4.0.13.tgz#54ea1df431753aaf1ef142f5762bc20282ab46a4"
+  integrity sha512-VYyzYUlmtlXgrUZRk8wb8AdHsBhHd0tpzAM0oF4ybUujG/uYz8CYBtZF31nUopuBSjhaVSD6ZmJnY6atiZydOA==
   dependencies:
     axios "^0.21.1"
     express "^4.17.1"
