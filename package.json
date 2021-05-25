@@ -77,7 +77,7 @@
     "@types/inflection": "1.5.28",
     "@types/js-cookie": "2.2.6",
     "@types/lodash": "4.14.170",
-    "@types/node": "14.17.0",
+    "@types/node": "14.17.1",
     "@types/node-fetch": "2.5.10",
     "@types/randomcolor": "0.5.5",
     "@types/react": "17.0.6",
