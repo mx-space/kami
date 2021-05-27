@@ -3,6 +3,9 @@
   "license": "GPL-3.0",
   "private": false,
   "version": "1.15.0",
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
     "start": "npm run dev",
     "prebuild": "rimraf .next",
