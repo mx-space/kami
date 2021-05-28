@@ -1,3 +1,11 @@
+/*
+ * @Author: Innei
+ * @Date: 2021-05-13 11:13:00
+ * @LastEditTime: 2021-05-28 22:05:03
+ * @LastEditors: Innei
+ * @FilePath: /web/components/SectionNews/section.tsx
+ * Mark: Coding with Love
+ */
 import {
   faChevronRight,
   IconDefinition,
@@ -47,6 +55,7 @@ export const SectionWrap: FC<
                 backgroundColor: color,
                 filter: mode === 'dark' ? 'brightness(0.8)' : undefined,
               }}
+              suppressHydrationWarning
             >
               <FontAwesomeIcon icon={icon} className={styles.icon} />
               {title}
