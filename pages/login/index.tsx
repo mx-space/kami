@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-09-30 16:57:04
- * @LastEditTime: 2021-03-07 10:47:47
+ * @LastEditTime: 2021-05-29 18:26:36
  * @LastEditors: Innei
  * @FilePath: /web/pages/login/index.tsx
  * @Mark: Coding with Love
@@ -18,6 +18,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 // import { releaseDevtools } from 'utils/console'
 import styles from './index.module.css'
+import { releaseDevtool } from 'utils/console'
 
 const LoginView: NextPage = () => {
   const [username, setUsername] = useState('')
@@ -36,7 +37,7 @@ const LoginView: NextPage = () => {
     }
     message.success('登录成功')
     userStore.setToken(data.token)
-    // releaseDevtools()
+    releaseDevtool()
   }
 
   return (

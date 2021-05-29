@@ -1,3 +1,11 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-09-17 14:02:24
+ * @LastEditTime: 2021-05-29 18:17:15
+ * @LastEditors: Innei
+ * @FilePath: /web/utils/time.ts
+ * Mark: Coding with Love
+ */
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
@@ -39,7 +47,7 @@ export const relativeTimeFromNow = (
 
   if (elapsed < msPerMinute) {
     const gap = Math.ceil(elapsed / 1000)
-    return gap == 0 ? '刚刚' : gap + ' 秒前'
+    return gap <= 0 ? '刚刚' : gap + ' 秒前'
   } else if (elapsed < msPerHour) {
     return Math.round(elapsed / msPerMinute) + ' 分钟前'
   } else if (elapsed < msPerDay) {

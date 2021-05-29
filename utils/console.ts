@@ -1,109 +1,64 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-12 08:54:09
- * @LastEditTime: 2021-03-07 11:12:52
+ * @LastEditTime: 2021-05-29 18:50:22
  * @LastEditors: Innei
  * @FilePath: /web/utils/console.ts
  * @Coding with Love
  */
-//stackoverflow.com/questions/7798748/find-out-whether-chrome-console-is-open/48287643#48287643
-// import throttle from 'lodash/throttle'
-// import { isDev } from './utils'
-// // import { Manager } from 'browser-detect-devtools'
+import type { DevtoolsDetectorListener } from 'devtools-detector/lib/types/devtools-detector-listener.type'
 import Package from './../package.json'
 import { isDev } from './utils'
 const version = process.env.VERSION || `v${Package.version}` || ''
 
-// export function releaseDevtools() {
-//   Manager.stopDevToolMonitoring()
-//   Manager.freezeWhenDevToolsOpened(false)
-// }
-// export function forbiddenDevtools() {
-//   if (isDev) {
-//     return
-//   }
-//   let checkStatus
+const handler: DevtoolsDetectorListener = async (isOpen, detail) => {
+  if (isDev) {
+    return
+  }
+  if (isOpen) {
+    const { removeListener, stop } = await import('devtools-detector')
 
-//   const element = new Image()
-//   Object.defineProperty(element, 'id', {
-//     get: function () {
-//       checkStatus = true
-//       throw new Error('Dev tools checker')
-//     },
-//   })
-//   let timer: any = setInterval(() => {
-//     console.clear()
-//     printToConsole()
-//   }, 500)
-//   requestAnimationFrame(
-//     throttle(function check() {
-//       checkStatus = false
-//       console.dir(element) //Don't delete this line!
-//       if (checkStatus) {
-//         timer = clearInterval(timer)
-//         console.clear()
-//         document.body.textContent = '你打开了控制台, 请关闭后刷新'
+    removeListener(handler)
+    stop()
 
-//         document.body.style.cssText = `
-//         background: unset;
-//         color: #000;
-//         display: flex;
-//         position: absolute;
-//         top: 0;
-//         bottom: 0;
-//         left: 0;
-//         right: 0;
-//         align-items: center;
-//         justify-content: center;
-//         font-size: 36px;
-//         font-weight: 800;
-//         padding: 0;
-//         margin: 0;
-//         `
+    document.body.innerHTML =
+      '<h1>你打开了控制台, 请关闭后刷新</h1><p><small>' +
+      `</small></p>` +
+      `<p><small>${detail?.checkerName || ''} <br /> ${
+        navigator.userAgent
+      }</small></p>`
+    document.body.style.cssText = `
+background: #fff;
+color: #000;
+display: flex;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+padding: 5rem;
+margin: 0;
+text-align: center;
+`
 
-//         return
-//       }
+    console.clear()
+    printToConsole()
+  }
+}
+export async function devtoolForbidden() {
+  const { launch, addListener } = await import('devtools-detector')
+  addListener(handler)
 
-//       requestAnimationFrame(check)
-//     }, 30),
-//   )
-// }
+  launch()
+}
 
-// export function forbiddenDevtools() {
-//   if (isDev) {
-//     return
-//   }
-
-//   Manager.alwaysConsoleClear(false)
-//   Manager.freezeWhenDevToolsOpened(true)
-//   // Manager.startDevToolMonitoring((isOpened, orientation) => {
-//   //   // alert(orientation)
-
-//   //   if (isOpened) {
-//   //     // document.body.textContent = '你打开了控制台, 请关闭后刷新'
-//   //     // document.body.style.cssText = `
-//   //     //         background: #fff;
-//   //     //         color: #000;
-//   //     //         display: flex;
-//   //     //         position: absolute;
-//   //     //         top: 0;
-//   //     //         bottom: 0;
-//   //     //         left: 0;
-//   //     //         right: 0;
-//   //     //         align-items: center;
-//   //     //         justify-content: center;
-//   //     //         font-size: 36px;
-//   //     //         font-weight: 800;
-//   //     //         padding: 0;
-//   //     //         margin: 0;
-//   //     //         `
-
-//   //     Manager.stopDevToolMonitoring()
-//   //     console.clear()
-//   //     printToConsole()
-//   //   }
-//   // })
-// }
+export const releaseDevtool = async () => {
+  const { stop } = await import('devtools-detector')
+  stop()
+}
 
 const motto = `
 This Personal Space Powered By Mix Space.
@@ -136,10 +91,4 @@ export function printToConsole() {
 
     // eslint-disable-next-line no-empty
   } catch {}
-}
-
-export const log = (...args) => {
-  if (isDev) {
-    console.dir(...args)
-  }
 }

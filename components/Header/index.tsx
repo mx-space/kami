@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2021-02-03 20:33:57
- * @LastEditTime: 2021-05-21 21:10:51
+ * @LastEditTime: 2021-05-29 18:48:11
  * @LastEditors: Innei
  * @FilePath: /web/components/Header/index.tsx
  * @Mark: Coding with Love
@@ -422,6 +422,7 @@ export const _Header: FC = observer(() => {
               className={
                 'flex items-center justify-center cursor-pointer select-none'
               }
+              onDoubleClick={() => void router.push('/login')}
               onClick={() => {
                 router.push('/')
               }}
