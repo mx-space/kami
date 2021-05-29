@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-20 20:51:31
- * @LastEditTime: 2021-02-07 14:50:21
+ * @LastEditTime: 2021-05-29 11:30:20
  * @LastEditors: Innei
  * @FilePath: /web/utils/utils.ts
  * @Coding with Love
@@ -32,7 +32,7 @@ const animeImages = [
   '7TOEIPwGrZB1qFb.jpg',
   'Ihj5QAZgVMqr9fJ.jpg',
   'KZ6jv8C92Vpwcih.jpg',
-].map((i) => 'https://i.loli.net/2020/05/22/' + i)
+].map((i) => 'https://gitee.com/xun7788/my-imagination/raw/master/images/' + i)
 
 export const getAnimationImages = () => {
   return [...animeImages]
@@ -115,14 +115,14 @@ export const resolveUrl = (pathname: string | undefined, base: string) => {
 }
 
 export const combineClassName = (scss: any, css: any) => {
-  return (new Proxy(
+  return new Proxy(
     { op: (key) => classNames(scss[key], css[key], 'global-' + key) },
     {
       get(target, key: string) {
         return target.op(key)
       },
     },
-  ) as any) as Record<string, string>
+  ) as any as Record<string, string>
 
   // return (key: string) => classNames(scss[key], css[key])
 }
