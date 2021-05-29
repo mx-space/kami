@@ -43,6 +43,7 @@
     "camelcase-keys": "6.2.2",
     "clsx": "1.1.1",
     "dayjs": "1.10.5",
+    "devtools-detector": "2.0.2",
     "gitlog": "4.0.4",
     "inflection": "1.13.1",
     "js-cookie": "2.2.1",

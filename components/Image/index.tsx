@@ -17,9 +17,9 @@ import { useStore } from '../../common/store'
 import { isClientSide } from '../../utils'
 import Zoom from 'react-medium-image-zoom'
 
-const LazyImage = (dynamic(() =>
+const LazyImage = dynamic(() =>
   import('react-lazy-images').then((mo: any) => mo.LazyImage),
-) as any) as typeof LazyImageProps
+) as any as typeof LazyImageProps
 interface ImageFCProps {
   defaultImage?: string
   src: string
@@ -144,7 +144,7 @@ export const ImageLazy: FC<
                   className={'image-hide lazyload-image'}
                   {...rest}
                   src={src}
-                  alt={alt.replace(/^[!¡]/, '')}
+                  alt={alt.replace(/^[!¡]/, '') || ''}
                   popup={popup}
                   {...{ placeholderRef }}
                   {...props}

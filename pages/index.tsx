@@ -13,7 +13,6 @@ import SectionNews, {
 } from 'components/SectionNews'
 import configs from 'configs'
 import omit from 'lodash/omit'
-import shuffle from 'lodash/shuffle'
 import { Top } from 'models/aggregate'
 import { SayModel } from 'models/say'
 import { NextPage } from 'next'
@@ -21,13 +20,13 @@ import { NextSeo } from 'next-seo'
 import Router from 'next/router'
 import QueueAnim from 'rc-queue-anim'
 import Texty from 'rc-texty'
-import React, { FC, useEffect, useRef, useState } from 'react'
+import React, { FC, Fragment, useEffect, useRef, useState } from 'react'
 import { Rest } from 'utils/api'
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
 import { FriendsSection } from '../components/SectionNews/friend'
 import { SectionWrap } from '../components/SectionNews/section'
-import { getAnimationImages as getAnimeImages, NoSSR } from '../utils'
+import { getRandomImage, NoSSR } from '../utils'
 import { stopEventDefault } from '../utils/dom'
 import '../utils/message'
 import service from '../utils/request'
@@ -36,7 +35,6 @@ interface IndexViewProps {
   notes: Top.Note[]
   says: Top.Say[]
   projects: Top.Project[]
-  randomImages: string[]
 }
 
 const IndexView: NextPage<IndexViewProps> = (props) => {
@@ -142,7 +140,6 @@ IndexView.getInitialProps = async (): Promise<IndexViewProps> => {
   // const randomImageData = (await Rest('Aggregate').get(
   //   'random?type=3&imageType=2&size=8',
   // )) as { data: RandomImage.Image[] }
-  const extraImages = getAnimeImages()
 
   // const randomImages = randomImageData.data.map((image) => {
   //   return image.locate !== RandomImage.Locate.Online
@@ -152,14 +149,13 @@ IndexView.getInitialProps = async (): Promise<IndexViewProps> => {
 
   return {
     ...(omit(aggregateData, ['ok', 'timestamp']) as IndexViewProps),
-    randomImages: shuffle([/* ...randomImages, */ ...extraImages]),
   }
 }
 
 export default observer(IndexView)
 
-const _Sections: FC<IndexViewProps> = ({ randomImages, notes, posts }) => {
-  const images = [...randomImages]
+const _Sections: FC<IndexViewProps> = ({ notes, posts }) => {
+  const images = useRef(getRandomImage())
 
   const sections = useRef({
     postSection: {
@@ -169,7 +165,7 @@ const _Sections: FC<IndexViewProps> = ({ randomImages, notes, posts }) => {
       content: posts.slice(0, 4).map((p) => {
         return {
           title: p.title,
-          background: images.pop(),
+          background: images.current.pop(),
           id: p.id,
           ...buildRoute('Post', p),
         }
@@ -182,7 +178,7 @@ const _Sections: FC<IndexViewProps> = ({ randomImages, notes, posts }) => {
       content: notes.slice(0, 4).map((n) => {
         return {
           title: n.title,
-          background: images.pop(),
+          background: images.current.pop(),
           id: n.id,
           ...buildRoute('Note', n),
         }
@@ -196,6 +192,64 @@ const _Sections: FC<IndexViewProps> = ({ randomImages, notes, posts }) => {
       setLike(~~number)
     })
   }, [])
+
+  const FooterCards = useRef(
+    <Fragment>
+      <SectionCard
+        {...{
+          title: '留言',
+          desc: '你的话对我很重要',
+          src: images.current.pop() as string,
+          href: '/message',
+          onClick: (e) => {
+            stopEventDefault(e)
+            Router.push('/[page]', '/message')
+          },
+        }}
+      />
+      <SectionCard
+        {...{
+          title: '关于',
+          desc: '这里有我的小秘密',
+          src: images.current.pop() as string,
+          href: '/about',
+          onClick: (e) => {
+            stopEventDefault(e)
+            Router.push('/[page]', '/about')
+          },
+        }}
+      />
+      <SectionCard
+        {...{
+          title: `点赞 (${like})`,
+          desc: '如果你喜欢的话点个赞呗',
+          src: images.current.pop() as string,
+          href: '/like_this',
+          onClick: (e) => {
+            stopEventDefault(e)
+            service
+              .post(
+                'like_this?ts=' +
+                  ((performance.now() + performance.timeOrigin) | 0),
+                null,
+              )
+              .then(() => {
+                message.success('感谢喜欢 ❤️')
+                setLike(like + 1)
+              })
+          },
+        }}
+      />
+      <SectionCard
+        {...{
+          title: '订阅',
+          desc: '关注订阅不迷路哦',
+          src: images.current.pop() as string,
+          href: '/feed',
+        }}
+      />
+    </Fragment>,
+  )
 
   return (
     <section className="kami-news" style={{ minHeight: '34rem' }}>
@@ -229,59 +283,7 @@ const _Sections: FC<IndexViewProps> = ({ randomImages, notes, posts }) => {
             }}
             key={4}
           >
-            <SectionCard
-              {...{
-                title: '留言',
-                desc: '你的话对我很重要',
-                src: images.pop() as string,
-                href: '/message',
-                onClick: (e) => {
-                  stopEventDefault(e)
-                  Router.push('/[page]', '/message')
-                },
-              }}
-            />
-            <SectionCard
-              {...{
-                title: '关于',
-                desc: '这里有我的小秘密',
-                src: images.pop() as string,
-                href: '/about',
-                onClick: (e) => {
-                  stopEventDefault(e)
-                  Router.push('/[page]', '/about')
-                },
-              }}
-            />
-            <SectionCard
-              {...{
-                title: `点赞 (${like})`,
-                desc: '如果你喜欢的话点个赞呗',
-                src: images.pop() as string,
-                href: '/like_this',
-                onClick: (e) => {
-                  stopEventDefault(e)
-                  service
-                    .post(
-                      'like_this?ts=' +
-                        ((performance.now() + performance.timeOrigin) | 0),
-                      null,
-                    )
-                    .then(() => {
-                      message.success('感谢喜欢 ❤️')
-                      setLike(like + 1)
-                    })
-                },
-              }}
-            />
-            <SectionCard
-              {...{
-                title: '订阅',
-                desc: '关注订阅不迷路哦',
-                src: images.pop() as string,
-                href: '/feed',
-              }}
-            />
+            {FooterCards.current}
           </SectionWrap>,
         ]}
       </QueueAnim>

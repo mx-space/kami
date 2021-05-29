@@ -15,7 +15,7 @@
 }
 
 .title {
-  @apply relative inline-block text-xl font-medium mt-0 ml-4;
+  @apply relative inline-block text-xl font-medium mt-0 ml-4 truncate flex-shrink-0;
 }
 
 .more-button {

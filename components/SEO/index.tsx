@@ -1,3 +1,11 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-09-17 14:02:24
+ * @LastEditTime: 2021-05-29 18:48:41
+ * @LastEditors: Innei
+ * @FilePath: /web/components/SEO/index.tsx
+ * Mark: Coding with Love
+ */
 import { useInitialData } from 'common/context/InitialDataContext'
 import merge from 'lodash/merge'
 import { NextSeo, NextSeoProps } from 'next-seo'
@@ -6,7 +14,7 @@ import { FC } from 'react'
 import { observer } from 'utils/mobx'
 import { useStore } from '../../common/store'
 import configs from '../../configs'
-import { getRandomImage } from '../../utils/utils'
+import { getRandomImage } from '../../utils'
 type SEOProps = {
   title: string
   description?: string
