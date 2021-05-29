@@ -6,7 +6,7 @@
   right: 3rem;
   transition: top 0.5s;
   z-index: 0;
-  // z-index: 3;
+  z-index: 3;
 }
 .select-line {
   height: 100%;
@@ -61,5 +61,5 @@
   width: 24px;
   background-size: cover;
   left: 50%;
-  // transform: translateX(-48%);
+  transform: translateX(-48%);
 }

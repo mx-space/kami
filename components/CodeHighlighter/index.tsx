@@ -1,3 +1,11 @@
+/*
+ * @Author: Innei
+ * @Date: 2021-01-07 20:13:09
+ * @LastEditTime: 2021-05-29 18:55:21
+ * @LastEditors: Innei
+ * @FilePath: /web/components/CodeHighlighter/index.tsx
+ * Mark: Coding with Love
+ */
 import React, { FC, useCallback } from 'react'
 import dynamic from 'next/dynamic'
 
@@ -31,7 +39,7 @@ import dark from 'react-syntax-highlighter/dist/cjs/styles/prism/tomorrow'
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
 import { appUIStore, useStore } from '../../common/store'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 
 const lang = {
   conf,

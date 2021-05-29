@@ -12,7 +12,7 @@ import { merge } from 'lodash'
 import dynamic from 'next/dynamic'
 import { CSSProperties, FC, useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 
 interface OverLayProps {
   onClose: () => void

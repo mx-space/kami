@@ -12,7 +12,7 @@ import { FC } from 'react'
 import { observer } from 'utils/mobx'
 import { useStore } from '../../../common/store'
 import { Avatar } from '../../Avatar'
-import style from './index.module.scss'
+import style from './index.module.css'
 
 export const OwnerMessage: FC<{ text: string; date: Date }> = observer(
   ({ text, date }) => {

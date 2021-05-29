@@ -18,7 +18,7 @@
     transform: translateY(-1em);
     transition: transform 0.5s;
     line-height: 1;
-    // left: 0;
+    left: 0;
     display: flex;
     flex-direction: column;
   }

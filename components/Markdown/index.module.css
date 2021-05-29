@@ -64,9 +64,9 @@
     max-height: unset !important;
   }
 
-  // details {
-  //   margin: 1em 0;
-  // }
+  details {
+    margin: 1em 0;
+  }
 
   summary {
     list-style: none;

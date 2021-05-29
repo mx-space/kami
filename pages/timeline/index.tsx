@@ -12,7 +12,7 @@ import { SEO } from '../../components/SEO'
 import { ArticleLayout } from '../../layouts/ArticleLayout'
 import { CategoryModel } from '../../models/category'
 import { Rest } from '../../utils/api'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 
 type BaseType = {
   id: string

@@ -24,7 +24,7 @@ import {
   useState,
 } from 'react'
 import observable from 'utils/observable'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 declare const window: Window & typeof globalThis & { [key: string]: any }
 
 class Item extends PureComponent<{

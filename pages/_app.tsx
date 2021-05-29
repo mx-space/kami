@@ -1,6 +1,6 @@
 // import { animateUriFactory } from 'animate-uri/publish/index.esm'
 import '@openfonts/noto-sans-sc_vietnamese'
-import 'assets/styles/main.scss'
+import 'assets/styles/main.css'
 import { DropdownProvider } from 'common/context/dropdown'
 import { InitialContext } from 'common/context/InitialDataContext'
 import Loader from 'components/Loader'
@@ -211,7 +211,6 @@ const Content: FC<DataModel> = observer((props) => {
       // animation('in')
       history.backPath?.pop()
       Progress.finish()
-      message.error('出现了未知错误, 刷新试试?')
     })
 
     Router.events.on('routeChangeComplete', (url) => gtag.pageview(url))

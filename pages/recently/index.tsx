@@ -15,7 +15,7 @@ import { NextPage } from 'next'
 import React, { FC, Fragment, memo, useEffect, useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { EventBus, NoSSR, Rest } from 'utils'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 
 const FETCH_SIZE = 10
 

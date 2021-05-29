@@ -25,7 +25,7 @@ import { imagesRecord2Map } from 'utils/images'
 import { observer } from 'utils/mobx'
 import { ImageSizeMetaContext } from '../../common/context/ImageSizes'
 import { Seo } from '../../components/SEO'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 
 const Page: NextPage<PageRespDto> = (props) => {
   const { data } = props

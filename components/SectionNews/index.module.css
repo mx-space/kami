@@ -5,15 +5,16 @@
 }
 .avatar-item {
   text-align: center;
-  // &:not(:first-child) {
-  margin-left: 2rem;
-  color: #666;
   display: inline-block;
-  width: 80px;
   height: 150px;
-  // overflow: hidden;
+  width: 80px;
   user-select: none;
-  // }
+  color: #666;
+  overflow: hidden;
+
+  &:not(:first-child) {
+    margin-left: 2rem;
+  }
 }
 .avatar-name {
   display: inline-block;

@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2021-02-03 20:33:57
- * @LastEditTime: 2021-05-29 18:48:11
+ * @LastEditTime: 2021-05-29 19:00:56
  * @LastEditors: Innei
  * @FilePath: /web/components/Header/index.tsx
  * @Mark: Coding with Love
@@ -38,9 +38,7 @@ import { createPortal } from 'react-dom'
 import { combineClassName, isLikedBefore, NoSSR, Rest, setLikeId } from 'utils'
 import { message } from 'utils/message'
 import observable from 'utils/observable'
-import css from './index.module.css'
-import scss from './index.module.scss'
-const styles = combineClassName(css, scss)
+import styles from './index.module.css'
 
 const HeaderActionButton: FC<
   React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>

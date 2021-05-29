@@ -25,7 +25,7 @@ import { CommentContext, minHeightProperty, openCommentMessage } from '.'
 import { useStore } from '../../common/store'
 import { animatingClassName } from '../../layouts/NoteLayout'
 import CommentBox from './box'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 
 interface CommentProps {
   author: JSX.Element

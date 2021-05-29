@@ -3,7 +3,7 @@ import { ImageLazy } from 'components/Image'
 import pick from 'lodash/pick'
 import Link from 'next/link'
 import { FC, forwardRef, memo, MouseEvent } from 'react'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 import { SectionWrap } from './section'
 export interface SectionNewsProps {
   title: string

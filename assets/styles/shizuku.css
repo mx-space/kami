@@ -149,11 +149,15 @@
 }
 
 @media screen and (max-width: 900px) {
-  @for $var from 1 to 7 {
-    #write {
-      h#{$var} {
-        margin-left: 2rem;
-      }
+  #write {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    h7 {
+      margin-left: 2rem;
     }
   }
 }

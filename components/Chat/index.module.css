@@ -23,10 +23,7 @@
   }
   .footer {
     margin: 0 10px;
-    // display: flex;
-    // justify-content: space-between;
     display: grid;
-    // grid-template-columns: 36px auto 6rem;
     grid-template-columns: auto 6rem;
     grid-gap: 6px;
   }

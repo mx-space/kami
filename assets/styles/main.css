@@ -1,0 +1,8 @@
+@import 'rc-texty/assets/index.css';
+
+@import 'kico-style';
+@import './theme.css';
+@import './extra.css';
+@import './shizuku.css';
+@import './tailwind.css';
+@import 'react-medium-image-zoom/dist/styles.css';

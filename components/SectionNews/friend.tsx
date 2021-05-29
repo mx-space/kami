@@ -11,7 +11,7 @@ import { FC, memo, useEffect, useState } from 'react'
 import { LinkModel, LinkState, LinkType } from '../../models/link'
 import { Rest } from '../../utils/api'
 import { Avatar } from '../Avatar'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 export const FriendItem: FC<LinkModel> = memo((props) => {
   return (
     <div className={styles['avatar-item']}>

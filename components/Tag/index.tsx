@@ -4,7 +4,7 @@ import { useStore } from 'common/store'
 import rc from 'randomcolor'
 import { FC, MouseEventHandler, useMemo } from 'react'
 import { observer } from 'utils/mobx'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 
 interface BigTagProps {
   tagName: string

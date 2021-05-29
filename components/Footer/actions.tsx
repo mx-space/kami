@@ -12,7 +12,7 @@ import React, { FC, useEffect, useState } from 'react'
 import { EventTypes } from 'common/socket/types'
 import { ChatPanel } from 'components/Chat'
 import observable from 'utils/observable'
-import styles from './actions.module.scss'
+import styles from './actions.module.css'
 
 export const FooterActions: FC = observer(() => {
   const { /* userStore, */ appStore, actionStore, musicStore } = useStore()

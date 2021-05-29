@@ -92,10 +92,13 @@ html {
   font-size: 14px;
 }
 
-@for $var from 1 to 6 {
-  h#{$var} {
-    margin-top: 1rem;
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 1rem;
 }
 
 .avatar-wrap {
@@ -105,12 +108,10 @@ html {
 .avatar-shadow {
   position: absolute;
   border-radius: 100%;
-  // width: 200px;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
-  // height: 200px;
   background: var(--bg) no-repeat center/cover;
   display: inline-block;
 
@@ -277,8 +278,13 @@ html.dark {
     font-family: Arial, Helvetica, sans-serif;
   }
 
-  @for $var from 1 to 6 {
-    #write h#{$var} {
+  #write {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       margin-left: 1.5em;
     }
   }
@@ -300,7 +306,6 @@ html.dark {
       content: '';
     }
     &::before {
-      // background-color: #3c946c;
       height: 58.8px;
       transform: rotate(45deg) translateX(27px) translateY(6px);
       border-left: 1px solid #cccccc;
@@ -329,7 +334,7 @@ html.dark {
     &::before {
       content: '';
       position: absolute;
-      top: -3em; //3em 1.25em
+      top: -3em;
       bottom: -10px;
       right: -1.25em;
       left: -1.25em;
@@ -389,7 +394,7 @@ html.dark {
 .is-note #write > .paragraph {
   clear: both;
 }
-// .is-note #write > p:not(:first-child)::first-letter {
+/* // .is-note #write > p:not(:first-child)::first-letter {
 //   margin-left: 2rem;
 // }
 // .is-note p:not(:first-child).indent {
@@ -397,14 +402,14 @@ html.dark {
 // }
 // .is-note #write > p > span {
 //   border-bottom: 1px solid #00b8bb41;
-// }
+// } */
 
 .is-note #write > ul .indent,
 .is-note #write > .paragraph .indent {
   border-bottom: 1px solid #00b8bb41;
 }
 .is-note #write > .paragraph:not(:nth-child(1)) > span.indent {
-  // border-bottom: 1px solid #00b8bb41;
+  /* // border-bottom: 1px solid #00b8bb41; */
   &:nth-child(1) {
     margin-left: 2rem;
   }
@@ -695,22 +700,22 @@ html.dark .lazyload-image {
 html.light .lazyload-image {
   animation: blur 0.8s forwards ease-in-out;
 }
-// @keyframes blur {
-//   from {
-//     filter: blur(10px);
-//   }
-//   to {
-//     filter: blur(0);
-//   }
-// }
-// @keyframes blur-dark {
-//   from {
-//     filter: blur(10px) brightness(0.6);
-//   }
-//   to {
-//     filter: blur(0) brightness(0.6);
-//   }
-// }
+/* @keyframes blur {
+   from {
+     filter: blur(10px);
+   }
+   to {
+     filter: blur(0);
+   }
+ }
+ @keyframes blur-dark {
+   from {
+     filter: blur(10px) brightness(0.6);
+   }
+   to {
+     filter: blur(0) brightness(0.6);
+   }
+ }
 @keyframes blur {
   from {
     opacity: 0;
@@ -726,7 +731,7 @@ html.light .lazyload-image {
   to {
     opacity: 1;
   }
-}
+} */
 
 .article-list {
   font-family: Helvetica, pingfang sc, hiragino sans gb, microsoft yahei,
@@ -825,9 +830,9 @@ html.dark {
   }
 }
 
-@import './tailwind.scss';
+@import './tailwind.css';
 
-// for print
+/* for print */
 
 @media print {
   p,

@@ -1,8 +1,8 @@
 .head {
-  // display: flex;
+  display: flex;
   position: relative;
-  // align-items: center;
-  // justify-content: flex-start;
+  align-items: center;
+  justify-content: flex-start;
   margin-left: auto;
   margin-right: auto;
   .title {

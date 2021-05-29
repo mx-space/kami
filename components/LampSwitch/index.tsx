@@ -1,6 +1,6 @@
 import { DetailedHTMLProps, HTMLAttributes, memo, useRef } from 'react'
 import { NoSSR } from 'utils'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 export const Switch = NoSSR(
   memo<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>>(
     (props = {}) => {

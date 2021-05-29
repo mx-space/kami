@@ -14,7 +14,7 @@ import Router from 'next/router'
 import React, { FC } from 'react'
 import removeMd from 'remove-markdown'
 import { parseDate } from 'utils/time'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 
 interface Props {
   date: Date | string

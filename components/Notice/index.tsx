@@ -4,7 +4,7 @@ import TweenOne from 'rc-tween-one'
 import type { IAnimObject } from 'rc-tween-one/typings/AnimObject'
 import { FC } from 'react'
 import ReactDOM from 'react-dom'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 interface NoticePanelProps {
   icon: IconDefinition
   text: string | JSX.Element

@@ -1,9 +1,9 @@
 /*
  * @Author: Innei
  * @Date: 2020-07-01 19:25:29
- * @LastEditTime: 2020-09-13 17:47:16
+ * @LastEditTime: 2021-05-29 18:55:37
  * @LastEditors: Innei
- * @FilePath: /mx-web/components/Comment/index.tsx
+ * @FilePath: /web/components/Comment/index.tsx
  * @Coding with Love
  */
 
@@ -14,7 +14,6 @@ import {
   createContext,
   FC,
   Fragment,
-  RefObject,
   useCallback,
   useEffect,
   useMemo,
@@ -28,7 +27,7 @@ import { flattenChildren, NoSSR } from '../../utils'
 import { Pagination } from '../Pagination'
 import CommentBox from './box'
 import Comment from './comment'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 import { CommentLoading } from './loding'
 
 export type CommentType = 'Note' | 'Post' | 'Page'

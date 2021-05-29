@@ -24,10 +24,10 @@
   .container {
     color: #888;
     font-size: 0.85em;
-    // border-left: 2px rgba($color: var(--yellow), $alpha: 0.5) solid;
+    border-left: 2px rgba($color: var(--yellow), $alpha: 0.5) solid;
     position: sticky;
     top: 6rem;
-    // overflow: auto;
+    overflow: auto;
   }
   .anime-wrapper {
     max-height: calc(100vh - 12em);

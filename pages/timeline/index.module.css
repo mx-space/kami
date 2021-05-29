@@ -4,9 +4,9 @@
 .timeline-wrap {
   position: relative;
 
-  //   li:first-child::before {
-  //     border-left: 0;
-  //   }
+  li:first-child::before {
+    border-left: 0;
+  }
   > div li::before {
     content: '';
     position: absolute;

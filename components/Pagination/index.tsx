@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import { message } from 'utils/message'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 interface PaginationProps {
   total: number
   current: number

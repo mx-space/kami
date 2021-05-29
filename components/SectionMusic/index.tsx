@@ -2,7 +2,7 @@ import { PlayListType } from '@mx-space/extra'
 import { observer } from 'utils/mobx'
 import { FC } from 'react'
 import { useStore } from 'common/store'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 import clsx from 'clsx'
 
 interface SectionMusicProps {

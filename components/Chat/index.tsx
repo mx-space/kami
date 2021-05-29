@@ -12,7 +12,7 @@ import { stopEventDefault } from '../../utils/dom'
 import observable from '../../utils/observable'
 import { OwnerMessage } from './components/message'
 import { STORE_PREFIX } from './components/setting'
-import style from './index.module.scss'
+import style from './index.module.css'
 
 const _ChatPanel: FC<any> = observer(
   forwardRef((props, ref: any) => {
