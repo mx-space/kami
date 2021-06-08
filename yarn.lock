@@ -1332,10 +1332,10 @@
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.3.tgz#9c088679876f374eb5983f150d4787aa6fb32d7e"
   integrity sha512-FvUupuM3rlRsRtCN+fDudtmytGO6iHJuuRKS1Ss0pG5z8oX0diNEw94UEL7hgDbpN94rgaK5R7sWm6RrSkZuAQ==
 
-"@types/validator@13.1.3":
-  version "13.1.3"
-  resolved "https://registry.yarnpkg.com/@types/validator/-/validator-13.1.3.tgz#366b394aa3fbeed2392bf0a20ded606fa4a3d35e"
-  integrity sha512-DaOWN1zf7j+8nHhqXhIgNmS+ltAC53NXqGxYuBhWqWgqolRhddKzfZU814lkHQSTG0IUfQxU7Cg0gb8fFWo2mA==
+"@types/validator@13.1.4":
+  version "13.1.4"
+  resolved "https://registry.yarnpkg.com/@types/validator/-/validator-13.1.4.tgz#d2e3c27523ce1b5d9dc13d16cbce65dc4db2adbe"
+  integrity sha512-19C02B8mr53HufY7S+HO/EHBD7a/R22IwEwyqiHaR19iwL37dN3o0M8RianVInfSSqP7InVSg/o0mUATM4JWsQ==
 
 "@typescript-eslint/eslint-plugin@4.26.1":
   version "4.26.1"
