@@ -11,6 +11,7 @@ import axios from 'axios'
 import { SectionMusic } from 'components/SectionMusic'
 import configs from 'configs'
 import { NextPage } from 'next'
+import { isDev } from 'utils'
 import { observer } from 'utils/mobx'
 import { FavoriteNav } from '../../components/Navigation/nav'
 import { Seo } from '../../components/SEO'
@@ -29,16 +30,14 @@ const MusicView: NextPage<MusicProps> = (props) => {
       <SectionMusic
         {...{
           name: '周排行',
-          src:
-            'https://p3.music.126.net/4HGEnXVexEfBACKi7wbq8A==/3390893860854924.jpg',
+          src: 'https://p3.music.126.net/4HGEnXVexEfBACKi7wbq8A==/3390893860854924.jpg',
           data: props.weekdata,
         }}
       />
       <SectionMusic
         {...{
           name: '总排行',
-          src:
-            'https://p1.music.126.net/xTCCKfCJuEh2ohPZDNMDLw==/19193074975054252.jpg',
+          src: 'https://p1.music.126.net/xTCCKfCJuEh2ohPZDNMDLw==/19193074975054252.jpg',
           data: props.alldata,
         }}
       />
@@ -54,7 +53,7 @@ const MusicView: NextPage<MusicProps> = (props) => {
 }
 
 MusicView.getInitialProps = async (ctx) => {
-  const baseUrl = configs.url
+  const baseUrl = isDev ? 'http://localhost:2323' : configs.url
   const $api = axios.create({
     baseURL:
       baseUrl ??

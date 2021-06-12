@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-12 08:54:09
- * @LastEditTime: 2021-05-29 18:50:22
+ * @LastEditTime: 2021-06-12 19:30:46
  * @LastEditors: Innei
  * @FilePath: /web/utils/console.ts
  * @Coding with Love
@@ -50,6 +50,9 @@ text-align: center;
 }
 export async function devtoolForbidden() {
   const { launch, addListener } = await import('devtools-detector')
+  if (isDev) {
+    return
+  }
   addListener(handler)
 
   launch()

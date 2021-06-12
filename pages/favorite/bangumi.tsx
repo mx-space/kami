@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-12-18 12:15:37
- * @LastEditTime: 2021-02-11 15:26:45
+ * @LastEditTime: 2021-06-12 19:32:43
  * @LastEditors: Innei
  * @FilePath: /web/pages/favorite/bangumi.tsx
  * @Mark: Coding with Love
@@ -11,6 +11,7 @@ import axios from 'axios'
 import configs from 'configs'
 import { NextPage } from 'next'
 import Head from 'next/head'
+import { isDev } from 'utils'
 import { ImageLazy } from '../../components/Image'
 import { FavoriteNav } from '../../components/Navigation/nav'
 import { Seo } from '../../components/SEO'
@@ -67,7 +68,7 @@ const BangumiView: NextPage<{ data: FavoriteBangumiType[] }> = (props) => {
 }
 
 BangumiView.getInitialProps = async (ctx) => {
-  const baseUrl = configs.url
+  const baseUrl = isDev ? 'http://localhost:2323' : configs.url
   const $api = axios.create({
     baseURL:
       baseUrl ??
