@@ -28,18 +28,22 @@ const _ChatPanel: FC<any> = observer(
     useEffect(() => {
       inputRef.current?.focus()
     }, [])
-    const [messages, setMessages] = useState<{ text: string; id: number }[]>([])
+    const [messages, setMessages] = useState<
+      { text: string; id: number; date: Date }[]
+    >([])
     useEffect(() => {
       const handler = (data) => {
         if (
           data.author === userStore.name ||
           data.author === userStore.username
         ) {
+          const date = new Date()
           setMessages((messages) => [
             ...messages,
             {
               text: data.text,
-              id: new Date().getTime(),
+              id: +date,
+              date: date,
             },
           ])
         }
@@ -108,8 +112,8 @@ const _ChatPanel: FC<any> = observer(
               text={`本站不会记录任何广播消息, 欢迎玩的开心呀!~`}
               date={new Date()}
             /> */}
-            {messages.map(({ text, id }) => {
-              return <OwnerMessage text={text} key={id} date={new Date()} />
+            {messages.map(({ text, id, date }) => {
+              return <OwnerMessage text={text} key={id} date={date} />
             })}
           </div>
           <div className={style['footer']}>
