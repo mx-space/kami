@@ -936,6 +936,13 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
+"@innei/devtools-detector@2.0.4-beta.1":
+  version "2.0.4-beta.1"
+  resolved "https://registry.yarnpkg.com/@innei/devtools-detector/-/devtools-detector-2.0.4-beta.1.tgz#01706263e15eff0ebbad95a36873210f1f4a34e3"
+  integrity sha512-5ribK+nDbr8OCVmRIuazvBgZ9QHAc2IOEwv62nC1AwA8yzYRiRw0RqLnTnllN2S348XgiEvQ7yduedU52d1FUw==
+  dependencies:
+    compare-versions "^3.6.0"
+
 "@innei/react-stack-grid@0.8.4":
   version "0.8.4"
   resolved "https://registry.yarnpkg.com/@innei/react-stack-grid/-/react-stack-grid-0.8.4.tgz#e69f005610d8b0d4b579c9b3be2e52598416100d"
@@ -2873,13 +2880,6 @@ detective@^5.2.0:
     acorn-node "^1.6.1"
     defined "^1.0.0"
     minimist "^1.1.1"
-
-devtools-detector@2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/devtools-detector/-/devtools-detector-2.0.2.tgz#546442cab1a2a1513ffb40f755a49f6850c68f40"
-  integrity sha512-MUrLzSYzECC0kbU7QJC/EawdeipDgh3HyeP7wRBnXWXPPgMKCVLvDFKOe8UQ4XqtlH9ilgLePhl1LlXy/ilFgA==
-  dependencies:
-    compare-versions "^3.6.0"
 
 dicer@0.3.0:
   version "0.3.0"

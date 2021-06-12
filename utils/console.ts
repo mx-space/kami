@@ -1,23 +1,29 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-12 08:54:09
- * @LastEditTime: 2021-06-12 19:30:46
+ * @LastEditTime: 2021-06-12 20:19:06
  * @LastEditors: Innei
  * @FilePath: /web/utils/console.ts
  * @Coding with Love
  */
-import type { DevtoolsDetectorListener } from 'devtools-detector/lib/types/devtools-detector-listener.type'
+import {
+  removeListener,
+  stop,
+  DevtoolsDetectorListener,
+  addListener,
+  launch,
+} from '@innei/devtools-detector'
 import Package from './../package.json'
 import { isDev } from './utils'
 const version = process.env.VERSION || `v${Package.version}` || ''
 
+// for debug
+const devTest = false
 const handler: DevtoolsDetectorListener = async (isOpen, detail) => {
-  if (isDev) {
+  if (isDev && !devTest) {
     return
   }
   if (isOpen) {
-    const { removeListener, stop } = await import('devtools-detector')
-
     removeListener(handler)
     stop()
 
@@ -49,17 +55,14 @@ text-align: center;
   }
 }
 export async function devtoolForbidden() {
-  const { launch, addListener } = await import('devtools-detector')
-  if (isDev) {
+  if (isDev && !devTest) {
     return
   }
   addListener(handler)
-
   launch()
 }
 
 export const releaseDevtool = async () => {
-  const { stop } = await import('devtools-detector')
   stop()
 }
 
