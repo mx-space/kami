@@ -103,7 +103,7 @@
     "eslint-plugin-prettier": "3.4.0",
     "eslint-plugin-react": "7.24.0",
     "eslint-plugin-react-hooks": "4.2.0",
-    "next-images": "1.7.0",
+    "next-images": "1.8.1",
     "nodemon": "2.0.7",
     "postcss": "8.3.4",
     "postcss-flexbugs-fixes": "5.0.2",
