@@ -34,7 +34,7 @@
   }
   li::after {
     content: '';
-    left: pxToRem(-18px);
+    left: -1.28rem;
     top: 50%;
     transform: translateY(-50%);
     height: 0.5rem;
