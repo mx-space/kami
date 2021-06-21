@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-09-17 14:02:24
- * @LastEditTime: 2021-05-22 16:18:28
+ * @LastEditTime: 2021-06-21 23:18:20
  * @LastEditors: Innei
  * @FilePath: /web/components/Footer/index.tsx
  * Mark: Coding with Love
@@ -80,7 +80,7 @@ const _Footer: FC = observer(() => {
               {configs.travellings && (
                 <Fragment>
                   ·
-                  <a href="//travellings.vercel.app" target={'_blank'}>
+                  <a href="//travellings.link" target={'_blank'}>
                     开往
                   </a>
                 </Fragment>

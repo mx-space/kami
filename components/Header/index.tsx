@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2021-02-03 20:33:57
- * @LastEditTime: 2021-05-29 18:48:11
+ * @LastEditTime: 2021-06-21 23:22:21
  * @LastEditors: Innei
  * @FilePath: /web/components/Header/index.tsx
  * @Mark: Coding with Love
@@ -306,7 +306,11 @@ const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
               return (
                 <div className="relative" key={m.title}>
                   <Link href={m.path}>
-                    <a>
+                    <a
+                      {...(m.path.startsWith('http')
+                        ? { rel: 'noreferrer', target: '_blank' }
+                        : {})}
+                    >
                       <span
                         className={styles['link-item']}
                         onMouseEnter={() => {

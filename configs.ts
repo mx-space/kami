@@ -9,6 +9,7 @@ import {
   faGlasses,
   faHistory,
   faMusic,
+  faSubway,
   faTv,
   faUserFriends,
 } from '@fortawesome/free-solid-svg-icons'
@@ -95,6 +96,11 @@ const menu: MenuModel[] = [
       //   path: '/projects',
       // },
     ],
+  },
+  {
+    title: '',
+    icon: faSubway,
+    path: 'https://travellings.link',
   },
 ]
 const social: SocialLinkModel[] = [
