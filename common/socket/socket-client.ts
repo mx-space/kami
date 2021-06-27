@@ -1,18 +1,19 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-23 13:18:30
- * @LastEditTime: 2021-02-24 20:39:35
+ * @LastEditTime: 2021-06-27 16:14:14
  * @LastEditors: Innei
  * @FilePath: /web/common/socket/socket-client.ts
  * @MIT
  */
 
-import io from 'socket.io-client'
+import io, { Socket } from 'socket.io-client'
+import { DefaultEventsMap } from 'socket.io-client/build/typed-events'
 import observable from '../../utils/observable'
 import { eventHandler } from './handler'
 import { EventTypes } from './types'
 export class SocketClient {
-  public socket!: SocketIOClient.Socket
+  public socket!: Socket<DefaultEventsMap, DefaultEventsMap>
 
   constructor() {
     this.socket = io(

@@ -1,9 +1,9 @@
 /*
  * @Author: Innei
  * @Date: 2020-04-18 16:00:58
- * @LastEditTime: 2020-08-04 15:43:05
+ * @LastEditTime: 2021-06-27 16:20:22
  * @LastEditors: Innei
- * @FilePath: /mx-web/next.config.js
+ * @FilePath: /web/next.config.js
  * @MIT
  */
 
@@ -12,54 +12,54 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 const env = require('dotenv').config().parsed || {}
-const withImages = require('next-images')
+
 const withOffline = require('next-offline')
-const configs = withImages(
-  withBundleAnalyzer({
-    webpack: (config, options) => {
-      config.experiments = {
-        topLevelAwait: true,
-      }
-      return config
-    },
-    env: {
-      PORT: 2323,
-      ...env,
-    },
-    assetPrefix: isProd ? env.ASSETPREFIX || '' : '',
-    async rewrites() {
-      const base = [
-        { source: '/sitemap.xml', destination: '/api/sitemap' },
-        { source: '/feed', destination: '/api/feed' },
-        { source: '/rss', destination: '/api/feed' },
-        { source: '/atom.xml', destination: '/api/feed' },
-        {
-          source: '/service-worker.js',
-          destination: '/_next/static/service-worker.js',
-        },
-      ]
-      // this can remove after test
-      if (isProd && env.ASSETPREFIX) {
-        base.push({
-          source: '/autostatic/:path*',
-          destination: env.ASSETPREFIX + '/_next/static/:path*',
-        })
-      }
-      return base
-    },
-    // 小水管就算了吧
-    // __NEXT_OPTIMIZE_FONTS=true 暂时
-    optimizeFonts: false,
-    experimental: {
-      granularChunks: true,
-      modern: true,
-      scrollRestoration: true,
-    },
-    future: {
-      webpack5: true,
-    },
-  }),
-)
+const configs = withBundleAnalyzer({
+  webpack: (config, options) => {
+    config.experiments = {
+      topLevelAwait: true,
+    }
+    return config
+  },
+  env: {
+    PORT: 2323,
+    ...env,
+  },
+  assetPrefix: isProd ? env.ASSETPREFIX || '' : '',
+  eslint: {
+    // Warning: Dangerously allow production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
+  },
+  async rewrites() {
+    const base = [
+      { source: '/sitemap.xml', destination: '/api/sitemap' },
+      { source: '/feed', destination: '/api/feed' },
+      { source: '/rss', destination: '/api/feed' },
+      { source: '/atom.xml', destination: '/api/feed' },
+      {
+        source: '/service-worker.js',
+        destination: '/_next/static/service-worker.js',
+      },
+    ]
+    // this can remove after test
+    if (isProd && env.ASSETPREFIX) {
+      base.push({
+        source: '/autostatic/:path*',
+        destination: env.ASSETPREFIX + '/_next/static/:path*',
+      })
+    }
+    return base
+  },
+  // 小水管就算了吧
+  // __NEXT_OPTIMIZE_FONTS=true 暂时
+  optimizeFonts: false,
+  experimental: {
+    granularChunks: true,
+    modern: true,
+    scrollRestoration: true,
+  },
+})
 
 module.exports = isProd
   ? withOffline({

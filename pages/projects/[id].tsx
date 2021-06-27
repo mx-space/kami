@@ -1,3 +1,11 @@
+/*
+ * @Author: Innei
+ * @Date: 2020-09-17 14:02:24
+ * @LastEditTime: 2021-06-27 16:18:30
+ * @LastEditors: Innei
+ * @FilePath: /web/pages/projects/[id].tsx
+ * Mark: Coding with Love
+ */
 import Kico from 'assets/images/Kico.jpg'
 import { ImageLazy } from 'components/Image'
 import { SliderImagesPopup } from 'components/SliderImagesPopup'
@@ -31,7 +39,7 @@ const ProjectView: NextPage<ProjectViewProps> = (props) => {
       />
       <section className="project-head">
         <ImageLazy
-          defaultImage={Kico}
+          defaultImage={Kico.src}
           alt={name}
           src={avatar as string}
           style={{

@@ -1,3 +1,11 @@
+/*
+ * @Author: Innei
+ * @Date: 2021-05-29 19:31:30
+ * @LastEditTime: 2021-06-27 16:31:52
+ * @LastEditors: Innei
+ * @FilePath: /web/components/CodeHighlighter/index.tsx
+ * Mark: Coding with Love
+ */
 import React, { FC, useCallback } from 'react'
 import dynamic from 'next/dynamic'
 
@@ -84,6 +92,7 @@ const HighLighter: FC<Props> = observer((props) => {
         customStyle={{
           background: 'var(--code-bg) !important',
           padding: 0,
+          overflow: 'hidden',
         }}
       >
         {value}

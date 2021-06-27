@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-12-22 20:17:50
- * @LastEditTime: 2021-02-04 10:56:08
+ * @LastEditTime: 2021-06-27 16:16:18
  * @LastEditors: Innei
  * @FilePath: /web/components/SectionNews/friend.tsx
  * @Mark: Coding with Love
@@ -16,11 +16,9 @@ export const FriendItem: FC<LinkModel> = memo((props) => {
   return (
     <div className={styles['avatar-item']}>
       <Avatar
-        {...{
-          imageUrl: props.avatar || defaultAvatar,
-          alt: props.name,
-          url: props.url,
-        }}
+        imageUrl={props.avatar || defaultAvatar.src}
+        alt={props.name}
+        url={props.url}
       />
       <span className={styles['avatar-name']}>{props.name}</span>
     </div>
