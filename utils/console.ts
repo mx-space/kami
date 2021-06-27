@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-12 08:54:09
- * @LastEditTime: 2021-06-27 16:08:38
+ * @LastEditTime: 2021-06-27 17:06:44
  * @LastEditors: Innei
  * @FilePath: /web/utils/console.ts
  * @Coding with Love
@@ -18,7 +18,7 @@ import { isDev, isServerSide } from './utils'
 const version = process.env.VERSION || `v${Package.version}` || ''
 
 const isSpiderBot = () => {
-  if (!isServerSide()) {
+  if (isServerSide()) {
     return false
   }
 
