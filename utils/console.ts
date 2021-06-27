@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-12 08:54:09
- * @LastEditTime: 2021-06-12 20:19:06
+ * @LastEditTime: 2021-06-27 16:08:38
  * @LastEditors: Innei
  * @FilePath: /web/utils/console.ts
  * @Coding with Love
@@ -14,13 +14,24 @@ import {
   launch,
 } from '@innei/devtools-detector'
 import Package from './../package.json'
-import { isDev } from './utils'
+import { isDev, isServerSide } from './utils'
 const version = process.env.VERSION || `v${Package.version}` || ''
 
+const isSpiderBot = () => {
+  if (!isServerSide()) {
+    return false
+  }
+
+  const ua = navigator.userAgent
+  if (/bot/.test(ua.toLowerCase())) {
+    return true
+  }
+  return false
+}
 // for debug
 const devTest = false
 const handler: DevtoolsDetectorListener = async (isOpen, detail) => {
-  if (isDev && !devTest) {
+  if ((isDev && !devTest) || isSpiderBot()) {
     return
   }
   if (isOpen) {

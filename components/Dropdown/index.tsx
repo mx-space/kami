@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2021-02-04 13:27:29
- * @LastEditTime: 2021-02-04 13:42:45
+ * @LastEditTime: 2021-06-24 22:05:27
  * @LastEditors: Innei
  * @FilePath: /web/components/Dropdown/index.tsx
  * @Mark: Coding with Love
@@ -10,8 +10,7 @@
 import classNames from 'classnames'
 import { throttle } from 'lodash'
 import dynamic from 'next/dynamic'
-import RcQueueAnim from 'rc-queue-anim'
-import React, { FC, useState, useEffect, Fragment } from 'react'
+import React, { FC } from 'react'
 import ReactDOM from 'react-dom'
 import styles from './index.module.css'
 

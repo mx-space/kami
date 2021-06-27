@@ -1,16 +1,11 @@
 /*
  * @Author: Innei
  * @Date: 2021-01-01 16:00:14
- * @LastEditTime: 2021-05-21 22:15:09
+ * @LastEditTime: 2021-06-25 11:08:51
  * @LastEditors: Innei
  * @FilePath: /web/pages/[page]/index.tsx
  * @Mark: Coding with Love
  */
-import {
-  faArrowAltCircleLeft,
-  faArrowAltCircleRight,
-} from '@fortawesome/free-regular-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useStore } from 'common/store'
 import { CommentLazy } from 'components/Comment'
 import Markdown from 'components/Markdown'
