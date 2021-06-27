@@ -1,19 +1,18 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-23 13:18:30
- * @LastEditTime: 2021-06-27 16:14:14
+ * @LastEditTime: 2021-06-27 16:59:14
  * @LastEditors: Innei
  * @FilePath: /web/common/socket/socket-client.ts
  * @MIT
  */
 
-import io, { Socket } from 'socket.io-client'
-import { DefaultEventsMap } from 'socket.io-client/build/typed-events'
+import io from 'socket.io-client'
 import observable from '../../utils/observable'
 import { eventHandler } from './handler'
 import { EventTypes } from './types'
 export class SocketClient {
-  public socket!: Socket<DefaultEventsMap, DefaultEventsMap>
+  public socket!: SocketIOClient.Socket
 
   constructor() {
     this.socket = io(
@@ -36,6 +35,8 @@ export class SocketClient {
     this.socket.on(
       'message',
       (payload: string | Record<'type' | 'data', any>) => {
+        console.log(payload)
+
         if (typeof payload !== 'string') {
           return this.handleEvent(payload.type, payload.data)
         }
