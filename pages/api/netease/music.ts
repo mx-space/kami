@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2021-02-11 13:54:34
- * @LastEditTime: 2021-02-11 15:24:14
+ * @LastEditTime: 2021-06-28 11:26:48
  * @LastEditors: Innei
  * @FilePath: /web/pages/api/netease/music.ts
  * @Mark: Coding with Love
@@ -30,6 +30,7 @@ export default async function (req: IncomingMessage, res: ServerResponse) {
     NETEASE_PASSWORD as string,
   )
   await client.Login()
+
   const weekdata = await client.getWeekData()
   const alldata = await client.getAllData()
   const playlist = await client.getFavorite()

@@ -48,8 +48,9 @@ export const MusicMiniPlayer = forwardRef<
 >(({ playlist, hide = false }, ref) => {
   const len = playlist.length
 
-  const [cur, setCur] =
-    useState<null | (MetingPayloadType & { id: number })>(null)
+  const [cur, setCur] = useState<null | (MetingPayloadType & { id: number })>(
+    null,
+  )
 
   const [cursor, setCursor] = useState(0)
 
@@ -57,10 +58,12 @@ export const MusicMiniPlayer = forwardRef<
     if (!id) {
       return
     }
+    const songApi = location.origin + '/api/netease/song'
     const stream = await fetch(`${API_BASE_URL}/?server=${type}&id=${id}`)
     const json = (await stream.json()) as MetingPayloadType[]
-
-    setCur({ ...json[0], id })
+    const [data] = await (await fetch(songApi + '?id=' + id)).json()
+    const songUrl = data.url
+    setCur({ ...json[0], id, url: songUrl })
   }
 
   useEffect(() => {

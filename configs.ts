@@ -78,13 +78,13 @@ const menu: MenuModel[] = [
     path: '/favorite/music',
     subMenu: [
       {
-        title: '音乐',
+        title: '听歌',
         icon: faMusic,
         type: 'Music',
         path: '/favorite/music',
       },
       {
-        title: '追番',
+        title: '看番',
         icon: faTv,
         type: 'Bangumi',
         path: '/favorite/bangumi',
