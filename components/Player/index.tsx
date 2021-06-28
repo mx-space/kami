@@ -62,7 +62,7 @@ export const MusicMiniPlayer = forwardRef<
     const stream = await fetch(`${API_BASE_URL}/?server=${type}&id=${id}`)
     const json = (await stream.json()) as MetingPayloadType[]
     const [data] = await (await fetch(songApi + '?id=' + id)).json()
-    const songUrl = data.url
+    const songUrl = data.url?.replace('http://', 'https://')
     setCur({ ...json[0], id, url: songUrl })
   }
 
