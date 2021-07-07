@@ -1249,10 +1249,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-lazyload@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@types/react-lazyload/-/react-lazyload-3.1.0.tgz#97b167266afbc75f432eca01c50555adae21c5a4"
-  integrity sha512-JnVJb+6cUrIk4Fo/zc/4NuFtm0h3XeNlN4Gt++WEHGeUDtlhnF1lXRz0WoqNmh5gH3oyeYOJXIZ8MoPL9ehp0g==
+"@types/react-lazyload@3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@types/react-lazyload/-/react-lazyload-3.1.1.tgz#98b0565031d058c84802e7c965f495c5fb89d864"
+  integrity sha512-e9jsondHYzeApb67In+SdvxskBPC6pfD70j0L7l4kqviqCkkJAxD8iyMZSu5dcuYZGLXLAkp1SqkDK+4iVjLSA==
   dependencies:
     "@types/react" "*"
 
