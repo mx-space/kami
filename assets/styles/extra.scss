@@ -695,38 +695,38 @@ html.dark .lazyload-image {
 html.light .lazyload-image {
   animation: blur 0.8s forwards ease-in-out;
 }
-// @keyframes blur {
-//   from {
-//     filter: blur(10px);
-//   }
-//   to {
-//     filter: blur(0);
-//   }
-// }
-// @keyframes blur-dark {
-//   from {
-//     filter: blur(10px) brightness(0.6);
-//   }
-//   to {
-//     filter: blur(0) brightness(0.6);
-//   }
-// }
 @keyframes blur {
   from {
-    opacity: 0;
+    filter: blur(10px);
   }
   to {
-    opacity: 1;
+    filter: blur(0);
   }
 }
 @keyframes blur-dark {
   from {
-    opacity: 0;
+    filter: blur(10px) brightness(0.6);
   }
   to {
-    opacity: 1;
+    filter: blur(0) brightness(0.6);
   }
 }
+// @keyframes blur {
+//   from {
+//     opacity: 0;
+//   }
+//   to {
+//     opacity: 1;
+//   }
+// }
+// @keyframes blur-dark {
+//   from {
+//     opacity: 0;
+//   }
+//   to {
+//     opacity: 1;
+//   }
+// }
 
 .article-list {
   font-family: Helvetica, pingfang sc, hiragino sans gb, microsoft yahei,

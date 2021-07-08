@@ -57,7 +57,7 @@ export const createDangmaku = ({ color, duration, text }: DanmakuProps) => {
     },
   })
 
-  console.log(dangmaku)
+  // console.log(dangmaku)
 
   $wrap.appendChild(dangmaku)
 

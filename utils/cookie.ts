@@ -48,7 +48,7 @@ export function isLikedBefore(id: string) {
     return false
   }
   const list = JSON.parse(has) as string[]
-  console.log(list, id, list.includes(id))
+  // console.log(list, id, list.includes(id))
 
   return list.includes(id)
 }
