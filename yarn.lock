@@ -1302,10 +1302,10 @@
     "@types/node" "*"
     safe-buffer "*"
 
-"@types/remove-markdown@0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@types/remove-markdown/-/remove-markdown-0.3.0.tgz#8014f12e4c45637c4cd190ae66afde189bec41d1"
-  integrity sha512-dmEUST4Olsw+S8OpQW6pyk3BBxogBb0qa6gqHJqmQ94zqhqSn1PnG592vcDbNnBDiQPiqCBagOaYqMduzO3oHA==
+"@types/remove-markdown@0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@types/remove-markdown/-/remove-markdown-0.3.1.tgz#82bc3664c313f50f7c77f1bb59935f567689dc63"
+  integrity sha512-JpJNEJEsmmltyL2LdE8KRjJ0L2ad5vgLibqNj85clohT9AyTrfN6jvHxStPshDkmtcL/ShFu0p2tbY7DBS1mqQ==
 
 "@types/resolve@0.0.8":
   version "0.0.8"
