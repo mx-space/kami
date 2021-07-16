@@ -1,12 +1,12 @@
 /*
  * @Author: Innei
  * @Date: 2020-12-28 23:08:46
- * @LastEditTime: 2021-05-29 18:09:51
+ * @LastEditTime: 2021-07-16 23:11:33
  * @LastEditors: Innei
  * @FilePath: /web/utils/images.ts
  * Mark: Coding with Love
  */
-import { sample, shuffle } from 'lodash'
+import { shuffle } from 'lodash'
 import { ImageSizeRecord } from 'models/base'
 
 export const imagesRecord2Map = (images: ImageSizeRecord[]) => {
@@ -66,7 +66,7 @@ const animeImages = [
   '7TOEIPwGrZB1qFb.jpg',
   'Ihj5QAZgVMqr9fJ.jpg',
   'KZ6jv8C92Vpwcih.jpg',
-].map((i) => 'https://gitee.com/xun7788/my-imagination/raw/master/images/' + i)
+].map((i) => 'https://cdn.jsdelivr.net/gh/Innei/fancy@master/2021/' + i)
 export const getAnimationImages = () => {
   return [...animeImages]
 }

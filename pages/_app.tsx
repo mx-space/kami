@@ -211,7 +211,7 @@ const Content: FC<DataModel> = observer((props) => {
       // animation('in')
       history.backPath?.pop()
       Progress.finish()
-      message.error('出现了未知错误, 刷新试试?')
+      // message.error('出现了未知错误, 刷新试试?')
     })
 
     Router.events.on('routeChangeComplete', (url) => gtag.pageview(url))
