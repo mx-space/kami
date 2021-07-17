@@ -1,13 +1,14 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-23 13:18:30
- * @LastEditTime: 2021-06-27 16:59:14
+ * @LastEditTime: 2021-07-17 22:11:05
  * @LastEditors: Innei
  * @FilePath: /web/common/socket/socket-client.ts
  * @MIT
  */
 
 import io from 'socket.io-client'
+import { isDev } from 'utils'
 import observable from '../../utils/observable'
 import { eventHandler } from './handler'
 import { EventTypes } from './types'
@@ -35,7 +36,9 @@ export class SocketClient {
     this.socket.on(
       'message',
       (payload: string | Record<'type' | 'data', any>) => {
-        console.log(payload)
+        if (isDev) {
+          console.log(payload)
+        }
 
         if (typeof payload !== 'string') {
           return this.handleEvent(payload.type, payload.data)

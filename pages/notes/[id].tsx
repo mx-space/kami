@@ -25,7 +25,7 @@ import observable from 'utils/observable'
 import { parseDate } from 'utils/time'
 import { ImageSizeMetaContext } from '../../common/context/ImageSizes'
 import { Seo } from '../../components/SEO'
-import { getSummaryFromMd, isLikedBefore, setLikeId } from '../../utils'
+import { getSummaryFromMd, isDev, isLikedBefore, setLikeId } from '../../utils'
 
 interface NoteViewProps {
   data: NoteModel
@@ -61,7 +61,9 @@ const NoteView: NextPage<NoteViewProps> = observer((props): JSX.Element => {
 
   useEffect(() => {
     const handler = (payload: NoteModel) => {
-      console.log(payload)
+      if (isDev) {
+        console.log('note-change: ', payload)
+      }
 
       if (payload.id === data.id) {
         if (payload.hide && !userStore.isLogged) {

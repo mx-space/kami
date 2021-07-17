@@ -98,7 +98,6 @@ const _Image: FC<{ src: string; alt?: string }> = observer(({ src, alt }) => {
     height: undefined,
     width: undefined,
   }
-  console.log(images)
 
   const max = {
     width: maxWidth ?? 500,

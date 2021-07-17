@@ -1,12 +1,13 @@
 /*
  * @Author: Innei
  * @Date: 2020-05-29 21:54:33
- * @LastEditTime: 2021-02-24 20:23:58
+ * @LastEditTime: 2021-07-17 22:11:55
  * @LastEditors: Innei
  * @FilePath: /web/common/socket/handler.ts
  * @Code with Love
  */
 
+import { isDev } from 'utils'
 import { createDangmaku } from '../../utils/danmaku'
 import { Notice } from '../../utils/notice'
 import { appUIStore, gatewayStore, userStore } from '../store'
@@ -102,7 +103,9 @@ export const eventHandler = (type: EventTypes, data: any) => {
       break
     }
     default: {
-      console.log(type, data)
+      if (isDev) {
+        console.log(type, data)
+      }
     }
   }
 }
