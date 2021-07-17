@@ -53,21 +53,10 @@ const getContainerSize = () => {
   return $wrap.getBoundingClientRect().width
 }
 
-// const queue = []
 /**
  * This Component only can render in browser.
  */
 const _Image: FC<{ src: string; alt?: string }> = observer(({ src, alt }) => {
-  // useEffect(() => {
-  //   if (!queue.length) {
-
-  //   }
-
-  //   return () => {
-
-  //   }
-  // }, [])
-
   useEffect(() => {
     const disposer = reaction(
       () => appUIStore.viewport.w | appUIStore.viewport.h,
@@ -88,7 +77,7 @@ const _Image: FC<{ src: string; alt?: string }> = observer(({ src, alt }) => {
 
   // 因为有动画开始不能获取到大小 , 直到获取到 container 的大小
   useEffect(() => {
-    let timer = requestAnimationFrame(function a() {
+    let raf = requestAnimationFrame(function a() {
       const size = getContainerSize()
       if (!size) {
         requestAnimationFrame(a)
@@ -97,7 +86,7 @@ const _Image: FC<{ src: string; alt?: string }> = observer(({ src, alt }) => {
       }
     }) as any
     return () => {
-      timer = cancelAnimationFrame(timer)
+      raf = cancelAnimationFrame(raf)
     }
   }, [])
 
@@ -109,6 +98,8 @@ const _Image: FC<{ src: string; alt?: string }> = observer(({ src, alt }) => {
     height: undefined,
     width: undefined,
   }
+  console.log(images)
+
   const max = {
     width: maxWidth ?? 500,
 
@@ -128,6 +119,9 @@ const _Image: FC<{ src: string; alt?: string }> = observer(({ src, alt }) => {
       height={cal.height}
       width={cal.width}
       style={{ padding: '1rem 0' }}
+      data-raw-height={height}
+      data-raw-width={width}
+      overflowHidden
     />
   )
 })

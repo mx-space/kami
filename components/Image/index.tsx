@@ -29,6 +29,7 @@ interface ImageFCProps {
   useRandomBackgroundColor?: boolean
   backgroundColor?: string
   popup?: boolean
+  overflowHidden?: boolean
 }
 
 const Image: FC<
@@ -99,6 +100,7 @@ export const ImageLazy: FC<
     backgroundColor,
     popup = false,
     style,
+    overflowHidden = false,
     ...rest
   } = props
 
@@ -130,6 +132,10 @@ export const ImageLazy: FC<
             width,
             maxWidth: '100%',
             margin: 'auto',
+
+            ...(overflowHidden
+              ? { overflow: 'hidden', borderRadius: '0.5em' }
+              : {}),
           }}
           ref={wrapRef}
         >
