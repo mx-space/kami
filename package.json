@@ -104,7 +104,7 @@
     "eslint-plugin-react": "7.24.0",
     "eslint-plugin-react-hooks": "4.2.0",
     "nodemon": "2.0.12",
-    "postcss": "8.3.5",
+    "postcss": "8.3.6",
     "postcss-flexbugs-fixes": "5.0.2",
     "postcss-import": "14.0.2",
     "postcss-loader": "6.1.1",
