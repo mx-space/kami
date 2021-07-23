@@ -1,4 +1,3 @@
-// import { animateUriFactory } from 'animate-uri/publish/index.esm'
 import '@openfonts/noto-sans-sc_vietnamese'
 import 'assets/styles/main.scss'
 import { DropdownProvider } from 'common/context/dropdown'
@@ -27,12 +26,16 @@ import { PageModel } from '../common/store/types'
 import { isServerSide } from '../utils'
 import { Rest } from '../utils/api'
 import { getToken, removeToken } from '../utils/cookie'
-// import { checkDevtools } from '../utils/forbidden'
 import * as gtag from '../utils/gtag'
 import service from '../utils/request'
+
 const version = process.env.VERSION || `v${Package.version}` || ''
 
 const Progress = new QP({ colorful: false, color: '#27ae60' })
+
+if (isServerSide()) {
+  React.useLayoutEffect = useEffect
+}
 
 const Content: FC<DataModel> = observer((props) => {
   const _currentY = useRef(0)

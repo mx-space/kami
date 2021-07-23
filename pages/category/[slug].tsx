@@ -28,7 +28,15 @@ const CategoryListView: NextPage<CategoryListViewProps> = (props) => {
       <SEO title={'分类: ' + category.name} />
       <article className="post-content kami-note article-list">
         <ul>
-          <QueueAnim delay={700} forcedReplay appear>
+          <QueueAnim delay={700}
+            forcedReplay
+            appear
+            type={['right', 'left']}
+            interval={[100, 200]}
+            duration={[500, 2000]}
+            ease={['easeOutBack', 'easeInOutCirc']}
+            leaveReverse
+          >
             {children.map((child) => {
               const date = new Date(child.created)
 
