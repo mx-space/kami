@@ -56,14 +56,13 @@
   background: var(--shizuku-theme-color);
 }
 #write hr {
-  display: inline-block;
-  width: 25px;
+  display: block;
+  width: 50px;
   height: 1px;
   line-height: 1px;
   border: 0;
-  margin: 0;
+  margin: 2.5rem 0;
   background: rgba(128, 128, 128, 0.4);
-  vertical-align: middle;
 }
 #write .md-hr {
   outline: none !important;
