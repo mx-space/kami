@@ -84,7 +84,7 @@
     "@types/node": "14.17.5",
     "@types/node-fetch": "2.5.12",
     "@types/randomcolor": "0.5.6",
-    "@types/react": "17.0.14",
+    "@types/react": "17.0.15",
     "@types/react-color": "3.0.5",
     "@types/react-dom": "17.0.9",
     "@types/react-lazyload": "3.1.1",
