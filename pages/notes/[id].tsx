@@ -1,8 +1,8 @@
 import { faBookOpen, faClock } from '@fortawesome/free-solid-svg-icons'
+import { useRefEffect } from 'common/hooks/useRefEffect'
 import { EventTypes } from 'common/socket/types'
 import { useStore } from 'common/store'
 import Action, { ActionProps } from 'components/Action'
-import { QueueAnim } from 'components/Anime'
 import CommentWrap from 'components/Comment'
 import { LikeButton } from 'components/LikeButton'
 import Markdown from 'components/Markdown'
@@ -15,7 +15,7 @@ import { NoteLayout } from 'layouts/NoteLayout'
 import { NoteModel, NoteResp } from 'models/note'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React, { FC, useEffect, useMemo, useRef, useState } from 'react'
+import React, { FC, useEffect, useMemo, useState } from 'react'
 import { Rest } from 'utils/api'
 import { imagesRecord2Map } from 'utils/images'
 import { message } from 'utils/message'
@@ -90,25 +90,23 @@ const NoteView: NextPage<NoteViewProps> = observer((props): JSX.Element => {
   const [tips, setTips] = useState(``)
 
   // prevent guest copy text.
-  const mdRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    if (!mdRef.current) {
-      return
-    }
-    const $md = mdRef.current
-    $md.oncopy = (e) => {
-      if (userStore.isLogged) {
-        return
+  const mdRef = useRefEffect<HTMLElement>(
+    (el) => {
+      el.oncopy = (e) => {
+        if (userStore.isLogged) {
+          return
+        }
+        e.preventDefault()
+        setShowCopyWarn(true)
       }
-      e.preventDefault()
-      setShowCopyWarn(true)
-    }
 
-    return () => {
-      $md.oncopy = null
-    }
-  }, [userStore.isLogged])
+      return () => {
+        el.oncopy = null
+      }
+    },
+    [userStore.isLogged],
+  )
 
   const { description, wordCount } = getSummaryFromMd(text, {
     count: true,
