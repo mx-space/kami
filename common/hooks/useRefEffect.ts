@@ -26,7 +26,7 @@ export const useRefEffect = <T extends unknown>(
   const internalRef = useState(() => {
     let currentValue = null as T | null
     let cleanupPreviousEffect = noop as () => void
-    let currentDeps: any[] | undefined = undefined
+    let currentDeps: any[] | undefined
     /**
      * React.RefCallback
      */
