@@ -1,3 +1,11 @@
+/*
+ * @Author: Innei
+ * @Date: 2021-05-29 19:31:30
+ * @LastEditTime: 2021-08-28 16:38:44
+ * @LastEditors: Innei
+ * @FilePath: /web/components/Markdown/index.tsx
+ * Mark: Coding with Love
+ */
 import clsx from 'clsx'
 import CustomRules from 'common/markdown/rules'
 import React, { ElementType, FC, RefObject, useEffect } from 'react'
@@ -68,7 +76,6 @@ export const Markdown: FC<MdProps> = observer(
             link: RenderLink,
             spoiler: RenderSpoiler,
             paragraph: RenderParagraph,
-            // eslint-disable-next-line react/display-name
             commentAt: RenderCommentAt,
             ...renderers,
           }}

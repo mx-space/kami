@@ -28,7 +28,8 @@ const CategoryListView: NextPage<CategoryListViewProps> = (props) => {
       <SEO title={'分类: ' + category.name} />
       <article className="post-content kami-note article-list">
         <ul>
-          <QueueAnim delay={700}
+          <QueueAnim
+            delay={700}
             forcedReplay
             appear
             type={['right', 'left']}

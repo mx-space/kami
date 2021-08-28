@@ -7,17 +7,16 @@
  * @Copyright
  */
 
+import { configure } from 'mobx'
+import { enableStaticRendering } from 'mobx-react-lite'
 import { createContext, useContext } from 'react'
+import { isClientSide, isServerSide } from 'utils'
+import ActionStore from './action'
 import AppUIStore from './app'
 import CategoryStore from './category'
-import MusicStore from './music'
-
-import UserStore from './user'
 import GatewayStore from './gateway'
-import ActionStore from './action'
-import { isClientSide, isServerSide } from 'utils'
-import { enableStaticRendering } from 'mobx-react-lite'
-import { configure } from 'mobx'
+import MusicStore from './music'
+import UserStore from './user'
 
 configure({
   useProxies: 'always',

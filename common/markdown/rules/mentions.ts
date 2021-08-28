@@ -6,8 +6,6 @@
  * @FilePath: /mx-web/common/markdown/rules/mentions.ts
  * @Coding with Love
  */
-
-import type { Node } from 'unist'
 /**
  * parse (@username) to github user profile
  */

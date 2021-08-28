@@ -6,7 +6,7 @@
  * @FilePath: /mx-web/hooks/usePrevious.ts
  * @Copyright
  */
-import { useRef, useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 export const usePrevious = <T>(value: T) => {
   const ref = useRef<T>()
   useEffect(() => {

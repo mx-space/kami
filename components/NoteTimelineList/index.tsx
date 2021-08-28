@@ -7,13 +7,13 @@
  * Mark: Coding with Love
  */
 
-import { FC, useEffect, useState } from 'react'
 import clsx from 'clsx'
-import styles from './index.module.css'
-import { Rest } from 'utils'
-import { NoteModel } from 'models/note'
 import { QueueAnim } from 'components/Anime'
+import { NoteModel } from 'models/note'
 import { useRouter } from 'next/router'
+import { FC, useEffect, useState } from 'react'
+import { Rest } from 'utils'
+import styles from './index.module.css'
 interface NoteTimelineListProps {
   noteId: string
 }

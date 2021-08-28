@@ -8,11 +8,11 @@
  */
 import classNames from 'classnames'
 import { useStore } from 'common/store'
-import { observer } from 'utils/mobx'
 import { PostModel } from 'models/post'
 import Router from 'next/router'
 import React, { FC } from 'react'
 import removeMd from 'remove-markdown'
+import { observer } from 'utils/mobx'
 import { parseDate } from 'utils/time'
 import styles from './index.module.scss'
 

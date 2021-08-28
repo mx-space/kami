@@ -1,4 +1,4 @@
-import { BaseRespModel, BaseModel } from './base'
+import { BaseModel, BaseRespModel } from './base'
 
 export interface ProjectModel extends BaseModel {
   name: string

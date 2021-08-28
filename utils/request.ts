@@ -7,11 +7,11 @@
  * @MIT
  */
 
-import { message } from 'utils/message'
 import axios, { AxiosError } from 'axios'
+import camelcaseKeys from 'camelcase-keys'
+import { message } from 'utils/message'
 import { getToken } from './cookie'
 import { isClientSide, isServerSide } from './utils'
-import camelcaseKeys from 'camelcase-keys'
 const service = axios.create({
   baseURL: process.env.APIURL || '/api',
   // withCredentials: true,

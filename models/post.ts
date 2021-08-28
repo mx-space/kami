@@ -7,7 +7,7 @@
  * @Coding with Love
  */
 
-import { BaseRespModel, PagerModel, ImageSizeRecord } from './base'
+import { BaseRespModel, ImageSizeRecord, PagerModel } from './base'
 import { CategoryModel } from './category'
 
 export interface PostModel {

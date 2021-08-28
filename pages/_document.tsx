@@ -25,8 +25,8 @@ import Document, {
   Main,
   NextScript,
 } from 'next/document'
-import { GA_TRACKING_ID } from '../utils/gtag'
 import Package from 'package.json'
+import { GA_TRACKING_ID } from '../utils/gtag'
 const { version } = Package
 
 export default class MyDocument extends Document<{ ua: string }> {

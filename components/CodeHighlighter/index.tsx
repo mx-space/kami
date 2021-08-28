@@ -6,9 +6,9 @@
  * @FilePath: /web/components/CodeHighlighter/index.tsx
  * Mark: Coding with Love
  */
-import React, { FC, useCallback } from 'react'
 import dynamic from 'next/dynamic'
-
+import React, { FC, useCallback } from 'react'
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
 import conf from 'react-syntax-highlighter/dist/cjs/languages/prism/apacheconf'
 import bash from 'react-syntax-highlighter/dist/cjs/languages/prism/bash'
 import c from 'react-syntax-highlighter/dist/cjs/languages/prism/c'
@@ -31,11 +31,8 @@ import swift from 'react-syntax-highlighter/dist/cjs/languages/prism/swift'
 import tsx from 'react-syntax-highlighter/dist/cjs/languages/prism/tsx'
 import typescript from 'react-syntax-highlighter/dist/cjs/languages/prism/typescript'
 import yaml from 'react-syntax-highlighter/dist/cjs/languages/prism/yaml'
-
-import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
 import light from 'react-syntax-highlighter/dist/cjs/styles/prism/prism'
 import dark from 'react-syntax-highlighter/dist/cjs/styles/prism/tomorrow'
-
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
 import { appUIStore, useStore } from '../../common/store'

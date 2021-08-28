@@ -1,3 +1,11 @@
+/*
+ * @Author: Innei
+ * @Date: 2021-05-29 19:31:30
+ * @LastEditTime: 2021-08-28 16:39:26
+ * @LastEditors: Innei
+ * @FilePath: /web/components/Action/index.tsx
+ * Mark: Coding with Love
+ */
 import {
   faCreativeCommons,
   IconDefinition,
@@ -46,7 +54,6 @@ export default memo(function Action(props: ActionProps) {
           <a
             href="https://creativecommons.org/licenses/by-nc-nd/4.0/"
             style={{ color: 'currentColor' }}
-            // eslint-disable-next-line react/jsx-no-target-blank
             target={'_blank'}
           >
             <span title={'创作共用保留署名-非商业-禁止演绎4.0国际许可证'}>

@@ -1,6 +1,6 @@
-import $axios from 'utils/request'
-import inflection from 'inflection'
 import { AxiosRequestConfig } from 'axios'
+import inflection from 'inflection'
+import $axios from 'utils/request'
 
 declare enum AccessRoutesEnum {
   Aggregate,

@@ -6,7 +6,7 @@
  * @FilePath: /web/models/note.ts
  * Mark: Coding with Love
  */
-import { BaseRespModel, BaseModel, ImageSizeRecord } from './base'
+import { BaseModel, BaseRespModel, ImageSizeRecord } from './base'
 export interface CountRecord {
   read: number
   like: number

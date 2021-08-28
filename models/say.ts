@@ -1,4 +1,4 @@
-import { BaseRespModel, PagerModel, BaseModel } from './base'
+import { BaseModel, BaseRespModel, PagerModel } from './base'
 
 export interface SayModel extends BaseModel {
   text: string

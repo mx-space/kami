@@ -1,8 +1,7 @@
 import { BiliClient } from '@mx-space/extra'
 import { IncomingMessage, ServerResponse } from 'http'
-import bangumi from 'pages/favorite/bangumi'
-import { URL, parse } from 'url'
 import { parse as QParse } from 'querystring'
+import { parse } from 'url'
 import { writeBody } from 'utils'
 
 /*

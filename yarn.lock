@@ -952,6 +952,37 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.0.tgz#87de7af9c231826fdd68ac7258f77c429e0e5fcf"
   integrity sha512-wdppn25U8z/2yiaT6YGquE6X8sSv7hNMWSXYSSU1jGv/yd6XqjXgTDJ8KP4NgjTXfJ3GbRjeeb8RTV7a/VpM+w==
 
+"@innei-util/eslint-config-react-ts@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@innei-util/eslint-config-react-ts/-/eslint-config-react-ts-0.1.0.tgz#ac4498678090ff56d58f4581b3d46a9175337bf4"
+  integrity sha512-+fd++DnRy/cZWeOMvkaVnQ8QPzXcQ6CPiMgKYFTvRA2Jy60S7r1/sUfDuF29j42O1Y8pp1mLF0VP5dIuHoE3aw==
+  dependencies:
+    "@innei-util/eslint-config-ts" "^0.1.0"
+    "@types/eslint" "^7"
+    "@typescript-eslint/eslint-plugin" "^4.29.1"
+    "@typescript-eslint/parser" "^4.29.1"
+    eslint "^7.32.0"
+    eslint-config-prettier "^8.3.0"
+    eslint-plugin-react-hooks "^4.2.0"
+
+"@innei-util/eslint-config-ts@^0.1.0":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@innei-util/eslint-config-ts/-/eslint-config-ts-0.2.2.tgz#b1d0ca589531e41e11aed0b80b20d693fe5c2544"
+  integrity sha512-UCZVBVGrctGJIaeaZh1tNbSHzTwNYHAHDHYE46Z9ukEvz+lATCdcNYNcKRsdB0Odo8F94hQ8YAh51rWvskuCyw==
+  dependencies:
+    "@types/eslint" "^7"
+    "@typescript-eslint/eslint-plugin" "^4.29.1"
+    "@typescript-eslint/parser" "^4.29.1"
+    eslint "^7.32.0"
+    eslint-config-prettier "^8.3.0"
+
+"@innei-util/prettier-standard-config@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@innei-util/prettier-standard-config/-/prettier-standard-config-0.1.1.tgz#6c760474ff9372ecf394bb3f6219bf4a94cd7a5c"
+  integrity sha512-Ud0qBi7hak2uttibIEj5Ax5+DK72QZLBmPYjyb3RV2TkIFRMQ3mge1k+zlmpu6XM/RQ6ONk4Wc04YEdOHeNlOg==
+  dependencies:
+    prettier-plugin-organize-imports "^2.3.3"
+
 "@innei/devtools-detector@2.0.4-beta.1":
   version "2.0.4-beta.1"
   resolved "https://registry.yarnpkg.com/@innei/devtools-detector/-/devtools-detector-2.0.4-beta.1.tgz#01706263e15eff0ebbad95a36873210f1f4a34e3"
@@ -1149,6 +1180,14 @@
   resolved "https://registry.yarnpkg.com/@types/debug/-/debug-4.1.5.tgz#b14efa8852b7768d898906613c23f688713e02cd"
   integrity sha512-Q1y515GcOdTHgagaVFhHnIFQ38ygs/kmxdNpvpou+raI9UO3YZcHDngBSYKQklcKlvA7iuQlmIKbzvmxcOE9CQ==
 
+"@types/eslint@^7":
+  version "7.28.0"
+  resolved "https://registry.yarnpkg.com/@types/eslint/-/eslint-7.28.0.tgz#7e41f2481d301c68e14f483fe10b017753ce8d5a"
+  integrity sha512-07XlgzX0YJUn4iG1ocY4IX9DzKSmMGUs6ESKlxWhZRaa0fatIWaHWUVapcuGa8r5HFnTqzj+4OCjd5f7EZ/i/A==
+  dependencies:
+    "@types/estree" "*"
+    "@types/json-schema" "*"
+
 "@types/estree@*":
   version "0.0.45"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.45.tgz#e9387572998e5ecdac221950dab3e8c3b16af884"
@@ -1185,6 +1224,11 @@
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/@types/js-cookie/-/js-cookie-2.2.6.tgz#f1a1cb35aff47bc5cfb05cb0c441ca91e914c26f"
   integrity sha512-+oY0FDTO2GYKEV0YPvSshGq9t7YozVkgvXLty7zogQNuCxBhT9/3INX9Q7H1aRZ4SUDRXAKlJuA4EA5nTt7SNw==
+
+"@types/json-schema@*":
+  version "7.0.9"
+  resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.9.tgz#97edc9037ea0c38585320b28964dde3b39e4660d"
+  integrity sha512-qcUXuemtEu+E5wZSJHNxUXeCZhAfXKQ41D+duX+VYPde7xyEVZci+/oXKJL13tnRs9lR2pr4fod59GT6/X1/yQ==
 
 "@types/json-schema@^7.0.7":
   version "7.0.7"
@@ -1353,7 +1397,7 @@
   resolved "https://registry.yarnpkg.com/@types/validator/-/validator-13.6.3.tgz#31ca2e997bf13a0fffca30a25747d5b9f7dbb7de"
   integrity sha512-fWG42pMJOL4jKsDDZZREnXLjc3UE0R8LOJfARWYg6U966rxDT7TYejYzLnUF5cvSObGg34nd0+H2wHHU5Omdfw==
 
-"@typescript-eslint/eslint-plugin@4.29.3":
+"@typescript-eslint/eslint-plugin@4.29.3", "@typescript-eslint/eslint-plugin@^4.29.1":
   version "4.29.3"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-4.29.3.tgz#95cb8029a8bd8bd9c7f4ab95074a7cb2115adefa"
   integrity sha512-tBgfA3K/3TsZY46ROGvoRxQr1wBkclbVqRQep97MjVHJzcRBURRY3sNFqLk0/Xr//BY5hM9H2p/kp+6qim85SA==
@@ -1378,7 +1422,7 @@
     eslint-scope "^5.1.1"
     eslint-utils "^3.0.0"
 
-"@typescript-eslint/parser@4.29.3":
+"@typescript-eslint/parser@4.29.3", "@typescript-eslint/parser@^4.29.1":
   version "4.29.3"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-4.29.3.tgz#2ac25535f34c0e98f50c0e6b28c679c2357d45f2"
   integrity sha512-jrHOV5g2u8ROghmspKoW7pN8T/qUzk0+DITun0MELptvngtMrwUJ1tv5zMI04CYVEUsSrN4jV7AKSv+I0y0EfQ==
@@ -3305,7 +3349,7 @@ escodegen@^1.8.1:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-prettier@8.3.0:
+eslint-config-prettier@8.3.0, eslint-config-prettier@^8.3.0:
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.3.0.tgz#f7471b20b6fe8a9a9254cc684454202886a2dd7a"
   integrity sha512-BgZuLUSeKzvlL/VUjx/Yb787VQ26RU3gGjA3iiFvdsp/2bMfVIWUVP7tjxtjS0e+HP409cPlPvNkQloz8C91ew==
@@ -3317,7 +3361,7 @@ eslint-plugin-prettier@3.4.1:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-eslint-plugin-react-hooks@4.2.0:
+eslint-plugin-react-hooks@4.2.0, eslint-plugin-react-hooks@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.2.0.tgz#8c229c268d468956334c943bb45fc860280f5556"
   integrity sha512-623WEiZJqxR7VdxFCKLI6d6LLpwJkGPYKODnkH3D7WpOG5KM8yWueBd8TLsNAetEJNF5iJmolaAKO3F8yzyVBQ==
@@ -3372,7 +3416,7 @@ eslint-visitor-keys@^2.0.0:
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-2.0.0.tgz#21fdc8fbcd9c795cc0321f0563702095751511a8"
   integrity sha512-QudtT6av5WXels9WjIM7qz1XD1cWGvX4gGXvp/zBn9nXG02D0utdU3Em2m/QjTnrsk6bBjmCygl3rmj118msQQ==
 
-eslint@7.32.0:
+eslint@7.32.0, eslint@^7.32.0:
   version "7.32.0"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.32.0.tgz#c6d328a14be3fb08c8d1d21e12c02fdb7a2a812d"
   integrity sha512-VHZ8gX+EDfz+97jGcgyGCyRia/dPOd6Xh9yPv8Bl1+SoaIwD+a/vlrOmGRUyOYu7MwUhc7CxqeaDZU13S4+EpA==
@@ -6531,6 +6575,11 @@ prettier-linter-helpers@^1.0.0:
   integrity sha512-GbK2cP9nraSSUF9N2XwUwqfzlAFlMNYYl+ShE/V+H8a9uNl/oUqB1w2EL54Jh0OlyRSd8RfWYJ3coVS4TROP2w==
   dependencies:
     fast-diff "^1.1.2"
+
+prettier-plugin-organize-imports@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-organize-imports/-/prettier-plugin-organize-imports-2.3.3.tgz#6877bcf8ca02569198d8f419c954a0d90a95de15"
+  integrity sha512-PBOwQ8vEIB2b7B3gCuBG7D+dqsr1fsTR4TSAjNacRVdHJrD0yzgz9grOLPSyfwJm+NUTZLyWeHoZ+1mHaUrk+g==
 
 prettier@2.3.2:
   version "2.3.2"

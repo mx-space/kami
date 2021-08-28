@@ -7,14 +7,12 @@
  * @Coding with Love
  */
 
-import { message } from 'utils/message'
 import { PagerModel } from 'models/base'
 import { CommentModel, CommentPager } from 'models/comment'
 import {
   createContext,
   FC,
   Fragment,
-  RefObject,
   useCallback,
   useEffect,
   useMemo,
@@ -22,6 +20,7 @@ import {
 } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { Rest } from 'utils/api'
+import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
 import { useStore } from '../../common/store'
 import { flattenChildren, NoSSR } from '../../utils'

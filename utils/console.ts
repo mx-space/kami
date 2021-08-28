@@ -7,11 +7,11 @@
  * @Coding with Love
  */
 import {
+  addListener,
+  DevtoolsDetectorListener,
+  launch,
   removeListener,
   stop,
-  DevtoolsDetectorListener,
-  addListener,
-  launch,
 } from '@innei/devtools-detector'
 import Package from './../package.json'
 import { isDev, isServerSide } from './utils'

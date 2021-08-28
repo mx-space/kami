@@ -76,6 +76,8 @@
     "validator": "13.6.0"
   },
   "devDependencies": {
+    "@innei-util/eslint-config-react-ts": "0.1.0",
+    "@innei-util/prettier-standard-config": "0.1.1",
     "@next/bundle-analyzer": "11.0.1",
     "@types/inflection": "1.5.28",
     "@types/js-cookie": "2.2.7",

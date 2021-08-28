@@ -88,7 +88,7 @@ export const MusicMiniPlayer = forwardRef<
   }, [])
 
   const [audioEl, state, controls, __ref] = useAudio({
-    src: cur?.url!,
+    src: cur?.url || '',
     autoPlay: true,
     loop: false,
     onEnded() {

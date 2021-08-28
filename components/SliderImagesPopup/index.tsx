@@ -1,5 +1,5 @@
-import Zoom from 'react-medium-image-zoom'
 import React, { FC, memo } from 'react'
+import Zoom from 'react-medium-image-zoom'
 
 interface SliderImagesPopupProps {
   images: { src: string; alt: string; className?: string }[]

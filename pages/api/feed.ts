@@ -9,6 +9,7 @@
 
 import rules from 'common/markdown/rules'
 import { IncomingMessage, ServerResponse } from 'http'
+import normalize from 'mdurl/encode.js'
 import { AggregateResp } from 'models/aggregate'
 import html from 'remark-html'
 import markdown from 'remark-parse'
@@ -16,7 +17,6 @@ import unified from 'unified'
 import { escapeHTMLTag } from 'utils'
 import { Rest } from '../../utils/api'
 const u = require('unist-builder')
-import normalize from 'mdurl/encode.js'
 const parser = unified()
   .use(markdown)
   .use(rules)

@@ -17,27 +17,14 @@
     "baseUrl": ".",
     "noImplicitAny": false,
     "useDefineForClassFields": true,
-    "typeRoots": [
-      "./node_modules/@types"
-    ],
-    "lib": [
-      "dom",
-      "esnext"
-    ],
+    "typeRoots": ["./node_modules/@types"],
+    "lib": ["dom", "esnext"],
     "outDir": ".next",
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "isolatedModules": true
   },
-  "exclude": [
-    ".next",
-    "server/**/*.*"
-  ],
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.scss"
-  ]
+  "exclude": [".next", "server/**/*.*"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.scss"]
 }

@@ -10,7 +10,6 @@ import {
   faHistory,
   faMusic,
   faSubway,
-  faTv,
   faUserFriends,
 } from '@fortawesome/free-solid-svg-icons'
 import { MenuModel, SocialLinkModel } from 'common/store/types'

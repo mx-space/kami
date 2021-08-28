@@ -7,7 +7,6 @@ import { commentAt } from './comment-at'
  * @FilePath: /mx-web/common/markdown/rules/index.ts
  * @Coding with Love
  */
-
 import { mentions } from './mentions'
 import { spoiler } from './spoiler'
 export { commentAt } from './comment-at'

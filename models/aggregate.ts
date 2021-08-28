@@ -1,6 +1,6 @@
 import { BaseRespModel } from './base'
-import { UserDto } from './user'
 import { CategoryModel } from './category'
+import { UserDto } from './user'
 
 export namespace Top {
   export interface Note {

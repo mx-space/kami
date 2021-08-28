@@ -17,7 +17,11 @@ import styles from './index.module.scss'
 type Field = `friend-${'author' | 'avatar' | 'desc' | 'email' | 'url' | 'name'}`
 
 export const ApplyForLink: FC = () => {
-  const { register, handleSubmit: submitHook, reset } = useForm({
+  const {
+    register,
+    handleSubmit: submitHook,
+    reset,
+  } = useForm({
     shouldFocusError: true,
   })
   const handleSubmit = submitHook(

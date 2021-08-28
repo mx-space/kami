@@ -6,12 +6,12 @@
  * @FilePath: /web/utils/index.ts
  * @Coding with Love
  */
-export * from './utils'
-export * from './request'
 export * from './api'
-export * from './cookie'
 export * from './color'
+export * from './cookie'
 export * from './danmaku'
-export * from './observable'
-export * from './time'
 export * from './images'
+export * from './observable'
+export * from './request'
+export * from './time'
+export * from './utils'

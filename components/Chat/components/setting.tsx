@@ -1,19 +1,19 @@
+import classNames from 'classnames'
+import QueueAnim from 'rc-queue-anim'
 import {
+  DetailedHTMLProps,
   FC,
   forwardRef,
-  DetailedHTMLProps,
   HTMLAttributes,
-  useState,
   useEffect,
+  useState,
 } from 'react'
-import styles from './index.module.scss'
-import classNames from 'classnames'
 import ReactDOM from 'react-dom'
-import { stopEventDefault } from '../../../utils/dom'
-import QueueAnim from 'rc-queue-anim'
-import { useStore } from '../../../common/store'
-import { observer } from 'utils/mobx'
 import { message } from 'utils/message'
+import { observer } from 'utils/mobx'
+import { useStore } from '../../../common/store'
+import { stopEventDefault } from '../../../utils/dom'
+import styles from './index.module.scss'
 
 export const STORE_PREFIX = 'mx-space-web-dangmaku'
 

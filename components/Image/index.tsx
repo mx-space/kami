@@ -12,10 +12,10 @@ import {
   useState,
 } from 'react'
 import type { LazyImage as LazyImageProps } from 'react-lazy-images'
+import Zoom from 'react-medium-image-zoom'
 import { observer } from 'utils/mobx'
 import { useStore } from '../../common/store'
 import { isClientSide } from '../../utils'
-import Zoom from 'react-medium-image-zoom'
 
 const LazyImage = dynamic(() =>
   import('react-lazy-images').then((mo: any) => mo.LazyImage),

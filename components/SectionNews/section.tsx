@@ -14,9 +14,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import randomColor from 'randomcolor'
 import { DetailedHTMLProps, FC, forwardRef, HTMLAttributes } from 'react'
-import styles from './index.module.scss'
 import { observer } from 'utils/mobx'
 import { useStore } from '../../common/store'
+import styles from './index.module.scss'
 
 export interface SectionNewsProps {
   title: string

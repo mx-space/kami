@@ -6,19 +6,19 @@
  * @FilePath: /web/pages/login/index.tsx
  * @Mark: Coding with Love
  */
-import { message } from 'utils/message'
+import { faLock, faUser } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Input } from 'components/Input'
 import { NextPage } from 'next'
 import Router from 'next/router'
 import { useState } from 'react'
+import { releaseDevtool } from 'utils/console'
+import { message } from 'utils/message'
 import { useStore } from '../../common/store'
 import { Rest } from '../../utils/api'
 import { setToken } from '../../utils/cookie'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 // import { releaseDevtools } from 'utils/console'
 import styles from './index.module.css'
-import { releaseDevtool } from 'utils/console'
 
 const LoginView: NextPage = () => {
   const [username, setUsername] = useState('')

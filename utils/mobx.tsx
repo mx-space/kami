@@ -1,5 +1,5 @@
+import { Observer, observer as observerLite } from 'mobx-react-lite'
 import React from 'react'
-import { observer as observerLite, Observer } from 'mobx-react-lite'
 
 type IReactComponent<P = any> =
   | React.ClassicComponentClass<P>

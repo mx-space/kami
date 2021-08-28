@@ -1,22 +1,22 @@
 import {
-  IconDefinition,
-  faSun,
-  faCloud,
-  faCloudSun,
-  faSnowflake,
-  faCloudRain,
-} from '@fortawesome/free-solid-svg-icons'
-import {
-  faSmile,
-  faSadCry,
   faAngry,
-  faTired,
-  faMeh,
-  faGrinSquint,
+  faFlushed,
   faFrownOpen,
   faGrimace,
-  faFlushed,
+  faGrinSquint,
+  faMeh,
+  faSadCry,
+  faSmile,
+  faTired,
 } from '@fortawesome/free-regular-svg-icons'
+import {
+  faCloud,
+  faCloudRain,
+  faCloudSun,
+  faSnowflake,
+  faSun,
+  IconDefinition,
+} from '@fortawesome/free-solid-svg-icons'
 
 export const weather2icon = (weather: string) => {
   const map: Record<string, IconDefinition> = {
