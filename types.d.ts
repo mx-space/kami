@@ -10,6 +10,9 @@ declare global {
   export interface History {
     backPath: string[]
   }
+  export interface Window {
+    [key: string]: any
+  }
 }
 
 export {}

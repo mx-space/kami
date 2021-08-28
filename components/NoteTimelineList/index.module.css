@@ -1,0 +1,39 @@
+.container {
+  @apply absolute top-0 bottom-0;
+
+  left: -12px;
+  transform: translateX(-100%);
+  font-family: sans-serif;
+  line-height: 1.15;
+}
+
+.list {
+  @apply sticky;
+
+  top: 50vh;
+  transform: translateY(-50%);
+  width: calc(10rem + 12px);
+  max-height: calc(100vh - 20em);
+  overflow: auto;
+  ::-webkit-scrollbar {
+    height: 0;
+    width: 2px;
+  }
+}
+
+.item {
+  @apply opacity-60 truncate text-left;
+
+  width: 10rem;
+  transition: opacity 0.5s, margin 0.5s;
+
+  &.active {
+    @apply opacity-100 ml-2;
+  }
+}
+
+@screen tablet {
+  .container {
+    @apply hidden;
+  }
+}

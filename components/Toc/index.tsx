@@ -1,7 +1,7 @@
 /*
  * @Author: Innei
  * @Date: 2020-06-12 21:41:12
- * @LastEditTime: 2021-01-10 11:03:04
+ * @LastEditTime: 2021-08-28 10:48:08
  * @LastEditors: Innei
  * @FilePath: /web/components/Toc/index.tsx
  * @Coding with Love
@@ -25,7 +25,6 @@ import {
 } from 'react'
 import observable from 'utils/observable'
 import styles from './index.module.scss'
-declare const window: Window & typeof globalThis & { [key: string]: any }
 
 class Item extends PureComponent<{
   title: string

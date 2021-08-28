@@ -128,23 +128,11 @@
   font-size: 14px;
   font-weight: normal;
 }
-#write h1::before {
-  content: 'h1';
-}
-#write h2::before {
-  content: 'h2';
-}
-#write h3::before {
-  content: 'h3';
-}
-#write h4::before {
-  content: 'h4';
-}
-#write h5::before {
-  content: 'h5';
-}
-#write h6::before {
-  content: 'h6';
+
+@for $var from 1 through 6 {
+  #write h#{$var}::before {
+    content: 'H' + $var;
+  }
 }
 
 @media screen and (max-width: 900px) {

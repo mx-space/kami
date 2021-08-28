@@ -6,6 +6,7 @@ import Action, { ActionProps } from 'components/Action'
 import CommentWrap from 'components/Comment'
 import { LikeButton } from 'components/LikeButton'
 import Markdown from 'components/Markdown'
+import { NoteTimelineList } from 'components/NoteTimelineList'
 import { NumberRecorder } from 'components/NumberRecorder'
 import { OverLay } from 'components/Overlay'
 import { RelativeTime } from 'components/RelativeTime'
@@ -338,6 +339,8 @@ const NoteView: NextPage<NoteViewProps> = observer((props): JSX.Element => {
               renderers={{ text: renderLines }}
               toc
             />
+
+            <NoteTimelineList noteId={data.id} />
           </ImageSizeMetaContext.Provider>
         )}
 
