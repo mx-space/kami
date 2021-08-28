@@ -83,12 +83,12 @@ const menu: MenuModel[] = [
         type: 'Music',
         path: '/favorite/music',
       },
-      {
-        title: '看番',
-        icon: faTv,
-        type: 'Bangumi',
-        path: '/favorite/bangumi',
-      },
+      // {
+      //   title: '看番',
+      //   icon: faTv,
+      //   type: 'Bangumi',
+      //   path: '/favorite/bangumi',
+      // },
       // {
       //   title: '项目',
       //   icon: faFlask,
