@@ -13,7 +13,7 @@
     "analyze": "cross-env NODE_ENV=production ANALYZE=true BUNDLE_ANALYZE=browser next build",
     "build": "cross-env NODE_ENV=production next build",
     "build:ci": "cross-env NODE_ENV=production CI=true next build",
-    "lint": "next lint --fix",
+    "lint": "eslint --ext .ts,.tsx --ignore-path .gitignore . --fix",
     "prod:pm2": "cross-env NODE_ENV=production pm2 restart ecosystem.config.js",
     "prod:stop": "pm2 stop ecosystem.config.js",
     "prod:reload": "pm2 reload ecosystem.config.js"
@@ -76,8 +76,8 @@
     "validator": "13.6.0"
   },
   "devDependencies": {
-    "@innei-util/eslint-config-react-ts": "0.1.0",
-    "@innei-util/prettier": "lastest",
+    "@innei-util/eslint-config-react-ts": "latest",
+    "@innei-util/prettier": "latest",
     "@next/bundle-analyzer": "11.0.1",
     "@types/inflection": "1.5.28",
     "@types/js-cookie": "2.2.7",
@@ -97,7 +97,6 @@
     "babel-plugin-lodash": "3.3.4",
     "cross-env": "7.0.3",
     "dotenv": "10.0.0",
-    "eslint": "7.32.0",
     "nodemon": "2.0.12",
     "postcss": "8.3.6",
     "postcss-flexbugs-fixes": "5.0.2",

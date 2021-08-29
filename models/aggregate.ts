@@ -1,3 +1,12 @@
+/*
+ * @Author: Innei
+ * @Date: 2021-05-06 22:26:07
+ * @LastEditTime: 2021-08-29 15:22:33
+ * @LastEditors: Innei
+ * @FilePath: /web/models/aggregate.ts
+ * Mark: Coding with Love
+ */
+/* eslint-disable @typescript-eslint/no-namespace */
 import { BaseRespModel } from './base'
 import { CategoryModel } from './category'
 import { UserDto } from './user'
