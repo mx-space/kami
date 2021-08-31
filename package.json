@@ -47,7 +47,7 @@
     "inflection": "1.13.1",
     "js-cookie": "3.0.0",
     "kico-style": "1.2.0",
-    "mobx": "6.3.2",
+    "mobx": "6.3.3",
     "mobx-react-lite": "3.2.0",
     "next": "11.1.2",
     "next-offline": "5.0.5",
