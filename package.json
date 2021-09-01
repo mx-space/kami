@@ -45,7 +45,7 @@
     "dayjs": "1.10.6",
     "gitlog": "4.0.4",
     "inflection": "1.13.1",
-    "js-cookie": "3.0.0",
+    "js-cookie": "3.0.1",
     "kico-style": "1.2.0",
     "mobx": "6.3.3",
     "mobx-react-lite": "3.2.1",
