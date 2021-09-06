@@ -67,7 +67,7 @@
     "react-medium-image-zoom": "4.3.5",
     "react-syntax-highlighter": "15.4.4",
     "react-transition-group": "4.4.2",
-    "react-use": "17.2.4",
+    "react-use": "17.3.1",
     "remove-markdown": "0.3.0",
     "sitemap": "7.0.0",
     "socket.io-client": "2.4.0",
@@ -116,6 +116,6 @@
     "unified": "9.2.2"
   },
   "resolutions": {
-    "react-use": "17.2.4"
+    "react-use": "17.3.1"
   }
 }
