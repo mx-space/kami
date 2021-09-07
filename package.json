@@ -108,7 +108,7 @@
     "react-lazyload": "3.2.0",
     "remark": "13.0.0",
     "remark-gfm": "1.0.0",
-    "remark-html": "13.0.1",
+    "remark-html": "13.0.2",
     "remark-parse": "5.0.0",
     "sass": "1.37.5",
     "ts-node": "10.1.0",
