@@ -55,7 +55,7 @@ interface CommentWrapProps {
 const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
   const { type, id, allowComment } = props
   const [comments, setComments] = useState([] as CommentModel[])
-  const [page, setPage] = useState({} as PagerModel['page'])
+  const [page, setPage] = useState({} as PagerModel['pagination'])
   const { userStore } = useStore()
   const logged = userStore.isLogged
   const collection = useMemo(
@@ -71,8 +71,9 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
           size,
           ts: new Date().getTime(),
         })
-        .then(({ data, page }) => {
+        .then(({ data, pagination: page }) => {
           collection.clear()
+
           flattenChildren(data).forEach((i) => {
             collection.set(i.id, i)
           })

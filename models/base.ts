@@ -9,11 +9,10 @@
 
 export interface BaseRespModel {
   ok: 0 | 1
-  timestamp: string
 }
 
 export interface PagerModel {
-  page: {
+  pagination: {
     total: number
     size: number
     currentPage: number

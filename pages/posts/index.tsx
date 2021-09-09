@@ -30,7 +30,7 @@ interface PostProps extends PagerModel {
 
 const Post: NextPage<PostProps> = observer((props) => {
   // const { page, posts } = props
-  const [page, setPage] = useState<PagerModel['page'] | null>(null)
+  const [page, setPage] = useState<PagerModel['pagination'] | null>(null)
   const [posts, setPosts] = useState<PostModel[]>([])
   const store = useStore()
   const { actionStore } = store
@@ -53,7 +53,7 @@ const Post: NextPage<PostProps> = observer((props) => {
       page: (page as any as number) || 1,
       year: parseInt(year as string) || undefined,
     })
-    setPage(data.page)
+    setPage(data.pagination)
     setPosts(data.data)
   }
 

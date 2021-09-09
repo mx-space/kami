@@ -312,6 +312,7 @@ App.getInitialProps = async (props: AppContext) => {
   }
 
   initData = initData || (await Rest('Aggregate').get<AggregateResp>())
+
   return { ...appProps, initData }
 }
 export default App
