@@ -42,7 +42,7 @@
     "axios": "0.21.4",
     "camelcase-keys": "7.0.0",
     "clsx": "1.1.1",
-    "dayjs": "1.10.6",
+    "dayjs": "1.10.7",
     "inflection": "1.13.1",
     "js-cookie": "3.0.1",
     "kico-style": "1.2.0",
