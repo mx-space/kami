@@ -3,7 +3,7 @@
 **NOTE: 此版本专为 [v3.0 版的 Server](https://github.com/mx-space/server-next) 打造, [旧版 Server](https://github.com/mx-space/server) 请使用 kami [v1.18](https://github.com/mx-space/kami/tree/v1.18.0)**
 
 [![DeepScan grade](https://deepscan.io/api/teams/7938/projects/10822/branches/154495/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=7938&pid=10822&bid=154495)
-[![time tracker](https://wakatime.com/badge/github/mx-space/web.svg)](https://wakatime.com/badge/github/mx-space/web)
+[![wakatime](https://wakatime.com/badge/github/mx-space/kami.svg)](https://wakatime.com/badge/github/mx-space/kami)
 
 **你的下一个博客何必是博客**
 
