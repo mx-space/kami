@@ -17,3 +17,10 @@ pages/debug.tsx
 /temp
 
 pages/dev
+
+patch/dist
+tmp
+out
+release.zip
+
+run

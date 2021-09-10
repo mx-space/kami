@@ -29,7 +29,7 @@ import { getToken, removeToken } from '../utils/cookie'
 import * as gtag from '../utils/gtag'
 import service from '../utils/request'
 
-const version = process.env.VERSION || `v${Package.version}` || ''
+const version = `v${Package.version}` || ''
 
 const Progress = new QP({ colorful: false, color: '#27ae60' })
 

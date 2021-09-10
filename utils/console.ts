@@ -15,7 +15,7 @@ import {
 } from '@innei/devtools-detector'
 import Package from './../package.json'
 import { isDev, isServerSide } from './utils'
-const version = process.env.VERSION || `v${Package.version}` || ''
+const version = `v${Package.version}` || ''
 
 const isSpiderBot = () => {
   if (isServerSide()) {
