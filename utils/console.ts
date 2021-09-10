@@ -7,11 +7,8 @@
  * @Coding with Love
  */
 import {
-  addListener,
-  DevtoolsDetectorListener,
-  launch,
-  removeListener,
-  stop,
+  DevtoolsDetectorListener, removeListener,
+  stop
 } from '@innei/devtools-detector'
 import Package from './../package.json'
 import { isDev, isServerSide } from './utils'
@@ -69,8 +66,8 @@ export async function devtoolForbidden() {
   if (isDev && !devTest) {
     return
   }
-  addListener(handler)
-  launch()
+  // addListener(handler)
+  // launch()
 }
 
 export const releaseDevtool = async () => {
