@@ -23,7 +23,7 @@ import { Seo } from '../../components/SEO'
 import styles from './index.module.scss'
 
 const Page: NextPage<PageRespDto> = (props) => {
-  const { data } = props
+  const data = props
   const { title, subtitle, text } = data
   const { appStore } = useStore()
   useEffect(() => {
@@ -54,25 +54,18 @@ const Page: NextPage<PageRespDto> = (props) => {
     })
   }, [props])
   const pages = appStore.pages
-  const indexInPages = pages.findIndex((i) => i.title == props.data.title)
+  const indexInPages = pages.findIndex((i) => i.title == props.title)
   const n = pages.length
   const hasNext = indexInPages + 1 < n
   const hasPrev = indexInPages - 1 >= 0
   return (
-    <ArticleLayout
-      title={title}
-      subtitle={subtitle}
-      id={props.data.id}
-      type="page"
-    >
+    <ArticleLayout title={title} subtitle={subtitle} id={props.id} type="page">
       <Seo
         title={title}
         openGraph={{ type: 'article' }}
         description={RemoveMarkdown(text).slice(0, 100).replace('\n', '')}
       />
-      <ImageSizeMetaContext.Provider
-        value={imagesRecord2Map(props.data.images)}
-      >
+      <ImageSizeMetaContext.Provider value={imagesRecord2Map(props.images)}>
         <Markdown value={text} escapeHtml={false} toc />
       </ImageSizeMetaContext.Provider>
       <div className={styles['pagination']}>
@@ -112,8 +105,8 @@ const Page: NextPage<PageRespDto> = (props) => {
       <CommentLazy
         {...{
           type: 'Page',
-          id: props.data.id,
-          allowComment: props.data.allowComment ?? true,
+          id: props.id,
+          allowComment: props.allowComment ?? true,
         }}
       />
     </ArticleLayout>
@@ -122,12 +115,12 @@ const Page: NextPage<PageRespDto> = (props) => {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
-    const { data } = await Rest('Page', 'slug').get<PageRespDto>(
+    const data = await Rest('Page', 'slug').get<PageRespDto>(
       ctx.query.page as string,
     )
 
     return {
-      props: { data },
+      props: data,
     }
   } catch {
     return {

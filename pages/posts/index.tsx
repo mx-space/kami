@@ -8,7 +8,7 @@ import { PostBlock } from 'components/PostBlock'
 import { BigTag } from 'components/Tag'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { PagerModel } from 'models/base'
-import { PostModel, PostPagerDto, PostRespModel } from 'models/post'
+import { PostModel, PostPagerDto } from 'models/post'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -88,10 +88,7 @@ const Post: NextPage<PostProps> = observer((props) => {
   }, [actionStore, actionsUUID, fetchTags, tags.length])
 
   const [postWithTag, setTagPost] = useState<
-    Pick<
-      PostRespModel['data'],
-      'id' | 'title' | 'slug' | 'created' | 'category'
-    >[]
+    Pick<PostModel, 'id' | 'title' | 'slug' | 'created' | 'category'>[]
   >([])
   const fetchPostsWithTag = useCallback(async (tagName: string) => {
     setTagPost(null!)
@@ -271,33 +268,4 @@ const Post: NextPage<PostProps> = observer((props) => {
   )
 })
 
-// Post.getInitialProps = async (ctx) => {
-//   const { page, year } = ctx.query
-
-//   const data = await Rest('Post', '').gets<PostPagerDto>({
-//     page: ((page as any) as number) || 1,
-//     year: parseInt(year as string) || undefined,
-//   })
-//   return {
-//     page: data.page,
-//     posts: data.data,
-//   }
-// }
-// export async function getServerSideProps(ctx: NextPageContext) {
-//   try {
-//     const { page, year } = ctx.query
-
-//     const data = await Rest('Post', '').gets<PostPagerDto>({
-//       page: ((page as any) as number) || 1,
-//       year: parseInt(year as string) || undefined,
-//     })
-//     return {
-//       props: { page: data.page, posts: data.data },
-//     }
-//   } catch {
-//     return {
-//       notFound: true,
-//     }
-//   }
-// }
 export default NoSSR(Post)

@@ -37,16 +37,17 @@ export const ApplyForLink: FC = () => {
         })
         .then(() => {
           message.success('感谢你能和我交朋友~')
+          message.success('待主人查看之后将会通知您哦')
         })
     },
     (err) => {
       // if (isDev) {
       console.log(err)
       // }
-      // const firstError = Object.entries(err)
-      // const [name, value] = firstError[0]
+      const firstError = Object.entries(err)
+      const [name, value] = firstError[0]
 
-      message.error('输入有误')
+      message.error(`${name}: ${value.message}`)
     },
   )
 
@@ -62,14 +63,20 @@ export const ApplyForLink: FC = () => {
           required
           name={'friend-author'}
           prefix={<FontAwesomeIcon icon={faUser} />}
-          ref={register({ maxLength: 20, required: true })}
+          ref={register({
+            maxLength: { value: 20, message: '乃的名字太长了!' },
+            required: { value: true, message: '输入你的大名吧' },
+          })}
         />
         <Input
           placeholder={'站点标题 *'}
           required
           name={'friend-name'}
           prefix={<FontAwesomeIcon icon={faPen} />}
-          ref={register({ maxLength: 20, required: true })}
+          ref={register({
+            maxLength: { value: 20, message: '标题太长了 www' },
+            required: { value: true, message: '标题是必须的啦' },
+          })}
         />
         <Input
           placeholder={'网站 * https://'}
@@ -98,17 +105,18 @@ export const ApplyForLink: FC = () => {
           prefix={<FontAwesomeIcon icon={faEnvelope} />}
           ref={register({
             validate: (value) => isEmail(value),
-            required: true,
+            required: { message: '邮箱不能为空哦', value: true },
           })}
         />
         <Input
           multi
           maxLength={50}
-          placeholder={'描述'}
+          placeholder={'描述 *'}
           name={'friend-desc'}
+          required
           ref={register({
-            maxLength: 50,
-            required: true,
+            maxLength: { message: '最大长度 50 !', value: 50 },
+            required: { message: '描述信息不能为空哦', value: true },
           })}
         />
       </form>

@@ -39,10 +39,8 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response) => {
     const res = camelcaseKeys(response.data, { deep: true })
-    return {
-      ...res,
-      data: res.data ?? res,
-    }
+
+    return res
   },
   (error: AxiosError<Record<string, any> | undefined>) => {
     if (
