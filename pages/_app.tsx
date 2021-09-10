@@ -1,4 +1,3 @@
-import '@openfonts/noto-sans-sc_vietnamese'
 import 'assets/styles/main.scss'
 import { DropdownProvider } from 'common/context/dropdown'
 import { InitialContext } from 'common/context/InitialDataContext'
@@ -58,8 +57,6 @@ const Content: FC<DataModel> = observer((props) => {
 
   useMount(() => {
     {
-      console.log(process.env)
-
       const data = props.initData
 
       const { seo, user, pageMeta, categories, lastestNoteNid } = data

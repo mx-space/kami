@@ -6,7 +6,7 @@
  * @FilePath: /web/components/PostBlock/index.tsx
  * @Mark: Coding with Love
  */
-import classNames from 'classnames'
+import classNames from 'clsx'
 import { useStore } from 'common/store'
 import { PostModel } from 'models/post'
 import Router from 'next/router'

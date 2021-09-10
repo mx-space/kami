@@ -1,4 +1,5 @@
 import { faBookOpen, faClock } from '@fortawesome/free-solid-svg-icons'
+import { useLoadFont } from 'common/hooks/useLoadFont'
 import { useRefEffect } from 'common/hooks/useRefEffect'
 import { EventTypes } from 'common/socket/types'
 import { useStore } from 'common/store'
@@ -84,6 +85,7 @@ const NoteView: NextPage<NoteViewProps> = observer((props): JSX.Element => {
     }
   }, [data.id, router, userStore.isLogged])
 
+  useLoadFont()
   const { title, id, text, mood, weather } = data
 
   const [like, setLikeCount] = useState(data.count.like ?? 0)

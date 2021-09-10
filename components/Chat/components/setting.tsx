@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import classNames from 'clsx'
 import QueueAnim from 'rc-queue-anim'
 import {
   DetailedHTMLProps,

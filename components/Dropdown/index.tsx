@@ -7,7 +7,7 @@
  * @Mark: Coding with Love
  */
 
-import classNames from 'classnames'
+import classNames from 'clsx'
 import { throttle } from 'lodash'
 import dynamic from 'next/dynamic'
 import React, { FC } from 'react'

@@ -4,7 +4,7 @@ import {
   faPaperPlane,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import classNames from 'classnames'
+import classNames from 'clsx'
 import { EventTypes } from 'common/socket/types'
 import { userStore, useStore } from 'common/store'
 import { QueueAnim } from 'components/Anime'

@@ -6,7 +6,7 @@
  * @FilePath: /web/components/Overlay/index.tsx
  * @Mark: Coding with Love
  */
-import classNames from 'classnames'
+import classNames from 'clsx'
 import { QueueAnim } from 'components/Anime'
 import { merge } from 'lodash'
 import dynamic from 'next/dynamic'

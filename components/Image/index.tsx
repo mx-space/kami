@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import classNames from 'clsx'
 import dynamic from 'next/dynamic'
 import randomColor from 'randomcolor'
 import {

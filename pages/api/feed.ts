@@ -23,7 +23,7 @@ const parser = unified()
   .use(html, {
     allowDangerousHtml: true,
     handlers: {
-      image: (h, node) => {
+      image: (h, node: any) => {
         // console.log(node)
 
         const src = node.url as string
@@ -45,7 +45,7 @@ const parser = unified()
           ),
         ])
       },
-      spoiler: (h, node) => {
+      spoiler: (h, node: any) => {
         return h(
           node,
           'del',
@@ -70,6 +70,7 @@ const parser = unified()
             ),
             {
               type: 'text',
+              // @ts-ignore
               value: node.value,
             },
           ],

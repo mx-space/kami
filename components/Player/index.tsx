@@ -1,5 +1,4 @@
-import classNames from 'classnames'
-import clsx from 'clsx'
+import { default as classNames, default as clsx } from 'clsx'
 import { musicStore } from 'common/store'
 import { observer } from 'mobx-react-lite'
 import {

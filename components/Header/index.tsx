@@ -13,7 +13,7 @@ import {
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import classNames from 'classnames'
+import classNames from 'clsx'
 import { useInitialData } from 'common/context/InitialDataContext'
 import { appUIStore, useStore } from 'common/store'
 import { DropdownBase } from 'components/Dropdown'

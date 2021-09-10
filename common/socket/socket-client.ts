@@ -7,13 +7,13 @@
  * @MIT
  */
 
-import io from 'socket.io-client'
+import io, { Socket } from 'socket.io-client'
 import { isDev } from 'utils'
 import observable from '../../utils/observable'
 import { eventHandler } from './handler'
 import { EventTypes } from './types'
 export class SocketClient {
-  public socket!: SocketIOClient.Socket
+  public socket!: Socket
 
   constructor() {
     this.socket = io(

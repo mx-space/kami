@@ -7,7 +7,7 @@
  * @Coding with Love
  */
 
-import classNames from 'classnames'
+import classNames from 'clsx'
 import isNull from 'lodash/isNull'
 import range from 'lodash/range'
 import throttle from 'lodash/throttle'

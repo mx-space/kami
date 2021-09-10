@@ -7,7 +7,7 @@
  * @Coding with Love
  */
 
-import classNames from 'classnames'
+import classNames from 'clsx'
 import type { ServerResponse } from 'http'
 import dynamic from 'next/dynamic'
 import { ComponentType } from 'react'
