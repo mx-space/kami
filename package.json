@@ -70,7 +70,7 @@
     "remove-markdown": "0.3.0",
     "sitemap": "7.0.0",
     "socket.io-client": "4.2.0",
-    "tailwindcss": "2.2.14",
+    "tailwindcss": "2.2.15",
     "ua-parser-js": "0.7.28",
     "validator": "13.6.0"
   },
