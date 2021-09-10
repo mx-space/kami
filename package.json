@@ -2,7 +2,7 @@
   "name": "mx-web",
   "license": "GPL-3.0",
   "private": false,
-  "version": "2.0.4",
+  "version": "2.0.5",
   "engines": {
     "node": ">=14"
   },
