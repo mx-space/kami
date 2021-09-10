@@ -101,17 +101,6 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
   const sortedMap = new Map<number, MapType[]>()
 
   const { posts = [], notes = [] } = props
-  // const duration = 20
-  // const getDelayTime = (year: number): number => {
-  //   const prevYear = year + 1
-  //   const itemsLength = sortedMap.get(prevYear)?.length
-
-  //   if (itemsLength) {
-  //     return itemsLength * 100 + getDelayTime(prevYear)
-  //   } else {
-  //     return 0
-  //   }
-  // }
 
   if (!props.memory) {
     posts.forEach((post) => {

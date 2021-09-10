@@ -14,7 +14,7 @@ import { NumberRecorder } from 'components/NumberRecorder'
 import OutdateNotice from 'components/Outdate'
 import dayjs from 'dayjs'
 import { ArticleLayout } from 'layouts/ArticleLayout'
-import { PostModel, PostRespModel } from 'models/post'
+import { PostModel } from 'models/post'
 import { NextPage } from 'next/'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
@@ -214,27 +214,12 @@ export const PostView: NextPage<PostModel> = (props) => {
 PostView.getInitialProps = async (ctx) => {
   const { query } = ctx
   const { category, slug } = query
-  const { data } = (await Rest('Post', category as string).get(
+  const data = (await Rest('Post', category as string).get(
     slug as string,
-  )) as PostRespModel
+  )) as PostModel
   return {
     ...data,
   }
 }
-// export async function getServerSideProps(ctx: NextPageContext) {
-//   try {
-//     const { query } = ctx
-//     const { category, slug } = query
-//     const { data } = (await Rest('Post', category as string).get(
-//       slug as string,
-//     )) as PostRespModel
-//     return {
-//       props: { ...data },
-//     }
-//   } catch {
-//     return {
-//       notFound: true,
-//     }
-//   }
-// }
+
 export default observer(PostView)

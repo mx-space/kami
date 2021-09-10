@@ -20,11 +20,14 @@
 }
 
 .text {
+  overflow: hidden;
   line-height: 2;
+
   .title {
     text-align: center;
   }
 }
+
 .btn {
   padding: 0.7rem 1rem;
   outline: 0;
@@ -60,6 +63,9 @@
   background-size: contain;
   background-repeat: no-repeat;
 }
+
 .has-image {
-  float: right;
+  // float: right;
+  clear: both;
+  overflow: hidden;
 }

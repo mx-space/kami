@@ -35,7 +35,3 @@ export interface PostModel {
 export interface PostPagerDto extends BaseRespModel, PagerModel {
   data: PostModel[]
 }
-
-export interface PostRespModel extends BaseRespModel {
-  data: PostModel
-}

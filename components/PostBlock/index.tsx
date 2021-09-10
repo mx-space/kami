@@ -71,7 +71,12 @@ export const PostBlock: FC<Props> = observer((props) => {
               style={{ backgroundImage: `url(${hasImage})` }}
             />
           )}
-          <div>{removeMd(text).slice(0, 250) + '..'}</div>
+          <div>
+            {(() => {
+              const r = removeMd(text)
+              return r.length >= 250 ? r.slice(0, 250) + '..' : r
+            })()}
+          </div>
           <div className=""></div>
         </article>
         <section className={styles.navigator}>
