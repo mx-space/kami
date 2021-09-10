@@ -58,6 +58,8 @@ const Content: FC<DataModel> = observer((props) => {
 
   useMount(() => {
     {
+      console.log(process.env)
+
       const data = props.initData
 
       const { seo, user, pageMeta, categories, lastestNoteNid } = data

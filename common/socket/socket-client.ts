@@ -17,7 +17,7 @@ export class SocketClient {
 
   constructor() {
     this.socket = io(
-      (process.env.GATEWAY_URL || 'http://localhost:2333') + '/web',
+      (process.env.NEXT_PUBLIC_GATEWAY_URL || 'http://localhost:2333') + '/web',
       {
         timeout: 10000,
         reconnectionDelay: 3000,

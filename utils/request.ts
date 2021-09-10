@@ -13,7 +13,7 @@ import { message } from 'utils/message'
 import { getToken } from './cookie'
 import { isClientSide, isServerSide } from './utils'
 const service = axios.create({
-  baseURL: process.env.APIURL || '/api',
+  baseURL: process.env.NEXT_PUBLIC_APIURL || '/api',
   // withCredentials: true,
   timeout: 10000,
 })

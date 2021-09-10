@@ -40,6 +40,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ASSETPREFIX: ${{ secrets.ASSETPREFIX }}
+          NEXT_PUBLIC_APIURL: https://api.innei.ren/v2
+          NEXT_PUBLIC_GATEWAY_URL: https://api.innei.ren
+          NEXT_PUBLIC_TRACKING_ID: G-X4PVVRB6TF
+          NEXT_PUBLIC_ALWAYS_HTTPS: 1
+          NETEASE_PHONE: ${{ secrets.NETEASE_PHONE }}
+          NETEASE_PASSWORD: ${{ secrets.NETEASE_PASSWORD }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
           asset_path: ./release.zip
@@ -63,5 +69,6 @@ jobs:
             source ~/.zshrc
             cd mx/kami
             git reset --hard
+            git pull
             node scripts/fetch-build.js
             sh scripts/update-cdn.sh

@@ -139,16 +139,8 @@ function buildRoute<T extends { id: string } & { nid?: number }>(
 
 IndexView.getInitialProps = async (): Promise<IndexViewProps> => {
   const aggregateData = (await Rest('Aggregate').get('top')) as Top.Aggregate
-  // const randomImageData = (await Rest('Aggregate').get(
-  //   'random?type=3&imageType=2&size=8',
-  // )) as { data: RandomImage.Image[] }
-  const extraImages = getAnimeImages()
 
-  // const randomImages = randomImageData.data.map((image) => {
-  //   return image.locate !== RandomImage.Locate.Online
-  //     ? `${process.env.APIURL}/uploads/background/${image.name}`
-  //     : (image.url as string)
-  // })
+  const extraImages = getAnimeImages()
 
   return {
     ...(omit(aggregateData, ['ok', 'timestamp']) as IndexViewProps),

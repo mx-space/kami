@@ -127,7 +127,8 @@ export default {
   alwaysHTTPS:
     process.env.NODE_ENV === 'development'
       ? false
-      : process.env.ALWAYS_HTTPS && parseInt(process.env.ALWAYS_HTTPS) === 1,
+      : process.env.NEXT_PUBLIC_ALWAYS_HTTPS &&
+        parseInt(process.env.NEXT_PUBLIC_ALWAYS_HTTPS) === 1,
   social,
   biliId: 26578164,
   homePage: 'https://innei.ren', // footer link
