@@ -4,6 +4,7 @@ const fs = require('fs')
 const { sleep } = require('zx')
 const { homedir } = require('os')
 const path = require('path')
+const { nothrow } = require('zx')
 
 const owner = 'mx-space'
 const repo = 'kami'
@@ -20,7 +21,7 @@ async function main() {
   )?.browser_download_url
 
   if (!downloadUrl) {
-    return
+    throw new Error('no download url')
   }
 
   const buffer = await fetch(
@@ -31,10 +32,9 @@ async function main() {
   // pwd: ~/mx/kami
   await $`rm -rf ./.next`
   await $`unzip /tmp/${tmpName}.zip -d ./.next`
-  try {
-    await $`pm2 stop ecosystem.config.js`
-  } catch {}
-  await $`pm2 start ecosystem.config.js`
+  process.env.NODE_ENV = 'production'
+  await $`export NODE_ENV=production`
+  await nothrow($`pm2 reload ecosystem.config.js --update-env`)
   console.log('等待 15 秒')
   await sleep(15000)
   try {
