@@ -32,6 +32,7 @@ async function main() {
   // pwd: ~/mx/kami
   await $`rm -rf ./.next`
   await $`unzip /tmp/${tmpName}.zip -d ./.next`
+  await $`rm /tmp/${tmpName}.zip`
   process.env.NODE_ENV = 'production'
   await $`export NODE_ENV=production`
   await nothrow($`pm2 reload ecosystem.config.js --update-env`)
