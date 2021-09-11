@@ -112,6 +112,10 @@ export default class MyDocument extends Document<{ ua: string }> {
           <Main />
           <NextScript />
           <script
+            src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"
+            async
+          ></script>
+          <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
           />

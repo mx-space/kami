@@ -12,14 +12,13 @@ import React, { ElementType, FC, RefObject, useEffect } from 'react'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { ensuredForwardRef } from 'react-use'
 import { observer } from 'utils/mobx'
-import CodeBlock from '../CodeHighlighter'
+import { CodeBlock } from '../CodeBlock'
 import { Heading } from './Heading'
 import { Image } from './Image'
 import styles from './index.module.scss'
 import { RenderLink } from './Link'
 import { RenderCommentAt, RenderParagraph, RenderSpoiler, _TOC } from './Other'
 import { processDetails } from './process-tag'
-
 type MdProps = ReactMarkdownProps & {
   value: string
   toc?: boolean
@@ -79,6 +78,7 @@ export const Markdown: FC<MdProps> = observer(
             commentAt: RenderCommentAt,
             ...renderers,
           }}
+          // astPlugins={[mermaid]}
           plugins={CustomRules}
         />
 

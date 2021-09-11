@@ -71,6 +71,7 @@ interface Props {
 }
 const HighLighter: FC<Props> = observer((props) => {
   const { language, value } = props
+
   const { colorMode } = useStore().appStore
   const handleCopy = useCallback(() => {
     navigator.clipboard.writeText(value)
