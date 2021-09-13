@@ -41,16 +41,19 @@ const configs = withBundleAnalyzer({
         source: '/service-worker.js',
         destination: '/_next/static/service-worker.js',
       },
-      {
-        source: '/api/:path*',
-        destination: env.NEXT_PUBLIC_APIURL + '/:path*',
-      },
     ]
     // this can remove after test
     if (isProd && env.ASSETPREFIX) {
       base.push({
         source: '/autostatic/:path*',
         destination: env.ASSETPREFIX + '/_next/static/:path*',
+      })
+    }
+
+    if (env.NEXT_PUBLIC_APIURL) {
+      base.push({
+        source: '/api/:path*',
+        destination: env.NEXT_PUBLIC_APIURL + '/:path*',
       })
     }
     return base
