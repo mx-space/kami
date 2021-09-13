@@ -9,6 +9,7 @@
 import { faBookmark } from '@fortawesome/free-regular-svg-icons'
 import { faBookmark as faBookmarkSolid } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useRedirectSimpleRender } from 'common/hooks/useRedirectSimpleRender'
 import { useStore } from 'common/store'
 import dayjs from 'dayjs'
 import { FC, forwardRef, useCallback } from 'react'
@@ -44,7 +45,7 @@ const _NoteLayout: FC<NoteLayoutProps> = observer(
     const {
       userStore: { isLogged, url },
     } = useStore()
-
+    useRedirectSimpleRender(id)
     const onMarkToggle = useCallback(() => {
       Rest('Note').update(id, { hasMemory: !bookmark })
     }, [bookmark, id])

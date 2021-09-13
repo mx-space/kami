@@ -77,7 +77,6 @@ specifiers:
   remove-markdown: 0.3.0
   rimraf: '*'
   sass: 1.39.2
-  sitemap: 7.0.0
   socket.io-client: 4.2.0
   tailwindcss: 2.2.15
   ts-node: 10.2.1
@@ -128,7 +127,6 @@ dependencies:
   react-transition-group: 4.4.2_react-dom@17.0.2+react@17.0.2
   react-use: 17.3.1_react-dom@17.0.2+react@17.0.2
   remove-markdown: 0.3.0
-  sitemap: 7.0.0
   socket.io-client: 4.2.0
   tailwindcss: 2.2.15_postcss@8.3.6+ts-node@10.2.1
   ua-parser-js: 0.7.28
@@ -1785,10 +1783,6 @@ packages:
       form-data: 3.0.1
     dev: true
 
-  /@types/node/15.14.9:
-    resolution: {integrity: sha512-qjd88DrCxupx/kJD5yQgZdcYKZKSIGBVDIBE1/LTGcNm3d2Np/jxojkdePDdfnBHJc5W7vSMpbJ1aB7p/Py69A==}
-    dev: false
-
   /@types/node/16.9.1:
     resolution: {integrity: sha512-QpLcX9ZSsq3YYUUnD3nFDY8H7wctAhQj/TFKL8Ya8v5fMm3CFXxo8zStsLAl780ltoYoo1WvKUVGBQK+1ifr7g==}
 
@@ -1854,12 +1848,6 @@ packages:
 
   /@types/resolve/0.0.8:
     resolution: {integrity: sha512-auApPaJf3NPfe18hSoJkp8EbZzer2ISk7o8mCC3M9he/a04+gbMF97NkpD2S8riMGvm4BMRI59/SZQSaLTKpsQ==}
-    dependencies:
-      '@types/node': 16.9.1
-    dev: false
-
-  /@types/sax/1.2.3:
-    resolution: {integrity: sha512-+QSw6Tqvs/KQpZX8DvIl3hZSjNFLW/OqE5nlyHXtTwODaJvioN2rOWpBNEWZp2HZUFhOh+VohmJku/WxEXU2XA==}
     dependencies:
       '@types/node': 16.9.1
     dev: false
@@ -7316,10 +7304,6 @@ packages:
       chokidar: 3.5.2
     dev: true
 
-  /sax/1.2.4:
-    resolution: {integrity: sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==}
-    dev: false
-
   /scheduler/0.20.2:
     resolution: {integrity: sha512-2eWfGgAqqWFGqtdMmcL5zCMK1U8KlXv8SQFGglL3CEtd0aDVDWgeF/YoCmvln55m5zSk3J/20hTaSBeSObsQDQ==}
     dependencies:
@@ -7474,17 +7458,6 @@ packages:
       mime: 2.5.2
       totalist: 1.1.0
     dev: true
-
-  /sitemap/7.0.0:
-    resolution: {integrity: sha512-Ud0jrRQO2k7fEtPAM+cQkBKoMvxQyPKNXKDLn8tRVHxRCsdDQ2JZvw+aZ5IRYYQVAV9iGxEar6boTwZzev+x3g==}
-    engines: {node: '>=12.0.0', npm: '>=5.6.0'}
-    hasBin: true
-    dependencies:
-      '@types/node': 15.14.9
-      '@types/sax': 1.2.3
-      arg: 5.0.1
-      sax: 1.2.4
-    dev: false
 
   /slash/1.0.0:
     resolution: {integrity: sha1-xB8vbDn8FtHNF61LXYlhFK5HDVU=}

@@ -1,3 +1,4 @@
+import { useRedirectSimpleRender } from 'common/hooks/useRedirectSimpleRender'
 import { userStore } from 'common/store'
 import QueueAnim from 'rc-queue-anim'
 import Texty from 'rc-texty'
@@ -40,6 +41,7 @@ export const ArticleLayout: FC<
       },
       ref: any,
     ) => {
+      useRedirectSimpleRender(id)
       useEffect(() => {
         if (focus) {
           document.body.classList.add('focus')
