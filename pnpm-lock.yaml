@@ -16,7 +16,7 @@ specifiers:
   '@mx-space/extra': 0.5.0
   '@next/bundle-analyzer': 11.1.2
   '@openfonts/noto-sans-sc_vietnamese': 1.44.0
-  '@types/inflection': 1.5.28
+  '@types/inflection': 1.13.0
   '@types/js-cookie': 2.2.7
   '@types/lodash': 4.14.172
   '@types/node': 16.9.1
@@ -136,7 +136,7 @@ devDependencies:
   '@innei-util/eslint-config-react-ts': 0.1.2_eslint@7.32.0+typescript@4.4.3
   '@innei-util/prettier': 0.1.3_prettier@2.4.0+typescript@4.4.3
   '@next/bundle-analyzer': 11.1.2
-  '@types/inflection': 1.5.28
+  '@types/inflection': 1.13.0
   '@types/js-cookie': 2.2.7
   '@types/lodash': 4.14.172
   '@types/node': 16.9.1
@@ -1580,6 +1580,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
+    requiresBuild: true
     dev: false
     optional: true
 
@@ -1588,6 +1589,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
+    requiresBuild: true
     dev: false
     optional: true
 
@@ -1596,6 +1598,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    requiresBuild: true
     dev: false
     optional: true
 
@@ -1604,6 +1607,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
+    requiresBuild: true
     dev: false
     optional: true
 
@@ -1749,8 +1753,8 @@ packages:
       '@types/unist': 2.0.6
     dev: false
 
-  /@types/inflection/1.5.28:
-    resolution: {integrity: sha1-Q9VeDXLPMzot/9nE7AQHRVobCTE=}
+  /@types/inflection/1.13.0:
+    resolution: {integrity: sha512-kZSETqAVS74XC/K3mPX/tbMEi/Zy1KP0Wc59dB1i5P72AHz4eSW+UIpzWxmQnDxipoKSX5eRgUXy+wUr+bY73g==}
     dev: true
 
   /@types/invariant/2.2.35:
@@ -4110,6 +4114,7 @@ packages:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
+    requiresBuild: true
     optional: true
 
   /ftp/0.3.10:
