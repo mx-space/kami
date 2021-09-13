@@ -1,5 +1,7 @@
 > 影响大众想象力的，并不是事实本身，而是它扩散和传播的方式。
 
+↑ 引用
+
 # Test 文本
 
 > 影响大众想象力的，并不是事实本身，而是它扩散和传播的方式。
@@ -24,35 +26,50 @@
 
 \`code: \`
 
-` + '```tsx\n' +  `
+```tsx
 <ReactMarkdown
-// source={value}
-source={}
-{...rest}
-renderers={{
-  code: CodeBlock,
-  pre: CodeBlock,
-  image: Image,
-  heading: Heading(),
-  link: RenderLink,
-  spoiler: RenderSpoiler,
-  paragraph: RenderParagraph,
-  // eslint-disable-next-line react/display-name
-  commentAt: RenderCommentAt,
-  ...renderers,
-}}
-plugins={CustomRules}
+  // source={value}
+  source={}
+  {...rest}
+  renderers={{
+    code: CodeBlock,
+    pre: CodeBlock,
+    image: Image,
+    heading: Heading(),
+    link: RenderLink,
+    spoiler: RenderSpoiler,
+    paragraph: RenderParagraph,
+    // eslint-disable-next-line react/display-name
+    commentAt: RenderCommentAt,
+    ...renderers,
+  }}
+  plugins={CustomRules}
 />
-` + '```\n' +  `
-|| 你知道的太多了 ||
+```
+
+|| 你知道的太多了 || spoiler || 你知道的太多了 ||
 
 [链接](https://baidu.com)
 
 ![!图片描述](https://gitee.com/xun7788/my-imagination/raw/master/uPic/1615516941397.jpg)
 
+↑ 图片描述
+
 **加粗: 歌词**
 
-~~dele~~
+~~dele~~ 删除
+
+```mermaid
+flowchart TD
+    1([手动打 tag 发布一个 release]) -->
+    2([CI 监视 release 的发布 开始构建和发布]) -->
+    3([云构建打包产物 zip 发布到 GitHub Release]) -- SSH 连接到服务器-->
+    4([执行部署脚本]) -->
+    5([下载构建产物解压]) -->
+    6([直接运行或使用 PM2 托管])
+```
+
+mention: (@Innei)
 
 > _夕暮れ_
 >

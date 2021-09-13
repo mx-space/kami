@@ -11,7 +11,7 @@
  */
 
 function tokenizeMention(eat: any, value: string, silent?: boolean): any {
-  const match = /\((@(\w+\b))\)\s(?!\[.*?\])/.exec(value)
+  const match = /\((@(\w+\b))\)\s?(?!\[.*?\])/.exec(value)
 
   if (match) {
     if (silent) {

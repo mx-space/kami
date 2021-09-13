@@ -14,7 +14,7 @@ export default async function sitemapFunc(
   try {
     const stories = ((await fetchContentFromAPI()) as any).data as {
       url: string
-      published_at: string
+      publishedAt: string
     }[]
 
     const smStream = new SitemapStream({
@@ -23,7 +23,7 @@ export default async function sitemapFunc(
     for (const story of stories) {
       smStream.write({
         url: story.url,
-        lastmod: story.published_at,
+        lastmod: story.publishedAt,
       })
     }
     smStream.end()
