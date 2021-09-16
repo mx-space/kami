@@ -18,7 +18,7 @@ specifiers:
   '@openfonts/noto-sans-sc_vietnamese': 1.44.0
   '@types/inflection': 1.13.0
   '@types/js-cookie': 2.2.7
-  '@types/lodash': 4.14.172
+  '@types/lodash': 4.14.173
   '@types/node': 16.9.1
   '@types/randomcolor': 0.5.6
   '@types/react': 17.0.21
@@ -138,7 +138,7 @@ devDependencies:
   '@next/bundle-analyzer': 11.1.2
   '@types/inflection': 1.13.0
   '@types/js-cookie': 2.2.7
-  '@types/lodash': 4.14.172
+  '@types/lodash': 4.14.173
   '@types/node': 16.9.1
   '@types/randomcolor': 0.5.6
   '@types/react': 17.0.21
@@ -1772,8 +1772,8 @@ packages:
     resolution: {integrity: sha1-7ihweulOEdK4J7y+UnC86n8+ce4=}
     dev: true
 
-  /@types/lodash/4.14.172:
-    resolution: {integrity: sha512-/BHF5HAx3em7/KkzVKm3LrsD6HZAXuXO1AJZQ3cRRBZj4oHZDviWPYu0aEplAqDFNHZPW6d3G7KN+ONcCCC7pw==}
+  /@types/lodash/4.14.173:
+    resolution: {integrity: sha512-vv0CAYoaEjCw/mLy96GBTnRoZrSxkGE0BKzKimdR8P3OzrNYNvBgtW7p055A+E8C31vXNUhWKoFCbhq7gbyhFg==}
     dev: true
 
   /@types/minimist/1.2.2:
