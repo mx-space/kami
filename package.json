@@ -89,7 +89,7 @@
     "@types/react-dom": "17.0.9",
     "@types/react-lazyload": "3.1.1",
     "@types/react-syntax-highlighter": "13.5.2",
-    "@types/react-transition-group": "4.4.2",
+    "@types/react-transition-group": "4.4.3",
     "@types/remove-markdown": "0.3.1",
     "@types/ua-parser-js": "0.7.36",
     "@types/validator": "13.6.3",
