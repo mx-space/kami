@@ -17,6 +17,7 @@ import { SEO } from '../../components/SEO'
 import { ArticleLayout } from '../../layouts/ArticleLayout'
 import { LinkModel, LinkType } from '../../models/link'
 import { Rest } from '../../utils/api'
+
 const renderSection = (data: LinkModel[]) => {
   return (
     <div className="note-item">
@@ -133,7 +134,7 @@ const _Footer: FC = () => {
           .split('\n')
           .map((i) => i.trim())
           .join('\n')}
-      ></Markdown>
+      />
     </QueueAnim>
   )
 }
