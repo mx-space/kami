@@ -53,6 +53,9 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
     Rest('Say')
       .get<any>('random')
       .then(({ data }: { data: SayModel }) => {
+        if (!data) {
+          return
+        }
         setSay(`${data.text}  ——${data.author ?? data.source ?? '站长说'}`)
       })
   }, [])
