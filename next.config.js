@@ -1,12 +1,3 @@
-/*
- * @Author: Innei
- * @Date: 2020-04-18 16:00:58
- * @LastEditTime: 2021-06-27 16:20:22
- * @LastEditors: Innei
- * @FilePath: /web/next.config.js
- * @MIT
- */
-
 const isProd = process.env.NODE_ENV === 'production'
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
@@ -27,8 +18,6 @@ const configs = withBundleAnalyzer({
   },
   assetPrefix: isProd ? env.ASSETPREFIX || '' : '',
   eslint: {
-    // Warning: Dangerously allow production builds to successfully complete even if
-    // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
   async rewrites() {
@@ -61,11 +50,11 @@ const configs = withBundleAnalyzer({
   // 小水管就算了吧
   // __NEXT_OPTIMIZE_FONTS=true 暂时
   optimizeFonts: false,
-  experimental: {
-    granularChunks: true,
-    modern: true,
-    scrollRestoration: true,
-  },
+  // experimental: {
+  //   granularChunks: true,
+  //   modern: true,
+  //   scrollRestoration: true,
+  // },
 })
 
 module.exports = isProd
