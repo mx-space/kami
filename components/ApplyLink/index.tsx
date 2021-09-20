@@ -61,9 +61,8 @@ export const ApplyForLink: FC = () => {
         <Input
           placeholder={'昵称 *'}
           required
-          name={'friend-author'}
           prefix={<FontAwesomeIcon icon={faUser} />}
-          ref={register({
+          {...register('friend-author', {
             maxLength: { value: 20, message: '乃的名字太长了!' },
             required: { value: true, message: '输入你的大名吧' },
           })}
@@ -71,9 +70,8 @@ export const ApplyForLink: FC = () => {
         <Input
           placeholder={'站点标题 *'}
           required
-          name={'friend-name'}
           prefix={<FontAwesomeIcon icon={faPen} />}
-          ref={register({
+          {...register('friend-name', {
             maxLength: { value: 20, message: '标题太长了 www' },
             required: { value: true, message: '标题是必须的啦' },
           })}
@@ -81,9 +79,8 @@ export const ApplyForLink: FC = () => {
         <Input
           placeholder={'网站 * https://'}
           required
-          name={'friend-url'}
           prefix={<FontAwesomeIcon icon={faGlobeAsia} />}
-          ref={register({
+          {...register('friend-url', {
             validate: (value) => isURL(value, { require_protocol: true }),
             required: true,
           })}
@@ -91,9 +88,8 @@ export const ApplyForLink: FC = () => {
         <Input
           placeholder={'头像链接 * https://'}
           required
-          name={'friend-avatar'}
           prefix={<FontAwesomeIcon icon={faUserCircle} />}
-          ref={register({
+          {...register('friend-avatar', {
             validate: (value) => isURL(value, { require_protocol: true }),
             required: true,
           })}
@@ -101,9 +97,8 @@ export const ApplyForLink: FC = () => {
         <Input
           placeholder={'留下你的邮箱哦 *'}
           required
-          name={'friend-email'}
           prefix={<FontAwesomeIcon icon={faEnvelope} />}
-          ref={register({
+          {...register('friend-email', {
             validate: (value) => isEmail(value),
             required: { message: '邮箱不能为空哦', value: true },
           })}
@@ -112,9 +107,8 @@ export const ApplyForLink: FC = () => {
           multi
           maxLength={50}
           placeholder={'描述 *'}
-          name={'friend-desc'}
           required
-          ref={register({
+          {...register('friend-desc', {
             maxLength: { message: '最大长度 50 !', value: 50 },
             required: { message: '描述信息不能为空哦', value: true },
           })}
