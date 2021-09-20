@@ -21,7 +21,7 @@ specifiers:
   '@types/lodash': 4.14.173
   '@types/node': 16.9.1
   '@types/randomcolor': 0.5.6
-  '@types/react': 17.0.21
+  '@types/react': 17.0.22
   '@types/react-color': 3.0.5
   '@types/react-dom': 17.0.9
   '@types/react-lazyload': 3.1.1
@@ -141,7 +141,7 @@ devDependencies:
   '@types/lodash': 4.14.173
   '@types/node': 16.9.1
   '@types/randomcolor': 0.5.6
-  '@types/react': 17.0.21
+  '@types/react': 17.0.22
   '@types/react-color': 3.0.5
   '@types/react-dom': 17.0.9
   '@types/react-lazyload': 3.1.1
@@ -1842,6 +1842,14 @@ packages:
 
   /@types/react/17.0.21:
     resolution: {integrity: sha512-GzzXCpOthOjXvrAUFQwU/svyxu658cwu00Q9ugujS4qc1zXgLFaO0kS2SLOaMWLt2Jik781yuHCWB7UcYdGAeQ==}
+    dependencies:
+      '@types/prop-types': 15.7.4
+      '@types/scheduler': 0.16.2
+      csstype: 3.0.8
+    dev: true
+
+  /@types/react/17.0.22:
+    resolution: {integrity: sha512-kq/BMeaAVLJM6Pynh8C2rnr/drCK+/5ksH0ch9asz+8FW3DscYCIEFtCeYTFeIx/ubvOsMXmRfy7qEJ76gM96A==}
     dependencies:
       '@types/prop-types': 15.7.4
       '@types/scheduler': 0.16.2
