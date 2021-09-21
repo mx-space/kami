@@ -47,7 +47,7 @@ specifiers:
   mobx-react-lite: 3.2.1
   next: 11.1.2
   next-offline: 5.0.5
-  next-seo: 4.28.0
+  next-seo: 4.28.1
   nodemon: 2.0.12
   normalize.css: 8.0.1
   postcss: 8.3.6
@@ -108,7 +108,7 @@ dependencies:
   mobx-react-lite: 3.2.1_8aec6830c9f393111667240500a3b25c
   next: 11.1.2_28202b60a2f1ff1efe2350faab6bb389
   next-offline: 5.0.5_next@11.1.2
-  next-seo: 4.28.0_6fbf59523517da779df50d355b375324
+  next-seo: 4.28.1_6fbf59523517da779df50d355b375324
   normalize.css: 8.0.1
   qier-progress: 1.0.4
   randomcolor: 0.6.2
@@ -5481,8 +5481,8 @@ packages:
       - supports-color
     dev: false
 
-  /next-seo/4.28.0_6fbf59523517da779df50d355b375324:
-    resolution: {integrity: sha512-jlB7GBX7LA5UAzFbsSdaQQ//lDz1RU+6a1JtrDQPPtk0/Wk07kU/NmZLAx1U087355u5ToWZjQB8W0rQb4C3Gg==}
+  /next-seo/4.28.1_6fbf59523517da779df50d355b375324:
+    resolution: {integrity: sha512-WZgwdM+UhpNF3A37zFllzmPhnOVJ9vYeYlc0n3Z/kYfz/QQgy8NEdncNNggS9dU4JD8xriaCcyknhy5OsrFsJw==}
     peerDependencies:
       next: ^8.1.1-canary.54 || >=9.0.0
       react: '>=16.0.0'
