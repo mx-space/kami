@@ -86,6 +86,9 @@ const Avatar: FC<AvatarProps> = observer(({ src }) => {
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
+    if (!src) {
+      return
+    }
     const image = new Image()
     image.src = src
     image.crossOrigin = 'anonymous'
@@ -106,6 +109,7 @@ const Avatar: FC<AvatarProps> = observer(({ src }) => {
     <div
       className={styles['guest-avatar']}
       style={ready ? undefined : { backgroundColor: randomColor }}
+      data-avatar={src}
     >
       <LazyLoad offset={250}>
         <div
@@ -302,7 +306,7 @@ const Comments: FC<{
             {comment.author}
           </a>
         }
-        avatar={<Avatar src={comment.avatar?.concat('?d=identicon')} />}
+        avatar={<Avatar src={comment.avatar} />}
         content={
           <Markdown
             value={`${
