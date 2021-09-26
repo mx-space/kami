@@ -71,7 +71,7 @@
     "react-use": "17.3.1",
     "remove-markdown": "0.3.0",
     "socket.io-client": "4.2.0",
-    "tailwindcss": "2.2.15",
+    "tailwindcss": "2.2.16",
     "ua-parser-js": "0.7.28",
     "validator": "13.6.0"
   },
