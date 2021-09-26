@@ -78,7 +78,7 @@ specifiers:
   rimraf: '*'
   sass: 1.41.1
   socket.io-client: 4.2.0
-  tailwindcss: 2.2.15
+  tailwindcss: 2.2.16
   ts-node: 10.2.1
   typescript: 4.4.3
   ua-parser-js: 0.7.28
@@ -128,7 +128,7 @@ dependencies:
   react-use: 17.3.1_react-dom@17.0.2+react@17.0.2
   remove-markdown: 0.3.0
   socket.io-client: 4.2.0
-  tailwindcss: 2.2.15_postcss@8.3.8+ts-node@10.2.1
+  tailwindcss: 2.2.16_postcss@8.3.8+ts-node@10.2.1
   ua-parser-js: 0.7.28
   validator: 13.6.0
 
@@ -5445,7 +5445,6 @@ packages:
 
   /nanocolors/0.2.2:
     resolution: {integrity: sha512-t4mwdKizEGLFeZzDbr1r6SjwKYZQEB0Z/trGsdAIsw5EadaR010/zvJ0arkw6vznyTevcMi9BtppprJ5aqLXRg==}
-    dev: true
 
   /nanoid/3.1.25:
     resolution: {integrity: sha512-rdwtIXaXCLFAQbnfqDRnI6jaRHp9fTcYBjtFKE8eezcZ7LuLjhUaQGNeMXf1HmRoCH32CLz6XwX0TtxEOS/A3Q==}
@@ -6256,7 +6255,7 @@ packages:
     engines: {node: '>=10.0'}
     dependencies:
       camelcase-css: 2.0.1
-      postcss: 8.3.6
+      postcss: 8.3.8
     dev: false
 
   /postcss-lab-function/2.0.1:
@@ -6468,15 +6467,6 @@ packages:
       source-map: 0.6.1
     dev: false
 
-  /postcss/8.3.6:
-    resolution: {integrity: sha512-wG1cc/JhRgdqB6WHEuyLTedf3KIRuD0hG6ldkFEZNCjRxiC+3i6kkWUUbiJQayP28iwG35cEmAbe98585BYV0A==}
-    engines: {node: ^10 || ^12 || >=14}
-    dependencies:
-      colorette: 1.4.0
-      nanoid: 3.1.25
-      source-map-js: 0.6.2
-    dev: false
-
   /postcss/8.3.8:
     resolution: {integrity: sha512-GT5bTjjZnwDifajzczOC+r3FI3Cu+PgPvrsjhQdRqa2kTJ4968/X9CUce9xttIB0xOs5c6xf0TCWZo/y9lF6bA==}
     engines: {node: ^10 || ^12 || >=14}
@@ -6484,7 +6474,6 @@ packages:
       nanocolors: 0.2.2
       nanoid: 3.1.25
       source-map-js: 0.6.2
-    dev: true
 
   /prelude-ls/1.1.2:
     resolution: {integrity: sha1-IZMqVJ9eUv/ZqCf1cOBL5iqX2lQ=}
@@ -6654,7 +6643,7 @@ packages:
     dependencies:
       commander: 6.2.1
       glob: 7.1.7
-      postcss: 8.3.6
+      postcss: 8.3.8
       postcss-selector-parser: 6.0.6
     dev: false
 
@@ -7949,8 +7938,8 @@ packages:
       strip-ansi: 6.0.0
     dev: true
 
-  /tailwindcss/2.2.15_postcss@8.3.8+ts-node@10.2.1:
-    resolution: {integrity: sha512-WgV41xTMbnSoTNMNnJvShQZ+8GmY86DmXTrCgnsveNZJdlybfwCItV8kAqjYmU49YiFr+ofzmT1JlAKajBZboQ==}
+  /tailwindcss/2.2.16_postcss@8.3.8+ts-node@10.2.1:
+    resolution: {integrity: sha512-EireCtpQyyJ4Xz8NYzHafBoy4baCOO96flM0+HgtsFcIQ9KFy/YBK3GEtlnD+rXen0e4xm8t3WiUcKBJmN6yjg==}
     engines: {node: '>=12.13.0'}
     hasBin: true
     peerDependencies:
