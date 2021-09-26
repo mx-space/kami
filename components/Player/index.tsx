@@ -194,25 +194,12 @@ export const MusicMiniPlayer = forwardRef<
 export const _MusicMiniPlayerStoreControlled = observer(() => {
   const ref = useRef<MusicPlayerRef>(null)
 
-  // useEffect(() => {
-  //   if (musicStore.isPlay) {
-  //     ref.current?.play()
-  //   } else {
-  //     ref.current?.pause()
-  //   }
-  // }, [musicStore.isPlay])
-
-  // useEffect(() => {
-  // }, [])
   if (musicStore.isPlay) {
     ref.current?.play()
   } else {
     ref.current?.pause()
   }
 
-  // console.log(musicStore.isHide, musicStore.isPlay)
-
-  // musicStore.isHide && ref.current?.pause()
   if (!musicStore.isHide) {
     ref.current?.play()
   } else {

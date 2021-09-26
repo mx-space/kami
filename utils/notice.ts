@@ -99,7 +99,7 @@ export class Notice {
         if (b && !document.hasFocus()) {
           const notification = new Notification(title, {
             body,
-            image: location.origin + '/logo.png',
+            image: location.origin + '/manifest-icon-192.png',
             ...options,
           })
           notification.onclick = (e) => {
@@ -163,7 +163,10 @@ export class Notice {
         cursor: pointer;
       `
       $close.textContent = '×'
-      $close.onclick = () => this.closeNotification($notification)
+      $close.onclick = () => {
+        this.closeNotification($notification)
+        $close.onclick = null
+      }
       $header.appendChild($title)
       $header.appendChild($close)
       $notification.classList.add('shadow')
@@ -230,6 +233,7 @@ export class Notice {
       },
     ).onfinish = () => {
       $notification.remove()
+      $notification.onclick = null
     }
   }
 }

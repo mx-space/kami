@@ -7,6 +7,7 @@
  * @Code with Love
  */
 
+import configs from 'configs'
 import { isDev } from 'utils'
 import { createDangmaku } from '../../utils/danmaku'
 import { Notice } from '../../utils/notice'
@@ -31,7 +32,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
         body: '站长发布一条新动态',
         description: data.content,
         onclick: () => {
-          window.open('/recently')
+          window.open(configs.url + '/recently')
         },
       })
       break
@@ -55,16 +56,11 @@ export const eventHandler = (type: EventTypes, data: any) => {
         description: getDescription(data.text),
         onclick: () => {
           window.open(
-            _type[type] === 'post'
-              ? '/posts/' + data.category.slug + '/' + data.slug
-              : '/notes/' + data.nid,
+            configs.url +
+              (_type[type] === 'post'
+                ? '/posts/' + data.category.slug + '/' + data.slug
+                : '/notes/' + data.nid),
           )
-          // Router.push(
-          //   _type[type] === 'post' ? '/posts/[category]/[slug]' : '/notes/[id]',
-          //   _type[type] === 'post'
-          //     ? '/posts/' + data.category.slug + '/' + data.slug
-          //     : '/notes/' + data.nid,
-          // )
         },
       })
 
@@ -77,7 +73,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
         body: message,
         description: getDescription(data.text),
         onclick: () => {
-          window.open('/says')
+          window.open(configs.url + '/says')
         },
       })
 
