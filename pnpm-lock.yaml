@@ -17,7 +17,7 @@ specifiers:
   '@next/bundle-analyzer': 11.1.2
   '@openfonts/noto-sans-sc_vietnamese': 1.44.0
   '@types/inflection': 1.13.0
-  '@types/js-cookie': 2.2.7
+  '@types/js-cookie': 3.0.0
   '@types/lodash': 4.14.175
   '@types/node': 16.9.4
   '@types/randomcolor': 0.5.6
@@ -137,7 +137,7 @@ devDependencies:
   '@innei-util/prettier': 0.1.3_prettier@2.4.1+typescript@4.4.3
   '@next/bundle-analyzer': 11.1.2
   '@types/inflection': 1.13.0
-  '@types/js-cookie': 2.2.7
+  '@types/js-cookie': 3.0.0
   '@types/lodash': 4.14.175
   '@types/node': 16.9.4
   '@types/randomcolor': 0.5.6
@@ -1763,6 +1763,11 @@ packages:
 
   /@types/js-cookie/2.2.7:
     resolution: {integrity: sha512-aLkWa0C0vO5b4Sr798E26QgOkss68Un0bLjs7u9qxzPT5CG+8DuNTffWES58YzJs3hrVAOs1wonycqEBqNJubA==}
+    dev: false
+
+  /@types/js-cookie/3.0.0:
+    resolution: {integrity: sha512-GDVwSzwBm4OdQajFCit2UMxskZVcOhs/hYeOvzVW1R+iW6ZOVIBgD+RSrYCtPT0pNBnwNgRaoPPKfoXcwDo+hg==}
+    dev: true
 
   /@types/json-schema/7.0.9:
     resolution: {integrity: sha512-qcUXuemtEu+E5wZSJHNxUXeCZhAfXKQ41D+duX+VYPde7xyEVZci+/oXKJL13tnRs9lR2pr4fod59GT6/X1/yQ==}
