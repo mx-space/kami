@@ -15,7 +15,7 @@ Live Demo:
 
 ![Xnip2021-09-21_18-29-08](https://raw.githubusercontent.com/mx-space/docs-images/master/images/Xnip2021-09-21_18-29-08.png)
 
-[使用文档](https://wibus.gitee.io/docs/mix-space/#/)
+[使用文档](https://mx-docs.shizuri.net)
 
 ## 忠告
 
@@ -24,7 +24,3 @@ Live Demo:
 ## 许可
 
 此项目 GPLv3 授权开源，使用此项目进行的二次创作或者衍生项目也必须开源。
-
-## 鸣谢
-
-[@wibus-wee](https://github.com/wibus-wee)
