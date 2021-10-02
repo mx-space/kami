@@ -18,7 +18,8 @@ export const useRedirectSimpleRender = (id?: string) => {
 
       if (ev.key == '.') {
         window.location.href =
-          (process.env.NEXT_PUBLIC_APIURL || '/api') + `/markdown/render/${id}`
+          (process.env.NEXT_PUBLIC_APIURL || '/api/v2') +
+          `/markdown/render/${id}`
       }
     }
     window.addEventListener('keydown', handler)

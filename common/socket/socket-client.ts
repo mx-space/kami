@@ -16,16 +16,13 @@ export class SocketClient {
   public socket!: Socket
 
   constructor() {
-    this.socket = io(
-      (process.env.NEXT_PUBLIC_GATEWAY_URL || 'http://localhost:2333') + '/web',
-      {
-        timeout: 10000,
-        reconnectionDelay: 3000,
-        autoConnect: false,
-        reconnectionAttempts: 3,
-        transports: ['websocket'],
-      },
-    )
+    this.socket = io((process.env.NEXT_PUBLIC_GATEWAY_URL || '') + '/web', {
+      timeout: 10000,
+      reconnectionDelay: 3000,
+      autoConnect: false,
+      reconnectionAttempts: 3,
+      transports: ['websocket'],
+    })
   }
   initIO() {
     if (!this.socket) {

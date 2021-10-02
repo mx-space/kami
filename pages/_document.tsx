@@ -115,15 +115,20 @@ export default class MyDocument extends Document<{ ua: string }> {
             src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"
             async
           ></script>
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-          />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${GA_TRACKING_ID}', {page_path: window.location.pathname,});`,
-            }}
-          />
+          {GA_TRACKING_ID && (
+            <>
+              <script
+                async
+                src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+              />
+              <script
+                dangerouslySetInnerHTML={{
+                  __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${GA_TRACKING_ID}', {page_path: window.location.pathname,});`,
+                }}
+              />
+            </>
+          )}
+
           <script
             src={`https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js`}
           ></script>
