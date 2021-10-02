@@ -7,6 +7,7 @@
  * @MIT
  */
 
+import camelcaseKeys from 'camelcase-keys'
 import io, { Socket } from 'socket.io-client'
 import { isDev } from 'utils'
 import observable from '../../utils/observable'
@@ -44,7 +45,7 @@ export class SocketClient {
           data: any
           type: EventTypes
         }
-        this.handleEvent(type, data)
+        this.handleEvent(type, camelcaseKeys(data, { deep: true }))
       },
     )
   }
