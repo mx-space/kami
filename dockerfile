@@ -9,9 +9,9 @@ ENV NEXT_PUBLIC_TRACKING_ID=
 COPY . .
 RUN npm i -g pnpm
 RUN pnpm install
+# RUN echo -e "NEXT_PUBLIC_APIURL=${NEXT_PUBLIC_APIURL}\nNEXT_PUBLIC_GATEWAY_URL=${NEXT_PUBLIC_GATEWAY_URL}"  > .env
 RUN pnpm run build
 RUN rm -rf .next/cache
-RUN touch .env
 EXPOSE 2323
-CMD echo "MixSpace Web [Kami] Image." && sh
+CMD echo "MixSpace Web [Kami] Image." && node server.js
 
