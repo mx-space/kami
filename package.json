@@ -40,7 +40,7 @@
     "@openfonts/noto-sans-sc_vietnamese": "1.44.0",
     "NeteaseCloudMusicApi": "*",
     "axios": "0.21.4",
-    "camelcase-keys": "7.0.0",
+    "camelcase-keys": "7.0.1",
     "clsx": "1.1.1",
     "dayjs": "1.10.7",
     "inflection": "1.13.1",

@@ -33,7 +33,7 @@ specifiers:
   NeteaseCloudMusicApi: '*'
   axios: 0.21.4
   babel-plugin-lodash: 3.3.4
-  camelcase-keys: 7.0.0
+  camelcase-keys: 7.0.1
   clsx: 1.1.1
   cross-env: '*'
   dayjs: 1.10.7
@@ -97,7 +97,7 @@ dependencies:
   '@openfonts/noto-sans-sc_vietnamese': 1.44.0
   NeteaseCloudMusicApi: 4.0.16
   axios: 0.21.4
-  camelcase-keys: 7.0.0
+  camelcase-keys: 7.0.1
   clsx: 1.1.1
   dayjs: 1.10.7
   inflection: 1.13.1
@@ -2666,8 +2666,8 @@ packages:
     engines: {node: '>= 6'}
     dev: false
 
-  /camelcase-keys/7.0.0:
-    resolution: {integrity: sha512-qlQlECgDl5Ev+gkvONaiD4X4TF2gyZKuLBvzx0zLo2UwAxmz3hJP/841aaMHTeH1T7v5HRwoRq91daulXoYWvg==}
+  /camelcase-keys/7.0.1:
+    resolution: {integrity: sha512-P331lEls98pW8JLyodNWfzuz91BEDVA4VpW2/SwXnyv2K495tq1N777xzDbFgnEigfA7UIY0xa6PwR/H9jijjA==}
     engines: {node: '>=12'}
     dependencies:
       camelcase: 6.2.0
