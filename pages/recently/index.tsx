@@ -1,5 +1,4 @@
-import { faClock, faFolder } from '@fortawesome/free-regular-svg-icons'
-import { faCode } from '@fortawesome/free-solid-svg-icons'
+import { faClock } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
 import { EventTypes } from 'common/socket/types'
@@ -129,20 +128,6 @@ const RecentlyPage: NextPage = () => {
                         删除
                       </span>
                     )}
-                    {d.project && (
-                      <span className="mr-4">
-                        <FontAwesomeIcon icon={faFolder} />
-                        &nbsp;
-                        <span>{d.project}</span>
-                      </span>
-                    )}
-                    {d.language && (
-                      <span className="mr-4">
-                        <FontAwesomeIcon icon={faCode} />
-                        &nbsp;
-                        <span>{d.language}</span>
-                      </span>
-                    )}
                     <FontAwesomeIcon icon={faClock} />
                     &nbsp;
                     <RelativeTime date={new Date(d.created)}></RelativeTime>
@@ -165,15 +150,12 @@ const RecentlyPage: NextPage = () => {
 
 const RecentlyBox: FC = memo(() => {
   const [content, setText] = useState('')
-  const [project, setProject] = useState('')
-  const [language, setLanguage] = useState('')
+
   const taRef = useRef<HTMLTextAreaElement>(null)
   const handleSubmit = () => {
     Rest('Recently')
       .post({
         content,
-        project: project || undefined,
-        language: language || undefined,
       })
       .then(() => {
         setText('')
@@ -188,22 +170,6 @@ const RecentlyBox: FC = memo(() => {
         handleSubmit()
       }}
     >
-      <div className="mb-3 flex space-x-2">
-        <Input
-          placeholder={'项目'}
-          name={'recently-project'}
-          prefix={<FontAwesomeIcon icon={faFolder} />}
-          value={project}
-          onChange={(e) => setProject(e.target.value)}
-        />
-        <Input
-          placeholder={'语言'}
-          name={'recently-language'}
-          prefix={<FontAwesomeIcon icon={faCode} />}
-          value={language}
-          onChange={(e) => setLanguage(e.target.value)}
-        />
-      </div>
       <Input
         multi
         // @ts-ignore
