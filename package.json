@@ -47,7 +47,7 @@
     "js-cookie": "3.0.1",
     "kico-style": "1.2.0",
     "mdurl": "*",
-    "mobx": "6.3.3",
+    "mobx": "6.3.4",
     "mobx-react-lite": "3.2.1",
     "next": "11.1.2",
     "next-offline": "5.0.5",
