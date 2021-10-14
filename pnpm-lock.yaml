@@ -43,7 +43,7 @@ specifiers:
   js-cookie: 3.0.1
   kico-style: 1.2.0
   mdurl: '*'
-  mobx: 6.3.4
+  mobx: 6.3.5
   mobx-react-lite: 3.2.1
   next: 11.1.2
   next-offline: 5.0.5
@@ -104,8 +104,8 @@ dependencies:
   js-cookie: 3.0.1
   kico-style: 1.2.0
   mdurl: 1.0.1
-  mobx: 6.3.4
-  mobx-react-lite: 3.2.1_dbc5006d2840fbb3b88bcbf573f9af3d
+  mobx: 6.3.5
+  mobx-react-lite: 3.2.1_87161ce2d4e424698c31a3882ef432ee
   next: 11.1.2_fc0186be0960ba4a8dcd0e907a5927e5
   next-offline: 5.0.5_next@11.1.2
   next-seo: 4.28.1_6fbf59523517da779df50d355b375324
@@ -5364,7 +5364,7 @@ packages:
       minimist: 1.2.5
     dev: false
 
-  /mobx-react-lite/3.2.1_dbc5006d2840fbb3b88bcbf573f9af3d:
+  /mobx-react-lite/3.2.1_87161ce2d4e424698c31a3882ef432ee:
     resolution: {integrity: sha512-hwURgfmP2apX3HQrB55V9DN47kuN3C6KlQvI5UIfJRibXma72C/JudcNt2r9dWjAdFMrcZoz1ivvtXMCkJ2aQA==}
     peerDependencies:
       mobx: ^6.1.0
@@ -5377,13 +5377,13 @@ packages:
       react-native:
         optional: true
     dependencies:
-      mobx: 6.3.4
+      mobx: 6.3.5
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     dev: false
 
-  /mobx/6.3.4:
-    resolution: {integrity: sha512-lyv/zZU0oHIUReD2Zsns03CQpZqlAmiY4hmTZBfHMM8s03Vu5LjpVxUvOfzEhhnBXPChA7GMS6XBylxDsBFK1Q==}
+  /mobx/6.3.5:
+    resolution: {integrity: sha512-MeDfqtiSbhVoJgXqQsrJwvq2klj7Xk9pPdMThCdFiwFt33vgWJe82ATppPwVzQoz0AI3QpSSwQzcp3TBDK4syg==}
     dev: false
 
   /modern-normalize/1.1.0:
