@@ -84,7 +84,7 @@
     "@types/lodash": "4.14.176",
     "@types/node": "16.9.4",
     "@types/randomcolor": "0.5.6",
-    "@types/react": "17.0.30",
+    "@types/react": "17.0.31",
     "@types/react-color": "3.0.6",
     "@types/react-dom": "17.0.10",
     "@types/react-lazyload": "3.1.1",
