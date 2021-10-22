@@ -81,7 +81,7 @@ specifiers:
   tailwindcss: 2.2.17
   ts-node: 10.2.1
   typescript: 4.4.4
-  ua-parser-js: 0.7.28
+  ua-parser-js: 0.7.30
   validator: 13.6.0
   zx: 4.2.0
 
@@ -129,7 +129,7 @@ dependencies:
   remove-markdown: 0.3.0
   socket.io-client: 4.3.2
   tailwindcss: 2.2.17_postcss@8.3.11+ts-node@10.2.1
-  ua-parser-js: 0.7.28
+  ua-parser-js: 0.7.30
   validator: 13.6.0
 
 devDependencies:
@@ -8238,8 +8238,8 @@ packages:
     hasBin: true
     dev: true
 
-  /ua-parser-js/0.7.28:
-    resolution: {integrity: sha512-6Gurc1n//gjp9eQNXjD9O3M/sMwVtN5S8Lv9bvOYBfKfDNiIIhqiyi01vMBO45u4zkDE420w/e0se7Vs+sIg+g==}
+  /ua-parser-js/0.7.30:
+    resolution: {integrity: sha512-uXEtSresNUlXQ1QL4/3dQORcGv7+J2ookOG2ybA/ga9+HYEXueT2o+8dUJQkpedsyTyCJ6jCCirRcKtdtx1kbg==}
     dev: false
 
   /unbox-primitive/1.0.1:
