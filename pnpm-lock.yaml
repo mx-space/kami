@@ -26,7 +26,7 @@ specifiers:
   '@types/react-dom': 17.0.10
   '@types/react-lazyload': 3.1.1
   '@types/react-syntax-highlighter': 13.5.2
-  '@types/react-transition-group': 4.4.3
+  '@types/react-transition-group': 4.4.4
   '@types/remove-markdown': 0.3.1
   '@types/ua-parser-js': 0.7.36
   '@types/validator': 13.6.4
@@ -146,7 +146,7 @@ devDependencies:
   '@types/react-dom': 17.0.10
   '@types/react-lazyload': 3.1.1
   '@types/react-syntax-highlighter': 13.5.2
-  '@types/react-transition-group': 4.4.3
+  '@types/react-transition-group': 4.4.4
   '@types/remove-markdown': 0.3.1
   '@types/ua-parser-js': 0.7.36
   '@types/validator': 13.6.4
@@ -1835,8 +1835,8 @@ packages:
       '@types/react': 17.0.31
     dev: true
 
-  /@types/react-transition-group/4.4.3:
-    resolution: {integrity: sha512-fUx5muOWSYP8Bw2BUQ9M9RK9+W1XBK/7FLJ8PTQpnpTEkn0ccyMffyEQvan4C3h53gHdx7KE5Qrxi/LnUGQtdg==}
+  /@types/react-transition-group/4.4.4:
+    resolution: {integrity: sha512-7gAPz7anVK5xzbeQW9wFBDg7G++aPLAFY0QaSMOou9rJZpbuI58WAuJrgu+qR92l61grlnCUe7AFX8KGahAgug==}
     dependencies:
       '@types/react': 17.0.31
     dev: true
