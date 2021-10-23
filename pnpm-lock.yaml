@@ -29,7 +29,7 @@ specifiers:
   '@types/react-transition-group': 4.4.4
   '@types/remove-markdown': 0.3.1
   '@types/ua-parser-js': 0.7.36
-  '@types/validator': 13.6.4
+  '@types/validator': 13.6.5
   NeteaseCloudMusicApi: '*'
   axios: 0.21.4
   babel-plugin-lodash: 3.3.4
@@ -149,7 +149,7 @@ devDependencies:
   '@types/react-transition-group': 4.4.4
   '@types/remove-markdown': 0.3.1
   '@types/ua-parser-js': 0.7.36
-  '@types/validator': 13.6.4
+  '@types/validator': 13.6.5
   babel-plugin-lodash: 3.3.4
   cross-env: 7.0.3
   dotenv: 10.0.0
@@ -1877,8 +1877,8 @@ packages:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
     dev: false
 
-  /@types/validator/13.6.4:
-    resolution: {integrity: sha512-M9Lk74A8hjJIxnSW1+TcPo7Iv4arXBUvd91HuucGPjXVKRAhFHWP5HFpWjxhNWrm7HYoJwuyWpB+BKLgFYHq4w==}
+  /@types/validator/13.6.5:
+    resolution: {integrity: sha512-ilpDKpjjq/w/IyyTuQ38mABdaEzTzTugPyU7DlMCMKd8MMYngnPKhA2TgdO1MfEDED9KVV7uSOL1fDkgwJp/wg==}
     dev: true
 
   /@typescript-eslint/eslint-plugin/4.31.1_160ac4995e3ab15f365de9f1ef076662:
