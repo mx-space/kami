@@ -6,6 +6,14 @@
   "engines": {
     "node": ">=14"
   },
+  "bump": {
+    "before": [
+      "git pull --rebase"
+    ],
+    "after": [
+      "sh ./create-tags.sh"
+    ]
+  },
   "scripts": {
     "start": "npm run dev",
     "prebuild": "rimraf .next",
