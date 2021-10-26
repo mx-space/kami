@@ -21,7 +21,7 @@ specifiers:
   '@types/lodash': 4.14.176
   '@types/node': 16.9.6
   '@types/randomcolor': 0.5.6
-  '@types/react': 17.0.32
+  '@types/react': 17.0.33
   '@types/react-color': 3.0.6
   '@types/react-dom': 17.0.10
   '@types/react-lazyload': 3.1.1
@@ -141,7 +141,7 @@ devDependencies:
   '@types/lodash': 4.14.176
   '@types/node': 16.9.6
   '@types/randomcolor': 0.5.6
-  '@types/react': 17.0.32
+  '@types/react': 17.0.33
   '@types/react-color': 3.0.6
   '@types/react-dom': 17.0.10
   '@types/react-lazyload': 3.1.1
@@ -1809,36 +1809,36 @@ packages:
   /@types/react-color/3.0.6:
     resolution: {integrity: sha512-OzPIO5AyRmLA7PlOyISlgabpYUa3En74LP8mTMa0veCA719SvYQov4WLMsHvCgXP+L+KI9yGhYnqZafVGG0P4w==}
     dependencies:
-      '@types/react': 17.0.32
+      '@types/react': 17.0.33
       '@types/reactcss': 1.2.4
     dev: true
 
   /@types/react-dom/17.0.10:
     resolution: {integrity: sha512-8oz3NAUId2z/zQdFI09IMhQPNgIbiP8Lslhv39DIDamr846/0spjZK0vnrMak0iB8EKb9QFTTIdg2Wj2zH5a3g==}
     dependencies:
-      '@types/react': 17.0.32
+      '@types/react': 17.0.33
     dev: true
 
   /@types/react-lazyload/3.1.1:
     resolution: {integrity: sha512-e9jsondHYzeApb67In+SdvxskBPC6pfD70j0L7l4kqviqCkkJAxD8iyMZSu5dcuYZGLXLAkp1SqkDK+4iVjLSA==}
     dependencies:
-      '@types/react': 17.0.32
+      '@types/react': 17.0.33
     dev: true
 
   /@types/react-syntax-highlighter/13.5.2:
     resolution: {integrity: sha512-sRZoKZBGKaE7CzMvTTgz+0x/aVR58ZYUTfB7HN76vC+yQnvo1FWtzNARBt0fGqcLGEVakEzMu/CtPzssmanu8Q==}
     dependencies:
-      '@types/react': 17.0.32
+      '@types/react': 17.0.33
     dev: true
 
   /@types/react-transition-group/4.4.4:
     resolution: {integrity: sha512-7gAPz7anVK5xzbeQW9wFBDg7G++aPLAFY0QaSMOou9rJZpbuI58WAuJrgu+qR92l61grlnCUe7AFX8KGahAgug==}
     dependencies:
-      '@types/react': 17.0.32
+      '@types/react': 17.0.33
     dev: true
 
-  /@types/react/17.0.32:
-    resolution: {integrity: sha512-hAm1pmwA3oZWbkB985RFwNvBRMG0F3KWSiC4/hNmanigKZMiKQoH5Q6etNw8HIDztTGfvXyOjPvdNnvBUCuaPg==}
+  /@types/react/17.0.33:
+    resolution: {integrity: sha512-pLWntxXpDPaU+RTAuSGWGSEL2FRTNyRQOjSWDke/rxRg14ncsZvx8AKWMWZqvc1UOaJIAoObdZhAWvRaHFi5rw==}
     dependencies:
       '@types/prop-types': 15.7.4
       '@types/scheduler': 0.16.2
@@ -1848,7 +1848,7 @@ packages:
   /@types/reactcss/1.2.4:
     resolution: {integrity: sha512-1rhVqteMSD6KQjO+dPBObE1OkKadw00HVJkG5WCYsyvMwGgdTZ530wF7Bkrg/4TWxB2AtINIzFotjW51eViw+w==}
     dependencies:
-      '@types/react': 17.0.32
+      '@types/react': 17.0.33
     dev: true
 
   /@types/remove-markdown/0.3.1:
