@@ -76,7 +76,7 @@ specifiers:
   react-use: 17.3.1
   remove-markdown: 0.3.0
   rimraf: '*'
-  sass: 1.42.1
+  sass: 1.43.4
   socket.io-client: 4.3.2
   tailwindcss: 2.2.17
   ts-node: 10.2.1
@@ -106,7 +106,7 @@ dependencies:
   mdurl: 1.0.1
   mobx: 6.3.5
   mobx-react-lite: 3.2.1_87161ce2d4e424698c31a3882ef432ee
-  next: 11.1.2_fc0186be0960ba4a8dcd0e907a5927e5
+  next: 11.1.2_0b1be6d2f847fe2ae2015cf3d871fa35
   next-offline: 5.0.5_next@11.1.2
   next-seo: 4.28.1_6fbf59523517da779df50d355b375324
   normalize.css: 8.0.1
@@ -164,7 +164,7 @@ devDependencies:
   prettier: 2.4.1
   react-lazyload: 3.2.0_react-dom@17.0.2+react@17.0.2
   rimraf: 3.0.2
-  sass: 1.42.1
+  sass: 1.43.4
   ts-node: 10.2.1_0cb88d80cb04d25b21fa3ec194608c65
   typescript: 4.4.4
   zx: 4.2.0
@@ -5452,7 +5452,7 @@ packages:
     dependencies:
       copy-webpack-plugin: 5.1.2
       fs-extra: 8.1.0
-      next: 11.1.2_fc0186be0960ba4a8dcd0e907a5927e5
+      next: 11.1.2_0b1be6d2f847fe2ae2015cf3d871fa35
       workbox-webpack-plugin: 5.1.4
     transitivePeerDependencies:
       - supports-color
@@ -5465,12 +5465,12 @@ packages:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
     dependencies:
-      next: 11.1.2_fc0186be0960ba4a8dcd0e907a5927e5
+      next: 11.1.2_0b1be6d2f847fe2ae2015cf3d871fa35
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     dev: false
 
-  /next/11.1.2_fc0186be0960ba4a8dcd0e907a5927e5:
+  /next/11.1.2_0b1be6d2f847fe2ae2015cf3d871fa35:
     resolution: {integrity: sha512-azEYL0L+wFjv8lstLru3bgvrzPvK0P7/bz6B/4EJ9sYkXeW8r5Bjh78D/Ol7VOg0EIPz0CXoe72hzAlSAXo9hw==}
     engines: {node: '>=12.0.0'}
     hasBin: true
@@ -5530,7 +5530,7 @@ packages:
       react-dom: 17.0.2_react@17.0.2
       react-is: 17.0.2
       react-refresh: 0.8.3
-      sass: 1.42.1
+      sass: 1.43.4
       stream-browserify: 3.0.0
       stream-http: 3.1.1
       string_decoder: 1.3.0
@@ -7295,8 +7295,8 @@ packages:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
     dev: false
 
-  /sass/1.42.1:
-    resolution: {integrity: sha512-/zvGoN8B7dspKc5mC6HlaygyCBRvnyzzgD5khiaCfglWztY99cYoiTUksVx11NlnemrcfH5CEaCpsUKoW0cQqg==}
+  /sass/1.43.4:
+    resolution: {integrity: sha512-/ptG7KE9lxpGSYiXn7Ar+lKOv37xfWsZRtFYal2QHNigyVQDx685VFT/h7ejVr+R8w7H4tmUgtulsKl5YpveOg==}
     engines: {node: '>=8.9.0'}
     hasBin: true
     dependencies:
