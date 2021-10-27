@@ -80,7 +80,7 @@
     "remove-markdown": "0.3.0",
     "socket.io-client": "4.3.2",
     "tailwindcss": "2.2.17",
-    "ua-parser-js": "0.7.30",
+    "ua-parser-js": "0.7.31",
     "validator": "13.6.0"
   },
   "devDependencies": {
