@@ -79,7 +79,7 @@ specifiers:
   sass: 1.42.1
   socket.io-client: 4.3.2
   tailwindcss: 2.2.17
-  ts-node: 10.2.1
+  ts-node: 10.4.0
   typescript: 4.4.4
   ua-parser-js: 0.7.31
   validator: 13.6.0
@@ -128,7 +128,7 @@ dependencies:
   react-use: 17.3.1_react-dom@17.0.2+react@17.0.2
   remove-markdown: 0.3.0
   socket.io-client: 4.3.2
-  tailwindcss: 2.2.17_postcss@8.3.11+ts-node@10.2.1
+  tailwindcss: 2.2.17_postcss@8.3.11+ts-node@10.4.0
   ua-parser-js: 0.7.31
   validator: 13.6.0
 
@@ -165,7 +165,7 @@ devDependencies:
   react-lazyload: 3.2.0_react-dom@17.0.2+react@17.0.2
   rimraf: 3.0.2
   sass: 1.42.1
-  ts-node: 10.2.1_0cb88d80cb04d25b21fa3ec194608c65
+  ts-node: 10.4.0_0cb88d80cb04d25b21fa3ec194608c65
   typescript: 4.4.4
   zx: 4.2.0
 
@@ -1302,8 +1302,8 @@ packages:
     engines: {node: '>= 12'}
     dev: true
 
-  /@cspotcode/source-map-support/0.6.1:
-    resolution: {integrity: sha512-DX3Z+T5dt1ockmPdobJS/FAsQPW4V4SrWEhD2iYQT2Cb2tQsiMnYxrcUH9By/Z3B+v0S5LMBkQtV/XOBbpLEOg==}
+  /@cspotcode/source-map-support/0.7.0:
+    resolution: {integrity: sha512-X4xqRHqN8ACt2aHVe51OxeA2HjbcL4MqFqXkrmQszJ1NOUuUu5u6Vqx/0lZSVNku7velL5FC/s5uEAj1lsBMhA==}
     engines: {node: '>=12'}
     dependencies:
       '@cspotcode/source-map-consumer': 0.8.0
@@ -6243,7 +6243,7 @@ packages:
       postcss-values-parser: 2.0.1
     dev: true
 
-  /postcss-load-config/3.1.0_ts-node@10.2.1:
+  /postcss-load-config/3.1.0_ts-node@10.4.0:
     resolution: {integrity: sha512-ipM8Ds01ZUophjDTQYSVP70slFSYg3T0/zyfII5vzhN6V57YSxMgG5syXuwi5VtS8wSf3iL30v0uBdoIVx4Q0g==}
     engines: {node: '>= 10'}
     peerDependencies:
@@ -6254,7 +6254,7 @@ packages:
     dependencies:
       import-cwd: 3.0.0
       lilconfig: 2.0.3
-      ts-node: 10.2.1_0cb88d80cb04d25b21fa3ec194608c65
+      ts-node: 10.4.0_0cb88d80cb04d25b21fa3ec194608c65
       yaml: 1.10.2
     dev: false
 
@@ -7912,7 +7912,7 @@ packages:
       strip-ansi: 6.0.0
     dev: true
 
-  /tailwindcss/2.2.17_postcss@8.3.11+ts-node@10.2.1:
+  /tailwindcss/2.2.17_postcss@8.3.11+ts-node@10.4.0:
     resolution: {integrity: sha512-WgRpn+Pxn7eWqlruxnxEbL9ByVRWi3iC10z4b6dW0zSdnkPVC4hPMSWLQkkW8GCyBIv/vbJ0bxIi9dVrl4CfoA==}
     engines: {node: '>=12.13.0'}
     hasBin: true
@@ -7943,7 +7943,7 @@ packages:
       object-hash: 2.2.0
       postcss: 8.3.11
       postcss-js: 3.0.3
-      postcss-load-config: 3.1.0_ts-node@10.2.1
+      postcss-load-config: 3.1.0_ts-node@10.4.0
       postcss-nested: 5.0.6_postcss@8.3.11
       postcss-selector-parser: 6.0.6
       postcss-value-parser: 4.1.0
@@ -8085,9 +8085,8 @@ packages:
     resolution: {integrity: sha512-Z86EW+fFFh/IFB1fqQ3/+7Zpf9t2ebOAxNI/V6Wo7r5gqiqtxmgTlQ1qbqQcjLKYeSHPTsEmvlJUDg/EuL0uHQ==}
     dev: false
 
-  /ts-node/10.2.1_0cb88d80cb04d25b21fa3ec194608c65:
-    resolution: {integrity: sha512-hCnyOyuGmD5wHleOQX6NIjJtYVIO8bPP8F2acWkB4W06wdlkgyvJtubO/I9NkI88hCFECbsEgoLc0VNkYmcSfw==}
-    engines: {node: '>=12.0.0'}
+  /ts-node/10.4.0_0cb88d80cb04d25b21fa3ec194608c65:
+    resolution: {integrity: sha512-g0FlPvvCXSIO1JDF6S232P5jPYqBkRL9qly81ZgAOSU7rwI0stphCgd2kLiCrU9DjQCrJMWEqcNSjQL02s6d8A==}
     hasBin: true
     peerDependencies:
       '@swc/core': '>=1.2.50'
@@ -8100,7 +8099,7 @@ packages:
       '@swc/wasm':
         optional: true
     dependencies:
-      '@cspotcode/source-map-support': 0.6.1
+      '@cspotcode/source-map-support': 0.7.0
       '@tsconfig/node10': 1.0.8
       '@tsconfig/node12': 1.0.9
       '@tsconfig/node14': 1.0.1
