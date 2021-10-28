@@ -30,6 +30,8 @@ async function main() {
   const tmpName = (Math.random() * 10).toString(16)
   fs.writeFileSync(`/tmp/${tmpName}.zip`, buffer, { flag: 'w' })
   // pwd: ~/mx/kami
+  await $`git pull`
+  await $`pnpm i`
   await $`rm -rf ./.next`
   await $`unzip /tmp/${tmpName}.zip -d ./.next`
   await $`rm /tmp/${tmpName}.zip`
