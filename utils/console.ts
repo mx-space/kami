@@ -7,8 +7,9 @@
  * @Coding with Love
  */
 import {
-  DevtoolsDetectorListener, removeListener,
-  stop
+  DevtoolsDetectorListener,
+  removeListener,
+  stop,
 } from '@innei/devtools-detector'
 import Package from './../package.json'
 import { isDev, isServerSide } from './utils'
@@ -98,7 +99,7 @@ export function printToConsole() {
       'margin: 1em 0; padding: 5px 0; background: #efefef;',
     )
     console.log(
-      `%c Kami ${(<any>window).version} %c https://innei.ren `,
+      `%c Kami ${window.version} %c https://innei.ren `,
       'color: #fff; margin: 1em 0; padding: 5px 0; background: #27ae60;',
       'margin: 1em 0; padding: 5px 0; background: #efefef;',
     )

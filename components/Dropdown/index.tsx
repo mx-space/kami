@@ -8,7 +8,7 @@
  */
 
 import classNames from 'clsx'
-import { throttle } from 'lodash'
+import throttle from 'lodash-es/throttle'
 import dynamic from 'next/dynamic'
 import React, { FC } from 'react'
 import ReactDOM from 'react-dom'

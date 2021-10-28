@@ -1,3 +1,7 @@
+// const { default: StackGrid, transitions } = await import(
+//   '@innei/react-stack-grid'
+// )
+import { default as StackGrid, transitions } from '@innei/react-stack-grid'
 import { SayModel, SayRespDto } from 'models/say'
 import { NextPage } from 'next'
 import randomColor from 'randomcolor'
@@ -14,9 +18,6 @@ import { SEO } from '../../components/SEO'
 import { hexToRGB } from '../../utils/color'
 import observable from '../../utils/observable'
 import styles from './index.module.css'
-const { default: StackGrid, transitions } = await import(
-  '@innei/react-stack-grid'
-)
 const { flip } = transitions
 interface SayViewProps {
   data: SayModel[]

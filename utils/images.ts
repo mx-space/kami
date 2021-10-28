@@ -6,7 +6,7 @@
  * @FilePath: /web/utils/images.ts
  * Mark: Coding with Love
  */
-import { shuffle } from 'lodash'
+import shuffle from 'lodash-es/shuffle'
 import { ImageSizeRecord } from 'models/base'
 
 export const imagesRecord2Map = (images: ImageSizeRecord[]) => {

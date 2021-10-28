@@ -7,9 +7,10 @@ const env = require('dotenv').config().parsed || {}
 const withOffline = require('next-offline')
 const configs = withBundleAnalyzer({
   webpack: (config, options) => {
-    config.experiments = {
-      topLevelAwait: true,
-    }
+    // config.experiments = {
+    //   topLevelAwait: true,
+    //   layers: true,
+    // }
     return config
   },
   env: {

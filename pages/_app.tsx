@@ -303,7 +303,7 @@ App.getInitialProps = async (props: AppContext) => {
     if (ip && ip.split(',').length > 0) {
       ip = ip.split(',')[0]
     }
-    service.defaults.headers.common['x-forwarded-for'] = ip
+    service.defaults.headers.common['x-forwarded-for'] = ip as string
 
     service.defaults.headers.common['User-Agent'] =
       request.headers['user-agent'] + ' mx-space SSR server' + `/${version}`

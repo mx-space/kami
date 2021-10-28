@@ -7,7 +7,7 @@
  * @Coding with Love
  */
 
-import { uniqBy } from 'lodash'
+import uniqBy from 'lodash-es/uniqBy'
 import { makeAutoObservable } from 'mobx'
 import { CategoriesResp, CategoryModel } from 'models/category'
 import { appUIStore } from '.'

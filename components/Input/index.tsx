@@ -1,5 +1,5 @@
 import classNames from 'clsx'
-import { merge } from 'lodash'
+import merge from 'lodash-es/merge'
 import {
   createContext,
   DetailedHTMLProps,

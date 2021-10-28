@@ -25,7 +25,6 @@ const Loader: FC = memo(() => {
             z-index: 999;
             transform: translate3d(0, 0, 0);
             will-change: transform;
-            // perspective: 3000px;
           }
           .loader:before {
             top: 50%;
@@ -75,10 +74,7 @@ const Loader: FC = memo(() => {
             60% {
               opacity: 1;
             }
-            // 80% {
-            //   transform: translate3d(0, 0, 1000px);
-            //   opacity: 0.5;
-            // }
+
             100% {
               opacity: 0;
             }

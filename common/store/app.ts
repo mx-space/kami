@@ -1,5 +1,5 @@
 import configs from 'configs'
-import { uniqBy } from 'lodash'
+import uniqBy from 'lodash-es/uniqBy'
 import { makeAutoObservable } from 'mobx'
 import { Seo } from 'models/aggregate'
 import { isClientSide } from 'utils'

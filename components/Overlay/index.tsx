@@ -8,7 +8,7 @@
  */
 import classNames from 'clsx'
 import { QueueAnim } from 'components/Anime'
-import { merge } from 'lodash'
+import { merge } from 'lodash-es'
 import dynamic from 'next/dynamic'
 import { CSSProperties, FC, useEffect } from 'react'
 import ReactDOM from 'react-dom'
