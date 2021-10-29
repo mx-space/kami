@@ -29,7 +29,7 @@ specifiers:
   '@types/react-transition-group': 4.4.4
   '@types/remove-markdown': 0.3.1
   '@types/ua-parser-js': 0.7.36
-  '@types/validator': 13.6.5
+  '@types/validator': 13.6.6
   NeteaseCloudMusicApi: '*'
   axios: 0.24.0
   camelcase-keys: 7.0.1
@@ -150,7 +150,7 @@ devDependencies:
   '@types/react-transition-group': 4.4.4
   '@types/remove-markdown': 0.3.1
   '@types/ua-parser-js': 0.7.36
-  '@types/validator': 13.6.5
+  '@types/validator': 13.6.6
   cross-env: 7.0.3
   dotenv: 10.0.0
   eslint: 7.32.0
@@ -1941,8 +1941,8 @@ packages:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
     dev: false
 
-  /@types/validator/13.6.5:
-    resolution: {integrity: sha512-ilpDKpjjq/w/IyyTuQ38mABdaEzTzTugPyU7DlMCMKd8MMYngnPKhA2TgdO1MfEDED9KVV7uSOL1fDkgwJp/wg==}
+  /@types/validator/13.6.6:
+    resolution: {integrity: sha512-+qogUELb4gMhrMjSh/seKmGVvN+uQLfyqJAqYRWqVHsvBsUO2xDBCL8CJ/ZSukbd8vXaoYbpIssAmfLEzzBHEw==}
     dev: true
 
   /@typescript-eslint/eslint-plugin/4.33.0_cc617358c89d3f38c52462f6d809db4c:
