@@ -78,7 +78,7 @@ specifiers:
   rimraf: '*'
   sass: 1.43.4
   socket.io-client: 4.3.2
-  tailwindcss: 2.2.17
+  tailwindcss: 2.2.19
   ts-node: 10.4.0
   typescript: 4.4.4
   ua-parser-js: 1.0.2
@@ -129,7 +129,7 @@ dependencies:
   react-use: 17.3.1_react-dom@17.0.2+react@17.0.2
   remove-markdown: 0.3.0
   socket.io-client: 4.3.2
-  tailwindcss: 2.2.17_postcss@8.3.11+ts-node@10.4.0
+  tailwindcss: 2.2.19_postcss@8.3.11+ts-node@10.4.0
   ua-parser-js: 1.0.2
   validator: 13.6.0
 
@@ -345,7 +345,7 @@ packages:
       '@babel/helper-replace-supers': 7.15.4
       '@babel/helper-simple-access': 7.15.4
       '@babel/helper-split-export-declaration': 7.15.4
-      '@babel/helper-validator-identifier': 7.14.9
+      '@babel/helper-validator-identifier': 7.15.7
       '@babel/template': 7.15.4
       '@babel/traverse': 7.15.4
       '@babel/types': 7.15.6
@@ -409,14 +409,9 @@ packages:
       '@babel/types': 7.15.6
     dev: false
 
-  /@babel/helper-validator-identifier/7.14.9:
-    resolution: {integrity: sha512-pQYxPY0UP6IHISRitNe8bsijHex4TWZXi2HwKVsjPiltzlhse2znVcm9Ace510VT1kxIHjGJCZZQBX2gJDbo0g==}
-    engines: {node: '>=6.9.0'}
-
   /@babel/helper-validator-identifier/7.15.7:
     resolution: {integrity: sha512-K4JvCtQqad9OY2+yTU8w+E82ywk/fe+ELNlt1G8z3bVGlZfn/hOcQQsUhGhW/N+tb3fxK800wLtKOE/aM0m72w==}
     engines: {node: '>=6.9.0'}
-    dev: false
 
   /@babel/helper-validator-option/7.14.5:
     resolution: {integrity: sha512-OX8D5eeX4XwcroVW45NMvoYaIuFI+GQpA2a8Gi+X/U/cDUIRsV37qQfF905F0htTRCREQIB4KqPeaveRJUl3Ow==}
@@ -450,7 +445,7 @@ packages:
     resolution: {integrity: sha512-qf9u2WFWVV0MppaL877j2dBtQIDgmidgjGk5VIMw3OadXvYaXn66U1BFlH2t4+t3i+8PhedppRv+i40ABzd+gg==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/helper-validator-identifier': 7.14.9
+      '@babel/helper-validator-identifier': 7.15.7
       chalk: 2.4.2
       js-tokens: 4.0.0
 
@@ -987,7 +982,7 @@ packages:
       '@babel/helper-hoist-variables': 7.15.4
       '@babel/helper-module-transforms': 7.15.4
       '@babel/helper-plugin-utils': 7.14.5
-      '@babel/helper-validator-identifier': 7.14.9
+      '@babel/helper-validator-identifier': 7.15.7
       babel-plugin-dynamic-import-node: 2.3.3
     transitivePeerDependencies:
       - supports-color
@@ -1293,7 +1288,7 @@ packages:
     resolution: {integrity: sha512-BPU+7QhqNjmWyDO0/vitH/CuhpV8ZmK1wpKva8nuyNF5MJfuRNWMc+hc14+u9xT93kvykMdncrJT19h74uB1Ig==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/helper-validator-identifier': 7.14.9
+      '@babel/helper-validator-identifier': 7.15.7
       to-fast-properties: 2.0.0
     dev: false
 
@@ -2686,7 +2681,7 @@ packages:
       bluebird: 3.7.2
       chownr: 1.1.4
       figgy-pudding: 3.5.2
-      glob: 7.1.7
+      glob: 7.2.0
       graceful-fs: 4.2.8
       infer-owner: 1.0.4
       lru-cache: 5.1.1
@@ -2816,7 +2811,7 @@ packages:
       braces: 3.0.2
       glob-parent: 5.1.2
       is-binary-path: 2.1.0
-      is-glob: 4.0.1
+      is-glob: 4.0.3
       normalize-path: 3.0.0
       readdirp: 3.6.0
     optionalDependencies:
@@ -4289,13 +4284,13 @@ packages:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
     engines: {node: '>= 6'}
     dependencies:
-      is-glob: 4.0.1
+      is-glob: 4.0.3
 
   /glob-parent/6.0.1:
     resolution: {integrity: sha512-kEVjS71mQazDBHKcsq4E9u/vUzaLcw1A8EtUeydawvIWQCJM0qQ08G1H7/XTjFUulla6XQiDOG6MXSaG0HDKog==}
     engines: {node: '>=10.13.0'}
     dependencies:
-      is-glob: 4.0.1
+      is-glob: 4.0.3
     dev: false
 
   /glob-to-regexp/0.4.1:
@@ -4321,7 +4316,6 @@ packages:
       minimatch: 3.0.4
       once: 1.4.0
       path-is-absolute: 1.0.1
-    dev: true
 
   /global-dirs/3.0.0:
     resolution: {integrity: sha512-v8ho2DS5RiCjftj1nD9NmnfaOzTdud7RRnVd9kFNOjqZbISlx5DQ+OrTkywgd0dIt7oFCvKetZSHoHcP3sDdiA==}
@@ -4372,7 +4366,7 @@ packages:
     dependencies:
       array-union: 1.0.2
       dir-glob: 2.2.2
-      glob: 7.1.7
+      glob: 7.2.0
       ignore: 3.3.10
       pify: 3.0.0
       slash: 1.0.0
@@ -6701,7 +6695,7 @@ packages:
     hasBin: true
     dependencies:
       commander: 6.2.1
-      glob: 7.1.7
+      glob: 7.2.0
       postcss: 8.3.11
       postcss-selector-parser: 6.0.6
     dev: false
@@ -7279,7 +7273,7 @@ packages:
     resolution: {integrity: sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==}
     hasBin: true
     dependencies:
-      glob: 7.1.7
+      glob: 7.2.0
     dev: false
 
   /rimraf/3.0.2:
@@ -7955,8 +7949,8 @@ packages:
       strip-ansi: 6.0.0
     dev: true
 
-  /tailwindcss/2.2.17_postcss@8.3.11+ts-node@10.4.0:
-    resolution: {integrity: sha512-WgRpn+Pxn7eWqlruxnxEbL9ByVRWi3iC10z4b6dW0zSdnkPVC4hPMSWLQkkW8GCyBIv/vbJ0bxIi9dVrl4CfoA==}
+  /tailwindcss/2.2.19_postcss@8.3.11+ts-node@10.4.0:
+    resolution: {integrity: sha512-6Ui7JSVtXadtTUo2NtkBBacobzWiQYVjYW0ZnKaP9S1ZCKQ0w7KVNz+YSDI/j7O7KCMHbOkz94ZMQhbT9pOqjw==}
     engines: {node: '>=12.13.0'}
     hasBin: true
     peerDependencies:
@@ -7977,7 +7971,7 @@ packages:
       glob-parent: 6.0.1
       html-tags: 3.1.0
       is-color-stop: 1.1.0
-      is-glob: 4.0.1
+      is-glob: 4.0.3
       lodash: 4.17.21
       lodash.topath: 4.5.2
       modern-normalize: 1.1.0
@@ -8637,7 +8631,7 @@ packages:
       common-tags: 1.8.0
       fast-json-stable-stringify: 2.1.0
       fs-extra: 8.1.0
-      glob: 7.1.7
+      glob: 7.2.0
       lodash.template: 4.5.0
       pretty-bytes: 5.6.0
       rollup: 1.32.1
