@@ -82,7 +82,7 @@
     "socket.io-client": "4.3.2",
     "tailwindcss": "2.2.19",
     "ua-parser-js": "1.0.2",
-    "validator": "13.6.0"
+    "validator": "13.7.0"
   },
   "devDependencies": {
     "@innei-util/eslint-config-react-ts": "latest",

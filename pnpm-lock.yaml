@@ -82,7 +82,7 @@ specifiers:
   ts-node: 10.4.0
   typescript: 4.4.4
   ua-parser-js: 1.0.2
-  validator: 13.6.0
+  validator: 13.7.0
   zx: 4.2.0
 
 dependencies:
@@ -131,7 +131,7 @@ dependencies:
   socket.io-client: 4.3.2
   tailwindcss: 2.2.19_postcss@8.3.11+ts-node@10.4.0
   ua-parser-js: 1.0.2
-  validator: 13.6.0
+  validator: 13.7.0
 
 devDependencies:
   '@innei-util/eslint-config-react-ts': 0.1.2_eslint@7.32.0+typescript@4.4.4
@@ -8414,8 +8414,8 @@ packages:
     resolution: {integrity: sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==}
     dev: true
 
-  /validator/13.6.0:
-    resolution: {integrity: sha512-gVgKbdbHgtxpRyR8K0O6oFZPhhB5tT1jeEHZR0Znr9Svg03U0+r9DXWMrnRAB+HtCStDQKlaIZm42tVsVjqtjg==}
+  /validator/13.7.0:
+    resolution: {integrity: sha512-nYXQLCBkpJ8X6ltALua9dRrZDHVYxjJ1wgskNt1lH9fzGjs3tgojGSCBjmEPwkWS1y29+DrizMTW19Pr9uB2nw==}
     engines: {node: '>= 0.10'}
     dev: false
 
