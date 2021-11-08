@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:16-buster-slim
 WORKDIR /app
 ARG BASE_URL
 ARG NEXT_PUBLIC_TRACKING_ID
