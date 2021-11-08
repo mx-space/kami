@@ -5,6 +5,7 @@
 .player {
   @apply fixed z-10 bottom-0 left-0;
 
+  bottom: calc(0px + env(safe-area-inset-bottom));
   transform: translateX(0);
   transition: transform 0.5s;
 }

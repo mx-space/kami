@@ -87,7 +87,7 @@ const _Footer: FC = observer(() => {
               )}
             </p>
             <p style={{ marginRight: appStore.viewport.mobile ? '' : '3rem' }}>
-              {gatewayStore.online} 个小伙伴正在浏览
+              {gatewayStore.online || 1} 个小伙伴正在浏览
             </p>
           </div>
         </div>
@@ -96,5 +96,5 @@ const _Footer: FC = observer(() => {
     </footer>
   )
 })
-/// FIXME: 2021-05-04 12:08:05 好像也开始丢 CSS 了
+
 export const Footer = NoSSR(_Footer)
