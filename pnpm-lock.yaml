@@ -29,7 +29,7 @@ specifiers:
   '@types/react-transition-group': 4.4.4
   '@types/remove-markdown': 0.3.1
   '@types/ua-parser-js': 0.7.36
-  '@types/validator': 13.6.6
+  '@types/validator': 13.7.0
   NeteaseCloudMusicApi: '*'
   axios: 0.24.0
   camelcase-keys: 7.0.1
@@ -150,7 +150,7 @@ devDependencies:
   '@types/react-transition-group': 4.4.4
   '@types/remove-markdown': 0.3.1
   '@types/ua-parser-js': 0.7.36
-  '@types/validator': 13.6.6
+  '@types/validator': 13.7.0
   cross-env: 7.0.3
   dotenv: 10.0.0
   eslint: 7.32.0
@@ -1935,8 +1935,8 @@ packages:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
     dev: false
 
-  /@types/validator/13.6.6:
-    resolution: {integrity: sha512-+qogUELb4gMhrMjSh/seKmGVvN+uQLfyqJAqYRWqVHsvBsUO2xDBCL8CJ/ZSukbd8vXaoYbpIssAmfLEzzBHEw==}
+  /@types/validator/13.7.0:
+    resolution: {integrity: sha512-+jBxVvXVuggZOrm04NR8z+5+bgoW4VZyLzUO+hmPPW1mVFL/HaitLAkizfv4yg9TbG8lkfHWVMQ11yDqrVVCzA==}
     dev: true
 
   /@typescript-eslint/eslint-plugin/4.33.0_cc617358c89d3f38c52462f6d809db4c:
@@ -4765,16 +4765,10 @@ packages:
       rgba-regex: 1.0.0
     dev: false
 
-  /is-core-module/2.6.0:
-    resolution: {integrity: sha512-wShG8vs60jKfPWpF2KZRaAtvt3a20OAn7+IJ6hLPECpSABLcKtFKTTI4ZtH5QcBruBHlq+WsdHWyz0BCZW7svQ==}
-    dependencies:
-      has: 1.0.3
-
   /is-core-module/2.8.0:
     resolution: {integrity: sha512-vd15qHsaqrRL7dtH6QNuy0ndJmRDrS9HAM1CAiSifNUFv4x1a0CCVsj18hJ1mShxIG6T2i1sO78MkP56r0nYRw==}
     dependencies:
       has: 1.0.3
-    dev: true
 
   /is-date-object/1.0.5:
     resolution: {integrity: sha512-9YQaSxsAiSwcvS33MBk3wTCVnWK+HhF8VZR2jRxehM16QcVOdHqPn4VPHmRK4lSr38n9JriurInLcP90xsYNfQ==}
@@ -7205,7 +7199,7 @@ packages:
   /resolve/1.20.0:
     resolution: {integrity: sha512-wENBPt4ySzg4ybFQW2TT1zMQucPK95HSh/nq2CFTZVOGut2+pQvSsgtda4d26YrYcr067wjbmzOG8byDPBX63A==}
     dependencies:
-      is-core-module: 2.6.0
+      is-core-module: 2.8.0
       path-parse: 1.0.7
 
   /responselike/1.0.2:
