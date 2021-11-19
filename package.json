@@ -79,7 +79,7 @@
     "react-transition-group": "4.4.2",
     "react-use": "17.3.1",
     "remove-markdown": "0.3.0",
-    "socket.io-client": "4.3.2",
+    "socket.io-client": "4.4.0",
     "tailwindcss": "2.2.19",
     "ua-parser-js": "1.0.2",
     "validator": "13.7.0"

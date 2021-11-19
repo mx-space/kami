@@ -77,7 +77,7 @@ specifiers:
   remove-markdown: 0.3.0
   rimraf: '*'
   sass: 1.43.4
-  socket.io-client: 4.3.2
+  socket.io-client: 4.4.0
   tailwindcss: 2.2.19
   ts-node: 10.4.0
   typescript: 4.4.4
@@ -128,7 +128,7 @@ dependencies:
   react-transition-group: 4.4.2_react-dom@17.0.2+react@17.0.2
   react-use: 17.3.1_react-dom@17.0.2+react@17.0.2
   remove-markdown: 0.3.0
-  socket.io-client: 4.3.2
+  socket.io-client: 4.4.0
   tailwindcss: 2.2.19_postcss@8.3.11+ts-node@10.4.0
   ua-parser-js: 1.0.2
   validator: 13.7.0
@@ -3555,8 +3555,8 @@ packages:
     dependencies:
       once: 1.4.0
 
-  /engine.io-client/6.0.2:
-    resolution: {integrity: sha512-cAep9lhZV6Q8jMXx3TNSU5cydMzMed8/O7Tz5uzyqZvpNPtQ3WQXrLYGADxlsuaFmOLN7wZLmT7ImiFhUOku8g==}
+  /engine.io-client/6.1.1:
+    resolution: {integrity: sha512-V05mmDo4gjimYW+FGujoGmmmxRaDsrVr7AXA3ZIfa04MWM1jOfZfUwou0oNqhNwy/votUDvGDt4JA4QF4e0b4g==}
     dependencies:
       '@socket.io/component-emitter': 3.0.0
       debug: 4.3.2
@@ -7524,14 +7524,14 @@ packages:
     engines: {node: '>= 6.0.0', npm: '>= 3.0.0'}
     dev: false
 
-  /socket.io-client/4.3.2:
-    resolution: {integrity: sha512-2B9LqSunN60yV8F7S84CCEEcgbYNfrn7ejIInZtLZ7ppWtiX8rGZAjvdCvbnC8bqo/9RlCNOUsORLyskxSFP1g==}
+  /socket.io-client/4.4.0:
+    resolution: {integrity: sha512-g7riSEJXi7qCFImPow98oT8X++MSsHz6MMFRXkWNJ6uEROSHOa3kxdrsYWMq85dO+09CFMkcqlpjvbVXQl4z6g==}
     engines: {node: '>=10.0.0'}
     dependencies:
       '@socket.io/component-emitter': 3.0.0
       backo2: 1.0.2
       debug: 4.3.2
-      engine.io-client: 6.0.2
+      engine.io-client: 6.1.1
       parseuri: 0.0.6
       socket.io-parser: 4.1.1
     transitivePeerDependencies:
