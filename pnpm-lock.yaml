@@ -21,7 +21,7 @@ specifiers:
   '@types/lodash-es': 4.17.5
   '@types/node': 16.11.9
   '@types/randomcolor': 0.5.6
-  '@types/react': 17.0.35
+  '@types/react': 17.0.36
   '@types/react-color': 3.0.6
   '@types/react-dom': 17.0.11
   '@types/react-lazyload': 3.1.1
@@ -142,7 +142,7 @@ devDependencies:
   '@types/lodash-es': 4.17.5
   '@types/node': 16.11.9
   '@types/randomcolor': 0.5.6
-  '@types/react': 17.0.35
+  '@types/react': 17.0.36
   '@types/react-color': 3.0.6
   '@types/react-dom': 17.0.11
   '@types/react-lazyload': 3.1.1
@@ -1871,36 +1871,36 @@ packages:
   /@types/react-color/3.0.6:
     resolution: {integrity: sha512-OzPIO5AyRmLA7PlOyISlgabpYUa3En74LP8mTMa0veCA719SvYQov4WLMsHvCgXP+L+KI9yGhYnqZafVGG0P4w==}
     dependencies:
-      '@types/react': 17.0.35
+      '@types/react': 17.0.36
       '@types/reactcss': 1.2.4
     dev: true
 
   /@types/react-dom/17.0.11:
     resolution: {integrity: sha512-f96K3k+24RaLGVu/Y2Ng3e1EbZ8/cVJvypZWd7cy0ofCBaf2lcM46xNhycMZ2xGwbBjRql7hOlZ+e2WlJ5MH3Q==}
     dependencies:
-      '@types/react': 17.0.35
+      '@types/react': 17.0.36
     dev: true
 
   /@types/react-lazyload/3.1.1:
     resolution: {integrity: sha512-e9jsondHYzeApb67In+SdvxskBPC6pfD70j0L7l4kqviqCkkJAxD8iyMZSu5dcuYZGLXLAkp1SqkDK+4iVjLSA==}
     dependencies:
-      '@types/react': 17.0.35
+      '@types/react': 17.0.36
     dev: true
 
   /@types/react-syntax-highlighter/13.5.2:
     resolution: {integrity: sha512-sRZoKZBGKaE7CzMvTTgz+0x/aVR58ZYUTfB7HN76vC+yQnvo1FWtzNARBt0fGqcLGEVakEzMu/CtPzssmanu8Q==}
     dependencies:
-      '@types/react': 17.0.35
+      '@types/react': 17.0.36
     dev: true
 
   /@types/react-transition-group/4.4.4:
     resolution: {integrity: sha512-7gAPz7anVK5xzbeQW9wFBDg7G++aPLAFY0QaSMOou9rJZpbuI58WAuJrgu+qR92l61grlnCUe7AFX8KGahAgug==}
     dependencies:
-      '@types/react': 17.0.35
+      '@types/react': 17.0.36
     dev: true
 
-  /@types/react/17.0.35:
-    resolution: {integrity: sha512-r3C8/TJuri/SLZiiwwxQoLAoavaczARfT9up9b4Jr65+ErAUX3MIkU0oMOQnrpfgHme8zIqZLX7O5nnjm5Wayw==}
+  /@types/react/17.0.36:
+    resolution: {integrity: sha512-CUFUp01OdfbpN/76v4koqgcpcRGT3sYOq3U3N6q0ZVGcyeP40NUdVU+EWe3hs34RNaTefiYyBzOpxBBidCc5zw==}
     dependencies:
       '@types/prop-types': 15.7.4
       '@types/scheduler': 0.16.2
@@ -1910,7 +1910,7 @@ packages:
   /@types/reactcss/1.2.4:
     resolution: {integrity: sha512-1rhVqteMSD6KQjO+dPBObE1OkKadw00HVJkG5WCYsyvMwGgdTZ530wF7Bkrg/4TWxB2AtINIzFotjW51eViw+w==}
     dependencies:
-      '@types/react': 17.0.35
+      '@types/react': 17.0.36
     dev: true
 
   /@types/remove-markdown/0.3.1:
