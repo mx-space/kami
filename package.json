@@ -106,7 +106,7 @@
     "dotenv": "10.0.0",
     "eslint": "*",
     "nodemon": "2.0.15",
-    "postcss": "8.3.11",
+    "postcss": "8.4.1",
     "postcss-flexbugs-fixes": "5.0.2",
     "postcss-import": "14.0.2",
     "postcss-loader": "6.2.0",
