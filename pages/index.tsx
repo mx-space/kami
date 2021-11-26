@@ -4,9 +4,9 @@ import {
   faPencilAlt,
   faUsers,
 } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useInitialData } from 'common/context/InitialDataContext'
 import { useStore } from 'common/store'
+import { FontIcon } from 'components/FontIcon'
 import SectionNews, {
   SectionCard,
   SectionNewsProps,
@@ -304,7 +304,7 @@ const Social = NoSSR(() => {
               key={item.title}
               style={item.color ? { color: item.color } : {}}
             >
-              <FontAwesomeIcon icon={item.icon} />
+              <FontIcon icon={item.icon} />
             </a>
           )
         })}
