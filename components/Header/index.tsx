@@ -1,11 +1,3 @@
-/*
- * @Author: Innei
- * @Date: 2021-02-03 20:33:57
- * @LastEditTime: 2021-08-28 16:39:38
- * @LastEditors: Innei
- * @FilePath: /web/components/Header/index.tsx
- * @Mark: Coding with Love
- */
 import {
   faListUl,
   faShare,
@@ -20,6 +12,7 @@ import { DropdownBase } from 'components/Dropdown'
 import { LikeButton } from 'components/LikeButton'
 import { CustomLogo as Logo } from 'components/Logo'
 import { OverLay } from 'components/Overlay'
+import configs from 'configs'
 import { makeAutoObservable } from 'mobx'
 import { Observer, observer } from 'mobx-react-lite'
 import dynamic from 'next/dynamic'
@@ -252,31 +245,37 @@ const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
     }
     const firstPath = asPath.split('/')[1]
     // console.log(firstPath)
+    const menu = configs.menu
 
+    const inMenuIndex = menu.findIndex(
+      (item) =>
+        item.path != '/' &&
+        (asPath.startsWith(item.path) ||
+          item.subMenu?.find((subItem) => asPath.startsWith(subItem.path))),
+    )
+
+    if (inMenuIndex > -1) {
+      return inMenuIndex
+    }
     switch (firstPath) {
       case 'category':
-      case 'login':
       case 'posts': {
-        return 1
+        return menu.findIndex((item) => item.type == 'Post') || -1
       }
       case 'notes': {
-        return 2
+        return menu.findIndex((item) => item.type == 'Note') || -1
       }
       case 'says': {
-        return 3
+        return menu.findIndex((item) => item.path == '/says') || -1
       }
       case 'timeline': {
-        return 4
+        return menu.findIndex((item) => item.path.startsWith('/timeline')) || -1
       }
       case 'friends': {
-        return 5
+        return menu.findIndex((item) => item.path == '/friends') || -1
       }
       case 'recently': {
-        return 6
-      }
-      case 'projects':
-      case 'favorite': {
-        return 7
+        return menu.findIndex((item) => item.path.startsWith('/recently')) || -1
       }
     }
   }, [router])
