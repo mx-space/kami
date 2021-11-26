@@ -26,13 +26,13 @@ export interface MenuModel {
   type?: keyof typeof LayoutType
   path: string
   subMenu?: MenuModel[]
-  icon?: IconDefinition
+  icon?: IconDefinition | string
   as?: string | UrlObject
   independent?: boolean
 }
 
 export interface SocialLinkModel {
-  icon: IconDefinition
+  icon: IconDefinition | string
   title?: string
   url: string
   color?: string

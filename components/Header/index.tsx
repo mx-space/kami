@@ -9,6 +9,7 @@ import classNames from 'clsx'
 import { useInitialData } from 'common/context/InitialDataContext'
 import { appUIStore, useStore } from 'common/store'
 import { DropdownBase } from 'components/Dropdown'
+import { FontIcon } from 'components/FontIcon'
 import { LikeButton } from 'components/LikeButton'
 import { CustomLogo as Logo } from 'components/Logo'
 import { OverLay } from 'components/Overlay'
@@ -301,9 +302,6 @@ const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
         {() => (
           <Fragment>
             {appStore.menu.map((m, selection) => {
-              const isFontAwesomeIconDefine =
-                m.icon && m.icon.icon && m.icon.prefix && m.icon.iconName
-
               return (
                 <div className="relative" key={m.title}>
                   <Link href={m.path}>
@@ -321,9 +319,7 @@ const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
                           menu.selection = null
                         }}
                       >
-                        {isFontAwesomeIconDefine && (
-                          <FontAwesomeIcon icon={m.icon!} />
-                        )}
+                        <FontIcon icon={m.icon} />
                         <span className={styles['link-title']}>{m.title}</span>
                       </span>
                     </a>
@@ -340,7 +336,7 @@ const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
                           <Link href={m.path} key={m.path}>
                             <a>
                               <li key={m.title}>
-                                {m.icon && <FontAwesomeIcon icon={m.icon} />}
+                                <FontIcon icon={m.icon} />
                                 <span>{m.title}</span>
                               </li>
                             </a>
@@ -487,7 +483,7 @@ export const _Header: FC = observer(() => {
                 <Link href={m.path}>
                   <a>
                     <div className={styles['parent']}>
-                      {m.icon && <FontAwesomeIcon icon={m.icon} />}
+                    <FontIcon icon={m.icon} />
                       <span>{m.title}</span>
                     </div>
                   </a>
@@ -499,7 +495,7 @@ export const _Header: FC = observer(() => {
                         <Link href={m.path} key={m.title}>
                           <a>
                             <div className={styles['children']}>
-                              {m.icon && <FontAwesomeIcon icon={m.icon} />}
+                            <FontIcon icon={m.icon} />
                               <span>{m.title}</span>
                             </div>
                           </a>
