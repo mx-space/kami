@@ -56,7 +56,7 @@ specifiers:
   postcss-loader: 6.2.0
   postcss-nested: 5.0.6
   postcss-preset-env: 7.0.1
-  prettier: 2.4.1
+  prettier: 2.5.0
   qier-progress: 1.0.4
   randomcolor: 0.6.2
   rc-queue-anim: 1.8.5
@@ -135,7 +135,7 @@ dependencies:
 
 devDependencies:
   '@innei-util/eslint-config-react-ts': 0.1.2_eslint@7.32.0+typescript@4.5.2
-  '@innei-util/prettier': 0.1.4_prettier@2.4.1+typescript@4.5.2
+  '@innei-util/prettier': 0.1.4_prettier@2.5.0+typescript@4.5.2
   '@next/bundle-analyzer': 12.0.4
   '@types/inflection': 1.13.0
   '@types/js-cookie': 3.0.1
@@ -161,7 +161,7 @@ devDependencies:
   postcss-loader: 6.2.0_postcss@8.4.1
   postcss-nested: 5.0.6_postcss@8.4.1
   postcss-preset-env: 7.0.1
-  prettier: 2.4.1
+  prettier: 2.5.0
   react-lazyload: 3.2.0_react-dom@17.0.2+react@17.0.2
   rimraf: 3.0.2
   sass: 1.43.5
@@ -1468,11 +1468,11 @@ packages:
       - supports-color
     dev: true
 
-  /@innei-util/prettier/0.1.4_prettier@2.4.1+typescript@4.5.2:
+  /@innei-util/prettier/0.1.4_prettier@2.5.0+typescript@4.5.2:
     resolution: {integrity: sha512-8FrwTLARGRl+tMN3xmkkjZLu8j5PVt8A8153MMvJiuCaZW1f7nTloniBtTFJQpklhqKmSj5Zh5BWftHqYpWbBg==}
     dependencies:
       prettier-package-json: 2.6.0
-      prettier-plugin-organize-imports: 2.3.4_prettier@2.4.1+typescript@4.5.2
+      prettier-plugin-organize-imports: 2.3.4_prettier@2.5.0+typescript@4.5.2
     transitivePeerDependencies:
       - prettier
       - typescript
@@ -6542,18 +6542,18 @@ packages:
       sort-order: 1.0.1
     dev: true
 
-  /prettier-plugin-organize-imports/2.3.4_prettier@2.4.1+typescript@4.5.2:
+  /prettier-plugin-organize-imports/2.3.4_prettier@2.5.0+typescript@4.5.2:
     resolution: {integrity: sha512-R8o23sf5iVL/U71h9SFUdhdOEPsi3nm42FD/oDYIZ2PQa4TNWWuWecxln6jlIQzpZTDMUeO1NicJP6lLn2TtRw==}
     peerDependencies:
       prettier: '>=2.0'
       typescript: '>=2.9'
     dependencies:
-      prettier: 2.4.1
+      prettier: 2.5.0
       typescript: 4.5.2
     dev: true
 
-  /prettier/2.4.1:
-    resolution: {integrity: sha512-9fbDAXSBcc6Bs1mZrDYb3XKzDLm4EXXL9sC1LqKP5rZkT6KRr/rf9amVUcODVXgguK/isJz0d0hP72WeaKWsvA==}
+  /prettier/2.5.0:
+    resolution: {integrity: sha512-FM/zAKgWTxj40rH03VxzIPdXmj39SwSjwG0heUcNFwI+EMZJnY93yAiKXM3dObIKAM5TA88werc8T/EwhB45eg==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
