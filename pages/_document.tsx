@@ -118,10 +118,7 @@ export default class MyDocument extends Document<{ ua: string }> {
         <body id={'app'} className="loading">
           <Main />
           <NextScript />
-          <script
-            src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"
-            async
-          ></script>
+
           {GA_TRACKING_ID && (
             <>
               <script
