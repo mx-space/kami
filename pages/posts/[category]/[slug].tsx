@@ -166,7 +166,9 @@ export const PostView: NextPage<PostModel> = (props) => {
   useEffect(() => {
     if (props.copyright) {
       setCopyright({
-        date: dayjs(props.modified).format('YYYY年MM月DD日 H:mm'),
+        date: props.modified
+          ? dayjs(props.modified).format('YYYY年MM月DD日 H:mm')
+          : '暂没有修改过',
         title,
         link: new URL(location.pathname, configs.url).toString(),
       })
