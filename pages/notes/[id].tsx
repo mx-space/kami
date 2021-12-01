@@ -14,6 +14,7 @@ import { RelativeTime } from 'components/RelativeTime'
 import dayjs from 'dayjs'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { NoteLayout } from 'layouts/NoteLayout'
+import { omit } from 'lodash-es'
 import { NoteModel, NoteResp } from 'models/note'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
@@ -45,6 +46,15 @@ const NoteView: NextPage<NoteViewProps> = observer((props): JSX.Element => {
 
   const router = useRouter()
   const { userStore, appStore, musicStore } = useStore()
+
+  useEffect(() => {
+    if (router.query.id === 'latest') {
+      router.replace({
+        pathname: '/notes/' + props.data.nid,
+        query: { ...omit(router.query, 'id') },
+      })
+    }
+  }, [props.data.nid])
 
   useEffect(() => {
     appStore.shareData = {
