@@ -58,7 +58,7 @@
     "mdurl": "*",
     "mobx": "6.3.8",
     "mobx-react-lite": "3.2.2",
-    "next": "12.0.4",
+    "next": "12.0.6",
     "next-offline": "5.0.5",
     "next-seo": "4.28.1",
     "normalize.css": "8.0.1",
@@ -87,7 +87,7 @@
   "devDependencies": {
     "@innei-util/eslint-config-react-ts": "latest",
     "@innei-util/prettier": "latest",
-    "@next/bundle-analyzer": "12.0.4",
+    "@next/bundle-analyzer": "12.0.6",
     "@types/inflection": "1.13.0",
     "@types/js-cookie": "3.0.1",
     "@types/lodash-es": "4.17.5",
