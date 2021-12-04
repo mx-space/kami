@@ -112,7 +112,7 @@
     "postcss-loader": "6.2.1",
     "postcss-nested": "5.0.6",
     "postcss-preset-env": "7.0.1",
-    "prettier": "2.5.0",
+    "prettier": "2.5.1",
     "react-lazyload": "3.2.0",
     "rimraf": "*",
     "sass": "1.44.0",
