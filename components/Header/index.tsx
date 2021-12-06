@@ -239,14 +239,12 @@ const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
 
   const ballIndex = useMemo(() => {
     const asPath = router.asPath
-    // console.log(asPath)
 
+    const menu = configs.menu
     if (asPath === '' || asPath === '/') {
-      return 0
+      return menu.findIndex((item) => item.type == 'Home') || -1
     }
     const firstPath = asPath.split('/')[1]
-    // console.log(firstPath)
-    const menu = configs.menu
 
     const inMenuIndex = menu.findIndex(
       (item) =>
@@ -261,22 +259,22 @@ const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
     switch (firstPath) {
       case 'category':
       case 'posts': {
-        return menu.findIndex((item) => item.type == 'Post') || -1
+        return menu.findIndex((item) => item.type == 'Post')
       }
       case 'notes': {
-        return menu.findIndex((item) => item.type == 'Note') || -1
+        return menu.findIndex((item) => item.type == 'Note')
       }
       case 'says': {
-        return menu.findIndex((item) => item.path == '/says') || -1
+        return menu.findIndex((item) => item.path == '/says')
       }
       case 'timeline': {
-        return menu.findIndex((item) => item.path.startsWith('/timeline')) || -1
+        return menu.findIndex((item) => item.path.startsWith('/timeline'))
       }
       case 'friends': {
-        return menu.findIndex((item) => item.path == '/friends') || -1
+        return menu.findIndex((item) => item.path == '/friends')
       }
       case 'recently': {
-        return menu.findIndex((item) => item.path.startsWith('/recently')) || -1
+        return menu.findIndex((item) => item.path.startsWith('/recently'))
       }
     }
   }, [router])
@@ -285,17 +283,17 @@ const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
     if (!groupRef.current || typeof ballIndex === 'undefined') {
       return
     }
+
     const $group = groupRef.current
     const $child = $group.children.item(ballIndex) as HTMLElement
 
-    // console.log($child)
-
-    setBallOffsetLeft(
-      $child.offsetLeft + $child.getBoundingClientRect().width / 2,
-    )
+    if ($child) {
+      setBallOffsetLeft(
+        $child.offsetLeft + $child.getBoundingClientRect().width / 2,
+      )
+    }
   }, [ballIndex])
 
-  // console.log(ballOffsetLeft, ballIndex)
   return (
     <div className={styles['link-group']} ref={groupRef}>
       <Observer>
@@ -483,7 +481,7 @@ export const _Header: FC = observer(() => {
                 <Link href={m.path}>
                   <a>
                     <div className={styles['parent']}>
-                    <FontIcon icon={m.icon} />
+                      <FontIcon icon={m.icon} />
                       <span>{m.title}</span>
                     </div>
                   </a>
@@ -495,7 +493,7 @@ export const _Header: FC = observer(() => {
                         <Link href={m.path} key={m.title}>
                           <a>
                             <div className={styles['children']}>
-                            <FontIcon icon={m.icon} />
+                              <FontIcon icon={m.icon} />
                               <span>{m.title}</span>
                             </div>
                           </a>
