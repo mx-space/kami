@@ -65,7 +65,7 @@ specifiers:
   react: 17.0.2
   react-countup: 6.1.0
   react-dom: 17.0.2
-  react-hook-form: 7.22.0
+  react-hook-form: 7.22.1
   react-intersection-observer: 8.32.5
   react-lazy-images: 1.1.0
   react-lazyload: 3.2.0
@@ -119,7 +119,7 @@ dependencies:
   react: 17.0.2
   react-countup: 6.1.0_react@17.0.2
   react-dom: 17.0.2_react@17.0.2
-  react-hook-form: 7.22.0_react@17.0.2
+  react-hook-form: 7.22.1_react@17.0.2
   react-intersection-observer: 8.32.5_react@17.0.2
   react-lazy-images: 1.1.0_react-dom@17.0.2+react@17.0.2
   react-markdown: 4.3.1_react@17.0.2
@@ -6839,8 +6839,8 @@ packages:
       scheduler: 0.20.2
     dev: false
 
-  /react-hook-form/7.22.0_react@17.0.2:
-    resolution: {integrity: sha512-0gPE29N0wdd/5ZMD+TaAq5LF4NTguLnPaTqdSiWyu1QiSkB6jmWY1q0550JYu2BSgfOHecA7pxky9q+zWAwMqg==}
+  /react-hook-form/7.22.1_react@17.0.2:
+    resolution: {integrity: sha512-c1jMj8k0AyvLhqU08B85HZGU2n1RknmyOEDcbROWaraW8kT4ga7kCsi/4XH6A7KCDzAM0sWoa30DVyqkIsJl9Q==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17
