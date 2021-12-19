@@ -43,6 +43,7 @@ service.interceptors.response.use(
     return res
   },
   (error: AxiosError<Record<string, any> | undefined>) => {
+    // 处理网络中断的问题
     if (
       !error.response ||
       error.response.status === 408 ||
@@ -62,6 +63,9 @@ service.interceptors.response.use(
           statusCode,
           data,
           message: data,
+          toString() {
+            return '网络错误'
+          },
         })
       }
 
@@ -83,10 +87,13 @@ service.interceptors.response.use(
         message.error('网络好像出现了点问题呢')
       }
     }
-
+    const code = error.response.status
     return Promise.reject({
-      statusCode: error.response.status,
+      statusCode: code,
       data: error.response.data,
+      toString() {
+        return '请求错误: ' + `[${code}]: Fetch ${error.config.url}`
+      },
     })
   },
 )

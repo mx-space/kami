@@ -1,4 +1,3 @@
-import sample from 'lodash/sample'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { isServerSide } from '../utils'
@@ -25,9 +24,7 @@ const errorToText = (statusCode: number) => {
   }
 }
 
-const _Error: NextPage<{ statusCode: number }> = ({
-  statusCode = sample([406, 418]) as number,
-}) => {
+const _Error: NextPage<{ statusCode: number }> = ({ statusCode = 500 }) => {
   const router = useRouter()
 
   return (
@@ -60,10 +57,10 @@ const getCode = (err, res): number => {
   }
   if (res?.statusCode === 500 && err?.statusCode === 500) {
     return 500
-  } else if (err && err.statusCode !== 500) {
-    return err.statusCode
   } else if (res && res.statusCode !== 500) {
     return res.statusCode
+  } else if (err && err.statusCode !== 500) {
+    return err.statusCode
   }
   return 500
 }

@@ -5,6 +5,7 @@ import { EventTypes } from 'common/socket/types'
 import { useStore } from 'common/store'
 import Action, { ActionProps } from 'components/Action'
 import CommentWrap from 'components/Comment'
+import { Input } from 'components/Input'
 import { LikeButton } from 'components/LikeButton'
 import Markdown from 'components/Markdown'
 import { NoteTimelineList } from 'components/NoteTimelineList'
@@ -18,7 +19,7 @@ import { omit } from 'lodash-es'
 import { NoteModel, NoteResp } from 'models/note'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React, { FC, useEffect, useMemo, useState } from 'react'
+import React, { FC, useEffect, useMemo, useRef, useState } from 'react'
 import { Rest } from 'utils/api'
 import { imagesRecord2Map } from 'utils/images'
 import { message } from 'utils/message'
@@ -40,7 +41,7 @@ const renderLines: FC<{ value: string }> = ({ value }) => {
   return <span className="indent">{value}</span>
 }
 
-const NoteView: NextPage<NoteViewProps> = observer((props): JSX.Element => {
+const NoteView: React.FC<NoteViewProps> = observer((props) => {
   const { prev, next } = props
   const [data, update] = useState(props.data)
 
@@ -430,13 +431,90 @@ const NoteView: NextPage<NoteViewProps> = observer((props): JSX.Element => {
   )
 })
 
-NoteView.getInitialProps = async (ctx) => {
+const PasswordConfrim: React.FC<{
+  onSubmit(password: string): any
+}> = (props) => {
+  const ref = useRef<HTMLInputElement>(null)
+  return (
+    <main className="relative">
+      <div className="flex h-full w-full absolute items-center justify-center flex-col">
+        <p>
+          <strong className="font-medium text-2xl">此文章需要密码</strong>
+        </p>
+        <div className="space-x-3 text-center space-y-3">
+          <Input ref={ref} type="password"></Input>
+          <button
+            className="btn yellow flex-shrink-0"
+            onClick={() => {
+              if (!ref.current) {
+                return
+              }
+              props.onSubmit(ref.current.value)
+            }}
+          >
+            提交
+          </button>
+        </div>
+      </div>
+    </main>
+  )
+}
+
+const NotePage: NextPage<NoteViewProps | { needPassword: true }> = observer(
+  (_props) => {
+    const [props, setProps] = useState<NoteViewProps | null>(null)
+
+    const router = useRouter()
+
+    // when router change, reset stored old props
+    useEffect(() => {
+      router.events.on('routeChangeStart', () => {
+        setProps(null)
+      })
+    }, [])
+
+    if ('needPassword' in _props && !props) {
+      const fetchData = (password: string) => {
+        const id = router.query.id as string
+        Rest('Note', 'nid')
+          .get<NoteResp>(id, {
+            params: {
+              password,
+            },
+          })
+          .then((data) => {
+            setProps(data)
+          })
+          .catch((err) => {
+            message.error('密码错误')
+          })
+      }
+      return <PasswordConfrim onSubmit={fetchData} />
+    }
+    if (props) {
+      return <NoteView {...props} />
+    } else if (!('needPassword' in _props)) {
+      return <NoteView {..._props} />
+    } else {
+      return null
+    }
+  },
+)
+
+NotePage.getInitialProps = async (ctx) => {
   const id = ctx.query.id as string
   if (id == 'latest') {
     return await Rest('Note').get<NoteResp>(id)
   }
-  const res = await Rest('Note', 'nid').get<NoteResp>(id)
-  return res
+  try {
+    const res = await Rest('Note', 'nid').get<NoteResp>(id)
+    return res
+  } catch (err: any) {
+    if (err.statusCode !== 403) {
+      throw err
+    }
+    return { needPassword: true }
+  }
 }
 
-export default NoteView
+export default NotePage
