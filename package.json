@@ -56,7 +56,7 @@
     "kico-style": "1.2.0",
     "lodash-es": "4.17.21",
     "mdurl": "*",
-    "mobx": "6.3.9",
+    "mobx": "6.3.10",
     "mobx-react-lite": "3.2.2",
     "next": "12.0.7",
     "next-offline": "5.0.5",
