@@ -242,7 +242,9 @@ const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
 
     const menu = configs.menu
     if (asPath === '' || asPath === '/') {
-      return menu.findIndex((item) => item.type == 'Home') || -1
+      const idx = menu.findIndex((item) => item.type == 'Home')
+
+      return ~idx ? idx : -1
     }
     const firstPath = asPath.split('/')[1]
 

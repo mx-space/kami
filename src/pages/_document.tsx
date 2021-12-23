@@ -25,7 +25,7 @@ import Document, {
   Main,
   NextScript,
 } from 'next/document'
-import Package from 'package.json'
+import Package from '~/package.json'
 import { GA_TRACKING_ID } from '../utils/gtag'
 const { version } = Package
 

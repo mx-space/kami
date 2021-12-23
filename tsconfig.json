@@ -14,7 +14,7 @@
     "preserveConstEnums": true,
     "sourceMap": true,
     "skipLibCheck": true,
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "noImplicitAny": false,
     "useDefineForClassFields": true,
     "typeRoots": [
@@ -29,7 +29,15 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "incremental": true
+    "incremental": true,
+    "paths": {
+      "~/*": [
+        "../*"
+      ],
+      "~": [
+        ".."
+      ],
+    }
   },
   "exclude": [
     ".next",

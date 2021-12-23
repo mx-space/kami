@@ -1,4 +1,10 @@
+// organize-imports-ignore
+import 'windi.css'
+// organize-imports-ignore
 import 'assets/styles/main.scss'
+// organize-imports-ignore
+import 'normalize.css/normalize.css'
+
 import { DropdownProvider } from 'common/context/dropdown'
 import { InitialContext } from 'common/context/InitialDataContext'
 import Loader from 'components/Loader'
@@ -9,8 +15,7 @@ import { NextSeo } from 'next-seo'
 import NextApp, { AppContext } from 'next/app'
 import Head from 'next/head'
 import Router, { useRouter } from 'next/router'
-import 'normalize.css/normalize.css'
-import Package from 'package.json'
+
 import QP from 'qier-progress'
 import React, { FC, useCallback, useEffect, useMemo, useRef } from 'react'
 import useMount from 'react-use/lib/useMount'
@@ -19,6 +24,8 @@ import { checkOldBrowser } from 'utils'
 import { devtoolForbidden, printToConsole } from 'utils/console'
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
+
+import Package from '~/package.json'
 import client from '../common/socket'
 import { useStore } from '../common/store'
 import { PageModel } from '../common/store/types'

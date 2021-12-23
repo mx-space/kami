@@ -11,7 +11,7 @@ import {
   removeListener,
   stop,
 } from '@innei/devtools-detector'
-import Package from './../package.json'
+import Package from '~/package.json'
 import { isDev, isServerSide } from './utils'
 const version = `v${Package.version}` || ''
 

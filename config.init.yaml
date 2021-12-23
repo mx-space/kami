@@ -1,0 +1,122 @@
+name: kami
+
+site:
+  favicon: https://innei.ren/favicon.svg
+  # 开屏图
+  logo_svg: https://innei.ren/favicon.svg
+  figure:
+    - https://cdn.jsdelivr.net/gh/Innei/fancy@master/2021/6nOYcygRGXvpsFd.jpg
+    - https://cdn.jsdelivr.net/gh/Innei/fancy@master/2021/Qr2ykmsEFpJn4BC.jpg
+
+  header:
+    menu:
+      - title: 源
+        path: /
+        type: Home
+        icon: faDotCircle
+        subMenu: []
+      - title: 文
+        path: /posts
+        type: Post
+        subMenu: []
+        icon: faGlasses
+      - title: 记
+        type: Note
+        path: /notes
+        icon: faFeatherAlt
+      - title: 言
+        path: /says
+        icon: faComments
+      - title: 览
+        icon: faHistory
+        path: /timeline
+        subMenu:
+          - title: 生活
+            icon: faFeatherAlt
+            path: /timeline?type=note
+          - title: 博文
+            icon: faBookOpen
+            path: /timeline?type=post
+          - title: 回忆
+            icon: faCircle
+            path: /timeline?memory=1
+      - title: 友
+        icon: faUserFriends
+        path: /friends
+      - title: 诉
+        icon: faComment
+        path: /recently
+      - title: 余
+        icon: faCircleNotch
+        path: /favorite/music
+        subMenu:
+          - title: 听歌
+            icon: faMusic
+            type: Music
+            path: /favorite/music
+      - title: ''
+        icon: faSubway
+        path: 'https://travellings.link'
+  social:
+    - url: 'https://github.com/Innei'
+      title: GitHub
+      icon: faGithub
+      color: var(--black)
+    - url: 'https://jq.qq.com/?_wv=1027&k=5t9N0mw'
+      title: QQ
+      icon: faQq
+      color: '#12b7f5'
+    - url: 'https://twitter.com/__oQuery'
+      title: twitter
+      icon: faTwitter
+      color: '#02A4ED'
+
+  icp:
+    enable: true
+    label: '浙ICP备 20028356 号'
+    link: http://beian.miit.gov.cn/
+
+  donate:
+    enable: true
+    link: https://afdian.net/@Innei
+
+  footer:
+    home_page: https://innei.ren
+
+  # pwa config
+  # 可能无法实现 预留配置
+  manifest:
+    name: 静かな森
+    short_name: 静かな森
+    theme_color: '#39c5bb'
+    description: 致虚极，守静笃。
+    background_color: '#39c5bb'
+    display: standalone
+    scope: /
+    start_url: /
+    lang: zh-cmn-Hans
+    prefer_related_applications: true
+    icons:
+      - src: manifest-icon-192.png
+        sizes: 192x192
+      - src: manifest-icon-512.png
+        sizes: 512x512
+  custom:
+    script: |-
+      console.log('Hello')
+    css: |-
+      .foo {
+        color: red
+      }
+    js:
+      - https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js
+
+function:
+  analyze:
+    enable: true
+    ga: G-X4PVVRB6TF
+  netease:
+    username: example
+    # password 敏感字段不应该暴露, 后续看看怎么操作
+    password:
+  travellings: true

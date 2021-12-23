@@ -1,3 +1,5 @@
+const WindiCSSWebpackPlugin = require('windicss-webpack-plugin')
+
 const isProd = process.env.NODE_ENV === 'production'
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
@@ -7,10 +9,8 @@ const env = require('dotenv').config().parsed || {}
 const withOffline = require('next-offline')
 const configs = withBundleAnalyzer({
   webpack: (config, options) => {
-    // config.experiments = {
-    //   topLevelAwait: true,
-    //   layers: true,
-    // }
+    config.plugins.push(new WindiCSSWebpackPlugin())
+
     return config
   },
   env: {
