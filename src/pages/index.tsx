@@ -13,6 +13,7 @@ import SectionNews, {
   SectionNewsProps,
 } from 'components/SectionNews'
 import configs from 'configs'
+import { shuffle } from 'lodash-es'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import Router from 'next/router'
@@ -131,10 +132,13 @@ function buildRoute<T extends { id: string } & { nid?: number }>(
 const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
   const config = useThemeConfig()
   const randomImages = config.site.figure.length
-    ? config.site.figure
+    ? shuffle(config.site.figure)
     : getRandomImage()
-  const images = [...randomImages]
 
+  const currentImageIndex = useRef(0)
+
+  const getRandomUnRepeatImage = () =>
+    randomImages[currentImageIndex.current++ % randomImages.length]
   const sections = useRef({
     postSection: {
       title: '最新博文',
@@ -143,7 +147,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
       content: posts.slice(0, 4).map((p) => {
         return {
           title: p.title,
-          background: images.pop(),
+          background: getRandomUnRepeatImage(),
           id: p.id,
           ...buildRoute('Post', p),
         }
@@ -156,7 +160,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
       content: notes.slice(0, 4).map((n) => {
         return {
           title: n.title,
-          background: images.pop(),
+          background: getRandomUnRepeatImage(),
           id: n.id,
           ...buildRoute('Note', n),
         }
@@ -207,7 +211,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
               {...{
                 title: '留言',
                 desc: '你的话对我很重要',
-                src: images.pop() as string,
+                src: getRandomUnRepeatImage(),
                 href: '/message',
                 onClick: (e) => {
                   stopEventDefault(e)
@@ -219,7 +223,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
               {...{
                 title: '关于',
                 desc: '这里有我的小秘密',
-                src: images.pop() as string,
+                src: getRandomUnRepeatImage(),
                 href: '/about',
                 onClick: (e) => {
                   stopEventDefault(e)
@@ -231,7 +235,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
               {...{
                 title: `点赞 (${like})`,
                 desc: '如果你喜欢的话点个赞呗',
-                src: images.pop() as string,
+                src: getRandomUnRepeatImage(),
                 href: '/like_this',
                 onClick: (e) => {
                   stopEventDefault(e)
@@ -252,7 +256,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
               {...{
                 title: '订阅',
                 desc: '关注订阅不迷路哦',
-                src: images.pop() as string,
+                src: getRandomUnRepeatImage(),
                 href: '/feed',
               }}
             />

@@ -22,7 +22,7 @@ const configs = withBundleAnalyzer({
     ignoreDuringBuilds: true,
   },
   async rewrites() {
-    const base = [
+    const beforeFiles = [
       { source: '/sitemap.xml', destination: '/api/sitemap' },
       { source: '/feed', destination: '/api/feed' },
       { source: '/rss', destination: '/api/feed' },
@@ -34,19 +34,24 @@ const configs = withBundleAnalyzer({
     ]
     // this can remove after test
     if (isProd && env.ASSETPREFIX) {
-      base.push({
+      beforeFiles.push({
         source: '/autostatic/:path*',
         destination: env.ASSETPREFIX + '/_next/static/:path*',
       })
     }
 
     if (env.NEXT_PUBLIC_APIURL) {
-      base.push({
+      beforeFiles.push({
         source: '/api/:path*',
         destination: env.NEXT_PUBLIC_APIURL + '/:path*',
       })
     }
-    return base
+    return {
+      beforeFiles,
+      fallback: [
+        { source: '/:page*/:slug*', destination: '/posts/:page*/:slug*' },
+      ],
+    }
   },
   // 小水管就算了吧
   // __NEXT_OPTIMIZE_FONTS=true 暂时

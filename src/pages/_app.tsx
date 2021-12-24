@@ -34,6 +34,7 @@ import client from '../common/socket'
 import { useStore } from '../common/store'
 import { PageModel } from '../common/store/types'
 import { isServerSide } from '../utils'
+import Script from 'next/script'
 
 const version = `v${Package.version}` || ''
 
@@ -96,6 +97,20 @@ const Content: FC = observer((props) => {
 
       <div id="next">{props.children}</div>
       <Loader />
+
+      {themeConfig.function.analyze.enable && (
+        <>
+          <Script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${themeConfig.function.analyze.ga}`}
+          />
+          <Script
+            dangerouslySetInnerHTML={{
+              __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${themeConfig.function.analyze.ga}', {page_path: window.location.pathname,});`,
+            }}
+          />
+        </>
+      )}
     </>
   )
 })
