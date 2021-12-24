@@ -31,6 +31,7 @@ const configs = withBundleAnalyzer({
         source: '/service-worker.js',
         destination: '/_next/static/service-worker.js',
       },
+      { source: '/notes', destination: '/notes/latest' },
     ]
     // this can remove after test
     if (isProd && env.ASSETPREFIX) {

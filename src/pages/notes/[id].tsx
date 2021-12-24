@@ -1,4 +1,5 @@
 import { faBookOpen, faClock } from '@fortawesome/free-solid-svg-icons'
+import { NoteModel, NoteWrappedPayload } from '@mx-space/api-client'
 import { useLoadFont } from 'common/hooks/useLoadFont'
 import { useRefEffect } from 'common/hooks/useRefEffect'
 import { EventTypes } from 'common/socket/types'
@@ -16,11 +17,10 @@ import dayjs from 'dayjs'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { NoteLayout } from 'layouts/NoteLayout'
 import { omit } from 'lodash-es'
-import { NoteModel, NoteResp } from 'models/note'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React, { FC, useEffect, useMemo, useRef, useState } from 'react'
-import { Rest } from 'utils/api'
+import { apiClient } from 'utils/client'
 import { imagesRecord2Map } from 'utils/images'
 import { message } from 'utils/message'
 import { mood2icon, weather2icon } from 'utils/meta'
@@ -31,11 +31,7 @@ import { ImageSizeMetaContext } from '../../common/context/ImageSizes'
 import { Seo } from '../../components/SEO'
 import { getSummaryFromMd, isDev, isLikedBefore, setLikeId } from '../../utils'
 
-interface NoteViewProps {
-  data: NoteModel
-  prev: Partial<NoteModel>
-  next: Partial<NoteModel>
-}
+type NoteViewProps = NoteWrappedPayload
 
 const renderLines: FC<{ value: string }> = ({ value }) => {
   return <span className="indent">{value}</span>
@@ -129,13 +125,10 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
   useEffect(() => {
     try {
       setTips(
-        `创建于 ${parseDate(
-          data.created,
-          'YYYY-MM-DD dddd',
-        )}, 修改于 ${parseDate(
-          data.modified,
-          'YYYY-MM-DD dddd',
-        )}, 全文字数: ${wordCount}, 阅读次数: ${data.count.read}, 喜欢次数: ${
+        `创建于 ${parseDate(data.created, 'YYYY-MM-DD dddd')}${
+          data.modified &&
+          `, 修改于 ${parseDate(data.modified, 'YYYY-MM-DD dddd')}`
+        }, 全文字数: ${wordCount}, 阅读次数: ${data.count.read}, 喜欢次数: ${
           data.count.like
         }`,
       )
@@ -197,10 +190,8 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
           if (like - 1 === data.count.like || isLiked) {
             return message.error('你已经喜欢过啦!')
           }
-          Rest('Note')
-            .get<any>('like/' + id, {
-              params: { ts: performance.timeOrigin + performance.now() },
-            })
+          apiClient.note
+            .likeIt(data.id)
             .then(() => {
               message.success('感谢喜欢!')
               observable.emit('like', data.nid)
@@ -318,7 +309,7 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
             description,
             article: {
               publishedTime: data.created,
-              modifiedTime: data.modified,
+              modifiedTime: data.modified || undefined,
               tags: ['Note of Life'],
             },
           },
@@ -338,7 +329,7 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
           </p>
         ) : (
           <ImageSizeMetaContext.Provider
-            value={imagesRecord2Map(props.data.images)}
+            value={imagesRecord2Map(props.data.images || [])}
           >
             {isSecret && (
               <span className={'flex justify-center -mb-3.5'}>
@@ -413,7 +404,6 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
         </div>
       </OverLay>
       {!isSecret && (
-        // <QueueAnim delay={500} type={'alpha'}>
         <ArticleLayout
           style={{ minHeight: 'unset', paddingTop: '0' }}
           focus
@@ -425,7 +415,6 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
             allowComment={props.data.allowComment ?? true}
           />
         </ArticleLayout>
-        // </QueueAnim>
       )}
     </>
   )
@@ -476,12 +465,10 @@ const NotePage: NextPage<NoteViewProps | { needPassword: true }> = observer(
     if ('needPassword' in _props && !props) {
       const fetchData = (password: string) => {
         const id = router.query.id as string
-        Rest('Note', 'nid')
-          .get<NoteResp>(id, {
-            params: {
-              password,
-            },
-          })
+
+        apiClient.note
+          .getNoteById(isNaN(+id) ? id : +id, password)
+
           .then((data) => {
             setProps(data)
           })
@@ -504,10 +491,10 @@ const NotePage: NextPage<NoteViewProps | { needPassword: true }> = observer(
 NotePage.getInitialProps = async (ctx) => {
   const id = ctx.query.id as string
   if (id == 'latest') {
-    return await Rest('Note').get<NoteResp>(id)
+    return await apiClient.note.getLatest()
   }
   try {
-    const res = await Rest('Note', 'nid').get<NoteResp>(id)
+    const res = await apiClient.note.getNoteById(isNaN(+id) ? id : +id)
     return res
   } catch (err: any) {
     if (err.statusCode !== 403) {

@@ -13,7 +13,7 @@ specifiers:
   '@innei-util/prettier': latest
   '@innei/devtools-detector': 2.0.4-beta.1
   '@innei/react-stack-grid': 0.8.4
-  '@mx-space/api-client': 0.4.2
+  '@mx-space/api-client': 0.4.4
   '@mx-space/extra': 0.5.0
   '@next/bundle-analyzer': 12.0.7
   '@openfonts/noto-sans-sc_vietnamese': 1.44.0
@@ -89,7 +89,7 @@ dependencies:
   '@fortawesome/react-fontawesome': 0.1.16_f515edce028694561ceb456e3dba224c
   '@innei/devtools-detector': 2.0.4-beta.1
   '@innei/react-stack-grid': 0.8.4_837d624d62d50aa058b79890e8780bb8
-  '@mx-space/api-client': 0.4.2
+  '@mx-space/api-client': 0.4.4
   '@mx-space/extra': 0.5.0_axios@0.24.0
   '@openfonts/noto-sans-sc_vietnamese': 1.44.0
   NeteaseCloudMusicApi: 4.0.23
@@ -1495,8 +1495,8 @@ packages:
       shallowequal: 1.1.0
     dev: false
 
-  /@mx-space/api-client/0.4.2:
-    resolution: {integrity: sha512-uiXFVpE279am5fN8ACMp6q5bkYAma5slicQmiv56NsnB0dhN1bCTY3KXXCaZVF8GL4EPlrnS8nGEbYAZFOmVwg==}
+  /@mx-space/api-client/0.4.4:
+    resolution: {integrity: sha512-kS/YyyGt5cJssgFd+B4pMkoMnfnz0MU0DzRkGoEdtvmY7HW2jYSIIzvG/q6tgEIZP61kGDl78ai695Nj5hKCMw==}
     engines: {pnpm: '>=6'}
     dependencies:
       camelcase-keys: 7.0.1
