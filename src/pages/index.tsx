@@ -4,7 +4,8 @@ import {
   faPencilAlt,
   faUsers,
 } from '@fortawesome/free-solid-svg-icons'
-import { useInitialData } from 'common/context/InitialDataContext'
+import { AggregateTop } from '@mx-space/api-client'
+import { useInitialData, useThemeConfig } from 'common/hooks/use-initial-data'
 import { useStore } from 'common/store'
 import { FontIcon } from 'components/FontIcon'
 import SectionNews, {
@@ -12,34 +13,23 @@ import SectionNews, {
   SectionNewsProps,
 } from 'components/SectionNews'
 import configs from 'configs'
-import omit from 'lodash/omit'
-import shuffle from 'lodash/shuffle'
-import { Top } from 'models/aggregate'
-import { SayModel } from 'models/say'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import Router from 'next/router'
 import QueueAnim from 'rc-queue-anim'
 import Texty from 'rc-texty'
 import React, { FC, useEffect, useRef, useState } from 'react'
-import { Rest } from 'utils/api'
+import { apiClient } from 'utils/client'
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
 import { FriendsSection } from '../components/SectionNews/friend'
 import { SectionWrap } from '../components/SectionNews/section'
-import { getAnimationImages as getAnimeImages, NoSSR } from '../utils'
+import { getRandomImage, NoSSR } from '../utils'
 import { stopEventDefault } from '../utils/dom'
 import '../utils/message'
 import service from '../utils/request'
-interface IndexViewProps {
-  posts: Top.Post[]
-  notes: Top.Note[]
-  says: Top.Say[]
-  projects: Top.Project[]
-  randomImages: string[]
-}
 
-const IndexView: NextPage<IndexViewProps> = (props) => {
+const IndexView: NextPage<AggregateTop> = (props) => {
   const { userStore, appStore } = useStore()
   const { name, introduce, master } = userStore
   const { avatar } = master
@@ -50,14 +40,12 @@ const IndexView: NextPage<IndexViewProps> = (props) => {
   const [say, setSay] = useState('')
 
   useEffect(() => {
-    Rest('Say')
-      .get<any>('random')
-      .then(({ data }: { data: SayModel }) => {
-        if (!data) {
-          return
-        }
-        setSay(`${data.text}  ——${data.author ?? data.source ?? '站长说'}`)
-      })
+    apiClient.say.getRandom().then(({ data }) => {
+      if (!data) {
+        return
+      }
+      setSay(`${data.text}  ——${data.author ?? data.source ?? '站长说'}`)
+    })
   }, [])
   const initData = useInitialData()
   return (
@@ -108,7 +96,7 @@ enum ContentType {
   Note,
   Post,
   Say,
-  Project,
+  // Project,
 }
 
 function buildRoute<T extends { id: string } & { nid?: number }>(
@@ -133,27 +121,18 @@ function buildRoute<T extends { id: string } & { nid?: number }>(
     case 'Say': {
       return { as: `/says`, href: `/says` }
     }
-    case 'Project': {
-      const { id } = obj
-      return { as: `/projects/${id}`, href: `/projects/[id]` }
-    }
+    // case 'Project': {
+    //   const { id } = obj
+    //   return { as: `/projects/${id}`, href: `/projects/[id]` }
+    // }
   }
 }
 
-IndexView.getInitialProps = async (): Promise<IndexViewProps> => {
-  const aggregateData = (await Rest('Aggregate').get('top')) as Top.Aggregate
-
-  const extraImages = getAnimeImages()
-
-  return {
-    ...(omit(aggregateData, ['ok', 'timestamp']) as IndexViewProps),
-    randomImages: shuffle([/* ...randomImages, */ ...extraImages]),
-  }
-}
-
-export default observer(IndexView)
-
-const _Sections: FC<IndexViewProps> = ({ randomImages, notes, posts }) => {
+const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
+  const config = useThemeConfig()
+  const randomImages = config.site.figure.length
+    ? config.site.figure
+    : getRandomImage()
   const images = [...randomImages]
 
   const sections = useRef({
@@ -312,3 +291,11 @@ const Social = NoSSR(() => {
     </QueueAnim>
   )
 })
+
+IndexView.getInitialProps = async () => {
+  const aggregateData = await apiClient.aggregate.getTop()
+
+  return aggregateData
+}
+
+export default observer(IndexView)

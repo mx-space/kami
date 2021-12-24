@@ -12,7 +12,6 @@ import type { ServerResponse } from 'http'
 import dynamic from 'next/dynamic'
 import { ComponentType } from 'react'
 import RemoveMarkdown from 'remove-markdown'
-import { UAParser } from 'ua-parser-js'
 
 export const isClientSide = () => {
   return typeof window !== 'undefined'
@@ -112,52 +111,6 @@ export const writeBody = (
   res.writeHead(code ?? 200, { 'Content-Type': 'application/json' })
   const json = JSON.stringify(bodyJSON)
   res.end(json)
-}
-
-export function checkOldBrowser() {
-  const parser = new UAParser(window.navigator.userAgent)
-  const browser = parser.getBrowser()
-  const isOld: boolean = (() => {
-    if (browser.name === 'IE') {
-      alert(
-        '欧尼酱, 乃真的要使用 IE 浏览器吗, 不如换个 Chrome 好不好嘛（o´ﾟ□ﾟ`o）',
-      )
-      location.href = 'https://www.google.com/chrome/'
-      return true
-    }
-    // check build-in methods
-    const ObjectMethods = ['fromEntries', 'entries']
-    const ArrayMethods = ['flat']
-    if (
-      !window.Reflect ||
-      !(
-        ObjectMethods.every((m) => Reflect.has(Object, m)) &&
-        ArrayMethods.every((m) => Reflect.has(Array.prototype, m))
-      ) ||
-      !window.requestAnimationFrame ||
-      !window.Proxy ||
-      !window.IntersectionObserver ||
-      !window.ResizeObserver ||
-      !window.Intl ||
-      typeof globalThis === 'undefined' ||
-      typeof Set === 'undefined' ||
-      typeof Map === 'undefined'
-    ) {
-      return true
-    }
-
-    return false
-  })()
-  if (isOld) {
-    const { name: osName, version: osVersion } = parser.getOS()
-
-    return {
-      isOld: true,
-      msg: `User browser(${browser.name} ${browser.version}) is too old. OS: ${osName}/${osVersion}`,
-    }
-  }
-
-  return { isOld: false, msg: '' }
 }
 
 export const escapeHTMLTag = (html: string) => {

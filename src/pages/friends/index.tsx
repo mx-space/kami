@@ -6,7 +6,7 @@
  * @FilePath: /web/pages/friends/index.tsx
  * @Mark: Coding with Love
  */
-import { useInitialData } from 'common/context/InitialDataContext'
+import { useInitialData } from 'common/hooks/use-initial-data'
 import Markdown from 'components/Markdown'
 import { NextPage } from 'next'
 import dynamic from 'next/dynamic'

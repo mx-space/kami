@@ -29,8 +29,6 @@ export default class AppUIStore {
 
   shareData: { title: string; text: string; url: string } | null = null
 
-  noteNid: null | number = null
-
   pages: PageModel[] = []
 
   updatePosition(direction: 'up' | 'down') {
@@ -102,10 +100,6 @@ export default class AppUIStore {
   }
   setConfig(config: any) {
     this.config = config
-  }
-
-  setLastestNoteNid(nid: number) {
-    this.noteNid = nid
   }
 
   get seo() {

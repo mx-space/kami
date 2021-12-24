@@ -8,7 +8,7 @@
  */
 import { faNodeJs, faReact } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useInitialData } from 'common/context/InitialDataContext'
+import { useInitialData } from 'common/hooks/use-initial-data'
 import Link from 'next/link'
 import React, { FC, Fragment } from 'react'
 import { NoSSR } from 'utils'

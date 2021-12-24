@@ -6,7 +6,7 @@
  * @FilePath: /web/components/SEO/index.tsx
  * Mark: Coding with Love
  */
-import { useInitialData } from 'common/context/InitialDataContext'
+import { useInitialData } from 'common/hooks/use-initial-data'
 import merge from 'lodash/merge'
 import { NextSeo, NextSeoProps } from 'next-seo'
 import type { OpenGraph } from 'next-seo/lib/types'

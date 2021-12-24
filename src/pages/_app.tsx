@@ -5,256 +5,95 @@ import 'assets/styles/main.scss'
 // organize-imports-ignore
 import 'normalize.css/normalize.css'
 
+import { AggregateRoot } from '@mx-space/api-client'
 import { DropdownProvider } from 'common/context/dropdown'
-import { InitialContext } from 'common/context/InitialDataContext'
+import {
+  InitialContextProvider,
+  InitialDataType,
+} from 'common/context/initial-data'
+import { useCheckLogged } from 'common/hooks/use-check-logged'
+import { useCheckOldBrowser } from 'common/hooks/use-check-old-browser'
+import { useInitialData, useThemeConfig } from 'common/hooks/use-initial-data'
+import { useMediaToggle } from 'common/hooks/use-media-toggle'
+import { useResizeScrollEvent } from 'common/hooks/use-resize-scroll-event'
+import { useRouterEvent } from 'common/hooks/use-router-event'
 import Loader from 'components/Loader'
 import { BasicLayout } from 'layouts/BasicLayout'
-import throttle from 'lodash/throttle'
-import { AggregateResp } from 'models/aggregate'
 import { NextSeo } from 'next-seo'
 import NextApp, { AppContext } from 'next/app'
 import Head from 'next/head'
-import Router, { useRouter } from 'next/router'
-
-import QP from 'qier-progress'
-import React, { FC, useCallback, useEffect, useMemo, useRef } from 'react'
+import { useRouter } from 'next/router'
+import React, { FC, useEffect, useMemo } from 'react'
 import useMount from 'react-use/lib/useMount'
-import useUnmount from 'react-use/lib/useUnmount'
-import { checkOldBrowser } from 'utils'
-import { devtoolForbidden, printToConsole } from 'utils/console'
-import { message } from 'utils/message'
+import { KamiConfig } from 'types/config'
+import { $axios, apiClient } from 'utils/client'
+import { printToConsole } from 'utils/console'
 import { observer } from 'utils/mobx'
-
 import Package from '~/package.json'
 import client from '../common/socket'
 import { useStore } from '../common/store'
 import { PageModel } from '../common/store/types'
 import { isServerSide } from '../utils'
-import { Rest } from '../utils/api'
-import { getToken, removeToken } from '../utils/cookie'
-import * as gtag from '../utils/gtag'
-import service from '../utils/request'
 
 const version = `v${Package.version}` || ''
-
-const Progress = new QP({ colorful: false, color: '#27ae60' })
 
 if (isServerSide()) {
   React.useLayoutEffect = useEffect
 }
 
-const Content: FC<DataModel> = observer((props) => {
-  const _currentY = useRef(0)
+const Content: FC = observer((props) => {
   const {
     appStore: app,
     userStore: master,
     categoryStore: category,
   } = useStore()
 
-  const handleScroll = throttle(
-    () => {
-      const currentY = document.documentElement.scrollTop
-      const direction = _currentY.current > currentY ? 'up' : 'down'
-      app.updatePosition(direction)
-      _currentY.current = currentY
-    },
-    50,
-    { leading: true },
-  )
-
+  useMediaToggle()
+  const { check: checkBrowser } = useCheckOldBrowser()
+  const { check: checkLogin } = useCheckLogged()
+  useRouterEvent()
+  useResizeScrollEvent()
+  const initialData = useInitialData()
+  const themeConfig = useThemeConfig()
   useMount(() => {
     {
-      const data = props.initData
-
-      const { seo, user, pageMeta, categories, lastestNoteNid } = data
+      const data = initialData
+      const { seo, user, pageMeta, categories } = data
       // set user
       master.setUser(user)
-
       document.body.classList.remove('loading')
-
       // set page
       app.setPage(pageMeta as PageModel[])
-
       category.setCategory(categories)
       app.setConfig({ seo })
-      app.setLastestNoteNid(lastestNoteNid)
     }
     checkLogin()
-
-    registerRouterEvents()
-    registerEvent()
     checkBrowser()
     printToConsole()
-
     // connect to ws
     client.initIO()
   })
-  useUnmount(() => {
-    window.onresize = null
-    document.removeEventListener('scroll', handleScroll)
-  })
 
-  // initMediaListener
-  useEffect(() => {
-    const getColormode = <T extends { matches: boolean }>(e: T) => {
-      app.colorMode = e.matches ? 'dark' : 'light'
-      return app.colorMode
-    }
+  if (!initialData) {
+    // TODO: No data page
+    return <div>No Data fetched</div>
+  }
 
-    const getMediaType = <T extends { matches: boolean }>(e: T) => {
-      app.mediaType = e.matches ? 'screen' : 'print'
-      return app.mediaType
-    }
-    getColormode(window.matchMedia('(prefers-color-scheme: dark)'))
-    getMediaType(window.matchMedia('screen'))
-    const cb1 = (e: MediaQueryListEvent): void => {
-      if (app.autoToggleColorMode) {
-        getColormode(e)
-      }
-    }
-    const cb2 = (e: MediaQueryListEvent): void => {
-      getMediaType(e)
-    }
-    try {
-      window
-        .matchMedia('(prefers-color-scheme: dark)')
-        .addEventListener('change', cb1)
-
-      window.matchMedia('screen').addEventListener('change', cb2)
-      // eslint-disable-next-line no-empty
-    } catch {}
-
-    return () => {
-      window
-        .matchMedia('(prefers-color-scheme: dark)')
-        .removeEventListener('change', cb1)
-      window.matchMedia('screen').removeEventListener('change', cb2)
-    }
-  }, [])
-
-  const checkBrowser = useCallback(() => {
-    const { isOld, msg: errMsg } = checkOldBrowser()
-    if (isOld) {
-      const msg = '欧尼酱, 乃的浏览器太老了, 更新一下啦（o´ﾟ□ﾟ`o）'
-      alert(msg)
-      message.warn(msg, Infinity)
-      class BrowserTooOldError extends Error {
-        constructor() {
-          super(errMsg)
-        }
-      }
-
-      throw new BrowserTooOldError()
-    }
-  }, [])
-
-  const registerEvent = useCallback(() => {
-    const resizeHandler = throttle(() => {
-      app.updateViewport()
-    }, 300)
-    window.onresize = resizeHandler
-    app.updateViewport()
-
-    if (typeof document !== 'undefined') {
-      document.addEventListener('scroll', handleScroll)
-    }
-  }, [])
-
-  const checkLogin = useCallback(() => {
-    requestAnimationFrame(() => {
-      if (getToken()) {
-        Rest('Master', 'check_logged')
-          .get<any>()
-          .then(({ ok }) => {
-            if (ok) {
-              master.setToken(getToken() as string)
-              message.success('欢迎回来, ' + master.name, 1500)
-            } else {
-              removeToken()
-              message.warn('登录身份过期了, 再登录一下吧!', 2)
-            }
-          })
-      } else {
-        devtoolForbidden()
-      }
-    })
-  }, [])
-
-  const registerRouterEvents = useCallback(() => {
-    // const getMainWrapper = () => {
-    //   const $main = document.querySelector('main')
-
-    //   if (!$main) {
-    //     return null
-    //   }
-    //   return $main
-    // }
-
-    // let animate: Animation | null = null
-
-    // const animation = (status: 'in' | 'out') => {
-    //   const $main = getMainWrapper()
-    //   if ($main) {
-    //     status === 'out'
-    //       ? $main.classList.add('loading')
-    //       : $main.classList.remove('loading')
-    //   }
-    // }
-
-    Router.events.on('routeChangeStart', () => {
-      // animation('out')
-
-      Progress.start()
-      history.backPath = history.backPath
-        ? [...history.backPath, history.state.as]
-        : [history.state.as]
-    })
-
-    Router.events.on('routeChangeComplete', () => {
-      // animation('in')
-
-      Progress.finish()
-    })
-
-    Router.events.on('routeChangeError', () => {
-      // animation('in')
-      history.backPath?.pop()
-      Progress.finish()
-      // message.error('出现了未知错误, 刷新试试?')
-    })
-
-    Router.events.on('routeChangeComplete', (url) => gtag.pageview(url))
-  }, [])
-
+  if (!themeConfig) {
+    return <div>No Config fetched</div>
+  }
   return (
     <>
       <Head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-        {props.initData.seo.keywords && (
-          <meta
-            name="keywords"
-            content={props.initData.seo.keywords.join(',')}
-          />
+        {initialData.seo.keywords && (
+          <meta name="keywords" content={initialData.seo.keywords.join(',')} />
         )}
       </Head>
       <NextSeo
-        title={
-          props.initData.seo.title + ' · ' + props.initData.seo.description
-        }
-        description={props.initData.seo.description}
+        title={initialData.seo.title + ' · ' + initialData.seo.description}
+        description={initialData.seo.description}
       />
 
-      {/* <button
-        style={{ position: 'fixed', zIndex: 3e10 }}
-        onClick={() => {
-          document.body.classList.toggle('loading')
-        }}
-      >
-        toggle
-      </button> */}
       <div id="next">{props.children}</div>
       <Loader />
     </>
@@ -262,7 +101,7 @@ const Content: FC<DataModel> = observer((props) => {
 })
 
 interface DataModel {
-  initData: AggregateResp
+  initData: InitialDataType
 }
 const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
   props,
@@ -283,42 +122,74 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
   }, [Component, err, pageProps, router.route])
 
   return (
-    <InitialContext.Provider value={initData}>
+    <InitialContextProvider value={initData}>
       <DropdownProvider>
-        <Content initData={initData}>{Comp}</Content>
+        <Head>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          />
+        </Head>
+        <Content>{Comp}</Content>
       </DropdownProvider>
-    </InitialContext.Provider>
+    </InitialContextProvider>
   )
 }
-let initData: any = null
-// cache 5 mins
-setInterval(() => {
-  initData = null
-}, 1000 * 60 * 5)
-// @ts-ignore
-App.getInitialProps = async (props: AppContext) => {
-  const appProps = await NextApp.getInitialProps(props)
+{
+  let initData: any = null
+  // cache 5 mins
+  setInterval(() => {
+    initData = null
+  }, 1000 * 60 * 5)
+  // @ts-ignore
+  App.getInitialProps = async (props: AppContext) => {
+    const appProps = await NextApp.getInitialProps(props)
 
-  const ctx = props.ctx
-  const request = ctx.req
+    const ctx = props.ctx
+    const request = ctx.req
 
-  if (request && isServerSide()) {
-    let ip =
-      ((request.headers['x-forwarded-for'] ||
-        request.connection.remoteAddress ||
-        request.socket.remoteAddress) as string) || undefined
-    if (ip && ip.split(',').length > 0) {
-      ip = ip.split(',')[0]
+    if (request && isServerSide()) {
+      let ip =
+        ((request.headers['x-forwarded-for'] ||
+          request.connection.remoteAddress ||
+          request.socket.remoteAddress) as string) || undefined
+      if (ip && ip.split(',').length > 0) {
+        ip = ip.split(',')[0]
+      }
+      ip && ($axios.defaults.headers.common['x-forwarded-for'] = ip as string)
+
+      $axios.defaults.headers.common['User-Agent'] =
+        request.headers['user-agent'] + ' mx-space SSR server' + `/${version}`
     }
-    service.defaults.headers.common['x-forwarded-for'] = ip as string
 
-    service.defaults.headers.common['User-Agent'] =
-      request.headers['user-agent'] + ' mx-space SSR server' + `/${version}`
-    // console.log(service.defaults.headers.common)
+    async function getInitialData() {
+      const [aggregateDataState, configSnippetState] = await Promise.allSettled(
+        [
+          apiClient.aggregate.getAggregateData(),
+          apiClient.snippet.getByReferenceAndName<KamiConfig>('theme', 'kami'),
+        ],
+      )
+
+      let aggregateData: AggregateRoot | null = null
+      let configSnippet: KamiConfig | null = null
+      if (aggregateDataState.status === 'fulfilled') {
+        aggregateData = aggregateDataState.value
+      } else {
+        //  TODO 请求异常处理
+
+        console.error(aggregateDataState.reason)
+      }
+
+      if (configSnippetState.status === 'fulfilled') {
+        configSnippet = configSnippetState.value.data
+      }
+
+      return { aggregateData, config: configSnippet }
+    }
+
+    initData = initData || (await getInitialData())
+
+    return { ...appProps, initData }
   }
-
-  initData = initData || (await Rest('Aggregate').get<AggregateResp>())
-
-  return { ...appProps, initData }
 }
 export default App

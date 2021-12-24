@@ -7,12 +7,13 @@
  * @Coding with Love
  */
 
+import { CategoryModel } from '@mx-space/api-client'
 import uniqBy from 'lodash-es/uniqBy'
 import { makeAutoObservable } from 'mobx'
-import { CategoriesResp, CategoryModel } from 'models/category'
+import { apiClient } from 'utils/client'
 import { appUIStore } from '.'
-import { Rest } from '../../utils/api'
 import { MenuModel } from './types'
+
 export default class CategoryStore {
   constructor() {
     makeAutoObservable(this)
@@ -46,11 +47,7 @@ export default class CategoryStore {
     this.categories = categories
   }
   async updateCategory() {
-    const { data } = await Rest('Category').get<CategoriesResp>(undefined, {
-      params: {
-        type: 'Category',
-      },
-    })
+    const { data } = await apiClient.category.getAllCategories()
     this.categories.push(...data)
   }
 

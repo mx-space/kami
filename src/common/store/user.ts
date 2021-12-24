@@ -6,8 +6,8 @@
  * @FilePath: /web/common/store/user.ts
  * @Mark: Coding with Love
  */
+import { UserModel } from '@mx-space/api-client'
 import { makeAutoObservable } from 'mobx'
-import { UserDto } from 'models/user'
 import { Rest } from 'utils'
 
 export interface UrlConfig {
@@ -20,14 +20,14 @@ export default class UserStore {
   constructor() {
     makeAutoObservable(this)
   }
-  master: Partial<UserDto> = {}
+  master: Partial<UserModel> = {}
   token: string | null = null
   get isLogged() {
     return !!this.token
   }
 
   url: UrlConfig | null = null
-  setUser(model: UserDto) {
+  setUser(model: UserModel) {
     this.master = model
   }
 

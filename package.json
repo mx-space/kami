@@ -44,7 +44,7 @@
     "@fortawesome/react-fontawesome": "0.1.16",
     "@innei/devtools-detector": "2.0.4-beta.1",
     "@innei/react-stack-grid": "0.8.4",
-    "@mx-space/api-client": "0.4.0",
+    "@mx-space/api-client": "0.4.2",
     "@mx-space/extra": "0.5.0",
     "@openfonts/noto-sans-sc_vietnamese": "1.44.0",
     "NeteaseCloudMusicApi": "*",
