@@ -1,5 +1,11 @@
 import { faTags } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  Pager,
+  PaginateResult,
+  PostModel,
+  TagModel,
+} from '@mx-space/api-client'
 import { appUIStore, useStore } from 'common/store'
 import { QueueAnim } from 'components/Anime'
 import { Loading } from 'components/Loading'
@@ -7,8 +13,6 @@ import { OverLay } from 'components/Overlay'
 import { PostBlock } from 'components/PostBlock'
 import { BigTag } from 'components/Tag'
 import { ArticleLayout } from 'layouts/ArticleLayout'
-import { PagerModel } from 'models/base'
-import { PostModel, PostPagerDto } from 'models/post'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -21,16 +25,13 @@ import React, {
   useState,
 } from 'react'
 import { NoSSR, UUID } from 'utils'
-import { Rest } from 'utils/api'
+import { apiClient } from 'utils/client'
 import { observer } from 'utils/mobx'
 import { SEO } from '../../components/SEO'
-interface PostProps extends PagerModel {
-  posts: PostModel[]
-}
 
-const Post: NextPage<PostProps> = observer((props) => {
+const Post: NextPage<PaginateResult<PostModel>> = observer((props) => {
   // const { page, posts } = props
-  const [page, setPage] = useState<PagerModel['pagination'] | null>(null)
+  const [page, setPage] = useState<Pager | null>(null)
   const [posts, setPosts] = useState<PostModel[]>([])
   const store = useStore()
   const { actionStore } = store
@@ -48,22 +49,18 @@ const Post: NextPage<PostProps> = observer((props) => {
     fetch()
   }, [router.query.page, router.query.year])
   const fetch = async () => {
-    const { page, year } = router.query
-    const data = await Rest('Post', '').gets<PostPagerDto>({
-      page: (page as any as number) || 1,
-      year: parseInt(year as string) || undefined,
+    const { page, year, size = 10 } = router.query as any
+    const payload = await apiClient.post.getList(page, size, {
+      year: +year || undefined,
     })
-    setPage(data.pagination)
-    setPosts(data.data)
+    setPage(payload.pagination)
+    setPosts(payload.data)
   }
 
-  const [tags, setTags] = useState<{ id: string; name: string }[]>([])
+  const [tags, setTags] = useState<TagModel[]>([])
   const fetchTags = useCallback(async () => {
-    const { data: tags } = (await Rest('Category').get(undefined, {
-      params: {
-        type: 'Tag',
-      },
-    })) as any
+    const { data: tags } = await apiClient.category.getAllTags()
+
     setTags(tags)
   }, [])
   const actionsUUID = useMemo(() => new UUID(), [])
@@ -92,11 +89,8 @@ const Post: NextPage<PostProps> = observer((props) => {
   >([])
   const fetchPostsWithTag = useCallback(async (tagName: string) => {
     setTagPost(null!)
-    const { data: posts } = (await Rest('Category').get(tagName, {
-      params: {
-        tag: 'true',
-      },
-    })) as any
+
+    const { data: posts } = await apiClient.category.getTagByName(tagName)
 
     setTagPost(posts)
   }, [])
@@ -132,11 +126,11 @@ const Post: NextPage<PostProps> = observer((props) => {
             className="absolute"
           >
             <QueueAnim type="scale" className="flex items-end flex-wrap">
-              {tags.map(({ id, name }) => {
+              {tags.map(({ name }) => {
                 return (
                   <BigTag
                     tagName={name}
-                    key={id}
+                    key={name}
                     onClick={(e) => {
                       e.stopPropagation()
                       fetchPostsWithTag(name)
@@ -211,7 +205,6 @@ const Post: NextPage<PostProps> = observer((props) => {
                     text={text}
                     slug={slug}
                     raw={post}
-                    // category={}
                   />
                 )
               })}

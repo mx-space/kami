@@ -13,8 +13,9 @@ import { RecentlyModel } from 'models/recently'
 import { NextPage } from 'next'
 import React, { FC, Fragment, memo, useEffect, useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { EventBus, NoSSR, Rest } from 'utils'
-import styles from './index.module.scss'
+import { EventBus, NoSSR } from 'utils'
+import { apiClient } from 'utils/client'
+import styles from './index.module.css'
 
 const FETCH_SIZE = 10
 
@@ -59,12 +60,12 @@ const RecentlyPage: NextPage = () => {
       size?: number
     }) => {
       setLoading(true)
-      const { data } = await Rest('Recently').get<{ data: RecentlyModel[] }>(
-        '',
-        {
-          params: { before, size },
-        },
+      const { data } = await apiClient.shorthand.getList(
+        before,
+        undefined,
+        size,
       )
+
       if (data.length < FETCH_SIZE) {
         setHasNext(false)
       }
@@ -89,8 +90,8 @@ const RecentlyPage: NextPage = () => {
       })
     }
   }, [data, hasNext, inView])
-  const handleDelete = (id: string) => {
-    Rest('Recently').del(id)
+  const handleDelete = async (id: string) => {
+    await apiClient.shorthand.proxy(id).delete()
   }
   return (
     <main className="is-article">
@@ -153,14 +154,10 @@ const RecentlyBox: FC = memo(() => {
 
   const taRef = useRef<HTMLTextAreaElement>(null)
   const handleSubmit = () => {
-    Rest('Recently')
-      .post({
-        content,
-      })
-      .then(() => {
-        setText('')
-        taRef.current && (taRef.current.value = '')
-      })
+    apiClient.shorthand.proxy.post({ data: { content } }).then(() => {
+      setText('')
+      taRef.current && (taRef.current.value = '')
+    })
   }
   return (
     <form

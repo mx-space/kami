@@ -1,5 +1,5 @@
 import { AggregateRoot } from '@mx-space/api-client'
-import { createContext } from 'react'
+import { createContext, FC, memo, useEffect } from 'react'
 import { KamiConfig } from 'types/config'
 
 export type InitialDataType = {
@@ -8,4 +8,15 @@ export type InitialDataType = {
 }
 export const InitialContext = createContext({} as InitialDataType)
 
-export const InitialContextProvider = InitialContext.Provider
+export const InitialContextProvider: FC<{ value: InitialDataType }> = memo(
+  (props) => {
+    useEffect(() => {
+      window.data = props.value
+    }, [props.value])
+    return (
+      <InitialContext.Provider value={props.value}>
+        {props.children}
+      </InitialContext.Provider>
+    )
+  },
+)

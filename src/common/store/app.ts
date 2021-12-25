@@ -1,7 +1,6 @@
 import configs from 'configs'
 import uniqBy from 'lodash-es/uniqBy'
 import { makeAutoObservable } from 'mobx'
-import { Seo } from 'models/aggregate'
 import { isClientSide } from 'utils'
 import { MenuModel, PageModel, ViewportRecord } from './types'
 
@@ -18,8 +17,6 @@ export default class AppUIStore {
   autoToggleColorMode = true
   colorMode: 'light' | 'dark' = 'light'
   mediaType: 'screen' | 'print' = 'screen'
-
-  config = { seo: {} as Seo }
 
   headerNav = {
     title: '',
@@ -97,19 +94,6 @@ export default class AppUIStore {
       wider: window.innerWidth > 1024 && window.innerWidth < 1920,
       widest: window.innerWidth >= 1920,
     }
-  }
-  setConfig(config: any) {
-    this.config = config
-  }
-
-  get seo() {
-    return this.config.seo || {}
-  }
-  get title() {
-    return this.seo.title || 'MX-space'
-  }
-  get description() {
-    return this.seo.description
   }
 
   get isPadOrMobile() {

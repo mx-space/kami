@@ -1,14 +1,10 @@
-// const { default: StackGrid, transitions } = await import(
-//   '@innei/react-stack-grid'
-// )
 import { default as StackGrid, transitions } from '@innei/react-stack-grid'
-import { SayModel, SayRespDto } from 'models/say'
+import { SayModel } from '@mx-space/api-client'
 import { NextPage } from 'next'
 import randomColor from 'randomcolor'
 import { useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
-// import StackGrid, { transitions } from '@innei/react-stack-grid/lib'
-import { Rest } from 'utils/api'
+import { apiClient } from 'utils/client'
 import { observer } from 'utils/mobx'
 import { relativeTimeFromNow } from 'utils/time'
 import { usePrevious } from '../../common/hooks/usePrevious'
@@ -18,6 +14,7 @@ import { SEO } from '../../components/SEO'
 import { hexToRGB } from '../../utils/color'
 import observable from '../../utils/observable'
 import styles from './index.module.css'
+
 const { flip } = transitions
 interface SayViewProps {
   data: SayModel[]
@@ -124,8 +121,8 @@ const SayView: NextPage<SayViewProps> = (props) => {
 }
 
 SayView.getInitialProps = async () => {
-  const resp = (await Rest('Say').get('all')) as SayRespDto
-  const { data } = resp
+  const payload = await apiClient.say.getAll()
+  const { data } = payload
   return {
     data: data.sort(
       (b, a) => new Date(a.created).getTime() - new Date(b.created).getTime(),

@@ -1,20 +1,15 @@
+import { CategoryModel, CategoryWithChildrenModel } from '@mx-space/api-client'
 import omit from 'lodash/omit'
 import { NextPage } from 'next'
 import Link from 'next/link'
+import { apiClient } from 'utils/client'
 import { QueueAnim } from '../../components/Anime'
 import { SEO } from '../../components/SEO'
 import { ArticleLayout } from '../../layouts/ArticleLayout'
-import { CategoryModel } from '../../models/category'
-import { Rest } from '../../utils/api'
 
 interface CategoryListViewProps {
   category: CategoryModel
-  children: {
-    id: string
-    title: string
-    slug: string
-    created: string
-  }[]
+  children: CategoryWithChildrenModel['children']
 }
 
 const CategoryListView: NextPage<CategoryListViewProps> = (props) => {
@@ -67,13 +62,13 @@ const CategoryListView: NextPage<CategoryListViewProps> = (props) => {
 CategoryListView.getInitialProps = async (ctx) => {
   const { query } = ctx
 
-  const { slug } = query
-  const resp = (await Rest('Category').get(slug as string)) as any
+  const { slug } = query as any
+  const data = await apiClient.category.getCategoryByIdOrSlug(slug)
 
   return {
-    category: omit(resp.data, ['children']),
-    children: resp.data.children || [],
-  } as any
+    category: omit(data, ['children']),
+    children: data.children || [],
+  }
 }
 
 export default CategoryListView

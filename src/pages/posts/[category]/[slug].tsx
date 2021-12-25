@@ -5,6 +5,7 @@ import {
   faHashtag,
   faThumbsUp,
 } from '@fortawesome/free-solid-svg-icons'
+import { PostModel } from '@mx-space/api-client'
 import { EventTypes } from 'common/socket/types'
 import { useStore } from 'common/store'
 import Action, { ActionProps } from 'components/Action'
@@ -14,11 +15,10 @@ import { NumberRecorder } from 'components/NumberRecorder'
 import OutdateNotice from 'components/Outdate'
 import dayjs from 'dayjs'
 import { ArticleLayout } from 'layouts/ArticleLayout'
-import { PostModel } from 'models/post'
 import { NextPage } from 'next/'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import { Rest } from 'utils/api'
+import { apiClient } from 'utils/client'
 import { imagesRecord2Map } from 'utils/images'
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
@@ -123,19 +123,13 @@ export const PostView: NextPage<PostModel> = (props) => {
             if (isThumbsUpBefore(props.id)) {
               return message.error('你已经支持过啦!')
             }
-            Rest('Post')
-              .get('_thumbs-up', {
-                params: {
-                  id: props.id,
-                  ts: performance.timeOrigin + performance.now(),
-                },
-              })
-              .then(() => {
-                message.success('感谢支持!')
 
-                storeThumbsUpCookie(props.id)
-                setThumbsUp(thumbsUp + 1)
-              })
+            apiClient.post.thumbsUp(props.id).then(() => {
+              message.success('感谢支持!')
+
+              storeThumbsUpCookie(props.id)
+              setThumbsUp(thumbsUp + 1)
+            })
           },
         },
       ],
@@ -184,7 +178,7 @@ export const PostView: NextPage<PostModel> = (props) => {
           type: 'article',
           article: {
             publishedTime: props.created,
-            modifiedTime: props.modified,
+            modifiedTime: props.modified || undefined,
             section: props.category.name,
             tags: props.tags ?? [],
           },
@@ -215,10 +209,9 @@ export const PostView: NextPage<PostModel> = (props) => {
 
 PostView.getInitialProps = async (ctx) => {
   const { query } = ctx
-  const { category, slug } = query
-  const data = (await Rest('Post', category as string).get(
-    slug as string,
-  )) as PostModel
+  const { category, slug } = query as any
+  const data = await apiClient.post.getPost(category, slug)
+
   return {
     ...data,
   }

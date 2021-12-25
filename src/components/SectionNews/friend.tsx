@@ -1,15 +1,8 @@
-/*
- * @Author: Innei
- * @Date: 2020-12-22 20:17:50
- * @LastEditTime: 2021-06-27 16:16:18
- * @LastEditors: Innei
- * @FilePath: /web/components/SectionNews/friend.tsx
- * @Mark: Coding with Love
- */
+import { LinkModel } from '@mx-space/api-client'
 import defaultAvatar from 'assets/images/default-avatar.png'
 import { FC, memo, useEffect, useState } from 'react'
-import { LinkModel, LinkState, LinkType } from '../../models/link'
-import { Rest } from '../../utils/api'
+import { apiClient } from 'utils/client'
+import { LinkState, LinkType } from '../../models/link'
 import { Avatar } from '../Avatar'
 import styles from './index.module.scss'
 export const FriendItem: FC<LinkModel> = memo((props) => {
@@ -28,18 +21,16 @@ export const FriendItem: FC<LinkModel> = memo((props) => {
 export const FriendsSection: FC = memo(() => {
   const [friends, setFriends] = useState<LinkModel[]>([])
   useEffect(() => {
-    Rest('Link')
-      .gets({ page: 1, size: 20 })
-      .then((res: any) => {
-        const data = res.data as LinkModel[]
-        setFriends(
-          data.filter(
-            (i) =>
-              i.type === LinkType.Friend &&
-              (i.state !== LinkState.Audit || !i.hide),
-          ),
-        )
-      })
+    apiClient.link.getAllPaginated(1, 20).then((res) => {
+      const data = res.data as LinkModel[]
+      setFriends(
+        data.filter(
+          (i) =>
+            i.type === LinkType.Friend &&
+            (i.state !== LinkState.Audit || !i.hide),
+        ),
+      )
+    })
   }, [])
   return (
     <div className={styles['friends-wrap']}>

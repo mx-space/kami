@@ -7,13 +7,14 @@
  * Mark: Coding with Love
  */
 
+import { NoteModel } from '@mx-space/api-client'
 import clsx from 'clsx'
 import { QueueAnim } from 'components/Anime'
-import { NoteModel } from 'models/note'
 import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
-import { Rest } from 'utils'
+import { apiClient } from 'utils/client'
 import styles from './index.module.css'
+
 interface NoteTimelineListProps {
   noteId: string
 }
@@ -26,14 +27,9 @@ export const NoteTimelineList: FC<
   const [list, setList] = useState<NotePartial[]>([])
   const router = useRouter()
   useEffect(() => {
-    Rest('Note')
-      .get<{
-        data: NotePartial[]
-        size: number
-      }>('list/' + noteId)
-      .then(({ data }) => {
-        setList(data)
-      })
+    apiClient.note.getMiddleList(noteId).then(({ data }) => {
+      setList(data)
+    })
   }, [noteId])
   return (
     <div className={clsx(className, styles['container'])}>

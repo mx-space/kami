@@ -1,28 +1,20 @@
-/*
- * @Author: Innei
- * @Date: 2021-01-01 16:00:14
- * @LastEditTime: 2021-06-25 11:08:51
- * @LastEditors: Innei
- * @FilePath: /web/pages/[page]/index.tsx
- * @Mark: Coding with Love
- */
+import { PageModel } from '@mx-space/api-client'
 import { useStore } from 'common/store'
 import { CommentLazy } from 'components/Comment'
 import Markdown from 'components/Markdown'
 import { ArticleLayout } from 'layouts/ArticleLayout'
-import { PageRespDto } from 'models/page'
 import { GetServerSideProps, NextPage } from 'next'
 import Link from 'next/link'
 import React, { Fragment, useEffect } from 'react'
 import RemoveMarkdown from 'remove-markdown'
-import { Rest } from 'utils/api'
+import { apiClient } from 'utils/client'
 import { imagesRecord2Map } from 'utils/images'
 import { observer } from 'utils/mobx'
 import { ImageSizeMetaContext } from '../../common/context/ImageSizes'
 import { Seo } from '../../components/SEO'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 
-const Page: NextPage<PageRespDto> = (props) => {
+const Page: NextPage<PageModel> = (props) => {
   const data = props
   const { title, subtitle, text } = data
   const { appStore } = useStore()
@@ -39,7 +31,7 @@ const Page: NextPage<PageRespDto> = (props) => {
   useEffect(() => {
     appStore.headerNav = {
       title,
-      meta: subtitle,
+      meta: subtitle || '',
       show: true,
     }
     return () => {
@@ -65,7 +57,9 @@ const Page: NextPage<PageRespDto> = (props) => {
         openGraph={{ type: 'article' }}
         description={RemoveMarkdown(text).slice(0, 100).replace('\n', '')}
       />
-      <ImageSizeMetaContext.Provider value={imagesRecord2Map(props.images)}>
+      <ImageSizeMetaContext.Provider
+        value={imagesRecord2Map(props.images || [])}
+      >
         <Markdown value={text} escapeHtml={false} toc />
       </ImageSizeMetaContext.Provider>
       <div className={styles['pagination']}>
@@ -115,9 +109,7 @@ const Page: NextPage<PageRespDto> = (props) => {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
-    const data = await Rest('Page', 'slug').get<PageRespDto>(
-      ctx.query.page as string,
-    )
+    const data = await apiClient.page.getBySlug(ctx.query.page as any)
 
     return {
       props: data,

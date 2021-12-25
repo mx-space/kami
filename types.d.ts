@@ -1,3 +1,5 @@
+import { InitialDataType } from 'common/context/initial-data'
+
 /*
  * @Author: Innei
  * @Date: 2021-06-27 16:17:22
@@ -12,6 +14,8 @@ declare global {
   }
   export interface Window {
     [key: string]: any
+
+    data?: InitialDataType
   }
 }
 

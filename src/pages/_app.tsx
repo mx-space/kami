@@ -58,15 +58,13 @@ const Content: FC = observer((props) => {
   const themeConfig = useThemeConfig()
   useMount(() => {
     {
-      const data = initialData
-      const { seo, user, pageMeta, categories } = data
+      const { user, pageMeta, categories } = initialData
       // set user
       master.setUser(user)
       document.body.classList.remove('loading')
       // set page
       app.setPage(pageMeta as PageModel[])
       category.setCategory(categories)
-      app.setConfig({ seo })
     }
     checkLogin()
     checkBrowser()

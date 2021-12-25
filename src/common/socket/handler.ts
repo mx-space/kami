@@ -11,14 +11,14 @@ import configs from 'configs'
 import { isDev } from 'utils'
 import { createDangmaku } from '../../utils/danmaku'
 import { Notice } from '../../utils/notice'
-import { appUIStore, gatewayStore, userStore } from '../store'
+import { gatewayStore, userStore } from '../store'
 import { EventTypes } from './types'
 // import Router from 'next/router'
 
 export const notice = new Notice()
 
 export const eventHandler = (type: EventTypes, data: any) => {
-  const title = appUIStore.seo.title
+  const title = window.data?.aggregateData.seo.title || 'Kami'
   switch (type) {
     case EventTypes.VISITOR_ONLINE:
     case EventTypes.VISITOR_OFFLINE: {

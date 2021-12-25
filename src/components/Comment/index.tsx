@@ -1,14 +1,4 @@
-/*
- * @Author: Innei
- * @Date: 2020-07-01 19:25:29
- * @LastEditTime: 2020-09-13 17:47:16
- * @LastEditors: Innei
- * @FilePath: /mx-web/components/Comment/index.tsx
- * @Coding with Love
- */
-
-import { PagerModel } from 'models/base'
-import { CommentModel, CommentPager } from 'models/comment'
+import { CommentModel, Pager } from '@mx-space/api-client'
 import {
   createContext,
   FC,
@@ -19,7 +9,7 @@ import {
   useState,
 } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { Rest } from 'utils/api'
+import { apiClient } from 'utils/client'
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
 import { useStore } from '../../common/store'
@@ -27,8 +17,8 @@ import { flattenChildren, NoSSR } from '../../utils'
 import { Pagination } from '../Pagination'
 import CommentBox from './box'
 import Comment from './comment'
-import styles from './index.module.scss'
-import { CommentLoading } from './loding'
+import styles from './index.module.css'
+import { CommentLoading } from './loading'
 
 export type CommentType = 'Note' | 'Post' | 'Page'
 
@@ -55,7 +45,7 @@ interface CommentWrapProps {
 const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
   const { type, id, allowComment } = props
   const [comments, setComments] = useState([] as CommentModel[])
-  const [page, setPage] = useState({} as PagerModel['pagination'])
+  const [page, setPage] = useState({} as Pager)
   const { userStore } = useStore()
   const logged = userStore.isLogged
   const collection = useMemo(
@@ -65,16 +55,13 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
 
   const fetchComments = useCallback(
     (page = 1, size = 10) => {
-      Rest('Comment', 'ref/' + id)
-        .gets<CommentPager>({
-          page,
-          size,
-          ts: new Date().getTime(),
-        })
+      apiClient.comment
+        .getByRefId(id, { page, size })
+
         .then(({ data, pagination: page }) => {
           collection.clear()
 
-          flattenChildren(data).forEach((i) => {
+          flattenChildren(data as CommentModel[]).forEach((i) => {
             collection.set(i.id, i)
           })
 
@@ -89,15 +76,15 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
   const handleComment = async (model) => {
     openCommentMessage()
     if (logged) {
-      await Rest(
-        'Comment',
-        `master/comment/${id}?ref=${type}&ts=${new Date().getTime()}`,
-      ).post(model)
+      await apiClient.comment.proxy.master.comment(id).post({
+        params: {
+          ref: type,
+          ts: Date.now(),
+        },
+        data: { ...model },
+      })
     } else {
-      await Rest(
-        'Comment',
-        `${id}?ref=${type}&ts=${new Date().getTime()}`,
-      ).post(model)
+      await apiClient.comment.comment(id, model)
     }
     new Promise(() => {
       openCommentMessage.success()
@@ -181,19 +168,6 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
   )
 })
 
-// export const CommentLazy: FC<CommentWrapProps> = (props) => {
-//   return (
-//     // <LazyLoad
-//     //   offset={-50}
-//     //   once
-//     //   debounce
-//     //   throttle
-//     //   placeholder={<div style={minHeightProperty} />}
-//     // >
-//     <CommentWrap {...props} />
-//     // </LazyLoad>
-//   )
-// }
 const CommentWrap = NoSSR(_CommentWrap)
 export const CommentLazy = CommentWrap
 export const minHeightProperty = { minHeight: '400px' }

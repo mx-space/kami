@@ -29,7 +29,8 @@ import React, {
   useState,
 } from 'react'
 import { createPortal } from 'react-dom'
-import { combineClassName, isLikedBefore, NoSSR, Rest, setLikeId } from 'utils'
+import { combineClassName, isLikedBefore, NoSSR, setLikeId } from 'utils'
+import { apiClient } from 'utils/client'
 import { message } from 'utils/message'
 import observable from 'utils/observable'
 import css from './index.module.css'
@@ -72,17 +73,12 @@ const HeaderActionLikeButtonForNote: FC<{ id: number }> = memo((props) => {
     }
   }, [id])
   const onLike = () =>
-    Rest('Note')
-      .get<any>('like/' + id, {
-        params: {
-          ts: performance.timeOrigin + performance.now(),
-        },
-      })
+    apiClient.note
+      .likeIt(id)
       .then(() => {
         message.success('感谢喜欢!')
         observable.emit('like', id)
         setLikeId(id.toString())
-        // setLiked(true)
       })
       .catch(() => {
         setLiked(true)
@@ -388,9 +384,7 @@ export const _Header: FC = observer(() => {
   } = useInitialData()
   const { appStore, userStore } = useStore()
 
-  // console.log(ballIndex)
   const router = useRouter()
-  // const { present, wantToDisposer } = useDropdown()
 
   const [drawerOpen, setDrawerOpen] = useState(false)
 

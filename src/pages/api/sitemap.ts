@@ -1,11 +1,11 @@
 import { IncomingMessage, ServerResponse } from 'http'
-import { http } from 'utils'
+import { apiClient } from 'utils/client'
 
 export default async function sitemapFunc(
   req: IncomingMessage,
   res: ServerResponse,
 ) {
-  const xml = await http.get('sitemap')
+  const xml = await apiClient.proxy.sitemap.get()
   res.setHeader('Content-Type', 'text/xml')
   res.write(xml)
   res.end()

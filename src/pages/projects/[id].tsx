@@ -1,18 +1,10 @@
-/*
- * @Author: Innei
- * @Date: 2020-09-17 14:02:24
- * @LastEditTime: 2021-06-27 16:18:30
- * @LastEditors: Innei
- * @FilePath: /web/pages/projects/[id].tsx
- * Mark: Coding with Love
- */
+import { ProjectModel } from '@mx-space/api-client'
 import Kico from 'assets/images/Kico.jpg'
 import { ImageLazy } from 'components/Image'
 import { SliderImagesPopup } from 'components/SliderImagesPopup'
-import { ProjectModel } from 'models/project'
 import { NextPage } from 'next'
 import ReactMarkdown from 'react-markdown'
-import { Rest } from 'utils/api'
+import { apiClient } from 'utils/client'
 import { SEO } from '../../components/SEO'
 
 type ProjectViewProps = ProjectModel
@@ -99,7 +91,7 @@ const ProjectView: NextPage<ProjectViewProps> = (props) => {
 ProjectView.getInitialProps = async (ctx) => {
   const { query } = ctx
   const id = query.id as string
-  const { data } = (await Rest('Project').get(id)) as any
+  const data = await apiClient.project.getById(id)
   return data
 }
 

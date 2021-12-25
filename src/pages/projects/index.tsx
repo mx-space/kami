@@ -1,17 +1,9 @@
-/*
- * @Author: Innei
- * @Date: 2021-05-06 22:26:07
- * @LastEditTime: 2021-06-27 16:19:11
- * @LastEditors: Innei
- * @FilePath: /web/pages/projects/index.tsx
- * Mark: Coding with Love
- */
+import { ProjectModel } from '@mx-space/api-client'
 import defaultImage from 'assets/images/Kico.jpg'
 import { ImageLazy } from 'components/Image'
-import { ProjectModel, ProjectRespModel } from 'models/project'
 import { NextPage } from 'next'
 import Link from 'next/link'
-import { Rest } from 'utils/api'
+import { apiClient } from 'utils/client'
 import { QueueAnim } from '../../components/Anime'
 import { SEO } from '../../components/SEO'
 
@@ -54,9 +46,7 @@ const ProjectView: NextPage<ProjectViewProps> = (props) => {
 }
 
 ProjectView.getInitialProps = async (): Promise<ProjectViewProps> => {
-  const { data } = (await Rest('Project').gets({
-    size: 50,
-  })) as ProjectRespModel
+  const { data } = await apiClient.project.getAllPaginated(1, 50)
   return { projects: data }
 }
 

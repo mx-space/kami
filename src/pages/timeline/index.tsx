@@ -1,36 +1,19 @@
 import { faBookmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { TimelineData } from '@mx-space/api-client'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FC, Fragment, memo, useEffect, useState } from 'react'
 import CountUp from 'react-countup'
 import { usePrevious } from 'react-use'
+import { apiClient } from 'utils/client'
 import { dayOfYear, daysOfYear, secondOfDay, secondOfDays } from 'utils/time'
 import { SEO } from '../../components/SEO'
 import { ArticleLayout } from '../../layouts/ArticleLayout'
-import { CategoryModel } from '../../models/category'
-import { Rest } from '../../utils/api'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 
-type BaseType = {
-  id: string
-  title: string
-  created: string
-}
-interface TimeLineViewProps {
-  posts: ({
-    slug: string
-    category: CategoryModel
-    summary: string
-    url: string
-  } & BaseType)[]
-  notes: ({
-    nid: number
-    weather?: string
-    mood?: string
-    hasMemory?: boolean
-  } & BaseType)[]
+interface TimeLineViewProps extends TimelineData {
   memory: boolean
 }
 enum ArticleType {
@@ -255,16 +238,17 @@ enum TimelineType {
 }
 TimeLineView.getInitialProps = async (ctx) => {
   const query = ctx.query
-  const { type, year, memory } = query
+  const { type, year, memory } = query as any
   const Type = {
     post: TimelineType.Post,
     note: TimelineType.Note,
   }[type as any] as number | undefined
-  const resp = (await Rest('Aggregate').get('timeline', {
-    params: { type: Type, year },
-  })) as any
+  const payload = await apiClient.aggregate.getTimeline({
+    type: Type,
+    year,
+  })
   return {
-    ...(resp?.data || {}),
+    ...payload.data,
     memory: !!memory,
   } as TimeLineViewProps
 }

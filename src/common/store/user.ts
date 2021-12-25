@@ -8,7 +8,7 @@
  */
 import { UserModel } from '@mx-space/api-client'
 import { makeAutoObservable } from 'mobx'
-import { Rest } from 'utils'
+import { apiClient } from 'utils/client'
 
 export interface UrlConfig {
   adminUrl: string
@@ -39,7 +39,10 @@ export default class UserStore {
     if (!this.isLogged) {
       return
     }
-    const { data } = await Rest('Option').get<{ data: UrlConfig }>('url')
+    const { data } = await apiClient.proxy.options.url.get<{
+      data: UrlConfig
+    }>()
+
     this.url = data
   }
 

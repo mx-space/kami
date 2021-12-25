@@ -6,9 +6,9 @@
  * @FilePath: /web/components/PostBlock/index.tsx
  * @Mark: Coding with Love
  */
+import { PostModel } from '@mx-space/api-client'
 import classNames from 'clsx'
 import { useStore } from 'common/store'
-import { PostModel } from 'models/post'
 import Router from 'next/router'
 import React, { FC } from 'react'
 import removeMd from 'remove-markdown'
@@ -16,7 +16,7 @@ import { observer } from 'utils/mobx'
 import { parseDate } from 'utils/time'
 import styles from './index.module.scss'
 
-interface Props {
+interface PostBlockProps {
   date: Date | string
   title: string
   text: string
@@ -25,7 +25,7 @@ interface Props {
   map?: Map<string, string>
 }
 
-export const PostBlock: FC<Props> = observer((props) => {
+export const PostBlock: FC<PostBlockProps> = observer((props) => {
   const {
     appStore: { viewport },
     categoryStore: { CategoryMap },

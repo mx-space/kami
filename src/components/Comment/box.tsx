@@ -10,7 +10,7 @@ import isEmail from 'validator/lib/isEmail'
 import isUrl from 'validator/lib/isURL'
 import { useStore } from '../../common/store'
 import { Input } from '../Input'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 
 const USER_PREFIX = 'mx-space-comment-author'
 const USER_DRAFT = 'mx-space-comment-draft'

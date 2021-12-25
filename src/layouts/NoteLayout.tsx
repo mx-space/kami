@@ -14,7 +14,8 @@ import { useStore } from 'common/store'
 import dayjs from 'dayjs'
 import { FC, forwardRef, useCallback } from 'react'
 import { Transition } from 'react-transition-group'
-import { NoSSR, resolveUrl, Rest } from 'utils'
+import { NoSSR, resolveUrl } from 'utils'
+import { apiClient } from 'utils/client'
 import { observer } from 'utils/mobx'
 interface NoteLayoutProps {
   title: string
@@ -47,18 +48,11 @@ const _NoteLayout: FC<NoteLayoutProps> = observer(
     } = useStore()
     useRedirectSimpleRender(id)
     const onMarkToggle = useCallback(() => {
-      Rest('Note').update(id, { hasMemory: !bookmark })
+      apiClient.note.proxy(id).patch({ data: { bookmark: !bookmark } })
     }, [bookmark, id])
     const noAppear = location.hash.includes('comments')
     return (
       <main className="is-article is-note post-content kami-note" ref={ref}>
-        {/* <QueueAnim
-          type={['bottom', 'top']}
-          delay={500}
-          forcedReplay
-          // leaveReverse
-          animatingClassName={animatingClassName}
-        > */}
         <Transition
           key={id}
           in={true}
@@ -111,7 +105,6 @@ const _NoteLayout: FC<NoteLayoutProps> = observer(
             )
           }}
         </Transition>
-        {/* </QueueAnim> */}
       </main>
     )
   }),

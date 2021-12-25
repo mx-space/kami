@@ -1,22 +1,15 @@
-/*
- * @Author: Innei
- * @Date: 2020-12-18 12:15:37
- * @LastEditTime: 2021-01-18 18:26:51
- * @LastEditors: Innei
- * @FilePath: /web/pages/friends/index.tsx
- * @Mark: Coding with Love
- */
+import { LinkModel } from '@mx-space/api-client'
 import { useInitialData } from 'common/hooks/use-initial-data'
 import Markdown from 'components/Markdown'
+import { LinkType } from 'models/link'
 import { NextPage } from 'next'
-import dynamic from 'next/dynamic'
 import { createElement, FC } from 'react'
+import { NoSSR } from 'utils'
+import { apiClient } from 'utils/client'
 import { QueueAnim } from '../../components/Anime'
 import { ApplyForLink } from '../../components/ApplyLink'
 import { SEO } from '../../components/SEO'
 import { ArticleLayout } from '../../layouts/ArticleLayout'
-import { LinkModel, LinkType } from '../../models/link'
-import { Rest } from '../../utils/api'
 
 const renderSection = (data: LinkModel[]) => {
   return (
@@ -139,9 +132,9 @@ const _Footer: FC = () => {
   )
 }
 
-const Footer = dynamic(() => Promise.resolve(_Footer), { ssr: false })
+const Footer = NoSSR(_Footer)
 FriendsView.getInitialProps = async () => {
-  const { data } = (await Rest('Link').get('all')) as any
+  const { data } = await apiClient.link.getAll()
 
   return { data } as { data: LinkModel[] }
 }

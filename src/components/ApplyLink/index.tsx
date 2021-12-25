@@ -7,10 +7,10 @@ import { faGlobeAsia, faPen } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FC, useCallback } from 'react'
 import { useForm } from 'react-hook-form'
+import { apiClient } from 'utils/client'
 import { message } from 'utils/message'
 import isEmail from 'validator/lib/isEmail'
 import isURL from 'validator/lib/isURL'
-import { Rest } from '../../utils'
 import { Input } from '../Input'
 import styles from './index.module.scss'
 
@@ -26,24 +26,29 @@ export const ApplyForLink: FC = () => {
   })
   const handleSubmit = submitHook(
     (d: Record<Field, string>) => {
-      Rest('Link', `audit?author=${d['friend-author']}`)
+      apiClient.friend.proxy.audit
         .post({
-          author: d['friend-author'],
-          url: d['friend-url'],
-          avatar: d['friend-avatar'],
-          description: d['friend-desc'],
-          email: d['friend-email'],
-          name: d['friend-name'],
+          params: {
+            author: d['friend-author'],
+          },
+          data: {
+            author: d['friend-author'],
+            url: d['friend-url'],
+            avatar: d['friend-avatar'],
+            description: d['friend-desc'],
+            email: d['friend-email'],
+            name: d['friend-name'],
+          },
         })
+
         .then(() => {
           message.success('感谢你能和我交朋友~')
           message.success('待主人查看之后将会通知您哦')
         })
     },
     (err) => {
-      // if (isDev) {
       console.log(err)
-      // }
+
       const firstError = Object.entries(err)
       const [name, value] = firstError[0]
 

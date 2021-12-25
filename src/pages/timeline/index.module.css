@@ -1,10 +1,7 @@
 .timeline-wrap {
   position: relative;
 
-  //   li:first-child::before {
-  //     border-left: 0;
-  //   }
-  > div li::before {
+  & > div li::before {
     content: '';
     position: absolute;
 
@@ -13,17 +10,17 @@
     border-left: 1px solid var(--yellow);
   }
 
-  > div:first-child:last-child li::before {
+  & > div:first-child:last-child li::before {
     border-left: 0;
   }
 
-  > div:not(:first-child):not(:last-child) li::before {
+  & > div:not(:first-child):not(:last-child) li::before {
     top: 0;
   }
-  > div:first-child li::before {
+  & > div:first-child li::before {
     top: 50%;
   }
-  > div:last-child li::before {
+  & > div:last-child li::before {
     bottom: 50%;
     top: 0;
   }
