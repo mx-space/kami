@@ -1,12 +1,3 @@
-/*
- * @Author: Innei
- * @Date: 2020-05-23 14:31:11
- * @LastEditTime: 2021-01-09 12:37:37
- * @LastEditors: Innei
- * @FilePath: /web/utils/observable.ts
- * @MIT
- */
-
 import { EventTypes } from '../common/socket/types'
 
 export class Observable {
@@ -58,5 +49,4 @@ export class Observable {
     }
   }
 }
-export const EventBus = new Observable()
-export default EventBus
+export const eventBus = new Observable()

@@ -10,7 +10,7 @@
 import camelcaseKeys from 'camelcase-keys'
 import io, { Socket } from 'socket.io-client'
 import { isDev } from 'utils'
-import observable from '../../utils/observable'
+import { eventBus } from '../../utils/observable'
 import { eventHandler } from './handler'
 import { EventTypes } from './types'
 export class SocketClient {
@@ -53,7 +53,7 @@ export class SocketClient {
     this.socket.open()
   }
   handleEvent(type: EventTypes, data: any) {
-    observable.emit(type, data)
+    eventBus.emit(type, data)
     eventHandler(type, data)
   }
   emit(event: EventTypes, payload: any) {

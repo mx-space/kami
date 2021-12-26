@@ -5,7 +5,7 @@ import 'assets/styles/main.scss'
 // organize-imports-ignore
 import 'normalize.css/normalize.css'
 
-import { AggregateRoot } from '@mx-space/api-client'
+import { AggregateRoot, PageModel } from '@mx-space/api-client'
 import { DropdownProvider } from 'common/context/dropdown'
 import {
   InitialContextProvider,
@@ -32,7 +32,7 @@ import { observer } from 'utils/mobx'
 import Package from '~/package.json'
 import client from '../common/socket'
 import { useStore } from '../common/store'
-import { PageModel } from '../common/store/types'
+
 import { isServerSide } from '../utils'
 import Script from 'next/script'
 

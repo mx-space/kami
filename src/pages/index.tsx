@@ -19,7 +19,14 @@ import { NextSeo } from 'next-seo'
 import Router from 'next/router'
 import QueueAnim from 'rc-queue-anim'
 import Texty from 'rc-texty'
-import React, { FC, useEffect, useRef, useState } from 'react'
+import React, {
+  FC,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import { apiClient } from 'utils/client'
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
@@ -28,15 +35,16 @@ import { SectionWrap } from '../components/SectionNews/section'
 import { getRandomImage, NoSSR } from '../utils'
 import { stopEventDefault } from '../utils/dom'
 import '../utils/message'
-import service from '../utils/request'
 
 const IndexView: NextPage<AggregateTop> = (props) => {
-  const { userStore, appStore } = useStore()
+  const { userStore } = useStore()
   const { name, introduce, master } = userStore
   const { avatar } = master
-  const { description } = appStore
 
-  const { user } = useInitialData()
+  const {
+    user,
+    seo: { description },
+  } = useInitialData()
 
   const [say, setSay] = useState('')
 
@@ -170,9 +178,13 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
 
   const [like, setLike] = useState(0)
   useEffect(() => {
-    service.get('like_this').then((number) => {
-      setLike(~~number)
-    })
+    apiClient
+      .proxy('like_this')
+      .get<number>()
+
+      .then((number) => {
+        setLike(~~number)
+      })
   }, [])
 
   return (
@@ -181,87 +193,63 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
         className="demo-content"
         delay={1200}
         duration={500}
-        animConfig={[
-          { opacity: [1, 0], translateY: [0, 50] },
-          { opacity: [1, 0], translateY: [0, -50] },
-        ]}
+        animConfig={useMemo(
+          () => [
+            { opacity: [1, 0], translateY: [0, 50] },
+            { opacity: [1, 0], translateY: [0, -50] },
+          ],
+          [],
+        )}
       >
-        {[
-          <SectionNews {...sections.current.postSection} key={1} />,
-          <SectionNews {...sections.current.noteSection} key={2} />,
-          <SectionWrap
-            {...{
-              title: '朋友们',
-              moreUrl: 'friends',
-              icon: faUsers,
-            }}
-            key={3}
-          >
-            <FriendsSection />
-          </SectionWrap>,
-          <SectionWrap
-            {...{
-              title: '了解更多',
-              icon: faHeart,
-              showMoreIcon: false,
-            }}
-            key={4}
-          >
-            <SectionCard
-              {...{
-                title: '留言',
-                desc: '你的话对我很重要',
-                src: getRandomUnRepeatImage(),
-                href: '/message',
-                onClick: (e) => {
-                  stopEventDefault(e)
-                  Router.push('/[page]', '/message')
-                },
-              }}
-            />
-            <SectionCard
-              {...{
-                title: '关于',
-                desc: '这里有我的小秘密',
-                src: getRandomUnRepeatImage(),
-                href: '/about',
-                onClick: (e) => {
-                  stopEventDefault(e)
-                  Router.push('/[page]', '/about')
-                },
-              }}
-            />
-            <SectionCard
-              {...{
-                title: `点赞 (${like})`,
-                desc: '如果你喜欢的话点个赞呗',
-                src: getRandomUnRepeatImage(),
-                href: '/like_this',
-                onClick: (e) => {
-                  stopEventDefault(e)
-                  service
-                    .post(
-                      'like_this?ts=' +
-                        ((performance.now() + performance.timeOrigin) | 0),
-                      null,
-                    )
-                    .then(() => {
-                      message.success('感谢喜欢 ❤️')
-                      setLike(like + 1)
-                    })
-                },
-              }}
-            />
-            <SectionCard
-              {...{
-                title: '订阅',
-                desc: '关注订阅不迷路哦',
-                src: getRandomUnRepeatImage(),
-                href: '/feed',
-              }}
-            />
-          </SectionWrap>,
-        ]}
+        <SectionNews {...sections.current.postSection} key="1" />
+        <SectionNews {...sections.current.noteSection} key="2" />
+        <SectionWrap title="朋友们" moreUrl="friends" icon={faUsers}>
+          <FriendsSection />
+        </SectionWrap>
+        <SectionWrap title="了解更多" icon={faHeart} showMoreIcon={false}>
+          <SectionCard
+            title="留言"
+            desc="你的话对我很重要"
+            src={getRandomUnRepeatImage()}
+            href="/message"
+            onClick={useCallback((e) => {
+              stopEventDefault(e)
+              Router.push('/[page]', '/message')
+            }, [])}
+          />
+          <SectionCard
+            title="关于"
+            desc="这里有我的小秘密"
+            src={getRandomUnRepeatImage()}
+            href="/about"
+            onClick={useCallback((e) => {
+              stopEventDefault(e)
+              Router.push('/[page]', '/about')
+            }, [])}
+          />
+          <SectionCard
+            title={`点赞 (${like})`}
+            desc={'如果你喜欢的话点个赞呗'}
+            src={getRandomUnRepeatImage()}
+            href={'/like_this'}
+            onClick={useCallback((e) => {
+              stopEventDefault(e)
+              apiClient
+                .proxy('like_this')
+                .post({ params: { ts: Date.now() } })
+                .then(() => {
+                  message.success('感谢喜欢 ❤️')
+                  setLike((like) => like + 1)
+                })
+            }, [])}
+          />
+          <SectionCard
+            title="订阅"
+            desc="关注订阅不迷路哦"
+            src={getRandomUnRepeatImage()}
+            href="/feed"
+          />
+        </SectionWrap>
       </QueueAnim>
     </section>
   )

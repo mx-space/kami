@@ -22,12 +22,16 @@ import { apiClient } from 'utils/client'
 import { imagesRecord2Map } from 'utils/images'
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
-import observable from 'utils/observable'
 import { ImageSizeMetaContext } from '../../../common/context/ImageSizes'
 import { Copyright, CopyrightProps } from '../../../components/Copyright'
 import { Seo } from '../../../components/SEO'
 import configs from '../../../configs'
-import { getSummaryFromMd, isLikedBefore, setLikeId } from '../../../utils'
+import {
+  eventBus,
+  getSummaryFromMd,
+  isLikedBefore,
+  setLikeId,
+} from '../../../utils'
 
 const storeThumbsUpCookie = (id: string) => {
   return setLikeId(id)
@@ -69,9 +73,9 @@ export const PostView: NextPage<PostModel> = (props) => {
         update(data)
       }
     }
-    observable.on(EventTypes.POST_UPDATE, handler)
+    eventBus.on(EventTypes.POST_UPDATE, handler)
 
-    return () => observable.off(EventTypes.POST_UPDATE, handler)
+    return () => eventBus.off(EventTypes.POST_UPDATE, handler)
   }, [props.id, props.categoryId, props.slug, router])
 
   const [actions, setAction] = useState({} as ActionProps)

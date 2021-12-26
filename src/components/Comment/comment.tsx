@@ -16,10 +16,10 @@ import {
   useState,
 } from 'react'
 import LazyLoad from 'react-lazyload'
+import { eventBus } from 'utils'
 import { apiClient } from 'utils/client'
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
-import observable from 'utils/observable'
 import { CommentContext, minHeightProperty, openCommentMessage } from '.'
 import { useStore } from '../../common/store'
 import { animatingClassName } from '../../layouts/NoteLayout'
@@ -214,9 +214,9 @@ const Comments: FC<{
         }
       }
     }
-    observable.on(EventTypes.COMMENT_CREATE, handler)
+    eventBus.on(EventTypes.COMMENT_CREATE, handler)
 
-    return () => observable.off(EventTypes.COMMENT_CREATE, handler)
+    return () => eventBus.off(EventTypes.COMMENT_CREATE, handler)
   }, [comments, id])
 
   useEffect(() => {

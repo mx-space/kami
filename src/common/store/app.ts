@@ -1,8 +1,9 @@
+import { PageModel } from '@mx-space/api-client'
 import configs from 'configs'
 import uniqBy from 'lodash-es/uniqBy'
 import { makeAutoObservable } from 'mobx'
 import { isClientSide } from 'utils'
-import { MenuModel, PageModel, ViewportRecord } from './types'
+import { MenuModel, ViewportRecord } from './types'
 
 export default class AppUIStore {
   constructor() {

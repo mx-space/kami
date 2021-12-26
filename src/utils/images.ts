@@ -6,11 +6,11 @@
  * @FilePath: /web/utils/images.ts
  * Mark: Coding with Love
  */
+import { Image } from '@mx-space/api-client'
 import shuffle from 'lodash-es/shuffle'
-import { ImageSizeRecord } from 'models/base'
 
-export const imagesRecord2Map = (images: ImageSizeRecord[]) => {
-  const map = new Map<string, ImageSizeRecord>()
+export const imagesRecord2Map = (images: Image[]) => {
+  const map = new Map<string, Image>()
   images.forEach((image) => {
     map.set(image.src, image)
   })

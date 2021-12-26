@@ -7,8 +7,7 @@ import {
   useMemo,
 } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { isClientSide } from 'utils'
-import observable from 'utils/observable'
+import { eventBus, isClientSide } from 'utils'
 
 export const Heading = () => {
   let index = 0
@@ -54,7 +53,7 @@ const Anchor: FC<{ currentIndex: number }> = ({ currentIndex }) => {
     //   console.log(currentIndex - 1)
 
     // }
-    observable.emit('toc', currentIndex)
+    eventBus.emit('toc', currentIndex)
   }, [currentIndex, inView])
 
   return (

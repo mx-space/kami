@@ -10,8 +10,8 @@ import { userStore, useStore } from 'common/store'
 import { QueueAnim } from 'components/Anime'
 import { ChatPanel } from 'components/Chat'
 import React, { FC, useEffect, useState } from 'react'
+import { eventBus } from 'utils'
 import { observer } from 'utils/mobx'
-import observable from 'utils/observable'
 import styles from './actions.module.scss'
 
 export const FooterActions: FC = observer(() => {
@@ -28,10 +28,10 @@ export const FooterActions: FC = observer(() => {
         setCount(newMessageCount + 1)
       }
     }
-    observable.on(EventTypes.DANMAKU_CREATE, handler)
+    eventBus.on(EventTypes.DANMAKU_CREATE, handler)
 
     return () => {
-      observable.off(EventTypes.DANMAKU_CREATE, handler)
+      eventBus.off(EventTypes.DANMAKU_CREATE, handler)
     }
   }, [])
   return (

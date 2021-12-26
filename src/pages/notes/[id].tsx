@@ -25,11 +25,16 @@ import { imagesRecord2Map } from 'utils/images'
 import { message } from 'utils/message'
 import { mood2icon, weather2icon } from 'utils/meta'
 import { observer } from 'utils/mobx'
-import observable from 'utils/observable'
 import { parseDate } from 'utils/time'
 import { ImageSizeMetaContext } from '../../common/context/ImageSizes'
 import { Seo } from '../../components/SEO'
-import { getSummaryFromMd, isDev, isLikedBefore, setLikeId } from '../../utils'
+import {
+  eventBus,
+  getSummaryFromMd,
+  isDev,
+  isLikedBefore,
+  setLikeId,
+} from '../../utils'
 
 type NoteViewProps = NoteWrappedPayload
 
@@ -85,10 +90,10 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
       }
     }
 
-    observable.on(EventTypes.NOTE_UPDATE, handler)
+    eventBus.on(EventTypes.NOTE_UPDATE, handler)
 
     return () => {
-      observable.off(EventTypes.NOTE_UPDATE, handler)
+      eventBus.off(EventTypes.NOTE_UPDATE, handler)
     }
   }, [data.id, router, userStore.isLogged])
 
@@ -163,10 +168,10 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
         setLikeCount((like) => like + 1)
       }
     }
-    observable.on('like', handler)
+    eventBus.on('like', handler)
 
     return () => {
-      observable.off('like', handler)
+      eventBus.off('like', handler)
     }
   }, [data.nid])
 
@@ -194,7 +199,7 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
             .likeIt(data.id)
             .then(() => {
               message.success('感谢喜欢!')
-              observable.emit('like', data.nid)
+              eventBus.emit('like', data.nid)
               setLikeId(data.nid.toString())
             })
             .catch(() => {

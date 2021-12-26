@@ -9,7 +9,7 @@ import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
 import { useStore } from '../../common/store'
 import { stopEventDefault } from '../../utils/dom'
-import observable from '../../utils/observable'
+import { eventBus } from '../../utils/observable'
 import { OwnerMessage } from './components/message'
 import { STORE_PREFIX } from './components/setting'
 import style from './index.module.scss'
@@ -48,10 +48,10 @@ const _ChatPanel: FC<any> = observer(
           ])
         }
       }
-      observable.on(EventTypes.DANMAKU_CREATE, handler)
+      eventBus.on(EventTypes.DANMAKU_CREATE, handler)
 
       return () => {
-        observable.off(EventTypes.COMMENT_CREATE, handler)
+        eventBus.off(EventTypes.COMMENT_CREATE, handler)
       }
     }, [])
 

@@ -1,14 +1,5 @@
-/*
- * @Author: Innei
- * @Date: 2021-01-07 20:13:09
- * @LastEditTime: 2021-01-14 13:37:29
- * @LastEditors: Innei
- * @FilePath: /web/common/store/types.ts
- * @Mark: Coding with Love
- */
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
 import { UrlObject } from 'url'
-import { PageDescriptionDto } from '../../models/page'
 
 export declare enum LayoutType {
   Post,
@@ -37,8 +28,6 @@ export interface SocialLinkModel {
   url: string
   color?: string
 }
-
-export interface PageModel extends PageDescriptionDto {}
 
 export interface ViewportRecord {
   w: number

@@ -12,7 +12,7 @@ import { EventTypes } from '../../common/socket/types'
 import { useStore } from '../../common/store'
 import { SEO } from '../../components/SEO'
 import { hexToRGB } from '../../utils/color'
-import observable from '../../utils/observable'
+import { eventBus } from '../../utils/observable'
 import styles from './index.module.css'
 
 const { flip } = transitions
@@ -43,10 +43,10 @@ const SayView: NextPage<SayViewProps> = (props) => {
     const handler = (data: SayModel) => {
       setSays((says) => [data, ...says])
     }
-    observable.on(EventTypes.SAY_CREATE, handler)
+    eventBus.on(EventTypes.SAY_CREATE, handler)
 
     return () => {
-      observable.off(EventTypes.SAY_CREATE, handler)
+      eventBus.off(EventTypes.SAY_CREATE, handler)
     }
   }, [])
 
@@ -58,10 +58,10 @@ const SayView: NextPage<SayViewProps> = (props) => {
         }),
       )
     }
-    observable.on(EventTypes.SAY_DELETE, handler)
+    eventBus.on(EventTypes.SAY_DELETE, handler)
     return () => {
       // this should clean all handlers
-      observable.off(EventTypes.SAY_DELETE)
+      eventBus.off(EventTypes.SAY_DELETE)
     }
   }, [])
 

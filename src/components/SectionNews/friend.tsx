@@ -1,8 +1,7 @@
-import { LinkModel } from '@mx-space/api-client'
+import { LinkModel, LinkState, LinkType } from '@mx-space/api-client'
 import defaultAvatar from 'assets/images/default-avatar.png'
 import { FC, memo, useEffect, useState } from 'react'
 import { apiClient } from 'utils/client'
-import { LinkState, LinkType } from '../../models/link'
 import { Avatar } from '../Avatar'
 import styles from './index.module.scss'
 export const FriendItem: FC<LinkModel> = memo((props) => {

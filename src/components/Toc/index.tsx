@@ -23,7 +23,7 @@ import {
   useRef,
   useState,
 } from 'react'
-import observable from 'utils/observable'
+import { eventBus } from 'utils'
 import styles from './index.module.scss'
 
 class Item extends PureComponent<{
@@ -72,9 +72,9 @@ const _Toc: FC = memo(() => {
     const handler = (index: number) => {
       setIndex(index)
     }
-    observable.on('toc', handler)
+    eventBus.on('toc', handler)
     return () => {
-      observable.off('toc', handler)
+      eventBus.off('toc', handler)
     }
   }, [])
 

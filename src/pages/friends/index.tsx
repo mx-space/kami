@@ -1,7 +1,6 @@
-import { LinkModel } from '@mx-space/api-client'
+import { LinkModel, LinkType } from '@mx-space/api-client'
 import { useInitialData } from 'common/hooks/use-initial-data'
 import Markdown from 'components/Markdown'
-import { LinkType } from 'models/link'
 import { NextPage } from 'next'
 import { createElement, FC } from 'react'
 import { NoSSR } from 'utils'

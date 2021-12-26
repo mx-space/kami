@@ -1,5 +1,6 @@
 import { faClock } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { RecentlyModel } from '@mx-space/api-client'
 import clsx from 'clsx'
 import { EventTypes } from 'common/socket/types'
 import { useStore } from 'common/store'
@@ -9,11 +10,10 @@ import Markdown from 'components/Markdown'
 import { RelativeTime } from 'components/RelativeTime'
 import throttle from 'lodash-es/throttle'
 import { observer } from 'mobx-react-lite'
-import { RecentlyModel } from 'models/recently'
 import { NextPage } from 'next'
 import React, { FC, Fragment, memo, useEffect, useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { EventBus, NoSSR } from 'utils'
+import { eventBus, NoSSR } from 'utils'
 import { apiClient } from 'utils/client'
 import styles from './index.module.css'
 
@@ -42,12 +42,12 @@ const RecentlyPage: NextPage = () => {
       }
     }
 
-    EventBus.on(EventTypes.RECENTLY_CREATE, create)
-    EventBus.on(EventTypes.RECENTLY_DElETE, del)
+    eventBus.on(EventTypes.RECENTLY_CREATE, create)
+    eventBus.on(EventTypes.RECENTLY_DElETE, del)
 
     return () => {
-      EventBus.off(EventTypes.RECENTLY_CREATE, create)
-      EventBus.off(EventTypes.RECENTLY_DElETE, del)
+      eventBus.off(EventTypes.RECENTLY_CREATE, create)
+      eventBus.off(EventTypes.RECENTLY_DElETE, del)
     }
   }, [data])
 
