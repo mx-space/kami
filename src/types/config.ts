@@ -61,6 +61,12 @@ interface Footer {
   motto: Motto
   icp: ICP
   background: Background
+  navigation: Navigation[]
+}
+interface Navigation {
+  newtab?: boolean
+  name: string
+  path: string
 }
 
 interface ICP {

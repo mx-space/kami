@@ -2,7 +2,7 @@ import { faNodeJs, faReact } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useInitialData, useThemeConfig } from 'common/hooks/use-initial-data'
 import Link from 'next/link'
-import React, { FC, Fragment } from 'react'
+import React, { FC } from 'react'
 import { NoSSR } from 'utils'
 import { observer } from 'utils/mobx'
 import { useStore } from '../../common/store'
@@ -19,6 +19,8 @@ const _Footer: FC = observer(() => {
   const { colorMode } = appStore
   const background = kamiConfig.site.footer.background
   const icp = kamiConfig.site.footer.icp
+  const navigation = kamiConfig.site.footer.navigation
+
   return (
     <footer
       className={styles['footer']}
@@ -67,33 +69,18 @@ const _Footer: FC = observer(() => {
           </div>
           <div className="col-m-6 right to-center">
             <p style={{ marginRight: appStore.viewport.mobile ? '' : '3rem' }}>
-              <Link href="/about">
-                <a>关于</a>
-              </Link>
-              ·
-              <Link href="/message">
-                <a>留言</a>
-              </Link>
-              ·
-              <Link href="/friends">
-                <a>友链</a>
-              </Link>
-              ·
-              <a href="/feed" target="_blank">
-                RSS 订阅
-              </a>
-              ·
-              <a href="/sitemap.xml" target={'_blank'}>
-                站点地图
-              </a>
-              {kamiConfig.function.travellings.enable && (
-                <Fragment>
-                  ·
-                  <a href="//travellings.link" target={'_blank'}>
-                    开往
-                  </a>
-                </Fragment>
-              )}
+              {navigation.map((nav, i) => {
+                return (
+                  <>
+                    <Link href={nav.path}>
+                      <a target={nav.newtab ? '_blank' : undefined}>
+                        {nav.name}
+                      </a>
+                    </Link>
+                    {i === navigation.length - 1 ? '' : ' · '}
+                  </>
+                )
+              })}
             </p>
             <p style={{ marginRight: appStore.viewport.mobile ? '' : '3rem' }}>
               {gatewayStore.online || 1} 个小伙伴正在浏览

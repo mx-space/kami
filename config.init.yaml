@@ -91,6 +91,23 @@ site:
       label: '浙ICP备 20028356 号'
       link: http://beian.miit.gov.cn/
 
+    navigation:
+      - name: 关于
+        path: '/about'
+      - name: 留言
+        path: '/message'
+      - name: 友链
+        path: '/friends'
+      - name: RSS 订阅
+        path: '/feed'
+        newtab: true
+      - name: 站点地图
+        path: '/sitemap'
+        newtab: true
+      - name: 开往
+        path: https://travellings.link/
+        newtab: true
+
   custom:
     script: |-
       console.log('Hello')
