@@ -9,13 +9,12 @@
   --light-bg: #fff;
   --light-font: #fff;
   --shallow: #eee;
-  font: 14px/1.15 Arial, Helvetica, noto sans sc, pingfang sc, hiragino sans gb,
+  font: 14px/1.15 Arial, Helvetica, noto sans sc, PingFang SC, hiragino sans gb,
     microsoft yahei, 'sans-serif';
 }
 body {
   padding-top: 4em;
-  background: url(https://gitee.com/xun7788/my-imagination/raw/master/cdn/background.png)
-    top center fixed;
+
   background-color: var(--light-bg);
 }
 
@@ -92,10 +91,7 @@ html.light {
   --shallow: #eee !important;
   color: inherit;
 }
-html.light body {
-  background: url(https://gitee.com/xun7788/my-imagination/raw/master/cdn/background.png)
-    top center fixed !important;
-}
+
 html.light img {
   filter: brightness(1) !important;
 }
@@ -113,9 +109,7 @@ html.dark {
   --shallow: #333 !important;
 }
 html.dark body {
-  background: #000
-    url(https://gitee.com/xun7788/my-imagination/raw/master/cdn/background-night.png)
-    top center fixed !important;
+  background-color: #000;
 }
 
 html.dark img {
@@ -139,9 +133,7 @@ body * {
     --shallow: #333 !important;
   }
   body {
-    background: #000
-      url(https://gitee.com/xun7788/my-imagination/raw/master/cdn/background-night.png)
-      top center fixed;
+    background-color: #000;
   }
   img {
     filter: brightness(0.6);
@@ -637,40 +629,4 @@ article > h1 small {
 }
 .action .top.active {
   transform: scale(1);
-}
-footer {
-  color: #fff;
-  color: var(--light-font);
-  position: relative;
-  padding: 10vw 0 2em;
-}
-footer:before {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  content: '';
-  z-index: -1;
-  position: absolute;
-  background: url(https://gitee.com/xun7788/my-imagination/raw/master/cdn/footer.png)
-    top/cover;
-}
-@media screen and (max-width: 600px) {
-  footer {
-    padding: 5em 0 2em;
-  }
-  footer:before {
-    background-size: 150%;
-  }
-}
-footer a {
-  color: inherit;
-}
-html.dark footer::before {
-  filter: brightness(0.6) !important;
-}
-@media screen and (prefers-color-scheme: dark) {
-  footer:before {
-    filter: brightness(0.6);
-  }
 }

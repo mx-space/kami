@@ -12,7 +12,7 @@ import { ChatPanel } from 'components/Chat'
 import React, { FC, useEffect, useState } from 'react'
 import { eventBus } from 'utils'
 import { observer } from 'utils/mobx'
-import styles from './actions.module.scss'
+import styles from './actions.module.css'
 
 export const FooterActions: FC = observer(() => {
   const { /* userStore, */ appStore, actionStore, musicStore } = useStore()

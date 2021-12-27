@@ -1,43 +1,52 @@
-/*
- * @Author: Innei
- * @Date: 2020-09-17 14:02:24
- * @LastEditTime: 2021-06-21 23:18:20
- * @LastEditors: Innei
- * @FilePath: /web/components/Footer/index.tsx
- * Mark: Coding with Love
- */
 import { faNodeJs, faReact } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useInitialData } from 'common/hooks/use-initial-data'
+import { useInitialData, useThemeConfig } from 'common/hooks/use-initial-data'
 import Link from 'next/link'
 import React, { FC, Fragment } from 'react'
 import { NoSSR } from 'utils'
 import { observer } from 'utils/mobx'
 import { useStore } from '../../common/store'
-import configs from '../../configs'
 import { FooterActions } from './actions'
-
-declare const window: any
+import styles from './index.module.css'
 
 const _Footer: FC = observer(() => {
   const { appStore, gatewayStore } = useStore()
   const thisYear = new Date().getFullYear()
   const initialData = useInitialData()
   const name = initialData.user.name
+  const kamiConfig = useThemeConfig()
+  const motto = kamiConfig.site.footer.motto
+  const { colorMode } = appStore
+  const background = kamiConfig.site.footer.background
+  const icp = kamiConfig.site.footer.icp
   return (
-    <footer>
+    <footer
+      className={styles['footer']}
+      style={
+        {
+          '--bg':
+            colorMode == 'dark'
+              ? `url(${background.src.dark || background.src.light}) ${
+                  background.position
+                }`
+              : `url(${background.src.light || background.src.dark}) ${
+                  background.position
+                }`,
+        } as any
+      }
+    >
       <div className="wrap">
         <div className={'row'} style={{ paddingBottom: '18px' }}>
           <div className="col-m-6 left to-center">
             <p>
               © {thisYear !== 2020 && '2020-'}
               {thisYear}{' '}
-              <a href={configs.homePage ?? '#'} target="_blank">
+              <a href={kamiConfig.site.footer.homePage ?? '#'} target="_blank">
                 {name}
               </a>
               .{' '}
-              <span title={'Stay hungry. Stay foolish. -- Steve Jobs'}>
-                Stay hungry. Stay foolish.
+              <span title={`${motto.content} -- ${motto.author}`}>
+                {motto.content}
               </span>
             </p>
             <p>
@@ -49,20 +58,20 @@ const _Footer: FC = observer(() => {
                 {' mx-space '}
               </a>
               <FontAwesomeIcon icon={faNodeJs} />.{' '}
-              {!!configs.icp && !!configs.icp.name && !!configs.icp.url && (
-                <a href={configs.icp.url} target={'_blank'} rel={'noreferrer'}>
-                  {configs.icp.name}
+              {icp.enable && !!icp.label && !!icp.link && (
+                <a href={icp.link} target={'_blank'} rel={'noreferrer'}>
+                  {icp.label}
                 </a>
               )}
             </p>
           </div>
           <div className="col-m-6 right to-center">
             <p style={{ marginRight: appStore.viewport.mobile ? '' : '3rem' }}>
-              <Link href="/[page]" as="/about">
+              <Link href="/about">
                 <a>关于</a>
               </Link>
               ·
-              <Link href="/[page]" as="/message">
+              <Link href="/message">
                 <a>留言</a>
               </Link>
               ·
@@ -77,7 +86,7 @@ const _Footer: FC = observer(() => {
               <a href="/sitemap.xml" target={'_blank'}>
                 站点地图
               </a>
-              {configs.travellings && (
+              {kamiConfig.function.travellings.enable && (
                 <Fragment>
                   ·
                   <a href="//travellings.link" target={'_blank'}>

@@ -7,7 +7,8 @@ export interface KamiConfig {
 interface Function {
   analyze: Analyze
   netease: Netease
-  travellings: boolean
+  travellings: Travellings
+  donate: Donate
 }
 
 interface Analyze {
@@ -15,22 +16,38 @@ interface Analyze {
   ga: string
 }
 
+interface Donate {
+  enable: boolean
+  link: string
+}
+
 interface Netease {
   username: string
   password: null
 }
 
+interface Travellings {
+  enable: boolean
+}
+
 interface Site {
   favicon: string
-  logo_svg: string
+  logoSvg: string
   figure: string[]
   header: Header
   social: Social[]
-  icp: ICP
-  donate: Donate
   footer: Footer
-  manifest: Manifest
   custom: Custom
+
+  background: Background
+}
+
+interface Background {
+  src: {
+    light: string
+    dark: string
+  }
+  position: string
 }
 
 interface Custom {
@@ -39,13 +56,22 @@ interface Custom {
   js: string[]
 }
 
-interface Donate {
+interface Footer {
+  homePage: string
+  motto: Motto
+  icp: ICP
+  background: Background
+}
+
+interface ICP {
   enable: boolean
+  label: string
   link: string
 }
 
-interface Footer {
-  home_page: string
+interface Motto {
+  content: string
+  author: string
 }
 
 interface Header {
@@ -58,31 +84,6 @@ interface Menu {
   type?: string
   icon: string
   subMenu?: Menu[]
-}
-
-interface ICP {
-  enable: boolean
-  label: string
-  link: string
-}
-
-interface Manifest {
-  name: string
-  short_name: string
-  theme_color: string
-  description: string
-  background_color: string
-  display: string
-  scope: string
-  start_url: string
-  lang: string
-  prefer_related_applications: boolean
-  icons: Icon[]
-}
-
-interface Icon {
-  src: string
-  sizes: string
 }
 
 interface Social {

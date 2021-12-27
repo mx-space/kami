@@ -14,7 +14,7 @@ import {
 import { useCheckLogged } from 'common/hooks/use-check-logged'
 import { useCheckOldBrowser } from 'common/hooks/use-check-old-browser'
 import { useInitialData, useThemeConfig } from 'common/hooks/use-initial-data'
-import { useMediaToggle } from 'common/hooks/use-media-toggle'
+import { useScreenMedia } from 'common/hooks/use-screen-media'
 import { useResizeScrollEvent } from 'common/hooks/use-resize-scroll-event'
 import { useRouterEvent } from 'common/hooks/use-router-event'
 import Loader from 'components/Loader'
@@ -49,7 +49,7 @@ const Content: FC = observer((props) => {
     categoryStore: category,
   } = useStore()
 
-  useMediaToggle()
+  useScreenMedia()
   const { check: checkBrowser } = useCheckOldBrowser()
   const { check: checkLogin } = useCheckLogged()
   useRouterEvent()

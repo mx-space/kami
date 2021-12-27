@@ -769,14 +769,7 @@ html.light .lazyload-image {
     font-size: 80%;
   }
 }
-@media screen and (max-width: 600px) {
-  footer::before {
-    background-size: 160%;
-  }
-}
-html.light footer:before {
-  filter: none;
-}
+
 html.light img:before {
   filter: none;
 }

@@ -8,3 +8,5 @@ export const useInitialData = () => {
 export const useThemeConfig = () => {
   return useContext(InitialContext).config
 }
+
+export { useThemeConfig as useKamiConfig }

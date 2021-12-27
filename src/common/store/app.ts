@@ -15,7 +15,6 @@ export default class AppUIStore {
   position = 0
   scrollDirection: 'up' | 'down' | null = null
 
-  autoToggleColorMode = true
   colorMode: 'light' | 'dark' = 'light'
   mediaType: 'screen' | 'print' = 'screen'
 
