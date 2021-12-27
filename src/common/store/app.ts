@@ -1,15 +1,13 @@
 import { PageModel } from '@mx-space/api-client'
-import configs from 'configs'
-import uniqBy from 'lodash-es/uniqBy'
 import { makeAutoObservable } from 'mobx'
 import { isClientSide } from 'utils'
-import { MenuModel, ViewportRecord } from './types'
+import { ViewportRecord } from './types'
 
 export default class AppUIStore {
   constructor() {
     makeAutoObservable(this)
   }
-  menu: MenuModel[] = configs.menu as MenuModel[]
+
   viewport: ViewportRecord = {} as any
 
   position = 0
@@ -48,26 +46,6 @@ export default class AppUIStore {
     }
 
     return this.position > 126 || this.position > screen.height / 3
-  }
-
-  setPage(pages: PageModel[]) {
-    this.pages = pages
-    const homeMenu = this.menu.find((menu) => menu.type === 'Home')
-    if (!homeMenu || !homeMenu.subMenu) {
-      return
-    }
-    const models: MenuModel[] = pages.map((page) => {
-      const { title, id, slug } = page
-      return {
-        title,
-        id,
-        path: '/' + slug,
-        type: 'Page',
-      }
-    })
-
-    const old = homeMenu.subMenu
-    homeMenu.subMenu = uniqBy([...old, ...models], 'id')
   }
 
   updateViewport() {

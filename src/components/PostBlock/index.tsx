@@ -1,20 +1,13 @@
-/*
- * @Author: Innei
- * @Date: 2020-09-28 21:46:27
- * @LastEditTime: 2021-02-12 21:13:23
- * @LastEditors: Innei
- * @FilePath: /web/components/PostBlock/index.tsx
- * @Mark: Coding with Love
- */
 import { PostModel } from '@mx-space/api-client'
 import classNames from 'clsx'
+import { useInitialData } from 'common/hooks/use-initial-data'
 import { useStore } from 'common/store'
 import Router from 'next/router'
-import React, { FC } from 'react'
+import React, { FC, useMemo } from 'react'
 import removeMd from 'remove-markdown'
 import { observer } from 'utils/mobx'
 import { parseDate } from 'utils/time'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 
 interface PostBlockProps {
   date: Date | string
@@ -28,16 +21,25 @@ interface PostBlockProps {
 export const PostBlock: FC<PostBlockProps> = observer((props) => {
   const {
     appStore: { viewport },
-    categoryStore: { CategoryMap },
   } = useStore()
   const { date, title, text, slug, raw } = props
   const parsedTime = viewport?.mobile
     ? parseDate(date, 'MM-DD ddd')
     : parseDate(date, 'YYYY-MM-DD ddd')
   const [d, week] = parsedTime.split(' ')
+  const initialData = useInitialData()
+  const categoryMap = useMemo(() => {
+    const categories = initialData.categories
 
+    const map = new Map()
+
+    categories.map((category) => {
+      map.set(category.id, category.slug)
+    })
+    return map
+  }, [initialData.categories])
   const goToPost = () => {
-    const categorySlug = raw.category?.slug ?? CategoryMap.get(raw.categoryId)
+    const categorySlug = raw.category?.slug ?? categoryMap.get(raw.categoryId)
     Router.push('/posts/[category]/[slug]', `/posts/${categorySlug}/${slug}`)
     window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
   }

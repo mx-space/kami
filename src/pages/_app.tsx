@@ -43,11 +43,7 @@ if (isServerSide()) {
 }
 
 const Content: FC = observer((props) => {
-  const {
-    appStore: app,
-    userStore: master,
-    categoryStore: category,
-  } = useStore()
+  const { userStore: master } = useStore()
 
   useScreenMedia()
   const { check: checkBrowser } = useCheckOldBrowser()
@@ -58,13 +54,10 @@ const Content: FC = observer((props) => {
   const themeConfig = useThemeConfig()
   useMount(() => {
     {
-      const { user, pageMeta, categories } = initialData
+      const { user } = initialData
       // set user
       master.setUser(user)
       document.body.classList.remove('loading')
-      // set page
-      app.setPage(pageMeta as PageModel[])
-      category.setCategory(categories)
     }
     checkLogin()
     checkBrowser()

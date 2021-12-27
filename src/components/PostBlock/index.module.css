@@ -1,8 +1,5 @@
 .head {
-  // display: flex;
   position: relative;
-  // align-items: center;
-  // justify-content: flex-start;
   margin-left: auto;
   margin-right: auto;
   .title {
@@ -65,7 +62,6 @@
 }
 
 .has-image {
-  // float: right;
   clear: both;
   overflow: hidden;
 }
