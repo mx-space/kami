@@ -1,11 +1,3 @@
-/*
- * @Author: Innei
- * @Date: 2021-05-13 11:13:00
- * @LastEditTime: 2021-05-28 22:05:03
- * @LastEditors: Innei
- * @FilePath: /web/components/SectionNews/section.tsx
- * Mark: Coding with Love
- */
 import {
   faChevronRight,
   IconDefinition,
@@ -16,7 +8,7 @@ import randomColor from 'randomcolor'
 import { DetailedHTMLProps, FC, forwardRef, HTMLAttributes } from 'react'
 import { observer } from 'utils/mobx'
 import { useStore } from '../../common/store'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 
 export interface SectionNewsProps {
   title: string

@@ -6,7 +6,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FC, useEffect, useRef, useState } from 'react'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 
 const LoadingIcon = () => {
   return (

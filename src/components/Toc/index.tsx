@@ -1,12 +1,3 @@
-/*
- * @Author: Innei
- * @Date: 2020-06-12 21:41:12
- * @LastEditTime: 2021-08-28 10:48:08
- * @LastEditors: Innei
- * @FilePath: /web/components/Toc/index.tsx
- * @Coding with Love
- */
-
 import classNames from 'clsx'
 import isNull from 'lodash/isNull'
 import range from 'lodash/range'
@@ -24,7 +15,7 @@ import {
   useState,
 } from 'react'
 import { eventBus } from 'utils'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 
 class Item extends PureComponent<{
   title: string

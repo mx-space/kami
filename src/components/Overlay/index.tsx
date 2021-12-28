@@ -1,18 +1,10 @@
-/*
- * @Author: Innei
- * @Date: 2020-09-17 14:02:24
- * @LastEditTime: 2021-02-11 15:42:31
- * @LastEditors: Innei
- * @FilePath: /web/components/Overlay/index.tsx
- * @Mark: Coding with Love
- */
 import classNames from 'clsx'
 import { QueueAnim } from 'components/Anime'
 import { merge } from 'lodash-es'
 import dynamic from 'next/dynamic'
 import { CSSProperties, FC, useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 
 interface OverLayProps {
   onClose: () => void

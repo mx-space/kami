@@ -1,7 +1,7 @@
 import { useStore } from 'common/store'
 import { FC } from 'react'
 import { observer } from 'utils/mobx'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 
 export interface CopyrightProps {
   title: string

@@ -13,7 +13,7 @@ import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
 import { useStore } from '../../../common/store'
 import { stopEventDefault } from '../../../utils/dom'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 
 export const STORE_PREFIX = 'mx-space-web-dangmaku'
 

@@ -1,11 +1,3 @@
-/*
- * @Author: Innei
- * @Date: 2020-09-17 14:02:24
- * @LastEditTime: 2021-02-11 15:28:57
- * @LastEditors: Innei
- * @FilePath: /web/pages/favorite/music.tsx
- * @Mark: Coding with Love
- */
 import { PersonalPlayListType, PlayListType } from '@mx-space/extra'
 import axios from 'axios'
 import { SectionMusic } from 'components/SectionMusic'
@@ -54,6 +46,7 @@ const MusicView: NextPage<MusicProps> = (props) => {
 
 MusicView.getInitialProps = async (ctx) => {
   const baseUrl = isDev ? 'http://localhost:2323' : configs.url
+
   const $api = axios.create({
     baseURL:
       baseUrl ??

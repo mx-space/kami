@@ -129,19 +129,43 @@
   font-weight: normal;
 }
 
-@for $var from 1 through 6 {
-  #write h#{$var}::before {
-    content: 'H' + $var;
-  }
+#write h1::before {
+  content: 'H1';
+}
+#write h2::before {
+  content: 'H2';
+}
+#write h3::before {
+  content: 'H3';
+}
+#write h4::before {
+  content: 'H4';
+}
+#write h5::before {
+  content: 'H5';
+}
+#write h6::before {
+  content: 'H6';
 }
 
 @media screen and (max-width: 900px) {
-  @for $var from 1 to 7 {
-    #write {
-      h#{$var} {
-        margin-left: 2rem;
-      }
-    }
+  #write h1 {
+    margin-left: 2rem;
+  }
+  #write h2 {
+    margin-left: 2rem;
+  }
+  #write h3 {
+    margin-left: 2rem;
+  }
+  #write h4 {
+    margin-left: 2rem;
+  }
+  #write h5 {
+    margin-left: 2rem;
+  }
+  #write h6 {
+    margin-left: 2rem;
   }
 }
 

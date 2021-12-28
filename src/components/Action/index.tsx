@@ -12,7 +12,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { DetailedHTMLProps, HTMLAttributes, memo } from 'react'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 
 type BaseAction = {
   icon?: IconDefinition

@@ -11,6 +11,6 @@ export const useThemeBackground = () => {
   } = useKamiConfig()
   useEffect(() => {
     const $body = document.body
-    $body.style.background = `url(${background.src[colorMode]}) ${background.position}`
+    $body.style.background = `var(--light-bg) url(${background.src[colorMode]}) ${background.position}`
   }, [background.position, background.src, colorMode])
 }

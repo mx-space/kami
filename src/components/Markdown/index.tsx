@@ -1,11 +1,3 @@
-/*
- * @Author: Innei
- * @Date: 2021-05-29 19:31:30
- * @LastEditTime: 2021-08-28 16:38:44
- * @LastEditors: Innei
- * @FilePath: /web/components/Markdown/index.tsx
- * Mark: Coding with Love
- */
 import clsx from 'clsx'
 import CustomRules from 'common/markdown/rules'
 import React, { ElementType, FC, RefObject, useEffect } from 'react'
@@ -15,7 +7,7 @@ import { observer } from 'utils/mobx'
 import { CodeBlock } from '../CodeBlock'
 import { Heading } from './Heading'
 import { Image } from './Image'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 import { RenderLink } from './Link'
 import { RenderCommentAt, RenderParagraph, RenderSpoiler, _TOC } from './Other'
 import { processDetails } from './process-tag'

@@ -9,7 +9,7 @@ import {
   useRef,
   useState,
 } from 'react'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 interface AvatarProps {
   url?: string
   imageUrl: string

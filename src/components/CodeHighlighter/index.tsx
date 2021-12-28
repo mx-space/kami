@@ -36,7 +36,7 @@ import dark from 'react-syntax-highlighter/dist/cjs/styles/prism/tomorrow'
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
 import { appUIStore, useStore } from '../../common/store'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 
 const lang = {
   conf,

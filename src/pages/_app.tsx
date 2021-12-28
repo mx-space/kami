@@ -1,7 +1,7 @@
 // organize-imports-ignore
 import 'windi.css'
 // organize-imports-ignore
-import 'assets/styles/main.scss'
+import 'assets/styles/main.css'
 // organize-imports-ignore
 import 'normalize.css/normalize.css'
 

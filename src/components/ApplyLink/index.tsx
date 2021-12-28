@@ -12,7 +12,7 @@ import { message } from 'utils/message'
 import isEmail from 'validator/lib/isEmail'
 import isURL from 'validator/lib/isURL'
 import { Input } from '../Input'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 
 type Field = `friend-${'author' | 'avatar' | 'desc' | 'email' | 'url' | 'name'}`
 

@@ -2,9 +2,9 @@
   position: relative;
   width: 100%;
   font-size: 1rem;
-  // line-height: 1.3;
+
   padding: 4px 11px;
-  // border-radius: 2px;
+
   border: 1px solid var(--gray);
   display: inline-flex;
   align-items: center;
@@ -37,19 +37,18 @@
     bottom: 0;
     right: 0;
     left: 0;
-    // margin: 2px;
+
     pointer-events: none;
   }
   .input {
     width: 100%;
     border: 0;
-    // padding: 0;
+
     display: flex;
     align-items: center;
     color: inherit;
   }
-  // .has-prefix {
-  // }
+
   .prefix-wrap {
     position: relative;
     margin-right: 4px;

@@ -3,7 +3,7 @@ import defaultAvatar from 'assets/images/default-avatar.png'
 import { FC, memo, useEffect, useState } from 'react'
 import { apiClient } from 'utils/client'
 import { Avatar } from '../Avatar'
-import styles from './index.module.scss'
+import styles from './index.module.css'
 export const FriendItem: FC<LinkModel> = memo((props) => {
   return (
     <div className={styles['avatar-item']}>
