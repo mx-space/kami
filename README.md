@@ -1,13 +1,14 @@
 # Kami
 
-**NOTE: 此版本专为 [v3.0 版的 Server](https://github.com/mx-space/server-next) 打造, [旧版 Server](https://github.com/mx-space/server) 请使用 kami [v1.18](https://github.com/mx-space/kami/tree/v1.18.0)**
+Status: Alpha
 
-[![DeepScan grade](https://deepscan.io/api/teams/7938/projects/10822/branches/154495/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=7938&pid=10822&bid=154495)
-[![wakatime](https://wakatime.com/badge/github/mx-space/kami.svg)](https://wakatime.com/badge/github/mx-space/kami)
+v3 版本主要重构架构设计，风格不会有大的变化。配置全部动态化，让配置更加简易。
 
 **你的下一个博客何必是博客**
 
-Kami 是为 Mix Space Server 打造的前端. 使用 NextJS 开发.
+Kami 是为 Mix Space Server 打造的前端。使用 NextJS 开发。
+
+依赖：Mix Space Server >= v3.12.2
 
 Live Demo:
 
@@ -24,3 +25,7 @@ Live Demo:
 ## 许可
 
 此项目 GPLv3 授权开源，使用此项目进行的二次创作或者衍生项目也必须开源。
+
+---
+
+感谢 @Dreamer-Paul 提供的风格
