@@ -1,11 +1,3 @@
-/*
- * @Author: Innei
- * @Date: 2020-09-17 14:02:24
- * @LastEditTime: 2021-05-29 18:48:41
- * @LastEditors: Innei
- * @FilePath: /web/components/SEO/index.tsx
- * Mark: Coding with Love
- */
 import { useInitialData } from 'common/hooks/use-initial-data'
 import merge from 'lodash/merge'
 import { NextSeo, NextSeoProps } from 'next-seo'
@@ -13,7 +5,6 @@ import type { OpenGraph } from 'next-seo/lib/types'
 import { FC } from 'react'
 import { observer } from 'utils/mobx'
 import { useStore } from '../../common/store'
-import configs from '../../configs'
 import { getRandomImage } from '../../utils'
 type SEOProps = {
   title: string
@@ -26,6 +17,9 @@ export const SEO: FC<SEOProps> = observer((props) => {
   const { userStore } = useStore()
   const { seo, user } = useInitialData()
   const Title = title + ' - ' + seo.title
+  const {
+    url: { webUrl },
+  } = useInitialData()
   return (
     <NextSeo
       {...{
@@ -62,7 +56,7 @@ export const SEO: FC<SEOProps> = observer((props) => {
           '',
         twitter: {
           cardType: 'summary',
-          site: configs.url,
+          site: webUrl,
         },
 
         ...rest,

@@ -23,9 +23,12 @@ type BaseAction = {
 export interface ActionProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   informs?: BaseAction[]
-  actions?: (BaseAction & {
-    callback: () => void
-  })[]
+  actions?: (
+    | false
+    | (BaseAction & {
+        callback: () => void
+      })
+  )[]
   copyright?: boolean
 }
 
@@ -67,6 +70,9 @@ export default memo(function Action(props: ActionProps) {
       </div>
       <div className="note-action" style={{ minHeight: '1rem' }}>
         {actions.map((action, i) => {
+          if (!action) {
+            return null
+          }
           return (
             <span
               key={i}

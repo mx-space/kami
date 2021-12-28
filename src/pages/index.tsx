@@ -12,7 +12,6 @@ import SectionNews, {
   SectionCard,
   SectionNewsProps,
 } from 'components/SectionNews'
-import configs from 'configs'
 import { shuffle } from 'lodash-es'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
@@ -258,6 +257,8 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
 const Sections = NoSSR(_Sections)
 
 const Social = NoSSR(() => {
+  const config = useThemeConfig()
+  const { social } = config.site
   return (
     <QueueAnim
       delay={500}
@@ -265,7 +266,7 @@ const Social = NoSSR(() => {
       animConfig={{ opacity: [1, 0], translateY: [0, 50] }}
     >
       <div className="social-icons" key={'a'}>
-        {configs.social.map((item) => {
+        {social.map((item) => {
           return (
             <a
               href={item.url}

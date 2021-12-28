@@ -6,6 +6,7 @@ import {
   faThumbsUp,
 } from '@fortawesome/free-solid-svg-icons'
 import { PostModel } from '@mx-space/api-client'
+import { useInitialData, useThemeConfig } from 'common/hooks/use-initial-data'
 import { EventTypes } from 'common/socket/types'
 import { useStore } from 'common/store'
 import Action, { ActionProps } from 'components/Action'
@@ -25,7 +26,6 @@ import { observer } from 'utils/mobx'
 import { ImageSizeMetaContext } from '../../../common/context/ImageSizes'
 import { Copyright, CopyrightProps } from '../../../components/Copyright'
 import { Seo } from '../../../components/SEO'
-import configs from '../../../configs'
 import {
   eventBus,
   getSummaryFromMd,
@@ -83,6 +83,11 @@ export const PostView: NextPage<PostModel> = (props) => {
   const description =
     props.summary ?? getSummaryFromMd(props.text).slice(0, 150)
   const [thumbsUp, setThumbsUp] = useState(props.count?.like || 0)
+  const themeConfig = useThemeConfig()
+  const donateConfig = themeConfig.function.donate
+  const {
+    url: { webUrl },
+  } = useInitialData()
 
   useEffect(() => {
     setThumbsUp(props.count?.like || 0)
@@ -111,12 +116,13 @@ export const PostView: NextPage<PostModel> = (props) => {
           name: props.count.read ?? 0,
         },
       ],
+
       actions: [
-        {
+        donateConfig.enable && {
           icon: faCoffee,
           name: '',
           callback: () => {
-            window.open(configs.donate)
+            window.open(donateConfig.link)
           },
         },
         {
@@ -147,6 +153,8 @@ export const PostView: NextPage<PostModel> = (props) => {
     props.created,
     props.tags,
     thumbsUp,
+    donateConfig.enable,
+    donateConfig.link,
   ])
   const { appStore } = useStore()
 
@@ -168,10 +176,10 @@ export const PostView: NextPage<PostModel> = (props) => {
           ? dayjs(props.modified).format('YYYY年MM月DD日 H:mm')
           : '暂没有修改过',
         title,
-        link: new URL(location.pathname, configs.url).toString(),
+        link: new URL(location.pathname, webUrl).toString(),
       })
     }
-  }, [props, title])
+  }, [props, title, webUrl])
 
   return (
     <ArticleLayout title={title} focus id={props.id} type="post">

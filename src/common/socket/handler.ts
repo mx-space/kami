@@ -1,24 +1,17 @@
-/*
- * @Author: Innei
- * @Date: 2020-05-29 21:54:33
- * @LastEditTime: 2021-07-17 22:11:55
- * @LastEditors: Innei
- * @FilePath: /web/common/socket/handler.ts
- * @Code with Love
- */
-
-import configs from 'configs'
 import { isDev } from 'utils'
 import { createDangmaku } from '../../utils/danmaku'
 import { Notice } from '../../utils/notice'
 import { gatewayStore, userStore } from '../store'
 import { EventTypes } from './types'
-// import Router from 'next/router'
 
 export const notice = new Notice()
 
 export const eventHandler = (type: EventTypes, data: any) => {
   const title = window.data?.aggregateData.seo.title || 'Kami'
+  const webUrl =
+    window.data?.aggregateData.url.webUrl.replace(/\/$/, '') ||
+    globalThis?.location.host ||
+    ''
   switch (type) {
     case EventTypes.VISITOR_ONLINE:
     case EventTypes.VISITOR_OFFLINE: {
@@ -32,7 +25,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
         body: '站长发布一条新动态',
         description: data.content,
         onclick: () => {
-          window.open(configs.url + '/recently')
+          window.open(webUrl + '/recently')
         },
       })
       break
@@ -56,7 +49,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
         description: getDescription(data.text),
         onclick: () => {
           window.open(
-            configs.url +
+            webUrl +
               (_type[type] === 'post'
                 ? '/posts/' + data.category.slug + '/' + data.slug
                 : '/notes/' + data.nid),
@@ -73,7 +66,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
         body: message,
         description: getDescription(data.text),
         onclick: () => {
-          window.open(configs.url + '/says')
+          window.open(webUrl + '/says')
         },
       })
 

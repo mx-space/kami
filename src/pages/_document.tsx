@@ -17,7 +17,6 @@
  * @MIT
  */
 
-import configs from 'configs'
 import Document, {
   DocumentContext,
   Head,
@@ -45,12 +44,6 @@ export default class MyDocument extends Document<{ ua: string }> {
 
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
-          <meta name="application-name" content="静かな森" />
-          <meta name="apple-mobile-web-app-title" content="静かな森" />
-          <meta name="msapplication-tooltip" content="静かな森" />
-          <meta name="theme-color" content="#27ae60" />
-          <meta name="msapplication-navbutton-color" content="#27ae60" />
-          <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
           <meta name="msapplication-starturl" content="/" />
 
@@ -91,16 +84,9 @@ export default class MyDocument extends Document<{ ua: string }> {
             rel="stylesheet"
             type="text/css"
           />
-          <link rel="shortcut icon" href="/favicon.svg" />
-          <link rel="icon" href="/favicon.svg" />
-          <link rel="apple-touch-icon" href="/favicon.svg" />
+
           <link rel="sitemap" href="/sitemap.xml" />
-          {configs.alwaysHTTPS ? (
-            <meta
-              httpEquiv="Content-Security-Policy"
-              content="upgrade-insecure-requests"
-            />
-          ) : null}
+
           <script
             dangerouslySetInnerHTML={{
               __html: `window.version = '${process.env.VERSION || version}'`,
@@ -120,7 +106,7 @@ export default class MyDocument extends Document<{ ua: string }> {
           <NextScript />
 
           <script
-            src={`https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js`}
+            src={`https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/smooth-scroll/16.1.3/smooth-scroll.min.js`}
           ></script>
           <script
             dangerouslySetInnerHTML={{

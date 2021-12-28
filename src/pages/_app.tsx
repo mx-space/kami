@@ -33,8 +33,9 @@ import Package from '~/package.json'
 import client from '../common/socket'
 import { useStore } from '../common/store'
 
-import { isServerSide } from '../utils'
+import { isDev, isServerSide } from '../utils'
 import Script from 'next/script'
+import { DynamicHeaderMeta } from 'components/Meta/header'
 
 const version = `v${Package.version}` || ''
 
@@ -130,12 +131,7 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
   return (
     <InitialContextProvider value={initData}>
       <DropdownProvider>
-        <Head>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-          />
-        </Head>
+        <DynamicHeaderMeta />
         <Content>{Comp}</Content>
       </DropdownProvider>
     </InitialContextProvider>
