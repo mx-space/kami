@@ -1,6 +1,6 @@
 import { faBookOpen, faClock } from '@fortawesome/free-solid-svg-icons'
 import { NoteModel, NoteWrappedPayload } from '@mx-space/api-client'
-import { useLoadFont } from 'common/hooks/useLoadFont'
+import { useLoadSerifFont } from 'common/hooks/useLoadFont'
 import { useRefEffect } from 'common/hooks/useRefEffect'
 import { EventTypes } from 'common/socket/types'
 import { useStore } from 'common/store'
@@ -97,7 +97,7 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
     }
   }, [data.id, router, userStore.isLogged])
 
-  useLoadFont()
+  useLoadSerifFont()
   const { title, id, text, mood, weather } = data
 
   const [like, setLikeCount] = useState(data.count.like ?? 0)

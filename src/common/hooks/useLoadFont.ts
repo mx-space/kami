@@ -1,10 +1,9 @@
 import { useEffect } from 'react'
 
-export const useLoadFont = () => {
+export const useLoadSerifFont = () => {
   useEffect(() => {
     const $link = document.createElement('link')
-    $link.href =
-      'https://cdn.jsdelivr.net/npm/@openfonts/noto-sans-sc_vietnamese@1.44.0/index.min.css'
+    $link.href = 'https://fonts.loli.net/css?family=Noto+Serif+SC&display=swap'
     $link.rel = 'stylesheet'
     $link.type = 'text/css'
     document.head.appendChild($link)

@@ -94,13 +94,13 @@ export function printToConsole() {
       'margin: 1em 0; padding: 5px 0; background: #efefef;',
     )
     console.log(
-      `%c Mix Space ${version} %c https://innei.ren `,
+      `%c Mix Space %c https://innei.ren `,
       'color: #fff; margin: 1em 0; padding: 5px 0; background: #2980b9;',
       'margin: 1em 0; padding: 5px 0; background: #efefef;',
     )
     console.log(
       `%c Kami ${window.version} %c https://innei.ren `,
-      'color: #fff; margin: 1em 0; padding: 5px 0; background: #27ae60;',
+      'color: #fff; margin: 1em 0; padding: 5px 0; background: #39C5BB;',
       'margin: 1em 0; padding: 5px 0; background: #efefef;',
     )
 

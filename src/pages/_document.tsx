@@ -75,9 +75,8 @@ export default class MyDocument extends Document<{ ua: string }> {
           <meta name="apple-mobile-web-app-capable" content="yes" />
 
           <link
-            href="https://fonts.googleapis.com/css?family=Noto+Serif+SC"
+            href="https://fonts.loli.net/css2?family=Noto+Sans+SC:wght@100;300;400;500&display=swap"
             rel="stylesheet"
-            type="text/css"
           />
           <link
             href="https://cdn.jsdelivr.net/gh/Innei/zshrc@0.1.1/webfont/OperatorMono.css"
