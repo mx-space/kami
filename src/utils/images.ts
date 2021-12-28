@@ -1,11 +1,3 @@
-/*
- * @Author: Innei
- * @Date: 2020-12-28 23:08:46
- * @LastEditTime: 2021-07-16 23:11:33
- * @LastEditors: Innei
- * @FilePath: /web/utils/images.ts
- * Mark: Coding with Love
- */
 import { Image } from '@mx-space/api-client'
 import shuffle from 'lodash-es/shuffle'
 
@@ -17,38 +9,6 @@ export const imagesRecord2Map = (images: Image[]) => {
   return map
 }
 
-type GiteeRepoApiPayload = {
-  sha: string
-  tree: {
-    path: string
-    mode: string
-    type: string
-    sha: string
-    size: number
-    url: string
-  }[]
-  truncated: string
-  url: string
-}
-export const fetchOnlineRandomImages = async () => {
-  const { tree } = (await (
-    await fetch(
-      'https://gitee.com/api/v5/repos/xun7788/my-imagination/git/trees/master',
-    )
-  ).json()) as GiteeRepoApiPayload
-  try {
-    const { url } = tree.find((t) => t.path == 'images' && t.type == 'tree')!
-    const onlineImagePayload = (await (
-      await fetch(url)
-    ).json()) as GiteeRepoApiPayload
-    onlineImagePayload.tree.forEach((i) => {
-      if (i.type == 'blob') {
-        animeImages.push(i.url)
-      }
-    })
-    // eslint-disable-next-line no-empty
-  } catch {}
-}
 const animeImages = [
   'qsNmnC2zHB5FW41.jpg',
   'GwJzq4SYtClRcZh.jpg',
@@ -67,9 +27,7 @@ const animeImages = [
   'Ihj5QAZgVMqr9fJ.jpg',
   'KZ6jv8C92Vpwcih.jpg',
 ].map((i) => 'https://cdn.jsdelivr.net/gh/Innei/fancy@master/2021/' + i)
-export const getAnimationImages = () => {
-  return [...animeImages]
-}
+
 export const getRandomImage = (count?: number) => {
   return shuffle(animeImages).slice(0, count)
 }

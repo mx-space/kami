@@ -1,4 +1,5 @@
-import { useInitialData } from 'common/hooks/use-initial-data'
+import { useInitialData, useThemeConfig } from 'common/hooks/use-initial-data'
+import { sample } from 'lodash-es'
 import merge from 'lodash/merge'
 import { NextSeo, NextSeoProps } from 'next-seo'
 import type { OpenGraph } from 'next-seo/lib/types'
@@ -15,11 +16,17 @@ type SEOProps = {
 export const SEO: FC<SEOProps> = observer((props) => {
   const { title, description, openGraph, ...rest } = props
   const { userStore } = useStore()
-  const { seo, user } = useInitialData()
-  const Title = title + ' - ' + seo.title
   const {
     url: { webUrl },
+    seo,
+    user,
   } = useInitialData()
+  const Title = title + ' - ' + seo.title
+  const themeConfig = useThemeConfig()
+  const {
+    site: { figure },
+  } = themeConfig
+
   return (
     <NextSeo
       {...{
@@ -41,7 +48,7 @@ export const SEO: FC<SEOProps> = observer((props) => {
             title: Title,
             images: [
               {
-                url: getRandomImage().pop() as string,
+                url: sample(figure) || getRandomImage()[0],
                 alt: title + ' - ' + seo.title,
               },
             ],

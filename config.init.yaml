@@ -5,8 +5,22 @@ site:
   # 开屏图
   logo_svg: https://innei.ren/favicon.svg
   figure:
+    - https://cdn.jsdelivr.net/gh/Innei/fancy@master/2021/qsNmnC2zHB5FW41.jpg
+    - https://cdn.jsdelivr.net/gh/Innei/fancy@master/2021/GwJzq4SYtClRcZh.jpg
     - https://cdn.jsdelivr.net/gh/Innei/fancy@master/2021/6nOYcygRGXvpsFd.jpg
     - https://cdn.jsdelivr.net/gh/Innei/fancy@master/2021/Qr2ykmsEFpJn4BC.jpg
+    - https://cdn.jsdelivr.net/gh/Innei/fancy@master/2021/KiOuTlCzge7JHh3.jpg
+    - https://cdn.jsdelivr.net/gh/Innei/fancy@master/2021/sM2XCJTW8BdUe5i.jpg
+    - https://cdn.jsdelivr.net/gh/Innei/fancy@master/2021/18KQYP9fNGbrzJu.jpg
+    - https://cdn.jsdelivr.net/gh/Innei/fancy@master/2021/rdjZo6Sg2JReyiA.jpg
+    - https://cdn.jsdelivr.net/gh/Innei/fancy@master/2021/X2MVRDe1tyJil3O.jpg
+    - https://cdn.jsdelivr.net/gh/Innei/fancy@master/2021/EDoKvz5p7BXZ46U.jpg
+    - https://cdn.jsdelivr.net/gh/Innei/fancy@master/2021/EGk4qUvcXDygV2z.jpg
+    - https://cdn.jsdelivr.net/gh/Innei/fancy@master/2021/5QdwFC82gT3XPSZ.jpg
+    - https://cdn.jsdelivr.net/gh/Innei/fancy@master/2021/KPyTCARHBzpxJ46.jpg
+    - https://cdn.jsdelivr.net/gh/Innei/fancy@master/2021/7TOEIPwGrZB1qFb.jpg
+    - https://cdn.jsdelivr.net/gh/Innei/fancy@master/2021/Ihj5QAZgVMqr9fJ.jpg
+    - https://cdn.jsdelivr.net/gh/Innei/fancy@master/2021/KZ6jv8C92Vpwcih.jpg
   background:
     src:
       light: https://gitee.com/xun7788/my-imagination/raw/master/cdn/background.png

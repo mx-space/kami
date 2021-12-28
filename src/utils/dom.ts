@@ -14,20 +14,6 @@ export const stopEventDefault = <T extends BaseSyntheticEvent>(e: T) => {
   e.stopPropagation()
 }
 
-export const copy = (value: string) => {
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(value)
-  } else {
-    const textarea = document.createElement('textarea')
-    textarea.value = value
-    textarea.style.cssText = `position: absolute; top:0; z-index: -999`
-    document.documentElement.appendChild(textarea)
-    textarea.select()
-    document.execCommand('copy')
-    document.documentElement.removeChild(textarea)
-  }
-}
-
 export function getElementViewTop<T extends HTMLElement>(element: T) {
   let actualTop = element.offsetTop
   let current = element.offsetParent as HTMLElement
