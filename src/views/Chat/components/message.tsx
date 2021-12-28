@@ -6,12 +6,12 @@
  * @FilePath: /web/components/Chat/components/message.tsx
  * @Mark: Coding with Love
  */
-import Markdown from 'components/Markdown'
 import { RelativeTime } from 'components/RelativeTime'
 import { FC } from 'react'
 import { observer } from 'utils/mobx'
+import Markdown from 'views/Markdown'
 import { useStore } from '../../../common/store'
-import { Avatar } from '../../Avatar'
+import { Avatar } from '../../../components/Avatar'
 import style from './index.module.css'
 
 export const OwnerMessage: FC<{ text: string; date: Date }> = observer(

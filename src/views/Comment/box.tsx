@@ -9,7 +9,7 @@ import { message } from 'utils/message'
 import isEmail from 'validator/lib/isEmail'
 import isUrl from 'validator/lib/isURL'
 import { useStore } from '../../common/store'
-import { Input } from '../Input'
+import { Input } from '../../components/Input'
 import styles from './index.module.css'
 
 const USER_PREFIX = 'mx-space-comment-author'

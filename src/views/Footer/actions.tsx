@@ -8,10 +8,10 @@ import classNames from 'clsx'
 import { EventTypes } from 'common/socket/types'
 import { userStore, useStore } from 'common/store'
 import { QueueAnim } from 'components/Anime'
-import { ChatPanel } from 'components/Chat'
 import React, { FC, useEffect, useState } from 'react'
 import { eventBus } from 'utils'
 import { observer } from 'utils/mobx'
+import { ChatPanel } from 'views/Chat'
 import styles from './actions.module.css'
 
 export const FooterActions: FC = observer(() => {

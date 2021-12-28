@@ -1,3 +1,8 @@
+/**
+ * favicon 页头的导航
+ *
+ */
+// TODO: remove this file
 import Link from 'next/link'
 import { FC, memo } from 'react'
 interface HeaderNavigationProps {

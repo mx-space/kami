@@ -1,9 +1,9 @@
 import { appUIStore } from 'common/store'
-import { ImageLazyWithPopup } from 'components/Image'
 import { reaction } from 'mobx'
 import dynamic from 'next/dynamic'
 import React, { FC, useContext, useEffect, useState } from 'react'
 import { observer } from 'utils/mobx'
+import { ImageLazyWithPopup } from 'views/Image'
 import { ImageSizeMetaContext } from '../../common/context/ImageSizes'
 
 const calculateDimensions = (

@@ -1,10 +1,10 @@
 import { PersonalPlayListType, PlayListType } from '@mx-space/extra'
 import axios from 'axios'
-import { SectionMusic } from 'components/SectionMusic'
 import configs from 'configs'
 import { NextPage } from 'next'
 import { isDev } from 'utils'
 import { observer } from 'utils/mobx'
+import { SectionMusic } from 'views/SectionMusic'
 import { FavoriteNav } from '../../components/Navigation/nav'
 import { Seo } from '../../components/SEO'
 interface MusicProps {

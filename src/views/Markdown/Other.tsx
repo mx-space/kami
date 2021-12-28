@@ -1,7 +1,7 @@
 import { useStore } from 'common/store'
-import Toc from 'components/Toc'
 import React, { FC } from 'react'
 import { observer } from 'utils/mobx'
+import Toc from 'views/Toc'
 
 export const RenderSpoiler: FC<{ value: string }> = (props) => {
   return (

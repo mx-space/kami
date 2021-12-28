@@ -1,14 +1,14 @@
 import { LinkModel, LinkType } from '@mx-space/api-client'
 import { useInitialData } from 'common/hooks/use-initial-data'
-import Markdown from 'components/Markdown'
 import { NextPage } from 'next'
 import { createElement, FC } from 'react'
 import { NoSSR } from 'utils'
 import { apiClient } from 'utils/client'
+import Markdown from 'views/Markdown'
 import { QueueAnim } from '../../components/Anime'
-import { ApplyForLink } from '../../components/ApplyLink'
 import { SEO } from '../../components/SEO'
 import { ArticleLayout } from '../../layouts/ArticleLayout'
+import { ApplyForLink } from '../../views/ApplyLink'
 
 const renderSection = (data: LinkModel[]) => {
   return (

@@ -8,10 +8,6 @@ import { AggregateTop } from '@mx-space/api-client'
 import { useInitialData, useThemeConfig } from 'common/hooks/use-initial-data'
 import { useStore } from 'common/store'
 import { FontIcon } from 'components/FontIcon'
-import SectionNews, {
-  SectionCard,
-  SectionNewsProps,
-} from 'components/SectionNews'
 import { shuffle } from 'lodash-es'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
@@ -29,11 +25,12 @@ import React, {
 import { apiClient } from 'utils/client'
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
-import { FriendsSection } from '../components/SectionNews/friend'
-import { SectionWrap } from '../components/SectionNews/section'
+import SectionNews, { SectionCard, SectionNewsProps } from 'views/SectionNews'
 import { getRandomImage, NoSSR } from '../utils'
 import { stopEventDefault } from '../utils/dom'
 import '../utils/message'
+import { FriendsSection } from '../views/SectionNews/friend'
+import { SectionWrap } from '../views/SectionNews/section'
 
 const IndexView: NextPage<AggregateTop> = (props) => {
   const { userStore } = useStore()

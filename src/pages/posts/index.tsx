@@ -10,7 +10,6 @@ import { appUIStore, useStore } from 'common/store'
 import { QueueAnim } from 'components/Anime'
 import { Loading } from 'components/Loading'
 import { OverLay } from 'components/Overlay'
-import { PostBlock } from 'components/PostBlock'
 import { BigTag } from 'components/Tag'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { NextPage } from 'next'
@@ -27,6 +26,7 @@ import React, {
 import { NoSSR, UUID } from 'utils'
 import { apiClient } from 'utils/client'
 import { observer } from 'utils/mobx'
+import { PostBlock } from 'views/PostBlock'
 import { SEO } from '../../components/SEO'
 
 const Post: NextPage<PaginateResult<PostModel>> = observer((props) => {

@@ -1,8 +1,5 @@
-import {
-  MusicMiniPlayerStoreControlled,
-  MusicPlayerRef,
-} from 'components/Player'
 import React, { useEffect, useRef } from 'react'
+import { MusicMiniPlayerStoreControlled, MusicPlayerRef } from 'views/Player'
 
 export default function Player() {
   const ref = useRef<MusicPlayerRef>(null)

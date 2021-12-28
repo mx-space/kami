@@ -12,9 +12,9 @@ import configs from 'configs'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { isDev } from 'utils'
-import { ImageLazy } from '../../components/Image'
 import { FavoriteNav } from '../../components/Navigation/nav'
 import { Seo } from '../../components/SEO'
+import { ImageLazy } from '../../views/Image'
 const BangumiView: NextPage<{ data: FavoriteBangumiType[] }> = (props) => {
   return (
     <main>
