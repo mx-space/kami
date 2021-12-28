@@ -202,10 +202,15 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
       >
         <SectionNews {...sections.current.postSection} key="1" />
         <SectionNews {...sections.current.noteSection} key="2" />
-        <SectionWrap title="朋友们" moreUrl="friends" icon={faUsers}>
+        <SectionWrap title="朋友们" moreUrl="friends" icon={faUsers} key="3">
           <FriendsSection />
         </SectionWrap>
-        <SectionWrap title="了解更多" icon={faHeart} showMoreIcon={false}>
+        <SectionWrap
+          title="了解更多"
+          icon={faHeart}
+          showMoreIcon={false}
+          key="4"
+        >
           <SectionCard
             title="留言"
             desc="你的话对我很重要"
