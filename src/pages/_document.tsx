@@ -86,12 +86,6 @@ export default class MyDocument extends Document<{ ua: string }> {
 
           <link rel="sitemap" href="/sitemap.xml" />
 
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `window.version = '${process.env.VERSION || version}'`,
-            }}
-          />
-
           {/* FIXME: hack to load loader style first */}
           <style
             dangerouslySetInnerHTML={{

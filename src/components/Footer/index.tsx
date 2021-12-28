@@ -5,9 +5,12 @@ import Link from 'next/link'
 import React, { FC } from 'react'
 import { NoSSR } from 'utils'
 import { observer } from 'utils/mobx'
+import Package from '~/package.json'
 import { useStore } from '../../common/store'
 import { FooterActions } from './actions'
 import styles from './index.module.css'
+
+const version = Package.version
 
 const _Footer: FC = observer(() => {
   const { appStore, gatewayStore } = useStore()
@@ -53,10 +56,7 @@ const _Footer: FC = observer(() => {
             </p>
             <p>
               Powered by <FontAwesomeIcon icon={faReact} />
-              <a
-                href="https://github.com/mx-space"
-                title={window.version && '开发版本: ' + window.version}
-              >
+              <a href="https://github.com/mx-space" title={'版本: ' + version}>
                 {' mx-space '}
               </a>
               <FontAwesomeIcon icon={faNodeJs} />.{' '}
