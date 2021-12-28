@@ -11,7 +11,7 @@
       "git pull --rebase"
     ],
     "after": [
-      "sh ./create-tags.sh"
+      "sh ./scripts/create-tags.sh"
     ]
   },
   "scripts": {
@@ -24,7 +24,8 @@
     "lint": "eslint --ext .ts,.tsx --ignore-path .gitignore . --fix",
     "prod:pm2": "cross-env NODE_ENV=production pm2 restart ecosystem.config.js",
     "prod:stop": "pm2 stop ecosystem.config.js",
-    "prod:reload": "pm2 reload ecosystem.config.js"
+    "prod:reload": "pm2 reload ecosystem.config.js",
+    "gen-config": "node scripts/generate-default-configs.js"
   },
   "browserslist": [
     "chrome >=88",
@@ -106,6 +107,7 @@
     "cross-env": "*",
     "dotenv": "10.0.0",
     "eslint": "*",
+    "js-yaml": "*",
     "nodemon": "2.0.15",
     "postcss": "8.4.5",
     "postcss-import": "14.0.2",

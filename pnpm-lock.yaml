@@ -41,6 +41,7 @@ specifiers:
   eslint: '*'
   inflection: 1.13.1
   js-cookie: 3.0.1
+  js-yaml: '*'
   kico-style: 1.2.0
   lodash-es: 4.17.21
   mdurl: '*'
@@ -155,6 +156,7 @@ devDependencies:
   cross-env: 7.0.3
   dotenv: 10.0.0
   eslint: 7.32.0
+  js-yaml: 3.14.1
   nodemon: 2.0.15
   postcss: 8.4.5
   postcss-import: 14.0.2_postcss@8.4.5

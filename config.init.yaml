@@ -79,7 +79,7 @@ site:
   footer:
     background:
       src:
-        dark:
+        dark: |-
         light: https://gitee.com/xun7788/my-imagination/raw/master/cdn/footer.png
       position: top/cover
     home_page: https://innei.ren
