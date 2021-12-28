@@ -7,7 +7,7 @@ import { CustomLogo as Logo } from 'components/Logo'
 import { observer } from 'mobx-react-lite'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import React, { FC, useState } from 'react'
+import React, { FC, useMemo, useState } from 'react'
 import { HeaderActionBasedOnRouterPath } from './HeaderActionBasedOnRouterPath'
 import { HeaderDrawer } from './HeaderDrawer'
 import { HeaderDrawerNavigation } from './HeaderDrawerNavigation'
@@ -81,25 +81,32 @@ export const _Header: FC = observer(() => {
             </div>
             <MenuList />
           </div>
-          <div
-            className={classNames(
-              styles['head-swiper'],
-              styles['swiper-metawrapper'],
-              'flex justify-between truncate',
-            )}
-          >
-            <div className={styles['head-info']}>
-              <div className={styles['desc']}>
-                <div className={styles['meta']}>{appStore.headerNav.meta}</div>
-                <div className={styles['title']}>
-                  {appStore.headerNav.title}
+          {useMemo(
+            () => (
+              <div
+                className={classNames(
+                  styles['head-swiper'],
+                  styles['swiper-metawrapper'],
+                  'flex justify-between truncate',
+                )}
+              >
+                <div className={styles['head-info']}>
+                  <div className={styles['desc']}>
+                    <div className={styles['meta']}>
+                      {appStore.headerNav.meta}
+                    </div>
+                    <div className={styles['title']}>
+                      {appStore.headerNav.title}
+                    </div>
+                  </div>
+                </div>
+                <div className={styles['right-wrapper']}>
+                  <HeaderActionBasedOnRouterPath />
                 </div>
               </div>
-            </div>
-            <div className={styles['right-wrapper']}>
-              <HeaderActionBasedOnRouterPath />
-            </div>
-          </div>
+            ),
+            [appStore.headerNav.meta, appStore.headerNav.title],
+          )}
         </nav>
         <HeaderDrawer
           show={drawerOpen}
