@@ -26,7 +26,7 @@ import React, {
 import { NoSSR, UUID } from 'utils'
 import { apiClient } from 'utils/client'
 import { observer } from 'utils/mobx'
-import { PostBlock } from 'views/PostBlock'
+import { PostBlock } from 'views/for-pages/PostBlock'
 import { SEO } from '../../components/SEO'
 
 const Post: NextPage<PaginateResult<PostModel>> = observer((props) => {
@@ -125,7 +125,7 @@ const Post: NextPage<PaginateResult<PostModel>> = observer((props) => {
             }}
             className="absolute"
           >
-            <QueueAnim type="scale" className="flex items-end flex-wrap">
+            <QueueAnim type="bottom" className="flex items-end flex-wrap">
               {tags.map(({ name }) => {
                 return (
                   <BigTag

@@ -1,32 +1,31 @@
 import classNames from 'clsx'
 import dynamic from 'next/dynamic'
-import randomColor from 'randomcolor'
 import {
   ClassAttributes,
   DetailedHTMLProps,
   FC,
   ImgHTMLAttributes,
+  memo,
   RefObject,
+  useCallback,
   useEffect,
   useRef,
   useState,
 } from 'react'
 import type { LazyImage as LazyImageProps } from 'react-lazy-images'
 import Zoom from 'react-medium-image-zoom'
-import { observer } from 'utils/mobx'
-import { useStore } from '../../common/store'
 import { isClientSide } from '../../utils'
+import styles from './index.module.css'
 
 const LazyImage = dynamic(() =>
   import('react-lazy-images').then((mo: any) => mo.LazyImage),
 ) as any as typeof LazyImageProps
-interface ImageFCProps {
+interface ImageProps {
   defaultImage?: string
   src: string
   alt?: string
   height?: number | string
   width?: number | string
-  useRandomBackgroundColor?: boolean
   backgroundColor?: string
   popup?: boolean
   overflowHidden?: boolean
@@ -37,7 +36,7 @@ const Image: FC<
     placeholderRef: RefObject<HTMLDivElement>
     popup?: boolean
   }
-> = observer(({ src, alt, placeholderRef, popup = false }) => {
+> = memo(({ src, alt, placeholderRef, popup = false }) => {
   const [loaded, setLoad] = useState(false)
 
   useEffect(() => {
@@ -50,9 +49,7 @@ const Image: FC<
           if (placeholderRef && placeholderRef.current) {
             placeholderRef.current.classList.add('hide')
           }
-          // if (wrapRef && wrapRef.current) {
-          //   wrapRef.current.style.height = ''
-          // }
+
           // eslint-disable-next-line no-empty
         } catch {}
       }
@@ -73,7 +70,13 @@ const Image: FC<
   }, [placeholderRef, src])
   return (
     <>
-      <div className={classNames('lazyload-image', !loaded && 'image-hide')}>
+      <div
+        className={classNames(
+          styles['lazyload-image'],
+          !loaded && styles['image-hide'],
+        )}
+        data-status={loaded ? 'loaded' : 'loading'}
+      >
         {popup ? (
           <Zoom overlayBgColorEnd={'var(--light-bg)'} zoomMargin={50}>
             <img src={src} alt={alt} />
@@ -87,16 +90,15 @@ const Image: FC<
 })
 
 export const ImageLazy: FC<
-  ImageFCProps &
+  ImageProps &
     DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
-> = observer((props) => {
+> = memo((props) => {
   const {
     defaultImage,
     src,
     alt = src,
     height,
     width,
-    useRandomBackgroundColor,
     backgroundColor,
     popup = false,
     style,
@@ -109,32 +111,39 @@ export const ImageLazy: FC<
 
   const wrapRef = useRef<HTMLDivElement>(null)
 
-  const colorMode = useStore().appStore.colorMode
-  const [randColor, setRandColor] = useState(
-    randomColor({ luminosity: colorMode === 'light' ? 'bright' : 'dark' }),
+  const Placeholder = useCallback(
+    (ref: any) => {
+      return (
+        <div
+          className={classNames(styles['placeholder-image'], props.className)}
+          ref={ref}
+          style={{
+            height,
+            width,
+            color: backgroundColor,
+            backgroundColor: 'currentColor',
+            zIndex: -1,
+          }}
+        ></div>
+      )
+    },
+    [backgroundColor, height, props.className, width],
   )
-  useEffect(() => {
-    setRandColor(
-      randomColor({ luminosity: colorMode === 'light' ? 'light' : 'dark' }),
-    )
-  }, [colorMode])
 
   return (
-    <figure style={{ ...(style || {}) }}>
+    <figure style={{ ...style }}>
       {defaultImage ? (
         <img src={defaultImage} alt={alt} {...rest} ref={realImageRef} />
       ) : (
         <div
+          className="relative max-w-full m-auto"
           style={{
-            position: 'relative',
             transition: 'height .3s, width .3s',
             height,
             width,
-            maxWidth: '100%',
-            margin: 'auto',
 
             ...(overflowHidden
-              ? { overflow: 'hidden', borderRadius: '0.5em' }
+              ? { overflow: 'hidden', borderRadius: '3px' }
               : {}),
           }}
           ref={wrapRef}
@@ -143,11 +152,14 @@ export const ImageLazy: FC<
             src={src}
             alt={alt}
             loadEagerly={!isClientSide()}
-            placeholder={({ ref }) => <div ref={ref} />}
+            placeholder={({ ref }) => Placeholder(ref)}
             actual={(props) => {
               return (
                 <Image
-                  className={'image-hide lazyload-image'}
+                  className={classNames(
+                    styles['image-hide'],
+                    styles['lazyload-image'],
+                  )}
                   {...rest}
                   src={src}
                   alt={alt.replace(/^[!¡]/, '') || ''}
@@ -165,32 +177,11 @@ export const ImageLazy: FC<
                 : undefined
             }
           />
-
-          <div
-            className={classNames('placeholder-image', props.className)}
-            ref={placeholderRef}
-            style={{
-              height,
-              width,
-              maxWidth: '100%',
-              position: 'absolute',
-              color:
-                backgroundColor ?? (useRandomBackgroundColor ? randColor : ''),
-              backgroundColor: 'currentColor',
-              filter: backgroundColor
-                ? colorMode === 'dark'
-                  ? 'brightness(0.8)'
-                  : undefined
-                : useRandomBackgroundColor && colorMode === 'dark'
-                ? 'brightness(0.5)'
-                : 'brightness(1.3)',
-              zIndex: -1,
-            }}
-          ></div>
+          {Placeholder(placeholderRef)}
         </div>
       )}
       {alt && (alt.startsWith('!') || alt.startsWith('¡')) && (
-        <figcaption className={'img-alt'}>{alt.slice(1)}</figcaption>
+        <figcaption className={styles['img-alt']}>{alt.slice(1)}</figcaption>
       )}
     </figure>
   )
@@ -198,7 +189,7 @@ export const ImageLazy: FC<
 
 export const ImageLazyWithPopup: FC<
   { src: string; alt?: string } & Partial<
-    ImageFCProps &
+    ImageProps &
       ClassAttributes<HTMLImageElement> &
       ImgHTMLAttributes<HTMLImageElement>
   >
@@ -210,7 +201,6 @@ export const ImageLazyWithPopup: FC<
       alt={alt || src}
       height={height}
       width={width}
-      useRandomBackgroundColor
       popup
       {...rest}
     ></ImageLazy>

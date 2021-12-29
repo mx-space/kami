@@ -25,12 +25,15 @@ import React, {
 import { apiClient } from 'utils/client'
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
-import SectionNews, { SectionCard, SectionNewsProps } from 'views/SectionNews'
+import SectionNews, {
+  SectionCard,
+  SectionNewsProps,
+} from 'views/for-pages/SectionNews'
 import { getRandomImage, NoSSR } from '../utils'
 import { stopEventDefault } from '../utils/dom'
 import '../utils/message'
-import { FriendsSection } from '../views/SectionNews/friend'
-import { SectionWrap } from '../views/SectionNews/section'
+import { FriendsSection } from '../views/for-pages/SectionNews/friend'
+import { SectionWrap } from '../views/for-pages/SectionNews/section'
 
 const IndexView: NextPage<AggregateTop> = (props) => {
   const { userStore } = useStore()

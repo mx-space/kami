@@ -8,7 +8,7 @@ import Markdown from 'views/Markdown'
 import { QueueAnim } from '../../components/Anime'
 import { SEO } from '../../components/SEO'
 import { ArticleLayout } from '../../layouts/ArticleLayout'
-import { ApplyForLink } from '../../views/ApplyLink'
+import { ApplyForLink } from '../../views/for-pages/ApplyLink'
 
 const renderSection = (data: LinkModel[]) => {
   return (

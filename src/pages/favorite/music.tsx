@@ -4,7 +4,7 @@ import configs from 'configs'
 import { NextPage } from 'next'
 import { isDev } from 'utils'
 import { observer } from 'utils/mobx'
-import { SectionMusic } from 'views/SectionMusic'
+import { SectionMusic } from 'views/for-pages/SectionMusic'
 import { FavoriteNav } from '../../components/Navigation/nav'
 import { Seo } from '../../components/SEO'
 interface MusicProps {

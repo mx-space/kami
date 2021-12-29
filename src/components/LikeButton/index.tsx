@@ -1,11 +1,15 @@
+import clsx from 'clsx'
 import { FC } from 'react'
+import styles from './index.module.css'
 
 export const LikeButton: FC<{ checked: boolean; width?: string }> = ({
   checked,
   width,
 }) => {
   return (
-    <div id="like-button" className={checked ? 'checked' : ''}>
+    <div
+      className={clsx(styles['like-button'], checked ? styles['checked'] : '')}
+    >
       <label htmlFor="checkbox">
         <svg
           style={{ width }}

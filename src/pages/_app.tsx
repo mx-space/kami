@@ -36,6 +36,8 @@ import { useStore } from '../common/store'
 import { isDev, isServerSide } from '../utils'
 import Script from 'next/script'
 import { DynamicHeaderMeta } from 'components/Meta/header'
+import { NoConfigErrorView } from 'components/Error/no-config'
+import { NoDataErrorView } from 'components/Error/no-data'
 
 const version = `v${Package.version}` || ''
 
@@ -51,29 +53,30 @@ const Content: FC = observer((props) => {
   const { check: checkLogin } = useCheckLogged()
   useRouterEvent()
   useResizeScrollEvent()
-  const initialData = useInitialData()
+  const initialData: AggregateRoot | null = useInitialData()
   const themeConfig = useThemeConfig()
   useMount(() => {
     {
-      const { user } = initialData
-      // set user
-      master.setUser(user)
-      document.body.classList.remove('loading')
+      try {
+        const { user } = initialData
+        // set user
+        master.setUser(user)
+        checkLogin()
+        client.initIO()
+      } finally {
+        document.body.classList.remove('loading')
+      }
     }
-    checkLogin()
     checkBrowser()
     printToConsole()
-    // connect to ws
-    client.initIO()
   })
 
   if (!initialData) {
-    // TODO: No data page
-    return <div>No Data fetched</div>
+    return <NoDataErrorView />
   }
 
   if (!themeConfig) {
-    return <div>No Config fetched</div>
+    return <NoConfigErrorView />
   }
   return (
     <>

@@ -7,7 +7,7 @@ import Link from 'next/link'
 import randomColor from 'randomcolor'
 import { DetailedHTMLProps, FC, forwardRef, HTMLAttributes } from 'react'
 import { observer } from 'utils/mobx'
-import { useStore } from '../../common/store'
+import { useStore } from '../../../common/store'
 import styles from './index.module.css'
 
 export interface SectionNewsProps {

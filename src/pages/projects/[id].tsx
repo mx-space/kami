@@ -1,10 +1,10 @@
 import { ProjectModel } from '@mx-space/api-client'
 import Kico from 'assets/images/Kico.jpg'
+import { ImageLazy } from 'components/Image'
 import { SliderImagesPopup } from 'components/SliderImagesPopup'
 import { NextPage } from 'next'
 import ReactMarkdown from 'react-markdown'
 import { apiClient } from 'utils/client'
-import { ImageLazy } from 'views/Image'
 import { SEO } from '../../components/SEO'
 
 type ProjectViewProps = ProjectModel

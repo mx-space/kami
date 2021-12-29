@@ -1,8 +1,8 @@
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
+import { ImageLazy } from 'components/Image'
 import pick from 'lodash/pick'
 import Link from 'next/link'
 import { FC, forwardRef, memo, MouseEvent } from 'react'
-import { ImageLazy } from 'views/Image'
 import styles from './index.module.css'
 import { SectionWrap } from './section'
 export interface SectionNewsProps {
