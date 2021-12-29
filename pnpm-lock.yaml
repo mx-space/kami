@@ -44,7 +44,7 @@ specifiers:
   lodash-es: 4.17.21
   mdurl: '*'
   mobx: 6.3.10
-  mobx-react-lite: 3.2.2
+  mobx-react-lite: 3.2.3
   next: 12.0.7
   next-offline: 5.0.5
   next-seo: 4.28.1
@@ -106,7 +106,7 @@ dependencies:
   lodash-es: 4.17.21
   mdurl: 1.0.1
   mobx: 6.3.10
-  mobx-react-lite: 3.2.2_65e9936076dc1bc58dcf4e626b32cb4a
+  mobx-react-lite: 3.2.3_65e9936076dc1bc58dcf4e626b32cb4a
   next: 12.0.7_f974e9ff7578644a22f9bc9f9222c405
   next-offline: 5.0.5_next@12.0.7
   next-seo: 4.28.1_d837ce8f3acb2f60f8b7454672a9bcea
@@ -5420,8 +5420,8 @@ packages:
       minimist: 1.2.5
     dev: false
 
-  /mobx-react-lite/3.2.2_65e9936076dc1bc58dcf4e626b32cb4a:
-    resolution: {integrity: sha512-FxJJMqmHcnQYOVVs2DdjNHioGlFsXF5/9VHztS9NAfIT3DYrxNZzVi119Zr/OmlWKkWNkAsssSNzPkqautfL4A==}
+  /mobx-react-lite/3.2.3_65e9936076dc1bc58dcf4e626b32cb4a:
+    resolution: {integrity: sha512-7exWp1FV0M9dP08H9PIeHlJqDw4IdkQVRMfLYaZFMmlbzSS6ZU6p/kx392KN+rVf81hH3IQYewvRGQ70oiwmbw==}
     peerDependencies:
       mobx: ^6.1.0
       react: ^16.8.0 || ^17
