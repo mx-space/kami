@@ -1,4 +1,5 @@
 import { PageModel } from '@mx-space/api-client'
+import { useInitialData } from 'common/hooks/use-initial-data'
 import { useStore } from 'common/store'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { GetServerSideProps, NextPage } from 'next'
@@ -45,7 +46,8 @@ const Page: NextPage<PageModel> = (props) => {
       behavior: 'smooth',
     })
   }, [props])
-  const pages = appStore.pages
+  const { pageMeta } = useInitialData()
+  const pages = pageMeta || []
   const indexInPages = pages.findIndex((i) => i.title == props.title)
   const n = pages.length
   const hasNext = indexInPages + 1 < n

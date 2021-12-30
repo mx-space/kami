@@ -22,13 +22,6 @@ export interface MenuModel {
   independent?: boolean
 }
 
-export interface SocialLinkModel {
-  icon: IconDefinition | string
-  title?: string
-  url: string
-  color?: string
-}
-
 export interface ViewportRecord {
   w: number
   h: number

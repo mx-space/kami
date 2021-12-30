@@ -8,6 +8,10 @@ interface Function {
   analyze: Analyze
   netease: Netease
   donate: Donate
+
+  player: {
+    id: number[]
+  }
 }
 
 interface Analyze {

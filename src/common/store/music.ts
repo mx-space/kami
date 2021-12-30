@@ -21,7 +21,9 @@ export default class MusicStore {
   isPlay = false
 
   init() {
-    this.list = [563534789, 1447327083, 1450252250]
+    this.list = window.data?.config.function.player.id ?? [
+      563534789, 1447327083, 1450252250,
+    ]
   }
 
   empty() {

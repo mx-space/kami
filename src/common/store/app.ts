@@ -1,4 +1,3 @@
-import { PageModel } from '@mx-space/api-client'
 import { makeAutoObservable } from 'mobx'
 import { isClientSide } from 'utils'
 import { ViewportRecord } from './types'
@@ -23,8 +22,6 @@ export default class AppUIStore {
   }
 
   shareData: { title: string; text: string; url: string } | null = null
-
-  pages: PageModel[] = []
 
   updatePosition(direction: 'up' | 'down') {
     if (typeof document !== 'undefined') {

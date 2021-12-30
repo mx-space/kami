@@ -188,6 +188,9 @@ export const defaultConfigs = {
     },
   },
   function: {
+    player: {
+      id: [563534789, 1447327083, 1450252250],
+    },
     analyze: {
       enable: true,
       ga: 'G-X4PVVRB6TF',
