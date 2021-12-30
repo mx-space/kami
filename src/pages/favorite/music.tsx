@@ -5,8 +5,8 @@ import { NextPage } from 'next'
 import { isDev } from 'utils'
 import { observer } from 'utils/mobx'
 import { SectionMusic } from 'views/for-pages/SectionMusic'
-import { FavoriteNav } from '../../components/Navigation/nav'
 import { Seo } from '../../components/SEO'
+
 interface MusicProps {
   weekdata: PlayListType[]
   alldata: PlayListType[]
@@ -18,7 +18,7 @@ const MusicView: NextPage<MusicProps> = (props) => {
   return (
     <main>
       <Seo title={`歌单`} openGraph={{ type: 'website' }} />
-      <FavoriteNav index={0} />
+
       <SectionMusic
         {...{
           name: '周排行',

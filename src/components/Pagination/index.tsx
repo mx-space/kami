@@ -1,3 +1,4 @@
+import { Input } from 'components/Input'
 import { FC, useEffect, useState } from 'react'
 import { message } from 'utils/message'
 import styles from './index.module.css'
@@ -40,16 +41,16 @@ export const Pagination: FC<PaginationProps> = (props) => {
         }}
       >
         <path
-          d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6l6 6l1.41-1.41z"
+          d="M14.71 15.88L10.83 12l3.88-3.88a.996.996 0 1 0-1.41-1.41L8.71 11.3a.996.996 0 0 0 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0c.38-.39.39-1.03 0-1.42z"
           fill="currentColor"
         ></path>
       </svg>
 
       <div className={styles['nav']}>
-        <input
+        <Input
           value={value}
           type="text"
-          className={styles['input']}
+          wrapperProps={{ className: styles['input'] }}
           onChange={(e) => {
             setValue(e.target.value)
           }}
@@ -66,7 +67,7 @@ export const Pagination: FC<PaginationProps> = (props) => {
             }
           }}
         />
-        <span>/ {total}</span>
+        <span className="flex-shrink-0">/ {total}</span>
       </div>
       <svg
         width="2em"
@@ -89,7 +90,7 @@ export const Pagination: FC<PaginationProps> = (props) => {
         }
       >
         <path
-          d="M8.59 16.59L13.17 12L8.59 7.41L10 6l6 6l-6 6l-1.41-1.41z"
+          d="M9.29 15.88L13.17 12L9.29 8.12a.996.996 0 1 1 1.41-1.41l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3a.996.996 0 0 1-1.41 0c-.38-.39-.39-1.03 0-1.42z"
           fill="currentColor"
         ></path>
       </svg>

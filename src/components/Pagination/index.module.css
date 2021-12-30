@@ -10,9 +10,14 @@
   .input {
     width: 2rem;
     margin-right: 4px;
-    border: none;
-    border-bottom: 1px solid var(--light-font);
     border-radius: unset;
+    border: 1px solid transparent;
+    padding: 0;
+    transition: border 0.5s;
+
+    &:hover {
+      border: 1px solid var(--yellow);
+    }
   }
 }
 
