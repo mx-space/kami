@@ -82,10 +82,10 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
       if (payload.id === data.id) {
         if (payload.hide && !userStore.isLogged) {
           router.push('/notes')
-          message.error('该日记已删除或隐藏')
+          message.error('该生活记录已删除或隐藏')
           return
         }
-        message.info('日记已更新')
+        message.info('生活记录已更新')
         update(payload)
       }
     }
@@ -238,7 +238,7 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
   useEffect(() => {
     appStore.headerNav = {
       title,
-      meta: '日记',
+      meta: '生活记录',
       show: true,
     }
     return () => {
