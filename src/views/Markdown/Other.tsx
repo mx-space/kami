@@ -21,3 +21,15 @@ export const _TOC: FC = observer(() => {
   const { isPadOrMobile } = appStore
   return !isPadOrMobile ? <Toc /> : null
 })
+
+export const RenderReference: FC<{ href: string; title: string | null }> = (
+  props,
+) => {
+  return (
+    <sup>
+      <a title={props.title || undefined} href={props.href}>
+        {props.children}
+      </a>
+    </sup>
+  )
+}

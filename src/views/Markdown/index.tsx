@@ -9,7 +9,13 @@ import { Heading } from './Heading'
 import { Image } from './Image'
 import styles from './index.module.css'
 import { RenderLink } from './Link'
-import { RenderCommentAt, RenderParagraph, RenderSpoiler, _TOC } from './Other'
+import {
+  RenderCommentAt,
+  RenderParagraph,
+  RenderReference,
+  RenderSpoiler,
+  _TOC,
+} from './Other'
 import { processDetails } from './process-tag'
 type MdProps = ReactMarkdownProps & {
   value: string
@@ -41,7 +47,7 @@ export const Markdown: FC<MdProps> = observer(
         return
       }
       const $ = _.current as HTMLElement
-      // handle process raw html tag
+      //  process raw html tag
       processDetails($)
     }, [ref])
     return (
@@ -68,6 +74,7 @@ export const Markdown: FC<MdProps> = observer(
             spoiler: RenderSpoiler,
             paragraph: RenderParagraph,
             commentAt: RenderCommentAt,
+            linkReference: RenderReference,
             ...renderers,
           }}
           // astPlugins={[mermaid]}
@@ -79,5 +86,3 @@ export const Markdown: FC<MdProps> = observer(
     )
   }),
 )
-
-export default Markdown

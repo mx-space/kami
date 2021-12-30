@@ -10,7 +10,7 @@
     }
 
     a::after {
-      content: "";
+      content: '';
       position: absolute;
       bottom: -1.9px;
       height: 1px;
@@ -81,16 +81,21 @@
   }
 
   details summary::before {
-    content: "+ ";
+    content: '+ ';
   }
 
   details[open] summary::before {
-    content: "- ";
+    content: '- ';
   }
 
   details[open] summary::before,
   details summary::before {
     font-weight: 800;
     font-family: monospace;
+  }
+
+  sub span,
+  sup span {
+    border: 0 !important;
   }
 }

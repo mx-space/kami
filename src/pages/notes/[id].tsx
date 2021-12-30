@@ -25,7 +25,7 @@ import { observer } from 'utils/mobx'
 import { parseDate } from 'utils/time'
 import CommentWrap from 'views/Comment'
 import { NoteTimelineList } from 'views/for-pages/NoteTimelineList'
-import Markdown from 'views/Markdown'
+import { Markdown } from 'views/Markdown'
 import { ImageSizeMetaContext } from '../../common/context/ImageSizes'
 import { Seo } from '../../components/SEO'
 import {

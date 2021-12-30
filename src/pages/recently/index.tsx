@@ -14,7 +14,7 @@ import React, { FC, Fragment, memo, useEffect, useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { eventBus, NoSSR } from 'utils'
 import { apiClient } from 'utils/client'
-import Markdown from 'views/Markdown'
+import { Markdown } from 'views/Markdown'
 import styles from './index.module.css'
 
 const FETCH_SIZE = 10

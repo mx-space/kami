@@ -1,12 +1,12 @@
 import Router from 'next/router'
-import React, { FC, useCallback, useMemo } from 'react'
+import React, { FC, memo, useCallback, useMemo } from 'react'
 import styles from './index.module.css'
 
 export const RenderLink: FC<{
   href: string
   key?: string
   children?: JSX.Element | JSX.Element[]
-}> = (props) => {
+}> = memo((props) => {
   const ExtendIcon = useMemo(
     () => (
       <svg
@@ -67,6 +67,7 @@ export const RenderLink: FC<{
     },
     [props.href],
   )
+
   return (
     <div className={styles['link']}>
       <a href={props.href} target={'_blank'} onClick={handleRedirect}>
@@ -76,4 +77,4 @@ export const RenderLink: FC<{
       {ExtendIcon}
     </div>
   )
-}
+})
