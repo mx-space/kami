@@ -13,12 +13,11 @@ import { NextPage } from 'next'
 import Head from 'next/head'
 import { isDev } from 'utils'
 import { ImageLazy } from '../../components/Image'
-import { FavoriteNav } from '../../components/Navigation/nav'
 import { Seo } from '../../components/SEO'
+
 const BangumiView: NextPage<{ data: FavoriteBangumiType[] }> = (props) => {
   return (
     <main>
-      <FavoriteNav index={1} />
       <Head>
         <meta name="referrer" content="no-referrer" />
       </Head>
@@ -44,7 +43,6 @@ const BangumiView: NextPage<{ data: FavoriteBangumiType[] }> = (props) => {
                   <ImageLazy
                     height={'100%'}
                     width={'100%'}
-                    useRandomBackgroundColor
                     src={
                       'https://i0.wp.com/' +
                       bangumi.cover.replace(/^https?:\/\//, '')

@@ -1,6 +1,6 @@
 import { faBookOpen, faClock } from '@fortawesome/free-solid-svg-icons'
 import { NoteModel, NoteWrappedPayload } from '@mx-space/api-client'
-import { useLoadSerifFont } from 'common/hooks/useLoadFont'
+import { useLoadSerifFont } from 'common/hooks/use-load-serif-font'
 import { useRefEffect } from 'common/hooks/useRefEffect'
 import { EventTypes } from 'common/socket/types'
 import { useStore } from 'common/store'

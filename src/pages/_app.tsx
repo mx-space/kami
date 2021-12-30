@@ -87,6 +87,7 @@ const Content: FC = observer((props) => {
           <meta name="keywords" content={initialData.seo.keywords.join(',')} />
         )}
       </Head>
+
       <NextSeo
         title={initialData.seo.title + ' · ' + initialData.seo.description}
         description={initialData.seo.description}
