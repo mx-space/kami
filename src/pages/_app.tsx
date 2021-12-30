@@ -5,7 +5,7 @@ import 'assets/styles/main.css'
 // organize-imports-ignore
 import 'normalize.css/normalize.css'
 
-import { AggregateRoot, PageModel } from '@mx-space/api-client'
+import { AggregateRoot } from '@mx-space/api-client'
 import { DropdownProvider } from 'common/context/dropdown'
 import {
   InitialContextProvider,
@@ -14,30 +14,32 @@ import {
 import { useCheckLogged } from 'common/hooks/use-check-logged'
 import { useCheckOldBrowser } from 'common/hooks/use-check-old-browser'
 import { useInitialData, useThemeConfig } from 'common/hooks/use-initial-data'
-import { useScreenMedia } from 'common/hooks/use-screen-media'
 import { useResizeScrollEvent } from 'common/hooks/use-resize-scroll-event'
 import { useRouterEvent } from 'common/hooks/use-router-event'
+import { useScreenMedia } from 'common/hooks/use-screen-media'
+import { NoConfigErrorView } from 'components/Error/no-config'
+import { NoDataErrorView } from 'components/Error/no-data'
 import Loader from 'components/Loader'
+import { DynamicHeaderMeta } from 'components/Meta/header'
 import { BasicLayout } from 'layouts/BasicLayout'
 import { NextSeo } from 'next-seo'
 import NextApp, { AppContext } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import Script from 'next/script'
+
 import React, { FC, useEffect, useMemo } from 'react'
 import useMount from 'react-use/lib/useMount'
 import { KamiConfig } from 'types/config'
 import { $axios, apiClient } from 'utils/client'
 import { printToConsole } from 'utils/console'
 import { observer } from 'utils/mobx'
+
 import Package from '~/package.json'
+
 import client from '../common/socket'
 import { useStore } from '../common/store'
-
-import { isDev, isServerSide } from '../utils'
-import Script from 'next/script'
-import { DynamicHeaderMeta } from 'components/Meta/header'
-import { NoConfigErrorView } from 'components/Error/no-config'
-import { NoDataErrorView } from 'components/Error/no-data'
+import { isServerSide } from '../utils'
 
 const version = `v${Package.version}` || ''
 
