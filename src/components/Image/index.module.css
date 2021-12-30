@@ -28,9 +28,9 @@
   animation: blur 0.8s forwards ease-in-out;
 
   &[data-status='loaded'] + .placeholder-image {
+    @apply invisible;
+
     opacity: 0;
-    height: 0;
-    width: 0;
   }
 }
 

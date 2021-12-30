@@ -27,9 +27,10 @@ export const BasicLayout = observer(({ children }) => {
   const handleChangeColorMode = useCallback(() => {
     toggle()
 
+    // 去相反的值去比较, 因为 toggle 之后因为 react 的 batch 不会立刻更新
     setTip({
-      text: isDark ? '夜间模式' : '白天模式',
-      icon: isDark ? faMoon : faSun,
+      text: !isDark ? '夜间模式' : '白天模式',
+      icon: !isDark ? faMoon : faSun,
     })
 
     setNotice(!showNotice)

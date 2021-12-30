@@ -64,30 +64,6 @@ html.dark {
   }
 }
 
-@media screen and (prefers-color-scheme: dark) {
-  :root:not(.light) {
-    --gray: #666;
-    --shizuku-background-color: #212121;
-    --shizuku-text-color: #858585;
-    --shizuku-theme-color: #3c946c;
-    --bg-opacity: rgba(17, 17, 17, 0.5);
-    --black: #fff;
-
-    @supports not (backdrop-filter: blur(1px)) {
-      & {
-        --bg-opacity: rgba(17, 17, 17, 0.98);
-      }
-    }
-
-    blockquote {
-      background: var(--shizuku-background-color);
-      border-left: 5px solid var(--shizuku-theme-color);
-    }
-    article {
-      color: var(--shizuku-text-color);
-    }
-  }
-}
 html {
   font-size: 14px;
 }
@@ -214,14 +190,6 @@ pre {
 }
 .news-article h4 {
   backdrop-filter: blur(5px);
-}
-
-@media screen and (prefers-color-scheme: dark) {
-  .is-note .note-article::after {
-    background-image: linear-gradient(-45deg, transparent 50%, #333 0);
-    border-left: 1px solid #555;
-    border-top: 1px solid #555;
-  }
 }
 
 html.dark {
@@ -473,14 +441,6 @@ html.dark {
   :not(pre) > code {
     background-color: #3c3a3b;
     color: var(--shizuku-theme-color);
-  }
-}
-@media screen and (prefers-color-scheme: dark) {
-  html:not(.light) {
-    :not(pre) > code {
-      background-color: #3c3a3b;
-      color: var(--shizuku-theme-color);
-    }
   }
 }
 

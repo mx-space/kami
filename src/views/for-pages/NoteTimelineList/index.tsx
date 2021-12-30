@@ -1,10 +1,5 @@
-/*
- * @Author: Innei
- * @Date: 2021-08-28 10:58:02
- * @LastEditTime: 2021-08-28 11:48:20
- * @LastEditors: Innei
- * @FilePath: /web/components/NoteTimelineList/index.tsx
- * Mark: Coding with Love
+/**
+ * 日记: 左侧时间线
  */
 
 import { NoteModel } from '@mx-space/api-client'
@@ -27,7 +22,7 @@ export const NoteTimelineList: FC<
   const [list, setList] = useState<NotePartial[]>([])
   const router = useRouter()
   useEffect(() => {
-    apiClient.note.getMiddleList(noteId).then(({ data }) => {
+    apiClient.note.getMiddleList(noteId, 10).then(({ data }) => {
       setList(data)
     })
   }, [noteId])

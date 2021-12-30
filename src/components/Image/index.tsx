@@ -14,7 +14,7 @@ import {
 } from 'react'
 import type { LazyImage as LazyImageProps } from 'react-lazy-images'
 import Zoom from 'react-medium-image-zoom'
-import { isClientSide } from '../../utils'
+import { escapeHTMLTag, isClientSide } from '../../utils'
 import styles from './index.module.css'
 
 const LazyImage = dynamic(() =>
@@ -58,7 +58,9 @@ const Image: FC<
           if (placeholderRef && placeholderRef.current) {
             placeholderRef.current.innerHTML = `
             <span style="color: currentColor; filter: invert(100%) brightness(1.5)">图片加载失败!</span>
-            <a href="${image.src}" target="_blank">${image.src}
+            <a href="${escapeHTMLTag(
+              image.src,
+            )}" target="_blank">${escapeHTMLTag(image.src)}
             </a>
             `
             placeholderRef.current.style.zIndex = '2'
