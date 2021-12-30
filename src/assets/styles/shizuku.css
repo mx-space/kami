@@ -5,19 +5,24 @@
 }
 
 #write {
-  font-family: 'PingFang SC', 'Microsoft YaHei UI', 'Microsoft YaHei',
+  font-family:
+    "PingFang SC",
+    "Microsoft YaHei UI",
+    "Microsoft YaHei",
     sans-serif;
   font-size: 16px;
   word-wrap: break-word;
-
   position: relative;
 }
+
 #write > *:first-child {
   margin-top: 0 !important;
 }
+
 #write > *:last-child {
   margin-bottom: 0 !important;
 }
+
 #write a,
 #write a:hover,
 #write a:active,
@@ -25,14 +30,17 @@
 #write a:visited {
   text-decoration: none;
 }
+
 #write a:not([href]) {
   color: inherit;
   text-decoration: none;
 }
+
 #write p,
 #write .paragraph {
   margin: 1rem 0;
 }
+
 #write .paragraph,
 #write blockquote,
 #write ul,
@@ -43,18 +51,21 @@
   word-wrap: break-word;
   word-break: break-all;
 }
+
 #write pre > code {
   max-height: 70vh;
 }
+
 #write pre::before,
 #write pre::after {
-  content: ' ';
+  content: " ";
   display: block;
   width: 25px;
   height: 1px;
   margin: 20px 0;
   background: var(--shizuku-theme-color);
 }
+
 #write hr {
   display: block;
   width: 50px;
@@ -62,32 +73,40 @@
   line-height: 1px;
   border: 0;
   margin: 2.5rem auto;
-  background: rgba(128, 128, 128, 0.4);
+  background: rgb(128 128 128 / 40%);
 }
+
 #write .md-hr {
   outline: none !important;
 }
+
 #write .md-hr.md-focus hr {
   background: var(--shizuku-theme-color);
 }
+
 #write blockquote {
   position: relative;
 }
+
 #write blockquote > .paragraph {
   margin-bottom: 10px;
 }
+
 #write .loweralpha {
   list-style-type: lower-alpha;
 }
+
 #write .md-blockmeta,
 #write .md-header-span {
   font-style: normal;
   font-weight: normal;
-  color: rgba(128, 128, 128, 0.4);
+  color: rgb(128 128 128 / 40%);
 }
+
 #write .md-header-span {
-  background: rgba(128, 128, 128, 0.2);
+  background: rgb(128 128 128 / 20%);
 }
+
 #write h1,
 #write h2,
 #write h3,
@@ -115,7 +134,6 @@
   padding-left: initial !important;
   padding-right: initial !important;
   vertical-align: inherit !important;
-
   display: inline-block;
   margin-left: -72px;
   width: 60px;
@@ -130,40 +148,50 @@
 }
 
 #write h1::before {
-  content: 'H1';
+  content: "H1";
 }
+
 #write h2::before {
-  content: 'H2';
+  content: "H2";
 }
+
 #write h3::before {
-  content: 'H3';
+  content: "H3";
 }
+
 #write h4::before {
-  content: 'H4';
+  content: "H4";
 }
+
 #write h5::before {
-  content: 'H5';
+  content: "H5";
 }
+
 #write h6::before {
-  content: 'H6';
+  content: "H6";
 }
 
 @media screen and (max-width: 900px) {
   #write h1 {
     margin-left: 2rem;
   }
+
   #write h2 {
     margin-left: 2rem;
   }
+
   #write h3 {
     margin-left: 2rem;
   }
+
   #write h4 {
     margin-left: 2rem;
   }
+
   #write h5 {
     margin-left: 2rem;
   }
+
   #write h6 {
     margin-left: 2rem;
   }
@@ -174,17 +202,21 @@
   padding-left: 2em;
   font-size: 95%;
 }
+
 #write ul {
   list-style-type: disc;
 }
+
 #write ol {
   list-style-type: decimal;
 }
+
 #write > ul,
 #write > ol {
   padding-left: 0;
   font-size: inherit;
 }
+
 #write ul ul,
 #write ul ol,
 #write ol ol,
@@ -196,9 +228,11 @@
 #write li + li {
   margin-top: 0.25em;
 }
+
 #write dl {
   padding: 0;
 }
+
 #write dl dt {
   padding: 0;
   margin-top: 16px;
@@ -206,44 +240,54 @@
   font-style: italic;
   font-weight: bold;
 }
+
 #write dl dd {
   padding: 0 16px;
   margin-bottom: 16px;
 }
+
 #write .task-list-item {
   padding-left: 0;
 }
-#write .task-list-item input[type='checkbox'] {
+
+#write .task-list-item input[type="checkbox"] {
   margin: 0.36em 5px;
   margin-left: -24px;
 }
+
 #write table {
   display: block;
   width: 100%;
   overflow: auto;
   border-collapse: collapse;
 }
+
 #write table th {
   font-weight: bold;
 }
+
 #write table th,
 #write table td {
   padding: 5px 10px;
-  border: 1px solid rgba(128, 128, 128, 0.1);
+  border: 1px solid rgb(128 128 128 / 10%);
   border-collapse: collapse;
 }
+
 #write table tr {
-  border-top: 1px solid rgba(128, 128, 128, 0.4);
+  border-top: 1px solid rgb(128 128 128 / 40%);
   border-collapse: collapse;
 }
+
 #write img {
   max-width: 100%;
   box-sizing: content-box;
 }
-#write img[align='right'] {
+
+#write img[align="right"] {
   padding-left: 20px;
 }
-#write img[align='left'] {
+
+#write img[align="left"] {
   padding-right: 20px;
 }
 
@@ -252,10 +296,12 @@
   vertical-align: text-top;
   background-color: transparent;
 }
+
 #write span.frame {
   display: block;
   overflow: hidden;
 }
+
 #write span.frame > span {
   display: block;
   float: left;
@@ -263,96 +309,112 @@
   padding: 7px;
   margin: 13px 0 0;
   overflow: hidden;
-  border: 1px solid rgba(128, 128, 128, 0.4);
+  border: 1px solid rgb(128 128 128 / 40%);
 }
+
 #write span.frame span img {
   display: block;
   float: left;
 }
+
 #write span.frame span span {
   display: block;
   padding: 5px 0 0;
   clear: both;
   color: #333;
 }
+
 #write span.align-center {
   display: block;
   overflow: hidden;
   clear: both;
 }
+
 #write span.align-center > span {
   display: block;
   margin: 13px auto 0;
   overflow: hidden;
   text-align: center;
 }
+
 #write span.align-center span img {
   margin: 0 auto;
   text-align: center;
 }
+
 #write span.align-right {
   display: block;
   overflow: hidden;
   clear: both;
 }
+
 #write span.align-right > span {
   display: block;
   margin: 13px 0 0;
   overflow: hidden;
   text-align: right;
 }
+
 #write span.align-right span img {
   margin: 0;
   text-align: right;
 }
+
 #write span.float-left {
   display: block;
   float: left;
   margin-right: 13px;
   overflow: hidden;
 }
+
 #write span.float-left span {
   margin: 13px 0 0;
 }
+
 #write span.float-right {
   display: block;
   float: right;
   margin-left: 13px;
   overflow: hidden;
 }
+
 #write span.float-right > span {
   display: block;
   margin: 13px auto 0;
   overflow: hidden;
   text-align: right;
 }
+
 #write .spoiler {
   position: relative;
   background: currentColor;
   filter: invert(50%);
   transition: background 0.5s;
   text-decoration: none;
+
   &:hover {
     background: transparent;
   }
 }
+
 #write > blockquote:nth-child(1) {
   background-color: unset !important;
   border: none !important;
   position: relative;
   color: #d35400;
-
-  font-family: 'Noto Serif SC', SongTi SC;
+  font-family: "Noto Serif SC", SongTi SC;
   padding-bottom: 24px;
+
   &::before {
-    content: '“';
+    content: "“";
     position: absolute;
     left: 0;
     top: -2rem;
     font-size: 3rem;
   }
+
   &::after {
-    content: '”';
+    content: "”";
     font-size: 3rem;
     position: absolute;
     right: 0;

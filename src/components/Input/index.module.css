@@ -2,13 +2,12 @@
   position: relative;
   width: 100%;
   font-size: 1rem;
-
   padding: 4px 11px;
-
   border: 1px solid var(--gray);
   display: inline-flex;
   align-items: center;
   color: var(--shizuku-text-color);
+
   &:hover {
     border-color: var(--yellow);
     border-right-width: 1px !important;
@@ -23,27 +22,28 @@
     vertical-align: unset;
     overflow: visible;
   }
+
   .rect {
     transition: 0.5s;
     shape-rendering: crispEdges;
     stroke: var(--yellow);
     stroke-width: 1.5px;
     fill: transparent;
-    stroke-dashoffset: 0px;
+    stroke-dashoffset: 0;
   }
+
   .border {
     position: absolute;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
-
     pointer-events: none;
   }
+
   .input {
     width: 100%;
     border: 0;
-
     display: flex;
     align-items: center;
     color: inherit;

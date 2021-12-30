@@ -2,13 +2,15 @@
   .link {
     display: inline-block;
     position: relative;
+
     a {
       cursor: alias;
       overflow: hidden;
       position: relative;
     }
+
     a::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: -1.9px;
       height: 1px;
@@ -19,14 +21,17 @@
       text-align: center;
       transition: width 0.5s ease-in-out;
     }
+
     a:hover::after {
       width: 100%;
     }
+
     a:hover + .popup {
       transform: translateY(-100%) scale(1);
       visibility: visible;
       opacity: 0.8;
     }
+
     .popup {
       font-weight: 600;
       word-break: keep-all;
@@ -42,7 +47,6 @@
       left: 0;
       transform: translateY(0%) scale(0);
       background-color: var(--shizuku-background-color);
-
       z-index: 2;
       color: var(--shizuku-text-color);
       font-size: 12px;
@@ -66,6 +70,7 @@
 
   summary {
     list-style: none;
+
     &:hover {
       opacity: 0.8;
     }
@@ -74,12 +79,13 @@
   summary::marker {
     display: none;
   }
+
   details summary::before {
-    content: '+ ';
+    content: "+ ";
   }
 
   details[open] summary::before {
-    content: '- ';
+    content: "- ";
   }
 
   details[open] summary::before,

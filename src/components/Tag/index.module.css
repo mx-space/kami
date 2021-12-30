@@ -15,12 +15,15 @@
   &:nth-child(2) {
     margin-left: 6px;
   }
+
   &:not(:first-child):not(:last-child) {
     margin-right: 6px;
   }
+
   &:hover {
     color: inherit;
   }
+
   &:active {
     transform: scale(0.8);
   }

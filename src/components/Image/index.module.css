@@ -24,10 +24,11 @@
 .image-hide {
   display: none;
 }
+
 .lazyload-image {
   animation: blur 0.8s forwards ease-in-out;
 
-  &[data-status='loaded'] + .placeholder-image {
+  &[data-status="loaded"] + .placeholder-image {
     @apply invisible;
 
     opacity: 0;
@@ -43,6 +44,7 @@
 :global(html.dark) .lazyload-image {
   animation: blur-dark 0.8s forwards ease-in-out;
 }
+
 :global(html.light) .lazyload-image {
   animation: blur 0.8s forwards ease-in-out;
 }
@@ -54,11 +56,13 @@
   user-select: none;
   position: relative;
   margin: 12px 0;
+
   &::before {
-    content: '⇡ ';
+    content: "⇡ ";
   }
+
   &::after {
-    content: '';
+    content: "";
     bottom: -4px;
     position: absolute;
     width: 3rem;
@@ -73,18 +77,22 @@
   from {
     filter: blur(10px);
   }
+
   to {
     filter: blur(0);
   }
 }
+
 @keyframes blur-dark {
   from {
     filter: blur(10px) brightness(0.6);
   }
+
   to {
     filter: blur(0) brightness(0.6);
   }
 }
+
 /* @keyframes blur {
   from {
     opacity: 0;

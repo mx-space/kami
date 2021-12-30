@@ -17,8 +17,13 @@
     "baseUrl": "./src",
     "noImplicitAny": false,
     "useDefineForClassFields": true,
-    "typeRoots": ["./node_modules/@types"],
-    "lib": ["dom", "esnext"],
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "lib": [
+      "dom",
+      "esnext"
+    ],
     "outDir": ".next",
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
@@ -26,10 +31,21 @@
     "isolatedModules": true,
     "incremental": true,
     "paths": {
-      "~/*": ["../*"],
-      "~": [".."]
+      "~/*": [
+        "../*"
+      ],
+      "~": [
+        ".."
+      ]
     }
   },
-  "exclude": [".next", "server/**/*.*"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.scss"]
+  "exclude": [
+    ".next",
+    "server/**/*.*"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
 }

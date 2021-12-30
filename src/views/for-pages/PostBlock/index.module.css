@@ -2,6 +2,7 @@
   position: relative;
   margin-left: auto;
   margin-right: auto;
+
   .title {
     position: absolute;
     left: 50%;
@@ -30,7 +31,7 @@
   outline: 0;
   color: #fff;
   border-radius: 4rem;
-  background-color: rgba(230, 126, 34, 1);
+  background-color: rgb(230 126 34 / 100%);
 
   &:hover {
     animation: gradual-change infinite 3s ease both;
@@ -40,12 +41,14 @@
 @keyframes gradual-change {
   0%,
   100% {
-    background: rgba(230, 126, 34, 1);
+    background: rgb(230 126 34 / 100%);
   }
+
   50% {
-    background: rgba(241, 196, 15, 0.8);
+    background: rgb(241 196 15 / 80%);
   }
 }
+
 .navigator {
   display: block;
   text-align: center;

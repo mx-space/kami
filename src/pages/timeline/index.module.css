@@ -2,9 +2,8 @@
   position: relative;
 
   & > div li::before {
-    content: '';
+    content: "";
     position: absolute;
-
     left: -1.05rem;
     bottom: 0;
     border-left: 1px solid var(--yellow);
@@ -17,20 +16,24 @@
   & > div:not(:first-child):not(:last-child) li::before {
     top: 0;
   }
+
   & > div:first-child li::before {
     top: 50%;
   }
+
   & > div:last-child li::before {
     bottom: 50%;
     top: 0;
   }
+
   li {
     position: relative;
     list-style-type: none;
     color: var(--yellow);
   }
+
   li::after {
-    content: '';
+    content: "";
     left: -1.28rem;
     top: 50%;
     transform: translateY(-50%);
@@ -41,6 +44,7 @@
     background-color: var(--yellow);
   }
 }
+
 h1 .count {
   opacity: 0;
   visibility: hidden;

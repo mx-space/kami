@@ -6,6 +6,7 @@
     background-color: var(--light-bg) !important;
   }
 }
+
 .copy-tip {
   position: absolute;
   right: 2em;
@@ -18,11 +19,13 @@
   transition: opacity 0.5s;
   will-change: opacity;
   user-select: none;
+
   &:hover {
     opacity: 1;
   }
+
   &::after {
-    content: '';
+    content: "";
     bottom: -3px;
     position: absolute;
     left: 3px;

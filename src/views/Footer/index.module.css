@@ -5,10 +5,12 @@
         background-size: 160%;
       }
     }
-    html.light footer:before {
+
+    html.light footer::before {
       filter: none;
     }
-    html.light img:before {
+
+    html.light img::before {
       filter: none;
     }
   }
@@ -19,30 +21,34 @@
     position: relative;
     padding: 10vw 0 2em;
   }
-  &:before {
+
+  &::before {
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    content: '';
+    content: "";
     z-index: -1;
     position: absolute;
     background: var(--bg);
   }
+
   @media screen and (max-width: 600px) {
     & {
       padding: 5em 0 2em;
     }
-    &:before {
+
+    &::before {
       background-size: 170%;
     }
   }
+
   & a {
     color: inherit;
   }
 
   @media screen and (prefers-color-scheme: dark) {
-    &:before {
+    &::before {
       filter: brightness(0.6);
     }
   }

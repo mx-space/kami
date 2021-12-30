@@ -1,6 +1,7 @@
 .message-btn {
   position: relative;
 }
+
 .message-btn.count::before {
   content: attr(data-count);
   position: absolute;

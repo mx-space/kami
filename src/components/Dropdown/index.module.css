@@ -2,7 +2,7 @@
   @apply bg-light-bg p-2 z-10;
 
   border-radius: 0.5em;
-  box-shadow: 0 0 1em rgba(20, 20, 20, 0.1);
+  box-shadow: 0 0 1em rgb(20 20 20 / 10%);
 
   & li {
     @apply list-none py-3 px-2 justify-around flex items-center;

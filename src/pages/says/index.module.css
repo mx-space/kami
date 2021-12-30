@@ -1,6 +1,7 @@
 .author {
   position: relative;
 }
+
 .author::before {
   content: attr(data-created);
   position: absolute;
@@ -10,32 +11,39 @@
 .kami-say {
   columns: 2;
 }
+
 .kami-say blockquote {
   -webkit-column-break-inside: avoid;
   break-inside: avoid;
-  background: rgba(52, 152, 219, 0.05);
+  background: rgb(52 152 219 / 5%);
 }
+
 .kami-say blockquote:nth-child(2n) {
   border-left-color: #ffc107;
   border-left-color: var(--yellow);
-  background: rgba(255, 193, 7, 0.05);
+  background: rgb(255 193 7 / 5%);
 }
+
 .kami-say blockquote:nth-child(3n) {
   border-left-color: #9acd32;
-  background: rgba(154, 205, 50, 0.05);
+  background: rgb(154 205 50 / 5%);
 }
+
 .kami-say blockquote:nth-child(4n) {
   border-left-color: #40e0d0;
-  background: rgba(64, 224, 208, 0.05);
+  background: rgb(64 224 208 / 5%);
 }
+
 .kami-say blockquote:nth-child(5n) {
   border-left-color: #ff4500;
-  background: rgba(255, 69, 0, 0.05);
+  background: rgb(255 69 0 / 5%);
 }
+
 .kami-say blockquote:nth-child(6n) {
   border-left-color: #8a2be2;
-  background: rgba(138, 43, 226, 0.05);
+  background: rgb(138 43 226 / 5%);
 }
+
 .kami-say .author {
   opacity: 0.6;
   font-size: 0.85em;

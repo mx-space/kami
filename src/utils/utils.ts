@@ -7,7 +7,6 @@
  * @Coding with Love
  */
 
-import classNames from 'clsx'
 import type { ServerResponse } from 'http'
 import dynamic from 'next/dynamic'
 import { ComponentType } from 'react'
@@ -84,19 +83,6 @@ export const resolveUrl = (pathname: string | undefined, base: string) => {
   const _URL = new URL(base)
 
   return pathname ? _URL.origin.concat(pathname) : _URL.origin
-}
-
-export const combineClassName = (scss: any, css: any) => {
-  return new Proxy(
-    { op: (key) => classNames(scss[key], css[key], 'global-' + key) },
-    {
-      get(target, key: string) {
-        return target.op(key)
-      },
-    },
-  ) as any as Record<string, string>
-
-  // return (key: string) => classNames(scss[key], css[key])
 }
 
 export const NoSSR = <T>(comp: ComponentType<T>) =>

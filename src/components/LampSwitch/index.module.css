@@ -7,6 +7,7 @@
   transition: top 0.5s;
   z-index: 0;
 }
+
 .select-line {
   height: 100%;
   width: 100%;
@@ -17,16 +18,17 @@
   .line {
     width: 3px;
     height: 100%;
-    background-image: -webkit-linear-gradient(
-      45deg,
-      hsla(0, 0%, 100%, 0.6) 25%,
-      transparent 0,
-      transparent 50%,
-      hsla(0, 0%, 100%, 0.6) 0,
-      hsla(0, 0%, 100%, 0.6) 75%,
-      transparent 0,
-      transparent
-    );
+    background-image:
+      linear-gradient(
+        45deg,
+        hsl(0deg 0% 100% / 60%) 25%,
+        transparent 0,
+        transparent 50%,
+        hsl(0deg 0% 100% / 60%) 0,
+        hsl(0deg 0% 100% / 60%) 75%,
+        transparent 0,
+        transparent
+      );
     background-color: #f78fb3;
     background-size: 100% 60px;
     border-radius: 12px;
@@ -36,7 +38,6 @@
 
 .sakura-wrap {
   animation: rotating 2s infinite linear;
-
   position: absolute;
   bottom: -10px;
   left: 0;
@@ -50,12 +51,14 @@
   from {
     transform: rotate(0);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
+
 .sakura-img {
-  background-image: url('https://gitee.com/xun7788/my-imagination/raw/master/uPic/1631274283927.png');
+  background-image: url("https://gitee.com/xun7788/my-imagination/raw/master/uPic/1631274283927.png");
   height: 24px;
   width: 24px;
   background-size: cover;

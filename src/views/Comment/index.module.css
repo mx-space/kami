@@ -5,6 +5,7 @@
 .comment-box-head {
   margin: 24px 0;
   display: flex;
+
   > *:not(:last-child) {
     margin-right: 12px;
   }
@@ -17,6 +18,7 @@
 @media (max-width: 700px) {
   .comment-box-head {
     display: block;
+
     > * {
       margin-bottom: 14px;
     }
@@ -42,11 +44,12 @@
   border-radius: 50%;
   box-shadow: 4px 3px 20px -1px var(--gray);
   overflow: hidden;
+
   /* https://stackoverflow.com/questions/42297303/css-opacity-transition-ignoring-overflowhidden-in-chrome-safari */
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 
   .avatar {
     position: absolute;
@@ -71,33 +74,40 @@
       flex-shrink: 0;
       margin-right: 12px;
     }
+
     .content {
       position: relative;
       flex: 1 1 auto;
       min-width: 1px;
       font-size: 14px;
       word-wrap: break-word;
+
       .content-author {
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
         margin-bottom: 4px;
         font-size: 14px;
+
         > span {
           padding-right: 8px;
           font-size: 12px;
           line-height: 18px;
         }
+
         .name {
           color: var(--shizuku-text-color);
           transition: color 0.3s;
+
           > :hover {
             color: var(--shizuku-text-color);
           }
+
           > * {
             color: var(--shizuku-text-color);
           }
         }
+
         .datetime {
           color: var(--shizuku-text-color);
           opacity: 0.8;
@@ -120,10 +130,8 @@
           > span {
             margin-right: 10px;
             color: var(--shizuku-text-color);
-
             font-size: 12px;
             cursor: pointer;
-
             transition: color 0.3s;
             user-select: none;
 
@@ -135,12 +143,15 @@
       }
     }
   }
+
   .nested {
     margin-left: 24px;
+
     .nested {
       margin-left: 0;
     }
   }
+
   @media (max-width: 650px) {
     .nested {
       margin-left: 12px;
@@ -152,6 +163,7 @@
   & button {
     margin-left: 12px;
   }
+
   position: relative;
   margin-top: 0.5rem;
   display: flex;
@@ -164,7 +176,6 @@
   & .emoji-wrapper {
     position: relative;
     width: 100%;
-
     overflow: auto;
     overflow: overlay;
     display: flex;
@@ -198,9 +209,11 @@
   0% {
     transform: translateX(0);
   }
+
   50% {
     transform: translateX(-100%);
   }
+
   to {
     transform: translateX(0);
   }

@@ -15,6 +15,7 @@
   width: calc(10rem + 12px);
   max-height: calc(100vh - 20em);
   overflow: auto;
+
   ::-webkit-scrollbar {
     height: 0;
     width: 2px;
