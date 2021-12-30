@@ -7,7 +7,6 @@ export interface KamiConfig {
 interface Function {
   analyze: Analyze
   netease: Netease
-  travellings: Travellings
   donate: Donate
 }
 
@@ -24,10 +23,6 @@ interface Donate {
 interface Netease {
   username: string
   password: null
-}
-
-interface Travellings {
-  enable: boolean
 }
 
 interface Site {
