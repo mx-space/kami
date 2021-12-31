@@ -46,7 +46,10 @@ let hasAppended = false
 export const FontIcon: FC<{ icon?: IconDefinition | string }> = memo(
   (props) => {
     useEffect(() => {
-      if (typeof props.icon == 'string') {
+      if (
+        typeof props.icon == 'string' &&
+        /^fa[sbldr]?\sfa-/.test(props.icon)
+      ) {
         if (hasAppended) {
           return
         }
@@ -71,7 +74,11 @@ export const FontIcon: FC<{ icon?: IconDefinition | string }> = memo(
         ) : fontawesomeIconMap[props.icon] ? (
           <FontAwesomeIcon icon={fontawesomeIconMap[props.icon]} />
         ) : (
-          <i className={'fa ' + props.icon} />
+          <i
+            className={
+              props.icon.startsWith('fa-') ? 'fa ' + props.icon : props.icon
+            }
+          />
         )}
       </>
     )

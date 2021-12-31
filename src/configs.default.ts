@@ -181,9 +181,12 @@ export const defaultConfigs = {
     },
     custom: {
       script: "console.log('Hello')",
-      css: '.foo {\n  color: red\n}',
+      style: '.foo {\n  color: red\n}',
       js: [
-        'https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js',
+        'https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js',
+      ],
+      css: [
+        'https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css',
       ],
     },
   },

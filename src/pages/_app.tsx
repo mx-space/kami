@@ -39,7 +39,7 @@ import Package from '~/package.json'
 
 import client from '../common/socket'
 import { useStore } from '../common/store'
-import { isServerSide } from '../utils'
+import { isClientSide, isServerSide } from '../utils'
 
 const version = `v${Package.version}` || ''
 
@@ -144,11 +144,6 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
   )
 }
 {
-  let initData: any = null
-  // cache 5 mins
-  setInterval(() => {
-    initData = null
-  }, 1000 * 60 * 5)
   // @ts-ignore
   App.getInitialProps = async (props: AppContext) => {
     const appProps = await NextApp.getInitialProps(props)
@@ -189,15 +184,16 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
       }
 
       if (configSnippetState.status === 'fulfilled') {
-        configSnippet = configSnippetState.value.data
+        configSnippet = { ...configSnippetState.value }
       }
 
       return { aggregateData, config: configSnippet }
     }
 
-    initData = initData || (await getInitialData())
-
-    return { ...appProps, initData }
+    return {
+      ...appProps,
+      initData: globalThis.data ?? (await getInitialData()),
+    }
   }
 }
 export default App

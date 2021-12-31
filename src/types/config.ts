@@ -50,9 +50,10 @@ interface Background {
 }
 
 interface Custom {
-  script: string
-  css: string
-  js: string[]
+  script?: string
+  css?: string[]
+  style?: string
+  js?: string[]
 }
 
 interface Footer {
