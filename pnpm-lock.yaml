@@ -76,7 +76,7 @@ specifiers:
   react-use: 17.3.2
   remove-markdown: 0.3.0
   rimraf: '*'
-  sass: 1.45.1
+  sass: 1.45.2
   socket.io-client: 4.4.0
   tailwindcss: 2.2.19
   ts-node: 10.4.0
@@ -107,7 +107,7 @@ dependencies:
   mdurl: 1.0.1
   mobx: 6.3.10
   mobx-react-lite: 3.2.3_65e9936076dc1bc58dcf4e626b32cb4a
-  next: 12.0.7_f974e9ff7578644a22f9bc9f9222c405
+  next: 12.0.7_e423b6f1d34b5513b88636554f07a035
   next-offline: 5.0.5_next@12.0.7
   next-seo: 4.28.1_d837ce8f3acb2f60f8b7454672a9bcea
   normalize.css: 8.0.1
@@ -164,7 +164,7 @@ devDependencies:
   prettier: 2.5.1
   react-lazyload: 3.2.0_react-dom@17.0.2+react@17.0.2
   rimraf: 3.0.2
-  sass: 1.45.1
+  sass: 1.45.2
   ts-node: 10.4.0_00264fd83560919cd06c986889baae0a
   typescript: 4.5.4
   zx: 4.2.0
@@ -5531,7 +5531,7 @@ packages:
     dependencies:
       copy-webpack-plugin: 5.1.2
       fs-extra: 8.1.0
-      next: 12.0.7_f974e9ff7578644a22f9bc9f9222c405
+      next: 12.0.7_e423b6f1d34b5513b88636554f07a035
       workbox-webpack-plugin: 5.1.4
     transitivePeerDependencies:
       - supports-color
@@ -5544,12 +5544,12 @@ packages:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
     dependencies:
-      next: 12.0.7_f974e9ff7578644a22f9bc9f9222c405
+      next: 12.0.7_e423b6f1d34b5513b88636554f07a035
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     dev: false
 
-  /next/12.0.7_f974e9ff7578644a22f9bc9f9222c405:
+  /next/12.0.7_e423b6f1d34b5513b88636554f07a035:
     resolution: {integrity: sha512-sKO8GJJYfuk9c+q+zHSNumvff+wP7ufmOlwT6BuzwiYfFJ61VTTkfTcDLSJ+95ErQJiC54uS4Yg5JEE8H6jXRA==}
     engines: {node: '>=12.22.0'}
     hasBin: true
@@ -5608,7 +5608,7 @@ packages:
       react-is: 17.0.2
       react-refresh: 0.8.3
       regenerator-runtime: 0.13.4
-      sass: 1.45.1
+      sass: 1.45.2
       stream-browserify: 3.0.0
       stream-http: 3.1.1
       string_decoder: 1.3.0
@@ -7344,8 +7344,8 @@ packages:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
     dev: false
 
-  /sass/1.45.1:
-    resolution: {integrity: sha512-pwPRiq29UR0o4X3fiQyCtrESldXvUQAAE0QmcJTpsI4kuHHcLzZ54M1oNBVIXybQv8QF2zfkpFcTxp8ta97dUA==}
+  /sass/1.45.2:
+    resolution: {integrity: sha512-cKfs+F9AMPAFlbbTXNsbGvg3y58nV0mXA3E94jqaySKcC8Kq3/8983zVKQ0TLMUrHw7hF9Tnd3Bz9z5Xgtrl9g==}
     engines: {node: '>=8.9.0'}
     hasBin: true
     dependencies:
