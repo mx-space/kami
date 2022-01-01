@@ -3,6 +3,9 @@
   --black: #000;
   --gray: #bbb;
   --bg-opacity: rgb(255 255 255 / 50%);
+  /*  for firefox */
+  scrollbar-color: rgb(255 193 7) transparent;
+  scrollbar-width: thin;
 }
 
 @supports not (backdrop-filter: blur(1px)) {
@@ -16,6 +19,8 @@ html {
   scroll-behavior: unset;
   font-variant-numeric: tabular-nums;
   font-display: swap;
+
+  font-size: 14px;
 }
 
 @media (max-width: 799px) {
@@ -27,12 +32,6 @@ html {
 
 body::-webkit-scrollbar {
   height: 0;
-}
-
-/*  for firefox */
-:root {
-  scrollbar-color: rgb(255 193 7) transparent;
-  scrollbar-width: thin;
 }
 
 ::-webkit-scrollbar {
@@ -50,7 +49,7 @@ body::-webkit-scrollbar {
 
 html.dark {
   --black: #fff;
-  --shizuku-background-color: #21212;
+  --shizuku-background-color: #212121;
   --shizuku-text-color: #858585;
   --shizuku-theme-color: #3c946c;
   --gray: #666;
@@ -70,10 +69,17 @@ html.dark {
   article {
     color: var(--shizuku-text-color);
   }
-}
 
-html {
-  font-size: 14px;
+  .is-note .note-article::after {
+    background-image: linear-gradient(-45deg, transparent 50%, #333 0);
+    border-left: 1px solid #555;
+    border-top: 1px solid #555;
+  }
+
+  :not(pre) > code {
+    background-color: #3c3a3b;
+    color: var(--shizuku-theme-color);
+  }
 }
 
 h1,
@@ -110,22 +116,22 @@ h6 {
     height: 100%;
     background: inherit;
     filter: blur(10px) brightness(80%) opacity(0.8);
-    content: "";
+    content: '';
     transform: scale(0.95);
   }
 }
 
-input[type*="date"],
-input[type="email"],
-input[type="month"],
-input[type="number"],
-input[type="password"],
-input[type="search"],
-input[type="tel"],
-input[type="text"],
-input[type="time"],
-input[type="url"],
-input[type="week"],
+input[type*='date'],
+input[type='email'],
+input[type='month'],
+input[type='number'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='time'],
+input[type='url'],
+input[type='week'],
 select,
 textarea {
   min-height: unset;
@@ -151,21 +157,15 @@ iframe {
 
 pre,
 code {
-  font-family:
-    OperatorMonoSSmLig Nerd Font,
-    JetBrains Mono,
-    Operator Mono,
-    Monaco,
-    Consolas,
-    "Courier New",
-    Courier,
-    monospace !important;
+  font-family: OperatorMonoSSmLig Nerd Font, JetBrains Mono, Operator Mono,
+    Monaco, Consolas, 'Courier New', Courier, monospace !important;
 }
 
 pre,
 pre > code {
   color: inherit !important;
   text-shadow: none !important;
+  transition: color 0.5s;
 
   * {
     background: var(--light-bg);
@@ -183,13 +183,8 @@ p,
   line-height: 1.8;
 }
 
-pre > code,
-pre {
-  transition: color 0.5s;
-}
-
 #write.focus::before {
-  content: "";
+  content: '';
   position: absolute;
   z-index: -1;
   opacity: 0.8;
@@ -215,21 +210,12 @@ pre {
   backdrop-filter: blur(5px);
 }
 
-html.dark {
-  .is-note .note-article::after {
-    background-image: linear-gradient(-45deg, transparent 50%, #333 0);
-    border-left: 1px solid #555;
-    border-top: 1px solid #555;
-  }
-}
-
 .is-note .note-article {
   background-color: var(--light-bg);
   margin: -30px -45px;
   padding: 30px 45px;
   border-radius: 0 6px 6px 0;
-  box-shadow:
-    3px 5px 6px -5px rgb(51 51 51 / 20%),
+  box-shadow: 3px 5px 6px -5px rgb(51 51 51 / 20%),
     2px 3px 8px -5px rgb(51 51 51 / 20%);
 
   h1:first-child {
@@ -261,7 +247,7 @@ html.dark {
       height: 3em;
       right: 0;
       bottom: 0;
-      content: "";
+      content: '';
     }
 
     &::before {
@@ -272,12 +258,11 @@ html.dark {
     }
 
     &::after {
-      background-image:
-        linear-gradient(
-          -45deg,
-          transparent 50%,
-          rgb(153 151 151 / 12.3%) 0
-        );
+      background-image: linear-gradient(
+        -45deg,
+        transparent 50%,
+        rgb(153 151 151 / 12.3%) 0
+      );
       border-left: 1px solid #ccc;
       border-top: 1px solid #ccc;
       border-top-left-radius: 8px;
@@ -294,7 +279,7 @@ html.dark {
     }
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       top: -3em;
       bottom: -10px;
@@ -307,17 +292,9 @@ html.dark {
 }
 
 .is-note #write {
-  font-family:
-    "Noto Serif CJK SC",
-    "Noto Serif SC",
-    "Source Han Serif SC",
-    "Source Han Serif",
-    source-han-serif-sc,
-    "PingFang SC",
-    "Hiragino Sans GB",
-    "Heiti SC",
-    "Microsoft YaHei",
-    "WenQuanYi Micro Hei";
+  font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC',
+    'Source Han Serif', source-han-serif-sc, 'PingFang SC', 'Hiragino Sans GB',
+    'Heiti SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei';
   color: var(--shizuku-text-color);
   font-size: 16px;
   line-height: 1.75;
@@ -330,7 +307,7 @@ html.dark {
 }
 
 .is-note strong {
-  font-family: "Helvetica", "PingFang SC", sans-serif;
+  font-family: 'Helvetica', 'PingFang SC', sans-serif;
 }
 
 .is-note .note-head {
@@ -400,7 +377,7 @@ html.dark {
 
 .news-item {
   .title::before {
-    content: "";
+    content: '';
     width: 3rem;
     border-radius: 1rem;
     height: 100%;
@@ -416,19 +393,15 @@ html.dark {
 }
 
 .article-list {
-  font-family:
-    Helvetica,
-    pingfang sc,
-    hiragino sans gb,
-    microsoft yahei,
-    "sans-serif";
+  font-family: Helvetica, pingfang sc, hiragino sans gb, microsoft yahei,
+    'sans-serif';
 
   h1 {
     margin: 10px 0 15px;
     font-size: 1.5rem;
 
     &::before {
-      content: "";
+      content: '';
       padding-left: 0.75em;
       border-left: 2px solid #ffc107;
     }
@@ -464,10 +437,6 @@ html.dark {
   }
 }
 
-html.light img::before {
-  filter: none;
-}
-
 /* dangmaku */
 .shadow {
   box-shadow: rgba($color: #000, $alpha: 20%) 0 0 20px;
@@ -490,44 +459,16 @@ html.light img::before {
   }
 }
 
-html.dark {
-  :not(pre) > code {
-    background-color: #3c3a3b;
-    color: var(--shizuku-theme-color);
-  }
-}
-
-@keyframes fade-small-large {
-  from {
-    opacity: 0;
-    transform: scale(0.5, 0.5);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1, 1);
-  }
-}
-
 /* for print */
 
 @media print {
   p,
   div,
   article {
-    font-family:
-      Helvetica,
-      Arial,
-      "Noto Serif CJK SC",
-      "Noto Serif SC",
-      "Source Han Serif SC",
-      "Source Han Serif",
-      source-han-serif-sc,
-      "PingFang SC",
-      "Hiragino Sans GB",
-      "Heiti SC",
-      "Microsoft YaHei",
-      "WenQuanYi Micro Hei" !important;
+    font-family: Helvetica, Arial, 'Noto Serif CJK SC', 'Noto Serif SC',
+      'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc,
+      'PingFang SC', 'Hiragino Sans GB', 'Heiti SC', 'Microsoft YaHei',
+      'WenQuanYi Micro Hei' !important;
   }
 
   h1,

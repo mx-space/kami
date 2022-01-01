@@ -4,7 +4,7 @@ import { reaction } from 'mobx'
 import dynamic from 'next/dynamic'
 import React, { FC, useContext, useEffect, useState } from 'react'
 import { observer } from 'utils/mobx'
-import { ImageSizeMetaContext } from '../../common/context/ImageSizes'
+import { ImageSizeMetaContext } from '../../common/context/image-size'
 
 const calculateDimensions = (
   width: number,

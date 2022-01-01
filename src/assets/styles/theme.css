@@ -10,14 +10,8 @@
   --light-font: #fff;
   --shallow: #eee;
 
-  font:
-    14px/1.15 Arial,
-    Helvetica,
-    noto sans sc,
-    PingFang SC,
-    hiragino sans gb,
-    microsoft yahei,
-    "sans-serif";
+  font: 14px/1.15 Arial, Helvetica, noto sans sc, PingFang SC, hiragino sans gb,
+    microsoft yahei, 'sans-serif';
 }
 
 body {
@@ -97,25 +91,6 @@ button {
 
 article img {
   border-radius: 0.5em;
-}
-
-html.light {
-  --red: #ff6347 !important;
-  --yellow: #ffc107 !important;
-  --blue: #6495ed !important;
-  --green: #28b9be !important;
-  --brown: #795548 !important;
-  --light-brown: #67492e !important;
-  --purple: #8a2be2 !important;
-  --light-bg: #fff !important;
-  --light-font: #fff !important;
-  --shallow: #eee !important;
-
-  color: inherit;
-}
-
-html.light img {
-  filter: brightness(1) !important;
 }
 
 html.dark {
@@ -417,7 +392,7 @@ h1.headline {
   margin-top: 0;
 
   &::before {
-    content: "";
+    content: '';
     padding-left: 0.75em;
     border-left: 2px solid #ffc107;
   }
@@ -598,7 +573,7 @@ article > h1 small {
 }
 
 .project-head::after {
-  content: "";
+  content: '';
   clear: both;
   display: block;
 }

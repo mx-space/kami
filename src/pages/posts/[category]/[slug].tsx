@@ -23,7 +23,7 @@ import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
 import { CommentLazy } from 'views/Comment'
 import { Markdown } from 'views/Markdown'
-import { ImageSizeMetaContext } from '../../../common/context/ImageSizes'
+import { ImageSizeMetaContext } from '../../../common/context/image-size'
 import { Copyright, CopyrightProps } from '../../../components/Copyright'
 import { Seo } from '../../../components/SEO'
 import {

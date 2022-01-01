@@ -28,7 +28,7 @@
 .lazyload-image {
   animation: blur 0.8s forwards ease-in-out;
 
-  &[data-status="loaded"] + .placeholder-image {
+  &[data-status='loaded'] + .placeholder-image {
     @apply invisible;
 
     opacity: 0;
@@ -45,10 +45,6 @@
   animation: blur-dark 0.8s forwards ease-in-out;
 }
 
-:global(html.light) .lazyload-image {
-  animation: blur 0.8s forwards ease-in-out;
-}
-
 .img-alt {
   text-align: center;
   font-size: 14px;
@@ -58,11 +54,11 @@
   margin: 12px 0;
 
   &::before {
-    content: "⇡ ";
+    content: '⇡ ';
   }
 
   &::after {
-    content: "";
+    content: '';
     bottom: -4px;
     position: absolute;
     width: 3rem;

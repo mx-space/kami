@@ -26,7 +26,7 @@ import { parseDate } from 'utils/time'
 import CommentWrap from 'views/Comment'
 import { NoteTimelineList } from 'views/for-pages/NoteTimelineList'
 import { Markdown } from 'views/Markdown'
-import { ImageSizeMetaContext } from '../../common/context/ImageSizes'
+import { ImageSizeMetaContext } from '../../common/context/image-size'
 import { Seo } from '../../components/SEO'
 import {
   eventBus,
