@@ -35,12 +35,6 @@
   }
 }
 
-@media screen and (prefers-color-scheme: dark) {
-  .lazyload-image {
-    animation: blur-dark 0.8s forwards ease-in-out;
-  }
-}
-
 :global(html.dark) .lazyload-image {
   animation: blur-dark 0.8s forwards ease-in-out;
 }

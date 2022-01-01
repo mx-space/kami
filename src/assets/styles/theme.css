@@ -122,27 +122,6 @@ body * {
   transition: color 0.1s ease-in, background 0.1s ease-in, border 0.1s ease-in;
 }
 
-@media screen and (prefers-color-scheme: dark) {
-  :root {
-    color: #ddd;
-
-    --red: #ad1a00;
-    --blue: #1346a4;
-    --green: #1f8f93;
-    --yellow: #806000;
-    --brown: #c6aa9f;
-    --light-brown: #bc9c8f;
-    --purple: #561494;
-    --light-bg: #111;
-    --light-font: #ddd;
-    --shallow: #333 !important;
-  }
-
-  img {
-    filter: brightness(0.6);
-  }
-}
-
 html.dark .header-top-navbar {
   backdrop-filter: saturate(150%) blur(30px);
 }

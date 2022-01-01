@@ -38,12 +38,6 @@
   & a {
     color: inherit;
   }
-
-  @media screen and (prefers-color-scheme: dark) {
-    &::before {
-      filter: brightness(0.6);
-    }
-  }
 }
 
 :global(html.dark) .footer::before {

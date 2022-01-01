@@ -141,7 +141,7 @@ const Post: NextPage<PaginateResult<PostModel>> = observer((props) => {
             </QueueAnim>
           </div>
 
-          <div style={{ top: '50vh' }} className="bottom absolute">
+          <div style={{ top: '50vh' }} className="absolute">
             <article className="post-content kami-note article-list overlay-list">
               <style
                 dangerouslySetInnerHTML={{

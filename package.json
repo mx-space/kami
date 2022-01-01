@@ -42,12 +42,7 @@
   "browserslist": [
     "chrome >=88",
     "safari >=14",
-    "last 2 Firefox versions",
-    "maintained node versions",
-    "iOS 14",
-    "cover 50% in us",
-    "cover 70% in cn",
-    "> 1% in cn"
+    "last 2 Firefox versions"
   ],
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.36",

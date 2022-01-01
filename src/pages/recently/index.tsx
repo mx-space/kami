@@ -1,4 +1,4 @@
-import { faClock } from '@fortawesome/free-regular-svg-icons'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { RecentlyModel } from '@mx-space/api-client'
 import clsx from 'clsx'
@@ -86,7 +86,7 @@ const RecentlyPage: NextPage = () => {
   useEffect(() => {
     if (inView && hasNext) {
       fetch({ before: data[data.length - 1].id })?.then((newData) => {
-        setData(data.concat(newData))
+        setData((data) => data.concat(newData))
       })
     }
   }, [data, hasNext, inView])
@@ -106,36 +106,33 @@ const RecentlyPage: NextPage = () => {
           {data.length == 0 ? (
             <p className="text-center">这里还没有内容哦</p>
           ) : (
-            <Fragment>
+            <div className={styles['bubble-list']}>
               {data.map((d) => (
-                <div key={d.id} className={styles['recently-wrapper']}>
-                  <div className={clsx(styles['content'], 'my-2')}>
-                    <Markdown escapeHtml={false} value={d.content} />
-                  </div>
+                <Fragment key={d.id}>
                   <div
                     className={clsx(
-                      styles['footer'],
-                      'text-right my-2 opacity-80 relative',
+                      'bubble',
+                      isLogged ? 'from-me' : 'from-them',
                     )}
                   >
+                    <Markdown value={d.content}></Markdown>
+
+                    <div className="text-sm float-right">
+                      <RelativeTime date={new Date(d.created)} />
+                    </div>
+
                     {isLogged && (
-                      <span
-                        className={clsx(
-                          'text-red float-left opacity-0 cursor-pointer transition-opacity',
-                          styles['del'],
-                        )}
-                        onClick={() => handleDelete(d.id)}
-                      >
+                      <div className="del" onClick={() => handleDelete(d.id)}>
+                        <FontAwesomeIcon icon={faTrash} className="mr-2" />
                         删除
-                      </span>
+                      </div>
                     )}
-                    <FontAwesomeIcon icon={faClock} />
-                    &nbsp;
-                    <RelativeTime date={new Date(d.created)}></RelativeTime>
                   </div>
-                </div>
+
+                  <div className="clear-both"></div>
+                </Fragment>
               ))}
-            </Fragment>
+            </div>
           )}
 
           {hasNext && (
