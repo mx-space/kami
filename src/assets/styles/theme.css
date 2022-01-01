@@ -10,8 +10,14 @@
   --light-font: #fff;
   --shallow: #eee;
 
-  font: 14px/1.15 Arial, Helvetica, noto sans sc, PingFang SC, hiragino sans gb,
-    microsoft yahei, 'sans-serif';
+  font:
+    14px/1.15 Arial,
+    Helvetica,
+    noto sans sc,
+    PingFang SC,
+    hiragino sans gb,
+    microsoft yahei,
+    "sans-serif";
 }
 
 body {
@@ -392,7 +398,7 @@ h1.headline {
   margin-top: 0;
 
   &::before {
-    content: '';
+    content: "";
     padding-left: 0.75em;
     border-left: 2px solid #ffc107;
   }
@@ -573,7 +579,7 @@ article > h1 small {
 }
 
 .project-head::after {
-  content: '';
+  content: "";
   clear: both;
   display: block;
 }
