@@ -10,14 +10,8 @@
   --light-font: #fff;
   --shallow: #eee;
 
-  font:
-    14px/1.15 Arial,
-    Helvetica,
-    noto sans sc,
-    PingFang SC,
-    hiragino sans gb,
-    microsoft yahei,
-    "sans-serif";
+  font: 14px/1.15 Arial, Helvetica, noto sans sc, PingFang SC, hiragino sans gb,
+    microsoft yahei, 'sans-serif';
 }
 
 body {
@@ -126,12 +120,15 @@ html.dark .header-top-navbar {
   backdrop-filter: saturate(150%) blur(30px);
 }
 
+.app-content {
+  min-height: calc(100vh - 10vw - 7.75em);
+}
+
 main {
   margin: 0 auto;
   max-width: 75em;
   padding: 5em 2em;
   transition: transform 0.3s, opacity 0.3s, visibility 0.3s;
-  min-height: calc(100vh - 10vw - 7.75em);
   visibility: visible;
 }
 
@@ -377,7 +374,7 @@ h1.headline {
   margin-top: 0;
 
   &::before {
-    content: "";
+    content: '';
     padding-left: 0.75em;
     border-left: 2px solid #ffc107;
   }
@@ -558,7 +555,7 @@ article > h1 small {
 }
 
 .project-head::after {
-  content: "";
+  content: '';
   clear: both;
   display: block;
 }

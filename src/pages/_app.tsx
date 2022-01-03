@@ -40,6 +40,7 @@ import Package from '~/package.json'
 import client from '../common/socket'
 import { useStore } from '../common/store'
 import { isClientSide, isServerSide } from '../utils'
+import { RootStoreProvider } from 'common/context/root-store'
 
 const version = `v${Package.version}` || ''
 
@@ -135,65 +136,65 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
   }, [Component, err, pageProps, router.route])
 
   return (
-    <InitialContextProvider value={initData}>
-      <DropdownProvider>
-        <DynamicHeaderMeta />
-        <Content>{Comp}</Content>
-      </DropdownProvider>
-    </InitialContextProvider>
+    <RootStoreProvider>
+      <InitialContextProvider value={initData}>
+        <DropdownProvider>
+          <DynamicHeaderMeta />
+          <Content>{Comp}</Content>
+        </DropdownProvider>
+      </InitialContextProvider>
+    </RootStoreProvider>
   )
 }
-{
-  // @ts-ignore
-  App.getInitialProps = async (props: AppContext) => {
-    const appProps = await NextApp.getInitialProps(props)
 
-    const ctx = props.ctx
-    const request = ctx.req
+// @ts-ignore
+App.getInitialProps = async (props: AppContext) => {
+  const appProps = await NextApp.getInitialProps(props)
 
-    if (request && isServerSide()) {
-      let ip =
-        ((request.headers['x-forwarded-for'] ||
-          request.connection.remoteAddress ||
-          request.socket.remoteAddress) as string) || undefined
-      if (ip && ip.split(',').length > 0) {
-        ip = ip.split(',')[0]
-      }
-      ip && ($axios.defaults.headers.common['x-forwarded-for'] = ip as string)
+  const ctx = props.ctx
+  const request = ctx.req
 
-      $axios.defaults.headers.common['User-Agent'] =
-        request.headers['user-agent'] + ' mx-space SSR server' + `/${version}`
+  if (request && isServerSide()) {
+    let ip =
+      ((request.headers['x-forwarded-for'] ||
+        request.connection.remoteAddress ||
+        request.socket.remoteAddress) as string) || undefined
+    if (ip && ip.split(',').length > 0) {
+      ip = ip.split(',')[0]
+    }
+    ip && ($axios.defaults.headers.common['x-forwarded-for'] = ip as string)
+
+    $axios.defaults.headers.common['User-Agent'] =
+      request.headers['user-agent'] + ' mx-space SSR server' + `/${version}`
+  }
+
+  async function getInitialData() {
+    const [aggregateDataState, configSnippetState] = await Promise.allSettled([
+      apiClient.aggregate.getAggregateData(),
+      apiClient.snippet.getByReferenceAndName<KamiConfig>('theme', 'kami'),
+    ])
+
+    let aggregateData: AggregateRoot | null = null
+    let configSnippet: KamiConfig | null = null
+    if (aggregateDataState.status === 'fulfilled') {
+      aggregateData = aggregateDataState.value
+    } else {
+      //  TODO 请求异常处理
+
+      console.error(aggregateDataState.reason)
     }
 
-    async function getInitialData() {
-      const [aggregateDataState, configSnippetState] = await Promise.allSettled(
-        [
-          apiClient.aggregate.getAggregateData(),
-          apiClient.snippet.getByReferenceAndName<KamiConfig>('theme', 'kami'),
-        ],
-      )
-
-      let aggregateData: AggregateRoot | null = null
-      let configSnippet: KamiConfig | null = null
-      if (aggregateDataState.status === 'fulfilled') {
-        aggregateData = aggregateDataState.value
-      } else {
-        //  TODO 请求异常处理
-
-        console.error(aggregateDataState.reason)
-      }
-
-      if (configSnippetState.status === 'fulfilled') {
-        configSnippet = { ...configSnippetState.value }
-      }
-
-      return { aggregateData, config: configSnippet }
+    if (configSnippetState.status === 'fulfilled') {
+      configSnippet = { ...configSnippetState.value }
     }
 
-    return {
-      ...appProps,
-      initData: globalThis.data ?? (await getInitialData()),
-    }
+    return { aggregateData, config: configSnippet }
+  }
+
+  return {
+    ...appProps,
+    initData: globalThis.data ?? (await getInitialData()),
   }
 }
+
 export default App

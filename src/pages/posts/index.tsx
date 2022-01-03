@@ -20,18 +20,17 @@ import React, {
   Fragment,
   useCallback,
   useEffect,
-  useMemo,
+  useRef,
   useState,
 } from 'react'
-import { NoSSR, UUID } from 'utils'
+import { NoSSR } from 'utils'
 import { apiClient } from 'utils/client'
 import { observer } from 'utils/mobx'
 import { PostBlock } from 'views/for-pages/PostBlock'
 import { SEO } from '../../components/SEO'
 
-const Post: NextPage<PaginateResult<PostModel>> = observer((props) => {
-  // const { page, posts } = props
-  const [page, setPage] = useState<Pager | null>(null)
+const PostListPage: NextPage<PaginateResult<PostModel>> = observer(() => {
+  const [pagination, setPagination] = useState<Pager | null>(null)
   const [posts, setPosts] = useState<PostModel[]>([])
   const store = useStore()
   const { actionStore } = store
@@ -47,28 +46,29 @@ const Post: NextPage<PaginateResult<PostModel>> = observer((props) => {
   }, [currentPage])
   useEffect(() => {
     fetch()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query.page, router.query.year])
   const fetch = async () => {
     const { page, year, size = 10 } = router.query as any
     const payload = await apiClient.post.getList(page, size, {
       year: +year || undefined,
     })
-    setPage(payload.pagination)
+    setPagination(payload.pagination)
     setPosts(payload.data)
   }
 
   const [tags, setTags] = useState<TagModel[]>([])
-  const fetchTags = useCallback(async () => {
+  const fetchTags = async () => {
     const { data: tags } = await apiClient.category.getAllTags()
 
     setTags(tags)
-  }, [])
-  const actionsUUID = useMemo(() => new UUID(), [])
+  }
+  const idSymbol = useRef(Symbol())
   useEffect(() => {
-    actionStore.removeActionByUUID(actionsUUID)
+    actionStore.removeActionBySymbol(idSymbol.current)
     const action = {
       icon: <FontAwesomeIcon icon={faTags} />,
-      id: actionsUUID,
+      id: idSymbol.current,
       onClick: () => {
         if (tags.length == 0) {
           fetchTags()
@@ -80,9 +80,10 @@ const Post: NextPage<PaginateResult<PostModel>> = observer((props) => {
     actionStore.appendActions(action)
 
     return () => {
-      actionStore.removeActionByUUID(actionsUUID)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      actionStore.removeActionBySymbol(idSymbol.current)
     }
-  }, [actionStore, actionsUUID, fetchTags, tags.length])
+  }, [actionStore, tags.length])
 
   const [postWithTag, setTagPost] = useState<
     Pick<PostModel, 'id' | 'title' | 'slug' | 'created' | 'category'>[]
@@ -209,7 +210,7 @@ const Post: NextPage<PaginateResult<PostModel>> = observer((props) => {
                 )
               })}
             </Fragment>
-          ) : page ? (
+          ) : pagination ? (
             <div>
               <p>站长没有写过一篇文章啦</p>
               <p>稍后来看看吧!</p>
@@ -220,14 +221,14 @@ const Post: NextPage<PaginateResult<PostModel>> = observer((props) => {
         </article>
       </RcQueueAnim>
 
-      {page && (
+      {pagination && (
         <section className="kami-more">
-          {page.hasPrevPage && (
+          {pagination.hasPrevPage && (
             <button
               className="btn brown"
               onClick={() => {
                 router.push(
-                  '/posts?page=' + (page.currentPage - 1),
+                  '/posts?page=' + (pagination.currentPage - 1),
                   undefined,
                   { shallow: true },
                 )
@@ -236,17 +237,17 @@ const Post: NextPage<PaginateResult<PostModel>> = observer((props) => {
               上一页
             </button>
           )}
-          {page.hasNextPage && (
+          {pagination.hasNextPage && (
             <button
               className="btn brown"
               style={
-                page.hasNextPage && page.hasPrevPage
+                pagination.hasNextPage && pagination.hasPrevPage
                   ? { marginLeft: '6px' }
                   : undefined
               }
               onClick={() => {
                 router.push(
-                  '/posts?page=' + (page.currentPage + 1),
+                  '/posts?page=' + (pagination.currentPage + 1),
                   undefined,
                   { shallow: true },
                 )
@@ -261,4 +262,4 @@ const Post: NextPage<PaginateResult<PostModel>> = observer((props) => {
   )
 })
 
-export default NoSSR(Post)
+export default NoSSR(PostListPage)

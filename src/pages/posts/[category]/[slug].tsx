@@ -6,83 +6,82 @@ import {
   faThumbsUp,
 } from '@fortawesome/free-solid-svg-icons'
 import { PostModel } from '@mx-space/api-client'
+import { ImageSizeMetaContext } from 'common/context'
+import { useHeaderMeta, useHeaderShare } from 'common/hooks/use-header-meta'
 import { useInitialData, useThemeConfig } from 'common/hooks/use-initial-data'
-import { EventTypes } from 'common/socket/types'
-import { useStore } from 'common/store'
+import { postStore, useStore } from 'common/store'
 import Action, { ActionProps } from 'components/Action'
 import { NumberRecorder } from 'components/NumberRecorder'
-import OutdateNotice from 'components/Outdate'
+import Outdate from 'components/Outdate'
+import { Seo } from 'components/SEO'
 import dayjs from 'dayjs'
 import { ArticleLayout } from 'layouts/ArticleLayout'
+import { toJS } from 'mobx'
 import { NextPage } from 'next/'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { apiClient } from 'utils/client'
-import { imagesRecord2Map } from 'utils/images'
 import { message } from 'utils/message'
 import { observer } from 'utils/mobx'
 import { CommentLazy } from 'views/Comment'
 import { Markdown } from 'views/Markdown'
-import { ImageSizeMetaContext } from '../../../common/context/image-size'
-import { Copyright, CopyrightProps } from '../../../components/Copyright'
-import { Seo } from '../../../components/SEO'
 import {
-  eventBus,
   getSummaryFromMd,
+  imagesRecord2Map,
+  isClientSide,
   isLikedBefore,
   setLikeId,
 } from '../../../utils'
+import { Copyright } from '../../../views/Copyright'
 
-const storeThumbsUpCookie = (id: string) => {
-  return setLikeId(id)
-}
-const isThumbsUpBefore = (id: string) => {
-  return isLikedBefore(id)
-}
-export const PostView: NextPage<PostModel> = (props) => {
-  const [{ text, title, id }, update] = useState(props)
+const storeThumbsUpCookie = setLikeId
+
+const isThumbsUpBefore = isLikedBefore
+
+const useUpdatePost = (id: string) => {
+  const post = postStore.get(id)
+  const beforeModel = useRef(post)
   const router = useRouter()
   useEffect(() => {
-    update(props)
+    const before = beforeModel.current
+    console.log(before?.slug, post?.slug)
+    if (!before && post) {
+      beforeModel.current = toJS(post)
+    }
+    if (!before || !post) {
+      return
+    }
+    if (before.id === post.id) {
+      if (
+        before.categoryId !== post.categoryId ||
+        before.slug !== post.slug ||
+        before.hide
+      ) {
+        router.push('/posts')
+        message.error('文章已删除或隐藏')
+        return
+      }
+      message.info('文章已更新')
+    }
+
+    beforeModel.current = toJS(post)
+  }, [post?.id, post?.slug, post?.categoryId, post?.hide])
+}
+
+export const PostView: NextPage<PostModel> = (props) => {
+  const { postStore } = useStore()
+  const post = postStore.get(props.id) || props
+
+  useEffect(() => {
+    postStore.add(props)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props])
 
-  useEffect(() => {
-    appStore.shareData = {
-      text,
-      title,
-      url: location.href,
-    }
-    return () => {
-      appStore.shareData = null
-    }
-  }, [id, text, title])
-
-  useEffect(() => {
-    const handler = (data: PostModel) => {
-      if (data.id === props.id) {
-        if (
-          data.categoryId !== props.categoryId ||
-          data.slug !== props.slug ||
-          data.hide
-        ) {
-          message.error('文章已删除或隐藏')
-          router.push('/posts')
-          return
-        }
-        message.info('文章已更新')
-        update(data)
-      }
-    }
-    eventBus.on(EventTypes.POST_UPDATE, handler)
-
-    return () => eventBus.off(EventTypes.POST_UPDATE, handler)
-  }, [props.id, props.categoryId, props.slug, router])
-
+  useUpdatePost(post.id)
   const [actions, setAction] = useState({} as ActionProps)
-  const [copyrightInfo, setCopyright] = useState({} as CopyrightProps)
-  const description =
-    props.summary ?? getSummaryFromMd(props.text).slice(0, 150)
-  const [thumbsUp, setThumbsUp] = useState(props.count?.like || 0)
+
+  const description = post.summary ?? getSummaryFromMd(post.text).slice(0, 150)
+  const [thumbsUp, setThumbsUp] = useState(post.count?.like || 0)
   const themeConfig = useThemeConfig()
   const donateConfig = themeConfig.function.donate
   const {
@@ -90,30 +89,30 @@ export const PostView: NextPage<PostModel> = (props) => {
   } = useInitialData()
 
   useEffect(() => {
-    setThumbsUp(props.count?.like || 0)
+    setThumbsUp(post.count?.like || 0)
 
     window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [props])
+  }, [post])
   useEffect(() => {
     setAction({
       informs: [
         {
           icon: faCalendar,
-          name: dayjs(props.created).locale('cn').format('YYYY年M月DD日'),
+          name: dayjs(post.created).locale('cn').format('YYYY年M月DD日'),
         },
         {
           icon: faHashtag,
           name:
-            props.category.name +
+            post.category.name +
             `${
-              props.tags && props.tags.length > 0
-                ? '[' + props.tags.join('-') + ']'
+              post.tags && post.tags.length > 0
+                ? '[' + post.tags.join('-') + ']'
                 : ''
             }`,
         },
         {
           icon: faBookOpen,
-          name: props.count.read ?? 0,
+          name: post.count.read ?? 0,
         },
       ],
 
@@ -128,94 +127,101 @@ export const PostView: NextPage<PostModel> = (props) => {
         {
           icon: faThumbsUp,
           name: <NumberRecorder number={thumbsUp || 0} />,
-          color: isThumbsUpBefore(props.id) ? '#f1c40f' : undefined,
+          color: isThumbsUpBefore(post.id) ? '#f1c40f' : undefined,
           callback: () => {
-            if (isThumbsUpBefore(props.id)) {
+            if (isThumbsUpBefore(post.id)) {
               return message.error('你已经支持过啦!')
             }
 
-            apiClient.post.thumbsUp(props.id).then(() => {
+            apiClient.post.thumbsUp(post.id).then(() => {
               message.success('感谢支持!')
 
-              storeThumbsUpCookie(props.id)
+              storeThumbsUpCookie(post.id)
               setThumbsUp(thumbsUp + 1)
             })
           },
         },
       ],
-      copyright: props.copyright,
+      copyright: post.copyright,
     })
   }, [
-    props.id,
-    props.category.name,
-    props.copyright,
-    props.count.read,
-    props.created,
-    props.tags,
+    post.id,
+    post.category.name,
+    post.copyright,
+    post.count.read,
+    post.created,
+    post.tags,
     thumbsUp,
     donateConfig.enable,
     donateConfig.link,
   ])
-  const { appStore } = useStore()
 
-  useEffect(() => {
-    appStore.headerNav = {
-      title: props.title,
-      meta: props.category.name,
-      show: true,
-    }
-    return () => {
-      appStore.headerNav.show = false
-    }
-  }, [appStore, props.category.name, props.title])
-
-  useEffect(() => {
-    if (props.copyright) {
-      setCopyright({
-        date: props.modified
-          ? dayjs(props.modified).format('YYYY年MM月DD日 H:mm')
-          : '暂没有修改过',
-        title,
-        link: new URL(location.pathname, webUrl).toString(),
-      })
-    }
-  }, [props, title, webUrl])
+  // header meta
+  useHeaderMeta(post.title, post.category.name)
+  useHeaderShare(post.title, post.text)
 
   return (
-    <ArticleLayout title={title} focus id={props.id} type="post">
+    <>
       <Seo
-        title={props.title}
+        title={post.title}
         description={description}
         openGraph={{
           type: 'article',
           article: {
-            publishedTime: props.created,
-            modifiedTime: props.modified || undefined,
-            section: props.category.name,
-            tags: props.tags ?? [],
+            publishedTime: post.created,
+            modifiedTime: post.modified || undefined,
+            section: post.category.name,
+            tags: post.tags ?? [],
           },
         }}
       />
+      <ArticleLayout title={post.title} focus id={post.id} type="post">
+        {useMemo(
+          () => (
+            <>
+              <Outdate time={post.modified || post.created} />
+              <ImageSizeMetaContext.Provider
+                value={imagesRecord2Map(post.images)}
+              >
+                <Markdown
+                  codeBlockFully
+                  value={post.text}
+                  escapeHtml={false}
+                  toc
+                  warpperProps={{ className: 'focus' }}
+                />
+              </ImageSizeMetaContext.Provider>
+              {post.copyright && isClientSide() ? (
+                <Copyright
+                  date={post.modified}
+                  link={new URL(location.pathname, webUrl).toString()}
+                  title={post.title}
+                />
+              ) : null}
+              <Action {...actions} />
 
-      <OutdateNotice time={props.modified || props.created} />
-      <ImageSizeMetaContext.Provider value={imagesRecord2Map(props.images)}>
-        <Markdown
-          codeBlockFully
-          value={text}
-          escapeHtml={false}
-          toc
-          warpperProps={{ className: 'focus' }}
-        />
-      </ImageSizeMetaContext.Provider>
-      {props.copyright ? <Copyright {...copyrightInfo} /> : null}
-      <Action {...actions} />
-
-      <CommentLazy
-        type={'Post'}
-        id={id}
-        allowComment={props.allowComment ?? true}
-      />
-    </ArticleLayout>
+              <CommentLazy
+                type={'Post'}
+                id={post.id}
+                allowComment={post.allowComment ?? true}
+              />
+            </>
+          ),
+          [
+            actions,
+            post.allowComment,
+            post.copyright,
+            post.created,
+            post.id,
+            post.images,
+            post.modified,
+            post.text,
+            post.title,
+            webUrl,
+          ],
+        )}
+      </ArticleLayout>
+    </>
   )
 }
 
@@ -224,9 +230,7 @@ PostView.getInitialProps = async (ctx) => {
   const { category, slug } = query as any
   const data = await apiClient.post.getPost(category, slug)
 
-  return {
-    ...data,
-  }
+  return data
 }
 
 export default observer(PostView)

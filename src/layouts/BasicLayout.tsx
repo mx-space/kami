@@ -2,8 +2,7 @@ import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useMediaToggle } from 'common/hooks/use-media-toggle'
 import { useThemeBackground } from 'common/hooks/use-theme-background'
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import { UUID } from 'utils'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { observer } from 'utils/mobx'
 import { Footer } from 'views/Footer'
 import { MusicMiniPlayerStoreControlled } from 'views/for-pages/Player'
@@ -35,14 +34,12 @@ export const BasicLayout = observer(({ children }) => {
 
     setNotice(!showNotice)
   }, [isDark, showNotice, toggle])
-  const actionUUID = useMemo(() => {
-    return new UUID()
-  }, [])
+  const idSymbol = useRef(Symbol())
   useEffect(() => {
-    actionStore.removeActionByUUID(actionUUID)
+    actionStore.removeActionBySymbol(idSymbol.current)
     if (appStore.viewport.mobile || appStore.viewport.pad) {
       const action = {
-        id: actionUUID,
+        id: idSymbol.current,
         icon:
           appStore.colorMode === 'dark' ? (
             <FontAwesomeIcon icon={faSun} />
@@ -54,12 +51,12 @@ export const BasicLayout = observer(({ children }) => {
       actionStore.appendActions(action)
 
       return () => {
-        actionStore.removeActionByUUID(actionUUID)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        actionStore.removeActionBySymbol(idSymbol.current)
       }
     }
   }, [
     actionStore,
-    actionUUID,
     appStore.colorMode,
     appStore.viewport.mobile,
     appStore.viewport.pad,
@@ -68,7 +65,7 @@ export const BasicLayout = observer(({ children }) => {
   return (
     <>
       <Header />
-      {children}
+      <div className="app-content">{children}</div>
       <Footer />
       <MusicMiniPlayerStoreControlled />
       {!(appStore.viewport.mobile || appStore.viewport.pad) && (

@@ -1,10 +1,10 @@
 import { isDev } from 'utils'
 import { createDangmaku } from '../../utils/danmaku'
 import { Notice } from '../../utils/notice'
-import { gatewayStore, userStore } from '../store'
+import { gatewayStore, postStore, userStore } from '../store'
 import { EventTypes } from './types'
 
-export const notice = new Notice()
+export const notice = Notice.shared
 
 export const eventHandler = (type: EventTypes, data: any) => {
   const title = window.data?.aggregateData.seo.title || 'Kami'
@@ -89,6 +89,11 @@ export const eventHandler = (type: EventTypes, data: any) => {
         })
       }
 
+      break
+    }
+    // handle update event
+    case EventTypes.POST_UPDATE: {
+      postStore.add(data)
       break
     }
     default: {

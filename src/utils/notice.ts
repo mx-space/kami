@@ -8,6 +8,7 @@
  */
 
 export class Notice {
+  static shared = new Notice()
   isInit = false
   private $wrap?: HTMLDivElement
   initNotice(): Promise<boolean> {

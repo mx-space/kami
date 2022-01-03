@@ -81,7 +81,7 @@ export const Markdown: FC<MdProps> = observer(
           plugins={CustomRules}
         />
 
-        {props.toc && <_TOC />}
+        {props.toc && <_TOC key={value} />}
       </div>
     )
   }),

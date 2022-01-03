@@ -1,7 +1,5 @@
-import { UUID } from 'utils'
-
 export type FootAction = {
-  id: UUID
+  id: symbol
   icon: JSX.Element
   onClick: () => void | Promise<void>
 }

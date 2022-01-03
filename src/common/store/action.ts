@@ -7,7 +7,6 @@
  * @Coding with Love
  */
 import { makeAutoObservable } from 'mobx'
-import { UUID } from 'utils'
 import { FootAction } from './types/actions'
 
 export default class ActionStore {
@@ -47,8 +46,8 @@ export default class ActionStore {
     this._actions.splice(index, 1)
   }
 
-  removeActionByUUID(id: UUID) {
-    const index = this._actions.findIndex((i) => id.equal(i.id))
+  removeActionBySymbol(id: symbol) {
+    const index = this._actions.findIndex((i) => i.id === id)
     this.removeActionByIndex(index)
   }
   get actions() {

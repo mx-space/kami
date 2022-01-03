@@ -1,4 +1,11 @@
 {
-  "cSpell.words": ["Dangmaku", "Danmaku", "mobx"],
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "cSpell.words": [
+    "Dangmaku",
+    "Danmaku",
+    "mobx"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "exportall.config.relExclusion": [
+    "/src/common/context"
+  ]
 }

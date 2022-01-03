@@ -1,4 +1,5 @@
 import { useStore } from 'common/store'
+import dayjs from 'dayjs'
 import { FC } from 'react'
 import { observer } from 'utils/mobx'
 import styles from './index.module.css'
@@ -6,7 +7,7 @@ import styles from './index.module.css'
 export interface CopyrightProps {
   title: string
   link: string
-  date: string
+  date?: string | null
 }
 
 export const Copyright: FC<CopyrightProps> = observer((props) => {
@@ -30,7 +31,10 @@ export const Copyright: FC<CopyrightProps> = observer((props) => {
           [复制]
         </a>
       </p>
-      <p>最后修改时间: {date}</p>
+      <p>
+        最后修改时间:{' '}
+        {date ? dayjs(date).format('YYYY年MM月DD日 H:mm') : '暂没有修改过'}
+      </p>
       <hr />
       <div>
         <p>
