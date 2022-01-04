@@ -36,7 +36,7 @@ export default memo(function Action(props: ActionProps) {
   const { actions = [], informs = [], copyright = true, ...rest } = props
 
   return (
-    <>
+    <div className={styles.root}>
       <div className="note-inform" {...rest}>
         {informs.map((inform, index) => {
           return (
@@ -91,6 +91,6 @@ export default memo(function Action(props: ActionProps) {
           )
         })}
       </div>
-    </>
+    </div>
   )
 })

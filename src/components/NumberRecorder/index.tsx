@@ -1,11 +1,11 @@
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC, memo, useEffect, useRef, useState } from 'react'
 import styles from './index.module.css'
 
 interface NumberRecorderProps {
   number: number
 }
 
-const NumberRecorder: FC<NumberRecorderProps> = (props) => {
+export const NumberRecorder: FC<NumberRecorderProps> = memo((props) => {
   const { number } = props
   const [n, setN] = useState(number)
   const numbersRef = useRef<HTMLDivElement>(null)
@@ -43,6 +43,4 @@ const NumberRecorder: FC<NumberRecorderProps> = (props) => {
       </div>
     </div>
   )
-}
-
-export { NumberRecorder }
+})

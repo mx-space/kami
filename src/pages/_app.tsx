@@ -3,7 +3,7 @@ import 'windi.css'
 // organize-imports-ignore
 import 'assets/styles/main.css'
 // organize-imports-ignore
-import 'normalize.css/normalize.css'
+// import 'normalize.css/normalize.css'
 
 import { AggregateRoot } from '@mx-space/api-client'
 import { DropdownProvider } from 'common/context/dropdown'
@@ -39,7 +39,7 @@ import Package from '~/package.json'
 
 import client from '../common/socket'
 import { useStore } from '../common/store'
-import { isClientSide, isServerSide } from '../utils'
+import { isServerSide } from '../utils'
 import { RootStoreProvider } from 'common/context/root-store'
 
 const version = `v${Package.version}` || ''

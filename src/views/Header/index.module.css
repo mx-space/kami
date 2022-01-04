@@ -287,3 +287,9 @@
     bottom: 0;
   }
 }
+
+.like-button {
+  svg {
+    width: 1.5rem;
+  }
+}

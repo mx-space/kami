@@ -4,7 +4,7 @@ import React, { FC, memo, useEffect, useState } from 'react'
 import { eventBus, isLikedBefore, setLikeId } from 'utils'
 import { apiClient } from 'utils/client'
 import { message } from 'utils/message'
-
+import styles from './index.module.css'
 export const HeaderActionButton: FC<
   React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 > = (props) => {
@@ -55,7 +55,10 @@ export const HeaderActionLikeButtonForNote: FC<{ id: number }> = memo(
 
     return (
       <div onClick={onLike} className="flex items-center">
-        <LikeButton checked={liked} />
+        <div className={styles['like-button']}>
+          <LikeButton checked={liked} />
+        </div>
+
         <span className="flex-shrink-0">喜欢</span>
       </div>
     )

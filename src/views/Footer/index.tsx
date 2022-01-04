@@ -40,7 +40,7 @@ const _Footer: FC = observer(() => {
         } as any
       }
     >
-      <div className="wrap">
+      <div className={styles.wrap}>
         <div className={'row'} style={{ paddingBottom: '18px' }}>
           <div className="col-m-6 left to-center">
             <p>

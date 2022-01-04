@@ -41,33 +41,35 @@ const getContainerNode: () => HTMLElement = () => {
 const message: MessageInstance = {}
 ;['success', 'error', 'warn', 'info', 'loading', 'warning'].forEach((type) => {
   message[type] = (content, duration) => {
-    try {
-      let message: string
-      const time = content?.duration ?? duration
+    requestAnimationFrame(() => {
+      try {
+        let message: string
+        const time = content?.duration ?? duration
 
-      if (typeof content === 'string') {
-        message = content
-      } else {
-        message = content.content
-      }
-      if (!message) {
-        return
-      }
-      const container = getContainerNode()
+        if (typeof content === 'string') {
+          message = content
+        } else {
+          message = content.content
+        }
+        if (!message) {
+          return
+        }
+        const container = getContainerNode()
 
-      const fragment = document.createDocumentFragment()
-      // `time` not millisecond because antd-message implementation, please times 1000
-      ReactDOM.render(
-        <Message type={type as any} duration={time} message={message} />,
-        fragment,
-      )
-      setTimeout(() => {
-        cleanEmptyMessageWrapper()
-      }, time * 1000)
-      container.appendChild(fragment)
-      return fragment
-      // eslint-disable-next-line no-empty
-    } catch {}
+        const fragment = document.createDocumentFragment()
+        // `time` not millisecond because antd-message implementation, please times 1000
+        ReactDOM.render(
+          <Message type={type as any} duration={time} message={message} />,
+          fragment,
+        )
+        setTimeout(() => {
+          cleanEmptyMessageWrapper()
+        }, time * 1000)
+        container.appendChild(fragment)
+        return fragment
+        // eslint-disable-next-line no-empty
+      } catch {}
+    })
   }
 })
 const cleanEmptyMessageWrapper = () => {

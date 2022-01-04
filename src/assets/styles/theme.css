@@ -10,14 +10,9 @@
   --light-font: #fff;
   --shallow: #eee;
 
-  font:
-    14px/1.15 Arial,
-    Helvetica,
-    noto sans sc,
-    PingFang SC,
-    hiragino sans gb,
-    microsoft yahei,
-    "sans-serif";
+  font: 14px/1.15 Arial, Helvetica, noto sans sc, PingFang SC, hiragino sans gb,
+    microsoft yahei, 'sans-serif';
+  color: #353535;
 }
 
 body {
@@ -41,10 +36,6 @@ body {
 
 ::-webkit-scrollbar-corner {
   background: var(--light-bg);
-}
-
-a {
-  color: #28b9be;
 }
 
 h1 {
@@ -85,14 +76,6 @@ blockquote {
 code {
   color: brown;
   background-color: #faebd7;
-}
-
-button {
-  padding: 0;
-  border: none;
-  font: inherit;
-  outline: none;
-  cursor: pointer;
 }
 
 article img {
@@ -378,9 +361,10 @@ article > h1 {
 article > h1:first-child,
 h1.headline {
   margin-top: 0;
+  font-size: 1.2rem;
 
   &::before {
-    content: "";
+    content: '';
     padding-left: 0.75em;
     border-left: 2px solid #ffc107;
   }
@@ -469,36 +453,14 @@ article > h1 small {
   max-height: 25em;
 }
 
-.kami-note .note-inform,
-.kami-note .note-action {
-  color: #888;
-  text-align: right;
-  user-select: none;
-  font-weight: normal;
-}
-
-.kami-note .note-inform {
-  float: left;
-}
-
 .kami-note .note-action a {
   color: inherit;
-}
-
-.kami-note .note-inform span {
-  cursor: pointer;
-  margin-right: 1em;
 }
 
 .kami-note .note-action span {
   cursor: pointer;
   margin-left: 1em;
   position: relative;
-}
-
-.kami-note .note-inform span::before,
-.kami-note .note-action span::before {
-  margin-right: 0.5em;
 }
 
 .note-navigator {
@@ -561,7 +523,7 @@ article > h1 small {
 }
 
 .project-head::after {
-  content: "";
+  content: '';
   clear: both;
   display: block;
 }

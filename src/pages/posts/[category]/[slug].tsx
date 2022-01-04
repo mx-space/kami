@@ -58,6 +58,7 @@ const useUpdatePost = (id: string) => {
         before.hide
       ) {
         router.push('/posts')
+
         message.error('文章已删除或隐藏')
         return
       }
@@ -81,7 +82,7 @@ export const PostView: NextPage<PostModel> = (props) => {
   const [actions, setAction] = useState({} as ActionProps)
 
   const description = post.summary ?? getSummaryFromMd(post.text).slice(0, 150)
-  const [thumbsUp, setThumbsUp] = useState(post.count?.like || 0)
+
   const themeConfig = useThemeConfig()
   const donateConfig = themeConfig.function.donate
   const {
@@ -89,10 +90,8 @@ export const PostView: NextPage<PostModel> = (props) => {
   } = useInitialData()
 
   useEffect(() => {
-    setThumbsUp(post.count?.like || 0)
-
     window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [post])
+  }, [post.id])
   useEffect(() => {
     setAction({
       informs: [
@@ -126,7 +125,7 @@ export const PostView: NextPage<PostModel> = (props) => {
         },
         {
           icon: faThumbsUp,
-          name: <NumberRecorder number={thumbsUp || 0} />,
+          name: <NumberRecorder number={post.count?.like || 0} />,
           color: isThumbsUpBefore(post.id) ? '#f1c40f' : undefined,
           callback: () => {
             if (isThumbsUpBefore(post.id)) {
@@ -137,7 +136,7 @@ export const PostView: NextPage<PostModel> = (props) => {
               message.success('感谢支持!')
 
               storeThumbsUpCookie(post.id)
-              setThumbsUp(thumbsUp + 1)
+              post.count.like = post.count.like + 1
             })
           },
         },
@@ -151,9 +150,10 @@ export const PostView: NextPage<PostModel> = (props) => {
     post.count.read,
     post.created,
     post.tags,
-    thumbsUp,
     donateConfig.enable,
     donateConfig.link,
+    post.count.like,
+    post.count,
   ])
 
   // header meta

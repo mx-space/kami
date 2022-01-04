@@ -19,7 +19,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    content: "";
+    content: '';
     z-index: -1;
     position: absolute;
     background: var(--bg);
@@ -42,4 +42,11 @@
 
 :global(html.dark) .footer::before {
   filter: brightness(0.6) !important;
+}
+
+.wrap {
+  margin: 0 auto;
+  max-width: 75em;
+  padding: 0 1.25em;
+  box-sizing: content-box;
 }

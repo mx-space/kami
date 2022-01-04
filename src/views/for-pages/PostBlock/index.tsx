@@ -74,12 +74,12 @@ export const PostBlock: FC<PostBlockProps> = observer((props) => {
             />
           )}
           <div>
-            {(() => {
+            {useMemo(() => {
               const r = removeMd(text)
               return r.length >= 250 ? r.slice(0, 250) + '..' : r
-            })()}
+            }, [text])}
           </div>
-          <div className=""></div>
+          <div className="mb-10"></div>
         </article>
         <section className={styles.navigator}>
           <button className={styles.btn} onClick={goToPost}>
@@ -87,7 +87,7 @@ export const PostBlock: FC<PostBlockProps> = observer((props) => {
           </button>
         </section>
       </div>
-      <div className="pb-8"></div>
+      <div className="pb-8 mb-4"></div>
     </>
   )
 })
