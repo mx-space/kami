@@ -1,7 +1,7 @@
 import { isDev } from 'utils'
 import { createDangmaku } from '../../utils/danmaku'
 import { Notice } from '../../utils/notice'
-import { gatewayStore, postStore, userStore } from '../store'
+import { gatewayStore, noteStore, postStore, userStore } from '../store'
 import { EventTypes } from './types'
 
 export const notice = Notice.shared
@@ -93,7 +93,19 @@ export const eventHandler = (type: EventTypes, data: any) => {
     }
     // handle update event
     case EventTypes.POST_UPDATE: {
-      postStore.add(data)
+      postStore.addAndPatch(data)
+      break
+    }
+    case EventTypes.POST_DELETE: {
+      postStore.softDelete(data.id)
+      break
+    }
+    case EventTypes.NOTE_UPDATE: {
+      noteStore.addAndPatch(data)
+      break
+    }
+    case EventTypes.NOTE_DELETE: {
+      noteStore.softDelete(data.id)
       break
     }
     default: {

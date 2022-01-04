@@ -25,7 +25,6 @@ class Item extends PureComponent<{
   onClick: (i: number) => void
   index: number
 }> {
-  // componentDidUpdate() {}
   render() {
     const { index, active, depth, title, rootDepth, onClick } = this.props
 
@@ -89,8 +88,12 @@ const _Toc: FC = memo(() => {
   }, 14)
   const getHeadings = throttle(() => {
     const $write = document.getElementById('write')
+
     if (!$write) {
-      return getHeadings()
+      requestAnimationFrame(() => {
+        getHeadings()
+      })
+      return
     }
     setMaxWidth()
 
@@ -145,10 +148,9 @@ const _Toc: FC = memo(() => {
   }, [setMaxWidth])
 
   useEffect(() => {
-    setHeadings(null)
-    setTimeout(() => {
+    requestAnimationFrame(() => {
       getHeadings()
-    }, 1000)
+    })
   }, [asPath])
 
   const handleItemClick = useCallback((i) => {

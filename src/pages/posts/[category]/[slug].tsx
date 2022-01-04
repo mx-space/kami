@@ -16,20 +16,22 @@ import Outdate from 'components/Outdate'
 import { Seo } from 'components/SEO'
 import dayjs from 'dayjs'
 import { ArticleLayout } from 'layouts/ArticleLayout'
+import { isEqual } from 'lodash-es'
 import { toJS } from 'mobx'
-import { NextPage } from 'next/'
+import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { FC, useEffect, useMemo, useRef, useState } from 'react'
 import { apiClient } from 'utils/client'
 import { message } from 'utils/message'
-import { observer } from 'utils/mobx'
 import { CommentLazy } from 'views/Comment'
+import { buildStoreDataLoadableView } from 'views/LoadableView'
 import { Markdown } from 'views/Markdown'
 import {
   getSummaryFromMd,
   imagesRecord2Map,
   isClientSide,
   isLikedBefore,
+  noop,
   setLikeId,
 } from '../../../utils'
 import { Copyright } from '../../../views/Copyright'
@@ -40,11 +42,12 @@ const isThumbsUpBefore = isLikedBefore
 
 const useUpdatePost = (id: string) => {
   const post = postStore.get(id)
-  const beforeModel = useRef(post)
+  const beforeModel = useRef(toJS(post))
   const router = useRouter()
+
   useEffect(() => {
     const before = beforeModel.current
-    console.log(before?.slug, post?.slug)
+
     if (!before && post) {
       beforeModel.current = toJS(post)
     }
@@ -52,11 +55,22 @@ const useUpdatePost = (id: string) => {
       return
     }
     if (before.id === post.id) {
+      if (isEqual(before, post)) {
+        return
+      }
+
       if (
         before.categoryId !== post.categoryId ||
-        before.slug !== post.slug ||
-        before.hide
+        (before.slug !== post.slug && post.category?.slug)
       ) {
+        router.replace(
+          '/posts/' + `${post.category.slug}/${post.slug}`,
+          undefined,
+          { shallow: true, scroll: false },
+        )
+        return
+      }
+      if (post.hide || post.isDeleted) {
         router.push('/posts')
 
         message.error('文章已删除或隐藏')
@@ -66,17 +80,22 @@ const useUpdatePost = (id: string) => {
     }
 
     beforeModel.current = toJS(post)
-  }, [post?.id, post?.slug, post?.categoryId, post?.hide])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    post?.id,
+    post?.slug,
+    post?.categoryId,
+    post?.hide,
+    post?.text,
+    post?.summary,
+    post?.category?.slug,
+    post?.isDeleted,
+  ])
 }
 
-export const PostView: NextPage<PostModel> = (props) => {
+export const PostView: FC<{ id: string }> = observer((props) => {
   const { postStore } = useStore()
-  const post = postStore.get(props.id) || props
-
-  useEffect(() => {
-    postStore.add(props)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props])
+  const post: PostModel = postStore.get(props.id) || noop
 
   useUpdatePost(post.id)
   const [actions, setAction] = useState({} as ActionProps)
@@ -223,14 +242,14 @@ export const PostView: NextPage<PostModel> = (props) => {
       </ArticleLayout>
     </>
   )
-}
-
-PostView.getInitialProps = async (ctx) => {
+})
+const PP = buildStoreDataLoadableView(postStore, PostView)
+PP.getInitialProps = async (ctx) => {
   const { query } = ctx
   const { category, slug } = query as any
-  const data = await apiClient.post.getPost(category, slug)
+  const data = await postStore.fetchBySlug(category, slug)
 
   return data
 }
 
-export default observer(PostView)
+export default PP

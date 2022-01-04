@@ -14,4 +14,10 @@ export class PostStore extends Store<PostModel> {
     this.add(data)
     return this.get(id)!
   }
+
+  async fetchBySlug(category: string, slug: string) {
+    const data = await apiClient.post.getPost(category, slug)
+    this.add(data)
+    return data
+  }
 }

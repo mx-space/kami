@@ -52,6 +52,16 @@ export class KeyValueCollection<K extends Id, V extends object> extends Map<
     return this.data.delete(key)
   }
 
+  softDelete(key: K) {
+    const data = this.data.get(key)
+    if (!data) {
+      return false
+    }
+
+    ;(data as any).isDeleted = true
+    return true
+  }
+
   get(key: K): V | undefined {
     return this.data.get(key)
   }

@@ -1,5 +1,6 @@
 import ActionStore from './action'
 import AppUIStore from './app'
+import { NoteStore } from './collections/note'
 import { PostStore } from './collections/post'
 import GatewayStore from './gateway'
 import MusicStore from './music'
@@ -15,6 +16,7 @@ export const actionStore = new ActionStore()
 
 // collections start
 export const postStore = new PostStore()
+export const noteStore = new NoteStore()
 
 export interface RootStore {
   gatewayStore: GatewayStore
@@ -27,6 +29,7 @@ export interface RootStore {
 
   // collections start
   postStore: PostStore
+  noteStore: NoteStore
 }
 export class RootStore {
   constructor() {
@@ -36,6 +39,7 @@ export class RootStore {
     this.musicStore = musicStore
     this.actionStore = actionStore
     this.postStore = postStore
+    this.noteStore = noteStore
   }
 
   get appStore() {

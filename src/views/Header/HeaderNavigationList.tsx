@@ -11,23 +11,22 @@ import styles from './index.module.css'
 export const HeaderNavigationList: FC<{ showSub: boolean }> = observer(
   ({ showSub }) => {
     const { mergedMenu } = useHeaderNavList()
-
     return (
       <>
         {mergedMenu.map((m, selection) => {
+          const isPublicUrl = m.path.startsWith('http')
           return (
             <div className="relative" key={m.title}>
               <Link href={m.path}>
                 <a
-                  {...(m.path.startsWith('http')
-                    ? { rel: 'noreferrer', target: '_blank' }
-                    : {})}
+                  rel={isPublicUrl ? 'noopener noreferrer' : undefined}
+                  target={isPublicUrl ? '_blank' : undefined}
                 >
                   <span
                     className={styles['link-item']}
                     onMouseEnter={useCallback(() => {
                       menu.selection = selection
-                    }, [])}
+                    }, [selection])}
                     onMouseLeave={useCallback(() => {
                       menu.selection = null
                     }, [])}

@@ -1,7 +1,11 @@
 import { FC, memo } from 'react'
 import styles from './index.module.css'
 
-export const Loading: FC<{ loadingText?: string }> = memo(({ loadingText }) => {
+export type LoadingProps = {
+  loadingText?: string
+}
+
+export const Loading: FC<LoadingProps> = memo(({ loadingText }) => {
   return (
     <div className={styles['loading']}>
       <div className="icon">

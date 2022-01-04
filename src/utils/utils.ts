@@ -89,3 +89,14 @@ export const escapeHTMLTag = (html: string) => {
     .replace(ap, '&#39;')
     .replace(ic, '&#34;')
 }
+
+const _noop = {}
+export const noop = new Proxy(_noop, {
+  get(a, b, c) {
+    return noop
+  },
+  apply() {
+    // eslint-disable-next-line prefer-rest-params
+    return Reflect.apply(noop, this, arguments)
+  },
+})

@@ -1,22 +1,22 @@
 import { faBookOpen, faClock } from '@fortawesome/free-solid-svg-icons'
-import { NoteModel, NoteWrappedPayload } from '@mx-space/api-client'
+import { NoteModel } from '@mx-space/api-client'
+import { useHeaderMeta, useHeaderShare } from 'common/hooks/use-header-meta'
 import { useLoadSerifFont } from 'common/hooks/use-load-serif-font'
-import { useRefEffect } from 'common/hooks/useRefEffect'
-import { EventTypes } from 'common/socket/types'
-import { useStore } from 'common/store'
+import { noteStore, userStore, useStore } from 'common/store'
 import Action, { ActionProps } from 'components/Action'
-import { Input } from 'components/Input'
 import { LikeButton } from 'components/LikeButton'
+import { Loading } from 'components/Loading'
 import { NumberRecorder } from 'components/NumberRecorder'
-import { OverLay } from 'components/Overlay'
 import { RelativeTime } from 'components/RelativeTime'
 import dayjs from 'dayjs'
 import { ArticleLayout } from 'layouts/ArticleLayout'
 import { NoteLayout } from 'layouts/NoteLayout'
-import { omit } from 'lodash-es'
+import { isEqual, omit } from 'lodash-es'
+import { toJS } from 'mobx'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React, { FC, useEffect, useMemo, useRef, useState } from 'react'
+import { useUpdate } from 'react-use'
 import { apiClient } from 'utils/client'
 import { imagesRecord2Map } from 'utils/images'
 import { message } from 'utils/message'
@@ -24,7 +24,9 @@ import { mood2icon, weather2icon } from 'utils/meta-icon'
 import { observer } from 'utils/mobx'
 import { parseDate } from 'utils/time'
 import CommentWrap from 'views/Comment'
+import { NotePasswordConfrim } from 'views/for-pages/NotePasswordConfirm'
 import { NoteTimelineList } from 'views/for-pages/NoteTimelineList'
+import { BanCopy } from 'views/for-pages/WarningOverlay/ban-copy'
 import { Markdown } from 'views/Markdown'
 import { ImageSizeMetaContext } from '../../common/context/image-size'
 import { Seo } from '../../components/SEO'
@@ -33,95 +35,84 @@ import {
   getSummaryFromMd,
   isDev,
   isLikedBefore,
+  noop,
   setLikeId,
 } from '../../utils'
-
-type NoteViewProps = NoteWrappedPayload
 
 const renderLines: FC<{ value: string }> = ({ value }) => {
   return <span className="indent">{value}</span>
 }
 
-const NoteView: React.FC<NoteViewProps> = observer((props) => {
-  const { prev, next } = props
-  const [data, update] = useState(props.data)
+const useUpdateNote = (id: string) => {
+  const note = noteStore.get(id)
+  const beforeModel = useRef(toJS(note))
+  const router = useRouter()
+
+  useEffect(() => {
+    const before = beforeModel.current
+
+    if (isDev) {
+      console.log('note-change: ', toJS(note))
+    }
+
+    if (!before && note) {
+      beforeModel.current = toJS(note)
+    }
+    if (!before || !note || isEqual(before, note)) {
+      return
+    }
+    if (before.id === note.id) {
+      if (note.hide && !userStore.isLogged) {
+        router.push('/notes')
+        message.error('该生活记录已删除或隐藏')
+        return
+      }
+      message.info('生活记录已更新')
+    }
+    // TODO password etc.
+  }, [note?.hide])
+}
+
+const NoteView: React.FC<{ id: string }> = observer((props) => {
+  const note = noteStore.get(props.id) || (noop as NoteModel)
+
+  const [prev, next] =
+    noteStore.relationMap.get(props.id) ||
+    ([noop, noop] as [Partial<NoteModel>, Partial<NoteModel>])
 
   const router = useRouter()
-  const { userStore, appStore, musicStore } = useStore()
+  const { userStore, musicStore } = useStore()
 
   useEffect(() => {
     if (router.query.id === 'latest') {
       router.replace({
-        pathname: '/notes/' + props.data.nid,
+        pathname: '/notes/' + note.nid,
         query: { ...omit(router.query, 'id') },
       })
     }
-  }, [props.data.nid])
+  }, [note.nid])
 
   useEffect(() => {
-    appStore.shareData = {
-      text: data.text,
-      title: data.title,
-      url: location.href,
+    // FIXME: SSR 之后的 hydrate 没有同步数据
+    if (!noteStore.relationMap.has(props.id)) {
+      noteStore.fetchById(note.id, undefined, { force: true })
     }
-    return () => {
-      appStore.shareData = null
-    }
-  }, [data.text, data.title])
+  }, [note.id])
 
-  useEffect(() => {
-    update(props.data)
-  }, [props.data])
-
-  useEffect(() => {
-    const handler = (payload: NoteModel) => {
-      if (isDev) {
-        console.log('note-change: ', payload)
-      }
-
-      if (payload.id === data.id) {
-        if (payload.hide && !userStore.isLogged) {
-          router.push('/notes')
-          message.error('该生活记录已删除或隐藏')
-          return
-        }
-        message.info('生活记录已更新')
-        update(payload)
-      }
-    }
-
-    eventBus.on(EventTypes.NOTE_UPDATE, handler)
-
-    return () => {
-      eventBus.off(EventTypes.NOTE_UPDATE, handler)
-    }
-  }, [data.id, router, userStore.isLogged])
-
+  useHeaderShare(note.title, note.text)
+  useUpdateNote(note.id)
   useLoadSerifFont()
-  const { title, id, text, mood, weather } = data
+  useHeaderMeta(note.title, '生活记录')
 
-  const [like, setLikeCount] = useState(data.count.like ?? 0)
+  const { title, id, text, mood, weather } = note
+
+  const [like, setLikeCount] = useState(note.count.like ?? 0)
 
   const [tips, setTips] = useState(``)
 
   // prevent guest copy text.
 
-  const mdRef = useRefEffect<HTMLElement>(
-    (el) => {
-      el.oncopy = (e) => {
-        if (userStore.isLogged) {
-          return
-        }
-        e.preventDefault()
-        setShowCopyWarn(true)
-      }
-
-      return () => {
-        el.oncopy = null
-      }
-    },
-    [userStore.isLogged],
-  )
+  const mdRef = useRef<HTMLElement>(null)
 
   const { description, wordCount } = getSummaryFromMd(text, {
     count: true,
@@ -130,21 +121,21 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
   useEffect(() => {
     try {
       setTips(
-        `创建于 ${parseDate(data.created, 'YYYY-MM-DD dddd')}${
-          data.modified &&
-          `, 修改于 ${parseDate(data.modified, 'YYYY-MM-DD dddd')}`
-        }, 全文字数: ${wordCount}, 阅读次数: ${data.count.read}, 喜欢次数: ${
-          data.count.like
+        `创建于 ${parseDate(note.created, 'YYYY-MM-DD dddd')}${
+          note.modified &&
+          `, 修改于 ${parseDate(note.modified, 'YYYY-MM-DD dddd')}`
+        }, 全文字数: ${wordCount}, 阅读次数: ${note.count.read}, 喜欢次数: ${
+          note.count.like
         }`,
       )
       // eslint-disable-next-line no-empty
     } catch {}
   }, [
     text,
-    data.created,
-    data.modified,
-    data.count.read,
-    data.count.like,
+    note.created,
+    note.modified,
+    note.count.read,
+    note.count.like,
     wordCount,
   ])
   useEffect(() => {
@@ -155,15 +146,15 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
       window.scroll({ top: 0, left: 0, behavior: 'smooth' })
     }, 10)
 
-    setLikeCount(props.data.count.like ?? 0)
+    setLikeCount(note.count.like ?? 0)
     setLiked(false)
   }, [props])
 
   const [isLiked, setLiked] = useState(false)
   useEffect(() => {
-    setLiked(isLikedBefore(data.nid.toString()))
+    setLiked(isLikedBefore(note.nid.toString()))
     const handler = (nid) => {
-      if (data.nid === nid) {
+      if (note.nid === nid) {
         setLiked(true)
         setLikeCount((like) => like + 1)
       }
@@ -173,7 +164,7 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
     return () => {
       eventBus.off('like', handler)
     }
-  }, [data.nid])
+  }, [note.nid])
 
   const actions: ActionProps = {
     informs: [],
@@ -183,24 +174,24 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
         name: (
           <div style={{ display: 'inline-flex', alignItems: 'center' }}>
             <LikeButton
-              checked={like - 1 === data.count.like || isLiked}
+              checked={like - 1 === note.count.like || isLiked}
               width={'2rem'}
             />
             <NumberRecorder number={like || 0} />
           </div>
         ),
-        color: like - 1 === data.count.like || isLiked ? '#e74c3c' : undefined,
+        color: like - 1 === note.count.like || isLiked ? '#e74c3c' : undefined,
 
         callback: () => {
-          if (like - 1 === data.count.like || isLiked) {
+          if (like - 1 === note.count.like || isLiked) {
             return message.error('你已经喜欢过啦!')
           }
           apiClient.note
-            .likeIt(data.id)
+            .likeIt(note.id)
             .then(() => {
               message.success('感谢喜欢!')
-              eventBus.emit('like', data.nid)
-              setLikeId(data.nid.toString())
+              eventBus.emit('like', note.nid)
+              setLikeId(note.nid.toString())
             })
             .catch(() => {
               setLiked(true)
@@ -225,36 +216,23 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
 
     actions.informs!.push(
       {
-        name: <RelativeTime date={new Date(data.created)} />,
+        name: <RelativeTime date={new Date(note.created)} />,
         icon: faClock,
       },
       {
-        name: data.count.read.toString(),
+        name: note.count.read.toString(),
         icon: faBookOpen,
       },
     )
   }
-
-  useEffect(() => {
-    appStore.headerNav = {
-      title,
-      meta: '生活记录',
-      show: true,
-    }
-    return () => {
-      appStore.headerNav.show = false
-    }
-  }, [appStore, title])
 
   // if this note has music, auto play it.
 
   useEffect(() => {
     // now support netease
     const ids =
-      props.data.music &&
-      Array.isArray(props.data.music) &&
-      props.data.music.length > 0
-        ? props.data.music
+      note.music && Array.isArray(note.music) && note.music.length > 0
+        ? note.music
             .filter((m) => m.id && m.type === 'netease')
             .map((m) => ~~m.id)
         : null
@@ -270,17 +248,11 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
       musicStore.empty()
       musicStore.setHide(true)
     }
-  }, [props.data.music, props.data.nid])
+  }, [note.music, note.nid])
 
-  const [showCopyWarn, setShowCopyWarn] = useState(false)
-  const isSecret = props.data.secret
-    ? dayjs(props.data.secret).isAfter(new Date())
-    : false
-  const secretDate = useMemo(
-    () => new Date(props.data.secret!),
-    [props.data.secret],
-  )
-  const dateFormat = props.data.secret
+  const isSecret = note.secret ? dayjs(note.secret).isAfter(new Date()) : false
+  const secretDate = useMemo(() => new Date(note.secret!), [note.secret])
+  const dateFormat = note.secret
     ? Intl.DateTimeFormat('zh-cn', {
         hour12: false,
         hour: 'numeric',
@@ -313,8 +285,8 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
             type: 'article',
             description,
             article: {
-              publishedTime: data.created,
-              modifiedTime: data.modified || undefined,
+              publishedTime: note.created,
+              modifiedTime: note.modified || undefined,
               tags: ['Note of Life'],
             },
           },
@@ -323,10 +295,10 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
 
       <NoteLayout
         title={title}
-        date={new Date(data.created)}
+        date={new Date(note.created)}
         tips={tips}
-        bookmark={data.hasMemory}
-        id={data.id}
+        bookmark={note.hasMemory}
+        id={note.id}
       >
         {isSecret && !userStore.isLogged ? (
           <p className="text-center my-8">
@@ -334,22 +306,25 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
           </p>
         ) : (
           <ImageSizeMetaContext.Provider
-            value={imagesRecord2Map(props.data.images || [])}
+            value={imagesRecord2Map(note.images || [])}
           >
             {isSecret && (
               <span className={'flex justify-center -mb-3.5'}>
                 这是一篇非公开的文章。(将在 {dateFormat} 解锁)
               </span>
             )}
-            <Markdown
-              ref={mdRef}
-              value={text}
-              escapeHtml={false}
-              renderers={{ text: renderLines }}
-              toc
-            />
 
-            <NoteTimelineList noteId={data.id} />
+            <BanCopy>
+              <Markdown
+                ref={mdRef}
+                value={text}
+                escapeHtml={false}
+                renderers={{ text: renderLines }}
+                toc
+              />
+            </BanCopy>
+
+            <NoteTimelineList noteId={note.id} />
           </ImageSizeMetaContext.Provider>
         )}
 
@@ -395,19 +370,7 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
           </section>
         )}
       </NoteLayout>
-      <OverLay
-        onClose={() => {
-          setShowCopyWarn(false)
-        }}
-        show={showCopyWarn}
-        center
-        darkness={0.8}
-      >
-        <h1 className={'mt-0 text-red pointer-events-none'}>注意: </h1>
-        <div className="mb-0 text-white text-opacity-80 pointer-events-none">
-          <p>本文章为站长原创, 保留版权所有, 禁止复制.</p>
-        </div>
-      </OverLay>
+
       {!isSecret && (
         <ArticleLayout
           style={{ minHeight: 'unset', paddingTop: '0' }}
@@ -417,7 +380,7 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
           <CommentWrap
             type={'Note'}
             id={id}
-            allowComment={props.data.allowComment ?? true}
+            allowComment={note.allowComment ?? true}
           />
         </ArticleLayout>
       )}
@@ -425,82 +388,51 @@ const NoteView: React.FC<NoteViewProps> = observer((props) => {
   )
 })
 
-const PasswordConfrim: React.FC<{
-  onSubmit(password: string): any
-}> = (props) => {
-  const ref = useRef<HTMLInputElement>(null)
-  return (
-    <main className="relative">
-      <div className="flex h-full w-full absolute items-center justify-center flex-col">
-        <p>
-          <strong className="font-medium text-2xl">此文章需要密码</strong>
-        </p>
-        <div className="space-x-3 text-center space-y-3">
-          <Input ref={ref} type="password"></Input>
-          <button
-            className="btn yellow flex-shrink-0"
-            onClick={() => {
-              if (!ref.current) {
-                return
-              }
-              props.onSubmit(ref.current.value)
-            }}
-          >
-            提交
-          </button>
-        </div>
-      </div>
-    </main>
-  )
-}
-
-const NotePage: NextPage<NoteViewProps | { needPassword: true }> = observer(
-  (_props) => {
-    const [props, setProps] = useState<NoteViewProps | null>(null)
-
-    const router = useRouter()
-
-    // when router change, reset stored old props
-    useEffect(() => {
-      router.events.on('routeChangeStart', () => {
-        setProps(null)
-      })
-    }, [])
-
-    if ('needPassword' in _props && !props) {
+const PP: NextPage<NoteModel | { needPassword: true }> = observer((props) => {
+  const router = useRouter()
+  const note = noteStore.get((props as NoteModel)?.id)
+  const update = useUpdate()
+  useEffect(() => {
+    if (!note) {
+      update()
+    }
+  }, [note])
+  if ('needPassword' in props) {
+    if (!note) {
       const fetchData = (password: string) => {
         const id = router.query.id as string
-
-        apiClient.note
-          .getNoteById(isNaN(+id) ? id : +id, password)
-
-          .then((data) => {
-            setProps(data)
-          })
-          .catch((err) => {
-            message.error('密码错误')
-          })
+        noteStore.fetchById(isNaN(+id) ? id : +id, password).catch((err) => {
+          message.error('密码错误')
+        })
       }
-      return <PasswordConfrim onSubmit={fetchData} />
-    }
-    if (props) {
-      return <NoteView {...props} />
-    } else if (!('needPassword' in _props)) {
-      return <NoteView {..._props} />
+      return <NotePasswordConfrim onSubmit={fetchData} />
     } else {
-      return null
+      return <NoteView id={note.id} />
     }
-  },
-)
+  }
 
-NotePage.getInitialProps = async (ctx) => {
+  if (!note) {
+    noteStore.add(props)
+
+    return <Loading />
+  }
+
+  return <NoteView id={props.id} />
+})
+
+PP.getInitialProps = async (ctx) => {
   const id = ctx.query.id as string
+  const password = ctx.query.password as string
   if (id == 'latest') {
-    return await apiClient.note.getLatest()
+    return await noteStore.fetchLatest()
   }
   try {
-    const res = await apiClient.note.getNoteById(isNaN(+id) ? id : +id)
-    return res
+    const res = await noteStore.fetchById(
+      isNaN(+id) ? id : +id,
+      String(password) || undefined,
+      { force: true },
+    )
+    return res as any
   } catch (err: any) {
     if (err.statusCode !== 403) {
       throw err
@@ -509,4 +441,4 @@ NotePage.getInitialProps = async (ctx) => {
   }
 }
 
-export default NotePage
+export default PP

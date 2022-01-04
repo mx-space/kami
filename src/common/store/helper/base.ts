@@ -1,8 +1,11 @@
-import { action, makeObservable } from 'mobx'
+import { action, makeObservable, toJS } from 'mobx'
 import { Id, KeyValueCollection } from './structure'
 
 type Identifiable = { id: Id }
-export class Store<T extends Identifiable> extends KeyValueCollection<Id, T> {
+export class Store<T extends Identifiable> extends KeyValueCollection<
+  Id,
+  T & { isDeleted?: boolean }
+> {
   constructor() {
     super()
 
@@ -11,6 +14,10 @@ export class Store<T extends Identifiable> extends KeyValueCollection<Id, T> {
       remove: action,
       addAndPatch: action,
     })
+  }
+
+  get raw() {
+    return toJS(this.data)
   }
 
   add(id: string, data: T | T[]): this

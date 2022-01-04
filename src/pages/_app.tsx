@@ -138,10 +138,10 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
   return (
     <RootStoreProvider>
       <InitialContextProvider value={initData}>
-        <DropdownProvider>
-          <DynamicHeaderMeta />
-          <Content>{Comp}</Content>
-        </DropdownProvider>
+        {/* <DropdownProvider> */}
+        <DynamicHeaderMeta />
+        <Content>{Comp}</Content>
+        {/* </DropdownProvider> */}
       </InitialContextProvider>
     </RootStoreProvider>
   )
