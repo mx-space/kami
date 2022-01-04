@@ -1,7 +1,7 @@
-@import 'rc-texty/assets/index.css';
-@import './kico.css';
-@import './theme.css';
-@import './extra.css';
-@import './shizuku.css';
-@import './atom.css';
-@import 'react-medium-image-zoom/dist/styles.css';
+@import "rc-texty/assets/index.css";
+@import "./kico.css";
+@import "./theme.css";
+@import "./extra.css";
+@import "./shizuku.css";
+@import "./atom.css";
+@import "react-medium-image-zoom/dist/styles.css";
