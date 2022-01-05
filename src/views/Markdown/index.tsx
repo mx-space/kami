@@ -11,6 +11,7 @@ import styles from './index.module.css'
 import { RenderLink } from './Link'
 import {
   RenderCommentAt,
+  RenderListItem,
   RenderParagraph,
   RenderReference,
   RenderSpoiler,
@@ -75,6 +76,7 @@ export const Markdown: FC<MdProps> = observer(
             paragraph: RenderParagraph,
             commentAt: RenderCommentAt,
             linkReference: RenderReference,
+            listItem: RenderListItem,
             ...renderers,
           }}
           // astPlugins={[mermaid]}

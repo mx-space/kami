@@ -10,7 +10,7 @@
     }
 
     a::after {
-      content: "";
+      content: '';
       position: absolute;
       bottom: -1.9px;
       height: 1px;
@@ -81,11 +81,11 @@
   }
 
   details summary::before {
-    content: "+ ";
+    content: '+ ';
   }
 
   details[open] summary::before {
-    content: "- ";
+    content: '- ';
   }
 
   details[open] summary::before,

@@ -1,9 +1,5 @@
 // modified by Innei
 
-
-
-
-
 *,
 *::before,
 *::after {
@@ -33,10 +29,7 @@
 :root {
   text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
-  font:
-    16px/1.5 "Microsoft Yahei",
-    "PingFang SC",
-    "Hiragino Sans GB",
+  font: 16px/1.5 'Microsoft Yahei', 'PingFang SC', 'Hiragino Sans GB',
     sans-serif;
 }
 
@@ -118,7 +111,7 @@ em.green {
 kbd {
   color: #fff;
   background: #333;
-  font-family: "Consolas", "Courier New", monospace, "微软雅黑";
+  font-family: 'Consolas', 'Courier New', monospace, '微软雅黑';
 }
 
 /* - 文章 */
@@ -231,7 +224,7 @@ button {
 /* - 代码 */
 pre,
 code {
-  font-family: "Consolas", "Courier New", monospace, "微软雅黑";
+  font-family: 'Consolas', 'Courier New', monospace, '微软雅黑';
 }
 
 :not(pre) > code {
@@ -273,7 +266,7 @@ dl dd {
 }
 
 dl dd::before {
-  content: "--";
+  content: '--';
   margin-right: 0.25em;
 }
 
@@ -331,17 +324,17 @@ textarea {
   vertical-align: middle;
 }
 
-input[type*="date"],
-input[type="email"],
-input[type="month"],
-input[type="number"],
-input[type="password"],
-input[type="search"],
-input[type="tel"],
-input[type="text"],
-input[type="time"],
-input[type="url"],
-input[type="week"],
+input[type*='date'],
+input[type='email'],
+input[type='month'],
+input[type='number'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='time'],
+input[type='url'],
+input[type='week'],
 select,
 textarea {
   padding: 0.5em;
@@ -367,7 +360,7 @@ input:out-of-range {
   border-radius: 0.5em;
 }
 
-input[type="range"] {
+input[type='range'] {
   margin: 0;
   height: 100%;
   appearance: none;
@@ -378,38 +371,38 @@ input[type="range"] {
   min-height: 1.5rem;
 }
 
-input[type="range"]:focus {
+input[type='range']:focus {
   box-shadow: none;
   outline: none;
 }
 
-input[type="range"]:active::-webkit-slider-thumb {
+input[type='range']:active::-webkit-slider-thumb {
   border-color: #3498db;
   background-color: #3498db;
 }
 
-input[type="range"]:active::-moz-range-thumb {
+input[type='range']:active::-moz-range-thumb {
   border-color: #3498db;
   background-color: #3498db;
 }
 
-input[type="range"]:focus::-ms-thumb {
+input[type='range']:focus::-ms-thumb {
   border-color: #9c27b0;
   background-color: #673ab7;
 }
 
-input[type="range"]::-moz-focus-outer {
+input[type='range']::-moz-focus-outer {
   border: 0;
 }
 
-input[type="range"]::-webkit-slider-runnable-track {
+input[type='range']::-webkit-slider-runnable-track {
   background: #3498db;
-  content: "";
+  content: '';
   height: 2px;
   pointer-events: none;
 }
 
-input[type="range"]::-webkit-slider-thumb {
+input[type='range']::-webkit-slider-thumb {
   width: 14px;
   height: 14px;
   appearance: none;
@@ -421,13 +414,13 @@ input[type="range"]::-webkit-slider-thumb {
   transition: 0.5s border-color, 0.5s background-color;
 }
 
-input[type="range"]::-moz-range-track {
+input[type='range']::-moz-range-track {
   width: 240px;
   height: 2px;
   background: rgb(0 50 126 / 12%);
 }
 
-input[type="range"]::-moz-range-thumb {
+input[type='range']::-moz-range-thumb {
   width: 14px;
   height: 14px;
   background: #fff;
@@ -437,7 +430,7 @@ input[type="range"]::-moz-range-thumb {
   transition: 0.5s border-color, 0.5s background-color;
 }
 
-input[type="range"]::-moz-range-progress {
+input[type='range']::-moz-range-progress {
   height: 2px;
   background: #467fcf;
   border: 0;
@@ -462,178 +455,38 @@ progress::-webkit-progress-bar {
 /* - 表单模组 */
 
 /* -- 单选多选框 */
-input[type="checkbox"],
-input[type="radio"] {
-  float: left;
-  width: 1.5em;
-  height: 1.5em;
-  cursor: pointer;
+
+input[type='checkbox'] {
   position: relative;
-  margin: 0 0.5em 0 0;
-  appearance: none;
-  appearance: none;
-}
-
-input[type="checkbox"]::before,
-input[type="radio"]::before {
-  content: "";
-  width: 100%;
-  height: 100%;
-  display: block;
-  border-radius: 0.2em;
-  box-shadow: 0 0 0 1px #ccc inset;
-  transition: background 0.5s, box-shadow 0.5s;
-}
-
-input[type="checkbox"]::after {
-  top: 10%;
-  left: 10%;
-  width: 30%;
-  height: 60%;
-  content: "";
-  position: absolute;
-  transition: transform 0.5s;
-  transform-origin: 100% 100%;
-  border-right: 0.15em solid #fff;
-  border-bottom: 0.15em solid #fff;
-  transform: rotate(45deg) scale(0);
-}
-
-input[type="radio"],
-input[type="radio"]::before {
-  border-radius: 100%;
-}
-
-input[type="checkbox"],
-input[type="checkbox"]::before {
-  border-radius: 0.2em;
-}
-
-input[type="radio"]:checked::before {
-  background: #3498db;
-  border: 2px solid #3498db;
-  box-shadow: 0 0 0 0.2em #fff inset;
-}
-
-input[type="checkbox"]:checked::before {
-  box-shadow: none;
-  background: #3498db;
-}
-
-input[type="checkbox"]:checked::after {
-  transform: rotate(45deg) scale(1);
-}
-
-/* -- 开关按钮 */
-input[type="checkbox"].switch {
-  width: 4em;
-  height: 2em;
-  float: none;
+  margin: 0 1rem 0 0;
   cursor: pointer;
-  background: #eee;
-  position: relative;
-  border-radius: 50px;
-  border: 1px solid #ddd;
-  box-sizing: content-box;
-  transition: border 0.5s, background 0.5s;
 }
-
-input[type="checkbox"].switch::before {
-  margin: 0;
-  border: 0;
-  width: 2em;
-  height: 2em;
-  content: "";
-  display: block;
-  box-shadow: none;
-  background: #fff;
+input[type='checkbox']:before {
+  transition: all 0.3s ease-in-out;
+  content: '';
   position: absolute;
-  border-radius: 100%;
-  transition: transform 0.5s;
+  left: 0;
+  z-index: 1;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #f2f2f2;
 }
-
-input[type="checkbox"].switch::after {
-  content: normal;
+input[type='checkbox']:checked:before {
+  transform: rotate(-45deg);
+  height: 0.5rem;
+  border-color: var(--green);
+  border-top-style: none;
+  border-right-style: none;
 }
-
-input[type="checkbox"].switch:checked {
-  box-shadow: none;
-  background: #3498db;
-  border-color: #3498db;
-}
-
-input.switch:checked::before {
-  background: #fff;
-  transform: translateX(2em);
-}
-
-/* - 表单小组 */
-fieldset {
-  border: none;
-  margin-bottom: 2em;
-}
-
-fieldset > * {
-  margin-bottom: 1em;
-}
-
-fieldset:last-child {
-  margin-bottom: 0;
-}
-
-fieldset legend {
-  margin: 0 0 1em;
-}
-
-fieldset input:not([type="checkbox"]):not([type="radio"]),
-fieldset select,
-fieldset textarea {
-  width: 100%;
-}
-
-/* -- 控件模块 */
-fieldset label {
-  display: block;
-  user-select: none;
-  margin-bottom: 1em;
-}
-
-/* -- 控件标题 */
-fieldset label span:first-child {
-  font-size: 0.85em;
-  white-space: nowrap;
-  margin-bottom: 0.5rem;
-  display: inline-block;
-  color: rgb(0 0 0 / 60%);
-}
-
-fieldset label.required span::after {
-  color: red;
-  content: "*";
-  margin-left: 0.25em;
-}
-
-/* -- 单行组合 */
-fieldset .has-group {
-  display: flex;
-}
-
-fieldset .has-group input:not([type="checkbox"]):not([type="radio"]) {
-  width: auto;
-  flex: 1 1 auto;
-  border-right: none;
-}
-
-fieldset .has-group .btn {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-/* -- 单行表单 */
-form .inline label {
-  display: inline-block;
-  vertical-align: bottom;
-  margin: 0 0.75em 0.75em 0;
+input[type='checkbox']:after {
+  content: '';
+  position: absolute;
+  top: -0.125rem;
+  left: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  background: var(--light-bg);
+  cursor: pointer;
 }
 
 /* - 表格 */
@@ -775,29 +628,29 @@ iframe {
 }
 
 /* -- 网格间距 */
-.row [class*="col-"] {
+.row [class*='col-'] {
   flex: 0 0 100%;
   padding: 0 1em;
   max-width: 100%;
   margin-bottom: 2em;
 }
 
-.row.s [class*="col-"] {
+.row.s [class*='col-'] {
   padding: 0 0.5em;
   margin-bottom: 1em;
 }
 
-.row.m [class*="col-"] {
+.row.m [class*='col-'] {
   padding: 0 1.25em;
   margin-bottom: 2.5em;
 }
 
-.row.l [class*="col-"] {
+.row.l [class*='col-'] {
   padding: 0 1.5em;
   margin-bottom: 3em;
 }
 
-.row.full [class*="col-"] {
+.row.full [class*='col-'] {
   padding: 0;
   margin-bottom: 0;
 }
