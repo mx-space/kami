@@ -117,6 +117,7 @@ html.dark .header-top-navbar {
 
 .app-content {
   min-height: calc(100vh - 10vw - 7.75em);
+  position: relative;
 }
 
 main {
@@ -125,12 +126,6 @@ main {
   padding: 5em 2em;
   transition: transform 0.3s, opacity 0.3s, visibility 0.3s;
   visibility: visible;
-}
-
-main.loading {
-  transform: translateY(50px);
-  opacity: 0;
-  visibility: hidden;
 }
 
 main.is-article {

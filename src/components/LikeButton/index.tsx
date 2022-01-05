@@ -2,13 +2,18 @@ import clsx from 'clsx'
 import { FC } from 'react'
 import styles from './index.module.css'
 
-export const LikeButton: FC<{ checked: boolean; width?: string }> = ({
-  checked,
-  width,
-}) => {
+export const LikeButton: FC<{
+  checked: boolean
+  width?: string
+  className?: string
+}> = ({ checked, width, className }) => {
   return (
     <div
-      className={clsx(styles['like-button'], checked ? styles['checked'] : '')}
+      className={clsx(
+        styles['like-button'],
+        checked ? styles['checked'] : '',
+        className,
+      )}
     >
       <label htmlFor="checkbox">
         <svg

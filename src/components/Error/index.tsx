@@ -1,9 +1,10 @@
+import { Seo } from 'components/SEO'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { isServerSide } from 'utils'
 import styles from './index.module.css'
 
-const errorToText = (statusCode: number) => {
+export const errorToText = (statusCode: number) => {
   switch (statusCode) {
     case 404:
       return '抱歉啦, 页面走丢了'
@@ -37,13 +38,14 @@ export const ErrorView: NextPage<{
   description,
 }) => {
   const router = useRouter()
-
+  const message = errorToText(statusCode)
   return (
     <div className={styles['error']}>
+      <Seo title={message} />
       <div>
         <h1>{statusCode}</h1>
         <div className={styles['desc']}>
-          {description ?? <h2>{errorToText(statusCode)}</h2>}
+          {description ?? <h2>{message}</h2>}
         </div>
       </div>
       {(showBackButton || showBackButton) && (

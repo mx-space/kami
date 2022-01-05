@@ -20,6 +20,8 @@ export function buildStoreDataLoadableView<T extends { id: string }>(
   View: React.ElementType,
 ): NextPage<T> {
   return observer((props: Props) => {
+    console.log(props)
+
     const post = store.get(props.id)
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {

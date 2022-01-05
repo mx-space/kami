@@ -1,6 +1,6 @@
+import { RequestError } from '@mx-space/api-client'
 import { ErrorView } from 'components/Error'
 import { NextPage } from 'next'
-
 const ErrorPage: NextPage<{ statusCode: number }> = ({ statusCode = 500 }) => {
   return <ErrorView showBackButton showRefreshButton statusCode={statusCode} />
 }
@@ -8,6 +8,9 @@ const ErrorPage: NextPage<{ statusCode: number }> = ({ statusCode = 500 }) => {
 const getCode = (err, res): number => {
   if (!err && !res) {
     return 500
+  }
+  if (err instanceof RequestError) {
+    return err.status || 408
   }
   if (res?.statusCode === 500 && err?.statusCode === 500) {
     return 500
@@ -25,7 +28,7 @@ ErrorPage.getInitialProps = async ({ res, err }) => {
     // Opinionated: do not record an exception in Sentry for 404
     return { statusCode: 404 }
   }
-
+  res && (res.statusCode = statusCode)
   return { statusCode } as {
     statusCode: number
   }

@@ -20,6 +20,15 @@ export class NoteStore extends Store<NoteModel> {
   >()
 
   nidToIdMap = new Map<number, Id>()
+
+  override get(id: string | number) {
+    if (typeof id === 'string') {
+      return super.get(id)
+    } else {
+      const realId = this.nidToIdMap.get(id)
+      return realId ? super.get(realId) : undefined
+    }
+  }
   async fetchById(
     id: string | number,
     password?: string,
@@ -38,6 +47,7 @@ export class NoteStore extends Store<NoteModel> {
     const data = await apiClient.note.getNoteById(id, password)
 
     runInAction(() => {
+      console.log(data.data, Reflect.has(data.data, 'err'))
       this.add(data.data)
       this.nidToIdMap.set(data.data.nid, data.data.id)
       this.relationMap.set(data.data.id, [data.prev, data.next])

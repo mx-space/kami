@@ -6,7 +6,7 @@ import { NoteModel } from '@mx-space/api-client'
 import clsx from 'clsx'
 import { QueueAnim } from 'components/Anime'
 import { useRouter } from 'next/router'
-import { FC, useEffect, useState } from 'react'
+import { FC, memo, useEffect, useState } from 'react'
 import { apiClient } from 'utils/client'
 import styles from './index.module.css'
 
@@ -17,7 +17,7 @@ interface NoteTimelineListProps {
 type NotePartial = Pick<NoteModel, 'id' | 'nid' | 'created' | 'title'>
 export const NoteTimelineList: FC<
   NoteTimelineListProps & JSX.IntrinsicElements['div']
-> = (props) => {
+> = memo((props) => {
   const { className, noteId } = props
   const [list, setList] = useState<NotePartial[]>([])
   const router = useRouter()
@@ -49,4 +49,4 @@ export const NoteTimelineList: FC<
       </ul>
     </div>
   )
-}
+})

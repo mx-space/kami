@@ -126,14 +126,14 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
 
   const Comp = useMemo(() => {
     if (router.route.startsWith('/dev')) {
-      return <Component {...pageProps} err={err} />
+      return <Component {...pageProps} />
     }
     return (
       <BasicLayout>
-        <Component {...pageProps} err={err} />
+        <Component {...pageProps} />
       </BasicLayout>
     )
-  }, [Component, err, pageProps, router.route])
+  }, [Component, pageProps, router.route])
 
   return (
     <RootStoreProvider>

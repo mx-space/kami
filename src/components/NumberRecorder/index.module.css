@@ -4,7 +4,9 @@
   position: relative;
   display: inline-block;
   transition: all 0.5s;
-  font-size: 14px;
+  font-size: 1em;
+  display: inline-flex;
+  justify-content: center;
 
   .numbers {
     span {
@@ -20,7 +22,7 @@
     top: 0;
     transform: translateY(-1em);
     transition: transform 0.5s;
-    line-height: 1.13;
+    line-height: inherit;
     display: flex;
     flex-direction: column;
   }

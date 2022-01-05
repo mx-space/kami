@@ -42,7 +42,7 @@ const isThumbsUpBefore = isLikedBefore
 
 const useUpdatePost = (id: string) => {
   const post = postStore.get(id)
-  const beforeModel = useRef(toJS(post))
+  const beforeModel = useRef<PostModel>()
   const router = useRouter()
 
   useEffect(() => {
@@ -50,6 +50,7 @@ const useUpdatePost = (id: string) => {
 
     if (!before && post) {
       beforeModel.current = toJS(post)
+      return
     }
     if (!before || !post) {
       return
@@ -144,7 +145,11 @@ export const PostView: FC<{ id: string }> = observer((props) => {
         },
         {
           icon: faThumbsUp,
-          name: <NumberRecorder number={post.count?.like || 0} />,
+          name: (
+            <span className="leading-[1.1]">
+              <NumberRecorder number={post.count?.like || 0} />
+            </span>
+          ),
           color: isThumbsUpBefore(post.id) ? '#f1c40f' : undefined,
           callback: () => {
             if (isThumbsUpBefore(post.id)) {
