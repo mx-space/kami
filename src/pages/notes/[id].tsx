@@ -17,7 +17,6 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React, { FC, useEffect, useMemo, useRef, useState } from 'react'
 import { useUpdate } from 'react-use'
-import { apiClient } from 'utils/client'
 import { imagesRecord2Map } from 'utils/images'
 import { message } from 'utils/message'
 import { mood2icon, weather2icon } from 'utils/meta-icon'
@@ -30,13 +29,7 @@ import { BanCopy } from 'views/for-pages/WarningOverlay/ban-copy'
 import { Markdown } from 'views/Markdown'
 import { ImageSizeMetaContext } from '../../common/context/image-size'
 import { Seo } from '../../components/SEO'
-import {
-  getSummaryFromMd,
-  isDev,
-  isLikedBefore,
-  noop,
-  setLikeId,
-} from '../../utils'
+import { getSummaryFromMd, isDev, noop } from '../../utils'
 
 const renderLines: FC<{ value: string }> = ({ value }) => {
   return <span className="indent">{value}</span>
@@ -267,13 +260,14 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
 
 const FooterActionBar: FC<{ id: string }> = observer(({ id }) => {
   const note = noteStore.get(id)
-  const update = useUpdate()
+
   if (!note) {
     return null
   }
+  const nid = note.nid
   const { mood, weather } = note
   const isSecret = note.secret ? dayjs(note.secret).isAfter(new Date()) : false
-  const isLiked = isLikedBefore(id)
+  const isLiked = noteStore.isLiked(nid)
   const actions: ActionProps = {
     informs: [],
     actions: [
@@ -295,23 +289,7 @@ const FooterActionBar: FC<{ id: string }> = observer(({ id }) => {
         color: isLiked ? '#e74c3c' : undefined,
 
         callback: () => {
-          if (isLiked) {
-            return message.error('你已经喜欢过啦!')
-          }
-          apiClient.note
-            .likeIt(note.id)
-            .then(() => {
-              message.success('感谢喜欢!')
-
-              setLikeId(note.id)
-              note.count.like += 1
-              update()
-            })
-            .catch(() => {
-              setLikeId(note.id)
-              update()
-              message.error('你已经喜欢过啦!')
-            })
+          noteStore.like(nid)
         },
       },
     ],

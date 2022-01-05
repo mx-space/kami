@@ -1,9 +1,7 @@
+import { noteStore } from 'common/store'
 import { LikeButton } from 'components/LikeButton'
-import { useRouter } from 'next/router'
-import React, { FC, memo, useEffect, useState } from 'react'
-import { eventBus, isLikedBefore, setLikeId } from 'utils'
-import { apiClient } from 'utils/client'
-import { message } from 'utils/message'
+import React, { FC, memo } from 'react'
+import { observer } from 'utils'
 import styles from './index.module.css'
 export const HeaderActionButton: FC<
   React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
@@ -19,39 +17,13 @@ export const HeaderActionButtonsContainer = memo((props) => {
   return <div className="mr-3 flex items-center">{props.children}</div>
 })
 
-export const HeaderActionLikeButtonForNote: FC<{ id: number }> = memo(
+export const HeaderActionLikeButtonForNote: FC<{ id: number }> = observer(
   (props) => {
     const { id } = props
-    const [liked, setLiked] = useState(false)
-    const router = useRouter()
-    useEffect(() => {
-      setLiked(false)
-    }, [router])
-    useEffect(() => {
-      setLiked(isLikedBefore(id.toString()))
 
-      const handler = (nid) => {
-        if (id === nid) {
-          setLiked(true)
-        }
-      }
-      eventBus.on('like', handler)
+    const liked = noteStore.isLiked(id)
 
-      return () => {
-        eventBus.off('like', handler)
-      }
-    }, [id])
-    const onLike = () =>
-      apiClient.note
-        .likeIt(id)
-        .then(() => {
-          message.success('感谢喜欢!')
-          eventBus.emit('like', id)
-          setLikeId(id.toString())
-        })
-        .catch(() => {
-          setLiked(true)
-        })
+    const onLike = () => noteStore.like(id)
 
     return (
       <div onClick={onLike} className="flex items-center">

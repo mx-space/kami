@@ -1,4 +1,5 @@
 import { InitialDataType } from 'common/context/initial-data'
+import { FC } from 'react'
 
 /*
  * @Author: Innei
@@ -17,6 +18,9 @@ declare global {
 
     data?: InitialDataType
   }
+
+  export type IdProps = { id: string }
+  export type PageOnlyProps = FC<IdProps>
 }
 
 declare module 'react' {

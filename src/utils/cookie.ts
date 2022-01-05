@@ -34,7 +34,6 @@ export function setLikeId(id: string) {
       { expires: getTomorrow() },
     )
   }
-  // Cookies.set(LikePrefix + id, )
 }
 
 function getLikes() {
@@ -48,7 +47,6 @@ export function isLikedBefore(id: string) {
     return false
   }
   const list = JSON.parse(has) as string[]
-  // console.log(list, id, list.includes(id))
 
   return list.includes(id)
 }

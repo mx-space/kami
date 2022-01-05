@@ -20,7 +20,7 @@ import { isEqual } from 'lodash-es'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
-import React, { FC, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { apiClient } from 'utils/client'
 import { message } from 'utils/message'
 import { CommentLazy } from 'views/Comment'
@@ -94,7 +94,7 @@ const useUpdatePost = (id: string) => {
   ])
 }
 
-export const PostView: FC<{ id: string }> = observer((props) => {
+export const PostView: PageOnlyProps = observer((props) => {
   const { postStore } = useStore()
   const post: PostModel = postStore.get(props.id) || noop
 

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { NoteModel } from '@mx-space/api-client'
 import { makeObservable, observable, runInAction } from 'mobx'
-import { apiClient } from 'utils'
+import { apiClient, isLikedBefore, message, setLikeId } from 'utils'
 import { Store } from '../helper/base'
 import { Id } from '../helper/structure'
 import { FetchOption } from '../types/options'
@@ -11,6 +11,7 @@ export class NoteStore extends Store<NoteModel> {
     super()
     makeObservable(this, {
       relationMap: observable,
+      likeIdList: observable,
     })
   }
   // 记录前后关系
@@ -21,6 +22,8 @@ export class NoteStore extends Store<NoteModel> {
 
   nidToIdMap = new Map<number, Id>()
 
+  likeIdList = new Set<string>()
+
   override get(id: string | number) {
     if (typeof id === 'string') {
       return super.get(id)
@@ -29,6 +32,44 @@ export class NoteStore extends Store<NoteModel> {
       return realId ? super.get(realId) : undefined
     }
   }
+
+  async like(id: number) {
+    const note = this.get(id)
+    if (!note) {
+      return false
+    }
+    const errorMessage = '你已经喜欢过啦'
+
+    if (this.isLiked(id)) {
+      message.error(errorMessage)
+      return
+    }
+
+    try {
+      await apiClient.note.likeIt(id)
+      note.count.like = note.count.like + 1
+      message.success('感谢喜欢!')
+    } catch {
+      message.error(errorMessage)
+    } finally {
+      this.likeIdList.add(id.toString())
+      setLikeId('note-' + note.nid.toString())
+    }
+
+    return true
+  }
+
+  isLiked(id: number) {
+    const storeLiked = this.likeIdList.has(id.toString())
+
+    const inCookie = isLikedBefore('note-' + id.toString())
+    if (!storeLiked && inCookie) {
+      this.likeIdList.add(id.toString())
+    }
+
+    return storeLiked || inCookie
+  }
+
   async fetchById(
     id: string | number,
     password?: string,
@@ -47,8 +88,8 @@ export class NoteStore extends Store<NoteModel> {
     const data = await apiClient.note.getNoteById(id, password)
 
     runInAction(() => {
-      console.log(data.data, Reflect.has(data.data, 'err'))
       this.add(data.data)
+      // TODO 这边的关系映射的添加 是不是应该覆写 add 方法比较好, 下面也是
       this.nidToIdMap.set(data.data.nid, data.data.id)
       this.relationMap.set(data.data.id, [data.prev, data.next])
     })

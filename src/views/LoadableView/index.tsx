@@ -17,11 +17,9 @@ export const LoadableView = memo<
 type Props = { id: string; [k: string]: any }
 export function buildStoreDataLoadableView<T extends { id: string }>(
   store: Store<any>,
-  View: React.ElementType,
+  View: PageOnlyProps,
 ): NextPage<T> {
   return observer((props: Props) => {
-    console.log(props)
-
     const post = store.get(props.id)
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
