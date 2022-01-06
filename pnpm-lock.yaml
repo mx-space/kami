@@ -77,10 +77,9 @@ specifiers:
   remove-markdown: 0.3.0
   rimraf: '*'
   scrollama: 3.0.2
-  socket.io-client: 4.4.0
+  socket.io-client: 4.4.1
   stylelint: 14.2.0
   stylelint-config-standard: 24.0.0
-  socket.io-client: 4.4.1
   ts-node: 10.4.0
   typescript: 4.5.4
   use-dark-mode: 2.3.1
@@ -110,7 +109,7 @@ dependencies:
   mdurl: 1.0.1
   mobx: 6.3.12
   mobx-react-lite: 3.2.3_669b1e42b258bd2cd4755e495b844de0
-  next: 12.0.7_e423b6f1d34b5513b88636554f07a035
+  next: 12.0.7_react-dom@17.0.2+react@17.0.2
   next-offline: 5.0.5_next@12.0.7
   next-seo: 4.28.1_d837ce8f3acb2f60f8b7454672a9bcea
   normalize.css: 8.0.1
@@ -131,8 +130,8 @@ dependencies:
   react-use: 17.3.2_react-dom@17.0.2+react@17.0.2
   remove-markdown: 0.3.0
   scrollama: 3.0.2
-  use-dark-mode: 2.3.1_react@17.0.2
   socket.io-client: 4.4.1
+  use-dark-mode: 2.3.1_react@17.0.2
   validator: 13.7.0
 
 devDependencies:
@@ -2021,10 +2020,6 @@ packages:
   /@types/ua-parser-js/0.7.36:
     resolution: {integrity: sha512-N1rW+njavs70y2cApeIw1vLMYXRwfBy+7trgavGuuTfOd7j1Yh7QTRc/yqsPl6ncokt72ZXuxEU0PiCp9bSwNQ==}
     dev: true
-
-  /@types/unist/2.0.6:
-    resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
-    dev: false
 
   /@types/validator/13.7.1:
     resolution: {integrity: sha512-I6OUIZ5cYRk5lp14xSOAiXjWrfVoMZVjDuevBYgQDYzZIjsf2CAISpEcXOkFAtpAHbmWIDLcZObejqny/9xq5Q==}
@@ -5777,11 +5772,6 @@ packages:
     resolution: {integrity: sha512-5Hx2IjhBtySVQlSFe+sHczKgOQ+cCyi8hN2wEvWzpJEEMRflQoDzDwJJ+m7SBWBQhfrWMWb1RGZNk4X1XtxJkQ==}
     dev: false
 
-  /modern-normalize/1.1.0:
-    resolution: {integrity: sha512-2lMlY1Yc1+CUy0gw4H95uNN7vjbpoED7NNRSBHE25nWfLBdmMzFCsPshlzbxHz+gYMcBEUN8V4pU16prcdPSgA==}
-    engines: {node: '>=6'}
-    dev: false
-
   /move-concurrently/1.0.1:
     resolution: {integrity: sha1-viwAX9oy4LKa8fBdfEszIUxwH5I=}
     dependencies:
@@ -5866,7 +5856,7 @@ packages:
     dependencies:
       copy-webpack-plugin: 5.1.2
       fs-extra: 8.1.0
-      next: 12.0.7_e423b6f1d34b5513b88636554f07a035
+      next: 12.0.7_react-dom@17.0.2+react@17.0.2
       workbox-webpack-plugin: 5.1.4
     transitivePeerDependencies:
       - supports-color
@@ -5879,12 +5869,12 @@ packages:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
     dependencies:
-      next: 12.0.7_e423b6f1d34b5513b88636554f07a035
+      next: 12.0.7_react-dom@17.0.2+react@17.0.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     dev: false
 
-  /next/12.0.7_e423b6f1d34b5513b88636554f07a035:
+  /next/12.0.7_react-dom@17.0.2+react@17.0.2:
     resolution: {integrity: sha512-sKO8GJJYfuk9c+q+zHSNumvff+wP7ufmOlwT6BuzwiYfFJ61VTTkfTcDLSJ+95ErQJiC54uS4Yg5JEE8H6jXRA==}
     engines: {node: '>=12.22.0'}
     hasBin: true
@@ -6658,34 +6648,6 @@ packages:
       postcss-value-parser: 4.2.0
     dev: true
 
-  /postcss-load-config/3.1.0_ts-node@10.4.0:
-    resolution: {integrity: sha512-ipM8Ds01ZUophjDTQYSVP70slFSYg3T0/zyfII5vzhN6V57YSxMgG5syXuwi5VtS8wSf3iL30v0uBdoIVx4Q0g==}
-    engines: {node: '>= 10'}
-    peerDependencies:
-      ts-node: '>=9.0.0'
-    peerDependenciesMeta:
-      ts-node:
-        optional: true
-    dependencies:
-      import-cwd: 3.0.0
-      lilconfig: 2.0.3
-      ts-node: 10.4.0_c0a8ca172db2ce87bc71f1a1cb132fc8
-      yaml: 1.10.2
-    dev: false
-
-  /postcss-loader/6.2.1_postcss@8.4.5:
-    resolution: {integrity: sha512-WbbYpmAaKcux/P66bZ40bpWsBucjx/TTgVVzRZ9yUO8yQfVBlameJ0ZGVaPfH64hNSBh63a+ICP5nqOpBA0w+Q==}
-    engines: {node: '>= 12.13.0'}
-    peerDependencies:
-      postcss: ^7.0.0 || ^8.0.1
-      webpack: ^5.0.0
-    dependencies:
-      cosmiconfig: 7.0.1
-      klona: 2.0.5
-      postcss: 8.4.5
-      semver: 7.3.5
-    dev: true
-
   /postcss-logical/5.0.1_postcss@8.4.5:
     resolution: {integrity: sha512-cKekWCoZrxdQktbj8PyCOqQWxsYAPyHjoeBPedkQzfWuEqRm0KVFRHypsHAiH2dDVUae52yx8PBtWS+V3BqT5w==}
     engines: {node: ^12 || ^14 || >=16}
@@ -7191,8 +7153,8 @@ packages:
       react: 17.0.2
     dev: false
 
-  /react-intersection-observer/8.33.1_react@17.0.2:
-    resolution: {integrity: sha512-3v+qaJvp3D1MlGHyM+KISVg/CMhPiOlO6FgPHcluqHkx4YFCLuyXNlQ/LE6UkbODXlQcLOppfX6UMxCEkUhDLw==}
+  /react-intersection-observer/8.32.5_react@17.0.2:
+    resolution: {integrity: sha512-4xKdUWRNdPueXXxTyMOV41w6qIa4tsV7BbWOW+IYsvGPP7wxOj9V6o3cKywie+/VDr5Qs7pCzi5Wom78dUxj1w==}
     peerDependencies:
       react: ^15.0.0 || ^16.0.0 || ^17.0.0|| ^18.0.0
     dependencies:
@@ -7884,7 +7846,7 @@ packages:
     dependencies:
       '@socket.io/component-emitter': 3.0.0
       backo2: 1.0.2
-      debug: 4.3.2
+      debug: 4.3.3
       engine.io-client: 6.1.1
       parseuri: 0.0.6
       socket.io-parser: 4.1.1
