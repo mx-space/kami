@@ -47,8 +47,6 @@
 
   /* https://stackoverflow.com/questions/42297303/css-opacity-transition-ignoring-overflowhidden-in-chrome-safari */
   backface-visibility: hidden;
-  backface-visibility: hidden;
-  transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 
   .avatar {

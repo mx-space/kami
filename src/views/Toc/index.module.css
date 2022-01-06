@@ -72,12 +72,11 @@
   &::before {
     opacity: 0.3;
     transition: opacity 0.5s;
-    content: "";
+    content: '';
     position: absolute;
     left: 2px;
     width: 2px;
     top: 0;
-    bottom: 0;
     background-color: var(--yellow);
     bottom: 0;
   }

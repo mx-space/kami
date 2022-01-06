@@ -2,7 +2,6 @@
   height: 1em;
   overflow: hidden;
   position: relative;
-  display: inline-block;
   transition: all 0.5s;
   font-size: 1em;
   display: inline-flex;
