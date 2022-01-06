@@ -5,8 +5,13 @@ import { isClientSide, observer, resolveUrl } from 'utils'
 import { useArticleLayoutProps } from './hooks'
 
 export const ArticleLayoutTitle = observer((props) => {
-  const { title, type, id, subtitle, subtitleAnimation } =
-    useArticleLayoutProps()
+  const {
+    title,
+    type,
+    id,
+    subtitle,
+    subtitleAnimation = true,
+  } = useArticleLayoutProps()
   const { isLogged, url } = userStore
   if (!title) {
     return null

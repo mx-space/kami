@@ -61,12 +61,17 @@ const useUpdateNote = (id: string) => {
       message.info('生活记录已更新')
 
       if (isDev) {
-        console.log('note-change: ', toJS(note), 'before: ', before)
+        console.log(
+          'note-change: ',
+          JSON.stringify(note),
+          'before: ',
+          JSON.stringify(before),
+        )
       }
     }
     beforeModel.current = toJS(note)
     // TODO password etc.
-  }, [note, note?.hide])
+  }, [note?.title, note?.text, note?.modified, note?.weather, note?.hide])
 }
 
 const NoteView: React.FC<{ id: string }> = observer((props) => {

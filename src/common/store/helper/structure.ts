@@ -206,6 +206,10 @@ export class KeyValueCollection<K extends Id, V extends object> extends Map<
     )
   }
 
+  first() {
+    return this.data.values().next().value
+  }
+
   toList() {
     return this.map((v) => v)
   }

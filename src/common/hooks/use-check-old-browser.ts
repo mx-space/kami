@@ -1,5 +1,4 @@
 import { useCallback } from 'react'
-import { UAParser } from 'ua-parser-js'
 import { message } from 'utils/message'
 
 export const useCheckOldBrowser = () => {
@@ -25,10 +24,15 @@ export const useCheckOldBrowser = () => {
 }
 
 function checkOldBrowser() {
-  const parser = new UAParser(window.navigator.userAgent)
-  const browser = parser.getBrowser()
+  const ua = window.navigator.userAgent
+  const isIE = (function () {
+    const msie = ua.indexOf('MSIE') // IE 10 or older
+    const trident = ua.indexOf('Trident/') // IE 11
+
+    return msie > 0 || trident > 0
+  })()
   const isOld: boolean = (() => {
-    if (browser.name === 'IE') {
+    if (isIE) {
       alert(
         '欧尼酱, 乃真的要使用 IE 浏览器吗, 不如换个 Chrome 好不好嘛（o´ﾟ□ﾟ`o）',
       )
@@ -59,11 +63,9 @@ function checkOldBrowser() {
     return false
   })()
   if (isOld) {
-    const { name: osName, version: osVersion } = parser.getOS()
-
     return {
       isOld: true,
-      msg: `User browser(${browser.name} ${browser.version}) is too old. OS: ${osName}/${osVersion}`,
+      msg: `User browser is too old. UA: ${ua}`,
     }
   }
 

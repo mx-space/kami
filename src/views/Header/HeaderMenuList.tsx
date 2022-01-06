@@ -59,6 +59,9 @@ export const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
       case 'recently': {
         return menu.findIndex((item) => item.path.startsWith('/recently'))
       }
+
+      default:
+        return 0
     }
   }, [kamiConfig.site.header.menu, router.asPath])
   const [ballOffsetLeft, setBallOffsetLeft] = useState(0)

@@ -41,6 +41,7 @@ import client from '../common/socket'
 import { useStore } from '../common/store'
 import { isServerSide } from '../utils'
 import { RootStoreProvider } from 'common/context/root-store'
+import { DebugLayout } from 'layouts/DebugLayout'
 
 const version = `v${Package.version}` || ''
 
@@ -126,7 +127,11 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
 
   const Comp = useMemo(() => {
     if (router.route.startsWith('/dev')) {
-      return <Component {...pageProps} />
+      return (
+        <DebugLayout>
+          <Component {...pageProps} />
+        </DebugLayout>
+      )
     }
     return (
       <BasicLayout>
