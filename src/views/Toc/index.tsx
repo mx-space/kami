@@ -1,82 +1,40 @@
 import classNames from 'clsx'
-import isNull from 'lodash/isNull'
-import range from 'lodash/range'
 import throttle from 'lodash/throttle'
 import dynamic from 'next/dynamic'
-import { useRouter } from 'next/router'
 import QueueAnim from 'rc-queue-anim'
-import {
-  FC,
-  memo,
-  PureComponent,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
-import { eventBus } from 'utils'
+import { FC, memo, useCallback, useEffect, useRef, useState } from 'react'
 import styles from './index.module.css'
-
-class Item extends PureComponent<{
+import { TocItem } from './item'
+export type TocHeading = {
   title: string
   depth: number
-  active: boolean
-  rootDepth: number
-  onClick: (i: number) => void
-  index: number
-}> {
-  render() {
-    const { index, active, depth, title, rootDepth, onClick } = this.props
-
-    return (
-      <a
-        data-scroll
-        href={'#' + title}
-        data-index={depth}
-        className={classNames(styles['toc-link'], active && styles['active'])}
-        style={{
-          paddingLeft:
-            depth > rootDepth ? `${1.2 * depth - rootDepth}rem` : undefined,
-        }}
-        data-depth={depth}
-        onClick={(e) => {
-          onClick(index)
-          if (typeof window.SmoothScroll === 'undefined') {
-            e.preventDefault()
-            const el = document.getElementById(title)
-            el?.scrollIntoView({ behavior: 'smooth' })
-          }
-        }}
-      >
-        <span className={styles['a-pointer']}>{title}</span>
-      </a>
-    )
-  }
 }
 
-const _Toc: FC = memo(() => {
+export type TocProps = {
+  headings: TocHeading[]
+}
+
+const _Toc: FC<TocProps> = memo(({ headings }) => {
   const containerRef = useRef<HTMLDivElement>(null)
 
   const [index, setIndex] = useState(-1)
+
   useEffect(() => {
-    const handler = (index: number) => {
-      setIndex(index)
-    }
-    eventBus.on('toc', handler)
-    return () => {
-      eventBus.off('toc', handler)
-    }
+    import('scrollama').then((scrollama) => {
+      const scroller = scrollama.default()
+      scroller
+        .setup({
+          step: '#write h1, #write h2, #write h3, #write h4, #write h5, #write h6',
+          // @ts-ignore
+          offset: '10px',
+        })
+        .onStepEnter(({ element }) => {
+          console.log(element.dataset['index'])
+          setIndex((element.dataset['index'] as any) | 0)
+        })
+    })
   }, [])
 
-  const [headings, setHeadings] = useState<
-    | null
-    | {
-        title: string
-        depth: number
-      }[]
-  >([])
-
-  const [rootDepth, setDepth] = useState(Infinity)
   const setMaxWidth = throttle(() => {
     if (containerRef.current) {
       containerRef.current.style.maxWidth =
@@ -86,72 +44,14 @@ const _Toc: FC = memo(() => {
         'px'
     }
   }, 14)
-  const getHeadings = throttle(() => {
-    const $write = document.getElementById('write')
 
-    if (!$write) {
-      requestAnimationFrame(() => {
-        getHeadings()
-      })
-      return
-    }
-    setMaxWidth()
-
-    const $headings = range(1, 6).map((h) =>
-      Array.from($write.querySelectorAll('h' + h)),
-    ) as HTMLHeadingElement[][]
-    if (isNull(headings)) {
-      return
-    }
-    if (headings.length === 0) {
-      let _rootDepth = rootDepth
-      // @ts-ignore
-      const headings = $headings
-        .flat<HTMLHeadingElement>(2)
-        .sort((a, b) => {
-          return (
-            parseInt(a.dataset['idTitle'] as any) -
-            parseInt(b.dataset['idTitle'] as any)
-          )
-        })
-        .map((d: HTMLHeadingElement) => {
-          const depth = ~~d.tagName.toLowerCase().slice(1)
-          if (depth < _rootDepth) {
-            _rootDepth = depth
-          }
-          const title =
-            (d.children.length == 0
-              ? d.textContent
-              : d.children.item(0)!.textContent) ?? ''
-          return {
-            title: title,
-            depth,
-            // isActive: false,
-            // @ts-ignore
-            // top: ~~d.dataset['offset'] as number,
-          }
-        })
-
-      setDepth(_rootDepth)
-      setHeadings(headings.length === 0 ? null : headings)
-    }
-  }, 20)
-
-  const router = useRouter()
-  const { asPath } = router
   useEffect(() => {
     window.addEventListener('resize', setMaxWidth)
-    getHeadings()
+
     return () => {
       window.removeEventListener('resize', setMaxWidth)
     }
   }, [setMaxWidth])
-
-  useEffect(() => {
-    requestAnimationFrame(() => {
-      getHeadings()
-    })
-  }, [asPath])
 
   const handleItemClick = useCallback((i) => {
     setTimeout(() => {
@@ -172,14 +72,17 @@ const _Toc: FC = memo(() => {
           {headings &&
             headings.map((heading, i) => {
               return (
-                <Item
+                <TocItem
                   index={i}
                   onClick={handleItemClick}
                   active={i === index}
                   depth={heading.depth}
                   title={heading.title}
                   key={heading.title}
-                  rootDepth={rootDepth}
+                  rootDepth={headings.reduce(
+                    (d, cur) => Math.min(d, cur.depth),
+                    1,
+                  )}
                 />
               )
             })}
@@ -189,8 +92,6 @@ const _Toc: FC = memo(() => {
   )
 })
 
-const Toc = dynamic(() => Promise.resolve(_Toc), {
+export const Toc = dynamic(() => Promise.resolve(_Toc), {
   ssr: false,
 })
-
-export default Toc

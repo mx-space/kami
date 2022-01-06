@@ -1,11 +1,12 @@
 import clsx from 'clsx'
 import { useStore } from 'common/store'
-import React, { ElementType, FC, RefObject, useEffect } from 'react'
+import { range } from 'lodash-es'
+import React, { ElementType, FC, RefObject, useEffect, useState } from 'react'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { ensuredForwardRef } from 'react-use'
 import { observer } from 'utils/mobx'
 import CustomRules from 'views/Markdown/rules'
-import Toc from 'views/Toc'
+import { Toc, TocHeading, TocProps } from 'views/Toc'
 import { CodeBlock } from '../../components/CodeBlock'
 import styles from './index.module.css'
 import { processDetails } from './process-tag'
@@ -56,6 +57,32 @@ export const Markdown: FC<MdProps> = observer(
       //  process raw html tag
       processDetails($)
     }, [ref])
+
+    const [headings, setHeadings] = useState<TocHeading[]>([])
+
+    useEffect(() => {
+      const _ = ref as RefObject<HTMLElement>
+      if (!_.current) {
+        return
+      }
+      const $ = _.current
+      const $headings = $.querySelectorAll(
+        range(0, 6)
+          .map((i) => `h${i}`)
+          .join(', '),
+      )
+      const headings = Array.from($headings).map((el) => {
+        const depth = +el.tagName.slice(1)
+        const title = el.id
+
+        return {
+          depth,
+          title,
+        }
+      })
+      setHeadings(headings)
+    }, [ref, value])
+
     return (
       <div
         id="write"
@@ -90,14 +117,14 @@ export const Markdown: FC<MdProps> = observer(
           plugins={CustomRules}
         />
 
-        {props.toc && <TOC key={value} />}
+        {props.toc && <TOC headings={headings} />}
       </div>
     )
   }),
 )
 
-export const TOC: FC = observer(() => {
+export const TOC: FC<TocProps> = observer((props) => {
   const { appStore } = useStore()
   const { isPadOrMobile } = appStore
-  return !isPadOrMobile ? <Toc /> : null
+  return !isPadOrMobile ? <Toc {...props} /> : null
 })
