@@ -63,7 +63,7 @@
     "js-cookie": "3.0.1",
     "lodash-es": "4.17.21",
     "mdurl": "*",
-    "mobx": "6.3.10",
+    "mobx": "6.3.12",
     "mobx-react-lite": "3.2.3",
     "next": "12.0.7",
     "next-offline": "5.0.5",
@@ -78,16 +78,16 @@
     "react-countup": "6.1.0",
     "react-dom": "17.0.2",
     "react-hook-form": "7.22.5",
-    "react-intersection-observer": "8.33.1",
+    "react-intersection-observer": "8.32.5",
     "react-lazy-images": "1.1.0",
     "react-markdown": "4.3.1",
     "react-medium-image-zoom": "4.3.5",
     "react-transition-group": "4.4.2",
-    "react-use": "17.3.1",
+    "react-use": "17.3.2",
     "remove-markdown": "0.3.0",
     "scrollama": "3.0.2",
-    "socket.io-client": "4.4.0",
     "use-dark-mode": "2.3.1",
+    "socket.io-client": "4.4.1",
     "validator": "13.7.0"
   },
   "devDependencies": {
@@ -98,7 +98,7 @@
     "@types/inflection": "1.13.0",
     "@types/js-cookie": "3.0.1",
     "@types/lodash-es": "4.17.5",
-    "@types/node": "16.11.15",
+    "@types/node": "16.11.19",
     "@types/randomcolor": "0.5.6",
     "@types/react": "17.0.38",
     "@types/react-color": "3.0.6",
@@ -132,6 +132,6 @@
     "zx": "4.2.0"
   },
   "resolutions": {
-    "react-use": "17.3.1"
+    "react-use": "17.3.2"
   }
 }
