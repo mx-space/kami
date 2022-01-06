@@ -3,7 +3,15 @@ import { faGlobeAsia } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import omit from 'lodash-es/omit'
 import shuffle from 'lodash-es/shuffle'
-import React, { FC, memo, useEffect, useRef, useState } from 'react'
+import React, {
+  FC,
+  memo,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import { isDev } from 'utils'
 import { message } from 'utils/message'
 import isEmail from 'validator/lib/isEmail'
@@ -15,7 +23,7 @@ import styles from './index.module.css'
 const USER_PREFIX = 'mx-space-comment-author'
 const USER_DRAFT = 'mx-space-comment-draft'
 
-const CommentBox: FC<{
+export const CommentBox: FC<{
   onSubmit: ({ text, author, mail, url }) => any
   onCancel?: () => any
   autoFocus?: boolean
@@ -145,6 +153,31 @@ const CommentBox: FC<{
     }
   }, [])
 
+  const setWrapper = useCallback((fn: any) => {
+    return (e: any) => {
+      fn(e.target.value)
+    }
+  }, [])
+
+  const setter = useMemo(
+    () => ({
+      author: setWrapper(setAuthor),
+      mail: setWrapper(setMail),
+      url: setWrapper(setUrl),
+      text: setWrapper(setText),
+    }),
+    [],
+  )
+
+  const prefixIcon = useMemo(
+    () => ({
+      author: <FontAwesomeIcon icon={faUser} />,
+      mail: <FontAwesomeIcon icon={faEnvelope} />,
+      url: <FontAwesomeIcon icon={faGlobeAsia} />,
+    }),
+    [],
+  )
+
   return (
     <div>
       {!logged && (
@@ -153,24 +186,24 @@ const CommentBox: FC<{
             placeholder={'昵称 *'}
             required
             name={'author'}
-            prefix={<FontAwesomeIcon icon={faUser} />}
+            prefix={prefixIcon['author']}
             value={author}
-            onChange={(e) => setAuthor(e.target.value)}
+            onChange={setter['author']}
           />
           <Input
             placeholder={'邮箱 *'}
             name={'mail'}
             required
-            prefix={<FontAwesomeIcon icon={faEnvelope} />}
+            prefix={prefixIcon['mail']}
             value={mail}
-            onChange={(e) => setMail(e.target.value)}
+            onChange={setter['mail']}
           />
           <Input
             placeholder={'网站 https?://'}
             name={'website'}
-            prefix={<FontAwesomeIcon icon={faGlobeAsia} />}
+            prefix={prefixIcon['url']}
             value={url}
-            onChange={(e) => setUrl(e.target.value)}
+            onChange={setter['url']}
           />
         </div>
       )}
@@ -182,9 +215,7 @@ const CommentBox: FC<{
         // @ts-ignore
         rows={4}
         required
-        onChange={(e) => {
-          setText(e.target.value)
-        }}
+        onChange={setter['text']}
         autoFocus={autoFocus}
         placeholder={
           !logged
@@ -226,8 +257,6 @@ const CommentBox: FC<{
     </div>
   )
 })
-
-export default CommentBox
 
 const EMOJI_LIST = shuffle([
   '(๑•̀ㅂ•́)و✧',

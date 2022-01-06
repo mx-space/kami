@@ -15,8 +15,8 @@ import { observer } from 'utils/mobx'
 import { useStore } from '../../common/store'
 import { Pagination } from '../../components/Pagination'
 import { flattenChildren, NoSSR } from '../../utils'
-import CommentBox from './box'
-import Comment from './comment'
+import { CommentBox } from './box'
+import { Comments } from './comments'
 import styles from './index.module.css'
 import { CommentLoading } from './loading'
 
@@ -73,24 +73,27 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
     [collection, id],
   )
 
-  const handleComment = async (model) => {
-    openCommentMessage()
-    if (logged) {
-      await apiClient.comment.proxy.master.comment(id).post({
-        params: {
-          ref: type,
-          ts: Date.now(),
-        },
-        data: { ...model },
+  const handleComment = useCallback(
+    async (model) => {
+      openCommentMessage()
+      if (logged) {
+        await apiClient.comment.proxy.master.comment(id).post({
+          params: {
+            ref: type,
+            ts: Date.now(),
+          },
+          data: { ...model },
+        })
+      } else {
+        await apiClient.comment.comment(id, model)
+      }
+      new Promise(() => {
+        openCommentMessage.success()
+        fetchComments()
       })
-    } else {
-      await apiClient.comment.comment(id, model)
-    }
-    new Promise(() => {
-      openCommentMessage.success()
-      fetchComments()
-    })
-  }
+    },
+    [fetchComments, id, logged, type],
+  )
 
   const [commentShow, setCommentShow] = useState(false)
 
@@ -140,7 +143,7 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
         <span id="comment-anchor"></span>
         {commentShow ? (
           <Fragment>
-            <Comment comments={comments} onFetch={fetchComments} id={id} />
+            <Comments comments={comments} onFetch={fetchComments} id={id} />
             <div style={{ textAlign: 'center' }}>
               {page && page.totalPage !== 0 && page.total !== undefined && (
                 <Pagination
@@ -169,7 +172,7 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
 })
 
 const CommentWrap = NoSSR(_CommentWrap)
-export const CommentLazy = CommentWrap
+export { CommentWrap as CommentLazy }
 export const minHeightProperty = { minHeight: '400px' }
 
 export default CommentWrap

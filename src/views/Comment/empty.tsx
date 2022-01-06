@@ -1,9 +1,9 @@
 import { sample } from 'lodash-es'
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import { minHeightProperty } from '.'
 import styles from './index.module.css'
 
-export const Empty: FC = () => {
+export const Empty: FC = memo(() => {
   return (
     <div style={{ ...minHeightProperty }} className={styles['empty']}>
       <svg
@@ -42,4 +42,4 @@ export const Empty: FC = () => {
       ])}
     </div>
   )
-}
+})

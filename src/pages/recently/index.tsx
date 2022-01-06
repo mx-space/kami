@@ -10,7 +10,15 @@ import { RelativeTime } from 'components/RelativeTime'
 import throttle from 'lodash-es/throttle'
 import { observer } from 'mobx-react-lite'
 import { NextPage } from 'next'
-import React, { FC, Fragment, memo, useEffect, useRef, useState } from 'react'
+import React, {
+  FC,
+  Fragment,
+  memo,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { useInView } from 'react-intersection-observer'
 import { eventBus, NoSSR } from 'utils'
 import { apiClient } from 'utils/client'
@@ -150,19 +158,22 @@ const RecentlyBox: FC = memo(() => {
   const [content, setText] = useState('')
 
   const taRef = useRef<HTMLTextAreaElement>(null)
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     apiClient.shorthand.proxy.post({ data: { content } }).then(() => {
       setText('')
       taRef.current && (taRef.current.value = '')
     })
-  }
+  }, [content])
   return (
     <form
       action="#"
-      onSubmit={(e) => {
-        e.preventDefault()
-        handleSubmit()
-      }}
+      onSubmit={useCallback(
+        (e) => {
+          e.preventDefault()
+          handleSubmit()
+        },
+        [handleSubmit],
+      )}
     >
       <Input
         multi

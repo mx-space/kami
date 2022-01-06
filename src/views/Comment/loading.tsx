@@ -1,6 +1,11 @@
 import { Loading } from 'components/Loading'
-import React from 'react'
+import React, { memo } from 'react'
 
-export const CommentLoading = () => {
-  return <Loading loadingText={'正在加载评论区...'}></Loading>
-}
+export const CommentLoading = memo(() => {
+  return (
+    <>
+      <div className="pt-[150px]"></div>
+      <Loading loadingText={'正在加载评论区...'}></Loading>
+    </>
+  )
+})
