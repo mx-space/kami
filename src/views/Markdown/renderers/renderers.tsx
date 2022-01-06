@@ -1,7 +1,4 @@
-import { useStore } from 'common/store'
-import React, { FC } from 'react'
-import { observer } from 'utils/mobx'
-import Toc from 'views/Toc'
+import { default as React, FC } from 'react'
 export const RenderSpoiler: FC<{ value: string }> = (props) => {
   return (
     <del className={'spoiler'} title={'你知道的太多了'}>
@@ -10,16 +7,11 @@ export const RenderSpoiler: FC<{ value: string }> = (props) => {
   )
 }
 export const RenderParagraph: FC<{}> = (props) => {
-  return <div className={'paragraph'}>{props.children}</div>
+  return <p className={'paragraph'}>{props.children}</p>
 }
 export const RenderCommentAt: FC<{ value: string }> = ({ value }) => {
   return <>@{value}</>
 }
-export const _TOC: FC = observer(() => {
-  const { appStore } = useStore()
-  const { isPadOrMobile } = appStore
-  return !isPadOrMobile ? <Toc /> : null
-})
 
 export const RenderReference: FC<{ href: string; title: string | null }> = (
   props,
@@ -40,7 +32,7 @@ export const RenderListItem: FC<{ checked?: null | undefined | boolean }> = (
     <li>
       {typeof props.checked == 'boolean' ? (
         <label className="flex items-center">
-          <input type="checkbox" checked={props.checked} />
+          <input type="checkbox" checked={props.checked} readOnly />
           {props.children}
         </label>
       ) : (

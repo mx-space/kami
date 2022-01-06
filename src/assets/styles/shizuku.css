@@ -5,10 +5,7 @@
 }
 
 #write {
-  font-family:
-    "PingFang SC",
-    "Microsoft YaHei UI",
-    "Microsoft YaHei",
+  font-family: 'PingFang SC', 'Microsoft YaHei UI', 'Microsoft YaHei',
     sans-serif;
   font-size: 16px;
   word-wrap: break-word;
@@ -58,7 +55,7 @@
 
 #write pre::before,
 #write pre::after {
-  content: " ";
+  content: ' ';
   display: block;
   width: 25px;
   height: 1px;
@@ -149,27 +146,27 @@
 }
 
 #write h1::before {
-  content: "H1";
+  content: 'H1';
 }
 
 #write h2::before {
-  content: "H2";
+  content: 'H2';
 }
 
 #write h3::before {
-  content: "H3";
+  content: 'H3';
 }
 
 #write h4::before {
-  content: "H4";
+  content: 'H4';
 }
 
 #write h5::before {
-  content: "H5";
+  content: 'H5';
 }
 
 #write h6::before {
-  content: "H6";
+  content: 'H6';
 }
 
 @media screen and (max-width: 900px) {
@@ -251,7 +248,7 @@
   padding-left: 0;
 }
 
-#write .task-list-item input[type="checkbox"] {
+#write .task-list-item input[type='checkbox'] {
   margin: 0.36em 5px;
   margin-left: -24px;
 }
@@ -284,11 +281,11 @@
   box-sizing: content-box;
 }
 
-#write img[align="right"] {
+#write img[align='right'] {
   padding-left: 20px;
 }
 
-#write img[align="left"] {
+#write img[align='left'] {
   padding-right: 20px;
 }
 
@@ -403,11 +400,11 @@
   border: none !important;
   position: relative;
   color: #d35400;
-  font-family: "Noto Serif SC", SongTi SC;
+  font-family: 'Noto Serif SC', SongTi SC;
   padding-bottom: 24px;
 
   &::before {
-    content: "“";
+    content: '“';
     position: absolute;
     left: 0;
     top: -2rem;
@@ -415,7 +412,7 @@
   }
 
   &::after {
-    content: "”";
+    content: '”';
     font-size: 3rem;
     position: absolute;
     right: 0;

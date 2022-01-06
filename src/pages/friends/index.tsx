@@ -94,7 +94,7 @@ const _Footer: FC = () => {
 
       <Markdown
         key="md"
-        warpperProps={{ id: undefined, style: { whiteSpace: 'pre-line' } }}
+        wrapperProps={{ id: undefined, style: { whiteSpace: 'pre-line' } }}
         renderers={{
           heading: (props) => {
             return createElement(

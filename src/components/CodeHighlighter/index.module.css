@@ -2,7 +2,6 @@
   position: relative;
 
   pre > code {
-    padding: 0 !important;
     background-color: var(--light-bg) !important;
   }
 }
@@ -10,7 +9,7 @@
 .copy-tip {
   position: absolute;
   right: 2em;
-  top: 5em;
+  top: 4em;
   opacity: 0.4;
   font-size: 0.6em;
   font-weight: 600;
@@ -25,7 +24,7 @@
   }
 
   &::after {
-    content: "";
+    content: '';
     bottom: -3px;
     position: absolute;
     left: 3px;

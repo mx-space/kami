@@ -21,8 +21,7 @@
       "./node_modules/@types"
     ],
     "lib": [
-      "dom",
-      "esnext"
+      "dom"
     ],
     "outDir": ".next",
     "forceConsistentCasingInFileNames": true,

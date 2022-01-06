@@ -212,7 +212,7 @@ export const PostView: PageOnlyProps = observer((props) => {
                   value={post.text}
                   escapeHtml={false}
                   toc
-                  warpperProps={{ className: 'focus' }}
+                  wrapperProps={{ className: 'focus' }}
                 />
               </ImageSizeMetaContext.Provider>
               {post.copyright && isClientSide() ? (

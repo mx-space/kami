@@ -1,30 +1,35 @@
 import clsx from 'clsx'
-import CustomRules from 'common/markdown/rules'
+import { useStore } from 'common/store'
 import React, { ElementType, FC, RefObject, useEffect } from 'react'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { ensuredForwardRef } from 'react-use'
 import { observer } from 'utils/mobx'
+import CustomRules from 'views/Markdown/rules'
+import Toc from 'views/Toc'
 import { CodeBlock } from '../../components/CodeBlock'
-import { Heading } from './Heading'
-import { Image } from './Image'
 import styles from './index.module.css'
-import { RenderLink } from './Link'
+import { processDetails } from './process-tag'
 import {
   RenderCommentAt,
+  RenderLink,
   RenderListItem,
   RenderParagraph,
   RenderReference,
   RenderSpoiler,
-  _TOC,
-} from './Other'
-import { processDetails } from './process-tag'
+  RenderTableBody,
+  RenderTableHead,
+  RenderTableRow,
+} from './renderers'
+import { Heading } from './renderers/Heading'
+import { Image } from './renderers/Image'
+
 type MdProps = ReactMarkdownProps & {
   value: string
   toc?: boolean
   [key: string]: any
   style?: React.CSSProperties
   readonly renderers?: { [nodeType: string]: ElementType }
-  warpperProps?: React.DetailedHTMLProps<
+  wrapperProps?: React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   >
@@ -37,7 +42,7 @@ export const Markdown: FC<MdProps> = observer(
       value,
       renderers,
       style,
-      warpperProps = {},
+      wrapperProps = {},
       codeBlockFully = false,
       ...rest
     } = props
@@ -55,7 +60,7 @@ export const Markdown: FC<MdProps> = observer(
       <div
         id="write"
         style={style}
-        {...warpperProps}
+        {...wrapperProps}
         ref={ref}
         className={clsx(
           styles['md'],
@@ -77,14 +82,22 @@ export const Markdown: FC<MdProps> = observer(
             commentAt: RenderCommentAt,
             linkReference: RenderReference,
             listItem: RenderListItem,
+            tableHead: RenderTableHead,
+            tableRow: RenderTableRow,
+            tableBody: RenderTableBody,
             ...renderers,
           }}
-          // astPlugins={[mermaid]}
           plugins={CustomRules}
         />
 
-        {props.toc && <_TOC key={value} />}
+        {props.toc && <TOC key={value} />}
       </div>
     )
   }),
 )
+
+export const TOC: FC = observer(() => {
+  const { appStore } = useStore()
+  const { isPadOrMobile } = appStore
+  return !isPadOrMobile ? <Toc /> : null
+})

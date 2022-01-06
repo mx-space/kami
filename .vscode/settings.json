@@ -6,6 +6,7 @@
   ],
   "typescript.tsdk": "node_modules/typescript/lib",
   "exportall.config.relExclusion": [
-    "/src/common/context"
+    "/src/common/context",
+    "/src/views/Markdown/renderers"
   ]
 }

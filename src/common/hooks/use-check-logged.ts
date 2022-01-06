@@ -1,7 +1,6 @@
 import { useStore } from 'common/store'
 import { getToken, removeToken } from 'utils'
 import { apiClient } from 'utils/client'
-import { devtoolForbidden } from 'utils/console'
 import { message } from 'utils/message'
 
 export const useCheckLogged = () => {
@@ -21,7 +20,7 @@ export const useCheckLogged = () => {
             }
           })
         } else {
-          devtoolForbidden()
+          // devtoolForbidden()
         }
       })
     },

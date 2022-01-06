@@ -222,10 +222,6 @@ button {
 }
 
 /* - 代码 */
-pre,
-code {
-  font-family: 'Consolas', 'Courier New', monospace, '微软雅黑';
-}
 
 :not(pre) > code {
   color: #c40b00;
@@ -235,39 +231,6 @@ code {
   padding: 0.25em 0.5em;
   word-break: break-all;
   background-color: #f7f2f4;
-}
-
-pre > code {
-  color: #fff;
-  tab-size: 4;
-  padding: 1em;
-  display: block;
-  overflow-x: auto;
-  word-break: normal;
-  font-size: inherit;
-  border-radius: 5px;
-  background-color: #333;
-}
-
-/* - 项目列表 */
-ul,
-ol {
-  margin-left: 1.25em;
-}
-
-ul.clear,
-ol.clear {
-  margin-left: 0;
-  list-style: none;
-}
-
-dl dd {
-  margin-left: 1.5em;
-}
-
-dl dd::before {
-  content: '--';
-  margin-right: 0.25em;
 }
 
 /* - 补间动画 */
@@ -284,22 +247,6 @@ blockquote {
   background: #f5fafd;
   padding: 1em 1em 1em 2em;
   border-left: 5px #3498db solid;
-}
-
-cite {
-  color: #3498db;
-  font-style: normal;
-}
-
-/* - 分割线 */
-hr {
-  border: 0;
-  margin: 1.5em 0;
-  border-top: 1px rgb(0 0 0 / 50%) solid;
-}
-
-hr.light {
-  border-top: 1px rgb(255 255 255 / 50%) solid;
 }
 
 /* - 表单 */
@@ -360,217 +307,44 @@ input:out-of-range {
   border-radius: 0.5em;
 }
 
-input[type='range'] {
-  margin: 0;
-  height: 100%;
-  appearance: none;
-  appearance: none;
-  cursor: ew-resize;
-  cursor: grab;
-  overflow: hidden;
-  min-height: 1.5rem;
-}
-
-input[type='range']:focus {
-  box-shadow: none;
-  outline: none;
-}
-
-input[type='range']:active::-webkit-slider-thumb {
-  border-color: #3498db;
-  background-color: #3498db;
-}
-
-input[type='range']:active::-moz-range-thumb {
-  border-color: #3498db;
-  background-color: #3498db;
-}
-
-input[type='range']:focus::-ms-thumb {
-  border-color: #9c27b0;
-  background-color: #673ab7;
-}
-
-input[type='range']::-moz-focus-outer {
-  border: 0;
-}
-
-input[type='range']::-webkit-slider-runnable-track {
-  background: #3498db;
-  content: '';
-  height: 2px;
-  pointer-events: none;
-}
-
-input[type='range']::-webkit-slider-thumb {
-  width: 14px;
-  height: 14px;
-  appearance: none;
-  appearance: none;
-  background: #fff;
-  border-radius: 50px;
-  margin-top: -6px;
-  border: 1px solid rgb(0 0 0 / 15%);
-  transition: 0.5s border-color, 0.5s background-color;
-}
-
-input[type='range']::-moz-range-track {
-  width: 240px;
-  height: 2px;
-  background: rgb(0 50 126 / 12%);
-}
-
-input[type='range']::-moz-range-thumb {
-  width: 14px;
-  height: 14px;
-  background: #fff;
-  border-radius: 50px;
-  border: 1px solid rgb(0 30 75 / 12%);
-  position: relative;
-  transition: 0.5s border-color, 0.5s background-color;
-}
-
-input[type='range']::-moz-range-progress {
-  height: 2px;
-  background: #467fcf;
-  border: 0;
-  margin-top: 0;
-}
-
 textarea {
   display: block;
   overflow: auto;
   resize: vertical;
 }
 
-progress {
-  overflow: auto;
-  border-radius: 50px;
-}
-
-progress::-webkit-progress-bar {
-  background-color: #eee;
-}
-
-/* - 表单模组 */
-
-/* -- 单选多选框 */
-
-input[type='checkbox'] {
-  position: relative;
-  margin: 0 1rem 0 0;
-  cursor: pointer;
-}
-input[type='checkbox']:before {
-  transition: all 0.3s ease-in-out;
-  content: '';
-  position: absolute;
-  left: 0;
-  z-index: 1;
-  width: 1rem;
-  height: 1rem;
-  border: 2px solid #f2f2f2;
-}
-input[type='checkbox']:checked:before {
-  transform: rotate(-45deg);
-  height: 0.5rem;
-  border-color: var(--green);
-  border-top-style: none;
-  border-right-style: none;
-}
-input[type='checkbox']:after {
-  content: '';
-  position: absolute;
-  top: -0.125rem;
-  left: 0;
-  width: 1.1rem;
-  height: 1.1rem;
-  background: var(--light-bg);
-  cursor: pointer;
-}
-
 /* - 表格 */
-.ks-table {
-  width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  border-radius: 5px;
-}
-
 table {
-  border: 0;
   width: 100%;
-  max-width: 100%;
-  border-collapse: collapse;
+  table-layout: fixed;
 }
 
-table th,
-table td {
-  padding: 0.75em;
+thead {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+tbody {
+  overflow-x: auto;
+  margin-top: 0px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+th {
+  padding: 20px 15px;
   text-align: left;
-  vertical-align: top;
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
 }
 
-table > thead > tr {
-  border-bottom: 2px solid #ccc;
+td {
+  padding: 15px;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 300;
+  font-size: 12px;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.1);
 }
-
-table > tbody > tr {
-  border-bottom: 1px solid #ddd;
-}
-
-table > tbody > tr:last-child {
-  border-bottom: 0;
-}
-
-table > tbody > tr {
-  transition: background 0.5s;
-}
-
-table > tbody > tr:hover {
-  background: #eee;
-}
-
-table > thead > tr > th,
-table > tbody > tr > th,
-table > tfoot > tr > th,
-table > thead > tr > td,
-table > tbody > tr > td,
-table > tfoot > tr > td {
-  white-space: nowrap;
-}
-
-/* - 蓝色风格 */
-table.fill {
-  border: 1px solid transparent;
-}
-
-table.fill > thead {
-  background: #3498db;
-  border-left: 1px solid #3498db;
-  border-right: 1px solid #3498db;
-}
-
-table.fill > thead > tr {
-  border-bottom: none;
-}
-
-table.fill > thead > tr > th,
-table.fill > thead > tr > td {
-  color: #fff;
-}
-
-table.fill > tbody {
-  border-left: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-}
-
-table.fill > tbody > tr:nth-child(even) > th,
-table.fill > tbody > tr:nth-child(even) {
-  background: #f7f7f7;
-}
-
 /* - 嵌入式网页 */
 iframe {
   border: none;
@@ -1268,14 +1042,44 @@ iframe {
   }
 }
 
-/* 4 - 动画
--------------------------------- */
-
-/* 5 - 组件
--------------------------------- */
-
 /* ----
 
 Copyright (C) 2020 Dreamer-Paul.
 
 ---- */
+
+/* 以下内容由我自定义 */
+
+input[type='checkbox'] {
+  position: relative;
+  margin: 0 1rem 0 0;
+}
+
+input[type='checkbox']:before {
+  transition: all 0.3s ease-in-out;
+  content: '';
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #f2f2f2;
+}
+
+input[type='checkbox']:checked:before {
+  transform: rotate(-45deg);
+  height: 0.5rem;
+  border-color: var(--blue);
+  border-top-style: none;
+  border-right-style: none;
+}
+
+input[type='checkbox']:after {
+  content: '';
+  position: absolute;
+  top: -0.125rem;
+  left: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  background: var(--light-bg);
+}

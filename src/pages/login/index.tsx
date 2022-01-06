@@ -5,7 +5,6 @@ import { NextPage } from 'next'
 import Router from 'next/router'
 import { useState } from 'react'
 import { apiClient } from 'utils/client'
-import { releaseDevtool } from 'utils/console'
 import { message } from 'utils/message'
 import { useStore } from '../../common/store'
 import { setToken } from '../../utils/cookie'
@@ -26,7 +25,7 @@ const LoginView: NextPage = () => {
     }
     message.success('登录成功')
     userStore.setToken(data.token)
-    releaseDevtool()
+    // releaseDevtool()
   }
 
   return (
