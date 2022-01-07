@@ -39,6 +39,9 @@ export const Toc: FC<TocProps> = memo(({ headings: $headings }) => {
   // const beforeIndex = useRef(index)
 
   useEffect(() => {
+    if (!$headings.length) {
+      return
+    }
     const scroller = scrollama()
     // TODO: set index if scroll direction is up
     scroller

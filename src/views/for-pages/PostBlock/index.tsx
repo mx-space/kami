@@ -4,7 +4,7 @@ import { useInitialData } from 'common/hooks/use-initial-data'
 import { useStore } from 'common/store'
 import { observer } from 'mobx-react-lite'
 import Router from 'next/router'
-import React, { FC, useMemo } from 'react'
+import React, { FC, useCallback, useMemo } from 'react'
 import removeMd from 'remove-markdown'
 import { parseDate } from 'utils/time'
 import styles from './index.module.css'
@@ -38,11 +38,11 @@ export const PostBlock: FC<PostBlockProps> = observer((props) => {
     })
     return map
   }, [initialData.categories])
-  const goToPost = () => {
+  const goToPost = useCallback(() => {
     const categorySlug = raw.category?.slug ?? categoryMap.get(raw.categoryId)
     Router.push('/posts/[category]/[slug]', `/posts/${categorySlug}/${slug}`)
     window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
-  }
+  }, [categoryMap, raw.category?.slug, raw.categoryId, slug])
   const hasImage = props.raw.images?.length > 0 && props.raw.images[0].src
   return (
     <>

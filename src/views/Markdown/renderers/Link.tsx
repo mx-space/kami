@@ -59,7 +59,7 @@ export const RenderLink: FC<{
             break
           }
           default: {
-            Router.push(toUrlParser.pathname)
+            window.open(toUrlParser.pathname)
           }
         }
       }

@@ -19,10 +19,9 @@
     left: 0;
     right: 0;
     bottom: 0;
-    content: "";
+    content: '';
     z-index: -1;
     position: absolute;
-    background: var(--bg);
   }
 
   @media screen and (max-width: 600px) {

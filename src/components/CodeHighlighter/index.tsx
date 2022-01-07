@@ -48,7 +48,9 @@ const HighLighter: FC<Props> = observer((props) => {
       ),
     ]).then(() => {
       if (ref.current) {
-        window.Prism?.highlightElement(ref.current)
+        requestAnimationFrame(() => {
+          window.Prism?.highlightElement(ref.current)
+        })
       }
     })
   }, [])
@@ -58,7 +60,7 @@ const HighLighter: FC<Props> = observer((props) => {
     <div className={styles['code-wrap']}>
       <span className={styles['language-tip']}>{language}</span>
 
-      <pre className="line-numbers !bg-transparent" data-start="0">
+      <pre className="line-numbers !bg-transparent" data-start="1">
         <code className={`language-${language ?? 'markup'}`} ref={ref}>
           {value}
         </code>

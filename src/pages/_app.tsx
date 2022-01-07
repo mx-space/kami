@@ -82,6 +82,7 @@ const Content: FC = observer((props) => {
   if (!themeConfig) {
     return <NoConfigErrorView />
   }
+
   return (
     <>
       <Head>

@@ -10,7 +10,12 @@ export const useThemeBackground = () => {
     site: { background },
   } = useKamiConfig()
   useEffect(() => {
-    const $body = document.body
-    $body.style.background = `var(--light-bg) url(${background.src[colorMode]}) ${background.position}`
+    const $style = document.createElement('style')
+    $style.innerHTML = `body { background: url(${background.src[colorMode]}) ${background.position}; background-color: var(--light-bg);  }`
+
+    document.head.appendChild($style)
+    return () => {
+      document.documentElement.removeChild($style)
+    }
   }, [background.position, background.src, colorMode])
 }

@@ -8,6 +8,11 @@ const env = require('dotenv').config().parsed || {}
 
 const withOffline = require('next-offline')
 const configs = withBundleAnalyzer({
+  swcMinify: true,
+  experimental: {
+    // ssr and displayName are configured by default
+    styledComponents: true,
+  },
   webpack: (config, options) => {
     config.plugins.push(new WindiCSSWebpackPlugin())
 
@@ -33,13 +38,6 @@ const configs = withBundleAnalyzer({
       },
       { source: '/notes', destination: '/notes/latest' },
     ]
-    // this can remove after test
-    if (isProd && env.ASSETPREFIX) {
-      beforeFiles.push({
-        source: '/autostatic/:path*',
-        destination: env.ASSETPREFIX + '/_next/static/:path*',
-      })
-    }
 
     // if (env.NEXT_PUBLIC_APIURL) {
     //   beforeFiles.push({
@@ -57,11 +55,6 @@ const configs = withBundleAnalyzer({
   // 小水管就算了吧
   // __NEXT_OPTIMIZE_FONTS=true 暂时
   optimizeFonts: false,
-  // experimental: {
-  //   granularChunks: true,
-  //   modern: true,
-  //   scrollRestoration: true,
-  // },
 })
 
 module.exports = isProd

@@ -122,12 +122,11 @@ export const ApplyForLink: FC = () => {
           })}
         />
       </form>
-      <div style={{ textAlign: 'right', marginTop: '5px' }}>
+      <div className={'text-right mt-[5px]'}>
         <button
-          className="btn red"
+          className="btn red mr-[12px]"
           onClick={handleReset}
           type="reset"
-          style={{ marginRight: '12px' }}
         >
           重置
         </button>
