@@ -1,22 +1,14 @@
-/*
- * @Author: Innei
- * @Date: 2021-01-07 20:13:09
- * @LastEditTime: 2021-01-23 20:35:34
- * @LastEditors: Innei
- * @FilePath: /web/layouts/NoteLayout.tsx
- * @Mark: Coding with Love
- */
 import { faBookmark } from '@fortawesome/free-regular-svg-icons'
 import { faBookmark as faBookmarkSolid } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRedirectSimpleRender } from 'common/hooks/useRedirectSimpleRender'
 import { useStore } from 'common/store'
 import dayjs from 'dayjs'
-import { FC, forwardRef, useCallback } from 'react'
+import { observer } from 'mobx-react-lite'
+import { useCallback } from 'react'
 import { Transition } from 'react-transition-group'
 import { NoSSR, resolveUrl } from 'utils'
 import { apiClient } from 'utils/client'
-import { observer } from 'utils/mobx'
 interface NoteLayoutProps {
   title: string
   tips?: string
@@ -40,8 +32,9 @@ const transitionStyles = {
   exiting: { transform: `translateY(0)`, opacity: 1 },
   exited: { transform: `translateY(3em)`, opacity: 0 },
 }
-const _NoteLayout: FC<NoteLayoutProps> = observer(
-  forwardRef(({ children, date, title, tips, bookmark, id }, ref: any) => {
+const _NoteLayout = observer<NoteLayoutProps, HTMLElement>(
+  (props, ref) => {
+    const { date, id, bookmark, title, tips, children } = props
     const dateFormat = dayjs(date).locale('cn').format('YYYY年M月D日 dddd')
     const {
       userStore: { isLogged, url },
@@ -107,7 +100,8 @@ const _NoteLayout: FC<NoteLayoutProps> = observer(
         </Transition>
       </main>
     )
-  }),
+  },
+  { forwardRef: true },
 )
 const NoteLayout = NoSSR(_NoteLayout)
 export { NoteLayout }

@@ -1,12 +1,21 @@
 import clsx from 'clsx'
 import { useStore } from 'common/store'
 import { range } from 'lodash-es'
-import React, { ElementType, FC, RefObject, useEffect, useState } from 'react'
+import { observer } from 'mobx-react-lite'
+import dynamic from 'next/dynamic'
+import React, {
+  ElementType,
+  FC,
+  memo,
+  RefObject,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { ensuredForwardRef } from 'react-use'
-import { observer } from 'utils/mobx'
 import CustomRules from 'views/Markdown/rules'
-import { Toc, TocHeading, TocProps } from 'views/Toc'
+import type { TocProps } from 'views/Toc'
 import { CodeBlock } from '../../components/CodeBlock'
 import styles from './index.module.css'
 import { processDetails } from './process-tag'
@@ -24,6 +33,9 @@ import {
 import { Heading } from './renderers/Heading'
 import { Image } from './renderers/Image'
 
+const Toc = dynamic<TocProps>(() => import('views/Toc').then((m) => m.Toc), {
+  ssr: false,
+})
 type MdProps = ReactMarkdownProps & {
   value: string
   toc?: boolean
@@ -37,8 +49,8 @@ type MdProps = ReactMarkdownProps & {
   codeBlockFully?: boolean
 }
 
-export const Markdown: FC<MdProps> = observer(
-  ensuredForwardRef<HTMLDivElement, MdProps>((props, ref) => {
+const __Markdown: FC<MdProps> = ensuredForwardRef<HTMLDivElement, MdProps>(
+  (props, ref) => {
     const {
       value,
       renderers,
@@ -58,7 +70,7 @@ export const Markdown: FC<MdProps> = observer(
       processDetails($)
     }, [ref])
 
-    const [headings, setHeadings] = useState<TocHeading[]>([])
+    const [headings, setHeadings] = useState<HTMLElement[]>([])
 
     useEffect(() => {
       const _ = ref as RefObject<HTMLElement>
@@ -66,21 +78,17 @@ export const Markdown: FC<MdProps> = observer(
         return
       }
       const $ = _.current
-      const $headings = $.querySelectorAll(
-        range(0, 6)
-          .map((i) => `h${i}`)
-          .join(', '),
-      )
-      const headings = Array.from($headings).map((el) => {
-        const depth = +el.tagName.slice(1)
-        const title = el.id
+      // FIXME: 可能存在 memory leak
 
-        return {
-          depth,
-          title,
-        }
-      })
-      setHeadings(headings)
+      setHeadings(
+        Array.from(
+          $.querySelectorAll(
+            range(0, 6)
+              .map((i) => `h${i}`)
+              .join(', '),
+          ),
+        ),
+      )
     }, [ref, value])
 
     return (
@@ -98,30 +106,35 @@ export const Markdown: FC<MdProps> = observer(
           source={value}
           // source={TestText}
           {...rest}
-          renderers={{
-            code: CodeBlock,
-            pre: CodeBlock,
-            image: Image,
-            heading: Heading(),
-            link: RenderLink,
-            spoiler: RenderSpoiler,
-            paragraph: RenderParagraph,
-            commentAt: RenderCommentAt,
-            linkReference: RenderReference,
-            listItem: RenderListItem,
-            tableHead: RenderTableHead,
-            tableRow: RenderTableRow,
-            tableBody: RenderTableBody,
-            ...renderers,
-          }}
+          renderers={useMemo(
+            () => ({
+              code: CodeBlock,
+              pre: CodeBlock,
+              image: Image,
+              heading: Heading(),
+              link: RenderLink,
+              spoiler: RenderSpoiler,
+              paragraph: RenderParagraph,
+              commentAt: RenderCommentAt,
+              linkReference: RenderReference,
+              listItem: RenderListItem,
+              tableHead: RenderTableHead,
+              tableRow: RenderTableRow,
+              tableBody: RenderTableBody,
+              ...renderers,
+            }),
+            [renderers],
+          )}
           plugins={CustomRules}
         />
 
         {props.toc && <TOC headings={headings} />}
       </div>
     )
-  }),
+  },
 )
+
+export const Markdown = memo(__Markdown)
 
 export const TOC: FC<TocProps> = observer((props) => {
   const { appStore } = useStore()

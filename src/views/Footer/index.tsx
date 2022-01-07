@@ -1,16 +1,48 @@
 import { faNodeJs, faReact } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useInitialData, useThemeConfig } from 'common/hooks/use-initial-data'
+import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
-import React, { FC } from 'react'
+import React, { FC, useMemo } from 'react'
 import { NoSSR } from 'utils'
-import { observer } from 'utils/mobx'
 import Package from '~/package.json'
-import { useStore } from '../../common/store'
+import { appUIStore, useStore } from '../../common/store'
 import { FooterActions } from './actions'
 import styles from './index.module.css'
 
 const version = Package.version
+
+const FooterContainer = observer((props) => {
+  const kamiConfig = useThemeConfig()
+  const { colorMode } = appUIStore
+  const background = kamiConfig.site.footer.background
+  return (
+    <footer
+      className={styles['footer']}
+      style={useMemo(
+        () =>
+          ({
+            '--bg':
+              colorMode == 'dark'
+                ? `url(${background.src.dark || background.src.light}) ${
+                    background.position
+                  }`
+                : `url(${background.src.light || background.src.dark}) ${
+                    background.position
+                  }`,
+          } as any),
+        [
+          background.position,
+          background.src.dark,
+          background.src.light,
+          colorMode,
+        ],
+      )}
+    >
+      {props.children}
+    </footer>
+  )
+})
 
 const _Footer: FC = observer(() => {
   const { appStore, gatewayStore } = useStore()
@@ -19,27 +51,12 @@ const _Footer: FC = observer(() => {
   const name = initialData.user.name
   const kamiConfig = useThemeConfig()
   const motto = kamiConfig.site.footer.motto
-  const { colorMode } = appStore
-  const background = kamiConfig.site.footer.background
+
   const icp = kamiConfig.site.footer.icp
   const navigation = kamiConfig.site.footer.navigation
 
   return (
-    <footer
-      className={styles['footer']}
-      style={
-        {
-          '--bg':
-            colorMode == 'dark'
-              ? `url(${background.src.dark || background.src.light}) ${
-                  background.position
-                }`
-              : `url(${background.src.light || background.src.dark}) ${
-                  background.position
-                }`,
-        } as any
-      }
-    >
+    <FooterContainer>
       <div className={styles.wrap}>
         <div className={'row'} style={{ paddingBottom: '18px' }}>
           <div className="col-m-6 left to-center">
@@ -89,7 +106,7 @@ const _Footer: FC = observer(() => {
         </div>
       </div>
       <FooterActions />
-    </footer>
+    </FooterContainer>
   )
 })
 

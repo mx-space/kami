@@ -3,10 +3,10 @@ import {
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import randomColor from 'randomcolor'
-import { DetailedHTMLProps, FC, forwardRef, HTMLAttributes } from 'react'
-import { observer } from 'utils/mobx'
+import { DetailedHTMLProps, HTMLAttributes } from 'react'
 import { useStore } from '../../../common/store'
 import styles from './index.module.css'
 
@@ -20,11 +20,11 @@ export interface SectionNewsProps {
   showMoreIcon?: boolean
 }
 
-export const SectionWrap: FC<
+export const SectionWrap = observer<
   SectionNewsProps &
     DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
-> = observer(
-  forwardRef((props, ref) => {
+>(
+  (props, ref) => {
     const {
       title,
       icon,
@@ -76,5 +76,6 @@ export const SectionWrap: FC<
         </div>
       </>
     )
-  }),
+  },
+  { forwardRef: true },
 )

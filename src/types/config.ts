@@ -6,7 +6,7 @@ export interface KamiConfig {
 
 interface Function {
   analyze: Analyze
-  netease: Netease
+
   donate: Donate
 
   player: {
@@ -24,15 +24,10 @@ interface Donate {
   link: string
 }
 
-interface Netease {
-  username: string
-  password: null
-}
-
 interface Site {
   favicon: string
-  logoSvg: string
-  figure: string[]
+  logoSvg?: string
+  figure?: string[]
   header: Header
   social: Social[]
   footer: Footer

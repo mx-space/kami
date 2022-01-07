@@ -1,9 +1,9 @@
 import { faTag } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useStore } from 'common/store'
+import { observer } from 'mobx-react-lite'
 import rc from 'randomcolor'
 import { FC, MouseEventHandler, useMemo } from 'react'
-import { observer } from 'utils/mobx'
 import styles from './index.module.css'
 
 interface BigTagProps {

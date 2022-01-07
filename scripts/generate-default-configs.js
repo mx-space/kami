@@ -13,6 +13,10 @@ const writeFilePath = path.join(cwd, 'src/configs.default.ts')
 fs.writeFileSync(
   writeFilePath,
   `// sync with config.init.yaml
-export const defaultConfigs = ${JSON.stringify(config, null, 2)}
+export const defaultConfigs = ${JSON.stringify(
+    require('camelcase-keys')(config, { deep: true }),
+    null,
+    2,
+  )}
 `,
 )

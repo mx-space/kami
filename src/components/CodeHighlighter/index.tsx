@@ -1,8 +1,8 @@
+import { observer } from 'mobx-react-lite'
 import dynamic from 'next/dynamic'
 import React, { FC, useCallback, useEffect, useRef } from 'react'
 import { loadScript, loadStyleSheet } from 'utils'
 import { message } from 'utils/message'
-import { observer } from 'utils/mobx'
 import { appUIStore, useStore } from '../../common/store'
 import styles from './index.module.css'
 

@@ -9,6 +9,7 @@ import { useInitialData, useThemeConfig } from 'common/hooks/use-initial-data'
 import { useStore } from 'common/store'
 import { FontIcon } from 'components/FontIcon'
 import { shuffle } from 'lodash-es'
+import { observer } from 'mobx-react-lite'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import Router from 'next/router'
@@ -24,7 +25,6 @@ import React, {
 } from 'react'
 import { apiClient } from 'utils/client'
 import { message } from 'utils/message'
-import { observer } from 'utils/mobx'
 import SectionNews, {
   SectionCard,
   SectionNewsProps,
@@ -138,7 +138,7 @@ function buildRoute<T extends { id: string } & { nid?: number }>(
 
 const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
   const config = useThemeConfig()
-  const randomImages = config.site.figure.length
+  const randomImages = config.site.figure?.length
     ? shuffle(config.site.figure)
     : getRandomImage()
 

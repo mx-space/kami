@@ -2,8 +2,8 @@ import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useMediaToggle } from 'common/hooks/use-media-toggle'
 import { useThemeBackground } from 'common/hooks/use-theme-background'
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { observer } from 'utils/mobx'
+import { observer } from 'mobx-react-lite'
+import { FC, useCallback, useEffect, useRef, useState } from 'react'
 import { Footer } from 'views/Footer'
 import { MusicMiniPlayerStoreControlled } from 'views/for-pages/Player'
 import { Header } from 'views/Header'
@@ -11,7 +11,7 @@ import { useStore } from '../common/store'
 import { Switch } from '../components/LampSwitch'
 import { NoticePanel } from '../components/Notice'
 
-export const BasicLayout = observer(({ children }) => {
+export const BasicLayout: FC = observer(({ children }) => {
   const { appStore, actionStore } = useStore()
 
   const { toggle, value: isDark } = useMediaToggle()
@@ -78,3 +78,4 @@ export const BasicLayout = observer(({ children }) => {
     </>
   )
 })
+BasicLayout.displayName = 'BasicLayout'

@@ -1,10 +1,10 @@
 import { useInitialData, useThemeConfig } from 'common/hooks/use-initial-data'
 import { sample } from 'lodash-es'
 import merge from 'lodash/merge'
+import { observer } from 'mobx-react-lite'
 import { NextSeo, NextSeoProps } from 'next-seo'
 import type { OpenGraph } from 'next-seo/lib/types'
 import { FC } from 'react'
-import { observer } from 'utils/mobx'
 import { useStore } from '../../common/store'
 import { getRandomImage } from '../../utils'
 type SEOProps = {

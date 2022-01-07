@@ -2,11 +2,11 @@ import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import client from 'common/socket'
 import { EventTypes } from 'common/socket/types'
+import { observer } from 'mobx-react-lite'
 import QueueAnim from 'rc-queue-anim'
-import { FC, forwardRef, useEffect, useRef, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { message } from 'utils/message'
-import { observer } from 'utils/mobx'
 import { useStore } from '../../common/store'
 import { stopEventDefault } from '../../utils/dom'
 import { eventBus } from '../../utils/observable'
@@ -15,7 +15,7 @@ import { STORE_PREFIX } from './components/setting'
 import style from './index.module.css'
 
 const _ChatPanel: FC<any> = observer(
-  forwardRef((props, ref: any) => {
+  (props, ref: any) => {
     const [value, setValue] = useState('')
     // const [settingShow, setSettingShow] = useState(false)
     // const SettingRef = useRef<HTMLDivElement>(null)
@@ -181,7 +181,8 @@ const _ChatPanel: FC<any> = observer(
         </QueueAnim> */}
       </>
     )
-  }),
+  },
+  { forwardRef: true },
 )
 export const ChatPanel: FC<{ show: boolean; toggle: () => void }> = (props) => {
   const show = props.show

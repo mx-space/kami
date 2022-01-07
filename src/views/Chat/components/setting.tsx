@@ -1,16 +1,9 @@
 import classNames from 'clsx'
+import { observer } from 'mobx-react-lite'
 import QueueAnim from 'rc-queue-anim'
-import {
-  DetailedHTMLProps,
-  FC,
-  forwardRef,
-  HTMLAttributes,
-  useEffect,
-  useState,
-} from 'react'
+import { DetailedHTMLProps, HTMLAttributes, useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { message } from 'utils/message'
-import { observer } from 'utils/mobx'
 import { useStore } from '../../../common/store'
 import { stopEventDefault } from '../../../utils/dom'
 import styles from './index.module.css'
@@ -21,11 +14,11 @@ interface SettingProps {
   setHide: any
 }
 // @ts-ignore
-export const Setting: FC<
+export const Setting = observer<
   SettingProps &
     DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
-> = observer(
-  forwardRef((props, ref: any) => {
+>(
+  (props, ref: any) => {
     const { ...rest } = props
     const [pos, setPos] = useState<{ x: number; y: number }>({} as any)
     const [show, setShow] = useState(false)
@@ -122,7 +115,8 @@ export const Setting: FC<
         </div>
       </div>
     )
-  }),
+  },
+  { forwardRef: true },
 )
 
 const ColorPicker = ({

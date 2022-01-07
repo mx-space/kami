@@ -1,9 +1,9 @@
 import { PersonalPlayListType, PlayListType } from '@mx-space/extra'
 import axios from 'axios'
 import configs from 'configs'
+import { observer } from 'mobx-react-lite'
 import { NextPage } from 'next'
 import { isDev } from 'utils'
-import { observer } from 'utils/mobx'
 import { SectionMusic } from 'views/for-pages/SectionMusic'
 import { Seo } from '../../components/SEO'
 

@@ -1,7 +1,7 @@
 import { userStore } from 'common/store'
 import { OverLay } from 'components/Overlay'
+import { observer } from 'mobx-react-lite'
 import { FC, useEffect, useRef, useState } from 'react'
-import { observer } from 'utils'
 
 export const BanCopy: FC = observer((props) => {
   const isLogged = userStore.isLogged

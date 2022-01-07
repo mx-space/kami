@@ -1,8 +1,16 @@
 import classNames from 'clsx'
 import throttle from 'lodash/throttle'
-import dynamic from 'next/dynamic'
 import QueueAnim from 'rc-queue-anim'
-import { FC, memo, useCallback, useEffect, useRef, useState } from 'react'
+import {
+  FC,
+  memo,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
+import scrollama from 'scrollama'
 import styles from './index.module.css'
 import { TocItem } from './item'
 export type TocHeading = {
@@ -11,29 +19,51 @@ export type TocHeading = {
 }
 
 export type TocProps = {
-  headings: TocHeading[]
+  headings: HTMLElement[]
 }
 
-const _Toc: FC<TocProps> = memo(({ headings }) => {
+export const Toc: FC<TocProps> = memo(({ headings: $headings }) => {
   const containerRef = useRef<HTMLDivElement>(null)
+  const headings = useMemo(() => {
+    return Array.from($headings).map((el) => {
+      const depth = +el.tagName.slice(1)
+      const title = el.id
 
+      return {
+        depth,
+        title,
+      }
+    })
+  }, [$headings])
   const [index, setIndex] = useState(-1)
+  // const beforeIndex = useRef(index)
 
   useEffect(() => {
-    import('scrollama').then((scrollama) => {
-      const scroller = scrollama.default()
-      scroller
-        .setup({
-          step: '#write h1, #write h2, #write h3, #write h4, #write h5, #write h6',
-          // @ts-ignore
-          offset: '10px',
-        })
-        .onStepEnter(({ element }) => {
-          console.log(element.dataset['index'])
-          setIndex((element.dataset['index'] as any) | 0)
-        })
-    })
-  }, [])
+    const scroller = scrollama()
+    // TODO: set index if scroll direction is up
+    scroller
+      .setup({
+        step: $headings,
+        offset: 0.5,
+      })
+      .onStepEnter(({ element, direction }) => {
+        // console.log(element.dataset['index'])
+        setIndex((element.dataset['index'] as any) | 0)
+        // setIndex((prev) => {
+        //   beforeIndex.current = prev
+        //   return (element.dataset['index'] as any) | 0
+        // })
+      })
+    // .onStepExit(({ element, direction }) => {
+    //   if (direction === 'up') {
+    //     setIndex(((element.dataset['index'] as any) | 0) - 1)
+    //   }
+    // })
+
+    return () => {
+      scroller.destroy()
+    }
+  }, [$headings])
 
   const setMaxWidth = throttle(() => {
     if (containerRef.current) {
@@ -90,8 +120,4 @@ const _Toc: FC<TocProps> = memo(({ headings }) => {
       </div>
     </section>
   )
-})
-
-export const Toc = dynamic(() => Promise.resolve(_Toc), {
-  ssr: false,
 })

@@ -33,7 +33,7 @@ import useMount from 'react-use/lib/useMount'
 import { KamiConfig } from 'types/config'
 import { $axios, apiClient } from 'utils/client'
 import { printToConsole } from 'utils/console'
-import { observer } from 'utils/mobx'
+import { observer } from 'mobx-react-lite'
 
 import Package from '~/package.json'
 
@@ -89,7 +89,7 @@ const Content: FC = observer((props) => {
           <meta name="keywords" content={initialData.seo.keywords.join(',')} />
         )}
       </Head>
-
+      <DynamicHeaderMeta />
       <NextSeo
         title={initialData.seo.title + ' · ' + initialData.seo.description}
         description={initialData.seo.description}
@@ -144,7 +144,7 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
     <RootStoreProvider>
       <InitialContextProvider value={initData}>
         {/* <DropdownProvider> */}
-        <DynamicHeaderMeta />
+
         <Content>{Comp}</Content>
         {/* </DropdownProvider> */}
       </InitialContextProvider>

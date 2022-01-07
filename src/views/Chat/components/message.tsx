@@ -7,8 +7,8 @@
  * @Mark: Coding with Love
  */
 import { RelativeTime } from 'components/RelativeTime'
+import { observer } from 'mobx-react-lite'
 import { FC } from 'react'
-import { observer } from 'utils/mobx'
 import { Markdown } from 'views/Markdown'
 import { useStore } from '../../../common/store'
 import { Avatar } from '../../../components/Avatar'
