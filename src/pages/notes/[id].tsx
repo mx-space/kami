@@ -1,16 +1,23 @@
 import { faBookOpen, faClock } from '@fortawesome/free-solid-svg-icons'
 import { NoteModel, RequestError } from '@mx-space/api-client'
-import { useHeaderMeta, useHeaderShare } from 'common/hooks/use-header-meta'
-import { useLoadSerifFont } from 'common/hooks/use-load-serif-font'
-import { noteStore, userStore, useStore } from 'common/store'
-import Action, { ActionProps } from 'components/Action'
-import { LikeButton } from 'components/LikeButton'
-import { Loading } from 'components/Loading'
-import { NumberRecorder } from 'components/NumberRecorder'
-import { RelativeTime } from 'components/RelativeTime'
+import { NotePasswordConfrim } from 'components/in-page/NotePasswordConfirm'
+import { NoteTimelineList } from 'components/in-page/NoteTimelineList'
+import { BanCopy } from 'components/in-page/WarningOverlay/ban-copy'
+import { ArticleLayout } from 'components/layouts/ArticleLayout'
+import { NoteLayout } from 'components/layouts/NoteLayout'
+import { LikeButton } from 'components/universal/LikeButton'
+import { Loading } from 'components/universal/Loading'
+import { Markdown } from 'components/universal/Markdown'
+import { NumberRecorder } from 'components/universal/NumberRecorder'
+import { RelativeTime } from 'components/universal/RelativeTime'
+import {
+  ActionProps,
+  ArticleFooterAction,
+} from 'components/widgets/ArticleAction'
+import CommentWrap from 'components/widgets/Comment'
 import dayjs from 'dayjs'
-import { ArticleLayout } from 'layouts/ArticleLayout'
-import { NoteLayout } from 'layouts/NoteLayout'
+import { useHeaderMeta, useHeaderShare } from 'hooks/use-header-meta'
+import { useLoadSerifFont } from 'hooks/use-load-serif-font'
 import { isEqual, omit } from 'lodash-es'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react-lite'
@@ -18,17 +25,13 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React, { FC, useEffect, useMemo, useRef, useState } from 'react'
 import { useUpdate } from 'react-use'
+import { noteStore, userStore, useStore } from 'store'
 import { imagesRecord2Map } from 'utils/images'
 import { message } from 'utils/message'
 import { mood2icon, weather2icon } from 'utils/meta-icon'
 import { parseDate } from 'utils/time'
-import CommentWrap from 'views/Comment'
-import { NotePasswordConfrim } from 'views/for-pages/NotePasswordConfirm'
-import { NoteTimelineList } from 'views/for-pages/NoteTimelineList'
-import { BanCopy } from 'views/for-pages/WarningOverlay/ban-copy'
-import { Markdown } from 'views/Markdown'
-import { ImageSizeMetaContext } from '../../common/context/image-size'
-import { Seo } from '../../components/SEO'
+import { Seo } from '../../components/universal/Seo'
+import { ImageSizeMetaContext } from '../../context/image-size'
 import { getSummaryFromMd, isDev, noop } from '../../utils'
 
 const renderLines: FC<{ value: string }> = ({ value }) => {
@@ -325,7 +328,7 @@ const FooterActionBar: FC<{ id: string }> = observer(({ id }) => {
     )
   }
 
-  return <>{!isSecret && <Action {...actions} />}</>
+  return <>{!isSecret && <ArticleFooterAction {...actions} />}</>
 })
 
 const FooterNavigation: FC<{ id: string }> = observer(({ id }) => {

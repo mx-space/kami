@@ -5,9 +5,12 @@ import {
   faUsers,
 } from '@fortawesome/free-solid-svg-icons'
 import { AggregateTop } from '@mx-space/api-client'
-import { useInitialData, useThemeConfig } from 'common/hooks/use-initial-data'
-import { useStore } from 'common/store'
-import { FontIcon } from 'components/FontIcon'
+import SectionNews, {
+  SectionCard,
+  SectionNewsProps,
+} from 'components/in-page/SectionNews'
+import { FontIcon } from 'components/universal/FontIcon'
+import { useInitialData, useThemeConfig } from 'hooks/use-initial-data'
 import { shuffle } from 'lodash-es'
 import { observer } from 'mobx-react-lite'
 import { NextPage } from 'next'
@@ -23,17 +26,14 @@ import React, {
   useRef,
   useState,
 } from 'react'
+import { useStore } from 'store'
 import { apiClient } from 'utils/client'
 import { message } from 'utils/message'
-import SectionNews, {
-  SectionCard,
-  SectionNewsProps,
-} from 'views/for-pages/SectionNews'
+import { FriendsSection } from '../components/in-page/SectionNews/friend'
+import { SectionWrap } from '../components/in-page/SectionNews/section'
 import { getRandomImage, NoSSR } from '../utils'
 import { stopEventDefault } from '../utils/dom'
 import '../utils/message'
-import { FriendsSection } from '../views/for-pages/SectionNews/friend'
-import { SectionWrap } from '../views/for-pages/SectionNews/section'
 
 const IndexView: NextPage<AggregateTop> = (props) => {
   const { userStore } = useStore()

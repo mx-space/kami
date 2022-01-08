@@ -6,12 +6,12 @@ import {
   PostModel,
   TagModel,
 } from '@mx-space/api-client'
-import { appUIStore, useStore } from 'common/store'
-import { QueueAnim } from 'components/Anime'
-import { Loading } from 'components/Loading'
-import { OverLay } from 'components/Overlay'
-import { BigTag } from 'components/Tag'
-import { ArticleLayout } from 'layouts/ArticleLayout'
+import { PostBlock } from 'components/in-page/PostBlock'
+import { ArticleLayout } from 'components/layouts/ArticleLayout'
+import { QueueAnim } from 'components/universal/Anime'
+import { Loading } from 'components/universal/Loading'
+import { OverLay } from 'components/universal/Overlay'
+import { BigTag } from 'components/universal/Tag'
 import { observer } from 'mobx-react-lite'
 import { NextPage } from 'next'
 import Link from 'next/link'
@@ -24,10 +24,10 @@ import React, {
   useRef,
   useState,
 } from 'react'
+import { appUIStore, useStore } from 'store'
 import { NoSSR } from 'utils'
 import { apiClient } from 'utils/client'
-import { PostBlock } from 'views/for-pages/PostBlock'
-import { SEO } from '../../components/SEO'
+import { SEO } from '../../components/universal/Seo'
 
 const PostListPage: NextPage<PaginateResult<PostModel>> = observer(() => {
   const [pagination, setPagination] = useState<Pager | null>(null)

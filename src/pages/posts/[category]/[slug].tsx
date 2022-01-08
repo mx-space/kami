@@ -6,26 +6,30 @@ import {
   faThumbsUp,
 } from '@fortawesome/free-solid-svg-icons'
 import { PostModel } from '@mx-space/api-client'
-import { ImageSizeMetaContext } from 'common/context'
-import { useHeaderMeta, useHeaderShare } from 'common/hooks/use-header-meta'
-import { useInitialData, useThemeConfig } from 'common/hooks/use-initial-data'
-import { postStore, useStore } from 'common/store'
-import Action, { ActionProps } from 'components/Action'
-import { NumberRecorder } from 'components/NumberRecorder'
-import Outdate from 'components/Outdate'
-import { Seo } from 'components/SEO'
+import { ArticleLayout } from 'components/layouts/ArticleLayout'
+import { buildStoreDataLoadableView } from 'components/universal/LoadableView'
+import { Markdown } from 'components/universal/Markdown'
+import { NumberRecorder } from 'components/universal/NumberRecorder'
+import Outdate from 'components/universal/Outdate'
+import { Seo } from 'components/universal/Seo'
+import {
+  ActionProps,
+  ArticleFooterAction,
+} from 'components/widgets/ArticleAction'
+import { CommentLazy } from 'components/widgets/Comment'
+import { ImageSizeMetaContext } from 'context'
 import dayjs from 'dayjs'
-import { ArticleLayout } from 'layouts/ArticleLayout'
+import { useHeaderMeta, useHeaderShare } from 'hooks/use-header-meta'
+import { useInitialData, useThemeConfig } from 'hooks/use-initial-data'
 import { isEqual } from 'lodash-es'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { postStore, useStore } from 'store'
 import { apiClient } from 'utils/client'
 import { message } from 'utils/message'
-import { CommentLazy } from 'views/Comment'
-import { buildStoreDataLoadableView } from 'views/LoadableView'
-import { Markdown } from 'views/Markdown'
+import { Copyright } from '../../../components/widgets/Copyright'
 import {
   getSummaryFromMd,
   imagesRecord2Map,
@@ -34,7 +38,6 @@ import {
   noop,
   setLikeId,
 } from '../../../utils'
-import { Copyright } from '../../../views/Copyright'
 
 const storeThumbsUpCookie = setLikeId
 
@@ -222,7 +225,7 @@ export const PostView: PageOnlyProps = observer((props) => {
                   title={post.title}
                 />
               ) : null}
-              <Action {...actions} />
+              <ArticleFooterAction {...actions} />
 
               <CommentLazy
                 type={'Post'}

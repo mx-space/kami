@@ -12,8 +12,8 @@ import configs from 'configs'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { isDev } from 'utils'
-import { ImageLazy } from '../../components/Image'
-import { Seo } from '../../components/SEO'
+import { ImageLazy } from '../../components/universal/Image'
+import { Seo } from '../../components/universal/Seo'
 
 const BangumiView: NextPage<{ data: FavoriteBangumiType[] }> = (props) => {
   return (

@@ -3,9 +3,9 @@ import omit from 'lodash/omit'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { apiClient } from 'utils/client'
-import { QueueAnim } from '../../components/Anime'
-import { SEO } from '../../components/SEO'
-import { ArticleLayout } from '../../layouts/ArticleLayout'
+import { ArticleLayout } from '../../components/layouts/ArticleLayout'
+import { QueueAnim } from '../../components/universal/Anime'
+import { SEO } from '../../components/universal/Seo'
 
 interface CategoryListViewProps {
   category: CategoryModel

@@ -1,11 +1,11 @@
 import { ProjectModel } from '@mx-space/api-client'
 import defaultImage from 'assets/images/Kico.jpg'
-import { ImageLazy } from 'components/Image'
+import { ImageLazy } from 'components/universal/Image'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { apiClient } from 'utils/client'
-import { QueueAnim } from '../../components/Anime'
-import { SEO } from '../../components/SEO'
+import { QueueAnim } from '../../components/universal/Anime'
+import { SEO } from '../../components/universal/Seo'
 
 interface ProjectViewProps {
   projects: ProjectModel[]

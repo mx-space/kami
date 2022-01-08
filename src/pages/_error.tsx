@@ -1,5 +1,5 @@
 import { RequestError } from '@mx-space/api-client'
-import { ErrorView } from 'components/Error'
+import { ErrorView } from 'components/universal/Error'
 import { NextPage } from 'next'
 const ErrorPage: NextPage<{ statusCode: number }> = ({ statusCode = 500 }) => {
   return <ErrorView showBackButton showRefreshButton statusCode={statusCode} />

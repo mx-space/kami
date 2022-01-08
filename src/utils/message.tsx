@@ -10,7 +10,7 @@ import {
   Message,
   MessageContainer,
   MessageContainerPrefixId,
-} from 'components/Message'
+} from 'components/universal/Message'
 import ReactDOM from 'react-dom'
 import { isServerSide } from './utils'
 

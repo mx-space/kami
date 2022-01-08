@@ -9,8 +9,8 @@ import CountUp from 'react-countup'
 import { usePrevious } from 'react-use'
 import { apiClient } from 'utils/client'
 import { dayOfYear, daysOfYear, secondOfDay, secondOfDays } from 'utils/time'
-import { SEO } from '../../components/SEO'
-import { ArticleLayout } from '../../layouts/ArticleLayout'
+import { ArticleLayout } from '../../components/layouts/ArticleLayout'
+import { SEO } from '../../components/universal/Seo'
 import styles from './index.module.css'
 
 interface TimeLineViewProps extends TimelineData {

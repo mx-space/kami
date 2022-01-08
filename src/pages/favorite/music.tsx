@@ -1,11 +1,11 @@
 import { PersonalPlayListType, PlayListType } from '@mx-space/extra'
 import axios from 'axios'
+import { SectionMusic } from 'components/in-page/SectionMusic'
 import configs from 'configs'
 import { observer } from 'mobx-react-lite'
 import { NextPage } from 'next'
 import { isDev } from 'utils'
-import { SectionMusic } from 'views/for-pages/SectionMusic'
-import { Seo } from '../../components/SEO'
+import { Seo } from '../../components/universal/Seo'
 
 interface MusicProps {
   weekdata: PlayListType[]
