@@ -37,8 +37,8 @@ import '../utils/message'
 
 const IndexView: NextPage<AggregateTop> = (props) => {
   const { userStore } = useStore()
-  const { name, introduce, master } = userStore
-  const { avatar } = master
+
+  const { name, introduce } = userStore
 
   const {
     user,
@@ -64,11 +64,7 @@ const IndexView: NextPage<AggregateTop> = (props) => {
       />
       <section className="kami-intro">
         <div className="intro-avatar ">
-          <img
-            src={user.avatar || avatar}
-            alt={name}
-            style={{ width: '100%' }}
-          />
+          <img src={user.avatar} alt={name} style={{ width: '100%' }} />
         </div>
         <div className="intro-info">
           <h1>

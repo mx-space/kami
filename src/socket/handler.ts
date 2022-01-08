@@ -85,7 +85,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
         notice.notice({
           title: userStore.name + ' 敲了你一下',
           body: data.text,
-          options: { image: userStore.master.avatar },
+          options: { image: userStore.master?.avatar },
         })
       }
 

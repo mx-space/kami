@@ -17,9 +17,10 @@ import style from './index.module.css'
 export const OwnerMessage: FC<{ text: string; date: Date }> = observer(
   ({ text, date }) => {
     const { userStore } = useStore()
+
     return (
       <div className={style['message']}>
-        <Avatar size={35} imageUrl={userStore.master.avatar as string} />
+        <Avatar size={35} imageUrl={userStore.master?.avatar as string} />
         <div className={style['message-wrapper']}>
           <div className={style['message-head']}>
             <div className={style['author-name']}>{userStore.name}</div>

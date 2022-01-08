@@ -20,7 +20,7 @@ export default class UserStore {
   constructor() {
     makeAutoObservable(this)
   }
-  master: Partial<UserModel> = null!
+  master: Partial<UserModel> | null = null
   token: string | null = null
   get isLogged() {
     return !!this.token
@@ -29,10 +29,6 @@ export default class UserStore {
   url: UrlConfig | null = null
   setUser(model: UserModel) {
     this.master = model
-  }
-
-  setUrl(url: UrlConfig) {
-    this.url = url
   }
 
   async fetchUrl() {
@@ -47,14 +43,14 @@ export default class UserStore {
   }
 
   get username() {
-    return this.master.username
+    return this.master?.username || ''
   }
 
   get name() {
-    return this.master.name
+    return this.master?.name || ''
   }
   get introduce() {
-    return this.master.introduce || null
+    return this.master?.introduce || null
   }
   setToken(token?: string) {
     if (!token) {
