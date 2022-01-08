@@ -1,7 +1,7 @@
 import { useInitialData, useKamiConfig } from 'hooks/use-initial-data'
 import Head from 'next/head'
-import { FC, memo } from 'react'
-import { isDev } from 'utils'
+import { FC, memo, useEffect } from 'react'
+import { isDev, loadScript } from 'utils'
 export const DynamicHeaderMeta: FC = memo(() => {
   const initialData = useInitialData()
   const title = initialData.seo.title
@@ -11,6 +11,12 @@ export const DynamicHeaderMeta: FC = memo(() => {
   const { dark: darkBg, light: lightBg } = themeConfig.site.background.src
   const { dark: darkFooter, light: lightFooter } =
     themeConfig.site.footer.background.src
+  const { css, js, script, style } = themeConfig.site.custom
+
+  useEffect(() => {
+    js && js.length && js.forEach((src, i) => loadScript(src))
+  }, [])
+
   return (
     <Head>
       <meta
@@ -23,6 +29,17 @@ export const DynamicHeaderMeta: FC = memo(() => {
           content="upgrade-insecure-requests"
         />
       ) : null}
+
+      {script ? (
+        <script dangerouslySetInnerHTML={{ __html: script }} defer></script>
+      ) : null}
+
+      {style ? (
+        <style dangerouslySetInnerHTML={{ __html: style }}></style>
+      ) : null}
+      {css && css.length
+        ? css.map((href, i) => <link rel="stylesheet" href={href} key={i} />)
+        : null}
 
       {/* for pwa */}
       <meta name="application-name" content={title} />

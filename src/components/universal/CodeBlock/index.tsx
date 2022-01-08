@@ -1,5 +1,5 @@
-import CodeHighlighter from 'components/universal/CodeHighlighter'
 import { Mermaid } from 'components/universal/Mermaid'
+import CodeHighlighter from 'components/widgets/CodeHighlighter'
 export const CodeBlock = (props: {
   language: string | undefined
   value: string

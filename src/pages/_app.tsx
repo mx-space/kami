@@ -2,11 +2,8 @@
 import 'windi.css'
 // organize-imports-ignore
 import 'assets/styles/main.css'
-// organize-imports-ignore
-// import 'normalize.css/normalize.css'
 
 import { AggregateRoot } from '@mx-space/api-client'
-import { DropdownProvider } from 'context/dropdown'
 import { InitialContextProvider, InitialDataType } from 'context/initial-data'
 import { useCheckLogged } from 'hooks/use-check-logged'
 import { useCheckOldBrowser } from 'hooks/use-check-old-browser'
@@ -14,7 +11,6 @@ import { useInitialData, useThemeConfig } from 'hooks/use-initial-data'
 import { useResizeScrollEvent } from 'hooks/use-resize-scroll-event'
 import { useRouterEvent } from 'hooks/use-router-event'
 import { useScreenMedia } from 'hooks/use-screen-media'
-import { NoConfigErrorView } from 'components/universal/Error/no-config'
 import { NoDataErrorView } from 'components/universal/Error/no-data'
 import Loader from 'components/universal/Loader'
 import { DynamicHeaderMeta } from 'components/universal/Meta/header'
@@ -76,9 +72,9 @@ const Content: FC = observer((props) => {
     return <NoDataErrorView />
   }
 
-  if (!themeConfig) {
-    return <NoConfigErrorView />
-  }
+  // if (!themeConfig) {
+  //   return <NoConfigErrorView />
+  // }
 
   return (
     <>
