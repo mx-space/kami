@@ -13,7 +13,7 @@ specifiers:
   '@innei-util/prettier': latest
   '@innei/devtools-detector': 2.0.4-beta.1
   '@innei/react-stack-grid': 0.8.4
-  '@mx-space/extra': 0.5.0
+  '@mx-space/extra': 0.5.1
   '@next/bundle-analyzer': 12.0.7
   '@openfonts/noto-sans-sc_vietnamese': 1.44.0
   '@types/inflection': 1.13.0
@@ -93,7 +93,7 @@ dependencies:
   '@fortawesome/react-fontawesome': 0.1.16_f515edce028694561ceb456e3dba224c
   '@innei/devtools-detector': 2.0.4-beta.1
   '@innei/react-stack-grid': 0.8.4_837d624d62d50aa058b79890e8780bb8
-  '@mx-space/extra': 0.5.0_axios@0.24.0
+  '@mx-space/extra': 0.5.1_axios@0.24.0
   '@openfonts/noto-sans-sc_vietnamese': 1.44.0
   NeteaseCloudMusicApi: 4.0.23
   axios: 0.24.0
@@ -1497,15 +1497,15 @@ packages:
       shallowequal: 1.1.0
     dev: false
 
-  /@mx-space/extra/0.5.0_axios@0.24.0:
-    resolution: {integrity: sha512-INwGC/Dicoo18P2n3MDi8m55nFH3XnF9mt2M0hOTJawR7krP3ATuiYq7mHXkk7Q2nEpYYFjdCWBhPyCLi1ePMA==}
+  /@mx-space/extra/0.5.1_axios@0.24.0:
+    resolution: {integrity: sha512-r/8AKpzlKdrhe7SKJauEfSHIgnIKOSie9AkniB58LIt6t+v3pEBoq31r1bg9fQD+bHhM/6cO2DtfCJjIJYdIOQ==}
     peerDependencies:
       axios: ^0.21.0
     dependencies:
       axios: 0.24.0
       date-fns: 2.23.0
-      NeteaseCloudMusicApi: 4.0.16
-      tslib: 2.2.0
+      NeteaseCloudMusicApi: 4.2.0
+      tslib: 2.3.1
     transitivePeerDependencies:
       - debug
       - supports-color
@@ -2044,23 +2044,6 @@ packages:
     resolution: {integrity: sha512-N8tkAACJx2ww8vFMneJmaAgmjAG1tnVBZJRLRcx061tmsLRZHSEZSLuGWnwPtunsSLvSqXQ2wfp7Mgqg1I+2dQ==}
     dev: false
 
-  /NeteaseCloudMusicApi/4.0.16:
-    resolution: {integrity: sha512-IlpA0fF4cMaKUZRC4knfqrkQQnE2jYOl5r2rF2lNJFYQA3l2spBN7+LCHM+zrZv9y8mGUa5WvRUcNNNssxT4bA==}
-    engines: {node: '>=12'}
-    dependencies:
-      axios: 0.21.4
-      express: 4.17.1
-      express-fileupload: 1.2.1
-      md5: 2.3.0
-      music-metadata: 7.11.4
-      pac-proxy-agent: 4.1.0
-      qrcode: 1.4.4
-      tunnel: 0.0.6
-    transitivePeerDependencies:
-      - debug
-      - supports-color
-    dev: false
-
   /NeteaseCloudMusicApi/4.0.23:
     resolution: {integrity: sha512-0pPg809ZlHT2ToJU+4pDx+TLCEwZAMuEGG/jtkfx9d1FYxDHzrmqpzOP5iyJDjhAW7m8CE06SKtsN4FmvK2hSw==}
     engines: {node: '>=12'}
@@ -2075,6 +2058,26 @@ packages:
       qrcode: 1.4.4
       safe-decode-uri-component: 1.2.1
       tunnel: 0.0.6
+    transitivePeerDependencies:
+      - debug
+      - supports-color
+    dev: false
+
+  /NeteaseCloudMusicApi/4.2.0:
+    resolution: {integrity: sha512-aLHAwgVBGBNl9HfpFpRahzsvkhAeCzPh9KoS6yEUMWACGo+HuML/ZnpsfaCQdSHCB+IZ8ZT4klWKC8MTThp0ag==}
+    engines: {node: '>=12'}
+    hasBin: true
+    dependencies:
+      axios: 0.24.0
+      express: 4.17.1
+      express-fileupload: 1.2.1
+      md5: 2.3.0
+      music-metadata: 7.11.4
+      pac-proxy-agent: 5.0.0
+      qrcode: 1.4.4
+      safe-decode-uri-component: 1.2.1
+      tunnel: 0.0.6
+      yargs: 17.3.1
     transitivePeerDependencies:
       - debug
       - supports-color
@@ -2497,7 +2500,7 @@ packages:
       camelcase: 6.2.0
       chalk: 4.1.2
       cli-boxes: 2.2.1
-      string-width: 4.2.2
+      string-width: 4.2.3
       type-fest: 0.20.2
       widest-line: 3.1.0
       wrap-ansi: 7.0.0
@@ -2831,6 +2834,14 @@ packages:
       string-width: 3.1.0
       strip-ansi: 5.2.0
       wrap-ansi: 5.1.0
+    dev: false
+
+  /cliui/7.0.4:
+    resolution: {integrity: sha512-OcRE68cOsVMXp1Yvonl/fzkQOyjLSu/8bhPDfQt0e0/Eb283TKP20Fs2MqoPsr9SwA595rRCA+QMzYc9nBP+JQ==}
+    dependencies:
+      string-width: 4.2.3
+      strip-ansi: 6.0.1
+      wrap-ansi: 7.0.0
     dev: false
 
   /clone-response/1.0.2:
@@ -3295,15 +3306,6 @@ packages:
     resolution: {integrity: sha1-yY2bzvdWdBiOEQlpFRGZ45sfppM=}
     dev: false
 
-  /degenerator/2.2.0:
-    resolution: {integrity: sha512-aiQcQowF01RxFI4ZLFMpzyotbQonhNpBao6dkI8JPk5a+hmSjR5ErHp2CQySmQe8os3VBqLCIh87nDBgZXvsmg==}
-    engines: {node: '>= 6'}
-    dependencies:
-      ast-types: 0.13.4
-      escodegen: 1.14.3
-      esprima: 4.0.1
-    dev: false
-
   /degenerator/3.0.1:
     resolution: {integrity: sha512-LFsIFEeLPlKvAKXu7j3ssIG6RT0TbI7/GhsqrI0DnHASEQjXQ0LUSYcjJteGgRGmZbl1TnMSxpNQIAiJ7Du5TQ==}
     engines: {node: '>= 6'}
@@ -3523,7 +3525,6 @@ packages:
 
   /emoji-regex/8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
-    dev: true
 
   /emojis-list/2.1.0:
     resolution: {integrity: sha1-TapNnbAPmBmIDHn6RXrlsJof04k=}
@@ -4790,7 +4791,6 @@ packages:
   /is-fullwidth-code-point/3.0.0:
     resolution: {integrity: sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg==}
     engines: {node: '>=8'}
-    dev: true
 
   /is-generator-function/1.0.10:
     resolution: {integrity: sha512-jsEjy9l3yiXEQ+PsXdmBwEPcOxaXWLspKdplFUVI9vq1iZgIekeC0L167qeu86czQaxed3q/Uzuw0swL0irL8A==}
@@ -5853,23 +5853,6 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  /pac-proxy-agent/4.1.0:
-    resolution: {integrity: sha512-ejNgYm2HTXSIYX9eFlkvqFp8hyJ374uDf0Zq5YUAifiSh1D6fo+iBivQZirGvVv8dCYUsLhmLBRhlAYvBKI5+Q==}
-    engines: {node: '>= 6'}
-    dependencies:
-      '@tootallnate/once': 1.1.2
-      agent-base: 6.0.2
-      debug: 4.3.2
-      get-uri: 3.0.2
-      http-proxy-agent: 4.0.1
-      https-proxy-agent: 5.0.0
-      pac-resolver: 4.2.0
-      raw-body: 2.4.1
-      socks-proxy-agent: 5.0.1
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
   /pac-proxy-agent/5.0.0:
     resolution: {integrity: sha512-CcFG3ZtnxO8McDigozwE3AqAw15zDvGH+OjXO4kzf7IkEKkQ4gxQ+3sdF50WmhQ4P/bVusXcqNE2S3XrNURwzQ==}
     engines: {node: '>= 8'}
@@ -5885,15 +5868,6 @@ packages:
       socks-proxy-agent: 5.0.1
     transitivePeerDependencies:
       - supports-color
-    dev: false
-
-  /pac-resolver/4.2.0:
-    resolution: {integrity: sha512-rPACZdUyuxT5Io/gFKUeeZFfE5T7ve7cAkE5TUZRRfuKP0u5Hocwe48X7ZEm6mYB+bTB0Qf+xlVlA/RM/i6RCQ==}
-    engines: {node: '>= 6'}
-    dependencies:
-      degenerator: 2.2.0
-      ip: 1.1.5
-      netmask: 2.0.2
     dev: false
 
   /pac-resolver/5.0.0:
@@ -7758,14 +7732,13 @@ packages:
       is-fullwidth-code-point: 2.0.0
       strip-ansi: 5.2.0
 
-  /string-width/4.2.2:
-    resolution: {integrity: sha512-XBJbT3N4JhVumXE0eoLU9DCjcaF92KLNqTmFCnG1pf8duUxFGwtP6AD6nkjw9a3IdiRtL3E2w3JDiE/xi3vOeA==}
+  /string-width/4.2.3:
+    resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
     engines: {node: '>=8'}
     dependencies:
       emoji-regex: 8.0.0
       is-fullwidth-code-point: 3.0.0
       strip-ansi: 6.0.1
-    dev: true
 
   /string.prototype.trimend/1.0.4:
     resolution: {integrity: sha512-y9xCjw1P23Awk8EvTpcyL2NIr1j7wJ39f+k6lvRnSMz+mz9CGz9NYPelDk42kOz6+ql8xjfK8oYzy3jAP5QU5A==}
@@ -7929,7 +7902,7 @@ packages:
       lodash.clonedeep: 4.5.0
       lodash.truncate: 4.4.2
       slice-ansi: 4.0.0
-      string-width: 4.2.2
+      string-width: 4.2.3
       strip-ansi: 6.0.1
     dev: true
 
@@ -8145,10 +8118,6 @@ packages:
   /tslib/1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
-
-  /tslib/2.2.0:
-    resolution: {integrity: sha512-gS9GVHRU+RGn5KQM2rllAlR3dU6m7AcpJKdtH8gFvQiC4Otgk98XnmMU+nZenHt/+VhnBPWwgrJsyrdcw6i23w==}
-    dev: false
 
   /tslib/2.3.1:
     resolution: {integrity: sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==}
@@ -8571,7 +8540,7 @@ packages:
     resolution: {integrity: sha512-NsmoXalsWVDMGupxZ5R08ka9flZjjiLvHVAWYOKtiKM8ujtZWr9cRffak+uSE48+Ob8ObalXpwyeUiyDD6QFgg==}
     engines: {node: '>=8'}
     dependencies:
-      string-width: 4.2.2
+      string-width: 4.2.3
     dev: true
 
   /word-wrap/1.2.3:
@@ -8737,9 +8706,8 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       ansi-styles: 4.3.0
-      string-width: 4.2.2
+      string-width: 4.2.3
       strip-ansi: 6.0.1
-    dev: true
 
   /wrappy/1.0.2:
     resolution: {integrity: sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=}
@@ -8806,6 +8774,11 @@ packages:
     resolution: {integrity: sha512-JKhqTOwSrqNA1NY5lSztJ1GrBiUodLMmIZuLiDaMRJ+itFd+ABVE8XBjOvIWL+rSqNDC74LCSFmlb/U4UZ4hJQ==}
     dev: false
 
+  /y18n/5.0.8:
+    resolution: {integrity: sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA==}
+    engines: {node: '>=10'}
+    dev: false
+
   /yallist/3.1.1:
     resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
     dev: false
@@ -8825,6 +8798,11 @@ packages:
       decamelize: 1.2.0
     dev: false
 
+  /yargs-parser/21.0.0:
+    resolution: {integrity: sha512-z9kApYUOCwoeZ78rfRYYWdiU/iNL6mwwYlkkZfJoyMR1xps+NEBX5X7XmRpxkZHhXJ6+Ey00IwKxBBSW9FIjyA==}
+    engines: {node: '>=12'}
+    dev: false
+
   /yargs/13.3.2:
     resolution: {integrity: sha512-AX3Zw5iPruN5ie6xGRIDgqkT+ZhnRlZMLMHAs8tg7nRruy2Nb+i5o9bwghAogtM08q1dpr2LVoS8KSTMYpWXUw==}
     dependencies:
@@ -8838,6 +8816,19 @@ packages:
       which-module: 2.0.0
       y18n: 4.0.3
       yargs-parser: 13.1.2
+    dev: false
+
+  /yargs/17.3.1:
+    resolution: {integrity: sha512-WUANQeVgjLbNsEmGk20f+nlHgOqzRFpiGWVaBrYGYIGANIIu3lWjoyi0fNlFmJkvfhCZ6BXINe7/W2O2bV4iaA==}
+    engines: {node: '>=12'}
+    dependencies:
+      cliui: 7.0.4
+      escalade: 3.1.1
+      get-caller-file: 2.0.5
+      require-directory: 2.1.1
+      string-width: 4.2.3
+      y18n: 5.0.8
+      yargs-parser: 21.0.0
     dev: false
 
   /yeast/0.1.2:
