@@ -8,6 +8,7 @@ export const DynamicHeaderMeta: FC = memo(() => {
 
   const themeConfig = useKamiConfig()
   const favicon = themeConfig.site.favicon || '/favicon.svg'
+
   const { dark: darkBg, light: lightBg } = themeConfig.site.background.src
   const { dark: darkFooter, light: lightFooter } =
     themeConfig.site.footer.background.src

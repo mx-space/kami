@@ -1,6 +1,6 @@
 import { defaultConfigs } from 'configs.default'
 import { InitialContext } from 'context/initial-data'
-import { merge } from 'lodash-es'
+import { cloneDeep, mergeWith } from 'lodash-es'
 import { useContext } from 'react'
 import { KamiConfig } from 'types/config'
 
@@ -9,7 +9,14 @@ export const useInitialData = () => {
 }
 
 export const useThemeConfig = () => {
-  return merge(defaultConfigs, useContext(InitialContext).config) as KamiConfig
+  const config = useContext(InitialContext).config
+
+  return mergeWith(cloneDeep(defaultConfigs), config, (old, newer) => {
+    // 数组不合并
+    if (Array.isArray(old)) {
+      return newer
+    }
+  }) as KamiConfig
 }
 
 export { useThemeConfig as useKamiConfig }

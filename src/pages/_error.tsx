@@ -23,15 +23,16 @@ const getCode = (err, res): number => {
   if (res?.statusCode === 500 && err?.statusCode === 500) {
     return 500
   } else if (res && res.statusCode !== 500) {
-    return res.statusCode
+    return res.statusCode || 500
   } else if (err && err.statusCode !== 500) {
-    return err.statusCode
+    return err.statusCode || 500
   }
   return 500
 }
 
 ErrorPage.getInitialProps = async ({ res, err }) => {
   const statusCode = getCode(err, res)
+
   res && (res.statusCode = statusCode)
   if (statusCode === 404) {
     return { statusCode: 404, err }
