@@ -86,8 +86,8 @@
     "react-use": "17.3.2",
     "remove-markdown": "0.3.0",
     "scrollama": "3.0.2",
-    "use-dark-mode": "2.3.1",
     "socket.io-client": "4.4.1",
+    "use-dark-mode": "2.3.1",
     "validator": "13.7.0"
   },
   "devDependencies": {
@@ -115,6 +115,8 @@
     "husky": "7.0.4",
     "js-yaml": "*",
     "lint-staged": "12.1.4",
+    "next-compose-plugins": "2.2.1",
+    "next-pwa": "5.4.4",
     "nodemon": "2.0.15",
     "postcss": "8.4.5",
     "postcss-import": "14.0.2",

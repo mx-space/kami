@@ -1,17 +1,31 @@
 const WindiCSSWebpackPlugin = require('windicss-webpack-plugin')
 
-const isProd = process.env.NODE_ENV === 'production'
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
 const env = require('dotenv').config().parsed || {}
 
-const withOffline = require('next-offline')
-const configs = withBundleAnalyzer({
+const withPlugins = require('next-compose-plugins')
+
+const isProd = process.env.NODE_ENV === 'production'
+
+const plugins = []
+
+if (process.env.ANALYZE === 'true') {
+  plugins.push([require('@next/bundle-analyzer'), { enabled: true }])
+}
+if (isProd) {
+  plugins.push([
+    require('next-pwa'),
+    {
+      pwa: {
+        dest: 'public',
+      },
+    },
+  ])
+}
+const configs = withPlugins(plugins, {
   swcMinify: true,
   experimental: {
     // ssr and displayName are configured by default
-    styledComponents: true,
+    styledComponents: !isProd,
   },
   webpack: (config, options) => {
     config.plugins.push(new WindiCSSWebpackPlugin())
@@ -22,7 +36,7 @@ const configs = withBundleAnalyzer({
     PORT: 2323,
     ...env,
   },
-  assetPrefix: isProd ? env.ASSETPREFIX || '' : '',
+  assetPrefix: isProd ? env.ASSETPREFIX || undefined : undefined,
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -52,39 +66,6 @@ const configs = withBundleAnalyzer({
       ],
     }
   },
-  // 小水管就算了吧
-  // __NEXT_OPTIMIZE_FONTS=true 暂时
-  optimizeFonts: false,
 })
 
-module.exports = isProd
-  ? withOffline({
-      workboxOpts: {
-        swDest: process.env.NEXT_EXPORT
-          ? 'service-worker.js'
-          : 'static/service-worker.js',
-        modifyURLPrefix: {
-          // @see: https://github.com/hanford/next-offline/issues/263#issuecomment-738155607
-          'autostatic/':
-            (env.ASSETPREFIX ? env.ASSETPREFIX + '/' : '') + '_next/static/', // new addition
-          'static/':
-            (env.ASSETPREFIX ? env.ASSETPREFIX + '/' : '') + '_next/static/',
-          'public/':
-            (env.ASSETPREFIX ? env.ASSETPREFIX + '/' : '') + '_next/public/',
-        },
-        runtimeCaching: [
-          {
-            urlPattern: /^https?.*/,
-            handler: 'NetworkFirst',
-            options: {
-              cacheName: 'offlineCache',
-              expiration: {
-                maxEntries: 200,
-              },
-            },
-          },
-        ],
-      },
-      ...configs,
-    })
-  : configs
+module.exports = configs
