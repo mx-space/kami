@@ -13,8 +13,8 @@ specifiers:
   '@innei-util/prettier': latest
   '@innei/devtools-detector': 2.0.4-beta.1
   '@innei/react-stack-grid': 0.8.4
-  '@mx-space/api-client': 0.5.2
-  '@mx-space/extra': 0.5.0
+  '@mx-space/api-client': 0.5.3
+  '@mx-space/extra': 0.4.0
   '@next/bundle-analyzer': 12.0.7
   '@trivago/prettier-plugin-sort-imports': 3.1.1
   '@types/inflection': 1.13.0
@@ -96,8 +96,8 @@ dependencies:
   '@fortawesome/react-fontawesome': 0.1.16_f515edce028694561ceb456e3dba224c
   '@innei/devtools-detector': 2.0.4-beta.1
   '@innei/react-stack-grid': 0.8.4_837d624d62d50aa058b79890e8780bb8
-  '@mx-space/api-client': 0.5.2
-  '@mx-space/extra': 0.5.0_axios@0.24.0
+  '@mx-space/api-client': 0.5.3
+  '@mx-space/extra': 0.4.0
   NeteaseCloudMusicApi: 4.2.0
   axios: 0.24.0
   camelcase-keys: 7.0.1
@@ -1563,22 +1563,19 @@ packages:
       shallowequal: 1.1.0
     dev: false
 
-  /@mx-space/api-client/0.5.2:
-    resolution: {integrity: sha512-HbZiZ+Frnx5sS7AD7tZAlF914IxBqpMdhKDGDTzJLNKSKxF52n77g82uIJTlPiPE5hZx4mr95VklHFCUu7G3kQ==}
+  /@mx-space/api-client/0.5.3:
+    resolution: {integrity: sha512-VfM2FRtBtn7qDKBGgi+MJ6CVsJEdr5NC5B894inzaInatiV9Ek6rlqst9ujwoAu0FVsJu2sM7bOAdnx4gUEPYQ==}
     engines: {pnpm: '>=6'}
     dependencies:
       camelcase-keys: 7.0.1
     dev: false
 
-  /@mx-space/extra/0.5.0_axios@0.24.0:
-    resolution: {integrity: sha512-INwGC/Dicoo18P2n3MDi8m55nFH3XnF9mt2M0hOTJawR7krP3ATuiYq7mHXkk7Q2nEpYYFjdCWBhPyCLi1ePMA==}
-    peerDependencies:
-      axios: ^0.21.0
+  /@mx-space/extra/0.4.0:
+    resolution: {integrity: sha512-Z7aHyWg6r4qlNEJd3AsbXGJx2dfCJIjEKhm4LIChYNX+mdc9H42riNYrc9rVXLcncw2Ki060iq++Hl5/++Ao+Q==}
     dependencies:
-      axios: 0.24.0
+      axios: 0.19.2
       date-fns: 2.23.0
-      NeteaseCloudMusicApi: 4.0.16
-      tslib: 2.2.0
+      NeteaseCloudMusicApi: 4.0.3
     transitivePeerDependencies:
       - debug
       - supports-color
@@ -2200,8 +2197,8 @@ packages:
     resolution: {integrity: sha512-N8tkAACJx2ww8vFMneJmaAgmjAG1tnVBZJRLRcx061tmsLRZHSEZSLuGWnwPtunsSLvSqXQ2wfp7Mgqg1I+2dQ==}
     dev: false
 
-  /NeteaseCloudMusicApi/4.0.16:
-    resolution: {integrity: sha512-IlpA0fF4cMaKUZRC4knfqrkQQnE2jYOl5r2rF2lNJFYQA3l2spBN7+LCHM+zrZv9y8mGUa5WvRUcNNNssxT4bA==}
+  /NeteaseCloudMusicApi/4.0.3:
+    resolution: {integrity: sha512-tghf9qbozfr4H9Dj1kqMYD07B2TOl/V8+N6rLfj8ShRdG8XTe1NmoW/XACR5IEc2CKH/9Bpxv40arLfJ7CpRxw==}
     engines: {node: '>=12'}
     dependencies:
       axios: 0.21.4
@@ -2508,6 +2505,13 @@ packages:
   /available-typed-arrays/1.0.5:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
     engines: {node: '>= 0.4'}
+    dev: false
+
+  /axios/0.19.2:
+    resolution: {integrity: sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==}
+    deprecated: Critical security vulnerability fixed in v0.21.1. For more information, see https://github.com/axios/axios/pull/3410
+    dependencies:
+      follow-redirects: 1.5.10
     dev: false
 
   /axios/0.21.4:
@@ -3369,6 +3373,12 @@ packages:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
     dependencies:
       ms: 2.0.0
+
+  /debug/3.1.0:
+    resolution: {integrity: sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==}
+    dependencies:
+      ms: 2.0.0
+    dev: false
 
   /debug/3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
@@ -4238,6 +4248,13 @@ packages:
         optional: true
     dev: false
 
+  /follow-redirects/1.5.10:
+    resolution: {integrity: sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==}
+    engines: {node: '>=4.0'}
+    dependencies:
+      debug: 3.1.0
+    dev: false
+
   /foreach/2.0.5:
     resolution: {integrity: sha1-C+4AUBiusmDQo6865ljdATbsG5k=}
     dev: false
@@ -4535,7 +4552,6 @@ packages:
 
   /graceful-fs/4.2.9:
     resolution: {integrity: sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==}
-    dev: false
 
   /gzip-size/6.0.0:
     resolution: {integrity: sha512-ax7ZYomf6jqPTQ4+XCpUGyXKHk5WweS+e05MBO4/y3WJ5RkmPXNKvX+bx1behVILVwr6JSQvZAku021CHPXG3Q==}
@@ -5257,7 +5273,7 @@ packages:
     dependencies:
       universalify: 2.0.0
     optionalDependencies:
-      graceful-fs: 4.2.8
+      graceful-fs: 4.2.9
     dev: true
 
   /jsonpointer/5.0.0:
@@ -6125,7 +6141,7 @@ packages:
       http-proxy-agent: 4.0.1
       https-proxy-agent: 5.0.0
       pac-resolver: 4.2.0
-      raw-body: 2.4.1
+      raw-body: 2.4.2
       socks-proxy-agent: 5.0.1
     transitivePeerDependencies:
       - supports-color
@@ -8377,10 +8393,6 @@ packages:
   /tslib/1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
-
-  /tslib/2.2.0:
-    resolution: {integrity: sha512-gS9GVHRU+RGn5KQM2rllAlR3dU6m7AcpJKdtH8gFvQiC4Otgk98XnmMU+nZenHt/+VhnBPWwgrJsyrdcw6i23w==}
-    dev: false
 
   /tslib/2.3.1:
     resolution: {integrity: sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==}

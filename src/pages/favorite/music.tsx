@@ -1,20 +1,38 @@
 import { PersonalPlayListType, PlayListType } from '@mx-space/extra'
-import axios from 'axios'
 import { SectionMusic } from 'components/in-page/SectionMusic'
-import configs from 'configs'
-import { observer } from 'mobx-react-lite'
+import { Loading } from 'components/universal/Loading'
 import { NextPage } from 'next'
-import { isDev } from 'utils'
+import { useEffect, useState } from 'react'
+import { message } from 'utils'
 import { Seo } from '../../components/universal/Seo'
 
-interface MusicProps {
+interface MusicData {
   weekdata: PlayListType[]
   alldata: PlayListType[]
   playlist: PersonalPlayListType
   uid: number
 }
 
-const MusicView: NextPage<MusicProps> = (props) => {
+const MusicView: NextPage = () => {
+  const [data, setData] = useState<null | MusicData>(null)
+
+  useEffect(() => {
+    fetch('/api/netease/music')
+      .then((res) => {
+        return res.json()
+      })
+      .then((res) => {
+        setData(res)
+      })
+      .catch((err) => {
+        message.error(err.message)
+      })
+  }, [])
+
+  if (!data) {
+    return <Loading />
+  }
+
   return (
     <main>
       <Seo title={`歌单`} openGraph={{ type: 'website' }} />
@@ -23,42 +41,25 @@ const MusicView: NextPage<MusicProps> = (props) => {
         {...{
           name: '周排行',
           src: 'https://p3.music.126.net/4HGEnXVexEfBACKi7wbq8A==/3390893860854924.jpg',
-          data: props.weekdata,
+          data: data.weekdata,
         }}
       />
       <SectionMusic
         {...{
           name: '总排行',
           src: 'https://p1.music.126.net/xTCCKfCJuEh2ohPZDNMDLw==/19193074975054252.jpg',
-          data: props.alldata,
+          data: data.alldata,
         }}
       />
       <SectionMusic
         {...{
-          name: props.playlist.name,
-          src: props.playlist.coverImgUrl,
-          data: props.playlist.data.slice(0, 10),
+          name: data.playlist.name,
+          src: data.playlist.coverImgUrl,
+          data: data.playlist.data.slice(0, 10),
         }}
       />
     </main>
   )
 }
 
-MusicView.getInitialProps = async (ctx) => {
-  const baseUrl = isDev ? 'http://localhost:2323' : configs.url
-
-  const $api = axios.create({
-    baseURL:
-      baseUrl ??
-      // @ts-ignore
-      (ctx.req?.connection?.encrypted ? 'https' : 'http') +
-        '://' +
-        ctx.req?.headers.host,
-  })
-
-  const { data } = await $api.get('/api/netease/music')
-
-  return data as MusicProps
-}
-
-export default observer(MusicView)
+export default MusicView

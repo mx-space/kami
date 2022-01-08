@@ -20,7 +20,7 @@ export default class UserStore {
   constructor() {
     makeAutoObservable(this)
   }
-  master: Partial<UserModel> = {}
+  master: Partial<UserModel> = null!
   token: string | null = null
   get isLogged() {
     return !!this.token

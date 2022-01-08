@@ -11,7 +11,7 @@
 
   --bg: #3478f6;
   --text: #fff;
-  --bg-gray: #d1d1d6;
+  --bg-gray: #f2f2f7;
 
   color: var(--text);
 
@@ -31,7 +31,7 @@
         @apply flex items-center text-red transform translate-x-[100%] opacity-0 invisible;
 
         &::after {
-          content: "";
+          content: '';
 
           @apply absolute left-[-30px] top-0 bottom-0 w-[8em];
 
@@ -70,7 +70,7 @@
           left: 100%;
           margin-left: -20px;
           width: 60px;
-          content: "";
+          content: '';
         }
       }
 

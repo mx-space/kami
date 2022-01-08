@@ -27,6 +27,8 @@ export default async function getBangumi(
       data: bangumi,
     })
   } catch (e) {
+    console.log(e)
+
     writeBody(res, { message: 'error' }, 400)
   }
 }

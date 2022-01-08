@@ -1,21 +1,44 @@
-/*
- * @Author: Innei
- * @Date: 2020-12-18 12:15:37
- * @LastEditTime: 2021-06-12 19:32:43
- * @LastEditors: Innei
- * @FilePath: /web/pages/favorite/bangumi.tsx
- * @Mark: Coding with Love
- */
 import { FavoriteBangumiType } from '@mx-space/extra'
-import axios from 'axios'
-import configs from 'configs'
+import { Loading } from 'components/universal/Loading'
+import { observer } from 'mobx-react-lite'
 import { NextPage } from 'next'
 import Head from 'next/head'
-import { isDev } from 'utils'
+import { useEffect, useState } from 'react'
+import { userStore } from 'store'
+import { message } from 'utils'
 import { ImageLazy } from '../../components/universal/Image'
 import { Seo } from '../../components/universal/Seo'
 
-const BangumiView: NextPage<{ data: FavoriteBangumiType[] }> = (props) => {
+const BangumiView: NextPage = () => {
+  const [data, setData] = useState<null | FavoriteBangumiType[]>(null)
+  const master = userStore.master
+
+  useEffect(() => {
+    if (!master) {
+      return
+    }
+    console.log(JSON.stringify(master.socialIds), JSON.stringify(master))
+
+    const ids = master.socialIds
+    if (!ids || !ids.bilibili) {
+      message.error('没有配置 哔哩哔哩 ID')
+      return
+    }
+    fetch('/api/bilibili/bangumi?uid=' + ids.bilibili)
+      .then((res) => {
+        return res.json()
+      })
+      .then((res) => {
+        setData(res.data)
+      })
+      .catch((err) => {
+        message.error(err.message)
+      })
+  }, [master])
+
+  if (!data) {
+    return <Loading />
+  }
   return (
     <main>
       <Head>
@@ -29,7 +52,7 @@ const BangumiView: NextPage<{ data: FavoriteBangumiType[] }> = (props) => {
       />
       <section className={'kami-bangumi'}>
         <div className="row">
-          {props.data.map((bangumi) => {
+          {data.map((bangumi) => {
             return (
               <div className="col-6 col-s-4 col-m-3" key={bangumi.id}>
                 <a
@@ -65,24 +88,4 @@ const BangumiView: NextPage<{ data: FavoriteBangumiType[] }> = (props) => {
   )
 }
 
-BangumiView.getInitialProps = async (ctx) => {
-  const baseUrl = isDev ? 'http://localhost:2323' : configs.url
-  const $api = axios.create({
-    baseURL:
-      baseUrl ??
-      // @ts-ignore
-      (ctx.req?.connection?.encrypted ? 'https' : 'http') +
-        '://' +
-        ctx.req?.headers.host,
-  })
-
-  const { data } = await $api.get('/api/bilibili/bangumi', {
-    params: {
-      uid: configs.biliId,
-    },
-  })
-
-  return data
-}
-
-export default BangumiView
+export default observer(BangumiView)
