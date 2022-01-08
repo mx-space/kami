@@ -22,6 +22,7 @@
     content: '';
     z-index: -1;
     position: absolute;
+    background: top/center;
   }
 
   @media screen and (max-width: 600px) {

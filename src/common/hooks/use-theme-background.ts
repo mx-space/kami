@@ -2,6 +2,15 @@ import { useStore } from 'common/store'
 import { useEffect } from 'react'
 import { useKamiConfig } from './use-initial-data'
 
+const loadStyle = (css: string) => {
+  const $style = document.createElement('style')
+  $style.innerHTML = css
+
+  document.head.appendChild($style)
+  return () => {
+    document.head.removeChild($style)
+  }
+}
 export const useThemeBackground = () => {
   const {
     appStore: { colorMode },
@@ -10,12 +19,32 @@ export const useThemeBackground = () => {
     site: { background },
   } = useKamiConfig()
   useEffect(() => {
-    const $style = document.createElement('style')
-    $style.innerHTML = `body { background: url(${background.src[colorMode]}) ${background.position}; background-color: var(--light-bg);  }`
+    const remove = loadStyle(
+      `body { background: url(${
+        background.src[colorMode] || background.src.light || background.src.dark
+      }) ${background.position}; background-color: var(--light-bg);  }`,
+    )
 
-    document.head.appendChild($style)
-    return () => {
-      document.documentElement.removeChild($style)
-    }
+    return remove
   }, [background.position, background.src, colorMode])
+}
+
+export const useFooterBackground = (footerClassName: string) => {
+  const {
+    appStore: { colorMode },
+  } = useStore()
+  const {
+    site: {
+      footer: { background },
+    },
+  } = useKamiConfig()
+  useEffect(() => {
+    const remove = loadStyle(
+      `.${footerClassName}::before { background: url(${
+        background.src[colorMode] || background.src.light || background.src.dark
+      }) ${background.position};  }`,
+    )
+
+    return remove
+  })
 }

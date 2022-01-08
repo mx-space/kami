@@ -1,37 +1,23 @@
 import { faNodeJs, faReact } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useInitialData, useThemeConfig } from 'common/hooks/use-initial-data'
+import { useFooterBackground } from 'common/hooks/use-theme-background'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import React, { createElement, FC, Fragment, memo, useMemo } from 'react'
 import { isServerSide } from 'utils'
 import Package from '~/package.json'
-import { appUIStore, useStore } from '../../common/store'
+import { useStore } from '../../common/store'
 import { FooterActions } from './actions'
 import styles from './index.module.css'
 
 const version = Package.version
 
-const FooterContainer = observer((props) => {
-  const kamiConfig = useThemeConfig()
-  const { colorMode } = appUIStore
-  const background = kamiConfig.site.footer.background
+const FooterContainer = (props) => {
+  useFooterBackground(styles['footer'])
 
-  return (
-    <footer
-      className={styles['footer']}
-      style={{
-        background: `url(${
-          colorMode === 'dark'
-            ? background.src.dark || background.src.light
-            : background.src.light || background.src.dark
-        }) ${background.position}`,
-      }}
-    >
-      {props.children}
-    </footer>
-  )
-})
+  return <footer className={styles['footer']}>{props.children}</footer>
+}
 
 const _Footer: FC = observer(() => {
   return (
