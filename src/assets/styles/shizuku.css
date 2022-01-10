@@ -86,7 +86,7 @@
 }
 
 #write blockquote > .paragraph {
-  padding: 10px 0 28px;
+  padding: 10px 0;
   margin: 0;
 }
 

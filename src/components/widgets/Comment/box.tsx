@@ -1,3 +1,4 @@
+import { faMarkdown } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons'
 import { faGlobeAsia } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -225,6 +226,9 @@ export const CommentBox: FC<{
       />
 
       <div className={styles['actions-wrapper']}>
+        <button className="btn flex-shrink-0 mr-[12px] cursor-default pointer-events-none">
+          <FontAwesomeIcon icon={faMarkdown} />
+        </button>
         <div className={styles['emoji-wrapper']}>
           <div className={styles['emojis']}>
             {EMOJI_LIST.map((emoji, i) => (
@@ -246,7 +250,7 @@ export const CommentBox: FC<{
             </button>
           )}
           <button
-            className="btn yellow"
+            className="btn yellow ml-[12px]"
             onClick={handleSubmit}
             disabled={text.trim().length === 0}
           >

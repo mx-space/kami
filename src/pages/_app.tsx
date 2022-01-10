@@ -78,11 +78,6 @@ const Content: FC = observer((props) => {
 
   return (
     <>
-      <Head>
-        {initialData.seo.keywords && (
-          <meta name="keywords" content={initialData.seo.keywords.join(',')} />
-        )}
-      </Head>
       <DynamicHeaderMeta />
       <NextSeo
         title={initialData.seo.title + ' · ' + initialData.seo.description}

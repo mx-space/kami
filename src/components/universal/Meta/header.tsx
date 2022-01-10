@@ -16,6 +16,10 @@ export const DynamicHeaderMeta: FC = memo(() => {
 
   useEffect(() => {
     js && js.length && js.forEach((src, i) => loadScript(src))
+
+    if (script) {
+      eval(script)
+    }
   }, [])
 
   return (
@@ -31,17 +35,15 @@ export const DynamicHeaderMeta: FC = memo(() => {
         />
       ) : null}
 
-      {script ? (
-        <script dangerouslySetInnerHTML={{ __html: script }} defer></script>
-      ) : null}
-
       {style ? (
         <style dangerouslySetInnerHTML={{ __html: style }}></style>
       ) : null}
       {css && css.length
         ? css.map((href, i) => <link rel="stylesheet" href={href} key={i} />)
         : null}
-
+      {initialData.seo.keywords && (
+        <meta name="keywords" content={initialData.seo.keywords.join(',')} />
+      )}
       {/* for pwa */}
       <meta name="application-name" content={title} />
       <meta name="apple-mobile-web-app-title" content={title} />

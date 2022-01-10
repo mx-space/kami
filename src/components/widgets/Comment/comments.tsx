@@ -160,6 +160,20 @@ const CommentList: FC<CommentsProps> = memo(
               className={styles['comment']}
               skipHtml
               escapeHtml
+              disallowedTypes={[
+                'html',
+                'virtualHtml',
+                'linkReference',
+                'imageReference',
+                'table',
+                'tableBody',
+                'tableCell',
+                'tableHead',
+                'tableRow',
+                'emphasis',
+                'thematicBreak',
+                'heading',
+              ]}
               renderers={{
                 commentAt: ({ value }) => {
                   const comment =

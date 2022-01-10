@@ -158,10 +158,6 @@
 }
 
 .actions-wrapper {
-  & button {
-    margin-left: 12px;
-  }
-
   position: relative;
   margin-top: 0.5rem;
   display: flex;

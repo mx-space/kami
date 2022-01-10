@@ -34,9 +34,11 @@
   border-radius: 4rem;
   background-color: rgb(230 126 34 / 100%);
   line-height: 1.15;
+  animation: gradual-change infinite 3s ease both;
+  animation-play-state: paused;
 
   &:hover {
-    animation: gradual-change infinite 3s ease both;
+    animation-play-state: running;
   }
 }
 
