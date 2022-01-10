@@ -58,7 +58,9 @@ const HighLighter: FC<Props> = observer((props) => {
   const ref = useRef<HTMLElement>(null)
   return (
     <div className={styles['code-wrap']}>
-      <span className={styles['language-tip']}>{language}</span>
+      <span className={styles['language-tip']} aria-hidden>
+        {language}
+      </span>
 
       <pre className="line-numbers !bg-transparent" data-start="1">
         <code className={`language-${language ?? 'markup'}`} ref={ref}>
@@ -66,7 +68,7 @@ const HighLighter: FC<Props> = observer((props) => {
         </code>
       </pre>
 
-      <div className={styles['copy-tip']} onClick={handleCopy}>
+      <div className={styles['copy-tip']} onClick={handleCopy} aria-hidden>
         Copy
       </div>
     </div>

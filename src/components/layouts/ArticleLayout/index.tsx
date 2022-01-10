@@ -54,7 +54,13 @@ export const ArticleLayout = memo(
         <ArticleLayoutContextProvider
           value={{ title, focus, id, subtitle, type }}
         >
-          <main className="is-article" ref={ref} {...rest} id={'article-wrap'}>
+          <main
+            className="is-article"
+            ref={ref}
+            {...rest}
+            id={'article-wrap'}
+            data-type={type}
+          >
             <ArticleLayoutTitle />
             <QueueAnim
               delay={delay ?? 300}

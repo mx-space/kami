@@ -10,7 +10,8 @@ import {
   useRef,
   useState,
 } from 'react'
-import scrollama from 'scrollama'
+import { CustomEventTypes } from 'types/events'
+import { eventBus } from 'utils'
 import styles from './index.module.css'
 import { TocItem } from './item'
 export type TocHeading = {
@@ -36,37 +37,15 @@ export const Toc: FC<TocProps> = memo(({ headings: $headings }) => {
     })
   }, [$headings])
   const [index, setIndex] = useState(-1)
-  // const beforeIndex = useRef(index)
-
   useEffect(() => {
-    if (!$headings.length) {
-      return
+    const handler = (index: number) => {
+      setIndex(index)
     }
-    const scroller = scrollama()
-    // TODO: set index if scroll direction is up
-    scroller
-      .setup({
-        step: $headings,
-        offset: 0.5,
-      })
-      .onStepEnter(({ element, direction }) => {
-        // console.log(element.dataset['index'])
-        setIndex((element.dataset['index'] as any) | 0)
-        // setIndex((prev) => {
-        //   beforeIndex.current = prev
-        //   return (element.dataset['index'] as any) | 0
-        // })
-      })
-    // .onStepExit(({ element, direction }) => {
-    //   if (direction === 'up') {
-    //     setIndex(((element.dataset['index'] as any) | 0) - 1)
-    //   }
-    // })
-
+    eventBus.on(CustomEventTypes.TOC, handler)
     return () => {
-      scroller.destroy()
+      eventBus.off(CustomEventTypes.TOC, handler)
     }
-  }, [$headings])
+  }, [])
 
   const setMaxWidth = throttle(() => {
     if (containerRef.current) {

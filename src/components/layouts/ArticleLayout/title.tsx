@@ -4,6 +4,7 @@ import TextyAnim from 'rc-texty'
 import { userStore } from 'store'
 import { isClientSide, resolveUrl } from 'utils'
 import { useArticleLayoutProps } from './hooks'
+import styles from './index.module.css'
 
 export const ArticleLayoutTitle = observer((props) => {
   const {
@@ -18,28 +19,20 @@ export const ArticleLayoutTitle = observer((props) => {
     return null
   }
   return (
-    <section className="post-title">
-      <h1>
-        <RcQueueAnim
-          type="alpha"
-          // animatingClassName={['absolute', 'absolute']}
-          leaveReverse
-          appear={false}
-        >
+    <section className={styles['post-title']}>
+      <h1 className={styles['h1']}>
+        <RcQueueAnim type="alpha" leaveReverse appear={false}>
           {isClientSide() ? (
-            <>
-              <TextyAnim type={'mask-bottom'} mode={'smooth'} key={title}>
-                {title}
-              </TextyAnim>
-            </>
+            <TextyAnim type={'mask-bottom'} mode={'smooth'} key={title}>
+              {title}
+            </TextyAnim>
           ) : (
             title
           )}
         </RcQueueAnim>
         {type && id && isLogged && url ? (
           <a
-            className="edit-link"
-            style={{ float: 'right' }}
+            className="edit-link float-right"
             target="_blank"
             href={
               resolveUrl(

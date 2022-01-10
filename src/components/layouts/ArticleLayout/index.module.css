@@ -1,0 +1,12 @@
+.post-title {
+  margin-bottom: 5em;
+}
+
+.post-title h2 {
+  color: #aaa;
+  font-size: 1.2em;
+}
+
+:global(main[data-type='post']) .post-title h1.h1 {
+  font-weight: 200;
+}

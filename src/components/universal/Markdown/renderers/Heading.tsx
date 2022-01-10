@@ -4,9 +4,12 @@ import {
   FC,
   Fragment,
   memo,
+  useEffect,
   useMemo,
 } from 'react'
-import { isClientSide } from 'utils'
+import { useInView } from 'react-intersection-observer'
+import { CustomEventTypes } from 'types/events'
+import { eventBus, isClientSide } from 'utils'
 
 export const Heading = () => {
   let index = 0
@@ -17,7 +20,11 @@ export const Heading = () => {
   }> = memo((props) => {
     const currentIndex = useMemo(() => index++, [])
     const title = props.children?.[0].props.value
+    const [ref, inView] = useInView({ rootMargin: '-33% 0% -33% 0%' })
 
+    useEffect(() => {
+      eventBus.emit(CustomEventTypes.TOC, currentIndex)
+    }, [currentIndex, inView])
     return (
       <Fragment>
         {createElement<DOMAttributes<HTMLHeadingElement>, HTMLHeadingElement>(
@@ -25,6 +32,7 @@ export const Heading = () => {
           {
             id: title,
             'data-index': currentIndex,
+            ref,
           } as any,
           props.children,
         )}

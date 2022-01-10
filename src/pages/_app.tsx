@@ -124,7 +124,9 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
     }
     return (
       <BasicLayout>
-        <Component {...pageProps} />
+        <Content>
+          <Component {...pageProps} />
+        </Content>
       </BasicLayout>
     )
   }, [Component, pageProps, router.route])
@@ -133,8 +135,7 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
     <RootStoreProvider>
       <InitialContextProvider value={initData}>
         {/* <DropdownProvider> */}
-
-        <Content>{Comp}</Content>
+        {Comp}
         {/* </DropdownProvider> */}
       </InitialContextProvider>
     </RootStoreProvider>

@@ -10,7 +10,7 @@
   --light-font: #fff;
   --shallow: #eee;
 
-  font: 14px/1.15 Arial, Helvetica, noto sans sc, PingFang SC, hiragino sans gb,
+  font: 14px/1.15 Helvetica, noto sans sc, PingFang SC, hiragino sans gb,
     microsoft yahei, 'sans-serif';
   color: #353535;
 }
@@ -338,15 +338,6 @@ main.is-gallery {
 article {
   color: #67492e;
   color: var(--light-brown);
-}
-
-.post-title {
-  margin-bottom: 5em;
-}
-
-.post-title h2 {
-  color: #aaa;
-  font-size: 1.2em;
 }
 
 article > h1 {

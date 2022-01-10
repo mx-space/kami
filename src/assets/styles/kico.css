@@ -29,8 +29,6 @@
 :root {
   text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
-  font: 16px/1.5 'Microsoft Yahei', 'PingFang SC', 'Hiragino Sans GB',
-    sans-serif;
 }
 
 /* 2 - 元素
