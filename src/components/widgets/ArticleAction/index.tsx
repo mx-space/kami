@@ -68,7 +68,7 @@ export const ArticleFooterAction: FC<ActionProps> = memo((props) => {
           </a>
         )}
       </div>
-      <div className="note-action min-h-4">
+      <div className="note-action min-h-4 space-x-2">
         {actions.map((action, i) => {
           if (!action) {
             return null
