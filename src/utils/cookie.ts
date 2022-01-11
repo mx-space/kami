@@ -8,7 +8,7 @@ export const TokenKey = 'mx-token'
  */
 export function getToken(): string | null {
   const token = Cookies.get(TokenKey)
-  return `bearer ${token}` || null
+  return token ? `bearer ${token}` : null
 }
 
 export function setToken(token: string, expires: number | Date) {
