@@ -13,7 +13,7 @@ specifiers:
   '@innei-util/prettier': latest
   '@innei/devtools-detector': 2.0.4-beta.1
   '@innei/react-stack-grid': 0.8.4
-  '@mx-space/extra': 0.5.1
+  '@mx-space/extra': 0.5.2
   '@next/bundle-analyzer': 12.0.7
   '@openfonts/noto-sans-sc_vietnamese': 1.44.0
   '@types/inflection': 1.13.0
@@ -93,7 +93,7 @@ dependencies:
   '@fortawesome/react-fontawesome': 0.1.16_f515edce028694561ceb456e3dba224c
   '@innei/devtools-detector': 2.0.4-beta.1
   '@innei/react-stack-grid': 0.8.4_837d624d62d50aa058b79890e8780bb8
-  '@mx-space/extra': 0.5.1_axios@0.24.0
+  '@mx-space/extra': 0.5.2_axios@0.24.0
   '@openfonts/noto-sans-sc_vietnamese': 1.44.0
   NeteaseCloudMusicApi: 4.0.23
   axios: 0.24.0
@@ -1497,15 +1497,14 @@ packages:
       shallowequal: 1.1.0
     dev: false
 
-  /@mx-space/extra/0.5.1_axios@0.24.0:
-    resolution: {integrity: sha512-r/8AKpzlKdrhe7SKJauEfSHIgnIKOSie9AkniB58LIt6t+v3pEBoq31r1bg9fQD+bHhM/6cO2DtfCJjIJYdIOQ==}
+  /@mx-space/extra/0.5.2_axios@0.24.0:
+    resolution: {integrity: sha512-HX27+HzFDK34mKIBbfOwnQSRXfvdRepDBwHV0Lw4hSwvzgBcJ2qAB+yur4nko/5qrpoHbwczh3DQMqqYSdjoNw==}
     peerDependencies:
       axios: ^0.21.0
     dependencies:
       axios: 0.24.0
       date-fns: 2.23.0
       NeteaseCloudMusicApi: 4.2.0
-      tslib: 2.3.1
     transitivePeerDependencies:
       - debug
       - supports-color
