@@ -1,9 +1,10 @@
 import { OverLay } from 'components/universal/Overlay'
 import { observer } from 'mobx-react-lite'
 import { FC, useEffect, useRef, useState } from 'react'
-import { userStore } from 'store'
+import { useStore } from 'store'
 
 export const BanCopy: FC = observer((props) => {
+  const { userStore } = useStore()
   const isLogged = userStore.isLogged
   const [showCopyWarn, setShowCopyWarn] = useState(false)
   const ref = useRef<HTMLDivElement>(null)

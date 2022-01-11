@@ -1,7 +1,7 @@
 import { LikeButton } from 'components/universal/LikeButton'
 import { observer } from 'mobx-react-lite'
 import React, { FC, memo } from 'react'
-import { noteStore } from 'store'
+import { useStore } from 'store'
 import styles from './index.module.css'
 export const HeaderActionButton: FC<
   React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
@@ -20,7 +20,7 @@ export const HeaderActionButtonsContainer = memo((props) => {
 export const HeaderActionLikeButtonForNote: FC<{ id: number }> = observer(
   (props) => {
     const { id } = props
-
+    const { noteStore } = useStore()
     const liked = noteStore.isLiked(id)
 
     const onLike = () => noteStore.like(id)

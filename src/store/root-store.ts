@@ -3,22 +3,10 @@ import AppUIStore from './app'
 import { NoteStore } from './collections/note'
 import { PageStore } from './collections/page'
 import { PostStore } from './collections/post'
+import { SayStore } from './collections/say'
 import GatewayStore from './gateway'
 import MusicStore from './music'
 import UserStore from './user'
-
-export const gatewayStore = new GatewayStore()
-export const userStore = new UserStore()
-export const appUIStore = new AppUIStore()
-
-export const musicStore = new MusicStore()
-
-export const actionStore = new ActionStore()
-
-// collections start
-export const postStore = new PostStore()
-export const noteStore = new NoteStore()
-export const pageStore = new PageStore()
 
 export interface RootStore {
   gatewayStore: GatewayStore
@@ -33,17 +21,19 @@ export interface RootStore {
   postStore: PostStore
   noteStore: NoteStore
   pageStore: PageStore
+  sayStore: SayStore
 }
 export class RootStore {
   constructor() {
-    this.gatewayStore = gatewayStore
-    this.userStore = userStore
-    this.appUIStore = appUIStore
-    this.musicStore = musicStore
-    this.actionStore = actionStore
-    this.postStore = postStore
-    this.noteStore = noteStore
-    this.pageStore = pageStore
+    this.gatewayStore = new GatewayStore()
+    this.userStore = new UserStore()
+    this.appUIStore = new AppUIStore()
+    this.musicStore = new MusicStore()
+    this.actionStore = new ActionStore()
+    this.postStore = new PostStore()
+    this.noteStore = new NoteStore()
+    this.pageStore = new PageStore()
+    this.sayStore = new SayStore()
   }
 
   get appStore() {

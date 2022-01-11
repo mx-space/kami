@@ -20,11 +20,14 @@ export class Store<T extends Identifiable> extends KeyValueCollection<
       data: observable,
       set: action,
       delete: action,
+      softDelete: action,
       clear: action,
       size: computed,
       add: action,
       remove: action,
       addAndPatch: action,
+      list: computed,
+      first: computed,
     })
   }
 

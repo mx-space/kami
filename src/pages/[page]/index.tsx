@@ -9,7 +9,7 @@ import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import React, { Fragment, useEffect, useMemo } from 'react'
 import RemoveMarkdown from 'remove-markdown'
-import { pageStore } from 'store'
+import { store, useStore } from 'store'
 import { noop } from 'utils'
 import { imagesRecord2Map } from 'utils/images'
 import { Seo } from '../../components/universal/Seo'
@@ -17,6 +17,7 @@ import { ImageSizeMetaContext } from '../../context/image-size'
 import styles from './index.module.css'
 
 const PageView: PageOnlyProps = observer((props) => {
+  const { pageStore } = useStore()
   const page = pageStore.get(props.id) || (noop as PageModel)
   const { title, subtitle, text } = page
 
@@ -94,10 +95,10 @@ const PageView: PageOnlyProps = observer((props) => {
     </ArticleLayout>
   )
 })
-const PP = buildStoreDataLoadableView(pageStore, PageView)
+const PP = buildStoreDataLoadableView(store.pageStore, PageView)
 PP.getInitialProps = async (ctx) => {
   const { page: slug } = ctx.query
-  const data = await pageStore.fetchBySlug(slug as string)
+  const data = await store.pageStore.fetchBySlug(slug as string)
   return data
 }
 

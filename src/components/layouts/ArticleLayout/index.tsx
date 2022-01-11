@@ -9,7 +9,9 @@ import {
 } from 'react'
 import { animatingClassName } from '../NoteLayout'
 import { ArticleLayoutContextProvider } from './hooks'
+import styles from './index.module.css'
 import { ArticleLayoutTitle } from './title'
+
 export interface ArticleLayoutProps {
   title?: string
   subtitle?: string | string[]
@@ -55,7 +57,7 @@ export const ArticleLayout = memo(
           value={{ title, focus, id, subtitle, type }}
         >
           <main
-            className="is-article"
+            className={styles['is-article']}
             ref={ref}
             {...rest}
             id={'article-wrap'}

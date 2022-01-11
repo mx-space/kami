@@ -218,10 +218,6 @@ p,
   box-shadow: 3px 5px 6px -5px rgb(51 51 51 / 20%),
     2px 3px 8px -5px rgb(51 51 51 / 20%);
 
-  h1:first-child {
-    font-family: Arial, Helvetica, sans-serif;
-  }
-
   #write {
     h1,
     h2,

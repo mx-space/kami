@@ -4,13 +4,14 @@ import { observer } from 'mobx-react-lite'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
-import { userStore } from 'store'
+import { useStore } from 'store'
 import { message } from 'utils'
 import { ImageLazy } from '../../components/universal/Image'
 import { Seo } from '../../components/universal/Seo'
 
 const BangumiView: NextPage = () => {
   const [data, setData] = useState<null | FavoriteBangumiType[]>(null)
+  const { userStore } = useStore()
   const master = userStore.master
 
   useEffect(() => {

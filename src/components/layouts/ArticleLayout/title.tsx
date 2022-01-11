@@ -1,12 +1,13 @@
 import { observer } from 'mobx-react-lite'
 import RcQueueAnim from 'rc-queue-anim'
 import TextyAnim from 'rc-texty'
-import { userStore } from 'store'
+import { useStore } from 'store'
 import { isClientSide, resolveUrl } from 'utils'
 import { useArticleLayoutProps } from './hooks'
 import styles from './index.module.css'
 
 export const ArticleLayoutTitle = observer((props) => {
+  const { userStore } = useStore()
   const {
     title,
     type,

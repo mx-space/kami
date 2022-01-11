@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import React, { FC, useCallback, useEffect, useRef } from 'react'
 import { loadScript, loadStyleSheet } from 'utils'
 import { message } from 'utils/message'
-import { appUIStore, useStore } from '../../../store'
+import { useStore } from '../../../store'
 import styles from './index.module.css'
 
 interface Props {
@@ -12,8 +12,8 @@ interface Props {
 }
 const HighLighter: FC<Props> = observer((props) => {
   const { language, value } = props
-
-  const { colorMode } = useStore().appStore
+  const { appUIStore } = useStore()
+  const { colorMode } = appUIStore
   const handleCopy = useCallback(() => {
     navigator.clipboard.writeText(value)
     message.success('COPIED!')

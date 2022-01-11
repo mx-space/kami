@@ -1,69 +1,35 @@
 import { default as StackGrid, transitions } from '@innei/react-stack-grid'
-import { SayModel } from '@mx-space/api-client'
 import { observer } from 'mobx-react-lite'
-import { NextPage } from 'next'
 import randomColor from 'randomcolor'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo } from 'react'
 import ReactMarkdown from 'react-markdown'
-import { usePrevious } from 'react-use'
-import { apiClient } from 'utils/client'
 import { relativeTimeFromNow } from 'utils/time'
 import { SEO } from '../../components/universal/Seo'
-import { EventTypes } from '../../socket/types'
 import { useStore } from '../../store'
 import { hexToRGB } from '../../utils/color'
-import { eventBus } from '../../utils/event-emitter'
 import styles from './index.module.css'
 
 const { flip } = transitions
-interface SayViewProps {
-  data: SayModel[]
-}
 
-const SayView: NextPage<SayViewProps> = (props) => {
-  const { data } = props
-  const [says, setSays] = useState(data)
-  const { appStore } = useStore()
-
-  const [colors, setColors] = useState<string[]>([])
-  const prevSays = usePrevious(says)
+const SayView = () => {
+  const { sayStore, appStore } = useStore()
   useEffect(() => {
-    if ((prevSays && prevSays.length < says.length) || !prevSays) {
-      const colorMode = appStore.colorMode
+    sayStore.fetchAll()
+  }, [])
 
-      setColors(
+  const says = sayStore.list.sort(
+    (b, a) => +new Date(a.created) - +new Date(b.created),
+  )
+  const colorsMap = useMemo(() => {
+    return new Map(
+      says.map((say) => [
+        say.id,
         randomColor({
-          luminosity: colorMode === 'light' ? 'bright' : 'dark',
-          count: says.length,
+          luminosity: appStore.colorMode === 'light' ? 'bright' : 'dark',
         }),
-      )
-    }
-  }, [appStore.colorMode, prevSays, says.length])
-  useEffect(() => {
-    const handler = (data: SayModel) => {
-      setSays((says) => [data, ...says])
-    }
-    eventBus.on(EventTypes.SAY_CREATE, handler)
-
-    return () => {
-      eventBus.off(EventTypes.SAY_CREATE, handler)
-    }
-  }, [])
-
-  useEffect(() => {
-    const handler = (id: string) => {
-      setSays((says) =>
-        says.filter(({ id }) => {
-          return id !== id
-        }),
-      )
-    }
-    eventBus.on(EventTypes.SAY_DELETE, handler)
-    return () => {
-      // this should clean all handlers
-      eventBus.off(EventTypes.SAY_DELETE)
-    }
-  }, [])
+      ]),
+    )
+  }, [appStore.colorMode, says])
 
   return (
     <main>
@@ -74,19 +40,20 @@ const SayView: NextPage<SayViewProps> = (props) => {
         className={styles['kami-say']}
         gutterWidth={10}
         gutterHeight={10}
-        transitions={{ ...flip }}
+        transitions={flip}
         duration={1000}
       >
         {says.map((say, i) => {
           const hasSource = !!say.source
           const hasAuthor = !!say.author
+          const color = colorsMap.get(say.id)
           return (
             <div className={'col-6'} key={say.id}>
               <blockquote
                 key={say.id}
                 style={{
-                  borderLeftColor: hexToRGB(colors[i] || '', 0.7),
-                  backgroundColor: hexToRGB(colors[i] || '', 0.05),
+                  borderLeftColor: hexToRGB(color || '', 0.7),
+                  backgroundColor: hexToRGB(color || '', 0.05),
                   transition: 'all 0.5s',
                 }}
               >
@@ -118,16 +85,6 @@ const SayView: NextPage<SayViewProps> = (props) => {
       </StackGrid>
     </main>
   )
-}
-
-SayView.getInitialProps = async () => {
-  const payload = await apiClient.say.getAll()
-  const { data } = payload
-  return {
-    data: data.sort(
-      (b, a) => new Date(a.created).getTime() - new Date(b.created).getTime(),
-    ),
-  }
 }
 
 export default observer(SayView)

@@ -3,7 +3,7 @@ import { reaction } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import dynamic from 'next/dynamic'
 import React, { FC, useContext, useEffect, useState } from 'react'
-import { appUIStore } from 'store'
+import { useStore } from 'store'
 import { ImageSizeMetaContext } from '../../../../context/image-size'
 
 const calculateDimensions = (
@@ -57,6 +57,7 @@ const getContainerSize = () => {
  * This Component only can render in browser.
  */
 const _Image: FC<{ src: string; alt?: string }> = observer(({ src, alt }) => {
+  const { appUIStore } = useStore()
   useEffect(() => {
     const disposer = reaction(
       () => appUIStore.viewport.w | appUIStore.viewport.h,

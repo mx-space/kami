@@ -10,12 +10,12 @@ import { ChatPanel } from 'components/widgets/Chat'
 import { observer } from 'mobx-react-lite'
 import React, { FC, useEffect, useState } from 'react'
 import { EventTypes } from 'socket/types'
-import { userStore, useStore } from 'store'
+import { useStore } from 'store'
 import { eventBus } from 'utils'
 import styles from './actions.module.css'
 
 export const FooterActions: FC = observer(() => {
-  const { /* userStore, */ appStore, actionStore, musicStore } = useStore()
+  const { userStore, appStore, actionStore, musicStore } = useStore()
   const { isOverFirstScreenHeight: isOverflow } = appStore
   const [chatShow, setChatShow] = useState(false)
   const [newMessageCount, setCount] = useState(0)

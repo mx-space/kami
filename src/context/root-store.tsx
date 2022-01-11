@@ -10,7 +10,7 @@ configure({
   useProxies: 'always',
 })
 
-let store: RootStore
+let $store: RootStore
 const StoreContext = createContext<RootStore | undefined>(undefined)
 StoreContext.displayName = 'StoreContext'
 
@@ -22,9 +22,8 @@ export function useRootStore() {
 
   return context
 }
-
+export const store = initializeStore()
 export function RootStoreProvider({ children }: { children: ReactNode }) {
-  const store = initializeStore()
   if (isDev && isClientSide() && !window.store) {
     Object.defineProperty(window, 'store', {
       get() {
@@ -37,12 +36,12 @@ export function RootStoreProvider({ children }: { children: ReactNode }) {
 }
 
 function initializeStore(): RootStore {
-  const _store = store ?? new RootStore()
+  const _store = $store ?? new RootStore()
 
   // For SSG and SSR always create a new store
   if (typeof window === 'undefined') return _store
   // Create the store once in the client
-  if (!store) store = _store
+  if (!$store) $store = _store
 
   return _store
 }

@@ -15,6 +15,7 @@ export default defineConfig({
         phone: { raw: '(max-width: 568px)' },
         desktop: { raw: '(min-width: 1024px)' },
         tablet: { raw: '(max-width: 1023px)' },
+        wider: { raw: '(min-width: 1500px)' },
       },
 
       colors: {

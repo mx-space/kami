@@ -26,7 +26,7 @@ import { toJS } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
-import { postStore, useStore } from 'store'
+import { store, useStore } from 'store'
 import { apiClient } from 'utils/client'
 import { message } from 'utils/message'
 import { Copyright } from '../../../components/widgets/Copyright'
@@ -44,7 +44,7 @@ const storeThumbsUpCookie = setLikeId
 const isThumbsUpBefore = isLikedBefore
 
 const useUpdatePost = (id: string) => {
-  const post = postStore.get(id)
+  const post = store.postStore.get(id)
   const beforeModel = useRef<PostModel>()
   const router = useRouter()
 
@@ -251,11 +251,11 @@ export const PostView: PageOnlyProps = observer((props) => {
     </>
   )
 })
-const PP = buildStoreDataLoadableView(postStore, PostView)
+const PP = buildStoreDataLoadableView(store.postStore, PostView)
 PP.getInitialProps = async (ctx) => {
   const { query } = ctx
   const { category, slug } = query as any
-  const data = await postStore.fetchBySlug(category, slug)
+  const data = await store.postStore.fetchBySlug(category, slug)
 
   return data
 }

@@ -102,7 +102,7 @@ const RecentlyPage: NextPage = () => {
     await apiClient.shorthand.proxy(id).delete()
   }
   return (
-    <main className="is-article">
+    <main className="max-w-[50em] relative">
       <h1>动态</h1>
       <h2 className="text-opacity-80">谢谢你听我诉说</h2>
       {isLogged && <RecentlyBox />}

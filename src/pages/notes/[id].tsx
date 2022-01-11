@@ -25,7 +25,7 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React, { FC, useEffect, useMemo, useRef, useState } from 'react'
 import { useUpdate } from 'react-use'
-import { noteStore, userStore, useStore } from 'store'
+import { store, useStore } from 'store'
 import { imagesRecord2Map } from 'utils/images'
 import { message } from 'utils/message'
 import { mood2icon, weather2icon } from 'utils/meta-icon'
@@ -39,11 +39,15 @@ const renderLines: FC<{ value: string }> = ({ value }) => {
 }
 
 const useUpdateNote = (id: string) => {
-  const note = noteStore.get(id)
+  const note = store.noteStore.get(id)
   const beforeModel = useRef<NoteModel>()
-  const router = useRouter()
 
   useEffect(() => {
+    const hideMessage = '此生活记录已被作者删除或隐藏'
+    if (note?.isDeleted) {
+      message.error(hideMessage)
+      return
+    }
     const before = beforeModel.current
 
     if (!before && note) {
@@ -56,9 +60,8 @@ const useUpdateNote = (id: string) => {
     }
 
     if (before.id === note.id) {
-      if (note.hide && !userStore.isLogged) {
-        router.push('/notes')
-        message.error('该生活记录已删除或隐藏')
+      if (note.hide && !store.userStore.isLogged) {
+        message.error(hideMessage)
         return
       }
       message.info('生活记录已更新')
@@ -74,14 +77,21 @@ const useUpdateNote = (id: string) => {
     }
     beforeModel.current = toJS(note)
     // TODO password etc.
-  }, [note?.title, note?.text, note?.modified, note?.weather, note?.hide])
+  }, [
+    note?.title,
+    note?.text,
+    note?.modified,
+    note?.weather,
+    note?.hide,
+    note?.isDeleted,
+  ])
 }
 
 const NoteView: React.FC<{ id: string }> = observer((props) => {
+  const { userStore, musicStore, noteStore } = useStore()
   const note = noteStore.get(props.id) || (noop as NoteModel)
 
   const router = useRouter()
-  const { userStore, musicStore } = useStore()
 
   useEffect(() => {
     if (router.query.id === 'latest') {
@@ -267,6 +277,7 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
 })
 
 const FooterActionBar: FC<{ id: string }> = observer(({ id }) => {
+  const { noteStore } = useStore()
   const note = noteStore.get(id)
 
   if (!note) {
@@ -332,6 +343,7 @@ const FooterActionBar: FC<{ id: string }> = observer(({ id }) => {
 })
 
 const FooterNavigation: FC<{ id: string }> = observer(({ id }) => {
+  const { noteStore } = useStore()
   const [prev, next] =
     noteStore.relationMap.get(id) ||
     ([noop, noop] as [Partial<NoteModel>, Partial<NoteModel>])
@@ -384,6 +396,7 @@ const FooterNavigation: FC<{ id: string }> = observer(({ id }) => {
 const PP: NextPage<NoteModel | { needPassword: true; id: string }> = observer(
   (props) => {
     const router = useRouter()
+    const { noteStore } = useStore()
     const note = noteStore.get((props as NoteModel)?.id)
 
     const update = useUpdate()
@@ -426,10 +439,10 @@ PP.getInitialProps = async (ctx) => {
   const id = ctx.query.id as string
   const password = ctx.query.password as string
   if (id == 'latest') {
-    return await noteStore.fetchLatest()
+    return await store.noteStore.fetchLatest()
   }
   try {
-    const res = await noteStore.fetchById(
+    const res = await store.noteStore.fetchById(
       isNaN(+id) ? id : +id,
       password ? String(password) : undefined,
       { force: true },

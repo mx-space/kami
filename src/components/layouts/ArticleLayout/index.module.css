@@ -7,6 +7,20 @@
   font-size: 1.2em;
 }
 
-:global(main[data-type='post']) .post-title h1.h1 {
-  font-weight: 200;
+.is-article {
+  position: relative;
+}
+
+:global(main).is-article {
+  max-width: 50em;
+}
+
+:global(main[data-type='post']).is-article {
+  & .post-title h1.h1 {
+    font-weight: 200;
+  }
+
+  @media (min-width: 1500px), @screen wider {
+    max-width: 65em;
+  }
 }

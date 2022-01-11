@@ -34,12 +34,11 @@ export class SocketClient {
     this.socket.on(
       'message',
       (payload: string | Record<'type' | 'data', any>) => {
-        if (isDev) {
-          console.log(payload)
-        }
-
         if (typeof payload !== 'string') {
-          return this.handleEvent(payload.type, payload.data)
+          return this.handleEvent(
+            payload.type,
+            camelcaseKeys(payload.data, { deep: true }),
+          )
         }
         const { data, type } = JSON.parse(payload) as {
           data: any
@@ -53,6 +52,9 @@ export class SocketClient {
     this.socket.open()
   }
   handleEvent(type: EventTypes, data: any) {
+    if (isDev) {
+      console.log(data)
+    }
     eventBus.emit(type, data)
     eventHandler(type, data)
   }

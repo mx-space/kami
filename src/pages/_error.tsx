@@ -1,5 +1,6 @@
 import { RequestError } from '@mx-space/api-client'
 import { ErrorView } from 'components/universal/Error'
+import { isNumber } from 'lodash-es'
 import { NextPage } from 'next'
 import { useEffect } from 'react'
 
@@ -18,7 +19,8 @@ const getCode = (err, res): number => {
     return 500
   }
   if (err instanceof RequestError) {
-    return err.status || 408
+    // status maybe  ECONNREFUSED
+    return isNumber(err.status) ? err.status : 408
   }
   if (res?.statusCode === 500 && err?.statusCode === 500) {
     return 500
@@ -31,7 +33,7 @@ const getCode = (err, res): number => {
 }
 
 ErrorPage.getInitialProps = async ({ res, err }) => {
-  const statusCode = getCode(err, res)
+  const statusCode = +getCode(err, res) || 500
 
   res && (res.statusCode = statusCode)
   if (statusCode === 404) {

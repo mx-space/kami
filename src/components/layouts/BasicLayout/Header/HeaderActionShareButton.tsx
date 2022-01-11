@@ -2,13 +2,14 @@ import { faShare, IconDefinition } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { observer } from 'mobx-react-lite'
 import React, { FC, memo } from 'react'
-import { appUIStore } from 'store'
+import { useStore } from 'store'
 import {
   HeaderActionButton,
   HeaderActionButtonsContainer,
 } from './HeaderActionButton'
 
 export const HeaderActionShareButton: FC = observer(() => {
+  const { appUIStore } = useStore()
   const hasShare = 'share' in navigator
   return hasShare && appUIStore.shareData ? (
     <HeaderActionButtonsContainer>

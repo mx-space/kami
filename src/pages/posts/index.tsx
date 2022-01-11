@@ -24,7 +24,7 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import { appUIStore, useStore } from 'store'
+import { useStore } from 'store'
 import { NoSSR } from 'utils'
 import { apiClient } from 'utils/client'
 import { SEO } from '../../components/universal/Seo'
@@ -33,7 +33,7 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = observer(() => {
   const [pagination, setPagination] = useState<Pager | null>(null)
   const [posts, setPosts] = useState<PostModel[]>([])
   const store = useStore()
-  const { actionStore } = store
+  const { actionStore, appUIStore } = store
   const [showTags, setShowTags] = useState(false)
   const router = useRouter()
 

@@ -9,7 +9,7 @@ import {
   useState,
 } from 'react'
 import { useAudio } from 'react-use'
-import { musicStore } from 'store'
+import { useStore } from 'store'
 import { hms, NoSSR } from 'utils'
 import styles from './index.module.css'
 
@@ -193,6 +193,7 @@ export const MusicMiniPlayer = forwardRef<
 
 export const _MusicMiniPlayerStoreControlled = observer(() => {
   const ref = useRef<MusicPlayerRef>(null)
+  const { musicStore } = useStore()
 
   if (musicStore.isPlay) {
     ref.current?.play()

@@ -122,14 +122,6 @@ main {
   visibility: visible;
 }
 
-main.is-article {
-  max-width: 50em;
-}
-
-main.is-gallery {
-  max-width: 90em;
-}
-
 @media screen and (max-width: 900px) {
   main {
     padding: 3em 1.25em;
@@ -365,10 +357,6 @@ article > h1 small {
   opacity: 0;
   transition: opacity 0.3s;
   vertical-align: text-bottom;
-}
-
-.is-article {
-  position: relative;
 }
 
 .note-content {

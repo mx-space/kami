@@ -44,7 +44,10 @@ const _NoteLayout = observer<NoteLayoutProps, HTMLElement>(
     }, [bookmark, id])
     const noAppear = location.hash.includes('comments')
     return (
-      <main className="is-article is-note post-content kami-note" ref={ref}>
+      <main
+        className="max-w-[50em] relative is-note post-content kami-note"
+        ref={ref}
+      >
         <Transition
           key={id}
           in={true}

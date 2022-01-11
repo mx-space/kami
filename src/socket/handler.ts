@@ -1,5 +1,6 @@
+import { runInAction } from 'mobx'
 import { isDev } from 'utils'
-import { gatewayStore, noteStore, postStore, userStore } from '../store'
+import { store } from '../store'
 import { createDangmaku } from '../utils/danmaku'
 import { Notice } from '../utils/notice'
 import { EventTypes } from './types'
@@ -12,6 +13,8 @@ export const eventHandler = (type: EventTypes, data: any) => {
     window.data?.aggregateData.url.webUrl.replace(/\/$/, '') ||
     globalThis?.location.host ||
     ''
+
+  const { gatewayStore, noteStore, postStore, userStore } = store
   switch (type) {
     case EventTypes.VISITOR_ONLINE:
     case EventTypes.VISITOR_OFFLINE: {
@@ -60,6 +63,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
       break
     }
     case EventTypes.SAY_CREATE: {
+      store.sayStore.add(data)
       const message = noticeHead('说说')
       notice.notice({
         title: title,
@@ -70,6 +74,11 @@ export const eventHandler = (type: EventTypes, data: any) => {
         },
       })
 
+      break
+    }
+    case EventTypes.SAY_DELETE: {
+      const id = data
+      store.sayStore.remove(id)
       break
     }
     case EventTypes.DANMAKU_CREATE: {
@@ -97,17 +106,36 @@ export const eventHandler = (type: EventTypes, data: any) => {
       break
     }
     case EventTypes.POST_DELETE: {
-      postStore.softDelete(data.id)
+      const id = data
+      postStore.softDelete(id)
       break
     }
     case EventTypes.NOTE_UPDATE: {
-      noteStore.addAndPatch(data)
+      runInAction(() => {
+        noteStore.addAndPatch(data)
+        const note = noteStore.get(data.id)
+        if (note) {
+          if (note.hide && !store.userStore.isLogged) {
+            note.title = '已隐藏'
+            note.text = '该笔记已被隐藏'
+          }
+        }
+      })
       break
     }
     case EventTypes.NOTE_DELETE: {
-      noteStore.softDelete(data.id)
+      const id = data
+      runInAction(() => {
+        noteStore.softDelete(id)
+        const note = noteStore.get(id)
+        if (note) {
+          note.title = '已删除'
+          note.text = '该笔记已被删除'
+        }
+      })
       break
     }
+
     default: {
       if (isDev) {
         console.log(type, data)
@@ -116,7 +144,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
   }
 }
 function noticeHead(type: string, title?: string) {
-  return `${userStore.name}发布了新的${type}${title ? ': ' + title : ''}`
+  return `${store.userStore.name}发布了新的${type}${title ? ': ' + title : ''}`
 }
 function getDescription(text: string) {
   return text.slice(0, 20) + '...'
