@@ -5,6 +5,16 @@
 .root {
   @apply my-2 text-sm;
 
+  a {
+    color: inherit;
+  }
+
+  & > span {
+    cursor: pointer;
+    margin-left: 1em;
+    position: relative;
+  }
+
   :global {
     .note-inform,
     .note-action {

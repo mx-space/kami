@@ -427,16 +427,6 @@ article > h1 small {
   max-height: 25em;
 }
 
-.kami-note .note-action a {
-  color: inherit;
-}
-
-.kami-note .note-action span {
-  cursor: pointer;
-  margin-left: 1em;
-  position: relative;
-}
-
 .note-navigator {
   margin-top: 2em;
   text-align: center;

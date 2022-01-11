@@ -56,7 +56,7 @@ export const ArticleFooterAction: FC<ActionProps> = memo((props) => {
         {copyright && (
           <a
             href="https://creativecommons.org/licenses/by-nc-nd/4.0/"
-            style={{ color: 'currentColor' }}
+            className="text-current"
             target={'_blank'}
           >
             <span title={'创作共用保留署名-非商业-禁止演绎4.0国际许可证'}>
@@ -68,17 +68,13 @@ export const ArticleFooterAction: FC<ActionProps> = memo((props) => {
           </a>
         )}
       </div>
-      <div className="note-action" style={{ minHeight: '1rem' }}>
+      <div className="note-action min-h-4">
         {actions.map((action, i) => {
           if (!action) {
             return null
           }
           return (
-            <span
-              key={i}
-              style={{ cursor: 'pointer' }}
-              onClick={action.callback}
-            >
+            <span key={i} className="cursor-pointer" onClick={action.callback}>
               {action.icon && (
                 <FontAwesomeIcon
                   icon={action.icon}
