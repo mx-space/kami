@@ -162,14 +162,13 @@ App.getInitialProps = async (props: AppContext) => {
     $axios.defaults.headers.common['User-Agent'] =
       request.headers['user-agent'] + ' mx-space SSR server' + `/${version}`
 
-    // forward cookie
+    // forward auth token
     const cookie = request.headers.cookie
     if (cookie) {
       const token = cookie
         .split(';')
         .find((str) => {
           const [key] = str.split('=')
-          console.log(key)
 
           return key === TokenKey
         })
@@ -179,7 +178,7 @@ App.getInitialProps = async (props: AppContext) => {
           'bearer ' + token.replace(/^Bearer\s/i, '')
       }
 
-      $axios.defaults.headers['cookie'] = cookie
+      // $axios.defaults.headers['cookie'] = cookie
     }
   }
 
