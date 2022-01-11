@@ -15,7 +15,6 @@ export const TocItem: FC<{
     <a
       data-scroll
       href={'#' + title}
-      data-index={depth}
       className={clsx(styles['toc-link'], active && styles['active'])}
       style={{
         paddingLeft:

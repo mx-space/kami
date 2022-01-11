@@ -1,5 +1,5 @@
 import { runInAction } from 'mobx'
-import { isDev } from 'utils'
+import { isDev, message } from 'utils'
 import { store } from '../store'
 import { createDangmaku } from '../utils/danmaku'
 import { Notice } from '../utils/notice'
@@ -14,7 +14,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
     globalThis?.location.host ||
     ''
 
-  const { gatewayStore, noteStore, postStore, userStore } = store
+  const { gatewayStore, noteStore, postStore, userStore, pageStore } = store
   switch (type) {
     case EventTypes.VISITOR_ONLINE:
     case EventTypes.VISITOR_OFFLINE: {
@@ -133,6 +133,12 @@ export const eventHandler = (type: EventTypes, data: any) => {
           note.text = '该笔记已被删除'
         }
       })
+      break
+    }
+
+    case EventTypes.PAGE_UPDATED: {
+      message.info('页面内容已更新')
+      pageStore.addAndPatch(data)
       break
     }
 

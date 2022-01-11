@@ -29,9 +29,12 @@ export const Toc: FC<TocProps> = memo(({ headings: $headings }) => {
     return Array.from($headings).map((el) => {
       const depth = +el.tagName.slice(1)
       const title = el.id
+      // @ts-ignore
+      const index = +el.dataset['index'] || -1
 
       return {
         depth,
+        index,
         title,
       }
     })
@@ -72,22 +75,19 @@ export const Toc: FC<TocProps> = memo(({ headings: $headings }) => {
   }, [])
 
   return (
-    <section
-      className={classNames('kami-toc', styles['toc'])}
-      style={{ zIndex: 3 }}
-    >
+    <section className={classNames('kami-toc z-3', styles['toc'])}>
       <div
         className={classNames('container', styles['container'])}
         ref={containerRef}
       >
         <QueueAnim className={styles['anime-wrapper']}>
           {headings &&
-            headings.map((heading, i) => {
+            headings.map((heading) => {
               return (
                 <TocItem
-                  index={i}
+                  index={heading.index}
                   onClick={handleItemClick}
-                  active={i === index}
+                  active={heading.index === index}
                   depth={heading.depth}
                   title={heading.title}
                   key={heading.title}
