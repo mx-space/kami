@@ -165,7 +165,7 @@
 .nav-container {
   height: 4rem;
 
-  @apply mx-20 relative overflow-hidden;
+  @apply mx-20 relative;
 
   @screen tablet {
     @apply mx-8;

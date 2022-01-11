@@ -32,7 +32,7 @@ import Package from '~/package.json'
 
 import client from '../socket'
 import { useStore } from '../store'
-import { isServerSide } from '../utils'
+import { isServerSide, TokenKey } from '../utils'
 import { RootStoreProvider } from 'context/root-store'
 import { DebugLayout } from 'components/layouts/DebugLayout'
 
@@ -161,12 +161,35 @@ App.getInitialProps = async (props: AppContext) => {
 
     $axios.defaults.headers.common['User-Agent'] =
       request.headers['user-agent'] + ' mx-space SSR server' + `/${version}`
+
+    // forward cookie
+    const cookie = request.headers.cookie
+    if (cookie) {
+      const token = cookie
+        .split(';')
+        .find((str) => {
+          const [key] = str.split('=')
+          console.log(key)
+
+          return key === TokenKey
+        })
+        ?.split('=')[1]
+      if (token) {
+        $axios.defaults.headers['Authorization'] =
+          'bearer ' + token.replace(/^Bearer\s/i, '')
+      }
+
+      $axios.defaults.headers['cookie'] = cookie
+    }
   }
 
   async function getInitialData() {
     const [aggregateDataState, configSnippetState] = await Promise.allSettled([
       apiClient.aggregate.getAggregateData(),
-      apiClient.snippet.getByReferenceAndName<KamiConfig>('theme', 'kami'),
+      apiClient.snippet.getByReferenceAndName<KamiConfig>(
+        'theme',
+        process.env.NEXT_PUBLIC_SNIPPET_NAME || 'kami',
+      ),
     ])
 
     let aggregateData: AggregateRoot | null = null

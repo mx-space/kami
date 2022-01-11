@@ -1,19 +1,21 @@
 import dayjs from 'dayjs'
 import Cookies from 'js-cookie'
 
-const TokenKey = 'mx-token'
+export const TokenKey = 'mx-token'
 
+/**
+ * 带了 bearer
+ */
 export function getToken(): string | null {
-  return Cookies.get(TokenKey)
-    ? JSON.parse(Cookies.get(TokenKey) as string)
-    : null
+  const token = Cookies.get(TokenKey)
+  return `bearer ${token}` || null
 }
 
 export function setToken(token: string, expires: number | Date) {
-  if (!token) {
+  if (typeof token !== 'string') {
     return
   }
-  return Cookies.set(TokenKey, JSON.stringify(token), { expires })
+  return Cookies.set(TokenKey, token, { expires })
 }
 
 export function removeToken() {

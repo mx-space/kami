@@ -40,6 +40,7 @@ export const _Header: FC = observer(() => {
         <nav
           className={classNames(
             styles['nav-container'],
+            'overflow-hidden',
             appStore.headerNav.show &&
               (appStore.scrollDirection == 'down' ||
                 appStore.viewport.mobile) &&
