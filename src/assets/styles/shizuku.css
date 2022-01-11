@@ -198,7 +198,6 @@
 #write ul,
 #write ol {
   padding-left: 2em;
-  font-size: 95%;
 }
 
 #write ul {
@@ -207,73 +206,6 @@
 
 #write ol {
   list-style-type: decimal;
-}
-
-#write > ul,
-#write > ol {
-  padding-left: 0;
-  font-size: inherit;
-}
-
-#write ul ul,
-#write ul ol,
-#write ol ol,
-#write ol ul {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-#write li + li {
-  margin-top: 0.25em;
-}
-
-#write dl {
-  padding: 0;
-}
-
-#write dl dt {
-  padding: 0;
-  margin-top: 16px;
-  font-size: 1em;
-  font-style: italic;
-  font-weight: bold;
-}
-
-#write dl dd {
-  padding: 0 16px;
-  margin-bottom: 16px;
-}
-
-#write .task-list-item {
-  padding-left: 0;
-}
-
-#write .task-list-item input[type='checkbox'] {
-  margin: 0.36em 5px;
-  margin-left: -24px;
-}
-
-#write table {
-  display: block;
-  width: 100%;
-  overflow: auto;
-  border-collapse: collapse;
-}
-
-#write table th {
-  font-weight: bold;
-}
-
-#write table th,
-#write table td {
-  padding: 5px 10px;
-  border: 1px solid rgb(128 128 128 / 10%);
-  border-collapse: collapse;
-}
-
-#write table tr {
-  border-top: 1px solid rgb(128 128 128 / 40%);
-  border-collapse: collapse;
 }
 
 #write img {
@@ -287,100 +219,6 @@
 
 #write img[align='left'] {
   padding-right: 20px;
-}
-
-#write .emoji {
-  max-width: none;
-  vertical-align: text-top;
-  background-color: transparent;
-}
-
-#write span.frame {
-  display: block;
-  overflow: hidden;
-}
-
-#write span.frame > span {
-  display: block;
-  float: left;
-  width: auto;
-  padding: 7px;
-  margin: 13px 0 0;
-  overflow: hidden;
-  border: 1px solid rgb(128 128 128 / 40%);
-}
-
-#write span.frame span img {
-  display: block;
-  float: left;
-}
-
-#write span.frame span span {
-  display: block;
-  padding: 5px 0 0;
-  clear: both;
-  color: #333;
-}
-
-#write span.align-center {
-  display: block;
-  overflow: hidden;
-  clear: both;
-}
-
-#write span.align-center > span {
-  display: block;
-  margin: 13px auto 0;
-  overflow: hidden;
-  text-align: center;
-}
-
-#write span.align-center span img {
-  margin: 0 auto;
-  text-align: center;
-}
-
-#write span.align-right {
-  display: block;
-  overflow: hidden;
-  clear: both;
-}
-
-#write span.align-right > span {
-  display: block;
-  margin: 13px 0 0;
-  overflow: hidden;
-  text-align: right;
-}
-
-#write span.align-right span img {
-  margin: 0;
-  text-align: right;
-}
-
-#write span.float-left {
-  display: block;
-  float: left;
-  margin-right: 13px;
-  overflow: hidden;
-}
-
-#write span.float-left span {
-  margin: 13px 0 0;
-}
-
-#write span.float-right {
-  display: block;
-  float: right;
-  margin-left: 13px;
-  overflow: hidden;
-}
-
-#write span.float-right > span {
-  display: block;
-  margin: 13px auto 0;
-  overflow: hidden;
-  text-align: right;
 }
 
 #write .spoiler {

@@ -240,6 +240,7 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
         )}
 
         <FooterNavigation id={props.id} />
+        <div className="pb-4"></div>
         <FooterActionBar id={props.id} />
       </NoteLayout>
       {!isSecret && (
