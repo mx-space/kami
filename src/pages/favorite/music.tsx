@@ -38,25 +38,19 @@ const MusicView: NextPage = () => {
       <Seo title={`歌单`} openGraph={{ type: 'website' }} />
 
       <SectionMusic
-        {...{
-          name: '周排行',
-          src: 'https://p3.music.126.net/4HGEnXVexEfBACKi7wbq8A==/3390893860854924.jpg',
-          data: data.weekdata,
-        }}
+        name="周排行"
+        src="https://p3.music.126.net/4HGEnXVexEfBACKi7wbq8A==/3390893860854924.jpg"
+        data={data.weekdata}
       />
       <SectionMusic
-        {...{
-          name: '总排行',
-          src: 'https://p1.music.126.net/xTCCKfCJuEh2ohPZDNMDLw==/19193074975054252.jpg',
-          data: data.alldata,
-        }}
+        name="总排行"
+        data={data.alldata}
+        src="https://p1.music.126.net/xTCCKfCJuEh2ohPZDNMDLw==/19193074975054252.jpg"
       />
       <SectionMusic
-        {...{
-          name: data.playlist.name,
-          src: data.playlist.coverImgUrl,
-          data: data.playlist.data.slice(0, 10),
-        }}
+        name={data.playlist.name}
+        src={data.playlist.coverImgUrl}
+        data={data.playlist.data.slice(0, 10)}
       />
     </main>
   )

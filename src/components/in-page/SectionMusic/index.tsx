@@ -26,23 +26,32 @@ export const SectionMusic: FC<SectionMusicProps> = observer((props) => {
       </div>
 
       <div className={styles['music-list']}>
-        <ul className="">
-          {props.data.map((i, index) => {
-            return (
-              <li
-                key={index}
-                onClick={(_) =>
-                  loadList(
-                    props.data.filter((_, i) => i >= index).map((i) => i.id),
-                  )
-                }
-              >
-                <span className={styles['num']}>{index + 1}</span>
-                {i.name}
-                <time>{i.time}</time>
+        <ul>
+          {props.data.length ? (
+            props.data.map((i, index) => {
+              return (
+                <li
+                  key={index}
+                  onClick={(_) =>
+                    loadList(
+                      props.data.filter((_, i) => i >= index).map((i) => i.id),
+                    )
+                  }
+                >
+                  <span className={styles['num']}>{index + 1}</span>
+                  {i.name}
+                  <time>{i.time}</time>
+                </li>
+              )
+            })
+          ) : (
+            <p>
+              <li>
+                <span className={styles['num']}>0</span>
+                这里暂时没有内容
               </li>
-            )
-          })}
+            </p>
+          )}
         </ul>
       </div>
     </section>

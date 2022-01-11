@@ -14,7 +14,7 @@ specifiers:
   '@innei/devtools-detector': 2.0.4-beta.1
   '@innei/react-stack-grid': 0.8.4
   '@mx-space/api-client': 0.5.3
-  '@mx-space/extra': 0.4.0
+  '@mx-space/extra': 0.5.2
   '@next/bundle-analyzer': 12.0.7
   '@trivago/prettier-plugin-sort-imports': 3.1.1
   '@types/inflection': 1.13.0
@@ -96,7 +96,7 @@ dependencies:
   '@innei/devtools-detector': 2.0.4-beta.1
   '@innei/react-stack-grid': 0.8.4_837d624d62d50aa058b79890e8780bb8
   '@mx-space/api-client': 0.5.3
-  '@mx-space/extra': 0.4.0
+  '@mx-space/extra': 0.5.2_axios@0.24.0
   NeteaseCloudMusicApi: 4.2.0
   axios: 0.24.0
   camelcase-keys: 7.0.1
@@ -1568,12 +1568,14 @@ packages:
       camelcase-keys: 7.0.1
     dev: false
 
-  /@mx-space/extra/0.4.0:
-    resolution: {integrity: sha512-Z7aHyWg6r4qlNEJd3AsbXGJx2dfCJIjEKhm4LIChYNX+mdc9H42riNYrc9rVXLcncw2Ki060iq++Hl5/++Ao+Q==}
+  /@mx-space/extra/0.5.2_axios@0.24.0:
+    resolution: {integrity: sha512-HX27+HzFDK34mKIBbfOwnQSRXfvdRepDBwHV0Lw4hSwvzgBcJ2qAB+yur4nko/5qrpoHbwczh3DQMqqYSdjoNw==}
+    peerDependencies:
+      axios: ^0.21.0
     dependencies:
-      axios: 0.19.2
+      axios: 0.24.0
       date-fns: 2.23.0
-      NeteaseCloudMusicApi: 4.0.3
+      NeteaseCloudMusicApi: 4.2.0
     transitivePeerDependencies:
       - debug
       - supports-color
@@ -2195,23 +2197,6 @@ packages:
     resolution: {integrity: sha512-N8tkAACJx2ww8vFMneJmaAgmjAG1tnVBZJRLRcx061tmsLRZHSEZSLuGWnwPtunsSLvSqXQ2wfp7Mgqg1I+2dQ==}
     dev: false
 
-  /NeteaseCloudMusicApi/4.0.3:
-    resolution: {integrity: sha512-tghf9qbozfr4H9Dj1kqMYD07B2TOl/V8+N6rLfj8ShRdG8XTe1NmoW/XACR5IEc2CKH/9Bpxv40arLfJ7CpRxw==}
-    engines: {node: '>=12'}
-    dependencies:
-      axios: 0.21.4
-      express: 4.17.2
-      express-fileupload: 1.2.1
-      md5: 2.3.0
-      music-metadata: 7.11.4
-      pac-proxy-agent: 4.1.0
-      qrcode: 1.5.0
-      tunnel: 0.0.6
-    transitivePeerDependencies:
-      - debug
-      - supports-color
-    dev: false
-
   /NeteaseCloudMusicApi/4.2.0:
     resolution: {integrity: sha512-aLHAwgVBGBNl9HfpFpRahzsvkhAeCzPh9KoS6yEUMWACGo+HuML/ZnpsfaCQdSHCB+IZ8ZT4klWKC8MTThp0ag==}
     engines: {node: '>=12'}
@@ -2503,21 +2488,6 @@ packages:
   /available-typed-arrays/1.0.5:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
     engines: {node: '>= 0.4'}
-    dev: false
-
-  /axios/0.19.2:
-    resolution: {integrity: sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==}
-    deprecated: Critical security vulnerability fixed in v0.21.1. For more information, see https://github.com/axios/axios/pull/3410
-    dependencies:
-      follow-redirects: 1.5.10
-    dev: false
-
-  /axios/0.21.4:
-    resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
-    dependencies:
-      follow-redirects: 1.14.4
-    transitivePeerDependencies:
-      - debug
     dev: false
 
   /axios/0.24.0:
@@ -3372,12 +3342,6 @@ packages:
     dependencies:
       ms: 2.0.0
 
-  /debug/3.1.0:
-    resolution: {integrity: sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==}
-    dependencies:
-      ms: 2.0.0
-    dev: false
-
   /debug/3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
     dependencies:
@@ -3449,15 +3413,6 @@ packages:
     engines: {node: '>= 0.4'}
     dependencies:
       object-keys: 1.1.1
-
-  /degenerator/2.2.0:
-    resolution: {integrity: sha512-aiQcQowF01RxFI4ZLFMpzyotbQonhNpBao6dkI8JPk5a+hmSjR5ErHp2CQySmQe8os3VBqLCIh87nDBgZXvsmg==}
-    engines: {node: '>= 6'}
-    dependencies:
-      ast-types: 0.13.4
-      escodegen: 1.14.3
-      esprima: 4.0.1
-    dev: false
 
   /degenerator/3.0.1:
     resolution: {integrity: sha512-LFsIFEeLPlKvAKXu7j3ssIG6RT0TbI7/GhsqrI0DnHASEQjXQ0LUSYcjJteGgRGmZbl1TnMSxpNQIAiJ7Du5TQ==}
@@ -4244,13 +4199,6 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
-    dev: false
-
-  /follow-redirects/1.5.10:
-    resolution: {integrity: sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==}
-    engines: {node: '>=4.0'}
-    dependencies:
-      debug: 3.1.0
     dev: false
 
   /foreach/2.0.5:
@@ -6128,23 +6076,6 @@ packages:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
     engines: {node: '>=6'}
 
-  /pac-proxy-agent/4.1.0:
-    resolution: {integrity: sha512-ejNgYm2HTXSIYX9eFlkvqFp8hyJ374uDf0Zq5YUAifiSh1D6fo+iBivQZirGvVv8dCYUsLhmLBRhlAYvBKI5+Q==}
-    engines: {node: '>= 6'}
-    dependencies:
-      '@tootallnate/once': 1.1.2
-      agent-base: 6.0.2
-      debug: 4.3.3
-      get-uri: 3.0.2
-      http-proxy-agent: 4.0.1
-      https-proxy-agent: 5.0.0
-      pac-resolver: 4.2.0
-      raw-body: 2.4.2
-      socks-proxy-agent: 5.0.1
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
   /pac-proxy-agent/5.0.0:
     resolution: {integrity: sha512-CcFG3ZtnxO8McDigozwE3AqAw15zDvGH+OjXO4kzf7IkEKkQ4gxQ+3sdF50WmhQ4P/bVusXcqNE2S3XrNURwzQ==}
     engines: {node: '>= 8'}
@@ -6160,15 +6091,6 @@ packages:
       socks-proxy-agent: 5.0.1
     transitivePeerDependencies:
       - supports-color
-    dev: false
-
-  /pac-resolver/4.2.0:
-    resolution: {integrity: sha512-rPACZdUyuxT5Io/gFKUeeZFfE5T7ve7cAkE5TUZRRfuKP0u5Hocwe48X7ZEm6mYB+bTB0Qf+xlVlA/RM/i6RCQ==}
-    engines: {node: '>= 6'}
-    dependencies:
-      degenerator: 2.2.0
-      ip: 1.1.5
-      netmask: 2.0.2
     dev: false
 
   /pac-resolver/5.0.0:
