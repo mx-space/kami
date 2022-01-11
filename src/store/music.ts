@@ -1,18 +1,9 @@
-/*
- * @Author: Innei
- * @Date: 2020-04-29 17:27:02
- * @LastEditTime: 2020-08-26 20:25:23
- * @LastEditors: Innei
- * @FilePath: /mx-web/common/store/music.ts
- * @Copyright
- */
-
 import { makeAutoObservable, runInAction } from 'mobx'
 export default class MusicStore {
   constructor() {
     makeAutoObservable(this)
     if (!this.isHide) {
-      this.init()
+      this.reset()
     }
   }
 
@@ -20,10 +11,14 @@ export default class MusicStore {
   _isHide = true
   isPlay = false
 
-  init() {
-    this.list = window.data?.config.function.player.id ?? [
-      563534789, 1447327083, 1450252250,
-    ]
+  reset() {
+    runInAction(() => {
+      this._isHide = true
+      this.isPlay = false
+      this.list = window.data?.config.function.player.id ?? [
+        563534789, 1447327083, 1450252250,
+      ]
+    })
   }
 
   empty() {
@@ -52,7 +47,7 @@ export default class MusicStore {
   play() {
     runInAction(() => {
       if (this.list.length == 0) {
-        this.init()
+        this.reset()
       }
 
       this._isHide = false

@@ -1,10 +1,10 @@
 .container {
-  @apply absolute top-0 bottom-0;
+  @apply absolute top-0 bottom-0 leading-[1.8];
 
   left: -12px;
   transform: translateX(-100%);
   font-family: sans-serif;
-  line-height: 1.15;
+  color: var(--shizuku-text-color);
 }
 
 .list {
@@ -14,12 +14,7 @@
   transform: translateY(-50%);
   width: calc(10rem + 12px);
   max-height: calc(100vh - 20em);
-  overflow: auto;
-
-  ::-webkit-scrollbar {
-    height: 0;
-    width: 2px;
-  }
+  overflow: hidden;
 }
 
 .item {

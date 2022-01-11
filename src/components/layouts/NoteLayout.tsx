@@ -1,6 +1,7 @@
 import { faBookmark } from '@fortawesome/free-regular-svg-icons'
 import { faBookmark as faBookmarkSolid } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { NoteTimelineList } from 'components/in-page/NoteTimelineList'
 import dayjs from 'dayjs'
 import { observer } from 'mobx-react-lite'
 import { useCallback } from 'react'
@@ -59,7 +60,6 @@ const _NoteLayout = observer<NoteLayoutProps, HTMLElement>(
           {(state) => {
             return (
               <article
-                key={id}
                 className={'note-article'}
                 style={{
                   ...defaultStyle,
@@ -68,12 +68,12 @@ const _NoteLayout = observer<NoteLayoutProps, HTMLElement>(
               >
                 <h1>
                   {dateFormat}
-                  <div style={{ marginLeft: '1rem', display: 'inline-block' }}>
+                  <div className="ml-4 inline-block">
                     {isLogged ? (
                       <FontAwesomeIcon
                         icon={bookmark ? faBookmarkSolid : faBookmark}
                         color={bookmark ? 'red' : undefined}
-                        style={{ cursor: 'pointer' }}
+                        className="cursor-pointer"
                         onClick={onMarkToggle}
                       />
                     ) : bookmark ? (
@@ -82,7 +82,7 @@ const _NoteLayout = observer<NoteLayoutProps, HTMLElement>(
                   </div>
                 </h1>
 
-                <h2 title={tips} style={{ textAlign: 'center' }}>
+                <h2 title={tips} className="text-center">
                   {title}
                   {isLogged && url ? (
                     <a
@@ -100,10 +100,13 @@ const _NoteLayout = observer<NoteLayoutProps, HTMLElement>(
             )
           }}
         </Transition>
+        <NoteTimelineList noteId={id} />
       </main>
     )
   },
   { forwardRef: true },
 )
 const NoteLayout = NoSSR(_NoteLayout)
+
+_NoteLayout.displayName = 'NoteLayout'
 export { NoteLayout }

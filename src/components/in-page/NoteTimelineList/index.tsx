@@ -26,10 +26,11 @@ export const NoteTimelineList: FC<
       setList(data)
     })
   }, [noteId])
+
   return (
     <div className={clsx(className, styles['container'])}>
       <ul className={clsx(styles.list)}>
-        <QueueAnim type={'alpha'}>
+        <QueueAnim type={['bottom', 'alpha']}>
           {list.map((item) => (
             <li key={item.id}>
               <button

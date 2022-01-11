@@ -1,7 +1,6 @@
 import { faBookOpen, faClock } from '@fortawesome/free-solid-svg-icons'
 import { NoteModel, RequestError } from '@mx-space/api-client'
 import { NotePasswordConfrim } from 'components/in-page/NotePasswordConfirm'
-import { NoteTimelineList } from 'components/in-page/NoteTimelineList'
 import { BanCopy } from 'components/in-page/WarningOverlay/ban-copy'
 import { ArticleLayout } from 'components/layouts/ArticleLayout'
 import { NoteLayout } from 'components/layouts/NoteLayout'
@@ -18,13 +17,14 @@ import CommentWrap from 'components/widgets/Comment'
 import dayjs from 'dayjs'
 import { useHeaderMeta, useHeaderShare } from 'hooks/use-header-meta'
 import { useLoadSerifFont } from 'hooks/use-load-serif-font'
+import { useNoteMusic } from 'hooks/use-music'
 import { isEqual, omit } from 'lodash-es'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React, { FC, useEffect, useMemo, useRef, useState } from 'react'
-import { useUpdate } from 'react-use'
+import { useUnmount, useUpdate } from 'react-use'
 import { store, useStore } from 'store'
 import { imagesRecord2Map } from 'utils/images'
 import { message } from 'utils/message'
@@ -88,7 +88,7 @@ const useUpdateNote = (id: string) => {
 }
 
 const NoteView: React.FC<{ id: string }> = observer((props) => {
-  const { userStore, musicStore, noteStore } = useStore()
+  const { userStore, noteStore } = useStore()
   const note = noteStore.get(props.id) || (noop as NoteModel)
 
   const router = useRouter()
@@ -151,29 +151,7 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
     }, 10)
   }, [props.id])
 
-  // if this note has music, auto play it.
-
-  useEffect(() => {
-    // now support netease
-    const ids =
-      note.music && Array.isArray(note.music) && note.music.length > 0
-        ? note.music
-            .filter((m) => m.id && m.type === 'netease')
-            .map((m) => ~~m.id)
-        : null
-
-    if (!ids) {
-      return
-    }
-    musicStore.setPlaylist(ids)
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-
-    return () => {
-      musicStore.empty()
-      musicStore.setHide(true)
-    }
-  }, [note.music, note.nid])
+  useNoteMusic(note.music)
 
   const isSecret = note.secret ? dayjs(note.secret).isAfter(new Date()) : false
   const secretDate = useMemo(() => new Date(note.secret!), [note.secret])
@@ -198,6 +176,13 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
       clearTimeout(timer)
     }
   }, [isSecret, secretDate])
+
+  useEffect(() => {
+    return () => {
+      console.log('noteview unmount')
+    }
+  }, [])
+
   return (
     <>
       <Seo
@@ -225,6 +210,7 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
         bookmark={note.hasMemory}
         id={note.id}
       >
+        <Test />
         {isSecret && !userStore.isLogged ? (
           <p className="text-center my-8">
             这篇文章暂时没有公开呢，将会在 {dateFormat} 解锁，再等等哦
@@ -250,15 +236,12 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
                 toc
               />
             </BanCopy>
-
-            <NoteTimelineList noteId={note.id} />
           </ImageSizeMetaContext.Provider>
         )}
 
-        <FooterActionBar id={props.id} />
         <FooterNavigation id={props.id} />
+        <FooterActionBar id={props.id} />
       </NoteLayout>
-
       {!isSecret && (
         <ArticleLayout
           style={{ minHeight: 'unset', paddingTop: '0' }}
@@ -461,3 +444,10 @@ PP.getInitialProps = async (ctx) => {
 }
 
 export default PP
+
+const Test = () => {
+  useUnmount(() => {
+    console.log('uuuuuu')
+  })
+  return null
+}

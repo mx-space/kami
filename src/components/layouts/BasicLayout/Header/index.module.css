@@ -28,12 +28,6 @@
   }
 }
 
-.nav-container {
-  height: 4rem;
-
-  @apply mx-20 relative overflow-hidden;
-}
-
 .header-logo svg {
   height: 2rem;
 }
@@ -170,6 +164,12 @@
 
 .nav-container {
   height: 4rem;
+
+  @apply mx-20 relative overflow-hidden;
+
+  @screen tablet {
+    @apply mx-8;
+  }
 
   & > .head-swiper {
     transition: transform 0.5s;
