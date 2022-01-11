@@ -40,7 +40,7 @@ const getContainerNode: () => HTMLElement = () => {
 
 const message: MessageInstance = {}
 ;['success', 'error', 'warn', 'info', 'loading', 'warning'].forEach((type) => {
-  message[type] = (content, duration) => {
+  message[type] = (content, duration = 2500) => {
     requestAnimationFrame(() => {
       try {
         let message: string
@@ -56,15 +56,19 @@ const message: MessageInstance = {}
         }
         const container = getContainerNode()
 
-        const fragment = document.createDocumentFragment()
-        // `time` not millisecond because antd-message implementation, please times 1000
+        const fragment = document.createElement('div')
+
         ReactDOM.render(
           <Message type={type as any} duration={time} message={message} />,
           fragment,
         )
         setTimeout(() => {
-          cleanEmptyMessageWrapper()
-        }, time * 1000)
+          // react dom can not remove document fragment
+          // NotFoundError: Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node.
+          ReactDOM.unmountComponentAtNode(fragment)
+          container.removeChild(fragment)
+          // 加 500ms 动画时间
+        }, time + 500)
         container.appendChild(fragment)
         return fragment
         // eslint-disable-next-line no-empty
@@ -72,21 +76,7 @@ const message: MessageInstance = {}
     })
   }
 })
-const cleanEmptyMessageWrapper = () => {
-  const $root = getContainerNode()
-  const children = Array.from($root.children)
-  for (let i = 0, len = children.length; i < len; i++) {
-    const $item = children[i]
 
-    if (!$item) {
-      continue
-    }
-    const isEmpty = ($item as HTMLElement).innerHTML === ''
-    if (isEmpty) {
-      $root.removeChild($item)
-    }
-  }
-}
 export { message }
 if ('window' in globalThis) {
   // @ts-ignore

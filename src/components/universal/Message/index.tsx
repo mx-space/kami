@@ -5,7 +5,7 @@ import {
   faTimesCircle,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC, useEffect, useRef } from 'react'
 import styles from './index.module.css'
 
 const LoadingIcon = () => {
@@ -36,7 +36,7 @@ const Icon = {
 }
 export const Message: FC<MessageProps> = (props) => {
   const { type, message, duration } = props
-  const [isAppeared, setAppear] = useState(true)
+
   const wrapRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -44,17 +44,13 @@ export const Message: FC<MessageProps> = (props) => {
         return
       }
       wrapRef.current.classList.add(styles['disappear'])
-
-      wrapRef.current.onanimationend = () => {
-        wrapRef.current?.remove()
-      }
     }, duration || 2500)
     return () => {
       clearTimeout(timer)
     }
-  }, [wrapRef.current])
+  }, [])
 
-  return isAppeared ? (
+  return (
     <div className={styles['wrap']}>
       <div className={styles['inner-wrap']} ref={wrapRef}>
         <div className={styles['icon']}>{Icon[type]}</div>
@@ -63,7 +59,7 @@ export const Message: FC<MessageProps> = (props) => {
         </div>
       </div>
     </div>
-  ) : null
+  )
 }
 
 export const MessageContainerPrefixId = `mx-message-container`
