@@ -1,5 +1,3 @@
-import { faNodeJs, faReact } from '@fortawesome/free-brands-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useInitialData, useThemeConfig } from 'hooks/use-initial-data'
 import { useFooterBackground } from 'hooks/use-theme-background'
 import { observer } from 'mobx-react-lite'
@@ -55,11 +53,12 @@ export const FooterContent: FC = observer(() => {
             </span>
           </p>
           <p>
-            Powered by <FontAwesomeIcon icon={faReact} />
-            <a href="https://github.com/mx-space" title={'版本: ' + version}>
-              {' mx-space '}
+            Powered by <a href="https://github.com/mx-space">{'mx-space'}</a>.
+            Theme{' '}
+            <a href="https://github.com/mx-space/kami" title={version}>
+              {'Kami'}
             </a>
-            <FontAwesomeIcon icon={faNodeJs} />.{' '}
+            {'. '}
             {icp.enable && !!icp.label && !!icp.link && (
               <a href={icp.link} target={'_blank'} rel={'noreferrer'}>
                 {icp.label}

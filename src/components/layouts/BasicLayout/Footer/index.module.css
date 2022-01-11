@@ -49,4 +49,8 @@
   max-width: 75em;
   padding: 0 1.25em;
   box-sizing: content-box;
+
+  a:hover {
+    @apply text-green;
+  }
 }
