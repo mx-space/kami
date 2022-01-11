@@ -1,4 +1,4 @@
-import { action, computed, makeObservable, observable, toJS } from 'mobx'
+import { toJS } from 'mobx'
 
 export type Id = string
 
@@ -24,13 +24,6 @@ export class KeyValueCollection<K extends Id, V extends object> extends Map<
 > {
   constructor() {
     super()
-    makeObservable(this, {
-      data: observable,
-      set: action,
-      delete: action,
-      clear: action,
-      size: computed,
-    })
   }
 
   // for mobx
