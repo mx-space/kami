@@ -39,7 +39,7 @@ export const FooterContent: FC = observer(() => {
 
   return (
     <div className={styles.wrap}>
-      <div className={'row mb-5'}>
+      <div className={'row'}>
         <div className="col-m-6 left to-center">
           <p>
             © {thisYear !== 2020 && '2020-'}
@@ -52,17 +52,20 @@ export const FooterContent: FC = observer(() => {
               {motto.content}
             </span>
           </p>
-          <p>
-            Powered by <a href="https://github.com/mx-space">{'mx-space'}</a>.
-            Theme{' '}
+          <p className="justify-center flex space-x-2 children:flex-shrink-0 flex-wrap">
+            <span>Powered by </span>
+            <a href="https://github.com/mx-space">{'mx-space'}</a>.
+            <span>Theme</span>
             <a href="https://github.com/mx-space/kami" title={version}>
               {'Kami'}
             </a>
-            {'. '}
+            {'.'}
             {icp.enable && !!icp.label && !!icp.link && (
-              <a href={icp.link} target={'_blank'} rel={'noreferrer'}>
-                {icp.label}
-              </a>
+              <div className="text-center inline-block">
+                <a href={icp.link} target={'_blank'} rel={'noreferrer'}>
+                  {icp.label}
+                </a>
+              </div>
             )}
           </p>
         </div>

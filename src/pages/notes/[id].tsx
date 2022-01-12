@@ -24,7 +24,7 @@ import { observer } from 'mobx-react-lite'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React, { FC, useEffect, useMemo, useRef, useState } from 'react'
-import { useUnmount, useUpdate } from 'react-use'
+import { useUpdate } from 'react-use'
 import { store, useStore } from 'store'
 import { imagesRecord2Map } from 'utils/images'
 import { message } from 'utils/message'
@@ -177,12 +177,6 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
     }
   }, [isSecret, secretDate])
 
-  useEffect(() => {
-    return () => {
-      console.log('noteview unmount')
-    }
-  }, [])
-
   return (
     <>
       <Seo
@@ -210,7 +204,6 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
         bookmark={note.hasMemory}
         id={note.id}
       >
-        <Test />
         {isSecret && !userStore.isLogged ? (
           <p className="text-center my-8">
             这篇文章暂时没有公开呢，将会在 {dateFormat} 解锁，再等等哦
@@ -445,10 +438,3 @@ PP.getInitialProps = async (ctx) => {
 }
 
 export default PP
-
-const Test = () => {
-  useUnmount(() => {
-    console.log('uuuuuu')
-  })
-  return null
-}

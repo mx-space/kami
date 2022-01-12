@@ -183,6 +183,7 @@
     & .head-info {
       overflow: hidden;
       flex-shrink: 1;
+      margin-right: 20px;
 
       & .desc {
         position: relative;

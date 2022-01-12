@@ -10,6 +10,7 @@ export const useMusic = (musicList: number[]) => {
       return
     }
     musicStore.setPlaylist(musicList)
+    musicStore.setHide(false)
 
     return () => {
       musicStore.empty()

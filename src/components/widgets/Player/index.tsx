@@ -5,6 +5,7 @@ import {
   useCallback,
   useEffect,
   useImperativeHandle,
+  useMemo,
   useRef,
   useState,
 } from 'react'
@@ -43,8 +44,12 @@ export interface MusicPlayerRef {
 }
 export const MusicMiniPlayer = forwardRef<
   MusicPlayerRef,
-  { playlist: number[]; hide?: boolean }
->(({ playlist, hide = false }, ref) => {
+  {
+    playlist: number[]
+    hide?: boolean
+    onPlayStateChange: (state: 'play' | 'pause') => void
+  }
+>(({ playlist, hide = false, onPlayStateChange }, ref) => {
   const len = playlist.length
 
   const [cur, setCur] = useState<null | (MetingPayloadType & { id: number })>(
@@ -66,8 +71,6 @@ export const MusicMiniPlayer = forwardRef<
   }
 
   useEffect(() => {
-    // log(playlist[cursor], cursor)
-
     fetchData(playlist[cursor])
   }, [cursor, playlist])
 
@@ -77,27 +80,19 @@ export const MusicMiniPlayer = forwardRef<
     fetchData(playlist[0])
   }, [playlist])
 
-  const onChangeAudio = useCallback((e) => {
-    // log('changed')
+  const onChangeAudio = useCallback((e) => {}, [])
 
-    const el = e.target as HTMLAudioElement
-    if (el.autoplay && el.paused) {
-      el.play()
-    }
-  }, [])
-
-  const [audioEl, state, controls, __ref] = useAudio({
+  const [audioEl, state, controls] = useAudio({
     src: cur?.url || '',
-    autoPlay: true,
+    autoPlay: false,
     loop: false,
     onEnded() {
       setCursor((cursor) => {
-        // log('play-end')
         return ++cursor % len
       })
     },
     onLoadedData: onChangeAudio,
-    onDurationChange: onChangeAudio,
+    // onDurationChange: onChangeAudio,
     onLoad: onChangeAudio,
   })
 
@@ -118,32 +113,42 @@ export const MusicMiniPlayer = forwardRef<
     },
   }))
 
+  const handleChangePlayState = useCallback(() => {
+    if (state.paused) {
+      controls.play()
+      onPlayStateChange('play')
+    } else {
+      controls.pause()
+      onPlayStateChange('pause')
+    }
+  }, [])
+
+  const Pic = useMemo(
+    () =>
+      cur?.pic && (
+        <div
+          className={clsx(
+            styles['pic'],
+            'bg-cover bg-center bg-no-repeat h-full w-full',
+          )}
+          style={{ backgroundImage: `url(${cur.pic})` }}
+        ></div>
+      ),
+    [cur?.pic],
+  )
+
   return (
     <div className={classNames(styles['player'], hide && styles['hide'])}>
       <div className={styles['root']}>
         <div className={styles['cover']}>
-          {cur?.pic && (
-            <div
-              className={clsx(
-                styles['pic'],
-                'bg-cover bg-center bg-no-repeat h-full w-full',
-              )}
-              style={{ backgroundImage: `url(${cur.pic})` }}
-            ></div>
-          )}
+          {Pic}
 
           <div
             className={clsx(
               styles['control-btn'],
               !state.paused && styles['is-play'],
             )}
-            onClick={() => {
-              if (state.paused) {
-                controls.play()
-              } else {
-                controls.pause()
-              }
-            }}
+            onClick={handleChangePlayState}
           >
             {state.paused ? (
               <svg width="1em" height="1em" viewBox="0 0 24 24">
@@ -202,14 +207,24 @@ export const _MusicMiniPlayerStoreControlled = observer(() => {
   }
 
   if (!musicStore.isHide) {
-    ref.current?.play()
+    // auto play disable
+    // ref.current?.play()
   } else {
     ref.current?.pause()
   }
 
+  const handleChangePlayState = useCallback((state: 'play' | 'pause') => {
+    if (state === 'play') {
+      musicStore.isPlay = true
+    } else {
+      musicStore.isPlay = false
+    }
+  }, [])
+
   return (
     <MusicMiniPlayer
       ref={ref}
+      onPlayStateChange={handleChangePlayState}
       playlist={musicStore.list}
       hide={musicStore.isHide}
     />

@@ -29,12 +29,12 @@ export const Toc: FC<TocProps> = memo(({ headings: $headings }) => {
     return Array.from($headings).map((el) => {
       const depth = +el.tagName.slice(1)
       const title = el.id
-      // @ts-ignore
-      const index = +el.dataset['index'] || -1
+
+      const index = Number(el.dataset['index'])
 
       return {
         depth,
-        index,
+        index: isNaN(index) ? -1 : index,
         title,
       }
     })

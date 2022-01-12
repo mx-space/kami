@@ -14,6 +14,7 @@ export const TocItem: FC<{
   return (
     <a
       data-scroll
+      data-index={index}
       href={'#' + title}
       className={clsx(styles['toc-link'], active && styles['active'])}
       style={{

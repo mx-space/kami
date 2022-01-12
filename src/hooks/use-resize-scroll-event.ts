@@ -15,7 +15,7 @@ export const useResizeScrollEvent = () => {
         _currentY.current = currentY
       },
       50,
-      { leading: true },
+      { leading: false },
     )
 
     const resizeHandler = debounce(() => {

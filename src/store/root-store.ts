@@ -5,7 +5,7 @@ import { PageStore } from './collections/page'
 import { PostStore } from './collections/post'
 import { SayStore } from './collections/say'
 import GatewayStore from './gateway'
-import MusicStore from './music'
+import { MusicStore } from './music'
 import UserStore from './user'
 
 export interface RootStore {

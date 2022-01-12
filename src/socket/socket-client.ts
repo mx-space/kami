@@ -1,13 +1,4 @@
-/*
- * @Author: Innei
- * @Date: 2020-05-23 13:18:30
- * @LastEditTime: 2021-07-17 22:11:05
- * @LastEditors: Innei
- * @FilePath: /web/common/socket/socket-client.ts
- * @MIT
- */
-
-import camelcaseKeys from 'camelcase-keys'
+import { camelcaseKeys } from '@mx-space/api-client'
 import io, { Socket } from 'socket.io-client'
 import { isDev } from 'utils'
 import { eventBus } from '../utils/event-emitter'

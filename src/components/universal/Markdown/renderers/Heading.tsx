@@ -23,8 +23,10 @@ export const Heading = () => {
     const [ref, inView] = useInView({ rootMargin: '-33% 0% -33% 0%' })
 
     useEffect(() => {
-      eventBus.emit(CustomEventTypes.TOC, currentIndex)
-    }, [currentIndex, inView])
+      if (inView) {
+        eventBus.emit(CustomEventTypes.TOC, currentIndex)
+      }
+    }, [inView])
     return (
       <Fragment>
         {createElement<DOMAttributes<HTMLHeadingElement>, HTMLHeadingElement>(

@@ -14,7 +14,7 @@ fs.writeFileSync(
   writeFilePath,
   `// sync with config.init.yaml
 export const defaultConfigs = ${JSON.stringify(
-    require('camelcase-keys')(config, { deep: true }),
+    require('@mx-space/api-client').camelcaseKeys(config, { deep: true }),
     null,
     2,
   )}

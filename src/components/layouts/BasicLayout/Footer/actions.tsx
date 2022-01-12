@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'clsx'
 import { QueueAnim } from 'components/universal/Anime'
 import { ChatPanel } from 'components/widgets/Chat'
+import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import React, { FC, useEffect, useState } from 'react'
 import { EventTypes } from 'socket/types'
@@ -66,7 +67,10 @@ export const FooterActions: FC = observer(() => {
 
         <button
           onClick={() => {
-            musicStore.setHide(!musicStore.isHide)
+            runInAction(() => {
+              musicStore.setHide(!musicStore.isHide)
+              musicStore.setPlay(!musicStore.isHide)
+            })
           }}
         >
           <FontAwesomeIcon icon={faHeadphones} />

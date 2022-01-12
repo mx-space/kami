@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react-lite'
-import dynamic from 'next/dynamic'
 import React, { FC, useCallback, useEffect, useRef } from 'react'
 import { loadScript, loadStyleSheet } from 'utils'
 import { message } from 'utils/message'
@@ -10,7 +9,8 @@ interface Props {
   language: string | undefined
   value: string
 }
-const HighLighter: FC<Props> = observer((props) => {
+
+export const HighLighter: FC<Props> = observer((props) => {
   const { language, value } = props
   const { appUIStore } = useStore()
   const { colorMode } = appUIStore
@@ -51,6 +51,8 @@ const HighLighter: FC<Props> = observer((props) => {
         requestAnimationFrame(() => {
           window.Prism?.highlightElement(ref.current)
         })
+      } else {
+        window.Prism?.highlightAll()
       }
     })
   }, [])
@@ -74,4 +76,3 @@ const HighLighter: FC<Props> = observer((props) => {
     </div>
   )
 })
-export default dynamic(() => Promise.resolve(HighLighter), { ssr: false })

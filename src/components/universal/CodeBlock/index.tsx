@@ -1,5 +1,5 @@
 import { Mermaid } from 'components/universal/Mermaid'
-import CodeHighlighter from 'components/widgets/CodeHighlighter'
+import { HighLighter } from 'components/widgets/CodeHighlighter'
 export const CodeBlock = (props: {
   language: string | undefined
   value: string
@@ -7,6 +7,6 @@ export const CodeBlock = (props: {
   if (props.language === 'mermaid') {
     return <Mermaid {...props} />
   } else {
-    return <CodeHighlighter {...props} />
+    return <HighLighter {...props} />
   }
 }

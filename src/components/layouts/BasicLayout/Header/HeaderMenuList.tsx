@@ -1,7 +1,6 @@
 import classNames from 'clsx'
 import { useKamiConfig } from 'hooks/use-initial-data'
 import { makeAutoObservable } from 'mobx'
-import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
 import React, { FC, memo, useEffect, useMemo, useRef, useState } from 'react'
 import { HeaderNavigationList } from './HeaderNavigationList'
@@ -93,7 +92,7 @@ export const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
     </div>
   )
 })
-export const HeaderFake: FC = observer(() => {
+export const HeaderFake: FC = memo(() => {
   return (
     <header
       className={classNames(
