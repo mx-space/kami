@@ -121,7 +121,7 @@ export const MusicMiniPlayer = forwardRef<
       controls.pause()
       onPlayStateChange('pause')
     }
-  }, [])
+  }, [controls, onPlayStateChange, state.paused])
 
   const Pic = useMemo(
     () =>

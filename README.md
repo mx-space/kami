@@ -1,22 +1,29 @@
 # Kami
 
-Status: Alpha
-
-v3 版本主要重构架构设计，风格不会有大的变化。配置全部动态化，让配置更加简易。
-
 **你的下一个博客何必是博客**
 
 Kami 是为 Mix Space Server 打造的前端。使用 NextJS 开发。
 
-依赖：Mix Space Server >= v3.12.2
+Kami v3 重构整体架构设计，风格不会有大的变化。
+
+依赖：Mix Space Server >= v3.13.0
+
+与上一版本相比，新的特征有:
+
+- 配置全部动态化，让配置更加简易。
+- 性能提升 50%，打包体积缩小 500K，首次加载时间减少 15%
+- 修复一些老 Bug，具体是啥看 Git History
+- 样式上有微调
 
 Live Demo:
 
 - <https://innei.ren>
 
-![Xnip2021-09-21_18-29-08](https://raw.githubusercontent.com/mx-space/docs-images/master/images/Xnip2021-09-21_18-29-08.png)
+![](https://ghproxy.fsou.cc/https://github.com/mx-space/docs-images/blob/master/images/bg.jpg)
 
-[使用文档](https://mx-docs.shizuri.net)
+## 迁移指南
+
+升级 Server 到 v3.13.0 以上，在设置中的「区块与片段」中新建一个名为 `kami`，引用为 `theme`，内容为可配置项，可参考： [config.example.yaml](https://ghproxy.fsou.cc/https://github.com/mx-space/kami/blob/master/config.example.yaml)
 
 ## 忠告
 
