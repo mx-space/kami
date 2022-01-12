@@ -19,7 +19,7 @@ Live Demo:
 
 - <https://innei.ren>
 
-![](https://ghproxy.fsou.cc/https://github.com/mx-space/docs-images/blob/master/images/bg.jpg)
+![](https://github.com/mx-space/docs-images/blob/master/images/bg.jpg?raw=true)
 
 ## 迁移指南
 
