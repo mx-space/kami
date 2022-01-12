@@ -30,12 +30,13 @@ async function main() {
   const tmpName = (Math.random() * 10).toString(16)
   fs.writeFileSync(`/tmp/${tmpName}.zip`, buffer, { flag: 'w' })
   // pwd: ~/mx/kami
+  await $`git checkout master`
+  await $`git branch --set-upstream-to=origin/master master`
   await $`git pull`
   await $`pnpm i`
   await $`rm -rf ./.next`
   await $`unzip /tmp/${tmpName}.zip -d ./.next`
   await $`rm /tmp/${tmpName}.zip`
-  process.env.NODE_ENV = 'production'
   await $`export NODE_ENV=production`
   await nothrow($`pm2 reload ecosystem.config.js --update-env`)
   console.log('等待 15 秒')
