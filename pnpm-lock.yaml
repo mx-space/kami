@@ -55,7 +55,7 @@ specifiers:
   postcss: 8.4.5
   postcss-import: 14.0.2
   postcss-nested: 5.0.6
-  postcss-preset-env: 7.2.2
+  postcss-preset-env: 7.2.3
   prettier: 2.5.1
   qier-progress: 1.0.4
   randomcolor: 0.6.2
@@ -159,7 +159,7 @@ devDependencies:
   postcss: 8.4.5
   postcss-import: 14.0.2_postcss@8.4.5
   postcss-nested: 5.0.6_postcss@8.4.5
-  postcss-preset-env: 7.2.2_postcss@8.4.5
+  postcss-preset-env: 7.2.3_postcss@8.4.5
   prettier: 2.5.1
   react-lazyload: 3.2.0_react-dom@17.0.2+react@17.0.2
   rimraf: 3.0.2
@@ -5987,8 +5987,8 @@ packages:
       postcss-value-parser: 4.2.0
     dev: true
 
-  /postcss-preset-env/7.2.2_postcss@8.4.5:
-    resolution: {integrity: sha512-qLlBuuxX05zX8nLNysqrU0U8y42ygGmcUyi43iGR34p9FSgNtTZXCpS+d0A2vt3a+XNiwcIbnomQqth8ejK1OQ==}
+  /postcss-preset-env/7.2.3_postcss@8.4.5:
+    resolution: {integrity: sha512-Ok0DhLfwrcNGrBn8sNdy1uZqWRk/9FId0GiQ39W4ILop5GHtjJs8bu1MY9isPwHInpVEPWjb4CEcEaSbBLpfwA==}
     engines: {node: ^12 || ^14 || >=16}
     peerDependencies:
       postcss: ^8.4
