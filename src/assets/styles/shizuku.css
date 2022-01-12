@@ -1,0 +1,263 @@
+:root {
+  --shizuku-background-color: #fff;
+  --shizuku-text-color: #333;
+  --shizuku-theme-color: #2bd;
+}
+
+#write {
+  font-family: 'PingFang SC', 'Microsoft YaHei UI', 'Microsoft YaHei',
+    sans-serif;
+  font-size: 16px;
+  word-wrap: break-word;
+  position: relative;
+}
+
+#write > *:first-child {
+  margin-top: 0 !important;
+}
+
+#write > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+#write a,
+#write a:hover,
+#write a:active,
+#write a:focus,
+#write a:visited {
+  text-decoration: none;
+}
+
+#write a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+#write p,
+#write .paragraph {
+  margin: 1rem 0;
+}
+
+#write .paragraph,
+#write blockquote,
+#write ul,
+#write ol,
+#write dl,
+#write table,
+#write pre {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+#write pre > code {
+  max-height: 70vh;
+}
+
+#write pre::before,
+#write pre::after {
+  content: ' ';
+  display: block;
+  width: 25px;
+  height: 1px;
+  margin: 20px 0;
+  background: var(--shizuku-theme-color);
+}
+
+#write hr {
+  display: block;
+  width: 50px;
+  height: 1px;
+  line-height: 1px;
+  border: 0;
+  margin: 2.5rem auto;
+  background: rgb(128 128 128 / 40%);
+}
+
+#write .md-hr {
+  outline: none !important;
+}
+
+#write .md-hr.md-focus hr {
+  background: var(--shizuku-theme-color);
+}
+
+#write blockquote {
+  position: relative;
+}
+
+#write blockquote > .paragraph {
+  padding: 10px 0;
+  margin: 0;
+}
+
+#write .loweralpha {
+  list-style-type: lower-alpha;
+}
+
+#write .md-blockmeta,
+#write .md-header-span {
+  font-style: normal;
+  font-weight: normal;
+  color: rgb(128 128 128 / 40%);
+}
+
+#write .md-header-span {
+  background: rgb(128 128 128 / 20%);
+}
+
+#write h1,
+#write h2,
+#write h3,
+#write h4,
+#write h5,
+#write h6 {
+  font-weight: bold;
+  line-height: 1.25;
+  vertical-align: baseline;
+  margin: 2rem 0;
+}
+
+#write h1::before,
+#write h2::before,
+#write h3::before,
+#write h4::before,
+#write h5::before,
+#write h6::before {
+  border: 0 none !important;
+  border-radius: 0 !important;
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+  float: none !important;
+  padding-left: initial !important;
+  padding-right: initial !important;
+  vertical-align: inherit !important;
+  display: inline-block;
+  margin-left: -72px;
+  width: 60px;
+  margin-right: 12px;
+  height: 1em;
+  line-height: 1em;
+  text-align: right;
+  color: var(--light-brown);
+  opacity: 0.5;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+#write h1::before {
+  content: 'H1';
+}
+
+#write h2::before {
+  content: 'H2';
+}
+
+#write h3::before {
+  content: 'H3';
+}
+
+#write h4::before {
+  content: 'H4';
+}
+
+#write h5::before {
+  content: 'H5';
+}
+
+#write h6::before {
+  content: 'H6';
+}
+
+@media screen and (max-width: 900px) {
+  #write h1 {
+    margin-left: 2rem;
+  }
+
+  #write h2 {
+    margin-left: 2rem;
+  }
+
+  #write h3 {
+    margin-left: 2rem;
+  }
+
+  #write h4 {
+    margin-left: 2rem;
+  }
+
+  #write h5 {
+    margin-left: 2rem;
+  }
+
+  #write h6 {
+    margin-left: 2rem;
+  }
+}
+
+#write ul,
+#write ol {
+  padding-left: 2em;
+}
+
+#write ul {
+  list-style-type: disc;
+}
+
+#write ol {
+  list-style-type: decimal;
+}
+
+#write img {
+  max-width: 100%;
+  box-sizing: content-box;
+}
+
+#write img[align='right'] {
+  padding-left: 20px;
+}
+
+#write img[align='left'] {
+  padding-right: 20px;
+}
+
+#write .spoiler {
+  position: relative;
+  background: currentColor;
+  filter: invert(50%);
+  transition: background 0.5s;
+  text-decoration: none;
+
+  &:hover {
+    background: transparent;
+  }
+}
+
+#write > blockquote:nth-child(1) {
+  background-color: unset !important;
+  border: none !important;
+  position: relative;
+  color: #d35400;
+  font-family: 'Noto Serif SC', SongTi SC;
+  padding-bottom: 24px;
+
+  &::before {
+    content: '“';
+    position: absolute;
+    left: 0;
+    top: -2rem;
+    font-size: 3rem;
+  }
+
+  &::after {
+    content: '”';
+    font-size: 3rem;
+    position: absolute;
+    right: 0;
+    bottom: -2rem;
+  }
+}
+
+#write summary {
+  cursor: pointer;
+}

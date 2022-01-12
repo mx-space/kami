@@ -1,0 +1,36 @@
+.error {
+  color: currentColor;
+  font-family: Helvetica, sans-serif;
+  height: calc(100vh - 16rem);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.error h1 {
+  display: inline-block;
+  border-right: 1px solid rgb(0 0 0 / 30%);
+  margin: 0 20px 0 0;
+  padding: 10px 23px 10px 0;
+  font-size: 24px;
+  font-weight: 500;
+  vertical-align: top;
+}
+
+.error .desc {
+  display: inline-block;
+  text-align: left;
+  line-height: 49px;
+  height: 49px;
+  vertical-align: middle;
+}
+
+.error .desc h2 {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+}

@@ -2,7 +2,7 @@
   "name": "mx-web",
   "license": "GPL-3.0",
   "private": false,
-  "version": "2.4.10",
+  "version": "3.0.0-beta.1",
   "engines": {
     "node": ">=14"
   },
@@ -11,7 +11,18 @@
       "git pull --rebase"
     ],
     "after": [
-      "sh ./create-tags.sh"
+      "sh ./scripts/create-tags.sh"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --ignore-path ./.gitignore --write ",
+      "eslint --cache"
     ]
   },
   "scripts": {
@@ -22,19 +33,16 @@
     "build": "cross-env NODE_ENV=production next build",
     "build:ci": "cross-env NODE_ENV=production CI=true next build",
     "lint": "eslint --ext .ts,.tsx --ignore-path .gitignore . --fix",
+    "stylelint": "stylelint 'src/**/*.{css,scss}' --fix",
     "prod:pm2": "cross-env NODE_ENV=production pm2 restart ecosystem.config.js",
     "prod:stop": "pm2 stop ecosystem.config.js",
-    "prod:reload": "pm2 reload ecosystem.config.js"
+    "prod:reload": "pm2 reload ecosystem.config.js",
+    "gen-config": "node scripts/generate-default-configs.js"
   },
   "browserslist": [
     "chrome >=88",
     "safari >=14",
-    "last 2 Firefox versions",
-    "maintained node versions",
-    "iOS 14",
-    "cover 50% in us",
-    "cover 70% in cn",
-    "> 1% in cn"
+    "last 2 Firefox versions"
   ],
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.36",
@@ -44,24 +52,20 @@
     "@fortawesome/react-fontawesome": "0.1.16",
     "@innei/devtools-detector": "2.0.4-beta.1",
     "@innei/react-stack-grid": "0.8.4",
+    "@mx-space/api-client": "0.6.0",
     "@mx-space/extra": "0.5.2",
-    "@openfonts/noto-sans-sc_vietnamese": "1.44.0",
     "NeteaseCloudMusicApi": "*",
     "axios": "0.24.0",
-    "camelcase-keys": "7.0.1",
     "clsx": "1.1.1",
     "dayjs": "1.10.7",
     "inflection": "1.13.1",
     "js-cookie": "3.0.1",
-    "kico-style": "1.2.0",
     "lodash-es": "4.17.21",
     "mdurl": "*",
     "mobx": "6.3.12",
     "mobx-react-lite": "3.2.3",
     "next": "12.0.7",
-    "next-offline": "5.0.5",
     "next-seo": "4.28.1",
-    "normalize.css": "8.0.1",
     "qier-progress": "1.0.4",
     "randomcolor": "0.6.2",
     "rc-queue-anim": "1.8.5",
@@ -71,23 +75,22 @@
     "react-countup": "6.1.0",
     "react-dom": "17.0.2",
     "react-hook-form": "7.22.5",
-    "react-intersection-observer": "8.32.5",
+    "react-intersection-observer": "8.33.1",
     "react-lazy-images": "1.1.0",
     "react-markdown": "4.3.1",
     "react-medium-image-zoom": "4.3.5",
-    "react-syntax-highlighter": "15.4.5",
     "react-transition-group": "4.4.2",
     "react-use": "17.3.2",
     "remove-markdown": "0.3.0",
     "socket.io-client": "4.4.1",
-    "tailwindcss": "2.2.19",
-    "ua-parser-js": "1.0.2",
+    "use-dark-mode": "2.3.1",
     "validator": "13.7.0"
   },
   "devDependencies": {
     "@innei-util/eslint-config-react-ts": "latest",
     "@innei-util/prettier": "latest",
     "@next/bundle-analyzer": "12.0.7",
+    "@trivago/prettier-plugin-sort-imports": "3.1.1",
     "@types/inflection": "1.13.0",
     "@types/js-cookie": "3.0.1",
     "@types/lodash-es": "4.17.5",
@@ -105,19 +108,25 @@
     "cross-env": "*",
     "dotenv": "10.0.0",
     "eslint": "*",
+    "husky": "7.0.4",
+    "js-yaml": "*",
+    "lint-staged": "12.1.7",
+    "next-compose-plugins": "2.2.1",
+    "next-pwa": "5.4.4",
     "nodemon": "2.0.15",
     "postcss": "8.4.5",
-    "postcss-flexbugs-fixes": "5.0.2",
     "postcss-import": "14.0.2",
-    "postcss-loader": "6.2.1",
     "postcss-nested": "5.0.6",
-    "postcss-preset-env": "7.0.2",
+    "postcss-preset-env": "7.2.0",
     "prettier": "2.5.1",
     "react-lazyload": "3.2.0",
     "rimraf": "*",
-    "sass": "1.45.2",
+    "stylelint": "14.2.0",
+    "stylelint-config-standard": "24.0.0",
     "ts-node": "10.4.0",
     "typescript": "4.5.4",
+    "windicss": "3.4.2",
+    "windicss-webpack-plugin": "1.6.2",
     "zx": "4.2.0"
   },
   "resolutions": {

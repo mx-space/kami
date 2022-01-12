@@ -1,0 +1,40 @@
+.icon {
+  @apply mr-[5px];
+}
+
+.root {
+  @apply my-2 text-sm;
+
+  a {
+    color: inherit;
+  }
+
+  & > span {
+    cursor: pointer;
+    position: relative;
+  }
+
+  :global {
+    .note-inform,
+    .note-action {
+      color: #888;
+      text-align: right;
+      user-select: none;
+      font-weight: normal;
+    }
+
+    .note-inform {
+      float: left;
+    }
+
+    .note-inform span {
+      cursor: pointer;
+      margin-right: 1em;
+    }
+
+    .note-inform span::before,
+    .note-action span::before {
+      margin-right: 0.5em;
+    }
+  }
+}

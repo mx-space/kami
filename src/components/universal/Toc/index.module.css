@@ -1,0 +1,83 @@
+.a-pointer {
+  cursor: pointer;
+}
+
+.toc {
+  .toc-link {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: var(--light-brown);
+    opacity: 0.8;
+  }
+}
+
+.toc {
+  top: 0;
+  right: -12px;
+  bottom: 0;
+  position: absolute;
+  transform: translateX(100%);
+  font-family: sans-serif;
+  line-height: 1.15;
+
+  .container {
+    color: #888;
+    font-size: 0.85em;
+    position: sticky;
+    top: 6rem;
+  }
+
+  .anime-wrapper {
+    max-height: calc(100vh - 12em);
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      height: 0;
+      width: 0;
+    }
+  }
+
+  &:hover * {
+    opacity: 1 !important;
+  }
+}
+
+.toc a {
+  display: block;
+  color: currentColor;
+  padding: 0.37em 0 0.37em 1em;
+  position: relative;
+  transition: opacity 0.5s;
+  opacity: 0.75 !important;
+
+  & span {
+    transition: margin-left 0.5s;
+  }
+
+  &.active,
+  &:hover {
+    opacity: 1 !important;
+
+    span {
+      margin-left: 3px;
+    }
+  }
+
+  &.active::before,
+  &.active {
+    opacity: 1;
+  }
+
+  &::before {
+    opacity: 0.3;
+    transition: opacity 0.5s;
+    content: '';
+    position: absolute;
+    left: 2px;
+    width: 2px;
+    top: 0;
+    background-color: var(--yellow);
+    bottom: 0;
+  }
+}

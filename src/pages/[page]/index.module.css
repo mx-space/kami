@@ -1,0 +1,22 @@
+.pagination {
+  display: grid;
+  position: relative;
+  grid-template-columns: 1fr 1fr;
+  height: 5rem;
+  user-select: none;
+
+  & > div {
+    width: 100%;
+    position: relative;
+    align-items: center;
+    display: flex;
+  }
+
+  & > div:nth-child(1) {
+    justify-content: flex-start;
+  }
+
+  & > div:nth-child(2) {
+    justify-content: flex-end;
+  }
+}

@@ -5,5 +5,8 @@
     "mobx"
   ],
   "typescript.tsdk": "node_modules/typescript/lib",
-  "deno.enable": false
+  "exportall.config.relExclusion": [
+    "/src/common/context",
+    "/src/views/Markdown/renderers"
+  ]
 }

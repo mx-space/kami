@@ -1,0 +1,66 @@
+.select-container {
+  width: 30px;
+  height: 80vh;
+  position: fixed;
+  top: -10vh;
+  right: 3rem;
+  transition: top 0.5s;
+  z-index: 0;
+}
+
+.select-line {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .line {
+    width: 3px;
+    height: 100%;
+    background-image:
+      linear-gradient(
+        45deg,
+        hsl(0deg 0% 100% / 60%) 25%,
+        transparent 0,
+        transparent 50%,
+        hsl(0deg 0% 100% / 60%) 0,
+        hsl(0deg 0% 100% / 60%) 75%,
+        transparent 0,
+        transparent
+      );
+    background-color: #f78fb3;
+    background-size: 100% 60px;
+    border-radius: 12px;
+    background-repeat: repeat;
+  }
+}
+
+.sakura-wrap {
+  animation: rotating 2s infinite linear;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.sakura-img {
+  background-image: url("https://gitee.com/xun7788/my-imagination/raw/master/uPic/1631274283927.png");
+  height: 24px;
+  width: 24px;
+  background-size: cover;
+  left: 50%;
+}

@@ -1,0 +1,296 @@
+.header {
+  @apply fixed top-0 left-0 right-0;
+}
+
+.head-swiper {
+  @apply relative flex items-center;
+
+  height: 4rem;
+}
+
+@screen phone {
+  .head-info {
+    display: none;
+  }
+}
+
+.title {
+  @apply relative inline-block text-xl font-medium mt-0 ml-4 truncate flex-shrink-0;
+}
+
+.more-button {
+  @apply invisible hidden;
+}
+
+@screen phone {
+  .more-button {
+    @apply absolute right-0 visible block cursor-pointer py-4 pl-4;
+  }
+}
+
+.header-logo svg {
+  height: 2rem;
+}
+
+@screen phone {
+  .header nav {
+    @apply mx-4;
+  }
+
+  .title {
+    @apply ml-1;
+  }
+}
+
+.link-group {
+  @apply relative inline-flex items-center;
+
+  height: 4rem;
+
+  & .anchor-ball {
+    @apply absolute left-0;
+  }
+}
+
+@screen phone {
+  .link-group {
+    @apply hidden;
+  }
+}
+
+.link-item {
+  @apply inline-flex items-center px-4 cursor-pointer;
+
+  height: 4rem;
+}
+
+.link-title {
+  @apply ml-3;
+}
+
+.drawer {
+  @apply fixed z-90 top-0 bottom-0 right-0 bg-light-bg overflow-auto;
+  @apply transition-transform duration-300 p-6 text-light-brown;
+
+  width: 300px;
+  max-width: 80vw;
+  transform: translateX(100%);
+
+  &.show {
+    transform: translateX(0);
+  }
+
+  & a {
+    color: inherit;
+  }
+
+  & .parent,
+  & .children {
+    @apply py-2;
+  }
+
+  & .parent {
+    @apply font-medium;
+    @apply text-xl;
+  }
+
+  & .children-wrapper {
+    @apply grid;
+
+    grid-template-columns: 1fr 1fr;
+  }
+
+  svg {
+    @apply mr-4;
+  }
+}
+
+.link-section {
+  @apply mb-4;
+}
+
+.nav-fake {
+  @apply overflow-visible;
+}
+
+.header {
+  height: 56px;
+  z-index: 5;
+  background-color: var(--bg-opacity);
+  backdrop-filter: blur(25px) saturate(150%) brightness(1.1);
+  box-shadow: 0 0 1em rgb(0 0 0 / 10%);
+  transition: transform 0.5s, backdrop-filter 0.5s;
+
+  &.hide {
+    transform: translateY(-100%);
+  }
+}
+
+.header-logo {
+  padding: 0.5em;
+  display: inline-block;
+}
+
+.more-button {
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 6px;
+}
+
+.link-group {
+  a {
+    color: inherit;
+  }
+
+  .anchor-ball {
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background-color: currentColor;
+    transition: all 0.3s;
+    bottom: 8px;
+    opacity: 0.3;
+  }
+
+  &:hover .anchor-ball {
+    opacity: 1;
+    background-color: var(--yellow);
+    border-radius: 3px;
+    width: 3rem;
+    height: 2px;
+    transform: translateX(-50%);
+  }
+}
+
+.nav-container {
+  height: 4rem;
+
+  @apply mx-20 relative;
+
+  @screen tablet {
+    @apply mx-8;
+  }
+
+  & > .head-swiper {
+    transition: transform 0.5s;
+  }
+
+  &.toggle {
+    & > .head-swiper {
+      transform: translateY(-100%);
+    }
+
+    & .head-info {
+      overflow: hidden;
+      flex-shrink: 1;
+      margin-right: 20px;
+
+      & .desc {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 1;
+
+        & > div {
+          position: relative;
+          animation: swipe-up 0.5s ease-in-out forwards;
+          bottom: -5rem;
+        }
+
+        & > div:nth-child(1) {
+          opacity: 0;
+        }
+
+        & > div:nth-child(2) {
+          opacity: 0.5;
+          animation-timing-function: ease;
+        }
+      }
+    }
+  }
+}
+
+.head-info {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+
+  & .meta {
+    color: var(--gray);
+    font-size: 0.8rem;
+    flex-shrink: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  & .title {
+    font-weight: 500;
+    margin: 0;
+    color: var(--black);
+    font-size: 1.2rem;
+    line-height: 1.5;
+    flex-shrink: 1;
+    white-space: nowrap;
+    flex-shrink: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+
+.site-info {
+  color: #aaa;
+}
+
+.swiper-metawrapper {
+  max-width: 65em;
+  margin: auto;
+}
+
+.sub-dropdown {
+  width: 130px;
+  left: -50%;
+  top: 4rem;
+  z-index: 19;
+  position: absolute;
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s, visibility 0.3s;
+  visibility: hidden;
+
+  &.active,
+  &:hover {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  a {
+    position: relative;
+    display: block;
+  }
+}
+
+.fake-header {
+  z-index: 4;
+  background: unset;
+  box-shadow: unset;
+  backdrop-filter: unset;
+}
+
+.right-wrapper {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+@keyframes swipe-up {
+  to {
+    opacity: 1;
+    bottom: 0;
+  }
+}
+
+.like-button {
+  svg {
+    width: 1.5rem;
+  }
+}

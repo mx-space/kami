@@ -1,0 +1,144 @@
+.icon {
+  position: absolute;
+  left: 0.8rem;
+  z-index: 1;
+}
+
+.avatar-item {
+  text-align: center;
+  margin-left: 2rem;
+  color: #666;
+  display: inline-block;
+  width: 80px;
+  height: 150px;
+  user-select: none;
+}
+
+.avatar-name {
+  display: inline-block;
+  margin-top: 12px;
+  width: 80px;
+  user-select: none;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.friends-wrap {
+  margin-top: 2rem;
+  min-height: 11.1rem;
+  width: 100%;
+  overflow: auto;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.card-container {
+  position: relative;
+
+  .card-cover-wrap {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    overflow: hidden;
+    background-color: var(--gray);
+
+    > * {
+      transition: transform 0.5s;
+    }
+  }
+
+  &:hover {
+    color: #ffc670;
+
+    .card-cover-wrap {
+      > * {
+        transform: rotate(5deg) scale(1.2);
+      }
+    }
+  }
+
+  .card-title {
+    position: absolute;
+    padding: 0 25px 10px;
+    top: 2.39rem;
+    left: 0;
+    right: 0;
+    text-shadow: rgb(68 68 68 / 74.9%) 1px 1px 1px;
+    box-sizing: border-box;
+    z-index: 4;
+
+    h3 {
+      margin: 0;
+      line-height: 1.25;
+      color: #fff;
+      font-size: 18px;
+    }
+  }
+
+  .card-body {
+    background: linear-gradient(rgb(38 69 61 / 33.3%), rgb(38 69 61 / 66%));
+    position: relative;
+    padding: 10px 25px;
+    background-repeat: no-repeat;
+    backdrop-filter: saturate(180%) blur(15px);
+    z-index: 4;
+  }
+
+  .card-header {
+    min-height: 6.25rem;
+  }
+
+  .text-shade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+      -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        from(rgb(0 0 0 / 0%)),
+        to(rgb(0 0 0 / 55.7%))
+      );
+    z-index: 2;
+  }
+}
+
+.news-article {
+  display: block;
+  text-decoration: none;
+  color: rgb(255 255 255 / 71.9%);
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  border-radius: 10px;
+  background-color: var(--light-bg);
+  cursor: pointer;
+  margin-bottom: 30px;
+  mask-image: none;
+  transition: all 0.2s ease-out;
+  z-index: 0;
+}
+
+.text-mask {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  white-space: nowrap;
+
+  @supports (-webkit-mask-image: inherit) or (mask-image: inherit) {
+    & {
+      text-overflow: clip;
+      mask-image:
+        linear-gradient(
+          to right,
+          rgb(0 0 0 / 100%) calc(100% - 2em),
+          transparent
+        );
+    }
+  }
+}

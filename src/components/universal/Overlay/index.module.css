@@ -1,0 +1,22 @@
+.container {
+  z-index: 61;
+
+  @apply inset-0 fixed;
+
+  &.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .overlay {
+    position: absolute;
+    top: -20px;
+    bottom: -20px;
+    right: -20px;
+    left: -20px;
+    z-index: -1;
+    background-color: rgba($color: #000, $alpha: 30%);
+  }
+}

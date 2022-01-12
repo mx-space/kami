@@ -1,0 +1,56 @@
+.footer {
+  :global {
+    @media screen and (max-width: 600px) {
+      footer::before {
+        background-size: 160%;
+      }
+    }
+  }
+
+  & {
+    color: #fff;
+    color: var(--light-font);
+    position: relative;
+    padding: 10vw 0 2em;
+  }
+
+  &::before {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+    z-index: -1;
+    position: absolute;
+    background: top/center;
+  }
+
+  @media screen and (max-width: 600px) {
+    & {
+      padding: 5em 0 2em;
+    }
+
+    &::before {
+      background-size: 170%;
+    }
+  }
+
+  & a {
+    color: inherit;
+  }
+}
+
+:global(html.dark) .footer::before {
+  filter: brightness(0.6) !important;
+}
+
+.wrap {
+  margin: 0 auto;
+  max-width: 75em;
+  padding: 0 1.25em;
+  box-sizing: content-box;
+
+  a:hover {
+    @apply text-green;
+  }
+}

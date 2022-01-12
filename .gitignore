@@ -24,3 +24,6 @@ out
 release.zip
 
 run
+.idea
+
+src/pages/dev

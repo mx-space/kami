@@ -14,22 +14,29 @@
     "preserveConstEnums": true,
     "sourceMap": true,
     "skipLibCheck": true,
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "noImplicitAny": false,
     "useDefineForClassFields": true,
     "typeRoots": [
       "./node_modules/@types"
     ],
     "lib": [
-      "dom",
-      "esnext"
+      "dom"
     ],
     "outDir": ".next",
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "incremental": true
+    "incremental": true,
+    "paths": {
+      "~/*": [
+        "../*"
+      ],
+      "~": [
+        ".."
+      ]
+    }
   },
   "exclude": [
     ".next",
@@ -38,7 +45,6 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx",
-    "**/*.scss"
+    "**/*.tsx"
   ]
 }

@@ -1,0 +1,28 @@
+.recorder {
+  height: 1em;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.5s;
+  font-size: 1em;
+  display: inline-flex;
+  justify-content: center;
+
+  .numbers {
+    span {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    position: absolute;
+    top: 0;
+    transform: translateY(-1em);
+    transition: transform 0.5s;
+    line-height: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+}
