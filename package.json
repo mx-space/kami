@@ -64,7 +64,7 @@
     "mdurl": "*",
     "mobx": "6.3.12",
     "mobx-react-lite": "3.2.3",
-    "next": "12.0.7",
+    "next": "12.0.8",
     "next-seo": "4.28.1",
     "qier-progress": "1.0.4",
     "randomcolor": "0.6.2",
@@ -89,7 +89,7 @@
   "devDependencies": {
     "@innei-util/eslint-config-react-ts": "latest",
     "@innei-util/prettier": "latest",
-    "@next/bundle-analyzer": "12.0.7",
+    "@next/bundle-analyzer": "12.0.8",
     "@trivago/prettier-plugin-sort-imports": "3.1.1",
     "@types/inflection": "1.13.0",
     "@types/js-cookie": "3.0.1",
