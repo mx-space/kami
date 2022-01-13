@@ -10,8 +10,8 @@
   --light-font: #fff;
   --shallow: #eee;
 
-  font: 14px/1.15 Helvetica, noto sans sc, PingFang SC, hiragino sans gb,
-    microsoft yahei, 'sans-serif';
+  font: 14px/1.15 noto sans sc, PingFang SC, hiragino sans gb,
+    Helvetica microsoft yahei, 'sans-serif';
   color: #353535;
 }
 

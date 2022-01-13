@@ -26,14 +26,13 @@ import React, {
   useRef,
   useState,
 } from 'react'
+import { message } from 'react-message-popup'
 import { useStore } from 'store'
 import { apiClient } from 'utils/client'
-import { message } from 'utils/message'
 import { FriendsSection } from '../components/in-page/SectionNews/friend'
 import { SectionWrap } from '../components/in-page/SectionNews/section'
 import { getRandomImage, NoSSR } from '../utils'
 import { stopEventDefault } from '../utils/dom'
-import '../utils/message'
 
 const IndexView: NextPage<AggregateTop> = (props) => {
   const { userStore } = useStore()

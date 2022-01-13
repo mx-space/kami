@@ -26,9 +26,9 @@ import { toJS } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { message } from 'react-message-popup'
 import { store, useStore } from 'store'
 import { apiClient } from 'utils/client'
-import { message } from 'utils/message'
 import { Copyright } from '../../../components/widgets/Copyright'
 import {
   getSummaryFromMd,

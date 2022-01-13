@@ -1,6 +1,6 @@
 import { Input } from 'components/universal/Input'
 import { FC, useEffect, useState } from 'react'
-import { message } from 'utils/message'
+import { message } from 'react-message-popup'
 import styles from './index.module.css'
 interface PaginationProps {
   total: number

@@ -1,7 +1,7 @@
+import { message } from 'react-message-popup'
 import { useStore } from 'store'
 import { getToken, removeToken } from 'utils'
 import { apiClient } from 'utils/client'
-import { message } from 'utils/message'
 
 export const useCheckLogged = () => {
   const { userStore: master } = useStore()

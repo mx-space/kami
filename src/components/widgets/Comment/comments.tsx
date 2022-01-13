@@ -10,11 +10,11 @@ import {
   useEffect,
   useState,
 } from 'react'
+import { message } from 'react-message-popup'
 import { EventTypes } from 'socket/types'
 import { Id } from 'store/helper/structure'
 import { eventBus } from 'utils'
 import { apiClient } from 'utils/client'
-import { message } from 'utils/message'
 import { CommentContext, minHeightProperty, openCommentMessage } from '.'
 import { useStore } from '../../../store'
 import { animatingClassName } from '../../layouts/NoteLayout'
@@ -108,17 +108,22 @@ const CommentList: FC<CommentsProps> = memo(
       children?: JSX.Element | JSX.Element[],
     ) => {
       const handleReply = async (model) => {
-        openCommentMessage()
-        if (logged) {
-          await apiClient.comment.proxy.master
-            .reply(comment.id)
-            .post({ data: model })
-        } else {
-          await apiClient.comment.reply(comment.id, model)
+        const { success, error } = await openCommentMessage()
+        try {
+          if (logged) {
+            await apiClient.comment.proxy.master
+              .reply(comment.id)
+              .post({ data: model })
+          } else {
+            await apiClient.comment.reply(comment.id, model)
+          }
+          success()
+          refresh()
+          setReplyId('')
+        } catch (err) {
+          error()
+          console.error(err)
         }
-        openCommentMessage.success()
-        refresh()
-        setReplyId('')
       }
       const handleDelete = (id: string) => async () => {
         await apiClient.comment.proxy(id).delete()

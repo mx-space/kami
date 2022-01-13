@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { message } from 'utils/message'
+import { message } from 'react-message-popup'
 
 export const useCheckOldBrowser = () => {
   const checkBrowser = useCallback(() => {

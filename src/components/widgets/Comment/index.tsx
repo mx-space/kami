@@ -10,8 +10,8 @@ import {
   useState,
 } from 'react'
 import { useInView } from 'react-intersection-observer'
+import { message } from 'react-message-popup'
 import { apiClient } from 'utils/client'
-import { message } from 'utils/message'
 import { useStore } from '../../../store'
 import { flattenChildren, NoSSR } from '../../../utils'
 import { Pagination } from '../../universal/Pagination'
@@ -28,12 +28,22 @@ export const CommentContext = createContext({
   collection: new Map<string, Omit<CommentModel, 'children'>>(),
 })
 
-export const openCommentMessage = () => {
-  message.loading({ content: '发送中', duration: 500 })
-}
+export const openCommentMessage = async () => {
+  const { destory } = await message.loading({
+    content: '发送中',
+    duration: 20000,
+  })
 
-openCommentMessage.success = () => {
-  message.success({ content: '成功啦', duration: 2000 })
+  return {
+    success: () => {
+      destory()
+      message.success({ content: '成功啦', duration: 2000 })
+    },
+    error: () => {
+      destory()
+      message.error({ content: '失败了, 555', duration: 2000 })
+    },
+  }
 }
 
 interface CommentWrapProps {
@@ -75,22 +85,28 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
 
   const handleComment = useCallback(
     async (model) => {
-      openCommentMessage()
-      if (logged) {
-        await apiClient.comment.proxy.master.comment(id).post({
-          params: {
-            ref: type,
-            ts: Date.now(),
-          },
-          data: { ...model },
+      const { success, error } = await openCommentMessage()
+      try {
+        if (logged) {
+          await apiClient.comment.proxy.master.comment(id).post({
+            params: {
+              ref: type,
+              ts: Date.now(),
+            },
+            data: { ...model },
+          })
+        } else {
+          await apiClient.comment.comment(id, model)
+        }
+        requestAnimationFrame(() => {
+          success()
+          fetchComments()
         })
-      } else {
-        await apiClient.comment.comment(id, model)
+      } catch (e) {
+        error()
+
+        console.error(e)
       }
-      new Promise(() => {
-        openCommentMessage.success()
-        fetchComments()
-      })
     },
     [fetchComments, id, logged, type],
   )

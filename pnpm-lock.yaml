@@ -71,6 +71,7 @@ specifiers:
   react-lazyload: 3.2.0
   react-markdown: 4.3.1
   react-medium-image-zoom: 4.3.5
+  react-message-popup: 0.1.2
   react-transition-group: 4.4.2
   react-use: 17.3.2
   remove-markdown: 0.3.0
@@ -121,6 +122,7 @@ dependencies:
   react-lazy-images: 1.1.0_react-dom@17.0.2+react@17.0.2
   react-markdown: 4.3.1_react@17.0.2
   react-medium-image-zoom: 4.3.5_react-dom@17.0.2+react@17.0.2
+  react-message-popup: 0.1.2_react-dom@17.0.2+react@17.0.2
   react-transition-group: 4.4.2_react-dom@17.0.2+react@17.0.2
   react-use: 17.3.2_react-dom@17.0.2+react@17.0.2
   remove-markdown: 0.3.0
@@ -6418,6 +6420,17 @@ packages:
       react-dom: 17.0.2_react@17.0.2
       react-use: 17.3.2_react-dom@17.0.2+react@17.0.2
       tslib: 2.3.1
+    dev: false
+
+  /react-message-popup/0.1.2_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-CNeiEr8hgnIqfQbfdPQwYhsEGKNGzOGZ179azW089uXiAowcGdDKBMvWBwtojxQoXCpVdfw1wki1pKnf/6H++A==}
+    engines: {pnpm: '>=6'}
+    peerDependencies:
+      react: ^17.0.0
+      react-dom: ^17.0.0
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
     dev: false
 
   /react-refresh/0.8.3:

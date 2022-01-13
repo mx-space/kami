@@ -13,8 +13,8 @@ import React, {
   useRef,
   useState,
 } from 'react'
+import { message } from 'react-message-popup'
 import { isDev } from 'utils'
-import { message } from 'utils/message'
 import isEmail from 'validator/lib/isEmail'
 import isUrl from 'validator/lib/isURL'
 import { useStore } from '../../../store'
