@@ -1,5 +1,6 @@
 import { runInAction } from 'mobx'
-import { isDev, message } from 'utils'
+import { message } from 'react-message-popup'
+import { isDev } from 'utils'
 import { store } from '../store'
 import { createDangmaku } from '../utils/danmaku'
 import { Notice } from '../utils/notice'

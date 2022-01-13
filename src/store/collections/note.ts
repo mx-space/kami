@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { NoteModel } from '@mx-space/api-client'
 import { makeObservable, observable, runInAction } from 'mobx'
-import { apiClient, isLikedBefore, message, setLikeId } from 'utils'
+import { message } from 'react-message-popup'
+import { apiClient, isLikedBefore, setLikeId } from 'utils'
 import { Store } from '../helper/base'
 import { Id } from '../helper/structure'
 import { FetchOption } from '../types/options'

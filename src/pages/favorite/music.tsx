@@ -3,7 +3,7 @@ import { SectionMusic } from 'components/in-page/SectionMusic'
 import { Loading } from 'components/universal/Loading'
 import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
-import { message } from 'utils'
+import { message } from 'react-message-popup'
 import { Seo } from '../../components/universal/Seo'
 
 interface MusicData {
