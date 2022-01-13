@@ -10,8 +10,8 @@
   --light-font: #fff;
   --shallow: #eee;
 
-  font: 14px/1.15 noto sans sc, PingFang SC, hiragino sans gb,
-    Helvetica microsoft yahei, 'sans-serif';
+  font: 14px/1.15 PingFang SC, Helvetica, noto sans sc, hiragino sans gb,
+    microsoft yahei, 'sans-serif';
   color: #353535;
 }
 
@@ -103,10 +103,6 @@ html.dark img {
 
 body * {
   transition: color 0.1s ease-in, background 0.1s ease-in, border 0.1s ease-in;
-}
-
-html.dark .header-top-navbar {
-  backdrop-filter: saturate(150%) blur(30px);
 }
 
 .app-content {

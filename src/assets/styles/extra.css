@@ -572,3 +572,9 @@ pre[class*='language-'] {
   /* top: 0; */
   /* position: sticky !important; */
 }
+
+@media (max-width: 568px) {
+  #mx-message-container {
+    top: calc(3.5rem + 8px);
+  }
+}

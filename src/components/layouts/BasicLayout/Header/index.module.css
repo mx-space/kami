@@ -274,6 +274,14 @@
   background: unset;
   box-shadow: unset;
   backdrop-filter: unset;
+
+  &.header {
+    backdrop-filter: unset !important;
+  }
+}
+
+.header.hide + .fake-header {
+  transform: translateY(-100%);
 }
 
 .right-wrapper {
@@ -293,4 +301,8 @@
   svg {
     width: 1.5rem;
   }
+}
+
+:global(html.dark) .header {
+  backdrop-filter: saturate(150%) blur(30px);
 }

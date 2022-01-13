@@ -29,7 +29,6 @@ export const _Header: FC = observer(() => {
       <header
         className={classNames(
           styles['header'],
-          'header-top-navbar',
           !appStore.headerNav.show &&
             appStore.isOverFirstScreenHeight &&
             appStore.viewport.mobile

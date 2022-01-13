@@ -97,7 +97,7 @@ export const HeaderFake: FC = memo(() => {
     <header
       className={classNames(
         styles['header'],
-        'header-top-navbar overflow-visible',
+        'overflow-visible',
         styles['fake-header'],
       )}
     >

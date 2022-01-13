@@ -209,7 +209,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
           <SectionCard
             title="留言"
             desc="你的话对我很重要"
-            src={getRandomUnRepeatImage()}
+            src={useMemo(() => getRandomUnRepeatImage(), [])}
             href="/message"
             onClick={useCallback((e) => {
               stopEventDefault(e)
@@ -219,7 +219,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
           <SectionCard
             title="关于"
             desc="这里有我的小秘密"
-            src={getRandomUnRepeatImage()}
+            src={useMemo(() => getRandomUnRepeatImage(), [])}
             href="/about"
             onClick={useCallback((e) => {
               stopEventDefault(e)
@@ -229,7 +229,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
           <SectionCard
             title={`点赞 (${like})`}
             desc={'如果你喜欢的话点个赞呗'}
-            src={getRandomUnRepeatImage()}
+            src={useMemo(() => getRandomUnRepeatImage(), [])}
             href={'/like_this'}
             onClick={useCallback((e) => {
               stopEventDefault(e)
@@ -245,7 +245,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
           <SectionCard
             title="订阅"
             desc="关注订阅不迷路哦"
-            src={getRandomUnRepeatImage()}
+            src={useMemo(() => getRandomUnRepeatImage(), [])}
             href="/feed"
           />
         </SectionWrap>

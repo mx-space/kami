@@ -14,27 +14,22 @@ export const $axios = axiosAdaptor.default
 
 $axios.defaults.timeout = 10000
 
-$axios.interceptors.request.use(
-  (config) => {
-    const token = getToken()
-    if (token && config.headers) {
-      config.headers['Authorization'] = token
-    }
+$axios.interceptors.request.use((config) => {
+  const token = getToken()
+  if (token && config.headers) {
+    config.headers['Authorization'] = token
+  }
 
-    return config
-  },
-  (error) => {
-    if (process.env.NODE_ENV === 'development') {
-      console.log(error.message)
-    }
-
-    return Promise.reject(error)
-  },
-)
+  return config
+})
 
 $axios.interceptors.response.use(
   undefined,
   (error: AxiosError<Record<string, any> | undefined>) => {
+    if (process.env.NODE_ENV === 'development') {
+      console.log(error.message)
+    }
+
     if (
       !error.response ||
       error.response.status === 408 ||
@@ -43,7 +38,24 @@ $axios.interceptors.response.use(
       if (isClientSide()) {
         message.error('请求超时, 请检查一下网络哦!')
       } else {
-        console.error('上游服务器请求超时', error.message)
+        const msg = '上游服务器请求超时'
+        message.error(msg)
+        console.error(msg, error.message)
+      }
+    }
+
+    const response = error.response
+    if (response) {
+      const data = response.data
+
+      if (data && data.message) {
+        message.error(
+          typeof data.message == 'string'
+            ? data.message
+            : Array.isArray(data.message)
+            ? data.message[0]
+            : '请求错误',
+        )
       }
     }
 
