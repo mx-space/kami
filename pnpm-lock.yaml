@@ -36,7 +36,7 @@ specifiers:
   clsx: 1.1.1
   cross-env: '*'
   dayjs: 1.10.7
-  dotenv: 10.0.0
+  dotenv: 12.0.4
   eslint: '*'
   husky: 7.0.4
   inflection: 1.13.1
@@ -150,7 +150,7 @@ devDependencies:
   '@types/ua-parser-js': 0.7.36
   '@types/validator': 13.7.1
   cross-env: 7.0.3
-  dotenv: 10.0.0
+  dotenv: 12.0.4
   eslint: 7.32.0
   husky: 7.0.4
   js-yaml: 4.1.0
@@ -3255,9 +3255,9 @@ packages:
       is-obj: 2.0.0
     dev: true
 
-  /dotenv/10.0.0:
-    resolution: {integrity: sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==}
-    engines: {node: '>=10'}
+  /dotenv/12.0.4:
+    resolution: {integrity: sha512-oWdqbSywffzH1l4WXKPHWA0TWYpqp7IyLfqjipT4upoIFS0HPMqtNotykQpD4iIg0BqtNmdgPCh2WMvMt7yTiw==}
+    engines: {node: '>=12'}
     dev: true
 
   /duplexer/0.1.2:
