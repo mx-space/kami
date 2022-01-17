@@ -53,12 +53,6 @@ const configs = withPlugins(plugins, {
       { source: '/notes', destination: '/notes/latest' },
     ]
 
-    // if (env.NEXT_PUBLIC_APIURL) {
-    //   beforeFiles.push({
-    //     source: '/api/:path*',
-    //     destination: env.NEXT_PUBLIC_APIURL + '/:path*',
-    //   })
-    // }
     return {
       beforeFiles,
       fallback: [
