@@ -84,7 +84,7 @@ specifiers:
   validator: 13.7.0
   windicss: 3.4.3
   windicss-webpack-plugin: 1.6.2
-  zx: 4.2.0
+  zx: 4.3.0
 
 dependencies:
   '@fortawesome/fontawesome-svg-core': 1.2.36
@@ -169,7 +169,7 @@ devDependencies:
   typescript: 4.5.4
   windicss: 3.4.3
   windicss-webpack-plugin: 1.6.2
-  zx: 4.2.0
+  zx: 4.3.0
 
 packages:
 
@@ -3872,7 +3872,7 @@ packages:
     dependencies:
       asynckit: 0.4.0
       combined-stream: 1.0.8
-      mime-types: 2.1.32
+      mime-types: 2.1.34
     dev: true
 
   /forwarded/0.2.0:
@@ -5105,29 +5105,15 @@ packages:
       picomatch: 2.3.0
     dev: true
 
-  /mime-db/1.49.0:
-    resolution: {integrity: sha512-CIc8j9URtOVApSFCQIF+VBkX1RwXp/oMMOrqdyXSBXq5RWNEsRfyj1kiRnQgmNXmHxPoFIxOroKA3zcU9P+nAA==}
-    engines: {node: '>= 0.6'}
-    dev: true
-
   /mime-db/1.51.0:
     resolution: {integrity: sha512-5y8A56jg7XVQx2mbv1lu49NR4dokRnhZYTtL+KGfaa27uq4pSTXkwQkFJl4pkRMyNFz/EtYDSkiiEHx3F7UN6g==}
     engines: {node: '>= 0.6'}
-    dev: false
-
-  /mime-types/2.1.32:
-    resolution: {integrity: sha512-hJGaVS4G4c9TSMYh2n6SQAGrC4RnfU+daP8G7cSCmaqNjiOoUY0VHCMS42pxnQmVF1GWwFhbHWn3RIxCqTmZ9A==}
-    engines: {node: '>= 0.6'}
-    dependencies:
-      mime-db: 1.49.0
-    dev: true
 
   /mime-types/2.1.34:
     resolution: {integrity: sha512-6cP692WwGIs9XXdOO4++N+7qjqv0rqxxVvJ3VHPh/Sc9mVZcQP+ZGhkKiTvWMQRr2tbHkJP/Yn7Y0npb3ZBs4A==}
     engines: {node: '>= 0.6'}
     dependencies:
       mime-db: 1.51.0
-    dev: false
 
   /mime/1.6.0:
     resolution: {integrity: sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==}
@@ -8404,9 +8390,9 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /zx/4.2.0:
-    resolution: {integrity: sha512-/4f7FaJecA9I655KXKXIHO3CFNYjAz2uSmTz6v2eNlKdrQKyz4VyF3RjqFuP6nQG+Hd3+NjOvrVNBkv8Ne9d4Q==}
-    engines: {node: '>= 14.13.0'}
+  /zx/4.3.0:
+    resolution: {integrity: sha512-KuEjpu5QFIMx0wWfzknDRhY98s7a3tWNRmYt19XNmB7AfOmz5zISA4+3Q8vlJc2qguxMn89uSxhPDCldPa3YLA==}
+    engines: {node: '>= 14.13.1'}
     hasBin: true
     dependencies:
       '@types/fs-extra': 9.0.12
