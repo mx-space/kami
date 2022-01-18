@@ -11,7 +11,7 @@ import SectionNews, {
 } from 'components/in-page/SectionNews'
 import { FontIcon } from 'components/universal/FontIcon'
 import { useInitialData, useThemeConfig } from 'hooks/use-initial-data'
-import { shuffle } from 'lodash-es'
+import { omit, shuffle } from 'lodash-es'
 import { observer } from 'mobx-react-lite'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
@@ -85,7 +85,7 @@ const IndexView: NextPage<AggregateTop> = (props) => {
         </div>
       </section>
 
-      <div className="paragraph" style={{ color: '#aaa', marginTop: '-3rem' }}>
+      <div className="overflow-hidden leading-6 text-[#aaa] my-[2rem]">
         <Texty appear leave={false} type={'alpha'}>
           {say}
         </Texty>
@@ -288,7 +288,7 @@ const Social = NoSSR(() => {
 IndexView.getInitialProps = async () => {
   const aggregateData = await apiClient.aggregate.getTop()
 
-  return aggregateData
+  return omit(aggregateData, ['says']) as any
 }
 
 export default observer(IndexView)

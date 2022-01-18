@@ -1,7 +1,6 @@
 import { ImageLazyWithPopup } from 'components/universal/Image'
 import { reaction } from 'mobx'
 import { observer } from 'mobx-react-lite'
-import dynamic from 'next/dynamic'
 import React, { FC, useContext, useEffect, useState } from 'react'
 import { useStore } from 'store'
 import { ImageSizeMetaContext } from '../../../../context/image-size'
@@ -36,15 +35,6 @@ const calculateDimensions = (
   }
 }
 const getContainerSize = () => {
-  // const $wrap = document.getElementById('article-wrap')
-  // if (!$wrap) {
-  //   return
-  // }
-  // return (
-  //   $wrap.getBoundingClientRect().width -
-  //   // padding 2em left and right 2 * 2
-  //   parseFloat(getComputedStyle(document.body).fontSize) * 2 * 2
-  // )
   const $wrap = document.getElementById('write')
   if (!$wrap) {
     return
@@ -128,4 +118,4 @@ const _Image: FC<{ src: string; alt?: string }> = observer(({ src, alt }) => {
 export const Image =
   typeof document === 'undefined'
     ? ({ src, alt }) => <img src={src} alt={alt} />
-    : dynamic(() => Promise.resolve(_Image), { ssr: false })
+    : _Image

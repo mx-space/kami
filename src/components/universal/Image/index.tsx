@@ -1,4 +1,5 @@
 import classNames from 'clsx'
+import mediumZoom from 'medium-zoom'
 import dynamic from 'next/dynamic'
 import {
   ClassAttributes,
@@ -13,7 +14,6 @@ import {
   useState,
 } from 'react'
 import type { LazyImage as LazyImageProps } from 'react-lazy-images'
-import Zoom from 'react-medium-image-zoom'
 import { escapeHTMLTag, isClientSide } from '../../../utils'
 import styles from './index.module.css'
 
@@ -70,6 +70,21 @@ const Image: FC<
       }
     }
   }, [placeholderRef, src])
+
+  const imageRef = useRef<HTMLImageElement>(null)
+
+  useEffect(() => {
+    if (!popup) {
+      return
+    }
+    const $image = imageRef.current
+    if ($image) {
+      mediumZoom($image, {
+        background: 'var(--light-bg)',
+        margin: 50,
+      })
+    }
+  }, [popup])
   return (
     <>
       <div
@@ -79,13 +94,7 @@ const Image: FC<
         )}
         data-status={loaded ? 'loaded' : 'loading'}
       >
-        {popup ? (
-          <Zoom overlayBgColorEnd={'var(--light-bg)'} zoomMargin={50}>
-            <img src={src} alt={alt} />
-          </Zoom>
-        ) : (
-          <img src={src} alt={alt} />
-        )}
+        <img src={src} alt={alt} ref={imageRef} />
       </div>
     </>
   )

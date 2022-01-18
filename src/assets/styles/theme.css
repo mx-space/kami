@@ -147,7 +147,7 @@ main {
 
 .kami-intro {
   display: flex;
-  margin-bottom: 5em;
+  overflow: hidden;
 }
 
 .kami-intro p,

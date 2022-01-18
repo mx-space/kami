@@ -39,12 +39,12 @@ specifiers:
   dotenv: 10.0.0
   eslint: '*'
   husky: 7.0.4
-  inflection: 1.13.1
   js-cookie: 3.0.1
   js-yaml: '*'
   lint-staged: 12.1.7
   lodash-es: 4.17.21
   mdurl: '*'
+  medium-zoom: 1.0.6
   mobx: 6.3.12
   mobx-react-lite: 3.2.3
   next: 12.0.8
@@ -70,7 +70,6 @@ specifiers:
   react-lazy-images: 1.1.0
   react-lazyload: 3.2.0
   react-markdown: 4.3.1
-  react-medium-image-zoom: 4.3.5
   react-message-popup: 0.1.3
   react-transition-group: 4.4.2
   react-use: 17.3.2
@@ -101,10 +100,10 @@ dependencies:
   axios: 0.24.0
   clsx: 1.1.1
   dayjs: 1.10.7
-  inflection: 1.13.1
   js-cookie: 3.0.1
   lodash-es: 4.17.21
   mdurl: 1.0.1
+  medium-zoom: 1.0.6
   mobx: 6.3.12
   mobx-react-lite: 3.2.3_669b1e42b258bd2cd4755e495b844de0
   next: 12.0.8_react-dom@17.0.2+react@17.0.2
@@ -121,7 +120,6 @@ dependencies:
   react-intersection-observer: 8.33.1_react@17.0.2
   react-lazy-images: 1.1.0_react-dom@17.0.2+react@17.0.2
   react-markdown: 4.3.1_react@17.0.2
-  react-medium-image-zoom: 4.3.5_react-dom@17.0.2+react@17.0.2
   react-message-popup: 0.1.3_react-dom@17.0.2+react@17.0.2
   react-transition-group: 4.4.2_react-dom@17.0.2+react@17.0.2
   react-use: 17.3.2_react-dom@17.0.2+react@17.0.2
@@ -3858,10 +3856,6 @@ packages:
     resolution: {integrity: sha512-8/sOawo8tJ4QOBX8YlQBMxL8+RLZfxMQOif9o0KUKTNTjMYElWPE0r/m5VNFxTRd0NSw8qSy8dajrwX4RYI1Hw==}
     dev: true
 
-  /focus-options-polyfill/1.2.0:
-    resolution: {integrity: sha512-4sgXxV/zU4WHM2IHWpjUmEWazbF6ie+M93/uo8ipfAbQ1GHopn+/V+Ca+PR0ndxswNQbisCNrjbnvWEq14MkTA==}
-    dev: false
-
   /follow-redirects/1.14.4:
     resolution: {integrity: sha512-zwGkiSXC1MUJG/qmeIFH2HBJx9u0V46QGUe3YR1fXG8bXQxq7fLj0RjLZQ5nubr9qNJUZrH+xUcwXEoXNpfS+g==}
     engines: {node: '>=4.0'}
@@ -4355,11 +4349,6 @@ packages:
     resolution: {integrity: sha512-EdDDZu4A2OyIK7Lr/2zG+w5jmbuk1DVBnEwREQvBzspBJkCEbRa8GxU1lghYcaGJCnRWibjDXlq779X1/y5xwg==}
     engines: {node: '>=8'}
     dev: true
-
-  /inflection/1.13.1:
-    resolution: {integrity: sha512-dldYtl2WlN0QDkIDtg8+xFwOS2Tbmp12t1cHa5/YClU6ZQjTFm7B66UcVbh9NQB+HvT5BAd2t5+yKsBkw5pcqA==}
-    engines: {'0': node >= 0.4.0}
-    dev: false
 
   /inflight/1.0.6:
     resolution: {integrity: sha1-Sb1jMdfQLQwJvJEKEHW6gWW1bfk=}
@@ -5067,6 +5056,10 @@ packages:
   /media-typer/1.1.0:
     resolution: {integrity: sha512-aisnrDP4GNe06UcKFnV5bfMNPBUw4jsLGaWwWfnH3v02GnBuXX2MCVn5RbrWo0j3pczUilYblq7fQ7Nw2t5XKw==}
     engines: {node: '>= 0.8'}
+    dev: false
+
+  /medium-zoom/1.0.6:
+    resolution: {integrity: sha512-UdiUWfvz9fZMg1pzf4dcuqA0W079o0mpqbTnOz5ip4VGYX96QjmbM+OgOU/0uOzAytxC0Ny4z+VcYQnhdifimg==}
     dev: false
 
   /meow/9.0.0:
@@ -6407,19 +6400,6 @@ packages:
       unified: 6.2.0
       unist-util-visit: 1.4.1
       xtend: 4.0.2
-    dev: false
-
-  /react-medium-image-zoom/4.3.5_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha512-feYHG+8McStfQ+mvFJTlmD1GQaYWiVlMf/Rv1MSRcd6UBBj+X8yj5OySw/Xau5PYFPCms7FbpCkt6437iRW47w==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0
-      react-dom: ^16.8.0 || ^17.0.0
-    dependencies:
-      focus-options-polyfill: 1.2.0
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      react-use: 17.3.2_react-dom@17.0.2+react@17.0.2
-      tslib: 2.3.1
     dev: false
 
   /react-message-popup/0.1.3_react-dom@17.0.2+react@17.0.2:
