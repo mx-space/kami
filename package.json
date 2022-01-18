@@ -9,9 +9,6 @@
   "bump": {
     "before": [
       "git pull --rebase"
-    ],
-    "after": [
-      "sh ./scripts/create-tags.sh"
     ]
   },
   "husky": {
