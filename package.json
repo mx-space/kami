@@ -107,7 +107,7 @@
     "eslint": "*",
     "husky": "7.0.4",
     "js-yaml": "*",
-    "lint-staged": "12.1.7",
+    "lint-staged": "12.2.0",
     "next-compose-plugins": "2.2.1",
     "next-pwa": "5.4.4",
     "nodemon": "2.0.15",

@@ -41,7 +41,7 @@ specifiers:
   husky: 7.0.4
   js-cookie: 3.0.1
   js-yaml: '*'
-  lint-staged: 12.1.7
+  lint-staged: 12.2.0
   lodash-es: 4.17.21
   mdurl: '*'
   medium-zoom: 1.0.6
@@ -152,7 +152,7 @@ devDependencies:
   eslint: 7.32.0
   husky: 7.0.4
   js-yaml: 4.1.0
-  lint-staged: 12.1.7
+  lint-staged: 12.2.0
   next-compose-plugins: 2.2.1
   next-pwa: 5.4.4_next@12.0.8
   nodemon: 2.0.15
@@ -4844,8 +4844,8 @@ packages:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
 
-  /lint-staged/12.1.7:
-    resolution: {integrity: sha512-bltv/ejiLWtowExpjU+s5z8j1Byjg9AlmaAjMmqNbIicY69u6sYIwXGg0dCn0TlkrrY2CphtHIXAkbZ+1VoWQQ==}
+  /lint-staged/12.2.0:
+    resolution: {integrity: sha512-TnNciMBhmEqzqM+RvzqqdvrG4TsI8wCDMX1Vg9+rj2Y9uY70Nq84Mb1WOIiwxW9l5tUlCOqtY5La71RM2fSgfA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -6929,10 +6929,6 @@ packages:
       object-inspect: 1.12.0
     dev: true
 
-  /signal-exit/3.0.3:
-    resolution: {integrity: sha512-VUJ49FC8U1OxwZLxIbTTrDvLnf/6TDgxZcK8wxR8zs13xpx7xbG60ndBlhNrFi2EMuFRoeDoJO7wthSLq42EjA==}
-    dev: true
-
   /signal-exit/3.0.6:
     resolution: {integrity: sha512-sDl4qMFpijcGw22U5w63KmD3cZJfBuFlVNbVMKje2keoKML7X2UzWbc4XrmEbDwg0NXJc3yv4/ox7b+JWb57kQ==}
     dev: true
@@ -8276,7 +8272,7 @@ packages:
     dependencies:
       imurmurhash: 0.1.4
       is-typedarray: 1.0.0
-      signal-exit: 3.0.3
+      signal-exit: 3.0.6
       typedarray-to-buffer: 3.1.5
     dev: true
 
