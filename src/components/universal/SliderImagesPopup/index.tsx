@@ -1,5 +1,5 @@
-import React, { FC, memo } from 'react'
-import Zoom from 'react-medium-image-zoom'
+import mediumZoom from 'medium-zoom'
+import React, { FC, memo, useEffect } from 'react'
 
 interface SliderImagesPopupProps {
   images: { src: string; alt: string; className?: string }[]
@@ -7,14 +7,19 @@ interface SliderImagesPopupProps {
 
 export const SliderImagesPopup: FC<SliderImagesPopupProps> = memo((props) => {
   const { images } = props
+
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      mediumZoom('[data-image-zoom]', {
+        background: 'var(--light-bg)',
+        margin: 50,
+      })
+    })
+  }, [])
   return (
     <>
       {images.map((image, i) => {
-        return (
-          <Zoom key={i} overlayBgColorEnd={'var(--light-bg)'} zoomMargin={50}>
-            <img src={image.src} />
-          </Zoom>
-        )
+        return <img src={image.src} key={i} data-image-zoom />
       })}
     </>
   )
