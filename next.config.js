@@ -32,10 +32,7 @@ const configs = withPlugins(plugins, {
 
     return config
   },
-  env: {
-    PORT: 2323,
-    ...env,
-  },
+
   assetPrefix: isProd ? env.ASSETPREFIX || undefined : undefined,
   eslint: {
     ignoreDuringBuilds: true,

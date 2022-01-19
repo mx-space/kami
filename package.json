@@ -20,6 +20,9 @@
     "*.{js,jsx,ts,tsx}": [
       "prettier --ignore-path ./.gitignore --write ",
       "eslint --cache"
+    ],
+    "config.init.yaml": [
+      "npm run gen-config"
     ]
   },
   "scripts": {
@@ -71,7 +74,7 @@
     "react": "17.0.2",
     "react-countup": "6.1.1",
     "react-dom": "17.0.2",
-    "react-hook-form": "7.22.5",
+    "react-hook-form": "7.24.1",
     "react-intersection-observer": "8.33.1",
     "react-lazy-images": "1.1.0",
     "react-markdown": "4.3.1",
@@ -103,7 +106,7 @@
     "@types/ua-parser-js": "0.7.36",
     "@types/validator": "13.7.1",
     "cross-env": "*",
-    "dotenv": "10.0.0",
+    "dotenv": "14.2.0",
     "eslint": "*",
     "husky": "7.0.4",
     "js-yaml": "*",
