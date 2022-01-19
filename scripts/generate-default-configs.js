@@ -12,11 +12,14 @@ const writeFilePath = path.join(cwd, 'src/configs.default.ts')
 
 fs.writeFileSync(
   writeFilePath,
-  `// sync with config.init.yaml
+  require('prettier').format(
+    `// sync with config.init.yaml
 export const defaultConfigs = ${JSON.stringify(
-    require('@mx-space/api-client').camelcaseKeys(config, { deep: true }),
-    null,
-    2,
-  )}
+      require('@mx-space/api-client').camelcaseKeys(config, { deep: true }),
+      null,
+      2,
+    )}
 `,
+    require('../.prettierrc.js'),
+  ),
 )
