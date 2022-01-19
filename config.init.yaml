@@ -119,3 +119,5 @@ function:
   donate:
     enable: false
     link: https://afdian.net/@example
+  ban_devtool:
+    enable: false

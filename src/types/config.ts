@@ -5,23 +5,23 @@ export interface KamiConfig {
 }
 
 interface Function {
-  analyze: Analyze
+  analyze: {
+    enable: boolean
+    ga: string
+  }
 
-  donate: Donate
+  donate: {
+    enable: boolean
+    link: string
+  }
 
   player: {
     id: number[]
   }
-}
 
-interface Analyze {
-  enable: boolean
-  ga: string
-}
-
-interface Donate {
-  enable: boolean
-  link: string
+  banDevtool: {
+    enable: boolean
+  }
 }
 
 interface Site {

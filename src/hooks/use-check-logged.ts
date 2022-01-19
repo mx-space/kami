@@ -1,10 +1,16 @@
 import { message } from 'react-message-popup'
 import { useStore } from 'store'
-import { getToken, removeToken } from 'utils'
+import { devtoolForbidden, getToken, removeToken } from 'utils'
 import { apiClient } from 'utils/client'
+import { useThemeConfig } from './use-initial-data'
 
 export const useCheckLogged = () => {
   const { userStore: master } = useStore()
+  const {
+    function: {
+      banDevtool: { enable: banDevtoolEnable },
+    },
+  } = useThemeConfig()
   return {
     check() {
       return requestAnimationFrame(() => {
@@ -22,7 +28,9 @@ export const useCheckLogged = () => {
             }
           })
         } else {
-          // devtoolForbidden()
+          if (banDevtoolEnable) {
+            devtoolForbidden()
+          }
         }
       })
     },
