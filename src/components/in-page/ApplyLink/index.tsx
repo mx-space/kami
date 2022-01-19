@@ -24,11 +24,11 @@ export const ApplyForLink: FC = () => {
     register,
     handleSubmit: submitHook,
     reset,
-  } = useForm({
+  } = useForm<Record<Field, string>>({
     shouldFocusError: true,
   })
   const handleSubmit = submitHook(
-    (d: Record<Field, string>) => {
+    (d) => {
       apiClient.friend.proxy.audit
         .post({
           params: {
