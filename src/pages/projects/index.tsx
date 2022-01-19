@@ -19,10 +19,10 @@ const ProjectView: NextPage<ProjectViewProps> = (props) => {
       <SEO title={'项目'} />
       <QueueAnim type={'bottom'}>
         <section className={'project-list'} key={'a'}>
-          <div className="row">
+          <div className="grid grid-cols-6 <sm:grid-cols-3 <md:grid-cols-4 gap-5">
             {projects.map((project) => {
               return (
-                <div className="col-4 col-s-3 col-m-2" key={project.id}>
+                <div key={project.id}>
                   <Link href="projects/[id]" as={`projects/${project.id}`}>
                     <a>
                       <ImageLazy

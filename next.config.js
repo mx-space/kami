@@ -9,7 +9,7 @@ const isProd = process.env.NODE_ENV === 'production'
 const plugins = []
 
 if (process.env.ANALYZE === 'true') {
-  plugins.push([require('@next/bundle-analyzer'), { enabled: true }])
+  plugins.push([require('@next/bundle-analyzer')({ enabled: true })])
 }
 if (isProd) {
   plugins.push([

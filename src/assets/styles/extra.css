@@ -399,7 +399,7 @@ p,
     &::before {
       content: '';
       padding-left: 0.75em;
-      border-left: 2px solid #ffc107;
+      border-left: 2px solid var(--yellow);
     }
   }
 

@@ -47,8 +47,10 @@ export const PostBlock: FC<PostBlockProps> = observer((props) => {
   return (
     <>
       <h1 className={classNames(styles.head, 'headline')}>
-        {d}
-        <small>（{week}）</small>
+        <div className="inline-flex items-center">
+          {d}
+          <small>（{week}）</small>
+        </div>
         {!viewport?.mobile && (
           <div className={styles.title} onClick={goToPost}>
             {title}

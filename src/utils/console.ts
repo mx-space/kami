@@ -82,7 +82,7 @@ export function printToConsole() {
     }
 
     console.log(
-      '%c Kico Style %c https://paugram.com ',
+      '%c Paul Style %c https://paugram.com ',
       'color: #fff; margin: 1em 0; padding: 5px 0; background: #3498db;',
       'margin: 1em 0; padding: 5px 0; background: #efefef;',
     )

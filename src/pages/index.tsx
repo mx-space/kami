@@ -182,7 +182,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
   }, [])
 
   return (
-    <section className="kami-news" style={{ minHeight: '34rem' }}>
+    <section className="kami-news min-h-[34rem]">
       <QueueAnim
         className="demo-content"
         delay={1200}
@@ -197,7 +197,13 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
       >
         <SectionNews {...sections.current.postSection} key="1" />
         <SectionNews {...sections.current.noteSection} key="2" />
-        <SectionWrap title="朋友们" moreUrl="friends" icon={faUsers} key="3">
+        <SectionWrap
+          title="朋友们"
+          moreUrl="friends"
+          icon={faUsers}
+          key="3"
+          className={'w-full'}
+        >
           <FriendsSection />
         </SectionWrap>
         <SectionWrap

@@ -7,6 +7,7 @@
   display: inline-flex;
   align-items: center;
   color: var(--shizuku-text-color);
+  background-color: transparent;
 
   &:hover {
     border-color: var(--yellow);
@@ -42,11 +43,14 @@
   }
 
   .input {
+    border-radius: 4px;
     width: 100%;
     border: 0;
     display: flex;
     align-items: center;
     color: inherit;
+    background-color: transparent;
+    vertical-align: middle;
   }
 
   .prefix-wrap {
@@ -56,6 +60,9 @@
   }
 
   textarea {
+    display: block;
+    overflow: auto;
     resize: none;
+    padding: 0.5em 0;
   }
 }

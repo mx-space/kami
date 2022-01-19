@@ -69,7 +69,7 @@ export const SectionWrap = observer<
             )}
           </div>
           <div className="news-body">
-            <div className="row s" {...rest}>
+            <div className="grid sm:grid-cols-4 grid-cols-2 gap-4" {...rest}>
               {props.children}
             </div>
           </div>

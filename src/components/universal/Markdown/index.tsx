@@ -40,7 +40,7 @@ const Toc = dynamic<TocProps>(
   },
 )
 type MdProps = ReactMarkdownProps & {
-  value: string
+  value?: string
   toc?: boolean
   [key: string]: any
   style?: React.CSSProperties
@@ -50,6 +50,8 @@ type MdProps = ReactMarkdownProps & {
     HTMLDivElement
   >
   codeBlockFully?: boolean
+
+  children?: string
 }
 
 const __Markdown: FC<MdProps> = ensuredForwardRef<HTMLDivElement, MdProps>(
@@ -106,7 +108,7 @@ const __Markdown: FC<MdProps> = ensuredForwardRef<HTMLDivElement, MdProps>(
         )}
       >
         <ReactMarkdown
-          source={value}
+          source={value ?? (props.children as string)}
           // source={TestText}
           {...rest}
           renderers={useMemo(

@@ -5,7 +5,7 @@
 import { NoteModel } from '@mx-space/api-client'
 import clsx from 'clsx'
 import { QueueAnim } from 'components/universal/Anime'
-import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { FC, memo, useEffect, useState } from 'react'
 import { apiClient } from 'utils/client'
 import styles from './index.module.css'
@@ -20,7 +20,7 @@ export const NoteTimelineList: FC<
 > = memo((props) => {
   const { className, noteId } = props
   const [list, setList] = useState<NotePartial[]>([])
-  const router = useRouter()
+
   useEffect(() => {
     apiClient.note.getMiddleList(noteId, 10).then(({ data }) => {
       setList(data)
@@ -33,17 +33,16 @@ export const NoteTimelineList: FC<
         <QueueAnim type={['bottom', 'alpha']}>
           {list.map((item) => (
             <li key={item.id}>
-              <button
-                onClick={() => {
-                  router.push('/notes/' + item.nid)
-                }}
-                className={clsx(
-                  item.id === props.noteId ? styles['active'] : null,
-                  styles.item,
-                )}
-              >
-                {item.title}
-              </button>
+              <Link href={'/notes/' + item.nid}>
+                <a
+                  className={clsx(
+                    item.id === props.noteId ? styles['active'] : null,
+                    styles.item,
+                  )}
+                >
+                  {item.title}
+                </a>
+              </Link>
             </li>
           ))}
         </QueueAnim>

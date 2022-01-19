@@ -15,7 +15,7 @@ export const RenderLink: FC<{
         viewBox="0 0 100 100"
         width="15"
         height="15"
-        style={{ display: 'inline' }}
+        className={'inline align-middle leading-normal'}
       >
         <path
           fill="var(--shizuku-text-color)"

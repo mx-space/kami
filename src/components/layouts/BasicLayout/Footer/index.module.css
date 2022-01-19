@@ -35,7 +35,7 @@
     }
   }
 
-  & a {
+  & a:not(:hover) {
     color: inherit;
   }
 }
@@ -50,7 +50,19 @@
   padding: 0 1.25em;
   box-sizing: content-box;
 
-  a:hover {
-    @apply text-green;
+  @apply grid grid-cols-1 sm:grid-cols-2;
+
+  :global {
+    .to-center {
+      @apply justify-center;
+    }
+
+    .left {
+      @apply flex flex-col items-center sm:items-start;
+    }
+
+    .right {
+      @apply flex flex-col items-center sm:items-end;
+    }
   }
 }

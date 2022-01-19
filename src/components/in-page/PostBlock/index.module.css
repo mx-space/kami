@@ -4,20 +4,30 @@
   margin-right: auto;
   font-size: 1.2rem;
 
-  .title {
+  & .title {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     cursor: pointer;
     white-space: nowrap;
-    width: calc(100% - 19rem);
+    width: calc(100% - 21rem);
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: center;
   }
-}
 
+  &:hover small {
+    opacity: 1;
+  }
+
+  & small {
+    color: #bbb;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.6em;
+  }
+}
 .text {
   overflow: hidden;
   line-height: 2;

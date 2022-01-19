@@ -21,7 +21,7 @@
   @apply opacity-60 truncate text-left;
 
   width: 10rem;
-  transition: opacity 0.5s, margin 0.5s;
+  transition: opacity 0.5s, margin 0.5s, color 0.5s;
 
   &.active {
     @apply opacity-100 ml-2;

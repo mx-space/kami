@@ -45,17 +45,12 @@ const BangumiView: NextPage = () => {
       <Head>
         <meta name="referrer" content="no-referrer" />
       </Head>
-      <Seo
-        {...{
-          title: '追番',
-          openGraph: { type: 'website' },
-        }}
-      />
+      <Seo title="追番" description="追番" />
       <section className={'kami-bangumi'}>
-        <div className="row">
+        <div className="grid grid-cols-4 <md:grid-cols-2 gap-8">
           {data.map((bangumi) => {
             return (
-              <div className="col-6 col-s-4 col-m-3" key={bangumi.id}>
+              <div key={bangumi.id}>
                 <a
                   className="bangumi-item"
                   href={`https://www.bilibili.com/bangumi/media/md${bangumi.id}`}

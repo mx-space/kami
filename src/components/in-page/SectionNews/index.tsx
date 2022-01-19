@@ -17,7 +17,6 @@ export interface SectionNewsProps {
     as?: string
     background: string
   }[]
-  size?: 4 | 6
 }
 
 interface CardProps {
@@ -47,13 +46,13 @@ const Card: FC<CardProps> = (props) => {
 
 const SectionNews: FC<SectionNewsProps> = memo(
   forwardRef((props, ref: any) => {
-    const { content, size = 6, ...rest } = props
+    const { content, ...rest } = props
 
     return (
       <SectionWrap {...rest} ref={ref}>
         {content.map((item, i) => {
           return (
-            <div className={`col-${size} col-m-3`} key={i}>
+            <div key={i}>
               <Link {...pick(item, ['href', 'as'])}>
                 <a className={styles['news-article']}>
                   <Card cover={item.background}>
