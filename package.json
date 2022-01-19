@@ -52,7 +52,7 @@
     "@mx-space/api-client": "0.6.0",
     "@mx-space/extra": "0.5.2",
     "NeteaseCloudMusicApi": "*",
-    "axios": "0.24.0",
+    "axios": "0.25.0",
     "clsx": "1.1.1",
     "dayjs": "1.10.7",
     "js-cookie": "3.0.1",
