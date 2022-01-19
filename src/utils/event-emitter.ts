@@ -1,5 +1,5 @@
 import { CustomEventTypes } from 'types/events'
-import { EventTypes } from '../socket/types'
+import { EventTypes } from '../types/events'
 
 export class EventEmitter {
   private observers: Record<string, Function[]> = {}

@@ -11,8 +11,8 @@ import {
   useState,
 } from 'react'
 import { message } from 'react-message-popup'
-import { EventTypes } from 'socket/types'
 import { Id } from 'store/helper/structure'
+import { EventTypes } from 'types/events'
 import { eventBus } from 'utils'
 import { apiClient } from 'utils/client'
 import { CommentContext, minHeightProperty, openCommentMessage } from '.'

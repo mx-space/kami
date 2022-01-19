@@ -16,8 +16,6 @@ export const useCheckLogged = () => {
       return requestAnimationFrame(() => {
         const token = getToken()
         if (token) {
-          console.log(token)
-
           apiClient.user.checkTokenValid(token).then(({ ok }) => {
             if (ok) {
               master.setToken(token)
