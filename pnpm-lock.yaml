@@ -38,7 +38,7 @@ specifiers:
   devtools-detector: 2.0.6
   dotenv: 14.2.0
   eslint: '*'
-  framer-motion: 5.6.0
+  framer-motion: 6.0.0
   husky: 7.0.4
   js-cookie: 3.0.1
   js-yaml: '*'
@@ -101,7 +101,7 @@ dependencies:
   clsx: 1.1.1
   dayjs: 1.10.7
   devtools-detector: 2.0.6
-  framer-motion: 5.6.0_react-dom@17.0.2+react@17.0.2
+  framer-motion: 6.0.0_react-dom@17.0.2+react@17.0.2
   js-cookie: 3.0.1
   lodash-es: 4.17.21
   mdurl: 1.0.1
@@ -3142,10 +3142,6 @@ packages:
     resolution: {integrity: sha512-P6twpd70BcPK34K26uJ1KT3wlhpuOAPoMwJzpsIWUxHZ7wpmbdZL/hQqBDfz7hGurYSa5PhzdhDHtt319hL3ig==}
     dev: false
 
-  /debounce/1.2.1:
-    resolution: {integrity: sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==}
-    dev: false
-
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
     dependencies:
@@ -4070,26 +4066,17 @@ packages:
     resolution: {integrity: sha512-o2RiJQ6DZaR/5+Si0qJUIy637QMRudSi9kU/FFzx9EZazrIdnBgpU+3sEWCxAVhH2RtxW2Oz+T4p2o8uOPVcgA==}
     dev: true
 
-  /framer-motion/5.6.0_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha512-Y4FtwUU+LUWLKSzoT6Sq538qluvhpe6izdQK8/xZeVjQZ/ORKGfZzyhzcUxNfscqnfEa3dUOA47s+dwrSipdGA==}
+  /framer-motion/6.0.0_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-wVI+hVRkvQeWSvkxk8z5bTg+jBs9vfEZOist2s0e9tQzZvt+OBuAoAcvCvl+ADmFd4ncC2934vkwiJPZ8nSvMg==}
     peerDependencies:
-      '@react-three/fiber': '*'
       react: '>=16.8 || ^17.0.0'
       react-dom: '>=16.8 || ^17.0.0'
-      three: ^0.135.0
-    peerDependenciesMeta:
-      '@react-three/fiber':
-        optional: true
-      three:
-        optional: true
     dependencies:
       framesync: 6.0.1
       hey-listen: 1.0.8
       popmotion: 11.0.3
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-      react-merge-refs: 1.1.0
-      react-use-measure: 2.1.1_react-dom@17.0.2+react@17.0.2
       style-value-types: 5.0.0
       tslib: 2.3.1
     optionalDependencies:
@@ -6626,10 +6613,6 @@ packages:
       xtend: 4.0.2
     dev: false
 
-  /react-merge-refs/1.1.0:
-    resolution: {integrity: sha512-alTKsjEL0dKH/ru1Iyn7vliS2QRcBp9zZPGoWxUOvRGWPUYgjo+V01is7p04It6KhgrzhJGnIj9GgX8W4bZoCQ==}
-    dev: false
-
   /react-message-popup/0.1.3_react-dom@17.0.2+react@17.0.2:
     resolution: {integrity: sha512-n61gLydWnlQwnN59V/HiXEXbXdKTshBvYL2TMnbe5SUI6vnUxsHPTn5jXn9R0xQ2UkfufmjJNFyoHJKMf9tb1Q==}
     engines: {pnpm: '>=6'}
@@ -6677,17 +6660,6 @@ packages:
     dependencies:
       react: 17.0.2
       tslib: 2.3.1
-    dev: false
-
-  /react-use-measure/2.1.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha512-nocZhN26cproIiIduswYpV5y5lQpSQS1y/4KuvUCjSKmw7ZWIS/+g3aFnX3WdBkyuGUtTLif3UTqnLLhbDoQig==}
-    peerDependencies:
-      react: '>=16.13'
-      react-dom: '>=16.13'
-    dependencies:
-      debounce: 1.2.1
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
     dev: false
 
   /react-use/17.3.2_react-dom@17.0.2+react@17.0.2:

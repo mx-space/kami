@@ -167,7 +167,7 @@ export const defaultConfigs = {
       link: 'https://afdian.net/@example',
     },
     banDevtool: {
-      enable: true,
+      enable: false,
     },
   },
 }

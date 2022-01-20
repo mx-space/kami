@@ -1,7 +1,7 @@
 :root {
   --code-bg: transparent;
   --black: #000;
-  --gray: #bbb;
+  --gray: #e5e5ea;
   --bg-opacity: rgb(255 255 255 / 50%);
 
   /*  for firefox */
@@ -52,7 +52,7 @@ html.dark {
   --shizuku-background-color: #212121;
   --shizuku-text-color: #858585;
   --shizuku-theme-color: #3c946c;
-  --gray: #666;
+  --gray: #8e8e93;
   --bg-opacity: rgb(17 17 17 / 50%);
 
   @supports not (backdrop-filter: blur(1px)) {

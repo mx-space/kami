@@ -16,7 +16,7 @@ const isSpiderBot = () => {
   return false
 }
 // for debug
-const devTest = false
+const devTest = true
 const handler: DevtoolsDetectorListener = async (isOpen, detail) => {
   if ((isDev && !devTest) || isSpiderBot()) {
     return

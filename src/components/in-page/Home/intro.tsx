@@ -21,6 +21,7 @@ export const HomeIntro: FC = observer(() => {
     <section className={styles['root']}>
       <div className="intro-avatar ">
         <Avatar
+          useRandomColor={false}
           imageUrl={user.avatar || ''}
           alt={user.name}
           wrapperProps={wrapperProps}

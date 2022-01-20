@@ -18,14 +18,20 @@ interface AvatarProps {
   size?: number
 
   wrapperProps?: JSX.IntrinsicElements['div']
+
+  useRandomColor?: boolean
 }
 
 export const Avatar: FC<
   AvatarProps &
     DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
 > = memo((props) => {
+  const { useRandomColor = true } = props
   const avatarRef = useRef<HTMLDivElement>(null)
-  const randomColor = useMemo(() => rc({ luminosity: 'light' }), [])
+  const randomColor = useMemo(
+    () => (useRandomColor ? rc({ luminosity: 'light' }) : 'var(--gray)'),
+    [useRandomColor],
+  )
   const [loaded, setLoaded] = useState(false)
   useEffect(() => {
     const image = new Image()
