@@ -7,7 +7,7 @@ import { observer } from 'mobx-react-lite'
 import { useCallback } from 'react'
 import { Transition } from 'react-transition-group'
 import { useStore } from 'store'
-import { NoSSR, resolveUrl } from 'utils'
+import { resolveUrl } from 'utils'
 import { apiClient } from 'utils/client'
 interface NoteLayoutProps {
   title: string
@@ -32,7 +32,8 @@ const transitionStyles = {
   exiting: { transform: `translateY(0)`, opacity: 1 },
   exited: { transform: `translateY(3em)`, opacity: 0 },
 }
-const _NoteLayout = observer<NoteLayoutProps, HTMLElement>(
+
+export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
   (props, ref) => {
     const { date, id, bookmark, title, tips, children } = props
     const dateFormat = dayjs(date).locale('cn').format('YYYY年M月D日 dddd')
@@ -43,7 +44,9 @@ const _NoteLayout = observer<NoteLayoutProps, HTMLElement>(
     const onMarkToggle = useCallback(() => {
       apiClient.note.proxy(id).patch({ data: { bookmark: !bookmark } })
     }, [bookmark, id])
-    const noAppear = location.hash.includes('comments')
+    const noAppear = globalThis.location
+      ? location.hash.includes('comments')
+      : false
     return (
       <main
         className="max-w-[50em] relative is-note post-content kami-note"
@@ -106,6 +109,3 @@ const _NoteLayout = observer<NoteLayoutProps, HTMLElement>(
   },
   { forwardRef: true },
 )
-const NoteLayout = NoSSR(_NoteLayout)
-
-export { NoteLayout }

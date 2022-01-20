@@ -65,7 +65,7 @@ export const resolveUrl = (pathname: string | undefined, base: string) => {
 
 // export const NoSSR = <T>(comp: ComponentType<T>) => noSSR(() => comp, {})
 export const NoSSR = <T>(comp: ComponentType<T>) =>
-  dynamic(() => Promise.resolve(comp))
+  dynamic(() => Promise.resolve(comp), { ssr: false })
 
 // for api server
 export const writeBody = (
