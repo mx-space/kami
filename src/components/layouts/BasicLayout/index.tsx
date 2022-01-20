@@ -78,4 +78,3 @@ export const BasicLayout: FC = observer(({ children }) => {
     </>
   )
 })
-BasicLayout.displayName = 'BasicLayout'

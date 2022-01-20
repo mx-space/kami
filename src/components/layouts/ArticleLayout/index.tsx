@@ -87,5 +87,3 @@ export const ArticleLayout = memo(
     },
   ),
 )
-
-ArticleLayout.displayName = 'ArticleLayout'

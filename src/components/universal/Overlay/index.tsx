@@ -1,9 +1,9 @@
 import classNames from 'clsx'
 import { QueueAnim } from 'components/universal/Anime'
 import { merge } from 'lodash-es'
-import dynamic from 'next/dynamic'
-import { CSSProperties, FC, useEffect } from 'react'
+import { CSSProperties, FC, memo, ReactNode, useEffect } from 'react'
 import ReactDOM from 'react-dom'
+import { isServerSide } from 'utils'
 import styles from './index.module.css'
 
 interface OverLayProps {
@@ -13,13 +13,9 @@ interface OverLayProps {
   blur?: boolean
 }
 
-const _OverLay: FC<OverLayProps> = ({
-  children,
-  onClose,
-  center,
-  darkness,
-  blur = false,
-}) => {
+const _OverLay: FC<OverLayProps & { child: any }> = (props) => {
+  const { onClose, center, darkness, blur = false } = props
+
   useEffect(() => {
     document.documentElement.style.overflow = 'hidden'
 
@@ -27,6 +23,7 @@ const _OverLay: FC<OverLayProps> = ({
       document.documentElement.style.overflow = ''
     }
   }, [])
+
   return (
     <div
       className={classNames(styles['container'], center && styles['center'])}
@@ -42,20 +39,26 @@ const _OverLay: FC<OverLayProps> = ({
           key="overlay"
         ></div>
       </QueueAnim>
-      {children}
+      {props.child}
     </div>
   )
 }
 
-const __OverLay: FC<OverLayProps & { show: boolean }> = ({
+const __OverLay: FC<OverLayProps & { show: boolean; children: ReactNode }> = ({
   show,
   ...props
 }) => {
+  if (isServerSide()) {
+    return null
+  }
+
   return ReactDOM.createPortal(
     <QueueAnim type={'alpha'} leaveReverse duration={500} forcedReplay>
-      {show ? <_OverLay {...props} key={'real'} /> : null}
+      {show ? (
+        <_OverLay {...props} child={props.children} key={'real'}></_OverLay>
+      ) : null}
     </QueueAnim>,
     document.body,
   )
 }
-export const OverLay = dynamic(() => Promise.resolve(__OverLay), { ssr: false })
+export const OverLay = memo(__OverLay)

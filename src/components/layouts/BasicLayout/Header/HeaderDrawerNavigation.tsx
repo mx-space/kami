@@ -2,7 +2,6 @@ import { FontIcon } from 'components/universal/FontIcon'
 import { useHeaderNavList } from 'hooks/use-header-nav-list'
 import Link from 'next/link'
 import React, { memo } from 'react'
-import { HeaderNavigationList } from './HeaderNavigationList'
 import styles from './index.module.css'
 
 export const HeaderDrawerNavigation: React.FC = memo(() => {
@@ -41,4 +40,3 @@ export const HeaderDrawerNavigation: React.FC = memo(() => {
     </>
   )
 })
-HeaderNavigationList.displayName = 'HeaderNavigationList'

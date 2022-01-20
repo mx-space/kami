@@ -85,8 +85,6 @@ export const FontIcon: FC<{ icon?: IconDefinition | string }> = memo(
   },
 )
 
-FontIcon.displayName = 'FI'
-
 function isFontAwesomeIconDefine(icon): icon is IconDefinition {
   return (
     typeof icon === 'object' &&

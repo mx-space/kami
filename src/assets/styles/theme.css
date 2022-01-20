@@ -88,10 +88,6 @@ p:last-child {
   margin-bottom: 0;
 }
 
-blockquote {
-  font-style: normal;
-}
-
 a:hover {
   color: #ffc670;
 }
@@ -107,10 +103,9 @@ p {
 }
 
 .btn {
-  color: inherit;
   cursor: pointer;
   background: var(--light-bg);
-  color: var(--light-font);
+  color: var(--shizuku-text-color);
   padding: 0.5em 1em;
   display: inline-block;
   border: 1px solid transparent;
@@ -202,7 +197,6 @@ article img {
 blockquote {
   margin: 0 0 1em;
   line-height: 1.8;
-  font-style: oblique;
   background: #f5fafd;
   padding: 1em 1em 1em 2em;
   border-left: 5px #3498db solid;

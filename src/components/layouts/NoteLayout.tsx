@@ -108,5 +108,4 @@ const _NoteLayout = observer<NoteLayoutProps, HTMLElement>(
 )
 const NoteLayout = NoSSR(_NoteLayout)
 
-_NoteLayout.displayName = 'NoteLayout'
 export { NoteLayout }

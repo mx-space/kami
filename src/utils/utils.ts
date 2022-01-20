@@ -63,8 +63,9 @@ export const resolveUrl = (pathname: string | undefined, base: string) => {
   return pathname ? _URL.origin.concat(pathname) : _URL.origin
 }
 
+// export const NoSSR = <T>(comp: ComponentType<T>) => noSSR(() => comp, {})
 export const NoSSR = <T>(comp: ComponentType<T>) =>
-  dynamic(() => Promise.resolve(comp), { ssr: false })
+  dynamic(() => Promise.resolve(comp))
 
 // for api server
 export const writeBody = (

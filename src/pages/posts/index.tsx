@@ -1,40 +1,19 @@
-import { faTags } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  Pager,
-  PaginateResult,
-  PostModel,
-  TagModel,
-} from '@mx-space/api-client'
+import { Pager, PaginateResult, PostModel } from '@mx-space/api-client'
 import { PostBlock } from 'components/in-page/PostBlock'
+import { FloatPostTagButton } from 'components/in-page/SpecialButton/float-post-tag'
 import { ArticleLayout } from 'components/layouts/ArticleLayout'
-import { QueueAnim } from 'components/universal/Anime'
 import { Loading } from 'components/universal/Loading'
-import { OverLay } from 'components/universal/Overlay'
-import { BigTag } from 'components/universal/Tag'
-import { observer } from 'mobx-react-lite'
 import { NextPage } from 'next'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import RcQueueAnim from 'rc-queue-anim'
-import React, {
-  Fragment,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
-import { useStore } from 'store'
-import { NoSSR } from 'utils'
+import React, { Fragment, useEffect, useState } from 'react'
 import { apiClient } from 'utils/client'
 import { SEO } from '../../components/universal/Seo'
 
-const PostListPage: NextPage<PaginateResult<PostModel>> = observer(() => {
+const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
   const [pagination, setPagination] = useState<Pager | null>(null)
   const [posts, setPosts] = useState<PostModel[]>([])
-  const store = useStore()
-  const { actionStore, appUIStore } = store
-  const [showTags, setShowTags] = useState(false)
+
   const router = useRouter()
 
   const {
@@ -57,128 +36,8 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = observer(() => {
     setPosts(payload.data)
   }
 
-  const [tags, setTags] = useState<TagModel[]>([])
-  const fetchTags = async () => {
-    const { data: tags } = await apiClient.category.getAllTags()
-
-    setTags(tags)
-  }
-  const idSymbol = useRef(Symbol())
-  useEffect(() => {
-    actionStore.removeActionBySymbol(idSymbol.current)
-    const action = {
-      icon: <FontAwesomeIcon icon={faTags} />,
-      id: idSymbol.current,
-      onClick: () => {
-        if (tags.length == 0) {
-          fetchTags()
-        }
-        setShowTags(true)
-      },
-    }
-
-    actionStore.appendActions(action)
-
-    return () => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      actionStore.removeActionBySymbol(idSymbol.current)
-    }
-  }, [actionStore, tags.length])
-
-  const [postWithTag, setTagPost] = useState<
-    Pick<PostModel, 'id' | 'title' | 'slug' | 'created' | 'category'>[]
-  >([])
-  const fetchPostsWithTag = useCallback(async (tagName: string) => {
-    setTagPost(null!)
-
-    const { data: posts } = await apiClient.category.getTagByName(tagName)
-
-    setTagPost(posts)
-  }, [])
-
   return (
     <ArticleLayout>
-      <OverLay
-        blur
-        darkness={0.6}
-        show={showTags}
-        onClose={() => {
-          setShowTags(false)
-          setTagPost([])
-        }}
-      >
-        <div
-          style={{
-            maxWidth:
-              appUIStore.viewport.w > 800 ? '50vw' : 'calc(100vw - 100px)',
-          }}
-          className="m-auto relative h-full"
-          onClick={() => {
-            setShowTags(false)
-            setTagPost([])
-          }}
-        >
-          <div
-            style={{
-              zIndex: 3,
-              bottom: '50vh',
-              top: '100px',
-            }}
-            className="absolute"
-          >
-            <QueueAnim type="bottom" className="flex items-end flex-wrap">
-              {tags.map(({ name }) => {
-                return (
-                  <BigTag
-                    tagName={name}
-                    key={name}
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      fetchPostsWithTag(name)
-                    }}
-                  />
-                )
-              })}
-            </QueueAnim>
-          </div>
-
-          <div style={{ top: '50vh' }} className="absolute">
-            <article className="post-content kami-note article-list overlay-list">
-              <style
-                dangerouslySetInnerHTML={{
-                  __html: `.overlay-list * {color: #fff!important;}`,
-                }}
-              ></style>
-              <ul>
-                <QueueAnim delay={700} forcedReplay appear>
-                  {postWithTag ? (
-                    postWithTag.map((child) => {
-                      const date = new Date(child.created)
-
-                      return (
-                        <li key={child.id}>
-                          <Link
-                            href={'/posts/[category]/[slug]'}
-                            as={`/posts/${child.category.slug}/${child.slug}`}
-                          >
-                            <a>{child.title}</a>
-                          </Link>
-                          <span className={'meta'}>
-                            {Intl.DateTimeFormat('en-US').format(date)}
-                          </span>
-                        </li>
-                      )
-                    })
-                  ) : (
-                    <span>载入中.</span>
-                  )}
-                </QueueAnim>
-              </ul>
-            </article>
-          </div>
-        </div>
-      </OverLay>
-
       <SEO title={'博文'} />
 
       <RcQueueAnim type={['bottom', 'alpha']}>
@@ -248,8 +107,9 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = observer(() => {
           )}
         </section>
       )}
+      <FloatPostTagButton />
     </ArticleLayout>
   )
-})
+}
 
-export default NoSSR(PostListPage)
+export default PostListPage

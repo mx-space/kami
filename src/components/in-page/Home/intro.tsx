@@ -9,7 +9,7 @@ import { useStore } from 'store'
 import { NoSSR } from 'utils'
 import styles from './intro.module.css'
 
-const wrapperProps = { className: '!w-full !h-full !border-none' }
+const wrapperProps = { className: '!w-full !h-full !border-none !shadow-none' }
 export const HomeIntro: FC = observer(() => {
   const { userStore } = useStore()
   const { master: user } = userStore
