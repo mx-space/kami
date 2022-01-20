@@ -44,7 +44,7 @@ const _OverLay: FC<OverLayProps & { child: any }> = (props) => {
   )
 }
 
-const __OverLay: FC<OverLayProps & { show: boolean; children: ReactNode }> = ({
+const __OverLay: FC<OverLayProps & { show: boolean; children?: ReactNode }> = ({
   show,
   ...props
 }) => {

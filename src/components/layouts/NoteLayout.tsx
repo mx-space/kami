@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NoteTimelineList } from 'components/in-page/NoteTimelineList'
 import dayjs from 'dayjs'
 import { observer } from 'mobx-react-lite'
-import { useCallback } from 'react'
+import { ReactNode, useCallback } from 'react'
 import { Transition } from 'react-transition-group'
 import { useStore } from 'store'
 import { resolveUrl } from 'utils'
@@ -15,6 +15,7 @@ interface NoteLayoutProps {
   date: Date
   bookmark?: boolean
   id: string
+  children?: ReactNode
 }
 export const animatingClassName: [string, string] = [
   '',
