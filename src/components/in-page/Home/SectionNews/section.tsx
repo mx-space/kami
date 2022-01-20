@@ -7,7 +7,7 @@ import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import randomColor from 'randomcolor'
 import { DetailedHTMLProps, HTMLAttributes } from 'react'
-import { useStore } from '../../../store'
+import { useStore } from '../../../../store'
 import styles from './index.module.css'
 
 export interface SectionNewsProps {

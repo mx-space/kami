@@ -1,5 +1,7 @@
+import clsx from 'clsx'
 import rc from 'randomcolor'
 import {
+  createElement,
   DetailedHTMLProps,
   FC,
   ImgHTMLAttributes,
@@ -14,6 +16,8 @@ interface AvatarProps {
   url?: string
   imageUrl: string
   size?: number
+
+  wrapperProps?: JSX.IntrinsicElements['div']
 }
 
 export const Avatar: FC<
@@ -30,33 +34,42 @@ export const Avatar: FC<
       setLoaded(true)
     }
   }, [props.imageUrl])
+
+  const { wrapperProps = {} } = props
+  const { className, ...restProps } = wrapperProps
   return (
     <div
-      className={styles['avatar-wrap']}
+      className={clsx(styles['avatar-wrap'], className)}
       ref={avatarRef}
       style={
         props.size
           ? { height: props.size + 'px', width: props.size + 'px' }
           : undefined
       }
+      {...restProps}
     >
-      <a
-        style={{
-          backgroundColor: loaded ? undefined : randomColor,
-        }}
-        className={styles['avatar']}
-        href={props.url ?? 'javascript:;'}
-        target={!props.url ? undefined : '_blank'}
-        rel="noreferrer"
-      >
-        <div
-          className={styles['image']}
-          style={{
-            backgroundImage: `url(${props.imageUrl})`,
-            opacity: loaded ? 1 : 0,
-          }}
-        ></div>
-      </a>
+      {createElement(props.url ? 'a' : 'div', {
+        style: { backgroundColor: loaded ? undefined : randomColor },
+        className: styles['avatar'],
+
+        ...(props.url
+          ? {
+              href: props.url,
+              target: '_blank',
+              rel: 'noreferrer',
+            }
+          : {}),
+
+        children: (
+          <div
+            className={styles['image']}
+            style={{
+              backgroundImage: `url(${props.imageUrl})`,
+              opacity: loaded ? 1 : 0,
+            }}
+          ></div>
+        ),
+      })}
     </div>
   )
 })

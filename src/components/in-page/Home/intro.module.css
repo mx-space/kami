@@ -1,0 +1,58 @@
+.root {
+  display: flex;
+  overflow: hidden;
+
+  :global {
+    p,
+    .paragraph {
+      color: #aaa;
+    }
+
+    .intro-avatar {
+      flex: 0 0 9em;
+      max-width: 9em;
+      margin-right: 2em;
+      aspect-ratio: 1;
+    }
+
+    .social-icons {
+      display: flex;
+      font-size: 1.2em;
+      user-select: none;
+      margin-top: 1.25em;
+    }
+
+    .social-icons a {
+      margin-right: 1em;
+      display: inline-block;
+    }
+
+    .social-icons a:last-child {
+      margin-right: 0;
+    }
+
+    .social-icons svg {
+      width: 1em;
+    }
+  }
+}
+
+.root {
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+
+    :global {
+      .intro-avatar {
+        margin: 0 auto 1.5em;
+      }
+
+      .intro-info {
+        text-align: center;
+      }
+
+      .social-icons {
+        justify-content: center;
+      }
+    }
+  }
+}

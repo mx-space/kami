@@ -1,0 +1,75 @@
+.root {
+  @apply min-h-[34rem];
+
+  :global {
+    .news-item {
+      margin-bottom: 5em;
+    }
+
+    .news-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .news-head h3 {
+      color: #fff;
+      font-weight: 700;
+      position: relative;
+      border-radius: 1em;
+      display: inline-block;
+      background: var(--purple);
+      padding: 0.6em 2em 0.6em 4em;
+    }
+
+    .news-head.red h3 {
+      background-color: var(--red);
+    }
+
+    .news-head.blue h3 {
+      background-color: var(--blue);
+    }
+
+    .news-head.grey h3 {
+      background-color: #a9a9a9;
+    }
+
+    .news-head a {
+      color: inherit;
+      display: block;
+      padding: 0.6em 1em;
+    }
+
+    .news-head .title i {
+      top: 0;
+      left: 0;
+      padding: 1rem 1em;
+      position: absolute;
+      border-radius: 1em;
+      background: rgb(0 0 0 / 10%);
+    }
+
+    .news-head .more {
+      padding: 0;
+      float: right;
+      transform-origin: top;
+    }
+
+    .news-body .note-box {
+      color: #fff;
+      padding: 1em;
+      height: 100%;
+      position: relative;
+      border-radius: 1em;
+      background: #ff9987;
+    }
+
+    .news-body .content {
+      margin-bottom: 3em;
+    }
+
+    .news-body .date {
+      left: 1em;
+      bottom: 1em;
+      position: absolute;
+    }
+  }
+}

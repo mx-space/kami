@@ -206,10 +206,6 @@ p,
   outline: 0;
 }
 
-.news-article h4 {
-  backdrop-filter: blur(5px);
-}
-
 .is-note .note-article {
   background-color: var(--light-bg);
   margin: -30px -45px;
@@ -381,10 +377,6 @@ p,
     position: absolute;
     left: 0;
     top: 0;
-  }
-
-  .news-article {
-    height: 9rem;
   }
 }
 

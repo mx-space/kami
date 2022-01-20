@@ -180,17 +180,7 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = observer(() => {
       </OverLay>
 
       <SEO title={'博文'} />
-      {/* <div className="navigation">
-        <Link href={{ pathname: 'posts' }}>
-          <a className="active">所有</a>
-        </Link>
-        <Link href={{ pathname: 'posts', query: { year: '2020' } }}>
-          <a className="active">2020</a>
-        </Link>
-        <Link href={{ pathname: 'posts', query: { year: '2019' } }}>
-          <a className="active">2019</a>
-        </Link>
-      </div> */}
+
       <RcQueueAnim type={['bottom', 'alpha']}>
         <article className="kami-note" key={'note'}>
           {posts.length > 0 ? (
