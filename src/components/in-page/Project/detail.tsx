@@ -32,7 +32,7 @@ export const ProjectDetail: FC<{ id: string }> = (props) => {
         <div className="flex flex-col project-detail">
           <h1>{name}</h1>
           <p>{description}</p>
-          <p>
+          <p className="space-x-4">
             {previewUrl && (
               <a href={previewUrl} className="btn blue" target="_blank">
                 预览站点

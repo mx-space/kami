@@ -109,7 +109,8 @@ p {
 .btn {
   color: inherit;
   cursor: pointer;
-  background: #fff;
+  background: var(--light-bg);
+  color: var(--light-font);
   padding: 0.5em 1em;
   display: inline-block;
   border: 1px solid transparent;
