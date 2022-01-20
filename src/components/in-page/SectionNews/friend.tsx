@@ -1,5 +1,4 @@
 import { LinkModel, LinkState, LinkType } from '@mx-space/api-client'
-import defaultAvatar from 'assets/images/default-avatar.png'
 import { FC, memo, useEffect, useState } from 'react'
 import { apiClient } from 'utils/client'
 import { Avatar } from '../../universal/Avatar'
@@ -7,11 +6,7 @@ import styles from './index.module.css'
 export const FriendItem: FC<LinkModel> = memo((props) => {
   return (
     <div className={styles['avatar-item']}>
-      <Avatar
-        imageUrl={props.avatar || defaultAvatar.src}
-        alt={props.name}
-        url={props.url}
-      />
+      <Avatar imageUrl={props.avatar} alt={props.name} url={props.url} />
       <span className={styles['avatar-name']}>{props.name}</span>
     </div>
   )

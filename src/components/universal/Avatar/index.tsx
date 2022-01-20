@@ -20,7 +20,6 @@ export const Avatar: FC<
   AvatarProps &
     DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
 > = memo((props) => {
-  // const { url, imageUrl, size, ...rest } = props
   const avatarRef = useRef<HTMLDivElement>(null)
   const randomColor = useMemo(() => rc({ luminosity: 'light' }), [])
   const [loaded, setLoaded] = useState(false)

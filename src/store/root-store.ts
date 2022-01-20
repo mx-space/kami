@@ -3,6 +3,7 @@ import AppUIStore from './app'
 import { NoteStore } from './collections/note'
 import { PageStore } from './collections/page'
 import { PostStore } from './collections/post'
+import { ProjectStore } from './collections/project'
 import { SayStore } from './collections/say'
 import GatewayStore from './gateway'
 import { MusicStore } from './music'
@@ -22,6 +23,7 @@ export interface RootStore {
   noteStore: NoteStore
   pageStore: PageStore
   sayStore: SayStore
+  projectStore: ProjectStore
 }
 export class RootStore {
   constructor() {
@@ -34,6 +36,7 @@ export class RootStore {
     this.noteStore = new NoteStore()
     this.pageStore = new PageStore()
     this.sayStore = new SayStore()
+    this.projectStore = new ProjectStore()
   }
 
   get appStore() {

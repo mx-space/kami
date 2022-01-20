@@ -1,0 +1,71 @@
+.head {
+  @apply grid gap-x-12 pb-8;
+
+  grid-template-columns: 10rem auto;
+
+  &::after {
+    content: '';
+    clear: both;
+    display: block;
+  }
+
+  :global {
+    .project-icon {
+      @apply inline-flex h-[10rem] w-[10rem] relative;
+
+      border-radius: 30%;
+    }
+
+    img {
+      float: left;
+      max-width: 10em;
+      margin-right: 2em;
+      border-radius: 30%;
+    }
+
+    .btn {
+      border-radius: 6em;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr;
+
+    @apply gap-12;
+
+    :global {
+      .project-icon {
+        @apply flex justify-center m-auto;
+      }
+
+      .project-detail {
+        @apply text-center;
+      }
+    }
+
+    img {
+      max-width: 6em;
+    }
+
+    p:last-child {
+      margin-top: 2em;
+    }
+  }
+}
+
+.screenshot {
+  margin-bottom: 3em;
+  overflow: auto;
+  white-space: nowrap;
+  padding-bottom: 1em;
+}
+
+.screenshot img {
+  max-height: 20em;
+  margin-right: 1em;
+  display: inline-block;
+}
+
+.screenshot img:last-child {
+  margin-right: 0;
+}
