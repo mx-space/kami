@@ -58,6 +58,7 @@
   overflow: auto;
   white-space: nowrap;
   padding-bottom: 1em;
+  min-height: 150px;
 }
 
 .screenshot img {

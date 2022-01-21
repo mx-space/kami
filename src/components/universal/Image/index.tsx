@@ -142,12 +142,12 @@ export const ImageLazy: FC<
   )
 
   return (
-    <figure style={{ ...style }}>
+    <figure style={style} className="inline-block">
       {defaultImage ? (
         <img src={defaultImage} alt={alt} {...rest} ref={realImageRef} />
       ) : (
         <div
-          className="relative max-w-full m-auto"
+          className="relative max-w-full m-auto inline-block"
           style={{
             transition: 'height .3s, width .3s',
             height,
@@ -170,6 +170,7 @@ export const ImageLazy: FC<
                   className={classNames(
                     styles['image-hide'],
                     styles['lazyload-image'],
+                    'inline-block',
                   )}
                   {...rest}
                   src={src}

@@ -21,7 +21,7 @@ const CategoryListView: NextPage<CategoryListViewProps> = (props) => {
       subtitle={'当前共有' + children.length + '篇文章, 加油!'}
     >
       <SEO title={'分类: ' + category.name} />
-      <article className="post-content kami-note article-list">
+      <article className="  article-list">
         <ul>
           <QueueAnim
             delay={700}

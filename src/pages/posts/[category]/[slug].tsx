@@ -202,7 +202,7 @@ export const PostView: PageOnlyProps = observer((props) => {
           },
         }}
       />
-      <ArticleLayout title={post.title} focus id={post.id} type="post">
+      <ArticleLayout title={post.title} id={post.id} type="post">
         {useMemo(
           () => (
             <>
@@ -215,7 +215,6 @@ export const PostView: PageOnlyProps = observer((props) => {
                   value={post.text}
                   escapeHtml={false}
                   toc
-                  wrapperProps={{ className: 'focus' }}
                 />
               </ImageSizeMetaContext.Provider>
               {post.copyright && isClientSide() ? (

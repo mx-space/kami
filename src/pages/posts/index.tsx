@@ -41,7 +41,7 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
       <SEO title={'博文'} />
 
       <RcQueueAnim type={['bottom', 'alpha']}>
-        <article className="kami-note" key={'note'}>
+        <article className="" key={'note'}>
           {posts.length > 0 ? (
             <Fragment>
               {posts.map((post) => {

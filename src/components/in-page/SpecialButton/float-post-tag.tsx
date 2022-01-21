@@ -91,7 +91,7 @@ const _FloatPostTagButton: FC = observer(() => {
         </div>
 
         <div className="top-[50vh] absolute">
-          <article className="post-content kami-note article-list !all:text-light-400">
+          <article className="  article-list !all:text-light-400">
             <ul>
               <QueueAnim delay={700} forcedReplay appear>
                 {postWithTag ? (

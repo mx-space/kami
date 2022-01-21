@@ -29,7 +29,7 @@ export default defineConfig({
         'light-bg': 'var(--light-bg)',
         'light-font': 'var(--light-font)',
         'bg-opacity': 'var(--bg-opacity)',
-        gray: 'var()',
+        gray: 'var(--gray)',
         shallow: 'var(--shallow)',
         shizuku: {
           text: 'var(--shizuku-text-color)',

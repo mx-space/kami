@@ -5,7 +5,6 @@ import {
   HTMLAttributes,
   memo,
   useCallback,
-  useEffect,
 } from 'react'
 import { animatingClassName } from '../NoteLayout'
 import { ArticleLayoutContextProvider } from './hooks'
@@ -17,7 +16,7 @@ export interface ArticleLayoutProps {
   subtitle?: string | string[]
   subtitleAnimation?: boolean
   delay?: number
-  focus?: boolean
+
   type?: 'post' | 'page'
   id?: string
 }
@@ -33,7 +32,6 @@ export const ArticleLayout = memo(
       {
         children,
         title,
-        focus,
         subtitle,
         delay,
         subtitleAnimation = true,
@@ -43,19 +41,8 @@ export const ArticleLayout = memo(
       },
       ref: any,
     ) => {
-      useEffect(() => {
-        if (focus) {
-          document.body.classList.add('focus')
-        }
-        return () => {
-          document.body.classList.remove('focus')
-        }
-      }, [focus])
-
       return (
-        <ArticleLayoutContextProvider
-          value={{ title, focus, id, subtitle, type }}
-        >
+        <ArticleLayoutContextProvider value={{ title, id, subtitle, type }}>
           <main
             className={styles['is-article']}
             ref={ref}
@@ -77,7 +64,7 @@ export const ArticleLayout = memo(
               }, [])}
               animatingClassName={animatingClassName}
             >
-              <article className="post-content kami-note" key={id}>
+              <article className="main-article-md" key={id}>
                 {children}
               </article>
             </QueueAnim>

@@ -64,7 +64,7 @@ const FriendsView: NextPage<{ data: LinkModel[] }> = (props) => {
   return (
     <ArticleLayout title={'朋友们'} subtitle={'海内存知己, 天涯若比邻'}>
       <SEO title={'朋友们'} />
-      <article className="post-content kami-note article-list">
+      <article className="  article-list">
         {friends.length > 0 && (
           <>
             {collections.length !== 0 && renderTitle('互相关注', 650)}

@@ -49,10 +49,7 @@ export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
       ? location.hash.includes('comments')
       : false
     return (
-      <main
-        className="max-w-[50em] relative is-note post-content kami-note"
-        ref={ref}
-      >
+      <main className="max-w-[50em] relative is-note" ref={ref}>
         <Transition
           key={id}
           in={true}
@@ -64,7 +61,7 @@ export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
           {(state) => {
             return (
               <article
-                className={'note-article'}
+                className={'note-article main-article-md'}
                 style={{
                   ...defaultStyle,
                   ...transitionStyles[state],

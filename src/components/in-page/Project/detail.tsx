@@ -1,7 +1,7 @@
 import { Loading } from 'components/universal/Loading'
+import { Markdown } from 'components/universal/Markdown'
 import { SliderImagesPopup } from 'components/universal/SliderImagesPopup'
 import { FC, useEffect } from 'react'
-import ReactMarkdown from 'react-markdown'
 import { useStore } from 'store'
 import styles from './detail.module.css'
 import { ProjectIcon } from './icon'
@@ -39,27 +39,46 @@ export const ProjectDetail: FC<{ id: string }> = (props) => {
               </a>
             )}
             {projectUrl && (
-              <a href={projectUrl} className="btn transparent" target="_blank">
+              <a href={projectUrl} className="btn green" target="_blank">
                 获取项目
               </a>
             )}
             {docUrl && (
-              <a href={docUrl} className="btn transparent" target="_blank">
+              <a
+                href={docUrl}
+                className="btn bg-transparent text-shizuku-text"
+                target="_blank"
+              >
                 项目文档
               </a>
             )}
           </p>
         </div>
       </section>
-      {!!imageSet && (
+      {imageSet?.length && imageSet.length > 0 ? (
         <section className={styles['screenshot']}>
           <SliderImagesPopup images={imageSet} />
         </section>
-      )}
+      ) : null}
 
-      <article>
-        <ReactMarkdown source={text} />
+      <article className="mt-12">
+        <Markdown
+          value={text}
+          escapeHtml={false}
+          codeBlockFully
+          renderers={{
+            link: Link,
+          }}
+        />
       </article>
     </>
+  )
+}
+
+const Link = (props) => {
+  return (
+    <a href={props.href} target={'_blank'} rel="noreferrer">
+      {props.children}
+    </a>
   )
 }

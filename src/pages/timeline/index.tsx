@@ -162,28 +162,16 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
       <SEO title={'时间线'} />
       {arr.reverse().map(([year, value], j) => {
         return (
-          <article className="post-content kami-note article-list" key={year}>
+          <article className="article-list" key={year}>
             <div className="note-item">
-              {/* <QueueAnim
-                delay={getDelayTime(year)}
-                type={'bottom'}
-                duration={duration}
-              > */}
               <h1 key={1}>
                 {year}
                 <small className={styles['count']}>({value.length})</small>
               </h1>
-              {/* </QueueAnim> */}
+
               <ul className={styles['timeline-wrap']}>
                 {value.map((item, i) => {
                   return (
-                    // <QueueAnim
-                    //   duration={duration}
-                    //   type={'bottom'}
-                    //   key={item.id}
-                    //   delay={getDelayTime(year) + i * 100}
-                    // >
-                    // replace with `QueueAnim`
                     <div key={item.id}>
                       <li
                         key={item.id}
@@ -219,8 +207,6 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
                         </span>
                       </li>
                     </div>
-
-                    // </QueueAnim>
                   )
                 })}
               </ul>

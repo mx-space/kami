@@ -199,7 +199,7 @@ blockquote {
   line-height: 1.8;
   background: #f5fafd;
   padding: 1em 1em 1em 2em;
-  border-left: 5px #3498db solid;
+  border-left: 3px var(--blue) solid;
 }
 
 input[type='checkbox'] {
@@ -371,6 +371,13 @@ h1.headline {
 
 .note-content pre > code {
   max-height: 25em;
+}
+
+.main-article-md {
+  figure {
+    width: 100% !important;
+    text-align: center !important;
+  }
 }
 
 .kami-more {
