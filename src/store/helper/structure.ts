@@ -1,5 +1,3 @@
-import { toJS } from 'mobx'
-
 export type Id = string
 
 type VoidCallback<V, K> = (val: V, key: K, map: Map<K, V>) => void
@@ -28,10 +26,6 @@ export class KeyValueCollection<K extends Id, V extends object> extends Map<
 
   // for mobx
   data: Map<K, V> = new Map()
-
-  get raw() {
-    return toJS(this.data)
-  }
 
   forEach(callbackfn: VoidCallback<V, K>, thisArg?: any): void {
     return this.data.forEach(callbackfn, thisArg)

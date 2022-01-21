@@ -9,7 +9,11 @@
 }
 
 .kami-say {
-  columns: 2;
+  @apply flex w-full w-auto;
+
+  > div {
+    @apply ml-4;
+  }
 }
 
 .kami-say blockquote {

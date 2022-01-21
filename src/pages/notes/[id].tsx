@@ -239,7 +239,6 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
       {!isSecret && (
         <ArticleLayout
           style={{ minHeight: 'unset', paddingTop: '0' }}
-          focus
           key={'at'}
         >
           <CommentWrap
