@@ -18,9 +18,13 @@ export const useResizeScrollEvent = () => {
       { leading: false },
     )
 
-    const resizeHandler = debounce(() => {
-      app.updateViewport()
-    }, 500)
+    const resizeHandler = debounce(
+      () => {
+        app.updateViewport()
+      },
+      500,
+      { leading: true },
+    )
     window.onresize = resizeHandler
     app.updateViewport()
 
