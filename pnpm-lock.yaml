@@ -11,7 +11,6 @@ specifiers:
   '@fortawesome/react-fontawesome': 0.1.16
   '@innei-util/eslint-config-react-ts': latest
   '@innei-util/prettier': latest
-  '@innei/react-stack-grid': 0.8.4
   '@mx-space/api-client': 0.6.0
   '@mx-space/extra': 0.5.2
   '@next/bundle-analyzer': 12.0.8
@@ -38,7 +37,6 @@ specifiers:
   devtools-detector: 2.0.6
   dotenv: 14.2.0
   eslint: '*'
-  framer-motion: 6.0.0
   husky: 7.0.4
   js-cookie: 3.0.1
   js-yaml: '*'
@@ -94,7 +92,6 @@ dependencies:
   '@fortawesome/free-regular-svg-icons': 5.15.4
   '@fortawesome/free-solid-svg-icons': 5.15.4
   '@fortawesome/react-fontawesome': 0.1.16_f515edce028694561ceb456e3dba224c
-  '@innei/react-stack-grid': 0.8.4_837d624d62d50aa058b79890e8780bb8
   '@mx-space/api-client': 0.6.0
   '@mx-space/extra': 0.5.2_axios@0.25.0
   NeteaseCloudMusicApi: 4.2.0
@@ -102,7 +99,6 @@ dependencies:
   clsx: 1.1.1
   dayjs: 1.10.7
   devtools-detector: 2.0.6
-  framer-motion: 6.0.0_react-dom@17.0.2+react@17.0.2
   js-cookie: 3.0.1
   lodash-es: 4.17.21
   mdurl: 1.0.1
@@ -1425,19 +1421,6 @@ packages:
       '@cspotcode/source-map-consumer': 0.8.0
     dev: true
 
-  /@emotion/is-prop-valid/0.8.8:
-    resolution: {integrity: sha512-u5WtneEAr5IDG2Wv65yhunPSMLIpuKsbuOktRojfrEiEvRyC85LgPMZI63cr7NUqT8ZIGdSVg8ZKGxIug4lXcA==}
-    requiresBuild: true
-    dependencies:
-      '@emotion/memoize': 0.7.4
-    dev: false
-    optional: true
-
-  /@emotion/memoize/0.7.4:
-    resolution: {integrity: sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==}
-    dev: false
-    optional: true
-
   /@eslint/eslintrc/0.4.3:
     resolution: {integrity: sha512-J6KFFz5QCYUJq3pf0mjEcCJVERbzv71PUIDczuh9JkwGEzced6CO5ADLHB1rbf/+oPBtoPfMYNOpGDzCANlbXw==}
     engines: {node: ^10.12.0 || >=12.0.0}
@@ -1585,24 +1568,6 @@ packages:
       - prettier
       - typescript
     dev: true
-
-  /@innei/react-stack-grid/0.8.4_837d624d62d50aa058b79890e8780bb8:
-    resolution: {integrity: sha512-3QvsVXIMykc2eTTai+HrVWD2oBlLkJTMCfX1emNy7wrh35NE8O8DzwhoVdAQQ/AkEQ/yIcsSbD6ncb/qur0VFg==}
-    peerDependencies:
-      prop-types: ^15.5.10
-      react: '>=15.3.0 <= 17'
-      react-dom: '>=15.3.0'
-      react-transition-group: ^4.4.1
-    dependencies:
-      easy-css-transform-builder: 0.1.0
-      exenv: 1.2.2
-      invariant: 2.2.4
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      react-sizeme: 3.0.2
-      react-transition-group: 4.4.2_react-dom@17.0.2+react@17.0.2
-      shallowequal: 1.1.0
-    dev: false
 
   /@mx-space/api-client/0.6.0:
     resolution: {integrity: sha512-GL5IBf7/PE9T1W2THCDTcN+aK5BRTuEvo+3Pjfh9m6aEGoZuQOL7Mu9s/TYFfv8PjRfqXPkVfR23m1D5A81VRg==}
@@ -1925,10 +1890,6 @@ packages:
   /@types/inflection/1.13.0:
     resolution: {integrity: sha512-kZSETqAVS74XC/K3mPX/tbMEi/Zy1KP0Wc59dB1i5P72AHz4eSW+UIpzWxmQnDxipoKSX5eRgUXy+wUr+bY73g==}
     dev: true
-
-  /@types/invariant/2.2.35:
-    resolution: {integrity: sha512-DxX1V9P8zdJPYQat1gHyY0xj3efl8gnMVjiM9iCY6y27lj+PoQWkgjt8jDqmovPqULkKVpKRg8J36iQiA+EtEg==}
-    dev: false
 
   /@types/js-cookie/2.2.7:
     resolution: {integrity: sha512-aLkWa0C0vO5b4Sr798E26QgOkss68Un0bLjs7u9qxzPT5CG+8DuNTffWES58YzJs3hrVAOs1wonycqEBqNJubA==}
@@ -2596,10 +2557,6 @@ packages:
   /base64-arraybuffer/1.0.1:
     resolution: {integrity: sha512-vFIUq7FdLtjZMhATwDul5RZWv2jpXQ09Pd6jcVEOvIsqCWTRFD/ONHNfyOS8dA/Ippi5dsIgpyKWKZaAKZltbA==}
     engines: {node: '>= 0.6.0'}
-    dev: false
-
-  /batch-processor/1.0.0:
-    resolution: {integrity: sha1-dclcMrdI4IUNEMKxaPa9vpiRrOg=}
     dev: false
 
   /big.js/5.2.2:
@@ -3363,13 +3320,6 @@ packages:
     resolution: {integrity: sha1-7gHdHKwO08vH/b6jfcCo8c4ALOI=}
     dev: true
 
-  /easy-css-transform-builder/0.1.0:
-    resolution: {integrity: sha512-2aYPqov9r0UOcZOw6EccG3IukoPFUQQdGaxsRXjpb2q5Vq/Nf+FQ6qQXaBbV5WGSnefQsUplGjqPqn5wPDO0yg==}
-    dependencies:
-      '@types/invariant': 2.2.35
-      invariant: 2.2.4
-    dev: false
-
   /ee-first/1.1.1:
     resolution: {integrity: sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=}
     dev: false
@@ -3385,12 +3335,6 @@ packages:
   /electron-to-chromium/1.4.20:
     resolution: {integrity: sha512-N7ZVNrdzX8NE90OXEFBMsBf3fp8P/vVDUER3WCUZjzC7OkNTXHVoF6W9qVhq8+dA8tGnbDajzUpj2ISNVVyj+Q==}
     dev: true
-
-  /element-resize-detector/1.2.3:
-    resolution: {integrity: sha512-+dhNzUgLpq9ol5tyhoG7YLoXL3ssjfFW+0gpszXPwRU6NjGr1fVHMEAF8fVzIiRJq57Nre0RFeIjJwI8Nh2NmQ==}
-    dependencies:
-      batch-processor: 1.0.0
-    dev: false
 
   /emoji-regex/7.0.3:
     resolution: {integrity: sha512-CwBLREIQ7LvYFB0WyRvwhq5N5qPhc6PMjD6bYggFlI5YyDgl+0vxq5VHbMOFqLg7hfWzmu8T5Z1QofhmTIhItA==}
@@ -3846,10 +3790,6 @@ packages:
       clone-regexp: 2.2.0
     dev: true
 
-  /exenv/1.2.2:
-    resolution: {integrity: sha1-KueOhdmJQVhnCwPUe+wfA72Ru50=}
-    dev: false
-
   /express-fileupload/1.2.1:
     resolution: {integrity: sha512-fWPNAkBj+Azt9Itmcz/Reqdg3LeBfaXptDEev2JM8bCC0yDptglCnlizhf0YZauyU5X/g6v7v4Xxqhg8tmEfEA==}
     engines: {node: '>=8.0.0'}
@@ -4067,29 +4007,6 @@ packages:
   /fraction.js/4.1.2:
     resolution: {integrity: sha512-o2RiJQ6DZaR/5+Si0qJUIy637QMRudSi9kU/FFzx9EZazrIdnBgpU+3sEWCxAVhH2RtxW2Oz+T4p2o8uOPVcgA==}
     dev: true
-
-  /framer-motion/6.0.0_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha512-wVI+hVRkvQeWSvkxk8z5bTg+jBs9vfEZOist2s0e9tQzZvt+OBuAoAcvCvl+ADmFd4ncC2934vkwiJPZ8nSvMg==}
-    peerDependencies:
-      react: '>=16.8 || ^17.0.0'
-      react-dom: '>=16.8 || ^17.0.0'
-    dependencies:
-      framesync: 6.0.1
-      hey-listen: 1.0.8
-      popmotion: 11.0.3
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      style-value-types: 5.0.0
-      tslib: 2.3.1
-    optionalDependencies:
-      '@emotion/is-prop-valid': 0.8.8
-    dev: false
-
-  /framesync/6.0.1:
-    resolution: {integrity: sha512-fUY88kXvGiIItgNC7wcTOl0SNRCVXMKSWW2Yzfmn7EKNc+MpCzcz9DhdHcdjbrtN3c6R4H5dTY2jiCpPdysEjA==}
-    dependencies:
-      tslib: 2.3.1
-    dev: false
 
   /fresh/0.5.2:
     resolution: {integrity: sha1-PYyt2Q2XZWn6g1qx+OSyOhBWBac=}
@@ -4418,10 +4335,6 @@ packages:
     dependencies:
       function-bind: 1.1.1
     dev: true
-
-  /hey-listen/1.0.8:
-    resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==}
-    dev: false
 
   /hosted-git-info/2.8.9:
     resolution: {integrity: sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==}
@@ -5942,15 +5855,6 @@ packages:
     engines: {node: '>=10.13.0'}
     dev: false
 
-  /popmotion/11.0.3:
-    resolution: {integrity: sha512-Y55FLdj3UxkR7Vl3s7Qr4e9m0onSnP8W7d/xQLsoJM40vs6UKHFdygs6SWryasTZYqugMjm3BepCF4CWXDiHgA==}
-    dependencies:
-      framesync: 6.0.1
-      hey-listen: 1.0.8
-      style-value-types: 5.0.0
-      tslib: 2.3.1
-    dev: false
-
   /postcss-attribute-case-insensitive/5.0.0_postcss@8.4.5:
     resolution: {integrity: sha512-b4g9eagFGq9T5SWX4+USfVyjIb3liPnjhHHRMP7FMB2kFVpYyfEscV0wP3eaXhKlcHKUut8lt5BGoeylWA/dBQ==}
     peerDependencies:
@@ -6639,15 +6543,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
-  /react-sizeme/3.0.2:
-    resolution: {integrity: sha512-xOIAOqqSSmKlKFJLO3inBQBdymzDuXx4iuwkNcJmC96jeiOg5ojByvL+g3MW9LPEsojLbC6pf68zOfobK8IPlw==}
-    dependencies:
-      element-resize-detector: 1.2.3
-      invariant: 2.2.4
-      shallowequal: 1.1.0
-      throttle-debounce: 3.0.1
-    dev: false
-
   /react-transition-group/4.4.2_react-dom@17.0.2+react@17.0.2:
     resolution: {integrity: sha512-/RNYfRAMlZwDSr6z4zNKV6xu53/e2BuaBbGhbyYIXTrmgu/bGHzmqOs7mJSJBHy9Ud+ApHx3QjrkKSp1pxvlFg==}
     peerDependencies:
@@ -7126,10 +7021,6 @@ packages:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
     dev: false
 
-  /shallowequal/1.1.0:
-    resolution: {integrity: sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==}
-    dev: false
-
   /shebang-command/2.0.0:
     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}
     engines: {node: '>=8'}
@@ -7541,13 +7432,6 @@ packages:
 
   /style-utils/0.2.1:
     resolution: {integrity: sha512-eKRIfWnUSdBqe2ko+qisUwBSlfWpHru89geRqzmScpDhkPW1ksmE04d//nDcXeF+TVK5cnBG90mMmHgxyxXleQ==}
-    dev: false
-
-  /style-value-types/5.0.0:
-    resolution: {integrity: sha512-08yq36Ikn4kx4YU6RD7jWEv27v4V+PUsOGa4n/as8Et3CuODMJQ00ENeAVXAeydX4Z2j1XHZF1K2sX4mGl18fA==}
-    dependencies:
-      hey-listen: 1.0.8
-      tslib: 2.3.1
     dev: false
 
   /styled-jsx/5.0.0-beta.6_react@17.0.2:
