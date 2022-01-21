@@ -64,7 +64,7 @@
     "lodash-es": "4.17.21",
     "mdurl": "*",
     "medium-zoom": "1.0.6",
-    "mobx": "6.3.12",
+    "mobx": "6.3.13",
     "mobx-react-lite": "3.2.3",
     "next": "12.0.8",
     "next-seo": "4.28.1",
