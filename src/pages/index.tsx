@@ -1,42 +1,40 @@
 import { AggregateTop } from '@mx-space/api-client'
 import { HomeIntro } from 'components/in-page/Home/intro'
+import { HomeRandomSay } from 'components/in-page/Home/random-say'
 import { HomeSections } from 'components/in-page/Home/section'
 import { useInitialData } from 'hooks/use-initial-data'
 import { omit } from 'lodash-es'
 import { observer } from 'mobx-react-lite'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
-import Texty from 'rc-texty'
-import React, { useEffect, useState } from 'react'
+import React, { createContext, useContext } from 'react'
 import { apiClient } from 'utils/client'
 
-const IndexView: NextPage<AggregateTop> = (props) => {
-  const [say, setSay] = useState('')
+const IndexViewContext = createContext({ doAnimation: true })
 
-  useEffect(() => {
-    apiClient.say.getRandom().then(({ data }) => {
-      if (!data) {
-        return
-      }
-      setSay(`${data.text}  ——${data.author ?? data.source ?? '站长说'}`)
-    })
-  }, [])
+export const useIndexViewContext = () => useContext(IndexViewContext)
+
+const IndexView: NextPage<AggregateTop> = (props) => {
   const initData = useInitialData()
+
+  const doAnimation = Boolean(
+    globalThis.history
+      ? !history.backPath || history.backPath.length === 0
+      : false,
+  )
+
   return (
     <main>
-      <NextSeo
-        title={initData.seo.title + ' · ' + initData.seo.description}
-        description={initData.seo.description}
-      />
-      <HomeIntro />
+      <IndexViewContext.Provider value={{ doAnimation }}>
+        <NextSeo
+          title={initData.seo.title + ' · ' + initData.seo.description}
+          description={initData.seo.description}
+        />
+        <HomeIntro />
 
-      <div className="overflow-hidden leading-6 text-[#aaa] my-[2rem]">
-        <Texty appear leave={false} type={'alpha'}>
-          {say}
-        </Texty>
-      </div>
-
-      <HomeSections {...props} />
+        <HomeRandomSay />
+        <HomeSections {...props} />
+      </IndexViewContext.Provider>
     </main>
   )
 }

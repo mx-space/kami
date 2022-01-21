@@ -3,6 +3,7 @@ import { Avatar } from 'components/universal/Avatar'
 import { FontIcon } from 'components/universal/FontIcon'
 import { useThemeConfig } from 'hooks/use-initial-data'
 import { observer } from 'mobx-react-lite'
+import { useIndexViewContext } from 'pages'
 import TextyAnim from 'rc-texty'
 import { FC, useMemo } from 'react'
 import { useStore } from 'store'
@@ -11,6 +12,7 @@ import styles from './intro.module.css'
 
 const wrapperProps = { className: '!w-full !h-full !border-none !shadow-none' }
 export const HomeIntro: FC = observer(() => {
+  const { doAnimation } = useIndexViewContext()
   const { userStore } = useStore()
   const { master: user } = userStore
 
@@ -19,7 +21,7 @@ export const HomeIntro: FC = observer(() => {
   }
   return (
     <section className={styles['root']}>
-      <div className="intro-avatar ">
+      <div className="intro-avatar">
         <Avatar
           useRandomColor={false}
           imageUrl={user.avatar || ''}
@@ -29,12 +31,13 @@ export const HomeIntro: FC = observer(() => {
       </div>
       <div className="intro-info">
         <h1>
-          <TextyAnim type={'mask-bottom'} mode={'smooth'}>
+          <TextyAnim type={'mask-bottom'} mode={'smooth'} appear={doAnimation}>
             {user.name}
           </TextyAnim>
         </h1>
         <div className="paragraph">
           <TextyAnim
+            appear={doAnimation}
             type={'mask-bottom'}
             mode={'smooth'}
             delay={500}
@@ -51,11 +54,13 @@ export const HomeIntro: FC = observer(() => {
 
 const Social = NoSSR(() => {
   const config = useThemeConfig()
+  const { doAnimation } = useIndexViewContext()
   const { social } = config.site
   return (
     <QueueAnim
       delay={500}
       duration={500}
+      appear={doAnimation}
       animConfig={useMemo(() => ({ opacity: [1, 0], translateY: [0, 50] }), [])}
     >
       <div className="social-icons" key={'a'}>

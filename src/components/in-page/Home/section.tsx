@@ -9,6 +9,7 @@ import { QueueAnim } from 'components/universal/Anime'
 import { useThemeConfig } from 'hooks/use-initial-data'
 import { shuffle } from 'lodash-es'
 import Router from 'next/router'
+import { useIndexViewContext } from 'pages'
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { message } from 'react-message-popup'
 import { apiClient, getRandomImage, NoSSR, stopEventDefault } from 'utils'
@@ -67,11 +68,14 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
       })
   }, [])
 
+  const { doAnimation } = useIndexViewContext()
+
   return (
     <section className={styles['root']}>
       <QueueAnim
         className="demo-content"
         delay={1200}
+        appear={doAnimation}
         duration={500}
         animConfig={useMemo(
           () => [

@@ -7,6 +7,8 @@
  * @MIT
  */
 
+import { isDev } from './utils'
+
 export class Notice {
   static shared = new Notice()
   isInit = false
@@ -86,7 +88,7 @@ export class Notice {
       this.isInit = await this.initNotice()
     }
 
-    if (document.hasFocus()) {
+    if (document.hasFocus() || isDev) {
       this.createFrameNotification({
         title,
         text: body,
@@ -183,7 +185,7 @@ export class Notice {
       $text.style.cssText = `
       margin: 12px 0 18px;
       padding: 0 18px;
-      color: var(--gray);
+      color: var(--shizuku-text-color);
       font-size: 14px;
       `
       $notification.appendChild($header)
