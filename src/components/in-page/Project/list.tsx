@@ -1,23 +1,19 @@
-import { ProjectModel } from '@mx-space/api-client'
 import Link from 'next/link'
-import { FC, useEffect, useState } from 'react'
-import { apiClient } from 'utils'
+import { FC } from 'react'
 import { ProjectIcon } from './icon'
 import styles from './list.module.css'
-
-export const ProjectList: FC = () => {
-  const [projects, setProjects] = useState<ProjectModel[]>([])
-  useEffect(() => {
-    // TODO project 分页
-    apiClient.project.getAllPaginated(1, 50).then((res) => {
-      const data = res.data
-      setProjects(data)
-    })
-  }, [])
+export type Project = {
+  id: string
+  avatar?: string
+  name: string
+  description?: string
+}
+export const ProjectList: FC<{ projects: Project[] }> = (props) => {
+  const projects = props.projects
 
   return (
     <section className={styles['root']} key={'list'}>
-      <div className="grid grid-cols-6 <sm:grid-cols-3 <md:grid-cols-4 gap-12">
+      <div className="grid grid-cols-3 <sm:grid-cols-1 <md:grid-cols-2 gap-12 xl:grid-cols-4">
         {projects.map((project) => {
           return (
             <Link
@@ -25,9 +21,16 @@ export const ProjectList: FC = () => {
               as={`projects/${project.id}`}
               key={project.id}
             >
-              <a className="flex flex-col">
-                <ProjectIcon avatar={project.avatar} alt={project.name} />
-                <h4>{project.name}</h4>
+              <a className="grid grid-cols-[1fr_2fr] gap-4">
+                <ProjectIcon avatar={project.avatar} name={project.name} />
+                <span className="flex flex-shrink-0 flex-grow flex-col text-left gap-2">
+                  <h4 className="font-2xl font-medium m-0 p-0">
+                    {project.name}
+                  </h4>
+                  <span className="line-clamp-2 text-sm <sm:line-clamp-5 <md:line-clamp-4">
+                    {project.description}
+                  </span>
+                </span>
               </a>
             </Link>
           )

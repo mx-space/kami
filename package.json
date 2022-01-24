@@ -20,12 +20,10 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "prettier --ignore-path ./.gitignore --write ",
-      "eslint --cache",
-      "git add ."
+      "eslint --cache"
     ],
     "config.init.yaml": [
-      "npm run gen-config",
-      "git add ."
+      "npm run gen-config"
     ]
   },
   "scripts": {

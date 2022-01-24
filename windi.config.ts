@@ -6,7 +6,7 @@ export default defineConfig({
     exclude: ['node_modules', '.git', '.next'],
   },
   darkMode: 'class',
-
+  plugins: [require('windicss/plugin/line-clamp')],
   theme: {
     extend: {
       screens: {

@@ -4,17 +4,11 @@
   :global {
     a {
       color: inherit;
-      display: block;
       transition: transform 0.5s cubic-bezier(0.36, 1.1, 0.2, 1.2);
     }
 
     a:hover {
       transform: translateY(-0.5em);
-    }
-
-    h3,
-    h4 {
-      margin-top: 1rem;
     }
 
     .project-icon,

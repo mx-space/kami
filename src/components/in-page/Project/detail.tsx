@@ -28,7 +28,7 @@ export const ProjectDetail: FC<{ id: string }> = (props) => {
   return (
     <>
       <section className={styles['head']}>
-        <ProjectIcon avatar={project.avatar} alt={project.name} />
+        <ProjectIcon avatar={project.avatar} name={project.name} />
         <div className="flex flex-col project-detail">
           <h1>{name}</h1>
           <p>{description}</p>
