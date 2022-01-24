@@ -1,8 +1,7 @@
 .placeholder-image {
-  @apply h-full w-full absolute max-w-full;
+  @apply h-full w-full absolute max-w-full bg-current;
 
-  z-index: -1;
-  color: #e6e6e6;
+  z-index: 1;
   border-radius: 3px;
   transition: opacity 0.5s, height 0.2s, width 0.2s;
   top: 0;
@@ -28,7 +27,7 @@
 .lazyload-image {
   animation: blur 0.8s forwards ease-in-out;
 
-  &[data-status="loaded"] + .placeholder-image {
+  &[data-status='loaded'] + .placeholder-image {
     @apply invisible;
 
     opacity: 0;
@@ -48,11 +47,11 @@
   margin: 12px 0;
 
   &::before {
-    content: "⇡ ";
+    content: '⇡ ';
   }
 
   &::after {
-    content: "";
+    content: '';
     bottom: -4px;
     position: absolute;
     width: 3rem;

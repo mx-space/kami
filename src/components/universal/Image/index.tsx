@@ -5,10 +5,10 @@ import {
   ClassAttributes,
   DetailedHTMLProps,
   FC,
+  forwardRef,
   ImgHTMLAttributes,
   memo,
   RefObject,
-  useCallback,
   useEffect,
   useRef,
   useState,
@@ -56,13 +56,10 @@ const Image: FC<
       image.onerror = () => {
         try {
           if (placeholderRef && placeholderRef.current) {
-            placeholderRef.current.innerHTML = `
-            <span style="color: currentColor; filter: invert(100%) brightness(1.5)">图片加载失败!</span>
+            placeholderRef.current.innerHTML = `<p style="color: currentColor; filter: invert(100%) brightness(1.5)"><span>图片加载失败!</span><br/>
             <a href="${escapeHTMLTag(
               image.src,
-            )}" target="_blank">${escapeHTMLTag(image.src)}
-            </a>
-            `
+            )}" target="_blank">${escapeHTMLTag(image.src)}</a></p>`
             placeholderRef.current.style.zIndex = '2'
           }
           // eslint-disable-next-line no-empty
@@ -122,25 +119,6 @@ export const ImageLazy: FC<
 
   const wrapRef = useRef<HTMLDivElement>(null)
 
-  const Placeholder = useCallback(
-    (ref: any) => {
-      return (
-        <div
-          className={classNames(styles['placeholder-image'], props.className)}
-          ref={ref}
-          style={{
-            height,
-            width,
-            color: backgroundColor,
-            backgroundColor: 'currentColor',
-            zIndex: -1,
-          }}
-        ></div>
-      )
-    },
-    [backgroundColor, height, props.className, width],
-  )
-
   return (
     <figure style={style} className="inline-block">
       {defaultImage ? (
@@ -163,7 +141,14 @@ export const ImageLazy: FC<
             src={src}
             alt={alt}
             loadEagerly={!isClientSide()}
-            placeholder={({ ref }) => Placeholder(ref)}
+            placeholder={({ ref }) => (
+              <PlaceholderImage
+                ref={ref}
+                height={height}
+                width={width}
+                backgroundColor={backgroundColor}
+              />
+            )}
             actual={(props) => {
               return (
                 <Image
@@ -189,7 +174,6 @@ export const ImageLazy: FC<
                 : undefined
             }
           />
-          {Placeholder(placeholderRef)}
         </div>
       )}
       {alt && (alt.startsWith('!') || alt.startsWith('¡')) && (
@@ -199,6 +183,25 @@ export const ImageLazy: FC<
   )
 })
 
+const PlaceholderImage = memo(
+  forwardRef<
+    HTMLDivElement,
+    { ref: any; className?: string } & Partial<ImageProps>
+  >((props, ref) => {
+    const { backgroundColor, height, width } = props
+    return (
+      <div
+        className={classNames(styles['placeholder-image'], props.className)}
+        ref={ref}
+        style={{
+          height,
+          width,
+          color: backgroundColor,
+        }}
+      ></div>
+    )
+  }),
+)
 export const ImageLazyWithPopup: FC<
   { src: string; alt?: string } & Partial<
     ImageProps &
