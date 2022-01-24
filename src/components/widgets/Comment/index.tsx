@@ -24,7 +24,7 @@ export type CommentType = 'Note' | 'Post' | 'Page'
 
 export const CommentContext = createContext({
   type: '' as CommentType,
-  refresh: {} as () => any,
+  refresh: {} as (page?: number, size?: number, force?: boolean) => any,
   collection: new Map<string, Omit<CommentModel, 'children'>>(),
 })
 
@@ -159,8 +159,8 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
         <span id="comment-anchor"></span>
         {commentShow ? (
           <Fragment>
-            <Comments comments={comments} onFetch={fetchComments} id={id} />
-            <div style={{ textAlign: 'center' }}>
+            <Comments comments={comments} id={id} />
+            <div className="text-center">
               {page && page.totalPage !== 0 && page.total !== undefined && (
                 <Pagination
                   hideOnSinglePage
