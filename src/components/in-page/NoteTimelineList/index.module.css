@@ -1,24 +1,27 @@
 .container {
   @apply absolute top-0 bottom-0 leading-[1.8];
 
-  left: -12px;
+  left: -1.4rem;
   transform: translateX(-100%);
   font-family: sans-serif;
   color: var(--shizuku-text-color);
 }
 
 .list {
-  @apply sticky;
+  @apply sticky truncate;
 
   top: 50vh;
   transform: translateY(-50%);
   width: calc(10rem + 12px);
   max-height: calc(100vh - 20em);
-  overflow: hidden;
+
+  li {
+    @apply truncate;
+  }
 }
 
 .item {
-  @apply opacity-60 truncate text-left;
+  @apply opacity-60 text-left;
 
   width: 10rem;
   transition: opacity 0.5s, margin 0.5s, color 0.5s;

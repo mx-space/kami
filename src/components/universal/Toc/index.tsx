@@ -1,6 +1,5 @@
 import classNames from 'clsx'
 import throttle from 'lodash/throttle'
-import QueueAnim from 'rc-queue-anim'
 import {
   FC,
   memo,
@@ -10,8 +9,10 @@ import {
   useRef,
   useState,
 } from 'react'
+import { TransitionGroup } from 'react-transition-group'
 import { CustomEventTypes } from 'types/events'
 import { eventBus } from 'utils'
+import { RightTopTransitionView } from '../Transition/right-left'
 import styles from './index.module.css'
 import { TocItem } from './item'
 export type TocHeading = {
@@ -80,25 +81,27 @@ export const Toc: FC<TocProps> = memo(({ headings: $headings }) => {
         className={classNames('container', styles['container'])}
         ref={containerRef}
       >
-        <QueueAnim className={styles['anime-wrapper']}>
+        <TransitionGroup className={styles['anime-wrapper']}>
           {headings &&
-            headings.map((heading) => {
+            headings.map((heading, i) => {
               return (
-                <TocItem
-                  index={heading.index}
-                  onClick={handleItemClick}
-                  active={heading.index === index}
-                  depth={heading.depth}
-                  title={heading.title}
-                  key={heading.title}
-                  rootDepth={headings.reduce(
-                    (d, cur) => Math.min(d, cur.depth),
-                    1,
-                  )}
-                />
+                <RightTopTransitionView timeout={{ enter: 100 * i }}>
+                  <TocItem
+                    index={heading.index}
+                    onClick={handleItemClick}
+                    active={heading.index === index}
+                    depth={heading.depth}
+                    title={heading.title}
+                    key={heading.title}
+                    rootDepth={headings.reduce(
+                      (d, cur) => Math.min(d, cur.depth),
+                      1,
+                    )}
+                  />
+                </RightTopTransitionView>
               )
             })}
-        </QueueAnim>
+        </TransitionGroup>
       </div>
     </section>
   )
