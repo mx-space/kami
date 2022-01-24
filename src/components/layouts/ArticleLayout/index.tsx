@@ -6,7 +6,6 @@ import {
   memo,
   useCallback,
 } from 'react'
-import { animatingClassName } from '../NoteLayout'
 import { ArticleLayoutContextProvider } from './hooks'
 import styles from './index.module.css'
 import { ArticleLayoutTitle } from './title'
@@ -74,3 +73,7 @@ export const ArticleLayout = memo(
     },
   ),
 )
+export const animatingClassName: [string, string] = [
+  '',
+  'absolute padding-b100 max-w-full',
+]
