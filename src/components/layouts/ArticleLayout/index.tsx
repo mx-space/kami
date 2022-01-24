@@ -1,10 +1,10 @@
-import QueueAnim from 'rc-queue-anim'
+import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
 import {
   DetailedHTMLProps,
   forwardRef,
   HTMLAttributes,
   memo,
-  useCallback,
+  useMemo,
 } from 'react'
 import { ArticleLayoutContextProvider } from './hooks'
 import styles from './index.module.css'
@@ -20,7 +20,6 @@ export interface ArticleLayoutProps {
   id?: string
 }
 
-const animConfig = { opacity: [1, 0], translateY: [0, 50] }
 export const ArticleLayout = memo(
   forwardRef<
     HTMLElement,
@@ -50,30 +49,17 @@ export const ArticleLayout = memo(
             data-type={type}
           >
             <ArticleLayoutTitle />
-            <QueueAnim
-              delay={delay ?? 300}
-              duration={500}
-              animConfig={animConfig}
-              onEnd={useCallback((e) => {
-                const { target, type } = e
-                if (type === 'enter') {
-                  const $t = target as HTMLDivElement
-                  $t.style.transform = ''
-                }
-              }, [])}
-              animatingClassName={animatingClassName}
+            <BottomUpTransitionView
+              timeout={useMemo(() => ({ enter: delay ?? 300 }), [delay])}
+              key={id}
             >
               <article className="main-article-md" key={id}>
                 {children}
               </article>
-            </QueueAnim>
+            </BottomUpTransitionView>
           </main>
         </ArticleLayoutContextProvider>
       )
     },
   ),
 )
-export const animatingClassName: [string, string] = [
-  '',
-  'absolute padding-b100 max-w-full',
-]

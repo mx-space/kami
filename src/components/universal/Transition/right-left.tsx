@@ -18,7 +18,7 @@ const transitionStyles = {
   exited: { transform: `translateX(3em)`, opacity: 0 },
 }
 
-export const RightTopTransitionView: FC<
+export const RightLeftTransitionView: FC<
   RightLeftTransitionViewProps & Partial<TransitionProps>
 > = (props) => {
   const { id, ...rest } = props

@@ -152,6 +152,8 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
           arr.flat(2).filter((i) => typeof i === 'object').length
         }篇文章，${!props.memory ? '再接再厉' : '回顾一下从前吧'}`,
       ]}
+      delay={500}
+      key={props.memory ? 'memory' : 'timeline'}
     >
       {!props.memory && (
         <div style={{ marginTop: '-3rem', marginBottom: '3rem' }}>
@@ -173,13 +175,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
                 {value.map((item, i) => {
                   return (
                     <div key={item.id}>
-                      <li
-                        key={item.id}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                        }}
-                      >
+                      <li key={item.id} className="flex items-center">
                         <Link href={item.href} as={item.as}>
                           <a>
                             <span className={'date'}>
@@ -195,7 +191,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
                           <FontAwesomeIcon
                             icon={faBookmark}
                             color={'red'}
-                            style={{ marginRight: '1rem', cursor: 'pointer' }}
+                            className="mr-4 cursor-pointer"
                             onClick={() => {
                               router.push({ query: { memory: true } })
                             }}

@@ -1,12 +1,11 @@
 import { observer } from 'mobx-react-lite'
-import RcQueueAnim from 'rc-queue-anim'
 import TextyAnim from 'rc-texty'
 import { useStore } from 'store'
 import { isClientSide, resolveUrl } from 'utils'
 import { useArticleLayoutProps } from './hooks'
 import styles from './index.module.css'
 
-export const ArticleLayoutTitle = observer((props) => {
+export const ArticleLayoutTitle = observer(() => {
   const { userStore } = useStore()
   const {
     title,
@@ -22,18 +21,17 @@ export const ArticleLayoutTitle = observer((props) => {
   return (
     <section className={styles['post-title']}>
       <h1 className={styles['h1']}>
-        <RcQueueAnim type="alpha" leaveReverse appear={false}>
-          {isClientSide() ? (
-            <TextyAnim type={'mask-bottom'} mode={'smooth'} key={title}>
-              {title}
-            </TextyAnim>
-          ) : (
-            title
-          )}
-        </RcQueueAnim>
+        {isClientSide() ? (
+          <TextyAnim type={'mask-bottom'} mode={'smooth'} key={title}>
+            {title}
+          </TextyAnim>
+        ) : (
+          title
+        )}
+
         {type && id && isLogged && url ? (
           <a
-            className="edit-link float-right"
+            className="edit-link float-right text-green"
             target="_blank"
             href={
               resolveUrl(
@@ -49,37 +47,32 @@ export const ArticleLayoutTitle = observer((props) => {
 
       {subtitle && (
         <h2>
-          <RcQueueAnim
-            type={'alpha'}
-            // animatingClassName={['absolute', 'absolute']}
-          >
-            {isClientSide() && subtitleAnimation ? (
-              typeof subtitle === 'string' ? (
+          {isClientSide() && subtitleAnimation ? (
+            typeof subtitle === 'string' ? (
+              <TextyAnim
+                type={'mask-bottom'}
+                mode={'smooth'}
+                delay={500}
+                key={subtitle}
+              >
+                {subtitle}
+              </TextyAnim>
+            ) : (
+              subtitle.map((str, index) => (
                 <TextyAnim
+                  className={'mb-2'}
                   type={'mask-bottom'}
                   mode={'smooth'}
-                  delay={500}
-                  key={subtitle}
+                  delay={500 * index}
+                  key={subtitle[index]}
                 >
-                  {subtitle}
+                  {str}
                 </TextyAnim>
-              ) : (
-                subtitle.map((str, index) => (
-                  <TextyAnim
-                    className={'mb-2'}
-                    type={'mask-bottom'}
-                    mode={'smooth'}
-                    delay={500 * index}
-                    key={index}
-                  >
-                    {str}
-                  </TextyAnim>
-                ))
-              )
-            ) : (
-              subtitle
-            )}
-          </RcQueueAnim>
+              ))
+            )
+          ) : (
+            subtitle
+          )}
         </h2>
       )}
     </section>

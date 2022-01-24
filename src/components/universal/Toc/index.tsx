@@ -12,7 +12,7 @@ import {
 import { TransitionGroup } from 'react-transition-group'
 import { CustomEventTypes } from 'types/events'
 import { eventBus } from 'utils'
-import { RightTopTransitionView } from '../Transition/right-left'
+import { RightLeftTransitionView } from '../Transition/right-left'
 import styles from './index.module.css'
 import { TocItem } from './item'
 export type TocHeading = {
@@ -85,7 +85,7 @@ export const Toc: FC<TocProps> = memo(({ headings: $headings }) => {
           {headings &&
             headings.map((heading, i) => {
               return (
-                <RightTopTransitionView timeout={{ enter: 100 * i }}>
+                <RightLeftTransitionView timeout={{ enter: 100 * i }}>
                   <TocItem
                     index={heading.index}
                     onClick={handleItemClick}
@@ -98,7 +98,7 @@ export const Toc: FC<TocProps> = memo(({ headings: $headings }) => {
                       1,
                     )}
                   />
-                </RightTopTransitionView>
+                </RightLeftTransitionView>
               )
             })}
         </TransitionGroup>
