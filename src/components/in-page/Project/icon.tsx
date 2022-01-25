@@ -1,8 +1,6 @@
 import clsx from 'clsx'
 import { ImageLazy } from 'components/universal/Image'
-import { observer } from 'mobx-react-lite'
 import { FC, memo, useEffect, useRef, useState } from 'react'
-import { useStore } from 'store'
 
 export const ProjectIcon: FC<{ avatar?: string; name?: string }> = memo(
   (props) => {
@@ -27,14 +25,10 @@ export const ProjectIcon: FC<{ avatar?: string; name?: string }> = memo(
 )
 
 // TODO: wait for new CSS unit
-const FlexText: FC<{ text: string; size: number }> = observer((props) => {
+const FlexText: FC<{ text: string; size: number }> = memo((props) => {
   const ref = useRef<HTMLSpanElement>(null)
   const [done, setDone] = useState(false)
-  const {
-    appUIStore: {
-      viewport: { w },
-    },
-  } = useStore()
+
   useEffect(() => {
     if (!ref.current) {
       return
@@ -42,12 +36,22 @@ const FlexText: FC<{ text: string; size: number }> = observer((props) => {
 
     const $el = ref.current
     const $parent = $el.parentElement
+    let observe: ResizeObserver
     if ($parent) {
-      const { width } = $parent.getBoundingClientRect()
-      $el.style.fontSize = `${(width / props.text.length) * props.size}px`
-      setDone(true)
+      observe = new ResizeObserver(() => {
+        const { width } = $parent.getBoundingClientRect()
+        $el.style.fontSize = `${(width / props.text.length) * props.size}px`
+        setDone(true)
+      })
+      observe.observe($parent)
     }
-  }, [props.size, w])
+
+    return () => {
+      if (observe) {
+        observe.disconnect()
+      }
+    }
+  }, [props.size])
   return (
     <span ref={ref} className={done ? '' : 'invisible'}>
       {props.text}
