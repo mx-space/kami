@@ -31,7 +31,7 @@ const CategoryListView: NextPage<CategoryListViewProps> = (props) => {
               return (
                 <RightLeftTransitionView
                   key={child.id}
-                  timeout={{ enter: 700 + 100 * i }}
+                  timeout={{ enter: 700 + 50 * i }}
                 >
                   <li>
                     <Link

@@ -9,7 +9,7 @@ import { observer } from 'mobx-react-lite'
 import { FC, useCallback, useEffect, useRef, useState } from 'react'
 import { useStore } from '../../../store'
 import { Switch } from '../../universal/LampSwitch'
-import { NoticePanel } from '../../universal/Notice'
+import { NoticePanel as ColorModeNoticePanel } from '../../universal/Notice'
 
 export const BasicLayout: FC = observer(({ children }) => {
   const { appStore, actionStore } = useStore()
@@ -72,9 +72,12 @@ export const BasicLayout: FC = observer(({ children }) => {
         <Switch onClick={handleChangeColorMode} />
       )}
 
-      {showNotice && (
-        <NoticePanel {...tip} setShow={setNotice} key={'notice'} />
-      )}
+      <ColorModeNoticePanel
+        {...tip}
+        onExited={() => setNotice(false)}
+        in={showNotice}
+        key={'notice'}
+      />
     </>
   )
 })

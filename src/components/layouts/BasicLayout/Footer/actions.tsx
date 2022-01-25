@@ -5,11 +5,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'clsx'
-import { QueueAnim } from 'components/universal/Anime'
+import { ScaleTransitionView } from 'components/universal/Transition/scale'
 import { ChatPanel } from 'components/widgets/Chat'
 import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import React, { FC, useEffect, useState } from 'react'
+import { TransitionGroup } from 'react-transition-group'
 import { useStore } from 'store'
 import { EventTypes } from 'types/events'
 import { eventBus } from 'utils'
@@ -54,16 +55,19 @@ export const FooterActions: FC = observer(() => {
         >
           <FontAwesomeIcon icon={faArrowUp} />
         </button>
-
-        <QueueAnim type="scale" leaveReverse ease="easeInQuart" forcedReplay>
+        <TransitionGroup>
           {actionStore.actions.map((action, i) => {
             return (
-              <button key={i} onClick={action.onClick}>
-                {action.icon}
-              </button>
+              <ScaleTransitionView
+                key={i}
+                unmountOnExit
+                timeout={{ exit: 300 }}
+              >
+                <button onClick={action.onClick}>{action.icon}</button>
+              </ScaleTransitionView>
             )
           })}
-        </QueueAnim>
+        </TransitionGroup>
 
         <button
           onClick={() => {

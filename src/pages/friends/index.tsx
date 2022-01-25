@@ -7,40 +7,31 @@ import { NoSSR } from 'utils'
 import { apiClient } from 'utils/client'
 import { ApplyForLink } from '../../components/in-page/ApplyLink'
 import { ArticleLayout } from '../../components/layouts/ArticleLayout'
-import { QueueAnim } from '../../components/universal/Anime'
 import { SEO } from '../../components/universal/Seo'
 
 const renderSection = (data: LinkModel[]) => {
   return (
     <div className="note-item">
       <ul>
-        <QueueAnim delay={700}>
-          <div className="" key={data.length}>
-            {data.map((link) => {
-              return (
-                <li key={link.id}>
-                  <a href={link.url} target={'_blank'}>
-                    {link.name}
-                  </a>
-                  <span className="meta">{link.description || ''}</span>
-                </li>
-              )
-            })}
-          </div>
-        </QueueAnim>
+        <div key={data.length}>
+          {data.map((link) => {
+            return (
+              <li key={link.id}>
+                <a href={link.url} target={'_blank'}>
+                  {link.name}
+                </a>
+                <span className="meta">{link.description || ''}</span>
+              </li>
+            )
+          })}
+        </div>
       </ul>
     </div>
   )
 }
 
-const renderTitle = (text: string, delay: number) => {
-  return (
-    <QueueAnim delay={delay} type="right">
-      <strong key={delay} style={{ fontSize: '1.5rem' }}>
-        {text}
-      </strong>
-    </QueueAnim>
-  )
+const renderTitle = (text: string) => {
+  return <h1 className="!text-xl headline">{text}</h1>
 }
 const FriendsView: NextPage<{ data: LinkModel[] }> = (props) => {
   const friends: LinkModel[] = []
@@ -64,16 +55,16 @@ const FriendsView: NextPage<{ data: LinkModel[] }> = (props) => {
   return (
     <ArticleLayout title={'朋友们'} subtitle={'海内存知己, 天涯若比邻'}>
       <SEO title={'朋友们'} />
-      <article className="  article-list">
+      <article className="article-list">
         {friends.length > 0 && (
           <>
-            {collections.length !== 0 && renderTitle('互相关注', 650)}
+            {collections.length !== 0 && renderTitle('互相关注')}
             {renderSection(friends)}
           </>
         )}
         {collections.length > 0 && (
           <>
-            {friends.length !== 0 && renderTitle('个人收藏', 850)}
+            {friends.length !== 0 && renderTitle('个人收藏')}
             {renderSection(collections)}
           </>
         )}
@@ -89,7 +80,7 @@ const _Footer: FC = () => {
     user: { avatar, name },
   } = useInitialData()
   return (
-    <QueueAnim delay={1000}>
+    <>
       <ApplyForLink key={'link'} />
 
       <Markdown
@@ -127,7 +118,7 @@ const _Footer: FC = () => {
           .map((i) => i.trim())
           .join('\n')}
       />
-    </QueueAnim>
+    </>
   )
 }
 

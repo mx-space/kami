@@ -5,7 +5,6 @@ import { ArticleLayout } from 'components/layouts/ArticleLayout'
 import { Loading } from 'components/universal/Loading'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import RcQueueAnim from 'rc-queue-anim'
 import React, { Fragment, useEffect, useState } from 'react'
 import { apiClient } from 'utils/client'
 import { SEO } from '../../components/universal/Seo'
@@ -40,35 +39,33 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
     <ArticleLayout>
       <SEO title={'博文'} />
 
-      <RcQueueAnim type={['bottom', 'alpha']}>
-        <article className="" key={'note'}>
-          {posts.length > 0 ? (
-            <Fragment>
-              {posts.map((post) => {
-                const { slug, text, created, title, id } = post
+      <article key={'note'}>
+        {posts.length > 0 ? (
+          <Fragment>
+            {posts.map((post) => {
+              const { slug, text, created, title, id } = post
 
-                return (
-                  <PostBlock
-                    title={title}
-                    date={created}
-                    key={id}
-                    text={text}
-                    slug={slug}
-                    raw={post}
-                  />
-                )
-              })}
-            </Fragment>
-          ) : pagination ? (
-            <div>
-              <p>站长没有写过一篇文章啦</p>
-              <p>稍后来看看吧!</p>
-            </div>
-          ) : (
-            <Loading loadingText="正在加载.." />
-          )}
-        </article>
-      </RcQueueAnim>
+              return (
+                <PostBlock
+                  title={title}
+                  date={created}
+                  key={id}
+                  text={text}
+                  slug={slug}
+                  raw={post}
+                />
+              )
+            })}
+          </Fragment>
+        ) : pagination ? (
+          <div>
+            <p>站长没有写过一篇文章啦</p>
+            <p>稍后来看看吧!</p>
+          </div>
+        ) : (
+          <Loading loadingText="正在加载.." />
+        )}
+      </article>
 
       {pagination && (
         <section className="kami-more">

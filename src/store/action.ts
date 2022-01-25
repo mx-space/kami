@@ -43,11 +43,14 @@ export default class ActionStore {
     }
   }
   removeActionByIndex(index: number) {
-    this._actions.splice(index, 1)
+    if (index !== -1) {
+      this._actions.splice(index, 1)
+    }
   }
 
   removeActionBySymbol(id: symbol) {
     const index = this._actions.findIndex((i) => i.id === id)
+
     this.removeActionByIndex(index)
   }
   get actions() {

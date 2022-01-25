@@ -6,9 +6,12 @@
   width: 20rem;
   background: var(--light-bg);
   z-index: 10;
+  display: flex;
+  flex-direction: column;
 
   .header {
     border-bottom: 1px solid var(--yellow);
+    flex: 0;
     line-height: 2;
     text-align: center;
     font-weight: 500;
@@ -16,10 +19,12 @@
   }
 
   .container {
+    flex-grow: 1;
+    flex-shrink: 1;
     margin: 10px;
-    height: 18rem;
     padding: 8px;
     overflow: auto;
+    position: relative;
   }
 
   .footer {
@@ -35,12 +40,13 @@
   }
 
   .text {
+    padding: 0 1em;
     width: 100%;
     background-color: var(--light-bg);
     color: var(--shizuku-text-color);
   }
 
-  box-shadow: rgba($color: #000, $alpha: 20%) 0 0 20px;
+  @apply shadow shadow-light-500;
 
   &,
   .text,

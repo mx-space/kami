@@ -1,11 +1,12 @@
-import { QueueAnim } from 'components/universal/Anime'
 import { Avatar } from 'components/universal/Avatar'
 import { FontIcon } from 'components/universal/FontIcon'
+import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
 import { useThemeConfig } from 'hooks/use-initial-data'
 import { observer } from 'mobx-react-lite'
 import { useIndexViewContext } from 'pages'
 import TextyAnim from 'rc-texty'
-import { FC, useMemo } from 'react'
+import { FC } from 'react'
+import { TransitionGroup } from 'react-transition-group'
 import { useStore } from 'store'
 import { NoSSR } from 'utils'
 import styles from './intro.module.css'
@@ -51,32 +52,30 @@ export const HomeIntro: FC = observer(() => {
     </section>
   )
 })
-
+// 首页 社交 图标栏
 const Social = NoSSR(() => {
   const config = useThemeConfig()
   const { doAnimation } = useIndexViewContext()
   const { social } = config.site
   return (
-    <QueueAnim
-      delay={500}
-      duration={500}
-      appear={doAnimation}
-      animConfig={useMemo(() => ({ opacity: [1, 0], translateY: [0, 50] }), [])}
-    >
-      <div className="social-icons" key={'a'}>
-        {social.map((item) => {
-          return (
+    <TransitionGroup appear={doAnimation} className="social-icons space-x-4">
+      {social.map((item, i) => {
+        return (
+          <BottomUpTransitionView
+            appear={doAnimation}
+            timeout={{ enter: 500 + 30 * i }}
+            key={item.title}
+          >
             <a
               href={item.url}
               target="_blank"
-              key={item.title}
               style={item.color ? { color: item.color } : undefined}
             >
               <FontIcon icon={item.icon} />
             </a>
-          )
-        })}
-      </div>
-    </QueueAnim>
+          </BottomUpTransitionView>
+        )
+      })}
+    </TransitionGroup>
   )
 })

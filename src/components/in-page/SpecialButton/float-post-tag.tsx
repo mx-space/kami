@@ -1,12 +1,14 @@
 import { faTags } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { PostModel, TagModel } from '@mx-space/api-client'
-import { QueueAnim } from 'components/universal/Anime'
 import { OverLay } from 'components/universal/Overlay'
 import { BigTag } from 'components/universal/Tag'
+import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
+import { RightLeftTransitionView } from 'components/universal/Transition/right-left'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import { FC, useCallback, useEffect, useRef, useState } from 'react'
+import { TransitionGroup } from 'react-transition-group'
 import { store } from 'store'
 import { apiClient, NoSSR } from 'utils'
 
@@ -51,7 +53,7 @@ const _FloatPostTagButton: FC = observer(() => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
       actionStore.removeActionBySymbol(idSymbol.current)
     }
-  }, [actionStore, tags.length])
+  }, [tags.length])
 
   return (
     <OverLay
@@ -74,48 +76,61 @@ const _FloatPostTagButton: FC = observer(() => {
         }}
       >
         <div className="absolute z-[3] bottom-[50vh] top-[100px]">
-          <QueueAnim type="bottom" className="flex items-end flex-wrap">
-            {tags.map(({ name }) => {
+          <TransitionGroup className="flex items-end flex-wrap">
+            {tags.map(({ name }, i) => {
               return (
-                <BigTag
-                  tagName={name}
+                <BottomUpTransitionView
+                  appear
+                  unmountOnExit
                   key={name}
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    fetchPostsWithTag(name)
-                  }}
-                />
+                  timeout={{ enter: 50 * i }}
+                >
+                  <BigTag
+                    tagName={name}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      fetchPostsWithTag(name)
+                    }}
+                  />
+                </BottomUpTransitionView>
               )
             })}
-          </QueueAnim>
+          </TransitionGroup>
         </div>
 
         <div className="top-[50vh] absolute">
-          <article className="  article-list !all:text-light-400">
+          <article className="article-list !all:text-light-400">
             <ul>
-              <QueueAnim delay={700} forcedReplay appear>
+              <TransitionGroup>
                 {postWithTag ? (
-                  postWithTag.map((child) => {
+                  postWithTag.map((child, i) => {
                     const date = new Date(child.created)
 
                     return (
-                      <li key={child.id}>
-                        <Link
-                          href={'/posts/[category]/[slug]'}
-                          as={`/posts/${child.category.slug}/${child.slug}`}
-                        >
-                          <a>{child.title}</a>
-                        </Link>
-                        <span className={'meta'}>
-                          {Intl.DateTimeFormat('en-US').format(date)}
-                        </span>
-                      </li>
+                      <RightLeftTransitionView
+                        key={child.id}
+                        timeout={{ enter: 50 * i }}
+                      >
+                        <li>
+                          <Link
+                            href={'/posts/[category]/[slug]'}
+                            as={`/posts/${child.category.slug}/${child.slug}`}
+                          >
+                            <a>{child.title}</a>
+                          </Link>
+                          <span className={'meta'}>
+                            {Intl.DateTimeFormat('en-US').format(date)}
+                          </span>
+                        </li>
+                      </RightLeftTransitionView>
                     )
                   })
                 ) : (
-                  <span>载入中.</span>
+                  <RightLeftTransitionView timeout={100}>
+                    <span>载入中.</span>
+                  </RightLeftTransitionView>
                 )}
-              </QueueAnim>
+              </TransitionGroup>
             </ul>
           </article>
         </div>

@@ -180,7 +180,7 @@ export const CommentBox: FC<{
   )
 
   return (
-    <div>
+    <div className="my-4">
       {!logged && (
         <div className={styles['comment-box-head']}>
           <Input

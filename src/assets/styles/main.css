@@ -3,7 +3,6 @@
 @import './theme.css';
 @import './extra.css';
 @import './shizuku.css';
-@import './atom.css';
 
 [data-nextjs-dialog-backdrop-fixed] {
   backdrop-filter: none !important;

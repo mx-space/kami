@@ -5,13 +5,21 @@ import {
   faUsers,
 } from '@fortawesome/free-solid-svg-icons'
 import { AggregateTop } from '@mx-space/api-client'
-import { QueueAnim } from 'components/universal/Anime'
+import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
 import { useThemeConfig } from 'hooks/use-initial-data'
 import { shuffle } from 'lodash-es'
 import Router from 'next/router'
 import { useIndexViewContext } from 'pages'
-import { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, {
+  FC,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import { message } from 'react-message-popup'
+import { TransitionGroup } from 'react-transition-group'
 import { apiClient, getRandomImage, NoSSR, stopEventDefault } from 'utils'
 import styles from './section.module.css'
 import SectionNews, { SectionCard, SectionNewsProps } from './SectionNews'
@@ -70,82 +78,75 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
 
   const { doAnimation } = useIndexViewContext()
 
+  const SectionCompList = [
+    <SectionNews {...sections.current.postSection} key="1" />,
+    <SectionNews {...sections.current.noteSection} key="2" />,
+    <SectionWrap
+      title="朋友们"
+      moreUrl="friends"
+      icon={faUsers}
+      key="3"
+      className={'w-full'}
+    >
+      <FriendsSection />
+    </SectionWrap>,
+    <SectionWrap title="了解更多" icon={faHeart} showMoreIcon={false} key="4">
+      <SectionCard
+        title="留言"
+        desc="你的话对我很重要"
+        src={useMemo(() => getRandomUnRepeatImage(), [])}
+        href="/message"
+        onClick={useCallback((e) => {
+          stopEventDefault(e)
+          Router.push('/[page]', '/message')
+        }, [])}
+      />
+      <SectionCard
+        title="关于"
+        desc="这里有我的小秘密"
+        src={useMemo(() => getRandomUnRepeatImage(), [])}
+        href="/about"
+        onClick={useCallback((e) => {
+          stopEventDefault(e)
+          Router.push('/[page]', '/about')
+        }, [])}
+      />
+      <SectionCard
+        title={`点赞 (${like})`}
+        desc={'如果你喜欢的话点个赞呗'}
+        src={useMemo(() => getRandomUnRepeatImage(), [])}
+        href={'/like_this'}
+        onClick={useCallback((e) => {
+          stopEventDefault(e)
+          apiClient
+            .proxy('like_this')
+            .post({ params: { ts: Date.now() } })
+            .then(() => {
+              message.success('感谢喜欢 ❤️')
+              setLike((like) => like + 1)
+            })
+        }, [])}
+      />
+      <SectionCard
+        title="订阅"
+        desc="关注订阅不迷路哦"
+        src={useMemo(() => getRandomUnRepeatImage(), [])}
+        href="/feed"
+      />
+    </SectionWrap>,
+  ]
+
   return (
     <section className={styles['root']}>
-      <QueueAnim
-        className="demo-content"
-        delay={1200}
-        appear={doAnimation}
-        duration={500}
-        animConfig={useMemo(
-          () => [
-            { opacity: [1, 0], translateY: [0, 50] },
-            { opacity: [1, 0], translateY: [0, -50] },
-          ],
-          [],
-        )}
-      >
-        <SectionNews {...sections.current.postSection} key="1" />
-        <SectionNews {...sections.current.noteSection} key="2" />
-        <SectionWrap
-          title="朋友们"
-          moreUrl="friends"
-          icon={faUsers}
-          key="3"
-          className={'w-full'}
-        >
-          <FriendsSection />
-        </SectionWrap>
-        <SectionWrap
-          title="了解更多"
-          icon={faHeart}
-          showMoreIcon={false}
-          key="4"
-        >
-          <SectionCard
-            title="留言"
-            desc="你的话对我很重要"
-            src={useMemo(() => getRandomUnRepeatImage(), [])}
-            href="/message"
-            onClick={useCallback((e) => {
-              stopEventDefault(e)
-              Router.push('/[page]', '/message')
-            }, [])}
-          />
-          <SectionCard
-            title="关于"
-            desc="这里有我的小秘密"
-            src={useMemo(() => getRandomUnRepeatImage(), [])}
-            href="/about"
-            onClick={useCallback((e) => {
-              stopEventDefault(e)
-              Router.push('/[page]', '/about')
-            }, [])}
-          />
-          <SectionCard
-            title={`点赞 (${like})`}
-            desc={'如果你喜欢的话点个赞呗'}
-            src={useMemo(() => getRandomUnRepeatImage(), [])}
-            href={'/like_this'}
-            onClick={useCallback((e) => {
-              stopEventDefault(e)
-              apiClient
-                .proxy('like_this')
-                .post({ params: { ts: Date.now() } })
-                .then(() => {
-                  message.success('感谢喜欢 ❤️')
-                  setLike((like) => like + 1)
-                })
-            }, [])}
-          />
-          <SectionCard
-            title="订阅"
-            desc="关注订阅不迷路哦"
-            src={useMemo(() => getRandomUnRepeatImage(), [])}
-            href="/feed"
-          />
-        </SectionWrap>
-      </QueueAnim>
+      <TransitionGroup appear={doAnimation}>
+        {SectionCompList.map((s, i) => {
+          return (
+            <BottomUpTransitionView timeout={{ enter: 1200 + 50 * i }} key={i}>
+              {s}
+            </BottomUpTransitionView>
+          )
+        })}
+      </TransitionGroup>
     </section>
   )
 }

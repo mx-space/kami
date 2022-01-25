@@ -236,6 +236,14 @@ input[type='checkbox']:after {
   background: var(--light-bg);
 }
 
+button:focus,
+input:focus,
+div:focus,
+article:focus,
+textarea:focus {
+  outline: 0 !important;
+}
+
 /* - 表格 */
 table {
   width: 100%;

@@ -17,6 +17,6 @@
     right: -20px;
     left: -20px;
     z-index: -1;
-    background-color: rgba($color: #000, $alpha: 30%);
+    background-color: #00000030;
   }
 }

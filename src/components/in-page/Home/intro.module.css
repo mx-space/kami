@@ -23,12 +23,7 @@
     }
 
     .social-icons a {
-      margin-right: 1em;
       display: inline-block;
-    }
-
-    .social-icons a:last-child {
-      margin-right: 0;
     }
 
     .social-icons svg {

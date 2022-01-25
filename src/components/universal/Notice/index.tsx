@@ -1,9 +1,8 @@
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import TweenOne from 'rc-tween-one'
-import type { IAnimObject } from 'rc-tween-one/typings/AnimObject'
 import { FC } from 'react'
 import ReactDOM from 'react-dom'
+import { FadeInOutTransitionView } from '../Transition/fade-in-out'
 import styles from './index.module.css'
 interface NoticePanelProps {
   icon: IconDefinition
@@ -33,29 +32,27 @@ const _Notice: FC<NoticePanelProps> = (props) => {
   )
 }
 
-export const NoticePanel: FC<NoticePanelProps & { setShow: Function }> = (
-  props,
-) => {
+export const NoticePanel: FC<
+  NoticePanelProps & { in: boolean; onExited: () => any }
+> = (props) => {
   if (typeof document === 'undefined') {
     return null
   }
-  const animation: IAnimObject[] = [
-    {
-      opacity: 0,
-    },
-    { opacity: 1 },
-    { opacity: 1, duration: 3000 },
-    {
-      opacity: 0,
-      onComplete: () => {
-        props.setShow(false)
-      },
-    },
-  ]
+
   return ReactDOM.createPortal(
-    <TweenOne animation={animation} paused={false} style={{ opacity: 0 }}>
+    <FadeInOutTransitionView
+      in={props.in}
+      timeout={{ exit: 500 }}
+      appear
+      unmountOnExit
+      onEntered={() => {
+        setTimeout(() => {
+          props.onExited()
+        }, 3000)
+      }}
+    >
       <_Notice {...props} />
-    </TweenOne>,
+    </FadeInOutTransitionView>,
     document.body,
   )
 }
