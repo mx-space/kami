@@ -58,9 +58,7 @@ specifiers:
   prettier: 2.5.1
   qier-progress: 1.0.4
   randomcolor: 0.6.2
-  rc-queue-anim: 1.8.5
   rc-texty: 0.2.0
-  rc-tween-one: '*'
   react: 17.0.2
   react-countup: 6.1.1
   react-dom: 17.0.2
@@ -109,9 +107,7 @@ dependencies:
   next-seo: 4.29.0_227e7fb4dbd28186517209bc65f02635
   qier-progress: 1.0.4
   randomcolor: 0.6.2
-  rc-queue-anim: 1.8.5
   rc-texty: 0.2.0
-  rc-tween-one: 2.7.3
   react: 17.0.2
   react-countup: 6.1.1_react@17.0.2
   react-dom: 17.0.2_react@17.0.2
@@ -244,7 +240,7 @@ packages:
     resolution: {integrity: sha512-pYgXxiwAgQpgM1bNkZsDEq85f0ggXMA5L7c+o3tskGMh2BunCI9QUwB9Z4jpvXUOuMdyGKiGKQiRe11VS6Jzvg==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/code-frame': 7.16.0
+      '@babel/code-frame': 7.16.7
       '@babel/generator': 7.15.4
       '@babel/helper-compilation-targets': 7.15.4_@babel+core@7.15.5
       '@babel/helper-module-transforms': 7.15.4
@@ -1076,7 +1072,7 @@ packages:
       '@babel/helper-hoist-variables': 7.15.4
       '@babel/helper-module-transforms': 7.15.4
       '@babel/helper-plugin-utils': 7.14.5
-      '@babel/helper-validator-identifier': 7.15.7
+      '@babel/helper-validator-identifier': 7.16.7
       babel-plugin-dynamic-import-node: 2.3.3
     transitivePeerDependencies:
       - supports-color
@@ -6436,15 +6432,6 @@ packages:
       unpipe: 1.0.0
     dev: false
 
-  /rc-queue-anim/1.8.5:
-    resolution: {integrity: sha512-vTbZXBu7L3NcXUPjkFN7R80BE+1VYL1QBI10EioYYqZMk6A0iVbjoVAgfoK/Z4gIIxp399gJ8LqbMnQA1AhcXA==}
-    dependencies:
-      babel-runtime: 6.26.0
-      prop-types: 15.7.2
-      rc-tween-one: 2.7.3
-      react-lifecycles-compat: 3.0.4
-    dev: false
-
   /rc-texty/0.2.0:
     resolution: {integrity: sha512-hGaXs8ZsSL/m7LEuCySxLWZtmFJ7bwldgtH5V90v6uBfy5eTLxSVLK5TpS2DPQHZrjl4sHXjRbKsCDk6v9x29A==}
     engines: {node: '>=6.0.0'}
@@ -6920,7 +6907,7 @@ packages:
     peerDependencies:
       rollup: ^2.0.0
     dependencies:
-      '@babel/code-frame': 7.16.0
+      '@babel/code-frame': 7.16.7
       jest-worker: 26.6.2
       rollup: 2.63.0
       serialize-javascript: 4.0.0
