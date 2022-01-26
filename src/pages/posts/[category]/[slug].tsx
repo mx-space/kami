@@ -202,7 +202,12 @@ export const PostView: PageOnlyProps = observer((props) => {
           },
         }}
       />
-      <ArticleLayout title={post.title} id={post.id} type="post">
+      <ArticleLayout
+        title={post.title}
+        id={post.id}
+        type="post"
+        titleAnimate={false}
+      >
         {useMemo(
           () => (
             <>

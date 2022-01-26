@@ -13,6 +13,7 @@ import { ArticleLayoutTitle } from './title'
 export interface ArticleLayoutProps {
   title?: string
   subtitle?: string | string[]
+  titleAnimate?: boolean
   subtitleAnimation?: boolean
   delay?: number
 
@@ -35,6 +36,7 @@ export const ArticleLayout = memo(
         subtitleAnimation = true,
         type,
         id,
+        titleAnimate,
         ...rest
       },
       ref: any,
@@ -48,7 +50,7 @@ export const ArticleLayout = memo(
             id={'article-wrap'}
             data-type={type}
           >
-            <ArticleLayoutTitle />
+            <ArticleLayoutTitle animate={titleAnimate} />
             <BottomUpTransitionView
               timeout={useMemo(() => ({ enter: delay ?? 300 }), [delay])}
               key={id}

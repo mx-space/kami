@@ -3,6 +3,7 @@
   margin-left: auto;
   margin-right: auto;
   font-size: 1.2rem;
+  margin-bottom: 1em;
 
   & .title {
     position: absolute;

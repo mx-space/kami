@@ -27,3 +27,5 @@ run
 .idea
 
 src/pages/dev
+
+public/md.md

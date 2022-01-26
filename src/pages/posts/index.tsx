@@ -3,9 +3,11 @@ import { PostBlock } from 'components/in-page/PostBlock'
 import { FloatPostTagButton } from 'components/in-page/SpecialButton/float-post-tag'
 import { ArticleLayout } from 'components/layouts/ArticleLayout'
 import { Loading } from 'components/universal/Loading'
+import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React, { Fragment, useEffect, useState } from 'react'
+import { TransitionGroup } from 'react-transition-group'
 import { apiClient } from 'utils/client'
 import { SEO } from '../../components/universal/Seo'
 
@@ -39,33 +41,36 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
     <ArticleLayout>
       <SEO title={'博文'} />
 
-      <article key={'note'}>
-        {posts.length > 0 ? (
-          <Fragment>
-            {posts.map((post) => {
-              const { slug, text, created, title, id } = post
+      <TransitionGroup>
+        <article key={'note'}>
+          {posts.length > 0 ? (
+            <Fragment>
+              {posts.map((post, i) => {
+                const { slug, text, created, title, id } = post
 
-              return (
-                <PostBlock
-                  title={title}
-                  date={created}
-                  key={id}
-                  text={text}
-                  slug={slug}
-                  raw={post}
-                />
-              )
-            })}
-          </Fragment>
-        ) : pagination ? (
-          <div>
-            <p>站长没有写过一篇文章啦</p>
-            <p>稍后来看看吧!</p>
-          </div>
-        ) : (
-          <Loading loadingText="正在加载.." />
-        )}
-      </article>
+                return (
+                  <BottomUpTransitionView key={id} timeout={{ enter: 100 * i }}>
+                    <PostBlock
+                      title={title}
+                      date={created}
+                      text={text}
+                      slug={slug}
+                      raw={post}
+                    />
+                  </BottomUpTransitionView>
+                )
+              })}
+            </Fragment>
+          ) : pagination ? (
+            <div>
+              <p>站长没有写过一篇文章啦</p>
+              <p>稍后来看看吧!</p>
+            </div>
+          ) : (
+            <Loading loadingText="正在加载.." />
+          )}
+        </article>
+      </TransitionGroup>
 
       {pagination && (
         <section className="kami-more">
