@@ -1,5 +1,5 @@
+import { TextFade } from 'components/universal/Animate/text-anim'
 import { observer } from 'mobx-react-lite'
-import TextyAnim from 'rc-texty'
 import { FC } from 'react'
 import { useStore } from 'store'
 import { isClientSide, resolveUrl } from 'utils'
@@ -24,14 +24,9 @@ export const ArticleLayoutTitle: FC<{ animate?: boolean }> = observer(
       <section className={styles['post-title']}>
         <h1 className={styles['h1']}>
           {isClientSide() ? (
-            <TextyAnim
-              appear={animate}
-              type={'mask-bottom'}
-              mode={'smooth'}
-              key={title}
-            >
+            <TextFade appear={animate} key={title}>
               {title}
-            </TextyAnim>
+            </TextFade>
           ) : (
             title
           )}
@@ -58,27 +53,19 @@ export const ArticleLayoutTitle: FC<{ animate?: boolean }> = observer(
           <h2>
             {isClientSide() && subtitleAnimation ? (
               typeof subtitle === 'string' ? (
-                <TextyAnim
-                  appear={animate}
-                  type={'mask-bottom'}
-                  mode={'smooth'}
-                  delay={500}
-                  key={subtitle}
-                >
+                <TextFade appear={animate} key={subtitle}>
                   {subtitle}
-                </TextyAnim>
+                </TextFade>
               ) : (
                 subtitle.map((str, index) => (
-                  <TextyAnim
+                  <TextFade
                     appear={animate}
                     className={'mb-2'}
-                    type={'mask-bottom'}
-                    mode={'smooth'}
-                    delay={500 * index}
+                    delay={index}
                     key={subtitle[index]}
                   >
                     {str}
-                  </TextyAnim>
+                  </TextFade>
                 ))
               )
             ) : (

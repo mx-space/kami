@@ -83,6 +83,7 @@ const _FloatPostTagButton: FC = observer(() => {
                   appear
                   unmountOnExit
                   key={name}
+                  className="pr-4"
                   timeout={{ enter: 50 * i }}
                 >
                   <BigTag

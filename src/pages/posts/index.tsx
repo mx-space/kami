@@ -49,7 +49,7 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
                 const { slug, text, created, title, id } = post
 
                 return (
-                  <BottomUpTransitionView key={id} timeout={{ enter: 100 * i }}>
+                  <BottomUpTransitionView key={id} timeout={{ enter: 250 * i }}>
                     <PostBlock
                       title={title}
                       date={created}

@@ -1,14 +1,16 @@
-import { useIndexViewContext } from 'pages'
-import TextyAnim from 'rc-texty'
+import { TypeWriter } from '@innei/react-typewriter'
 import { FC, memo, useEffect } from 'react'
 import { useUpdate } from 'react-use'
 import { apiClient } from 'utils'
 
 let cacheSay = ''
+
+setInterval(() => {
+  cacheSay = ''
+}, 60 * 1000)
 export const HomeRandomSay: FC = memo(() => {
   const update = useUpdate()
 
-  const { doAnimation } = useIndexViewContext()
   useEffect(() => {
     if (cacheSay.length > 0) {
       return
@@ -26,9 +28,9 @@ export const HomeRandomSay: FC = memo(() => {
 
   return (
     <div className="overflow-hidden leading-6 text-[#aaa] my-[2rem]">
-      <TextyAnim appear={doAnimation} leave={false} type={'alpha'}>
+      <TypeWriter textArray={[cacheSay]} repeat={false}>
         {cacheSay}
-      </TextyAnim>
+      </TypeWriter>
     </div>
   )
 })

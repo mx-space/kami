@@ -3,8 +3,8 @@ import { TransitionProps } from 'react-transition-group/Transition'
 import { BaseTransitionView, BaseTransitionViewProps } from './base'
 
 const defaultStyle = {
-  transition: `transform ${280}ms cubic-bezier(0.16, 1, 0.3, 1), opacity 200ms ease`,
-  transform: `translateY(3em)`,
+  transition: `transform 500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 400ms ease`,
+  transform: `translateY(5em)`,
   opacity: 0,
 }
 

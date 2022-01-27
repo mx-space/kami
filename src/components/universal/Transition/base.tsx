@@ -4,6 +4,7 @@ import { TransitionProps } from 'react-transition-group/Transition'
 
 export interface BaseTransitionViewProps {
   id?: string
+  className?: string
 }
 
 export const BaseTransitionView: (
@@ -11,7 +12,7 @@ export const BaseTransitionView: (
   transitionStyles: any,
 ) => FC<BaseTransitionViewProps & Partial<TransitionProps>> =
   (defaultStyle, transitionStyles) => (props) => {
-    const { id, ...rest } = props
+    const { id, className, ...rest } = props
     return (
       <Transition
         key={id}
@@ -29,6 +30,7 @@ export const BaseTransitionView: (
                 ...defaultStyle,
                 ...transitionStyles[state],
               }}
+              className={className}
             >
               {props.children}
             </div>

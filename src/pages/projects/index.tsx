@@ -27,15 +27,21 @@ const ProjectView = () => {
   return (
     <main>
       <SEO title={'项目'} />
-      {loading && <Loading />}
+      {/* {loading && <Loading />} */}
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <div className="font-medium text-3xl my-12">
+            {/* <button>项目</button> / <button>GitHub</button> */}
+            项目
+          </div>
+          <BottomUpTransitionView>
+            <ProjectList projects={projects} />
+          </BottomUpTransitionView>
+        </>
+      )}
       {/* TODO fetch github repo */}
-      <div className="font-medium text-3xl my-12">
-        {/* <button>项目</button> / <button>GitHub</button> */}
-        项目
-      </div>
-      <BottomUpTransitionView>
-        <ProjectList projects={projects} />
-      </BottomUpTransitionView>
     </main>
   )
 }

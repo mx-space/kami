@@ -1,10 +1,10 @@
+import { TextFade } from 'components/universal/Animate/text-anim'
 import { Avatar } from 'components/universal/Avatar'
 import { FontIcon } from 'components/universal/FontIcon'
 import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
 import { useThemeConfig } from 'hooks/use-initial-data'
 import { observer } from 'mobx-react-lite'
 import { useIndexViewContext } from 'pages'
-import TextyAnim from 'rc-texty'
 import { FC } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import { useStore } from 'store'
@@ -32,20 +32,12 @@ export const HomeIntro: FC = observer(() => {
       </div>
       <div className="intro-info">
         <h1>
-          <TextyAnim type={'mask-bottom'} mode={'smooth'} appear={doAnimation}>
-            {user.name}
-          </TextyAnim>
+          <TextFade>{user.name || ''}</TextFade>
         </h1>
         <div className="paragraph">
-          <TextyAnim
-            appear={doAnimation}
-            type={'mask-bottom'}
-            mode={'smooth'}
-            delay={500}
-            duration={10}
-          >
-            {user.introduce}
-          </TextyAnim>
+          <TextFade duration={10} appear={doAnimation}>
+            {user.introduce || ''}
+          </TextFade>
         </div>
         <Social />
       </div>
