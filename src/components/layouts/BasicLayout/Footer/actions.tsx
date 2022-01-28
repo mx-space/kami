@@ -4,6 +4,7 @@ import {
   faPaperPlane,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { config, SpringValue } from '@react-spring/web'
 import classNames from 'clsx'
 import { ScaleTransitionView } from 'components/universal/Transition/scale'
 import { ChatPanel } from 'components/widgets/Chat'
@@ -42,15 +43,24 @@ export const FooterActions: FC = observer(() => {
         <button
           className={classNames('top', isOverflow ? 'active' : '')}
           onClick={(e) => {
-            // @ts-ignore
+            const currentScrollTop = document.documentElement.scrollTop
 
             e.preventDefault()
 
-            window.scrollTo({
-              top: 0,
-              left: 0,
-              behavior: 'smooth',
+            const springValue = new SpringValue(currentScrollTop, {
+              config: config.slow,
+
+              onChange(v: any) {
+                console.log(v)
+                requestAnimationFrame(() => {
+                  document.documentElement.scrollTop = v
+                })
+              },
             })
+
+            springValue.key = '1'
+
+            springValue.start(0)
           }}
         >
           <FontAwesomeIcon icon={faArrowUp} />
@@ -79,10 +89,6 @@ export const FooterActions: FC = observer(() => {
         >
           <FontAwesomeIcon icon={faHeadphones} />
         </button>
-
-        {/* <button>
-          <FontAwesomeIcon icon={faHeart} />
-        </button> */}
 
         <button
           onClick={(e) => {

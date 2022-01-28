@@ -1,4 +1,12 @@
 import { FC } from 'react'
+import { genSpringKeyframes } from 'utils/spring'
+
+const [name] = genSpringKeyframes(
+  'text-up',
+  { translateY: '10px', opacity: 0 },
+  { translateY: '0px', opacity: 1 },
+)
+
 export const TextFade: FC<
   {
     text?: string
@@ -26,7 +34,7 @@ export const TextFade: FC<
           key={char}
           className="inline-block"
           style={{
-            animation: `fade-up ${duration}ms both`,
+            animation: `${name} ${duration}ms both linear`,
             animationDelay: `${i * delay}ms`,
           }}
         >

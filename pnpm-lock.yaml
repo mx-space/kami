@@ -35,6 +35,7 @@ specifiers:
   axios: 0.25.0
   clsx: 1.1.1
   cross-env: '*'
+  css-spring: 4.1.0
   dayjs: 1.10.7
   devtools-detector: 2.0.6
   dotenv: 14.2.0
@@ -98,6 +99,7 @@ dependencies:
   NeteaseCloudMusicApi: 4.3.0
   axios: 0.25.0
   clsx: 1.1.1
+  css-spring: 4.1.0
   dayjs: 1.10.7
   devtools-detector: 2.0.6
   js-cookie: 3.0.1
@@ -3136,6 +3138,12 @@ packages:
       postcss: 8.4.5
     dev: true
 
+  /css-spring/4.1.0:
+    resolution: {integrity: sha1-RX3oDH31uGesBpMzK1SyrLV8RYM=}
+    dependencies:
+      lodash: 4.17.21
+    dev: false
+
   /css-tree/1.1.3:
     resolution: {integrity: sha512-tRpdppF7TRazZrjJ6v3stzv93qxRcSsFmW6cX0Zm2NVKpxE1WV1HblnghVv9TreireHkqI/VDEsfolRF1p6y7Q==}
     engines: {node: '>=8.0.0'}
@@ -5146,7 +5154,6 @@ packages:
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /log-update/4.0.0:
     resolution: {integrity: sha512-9fkkDevMefjg0mmzWFBW8YkFP91OrizzkW3diF7CpG+S2EYdy4+TVfGwz1zeF8x7hCx1ovSPTOE9Ngib74qqUg==}

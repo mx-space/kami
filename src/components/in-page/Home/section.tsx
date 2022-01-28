@@ -141,7 +141,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
       <TransitionGroup appear={doAnimation}>
         {SectionCompList.map((s, i) => {
           return (
-            <BottomUpTransitionView timeout={{ enter: 1200 + 170 * i }} key={i}>
+            <BottomUpTransitionView timeout={{ enter: 1200 + 200 * i }} key={i}>
               {s}
             </BottomUpTransitionView>
           )

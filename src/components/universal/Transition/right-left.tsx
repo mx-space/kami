@@ -1,18 +1,24 @@
 import { FC } from 'react'
 import { TransitionProps } from 'react-transition-group/Transition'
+import { genSpringKeyframes } from 'utils/spring'
 import { BaseTransitionView, BaseTransitionViewProps } from './base'
+const name = `right-left-spring`
+
+genSpringKeyframes(
+  name,
+  { translateX: '3em', opacity: 0 },
+  { translateX: '0em', opacity: 1 },
+)
 
 const defaultStyle = {
-  transition: `transform 500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 400ms ease`,
-  transform: `translateY(3em)`,
   opacity: 0,
 }
 
 const transitionStyles = {
-  entering: { transform: `translateX(3em)`, opacity: 0 },
-  entered: { transform: `translateX(0)`, opacity: 1 },
-  exiting: { transform: `translateX(3em)`, opacity: 0 },
-  exited: { transform: `translateX(3em)`, opacity: 0 },
+  entering: { opacity: 0 },
+  entered: { animation: `${name} 1000ms linear both` },
+  exiting: { animation: `${name} 1000ms linear both reverse` },
+  exited: { opacity: 0 },
 }
 
 export const RightLeftTransitionView: FC<
