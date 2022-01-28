@@ -29,6 +29,7 @@ import { useUpdate } from 'react-use'
 import { store, useStore } from 'store'
 import { imagesRecord2Map } from 'utils/images'
 import { mood2icon, weather2icon } from 'utils/meta-icon'
+import { springScrollToTop } from 'utils/spring'
 import { parseDate } from 'utils/time'
 import { Seo } from '../../components/universal/Seo'
 import { ImageSizeMetaContext } from '../../context/image-size'
@@ -147,7 +148,7 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
       document.documentElement.scrollTop = 50
     }
     setTimeout(() => {
-      window.scroll({ top: 0, left: 0, behavior: 'smooth' })
+      springScrollToTop()
     }, 10)
   }, [props.id])
 
@@ -342,11 +343,7 @@ const FooterNavigation: FC<{ id: string }> = observer(({ id }) => {
             <button
               className="btn yellow"
               onClick={() => {
-                window.scrollTo({
-                  left: 0,
-                  top: 0,
-                  behavior: 'smooth',
-                })
+                springScrollToTop()
                 router.push('/timeline?type=note')
               }}
             >

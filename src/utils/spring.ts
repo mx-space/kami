@@ -40,7 +40,7 @@ export const genSpringKeyframes = (
 
   return [name, css, keyframes]
 }
-
+export const springScrollToTop = () => springScrollTo(0)
 export const springScrollTo = (
   to: number,
   duration = 1000,
@@ -53,8 +53,9 @@ export const springScrollTo = (
   const res = spring(
     { top: scrollContainer.scrollTop },
     { top: to },
-    { stiffness: 170, damping: 25 },
+    { stiffness: 300, damping: 55 },
   )
+
   let raf: any
   const cancelScroll = () => {
     raf = cancelAnimationFrame(raf)
@@ -80,8 +81,9 @@ export const springScrollTo = (
       return
     }
     raf = requestAnimationFrame(an)
-
-    scrollContainer.scrollTop = res[percent + '%'].top
+    if (res[percent + '%']?.top) {
+      scrollContainer.scrollTop = res[percent + '%'].top
+    }
   })
 }
 
@@ -94,7 +96,16 @@ export const springScrollToElement = (
   if (!isClientSide()) {
     return
   }
-  const height = el.getBoundingClientRect().height + offset
+  const height = calculateElementTop(el) + offset
 
   return springScrollTo(height, duration, container)
+}
+
+const calculateElementTop = (el: HTMLElement) => {
+  let top = 0
+  while (el) {
+    top += el.offsetTop
+    el = el.offsetParent as HTMLElement
+  }
+  return top
 }

@@ -24,9 +24,6 @@ import Document, {
   Main,
   NextScript,
 } from 'next/document'
-import Package from '~/package.json'
-
-const { version } = Package
 
 export default class MyDocument extends Document<{ ua: string }> {
   static async getInitialProps(ctx: DocumentContext) {
@@ -97,15 +94,6 @@ export default class MyDocument extends Document<{ ua: string }> {
         <body id={'app'} className="loading">
           <Main />
           <NextScript />
-
-          <script
-            src={`https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/smooth-scroll/16.1.3/smooth-scroll.min.js`}
-          ></script>
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `new SmoothScroll('a[href*="#"]', {speed: 500,offset: 150,easing: 'easeInOutCubic',durationMax: 1000,durationMin: 350,topOnEmptyHash: true,emitEvents: true,updateURL: false,popstate: false})`,
-            }}
-          ></script>
         </body>
       </Html>
     )

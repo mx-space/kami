@@ -6,6 +6,7 @@ import Router from 'next/router'
 import React, { FC, useCallback, useMemo } from 'react'
 import removeMd from 'remove-markdown'
 import { useStore } from 'store'
+import { springScrollToTop } from 'utils/spring'
 import { parseDate } from 'utils/time'
 import styles from './index.module.css'
 
@@ -41,7 +42,7 @@ export const PostBlock: FC<PostBlockProps> = observer((props) => {
   const goToPost = useCallback(() => {
     const categorySlug = raw.category?.slug ?? categoryMap.get(raw.categoryId)
     Router.push('/posts/[category]/[slug]', `/posts/${categorySlug}/${slug}`)
-    window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
+    springScrollToTop()
   }, [categoryMap, raw.category?.slug, raw.categoryId, slug])
   const hasImage = props.raw.images?.length > 0 && props.raw.images[0].src
   return (

@@ -4,7 +4,6 @@ import {
   faPaperPlane,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { config, SpringValue } from '@react-spring/web'
 import classNames from 'clsx'
 import { ScaleTransitionView } from 'components/universal/Transition/scale'
 import { ChatPanel } from 'components/widgets/Chat'
@@ -15,6 +14,7 @@ import { TransitionGroup } from 'react-transition-group'
 import { useStore } from 'store'
 import { EventTypes } from 'types/events'
 import { eventBus } from 'utils'
+import { springScrollToTop } from 'utils/spring'
 import styles from './actions.module.css'
 
 export const FooterActions: FC = observer(() => {
@@ -42,26 +42,7 @@ export const FooterActions: FC = observer(() => {
       <div className="action">
         <button
           className={classNames('top', isOverflow ? 'active' : '')}
-          onClick={(e) => {
-            const currentScrollTop = document.documentElement.scrollTop
-
-            e.preventDefault()
-
-            const springValue = new SpringValue(currentScrollTop, {
-              config: config.slow,
-
-              onChange(v: any) {
-                console.log(v)
-                requestAnimationFrame(() => {
-                  document.documentElement.scrollTop = v
-                })
-              },
-            })
-
-            springValue.key = '1'
-
-            springValue.start(0)
-          }}
+          onClick={springScrollToTop}
         >
           <FontAwesomeIcon icon={faArrowUp} />
         </button>

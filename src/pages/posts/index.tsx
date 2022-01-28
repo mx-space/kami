@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 import React, { Fragment, useEffect, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import { apiClient } from 'utils/client'
+import { springScrollToTop } from 'utils/spring'
 import { SEO } from '../../components/universal/Seo'
 
 const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
@@ -22,7 +23,7 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
   } = router
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    springScrollToTop()
   }, [currentPage])
   useEffect(() => {
     fetch()

@@ -12,6 +12,7 @@ import RemoveMarkdown from 'remove-markdown'
 import { store, useStore } from 'store'
 import { noop } from 'utils'
 import { imagesRecord2Map } from 'utils/images'
+import { springScrollToTop } from 'utils/spring'
 import { Seo } from '../../components/universal/Seo'
 import { ImageSizeMetaContext } from '../../context/image-size'
 import styles from './index.module.css'
@@ -25,11 +26,7 @@ const PageView: PageOnlyProps = observer((props) => {
   useHeaderShare(page.title, page.text)
 
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    })
+    springScrollToTop()
   }, [props.id])
   const { pageMeta } = useInitialData()
   const pages = useMemo(() => pageMeta || [], [pageMeta])

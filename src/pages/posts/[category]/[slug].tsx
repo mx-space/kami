@@ -29,6 +29,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { message } from 'react-message-popup'
 import { store, useStore } from 'store'
 import { apiClient } from 'utils/client'
+import { springScrollToTop } from 'utils/spring'
 import { Copyright } from '../../../components/widgets/Copyright'
 import {
   getSummaryFromMd,
@@ -113,7 +114,7 @@ export const PostView: PageOnlyProps = observer((props) => {
   } = useInitialData()
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    springScrollToTop()
   }, [post.id])
   useEffect(() => {
     setAction({
