@@ -15,7 +15,6 @@ specifiers:
   '@mx-space/api-client': 0.6.0
   '@mx-space/extra': 0.5.2
   '@next/bundle-analyzer': 12.0.8
-  '@react-spring/web': 9.4.2
   '@trivago/prettier-plugin-sort-imports': 3.1.1
   '@types/inflection': 1.13.0
   '@types/js-cookie': 3.0.1
@@ -95,7 +94,6 @@ dependencies:
   '@innei/react-typewriter': 0.1.4_react@17.0.2
   '@mx-space/api-client': 0.6.0
   '@mx-space/extra': 0.5.2_axios@0.25.0
-  '@react-spring/web': 9.4.2_react-dom@17.0.2+react@17.0.2
   NeteaseCloudMusicApi: 4.3.0
   axios: 0.25.0
   clsx: 1.1.1
@@ -1752,60 +1750,6 @@ packages:
   /@polka/url/1.0.0-next.21:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
     dev: true
-
-  /@react-spring/animated/9.4.2_react@17.0.2:
-    resolution: {integrity: sha512-Dzum5Ho8e+LIAegAqRyoQFakD2IVH3ZQ2nsFXJorAFq3Xjv6IVPz/+TNxb/wSvnsMludfoF+ZIf319FSFmgD5w==}
-    peerDependencies:
-      react: ^16.8.0  || ^17.0.0
-    dependencies:
-      '@react-spring/shared': 9.4.2_react@17.0.2
-      '@react-spring/types': 9.4.2
-      react: 17.0.2
-    dev: false
-
-  /@react-spring/core/9.4.2_react@17.0.2:
-    resolution: {integrity: sha512-Ej/ULwdx8rQtMAWEpLgwbKcQEx6vPfjyG3cxLP05zAInpCoWkYpl+sXOp9tn3r99mTNQPTTt7BgQsSnmQA8+rQ==}
-    peerDependencies:
-      react: ^16.8.0  || ^17.0.0
-    dependencies:
-      '@react-spring/animated': 9.4.2_react@17.0.2
-      '@react-spring/rafz': 9.4.2
-      '@react-spring/shared': 9.4.2_react@17.0.2
-      '@react-spring/types': 9.4.2
-      react: 17.0.2
-    dev: false
-
-  /@react-spring/rafz/9.4.2:
-    resolution: {integrity: sha512-rSm+G8E/XEEpnCGtT/xYN6o8VvEXlU8wN/hyKp4Q44XAZzGSMHLIFP7pY94/MmWsxCxjkw1AxUWhiFYxWrnI5Q==}
-    dev: false
-
-  /@react-spring/shared/9.4.2_react@17.0.2:
-    resolution: {integrity: sha512-mZtbQLpMm6Vy5+O1MSlY9KuAcMO8rdUQvtdnC7Or7y7xiZlnzj8oAILyO6Y2rD2ZC1PmgVS0gMev/8T+MykW+Q==}
-    peerDependencies:
-      react: ^16.8.0  || ^17.0.0
-    dependencies:
-      '@react-spring/rafz': 9.4.2
-      '@react-spring/types': 9.4.2
-      react: 17.0.2
-    dev: false
-
-  /@react-spring/types/9.4.2:
-    resolution: {integrity: sha512-GGiIscTM+CEUNV52anj3g5FqAZKL2+eRKtvBOAlC99qGBbvJ3qTLImrUR/I3lXY7PRuLgzI6kh34quA1oUxWYQ==}
-    dev: false
-
-  /@react-spring/web/9.4.2_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha512-sWfA9NkVuvVOpjSlMkD2zcF6X3i8NSHTeH/uHCGKsN3mYqgkhvAF+E8GASO/H4KKGNhbRvgCZiwJXOtOGyUg6A==}
-    peerDependencies:
-      react: ^16.8.0  || ^17.0.0
-      react-dom: ^16.8.0  || ^17.0.0
-    dependencies:
-      '@react-spring/animated': 9.4.2_react@17.0.2
-      '@react-spring/core': 9.4.2_react@17.0.2
-      '@react-spring/shared': 9.4.2_react@17.0.2
-      '@react-spring/types': 9.4.2
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
 
   /@rollup/plugin-babel/5.3.0_@babel+core@7.15.5+rollup@2.63.0:
     resolution: {integrity: sha512-9uIC8HZOnVLrLHxayq/PTzw+uS25E14KPUBh5ktF+18Mjo5yK0ToMMx6epY0uEgkjwJw0aBW4x2horYXh8juWw==}
