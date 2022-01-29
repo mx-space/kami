@@ -1,3 +1,4 @@
+import { API_URL } from 'constants/env'
 import { useInitialData, useKamiConfig } from 'hooks/use-initial-data'
 import Head from 'next/head'
 import { FC, memo, useEffect } from 'react'
@@ -24,6 +25,8 @@ export const DynamicHeaderMeta: FC = memo(() => {
 
   return (
     <Head>
+      <meta name="api_url" content={API_URL} />
+
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
