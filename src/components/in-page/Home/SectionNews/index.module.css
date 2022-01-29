@@ -95,14 +95,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background:
-      -webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        from(rgb(0 0 0 / 0%)),
-        to(rgb(0 0 0 / 55.7%))
-      );
+    background: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      from(rgb(0 0 0 / 0%)),
+      to(rgb(0 0 0 / 55.7%))
+    );
     z-index: 2;
   }
 }
@@ -133,12 +132,11 @@
   @supports (-webkit-mask-image: inherit) or (mask-image: inherit) {
     & {
       text-overflow: clip;
-      mask-image:
-        linear-gradient(
-          to right,
-          rgb(0 0 0 / 100%) calc(100% - 2em),
-          transparent
-        );
+      mask-image: linear-gradient(
+        to right,
+        rgb(0 0 0 / 100%) calc(100% - 2em),
+        transparent
+      );
     }
   }
 }

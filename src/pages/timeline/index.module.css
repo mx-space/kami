@@ -2,7 +2,7 @@
   position: relative;
 
   & > div li::before {
-    content: "";
+    content: '';
     position: absolute;
     left: -1.05rem;
     bottom: 0;
@@ -33,7 +33,7 @@
   }
 
   li::after {
-    content: "";
+    content: '';
     left: -1.28rem;
     top: 50%;
     transform: translateY(-50%);
