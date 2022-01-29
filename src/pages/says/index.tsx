@@ -44,13 +44,17 @@ const SayView = () => {
             const hasAuthor = !!say.author
             const color = colorsMap.get(say.id)
             return (
-              <BottomUpTransitionView timeout={{ enter: i * 50 }}>
+              <BottomUpTransitionView
+                timeout={{ enter: i * 50 }}
+                in
+                key={say.id}
+              >
                 <blockquote
                   key={say.id}
+                  className="transition-all duration-500"
                   style={{
                     borderLeftColor: hexToRGB(color || '', 0.7),
                     backgroundColor: hexToRGB(color || '', 0.05),
-                    transition: 'all 0.5s',
                   }}
                 >
                   <ReactMarkdown
@@ -65,14 +69,16 @@ const SayView = () => {
                   >
                     {say.text}
                   </ReactMarkdown>
-                  <p
-                    className={styles['author']}
-                    data-created={'发布于 ' + relativeTimeFromNow(say.created)}
-                  >
-                    {hasSource && ` 出自 “` + say.source + '”'}
-                    {hasSource && hasAuthor && ', '}
-                    {hasAuthor && '作者：' + say.author}
-                    {!hasAuthor && !hasSource && '站长说'}
+                  <p className={styles['author']}>
+                    <div className="flex-shrink-0">
+                      {'发布于 ' + relativeTimeFromNow(say.created)}
+                    </div>
+                    <div className="flex-shrink-0 flex-grow">
+                      {hasSource && ` 出自 “` + say.source + '”'}
+                      {hasSource && hasAuthor && ', '}
+                      {hasAuthor && '作者：' + say.author}
+                      {!hasAuthor && !hasSource && '站长说'}
+                    </div>
                   </p>
                 </blockquote>
               </BottomUpTransitionView>

@@ -1,11 +1,5 @@
 .author {
-  position: relative;
-}
-
-.author::before {
-  content: attr(data-created);
-  position: absolute;
-  left: 0;
+  @apply flex flex-wrap relative justify-between;
 }
 
 .kami-say {
