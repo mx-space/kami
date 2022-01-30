@@ -37,7 +37,9 @@ async function main() {
   await $`rm -rf ./.next`
   await $`unzip /tmp/${tmpName}.zip -d ./.next`
   await $`rm /tmp/${tmpName}.zip`
-  await nothrow($`pm2 reload ecosystem.standalone.config.js --update-env`)
+  // standalone is not stable, temporally disable
+  // await nothrow($`pm2 reload ecosystem.standalone.config.js --update-env`)
+  await nothrow($`pm2 reload ecosystem.config.js --update-env`)
   console.log('等待 15 秒')
   await sleep(15000)
   try {
