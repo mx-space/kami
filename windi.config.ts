@@ -30,6 +30,7 @@ export default defineConfig({
         'light-font': 'var(--light-font)',
         'bg-opacity': 'var(--bg-opacity)',
         gray: 'var(--gray)',
+        deepgray: 'var(--deep-gray)',
         shallow: 'var(--shallow)',
         shizuku: {
           text: 'var(--shizuku-text-color)',

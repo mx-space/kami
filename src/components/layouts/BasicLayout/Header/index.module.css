@@ -217,7 +217,7 @@
   align-items: center;
 
   & .meta {
-    color: var(--gray);
+    color: var(--deep-gray);
     font-size: 0.8rem;
     flex-shrink: 1;
     text-overflow: ellipsis;

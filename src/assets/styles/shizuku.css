@@ -259,3 +259,12 @@
 #write summary {
   cursor: pointer;
 }
+
+#write del {
+  filter: blur(8px);
+  transition: filter 0.5s;
+
+  &:hover {
+    filter: blur(0);
+  }
+}

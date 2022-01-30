@@ -1,4 +1,8 @@
 import { LinkModel, LinkType } from '@mx-space/api-client'
+import {
+  FavoriteSection,
+  FriendSection,
+} from 'components/in-page/Friend/section'
 import { Markdown } from 'components/universal/Markdown'
 import { useInitialData } from 'hooks/use-initial-data'
 import { NextPage } from 'next'
@@ -9,30 +13,10 @@ import { ApplyForLink } from '../../components/in-page/ApplyLink'
 import { ArticleLayout } from '../../components/layouts/ArticleLayout'
 import { SEO } from '../../components/universal/Seo'
 
-const renderSection = (data: LinkModel[]) => {
-  return (
-    <div className="note-item">
-      <ul>
-        <div key={data.length}>
-          {data.map((link) => {
-            return (
-              <li key={link.id}>
-                <a href={link.url} target={'_blank'}>
-                  {link.name}
-                </a>
-                <span className="meta">{link.description || ''}</span>
-              </li>
-            )
-          })}
-        </div>
-      </ul>
-    </div>
-  )
-}
-
 const renderTitle = (text: string) => {
   return <h1 className="!text-xl headline">{text}</h1>
 }
+
 const FriendsView: NextPage<{ data: LinkModel[] }> = (props) => {
   const friends: LinkModel[] = []
   const collections: LinkModel[] = []
@@ -58,14 +42,14 @@ const FriendsView: NextPage<{ data: LinkModel[] }> = (props) => {
       <article className="article-list">
         {friends.length > 0 && (
           <>
-            {collections.length !== 0 && renderTitle('互相关注')}
-            {renderSection(friends)}
+            {collections.length !== 0 && renderTitle('我的朋友')}
+            <FriendSection data={friends}></FriendSection>
           </>
         )}
         {collections.length > 0 && (
           <>
-            {friends.length !== 0 && renderTitle('个人收藏')}
-            {renderSection(collections)}
+            {friends.length !== 0 && renderTitle('我的收藏')}
+            <FavoriteSection data={collections}></FavoriteSection>
           </>
         )}
       </article>

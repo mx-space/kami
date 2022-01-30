@@ -1,28 +1,3 @@
-:root {
-  --code-bg: transparent;
-  --black: #000;
-  --gray: #e5e5ea;
-  --bg-opacity: rgb(255 255 255 / 50%);
-
-  /*  for firefox */
-  scrollbar-color: rgb(255 193 7) transparent;
-  scrollbar-width: thin;
-}
-
-@supports not (backdrop-filter: blur(1px)) {
-  :root {
-    --bg-opacity: #fff;
-  }
-}
-
-html {
-  overflow: overlay;
-  scroll-behavior: unset;
-  font-variant-numeric: tabular-nums;
-  font-display: swap;
-  font-size: 14px;
-}
-
 @media (max-width: 799px) {
   body {
     max-width: 100vw;
@@ -48,19 +23,6 @@ body::-webkit-scrollbar {
 }
 
 html.dark {
-  --black: #fff;
-  --shizuku-background-color: #212121;
-  --shizuku-text-color: #858585;
-  --shizuku-theme-color: #3c946c;
-  --gray: #8e8e93;
-  --bg-opacity: rgb(17 17 17 / 50%);
-
-  @supports not (backdrop-filter: blur(1px)) {
-    & {
-      --bg-opacity: rgb(17 17 17 / 98%);
-    }
-  }
-
   blockquote {
     background: var(--shizuku-background-color);
     border-left: 5px solid var(--shizuku-theme-color);

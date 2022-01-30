@@ -11,11 +11,26 @@
   --shallow: #eee;
   --primary: var(--green);
 
+  --code-bg: transparent;
+  --black: #000;
+  --gray: #d1d1d6;
+  --deep-gray: #8e8e93;
+  --bg-opacity: rgb(255 255 255 / 50%);
+
   font: 14px/1.15 PingFang SC, Helvetica, noto sans sc, hiragino sans gb,
     microsoft yahei, 'sans-serif';
   color: #353535;
   text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
+  /*  for firefox */
+  scrollbar-color: rgb(255 193 7) transparent;
+  scrollbar-width: thin;
+
+  overflow: overlay;
+  scroll-behavior: unset;
+  font-variant-numeric: tabular-nums;
+  font-display: swap;
+  font-size: 14px;
 }
 
 html.dark {
@@ -31,6 +46,26 @@ html.dark {
   --light-bg: #111 !important;
   --light-font: #ddd !important;
   --shallow: #333 !important;
+
+  --black: #fff;
+  --shizuku-background-color: #212121;
+  --shizuku-text-color: #858585;
+  --shizuku-theme-color: #3c946c;
+  --gray: #3a3a3c;
+  --deep-gray: #8e8e93;
+  --bg-opacity: rgb(17 17 17 / 50%);
+
+  @supports not (backdrop-filter: blur(1px)) {
+    & {
+      --bg-opacity: rgb(17 17 17 / 98%);
+    }
+  }
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  :root {
+    --bg-opacity: #fff;
+  }
 }
 
 html.dark img {

@@ -1,0 +1,28 @@
+.card {
+  @apply flex space-x-4  p-2 relative !m-0;
+  @apply !border-0;
+
+  &:hover {
+    @apply before:bg-gray;
+  }
+
+  &::before {
+    @apply absolute inset-0 bg-transparent opacity-50 rounded-xl transition-all -z-1;
+
+    content: '';
+  }
+
+  &:hover {
+    :global {
+      .avatar {
+        @apply transform rotate-[360deg] duration-500;
+      }
+    }
+  }
+
+  :global {
+    .avatar {
+      @apply transition-transform;
+    }
+  }
+}

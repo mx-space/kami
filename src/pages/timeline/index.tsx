@@ -165,48 +165,46 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
       {arr.reverse().map(([year, value], j) => {
         return (
           <article className="article-list" key={year}>
-            <div className="note-item">
-              <h1 key={1}>
-                {year}
-                <small className={styles['count']}>({value.length})</small>
-              </h1>
+            <h1 key={1}>
+              {year}
+              <small className={styles['count']}>({value.length})</small>
+            </h1>
 
-              <ul className={styles['timeline-wrap']}>
-                {value.map((item, i) => {
-                  return (
-                    <div key={item.id}>
-                      <li key={item.id} className="flex items-center">
-                        <Link href={item.href} as={item.as}>
-                          <a>
-                            <span className={'date'}>
-                              {Intl.DateTimeFormat('en-us', {
-                                month: '2-digit',
-                                day: '2-digit',
-                              }).format(item.date)}
-                            </span>
-                            <span className={'title'}>{item.title}</span>
-                          </a>
-                        </Link>
-                        {item.important && (
-                          <FontAwesomeIcon
-                            icon={faBookmark}
-                            color={'red'}
-                            className="mr-4 cursor-pointer"
-                            onClick={() => {
-                              router.push({ query: { memory: true } })
-                            }}
-                          />
-                        )}
+            <ul className={styles['timeline-wrap']}>
+              {value.map((item, i) => {
+                return (
+                  <div key={item.id}>
+                    <li key={item.id} className="flex items-center">
+                      <Link href={item.href} as={item.as}>
+                        <a>
+                          <span className={'date'}>
+                            {Intl.DateTimeFormat('en-us', {
+                              month: '2-digit',
+                              day: '2-digit',
+                            }).format(item.date)}
+                          </span>
+                          <span className={'title'}>{item.title}</span>
+                        </a>
+                      </Link>
+                      {item.important && (
+                        <FontAwesomeIcon
+                          icon={faBookmark}
+                          color={'red'}
+                          className="mr-4 cursor-pointer"
+                          onClick={() => {
+                            router.push({ query: { memory: true } })
+                          }}
+                        />
+                      )}
 
-                        <span className={'meta'}>
-                          {item.meta.map((m, i) => (i === 0 ? m : '/' + m))}
-                        </span>
-                      </li>
-                    </div>
-                  )
-                })}
-              </ul>
-            </div>
+                      <span className={'meta'}>
+                        {item.meta.map((m, i) => (i === 0 ? m : '/' + m))}
+                      </span>
+                    </li>
+                  </div>
+                )
+              })}
+            </ul>
           </article>
         )
       })}

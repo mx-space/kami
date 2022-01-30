@@ -58,7 +58,7 @@ export const PostBlock: FC<PostBlockProps> = observer((props) => {
           </div>
         )}
       </h1>
-      <div className={classNames('note-item', styles.text)}>
+      <div className={styles.text}>
         {viewport?.mobile && (
           <h2 className={styles.title} onClick={goToPost}>
             {title}
