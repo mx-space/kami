@@ -72,7 +72,7 @@ export default class MyDocument extends Document<{ ua: string }> {
           <meta name="apple-mobile-web-app-capable" content="yes" />
 
           <link
-            href="https://fonts.loli.net/css2?family=Noto+Sans+SC:wght@100;300;400;500&display=swap"
+            href="https://fonts.beixibaobao.com/css2?family=Noto+Sans+SC:wght@100;300;400;500&display=swap"
             rel="stylesheet"
           />
           <link
