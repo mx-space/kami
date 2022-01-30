@@ -49,7 +49,7 @@ jobs:
           cd ./standalone
           ln -s ../static/ ./.next/static
           cd ..
-          zip -r ../release.zip ./*
+          zip --symlinks -r ../release.zip ./*
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
