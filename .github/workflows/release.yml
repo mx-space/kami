@@ -44,6 +44,11 @@ jobs:
         run: |
           yarn build
           cd .next
+          pwd
+          rm -rf cache
+          cd ./standalone
+          ln -s ../static/ ./.next/static
+          cd ..
           zip -r ../release.zip ./*
       - name: Create Release
         id: create_release
@@ -84,6 +89,5 @@ jobs:
             source ~/.zshrc
             cd mx/kami
             git reset --hard
-            git pull
             node scripts/fetch-build.js
             sh scripts/update-cdn.sh

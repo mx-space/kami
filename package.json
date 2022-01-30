@@ -36,6 +36,7 @@
     "lint": "eslint --ext .ts,.tsx --ignore-path .gitignore . --fix",
     "stylelint": "stylelint 'src/**/*.{css,scss}' --fix",
     "prod:pm2": "cross-env NODE_ENV=production pm2 restart ecosystem.config.js",
+    "prod:pm2-alone": "cross-env NODE_ENV=production pm2 restart ecosystem.standalone.config.js",
     "prod:stop": "pm2 stop ecosystem.config.js",
     "prod:reload": "pm2 reload ecosystem.config.js",
     "gen-config": "node scripts/generate-default-configs.js"
