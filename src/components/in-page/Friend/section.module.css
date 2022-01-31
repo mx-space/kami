@@ -15,7 +15,9 @@
   &:hover {
     :global {
       .avatar {
-        @apply transform rotate-[360deg] duration-500;
+        @apply transform duration-500 ease;
+
+        transform: scale(1.02);
       }
     }
   }
@@ -23,6 +25,36 @@
   :global {
     .avatar {
       @apply transition-transform;
+    }
+  }
+}
+
+.border {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  pointer-events: none;
+
+  :global {
+    svg {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      vertical-align: unset;
+      overflow: visible;
+    }
+
+    circle {
+      shape-rendering: crispEdges;
+      stroke: var(--yellow);
+      stroke-width: 3px;
+      fill: transparent;
+      stroke-dashoffset: 0;
+      transition-property: stroke-dashoffset;
+      transition-duration: 0.5s;
     }
   }
 }
