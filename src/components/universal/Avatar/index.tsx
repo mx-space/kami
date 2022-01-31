@@ -73,10 +73,14 @@ export const Avatar: FC<
         children: (
           <div
             className={styles['image']}
-            style={{
-              backgroundImage: `url(${props.imageUrl})`,
-              opacity: loaded ? 1 : 0,
-            }}
+            style={
+              props.imageUrl
+                ? {
+                    backgroundImage: `url(${props.imageUrl})`,
+                    opacity: loaded ? 1 : 0,
+                  }
+                : {}
+            }
           ></div>
         ),
       })}
