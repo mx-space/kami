@@ -11,7 +11,6 @@ specifiers:
   '@fortawesome/react-fontawesome': 0.1.17
   '@innei-util/eslint-config-react-ts': latest
   '@innei-util/prettier': latest
-  '@innei/react-typewriter': 0.1.4
   '@mx-space/api-client': 0.6.1
   '@mx-space/extra': 0.5.2
   '@next/bundle-analyzer': 12.0.9
@@ -91,7 +90,6 @@ dependencies:
   '@fortawesome/free-regular-svg-icons': 5.15.4
   '@fortawesome/free-solid-svg-icons': 5.15.4
   '@fortawesome/react-fontawesome': 0.1.17_f515edce028694561ceb456e3dba224c
-  '@innei/react-typewriter': 0.1.4_react@17.0.2
   '@mx-space/api-client': 0.6.1
   '@mx-space/extra': 0.5.2_axios@0.25.0
   NeteaseCloudMusicApi: 4.5.1
@@ -1560,14 +1558,6 @@ packages:
       - supports-color
       - typescript
     dev: true
-
-  /@innei/react-typewriter/0.1.4_react@17.0.2:
-    resolution: {integrity: sha512-YC7IJDQwZJ/r9QzRVeuNJaeFZ0Lya85KQV1JtnleScah0pjitF2vgjr8YvLgafKnh34PLGdr8QjtseLMh6I5og==}
-    peerDependencies:
-      react: ^17.0.2
-    dependencies:
-      react: 17.0.2
-    dev: false
 
   /@mx-space/api-client/0.6.1:
     resolution: {integrity: sha512-BQaj9o6wE4f7vq1zxUBdoXql710HUEVUrbiqMhi5VzIhZh1/eqii+sBBCC8z5HdYnv/8sHHC4uSGd0LteWY7rw==}

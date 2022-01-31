@@ -27,7 +27,7 @@ $axios.interceptors.response.use(
   undefined,
   (error: AxiosError<Record<string, any> | undefined>) => {
     if (process.env.NODE_ENV === 'development') {
-      console.log(error.message)
+      console.error(error.message)
     }
 
     if (

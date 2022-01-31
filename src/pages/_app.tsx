@@ -17,7 +17,6 @@ import { DynamicHeaderMeta } from 'components/universal/Meta/header'
 import { BasicLayout } from 'components/layouts/BasicLayout'
 import { NextSeo } from 'next-seo'
 import NextApp, { AppContext } from 'next/app'
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
 

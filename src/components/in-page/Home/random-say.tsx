@@ -1,4 +1,4 @@
-import { TypeWriter } from '@innei/react-typewriter'
+import { TextFade } from 'components/universal/Animate/text-anim'
 import { FC, memo, useEffect } from 'react'
 import { useUpdate } from 'react-use'
 import { apiClient } from 'utils'
@@ -28,9 +28,7 @@ export const HomeRandomSay: FC = memo(() => {
 
   return (
     <div className="overflow-hidden leading-6 text-[#aaa] my-[2rem]">
-      <TypeWriter textArray={[cacheSay]} repeat={false}>
-        {cacheSay}
-      </TypeWriter>
+      <TextFade text={cacheSay} />
     </div>
   )
 })

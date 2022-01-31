@@ -25,14 +25,14 @@ export const TextFade: FC<
     ...rest
   } = props
   if (!appear) {
-    return <div {...rest}>{text || children}</div>
+    return <div {...rest}>{text ?? children}</div>
   }
   return (
     <div {...rest}>
-      {Array.from(text || (children as string)).map((char, i) => (
+      {Array.from(text ?? (children as string)).map((char, i) => (
         <span
           key={char}
-          className="inline-block"
+          className="inline-block whitespace-pre"
           style={{
             animation: `${name} ${duration}ms both linear`,
             animationDelay: `${i * delay}ms`,

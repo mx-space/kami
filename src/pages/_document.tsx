@@ -17,21 +17,9 @@
  * @MIT
  */
 
-import Document, {
-  DocumentContext,
-  Head,
-  Html,
-  Main,
-  NextScript,
-} from 'next/document'
+import Document, { Head, Html, Main, NextScript } from 'next/document'
 
-export default class MyDocument extends Document<{ ua: string }> {
-  static async getInitialProps(ctx: DocumentContext) {
-    const initialProps = await Document.getInitialProps(ctx)
-    const ua = ctx.req?.headers['user-agent']
-    return { ...initialProps, ua }
-  }
-
+export default class MyDocument extends Document {
   render() {
     return (
       <Html>

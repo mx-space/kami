@@ -34,7 +34,11 @@ export const Avatar: FC<
   )
   const [loaded, setLoaded] = useState(false)
   useEffect(() => {
+    if (!props.imageUrl) {
+      return
+    }
     const image = new Image()
+
     image.src = props.imageUrl as string
     image.onload = () => {
       setLoaded(true)
