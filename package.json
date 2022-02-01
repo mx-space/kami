@@ -114,7 +114,7 @@
     "next-compose-plugins": "2.2.1",
     "next-pwa": "5.4.4",
     "nodemon": "2.0.15",
-    "postcss": "8.4.5",
+    "postcss": "8.4.6",
     "postcss-import": "14.0.2",
     "postcss-nested": "5.0.6",
     "postcss-preset-env": "7.3.0",
