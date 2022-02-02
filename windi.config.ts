@@ -17,6 +17,11 @@ export default defineConfig({
         tablet: { raw: '(max-width: 1023px)' },
         wider: { raw: '(min-width: 1500px)' },
       },
+      fontFamily: {
+        serif: 'var(--serif-font)',
+        sans: 'var(--sans-font)',
+        mono: 'var(--monospace-font)',
+      },
 
       colors: {
         red: 'var(--red)',

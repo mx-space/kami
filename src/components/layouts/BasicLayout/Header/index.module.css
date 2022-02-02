@@ -298,8 +298,11 @@
 }
 
 .like-button {
+  @apply flex items-center justify-center;
+
   svg {
     width: 1.5rem;
+    height: 1.5rem;
   }
 }
 

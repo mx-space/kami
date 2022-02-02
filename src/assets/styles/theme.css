@@ -17,8 +17,16 @@
   --deep-gray: #8e8e93;
   --bg-opacity: rgb(255 255 255 / 50%);
 
-  font: 14px/1.15 PingFang SC, Helvetica, noto sans sc, hiragino sans gb,
+  --serif-font: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC',
+    'Source Han Serif', source-han-serif-sc, SongTi SC, 'PingFang SC', SimSum,
+    'Hiragino Sans GB', 'Heiti SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei';
+  --sans-font: PingFang SC, Helvetica, noto sans sc, hiragino sans gb,
     microsoft yahei, 'sans-serif';
+  --monospace-font: OperatorMonoSSmLig Nerd Font, JetBrains Mono, Operator Mono,
+    Monaco, Consolas, 'Courier New', Courier, monospace;
+  --mono-font: var(--monospace-font);
+
+  font: 14px/1.15 var(--sans-font);
   color: #353535;
   text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
@@ -212,7 +220,7 @@ em {
 kbd {
   color: #fff;
   background: #333;
-  font-family: 'Consolas', 'Courier New', monospace, '微软雅黑';
+  font-family: var(--mono-font);
 }
 
 article img {

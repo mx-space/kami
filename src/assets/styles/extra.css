@@ -119,8 +119,7 @@ iframe {
 
 pre,
 code {
-  font-family: OperatorMonoSSmLig Nerd Font, JetBrains Mono, Operator Mono,
-    Monaco, Consolas, 'Courier New', Courier, monospace !important;
+  font-family: var(--mono-font) !important;
 }
 
 pre,
@@ -223,9 +222,7 @@ p,
 }
 
 .is-note #write {
-  font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC',
-    'Source Han Serif', source-han-serif-sc, 'PingFang SC', 'Hiragino Sans GB',
-    'Heiti SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei';
+  font-family: var(--serif-font);
   color: var(--shizuku-text-color);
   font-size: 16px;
   line-height: 1.75;
@@ -238,7 +235,7 @@ p,
 }
 
 .is-note strong {
-  font-family: 'PingFang SC', 'Helvetica', sans-serif;
+  font-family: var(--sans-font);
 }
 
 .is-note .note-head {
@@ -256,7 +253,7 @@ p,
   line-height: 16px;
   font-size: 16px;
   opacity: 0.8;
-  font-family: unset;
+  font-family: var(--sans-font);
 }
 
 .is-note .note-meta > div {
@@ -320,8 +317,7 @@ p,
 }
 
 .article-list {
-  font-family: Pingfang SC, Helvetica, hiragino sans gb, microsoft yahei,
-    'sans-serif';
+  font-family: var(--sans-font);
 
   h1 {
     margin: 10px 0 15px;
@@ -392,9 +388,7 @@ p,
   p,
   div,
   article {
-    font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC',
-      'Source Han Serif', source-han-serif-sc, 'PingFang SC', Helvetica, Arial,
-      'Hiragino Sans GB', 'Heiti SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei' !important;
+    font-family: var(--serif-font) !important;
   }
 
   h1,
@@ -409,7 +403,7 @@ p,
   h5 *,
   h6,
   h6 * {
-    font-family: sans-serif !important;
+    font-family: var(--sans-font) !important;
   }
 
   nav,

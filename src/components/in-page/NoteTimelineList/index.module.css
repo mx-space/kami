@@ -3,7 +3,8 @@
 
   left: -1.4rem;
   transform: translateX(-100%);
-  font-family: sans-serif;
+  font-family: var(--sans-font);
+
   color: var(--shizuku-text-color);
 }
 
@@ -25,6 +26,7 @@
 
   width: 10rem;
   transition: opacity 0.5s, margin 0.5s, color 0.5s;
+  font-variant-numeric: tabular-nums;
 
   &.active {
     @apply opacity-100 ml-2;

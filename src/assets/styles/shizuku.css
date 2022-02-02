@@ -236,7 +236,7 @@
   border: none !important;
   position: relative;
   color: #d35400;
-  font-family: 'Noto Serif SC', SongTi SC;
+  font-family: var(--serif-font);
   padding-bottom: 24px;
 
   &::before {

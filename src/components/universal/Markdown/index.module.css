@@ -26,7 +26,7 @@
   details[open] summary::before,
   details summary::before {
     font-weight: 800;
-    font-family: monospace;
+    font-family: var(--mono-font);
   }
 
   sub span,
