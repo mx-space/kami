@@ -13,7 +13,7 @@ export const HeaderActionShareButton: FC = observer(() => {
   const hasShare = 'share' in navigator
   return hasShare && appUIStore.shareData ? (
     <HeaderActionButtonsContainer>
-      <HeaderActionButton style={{ height: '2.5rem', width: '5rem' }}>
+      <HeaderActionButton>
         <HeaderActionButtonWithIcon
           onClick={() => {
             navigator
@@ -37,11 +37,8 @@ export const HeaderActionButtonWithIcon: FC<{
   onClick: () => void
 }> = memo(({ icon, title, onClick }) => {
   return (
-    <div
-      onClick={onClick}
-      className="flex items-center justify-center text-shizuku-text text-opacity-95"
-    >
-      <FontAwesomeIcon icon={icon} className={'mr-2'} />
+    <div onClick={onClick} className="flex items-center justify-center">
+      <FontAwesomeIcon icon={icon} className={'mr-2 transform scale-90'} />
 
       <span className="flex-shrink-0">{title}</span>
     </div>
