@@ -1,12 +1,7 @@
-import {
-  faArrowUp,
-  faHeadphones,
-  faPaperPlane,
-} from '@fortawesome/free-solid-svg-icons'
+import { faArrowUp, faHeadphones } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'clsx'
 import { ScaleTransitionView } from 'components/universal/Transition/scale'
-import { ChatPanel } from 'components/widgets/Chat'
 import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import React, { FC, useEffect, useState } from 'react'
@@ -15,12 +10,11 @@ import { useStore } from 'store'
 import { EventTypes } from 'types/events'
 import { eventBus } from 'utils'
 import { springScrollToTop } from 'utils/spring'
-import styles from './actions.module.css'
-
+// TODO chat panel
 export const FooterActions: FC = observer(() => {
   const { userStore, appStore, actionStore, musicStore } = useStore()
   const { isOverFirstScreenHeight: isOverflow } = appStore
-  const [chatShow, setChatShow] = useState(false)
+  // const [chatShow, setChatShow] = useState(false)
   const [newMessageCount, setCount] = useState(0)
   useEffect(() => {
     const handler = (data: any) => {
@@ -71,7 +65,7 @@ export const FooterActions: FC = observer(() => {
           <FontAwesomeIcon icon={faHeadphones} />
         </button>
 
-        <button
+        {/* <button
           onClick={(e) => {
             setChatShow(!chatShow)
             setCount(0)
@@ -83,10 +77,10 @@ export const FooterActions: FC = observer(() => {
           data-count={newMessageCount}
         >
           <FontAwesomeIcon icon={faPaperPlane} />
-        </button>
+        </button> */}
       </div>
       {/* <ConfigPanel /> */}
-      <ChatPanel show={chatShow} toggle={() => setChatShow(!chatShow)} />
+      {/* <ChatPanel show={chatShow} toggle={() => setChatShow(!chatShow)} /> */}
     </>
   )
 })

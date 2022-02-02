@@ -93,7 +93,7 @@ const _Image: FC<{ src: string; alt?: string }> = observer(({ src, alt }) => {
   const max = {
     width: maxWidth ?? 500,
 
-    height: window.innerHeight * 0.8,
+    height: Infinity,
   }
 
   let cal = {} as any
