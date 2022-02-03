@@ -65,16 +65,13 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
   const [list, setList] = useState<SearchListType[]>([])
 
   useEffect(() => {
-    if (!keyword) {
-      setList([])
-      return
-    }
     setLoading(true)
 
     search(keyword)
       ?.then((res) => {
         if (!res) {
           setLoading(false)
+          setList([])
           return
         }
         const data = res.data

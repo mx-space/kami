@@ -25,16 +25,24 @@
     @apply bg-repeat;
 
     content: '';
-    background: linear-gradient(90deg, rgba(176, 175, 175, 1) 0%, transparent);
-    animation: move 1s linear infinite;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(176, 175, 175, 1),
+      transparent
+    );
+    animation: move 2s linear infinite;
   }
 }
 
 @keyframes move {
   from {
-    transform: translateX(0);
+    transform: translateX(-200px);
+  }
+  50% {
+    transform: translateX(calc(100% + 500px + 200px));
   }
   to {
-    transform: translateX(140%);
+    transform: translateX(-200px);
   }
 }
