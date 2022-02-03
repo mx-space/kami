@@ -40,7 +40,7 @@ export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
           unmountOnExit
           timeout={0}
         >
-          <article className={'note-article main-article-md'}>
+          <article className={'note-article main-article-md relative'}>
             <h1>
               {dateFormat}
               <div className="ml-4 inline-block">

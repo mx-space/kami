@@ -116,7 +116,12 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
   }, [keyword])
 
   return (
-    <div className="w-[800px] max-w-[80vw] max-h-[60vh] h-[600px] bg-bg-opacity backdrop-filter backdrop-blur	drop-shadow-md min-h-50 rounded-xl flex flex-col overflow-hidden text-[--black]">
+    <div
+      className="w-[800px] max-w-[80vw] max-h-[60vh] h-[600px] 
+    bg-bg-opacity backdrop-filter backdrop-blur-lg
+    shadow shadow-light-50 dark:shadow-dark-300
+    min-h-50 rounded-xl flex flex-col overflow-hidden text-[--black]"
+    >
       <input
         autoFocus
         className="p-4 px-5 w-full text-[16px] leading-4 bg-transparent"
