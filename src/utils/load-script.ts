@@ -7,6 +7,7 @@ export function loadScript(url: string) {
     }
     const script = document.createElement('script')
     script.src = url
+    script.crossOrigin = 'anonymous'
 
     isLoadScriptSet.add(url)
     script.onload = function (e) {
@@ -36,7 +37,7 @@ export function loadStyleSheet(href: string) {
   $link.href = href
   $link.rel = 'stylesheet'
   $link.type = 'text/css'
-
+  $link.crossOrigin = 'anonymous'
   cssSet.add(href)
 
   $link.onerror = (e) => {

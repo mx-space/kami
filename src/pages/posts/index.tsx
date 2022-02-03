@@ -1,9 +1,11 @@
 import { Pager, PaginateResult, PostModel } from '@mx-space/api-client'
 import { PostBlock } from 'components/in-page/PostBlock'
-import { FloatPostTagButton } from 'components/in-page/SpecialButton/float-post-tag'
+import { TagFAB } from 'components/in-page/SpecialButton/float-post-tag'
 import { ArticleLayout } from 'components/layouts/ArticleLayout'
+import { EmptyIcon } from 'components/universal/Icons'
 import { Loading } from 'components/universal/Loading'
 import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
+import { SearchFAB } from 'components/widgets/Search'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React, { Fragment, useEffect, useState } from 'react'
@@ -63,7 +65,8 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
               })}
             </Fragment>
           ) : pagination ? (
-            <div>
+            <div className="flex flex-col">
+              <EmptyIcon />
               <p>站长没有写过一篇文章啦</p>
               <p>稍后来看看吧!</p>
             </div>
@@ -110,7 +113,8 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
           )}
         </section>
       )}
-      <FloatPostTagButton />
+      <TagFAB />
+      <SearchFAB />
     </ArticleLayout>
   )
 }

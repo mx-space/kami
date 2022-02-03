@@ -140,4 +140,4 @@ const _FloatPostTagButton: FC = observer(() => {
   )
 })
 
-export const FloatPostTagButton = NoSSR(_FloatPostTagButton)
+export const TagFAB = NoSSR(_FloatPostTagButton)

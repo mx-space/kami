@@ -1,9 +1,13 @@
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
 import { EmptyIcon } from 'components/universal/Icons'
 import { OverLay, OverlayProps } from 'components/universal/Overlay'
+import { useHotKey } from 'hooks/use-hotkey'
 import { throttle } from 'lodash-es'
 import Link from 'next/link'
-import { FC, memo, useEffect, useState } from 'react'
+import { FC, memo, useEffect, useRef, useState } from 'react'
+import { useStore } from 'store'
 import { apiClient } from 'utils'
 import styles from './index.module.css'
 
@@ -113,9 +117,11 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
         setLoading(false)
       })
   }, [keyword])
+
   return (
-    <div className="w-[800px] max-w-[80vw] max-h-[60vh] h-[600px] bg-bg-opacity backdrop-blur	drop-shadow-md min-h-50 rounded-xl flex flex-col overflow-hidden text-[--black]">
+    <div className="w-[800px] max-w-[80vw] max-h-[60vh] h-[600px] bg-bg-opacity backdrop-filter backdrop-blur	drop-shadow-md min-h-50 rounded-xl flex flex-col overflow-hidden text-[--black]">
       <input
+        autoFocus
         className="p-4 px-5 w-full text-[16px] leading-4 bg-transparent"
         placeholder="Search..."
         defaultValue={defaultKeyword}
@@ -159,9 +165,52 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
 })
 export const SearchOverlay: FC<OverlayProps> = (props) => {
   const { ...rest } = props
+
+  useHotKey({ key: 'Escape', preventInput: false }, () => {
+    props.onClose()
+  })
   return (
     <OverLay center {...rest}>
       <SearchPanel />
     </OverLay>
   )
 }
+
+export const SearchHotKey: FC = memo(() => {
+  const [show, setShow] = useState(false)
+  useHotKey({ key: 'k', modifier: ['Meta'], preventInput: false }, () => {
+    setShow(true)
+  })
+
+  useHotKey({ key: '/', preventInput: true }, () => {
+    setShow(true)
+  })
+  return <SearchOverlay show={show} onClose={() => setShow(false)} />
+})
+
+export const SearchFAB = memo(() => {
+  const [show, setShow] = useState(false)
+  const { actionStore } = useStore()
+  const idSymbol = useRef(Symbol())
+  useEffect(() => {
+    actionStore.removeActionBySymbol(idSymbol.current)
+    const action = {
+      icon: <FontAwesomeIcon icon={faSearch} />,
+      id: idSymbol.current,
+      onClick: () => {
+        setShow(true)
+      },
+    }
+    requestAnimationFrame(() => {
+      actionStore.appendActions(action)
+    })
+
+    return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      actionStore.removeActionBySymbol(idSymbol.current)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  return <SearchOverlay show={show} onClose={() => setShow(false)} />
+})

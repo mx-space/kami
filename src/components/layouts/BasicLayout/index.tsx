@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Footer } from 'components/layouts/BasicLayout/Footer'
 import { Header } from 'components/layouts/BasicLayout/Header'
 import { MusicMiniPlayerStoreControlled } from 'components/widgets/Player'
+import { SearchHotKey } from 'components/widgets/Search'
 import { useMediaToggle } from 'hooks/use-media-toggle'
 import { useThemeBackground } from 'hooks/use-theme-background'
 import { observer } from 'mobx-react-lite'
@@ -84,6 +85,7 @@ export const BasicLayout: FC = observer(({ children }) => {
       }, 50)
     }
   }, [])
+
   return (
     <>
       <Header />
@@ -100,6 +102,8 @@ export const BasicLayout: FC = observer(({ children }) => {
         in={showNotice}
         key={'notice'}
       />
+
+      <SearchHotKey />
     </>
   )
 })
