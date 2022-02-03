@@ -181,6 +181,9 @@ export const SearchHotKey: FC = memo(() => {
   useHotKey({ key: 'k', modifier: ['Meta'], preventInput: false }, () => {
     setShow(true)
   })
+  useHotKey({ key: 'k', modifier: ['Control'], preventInput: false }, () => {
+    setShow(true)
+  })
 
   useHotKey({ key: '/', preventInput: true }, () => {
     setShow(true)
