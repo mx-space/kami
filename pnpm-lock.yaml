@@ -11,7 +11,7 @@ specifiers:
   '@fortawesome/react-fontawesome': 0.1.17
   '@innei-util/eslint-config-react-ts': latest
   '@innei-util/prettier': latest
-  '@mx-space/api-client': 0.6.1
+  '@mx-space/api-client': 0.6.2
   '@mx-space/extra': 0.5.2
   '@next/bundle-analyzer': 12.0.10
   '@trivago/prettier-plugin-sort-imports': 3.1.1
@@ -90,7 +90,7 @@ dependencies:
   '@fortawesome/free-regular-svg-icons': 5.15.4
   '@fortawesome/free-solid-svg-icons': 5.15.4
   '@fortawesome/react-fontawesome': 0.1.17_f515edce028694561ceb456e3dba224c
-  '@mx-space/api-client': 0.6.1
+  '@mx-space/api-client': 0.6.2
   '@mx-space/extra': 0.5.2_axios@0.25.0
   NeteaseCloudMusicApi: 4.5.1
   axios: 0.25.0
@@ -1559,11 +1559,11 @@ packages:
       - typescript
     dev: true
 
-  /@mx-space/api-client/0.6.1:
-    resolution: {integrity: sha512-BQaj9o6wE4f7vq1zxUBdoXql710HUEVUrbiqMhi5VzIhZh1/eqii+sBBCC8z5HdYnv/8sHHC4uSGd0LteWY7rw==}
+  /@mx-space/api-client/0.6.2:
+    resolution: {integrity: sha512-KU/A+cdCfkMpK+E+HPLPCj3F3VxC8CuElXapmiBHg5oX+BZ6IiIATuTQImE/L1CpUmf+pkCdm8IOezqRZA+T4w==}
     engines: {pnpm: '>=6'}
     dependencies:
-      camelcase-keys: 7.0.1
+      camelcase-keys: 7.0.2
     dev: false
 
   /@mx-space/extra/0.5.2_axios@0.25.0:
@@ -2635,8 +2635,8 @@ packages:
       quick-lru: 4.0.1
     dev: true
 
-  /camelcase-keys/7.0.1:
-    resolution: {integrity: sha512-P331lEls98pW8JLyodNWfzuz91BEDVA4VpW2/SwXnyv2K495tq1N777xzDbFgnEigfA7UIY0xa6PwR/H9jijjA==}
+  /camelcase-keys/7.0.2:
+    resolution: {integrity: sha512-Rjs1H+A9R+Ig+4E/9oyB66UC5Mj9Xq3N//vcLf2WzgdTi/3gUu3Z9KoqmlrEG4VuuLK8wJHofxzdQXz/knhiYg==}
     engines: {node: '>=12'}
     dependencies:
       camelcase: 6.3.0
