@@ -20,8 +20,8 @@
   --serif-font: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC',
     'Source Han Serif', source-han-serif-sc, SongTi SC, 'PingFang SC', SimSum,
     'Hiragino Sans GB', 'Heiti SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei';
-  --sans-font: PingFang SC, Helvetica, noto sans sc, hiragino sans gb,
-    microsoft yahei, 'sans-serif';
+  --sans-font: -apple-system, PingFang SC, Helvetica, noto sans sc,
+    hiragino sans gb, microsoft yahei, 'sans-serif';
   --monospace-font: OperatorMonoSSmLig Nerd Font, JetBrains Mono, Operator Mono,
     Monaco, Consolas, 'Courier New', Courier, monospace;
   --mono-font: var(--monospace-font);
