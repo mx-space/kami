@@ -37,6 +37,14 @@ export default defineConfig({
         gray: 'var(--gray)',
         deepgray: 'var(--deep-gray)',
         shallow: 'var(--shallow)',
+        pink: 'var(--pink)',
+        'gray-1': 'var(--gray-1)',
+        'gray-2': 'var(--gray-2)',
+        'gray-3': 'var(--gray-3)',
+        'gray-4': 'var(--gray-4)',
+        'gray-5': 'var(--gray-5)',
+        'gray-6': 'var(--gray-6)',
+
         shizuku: {
           text: 'var(--shizuku-text-color)',
           theme: 'var(--shizuku-theme-color)',

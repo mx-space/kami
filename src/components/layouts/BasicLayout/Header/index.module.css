@@ -217,7 +217,8 @@
   align-items: center;
 
   & .meta {
-    color: var(--deep-gray);
+    @apply text-gray-2;
+
     font-size: 0.8rem;
     flex-shrink: 1;
     text-overflow: ellipsis;
@@ -239,7 +240,7 @@
 }
 
 .site-info {
-  color: #aaa;
+  @apply text-gray-3;
 }
 
 .swiper-metawrapper {
