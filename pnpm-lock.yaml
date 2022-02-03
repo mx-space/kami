@@ -55,7 +55,7 @@ specifiers:
   postcss: 8.4.6
   postcss-import: 14.0.2
   postcss-nested: 5.0.6
-  postcss-preset-env: 7.3.0
+  postcss-preset-env: 7.3.1
   prettier: 2.5.1
   qier-progress: 1.0.4
   randomcolor: 0.6.2
@@ -155,7 +155,7 @@ devDependencies:
   postcss: 8.4.6
   postcss-import: 14.0.2_postcss@8.4.6
   postcss-nested: 5.0.6_postcss@8.4.6
-  postcss-preset-env: 7.3.0_postcss@8.4.6
+  postcss-preset-env: 7.3.1_postcss@8.4.6
   prettier: 2.5.1
   react-lazyload: 3.2.0_react-dom@17.0.2+react@17.0.2
   rimraf: 3.0.2
@@ -5848,13 +5848,9 @@ packages:
       postcss-selector-parser: 6.0.9
     dev: true
 
-  /postcss-opacity-percentage/1.1.1_postcss@8.4.6:
-    resolution: {integrity: sha512-WZo/LXA2fDrkCwN7QQbf3uc6hSd1SON+Ilb0Smg9FojqpOPhrHx9kmv3hXxWi1rPepKl/NdoAU6FmhTnYKFigg==}
-    engines: {node: '>=16'}
-    peerDependencies:
-      postcss: '>=8'
-    dependencies:
-      postcss: 8.4.6
+  /postcss-opacity-percentage/1.1.2:
+    resolution: {integrity: sha512-lyUfF7miG+yewZ8EAk9XUBIlrHyUE6fijnesuz+Mj5zrIHIEw6KcIZSOk/elVMqzLvREmXB83Zi/5QpNRYd47w==}
+    engines: {node: ^12 || ^14 || >=16}
     dev: true
 
   /postcss-overflow-shorthand/3.0.2_postcss@8.4.6:
@@ -5884,8 +5880,8 @@ packages:
       postcss-value-parser: 4.2.0
     dev: true
 
-  /postcss-preset-env/7.3.0_postcss@8.4.6:
-    resolution: {integrity: sha512-mEK7vqBL/BvynALHNc9pC7T7jolNm3ouornf9p4WpXW+sGooV3kCLvS4kKXE+rL6i12LKUgleJOZRPaoOuNLEg==}
+  /postcss-preset-env/7.3.1_postcss@8.4.6:
+    resolution: {integrity: sha512-x7fNsJxfkY60P4FUNwhJUOfXBFfnObd2EcUYY97sXZ0XRLgmAE65es9EFIYHq1rAk7X3LMfbG+L9wYgkrNsq5Q==}
     engines: {node: ^12 || ^14 || >=16}
     peerDependencies:
       postcss: ^8.4
@@ -5922,7 +5918,7 @@ packages:
       postcss-logical: 5.0.3_postcss@8.4.6
       postcss-media-minmax: 5.0.0_postcss@8.4.6
       postcss-nesting: 10.1.2_postcss@8.4.6
-      postcss-opacity-percentage: 1.1.1_postcss@8.4.6
+      postcss-opacity-percentage: 1.1.2
       postcss-overflow-shorthand: 3.0.2_postcss@8.4.6
       postcss-page-break: 3.0.4_postcss@8.4.6
       postcss-place: 7.0.3_postcss@8.4.6
