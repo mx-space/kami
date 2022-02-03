@@ -29,9 +29,7 @@ export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
     const onMarkToggle = useCallback(() => {
       apiClient.note.proxy(id).patch({ data: { bookmark: !bookmark } })
     }, [bookmark, id])
-    const noAppear = globalThis.location
-      ? location.hash.includes('comments')
-      : false
+    const noAppear = globalThis.location ? location.hash : false
     return (
       <main className="max-w-[50em] relative is-note" ref={ref}>
         <BottomUpTransitionView

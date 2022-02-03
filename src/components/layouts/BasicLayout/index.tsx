@@ -6,7 +6,14 @@ import { MusicMiniPlayerStoreControlled } from 'components/widgets/Player'
 import { useMediaToggle } from 'hooks/use-media-toggle'
 import { useThemeBackground } from 'hooks/use-theme-background'
 import { observer } from 'mobx-react-lite'
-import { FC, useCallback, useEffect, useRef, useState } from 'react'
+import {
+  FC,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react'
 import { useStore } from '../../../store'
 import { Switch } from '../../universal/LampSwitch'
 import { NoticePanel as ColorModeNoticePanel } from '../../universal/Notice'
@@ -62,6 +69,21 @@ export const BasicLayout: FC = observer(({ children }) => {
     appStore.viewport.pad,
     handleChangeColorMode,
   ])
+
+  useLayoutEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace(/^#/, '')
+      setTimeout(() => {
+        const $el = document.getElementById(decodeURIComponent(id))
+
+        if ($el) {
+          $el.scrollIntoView({
+            block: 'center',
+          })
+        }
+      }, 50)
+    }
+  }, [])
   return (
     <>
       <Header />

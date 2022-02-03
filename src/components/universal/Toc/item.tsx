@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { FC, memo } from 'react'
+import { FC, memo, useEffect } from 'react'
 import { springScrollToElement } from 'utils/spring'
 import styles from './index.module.css'
 
@@ -12,6 +12,12 @@ export const TocItem: FC<{
   index: number
 }> = memo((props) => {
   const { index, active, depth, title, rootDepth, onClick } = props
+  useEffect(() => {
+    if (active) {
+      const state = history.state
+      history.replaceState(state, '', `#${title}`)
+    }
+  }, [active, title])
   return (
     <a
       data-index={index}

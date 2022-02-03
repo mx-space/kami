@@ -143,14 +143,6 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
     note.count.like,
     wordCount,
   ])
-  useEffect(() => {
-    if (document.documentElement.scrollTop > 50) {
-      document.documentElement.scrollTop = 50
-    }
-    setTimeout(() => {
-      springScrollToTop()
-    }, 10)
-  }, [props.id])
 
   useNoteMusic(note.music)
 

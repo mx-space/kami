@@ -43,10 +43,12 @@ const _OverLay: FC<OverLayProps & { child: any }> = (props) => {
   )
 }
 
-const __OverLay: FC<OverLayProps & { show: boolean; children?: ReactNode }> = ({
-  show,
-  ...props
-}) => {
+export type OverlayProps = OverLayProps & {
+  show: boolean
+  children?: ReactNode
+}
+
+const __OverLay: FC<OverlayProps> = ({ show, ...props }) => {
   if (isServerSide()) {
     return null
   }
