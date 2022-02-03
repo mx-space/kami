@@ -114,7 +114,7 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
       })
   }, [keyword])
   return (
-    <div className="w-[800px] max-w-[80vw] max-h-[60vh] h-[600px] bg-shallow min-h-50 rounded-xl flex flex-col overflow-hidden text-[--black]">
+    <div className="w-[800px] max-w-[80vw] max-h-[60vh] h-[600px] bg-bg-opacity backdrop-blur	drop-shadow-md min-h-50 rounded-xl flex flex-col overflow-hidden text-[--black]">
       <input
         className="p-4 px-5 w-full text-[16px] leading-4 bg-transparent"
         placeholder="Search..."
@@ -125,8 +125,8 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
       <div
         className={clsx(styles['status-bar'], loading && styles['loading'])}
       ></div>
-      <div className="flex-grow flex-shrink relative">
-        <ul className="overflow-overlay py-4 px-3 h-full">
+      <div className="flex-grow flex-shrink relative overflow-overlay">
+        <ul className="py-4 px-3 h-full">
           {list.length === 0 && !loading ? (
             <div className="flex h-full items-center justify-center">
               <div className="flex flex-col items-center space-y-2">

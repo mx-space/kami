@@ -12,7 +12,7 @@
   --primary: var(--green);
 
   --code-bg: transparent;
-  --black: #000;
+  --black: #353535;
   --gray: #d1d1d6;
   --deep-gray: #8e8e93;
   --bg-opacity: rgb(255 255 255 / 50%);
@@ -27,7 +27,7 @@
   --mono-font: var(--monospace-font);
 
   font: 14px/1.15 var(--sans-font);
-  color: #353535;
+  color: var(--black);
   text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
   /*  for firefox */
@@ -42,8 +42,6 @@
 }
 
 html.dark {
-  color: #ddd !important;
-
   --red: #ad1a00 !important;
   --blue: #1346a4 !important;
   --green: #1f8f93 !important;
@@ -55,7 +53,7 @@ html.dark {
   --light-font: #ddd !important;
   --shallow: #333 !important;
 
-  --black: #fff;
+  --black: #ddd;
   --shizuku-background-color: #212121;
   --shizuku-text-color: #858585;
   --shizuku-theme-color: #3c946c;
