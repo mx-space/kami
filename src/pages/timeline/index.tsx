@@ -55,10 +55,10 @@ const Progress: FC = memo(() => {
   }, [])
   return (
     <Fragment>
-      <p>
+      <p className="my-4">
         今天是 {new Date().getFullYear()} 年的第 {dayOfYear()} 天
       </p>
-      <p>
+      <p className="my-4">
         今年已过{' '}
         <CountUp
           end={percentOfYear}
@@ -68,7 +68,7 @@ const Progress: FC = memo(() => {
         ></CountUp>
         %
       </p>
-      <p>
+      <p className="my-4">
         今天已过{' '}
         <CountUp
           end={percentOfDay}

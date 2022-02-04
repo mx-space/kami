@@ -35,7 +35,7 @@ export const Copyright: FC<CopyrightProps> = observer((props) => {
         最后修改时间:{' '}
         {date ? dayjs(date).format('YYYY年MM月DD日 H:mm') : '暂没有修改过'}
       </p>
-      <hr />
+      <hr className="my-4" />
       <div>
         <p>
           商业转载请联系站长获得授权，非商业转载请注明本文出处及文章链接，未经站长允许不得对文章文字内容进行修改演绎。

@@ -23,7 +23,6 @@
   }
 
   & small {
-    color: #bbb;
     opacity: 0;
     transition: opacity 0.3s;
     font-size: 0.6em;

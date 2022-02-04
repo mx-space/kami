@@ -1,7 +1,7 @@
 import { PlayListType } from '@mx-space/extra'
 import clsx from 'clsx'
-import { observer } from 'mobx-react-lite'
-import { FC } from 'react'
+import { runInAction } from 'mobx'
+import { FC, memo } from 'react'
 import { useStore } from 'store'
 import styles from './index.module.css'
 
@@ -11,10 +11,16 @@ interface SectionMusicProps {
   name: string
 }
 
-export const SectionMusic: FC<SectionMusicProps> = observer((props) => {
+export const SectionMusic: FC<SectionMusicProps> = memo((props) => {
   const { musicStore } = useStore()
   const loadList = (id: number[]) => {
-    musicStore.setPlaylist(id)
+    runInAction(() => {
+      musicStore.setPlaylist(id)
+      musicStore.isHide = false
+      setTimeout(() => {
+        musicStore.isPlay = true
+      }, 1000)
+    })
   }
   return (
     <section className={styles['kami-music']}>

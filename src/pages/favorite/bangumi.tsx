@@ -71,7 +71,7 @@ const BangumiView: NextPage = () => {
                     {bangumi.title}
                     <div className="bangumi-status">
                       <div className="bangumi-status-bar"></div>
-                      <p>{bangumi.countText ?? 'N/A'}</p>
+                      <p className="leading-6">{bangumi.countText ?? 'N/A'}</p>
                     </div>
                   </h4>
                 </a>

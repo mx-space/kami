@@ -200,18 +200,28 @@ export const _MusicMiniPlayerStoreControlled = observer(() => {
   const ref = useRef<MusicPlayerRef>(null)
   const { musicStore } = useStore()
 
-  if (musicStore.isPlay) {
-    ref.current?.play()
-  } else {
-    ref.current?.pause()
-  }
+  useEffect(() => {
+    if (!ref.current) {
+      console.log('player not ready')
+      return
+    }
+    if (musicStore.isPlay) {
+      requestAnimationFrame(() => {
+        ref.current?.play()
+      })
+    } else {
+      ref.current.pause()
+    }
+  }, [musicStore.isPlay])
 
-  if (!musicStore.isHide) {
-    // auto play disable
-    // ref.current?.play()
-  } else {
-    ref.current?.pause()
-  }
+  useEffect(() => {
+    if (!musicStore.isHide) {
+      // auto play disable
+      // ref.current?.play()
+    } else {
+      ref.current?.pause()
+    }
+  }, [musicStore.isHide])
 
   const handleChangePlayState = useCallback((state: 'play' | 'pause') => {
     if (state === 'play') {

@@ -50,7 +50,7 @@ export const PostBlock: FC<PostBlockProps> = observer((props) => {
       <h1 className={classNames(styles.head, 'headline')}>
         <div className="inline-flex items-center">
           {d}
-          <small>（{week}）</small>
+          <small className="text-gray-2">（{week}）</small>
         </div>
         {!viewport?.mobile && (
           <div className={styles.title} onClick={goToPost}>
@@ -76,12 +76,12 @@ export const PostBlock: FC<PostBlockProps> = observer((props) => {
               style={{ backgroundImage: `url(${hasImage})` }}
             />
           )}
-          <div>
+          <p>
             {useMemo(() => {
               const r = removeMd(text)
               return r.length >= 250 ? r.slice(0, 250) + '..' : r
             }, [text])}
-          </div>
+          </p>
           <div className="mb-10"></div>
         </article>
         <section className={styles.navigator}>

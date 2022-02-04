@@ -3,6 +3,10 @@
 
   grid-template-columns: 10rem auto;
 
+  p {
+    @apply my-2 leading-6;
+  }
+
   &::after {
     content: '';
     clear: both;

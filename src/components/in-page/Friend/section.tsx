@@ -92,7 +92,9 @@ const Card: FC<{ link: LinkModel }> = ({ link }) => {
       <CircleAvatar focus={focused} size={size} src={link.avatar} />
       <span className="flex flex-col justify-start space-y-2 h-full py-3">
         <span className="text-lg">{link.name}</span>
-        <span className="text-deepgray text-sm">{link.description}</span>
+        <span className="text-deepgray text-sm line-clamp-2 break-all">
+          {link.description}
+        </span>
       </span>
     </a>
   )
