@@ -27,12 +27,9 @@ const handler: DevtoolsDetectorListener = async (isOpen, detail) => {
     removeListener(handler)
     stop()
 
-    document.body.innerHTML =
-      '<h1>你打开了控制台, 请关闭后刷新</h1><p><small>' +
-      `</small></p>` +
-      `<p><small>${detail?.checkerName || ''} <br /> ${
-        navigator.userAgent
-      }</small></p>`
+    document.body.innerHTML = '<h1>お可愛いこと。</h1>'
+    console.log(detail)
+
     document.body.style.cssText = `
 background: #fff;
 color: #000;

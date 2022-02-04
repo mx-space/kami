@@ -10,11 +10,7 @@ export const Loading: FC<LoadingProps> = memo(({ loadingText }) => {
     <div className={styles['loading']}>
       <div className="icon">
         <svg
-          style={{
-            margin: 'auto',
-            background: 'transparent',
-            display: 'block',
-          }}
+          className="m-auto bg-transparent block"
           width="200px"
           height="200px"
           viewBox="0 0 100 100"
