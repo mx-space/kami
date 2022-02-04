@@ -138,7 +138,6 @@ pre > code {
   }
 }
 
-p,
 .paragraph {
   margin: 0.5rem 0;
   line-height: 1.8;
@@ -357,28 +356,6 @@ p,
     opacity: 0.88;
     color: var(--shizuku-text-color);
     font-size: 80%;
-  }
-}
-
-/* dangmaku */
-.shadow {
-  box-shadow: rgba($color: #000, $alpha: 20%) 0 0 20px;
-}
-
-@keyframes dangmaku {
-  from {
-    right: 0;
-    transform: translateX(100%);
-  }
-
-  50% {
-    right: 50vw;
-    transform: translateX(-100%);
-  }
-
-  to {
-    right: 100vw;
-    transform: translateX(-100%);
   }
 }
 

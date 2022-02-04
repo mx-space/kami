@@ -2,7 +2,7 @@ import classNames from 'clsx'
 import { merge } from 'lodash-es'
 import { CSSProperties, FC, memo, ReactNode, useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import { isServerSide } from 'utils'
+import { isServerSide, stopEventDefault } from 'utils'
 import { FadeInOutTransitionView } from '../Transition/fade-in-out'
 import styles from './index.module.css'
 
@@ -78,11 +78,7 @@ const __OverLay: FC<OverlayProps> = ({
           tabIndex={-1}
           onClick={props.onClose}
         >
-          <div
-            onClick={(e) => {
-              e.stopPropagation()
-            }}
-          >
+          <div onClick={stopEventDefault} tabIndex={-1}>
             {props.children}
           </div>
         </div>

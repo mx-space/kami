@@ -69,6 +69,7 @@ specifiers:
   react-markdown: 4.3.1
   react-masonry-css: 1.0.16
   react-message-popup: 0.2.0
+  react-toastify: 8.1.1
   react-transition-group: 4.4.2
   react-use: 17.3.2
   remove-markdown: 0.3.0
@@ -117,6 +118,7 @@ dependencies:
   react-markdown: 4.3.1_react@17.0.2
   react-masonry-css: 1.0.16_react@17.0.2
   react-message-popup: 0.2.0_react-dom@17.0.2+react@17.0.2
+  react-toastify: 8.1.1_react-dom@17.0.2+react@17.0.2
   react-transition-group: 4.4.2_react-dom@17.0.2+react@17.0.2
   react-use: 17.3.2_react-dom@17.0.2+react@17.0.2
   remove-markdown: 0.3.0
@@ -6319,6 +6321,17 @@ packages:
       react: ^17.0.0
       react-dom: ^17.0.0
     dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  /react-toastify/8.1.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-KQa+j+JHjy69xpPYheaWUq3SjVw1sV2D7/QsXW6Tpo2x9HhUCvASezAMYDmLhfAYoSnaXUVnTNFAgZQA75SExQ==}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+    dependencies:
+      clsx: 1.1.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     dev: false

@@ -155,11 +155,6 @@ a,
   transition: color 0.5s, background 0.5s;
 }
 
-p {
-  line-height: 1.8;
-  margin-bottom: 1em;
-}
-
 .btn {
   cursor: pointer;
   background: var(--light-bg);

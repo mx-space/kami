@@ -26,7 +26,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
     case EventTypes.RECENTLY_CREATE: {
       notice.notice({
         title,
-        body: '站长发布一条新动态',
+        text: '站长发布一条新动态',
         description: data.content,
         onclick: () => {
           window.open(webUrl + '/recently')
@@ -49,7 +49,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
       }
       notice.notice({
         title: title,
-        body: message,
+        text: message,
         description: getDescription(data.text),
         onclick: () => {
           window.open(
@@ -68,7 +68,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
       const message = noticeHead('说说')
       notice.notice({
         title: title,
-        body: message,
+        text: message,
         description: getDescription(data.text),
         onclick: () => {
           window.open(webUrl + '/says')
@@ -94,7 +94,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
       ) {
         notice.notice({
           title: userStore.name + ' 敲了你一下',
-          body: data.text,
+          text: data.text,
           options: { image: userStore.master?.avatar },
         })
       }
@@ -154,5 +154,5 @@ function noticeHead(type: string, title?: string) {
   return `${store.userStore.name}发布了新的${type}${title ? ': ' + title : ''}`
 }
 function getDescription(text: string) {
-  return text.slice(0, 20) + '...'
+  return text.length > 20 ? text.slice(0, 20) + '...' : text
 }

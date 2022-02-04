@@ -161,7 +161,7 @@ export const SearchOverlay: FC<OverlayProps> = (props) => {
     props.onClose()
   })
   return (
-    <OverLay center {...rest}>
+    <OverLay childrenOutside center {...rest}>
       <SearchPanel />
     </OverLay>
   )
@@ -206,7 +206,5 @@ export const SearchFAB = memo(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return (
-    <SearchOverlay childrenOutside show={show} onClose={() => setShow(false)} />
-  )
+  return <SearchOverlay show={show} onClose={() => setShow(false)} />
 })
