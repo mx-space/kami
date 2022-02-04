@@ -23,7 +23,13 @@ Live Demo:
 
 ## 迁移指南
 
-升级 Server 到 v3.13.0 以上，在设置中的「区块与片段」中新建一个名为 `kami`，引用为 `theme`，内容为可配置项，可参考： [config.example.yaml](https://ghproxy.fsou.cc/https://github.com/mx-space/kami/blob/master/config.example.yaml)
+升级 Server 到 v3.13.0 以上，在设置中的「区块与片段」中新建一个名为 `kami`，引用为 `theme`，内容为可配置项，可参考： [config.example.yaml](./config.example.yaml)
+
+[配置项](https://mx-docs.shizuri.net/deploy/kami#%E6%9B%B4%E4%B8%BA%E8%AF%A6%E7%BB%86%E7%9A%84%E9%85%8D%E7%BD%AE%E9%A1%B9)
+
+## 进群讨论
+
+QQ 群：[615052447](https://jq.qq.com/?_wv=1027&k=5t9N0mw)
 
 ## 忠告
 
