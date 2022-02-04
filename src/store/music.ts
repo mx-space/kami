@@ -11,22 +11,43 @@ export class MusicStore {
   isHide = true
   isPlay = false
 
-  reset() {
+  /** 正在播放的歌曲 ID */
+  playId = 0
+  /** 当前时间 */
+  time = 0
+  /** 持续时间 */
+  duration = 0
+
+  setPlayingInfo(id: number, time: number, duration: number) {
     runInAction(() => {
-      this.isHide = true
-      this.isPlay = false
-      this.resetList()
+      this.playId = id
+      this.time = time
+      this.duration = duration
     })
   }
 
+  reset() {
+    this.isHide = true
+    this.isPlay = false
+    this.resetPlayingSongState()
+    this.resetList()
+  }
+  private resetPlayingSongState() {
+    this.duration = 0
+    this.time = 0
+    this.playId = 0
+  }
   resetList() {
+    this.resetPlayingSongState()
     this.list = window.data?.config.function.player.id ?? [
       563534789, 1447327083, 1450252250,
     ]
   }
 
   empty() {
+    this.resetPlayingSongState()
     this.list = []
+    this.isPlay = false
   }
 
   setPlay(play: boolean) {
@@ -37,29 +58,25 @@ export class MusicStore {
   }
 
   setHide(hide: boolean) {
-    runInAction(() => {
-      this.isHide = hide
+    this.isHide = hide
 
-      if (hide) {
-        this.isPlay = false
-      }
-    })
+    if (hide) {
+      this.isPlay = false
+    }
   }
 
   async setPlaylist(list: number[]) {
     this.list = [...list]
-
+    this.resetPlayingSongState()
     return this.list
   }
 
   play() {
-    runInAction(() => {
-      if (this.list.length == 0) {
-        this.reset()
-      }
+    if (this.list.length == 0) {
+      this.reset()
+    }
 
-      this.isHide = false
-      this.isPlay = true
-    })
+    this.isHide = false
+    this.isPlay = true
   }
 }

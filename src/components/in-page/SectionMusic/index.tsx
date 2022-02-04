@@ -1,7 +1,9 @@
 import { PlayListType } from '@mx-space/extra'
 import clsx from 'clsx'
+import { MusicIcon, PauseIcon } from 'components/universal/Icons'
 import { runInAction } from 'mobx'
-import { FC, memo } from 'react'
+import { observer } from 'mobx-react-lite'
+import { FC, memo, useMemo } from 'react'
 import { useStore } from 'store'
 import styles from './index.module.css'
 
@@ -36,30 +38,88 @@ export const SectionMusic: FC<SectionMusicProps> = memo((props) => {
           {props.data.length ? (
             props.data.map((i, index) => {
               return (
-                <li
-                  key={index}
-                  onClick={(_) =>
-                    loadList(
-                      props.data.filter((_, i) => i >= index).map((i) => i.id),
-                    )
-                  }
-                >
-                  <span className={styles['num']}>{index + 1}</span>
-                  {i.name}
-                  <time>{i.time}</time>
-                </li>
+                <SongItem
+                  key={i.id}
+                  index={index}
+                  name={i.name}
+                  time={i.time}
+                  id={i.id}
+                  onClick={(i) => {
+                    loadList(props.data.slice(i).map((i) => i.id))
+                  }}
+                />
               )
             })
           ) : (
-            <p>
-              <li>
-                <span className={styles['num']}>0</span>
-                这里暂时没有内容
-              </li>
-            </p>
+            <li>
+              <span className={styles['num']}>0</span>
+              这里暂时没有内容
+            </li>
           )}
         </ul>
       </div>
     </section>
+  )
+})
+
+type SongItemProps = {
+  index: number
+  time: string
+  name: string
+  id: number
+  onClick: (index: number) => void
+}
+
+const SongItem: FC<SongItemProps> = observer((props) => {
+  const { index, name, time } = props
+  const { musicStore } = useStore()
+  const { playId } = musicStore
+  if (playId === props.id) {
+    return <PlayingSongItem {...props} />
+  }
+  return (
+    <li
+      onClick={() => props.onClick(index)}
+      className={clsx(styles['song-item'])}
+    >
+      <span className={styles['num']}>{index + 1}</span>
+      <span className="flex-grow truncate">{name}</span>
+      <time className="font-mono flex-shrink-0">{time}</time>
+    </li>
+  )
+})
+
+const PlayingSongItem: FC<SongItemProps> = observer((props) => {
+  const { index, name, time } = props
+  const { musicStore } = useStore()
+  const { playId, duration: totalTime, time: currentTime } = musicStore
+  return (
+    <li
+      onClick={() => props.onClick(index)}
+      className={clsx(
+        styles['song-item'],
+        playId === props.id && totalTime && currentTime
+          ? styles['playing']
+          : null,
+      )}
+      style={{
+        backgroundSize: `${(currentTime / totalTime) * 100}% 100%`,
+      }}
+    >
+      {useMemo(
+        () => (
+          <span className={styles['num']}>
+            {musicStore.isPlay ? (
+              <MusicIcon className="inline" />
+            ) : (
+              <PauseIcon className="inline" />
+            )}
+          </span>
+        ),
+        [musicStore.isPlay],
+      )}
+      <span className="flex-grow truncate">{name}</span>
+      <time className="font-mono flex-shrink-0">{time}</time>
+    </li>
   )
 })

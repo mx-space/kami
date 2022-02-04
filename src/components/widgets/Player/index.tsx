@@ -14,7 +14,7 @@ import { useStore } from 'store'
 import { hms, NoSSR } from 'utils'
 import styles from './index.module.css'
 
-const API_BASE_URL = 'https://api.i-meto.com/meting/api'
+const METO_ENDPOINT = 'https://api.i-meto.com/meting/api'
 
 type MetingPayloadType = {
   author: string
@@ -48,8 +48,9 @@ export const MusicMiniPlayer = forwardRef<
     playlist: number[]
     hide?: boolean
     onPlayStateChange: (state: 'play' | 'pause') => void
+    onChange?: (id: number, time: number, duration: number) => void
   }
->(({ playlist, hide = false, onPlayStateChange }, ref) => {
+>(({ playlist, hide = false, onPlayStateChange, onChange }, ref) => {
   const len = playlist.length
 
   const [cur, setCur] = useState<null | (MetingPayloadType & { id: number })>(
@@ -63,7 +64,7 @@ export const MusicMiniPlayer = forwardRef<
       return
     }
     const songApi = location.origin + '/api/netease/song'
-    const stream = await fetch(`${API_BASE_URL}/?server=${type}&id=${id}`)
+    const stream = await fetch(`${METO_ENDPOINT}/?server=${type}&id=${id}`)
     const json = (await stream.json()) as MetingPayloadType[]
     const [data] = await (await fetch(songApi + '?id=' + id)).json()
     const songUrl = data.url?.replace('http://', 'https://')
@@ -80,7 +81,13 @@ export const MusicMiniPlayer = forwardRef<
     fetchData(playlist[0])
   }, [playlist])
 
-  const onChangeAudio = useCallback((e) => {}, [])
+  const onChangeAudio = useCallback((e) => {
+    const $audio = e.target
+
+    if (playState.current && $audio.paused) {
+      $audio.play()
+    }
+  }, [])
 
   const [audioEl, state, controls] = useAudio({
     src: cur?.url || '',
@@ -93,12 +100,31 @@ export const MusicMiniPlayer = forwardRef<
     },
     onLoadedData: onChangeAudio,
     // onDurationChange: onChangeAudio,
+    onTimeUpdate(e) {
+      if (onChange) {
+        const $audio = e.target as HTMLAudioElement
+        const duration = $audio.duration
+        const currentTime = $audio.currentTime
+        onChange(cur?.id || 0, currentTime, duration)
+      }
+    },
+
     onLoad: onChangeAudio,
   })
+  const playState = useRef(false)
+  const play = useCallback(() => {
+    controls.play()
+    playState.current = true
+  }, [controls])
+
+  const pause = useCallback(() => {
+    controls.pause()
+    playState.current = false
+  }, [controls])
 
   useImperativeHandle(ref, () => ({
-    pause: controls.pause,
-    play: controls.play,
+    pause,
+    play,
     setCursor(cursor) {
       setCursor(cursor % len)
     },
@@ -115,13 +141,13 @@ export const MusicMiniPlayer = forwardRef<
 
   const handleChangePlayState = useCallback(() => {
     if (state.paused) {
-      controls.play()
+      play()
       onPlayStateChange('play')
     } else {
-      controls.pause()
+      pause()
       onPlayStateChange('pause')
     }
-  }, [controls, onPlayStateChange, state.paused])
+  }, [onPlayStateChange, pause, play, state.paused])
 
   const Pic = useMemo(
     () =>
@@ -237,6 +263,9 @@ export const _MusicMiniPlayerStoreControlled = observer(() => {
       onPlayStateChange={handleChangePlayState}
       playlist={musicStore.list}
       hide={musicStore.isHide}
+      onChange={useCallback((id, time, totalTime) => {
+        musicStore.setPlayingInfo(id, time, totalTime)
+      }, [])}
     />
   )
 })
@@ -244,4 +273,3 @@ export const _MusicMiniPlayerStoreControlled = observer(() => {
 export const MusicMiniPlayerStoreControlled = NoSSR(
   _MusicMiniPlayerStoreControlled,
 )
-export default NoSSR(MusicMiniPlayer)

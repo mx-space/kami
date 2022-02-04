@@ -15,7 +15,7 @@ export const ToastCard: FC<{
   return (
     <div
       className="relative flex space-x-4 items-center p-4 w-full text-[12px] bg-bg-opacity overflow-hidden
-    text-black border border-shallow border-opacity-50
+    text-inherit border border-shallow border-opacity-50
     rounded-xl backdrop-filter backdrop-brightness-150 backdrop-brightness-110 backdrop-saturate-150 backdrop-blur-md
   select-none cursor-pointer mb-4 
     "

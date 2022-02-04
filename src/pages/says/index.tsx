@@ -58,6 +58,7 @@ const SayView = () => {
                   }}
                 >
                   <ReactMarkdown
+                    className="mb-2"
                     allowedTypes={[
                       'paragraph',
                       'link',

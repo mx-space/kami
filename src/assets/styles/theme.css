@@ -40,7 +40,7 @@ html.dark {
   --red: rgb(255, 69, 58) !important;
   --blue: #81cffa !important;
   --green: #1f8f93 !important;
-  --yellow: #f7a86e !important;
+  --yellow: #ffc107 !important;
   --brown: #c6aa9f !important;
   --light-brown: #bc9c8f !important;
   --purple: #b260ea !important;
@@ -81,7 +81,7 @@ html {
   text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
   /*  for firefox */
-  scrollbar-color: rgb(255 193 7) transparent;
+  scrollbar-color: var(--yellow) transparent;
   scrollbar-width: thin;
 
   overflow: overlay;
@@ -89,6 +89,30 @@ html {
   font-variant-numeric: tabular-nums;
   font-display: swap;
   font-size: 14px;
+}
+
+@media (max-width: 799px) {
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+}
+
+body::-webkit-scrollbar {
+  height: 0;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--yellow);
+  background-clip: padding-box;
+  border: 3px solid transparent;
+  border-radius: 5px;
 }
 
 html.dark img {
@@ -111,7 +135,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ffc107;
+  background: var(--yellow);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -147,7 +171,7 @@ p:last-child {
 }
 
 a:hover {
-  color: #ffc670;
+  color: var(--yellow);
 }
 
 a,
@@ -413,7 +437,7 @@ h1.headline {
   &::before {
     content: '';
     padding-left: 0.75em;
-    border-left: 2px solid #ffc107;
+    border-left: 2px solid var(--yellow);
   }
 }
 

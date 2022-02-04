@@ -17,29 +17,45 @@
   flex: 1 1 20em;
   overflow: hidden;
   max-height: 30em;
+}
 
-  time {
-    float: right;
-  }
+.music-list ul > li,
+.song-item {
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0.75em 1em;
+  border-radius: 0.5em;
+  transition: background 0.3s;
+  display: flex;
+  word-break: break-all;
 
-  li {
-    cursor: pointer;
-    overflow: hidden;
-    padding: 0.75em 1em;
-    border-radius: 0.5em;
-    transition: background 0.3s;
-
-    &:hover {
-      background: rgb(0 0 0 / 10%);
-    }
+  &:hover {
+    background: rgb(0 0 0 / 10%);
   }
 
   .num {
     opacity: 0.6;
     margin-right: 0.75em;
 
+    @apply flex-shrink-0;
+
     &::after {
       content: '.';
+    }
+  }
+
+  &.playing {
+    background: linear-gradient(to right, #8e9eab, var(--gray-5));
+    background-repeat: no-repeat;
+
+    .num {
+      color: #eee;
+
+      @apply opacity-100;
+    }
+
+    .num::after {
+      @apply hidden;
     }
   }
 }

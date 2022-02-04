@@ -114,6 +114,7 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
   useUpdateNote(note.id)
   useLoadSerifFont()
   useHeaderMeta(note.title, '生活观察日记')
+  useNoteMusic(note.music)
 
   const { title, id, text } = note
 
@@ -143,8 +144,6 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
     note.count.like,
     wordCount,
   ])
-
-  useNoteMusic(note.music)
 
   const isSecret = note.secret ? dayjs(note.secret).isAfter(new Date()) : false
   const secretDate = useMemo(() => new Date(note.secret!), [note.secret])

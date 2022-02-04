@@ -2,9 +2,12 @@ import { NoteMusicRecord } from '@mx-space/api-client'
 import { useEffect, useMemo } from 'react'
 import { useStore } from 'store'
 
-export const useMusic = (musicList: number[]) => {
+export const useMusic = (musicList: number[] | null) => {
   const { musicStore } = useStore()
   useEffect(() => {
+    if (!musicList) {
+      return
+    }
     if (musicList.length === 0) {
       musicStore.empty()
       return
@@ -27,5 +30,5 @@ export const useNoteMusic = (music?: NoteMusicRecord[]) => {
         : null,
     [music],
   )
-  useMusic(ids || [])
+  useMusic(ids)
 }
