@@ -15,7 +15,7 @@ export const genSpringKeyframes = (
   options: SpringOption = { preset: 'gentle' },
 ) => {
   if (!isClientSide() || cache.has(name)) {
-    return [name, null, null]
+    return [name, null, null] as const
   }
 
   const transformProperty = [
@@ -38,7 +38,7 @@ export const genSpringKeyframes = (
 
   cache.set(name, keyframes)
 
-  return [name, css, keyframes]
+  return [name, css, keyframes] as const
 }
 export const springScrollToTop = () => springScrollTo(0)
 export const springScrollTo = (

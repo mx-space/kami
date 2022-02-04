@@ -21,36 +21,25 @@ type SearchListType = {
   url: string
   id: string
 }
+let lastResponse = [+new Date(), null] as [number, any]
 const search = throttle((keyword: string) => {
-  // 记录每个请求的发送位置
-  const cachedPayload = [] as any[]
-
-  // 清理缓存的计时器
-  let timer: any
   return new Promise<Awaited<
     ReturnType<typeof apiClient.search.searchByAlgolia>
   > | null>((resolve, reject) => {
+    const date = +new Date()
     if (!keyword) {
-      // 立即清理
-      cachedPayload.length = 0
-      return resolve(null)
+      lastResponse = [date, null]
+      resolve(null)
+      return
     }
-
-    const index = cachedPayload.push(null) - 1
-
     apiClient.search
       .searchByAlgolia(keyword)
       .then((data) => {
-        cachedPayload[index] = data
         // 只给最后一个请求返回结果
-        resolve(cachedPayload[cachedPayload.length - 1])
-
-        if (timer) {
-          timer = clearTimeout(timer)
+        if (date > lastResponse[0]) {
+          lastResponse = [date, data]
         }
-        timer = setTimeout(() => {
-          cachedPayload.length = 0
-        }, 2000)
+        resolve(lastResponse[1])
       })
       .catch((err) => {
         reject(err)
@@ -119,7 +108,7 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
     <div
       className="w-[800px] max-w-[80vw] max-h-[60vh] h-[600px] 
     bg-bg-opacity backdrop-filter backdrop-blur-lg
-    shadow shadow-light-50 dark:shadow-dark-300
+    shadow-lg
     min-h-50 rounded-xl flex flex-col overflow-hidden text-[--black]"
     >
       <input
@@ -151,7 +140,7 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
                       <span className="block flex-1 flex-shrink-0 truncate">
                         {item.title}
                       </span>
-                      <span className="block text-deepgray flex-grow-0 flex-shrink-0">
+                      <span className="text-gray-2 block text-deepgray flex-grow-0 flex-shrink-0">
                         {item.subtitle}
                       </span>
                     </a>
@@ -217,5 +206,7 @@ export const SearchFAB = memo(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return <SearchOverlay show={show} onClose={() => setShow(false)} />
+  return (
+    <SearchOverlay childrenOutside show={show} onClose={() => setShow(false)} />
+  )
 })

@@ -57,7 +57,6 @@ const _FloatPostTagButton: FC = observer(() => {
 
   return (
     <OverLay
-      darkness={0.6}
       show={showTags}
       onClose={() => {
         setShowTags(false)

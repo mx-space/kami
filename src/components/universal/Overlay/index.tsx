@@ -46,17 +46,48 @@ const _OverLay: FC<OverLayProps & { child: any }> = (props) => {
 export type OverlayProps = OverLayProps & {
   show: boolean
   children?: ReactNode
+  /** 子代节点独立于 Overlay 内部 */
+  childrenOutside?: boolean
 }
 
-const __OverLay: FC<OverlayProps> = ({ show, ...props }) => {
+const __OverLay: FC<OverlayProps> = ({
+  show,
+  childrenOutside = false,
+  ...props
+}) => {
   if (isServerSide()) {
     return null
   }
 
   return ReactDOM.createPortal(
-    <FadeInOutTransitionView in={show} unmountOnExit timeout={{ exit: 500 }}>
-      <_OverLay {...props} child={props.children}></_OverLay>
-    </FadeInOutTransitionView>,
+    <>
+      <FadeInOutTransitionView
+        className="z-30"
+        in={show}
+        unmountOnExit
+        timeout={{ exit: 500 }}
+      >
+        <_OverLay
+          {...props}
+          child={childrenOutside ? null : props.children}
+        ></_OverLay>
+      </FadeInOutTransitionView>
+      {show && childrenOutside && (
+        <div
+          className="z-99 fixed inset-0 flex items-center justify-center"
+          tabIndex={-1}
+          onClick={props.onClose}
+        >
+          <div
+            onClick={(e) => {
+              e.stopPropagation()
+            }}
+          >
+            {props.children}
+          </div>
+        </div>
+      )}
+    </>,
     document.body,
   )
 }

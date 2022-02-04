@@ -9,7 +9,3 @@
     overflow: overlay;
   }
 }
-
-[data-nextjs-dialog-backdrop-fixed] {
-  backdrop-filter: none !important;
-}
