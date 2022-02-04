@@ -48,7 +48,7 @@ jobs:
           rm -rf cache
           # cd ./standalone
           # ln -s ../static/ ./.next/static
-          cd ..
+          # cd ..
           zip --symlinks -r ../release.zip ./*
       - name: Create Release
         id: create_release
