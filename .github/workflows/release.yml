@@ -46,8 +46,8 @@ jobs:
           cd .next
           pwd
           rm -rf cache
-          cd ./standalone
-          ln -s ../static/ ./.next/static
+          # cd ./standalone
+          # ln -s ../static/ ./.next/static
           cd ..
           zip --symlinks -r ../release.zip ./*
       - name: Create Release
