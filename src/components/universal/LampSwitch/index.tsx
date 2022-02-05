@@ -1,6 +1,26 @@
 import { DetailedHTMLProps, HTMLAttributes, memo, useRef } from 'react'
 import { NoSSR } from 'utils'
+import { genSpringKeyframes } from 'utils/spring'
 import styles from './index.module.css'
+const [down] = genSpringKeyframes(
+  'sakura',
+  {
+    translateY: '0vh',
+  },
+  {
+    translateY: '10vh',
+  },
+)
+
+const [up] = genSpringKeyframes(
+  'sakura-up',
+  {
+    translateY: '10vh',
+  },
+  {
+    translateY: '0',
+  },
+)
 export const Switch = NoSSR(
   memo<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>>(
     (props = {}) => {
@@ -17,15 +37,19 @@ export const Switch = NoSSR(
           <div className={styles['sakura-wrap']} {...props}>
             <div
               className={styles['sakura-img']}
-              onClick={(_) => {
+              onClick={() => {
                 if (containerRef.current) {
-                  containerRef.current.style.top = '0'
-                  setTimeout(() => {
-                    try {
-                      containerRef.current!.style.top = ''
-                      // eslint-disable-next-line no-empty
-                    } catch {}
-                  }, 500)
+                  // containerRef.current.style.top = '0'
+                  containerRef.current.style.animation = `${down} .5s linear both`
+                  containerRef.current.onanimationend = (ev) => {
+                    if (containerRef.current) {
+                      containerRef.current.style.animation = `${up} .5s linear both`
+
+                      containerRef.current.onanimationend = () => {
+                        containerRef.current!.style.animation = ''
+                      }
+                    }
+                  }
                 }
               }}
             ></div>
