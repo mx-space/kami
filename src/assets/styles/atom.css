@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+@layer base {
+  .overflow-overlay {
+    @apply overflow-auto;
+
+    overflow: overlay;
+  }
+
+  .z-1 {
+    @apply z-[1];
+  }
+
+  .-z-1 {
+    @apply z-[-1];
+  }
+}

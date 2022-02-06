@@ -57,7 +57,7 @@ const PageView: PageOnlyProps = observer((props) => {
                 <Fragment>
                   <Link href={`/${pages[indexInPages - 1].slug}`}>
                     <a className="flex flex-col justify-end">
-                      <h2 className="text-indigo-400">回顾一下：</h2>
+                      <h2 className="text-purple">回顾一下：</h2>
                       <p className="text-left">
                         {pages[indexInPages - 1].title}
                       </p>
@@ -71,7 +71,7 @@ const PageView: PageOnlyProps = observer((props) => {
                 <Fragment>
                   <Link href={`/${pages[indexInPages + 1].slug}`}>
                     <a className="flex flex-col justify-end">
-                      <h2 className="text-indigo-400">继续了解：</h2>
+                      <h2 className="text-purple">继续了解：</h2>
                       <p className="text-right">
                         {pages[indexInPages + 1].title}
                       </p>

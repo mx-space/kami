@@ -1,5 +1,5 @@
 .item {
-  @apply flex py-4 !text-[inherit] overflow-hidden;
+  @apply flex py-4 !text-inherit overflow-hidden;
   @apply w-full justify-between;
   @apply px-2 relative z-1;
 
@@ -7,7 +7,7 @@
     content: '';
     position: absolute;
 
-    @apply inset-0 rounded-md -z-1 bg-transparent transition transition-colors opacity-30;
+    @apply inset-0 rounded-md -z-1 bg-transparent transition-colors opacity-30;
   }
 
   &:hover {
@@ -18,10 +18,10 @@
 }
 
 .status-bar {
-  @apply w-full h-[1px] bg-gray transform scale-y-80 relative z-1 flex-shrink-0;
+  @apply w-full h-[1px] bg-gray transform scale-y-[0.8] relative z-1 flex-shrink-0;
 
   &.loading::before {
-    @apply top-0 bottom-0 left-0 w-[500px] transform scale-y-80 absolute z-1;
+    @apply top-0 bottom-0 left-0 w-[500px] transform scale-y-[0.8] absolute z-1;
     @apply bg-repeat;
 
     content: '';

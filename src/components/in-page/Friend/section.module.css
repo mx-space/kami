@@ -15,7 +15,7 @@
   &:hover {
     :global {
       .avatar {
-        @apply transform duration-500 ease;
+        @apply transform duration-500 ease-[ease];
 
         transform: scale(1.02);
       }

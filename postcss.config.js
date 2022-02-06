@@ -1,8 +1,9 @@
 module.exports = {
   plugins: {
     'postcss-import': {},
-    'postcss-nested': { bubble: ['screen'], unwrap: ['layer'] },
-    'postcss-preset-env': {
+    'tailwindcss/nesting': {},
+    tailwindcss: {},
+    autoprefixer: {
       autoprefixer: {
         flexbox: 'no-2009',
       },

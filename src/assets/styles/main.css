@@ -1,11 +1,4 @@
+@import './atom.css';
 @import './theme.css';
 @import './extra.css';
 @import './shizuku.css';
-
-@layer base {
-  .overflow-overlay {
-    @apply overflow-auto;
-
-    overflow: overlay;
-  }
-}
