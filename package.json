@@ -52,7 +52,7 @@
     "@fortawesome/free-regular-svg-icons": "5.15.4",
     "@fortawesome/free-solid-svg-icons": "5.15.4",
     "@fortawesome/react-fontawesome": "0.1.17",
-    "@mx-space/api-client": "0.6.2",
+    "@mx-space/api-client": "0.6.3",
     "@mx-space/extra": "0.5.2",
     "NeteaseCloudMusicApi": "*",
     "axios": "0.25.0",

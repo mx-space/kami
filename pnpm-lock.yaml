@@ -11,7 +11,7 @@ specifiers:
   '@fortawesome/react-fontawesome': 0.1.17
   '@innei-util/eslint-config-react-ts': latest
   '@innei-util/prettier': latest
-  '@mx-space/api-client': 0.6.2
+  '@mx-space/api-client': 0.6.3
   '@mx-space/extra': 0.5.2
   '@next/bundle-analyzer': 12.0.10
   '@trivago/prettier-plugin-sort-imports': 3.2.0
@@ -91,7 +91,7 @@ dependencies:
   '@fortawesome/free-regular-svg-icons': 5.15.4
   '@fortawesome/free-solid-svg-icons': 5.15.4
   '@fortawesome/react-fontawesome': 0.1.17_f515edce028694561ceb456e3dba224c
-  '@mx-space/api-client': 0.6.2
+  '@mx-space/api-client': 0.6.3
   '@mx-space/extra': 0.5.2_axios@0.25.0
   NeteaseCloudMusicApi: 4.2.0
   axios: 0.25.0
@@ -219,14 +219,14 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/code-frame': 7.16.7
-      '@babel/generator': 7.13.9
+      '@babel/generator': 7.17.0
       '@babel/helper-compilation-targets': 7.16.7_@babel+core@7.13.10
       '@babel/helper-module-transforms': 7.16.7
       '@babel/helpers': 7.17.0
-      '@babel/parser': 7.14.6
+      '@babel/parser': 7.17.0
       '@babel/template': 7.16.7
-      '@babel/traverse': 7.13.0
-      '@babel/types': 7.13.0
+      '@babel/traverse': 7.17.0
+      '@babel/types': 7.17.0
       convert-source-map: 1.8.0
       debug: 4.3.3
       gensync: 1.0.0-beta.2
@@ -264,7 +264,7 @@ packages:
   /@babel/generator/7.13.9:
     resolution: {integrity: sha512-mHOOmY0Axl/JCTkxTU6Lf5sWOg/v8nUa+Xkt4zMTftX0wqmb6Sh7J8gvcehBw7q0AhrhAR+FDacKjCZ2X8K+Sw==}
     dependencies:
-      '@babel/types': 7.13.0
+      '@babel/types': 7.17.0
       jsesc: 2.5.2
       source-map: 0.5.7
     dev: true
@@ -1355,11 +1355,11 @@ packages:
     resolution: {integrity: sha512-xys5xi5JEhzC3RzEmSGrs/b3pJW/o87SypZ+G/PhaE7uqVQNv/jlmVIBXuoh5atqQ434LfXV+sf23Oxj0bchJQ==}
     dependencies:
       '@babel/code-frame': 7.16.7
-      '@babel/generator': 7.13.9
+      '@babel/generator': 7.17.0
       '@babel/helper-function-name': 7.16.7
       '@babel/helper-split-export-declaration': 7.16.7
-      '@babel/parser': 7.14.6
-      '@babel/types': 7.13.0
+      '@babel/parser': 7.17.0
+      '@babel/types': 7.17.0
       debug: 4.3.3
       globals: 11.12.0
       lodash: 4.17.21
@@ -1586,8 +1586,8 @@ packages:
       sourcemap-codec: 1.4.8
     dev: true
 
-  /@mx-space/api-client/0.6.2:
-    resolution: {integrity: sha512-KU/A+cdCfkMpK+E+HPLPCj3F3VxC8CuElXapmiBHg5oX+BZ6IiIATuTQImE/L1CpUmf+pkCdm8IOezqRZA+T4w==}
+  /@mx-space/api-client/0.6.3:
+    resolution: {integrity: sha512-F/DBp/KjWhpT6TYyDxV7IxPErhE8DO2YtlhFpkK/GkDPUFmEyTbob4SHd/TTOYlrfD9HVL0e4XsHn5cWZS4nkA==}
     engines: {pnpm: '>=6'}
     dependencies:
       camelcase-keys: 7.0.2
