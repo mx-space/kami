@@ -1,7 +1,6 @@
 @import './theme.css';
 @import './extra.css';
 @import './shizuku.css';
-@import 'react-toastify/dist/ReactToastify.css';
 
 @layer base {
   .overflow-overlay {
