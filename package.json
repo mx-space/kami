@@ -91,7 +91,6 @@
     "@innei-util/eslint-config-react-ts": "latest",
     "@innei-util/prettier": "latest",
     "@next/bundle-analyzer": "12.0.10",
-    "@tailwindcss/line-clamp": "0.3.1",
     "@trivago/prettier-plugin-sort-imports": "3.2.0",
     "@types/inflection": "1.13.0",
     "@types/js-cookie": "3.0.1",
@@ -107,7 +106,6 @@
     "@types/remove-markdown": "0.3.1",
     "@types/ua-parser-js": "0.7.36",
     "@types/validator": "13.7.1",
-    "autoprefixer": "10.4.2",
     "cross-env": "*",
     "dotenv": "16.0.0",
     "eslint": "*",
@@ -126,9 +124,10 @@
     "rimraf": "*",
     "stylelint": "14.3.0",
     "stylelint-config-standard": "24.0.0",
-    "tailwindcss": "3.0.18",
     "ts-node": "10.4.0",
     "typescript": "4.5.5",
+    "windicss": "3.4.3",
+    "windicss-webpack-plugin": "1.6.4",
     "zx": "4.3.0"
   },
   "resolutions": {

@@ -1,3 +1,5 @@
+const WindiCSSWebpackPlugin = require('windicss-webpack-plugin')
+
 const env = require('dotenv').config().parsed || {}
 
 const withPlugins = require('next-compose-plugins')
@@ -27,6 +29,8 @@ const configs = withPlugins(plugins, {
     // outputStandalone: true,
   },
   webpack: (config, options) => {
+    config.plugins.push(new WindiCSSWebpackPlugin())
+
     return config
   },
 

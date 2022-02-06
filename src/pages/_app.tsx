@@ -1,4 +1,6 @@
 // organize-imports-ignore
+import 'windi.css'
+// organize-imports-ignore
 import 'assets/styles/main.css'
 
 import { AggregateRoot } from '@mx-space/api-client'

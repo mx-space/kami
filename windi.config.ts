@@ -1,17 +1,14 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+import { defineConfig } from 'windicss/helpers'
 
-module.exports = {
-  content: ['**/*.{jsx,tsx,css}'],
+export default defineConfig({
+  extract: {
+    include: ['**/*.{jsx,tsx,css}'],
+    exclude: ['node_modules', '.git', '.next'],
+  },
   darkMode: 'class',
-  plugins: [require('@tailwindcss/line-clamp')],
+  plugins: [require('windicss/plugin/line-clamp')],
   theme: {
     extend: {
-      zIndex: {
-        // ...defaultTheme.zIndex
-        '-1': -1,
-        1: 1,
-      },
-
       screens: {
         'light-mode': { raw: '(prefers-color-scheme: light)' },
         'dark-mode': { raw: '(prefers-color-scheme: dark)' },
@@ -56,4 +53,4 @@ module.exports = {
       },
     },
   },
-}
+})

@@ -58,7 +58,7 @@ const FriendsView: NextPage<{ data: LinkModel[] }> = (props) => {
         {friends.length > 0 && (
           <>
             {collections.length !== 0 && renderTitle('我的朋友')}
-            <FriendSection data={friends}></FriendSection>
+            <FriendSection data={shuffle(friends)}></FriendSection>
           </>
         )}
         {collections.length > 0 && (
@@ -137,6 +137,6 @@ const Footer = NoSSR(_Footer)
 FriendsView.getInitialProps = async () => {
   const { data } = await apiClient.link.getAll()
 
-  return { data: shuffle(data) }
+  return { data }
 }
 export default FriendsView
