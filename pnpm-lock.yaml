@@ -62,7 +62,7 @@ specifiers:
   react: 17.0.2
   react-countup: 6.1.1
   react-dom: 17.0.2
-  react-hook-form: 7.26.0
+  react-hook-form: 7.26.1
   react-intersection-observer: 8.33.1
   react-lazy-images: 1.1.0
   react-lazyload: 3.2.0
@@ -112,7 +112,7 @@ dependencies:
   react: 17.0.2
   react-countup: 6.1.1_react@17.0.2
   react-dom: 17.0.2_react@17.0.2
-  react-hook-form: 7.26.0_react@17.0.2
+  react-hook-form: 7.26.1_react@17.0.2
   react-intersection-observer: 8.33.1_react@17.0.2
   react-lazy-images: 1.1.0_react-dom@17.0.2+react@17.0.2
   react-markdown: 4.3.1_react@17.0.2
@@ -128,7 +128,7 @@ dependencies:
 
 devDependencies:
   '@innei-util/eslint-config-react-ts': 0.2.0_eslint@8.8.0+typescript@4.5.5
-  '@innei-util/prettier': 0.2.0_prettier@2.5.1+typescript@4.5.5
+  '@innei-util/prettier': 0.2.2_typescript@4.5.5
   '@next/bundle-analyzer': 12.0.10
   '@trivago/prettier-plugin-sort-imports': 3.2.0_prettier@2.5.1
   '@types/inflection': 1.13.0
@@ -1562,14 +1562,14 @@ packages:
       - supports-color
     dev: true
 
-  /@innei-util/prettier/0.2.0_prettier@2.5.1+typescript@4.5.5:
-    resolution: {integrity: sha512-STBrZzZZa2cU2sv0RvH9wDEas89PANZmJ+gDanSq3amdnX6Gyb76PYGj5I59G1CZ8kR+T8OhtZw8ajRcRcDUyg==}
+  /@innei-util/prettier/0.2.2_typescript@4.5.5:
+    resolution: {integrity: sha512-2bSj6hOGSd2VuPOb9OA2o+DT7ARozmvvatqf+7kOz4ZKSHnBbvl2YW4cpBc+bgkFzuxcPhz3Ou/jiTOHsE0OuQ==}
     dependencies:
       '@trivago/prettier-plugin-sort-imports': 3.1.1_prettier@2.5.1
+      prettier: 2.5.1
       prettier-package-json: 2.6.0
       prettier-plugin-organize-imports: 2.3.4_prettier@2.5.1+typescript@4.5.5
     transitivePeerDependencies:
-      - prettier
       - supports-color
       - typescript
     dev: true
@@ -6259,8 +6259,8 @@ packages:
       scheduler: 0.20.2
     dev: false
 
-  /react-hook-form/7.26.0_react@17.0.2:
-    resolution: {integrity: sha512-nSkCyJB5Ey5QUw3AGQp22JP7TNfPdyC4wqfmheH87NNsHhQwCZgGjexXdBfd7SRt4SHoVzbdPvu6kXG5sSs66Q==}
+  /react-hook-form/7.26.1_react@17.0.2:
+    resolution: {integrity: sha512-/Qw/7IsCCVfYSGryJAMcouEpIDgWZJPeHR15J0IFSgo1BgofcfnY+AeUDcYD1E3yzzXYpR7NHyJehhkBKvjdMg==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17
