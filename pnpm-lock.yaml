@@ -76,7 +76,7 @@ specifiers:
   rimraf: '*'
   socket.io-client: 4.4.1
   stylelint: 14.4.0
-  stylelint-config-standard: 24.0.0
+  stylelint-config-standard: 25.0.0
   ts-node: 10.4.0
   typescript: 4.5.5
   use-dark-mode: 2.3.1
@@ -162,7 +162,7 @@ devDependencies:
   react-lazyload: 3.2.0_react-dom@17.0.2+react@17.0.2
   rimraf: 3.0.2
   stylelint: 14.4.0
-  stylelint-config-standard: 24.0.0_stylelint@14.4.0
+  stylelint-config-standard: 25.0.0_stylelint@14.4.0
   ts-node: 10.4.0_247b6ed5e900a7cb1f087e65be0c3da9
   typescript: 4.5.5
   windicss: 3.4.3
@@ -202,11 +202,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/highlight': 7.16.10
-    dev: true
-
-  /@babel/compat-data/7.16.8:
-    resolution: {integrity: sha512-m7OkX0IdKLKPpBlJtF561YJal5y/jyI5fNfWbPxh2D/nbzzGI4qRyrD8xO2jB24u7l+5I2a43scCG2IrfjC50Q==}
-    engines: {node: '>=6.9.0'}
     dev: true
 
   /@babel/compat-data/7.17.0:
@@ -679,7 +674,7 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/compat-data': 7.16.8
+      '@babel/compat-data': 7.17.0
       '@babel/core': 7.17.0
       '@babel/helper-compilation-targets': 7.16.7_@babel+core@7.17.0
       '@babel/helper-plugin-utils': 7.16.7
@@ -1244,7 +1239,7 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/compat-data': 7.16.8
+      '@babel/compat-data': 7.17.0
       '@babel/core': 7.17.0
       '@babel/helper-compilation-targets': 7.16.7_@babel+core@7.17.0
       '@babel/helper-plugin-utils': 7.16.7
@@ -2534,7 +2529,7 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/compat-data': 7.16.8
+      '@babel/compat-data': 7.17.0
       '@babel/core': 7.17.0
       '@babel/helper-define-polyfill-provider': 0.3.1_@babel+core@7.17.0
       semver: 6.3.0
@@ -7226,21 +7221,21 @@ packages:
       react: 17.0.2
     dev: false
 
-  /stylelint-config-recommended/6.0.0_stylelint@14.4.0:
-    resolution: {integrity: sha512-ZorSSdyMcxWpROYUvLEMm0vSZud2uB7tX1hzBZwvVY9SV/uly4AvvJPPhCcymZL3fcQhEQG5AELmrxWqtmzacw==}
+  /stylelint-config-recommended/7.0.0_stylelint@14.4.0:
+    resolution: {integrity: sha512-yGn84Bf/q41J4luis1AZ95gj0EQwRX8lWmGmBwkwBNSkpGSpl66XcPTulxGa/Z91aPoNGuIGBmFkcM1MejMo9Q==}
     peerDependencies:
-      stylelint: ^14.0.0
+      stylelint: ^14.4.0
     dependencies:
       stylelint: 14.4.0
     dev: true
 
-  /stylelint-config-standard/24.0.0_stylelint@14.4.0:
-    resolution: {integrity: sha512-+RtU7fbNT+VlNbdXJvnjc3USNPZRiRVp/d2DxOF/vBDDTi0kH5RX2Ny6errdtZJH3boO+bmqIYEllEmok4jiuw==}
+  /stylelint-config-standard/25.0.0_stylelint@14.4.0:
+    resolution: {integrity: sha512-21HnP3VSpaT1wFjFvv9VjvOGDtAviv47uTp3uFmzcN+3Lt+RYRv6oAplLaV51Kf792JSxJ6svCJh/G18E9VnCA==}
     peerDependencies:
-      stylelint: ^14.0.0
+      stylelint: ^14.4.0
     dependencies:
       stylelint: 14.4.0
-      stylelint-config-recommended: 6.0.0_stylelint@14.4.0
+      stylelint-config-recommended: 7.0.0_stylelint@14.4.0
     dev: true
 
   /stylelint/14.4.0:
