@@ -1,4 +1,6 @@
 import { OverLay } from 'components/universal/Overlay'
+import { MaidianAction } from 'constants/maidian'
+import { useGtag } from 'hooks/use-gtag'
 import { observer } from 'mobx-react-lite'
 import { FC, useEffect, useRef, useState } from 'react'
 import { useStore } from 'store'
@@ -8,6 +10,7 @@ export const BanCopy: FC = observer((props) => {
   const isLogged = userStore.isLogged
   const [showCopyWarn, setShowCopyWarn] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
+  const { event } = useGtag()
   useEffect(() => {
     if (!ref.current) {
       return
@@ -19,6 +22,7 @@ export const BanCopy: FC = observer((props) => {
       }
       e.preventDefault()
       setShowCopyWarn(true)
+      event({ action: MaidianAction.BanCopy })
     }
 
     return () => {

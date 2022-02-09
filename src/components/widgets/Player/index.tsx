@@ -1,4 +1,6 @@
 import { default as classNames, default as clsx } from 'clsx'
+import { MaidianAction } from 'constants/maidian'
+import { useGtag } from 'hooks/use-gtag'
 import { observer } from 'mobx-react-lite'
 import {
   forwardRef,
@@ -225,7 +227,7 @@ export const MusicMiniPlayer = forwardRef<
 export const _MusicMiniPlayerStoreControlled = observer(() => {
   const ref = useRef<MusicPlayerRef>(null)
   const { musicStore } = useStore()
-
+  const { event } = useGtag()
   useEffect(() => {
     if (!ref.current) {
       console.log('player not ready')
@@ -233,6 +235,9 @@ export const _MusicMiniPlayerStoreControlled = observer(() => {
     }
     if (musicStore.isPlay) {
       requestAnimationFrame(() => {
+        event({
+          action: MaidianAction.MusicPlay,
+        })
         ref.current?.play()
       })
     } else {

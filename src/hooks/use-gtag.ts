@@ -1,3 +1,4 @@
+import { MaidianAction } from 'constants/maidian'
 import { useCallback } from 'react'
 import { useThemeConfig } from './use-initial-data'
 
@@ -24,15 +25,29 @@ export const useGtag = () => {
 
   // https://developers.google.com/analytics/devguides/collection/gtagjs/events
   const event = useCallback(
-    ({ action, category, label, value }) => {
+    ({
+      action,
+      category,
+      label,
+      value,
+    }: {
+      action: MaidianAction
+      label?: string
+      category?: string
+      value?: number
+    }) => {
       if (!GA_TRACKING_ID || !isEnableGA) {
         return
       }
-      window.gtag('event', action, {
-        event_category: category,
-        event_label: label,
-        value: value,
-      })
+      try {
+        window.gtag('event', action, {
+          event_category: category,
+          event_label: label,
+          value: value,
+        })
+      } catch (err) {
+        console.log(err)
+      }
     },
     [GA_TRACKING_ID, isEnableGA],
   )

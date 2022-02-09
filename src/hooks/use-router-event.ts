@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useGtag } from './use-gtag'
 const Progress = new QProgress({ colorful: false, color: '#27ae60' })
 export const useRouterEvent = () => {
-  const { event, pageview } = useGtag()
+  const { pageview } = useGtag()
   useEffect(() => {
     Router.events.on('routeChangeStart', () => {
       Progress.start()

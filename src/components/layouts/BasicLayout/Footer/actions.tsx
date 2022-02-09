@@ -2,6 +2,8 @@ import { faArrowUp, faHeadphones } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'clsx'
 import { ScaleTransitionView } from 'components/universal/Transition/scale'
+import { MaidianAction } from 'constants/maidian'
+import { useGtag } from 'hooks/use-gtag'
 import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import React, { FC, useEffect, useState } from 'react'
@@ -31,6 +33,8 @@ export const FooterActions: FC = observer(() => {
       eventBus.off(EventTypes.DANMAKU_CREATE, handler)
     }
   }, [])
+
+  const { event } = useGtag()
   return (
     <>
       <div className="action">
@@ -56,6 +60,9 @@ export const FooterActions: FC = observer(() => {
 
         <button
           onClick={() => {
+            event({
+              action: MaidianAction.FooterPlayerClick,
+            })
             runInAction(() => {
               musicStore.setHide(!musicStore.isHide)
               musicStore.setPlay(!musicStore.isHide)

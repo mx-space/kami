@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
 import { EmptyIcon } from 'components/universal/Icons'
 import { OverLay, OverlayProps } from 'components/universal/Overlay'
+import { MaidianAction } from 'constants/maidian'
+import { useGtag } from 'hooks/use-gtag'
 import { useHotKey } from 'hooks/use-hotkey'
 import { throttle } from 'lodash-es'
 import Link from 'next/link'
@@ -52,12 +54,16 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
   const [keyword, setKeyword] = useState(defaultKeyword || '')
   const [loading, setLoading] = useState(false)
   const [list, setList] = useState<SearchListType[]>([])
-
+  const { event } = useGtag()
   useEffect(() => {
     setLoading(true)
 
     search(keyword)
       ?.then((res) => {
+        event({
+          action: MaidianAction.Search,
+          label: keyword,
+        })
         if (!res) {
           setLoading(false)
           setList([])
@@ -168,17 +174,17 @@ export const SearchOverlay: FC<OverlayProps> = (props) => {
 }
 
 export const SearchHotKey: FC = memo(() => {
+  const { event } = useGtag()
   const [show, setShow] = useState(false)
-  useHotKey({ key: 'k', modifier: ['Meta'], preventInput: false }, () => {
+  const handler = () => {
+    event({ action: MaidianAction.CommandKTap, label: 'cmd+k' })
     setShow(true)
-  })
-  useHotKey({ key: 'k', modifier: ['Control'], preventInput: false }, () => {
-    setShow(true)
-  })
+  }
 
-  useHotKey({ key: '/', preventInput: true }, () => {
-    setShow(true)
-  })
+  useHotKey({ key: 'k', modifier: ['Meta'], preventInput: false }, handler)
+  useHotKey({ key: 'k', modifier: ['Control'], preventInput: false }, handler)
+
+  useHotKey({ key: '/', preventInput: true }, handler)
   return <SearchOverlay show={show} onClose={() => setShow(false)} />
 })
 
