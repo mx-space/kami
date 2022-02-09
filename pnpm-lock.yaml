@@ -11,7 +11,7 @@ specifiers:
   '@fortawesome/react-fontawesome': 0.1.17
   '@innei-util/eslint-config-react-ts': latest
   '@innei-util/prettier': latest
-  '@mx-space/api-client': 0.6.3
+  '@mx-space/api-client': 0.7.0
   '@mx-space/extra': 0.5.2
   '@next/bundle-analyzer': 12.0.10
   '@trivago/prettier-plugin-sort-imports': 3.2.0
@@ -91,7 +91,7 @@ dependencies:
   '@fortawesome/free-regular-svg-icons': 5.15.4
   '@fortawesome/free-solid-svg-icons': 5.15.4
   '@fortawesome/react-fontawesome': 0.1.17_f515edce028694561ceb456e3dba224c
-  '@mx-space/api-client': 0.6.3
+  '@mx-space/api-client': 0.7.0
   '@mx-space/extra': 0.5.2_axios@0.25.0
   NeteaseCloudMusicApi: 4.2.0
   axios: 0.25.0
@@ -1581,8 +1581,8 @@ packages:
       sourcemap-codec: 1.4.8
     dev: true
 
-  /@mx-space/api-client/0.6.3:
-    resolution: {integrity: sha512-F/DBp/KjWhpT6TYyDxV7IxPErhE8DO2YtlhFpkK/GkDPUFmEyTbob4SHd/TTOYlrfD9HVL0e4XsHn5cWZS4nkA==}
+  /@mx-space/api-client/0.7.0:
+    resolution: {integrity: sha512-zanR1C19X6TQz09IvrSfHOM9hfG8zRJHt0+sXianjslKpufnKby2M2jYb9496usMs7leRiQNjTwJNvpQvZff4Q==}
     engines: {pnpm: '>=6'}
     dependencies:
       camelcase-keys: 7.0.2
