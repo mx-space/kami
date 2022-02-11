@@ -81,11 +81,11 @@ const SongItem: FC<SongItemProps> = observer((props) => {
   const { index, name, time } = props
   const { musicStore } = useStore()
   const { playId } = musicStore
+  const { event } = useGtag()
   if (playId === props.id) {
     return <PlayingSongItem {...props} />
   }
 
-  const { event } = useGtag()
   useEffect(() => {
     event({ action: MaidianAction.PlayingSong, label: 'Song ' + playId })
   }, [playId])
