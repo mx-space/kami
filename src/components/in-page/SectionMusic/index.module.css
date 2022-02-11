@@ -30,7 +30,7 @@
   word-break: break-all;
 
   &:hover {
-    background: rgb(0 0 0 / 10%);
+    @apply bg-gray-5 bg-opacity-10;
   }
 
   .num {

@@ -18,6 +18,11 @@ export class MusicStore {
   /** 持续时间 */
   duration = 0
 
+  get playProgress() {
+    const percent = this.time / this.duration
+    return isNaN(percent) ? 0 : percent
+  }
+
   setPlayingInfo(id: number, time: number, duration: number) {
     runInAction(() => {
       this.playId = id

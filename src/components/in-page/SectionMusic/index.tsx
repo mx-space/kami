@@ -82,13 +82,14 @@ const SongItem: FC<SongItemProps> = observer((props) => {
   const { musicStore } = useStore()
   const { playId } = musicStore
   const { event } = useGtag()
+  useEffect(() => {
+    event({ action: MaidianAction.PlayingSong, label: 'Song ' + playId })
+  }, [playId])
+
   if (playId === props.id) {
     return <PlayingSongItem {...props} />
   }
 
-  useEffect(() => {
-    event({ action: MaidianAction.PlayingSong, label: 'Song ' + playId })
-  }, [playId])
   return (
     <li
       onClick={() => props.onClick(index)}
@@ -115,7 +116,7 @@ const PlayingSongItem: FC<SongItemProps> = observer((props) => {
           : null,
       )}
       style={{
-        backgroundSize: `${(currentTime / totalTime) * 100}% 100%`,
+        backgroundSize: `${musicStore.playProgress * 100}% 100%`,
       }}
     >
       {useMemo(

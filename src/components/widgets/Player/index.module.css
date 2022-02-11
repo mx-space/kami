@@ -18,7 +18,83 @@
   height: 66px;
   width: 66px;
 
-  @apply relative bg-gray bg-opacity-80 rounded-r-lg rounded-b-lg  overflow-hidden;
+  @apply relative bg-gray bg-opacity-80;
+
+  & .anime-frame {
+    @apply absolute rounded-r-lg rounded-b-lg inset-0 select-none pointer-events-none;
+  }
+
+  & .pic,
+  & {
+    @apply rounded-r-lg rounded-b-lg;
+  }
+}
+
+.player.play .cover .anime-frame {
+  @apply border-solid border-t border-r border-t-gray-1 border-rt-gray-1 border-opacity-60;
+
+  animation: ripples 5s ease both infinite;
+
+  @screen phone {
+    @apply !animate-none;
+  }
+}
+
+.frame {
+  & div:nth-child(1) {
+    animation-delay: 0s !important;
+  }
+
+  & div:nth-child(2) {
+    animation-delay: 2.5s !important;
+  }
+  & div:nth-child(3) {
+    animation-delay: 5s !important;
+  }
+}
+
+@keyframes ripples {
+  0% {
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.6;
+
+    @apply rounded-r-lg rounded-b-lg;
+  }
+
+  60% {
+    left: -50px;
+    top: -50px;
+    right: -50px;
+    bottom: -50px;
+
+    opacity: 0.4;
+
+    border-radius: 40%;
+  }
+
+  80% {
+    left: -50px;
+    top: -50px;
+    right: -50px;
+    bottom: -50px;
+
+    opacity: 0.1;
+    border-radius: 50%;
+  }
+
+  to {
+    left: -50px;
+    top: -50px;
+    right: -50px;
+    bottom: -50px;
+
+    opacity: 0;
+    border-radius: 50%;
+    transform: scale(1.2);
+  }
 }
 
 .control-btn {
@@ -36,7 +112,7 @@
   }
 }
 
-.control-btn.is-play {
+.player.play .control-btn {
   font-size: 24px;
 
   @apply justify-end items-end;

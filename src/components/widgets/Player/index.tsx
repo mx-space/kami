@@ -11,9 +11,10 @@ import {
   useRef,
   useState,
 } from 'react'
+import { createPortal } from 'react-dom'
 import { useAudio } from 'react-use'
 import { useStore } from 'store'
-import { hms, NoSSR } from 'utils'
+import { hms, isServerSide, NoSSR } from 'utils'
 import styles from './index.module.css'
 
 const METO_ENDPOINT = 'https://api.i-meto.com/meting/api'
@@ -166,16 +167,24 @@ export const MusicMiniPlayer = forwardRef<
   )
 
   return (
-    <div className={classNames(styles['player'], hide && styles['hide'])}>
+    <div
+      className={classNames(
+        styles['player'],
+        !state.paused && styles['play'],
+        hide && styles['hide'],
+      )}
+    >
       <div className={styles['root']}>
         <div className={styles['cover']}>
+          <div className={styles['frame']}>
+            <div className={styles['anime-frame']}></div>
+            <div className={styles['anime-frame']}></div>
+            <div className={styles['anime-frame']}></div>
+          </div>
           {Pic}
 
           <div
-            className={clsx(
-              styles['control-btn'],
-              !state.paused && styles['is-play'],
-            )}
+            className={clsx(styles['control-btn'])}
             onClick={handleChangePlayState}
           >
             {state.paused ? (
@@ -213,7 +222,7 @@ export const MusicMiniPlayer = forwardRef<
             }}
           >
             <p>{cur.title}</p>
-            <p className="text-sm text-gray">{cur.author}</p>
+            <p className="text-sm text-gray-2">{cur.author}</p>
             <p className="text-xs text-opacity-80">
               {hms(state.time | 0)}/{hms(state.duration | 0)}
             </p>
@@ -221,6 +230,30 @@ export const MusicMiniPlayer = forwardRef<
         )}
       </div>
     </div>
+  )
+})
+
+const BottomProgressBar = observer((props) => {
+  const {
+    musicStore: { playProgress },
+  } = useStore()
+  if (isServerSide()) {
+    return null
+  }
+  console.log(playProgress)
+
+  if (playProgress === 0) {
+    return null
+  }
+  return createPortal(
+    <div
+      className="fixed bottom-0 left-0 transform-gpu ease-linear transition-transform right-0 transform scale-y-50 pt-[1px] bg-yellow z-1"
+      style={{
+        transform: `scaleX(${playProgress})`,
+        transformOrigin: 'left',
+      }}
+    ></div>,
+    document.body,
   )
 })
 
@@ -263,15 +296,18 @@ export const _MusicMiniPlayerStoreControlled = observer(() => {
   }, [])
 
   return (
-    <MusicMiniPlayer
-      ref={ref}
-      onPlayStateChange={handleChangePlayState}
-      playlist={musicStore.list}
-      hide={musicStore.isHide}
-      onChange={useCallback((id, time, totalTime) => {
-        musicStore.setPlayingInfo(id, time, totalTime)
-      }, [])}
-    />
+    <>
+      <MusicMiniPlayer
+        ref={ref}
+        onPlayStateChange={handleChangePlayState}
+        playlist={musicStore.list}
+        hide={musicStore.isHide}
+        onChange={useCallback((id, time, totalTime) => {
+          musicStore.setPlayingInfo(id, time, totalTime)
+        }, [])}
+      />
+      <BottomProgressBar />
+    </>
   )
 })
 
