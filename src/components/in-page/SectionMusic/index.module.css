@@ -73,15 +73,10 @@
   position: relative;
 
   img {
-    cursor: pointer;
     border-radius: 66%;
     height: 100%;
     width: 100%;
     object-fit: cover;
-
-    &:active {
-      transform: scale(0.9);
-    }
   }
 
   h3 {
