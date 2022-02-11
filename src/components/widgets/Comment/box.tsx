@@ -179,6 +179,13 @@ export const CommentBox: FC<{
     [],
   )
 
+  const handleCommentBoxClick = useCallback(() => {
+    if (userStore.isLogged) {
+      return
+    }
+
+    message.warn('欧尼酱，文明发言哦，否则评论会被移入垃圾箱哦')
+  }, [userStore.isLogged])
   return (
     <div className="my-4">
       {!logged && (
@@ -218,6 +225,7 @@ export const CommentBox: FC<{
         required
         onChange={setter['text']}
         autoFocus={autoFocus}
+        onClick={handleCommentBoxClick}
         placeholder={
           !logged
             ? '嘿 ︿(￣︶￣)︿, 留个评论好不好嘛~'
