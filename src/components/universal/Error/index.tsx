@@ -1,4 +1,5 @@
 import { Seo } from 'components/universal/Seo'
+import { isNumber } from 'lodash-es'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { isServerSide } from 'utils'
@@ -18,7 +19,7 @@ export const errorToText = (statusCode: number) => {
         : '连接超时, 请检查一下网络哦!'
     case 406:
     case 418:
-      return '茶壶出现错误.'
+      return '茶壶出现错误'
     case 666:
       return '你在干什么呀'
     case 500:
@@ -27,21 +28,25 @@ export const errorToText = (statusCode: number) => {
   }
 }
 export const ErrorView: NextPage<{
-  statusCode: number
+  statusCode: number | string
   showBackButton?: boolean
   showRefreshButton?: boolean
   description?: string | JSX.Element
+
+  // 适用于无数据状态
+  noSeo?: boolean
 }> = ({
   statusCode = 500,
   showBackButton = true,
   showRefreshButton = true,
   description,
+  noSeo = false,
 }) => {
   const router = useRouter()
-  const message = errorToText(statusCode)
+  const message = errorToText(isNumber(statusCode) ? statusCode : 500)
   return (
     <div className={styles['error']}>
-      <Seo title={message} />
+      {!noSeo && <Seo title={message} />}
       <div>
         <h1>{statusCode}</h1>
         <div className={styles['desc']}>

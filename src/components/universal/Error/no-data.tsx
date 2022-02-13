@@ -5,7 +5,8 @@ import { ErrorView } from '.'
 export const NoDataErrorView: FC = (props) => {
   return (
     <ErrorView
-      statusCode={408}
+      noSeo
+      statusCode={'无数据'}
       showBackButton={false}
       description={
         <>

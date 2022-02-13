@@ -240,7 +240,6 @@ const BottomProgressBar = observer((props) => {
   if (isServerSide()) {
     return null
   }
-  console.log(playProgress)
 
   if (playProgress === 0) {
     return null

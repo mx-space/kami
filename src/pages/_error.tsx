@@ -3,6 +3,7 @@ import { ErrorView } from 'components/universal/Error'
 import { isNumber } from 'lodash-es'
 import { NextPage } from 'next'
 import { useEffect } from 'react'
+import { message } from 'react-message-popup'
 
 const ErrorPage: NextPage<{ statusCode: number; err: any }> = ({
   statusCode = 500,
@@ -10,7 +11,13 @@ const ErrorPage: NextPage<{ statusCode: number; err: any }> = ({
 }) => {
   useEffect(() => {
     console.log('[ErrorPage]: ', statusCode, err)
-  }, [])
+
+    const errMessage = err._message || err.message
+
+    if (errMessage) {
+      message.error(errMessage)
+    }
+  }, [err, statusCode])
   return <ErrorView showBackButton showRefreshButton statusCode={statusCode} />
 }
 
@@ -32,14 +39,28 @@ const getCode = (err, res): number => {
   return 500
 }
 
-ErrorPage.getInitialProps = async ({ res, err }) => {
+ErrorPage.getInitialProps = async ({ res, err }: any) => {
   const statusCode = +getCode(err, res) || 500
 
   res && (res.statusCode = statusCode)
   if (statusCode === 404) {
     return { statusCode: 404, err }
   }
-  return { statusCode, err } as {
+  const serializeErr: any = (() => {
+    try {
+      return JSON.parse(JSON.stringify(err))
+    } catch (e: any) {
+      console.log(e.message)
+
+      return err
+    }
+  })()
+  serializeErr['_message'] =
+    (err as any)?.raw?.response?.data?.message ||
+    err.message ||
+    err.response?.data?.message
+
+  return { statusCode, err: serializeErr } as {
     statusCode: number
     err: any
   }

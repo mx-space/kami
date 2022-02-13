@@ -20,7 +20,7 @@ import NextApp, { AppContext } from 'next/app'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
 
-import React, { FC, useEffect, useMemo } from 'react'
+import React, { FC, memo, useEffect, useMemo } from 'react'
 import useMount from 'react-use/lib/useMount'
 import { KamiConfig } from 'types/config'
 import { $axios, apiClient } from 'utils/client'
@@ -67,14 +67,6 @@ const Content: FC = observer((props) => {
     printToConsole()
   })
 
-  if (!initialData) {
-    return <NoDataErrorView />
-  }
-
-  // if (!themeConfig) {
-  //   return <NoConfigErrorView />
-  // }
-
   return (
     <>
       <DynamicHeaderMeta />
@@ -109,41 +101,44 @@ interface DataModel {
 const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
   props,
 ) => {
-  const { initData, Component, pageProps, err } = props
+  const { initData, Component, pageProps } = props
 
-  const router = useRouter()
-
-  const Comp = useMemo(() => {
-    if (router.route.startsWith('/dev')) {
-      return (
-        <DebugLayout>
-          <Component {...pageProps} />
-        </DebugLayout>
-      )
-    }
-    return (
-      <BasicLayout>
-        <Content>
-          <Component {...pageProps} />
-        </Content>
-      </BasicLayout>
+  const Inner = useMemo(() => {
+    // 兜底页
+    return initData.aggregateData ? (
+      <Wrapper>
+        <Component {...pageProps} />
+      </Wrapper>
+    ) : (
+      <NoDataErrorView />
     )
-  }, [Component, pageProps, router.route])
-
+  }, [Component, initData.aggregateData, pageProps])
   return (
     <RootStoreProvider>
-      <InitialContextProvider value={initData}>
-        {/* <DropdownProvider> */}
-        {Comp}
-        {/* </DropdownProvider> */}
-      </InitialContextProvider>
+      <InitialContextProvider value={initData}>{Inner}</InitialContextProvider>
     </RootStoreProvider>
   )
 }
-
+const Wrapper = memo((props) => {
+  const router = useRouter()
+  if (router.route.startsWith('/dev')) {
+    return <DebugLayout>{props.children}</DebugLayout>
+  }
+  return (
+    <BasicLayout>
+      <Content>{props.children}</Content>
+    </BasicLayout>
+  )
+})
 // @ts-ignore
 App.getInitialProps = async (props: AppContext) => {
-  const appProps = await NextApp.getInitialProps(props)
+  const appProps = await (async () => {
+    try {
+      return await NextApp.getInitialProps(props)
+    } catch {
+      return null
+    }
+  })()
 
   const ctx = props.ctx
   const request = ctx.req
@@ -159,7 +154,9 @@ App.getInitialProps = async (props: AppContext) => {
     ip && ($axios.defaults.headers.common['x-forwarded-for'] = ip as string)
 
     $axios.defaults.headers.common['User-Agent'] =
-      request.headers['user-agent'] + ' mx-space SSR server' + `/${version}`
+      request.headers['user-agent'] +
+      ' mx-space/kami SSR server' +
+      `/${version}`
 
     // forward auth token
     const cookie = request.headers.cookie
@@ -197,7 +194,7 @@ App.getInitialProps = async (props: AppContext) => {
     } else {
       //  TODO 请求异常处理
 
-      console.error(aggregateDataState.reason)
+      console.error('Fetch aggregate data error: ' + aggregateDataState.reason)
     }
 
     if (configSnippetState.status === 'fulfilled') {
