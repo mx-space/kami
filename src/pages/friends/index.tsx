@@ -20,36 +20,10 @@ const renderTitle = (text: string) => {
   return <h1 className="!text-xl headline !mt-12">{text}</h1>
 }
 
-const FriendsView: NextPage<{ data: LinkModel[] }> = (props) => {
-  const friends: LinkModel[] = []
-  const collections: LinkModel[] = []
-  const outdated: LinkModel[] = []
-  const banned: LinkModel[] = []
-
-  for (const link of props.data) {
-    if (link.hide) {
-      continue
-    }
-
-    switch (link.state) {
-      case LinkState.Banned:
-        banned.push(link)
-        continue
-      case LinkState.Outdate:
-        outdated.push(link)
-        continue
-    }
-
-    switch (link.type) {
-      case LinkType.Friend: {
-        friends.push(link)
-        break
-      }
-      case LinkType.Collection: {
-        collections.push(link)
-      }
-    }
-  }
+const FriendsView: NextPage<
+  Record<'friends' | 'collections' | 'outdated' | 'banned', LinkModel[]>
+> = (props) => {
+  const { banned, collections, friends, outdated } = props
 
   return (
     <ArticleLayout title={'朋友们'} subtitle={'海内存知己, 天涯若比邻'}>
@@ -58,7 +32,7 @@ const FriendsView: NextPage<{ data: LinkModel[] }> = (props) => {
         {friends.length > 0 && (
           <>
             {collections.length !== 0 && renderTitle('我的朋友')}
-            <FriendSection data={shuffle(friends)}></FriendSection>
+            <FriendSection data={friends}></FriendSection>
           </>
         )}
         {collections.length > 0 && (
@@ -137,6 +111,36 @@ const Footer = NoSSR(_Footer)
 FriendsView.getInitialProps = async () => {
   const { data } = await apiClient.link.getAll()
 
-  return { data }
+  const friends: LinkModel[] = []
+  const collections: LinkModel[] = []
+  const outdated: LinkModel[] = []
+  const banned: LinkModel[] = []
+
+  for (const link of data) {
+    if (link.hide) {
+      continue
+    }
+
+    switch (link.state) {
+      case LinkState.Banned:
+        banned.push(link)
+        continue
+      case LinkState.Outdate:
+        outdated.push(link)
+        continue
+    }
+
+    switch (link.type) {
+      case LinkType.Friend: {
+        friends.push(link)
+        break
+      }
+      case LinkType.Collection: {
+        collections.push(link)
+      }
+    }
+  }
+
+  return { friends: shuffle(friends), collections, outdated, banned }
 }
 export default FriendsView
