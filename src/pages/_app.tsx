@@ -132,14 +132,6 @@ const Wrapper = memo((props) => {
 })
 // @ts-ignore
 App.getInitialProps = async (props: AppContext) => {
-  const appProps = await (async () => {
-    try {
-      return await NextApp.getInitialProps(props)
-    } catch {
-      return null
-    }
-  })()
-
   const ctx = props.ctx
   const request = ctx.req
 
@@ -189,11 +181,12 @@ App.getInitialProps = async (props: AppContext) => {
 
     let aggregateData: AggregateRoot | null = null
     let configSnippet: KamiConfig | null = null
+    let reason = null as null | string
     if (aggregateDataState.status === 'fulfilled') {
       aggregateData = aggregateDataState.value
     } else {
       //  TODO 请求异常处理
-
+      reason = aggregateDataState?.reason
       console.error('Fetch aggregate data error: ' + aggregateDataState.reason)
     }
 
@@ -201,12 +194,28 @@ App.getInitialProps = async (props: AppContext) => {
       configSnippet = { ...configSnippetState.value }
     }
 
-    return { aggregateData, config: configSnippet }
+    return { aggregateData, config: configSnippet, reason }
   }
+  const initialData = globalThis.data ?? (await getInitialData())
+  const appProps = await (async () => {
+    try {
+      return await NextApp.getInitialProps(props)
+    } catch (e) {
+      // 只有无数据 也就是 服务端不跑起来 或者接口不对的时候 捕获异常
+      // 这是为什么呢 说来说去还是 nextjs 太辣鸡了 只能各种 hack
+      // 只能这样了
 
+      if (!initialData.reason) {
+        // 这里抛出，和官网直接 await getProps 一样，异常走到 _error 处理
+        throw e
+      }
+      // 这里捕获， 为了走全局无数据页
+      return null
+    }
+  })()
   return {
     ...appProps,
-    initData: globalThis.data ?? (await getInitialData()),
+    initData: initialData,
   }
 }
 
