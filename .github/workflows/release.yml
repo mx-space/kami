@@ -89,5 +89,5 @@ jobs:
             source ~/.zshrc
             cd mx/kami
             git reset --hard
-            node scripts/fetch-build.js
+            node scripts/fetch-build.mjs
             sh scripts/update-cdn.sh

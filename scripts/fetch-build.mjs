@@ -1,19 +1,20 @@
 // @ts-check
-const { $, cd, fetch } = require('zx')
-const fs = require('fs')
-const { sleep } = require('zx')
-const { homedir } = require('os')
-const path = require('path')
-const { nothrow } = require('zx')
+import { writeFileSync } from 'fs'
+import { homedir } from 'os'
+import { resolve } from 'path'
+import { $, cd, fetch, nothrow, sleep } from 'zx'
 
 const owner = 'mx-space'
 const repo = 'kami'
 
 async function main() {
-  cd(path.resolve(homedir(), 'mx/kami'))
+  cd(resolve(homedir(), 'mx/kami'))
   const res = await fetch(
     `https://api.github.com/repos/${owner}/${repo}/releases/latest`,
   )
+  /**
+   * @type {any}
+   */
   const data = await res.json()
   const downloadUrl = data.assets.find(
     (asset) =>
@@ -24,11 +25,12 @@ async function main() {
     throw new Error('no download url')
   }
 
-  const buffer = await fetch(
+  const arrayBuffer = await fetch(
     'https://small-lake-9960.tukon479.workers.dev/' + downloadUrl,
-  ).then((res) => res.buffer())
+  ).then((res) => res.arrayBuffer())
+  const buffer = Buffer.from(arrayBuffer)
   const tmpName = (Math.random() * 10).toString(16)
-  fs.writeFileSync(`/tmp/${tmpName}.zip`, buffer, { flag: 'w' })
+  writeFileSync(`/tmp/${tmpName}.zip`, buffer, { flag: 'w' })
   // pwd: ~/mx/kami
   await $`git checkout master`
   await $`git branch --set-upstream-to=origin/master master`
