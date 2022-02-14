@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'clsx'
 import { ScaleTransitionView } from 'components/universal/Transition/scale'
 import { MaidianAction } from 'constants/maidian'
-import { useGtag } from 'hooks/use-gtag'
+import { useAnalyze } from 'hooks/use-analyze'
 import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import React, { FC, useEffect, useState } from 'react'
@@ -34,7 +34,7 @@ export const FooterActions: FC = observer(() => {
     }
   }, [])
 
-  const { event } = useGtag()
+  const { event } = useAnalyze()
   return (
     <>
       <div className="action">

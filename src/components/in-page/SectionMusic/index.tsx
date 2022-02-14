@@ -2,7 +2,7 @@ import { PlayListType } from '@mx-space/extra'
 import clsx from 'clsx'
 import { MusicIcon, PauseIcon } from 'components/universal/Icons'
 import { MaidianAction } from 'constants/maidian'
-import { useGtag } from 'hooks/use-gtag'
+import { useAnalyze } from 'hooks/use-analyze'
 import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import { FC, memo, useEffect, useMemo } from 'react'
@@ -17,7 +17,7 @@ interface SectionMusicProps {
 
 export const SectionMusic: FC<SectionMusicProps> = memo((props) => {
   const { musicStore } = useStore()
-  const { event } = useGtag()
+  const { event } = useAnalyze()
   const loadList = (id: number[]) => {
     runInAction(() => {
       event({
@@ -81,7 +81,7 @@ const SongItem: FC<SongItemProps> = observer((props) => {
   const { index, name, time } = props
   const { musicStore } = useStore()
   const { playId } = musicStore
-  const { event } = useGtag()
+  const { event } = useAnalyze()
   useEffect(() => {
     event({ action: MaidianAction.PlayingSong, label: 'Song ' + playId })
   }, [playId])

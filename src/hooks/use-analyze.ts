@@ -2,10 +2,8 @@ import { MaidianAction } from 'constants/maidian'
 import { useCallback } from 'react'
 import { useThemeConfig } from './use-initial-data'
 
-export const useGtag = () => {
+export const useAnalyze = () => {
   const config = useThemeConfig()
-  // const c = useInitialData()
-  // console.log(config)
 
   const GA_TRACKING_ID = config.function.analyze.ga
 

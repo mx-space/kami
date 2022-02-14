@@ -13,12 +13,11 @@ import { useRouterEvent } from 'hooks/use-router-event'
 import { useScreenMedia } from 'hooks/use-screen-media'
 import { NoDataErrorView } from 'components/universal/Error/no-data'
 import Loader from 'components/universal/Loader'
-import { DynamicHeaderMeta } from 'components/universal/Meta/header'
+import { DynamicHeadMeta } from 'components/universal/Meta/head'
 import { BasicLayout } from 'components/layouts/BasicLayout'
 import { NextSeo } from 'next-seo'
 import NextApp, { AppContext } from 'next/app'
 import { useRouter } from 'next/router'
-import Script from 'next/script'
 
 import React, { FC, memo, useEffect, useMemo } from 'react'
 import useMount from 'react-use/lib/useMount'
@@ -34,6 +33,7 @@ import { useStore } from '../store'
 import { isServerSide, TokenKey } from '../utils'
 import { RootStoreProvider } from 'context/root-store'
 import { DebugLayout } from 'components/layouts/DebugLayout'
+import { MetaFooter } from 'components/universal/Meta/footer'
 
 const version = `v${Package.version}` || ''
 
@@ -69,7 +69,7 @@ const Content: FC = observer((props) => {
 
   return (
     <>
-      <DynamicHeaderMeta />
+      <DynamicHeadMeta />
       <NextSeo
         title={initialData.seo.title + ' · ' + initialData.seo.description}
         description={initialData.seo.description}
@@ -77,20 +77,7 @@ const Content: FC = observer((props) => {
 
       <div id="next">{props.children}</div>
       <Loader />
-
-      {themeConfig.function.analyze.enable && (
-        <>
-          <Script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${themeConfig.function.analyze.ga}`}
-          />
-          <Script
-            dangerouslySetInnerHTML={{
-              __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${themeConfig.function.analyze.ga}', {page_path: window.location.pathname,});`,
-            }}
-          />
-        </>
-      )}
+      <MetaFooter />
     </>
   )
 })

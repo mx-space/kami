@@ -16,7 +16,7 @@ import {
 import CommentWrap from 'components/widgets/Comment'
 import { MaidianAction } from 'constants/maidian'
 import dayjs from 'dayjs'
-import { useGtag } from 'hooks/use-gtag'
+import { useAnalyze } from 'hooks/use-analyze'
 import { useHeaderMeta, useHeaderShare } from 'hooks/use-header-meta'
 import { useLoadSerifFont } from 'hooks/use-load-serif-font'
 import { useNoteMusic } from 'hooks/use-music'
@@ -318,7 +318,7 @@ const FooterNavigation: FC<{ id: string }> = observer(({ id }) => {
     noteStore.relationMap.get(id) ||
     ([noop, noop] as [Partial<NoteModel>, Partial<NoteModel>])
   const router = useRouter()
-  const { event } = useGtag()
+  const { event } = useAnalyze()
   return (
     <>
       {(!!next || !!prev) && (

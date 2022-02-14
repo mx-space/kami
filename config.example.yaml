@@ -146,7 +146,8 @@ function:
       - 1450252250
   analyze:
     enable: true
-    ga: G-X4PVVRB6TF
+    ga: ''
+    baidu: ''
   netease:
     username: example
     # password 敏感字段不应该暴露, 后续看看怎么操作

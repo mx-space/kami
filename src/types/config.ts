@@ -8,6 +8,7 @@ interface Function {
   analyze: {
     enable: boolean
     ga: string
+    baidu: string
   }
 
   donate: {

@@ -1,6 +1,6 @@
 import { OverLay } from 'components/universal/Overlay'
 import { MaidianAction } from 'constants/maidian'
-import { useGtag } from 'hooks/use-gtag'
+import { useAnalyze } from 'hooks/use-analyze'
 import { observer } from 'mobx-react-lite'
 import { FC, useEffect, useRef, useState } from 'react'
 import { useStore } from 'store'
@@ -10,7 +10,7 @@ export const BanCopy: FC = observer((props) => {
   const isLogged = userStore.isLogged
   const [showCopyWarn, setShowCopyWarn] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
-  const { event } = useGtag()
+  const { event } = useAnalyze()
   useEffect(() => {
     if (!ref.current) {
       return

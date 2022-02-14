@@ -54,7 +54,6 @@ export const FooterContent: FC = observer(() => {
         <p className="justify-center flex space-x-2 children:flex-shrink-0 flex-wrap">
           <span>Powered by </span>
           <a href="https://github.com/mx-space">{'mx-space'}</a>.
-          <span>Theme</span>
           <a href="https://github.com/mx-space/kami" title={version}>
             {'Kami'}
           </a>

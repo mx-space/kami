@@ -1,5 +1,5 @@
 import { MaidianAction } from 'constants/maidian'
-import { useGtag } from 'hooks/use-gtag'
+import { useAnalyze } from 'hooks/use-analyze'
 import { DetailedHTMLProps, HTMLAttributes, memo, useRef } from 'react'
 import { NoSSR } from 'utils'
 import { genSpringKeyframes } from 'utils/spring'
@@ -28,7 +28,7 @@ export const Switch = NoSSR(
     (props = {}) => {
       const containerRef = useRef<HTMLDivElement>(null)
 
-      const { event } = useGtag()
+      const { event } = useAnalyze()
       return (
         <div
           className={styles['select-container']}

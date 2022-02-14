@@ -1,10 +1,10 @@
 import { Router } from 'next/router'
 import QProgress from 'qier-progress'
 import { useEffect } from 'react'
-import { useGtag } from './use-gtag'
+import { useAnalyze } from './use-analyze'
 const Progress = new QProgress({ colorful: false, color: '#27ae60' })
 export const useRouterEvent = () => {
-  const { pageview } = useGtag()
+  const { pageview } = useAnalyze()
   useEffect(() => {
     Router.events.on('routeChangeStart', () => {
       Progress.start()

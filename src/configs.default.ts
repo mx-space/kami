@@ -161,6 +161,7 @@ export const defaultConfigs = {
     analyze: {
       enable: false,
       ga: '',
+      baidu: '',
     },
     donate: {
       enable: false,

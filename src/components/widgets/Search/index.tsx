@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import { EmptyIcon } from 'components/universal/Icons'
 import { OverLay, OverlayProps } from 'components/universal/Overlay'
 import { MaidianAction } from 'constants/maidian'
-import { useGtag } from 'hooks/use-gtag'
+import { useAnalyze } from 'hooks/use-analyze'
 import { useHotKey } from 'hooks/use-hotkey'
 import { throttle } from 'lodash-es'
 import Link from 'next/link'
@@ -54,7 +54,7 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
   const [keyword, setKeyword] = useState(defaultKeyword || '')
   const [loading, setLoading] = useState(false)
   const [list, setList] = useState<SearchListType[]>([])
-  const { event } = useGtag()
+  const { event } = useAnalyze()
   useEffect(() => {
     setLoading(true)
 
@@ -174,7 +174,7 @@ export const SearchOverlay: FC<OverlayProps> = (props) => {
 }
 
 export const SearchHotKey: FC = memo(() => {
-  const { event } = useGtag()
+  const { event } = useAnalyze()
   const [show, setShow] = useState(false)
   const handler = () => {
     event({ action: MaidianAction.CommandKTap, label: 'cmd+k' })

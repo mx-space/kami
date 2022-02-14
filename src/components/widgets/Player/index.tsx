@@ -1,6 +1,6 @@
 import { default as classNames, default as clsx } from 'clsx'
 import { MaidianAction } from 'constants/maidian'
-import { useGtag } from 'hooks/use-gtag'
+import { useAnalyze } from 'hooks/use-analyze'
 import { observer } from 'mobx-react-lite'
 import {
   forwardRef,
@@ -259,7 +259,7 @@ const BottomProgressBar = observer((props) => {
 export const _MusicMiniPlayerStoreControlled = observer(() => {
   const ref = useRef<MusicPlayerRef>(null)
   const { musicStore } = useStore()
-  const { event } = useGtag()
+  const { event } = useAnalyze()
   useEffect(() => {
     if (!ref.current) {
       console.log('player not ready')
