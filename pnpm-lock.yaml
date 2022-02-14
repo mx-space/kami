@@ -18,7 +18,7 @@ specifiers:
   '@types/inflection': 1.13.0
   '@types/js-cookie': 3.0.1
   '@types/lodash-es': 4.17.6
-  '@types/node': 16.11.24
+  '@types/node': 16.11.25
   '@types/randomcolor': 0.5.6
   '@types/react': 17.0.39
   '@types/react-color': 3.0.6
@@ -132,7 +132,7 @@ devDependencies:
   '@types/inflection': 1.13.0
   '@types/js-cookie': 3.0.1
   '@types/lodash-es': 4.17.6
-  '@types/node': 16.11.24
+  '@types/node': 16.11.25
   '@types/randomcolor': 0.5.6
   '@types/react': 17.0.39
   '@types/react-color': 3.0.6
@@ -1909,8 +1909,8 @@ packages:
       node-fetch: 3.2.0
     dev: true
 
-  /@types/node/16.11.24:
-    resolution: {integrity: sha512-Ezv33Rl4mIi6YdSHfIRNBd4Q9kUe5okiaw/ikvJiJDmuQZNW5kfdg7+oQPF8NO6sTcr3woIpj3jANzTXdvEZXA==}
+  /@types/node/16.11.25:
+    resolution: {integrity: sha512-NrTwfD7L1RTc2qrHQD4RTTy4p0CO2LatKBEKEds3CaVuhoM/+DJzmWZl5f+ikR8cm8F5mfJxK+9rQq07gRiSjQ==}
     dev: true
 
   /@types/node/17.0.17:
