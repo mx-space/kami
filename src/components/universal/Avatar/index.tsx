@@ -29,8 +29,11 @@ export const Avatar: FC<
   const { useRandomColor = true } = props
   const avatarRef = useRef<HTMLDivElement>(null)
   const randomColor = useMemo(
-    () => (useRandomColor ? rc({ luminosity: 'light' }) : 'var(--gray)'),
-    [useRandomColor],
+    () =>
+      useRandomColor
+        ? rc({ luminosity: 'light', seed: props.src })
+        : 'var(--gray)',
+    [props.src, useRandomColor],
   )
   const [loaded, setLoaded] = useState(false)
   useEffect(() => {

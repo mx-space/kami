@@ -7,8 +7,9 @@ import styles from './index.module.css'
 
 const generateColorFromMode = (
   mode: 'bright' | 'light' | 'dark' | 'random' | undefined,
+  seed?: string,
 ) => {
-  return rc({ luminosity: mode, alpha: 0.28, format: 'hex' })
+  return rc({ luminosity: mode, alpha: 0.28, format: 'hex', seed })
 }
 type AvatarProps = {
   src: string
@@ -31,11 +32,11 @@ export const Avatar: FC<AvatarProps> = observer(({ src }) => {
   const { appStore } = useStore()
   const randomColor = useMemo(() => {
     if (appStore.colorMode === 'dark') {
-      return generateColorFromMode('dark')
+      return generateColorFromMode('dark', src)
     } else {
-      return generateColorFromMode('light')
+      return generateColorFromMode('light', src)
     }
-  }, [appStore.colorMode])
+  }, [appStore.colorMode, src])
 
   return (
     <div

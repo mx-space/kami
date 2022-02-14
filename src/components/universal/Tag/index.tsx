@@ -17,8 +17,9 @@ export const BigTag: FC<BigTagProps> = observer(({ tagName, onClick }) => {
       rc({
         format: 'hex',
         luminosity: appStore.colorMode == 'dark' ? 'dark' : 'light',
+        seed: tagName,
       }),
-    [appStore.colorMode],
+    [appStore.colorMode, tagName],
   )
   return (
     <a
@@ -26,7 +27,7 @@ export const BigTag: FC<BigTagProps> = observer(({ tagName, onClick }) => {
       style={{ background: bgColor }}
       onClick={onClick}
     >
-      <FontAwesomeIcon icon={faTag} style={{ marginRight: '0.8rem' }} />
+      <FontAwesomeIcon icon={faTag} className="mr-3" />
       {tagName}
     </a>
   )

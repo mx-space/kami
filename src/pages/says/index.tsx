@@ -26,6 +26,7 @@ const SayView = () => {
         say.id,
         randomColor({
           luminosity: appStore.colorMode === 'light' ? 'bright' : 'dark',
+          seed: say.id,
         }),
       ]),
     )
