@@ -138,6 +138,9 @@ App.getInitialProps = async (props: AppContext) => {
   if (request && isServerSide()) {
     let ip =
       ((request.headers['x-forwarded-for'] ||
+        request.headers['X-Forwarded-For'] ||
+        request.headers['X-Real-IP'] ||
+        request.headers['x-real-ip'] ||
         request.connection.remoteAddress ||
         request.socket.remoteAddress) as string) || undefined
     if (ip && ip.split(',').length > 0) {
