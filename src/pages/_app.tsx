@@ -210,6 +210,10 @@ App.getInitialProps = async (props: AppContext) => {
         throw e
       }
       // 这里捕获， 为了走全局无数据页
+      if (ctx.res) {
+        ctx.res.statusCode = 466
+        ctx.res.statusMessage = 'No Data'
+      }
       return null
     }
   })()
