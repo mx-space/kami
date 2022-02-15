@@ -3,42 +3,49 @@ import { memo, useMemo } from 'react'
 
 export const MetaFooter = memo(() => {
   const themeConfig = useThemeConfig()
-
+  const analyze = themeConfig.function.analyze
   const AnalyzeScripts = useMemo(
     () =>
-      themeConfig.function.analyze.enable &&
+      analyze.enable &&
       (() => {
         const tags = [] as React.ReactNode[]
-        if (themeConfig.function.analyze.ga) {
+        if (analyze.ga) {
           tags.push(
             <script
               async
-              src={`https://www.googletagmanager.com/gtag/js?id=${themeConfig.function.analyze.ga}`}
+              src={`https://www.googletagmanager.com/gtag/js?id=${analyze.ga}`}
             />,
             <script
               dangerouslySetInnerHTML={{
-                __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${themeConfig.function.analyze.ga}', {page_path: window.location.pathname,});`,
+                __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${analyze.ga}', {page_path: window.location.pathname,});`,
               }}
             />,
           )
         }
 
-        if (themeConfig.function.analyze.baidu) {
+        if (analyze.baidu) {
           tags.push(
             <script
               async
-              src={`https://hm.baidu.com/hm.js?${themeConfig.function.analyze.baidu}`}
+              src={`https://hm.baidu.com/hm.js?${analyze.baidu}`}
             />,
+          )
+        }
+
+        if (analyze.umami.url && analyze.umami.id) {
+          tags.push(
+            <script
+              async
+              defer
+              data-website-id={analyze.umami.id}
+              src={`${analyze.umami.url.replace(/\/$/, '')}/umami.js`}
+            ></script>,
           )
         }
 
         return tags
       })(),
-    [
-      themeConfig.function.analyze.baidu,
-      themeConfig.function.analyze.enable,
-      themeConfig.function.analyze.ga,
-    ],
+    [analyze.baidu, analyze.enable, analyze.ga, analyze.umami],
   )
 
   return <>{AnalyzeScripts}</>

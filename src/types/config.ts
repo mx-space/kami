@@ -9,6 +9,10 @@ interface Function {
     enable: boolean
     ga: string
     baidu: string
+    umami: {
+      url: string
+      id: string
+    }
   }
 
   donate: {

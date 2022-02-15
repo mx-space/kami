@@ -162,6 +162,10 @@ export const defaultConfigs = {
       enable: false,
       ga: '',
       baidu: '',
+      umami: {
+        id: '',
+        url: '',
+      },
     },
     donate: {
       enable: false,

@@ -17,6 +17,8 @@ export const useAnalyze = () => {
       window.gtag('config', GA_TRACKING_ID, {
         page_path: url,
       })
+
+      window.umami?.trackView(url)
     },
     [GA_TRACKING_ID, isEnableGA],
   )
@@ -43,6 +45,7 @@ export const useAnalyze = () => {
           event_label: label,
           value: value,
         })
+        window.umami?.trackEvent(label || value?.toString() || '', action)
       } catch (err) {
         console.log(err)
       }

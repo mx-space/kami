@@ -9,10 +9,24 @@ declare global {
     [key: string]: any
 
     data?: InitialDataType
+
+    umami?: Umami
   }
 
   export type IdProps = { id: string }
   export type PageOnlyProps = FC<IdProps>
+
+  interface Umami {
+    (event: string): void
+    trackEvent(
+      event_value: string,
+      event_type: string,
+      url?: string,
+      website_id?: string,
+    ): void
+
+    trackView(url?: string, referrer?: string, website_id?: string): void
+  }
 }
 
 declare module 'react' {

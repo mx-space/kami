@@ -117,6 +117,9 @@ function:
     enable: false
     ga: ''
     baidu: ''
+    umami:
+      id: ''
+      url: ''
   donate:
     enable: false
     link: https://afdian.net/@example
