@@ -46,6 +46,7 @@ export const Avatar: FC<
     image.onload = () => {
       setLoaded(true)
     }
+    image.onerror = () => {}
   }, [props.imageUrl])
 
   const { wrapperProps = {} } = props

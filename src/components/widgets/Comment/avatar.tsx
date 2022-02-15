@@ -28,6 +28,7 @@ export const Avatar: FC<AvatarProps> = observer(({ src }) => {
     image.onload = () => {
       setReady(true)
     }
+    image.onerror = () => {}
   }, [src])
   const { appStore } = useStore()
   const randomColor = useMemo(() => {
