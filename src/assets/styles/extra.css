@@ -266,8 +266,8 @@ pre > code {
 }
 
 .is-note blockquote:not(:first-child) {
-  margin-left: -3em;
-  margin-right: -3em;
+  margin-left: calc(-3em + 2px);
+  margin-right: calc(-3em + 2px);
   border: none;
   padding: 1em 5em;
 
@@ -426,6 +426,7 @@ a.edit-link {
   font-size: 0.8rem;
   margin-left: 0.5rem;
   opacity: 0.8;
+  color: var(--green);
 }
 
 .mermaid > svg {

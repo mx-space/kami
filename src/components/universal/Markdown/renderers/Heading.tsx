@@ -1,4 +1,4 @@
-import {
+import React, {
   createElement,
   DOMAttributes,
   FC,
@@ -20,6 +20,7 @@ export const Heading = () => {
   }> = memo((props) => {
     const currentIndex = useMemo(() => index++, [])
     const title = props.children?.[0].props.value
+
     const [ref, inView] = useInView({ rootMargin: '-33% 0% -33% 0%' })
 
     useEffect(() => {

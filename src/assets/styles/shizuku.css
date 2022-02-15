@@ -1,7 +1,13 @@
 :root {
   --shizuku-background-color: #fff;
   --shizuku-text-color: #333;
-  --shizuku-theme-color: #2bd;
+  --shizuku-theme-color: var(--green);
+}
+
+html.dark {
+  --shizuku-background-color: #212121;
+  --shizuku-text-color: #858585;
+  --shizuku-theme-color: #3c946c;
 }
 
 #write {
@@ -71,14 +77,6 @@
   background: rgb(128 128 128 / 40%);
 }
 
-#write .md-hr {
-  outline: none !important;
-}
-
-#write .md-hr.md-focus hr {
-  background: var(--shizuku-theme-color);
-}
-
 #write blockquote {
   position: relative;
 }
@@ -86,21 +84,6 @@
 #write blockquote > .paragraph {
   padding: 10px 0;
   margin: 0;
-}
-
-#write .loweralpha {
-  list-style-type: lower-alpha;
-}
-
-#write .md-blockmeta,
-#write .md-header-span {
-  font-style: normal;
-  font-weight: normal;
-  color: rgb(128 128 128 / 40%);
-}
-
-#write .md-header-span {
-  background: rgb(128 128 128 / 20%);
 }
 
 #write h1,
@@ -196,6 +179,7 @@
 #write ul,
 #write ol {
   padding-left: 2em;
+  list-style-position: inside;
 }
 
 #write ul {
@@ -235,7 +219,7 @@
   background-color: unset !important;
   border: none !important;
   position: relative;
-  color: #d35400;
+  color: var(--pink);
   font-family: var(--serif-font);
   padding-bottom: 24px;
 
@@ -267,4 +251,27 @@
   &:hover {
     filter: blur(0);
   }
+}
+
+#write mark,
+#write highlight {
+  background: linear-gradient(
+      104deg,
+      rgba(255, 130, 130, 0) 0.9%,
+      var(--pink) 2.4%,
+      rgba(255, 130, 130, 0.5) 5.8%,
+      rgba(255, 130, 130, 0.1) 93%,
+      rgba(255, 130, 130, 0.7) 96%
+    ),
+    linear-gradient(
+      183deg,
+      rgba(130, 255, 173, 0),
+      rgba(255, 107, 152, 0.3) 7.9%,
+      rgba(255, 130, 130, 0) 15%
+    );
+  /* text-shadow: -12px 12px 9.8px rgba(255, 130, 130, 0.7); */
+  margin: 0;
+  padding: 0.15rem 0.25rem;
+  border-radius: 7.5px;
+  color: inherit;
 }

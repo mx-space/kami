@@ -50,9 +50,6 @@ html.dark {
   --pink: #eb4b63 !important;
 
   --black: #ddd;
-  --shizuku-background-color: #212121;
-  --shizuku-text-color: #858585;
-  --shizuku-theme-color: #3c946c;
   --bg-opacity: rgb(17 17 17 / 50%);
 
   --gary-1: rgb(142, 142, 147);
@@ -240,7 +237,6 @@ a,
 em,
 mark,
 kbd {
-  font-size: 0.85em;
   padding: 0.25em 0.5em;
   border-radius: 0.5em;
 }
@@ -252,6 +248,7 @@ em {
 }
 
 kbd {
+  font-size: 0.85em;
   color: #fff;
   background: #333;
   font-family: var(--mono-font);
@@ -262,7 +259,7 @@ article img {
 }
 
 :not(pre) > code {
-  color: #c40b00;
+  color: var(--pink);
   font-size: 85%;
   word-wrap: normal;
   border-radius: 0.5em;
