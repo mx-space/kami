@@ -154,7 +154,7 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
         {allowComment ? (
           <CommentBox onSubmit={handleComment} />
         ) : (
-          <h1>主人禁止了评论</h1>
+          <h1 className="headline">主人禁止了评论</h1>
         )}
         <span id="comment-anchor"></span>
         {commentShow ? (
