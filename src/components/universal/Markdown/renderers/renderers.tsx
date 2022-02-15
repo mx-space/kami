@@ -28,10 +28,12 @@ export const RenderReference: FC<{ href: string; title: string | null }> = (
 export const RenderListItem: FC<{ checked?: null | undefined | boolean }> = (
   props,
 ) => {
+  const isChecked = typeof props.checked == 'boolean'
   return (
-    <li>
-      {typeof props.checked == 'boolean' ? (
-        <label className="flex items-center">
+    <li className={isChecked ? 'list-none' : ''}>
+      {isChecked ? (
+        <label className="inline-flex items-center">
+          {/*  @ts-ignore */}
           <input type="checkbox" checked={props.checked} readOnly />
           {props.children}
         </label>
