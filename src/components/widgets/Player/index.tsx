@@ -176,11 +176,6 @@ export const MusicMiniPlayer = forwardRef<
     >
       <div className={styles['root']}>
         <div className={styles['cover']}>
-          <div className={styles['frame']}>
-            <div className={styles['anime-frame']}></div>
-            <div className={styles['anime-frame']}></div>
-            <div className={styles['anime-frame']}></div>
-          </div>
           {Pic}
 
           <div

@@ -29,7 +29,7 @@
     @apply rounded-r-lg rounded-b-lg;
   }
 }
-
+/* 
 .player.play .cover .anime-frame {
   @apply border-solid border-t border-r border-t-gray-1 border-rt-gray-1 border-opacity-60;
 
@@ -38,8 +38,8 @@
   @screen phone {
     @apply !animate-none;
   }
-}
-
+} */
+/* 
 .frame {
   & div:nth-child(1) {
     animation-delay: 0s !important;
@@ -95,7 +95,7 @@
     border-radius: 50%;
     transform: scale(1.2);
   }
-}
+} */
 
 .control-btn {
   @apply absolute top-0 left-0 right-0 bottom-0 z-10 text-white;
