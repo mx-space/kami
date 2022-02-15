@@ -20,8 +20,7 @@ export const FriendsSection: FC = memo(() => {
       setFriends(
         data.filter(
           (i) =>
-            i.type === LinkType.Friend &&
-            (i.state !== LinkState.Audit || !i.hide),
+            i.type === LinkType.Friend && i.state === LinkState.Pass && !i.hide,
         ),
       )
     })
