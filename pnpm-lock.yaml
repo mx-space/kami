@@ -80,7 +80,7 @@ specifiers:
   use-dark-mode: 2.3.1
   validator: 13.7.0
   windicss: 3.4.3
-  windicss-webpack-plugin: 1.6.4
+  windicss-webpack-plugin: 1.6.5
   zx: 5.0.0
 
 dependencies:
@@ -162,7 +162,7 @@ devDependencies:
   stylelint-config-standard: 25.0.0_stylelint@14.5.0
   typescript: 4.5.5
   windicss: 3.4.3
-  windicss-webpack-plugin: 1.6.4
+  windicss-webpack-plugin: 1.6.5
   zx: 5.0.0
 
 packages:
@@ -2184,8 +2184,8 @@ packages:
       react: 17.0.2
     dev: false
 
-  /@windicss/config/1.6.3:
-    resolution: {integrity: sha512-1kjdy4tyYLD4sCB4DS+3Lt1Odnde03z4Rz3EUqyWJ7SiBEWMgRk1L797SsgEH4+W1DjLBZLs1SVYzaTO/3UdJA==}
+  /@windicss/config/1.7.0:
+    resolution: {integrity: sha512-jP+SYEUMTcvEQexYAeaIGKWq3sE+yv0myyOCph7Glm/YZE2ZCK1GukI1oDG6fcVer121EQzCY4Rx11trb3oSZg==}
     dependencies:
       debug: 4.3.3
       jiti: 1.12.15
@@ -2194,11 +2194,11 @@ packages:
       - supports-color
     dev: true
 
-  /@windicss/plugin-utils/1.6.3:
-    resolution: {integrity: sha512-tY20pAdV8YOlCj/5Teh078n/YbekbE5qOmlNgcl+S10KqitUGB9+Qss/xE0HULACmCXBO9XeLUcAPGao79lAnA==}
+  /@windicss/plugin-utils/1.7.0:
+    resolution: {integrity: sha512-4zxTIhpGaia4FTxL/c20GQU2bK3bqToerdErvDzwLqWQECVGt7vTGFQd3e4XMpfR6Ujgk4/p7fCHv/F15R/pkA==}
     dependencies:
       '@antfu/utils': 0.4.0
-      '@windicss/config': 1.6.3
+      '@windicss/config': 1.7.0
       debug: 4.3.3
       fast-glob: 3.2.11
       magic-string: 0.25.7
@@ -7436,10 +7436,10 @@ packages:
       isexe: 2.0.0
     dev: true
 
-  /windicss-webpack-plugin/1.6.4:
-    resolution: {integrity: sha512-/ac7Y3eprrLnlBGoHIQG5V29OXZsYwM5RKpcp9+kxspN07sXKGGGNno1tScwY2H0/lkICMPinZa0iijf21ifzg==}
+  /windicss-webpack-plugin/1.6.5:
+    resolution: {integrity: sha512-vvRSQgViYjnB4xOHs4pbDYLR4pIx4FGUYHwKSn89e+iMb97XM4CeUim1AtQ9q2aIO3K7DVewbNlk7MYOOkMx/w==}
     dependencies:
-      '@windicss/plugin-utils': 1.6.3
+      '@windicss/plugin-utils': 1.7.0
       debug: 4.3.3
       loader-utils: 2.0.2
       lodash: 4.17.21
