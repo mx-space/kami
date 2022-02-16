@@ -121,7 +121,7 @@
     "prettier": "2.5.1",
     "react-lazyload": "3.2.0",
     "rimraf": "*",
-    "stylelint": "14.5.0",
+    "stylelint": "14.5.1",
     "stylelint-config-standard": "25.0.0",
     "typescript": "4.5.5",
     "windicss": "3.4.3",
