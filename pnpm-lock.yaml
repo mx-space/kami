@@ -81,7 +81,7 @@ specifiers:
   validator: 13.7.0
   windicss: 3.4.3
   windicss-webpack-plugin: 1.6.5
-  zx: 5.0.0
+  zx: 5.1.0
 
 dependencies:
   '@fortawesome/fontawesome-svg-core': 1.2.36
@@ -163,7 +163,7 @@ devDependencies:
   typescript: 4.5.5
   windicss: 3.4.3
   windicss-webpack-plugin: 1.6.5
-  zx: 5.0.0
+  zx: 5.1.0
 
 packages:
 
@@ -1900,13 +1900,6 @@ packages:
 
   /@types/minimist/1.2.2:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
-    dev: true
-
-  /@types/node-fetch/3.0.3:
-    resolution: {integrity: sha512-HhggYPH5N+AQe/OmN6fmhKmRRt2XuNJow+R3pQwJxOOF9GuwM7O2mheyGeIrs5MOIeNjDEdgdoyHBOrFeJBR3g==}
-    deprecated: This is a stub types definition. node-fetch provides its own type definitions, so you do not need this installed.
-    dependencies:
-      node-fetch: 3.2.0
     dev: true
 
   /@types/node/16.11.25:
@@ -7751,15 +7744,14 @@ packages:
     resolution: {integrity: sha1-AI4G2AlDIMNy28L47XagymyKxBk=}
     dev: false
 
-  /zx/5.0.0:
-    resolution: {integrity: sha512-Kjf4tb11c4x+6d0WqU0+7YmAe0fJK7rABX/sBJNsQbPK8PUZttyIhXEiId4ZlWdyrPf/8Lfgi6R4tuiiUab9OQ==}
+  /zx/5.1.0:
+    resolution: {integrity: sha512-J62b/7sFwqt4zbmPbeKJGwZlvW2X3ynyfWHZPr+xLAGF80h4aY4SgXaadMjljpvIbWGOwRmK38vwEdi5XgUpcQ==}
     engines: {node: '>= 16.0.0'}
     hasBin: true
     dependencies:
       '@types/fs-extra': 9.0.13
       '@types/minimist': 1.2.2
       '@types/node': 17.0.17
-      '@types/node-fetch': 3.0.3
       chalk: 5.0.0
       fs-extra: 10.0.0
       globby: 13.1.1
