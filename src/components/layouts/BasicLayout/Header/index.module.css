@@ -112,7 +112,6 @@
 .header {
   height: 56px;
   z-index: 5;
-  background-color: var(--bg-opacity);
   backdrop-filter: blur(25px) saturate(150%) brightness(1.1);
   box-shadow: 0 0 1em rgb(0 0 0 / 10%);
   transition: transform 0.5s, backdrop-filter 0.5s;
