@@ -1,6 +1,5 @@
-import { faTags } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { PostModel, TagModel } from '@mx-space/api-client'
+import { JamTags } from 'components/universal/Icons'
 import { OverLay } from 'components/universal/Overlay'
 import { BigTag } from 'components/universal/Tag'
 import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
@@ -36,7 +35,7 @@ const _FloatPostTagButton: FC = observer(() => {
   useEffect(() => {
     actionStore.removeActionBySymbol(idSymbol.current)
     const action = {
-      icon: <FontAwesomeIcon icon={faTags} />,
+      icon: <JamTags />,
       id: idSymbol.current,
       onClick: () => {
         if (tags.length == 0) {

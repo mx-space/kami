@@ -1,7 +1,6 @@
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { RecentlyModel } from '@mx-space/api-client'
 import clsx from 'clsx'
+import { JamTrash } from 'components/universal/Icons'
 import { Input } from 'components/universal/Input'
 import { Loading } from 'components/universal/Loading'
 import { Markdown } from 'components/universal/Markdown'
@@ -126,12 +125,12 @@ const RecentlyPage: NextPage = () => {
                     <Markdown value={d.content}></Markdown>
 
                     <div className="text-sm float-right">
-                      <RelativeTime date={new Date(d.created)} />
+                      <RelativeTime date={d.created} />
                     </div>
 
                     {isLogged && (
                       <div className="del" onClick={() => handleDelete(d.id)}>
-                        <FontAwesomeIcon icon={faTrash} className="mr-2" />
+                        <JamTrash className="mr-2" />
                         删除
                       </div>
                     )}

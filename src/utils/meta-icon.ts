@@ -1,48 +1,52 @@
 import {
-  faAngry,
-  faFlushed,
-  faFrownOpen,
-  faGrimace,
-  faGrinSquint,
-  faMeh,
-  faSadCry,
-  faSmile,
-  faTired,
-} from '@fortawesome/free-regular-svg-icons'
+  BiCloudLightningRainFill,
+  BiCloudRainFill,
+  MdiCloud,
+  MdiSnowflake,
+  PhSunBold,
+  RiSunCloudyFill,
+} from 'components/universal/Icons'
 import {
-  faCloud,
-  faCloudRain,
-  faCloudSun,
-  faSnowflake,
-  faSun,
-  IconDefinition,
-} from '@fortawesome/free-solid-svg-icons'
+  FaSolidAngry,
+  FaSolidFlushed,
+  FaSolidFrownOpen,
+  FaSolidGrimace,
+  FaSolidGrinSquintTears,
+  FaSolidMeh,
+  FaSolidSadCry,
+  FaSolidSadTear,
+  FaSolidSmile,
+  FaSolidTired,
+} from 'components/universal/Icons/emoji'
+import React, { FC } from 'react'
 
 export const weather2icon = (weather: string) => {
-  const map: Record<string, IconDefinition> = {
-    晴: faSun,
-    多云: faCloudSun,
-    阴: faCloud,
-    雪: faSnowflake,
-    雨: faCloudRain,
+  const map: Record<string, FC> = {
+    晴: PhSunBold,
+    多云: RiSunCloudyFill,
+    阴: MdiCloud,
+    雪: MdiSnowflake,
+    雨: BiCloudRainFill,
+    雷雨: BiCloudLightningRainFill,
   }
-  return map[weather] || faCloud
+  return React.createElement(map[weather] || PhSunBold)
 }
 
 export const mood2icon = (mood: string) => {
-  const map: Record<string, IconDefinition> = {
-    开心: faSmile,
-    伤心: faSadCry,
-    生气: faAngry,
-    痛苦: faTired,
-    悲哀: faMeh,
-    不快: faMeh,
-    激动: faGrinSquint,
-    担心: faFrownOpen,
-    可怕: faGrimace,
-    可恶: faAngry,
-    绝望: faFrownOpen,
-    焦虑: faFlushed,
+  const map: Record<string, FC> = {
+    开心: FaSolidSmile,
+    伤心: FaSolidSadTear,
+    大哭: FaSolidSadCry,
+    生气: FaSolidAngry,
+    痛苦: FaSolidTired,
+    悲哀: FaSolidMeh,
+    不快: FaSolidMeh,
+    激动: FaSolidGrinSquintTears,
+    担心: FaSolidFrownOpen,
+    可怕: FaSolidGrimace,
+    可恶: FaSolidAngry,
+    绝望: FaSolidFrownOpen,
+    焦虑: FaSolidFlushed,
   }
-  return map[mood] || faSmile
+  return React.createElement(map[mood] || FaSolidSmile)
 }

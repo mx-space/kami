@@ -1,11 +1,9 @@
-import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FC } from 'react'
 import ReactDOM from 'react-dom'
 import { FadeInOutTransitionView } from '../Transition/fade-in-out'
 import styles from './index.module.css'
 interface NoticePanelProps {
-  icon: IconDefinition
+  icon: JSX.Element
   text: string | JSX.Element
 }
 
@@ -17,9 +15,7 @@ const _Notice: FC<NoticePanelProps> = (props) => {
         <div className={styles['notice-darwin']}>
           <div className={styles['box']}>
             <div className={styles['icon-wrap']}>
-              <div className={styles['icon']}>
-                <FontAwesomeIcon icon={icon} />
-              </div>
+              <div className={styles['icon']}>{icon}</div>
             </div>
 
             <div className={styles['notice-text']}>

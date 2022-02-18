@@ -1,12 +1,12 @@
-import {
-  faBookOpen,
-  faCalendar,
-  faCoffee,
-  faHashtag,
-  faThumbsUp,
-} from '@fortawesome/free-solid-svg-icons'
 import { PostModel } from '@mx-space/api-client'
 import { ArticleLayout } from 'components/layouts/ArticleLayout'
+import {
+  FeHash,
+  GgCoffee,
+  IonThumbsup,
+  MdiCalendar,
+  PhBookOpen,
+} from 'components/universal/Icons'
 import { buildStoreDataLoadableView } from 'components/universal/LoadableView'
 import { Markdown } from 'components/universal/Markdown'
 import { NumberRecorder } from 'components/universal/NumberRecorder'
@@ -120,11 +120,11 @@ export const PostView: PageOnlyProps = observer((props) => {
     setAction({
       informs: [
         {
-          icon: faCalendar,
+          icon: <MdiCalendar />,
           name: dayjs(post.created).locale('cn').format('YYYY年M月DD日'),
         },
         {
-          icon: faHashtag,
+          icon: <FeHash />,
           name:
             post.category.name +
             `${
@@ -134,21 +134,21 @@ export const PostView: PageOnlyProps = observer((props) => {
             }`,
         },
         {
-          icon: faBookOpen,
+          icon: <PhBookOpen />,
           name: post.count.read ?? 0,
         },
       ],
 
       actions: [
         donateConfig.enable && {
-          icon: faCoffee,
+          icon: <GgCoffee />,
           name: '',
           callback: () => {
             window.open(donateConfig.link)
           },
         },
         {
-          icon: faThumbsUp,
+          icon: <IonThumbsup />,
           name: (
             <span className="leading-[1.1]">
               <NumberRecorder number={post.count?.like || 0} />

@@ -1,7 +1,6 @@
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ProjectModel } from '@mx-space/api-client'
 import { ProjectList } from 'components/in-page/Project/list'
+import { CodiconGithubInverted } from 'components/universal/Icons'
 import { Loading } from 'components/universal/Loading'
 import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
 import { useEffect, useState } from 'react'
@@ -36,16 +35,16 @@ const ProjectView = () => {
         <Loading />
       ) : (
         <>
-          <div className="font-medium text-3xl my-12">
+          <div className="font-medium text-3xl my-12 inline-flex items-center">
             项目{' '}
             {githubUsername && (
               <a
                 href={'https://github.com/' + githubUsername}
-                className="!text-inherit"
+                className="!text-inherit inline-flex ml-2"
                 target="_blank"
                 aria-label="view on GitHub"
               >
-                <FontAwesomeIcon icon={faGithub} />
+                <CodiconGithubInverted />
               </a>
             )}
           </div>

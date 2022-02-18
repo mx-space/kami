@@ -1,6 +1,5 @@
-import { faBookmark } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { TimelineData } from '@mx-space/api-client'
+import { FaSolidBookmark } from 'components/universal/Icons'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -187,14 +186,12 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
                         </a>
                       </Link>
                       {item.important && (
-                        <FontAwesomeIcon
-                          icon={faBookmark}
-                          color={'red'}
-                          className="mr-4 cursor-pointer"
+                        <FaSolidBookmark
+                          className="text-red mr-4 cursor-pointer"
                           onClick={() => {
                             router.push({ query: { memory: true } })
                           }}
-                        />
+                        ></FaSolidBookmark>
                       )}
 
                       <span className={'meta'}>

@@ -1,6 +1,8 @@
-import { faArrowUp, faHeadphones } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'clsx'
+import {
+  BxBxsArrowToTop,
+  FaSolidHeadphonesAlt,
+} from 'components/universal/Icons'
 import { ScaleTransitionView } from 'components/universal/Transition/scale'
 import { MaidianAction } from 'constants/maidian'
 import { useAnalyze } from 'hooks/use-analyze'
@@ -42,7 +44,7 @@ export const FooterActions: FC = observer(() => {
           className={classNames('top', isOverflow ? 'active' : '')}
           onClick={springScrollToTop}
         >
-          <FontAwesomeIcon icon={faArrowUp} />
+          <BxBxsArrowToTop />
         </button>
         <TransitionGroup>
           {actionStore.actions.map((action, i) => {
@@ -69,7 +71,7 @@ export const FooterActions: FC = observer(() => {
             })
           }}
         >
-          <FontAwesomeIcon icon={faHeadphones} />
+          <FaSolidHeadphonesAlt />
         </button>
 
         {/* <button
@@ -83,7 +85,6 @@ export const FooterActions: FC = observer(() => {
           )}
           data-count={newMessageCount}
         >
-          <FontAwesomeIcon icon={faPaperPlane} />
         </button> */}
       </div>
       {/* <ConfigPanel /> */}

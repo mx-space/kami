@@ -2,12 +2,12 @@
  * 申请友链的表单
  */
 import {
-  faEnvelope,
-  faUser,
-  faUserCircle,
-} from '@fortawesome/free-regular-svg-icons'
-import { faGlobeAsia, faPen } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+  MdiEmailFastOutline,
+  MdiFountainPenTip,
+  PhUser,
+  RadixIconsAvatar,
+  SiGlyphGlobal,
+} from 'components/universal/Icons'
 import { FC, useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { message } from 'react-message-popup'
@@ -69,7 +69,7 @@ export const ApplyForLink: FC = () => {
         <Input
           placeholder={'昵称 *'}
           required
-          prefix={<FontAwesomeIcon icon={faUser} />}
+          prefix={<PhUser />}
           {...register('friend-author', {
             maxLength: { value: 20, message: '乃的名字太长了!' },
             required: { value: true, message: '输入你的大名吧' },
@@ -78,7 +78,7 @@ export const ApplyForLink: FC = () => {
         <Input
           placeholder={'站点标题 *'}
           required
-          prefix={<FontAwesomeIcon icon={faPen} />}
+          prefix={<MdiFountainPenTip />}
           {...register('friend-name', {
             maxLength: { value: 20, message: '标题太长了 www' },
             required: { value: true, message: '标题是必须的啦' },
@@ -87,7 +87,7 @@ export const ApplyForLink: FC = () => {
         <Input
           placeholder={'网站 * https://'}
           required
-          prefix={<FontAwesomeIcon icon={faGlobeAsia} />}
+          prefix={<SiGlyphGlobal />}
           {...register('friend-url', {
             validate: (value) => isURL(value, { require_protocol: true }),
             required: true,
@@ -96,7 +96,7 @@ export const ApplyForLink: FC = () => {
         <Input
           placeholder={'头像链接 * https://'}
           required
-          prefix={<FontAwesomeIcon icon={faUserCircle} />}
+          prefix={<RadixIconsAvatar />}
           {...register('friend-avatar', {
             validate: (value) => isURL(value, { require_protocol: true }),
             required: true,
@@ -105,7 +105,7 @@ export const ApplyForLink: FC = () => {
         <Input
           placeholder={'留下你的邮箱哦 *'}
           required
-          prefix={<FontAwesomeIcon icon={faEnvelope} />}
+          prefix={<MdiEmailFastOutline />}
           {...register('friend-email', {
             validate: (value) => isEmail(value),
             required: { message: '邮箱不能为空哦', value: true },

@@ -1,4 +1,4 @@
-import { shift, useFloating } from '@floating-ui/react-dom'
+import { useFloating } from '@floating-ui/react-dom'
 import clsx from 'clsx'
 import { DropdownBase } from 'components/universal/Dropdown'
 import { FontIcon } from 'components/universal/FontIcon'
@@ -12,7 +12,7 @@ const MenuLink = memo((props: { menu: any; isPublicUrl: boolean }) => {
   const { menu, isPublicUrl } = props
   const { x, y, reference, floating, strategy } = useFloating({
     placement: 'bottom',
-    middleware: [shift()],
+    strategy: 'fixed',
   })
 
   const [open, setOpen] = React.useState(false)

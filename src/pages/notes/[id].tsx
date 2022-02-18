@@ -1,9 +1,12 @@
-import { faBookOpen, faClock } from '@fortawesome/free-solid-svg-icons'
 import { NoteModel, RequestError } from '@mx-space/api-client'
 import { NotePasswordConfrim } from 'components/in-page/NotePasswordConfirm'
 import { BanCopy } from 'components/in-page/WarningOverlay/ban-copy'
 import { ArticleLayout } from 'components/layouts/ArticleLayout'
 import { NoteLayout } from 'components/layouts/NoteLayout'
+import {
+  MdiClockTimeThreeOutline,
+  PhBookOpen,
+} from 'components/universal/Icons'
 import { LikeButton } from 'components/universal/LikeButton'
 import { Loading } from 'components/universal/Loading'
 import { Markdown } from 'components/universal/Markdown'
@@ -30,12 +33,17 @@ import { message } from 'react-message-popup'
 import { useUpdate } from 'react-use'
 import { store, useStore } from 'store'
 import { imagesRecord2Map } from 'utils/images'
-import { mood2icon, weather2icon } from 'utils/meta-icon'
 import { springScrollToTop } from 'utils/spring'
 import { parseDate } from 'utils/time'
 import { Seo } from '../../components/universal/Seo'
 import { ImageSizeMetaContext } from '../../context/image-size'
-import { getSummaryFromMd, isDev, noop } from '../../utils'
+import {
+  getSummaryFromMd,
+  isDev,
+  mood2icon,
+  noop,
+  weather2icon,
+} from '../../utils'
 
 const renderLines: FC<{ value: string }> = ({ value }) => {
   return <span className="indent">{value}</span>
@@ -191,13 +199,7 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
         }}
       />
 
-      <NoteLayout
-        title={title}
-        date={new Date(note.created)}
-        tips={tips}
-        bookmark={note.hasMemory}
-        id={note.id}
-      >
+      <NoteLayout title={title} date={note.created} tips={tips} id={note.id}>
         {isSecret && !userStore.isLogged ? (
           <p className="text-center my-8">
             这篇文章暂时没有公开呢，将会在 {dateFormat} 解锁，再等等哦
@@ -299,12 +301,12 @@ const FooterActionBar: FC<{ id: string }> = observer(({ id }) => {
 
     actions.informs!.push(
       {
-        name: <RelativeTime date={new Date(note.created)} />,
-        icon: faClock,
+        name: <RelativeTime date={note.created} />,
+        icon: <MdiClockTimeThreeOutline />,
       },
       {
         name: note.count.read.toString(),
-        icon: faBookOpen,
+        icon: <PhBookOpen />,
       },
     )
   }

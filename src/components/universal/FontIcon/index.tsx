@@ -1,96 +1,79 @@
+import { createElement, FC, memo, useEffect } from 'react'
+import { CodiconGithubInverted, PhBookOpen } from '../Icons'
 import {
-  faGithub,
-  faQq,
-  faTwitter,
-  IconDefinition,
-} from '@fortawesome/free-brands-svg-icons'
-import { faCircle, faDotCircle } from '@fortawesome/free-regular-svg-icons'
-import {
-  faBookOpen,
-  faCircleNotch,
-  faComment,
-  faComments,
-  faFeatherAlt,
-  faFlask,
-  faGlasses,
-  faHistory,
-  faMusic,
-  faSubway,
-  faTv,
-  faUserFriends,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { FC, memo, useEffect } from 'react'
+  FaSolidCircle,
+  FaSolidCircleNotch,
+  FaSolidComment,
+  FaSolidComments,
+  FaSolidDotCircle,
+  FaSolidFeatherAlt,
+  FaSolidHistory,
+  FaSolidSubway,
+  FaSolidTv,
+  FaSolidUserFriends,
+  IconParkOutlineTencentQq,
+  IcRoundQueueMusic,
+  IcTwotoneSignpost,
+  MdiFlask,
+  MdiTwitter,
+} from '../Icons/menu-icon'
 
 export const fontawesomeIconMap = {
-  faBookOpen,
-  faCircleNotch,
-  faComment,
-  faComments,
-  faFeatherAlt,
-  faGlasses,
-  faHistory,
-  faMusic,
-  faSubway,
-  faUserFriends,
-  faCircle,
-  faDotCircle,
-  faGithub,
-  faQq,
-  faTwitter,
-  faFlask,
-  faTv,
+  faBookOpen: PhBookOpen,
+  faCircleNotch: FaSolidCircleNotch,
+  faComment: FaSolidComment,
+  faComments: FaSolidComments,
+  faFeatherAlt: FaSolidFeatherAlt,
+  faGlasses: IcTwotoneSignpost,
+  faHistory: FaSolidHistory,
+  faMusic: IcRoundQueueMusic,
+  faSubway: FaSolidSubway,
+  faUserFriends: FaSolidUserFriends,
+  faCircle: FaSolidCircle,
+  faDotCircle: FaSolidDotCircle,
+  faGithub: CodiconGithubInverted,
+  faQq: IconParkOutlineTencentQq,
+  faTwitter: MdiTwitter,
+  faFlask: MdiFlask,
+  faTv: FaSolidTv,
 }
 
 let hasAppended = false
-export const FontIcon: FC<{ icon?: IconDefinition | string }> = memo(
-  (props) => {
-    useEffect(() => {
-      if (
-        typeof props.icon == 'string' &&
-        /^fa[sbldr]?\sfa-/.test(props.icon)
-      ) {
-        if (hasAppended) {
-          return
-        }
-        const $id = 'font-awesome-link'
-        const $link = document.createElement('link')
-        $link.href =
-          'https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/5.15.2/css/all.min.css'
-        $link.rel = 'stylesheet'
-        $link.id = $id
-
-        document.head.appendChild($link)
-        hasAppended = true
+export const FontIcon: FC<{ icon?: JSX.Element | string }> = memo((props) => {
+  useEffect(() => {
+    if (typeof props.icon == 'string' && /^fa[sbldr]?\sfa-/.test(props.icon)) {
+      if (hasAppended) {
+        return
       }
-    }, [props.icon])
-    if (!props.icon) {
-      return null
-    }
-    return (
-      <>
-        {isFontAwesomeIconDefine(props.icon) ? (
-          <FontAwesomeIcon icon={props.icon!} />
-        ) : fontawesomeIconMap[props.icon] ? (
-          <FontAwesomeIcon icon={fontawesomeIconMap[props.icon]} />
-        ) : (
-          <i
-            className={
-              props.icon.startsWith('fa-') ? 'fa ' + props.icon : props.icon
-            }
-          />
-        )}
-      </>
-    )
-  },
-)
+      const $id = 'font-awesome-link'
+      const $link = document.createElement('link')
+      $link.href =
+        'https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/5.15.2/css/all.min.css'
+      $link.rel = 'stylesheet'
+      $link.id = $id
 
-function isFontAwesomeIconDefine(icon): icon is IconDefinition {
+      document.head.appendChild($link)
+      hasAppended = true
+    }
+  }, [props.icon])
+  if (!props.icon) {
+    return null
+  }
+
+  if (typeof props.icon === 'object') {
+    return props.icon
+  }
   return (
-    typeof icon === 'object' &&
-    icon &&
-    icon.icon &&
-    icon.prefix &&
-    icon.iconName
+    <>
+      {fontawesomeIconMap[props.icon] ? (
+        createElement(fontawesomeIconMap[props.icon])
+      ) : (
+        <i
+          className={
+            props.icon.startsWith('fa-') ? 'fa ' + props.icon : props.icon
+          }
+        />
+      )}
+    </>
   )
-}
+})

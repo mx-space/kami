@@ -6,6 +6,17 @@
       margin-bottom: 5em;
     }
 
+    .title::before {
+      content: '';
+      width: 3rem;
+      border-radius: 1rem;
+      height: 100%;
+      background: rgb(0 0 0 / 20%);
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
     .news-item:last-child {
       margin-bottom: 0;
     }
@@ -15,7 +26,8 @@
       font-weight: 700;
       position: relative;
       border-radius: 1em;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       background: var(--purple);
       padding: 0.6em 2em 0.6em 4em;
     }

@@ -278,19 +278,6 @@ pre > code {
   }
 }
 
-.news-item {
-  .title::before {
-    content: '';
-    width: 3rem;
-    border-radius: 1rem;
-    height: 100%;
-    background: rgb(0 0 0 / 20%);
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
-}
-
 .article-list {
   font-family: var(--sans-font);
 
@@ -365,8 +352,6 @@ pre > code {
   #comment-wrapper,
   .kami-news,
   .kami-toc,
-  .note-inform,
-  .note-action,
   .loader,
   *[data-hide-print] {
     display: none;

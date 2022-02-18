@@ -1,5 +1,4 @@
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { BxBxPaperPlane } from 'components/universal/Icons'
 import { RightLeftTransitionView } from 'components/universal/Transition/right-left'
 import { observer } from 'mobx-react-lite'
 import { FC, useEffect, useRef, useState } from 'react'
@@ -155,7 +154,7 @@ const _ChatPanel: FC<any> = observer(
                 onClick={handleSend}
                 disabled={!userStore.isLogged}
               >
-                biu~~ <FontAwesomeIcon icon={faPaperPlane} />
+                biu~~ <BxBxPaperPlane></BxBxPaperPlane>
               </button>
             </div>
           </div>

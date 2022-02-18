@@ -4,7 +4,7 @@ import { SliderImagesPopup } from 'components/universal/SliderImagesPopup'
 import { FC, useEffect } from 'react'
 import { useStore } from 'store'
 import styles from './detail.module.css'
-import { ProjectIcon } from './icon'
+import { ProjectIcon } from './project-icon'
 
 export const ProjectDetail: FC<{ id: string }> = (props) => {
   const { id } = props

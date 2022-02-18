@@ -1,18 +1,13 @@
-import {
-  faChevronRight,
-  IconDefinition,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { IcBaselineArrowForwardIos } from 'components/universal/Icons'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import randomColor from 'randomcolor'
-import { DetailedHTMLProps, HTMLAttributes } from 'react'
+import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react'
 import { useStore } from '../../../../store'
-import styles from './index.module.css'
 
 export interface SectionNewsProps {
   title: string
-  icon: IconDefinition
+  icon: ReactNode
   moreUrl?: string
   color?: string
   size?: 4 | 6
@@ -49,7 +44,10 @@ export const SectionWrap = observer<
               }}
               suppressHydrationWarning
             >
-              <FontAwesomeIcon icon={icon} className={styles.icon} />
+              <div className="absolute left-4 z-1 transform scale-120">
+                {icon}
+              </div>
+
               {title}
             </h3>
             {showMoreIcon && moreUrl && (
@@ -62,7 +60,7 @@ export const SectionWrap = observer<
               >
                 <Link href={moreUrl}>
                   <a>
-                    <FontAwesomeIcon icon={faChevronRight} />
+                    <IcBaselineArrowForwardIos />
                   </a>
                 </Link>
               </h3>

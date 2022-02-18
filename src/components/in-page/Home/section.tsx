@@ -1,10 +1,10 @@
-import {
-  faBookOpen,
-  faHeart,
-  faPencilAlt,
-  faUsers,
-} from '@fortawesome/free-solid-svg-icons'
 import { AggregateTop } from '@mx-space/api-client'
+import {
+  FaSolidKissWinkHeart,
+  MdiDrawPen,
+  PhUsersDuotone,
+} from 'components/universal/Icons'
+import { IcTwotoneSignpost } from 'components/universal/Icons/menu-icon'
 import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
 import { useThemeConfig } from 'hooks/use-initial-data'
 import { shuffle } from 'lodash-es'
@@ -39,7 +39,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
   const sections = useRef({
     postSection: {
       title: '最新博文',
-      icon: faBookOpen,
+      icon: <IcTwotoneSignpost />,
       moreUrl: 'posts',
       content: posts.slice(0, 4).map((p) => {
         return {
@@ -52,7 +52,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
     } as SectionNewsProps,
     noteSection: {
       title: '随便写写',
-      icon: faPencilAlt,
+      icon: <MdiDrawPen />,
       moreUrl: 'notes',
       content: notes.slice(0, 4).map((n) => {
         return {
@@ -84,13 +84,18 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
     <SectionWrap
       title="朋友们"
       moreUrl="friends"
-      icon={faUsers}
+      icon={<PhUsersDuotone />}
       key="3"
       className={'w-full'}
     >
       <FriendsSection />
     </SectionWrap>,
-    <SectionWrap title="了解更多" icon={faHeart} showMoreIcon={false} key="4">
+    <SectionWrap
+      title="了解更多"
+      icon={<FaSolidKissWinkHeart />}
+      showMoreIcon={false}
+      key="4"
+    >
       <SectionCard
         title="留言"
         desc="你的话对我很重要"

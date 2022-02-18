@@ -1,5 +1,4 @@
-import { faShare, IconDefinition } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { MdiShare } from 'components/universal/Icons'
 import { observer } from 'mobx-react-lite'
 import React, { FC, memo } from 'react'
 import { useStore } from 'store'
@@ -23,7 +22,7 @@ export const HeaderActionShareButton: FC = observer(() => {
               // eslint-disable-next-line @typescript-eslint/no-empty-function
               .catch(() => {})
           }}
-          icon={faShare}
+          icon={<MdiShare />}
           title={'分享'}
         />
       </HeaderActionButton>
@@ -32,13 +31,13 @@ export const HeaderActionShareButton: FC = observer(() => {
 })
 
 export const HeaderActionButtonWithIcon: FC<{
-  icon: IconDefinition
+  icon: JSX.Element
   title: string
   onClick: () => void
 }> = memo(({ icon, title, onClick }) => {
   return (
     <div onClick={onClick} className="flex items-center justify-center">
-      <FontAwesomeIcon icon={icon} className={'mr-2 transform scale-90'} />
+      <span className="inline-flex items-center mr-2">{icon}</span>
 
       <span className="flex-shrink-0">{title}</span>
     </div>

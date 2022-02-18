@@ -4,7 +4,7 @@ import React, { FC, memo, useEffect, useMemo, useRef, useState } from 'react'
 import { HeaderNavigationList } from './HeaderNavigationList'
 import styles from './index.module.css'
 
-export const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
+export const MenuList: FC = memo(() => {
   const groupRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
   const kamiConfig = useKamiConfig()

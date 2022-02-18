@@ -1,5 +1,4 @@
-import { faLock, faUser } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { CarbonPassword, PhUser } from 'components/universal/Icons'
 import { Input } from 'components/universal/Input'
 import { NextPage } from 'next'
 import Router from 'next/router'
@@ -34,7 +33,7 @@ const LoginView: NextPage = () => {
       <div className={styles['login-wrap']}>
         <div className={styles['field']}>
           <Input
-            prefix={<FontAwesomeIcon icon={faUser} />}
+            prefix={<PhUser />}
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -42,7 +41,7 @@ const LoginView: NextPage = () => {
         </div>
         <div className={styles['field']}>
           <Input
-            prefix={<FontAwesomeIcon icon={faLock} />}
+            prefix={<CarbonPassword />}
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

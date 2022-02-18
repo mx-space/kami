@@ -1,6 +1,5 @@
-import { faListUl } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'clsx'
+import { IcBaselineMenuOpen } from 'components/universal/Icons'
 import { CustomLogo as Logo } from 'components/universal/Logo'
 import { useInitialData } from 'hooks/use-initial-data'
 import { observer } from 'mobx-react-lite'
@@ -77,7 +76,7 @@ export const _Header: FC = observer(() => {
                 setDrawerOpen(true)
               }}
             >
-              <FontAwesomeIcon icon={faListUl} />
+              <IcBaselineMenuOpen className="text-2xl" />
             </div>
             <MenuList />
           </div>

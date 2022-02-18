@@ -1,7 +1,6 @@
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Footer } from 'components/layouts/BasicLayout/Footer'
 import { Header } from 'components/layouts/BasicLayout/Header'
+import { BiMoonStarsFill, PhSunBold } from 'components/universal/Icons'
 import { MusicMiniPlayerStoreControlled } from 'components/widgets/Player'
 import { SearchHotKey } from 'components/widgets/Search'
 import { useMediaToggle } from 'hooks/use-media-toggle'
@@ -29,7 +28,7 @@ export const BasicLayout: FC = observer(({ children }) => {
   const [showNotice, setNotice] = useState(false)
   const [tip, setTip] = useState({
     text: '白天模式',
-    icon: faSun,
+    icon: <PhSunBold />,
   })
   const handleChangeColorMode = useCallback(() => {
     toggle()
@@ -37,7 +36,7 @@ export const BasicLayout: FC = observer(({ children }) => {
     // 去相反的值去比较, 因为 toggle 之后因为 react 的 batch 不会立刻更新
     setTip({
       text: !isDark ? '夜间模式' : '白天模式',
-      icon: !isDark ? faMoon : faSun,
+      icon: !isDark ? <BiMoonStarsFill /> : <PhSunBold />,
     })
 
     setNotice(!showNotice)
@@ -49,11 +48,7 @@ export const BasicLayout: FC = observer(({ children }) => {
       const action = {
         id: idSymbol.current,
         icon:
-          appStore.colorMode === 'dark' ? (
-            <FontAwesomeIcon icon={faSun} />
-          ) : (
-            <FontAwesomeIcon icon={faMoon} />
-          ),
+          appStore.colorMode === 'dark' ? <PhSunBold /> : <BiMoonStarsFill />,
         onClick: handleChangeColorMode,
       }
       actionStore.appendActions(action)

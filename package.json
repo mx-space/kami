@@ -48,11 +48,6 @@
   ],
   "dependencies": {
     "@floating-ui/react-dom": "0.4.3",
-    "@fortawesome/fontawesome-svg-core": "1.2.36",
-    "@fortawesome/free-brands-svg-icons": "5.15.4",
-    "@fortawesome/free-regular-svg-icons": "5.15.4",
-    "@fortawesome/free-solid-svg-icons": "5.15.4",
-    "@fortawesome/react-fontawesome": "0.1.17",
     "@mx-space/api-client": "0.7.1",
     "@mx-space/extra": "0.5.2",
     "NeteaseCloudMusicApi": "*",

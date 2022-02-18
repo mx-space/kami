@@ -1,4 +1,3 @@
-import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
 import { UrlObject } from 'url'
 
 export declare enum LayoutType {
@@ -17,7 +16,7 @@ export interface MenuModel {
   type?: keyof typeof LayoutType
   path: string
   subMenu?: MenuModel[]
-  icon?: IconDefinition | string
+  icon?: JSX.Element | string
   as?: string | UrlObject
   independent?: boolean
 }

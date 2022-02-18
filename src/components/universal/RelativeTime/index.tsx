@@ -10,7 +10,7 @@ import dayjs from 'dayjs'
 import { FC, useEffect, useState } from 'react'
 import { relativeTimeFromNow } from 'utils'
 
-export const RelativeTime: FC<{ date: Date }> = (props) => {
+export const RelativeTime: FC<{ date: string | Date }> = (props) => {
   // const { date } = props
   const [relative, setRelative] = useState<string>(
     relativeTimeFromNow(props.date),
@@ -29,7 +29,9 @@ export const RelativeTime: FC<{ date: Date }> = (props) => {
           day: '2-digit',
           month: '2-digit',
           year: '2-digit',
-        }).format(props.date),
+        }).format(
+          typeof props.date === 'string' ? new Date(props.date) : props.date,
+        ),
       )
     }
     return () => {

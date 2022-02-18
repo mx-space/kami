@@ -1,7 +1,5 @@
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
-import { EmptyIcon } from 'components/universal/Icons'
+import { EmptyIcon, IonSearch } from 'components/universal/Icons'
 import { OverLay, OverlayProps } from 'components/universal/Overlay'
 import { MaidianAction } from 'constants/maidian'
 import { useAnalyze } from 'hooks/use-analyze'
@@ -195,7 +193,7 @@ export const SearchFAB = memo(() => {
   useEffect(() => {
     actionStore.removeActionBySymbol(idSymbol.current)
     const action = {
-      icon: <FontAwesomeIcon icon={faSearch} />,
+      icon: <IonSearch />,
       id: idSymbol.current,
       onClick: () => {
         setShow(true)

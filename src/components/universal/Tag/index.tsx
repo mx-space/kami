@@ -1,9 +1,8 @@
-import { faTag } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { observer } from 'mobx-react-lite'
 import rc from 'randomcolor'
 import { FC, MouseEventHandler, useMemo } from 'react'
 import { useStore } from 'store'
+import { MdiTagHeartOutline } from '../Icons'
 import styles from './index.module.css'
 
 interface BigTagProps {
@@ -27,7 +26,7 @@ export const BigTag: FC<BigTagProps> = observer(({ tagName, onClick }) => {
       style={{ background: bgColor }}
       onClick={onClick}
     >
-      <FontAwesomeIcon icon={faTag} className="mr-3" />
+      <MdiTagHeartOutline className="inline-block mr-2 text-lg" />
       {tagName}
     </a>
   )

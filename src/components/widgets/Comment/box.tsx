@@ -1,7 +1,9 @@
-import { faMarkdown } from '@fortawesome/free-brands-svg-icons'
-import { faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons'
-import { faGlobeAsia } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  MdiEmailFastOutline,
+  MdiLanguageMarkdown,
+  PhUser,
+  SiGlyphGlobal,
+} from 'components/universal/Icons'
 import omit from 'lodash-es/omit'
 import shuffle from 'lodash-es/shuffle'
 import React, {
@@ -172,9 +174,9 @@ export const CommentBox: FC<{
 
   const prefixIcon = useMemo(
     () => ({
-      author: <FontAwesomeIcon icon={faUser} />,
-      mail: <FontAwesomeIcon icon={faEnvelope} />,
-      url: <FontAwesomeIcon icon={faGlobeAsia} />,
+      author: <PhUser />,
+      mail: <MdiEmailFastOutline />,
+      url: <SiGlyphGlobal />,
     }),
     [],
   )
@@ -235,7 +237,7 @@ export const CommentBox: FC<{
 
       <div className={styles['actions-wrapper']}>
         <button className="btn flex-shrink-0 mr-[12px] cursor-default pointer-events-none">
-          <FontAwesomeIcon icon={faMarkdown} />
+          <MdiLanguageMarkdown className="text-2xl" />
         </button>
         <div className={styles['emoji-wrapper']}>
           <div className={styles['emojis']}>

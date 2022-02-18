@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 24px;
-  display: inline-block;
+  display: inline-flex;
   word-break: break-all;
   cursor: pointer;
   transition: transform 0.1s ease-in;

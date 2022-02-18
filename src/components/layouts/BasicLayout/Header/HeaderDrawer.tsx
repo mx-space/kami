@@ -1,6 +1,5 @@
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'clsx'
+import { LaTimes } from 'components/universal/Icons'
 import { OverLay } from 'components/universal/Overlay'
 import { useRouter } from 'next/router'
 import React, { FC, Fragment, memo, useEffect } from 'react'
@@ -30,7 +29,7 @@ const _HeaderDrawer: FC<{ show: boolean; onExit: () => void }> = memo(
         >
           <div className="pb-4 text-right">
             <span className={'p-4 inline-block -mr-5 -mt-4'} onClick={onExit}>
-              <FontAwesomeIcon icon={faTimes} />
+              <LaTimes />
             </span>
           </div>
 

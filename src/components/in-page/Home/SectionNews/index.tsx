@@ -1,13 +1,12 @@
-import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
 import { ImageLazy } from 'components/universal/Image'
 import pick from 'lodash/pick'
 import Link from 'next/link'
-import { FC, forwardRef, memo, MouseEvent } from 'react'
+import { FC, forwardRef, memo, MouseEvent, ReactNode } from 'react'
 import styles from './index.module.css'
 import { SectionWrap } from './section'
 export interface SectionNewsProps {
   title: string
-  icon: IconDefinition
+  icon: ReactNode
   moreUrl: string
   color?: string
   content: {
