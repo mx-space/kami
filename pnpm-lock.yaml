@@ -42,7 +42,7 @@ specifiers:
   mdurl: '*'
   medium-zoom: 1.0.6
   mobx: 6.3.13
-  mobx-react-lite: 3.2.3
+  mobx-react-lite: 3.3.0
   next: 12.1.0
   next-compose-plugins: 2.2.1
   next-pwa: 5.4.4
@@ -94,7 +94,7 @@ dependencies:
   mdurl: 1.0.1
   medium-zoom: 1.0.6
   mobx: 6.3.13
-  mobx-react-lite: 3.2.3_96b0034b8b6bfac1b4cc60715db17f02
+  mobx-react-lite: 3.3.0_96b0034b8b6bfac1b4cc60715db17f02
   next: 12.1.0_react-dom@17.0.2+react@17.0.2
   next-seo: 5.1.0_caa633a00319350dbda42996613fe26c
   qier-progress: 1.0.4
@@ -4804,8 +4804,8 @@ packages:
     resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==}
     dev: true
 
-  /mobx-react-lite/3.2.3_96b0034b8b6bfac1b4cc60715db17f02:
-    resolution: {integrity: sha512-7exWp1FV0M9dP08H9PIeHlJqDw4IdkQVRMfLYaZFMmlbzSS6ZU6p/kx392KN+rVf81hH3IQYewvRGQ70oiwmbw==}
+  /mobx-react-lite/3.3.0_96b0034b8b6bfac1b4cc60715db17f02:
+    resolution: {integrity: sha512-U/kMSFtV/bNVgY01FuiGWpRkaQVHozBq5CEBZltFvPt4FcV111hEWkgwqVg9GPPZSEuEdV438PEz8mk8mKpYlA==}
     peerDependencies:
       mobx: ^6.1.0
       react: ^16.8.0 || ^17

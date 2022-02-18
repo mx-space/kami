@@ -61,7 +61,7 @@
     "mdurl": "*",
     "medium-zoom": "1.0.6",
     "mobx": "6.3.13",
-    "mobx-react-lite": "3.2.3",
+    "mobx-react-lite": "3.3.0",
     "next": "12.1.0",
     "next-seo": "5.1.0",
     "qier-progress": "1.0.4",
