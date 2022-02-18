@@ -11,7 +11,7 @@ import { useStore } from 'store'
 import { HeaderActionBasedOnRouterPath } from './HeaderActionBasedOnRouterPath'
 import { HeaderDrawer } from './HeaderDrawer'
 import { HeaderDrawerNavigation } from './HeaderDrawerNavigation'
-import { HeaderFake, MenuList } from './HeaderMenuList'
+import { MenuList } from './HeaderMenuList'
 import styles from './index.module.css'
 
 export const _Header: FC = observer(() => {
@@ -117,7 +117,6 @@ export const _Header: FC = observer(() => {
           <HeaderDrawerNavigation />
         </HeaderDrawer>
       </header>
-      <HeaderFake />
     </>
   )
 })

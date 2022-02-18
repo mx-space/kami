@@ -8,10 +8,9 @@
  */
 
 import classNames from 'clsx'
-import throttle from 'lodash-es/throttle'
-import dynamic from 'next/dynamic'
-import React, { FC } from 'react'
+import React, { forwardRef } from 'react'
 import ReactDOM from 'react-dom'
+import { isServerSide } from 'utils'
 import styles from './index.module.css'
 
 export type DropDownProps = {
@@ -21,38 +20,22 @@ export type DropDownProps = {
   onLeave: () => void
   onEnter?: () => void
 }
-export const DropdownBase: FC<
+export const DropdownBase = forwardRef<
+  HTMLDivElement,
   React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
-> = (props) => {
+>((props, ref) => {
+  if (isServerSide()) {
+    return <div ref={ref}></div>
+  }
   const { className, ...rest } = props
-  return (
+  return ReactDOM.createPortal(
     <div
+      ref={ref}
       className={classNames('fixed', styles['dropdown'], className)}
       {...rest}
     >
       {props.children}
-    </div>
+    </div>,
+    document.body,
   )
-}
-const _DropDown: FC<DropDownProps> = (props) => {
-  const { onLeave, width, x, y } = props
-
-  const Comp = (
-    <div
-      className={classNames('fixed', styles['dropdown'])}
-      style={{ width: `${width}px`, left: `${x}px`, top: `${y}px` }}
-      key={x.toString()}
-      onMouseLeave={() => {
-        onLeave()
-      }}
-      onMouseEnter={props.onEnter && throttle(props.onEnter, 50)}
-    >
-      {props.children}
-    </div>
-  )
-
-  return ReactDOM.createPortal(Comp, document.body)
-}
-export const DropDown = dynamic(() => Promise.resolve(_DropDown), {
-  ssr: false,
 })

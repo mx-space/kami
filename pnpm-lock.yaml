@@ -4,6 +4,7 @@ overrides:
   react-use: 17.3.2
 
 specifiers:
+  '@floating-ui/react-dom': 0.4.3
   '@fortawesome/fontawesome-svg-core': 1.2.36
   '@fortawesome/free-brands-svg-icons': 5.15.4
   '@fortawesome/free-regular-svg-icons': 5.15.4
@@ -84,6 +85,7 @@ specifiers:
   zx: 5.1.0
 
 dependencies:
+  '@floating-ui/react-dom': 0.4.3_b8fdba992ce7d797017dc07106486496
   '@fortawesome/fontawesome-svg-core': 1.2.36
   '@fortawesome/free-brands-svg-icons': 5.15.4
   '@fortawesome/free-regular-svg-icons': 5.15.4
@@ -1491,6 +1493,30 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@floating-ui/core/0.3.1:
+    resolution: {integrity: sha512-ensKY7Ub59u16qsVIFEo2hwTCqZ/r9oZZFh51ivcLGHfUwTn8l1Xzng8RJUe91H/UP8PeqeBronAGx0qmzwk2g==}
+    dev: false
+
+  /@floating-ui/dom/0.1.10:
+    resolution: {integrity: sha512-4kAVoogvQm2N0XE0G6APQJuCNuErjOfPW8Ux7DFxh8+AfugWflwVJ5LDlHOwrwut7z/30NUvdtHzQ3zSip4EzQ==}
+    dependencies:
+      '@floating-ui/core': 0.3.1
+    dev: false
+
+  /@floating-ui/react-dom/0.4.3_b8fdba992ce7d797017dc07106486496:
+    resolution: {integrity: sha512-ZL88ryd9p6sFh9jIC/+05JZoNsogcq6U09cygQjiy757QtQqxIVLQwFag+BAWWYqpNEMO0S60fkqmh8KIAV4oA==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      '@floating-ui/dom': 0.1.10
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      use-isomorphic-layout-effect: 1.1.1_a0c521d4794c7ad97f5f4c1c4a7d5818
+    transitivePeerDependencies:
+      - '@types/react'
+    dev: false
 
   /@fortawesome/fontawesome-common-types/0.2.36:
     resolution: {integrity: sha512-a/7BiSgobHAgBWeN7N0w+lAhInrGxksn13uK7231n2m8EDPE3BMCl9NZLTGrj9ZXfCmC6LM0QLqXidIizVQ6yg==}
@@ -7299,6 +7325,19 @@ packages:
       '@use-it/event-listener': 0.1.7_react@17.0.2
       react: 17.0.2
       use-persisted-state: 0.3.3_react@17.0.2
+    dev: false
+
+  /use-isomorphic-layout-effect/1.1.1_a0c521d4794c7ad97f5f4c1c4a7d5818:
+    resolution: {integrity: sha512-L7Evj8FGcwo/wpbv/qvSfrkHFtOpCzvM5yl2KVyDJoylVuSvzphiiasmjgQPttIGBAy2WKiBNR98q8w7PiNgKQ==}
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8.0 || ^17.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@types/react': 17.0.39
+      react: 17.0.2
     dev: false
 
   /use-persisted-state/0.3.3_react@17.0.2:

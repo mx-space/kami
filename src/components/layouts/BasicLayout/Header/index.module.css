@@ -109,10 +109,6 @@
   @apply mb-4;
 }
 
-.nav-fake {
-  @apply overflow-visible;
-}
-
 .header {
   height: 56px;
   z-index: 5;
@@ -250,8 +246,6 @@
 
 .sub-dropdown {
   width: 130px;
-  left: -50%;
-  top: 4rem;
   z-index: 19;
   position: absolute;
   opacity: 0;
@@ -268,21 +262,6 @@
     position: relative;
     display: block;
   }
-}
-
-.fake-header {
-  z-index: 4;
-  background: unset;
-  box-shadow: unset;
-  backdrop-filter: unset;
-
-  &.header {
-    backdrop-filter: unset !important;
-  }
-}
-
-.header.hide + .fake-header {
-  transform: translateY(-100%);
 }
 
 .right-wrapper {

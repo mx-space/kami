@@ -1,18 +1,9 @@
-import classNames from 'clsx'
 import { useKamiConfig } from 'hooks/use-initial-data'
-import { makeAutoObservable } from 'mobx'
 import { useRouter } from 'next/router'
 import React, { FC, memo, useEffect, useMemo, useRef, useState } from 'react'
 import { HeaderNavigationList } from './HeaderNavigationList'
 import styles from './index.module.css'
 
-class Menu {
-  constructor() {
-    makeAutoObservable(this)
-  }
-  selection: number | null = null
-}
-export const menu = new Menu()
 export const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
   const groupRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
@@ -81,7 +72,7 @@ export const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
 
   return (
     <div className={styles['link-group']} ref={groupRef}>
-      <HeaderNavigationList showSub={!!showSub} />
+      <HeaderNavigationList />
 
       {ballOffsetLeft ? (
         <div
@@ -90,26 +81,5 @@ export const MenuList: FC<{ showSub?: boolean }> = memo(({ showSub }) => {
         ></div>
       ) : null}
     </div>
-  )
-})
-export const HeaderFake: FC = memo(() => {
-  return (
-    <header
-      className={classNames(
-        styles['header'],
-        'overflow-visible',
-        styles['fake-header'],
-      )}
-    >
-      <nav
-        className={classNames(
-          styles['nav-container'],
-          styles['nav-fake'],
-          'justify-end flex',
-        )}
-      >
-        <MenuList showSub />
-      </nav>
-    </header>
   )
 })
