@@ -1,5 +1,5 @@
 import { createElement, FC, memo, useEffect } from 'react'
-import { CodiconGithubInverted, PhBookOpen } from '../Icons'
+import { CodiconGithubInverted } from '../Icons'
 import {
   FaSolidCircle,
   FaSolidCircleNotch,
@@ -9,24 +9,25 @@ import {
   FaSolidFeatherAlt,
   FaSolidHistory,
   FaSolidSubway,
-  FaSolidTv,
   FaSolidUserFriends,
+  IcBaselineLiveTv,
   IconParkOutlineTencentQq,
-  IcRoundQueueMusic,
   IcTwotoneSignpost,
+  IonBook,
   MdiFlask,
   MdiTwitter,
+  RiNeteaseCloudMusicLine,
 } from '../Icons/menu-icon'
 
 export const fontawesomeIconMap = {
-  faBookOpen: PhBookOpen,
+  faBookOpen: IonBook,
   faCircleNotch: FaSolidCircleNotch,
   faComment: FaSolidComment,
   faComments: FaSolidComments,
   faFeatherAlt: FaSolidFeatherAlt,
   faGlasses: IcTwotoneSignpost,
   faHistory: FaSolidHistory,
-  faMusic: IcRoundQueueMusic,
+  faMusic: RiNeteaseCloudMusicLine,
   faSubway: FaSolidSubway,
   faUserFriends: FaSolidUserFriends,
   faCircle: FaSolidCircle,
@@ -35,7 +36,7 @@ export const fontawesomeIconMap = {
   faQq: IconParkOutlineTencentQq,
   faTwitter: MdiTwitter,
   faFlask: MdiFlask,
-  faTv: FaSolidTv,
+  faTv: IcBaselineLiveTv,
 }
 
 let hasAppended = false
@@ -66,7 +67,7 @@ export const FontIcon: FC<{ icon?: JSX.Element | string }> = memo((props) => {
   return (
     <>
       {fontawesomeIconMap[props.icon] ? (
-        createElement(fontawesomeIconMap[props.icon])
+        createElement(fontawesomeIconMap[props.icon], { className: 'inline' })
       ) : (
         <i
           className={

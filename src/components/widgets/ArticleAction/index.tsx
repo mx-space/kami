@@ -65,6 +65,7 @@ export const ArticleFooterAction: FC<ActionProps> = memo((props) => {
           </a>
         )}
       </div>
+
       <div className="note-action min-h-4 space-x-4">
         {actions.map((action, i) => {
           if (!action) {
@@ -77,7 +78,10 @@ export const ArticleFooterAction: FC<ActionProps> = memo((props) => {
               onClick={action.callback}
             >
               {action.icon && (
-                <span className="" style={{ color: action.color }}>
+                <span
+                  className="inline-flex items-center"
+                  style={{ color: action.color }}
+                >
                   {action.icon}
                 </span>
               )}

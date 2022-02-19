@@ -5,10 +5,10 @@ import { FontIcon } from 'components/universal/FontIcon'
 import { useHeaderNavList } from 'hooks/use-header-nav-list'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
-import React, { FC, memo } from 'react'
+import React, { FC } from 'react'
 import styles from './index.module.css'
 
-const MenuLink = memo((props: { menu: any; isPublicUrl: boolean }) => {
+const MenuLink = (props: { menu: any; isPublicUrl: boolean }) => {
   const { menu, isPublicUrl } = props
   const { x, y, reference, floating, strategy } = useFloating({
     placement: 'bottom',
@@ -68,7 +68,7 @@ const MenuLink = memo((props: { menu: any; isPublicUrl: boolean }) => {
       )}
     </div>
   )
-})
+}
 
 export const HeaderNavigationList: FC = observer(() => {
   const { mergedMenu } = useHeaderNavList()

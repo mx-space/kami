@@ -86,7 +86,7 @@
 
   & .parent,
   & .children {
-    @apply py-2;
+    @apply py-2  flex items-center;
   }
 
   & .parent {

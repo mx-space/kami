@@ -3,7 +3,7 @@
 }
 
 .root {
-  @apply my-2 text-sm flex items-center justify-between;
+  @apply my-2 text-sm flex items-center justify-between flex-wrap;
 
   a {
     color: inherit;
@@ -26,6 +26,11 @@
       color: #888;
       user-select: none;
       font-weight: normal;
+      flex-shrink: 0;
+    }
+
+    .note-action {
+      @apply justify-self-end float-right;
     }
 
     .note-inform span {
