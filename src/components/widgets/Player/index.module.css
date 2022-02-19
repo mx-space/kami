@@ -125,13 +125,13 @@
 
 .cover:hover + .tip,
 .tip:hover {
-  @apply opacity-100;
+  @apply opacity-100 visible;
 }
 
 .tip {
   @apply absolute top-0 bottom-0 whitespace-nowrap truncate;
   @apply flex flex-col justify-around py-3 cursor-pointer;
-  @apply transition-opacity opacity-0 duration-300;
+  @apply transition-all opacity-0 duration-300 invisible;
 
   margin-left: 66px;
   padding-left: 1.5em;
