@@ -30,7 +30,7 @@
     }
 
     .note-action {
-      @apply justify-self-end float-right;
+      margin: 0 0 0 auto;
     }
 
     .note-inform span {
