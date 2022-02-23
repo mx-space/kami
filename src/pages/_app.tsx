@@ -136,7 +136,8 @@ App.getInitialProps = async (props: AppContext) => {
     ip && ($axios.defaults.headers.common['x-forwarded-for'] = ip as string)
 
     $axios.defaults.headers.common['User-Agent'] =
-      request.headers['user-agent'] + 'NextSSR Kami' + `/${version}`
+      request.headers['user-agent'] +
+      ` NextJS/v${Package.dependencies.next} Kami/${version}`
 
     // forward auth token
     const cookie = request.headers.cookie
