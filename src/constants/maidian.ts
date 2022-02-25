@@ -10,4 +10,6 @@ export enum MaidianAction {
   NoteToTimeline = 'note_to_timeline',
   CommandKTap = 'command_k_tap',
   Search = 'search',
+
+  SearchFAB = 'search_fab',
 }

@@ -190,6 +190,14 @@ export const SearchFAB = memo(() => {
   const [show, setShow] = useState(false)
   const { actionStore } = useStore()
   const idSymbol = useRef(Symbol())
+  const { event } = useAnalyze()
+  useEffect(() => {
+    if (show) {
+      event({
+        action: MaidianAction.SearchFAB,
+      })
+    }
+  }, [show])
   useEffect(() => {
     actionStore.removeActionBySymbol(idSymbol.current)
     const action = {

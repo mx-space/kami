@@ -98,6 +98,7 @@ const useUpdateNote = (id: string) => {
   ])
 }
 
+const Markdownrenderers = { text: renderLines }
 const NoteView: React.FC<{ id: string }> = observer((props) => {
   const { userStore, noteStore } = useStore()
   const note = noteStore.get(props.id) || (noop as NoteModel)
@@ -221,7 +222,7 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
               <Markdown
                 value={text}
                 escapeHtml={false}
-                renderers={{ text: renderLines }}
+                renderers={Markdownrenderers}
                 toc
               />
             </BanCopy>
@@ -339,10 +340,13 @@ const FooterNavigation: FC<{ id: string }> = observer(({ id }) => {
             <button
               className="btn yellow"
               onClick={() => {
+                const note = noteStore.get(id)
+
                 event({
                   action: MaidianAction.NoteToTimeline,
-                  label: 'note to timeline',
+                  label: 'Note Id ' + note?.nid + ' ' + note?.title,
                 })
+
                 springScrollToTop()
                 router.push('/timeline?type=note')
               }}
