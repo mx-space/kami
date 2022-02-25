@@ -83,6 +83,10 @@ const SongItem: FC<SongItemProps> = observer((props) => {
   const { playId } = musicStore
   const { event } = useAnalyze()
   useEffect(() => {
+    if (playId === 0) {
+      // if playId eq 0 is init state
+      return
+    }
     event({ action: MaidianAction.PlayingSong, label: 'Song ' + playId })
   }, [playId])
 
