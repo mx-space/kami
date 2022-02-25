@@ -4,7 +4,7 @@ overrides:
   react-use: 17.3.2
 
 specifiers:
-  '@floating-ui/react-dom': 0.4.3
+  '@floating-ui/react-dom': 0.5.0
   '@innei-util/eslint-config-react-ts': latest
   '@innei-util/prettier': 0.2.2
   '@mx-space/api-client': 0.7.1
@@ -80,7 +80,7 @@ specifiers:
   zx: 5.1.0
 
 dependencies:
-  '@floating-ui/react-dom': 0.4.3_b8fdba992ce7d797017dc07106486496
+  '@floating-ui/react-dom': 0.5.0_b8fdba992ce7d797017dc07106486496
   '@mx-space/api-client': 0.7.1
   '@mx-space/extra': 0.5.2_axios@0.26.0
   NeteaseCloudMusicApi: 4.2.0
@@ -1484,23 +1484,23 @@ packages:
       - supports-color
     dev: true
 
-  /@floating-ui/core/0.3.1:
-    resolution: {integrity: sha512-ensKY7Ub59u16qsVIFEo2hwTCqZ/r9oZZFh51ivcLGHfUwTn8l1Xzng8RJUe91H/UP8PeqeBronAGx0qmzwk2g==}
+  /@floating-ui/core/0.5.0:
+    resolution: {integrity: sha512-Ouka4Ck1mnPFZhgpfyFb+YBflGdk0o/SW8uSwByoRC6VqRzCHpW/7mJbFt/TWjl1lDcRbImJ2ZWOqwlIP71LDg==}
     dev: false
 
-  /@floating-ui/dom/0.1.10:
-    resolution: {integrity: sha512-4kAVoogvQm2N0XE0G6APQJuCNuErjOfPW8Ux7DFxh8+AfugWflwVJ5LDlHOwrwut7z/30NUvdtHzQ3zSip4EzQ==}
+  /@floating-ui/dom/0.3.0:
+    resolution: {integrity: sha512-5wU64oa5rLNqgOD8cLq2lU25eiOosHAb2Ryt6kADgt5aCyqr9RYDQ3VTtefL9qd6MbZ3fZxPkp1+tNtjKnmTXw==}
     dependencies:
-      '@floating-ui/core': 0.3.1
+      '@floating-ui/core': 0.5.0
     dev: false
 
-  /@floating-ui/react-dom/0.4.3_b8fdba992ce7d797017dc07106486496:
-    resolution: {integrity: sha512-ZL88ryd9p6sFh9jIC/+05JZoNsogcq6U09cygQjiy757QtQqxIVLQwFag+BAWWYqpNEMO0S60fkqmh8KIAV4oA==}
+  /@floating-ui/react-dom/0.5.0_b8fdba992ce7d797017dc07106486496:
+    resolution: {integrity: sha512-nb9PlHPX1dXoJAJK5YGnwJjU64DscL/ec+j6C8UiCY2dUeknyaBpabOg/wr87FRwnk5v0v5jQZ0pbmK2qNvw7g==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
-      '@floating-ui/dom': 0.1.10
+      '@floating-ui/dom': 0.3.0
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       use-isomorphic-layout-effect: 1.1.1_a0c521d4794c7ad97f5f4c1c4a7d5818
