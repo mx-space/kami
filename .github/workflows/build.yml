@@ -39,7 +39,7 @@ jobs:
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
-      - uses: pnpm/action-setup@v2.2.0
+      - uses: pnpm/action-setup@v2.2.1
         with:
           version: 6.0.2
           run_install: true
