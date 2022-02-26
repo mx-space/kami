@@ -75,7 +75,7 @@ specifiers:
   typescript: 4.5.5
   use-dark-mode: 2.3.1
   validator: 13.7.0
-  windicss: 3.4.4
+  windicss: 3.5.0
   windicss-webpack-plugin: 1.6.6
   zx: 5.1.0
 
@@ -153,7 +153,7 @@ devDependencies:
   stylelint: 14.5.3
   stylelint-config-standard: 25.0.0_stylelint@14.5.3
   typescript: 4.5.5
-  windicss: 3.4.4
+  windicss: 3.5.0
   windicss-webpack-plugin: 1.6.6
   zx: 5.1.0
 
@@ -2178,7 +2178,7 @@ packages:
     dependencies:
       debug: 4.3.3
       jiti: 1.12.15
-      windicss: 3.4.4
+      windicss: 3.5.0
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2192,7 +2192,7 @@ packages:
       fast-glob: 3.2.11
       magic-string: 0.25.7
       micromatch: 4.0.4
-      windicss: 3.4.4
+      windicss: 3.5.0
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -7429,13 +7429,13 @@ packages:
       lodash: 4.17.21
       pathe: 0.2.0
       webpack-virtual-modules: 0.4.3
-      windicss: 3.4.4
+      windicss: 3.5.0
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /windicss/3.4.4:
-    resolution: {integrity: sha512-M3ZTw8wiluUjg16Pu7nwqZmmCiX+eEX6yArzXX0a/HFQWhwyghi7ouT2m95XQsXqvnzAw9FKiF2eFHGfOezdsg==}
+  /windicss/3.5.0:
+    resolution: {integrity: sha512-+UNYm2Zy4TM2uLiz6bqY2a69LavMqGbILFIwuGhPEJ/uqsPT3kCGSaWlhMw/weIaFOkm1K1cEzZ015Y8pp8N1A==}
     engines: {node: '>= 12'}
     hasBin: true
     dev: true

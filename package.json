@@ -120,7 +120,7 @@
     "stylelint": "14.5.3",
     "stylelint-config-standard": "25.0.0",
     "typescript": "4.5.5",
-    "windicss": "3.4.4",
+    "windicss": "3.5.0",
     "windicss-webpack-plugin": "1.6.6",
     "zx": "5.1.0"
   },
