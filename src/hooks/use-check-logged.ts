@@ -16,15 +16,21 @@ export const useCheckLogged = () => {
       return requestAnimationFrame(() => {
         const token = getToken()
         if (token) {
-          apiClient.user.checkTokenValid(token).then(({ ok }) => {
-            if (ok) {
-              master.setToken(token)
-              message.success('欢迎回来, ' + master.name, 1500)
-            } else {
+          apiClient.user
+            .checkTokenValid(token)
+            .then(({ ok }) => {
+              if (ok) {
+                master.setToken(token)
+                message.success('欢迎回来, ' + master.name, 1500)
+              } else {
+                removeToken()
+                message.warn('登录身份过期了, 再登录一下吧!', 2000)
+              }
+            })
+            .catch(() => {
               removeToken()
               message.warn('登录身份过期了, 再登录一下吧!', 2000)
-            }
-          })
+            })
         } else {
           if (banDevtoolEnable) {
             devtoolForbidden()

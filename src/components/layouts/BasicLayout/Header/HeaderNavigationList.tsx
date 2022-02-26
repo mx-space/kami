@@ -1,32 +1,42 @@
 import { useFloating } from '@floating-ui/react-dom'
 import clsx from 'clsx'
-import { DropdownBase } from 'components/universal/Dropdown'
 import { FontIcon } from 'components/universal/FontIcon'
+import { RootPortal } from 'components/universal/Portal'
 import { useHeaderNavList } from 'hooks/use-header-nav-list'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
-import React, { FC } from 'react'
+import React, { FC, useCallback } from 'react'
+import { Transition } from 'react-transition-group'
 import styles from './index.module.css'
+const transitionStyles = {
+  entering: { opacity: 0, visibility: 'hidden', transform: 'translateY(10px)' },
+  entered: { opacity: 1, visibility: 'visible', transform: 'translateY(0)' },
+  exiting: { opacity: 1, visibility: 'visible', transform: 'translateY(0)' },
+  exited: { opacity: 0, visibility: 'hidden', transform: 'translateY(10px)' },
+}
 
 const MenuLink = (props: { menu: any; isPublicUrl: boolean }) => {
   const { menu, isPublicUrl } = props
-  const { x, y, reference, floating, strategy } = useFloating({
+
+  const { x, y, reference, floating, strategy, update } = useFloating({
     placement: 'bottom',
     strategy: 'fixed',
   })
 
   const [open, setOpen] = React.useState(false)
 
+  const close = useCallback(() => setOpen(false), [])
+  const popup = useCallback(() => {
+    if (menu.subMenu) {
+      update()
+      setOpen(true)
+    }
+  }, [menu.subMenu, update])
   return (
-    <div className="relative" key={menu.title}>
+    <div className="relative" key={menu.title} onMouseLeave={close}>
       <Link href={menu.path}>
         <a
-          onMouseEnter={() => {
-            if (menu.subMenu) {
-              setOpen(true)
-            }
-          }}
-          onMouseLeave={() => setOpen(false)}
+          onMouseEnter={popup}
           ref={reference}
           rel={isPublicUrl ? 'noopener noreferrer' : undefined}
           target={isPublicUrl ? '_blank' : undefined}
@@ -39,32 +49,42 @@ const MenuLink = (props: { menu: any; isPublicUrl: boolean }) => {
       </Link>
 
       {menu.subMenu && (
-        <DropdownBase
-          className={clsx(
-            styles['sub-dropdown'],
-
-            open && styles['active'],
-          )}
-          ref={floating}
-          style={{
-            position: strategy,
-            top: y ?? '',
-            left: x ?? '',
-          }}
-        >
-          {menu.subMenu.map((m) => {
-            return (
-              <Link href={m.path} key={m.path}>
-                <a>
-                  <li key={m.title}>
-                    <FontIcon icon={m.icon} />
-                    <span>{m.title}</span>
-                  </li>
-                </a>
-              </Link>
-            )
-          })}
-        </DropdownBase>
+        <RootPortal>
+          <div
+            ref={floating}
+            className="z-20 w-[130px]"
+            style={{ position: strategy, top: y ?? '', left: x ?? '' }}
+          >
+            <Transition in={open} appear mountOnEnter timeout={0}>
+              {(state) => (
+                <ul
+                  className={clsx(styles['sub-dropdown'])}
+                  style={{
+                    opacity: 0,
+                    visibility: 'hidden',
+                    transform: 'translateY(10px)',
+                    ...transitionStyles[state],
+                  }}
+                >
+                  <div>
+                    {menu.subMenu.map((m) => {
+                      return (
+                        <Link href={m.path} key={m.path}>
+                          <a>
+                            <li key={m.title}>
+                              <FontIcon icon={m.icon} />
+                              <span>{m.title}</span>
+                            </li>
+                          </a>
+                        </Link>
+                      )
+                    })}
+                  </div>
+                </ul>
+              )}
+            </Transition>
+          </div>
+        </RootPortal>
       )}
     </div>
   )
