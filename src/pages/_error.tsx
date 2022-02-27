@@ -11,11 +11,12 @@ const ErrorPage: NextPage<{ statusCode: number; err: any }> = ({
 }) => {
   useEffect(() => {
     console.log('[ErrorPage]: ', statusCode, err)
+    if (err) {
+      const errMessage = err._message || err.message
 
-    const errMessage = err._message || err.message
-
-    if (errMessage) {
-      message.error(errMessage)
+      if (errMessage) {
+        message.error(errMessage)
+      }
     }
   }, [err, statusCode])
   return <ErrorView showBackButton showRefreshButton statusCode={statusCode} />

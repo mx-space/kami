@@ -34,6 +34,7 @@ import { isServerSide, TokenKey } from '../utils'
 import { RootStoreProvider } from 'context/root-store'
 import { DebugLayout } from 'components/layouts/DebugLayout'
 import { MetaFooter } from 'components/universal/Meta/footer'
+import { defaultConfigs } from 'configs.default'
 
 const version = `v${Package.version}` || ''
 
@@ -181,6 +182,8 @@ App.getInitialProps = async (props: AppContext) => {
 
     if (configSnippetState.status === 'fulfilled') {
       configSnippet = { ...configSnippetState.value }
+    } else {
+      configSnippet = defaultConfigs as any
     }
 
     return { aggregateData, config: configSnippet, reason }
