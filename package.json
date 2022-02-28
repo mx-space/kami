@@ -54,7 +54,7 @@
     "axios": "0.26.0",
     "clsx": "1.1.1",
     "css-spring": "4.1.0",
-    "dayjs": "1.10.7",
+    "dayjs": "1.10.8",
     "devtools-detector": "2.0.6",
     "js-cookie": "3.0.1",
     "lodash-es": "4.17.21",
