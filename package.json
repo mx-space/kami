@@ -23,7 +23,7 @@
       "eslint --cache"
     ],
     "config.init.yaml": [
-      "npm run gen-config"
+      "npm run gen-config && git add src/configs.default.ts"
     ]
   },
   "scripts": {

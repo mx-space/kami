@@ -61,7 +61,7 @@ site:
             path: /favorite/music
           - title: 项目
             icon: faFlask
-            path: /favorite/project
+            path: /projects
       - title: ''
         icon: faSubway
         path: 'https://travellings.link'

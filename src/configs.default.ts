@@ -86,7 +86,7 @@ export const defaultConfigs = {
             {
               title: '项目',
               icon: 'faFlask',
-              path: '/favorite/project',
+              path: '/projects',
             },
           ],
         },
