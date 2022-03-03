@@ -45,7 +45,7 @@ specifiers:
   mobx-react-lite: 3.3.0
   next: 12.0.10
   next-compose-plugins: 2.2.1
-  next-pwa: 5.4.4
+  next-pwa: 5.4.5
   next-seo: 5.1.0
   postcss: 8.4.7
   postcss-import: 14.0.2
@@ -142,7 +142,7 @@ devDependencies:
   js-yaml: 4.1.0
   lint-staged: 12.3.4
   next-compose-plugins: 2.2.1
-  next-pwa: 5.4.4_next@12.0.10
+  next-pwa: 5.4.5_next@12.0.10
   postcss: 8.4.7
   postcss-import: 14.0.2_postcss@8.4.7
   postcss-nested: 5.0.6_postcss@8.4.7
@@ -2403,7 +2403,7 @@ packages:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.19.3
-      caniuse-lite: 1.0.30001306
+      caniuse-lite: 1.0.30001312
       fraction.js: 4.1.2
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -2607,6 +2607,7 @@ packages:
 
   /caniuse-lite/1.0.30001306:
     resolution: {integrity: sha512-Wd1OuggRzg1rbnM5hv1wXs2VkxJH/AA+LuudlIqvZiCvivF+wJJe2mgBZC8gPMgI7D76PP5CTx8Luvaqc1V6OQ==}
+    dev: false
 
   /caniuse-lite/1.0.30001312:
     resolution: {integrity: sha512-Wiz1Psk2MEK0pX3rUzWaunLTZzqS2JYZFzNKqAiJGiuxIjRPLgV6+VDPOg6lQOUxmDwhTlh198JsTTi8Hzw6aQ==}
@@ -4889,8 +4890,8 @@ packages:
     resolution: {integrity: sha512-OjJ+fV15FXO2uQXQagLD4C0abYErBjyjE0I0FHpOEIB8upw0hg1ldFP6cqHTJBH1cZqy96OeR3u1dJ+Ez2D4Bg==}
     dev: true
 
-  /next-pwa/5.4.4_next@12.0.10:
-    resolution: {integrity: sha512-Wo7DctXO9ZZzMCuRK/q2U3x5k49LBRv7p31woJIUfiR6tJChSMoojHUvvgeCY72gSo4mtovS5KRm6iHIs/kxeg==}
+  /next-pwa/5.4.5_next@12.0.10:
+    resolution: {integrity: sha512-XmMbUDoBYdo4Ib2vOau4p42+6+ClZqUCFEGuVj4iuyM2C+JCqcVa2BYXcyFitjsKVBfECeIwaUqKgMB8Qm9cDQ==}
     peerDependencies:
       next: '>=9.0.0'
     dependencies:
