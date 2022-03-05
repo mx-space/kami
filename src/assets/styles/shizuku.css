@@ -275,3 +275,8 @@ html.dark {
   border-radius: 7.5px;
   color: inherit;
 }
+
+#write video {
+  max-width: 100%;
+  box-sizing: content-box;
+}
