@@ -48,7 +48,7 @@
   ],
   "dependencies": {
     "@floating-ui/react-dom": "0.5.0",
-    "@mx-space/api-client": "0.7.1",
+    "@mx-space/api-client": "0.7.2",
     "@mx-space/extra": "0.5.2",
     "NeteaseCloudMusicApi": "*",
     "axios": "0.26.0",

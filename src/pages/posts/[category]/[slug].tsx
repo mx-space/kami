@@ -75,7 +75,7 @@ const useUpdatePost = (id: string) => {
         )
         return
       }
-      if (post.hide || post.isDeleted) {
+      if (post.isDeleted) {
         router.push('/posts')
 
         message.error('文章已删除或隐藏')
@@ -90,7 +90,7 @@ const useUpdatePost = (id: string) => {
     post?.id,
     post?.slug,
     post?.categoryId,
-    post?.hide,
+
     post?.text,
     post?.summary,
     post?.category?.slug,
