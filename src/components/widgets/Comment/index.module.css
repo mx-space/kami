@@ -107,6 +107,8 @@
         }
 
         .datetime {
+          @apply truncate;
+
           color: var(--shizuku-text-color);
           opacity: 0.8;
           white-space: nowrap;
