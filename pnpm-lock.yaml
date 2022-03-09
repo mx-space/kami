@@ -26,7 +26,7 @@ specifiers:
   '@types/ua-parser-js': 0.7.36
   '@types/validator': 13.7.1
   NeteaseCloudMusicApi: '*'
-  axios: 0.26.0
+  axios: 0.26.1
   clsx: 1.1.1
   cross-env: '*'
   css-spring: 4.1.0
@@ -82,9 +82,9 @@ specifiers:
 dependencies:
   '@floating-ui/react-dom': 0.5.0_b8fdba992ce7d797017dc07106486496
   '@mx-space/api-client': 0.7.2
-  '@mx-space/extra': 0.5.2_axios@0.26.0
+  '@mx-space/extra': 0.5.2_axios@0.26.1
   NeteaseCloudMusicApi: 4.2.0
-  axios: 0.26.0
+  axios: 0.26.1
   clsx: 1.1.1
   css-spring: 4.1.0
   dayjs: 1.10.8
@@ -1580,12 +1580,12 @@ packages:
       camelcase-keys: 7.0.2
     dev: false
 
-  /@mx-space/extra/0.5.2_axios@0.26.0:
+  /@mx-space/extra/0.5.2_axios@0.26.1:
     resolution: {integrity: sha512-HX27+HzFDK34mKIBbfOwnQSRXfvdRepDBwHV0Lw4hSwvzgBcJ2qAB+yur4nko/5qrpoHbwczh3DQMqqYSdjoNw==}
     peerDependencies:
       axios: ^0.21.0
     dependencies:
-      axios: 0.26.0
+      axios: 0.26.1
       date-fns: 2.28.0
       NeteaseCloudMusicApi: 4.2.0
     transitivePeerDependencies:
@@ -2419,8 +2419,8 @@ packages:
       - debug
     dev: false
 
-  /axios/0.26.0:
-    resolution: {integrity: sha512-lKoGLMYtHvFrPVt3r+RBMp9nh34N0M8zEfCWqdWZx6phynIEhQqAdydpyBAAG211zlhX9Rgu08cOamy6XjE5Og==}
+  /axios/0.26.1:
+    resolution: {integrity: sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==}
     dependencies:
       follow-redirects: 1.14.8
     transitivePeerDependencies:
