@@ -51,7 +51,7 @@
     "@mx-space/api-client": "0.7.2",
     "@mx-space/extra": "0.5.2",
     "NeteaseCloudMusicApi": "*",
-    "axios": "0.26.0",
+    "axios": "0.26.1",
     "clsx": "1.1.1",
     "css-spring": "4.1.0",
     "dayjs": "1.10.8",
