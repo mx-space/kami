@@ -8,7 +8,7 @@ specifiers:
   '@innei-util/eslint-config-react-ts': latest
   '@innei-util/prettier': 0.2.2
   '@mx-space/api-client': 0.7.2
-  '@mx-space/extra': 0.5.2
+  '@mx-space/extra': 0.5.3
   '@next/bundle-analyzer': 12.1.0
   '@trivago/prettier-plugin-sort-imports': 3.2.0
   '@types/inflection': 1.13.0
@@ -82,7 +82,7 @@ specifiers:
 dependencies:
   '@floating-ui/react-dom': 0.5.0_f456dfc349ace84b0ea11d9e6e4ef3ab
   '@mx-space/api-client': 0.7.2
-  '@mx-space/extra': 0.5.2_axios@0.26.1
+  '@mx-space/extra': 0.5.3_axios@0.26.1
   NeteaseCloudMusicApi: 4.2.0
   axios: 0.26.1
   clsx: 1.1.1
@@ -1580,8 +1580,8 @@ packages:
       camelcase-keys: 7.0.2
     dev: false
 
-  /@mx-space/extra/0.5.2_axios@0.26.1:
-    resolution: {integrity: sha512-HX27+HzFDK34mKIBbfOwnQSRXfvdRepDBwHV0Lw4hSwvzgBcJ2qAB+yur4nko/5qrpoHbwczh3DQMqqYSdjoNw==}
+  /@mx-space/extra/0.5.3_axios@0.26.1:
+    resolution: {integrity: sha512-dNV+Qkn+r39H7aw5JHegSxCh0etDk99vwpFdOfef0Yhbhx1GJRuy0YkMLz5d/E0tTKea8/UJ7ZBweLvbM201LQ==}
     peerDependencies:
       axios: ^0.21.0
     dependencies:
