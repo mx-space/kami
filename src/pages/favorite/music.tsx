@@ -4,6 +4,7 @@ import { Loading } from 'components/universal/Loading'
 import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import { message } from 'react-message-popup'
+import { apiClient } from 'utils'
 import { Seo } from '../../components/universal/Seo'
 
 interface MusicData {
@@ -17,10 +18,8 @@ const MusicView: NextPage = () => {
   const [data, setData] = useState<null | MusicData>(null)
 
   useEffect(() => {
-    fetch('/api/netease/music')
-      .then((res) => {
-        return res.json()
-      })
+    apiClient.snippet.proxy.kami.netease
+      .get<any>()
       .then((res) => {
         setData(res)
       })

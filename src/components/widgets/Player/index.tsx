@@ -14,7 +14,7 @@ import {
 import { createPortal } from 'react-dom'
 import { useAudio } from 'react-use'
 import { useStore } from 'store'
-import { hms, isServerSide, NoSSR } from 'utils'
+import { apiClient, hms, isServerSide, NoSSR } from 'utils'
 import styles from './index.module.css'
 
 const METO_ENDPOINT = 'https://api.i-meto.com/meting/api'
@@ -66,10 +66,15 @@ export const MusicMiniPlayer = forwardRef<
     if (!id) {
       return
     }
-    const songApi = location.origin + '/api/netease/song'
     const stream = await fetch(`${METO_ENDPOINT}/?server=${type}&id=${id}`)
     const json = (await stream.json()) as MetingPayloadType[]
-    const [data] = await (await fetch(songApi + '?id=' + id)).json()
+
+    const [data] = await apiClient.snippet.proxy.kami.song.get<any>({
+      params: {
+        id,
+      },
+    })
+
     const songUrl = data.url?.replace('http://', 'https://')
     setCur({ ...json[0], id, url: songUrl })
   }
@@ -81,7 +86,6 @@ export const MusicMiniPlayer = forwardRef<
   useEffect(() => {
     setCur(null)
     setCursor(0)
-    fetchData(playlist[0])
   }, [playlist])
 
   const onChangeAudio = useCallback((e) => {

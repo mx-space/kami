@@ -6,6 +6,7 @@ import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { message } from 'react-message-popup'
 import { useStore } from 'store'
+import { apiClient } from 'utils'
 import { ImageLazy } from '../../components/universal/Image'
 import { Seo } from '../../components/universal/Seo'
 
@@ -18,19 +19,11 @@ const BangumiView: NextPage = () => {
     if (!master) {
       return
     }
-    console.log(JSON.stringify(master.socialIds), JSON.stringify(master))
 
-    const ids = master.socialIds
-    if (!ids || !ids.bilibili) {
-      message.error('没有配置 哔哩哔哩 ID')
-      return
-    }
-    fetch('/api/bilibili/bangumi?uid=' + ids.bilibili)
+    apiClient.snippet.proxy.kami.bangumi
+      .get<any>()
       .then((res) => {
-        return res.json()
-      })
-      .then((res) => {
-        setData(res.data)
+        setData(res)
       })
       .catch((err) => {
         message.error(err.message)
