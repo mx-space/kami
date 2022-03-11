@@ -69,7 +69,7 @@ export const MusicMiniPlayer = forwardRef<
     const stream = await fetch(`${METO_ENDPOINT}/?server=${type}&id=${id}`)
     const json = (await stream.json()) as MetingPayloadType[]
 
-    const [data] = await apiClient.snippet.proxy.kami.song.get<any>({
+    const [data] = await apiClient.serverless.proxy.kami.song.get<any>({
       params: {
         id,
       },

@@ -26,7 +26,7 @@ const MusicView: NextPage = () => {
   const [data, setData] = useState<null | MusicData>(null)
 
   useEffect(() => {
-    apiClient.snippet.proxy.kami.netease
+    apiClient.serverless.proxy.kami.netease
       .get<any>()
       .then((res) => {
         setData(res)

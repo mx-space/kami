@@ -26,7 +26,7 @@ const BangumiView: NextPage = () => {
       return
     }
 
-    apiClient.snippet.proxy.kami.bangumi
+    apiClient.serverless.proxy.kami.bangumi
       .get<any>()
       .then((res) => {
         setData(res)
