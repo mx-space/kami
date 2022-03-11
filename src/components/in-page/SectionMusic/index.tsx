@@ -81,14 +81,6 @@ const SongItem: FC<SongItemProps> = observer((props) => {
   const { index, name, time } = props
   const { musicStore } = useStore()
   const { playId } = musicStore
-  const { event } = useAnalyze()
-  useEffect(() => {
-    if (playId === 0) {
-      // if playId eq 0 is init state
-      return
-    }
-    event({ action: MaidianAction.PlayingSong, label: 'Song ' + playId })
-  }, [playId])
 
   if (playId === props.id) {
     return <PlayingSongItem {...props} />
@@ -110,6 +102,17 @@ const PlayingSongItem: FC<SongItemProps> = observer((props) => {
   const { index, name, time } = props
   const { musicStore } = useStore()
   const { playId, duration: totalTime, time: currentTime } = musicStore
+  const { event } = useAnalyze()
+  useEffect(() => {
+    if (playId === 0) {
+      // if playId eq 0 is init state
+      return
+    }
+  }, [playId])
+
+  useEffect(() => {
+    event({ action: MaidianAction.PlayingSong, label: 'Song ' + playId })
+  }, [playId])
   return (
     <li
       onClick={() => props.onClick(index)}
