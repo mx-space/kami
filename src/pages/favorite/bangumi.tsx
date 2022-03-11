@@ -1,4 +1,3 @@
-import { FavoriteBangumiType } from '@mx-space/extra'
 import { Loading } from 'components/universal/Loading'
 import { observer } from 'mobx-react-lite'
 import { NextPage } from 'next'
@@ -9,7 +8,14 @@ import { useStore } from 'store'
 import { apiClient } from 'utils'
 import { ImageLazy } from '../../components/universal/Image'
 import { Seo } from '../../components/universal/Seo'
-
+interface FavoriteBangumiType {
+  title: string
+  cover: string
+  count: string | number
+  miniCover: string
+  countText: string
+  id: number
+}
 const BangumiView: NextPage = () => {
   const [data, setData] = useState<null | FavoriteBangumiType[]>(null)
   const { userStore } = useStore()

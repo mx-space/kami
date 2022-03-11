@@ -1,11 +1,19 @@
-import { PersonalPlayListType, PlayListType } from '@mx-space/extra'
-import { SectionMusic } from 'components/in-page/SectionMusic'
+import { PlayListType, SectionMusic } from 'components/in-page/SectionMusic'
 import { Loading } from 'components/universal/Loading'
 import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import { message } from 'react-message-popup'
 import { apiClient } from 'utils'
 import { Seo } from '../../components/universal/Seo'
+
+interface PersonalPlayListType {
+  id: number
+  coverImgUrl: string
+  coverImgId: number
+  playCount: number
+  name: string
+  data: PlayListType[]
+}
 
 interface MusicData {
   weekdata: PlayListType[]

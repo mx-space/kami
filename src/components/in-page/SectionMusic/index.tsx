@@ -1,4 +1,3 @@
-import { PlayListType } from '@mx-space/extra'
 import clsx from 'clsx'
 import { MusicIcon, PauseIcon } from 'components/universal/Icons'
 import { MaidianAction } from 'constants/maidian'
@@ -8,6 +7,15 @@ import { observer } from 'mobx-react-lite'
 import { FC, memo, useEffect, useMemo } from 'react'
 import { useStore } from 'store'
 import styles from './index.module.css'
+
+export interface PlayListType {
+  id: number
+  time: string
+  picUrl: string
+  name: string
+  author: string
+  playCount?: number
+}
 
 interface SectionMusicProps {
   data: PlayListType[]
