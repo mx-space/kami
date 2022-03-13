@@ -55,7 +55,7 @@ specifiers:
   react: 17.0.2
   react-countup: 6.1.1
   react-dom: 17.0.2
-  react-hook-form: 7.27.1
+  react-hook-form: 7.28.0
   react-intersection-observer: 8.33.1
   react-lazyload: 3.2.0
   react-markdown: 4.3.1
@@ -97,7 +97,7 @@ dependencies:
   react: 17.0.2
   react-countup: 6.1.1_react@17.0.2
   react-dom: 17.0.2_react@17.0.2
-  react-hook-form: 7.27.1_react@17.0.2
+  react-hook-form: 7.28.0_react@17.0.2
   react-intersection-observer: 8.33.1_react@17.0.2
   react-markdown: 4.3.1_react@17.0.2
   react-masonry-css: 1.0.16_react@17.0.2
@@ -5262,8 +5262,8 @@ packages:
       scheduler: 0.20.2
     dev: false
 
-  /react-hook-form/7.27.1_react@17.0.2:
-    resolution: {integrity: sha512-N3a7A6zIQ8DJeThisVZGtOUabTbJw+7DHJidmB9w8m3chckv2ZWKb5MHps9d2pPJqmCDoWe53Bos56bYmJms5w==}
+  /react-hook-form/7.28.0_react@17.0.2:
+    resolution: {integrity: sha512-mmLpT86BkMGPr0r6ca8zxV0WH4Y1FW5MKs7Rq1+uHLVeeg5pSWbF5Z/qLCnM5vPVblHNM6lRBRRotnfEAf0ALA==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17
