@@ -10,7 +10,8 @@
     @apply inset-0 rounded-md -z-1 bg-transparent transition transition-colors opacity-30;
   }
 
-  &:hover {
+  &:hover,
+  &.active {
     &::before {
       @apply bg-gray;
     }

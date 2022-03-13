@@ -6,7 +6,15 @@ import { useAnalyze } from 'hooks/use-analyze'
 import { useHotKey } from 'hooks/use-hotkey'
 import { throttle } from 'lodash-es'
 import Link from 'next/link'
-import { FC, memo, useEffect, useRef, useState } from 'react'
+import {
+  FC,
+  KeyboardEventHandler,
+  memo,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { useStore } from 'store'
 import { apiClient } from 'utils'
 import styles from './index.module.css'
@@ -55,6 +63,7 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
   const { event } = useAnalyze()
   useEffect(() => {
     setLoading(true)
+    setCurrentSelect(0)
 
     search(keyword)
       ?.then((res) => {
@@ -108,12 +117,53 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
       })
   }, [keyword])
 
+  const [currentSelect, setCurrentSelect] = useState(0)
+  const listRef = useRef<HTMLUListElement>(null)
+  const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = useCallback(
+    (e) => {
+      if (!listRef.current) {
+        return
+      }
+      const $ = listRef.current
+      switch (e.key) {
+        case 'Enter': {
+          ;(
+            ($.children.item(currentSelect) as HTMLLIElement).children.item(
+              0,
+            ) as HTMLLinkElement
+          )?.click()
+          break
+        }
+        case 'ArrowDown': {
+          setCurrentSelect((currentSelect) => {
+            const index = currentSelect + 1
+            return index ? index % list.length : 0
+          })
+          break
+        }
+        case 'ArrowUp': {
+          setCurrentSelect((currentSelect) => {
+            const index = currentSelect - 1
+            return index < 0 ? list.length - 1 : index
+          })
+          break
+        }
+      }
+
+      $.children.item(currentSelect)?.scrollIntoView({
+        behavior: 'smooth',
+      })
+    },
+    [currentSelect, list.length],
+  )
+
   return (
     <div
       className="w-[800px] max-w-[80vw] max-h-[60vh] h-[600px] 
     bg-bg-opacity backdrop-filter backdrop-blur-lg backdrop-brightness-125
     shadow-lg
     min-h-50 rounded-xl flex flex-col overflow-hidden text-[--black]"
+      onKeyDown={handleKeyDown}
     >
       <input
         autoFocus
@@ -122,12 +172,21 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
         defaultValue={defaultKeyword}
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
+        onKeyDown={(e) => {
+          if (
+            e.key === 'ArrowDown' ||
+            e.key === 'ArrowUp' ||
+            e.key === 'Enter'
+          ) {
+            e.preventDefault()
+          }
+        }}
       />
       <div
         className={clsx(styles['status-bar'], loading && styles['loading'])}
       ></div>
       <div className="flex-grow flex-shrink relative overflow-overlay">
-        <ul className="py-4 px-3 h-full">
+        <ul className="py-4 px-3 h-full" ref={listRef}>
           {list.length === 0 && !loading ? (
             <div className="flex h-full items-center justify-center">
               <div className="flex flex-col items-center space-y-2">
@@ -136,11 +195,21 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
               </div>
             </div>
           ) : (
-            list.map((item) => {
+            list.map((item, index) => {
               return (
-                <li key={item.id}>
+                <li
+                  key={item.id}
+                  onMouseOver={throttle(() => {
+                    setCurrentSelect(index)
+                  }, 40)}
+                >
                   <Link href={item.url}>
-                    <a className={styles['item']}>
+                    <a
+                      className={clsx(
+                        styles['item'],
+                        index === currentSelect && styles['active'],
+                      )}
+                    >
                       <span className="block flex-1 flex-shrink-0 truncate">
                         {item.title}
                       </span>
