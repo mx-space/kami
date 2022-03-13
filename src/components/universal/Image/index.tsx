@@ -1,6 +1,5 @@
 import classNames from 'clsx'
 import mediumZoom from 'medium-zoom'
-import dynamic from 'next/dynamic'
 import {
   ClassAttributes,
   DetailedHTMLProps,
@@ -8,18 +7,14 @@ import {
   forwardRef,
   ImgHTMLAttributes,
   memo,
-  RefObject,
   useEffect,
   useRef,
   useState,
 } from 'react'
-import type { LazyImage as LazyImageProps } from 'react-lazy-images'
-import { escapeHTMLTag, isClientSide } from '../../../utils'
+import LazyLoad from 'react-lazyload'
+import { useCalculateSize } from '../../../hooks/use-calculate-size'
+import { escapeHTMLTag } from '../../../utils'
 import styles from './index.module.css'
-
-const LazyImage = dynamic(() =>
-  import('react-lazy-images').then((mo: any) => mo.LazyImage),
-) as any as typeof LazyImageProps
 interface ImageProps {
   defaultImage?: string
   src: string
@@ -32,42 +27,14 @@ interface ImageProps {
 }
 
 const Image: FC<
-  DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> & {
-    placeholderRef: RefObject<HTMLDivElement>
+  {
     popup?: boolean
-  }
-> = memo(({ src, alt, placeholderRef, popup = false }) => {
-  const [loaded, setLoad] = useState(false)
-
-  useEffect(() => {
-    if (src) {
-      const image = new window.Image()
-      image.src = src as string
-      image.onload = () => {
-        setLoad(true)
-        try {
-          if (placeholderRef && placeholderRef.current) {
-            placeholderRef.current.classList.add('hide')
-          }
-
-          // eslint-disable-next-line no-empty
-        } catch {}
-      }
-      image.onerror = () => {
-        try {
-          if (placeholderRef && placeholderRef.current) {
-            placeholderRef.current.innerHTML = `<p style="color: currentColor; filter: invert(100%) brightness(1.5)"><span>图片加载失败!</span><br/>
-            <a href="${escapeHTMLTag(
-              image.src,
-            )}" target="_blank">${escapeHTMLTag(image.src)}</a></p>`
-            placeholderRef.current.style.zIndex = '2'
-          }
-          // eslint-disable-next-line no-empty
-        } catch {}
-      }
-    }
-  }, [placeholderRef, src])
-
+    loaded?: boolean
+  } & Pick<
+    DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>,
+    'src' | 'alt'
+  >
+> = memo(({ loaded, src, alt, popup = false }) => {
   const imageRef = useRef<HTMLImageElement>(null)
 
   useEffect(() => {
@@ -114,10 +81,49 @@ export const ImageLazy: FC<
     ...rest
   } = props
 
+  const [loaded, setLoad] = useState(false)
   const realImageRef = useRef<HTMLImageElement>(null)
   const placeholderRef = useRef<HTMLDivElement>(null)
 
   const wrapRef = useRef<HTMLDivElement>(null)
+
+  const [calculatedSize, calculateDimensions] = useCalculateSize()
+
+  useEffect(() => {
+    if (src) {
+      const image = new window.Image()
+      image.src = src as string
+      if (!height && !width && wrapRef.current?.parentElement?.parentElement) {
+        calculateDimensions(
+          wrapRef.current?.parentElement?.parentElement,
+          image,
+        )
+      }
+
+      image.onload = () => {
+        setLoad(true)
+        try {
+          if (placeholderRef && placeholderRef.current) {
+            placeholderRef.current.classList.add('hide')
+          }
+
+          // eslint-disable-next-line no-empty
+        } catch {}
+      }
+      image.onerror = () => {
+        try {
+          if (placeholderRef && placeholderRef.current) {
+            placeholderRef.current.innerHTML = `<p style="color: currentColor; filter: invert(100%) brightness(1.5)"><span>图片加载失败!</span><br/>
+            <a href="${escapeHTMLTag(
+              image.src,
+            )}" target="_blank">${escapeHTMLTag(image.src)}</a></p>`
+            placeholderRef.current.style.zIndex = '2'
+          }
+          // eslint-disable-next-line no-empty
+        } catch {}
+      }
+    }
+  }, [calculateDimensions, height, placeholderRef, src, width])
 
   return (
     <figure style={style} className="inline-block">
@@ -125,11 +131,10 @@ export const ImageLazy: FC<
         <img src={defaultImage} alt={alt} {...rest} ref={realImageRef} />
       ) : (
         <div
-          className="relative max-w-full m-auto inline-block"
+          className="transition-none relative max-w-full m-auto inline-block min-h-[1px]"
           style={{
-            transition: 'height .3s, width .3s',
-            height,
-            width,
+            height: height || calculatedSize.height,
+            width: width || calculatedSize.width,
 
             ...(overflowHidden
               ? { overflow: 'hidden', borderRadius: '3px' }
@@ -137,43 +142,31 @@ export const ImageLazy: FC<
           }}
           ref={wrapRef}
         >
-          <LazyImage
-            src={src}
-            alt={alt}
-            loadEagerly={!isClientSide()}
-            placeholder={({ ref }) => (
+          <LazyLoad
+            offset={300}
+            once
+            placeholder={
               <PlaceholderImage
-                ref={ref}
+                height={height}
+                width={width}
+                backgroundColor={backgroundColor}
+              />
+            }
+          >
+            <Image
+              src={src}
+              alt={alt.replace(/^[!¡]/, '') || ''}
+              popup={popup}
+              loaded={loaded}
+            />
+            {!loaded && (
+              <PlaceholderImage
                 height={height}
                 width={width}
                 backgroundColor={backgroundColor}
               />
             )}
-            actual={(props) => {
-              return (
-                <Image
-                  className={classNames(
-                    styles['image-hide'],
-                    styles['lazyload-image'],
-                    'inline-block',
-                  )}
-                  {...rest}
-                  src={src}
-                  alt={alt.replace(/^[!¡]/, '') || ''}
-                  popup={popup}
-                  {...{ placeholderRef }}
-                  {...props}
-                />
-              )
-            }}
-            observerProps={
-              isClientSide()
-                ? {
-                    rootMargin: '100px',
-                  }
-                : undefined
-            }
-          />
+          </LazyLoad>
         </div>
       )}
       {alt && (alt.startsWith('!') || alt.startsWith('¡')) && (

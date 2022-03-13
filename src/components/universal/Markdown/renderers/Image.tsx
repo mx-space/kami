@@ -3,37 +3,9 @@ import { reaction } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import React, { FC, useContext, useEffect, useState } from 'react'
 import { useStore } from 'store'
+import { calculateDimensions } from 'utils/images'
 import { ImageSizeMetaContext } from '../../../../context/image-size'
 
-const calculateDimensions = (
-  width: number,
-  height: number,
-  max: { width: number; height: number },
-) => {
-  const { height: maxHeight, width: maxWidth } = max
-  const wRatio = maxWidth / width
-  const hRatio = maxHeight / height
-  let ratio = 1
-  if (maxWidth == Infinity && maxHeight == Infinity) {
-    ratio = 1
-  } else if (maxWidth == Infinity) {
-    if (hRatio < 1) ratio = hRatio
-  } else if (maxHeight == Infinity) {
-    if (wRatio < 1) ratio = wRatio
-  } else if (wRatio < 1 || hRatio < 1) {
-    ratio = wRatio <= hRatio ? wRatio : hRatio
-  }
-  if (ratio < 1) {
-    return {
-      width: width * ratio,
-      height: height * ratio,
-    }
-  }
-  return {
-    width,
-    height,
-  }
-}
 const getContainerSize = () => {
   const $wrap = document.getElementById('write')
   if (!$wrap) {
@@ -108,13 +80,14 @@ const _Image: FC<{ src: string; alt?: string }> = observer(({ src, alt }) => {
       backgroundColor={accent}
       height={cal.height}
       width={cal.width}
-      style={{ padding: '1rem 0' }}
+      style={style}
       data-raw-height={height}
       data-raw-width={width}
       overflowHidden
     />
   )
 })
+const style = { padding: '1rem 0' }
 export const Image =
   typeof document === 'undefined'
     ? ({ src, alt }) => <img src={src} alt={alt} />
