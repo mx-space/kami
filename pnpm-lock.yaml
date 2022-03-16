@@ -6,7 +6,7 @@ overrides:
 specifiers:
   '@floating-ui/react-dom': 0.6.0
   '@innei-util/eslint-config-react-ts': latest
-  '@innei-util/prettier': 0.4.0
+  '@innei-util/prettier': latest
   '@mx-space/api-client': 0.7.4
   '@next/bundle-analyzer': 12.1.0
   '@trivago/prettier-plugin-sort-imports': 3.2.0
@@ -112,7 +112,7 @@ dependencies:
 
 devDependencies:
   '@innei-util/eslint-config-react-ts': 0.2.0_eslint@8.11.0+typescript@4.6.2
-  '@innei-util/prettier': 0.4.0
+  '@innei-util/prettier': 0.4.1
   '@next/bundle-analyzer': 12.1.0
   '@trivago/prettier-plugin-sort-imports': 3.2.0_prettier@2.5.1
   '@types/inflection': 1.13.0
@@ -1576,8 +1576,8 @@ packages:
       - supports-color
     dev: true
 
-  /@innei-util/prettier/0.4.0:
-    resolution: {integrity: sha512-Jcw3Bw7Lu4aN7DikhBhSm30zZY1nsg1KW5jFD71v48bi5mhtJ2KQiD0bmlCDlGuKh2XshLwQhyiTNt90aqEDAw==}
+  /@innei-util/prettier/0.4.1:
+    resolution: {integrity: sha512-wodhITa9pR9141ASldYHX1n5B1gZ6KRorJjAU37Qiva8KaeJ4+FJVCl/O0abSwwuLOgM6GRuYcLmg9b3ZAjLRA==}
     dependencies:
       prettier: 2.5.1
       prettier-package-json: 2.6.0
