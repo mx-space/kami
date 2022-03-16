@@ -14,8 +14,10 @@ export const MetaFooter = memo(() => {
             <script
               async
               src={`https://www.googletagmanager.com/gtag/js?id=${analyze.ga}`}
+              key="ga"
             />,
             <script
+              key="ga-init"
               dangerouslySetInnerHTML={{
                 __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${analyze.ga}', {page_path: window.location.pathname,});`,
               }}
@@ -26,6 +28,7 @@ export const MetaFooter = memo(() => {
         if (analyze.baidu) {
           tags.push(
             <script
+              key="baidu-analyze"
               async
               src={`https://hm.baidu.com/hm.js?${analyze.baidu}`}
             />,
@@ -36,6 +39,7 @@ export const MetaFooter = memo(() => {
           tags.push(
             <script
               async
+              key="umami-analyze"
               defer
               data-website-id={analyze.umami.id}
               src={`${analyze.umami.url.replace(/\/$/, '')}/umami.js`}

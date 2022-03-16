@@ -2,10 +2,11 @@ import classNames from 'clsx'
 import { IcBaselineMenuOpen } from 'components/universal/Icons'
 import { CustomLogo as Logo } from 'components/universal/Logo'
 import { useInitialData } from 'hooks/use-initial-data'
+import { useSingleAndDoubleClick } from 'hooks/use-single-double-click'
 import { observer } from 'mobx-react-lite'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import React, { FC, useMemo, useState } from 'react'
+import { FC, useMemo, useState } from 'react'
 import { useStore } from 'store'
 import { HeaderActionBasedOnRouterPath } from './HeaderActionBasedOnRouterPath'
 import { HeaderDrawer } from './HeaderDrawer'
@@ -20,6 +21,12 @@ export const _Header: FC = observer(() => {
   const { appStore, userStore } = useStore()
 
   const router = useRouter()
+  const clickFunc = useSingleAndDoubleClick(
+    () => {
+      router.push('/')
+    },
+    () => void router.push('/login'),
+  )
 
   const [drawerOpen, setDrawerOpen] = useState(false)
 
@@ -52,10 +59,7 @@ export const _Header: FC = observer(() => {
               className={
                 'flex items-center justify-center cursor-pointer select-none'
               }
-              onDoubleClick={() => void router.push('/login')}
-              onClick={() => {
-                router.push('/')
-              }}
+              onClick={clickFunc}
             >
               <div
                 className={styles['header-logo']}
