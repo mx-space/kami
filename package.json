@@ -52,7 +52,7 @@
     "axios": "0.26.1",
     "clsx": "1.1.1",
     "css-spring": "4.1.0",
-    "dayjs": "1.10.8",
+    "dayjs": "1.11.0",
     "devtools-detector": "2.0.6",
     "js-cookie": "3.0.1",
     "lodash-es": "4.17.21",
@@ -60,7 +60,7 @@
     "medium-zoom": "1.0.6",
     "mobx": "6.4.2",
     "mobx-react-lite": "3.3.0",
-    "next": "12.0.10",
+    "next": "12.1.0",
     "next-seo": "5.1.0",
     "qier-progress": "1.0.4",
     "randomcolor": "0.6.2",
@@ -82,7 +82,7 @@
   },
   "devDependencies": {
     "@innei-util/eslint-config-react-ts": "latest",
-    "@innei-util/prettier": "0.2.2",
+    "@innei-util/prettier": "0.3.0",
     "@next/bundle-analyzer": "12.1.0",
     "@trivago/prettier-plugin-sort-imports": "3.2.0",
     "@types/inflection": "1.13.0",
@@ -119,7 +119,7 @@
     "typescript": "4.6.2",
     "windicss": "3.5.1",
     "windicss-webpack-plugin": "1.6.7",
-    "zx": "5.2.0"
+    "zx": "6.0.1"
   },
   "resolutions": {
     "react-use": "17.3.2"
