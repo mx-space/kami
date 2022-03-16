@@ -27,18 +27,13 @@ export const Comment: FC<
   } = props
   const key = useMemo(() => {
     const keyArr = commentKey.split('#').slice(1)
-    return (
-      '#' +
-      (keyArr.length > 5
-        ? keyArr.slice(0, 3).join('.') +
-          '...' +
-          keyArr
+    return `#${
+      keyArr.length > 5
+        ? `${keyArr.slice(0, 3).join('.')}...${keyArr
             .slice(4, keyArr.length - 1)
-            .reduce((acc, cur) => acc + +cur, 0) +
-          '+' +
-          keyArr.at(-1)
-        : keyArr.join('.'))
-    )
+            .reduce((acc, cur) => acc + +cur, 0)}+${keyArr.at(-1)}`
+        : keyArr.join('.')
+    }`
   }, [commentKey])
   return (
     <div className={styles['comment']} {...rest}>

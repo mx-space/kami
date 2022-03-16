@@ -54,7 +54,7 @@ export class NoteStore extends Store<NoteModel> {
       message.error(errorMessage)
     } finally {
       this.likeIdList.add(id.toString())
-      setLikeId('note-' + note.nid.toString())
+      setLikeId(`note-${note.nid.toString()}`)
     }
 
     return true
@@ -63,7 +63,7 @@ export class NoteStore extends Store<NoteModel> {
   isLiked(id: number) {
     const storeLiked = this.likeIdList.has(id.toString())
 
-    const inCookie = isLikedBefore('note-' + id.toString())
+    const inCookie = isLikedBefore(`note-${id.toString()}`)
     if (!storeLiked && inCookie) {
       this.likeIdList.add(id.toString())
     }

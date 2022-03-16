@@ -1,6 +1,6 @@
 import type { DevtoolsDetectorListener } from 'devtools-detector'
-import Package from '~/package.json'
 import { isDev, isServerSide } from './utils'
+import Package from '~/package.json'
 
 const version = `v${Package.version}` || ''
 

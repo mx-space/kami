@@ -61,10 +61,10 @@ const BangumiView: NextPage = () => {
                   <ImageLazy
                     height={'100%'}
                     width={'100%'}
-                    src={
-                      'https://i0.wp.com/' +
-                      bangumi.cover.replace(/^https?:\/\//, '')
-                    }
+                    src={`https://i0.wp.com/${bangumi.cover.replace(
+                      /^https?:\/\//,
+                      '',
+                    )}`}
                   />
                   <h4>
                     {bangumi.title}

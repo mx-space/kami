@@ -1,10 +1,10 @@
+import { MaidianAction } from 'constants/maidian'
 import classNames from 'clsx'
 import {
   BxBxsArrowToTop,
   FaSolidHeadphonesAlt,
 } from 'components/universal/Icons'
 import { ScaleTransitionView } from 'components/universal/Transition/scale'
-import { MaidianAction } from 'constants/maidian'
 import { useAnalyze } from 'hooks/use-analyze'
 import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'

@@ -82,7 +82,7 @@
   },
   "devDependencies": {
     "@innei-util/eslint-config-react-ts": "latest",
-    "@innei-util/prettier": "0.3.0",
+    "@innei-util/prettier": "latest",
     "@next/bundle-analyzer": "12.1.0",
     "@trivago/prettier-plugin-sort-imports": "3.2.0",
     "@types/inflection": "1.13.0",

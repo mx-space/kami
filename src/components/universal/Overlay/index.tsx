@@ -1,6 +1,6 @@
 import classNames from 'clsx'
 import { merge } from 'lodash-es'
-import { CSSProperties, FC, memo, ReactNode, useEffect } from 'react'
+import { CSSProperties, FC, ReactNode, memo, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { isServerSide, stopEventDefault } from 'utils'
 import { FadeInOutTransitionView } from '../Transition/fade-in-out'

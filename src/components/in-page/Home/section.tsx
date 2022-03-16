@@ -20,7 +20,7 @@ import React, {
 } from 'react'
 import { message } from 'react-message-popup'
 import { TransitionGroup } from 'react-transition-group'
-import { apiClient, getRandomImage, NoSSR, stopEventDefault } from 'utils'
+import { NoSSR, apiClient, getRandomImage, stopEventDefault } from 'utils'
 import styles from './section.module.css'
 import SectionNews, { SectionCard, SectionNewsProps } from './SectionNews'
 import { FriendsSection } from './SectionNews/friend'

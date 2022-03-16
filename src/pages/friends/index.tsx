@@ -9,7 +9,7 @@ import { Markdown } from 'components/universal/Markdown'
 import { useInitialData } from 'hooks/use-initial-data'
 import { shuffle } from 'lodash-es'
 import { NextPage } from 'next'
-import { createElement, FC } from 'react'
+import { FC, createElement } from 'react'
 import { NoSSR } from 'utils'
 import { apiClient } from 'utils/client'
 import { ApplyForLink } from '../../components/in-page/ApplyLink'
@@ -94,9 +94,9 @@ const _Footer: FC = () => {
           ].join('\n\n') +
           [
             '',
-            `**站点标题**: [${seo.title}](${
-              location.protocol + '//' + location.host
-            })`,
+            `**站点标题**: [${
+              seo.title
+            }](${`${location.protocol}//${location.host}`})`,
             `**站点描述**: ${seo.description}`,
             `**主人头像**: [点击下载](${avatar})`,
             `**主人名字**: ${name}`,

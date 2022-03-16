@@ -26,15 +26,14 @@ import { $axios, apiClient } from 'utils/client'
 import { printToConsole } from 'utils/console'
 import { observer } from 'mobx-react-lite'
 
-import Package from '~/package.json'
-
-import client from '../socket'
-import { useStore } from '../store'
-import { isServerSide, TokenKey } from '../utils'
 import { RootStoreProvider } from 'context/root-store'
 import { DebugLayout } from 'components/layouts/DebugLayout'
 import { MetaFooter } from 'components/universal/Meta/footer'
 import { defaultConfigs } from 'configs.default'
+import { TokenKey, isServerSide } from '../utils'
+import { useStore } from '../store'
+import client from '../socket'
+import Package from '~/package.json'
 
 const version = `v${Package.version}` || ''
 
@@ -72,7 +71,7 @@ const Content: FC = observer((props) => {
     <>
       <DynamicHeadMeta />
       <NextSeo
-        title={initialData.seo.title + ' · ' + initialData.seo.description}
+        title={`${initialData.seo.title} · ${initialData.seo.description}`}
         description={initialData.seo.description}
       />
 
@@ -136,9 +135,9 @@ App.getInitialProps = async (props: AppContext) => {
     }
     ip && ($axios.defaults.headers.common['x-forwarded-for'] = ip as string)
 
-    $axios.defaults.headers.common['User-Agent'] =
-      request.headers['user-agent'] +
-      ` NextJS/v${Package.dependencies.next} Kami/${version}`
+    $axios.defaults.headers.common[
+      'User-Agent'
+    ] = `${request.headers['user-agent']} NextJS/v${Package.dependencies.next} Kami/${version}`
 
     // forward auth token
     const cookie = request.headers.cookie
@@ -152,8 +151,10 @@ App.getInitialProps = async (props: AppContext) => {
         })
         ?.split('=')[1]
       if (token) {
-        $axios.defaults.headers['Authorization'] =
-          'bearer ' + token.replace(/^Bearer\s/i, '')
+        $axios.defaults.headers['Authorization'] = `bearer ${token.replace(
+          /^Bearer\s/i,
+          '',
+        )}`
       }
 
       // $axios.defaults.headers['cookie'] = cookie
@@ -177,7 +178,7 @@ App.getInitialProps = async (props: AppContext) => {
     } else {
       //  TODO 请求异常处理
       reason = aggregateDataState?.reason
-      console.error('Fetch aggregate data error: ' + aggregateDataState.reason)
+      console.error(`Fetch aggregate data error: ${aggregateDataState.reason}`)
     }
 
     if (configSnippetState.status === 'fulfilled') {

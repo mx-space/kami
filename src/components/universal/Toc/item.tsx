@@ -21,7 +21,7 @@ export const TocItem: FC<{
   return (
     <a
       data-index={index}
-      href={'#' + title}
+      href={`#${title}`}
       className={clsx(styles['toc-link'], active && styles['active'])}
       style={{
         paddingLeft:

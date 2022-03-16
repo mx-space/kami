@@ -2,12 +2,12 @@ import { useInitialData, useThemeConfig } from 'hooks/use-initial-data'
 import { useFooterBackground } from 'hooks/use-theme-background'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
-import React, { createElement, FC, Fragment, memo, useMemo } from 'react'
+import React, { FC, Fragment, createElement, memo, useMemo } from 'react'
 import { isServerSide } from 'utils'
-import Package from '~/package.json'
 import { useStore } from '../../../../store'
 import { FooterActions } from './actions'
 import styles from './index.module.css'
+import Package from '~/package.json'
 
 const version = Package.version
 

@@ -2,9 +2,9 @@ import { CommentModel } from '@mx-space/api-client'
 import { Markdown } from 'components/universal/Markdown'
 import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
 import {
-  createElement,
   FC,
   Fragment,
+  createElement,
   memo,
   useContext,
   useEffect,
@@ -16,7 +16,6 @@ import { Id } from 'store/helper/structure'
 import { EventTypes } from 'types/events'
 import { eventBus } from 'utils'
 import { apiClient } from 'utils/client'
-import { CommentContext, openCommentMessage } from '.'
 import { useStore } from '../../../store'
 import { Avatar } from './avatar'
 import { CommentBox } from './box'
@@ -24,6 +23,7 @@ import { Comment } from './comment'
 import { Empty } from './empty'
 import { getCommentWrap } from './helper'
 import styles from './index.module.css'
+import { CommentContext, openCommentMessage } from '.'
 
 interface CommentsProps {
   comments: CommentModel[]
@@ -143,7 +143,7 @@ const SingleComment: FC<{ comment: CommentModel }> = memo(
     const getUrl = () => {
       try {
         const host = new URL(comment.url || '').host
-        return '//' + host
+        return `//${host}`
       } catch {
         return undefined
       }

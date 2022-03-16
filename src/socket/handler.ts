@@ -29,7 +29,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
         text: '站长发布一条新动态',
         description: data.content,
         onclick: () => {
-          window.open(webUrl + '/recently')
+          window.open(`${webUrl}/recently`)
         },
       })
       break
@@ -48,15 +48,15 @@ export const eventHandler = (type: EventTypes, data: any) => {
         [EventTypes.NOTE_CREATE]: 'note',
       }
       notice.notice({
-        title: title,
+        title,
         text: message,
         description: getDescription(data.text),
         onclick: () => {
           window.open(
             webUrl +
               (_type[type] === 'post'
-                ? '/posts/' + data.category.slug + '/' + data.slug
-                : '/notes/' + data.nid),
+                ? `/posts/${data.category.slug}/${data.slug}`
+                : `/notes/${data.nid}`),
           )
         },
       })
@@ -67,11 +67,11 @@ export const eventHandler = (type: EventTypes, data: any) => {
       store.sayStore.add(data)
       const message = noticeHead('说说')
       notice.notice({
-        title: title,
+        title,
         text: message,
         description: getDescription(data.text),
         onclick: () => {
-          window.open(webUrl + '/says')
+          window.open(`${webUrl}/says`)
         },
       })
 
@@ -84,7 +84,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
     }
     case EventTypes.DANMAKU_CREATE: {
       createDangmaku({
-        text: data.author + ': ' + data.text,
+        text: `${data.author}: ${data.text}`,
         color: data.color,
       })
 
@@ -93,7 +93,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
         !userStore.isLogged
       ) {
         notice.notice({
-          title: userStore.name + ' 敲了你一下',
+          title: `${userStore.name} 敲了你一下`,
           text: data.text,
           options: { image: userStore.master?.avatar },
         })
@@ -151,8 +151,8 @@ export const eventHandler = (type: EventTypes, data: any) => {
   }
 }
 function noticeHead(type: string, title?: string) {
-  return `${store.userStore.name}发布了新的${type}${title ? ': ' + title : ''}`
+  return `${store.userStore.name}发布了新的${type}${title ? `: ${title}` : ''}`
 }
 function getDescription(text: string) {
-  return text.length > 20 ? text.slice(0, 20) + '...' : text
+  return text.length > 20 ? `${text.slice(0, 20)}...` : text
 }

@@ -18,10 +18,10 @@ const CategoryListView: NextPage<CategoryListViewProps> = (props) => {
 
   return (
     <ArticleLayout
-      title={'分类 - ' + category.name}
-      subtitle={'当前共有' + children.length + '篇文章, 加油!'}
+      title={`分类 - ${category.name}`}
+      subtitle={`当前共有${children.length}篇文章, 加油!`}
     >
-      <SEO title={'分类: ' + category.name} />
+      <SEO title={`分类: ${category.name}`} />
       <article className="article-list">
         <ul>
           <TransitionGroup key={category.id} appear>

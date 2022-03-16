@@ -20,7 +20,7 @@ import React, {
 import { useInView } from 'react-intersection-observer'
 import { useStore } from 'store'
 import { EventTypes } from 'types/events'
-import { eventBus, NoSSR } from 'utils'
+import { NoSSR, eventBus } from 'utils'
 import { apiClient } from 'utils/client'
 import styles from './index.module.css'
 

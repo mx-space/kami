@@ -22,7 +22,7 @@ export const ProjectDetail: FC<{ id: string }> = (props) => {
   const imageSet = images?.map((image, i) => {
     return {
       src: image,
-      alt: name + ' - ' + i,
+      alt: `${name} - ${i}`,
     }
   })
   return (

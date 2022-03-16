@@ -1,5 +1,5 @@
-import { camelcaseKeys } from '@mx-space/api-client'
 import { GATEWAY_URL } from 'constants/env'
+import { camelcaseKeys } from '@mx-space/api-client'
 import io, { Socket } from 'socket.io-client'
 import { EventTypes } from 'types/events'
 import { isDev } from 'utils'
@@ -9,7 +9,7 @@ export class SocketClient {
   public socket!: Socket
 
   constructor() {
-    this.socket = io(GATEWAY_URL + '/web', {
+    this.socket = io(`${GATEWAY_URL}/web`, {
       timeout: 10000,
       reconnectionDelay: 3000,
       autoConnect: false,

@@ -77,12 +77,12 @@ export const springScrollTo = (
     const percent = Math.floor(((current - ts) / duration) * 100)
 
     if (percent > 100) {
-      scrollContainer.scrollTop = res[100 + '%'].top
+      scrollContainer.scrollTop = res[`${100}%`].top
       return
     }
     raf = requestAnimationFrame(an)
-    if (res[percent + '%']?.top) {
-      scrollContainer.scrollTop = res[percent + '%'].top
+    if (res[`${percent}%`]?.top) {
+      scrollContainer.scrollTop = res[`${percent}%`].top
     }
   })
 }

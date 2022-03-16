@@ -1,4 +1,4 @@
-import { createElement, FC, memo, useEffect } from 'react'
+import { FC, createElement, memo, useEffect } from 'react'
 import { CodiconGithubInverted } from '../Icons'
 import {
   FaSolidCircle,
@@ -11,8 +11,8 @@ import {
   FaSolidSubway,
   FaSolidUserFriends,
   IcBaselineLiveTv,
-  IconParkOutlineTencentQq,
   IcTwotoneSignpost,
+  IconParkOutlineTencentQq,
   IonBook,
   MdiFlask,
   MdiTwitter,
@@ -71,7 +71,7 @@ export const FontIcon: FC<{ icon?: JSX.Element | string }> = memo((props) => {
       ) : (
         <i
           className={
-            props.icon.startsWith('fa-') ? 'fa ' + props.icon : props.icon
+            props.icon.startsWith('fa-') ? `fa ${props.icon}` : props.icon
           }
         />
       )}

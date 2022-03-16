@@ -1,6 +1,6 @@
+import { MaidianAction } from 'constants/maidian'
 import clsx from 'clsx'
 import { MusicIcon, PauseIcon } from 'components/universal/Icons'
-import { MaidianAction } from 'constants/maidian'
 import { useAnalyze } from 'hooks/use-analyze'
 import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'
@@ -30,7 +30,7 @@ export const SectionMusic: FC<SectionMusicProps> = memo((props) => {
     runInAction(() => {
       event({
         action: MaidianAction.PlayMusicList,
-        label: 'Play ' + id.join(',') + ' music list',
+        label: `Play ${id.join(',')} music list`,
       })
       musicStore.setPlaylist(id)
       musicStore.isHide = false
@@ -119,7 +119,7 @@ const PlayingSongItem: FC<SongItemProps> = observer((props) => {
   }, [playId])
 
   useEffect(() => {
-    event({ action: MaidianAction.PlayingSong, label: 'Song ' + playId })
+    event({ action: MaidianAction.PlayingSong, label: `Song ${playId}` })
   }, [playId])
   return (
     <li

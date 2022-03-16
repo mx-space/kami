@@ -83,7 +83,7 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
               className="btn brown"
               onClick={() => {
                 router.push(
-                  '/posts?page=' + (pagination.currentPage - 1),
+                  `/posts?page=${pagination.currentPage - 1}`,
                   undefined,
                   { shallow: true },
                 )
@@ -102,7 +102,7 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
               }
               onClick={() => {
                 router.push(
-                  '/posts?page=' + (pagination.currentPage + 1),
+                  `/posts?page=${pagination.currentPage + 1}`,
                   undefined,
                   { shallow: true },
                 )

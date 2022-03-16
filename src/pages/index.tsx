@@ -27,7 +27,7 @@ const IndexView: NextPage<AggregateTop> = (props) => {
     <main>
       <IndexViewContext.Provider value={{ doAnimation }}>
         <NextSeo
-          title={initData.seo.title + ' · ' + initData.seo.description}
+          title={`${initData.seo.title} · ${initData.seo.description}`}
           description={initData.seo.description}
         />
         <HomeIntro />

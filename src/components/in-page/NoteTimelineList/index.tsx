@@ -45,7 +45,7 @@ export const NoteTimelineList: FC<
               }}
             >
               <li key={item.id}>
-                <Link href={'/notes/' + item.nid}>
+                <Link href={`/notes/${item.nid}`}>
                   <a
                     className={clsx(
                       item.id === props.noteId ? styles['active'] : null,

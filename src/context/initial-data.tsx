@@ -1,7 +1,7 @@
 import { AggregateRoot } from '@mx-space/api-client'
 import { defaultConfigs } from 'configs.default'
 import { cloneDeep, mergeWith } from 'lodash-es'
-import { createContext, FC, memo, useEffect, useMemo } from 'react'
+import { FC, createContext, memo, useEffect, useMemo } from 'react'
 import { KamiConfig } from 'types/config'
 
 export type InitialDataType = {

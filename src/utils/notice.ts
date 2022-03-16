@@ -1,7 +1,7 @@
 import { ToastCard } from 'components/widgets/Toast/card'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { toast, ToastContainer } from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify'
 import { store } from 'store'
 import { isDev, isServerSide } from './utils'
 
@@ -99,7 +99,7 @@ export class Notice {
             body: text,
             image:
               store.userStore.master?.avatar ||
-              location.origin + '/manifest-icon-192.png',
+              `${location.origin}/manifest-icon-192.png`,
 
             ...options,
           })

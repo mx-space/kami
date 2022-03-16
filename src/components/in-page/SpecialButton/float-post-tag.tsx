@@ -9,7 +9,7 @@ import Link from 'next/link'
 import { FC, useCallback, useEffect, useRef, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import { store } from 'store'
-import { apiClient, NoSSR } from 'utils'
+import { NoSSR, apiClient } from 'utils'
 
 const _FloatPostTagButton: FC = observer(() => {
   const { actionStore, appUIStore } = store

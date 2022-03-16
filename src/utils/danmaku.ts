@@ -46,7 +46,7 @@ export const createDangmaku = ({ color, duration, text }: DanmakuProps) => {
       color: color ?? '',
       position: 'absolute',
       fontSize: '16px',
-      top: sample(range(0, wrapHeight >> 8) as any) * 14 + 'px',
+      top: `${sample(range(0, wrapHeight >> 8) as any) * 14}px`,
     },
   )
 
@@ -63,9 +63,8 @@ export const createDangmaku = ({ color, duration, text }: DanmakuProps) => {
 
   requestAnimationFrame(() => {
     // dangmaku.style.right = '100vw'
-    dangmaku.style.animation =
-      `dangmaku ` +
-      (duration && duration / 1000 > 8 ? duration : 8) +
-      's linear'
+    dangmaku.style.animation = `dangmaku ${
+      duration && duration / 1000 > 8 ? duration : 8
+    }s linear`
   })
 }

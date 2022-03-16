@@ -21,7 +21,7 @@ export const SEO: FC<SEOProps> = observer((props) => {
     seo,
     user,
   } = useInitialData()
-  const Title = title + ' - ' + seo.title
+  const Title = `${title} - ${seo.title}`
   const themeConfig = useThemeConfig()
   const {
     site: { figure },
@@ -31,7 +31,7 @@ export const SEO: FC<SEOProps> = observer((props) => {
     <NextSeo
       {...{
         title,
-        titleTemplate: '%s - ' + seo.title,
+        titleTemplate: `%s - ${seo.title}`,
         openGraph: merge(
           {
             profile: {
@@ -49,7 +49,7 @@ export const SEO: FC<SEOProps> = observer((props) => {
             images: [
               {
                 url: sample(figure) || getRandomImage()[0],
-                alt: title + ' - ' + seo.title,
+                alt: `${title} - ${seo.title}`,
               },
             ],
           } as OpenGraph,

@@ -125,13 +125,9 @@ export const PostView: PageOnlyProps = observer((props) => {
         },
         {
           icon: <FeHash />,
-          name:
-            post.category.name +
-            `${
-              post.tags && post.tags.length > 0
-                ? '[' + post.tags.join('-') + ']'
-                : ''
-            }`,
+          name: `${post.category.name}${
+            post.tags && post.tags.length > 0 ? `[${post.tags.join('-')}]` : ''
+          }`,
         },
         {
           icon: <PhBookOpen />,

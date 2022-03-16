@@ -53,11 +53,11 @@ export const Toc: FC<TocProps> = memo(({ headings: $headings }) => {
 
   const setMaxWidth = throttle(() => {
     if (containerRef.current) {
-      containerRef.current.style.maxWidth =
+      containerRef.current.style.maxWidth = `${
         document.documentElement.getBoundingClientRect().width -
         containerRef.current.getBoundingClientRect().x -
-        30 +
-        'px'
+        30
+      }px`
     }
   }, 14)
 

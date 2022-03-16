@@ -43,7 +43,7 @@ const _ChatPanel: FC<any> = observer(
             {
               text: data.text,
               id: +date,
-              date: date,
+              date,
             },
           ])
         }

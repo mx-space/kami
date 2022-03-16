@@ -1,9 +1,9 @@
 import { CommentModel, Pager } from '@mx-space/api-client'
 import { observer } from 'mobx-react-lite'
 import {
-  createContext,
   FC,
   Fragment,
+  createContext,
   useCallback,
   useEffect,
   useMemo,
@@ -13,7 +13,7 @@ import { useInView } from 'react-intersection-observer'
 import { message } from 'react-message-popup'
 import { apiClient } from 'utils/client'
 import { useStore } from '../../../store'
-import { flattenChildren, NoSSR } from '../../../utils'
+import { NoSSR, flattenChildren } from '../../../utils'
 import { Pagination } from '../../universal/Pagination'
 import { CommentBox } from './box'
 import { Comments } from './comments'

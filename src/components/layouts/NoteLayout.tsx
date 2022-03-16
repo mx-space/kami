@@ -70,7 +70,7 @@ export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
                 <a
                   className="edit-link"
                   target="_blank"
-                  href={resolveUrl('/#/notes/edit?id=' + id, url.adminUrl)!}
+                  href={resolveUrl(`/#/notes/edit?id=${id}`, url.adminUrl)!}
                 >
                   编辑
                 </a>

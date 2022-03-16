@@ -77,10 +77,10 @@ export const CommentBox: FC<{
     const start = $ta.selectionStart
     const end = $ta.selectionEnd
 
-    $ta.value =
-      $ta.value.substring(0, start) +
-      ` ${emoji} ` +
-      $ta.value.substring(end, $ta.value.length)
+    $ta.value = `${$ta.value.substring(
+      0,
+      start,
+    )} ${emoji} ${$ta.value.substring(end, $ta.value.length)}`
     setText($ta.value) // force update react state.
     requestAnimationFrame(() => {
       const shouldMoveToPos = start + emoji.length + 2
@@ -129,9 +129,9 @@ export const CommentBox: FC<{
       return
     }
     const model = {
-      author: author,
-      text: text,
-      mail: mail,
+      author,
+      text,
+      mail,
       url: url || undefined,
     }
     localStorage.setItem(USER_PREFIX, JSON.stringify(omit(model, ['text'])))

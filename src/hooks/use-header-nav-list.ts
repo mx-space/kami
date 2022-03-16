@@ -22,7 +22,7 @@ export const useHeaderNavList = () => {
       return {
         title,
         id,
-        path: '/' + slug,
+        path: `/${slug}`,
         type: 'Page',
       }
     })
@@ -42,7 +42,7 @@ export const useHeaderNavList = () => {
           title: name,
           id,
 
-          path: '/category/' + slug,
+          path: `/category/${slug}`,
           type: 'Custom',
         }
       })

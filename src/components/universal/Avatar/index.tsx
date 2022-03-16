@@ -1,10 +1,10 @@
 import clsx from 'clsx'
 import rc from 'randomcolor'
 import {
-  createElement,
   DetailedHTMLProps,
   FC,
   ImgHTMLAttributes,
+  createElement,
   memo,
   useEffect,
   useMemo,
@@ -57,7 +57,7 @@ export const Avatar: FC<
       ref={avatarRef}
       style={
         props.size
-          ? { height: props.size + 'px', width: props.size + 'px' }
+          ? { height: `${props.size}px`, width: `${props.size}px` }
           : undefined
       }
       {...restProps}

@@ -20,7 +20,7 @@ function tokenizeMention(eat: any, value: string, silent?: boolean): any {
     try {
       return eat(match[0])({
         type: 'link',
-        url: 'https://github.com/' + match[2],
+        url: `https://github.com/${match[2]}`,
         children: [{ type: 'text', value: match[1] }],
       })
       // eslint-disable-next-line no-empty

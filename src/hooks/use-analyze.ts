@@ -43,7 +43,7 @@ export const useAnalyze = () => {
         window.gtag('event', action, {
           event_category: category,
           event_label: label,
-          value: value,
+          value,
         })
         window.umami?.trackEvent(label || value?.toString() || '', action)
       } catch (err) {

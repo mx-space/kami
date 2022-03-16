@@ -1,3 +1,4 @@
+import { MaidianAction } from 'constants/maidian'
 import { NoteModel, RequestError } from '@mx-space/api-client'
 import { NotePasswordConfrim } from 'components/in-page/NotePasswordConfirm'
 import { BanCopy } from 'components/in-page/WarningOverlay/ban-copy'
@@ -17,7 +18,6 @@ import {
   ArticleFooterAction,
 } from 'components/widgets/ArticleAction'
 import CommentWrap from 'components/widgets/Comment'
-import { MaidianAction } from 'constants/maidian'
 import dayjs from 'dayjs'
 import { useAnalyze } from 'hooks/use-analyze'
 import { useHeaderMeta, useHeaderShare } from 'hooks/use-header-meta'
@@ -108,7 +108,7 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
   useEffect(() => {
     if (router.query.id === 'latest') {
       router.replace({
-        pathname: '/notes/' + note.nid,
+        pathname: `/notes/${note.nid}`,
         query: { ...omit(router.query, 'id') },
       })
     }
@@ -184,7 +184,7 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
     <>
       <Seo
         {...{
-          title: title,
+          title,
           description,
 
           openGraph: {
@@ -344,7 +344,7 @@ const FooterNavigation: FC<{ id: string }> = observer(({ id }) => {
 
                 event({
                   action: MaidianAction.NoteToTimeline,
-                  label: 'Note Id ' + note?.nid + ' ' + note?.title,
+                  label: `Note Id ${note?.nid} ${note?.title}`,
                 })
 
                 springScrollToTop()

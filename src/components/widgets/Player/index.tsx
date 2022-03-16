@@ -1,5 +1,5 @@
-import { default as classNames, default as clsx } from 'clsx'
 import { MaidianAction } from 'constants/maidian'
+import { default as classNames, default as clsx } from 'clsx'
 import { useAnalyze } from 'hooks/use-analyze'
 import { observer } from 'mobx-react-lite'
 import {
@@ -14,7 +14,7 @@ import {
 import { createPortal } from 'react-dom'
 import { useAudio } from 'react-use'
 import { useStore } from 'store'
-import { apiClient, hms, isServerSide, NoSSR } from 'utils'
+import { NoSSR, apiClient, hms, isServerSide } from 'utils'
 import styles from './index.module.css'
 
 const METO_ENDPOINT = 'https://api.i-meto.com/meting/api'

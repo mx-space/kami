@@ -1,6 +1,6 @@
 import { configure } from 'mobx'
 import { enableStaticRendering } from 'mobx-react-lite'
-import React, { createContext, ReactNode, useContext } from 'react'
+import React, { ReactNode, createContext, useContext } from 'react'
 import { isClientSide, isDev, isServerSide } from 'utils'
 import { RootStore } from '../store/root-store'
 

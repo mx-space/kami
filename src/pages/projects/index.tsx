@@ -39,7 +39,7 @@ const ProjectView = () => {
             项目{' '}
             {githubUsername && (
               <a
-                href={'https://github.com/' + githubUsername}
+                href={`https://github.com/${githubUsername}`}
                 className="!text-inherit inline-flex ml-2"
                 target="_blank"
                 aria-label="view on GitHub"

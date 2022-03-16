@@ -1,7 +1,7 @@
+import { MaidianAction } from 'constants/maidian'
 import clsx from 'clsx'
 import { EmptyIcon, IonSearch } from 'components/universal/Icons'
 import { OverLay, OverlayProps } from 'components/universal/Overlay'
-import { MaidianAction } from 'constants/maidian'
 import { useAnalyze } from 'hooks/use-analyze'
 import { useHotKey } from 'hooks/use-hotkey'
 import { throttle } from 'lodash-es'
@@ -88,21 +88,21 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
                 title: item.title,
                 subtitle: item.category.name,
                 id: item.id,
-                url: '/posts/' + item.category.slug + '/' + item.slug,
+                url: `/posts/${item.category.slug}/${item.slug}`,
               }
             case 'note':
               return {
                 title: item.title,
                 subtitle: '生活记录',
                 id: item.id,
-                url: '/notes/' + item.nid,
+                url: `/notes/${item.nid}`,
               }
             case 'page':
               return {
                 title: item.title,
                 subtitle: '页面',
                 id: item.id,
-                url: '/pages/' + item.slug,
+                url: `/pages/${item.slug}`,
               }
           }
         })
