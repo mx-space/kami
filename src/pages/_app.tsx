@@ -50,7 +50,7 @@ const Content: FC = observer((props) => {
   useRouterEvent()
   useResizeScrollEvent()
   const initialData: AggregateRoot | null = useInitialData()
-  const themeConfig = useThemeConfig()
+
   useMount(() => {
     {
       try {
