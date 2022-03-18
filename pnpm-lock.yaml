@@ -74,7 +74,7 @@ specifiers:
   validator: 13.7.0
   windicss: 3.5.1
   windicss-webpack-plugin: 1.6.7
-  zx: 6.0.3
+  zx: 6.0.6
 
 dependencies:
   '@floating-ui/react-dom': 0.6.0_f456dfc349ace84b0ea11d9e6e4ef3ab
@@ -149,7 +149,7 @@ devDependencies:
   typescript: 4.6.2
   windicss: 3.5.1
   windicss-webpack-plugin: 1.6.7
-  zx: 6.0.3
+  zx: 6.0.6
 
 packages:
 
@@ -1972,6 +1972,10 @@ packages:
 
   /@types/validator/13.7.1:
     resolution: {integrity: sha512-I6OUIZ5cYRk5lp14xSOAiXjWrfVoMZVjDuevBYgQDYzZIjsf2CAISpEcXOkFAtpAHbmWIDLcZObejqny/9xq5Q==}
+    dev: true
+
+  /@types/which/2.0.1:
+    resolution: {integrity: sha512-Jjakcv8Roqtio6w1gr0D7y6twbhx6gGgFGF5BLwajPpnOIOxFkakFhCq+LmyyeAz7BX6ULrjBOxdKaCDy+4+dQ==}
     dev: true
 
   /@typescript-eslint/eslint-plugin/5.10.2_f2c49ce7d0e93ebcfdb4b7d25b131b28:
@@ -6874,14 +6878,15 @@ packages:
     resolution: {integrity: sha1-AI4G2AlDIMNy28L47XagymyKxBk=}
     dev: false
 
-  /zx/6.0.3:
-    resolution: {integrity: sha512-CVVHbId7cudCnKJlofnDHUDsoD195wMNcOPRbsa74fY17XXdhP+WdEu4QDfNptx3FoDK+/trBOaPqp+JTwE4Cw==}
+  /zx/6.0.6:
+    resolution: {integrity: sha512-PDkf1B2cloeBmDNdYJIPLLNlBZVelXZtlXKZg0oMkoX4iLoufFfm//1rW+Uip+LBO4i3jIcmQx9wZZhOSqC+ng==}
     engines: {node: '>= 16.0.0'}
     hasBin: true
     dependencies:
       '@types/fs-extra': 9.0.13
       '@types/minimist': 1.2.2
       '@types/node': 17.0.18
+      '@types/which': 2.0.1
       chalk: 5.0.1
       fs-extra: 10.0.1
       globby: 13.1.1
