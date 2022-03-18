@@ -18,7 +18,7 @@ specifiers:
   '@types/react': 17.0.40
   '@types/react-color': 3.0.6
   '@types/react-dom': 17.0.13
-  '@types/react-lazyload': 3.1.1
+  '@types/react-lazyload': 3.2.0
   '@types/react-syntax-highlighter': 13.5.2
   '@types/react-transition-group': 4.4.4
   '@types/remove-markdown': 0.3.1
@@ -123,7 +123,7 @@ devDependencies:
   '@types/react': 17.0.40
   '@types/react-color': 3.0.6
   '@types/react-dom': 17.0.13
-  '@types/react-lazyload': 3.1.1
+  '@types/react-lazyload': 3.2.0
   '@types/react-syntax-highlighter': 13.5.2
   '@types/react-transition-group': 4.4.4
   '@types/remove-markdown': 0.3.1
@@ -1916,8 +1916,8 @@ packages:
       '@types/react': 17.0.40
     dev: true
 
-  /@types/react-lazyload/3.1.1:
-    resolution: {integrity: sha512-e9jsondHYzeApb67In+SdvxskBPC6pfD70j0L7l4kqviqCkkJAxD8iyMZSu5dcuYZGLXLAkp1SqkDK+4iVjLSA==}
+  /@types/react-lazyload/3.2.0:
+    resolution: {integrity: sha512-4+r+z8Cf7L/mgxA1vl5uHx5GS/8gY2jqq2p5r5WCm+nUsg9KilwQ+8uaJA3EUlLj57AOzOfGGwwRJ5LOVl8fwA==}
     dependencies:
       '@types/react': 17.0.40
     dev: true
