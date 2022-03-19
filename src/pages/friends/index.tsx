@@ -9,7 +9,7 @@ import { Markdown } from 'components/universal/Markdown'
 import { useInitialData } from 'hooks/use-initial-data'
 import { shuffle } from 'lodash-es'
 import { NextPage } from 'next'
-import { FC, createElement } from 'react'
+import { FC, createElement, useEffect, useState } from 'react'
 import { NoSSR } from 'utils'
 import { apiClient } from 'utils/client'
 import { ApplyForLink } from '../../components/in-page/ApplyLink'
@@ -66,6 +66,16 @@ const _Footer: FC = () => {
     seo,
     user: { avatar, name },
   } = useInitialData()
+
+  const [canApply, setCanApply] = useState(false)
+
+  useEffect(() => {
+    apiClient.link.canApplyLink().then(setCanApply)
+  }, [])
+
+  if (!canApply) {
+    return <h1 className="headline">主人禁止了申请友链。</h1>
+  }
   return (
     <>
       <ApplyForLink key={'link'} />

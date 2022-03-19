@@ -29,19 +29,14 @@ export const ApplyForLink: FC = () => {
   })
   const handleSubmit = submitHook(
     (d) => {
-      apiClient.friend.proxy.audit
-        .post({
-          params: {
-            author: d['friend-author'],
-          },
-          data: {
-            author: d['friend-author'],
-            url: d['friend-url'],
-            avatar: d['friend-avatar'],
-            description: d['friend-desc'],
-            email: d['friend-email'],
-            name: d['friend-name'],
-          },
+      apiClient.friend
+        .applyLink({
+          author: d['friend-author'],
+          url: d['friend-url'],
+          avatar: d['friend-avatar'],
+          description: d['friend-desc'],
+          email: d['friend-email'],
+          name: d['friend-name'],
         })
 
         .then(() => {
