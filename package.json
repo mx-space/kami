@@ -110,7 +110,7 @@
     "postcss": "8.4.12",
     "postcss-import": "14.0.2",
     "postcss-nested": "5.0.6",
-    "postcss-preset-env": "7.4.2",
+    "postcss-preset-env": "7.4.3",
     "prettier": "2.6.0",
     "react-lazyload": "3.2.0",
     "rimraf": "*",
