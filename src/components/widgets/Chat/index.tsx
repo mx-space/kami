@@ -1,7 +1,7 @@
 import { BxBxPaperPlane } from 'components/universal/Icons'
 import { RightLeftTransitionView } from 'components/universal/Transition/right-left'
 import { observer } from 'mobx-react-lite'
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC, forwardRef, useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { message } from 'react-message-popup'
 import client from 'socket'
@@ -15,7 +15,7 @@ import style from './index.module.css'
 const STORE_PREFIX = 'chat'
 
 const _ChatPanel: FC<any> = observer(
-  (props, ref: any) => {
+  forwardRef((props, ref: any) => {
     const [value, setValue] = useState('')
     // const [settingShow, setSettingShow] = useState(false)
     // const SettingRef = useRef<HTMLDivElement>(null)
@@ -114,13 +114,13 @@ const _ChatPanel: FC<any> = observer(
               date={new Date()}
             />
             {/* <OwnerMessage
-              text={`在这里你可以发送弹幕, 并且广播给正在浏览本站的小伙伴, 点击左边的设置, 首先给自己起一个昵称吧`}
-              date={new Date()}
-            />
-            <OwnerMessage
-              text={`本站不会记录任何广播消息, 欢迎玩的开心呀!~`}
-              date={new Date()}
-            /> */}
+            text={`在这里你可以发送弹幕, 并且广播给正在浏览本站的小伙伴, 点击左边的设置, 首先给自己起一个昵称吧`}
+            date={new Date()}
+          />
+          <OwnerMessage
+            text={`本站不会记录任何广播消息, 欢迎玩的开心呀!~`}
+            date={new Date()}
+          /> */}
             {messages.map(({ text, id, date }) => {
               return <OwnerMessage text={text} key={id} date={date} />
             })}
@@ -161,8 +161,7 @@ const _ChatPanel: FC<any> = observer(
         </div>
       </>
     )
-  },
-  { forwardRef: true },
+  }),
 )
 export const ChatPanel: FC<{ show: boolean; toggle: () => void }> = (props) => {
   const show = props.show

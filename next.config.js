@@ -49,7 +49,6 @@ const configs = withPlugins(plugins, {
         source: '/service-worker.js',
         destination: '/_next/static/service-worker.js',
       },
-      { source: '/notes', destination: '/notes/latest' },
     ]
 
     return {

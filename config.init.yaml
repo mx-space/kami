@@ -27,7 +27,7 @@ site:
         icon: faGlasses
       - title: 记
         type: Note
-        path: /notes
+        path: /notes/latest
         icon: faFeatherAlt
       - title: 言
         path: /says

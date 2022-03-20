@@ -3,7 +3,7 @@ import { FaRegularBookmark, FaSolidBookmark } from 'components/universal/Icons'
 import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
 import dayjs from 'dayjs'
 import { observer } from 'mobx-react-lite'
-import { ReactNode, useCallback } from 'react'
+import { ReactNode, forwardRef, useCallback } from 'react'
 import { useStore } from 'store'
 import { resolveUrl } from 'utils'
 import { apiClient } from 'utils/client'
@@ -17,7 +17,7 @@ interface NoteLayoutProps {
 }
 
 export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
-  (props, ref) => {
+  forwardRef((props, ref) => {
     const { date, id, title, tips, children } = props
     const dateFormat = dayjs(date).locale('cn').format('YYYY年M月D日 dddd')
     const {
@@ -84,6 +84,5 @@ export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
         <NoteTimelineList noteId={id} />
       </main>
     )
-  },
-  { forwardRef: true },
+  }),
 )

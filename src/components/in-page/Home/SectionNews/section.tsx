@@ -2,7 +2,7 @@ import { IcBaselineArrowForwardIos } from 'components/universal/Icons'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import randomColor from 'randomcolor'
-import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react'
+import { DetailedHTMLProps, HTMLAttributes, ReactNode, forwardRef } from 'react'
 import { useStore } from '../../../../store'
 
 export interface SectionNewsProps {
@@ -15,11 +15,12 @@ export interface SectionNewsProps {
   showMoreIcon?: boolean
 }
 
-export const SectionWrap = observer<
-  SectionNewsProps &
-    DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
->(
-  (props, ref) => {
+export const SectionWrap = observer(
+  forwardRef<
+    HTMLDivElement,
+    SectionNewsProps &
+      DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+  >((props, ref) => {
     const {
       title,
       icon,
@@ -34,7 +35,7 @@ export const SectionWrap = observer<
     const mode = appStore.colorMode
     return (
       <>
-        <div className="news-item" ref={ref as any}>
+        <div className="news-item" ref={ref}>
           <div className="news-head">
             <h3
               className="title"
@@ -74,6 +75,5 @@ export const SectionWrap = observer<
         </div>
       </>
     )
-  },
-  { forwardRef: true },
+  }),
 )

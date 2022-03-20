@@ -32,7 +32,7 @@ export const defaultConfigs = {
         {
           title: '记',
           type: 'Note',
-          path: '/notes',
+          path: '/notes/latest',
           icon: 'faFeatherAlt',
         },
         {
