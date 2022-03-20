@@ -55,7 +55,7 @@ specifiers:
   react: 17.0.2
   react-countup: 6.1.1
   react-dom: 17.0.2
-  react-hook-form: 7.28.0
+  react-hook-form: 7.28.1
   react-intersection-observer: 8.33.1
   react-lazyload: 3.2.0
   react-markdown: 4.3.1
@@ -97,7 +97,7 @@ dependencies:
   react: 17.0.2
   react-countup: 6.1.1_react@17.0.2
   react-dom: 17.0.2_react@17.0.2
-  react-hook-form: 7.28.0_react@17.0.2
+  react-hook-form: 7.28.1_react@17.0.2
   react-intersection-observer: 8.33.1_react@17.0.2
   react-markdown: 4.3.1_react@17.0.2
   react-masonry-css: 1.0.16_react@17.0.2
@@ -2173,7 +2173,7 @@ packages:
     dependencies:
       '@antfu/utils': 0.5.0
       '@windicss/config': 1.8.2
-      debug: 4.3.3
+      debug: 4.3.4
       fast-glob: 3.2.11
       magic-string: 0.25.7
       micromatch: 4.0.4
@@ -2852,7 +2852,6 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
-    dev: true
 
   /decamelize-keys/1.1.0:
     resolution: {integrity: sha1-0XGoeTMlKAfrPLYdwcFEXQeN8tk=}
@@ -2999,7 +2998,7 @@ packages:
     resolution: {integrity: sha512-V05mmDo4gjimYW+FGujoGmmmxRaDsrVr7AXA3ZIfa04MWM1jOfZfUwou0oNqhNwy/votUDvGDt4JA4QF4e0b4g==}
     dependencies:
       '@socket.io/component-emitter': 3.0.0
-      debug: 4.3.3
+      debug: 4.3.4
       engine.io-parser: 5.0.3
       has-cors: 1.1.0
       parseqs: 0.0.6
@@ -5285,8 +5284,8 @@ packages:
       scheduler: 0.20.2
     dev: false
 
-  /react-hook-form/7.28.0_react@17.0.2:
-    resolution: {integrity: sha512-mmLpT86BkMGPr0r6ca8zxV0WH4Y1FW5MKs7Rq1+uHLVeeg5pSWbF5Z/qLCnM5vPVblHNM6lRBRRotnfEAf0ALA==}
+  /react-hook-form/7.28.1_react@17.0.2:
+    resolution: {integrity: sha512-mgwxvXuvt3FMY/mdnWbPc++Zf1U5xYzkhOaL05mtFMLvXc9MvUhMUlKtUVuO12sOrgT3nPXBgVFawtiJ4ONrgg==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17
@@ -5808,7 +5807,7 @@ packages:
     engines: {node: '>=10.0.0'}
     dependencies:
       '@socket.io/component-emitter': 3.0.0
-      debug: 4.3.3
+      debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
     dev: false
