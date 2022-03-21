@@ -49,6 +49,20 @@ const configs = withPlugins(plugins, {
         source: '/service-worker.js',
         destination: '/_next/static/service-worker.js',
       },
+      // {
+      //   source: '/api/:path*',
+      //   destination: isProd
+      //     ? env.API_URL || 'http://localhost:2333/api/:path*'
+      //     : 'http://localhost:2333/:path*',
+      // },
+      {
+        source: '/socket.io/:path*',
+        destination: '/api/socket.io/:path*',
+      },
+      {
+        source: '/socket.io',
+        destination: '/api/socket.io',
+      },
     ]
 
     return {
