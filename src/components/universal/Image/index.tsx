@@ -29,68 +29,50 @@ interface ImageProps {
 const Image: FC<
   {
     popup?: boolean
-    loaded?: boolean
+
+    wrapRef: any
+    placeholderRef: any
+    height?: number
+    width?: number
+    backgroundColor?: string
+    calculateDimensions: any
   } & Pick<
     DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>,
     'src' | 'alt'
   >
-> = memo(({ loaded, src, alt, popup = false }) => {
-  const imageRef = useRef<HTMLImageElement>(null)
-
-  useEffect(() => {
-    if (!popup) {
-      return
-    }
-    const $image = imageRef.current
-    if ($image) {
-      mediumZoom($image, {
-        background: 'var(--light-bg)',
-        margin: 50,
-      })
-    }
-  }, [popup])
-  return (
-    <>
-      <div
-        className={classNames(
-          styles['lazyload-image'],
-          !loaded && styles['image-hide'],
-        )}
-        data-status={loaded ? 'loaded' : 'loading'}
-      >
-        <img src={src} alt={alt} ref={imageRef} />
-      </div>
-    </>
-  )
-})
-
-export const ImageLazy: FC<
-  ImageProps &
-    DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
-> = memo((props) => {
-  const {
-    defaultImage,
+> = memo(
+  ({
     src,
-    alt = src,
+    alt,
+    popup = false,
+    placeholderRef,
+    wrapRef,
     height,
     width,
     backgroundColor,
-    popup = false,
-    style,
-    overflowHidden = false,
-    ...rest
-  } = props
+    calculateDimensions,
+  }) => {
+    const imageRef = useRef<HTMLImageElement>(null)
 
-  const [loaded, setLoad] = useState(false)
-  const realImageRef = useRef<HTMLImageElement>(null)
-  const placeholderRef = useRef<HTMLDivElement>(null)
+    useEffect(() => {
+      if (!popup) {
+        return
+      }
+      const $image = imageRef.current
+      if ($image) {
+        mediumZoom($image, {
+          background: 'var(--light-bg)',
+          margin: 50,
+        })
+      }
+    }, [popup])
 
-  const wrapRef = useRef<HTMLDivElement>(null)
+    const [loaded, setLoad] = useState(false)
+    useEffect(() => {
+      if (!src) {
+        return
+      }
 
-  const [calculatedSize, calculateDimensions] = useCalculateSize()
-
-  useEffect(() => {
-    if (src) {
       const image = new window.Image()
       image.src = src as string
       if (!height && !width && wrapRef.current?.parentElement?.parentElement) {
@@ -122,8 +104,54 @@ export const ImageLazy: FC<
           // eslint-disable-next-line no-empty
         } catch {}
       }
-    }
-  }, [calculateDimensions, height, placeholderRef, src, width])
+    }, [calculateDimensions, height, placeholderRef, src, width, wrapRef])
+
+    return (
+      <>
+        <div
+          className={classNames(
+            styles['lazyload-image'],
+            !loaded && styles['image-hide'],
+          )}
+          data-status={loaded ? 'loaded' : 'loading'}
+        >
+          <img src={src} alt={alt} ref={imageRef} />
+        </div>
+
+        {!loaded && (
+          <PlaceholderImage
+            height={height}
+            width={width}
+            backgroundColor={backgroundColor}
+          />
+        )}
+      </>
+    )
+  },
+)
+
+export const ImageLazy: FC<
+  ImageProps &
+    DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
+> = memo((props) => {
+  const {
+    defaultImage,
+    src,
+    alt = src,
+    height,
+    width,
+    backgroundColor,
+    popup = false,
+    style,
+    overflowHidden = false,
+    ...rest
+  } = props
+
+  const realImageRef = useRef<HTMLImageElement>(null)
+  const placeholderRef = useRef<HTMLDivElement>(null)
+
+  const wrapRef = useRef<HTMLDivElement>(null)
+  const [calculatedSize, calculateDimensions] = useCalculateSize()
 
   return (
     <figure style={style} className="inline-block">
@@ -157,15 +185,13 @@ export const ImageLazy: FC<
               src={src}
               alt={alt.replace(/^[!¡]/, '') || ''}
               popup={popup}
-              loaded={loaded}
+              placeholderRef={placeholderRef}
+              wrapRef={wrapRef}
+              backgroundColor={backgroundColor}
+              height={(height as any) || calculatedSize.height}
+              width={(width as any) || calculatedSize.width}
+              calculateDimensions={calculateDimensions}
             />
-            {!loaded && (
-              <PlaceholderImage
-                height={height}
-                width={width}
-                backgroundColor={backgroundColor}
-              />
-            )}
           </LazyLoad>
         </div>
       )}
