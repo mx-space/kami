@@ -7,6 +7,7 @@ import {
   ImgHTMLAttributes,
   forwardRef,
   memo,
+  useCallback,
   useEffect,
   useRef,
   useState,
@@ -30,105 +31,46 @@ const Image: FC<
   {
     popup?: boolean
 
-    wrapRef: any
-    placeholderRef: any
-    height?: number
-    width?: number
-    backgroundColor?: string
-    calculateDimensions: any
+    loaderFn: () => void
+    loaded: boolean
   } & Pick<
     DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>,
     'src' | 'alt'
   >
-> = memo(
-  ({
-    src,
-    alt,
-    popup = false,
-    placeholderRef,
-    wrapRef,
-    height,
-    width,
-    backgroundColor,
-    calculateDimensions,
-  }) => {
-    const imageRef = useRef<HTMLImageElement>(null)
+> = memo(({ src, alt, popup = false, loaded, loaderFn }) => {
+  const imageRef = useRef<HTMLImageElement>(null)
 
-    useEffect(() => {
-      if (!popup) {
-        return
-      }
-      const $image = imageRef.current
-      if ($image) {
-        mediumZoom($image, {
-          background: 'var(--light-bg)',
-          margin: 50,
-        })
-      }
-    }, [popup])
+  useEffect(() => {
+    if (!popup) {
+      return
+    }
+    const $image = imageRef.current
+    if ($image) {
+      mediumZoom($image, {
+        background: 'var(--light-bg)',
+        margin: 50,
+      })
+    }
+  }, [popup])
 
-    const [loaded, setLoad] = useState(false)
-    useEffect(() => {
-      if (!src) {
-        return
-      }
+  useEffect(() => {
+    loaderFn()
+  }, [loaderFn])
 
-      const image = new window.Image()
-      image.src = src as string
-      if (!height && !width && wrapRef.current?.parentElement?.parentElement) {
-        calculateDimensions(
-          wrapRef.current?.parentElement?.parentElement,
-          image,
-        )
-      }
-
-      image.onload = () => {
-        setLoad(true)
-        try {
-          if (placeholderRef && placeholderRef.current) {
-            placeholderRef.current.classList.add('hide')
-          }
-
-          // eslint-disable-next-line no-empty
-        } catch {}
-      }
-      image.onerror = () => {
-        try {
-          if (placeholderRef && placeholderRef.current) {
-            placeholderRef.current.innerHTML = `<p style="color: currentColor; filter: invert(100%) brightness(1.5)"><span>图片加载失败!</span><br/>
-            <a href="${escapeHTMLTag(
-              image.src,
-            )}" target="_blank">${escapeHTMLTag(image.src)}</a></p>`
-            placeholderRef.current.style.zIndex = '2'
-          }
-          // eslint-disable-next-line no-empty
-        } catch {}
-      }
-    }, [calculateDimensions, height, placeholderRef, src, width, wrapRef])
-
-    return (
-      <>
-        <div
-          className={classNames(
-            styles['lazyload-image'],
-            !loaded && styles['image-hide'],
-          )}
-          data-status={loaded ? 'loaded' : 'loading'}
-        >
-          <img src={src} alt={alt} ref={imageRef} />
-        </div>
-
-        {!loaded && (
-          <PlaceholderImage
-            height={height}
-            width={width}
-            backgroundColor={backgroundColor}
-          />
+  return (
+    <>
+      <div
+        className={classNames(
+          styles['lazyload-image'],
+          !loaded && styles['image-hide'],
         )}
-      </>
-    )
-  },
-)
+        data-status={loaded ? 'loaded' : 'loading'}
+      >
+        <img src={src} alt={alt} ref={imageRef} />
+      </div>
+    </>
+  )
+})
 
 export const ImageLazy: FC<
   ImageProps &
@@ -152,6 +94,42 @@ export const ImageLazy: FC<
 
   const wrapRef = useRef<HTMLDivElement>(null)
   const [calculatedSize, calculateDimensions] = useCalculateSize()
+
+  const [loaded, setLoad] = useState(false)
+  const loaderFn = useCallback(() => {
+    if (!src) {
+      return
+    }
+
+    const image = new window.Image()
+    image.src = src as string
+    if (!height && !width && wrapRef.current?.parentElement?.parentElement) {
+      calculateDimensions(wrapRef.current?.parentElement?.parentElement, image)
+    }
+
+    image.onload = () => {
+      setLoad(true)
+      try {
+        if (placeholderRef && placeholderRef.current) {
+          placeholderRef.current.classList.add('hide')
+        }
+
+        // eslint-disable-next-line no-empty
+      } catch {}
+    }
+    image.onerror = () => {
+      try {
+        if (placeholderRef && placeholderRef.current) {
+          placeholderRef.current.innerHTML = `<p style="color: currentColor; filter: invert(100%) brightness(1.5)"><span>图片加载失败!</span><br/>
+          <a href="${escapeHTMLTag(image.src)}" target="_blank">${escapeHTMLTag(
+            image.src,
+          )}</a></p>`
+          placeholderRef.current.style.zIndex = '2'
+        }
+        // eslint-disable-next-line no-empty
+      } catch {}
+    }
+  }, [calculateDimensions, height, src, width])
 
   return (
     <figure style={style} className="inline-block">
@@ -185,13 +163,16 @@ export const ImageLazy: FC<
               src={src}
               alt={alt.replace(/^[!¡]/, '') || ''}
               popup={popup}
-              placeholderRef={placeholderRef}
-              wrapRef={wrapRef}
-              backgroundColor={backgroundColor}
-              height={(height as any) || calculatedSize.height}
-              width={(width as any) || calculatedSize.width}
-              calculateDimensions={calculateDimensions}
+              loaded={loaded}
+              loaderFn={loaderFn}
             />
+            {!loaded && (
+              <PlaceholderImage
+                height={height}
+                width={width}
+                backgroundColor={backgroundColor}
+              />
+            )}
           </LazyLoad>
         </div>
       )}
