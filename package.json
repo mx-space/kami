@@ -90,7 +90,7 @@
     "@types/lodash-es": "4.17.6",
     "@types/node": "17.0.18",
     "@types/randomcolor": "0.5.6",
-    "@types/react": "17.0.42",
+    "@types/react": "17.0.43",
     "@types/react-color": "3.0.6",
     "@types/react-dom": "17.0.14",
     "@types/react-lazyload": "3.2.0",
