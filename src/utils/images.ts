@@ -26,7 +26,7 @@ const animeImages = [
   '7TOEIPwGrZB1qFb.jpg',
   'Ihj5QAZgVMqr9fJ.jpg',
   'KZ6jv8C92Vpwcih.jpg',
-].map((i) => `https://cdn.jsdelivr.net/gh/Innei/fancy@master/2021/${i}`)
+].map((i) => `/assets/images/${i}`)
 
 export const getRandomImage = (count?: number) => {
   return shuffle(animeImages).slice(0, count)

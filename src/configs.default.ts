@@ -7,9 +7,8 @@ export const defaultConfigs = {
     figure: null,
     background: {
       src: {
-        light:
-          'https://gitee.com/xun7788/my-imagination/raw/master/cdn/background.png',
-        dark: 'https://gitee.com/xun7788/my-imagination/raw/master/cdn/background-night.png',
+        light: '/assets/background.png',
+        dark: '/assets/background-night.png',
       },
       position: 'top center fixed',
     },
@@ -102,8 +101,7 @@ export const defaultConfigs = {
       background: {
         src: {
           dark: '',
-          light:
-            'https://gitee.com/xun7788/my-imagination/raw/master/cdn/footer.png',
+          light: '/assets/footer.png',
         },
         position: 'top/cover',
       },
