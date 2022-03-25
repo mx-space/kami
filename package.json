@@ -98,7 +98,7 @@
     "@types/react-transition-group": "4.4.4",
     "@types/remove-markdown": "0.3.1",
     "@types/ua-parser-js": "0.7.36",
-    "@types/validator": "13.7.1",
+    "@types/validator": "13.7.2",
     "cross-env": "*",
     "dotenv": "16.0.0",
     "eslint": "*",
