@@ -49,7 +49,7 @@ specifiers:
   postcss-import: 14.1.0
   postcss-nested: 5.0.6
   postcss-preset-env: 7.4.3
-  prettier: 2.6.0
+  prettier: 2.6.1
   qier-progress: 1.0.4
   randomcolor: 0.6.2
   react: 17.0.2
@@ -114,7 +114,7 @@ devDependencies:
   '@innei-util/eslint-config-react-ts': 0.2.1_eslint@8.11.0+typescript@4.6.3
   '@innei-util/prettier': 0.5.0
   '@next/bundle-analyzer': 12.1.0
-  '@trivago/prettier-plugin-sort-imports': 3.2.0_prettier@2.6.0
+  '@trivago/prettier-plugin-sort-imports': 3.2.0_prettier@2.6.1
   '@types/inflection': 1.13.0
   '@types/js-cookie': 3.0.1
   '@types/lodash-es': 4.17.6
@@ -141,7 +141,7 @@ devDependencies:
   postcss-import: 14.1.0_postcss@8.4.12
   postcss-nested: 5.0.6_postcss@8.4.12
   postcss-preset-env: 7.4.3_postcss@8.4.12
-  prettier: 2.6.0
+  prettier: 2.6.1
   react-lazyload: 3.2.0_react-dom@17.0.2+react@17.0.2
   rimraf: 3.0.2
   stylelint: 14.6.0
@@ -1579,8 +1579,8 @@ packages:
   /@innei-util/prettier/0.5.0:
     resolution: {integrity: sha512-T4Pmu14QblICtLy4oYrZe64aASjWHTa3n+7LilLvt2+A2HrzuKEZwQUYkMuxUQ6J3Cplknrc12fHHQONYX0W0w==}
     dependencies:
-      '@trivago/prettier-plugin-sort-imports': 3.2.0_prettier@2.6.0
-      prettier: 2.6.0
+      '@trivago/prettier-plugin-sort-imports': 3.2.0_prettier@2.6.1
+      prettier: 2.6.1
       prettier-package-json: 2.6.3
     transitivePeerDependencies:
       - supports-color
@@ -1814,7 +1814,7 @@ packages:
       string.prototype.matchall: 4.0.6
     dev: true
 
-  /@trivago/prettier-plugin-sort-imports/3.2.0_prettier@2.6.0:
+  /@trivago/prettier-plugin-sort-imports/3.2.0_prettier@2.6.1:
     resolution: {integrity: sha512-DnwLe+z8t/dZX5xBbYZV1+C5STkyK/P6SSq3Nk6NXlJZsgvDZX2eN4ND7bMFgGV/NL/YChWzcNf6ziGba1ktQQ==}
     peerDependencies:
       prettier: 2.x
@@ -1826,7 +1826,7 @@ packages:
       '@babel/types': 7.13.0
       javascript-natural-sort: 0.7.1
       lodash: 4.17.21
-      prettier: 2.6.0
+      prettier: 2.6.1
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -5203,8 +5203,8 @@ packages:
       sort-order: 1.0.1
     dev: true
 
-  /prettier/2.6.0:
-    resolution: {integrity: sha512-m2FgJibYrBGGgQXNzfd0PuDGShJgRavjUoRCw1mZERIWVSXF0iLzLm+aOqTAbLnC3n6JzUhAA8uZnFVghHJ86A==}
+  /prettier/2.6.1:
+    resolution: {integrity: sha512-8UVbTBYGwN37Bs9LERmxCPjdvPxlEowx2urIL6urHzdb3SDq4B/Z6xLFCblrSnE4iKWcS6ziJ3aOYrc1kz/E2A==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
