@@ -21,6 +21,19 @@ Live Demo:
 
 ![](https://github.com/mx-space/docs-images/blob/master/images/bg.jpg?raw=true)
 
+## 复制此仓库
+
+此仓库使用 Git LFS 管理图片等大文件，请先安装 Git LFS。
+
+```
+git clone https://github.com/mx-space/kami.git
+cd kami
+git lfs fetch --all
+git lfs pull
+```
+
+方可获取到图片信息。
+
 ## 迁移指南
 
 升级 Server 到 v3.13.0 以上，在设置中的「区块与片段」中新建一个名为 `kami`，引用为 `theme`，内容为可配置项，可参考： [config.example.yaml](./config.example.yaml)
