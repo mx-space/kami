@@ -26,7 +26,7 @@ async function main() {
   }
 
   const arrayBuffer = await fetch(
-    'https://small-lake-9960.tukon479.workers.dev/' + downloadUrl,
+    `https://small-lake-9960.tukon479.workers.dev/${downloadUrl}`,
   ).then((res) => res.arrayBuffer())
   const buffer = Buffer.from(arrayBuffer)
   const tmpName = (Math.random() * 10).toString(16)
@@ -35,6 +35,8 @@ async function main() {
   await $`git checkout master`
   await $`git branch --set-upstream-to=origin/master master`
   await $`git pull`
+  await $`git lfs fetch --all`
+  await $`git lfs pull`
   await $`pnpm i`
   await $`rm -rf ./.next`
   await $`unzip /tmp/${tmpName}.zip -d ./.next`
