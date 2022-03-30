@@ -16,7 +16,6 @@
  * @FilePath: /web/pages/_document.tsx
  * @MIT
  */
-
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 
 export default class MyDocument extends Document {

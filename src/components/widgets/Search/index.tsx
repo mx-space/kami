@@ -1,7 +1,7 @@
-import { MaidianAction } from 'constants/maidian'
 import clsx from 'clsx'
 import { EmptyIcon, IonSearch } from 'components/universal/Icons'
 import { OverLay, OverlayProps } from 'components/universal/Overlay'
+import { MaidianAction } from 'constants/maidian'
 import { useAnalyze } from 'hooks/use-analyze'
 import { useHotKey } from 'hooks/use-hotkey'
 import { throttle } from 'lodash-es'
@@ -11,12 +11,14 @@ import {
   KeyboardEventHandler,
   memo,
   useCallback,
+  useDeferredValue,
   useEffect,
   useRef,
   useState,
 } from 'react'
 import { useStore } from 'store'
 import { apiClient } from 'utils'
+
 import styles from './index.module.css'
 
 export type SearchPanelProps = {
@@ -58,6 +60,8 @@ const search = throttle((keyword: string) => {
 export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
   const { defaultKeyword } = props
   const [keyword, setKeyword] = useState(defaultKeyword || '')
+
+  const deferredValue = useDeferredValue(keyword)
   const [loading, setLoading] = useState(false)
   const [list, setList] = useState<SearchListType[]>([])
   const { event } = useAnalyze()
@@ -65,11 +69,11 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
     setLoading(true)
     setCurrentSelect(0)
 
-    search(keyword)
+    search(deferredValue)
       ?.then((res) => {
         event({
           action: MaidianAction.Search,
-          label: keyword,
+          label: deferredValue,
         })
         if (!res) {
           setLoading(false)
@@ -115,7 +119,7 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
         console.log(err)
         setLoading(false)
       })
-  }, [keyword])
+  }, [deferredValue])
 
   const [currentSelect, setCurrentSelect] = useState(0)
   const listRef = useRef<HTMLUListElement>(null)

@@ -27,11 +27,21 @@ export const TextFade: FC<
   if (!appear) {
     return <div {...rest}>{text ?? children}</div>
   }
+
+  const char = new Set(text ?? children ?? '')
+
+  const index = (ch: string, i: number) => {
+    if (char.has(ch)) {
+      char.delete(ch)
+      return ch
+    }
+    return ch + i
+  }
   return (
     <div {...rest}>
       {Array.from(text ?? (children as string)).map((char, i) => (
         <span
-          key={char}
+          key={index(char, i)}
           className="inline-block whitespace-pre"
           style={{
             animation: `${name} ${duration}ms both linear`,
