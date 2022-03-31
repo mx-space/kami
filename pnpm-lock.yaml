@@ -4,7 +4,7 @@ overrides:
   react-use: 17.3.2
 
 specifiers:
-  '@floating-ui/react-dom': 0.6.0
+  '@floating-ui/react-dom': 0.6.1
   '@innei-util/eslint-config-react-ts': latest
   '@innei-util/prettier': latest
   '@mx-space/api-client': 0.8.2
@@ -77,7 +77,7 @@ specifiers:
   zx: 6.0.7
 
 dependencies:
-  '@floating-ui/react-dom': 0.6.0_b5d7bf22a7b46dd4876f0e926ab0c987
+  '@floating-ui/react-dom': 0.6.1_b5d7bf22a7b46dd4876f0e926ab0c987
   '@mx-space/api-client': 0.8.2
   axios: 0.26.1
   clsx: 1.1.1
@@ -1509,23 +1509,23 @@ packages:
       - supports-color
     dev: true
 
-  /@floating-ui/core/0.6.0:
-    resolution: {integrity: sha512-chJj27Tj4q6EUgRaR5m5Va+h+N5yFMP/s3CagVMS9Ug3482jsjZMvS2kuwQQAdLV+/1zCf5uZiN1mksaLerQoA==}
+  /@floating-ui/core/0.6.1:
+    resolution: {integrity: sha512-Y30eVMcZva8o84c0HcXAtDO4BEzPJMvF6+B7x7urL2xbAqVsGJhojOyHLaoQHQYjb6OkqRq5kO+zeySycQwKqg==}
     dev: false
 
-  /@floating-ui/dom/0.4.0:
-    resolution: {integrity: sha512-sfbZCY30r2u9f6h2wBtFtvhlSLP2nUuwsj7feTvZLtxhbrVd+/43jrW1d2OHWfeqx8oUTbCQdO5Z7td9DffOkg==}
+  /@floating-ui/dom/0.4.2:
+    resolution: {integrity: sha512-2/4vOhMAujkMmGqGX1Gut84phe5MNfk1kGeM+RSTJCpeR0SWR2/RR+/f1r1msOvTQa28wn7HEhxGe71CjYY/vw==}
     dependencies:
-      '@floating-ui/core': 0.6.0
+      '@floating-ui/core': 0.6.1
     dev: false
 
-  /@floating-ui/react-dom/0.6.0_b5d7bf22a7b46dd4876f0e926ab0c987:
-    resolution: {integrity: sha512-/dF+jpAUtoonjs2lO0F+miqEQlzA9XJGOxWBiJsq/COhK2kz7XzryyJdxfaNEH+RN63vRs9osDolOJXlst50hg==}
+  /@floating-ui/react-dom/0.6.1_b5d7bf22a7b46dd4876f0e926ab0c987:
+    resolution: {integrity: sha512-XQbdgj1uWAViEua9PkfzgqOWjYP3dZy21pYpUYB7i5WOf1ZBAqTgCkyipjpJdxP8qGftjnhrTROLGs+DNGYnJg==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
-      '@floating-ui/dom': 0.4.0
+      '@floating-ui/dom': 0.4.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       use-isomorphic-layout-effect: 1.1.1_03a98942b76c57740a9573edba2d1cc1
