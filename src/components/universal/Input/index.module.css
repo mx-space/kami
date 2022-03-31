@@ -1,7 +1,7 @@
 .input-wrap {
   position: relative;
   width: 100%;
-  font-size: 1rem;
+  font-size: max(16px, 1rem);
   padding: 4px 11px;
   border: 1px solid var(--gray);
   display: inline-flex;
@@ -51,6 +51,10 @@
     color: inherit;
     background-color: transparent;
     vertical-align: middle;
+  }
+
+  input {
+    font-size: max(1rem, 16px);
   }
 
   .prefix-wrap {
