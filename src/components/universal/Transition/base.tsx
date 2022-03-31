@@ -16,7 +16,7 @@ export const BaseTransitionView: (
     return (
       <Transition
         key={id}
-        in={true}
+        in
         appear
         mountOnEnter
         unmountOnExit
