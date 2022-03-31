@@ -23,11 +23,7 @@ if (isProd) {
 }
 const configs = withPlugins(plugins, {
   swcMinify: true,
-  experimental: {
-    // ssr and displayName are configured by default
-    styledComponents: !isProd,
-    // outputStandalone: true,
-  },
+
   webpack: (config, options) => {
     config.plugins.push(new WindiCSSWebpackPlugin())
 
