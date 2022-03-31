@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite'
 import React, { FC, useCallback, useEffect, useRef } from 'react'
 import { message } from 'react-message-popup'
 import { loadScript, loadStyleSheet } from 'utils'
+
 import { useStore } from '../../../store'
 import styles from './index.module.css'
 
@@ -50,9 +51,20 @@ export const HighLighter: FC<Props> = observer((props) => {
       if (ref.current) {
         requestAnimationFrame(() => {
           window.Prism?.highlightElement(ref.current)
+
+          requestAnimationFrame(() => {
+            window.Prism?.highlightElement(ref.current)
+          })
         })
       } else {
-        window.Prism?.highlightAll()
+        requestAnimationFrame(() => {
+          window.Prism?.highlightAll()
+          // highlightAll twice
+
+          requestAnimationFrame(() => {
+            window.Prism?.highlightAll()
+          })
+        })
       }
     })
   }, [])
