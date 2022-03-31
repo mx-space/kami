@@ -60,7 +60,7 @@
     "medium-zoom": "1.0.6",
     "mobx": "6.5.0",
     "mobx-react-lite": "3.3.0",
-    "next": "12.1.0",
+    "next": "12.1.4",
     "next-seo": "5.3.0",
     "qier-progress": "1.0.4",
     "randomcolor": "0.6.2",
@@ -83,7 +83,7 @@
   "devDependencies": {
     "@innei-util/eslint-config-react-ts": "latest",
     "@innei-util/prettier": "latest",
-    "@next/bundle-analyzer": "12.1.3",
+    "@next/bundle-analyzer": "12.1.4",
     "@trivago/prettier-plugin-sort-imports": "3.2.0",
     "@types/inflection": "1.13.0",
     "@types/js-cookie": "3.0.1",
