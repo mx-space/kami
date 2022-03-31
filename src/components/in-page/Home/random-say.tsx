@@ -5,11 +5,18 @@ import { apiClient } from 'utils'
 
 let cacheSay = ''
 
-setInterval(() => {
-  cacheSay = ''
-}, 60 * 1000)
 export const HomeRandomSay: FC = memo(() => {
   const update = useUpdate()
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      cacheSay = ''
+    }, 60 * 1000)
+
+    return () => {
+      clearInterval(timer)
+    }
+  }, [])
 
   useEffect(() => {
     if (cacheSay.length > 0) {
