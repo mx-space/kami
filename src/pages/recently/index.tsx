@@ -1,10 +1,10 @@
-import { RecentlyModel } from '@mx-space/api-client'
 import clsx from 'clsx'
 import { JamTrash } from 'components/universal/Icons'
 import { Input } from 'components/universal/Input'
 import { Loading } from 'components/universal/Loading'
 import { Markdown } from 'components/universal/Markdown'
 import { RelativeTime } from 'components/universal/RelativeTime'
+import { Seo } from 'components/universal/Seo'
 import throttle from 'lodash-es/throttle'
 import { observer } from 'mobx-react-lite'
 import { NextPage } from 'next'
@@ -22,6 +22,9 @@ import { useStore } from 'store'
 import { EventTypes } from 'types/events'
 import { NoSSR, eventBus } from 'utils'
 import { apiClient } from 'utils/client'
+
+import { RecentlyModel } from '@mx-space/api-client'
+
 import styles from './index.module.css'
 
 const FETCH_SIZE = 10
@@ -103,6 +106,7 @@ const RecentlyPage: NextPage = () => {
   return (
     <main className="max-w-[50em] relative">
       <h1>动态</h1>
+      <Seo title="动态" />
       <h2 className="text-opacity-80">谢谢你听我诉说</h2>
       {isLogged && <RecentlyBox />}
       <div className="pb-4"></div>

@@ -1,9 +1,11 @@
 import { PlayListType, SectionMusic } from 'components/in-page/SectionMusic'
+import { RiNeteaseCloudMusicFill } from 'components/universal/Icons'
 import { Loading } from 'components/universal/Loading'
 import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import { message } from 'react-message-popup'
 import { apiClient } from 'utils'
+
 import { Seo } from '../../components/universal/Seo'
 
 interface PersonalPlayListType {
@@ -19,6 +21,7 @@ interface MusicData {
   weekdata: PlayListType[]
   alldata: PlayListType[]
   playlist: PersonalPlayListType
+  detail?: any
   uid: number
 }
 
@@ -42,7 +45,22 @@ const MusicView: NextPage = () => {
 
   return (
     <main>
-      <Seo title={`歌单`} openGraph={{ type: 'website' }} />
+      <Seo title={`歌单`} />
+
+      {data.detail && (
+        <div className="flex my-2 justify-end">
+          <a
+            href={`https://music.163.com/#/user/home?id=${data.detail.userId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center"
+          >
+            <RiNeteaseCloudMusicFill height={'3rem'} width={'3rem'} />
+
+            <span className="ml-2">{data.detail.nickname}</span>
+          </a>
+        </div>
+      )}
 
       <SectionMusic
         name="周排行"

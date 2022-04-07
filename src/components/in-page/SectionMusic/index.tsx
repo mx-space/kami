@@ -1,11 +1,13 @@
-import { MaidianAction } from 'constants/maidian'
 import clsx from 'clsx'
 import { MusicIcon, PauseIcon } from 'components/universal/Icons'
+import { Seo } from 'components/universal/Seo'
+import { MaidianAction } from 'constants/maidian'
 import { useAnalyze } from 'hooks/use-analyze'
 import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import { FC, memo, useEffect, useMemo } from 'react'
 import { useStore } from 'store'
+
 import styles from './index.module.css'
 
 export interface PlayListType {
@@ -134,6 +136,7 @@ const PlayingSongItem: FC<SongItemProps> = observer((props) => {
         backgroundSize: `${musicStore.playProgress * 100}% 100%`,
       }}
     >
+      <Seo title={`${props.name} · 歌单`} />
       {useMemo(
         () => (
           <span className={styles['num']}>
