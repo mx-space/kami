@@ -15,7 +15,7 @@ specifiers:
   '@types/lodash-es': 4.17.6
   '@types/node': 17.0.18
   '@types/randomcolor': 0.5.6
-  '@types/react': 17.0.43
+  '@types/react': 17.0.44
   '@types/react-color': 3.0.6
   '@types/react-dom': 17.0.14
   '@types/react-lazyload': 3.2.0
@@ -77,7 +77,7 @@ specifiers:
   zx: 6.0.7
 
 dependencies:
-  '@floating-ui/react-dom': 0.6.0_b5d7bf22a7b46dd4876f0e926ab0c987
+  '@floating-ui/react-dom': 0.6.0_b49bddbe4b905ced4713cb857cca91fa
   '@mx-space/api-client': 0.8.2
   axios: 0.26.1
   clsx: 1.1.1
@@ -120,7 +120,7 @@ devDependencies:
   '@types/lodash-es': 4.17.6
   '@types/node': 17.0.18
   '@types/randomcolor': 0.5.6
-  '@types/react': 17.0.43
+  '@types/react': 17.0.44
   '@types/react-color': 3.0.6
   '@types/react-dom': 17.0.14
   '@types/react-lazyload': 3.2.0
@@ -1519,7 +1519,7 @@ packages:
       '@floating-ui/core': 0.6.0
     dev: false
 
-  /@floating-ui/react-dom/0.6.0_b5d7bf22a7b46dd4876f0e926ab0c987:
+  /@floating-ui/react-dom/0.6.0_b49bddbe4b905ced4713cb857cca91fa:
     resolution: {integrity: sha512-/dF+jpAUtoonjs2lO0F+miqEQlzA9XJGOxWBiJsq/COhK2kz7XzryyJdxfaNEH+RN63vRs9osDolOJXlst50hg==}
     peerDependencies:
       react: '>=16.8.0'
@@ -1528,7 +1528,7 @@ packages:
       '@floating-ui/dom': 0.4.0
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-      use-isomorphic-layout-effect: 1.1.1_03a98942b76c57740a9573edba2d1cc1
+      use-isomorphic-layout-effect: 1.1.1_c8e45b4eb687790dba17b4e1c4b4273f
     transitivePeerDependencies:
       - '@types/react'
     dev: false
@@ -1913,36 +1913,36 @@ packages:
   /@types/react-color/3.0.6:
     resolution: {integrity: sha512-OzPIO5AyRmLA7PlOyISlgabpYUa3En74LP8mTMa0veCA719SvYQov4WLMsHvCgXP+L+KI9yGhYnqZafVGG0P4w==}
     dependencies:
-      '@types/react': 17.0.43
+      '@types/react': 17.0.44
       '@types/reactcss': 1.2.6
     dev: true
 
   /@types/react-dom/17.0.14:
     resolution: {integrity: sha512-H03xwEP1oXmSfl3iobtmQ/2dHF5aBHr8aUMwyGZya6OW45G+xtdzmq6HkncefiBt5JU8DVyaWl/nWZbjZCnzAQ==}
     dependencies:
-      '@types/react': 17.0.43
+      '@types/react': 17.0.44
     dev: true
 
   /@types/react-lazyload/3.2.0:
     resolution: {integrity: sha512-4+r+z8Cf7L/mgxA1vl5uHx5GS/8gY2jqq2p5r5WCm+nUsg9KilwQ+8uaJA3EUlLj57AOzOfGGwwRJ5LOVl8fwA==}
     dependencies:
-      '@types/react': 17.0.43
+      '@types/react': 17.0.44
     dev: true
 
   /@types/react-syntax-highlighter/13.5.2:
     resolution: {integrity: sha512-sRZoKZBGKaE7CzMvTTgz+0x/aVR58ZYUTfB7HN76vC+yQnvo1FWtzNARBt0fGqcLGEVakEzMu/CtPzssmanu8Q==}
     dependencies:
-      '@types/react': 17.0.43
+      '@types/react': 17.0.44
     dev: true
 
   /@types/react-transition-group/4.4.4:
     resolution: {integrity: sha512-7gAPz7anVK5xzbeQW9wFBDg7G++aPLAFY0QaSMOou9rJZpbuI58WAuJrgu+qR92l61grlnCUe7AFX8KGahAgug==}
     dependencies:
-      '@types/react': 17.0.43
+      '@types/react': 17.0.44
     dev: true
 
-  /@types/react/17.0.43:
-    resolution: {integrity: sha512-8Q+LNpdxf057brvPu1lMtC5Vn7J119xrP1aq4qiaefNioQUYANF/CYeK4NsKorSZyUGJ66g0IM+4bbjwx45o2A==}
+  /@types/react/17.0.44:
+    resolution: {integrity: sha512-Ye0nlw09GeMp2Suh8qoOv0odfgCoowfM/9MG6WeRD60Gq9wS90bdkdRtYbRkNhXOpG4H+YXGvj4wOWhAC0LJ1g==}
     dependencies:
       '@types/prop-types': 15.7.4
       '@types/scheduler': 0.16.2
@@ -1952,7 +1952,7 @@ packages:
   /@types/reactcss/1.2.6:
     resolution: {integrity: sha512-qaIzpCuXNWomGR1Xq8SCFTtF4v8V27Y6f+b9+bzHiv087MylI/nTCqqdChNeWS7tslgROmYB7yeiruWX7WnqNg==}
     dependencies:
-      '@types/react': 17.0.43
+      '@types/react': 17.0.44
     dev: true
 
   /@types/remove-markdown/0.3.1:
@@ -6484,7 +6484,7 @@ packages:
       use-persisted-state: 0.3.3_react@17.0.2
     dev: false
 
-  /use-isomorphic-layout-effect/1.1.1_03a98942b76c57740a9573edba2d1cc1:
+  /use-isomorphic-layout-effect/1.1.1_c8e45b4eb687790dba17b4e1c4b4273f:
     resolution: {integrity: sha512-L7Evj8FGcwo/wpbv/qvSfrkHFtOpCzvM5yl2KVyDJoylVuSvzphiiasmjgQPttIGBAy2WKiBNR98q8w7PiNgKQ==}
     peerDependencies:
       '@types/react': '*'
@@ -6493,7 +6493,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@types/react': 17.0.43
+      '@types/react': 17.0.44
       react: 17.0.2
     dev: false
 
