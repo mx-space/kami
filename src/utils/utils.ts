@@ -6,10 +6,9 @@
  * @FilePath: /web/utils/utils.ts
  * @Coding with Love
  */
-
 import type { ServerResponse } from 'http'
 import dynamic from 'next/dynamic'
-import { ComponentType } from 'react'
+import { ComponentType, FC } from 'react'
 import RemoveMarkdown from 'remove-markdown'
 
 export const isClientSide = () => {
@@ -64,8 +63,8 @@ export const resolveUrl = (pathname: string | undefined, base: string) => {
 }
 
 // export const NoSSR = <T>(comp: ComponentType<T>) => noSSR(() => comp, {})
-export const NoSSR = <T>(comp: ComponentType<T>) =>
-  dynamic(() => Promise.resolve(comp), { ssr: false })
+export const NoSSR = <T = any>(comp: FC<T>) =>
+  dynamic(() => Promise.resolve(comp), { ssr: false }) as FC<T>
 
 // for api server
 export const writeBody = (

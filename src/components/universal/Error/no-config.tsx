@@ -1,7 +1,8 @@
 import { FC } from 'react'
+
 import { ErrorView } from '.'
 
-export const NoConfigErrorView: FC = (props) => {
+export const NoConfigErrorView: FC = () => {
   return (
     <ErrorView
       statusCode={408}

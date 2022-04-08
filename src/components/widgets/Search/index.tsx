@@ -1,7 +1,7 @@
-import { MaidianAction } from 'constants/maidian'
 import clsx from 'clsx'
 import { EmptyIcon, IonSearch } from 'components/universal/Icons'
 import { OverLay, OverlayProps } from 'components/universal/Overlay'
+import { MaidianAction } from 'constants/maidian'
 import { useAnalyze } from 'hooks/use-analyze'
 import { useHotKey } from 'hooks/use-hotkey'
 import { throttle } from 'lodash-es'
@@ -17,6 +17,7 @@ import {
 } from 'react'
 import { useStore } from 'store'
 import { apiClient } from 'utils'
+
 import styles from './index.module.css'
 
 export type SearchPanelProps = {

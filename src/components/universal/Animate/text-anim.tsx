@@ -31,7 +31,7 @@ export const TextFade: FC<
     <div {...rest}>
       {Array.from(text ?? (children as string)).map((char, i) => (
         <span
-          key={char}
+          key={i}
           className="inline-block whitespace-pre"
           style={{
             animation: `${name} ${duration}ms both linear`,

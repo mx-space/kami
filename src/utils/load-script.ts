@@ -1,3 +1,5 @@
+import { isDev } from './utils'
+
 const isLoadScriptSet = new Set()
 
 export function loadScript(url: string) {
@@ -12,6 +14,10 @@ export function loadScript(url: string) {
     isLoadScriptSet.add(url)
     script.onload = function (e) {
       resolve(e)
+    }
+
+    if (isDev) {
+      console.log('load script: ', url)
     }
 
     script.onerror = function (e) {

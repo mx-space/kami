@@ -4,10 +4,11 @@ import { CustomLogo as Logo } from 'components/universal/Logo'
 import { useInitialData } from 'hooks/use-initial-data'
 import { useSingleAndDoubleClick } from 'hooks/use-single-double-click'
 import { observer } from 'mobx-react-lite'
-import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { FC, useMemo, useState } from 'react'
 import { useStore } from 'store'
+import { NoSSR } from 'utils'
+
 import { HeaderActionBasedOnRouterPath } from './HeaderActionBasedOnRouterPath'
 import { HeaderDrawer } from './HeaderDrawer'
 import { HeaderDrawerNavigation } from './HeaderDrawerNavigation'
@@ -123,4 +124,4 @@ export const _Header: FC = observer(() => {
     </>
   )
 })
-export const Header = dynamic(() => Promise.resolve(_Header), { ssr: false })
+export const Header = NoSSR(_Header)

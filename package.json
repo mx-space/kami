@@ -47,8 +47,8 @@
     "last 2 Firefox versions"
   ],
   "dependencies": {
-    "@floating-ui/react-dom": "0.6.0",
-    "@mx-space/api-client": "0.8.2",
+    "@floating-ui/react-dom": "0.6.1",
+    "@mx-space/api-client": "0.9.0",
     "axios": "0.26.1",
     "clsx": "1.1.1",
     "css-spring": "4.1.0",
@@ -56,22 +56,21 @@
     "devtools-detector": "2.0.6",
     "js-cookie": "3.0.1",
     "lodash-es": "4.17.21",
-    "mdurl": "*",
     "medium-zoom": "1.0.6",
     "mobx": "6.5.0",
     "mobx-react-lite": "3.3.0",
     "next": "12.1.0",
-    "next-seo": "5.3.0",
+    "next-seo": "5.4.0",
     "qier-progress": "1.0.4",
     "randomcolor": "0.6.2",
-    "react": "17.0.2",
-    "react-countup": "6.1.1",
-    "react-dom": "17.0.2",
+    "react": "18.0.0",
+    "react-countup": "6.2.0",
+    "react-dom": "18.0.0",
     "react-hook-form": "7.29.0",
     "react-intersection-observer": "8.33.1",
     "react-markdown": "4.3.1",
     "react-masonry-css": "1.0.16",
-    "react-message-popup": "0.2.0",
+    "react-message-popup": "1.0.0-alpha.1",
     "react-toastify": "8.2.0",
     "react-transition-group": "4.4.2",
     "react-use": "17.3.2",
@@ -90,7 +89,7 @@
     "@types/lodash-es": "4.17.6",
     "@types/node": "17.0.18",
     "@types/randomcolor": "0.5.6",
-    "@types/react": "17.0.44",
+    "@types/react": "^17",
     "@types/react-color": "3.0.6",
     "@types/react-dom": "18.0.0",
     "@types/react-lazyload": "3.2.0",
@@ -106,7 +105,7 @@
     "js-yaml": "*",
     "lint-staged": "12.3.7",
     "next-compose-plugins": "2.2.1",
-    "next-pwa": "5.4.6",
+    "next-pwa": "5.4.7",
     "postcss": "8.4.12",
     "postcss-import": "14.1.0",
     "postcss-nested": "5.0.6",
@@ -122,6 +121,7 @@
     "zx": "6.0.7"
   },
   "resolutions": {
-    "react-use": "17.3.2"
+    "react-use": "17.3.2",
+    "@types/react": "^17"
   }
 }

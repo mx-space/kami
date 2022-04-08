@@ -2,8 +2,10 @@ import { ImageLazy } from 'components/universal/Image'
 import pick from 'lodash/pick'
 import Link from 'next/link'
 import { FC, MouseEvent, ReactNode, forwardRef, memo } from 'react'
+
 import styles from './index.module.css'
 import { SectionWrap } from './section'
+
 export interface SectionNewsProps {
   title: string
   icon: ReactNode
@@ -22,6 +24,8 @@ interface CardProps {
   cover: string
   shade?: boolean
   title?: string
+
+  children?: ReactNode
 }
 
 const Card: FC<CardProps> = (props) => {
@@ -79,7 +83,7 @@ interface SectionCardProps {
   ) => void
 }
 
-export const SectionCard: FC<SectionCardProps> = memo(
+export const SectionCard = memo<SectionCardProps>(
   ({ title, desc, src, onClick, href }) => {
     return (
       <div className={`col-6 col-m-3`} style={{ marginTop: '2rem' }}>
