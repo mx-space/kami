@@ -1,8 +1,9 @@
-import { AggregateRoot } from '@mx-space/api-client'
 import { defaultConfigs } from 'configs.default'
 import { cloneDeep, mergeWith } from 'lodash-es'
 import { FC, createContext, memo, useEffect, useMemo } from 'react'
 import { KamiConfig } from 'types/config'
+
+import { AggregateRoot } from '@mx-space/api-client'
 
 export type InitialDataType = {
   aggregateData: AggregateRoot
@@ -26,7 +27,7 @@ export const InitialContextProvider: FC<{ value: InitialDataType }> = memo(
     }, [])
     useEffect(() => {
       window.data = { ...props.value, config: mergeThemeConfig }
-    }, [])
+    }, [mergeThemeConfig, props.value])
 
     return (
       <InitialContext.Provider
