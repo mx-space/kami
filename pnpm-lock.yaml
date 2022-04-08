@@ -53,7 +53,7 @@ specifiers:
   qier-progress: 1.0.4
   randomcolor: 0.6.2
   react: 17.0.2
-  react-countup: 6.1.1
+  react-countup: 6.2.0
   react-dom: 17.0.2
   react-hook-form: 7.29.0
   react-intersection-observer: 8.33.1
@@ -95,7 +95,7 @@ dependencies:
   qier-progress: 1.0.4
   randomcolor: 0.6.2
   react: 17.0.2
-  react-countup: 6.1.1_react@17.0.2
+  react-countup: 6.2.0_react@17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-hook-form: 7.29.0_react@17.0.2
   react-intersection-observer: 8.33.1_react@17.0.2
@@ -2703,8 +2703,8 @@ packages:
       yaml: 1.10.2
     dev: true
 
-  /countup.js/2.0.8:
-    resolution: {integrity: sha512-pW3xwwD+hB+xmtI16xFcuLS0D5hSQqPQWkZOdgpKQyzxCquDNo2VCFPkRw12vmvdpnicXVTcjmYiakG6biwINg==}
+  /countup.js/2.1.0:
+    resolution: {integrity: sha512-VanMzLEjkt3Hp/ty5BXikM8s4wE3OH4m1AnFro7THR86nYGRvGfGCoV+zrRJcqTbZi7X1egkLSIeUKDz7+4XLA==}
     dev: false
 
   /cross-env/7.0.3:
@@ -5268,12 +5268,12 @@ packages:
     resolution: {integrity: sha512-Mn6TbyYpFgwFuQ8KJKqf3bqqY9O1y37/0jgSK/61PUxV4QfIMv0+K2ioq8DfOjkBslcjwSzRfIDEXfzA9aCx7A==}
     dev: false
 
-  /react-countup/6.1.1_react@17.0.2:
-    resolution: {integrity: sha512-9mYlnk/yCFg3g2/65pCTex6mr9h0eYdDMIL4T5nfLj/RzoiqY03wlPxZglzbJ6OzXvU37OmYApwQ4WMZNFr8Aw==}
+  /react-countup/6.2.0_react@17.0.2:
+    resolution: {integrity: sha512-3WOKAQpWgjyFoH231SHEpIpHhDGb5g5EkTppM6T7vLa3X+8WMdw6750vVcY0wxysKiY00gTFhDwSB5qLU+xPZA==}
     peerDependencies:
       react: '>= 16.3.0'
     dependencies:
-      countup.js: 2.0.8
+      countup.js: 2.1.0
       react: 17.0.2
     dev: false
 
