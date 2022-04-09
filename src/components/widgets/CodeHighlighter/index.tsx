@@ -41,32 +41,37 @@ export const HighLighter: FC<Props> = observer((props) => {
       loadScript(
         'https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/prism/1.23.0/components/prism-core.min.js',
       ),
-      loadScript(
-        'https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/prism/1.23.0/plugins/autoloader/prism-autoloader.min.js',
-      ),
-      loadScript(
-        'https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/prism/1.23.0/plugins/line-numbers/prism-line-numbers.min.js',
-      ),
-    ]).then(() => {
-      if (ref.current) {
-        requestAnimationFrame(() => {
-          window.Prism?.highlightElement(ref.current)
-
+    ])
+      .then(() =>
+        Promise.all([
+          loadScript(
+            'https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/prism/1.23.0/plugins/autoloader/prism-autoloader.min.js',
+          ),
+          loadScript(
+            'https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/prism/1.23.0/plugins/line-numbers/prism-line-numbers.min.js',
+          ),
+        ]),
+      )
+      .then(() => {
+        if (ref.current) {
           requestAnimationFrame(() => {
             window.Prism?.highlightElement(ref.current)
-          })
-        })
-      } else {
-        requestAnimationFrame(() => {
-          window.Prism?.highlightAll()
-          // highlightAll twice
 
+            requestAnimationFrame(() => {
+              window.Prism?.highlightElement(ref.current)
+            })
+          })
+        } else {
           requestAnimationFrame(() => {
             window.Prism?.highlightAll()
+            // highlightAll twice
+
+            requestAnimationFrame(() => {
+              window.Prism?.highlightAll()
+            })
           })
-        })
-      }
-    })
+        }
+      })
   }, [])
 
   const ref = useRef<HTMLElement>(null)

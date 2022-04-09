@@ -1,7 +1,6 @@
 import classNames from 'clsx'
 import mediumZoom from 'medium-zoom'
 import {
-  ClassAttributes,
   DetailedHTMLProps,
   FC,
   ImgHTMLAttributes,
@@ -9,13 +8,16 @@ import {
   memo,
   useCallback,
   useEffect,
+  useImperativeHandle,
   useRef,
   useState,
 } from 'react'
 import LazyLoad from 'react-lazyload'
+
 import { useCalculateSize } from '../../../hooks/use-calculate-size'
 import { escapeHTMLTag } from '../../../utils'
 import styles from './index.module.css'
+
 interface ImageProps {
   defaultImage?: string
   src: string
@@ -72,116 +74,129 @@ const Image: FC<
   )
 })
 
-export const ImageLazy: FC<
-  ImageProps &
-    DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
-> = memo((props) => {
-  const {
-    defaultImage,
-    src,
-    alt = src,
-    height,
-    width,
-    backgroundColor,
-    popup = false,
-    style,
-    overflowHidden = false,
-    ...rest
-  } = props
+export type ImageLazyRef = { status: 'loading' | 'loaded' }
 
-  const realImageRef = useRef<HTMLImageElement>(null)
-  const placeholderRef = useRef<HTMLDivElement>(null)
+export const ImageLazy = memo(
+  forwardRef<
+    ImageLazyRef,
+    ImageProps &
+      DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
+  >((props, ref) => {
+    const {
+      defaultImage,
+      src,
+      alt = src,
+      height,
+      width,
+      backgroundColor,
+      popup = false,
+      style,
+      overflowHidden = false,
+      ...rest
+    } = props
+    useImperativeHandle(ref, () => {
+      return {
+        status: loaded ? 'loaded' : ('loading' as any),
+      }
+    })
+    const realImageRef = useRef<HTMLImageElement>(null)
+    const placeholderRef = useRef<HTMLDivElement>(null)
 
-  const wrapRef = useRef<HTMLDivElement>(null)
-  const [calculatedSize, calculateDimensions] = useCalculateSize()
+    const wrapRef = useRef<HTMLDivElement>(null)
+    const [calculatedSize, calculateDimensions] = useCalculateSize()
 
-  const [loaded, setLoad] = useState(false)
-  const loaderFn = useCallback(() => {
-    if (!src) {
-      return
-    }
+    const [loaded, setLoad] = useState(false)
+    const loaderFn = useCallback(() => {
+      if (!src) {
+        return
+      }
 
-    const image = new window.Image()
-    image.src = src as string
-    if (!height && !width && wrapRef.current?.parentElement?.parentElement) {
-      calculateDimensions(wrapRef.current?.parentElement?.parentElement, image)
-    }
+      const image = new window.Image()
+      image.src = src as string
+      if (!height && !width && wrapRef.current?.parentElement?.parentElement) {
+        calculateDimensions(
+          wrapRef.current?.parentElement?.parentElement,
+          image,
+        )
+      }
 
-    image.onload = () => {
-      setLoad(true)
-      try {
-        if (placeholderRef && placeholderRef.current) {
-          placeholderRef.current.classList.add('hide')
-        }
+      image.onload = () => {
+        setLoad(true)
+        try {
+          if (placeholderRef && placeholderRef.current) {
+            placeholderRef.current.classList.add('hide')
+          }
 
-        // eslint-disable-next-line no-empty
-      } catch {}
-    }
-    image.onerror = () => {
-      try {
-        if (placeholderRef && placeholderRef.current) {
-          placeholderRef.current.innerHTML = `<p style="color: currentColor; filter: invert(100%) brightness(1.5)"><span>图片加载失败!</span><br/>
+          // eslint-disable-next-line no-empty
+        } catch {}
+      }
+      image.onerror = () => {
+        try {
+          if (placeholderRef && placeholderRef.current) {
+            placeholderRef.current.innerHTML = `<p style="color: currentColor; filter: invert(100%) brightness(1.5)"><span>图片加载失败!</span><br/>
           <a href="${escapeHTMLTag(image.src)}" target="_blank">${escapeHTMLTag(
-            image.src,
-          )}</a></p>`
-          placeholderRef.current.style.zIndex = '2'
-        }
-        // eslint-disable-next-line no-empty
-      } catch {}
-    }
-  }, [calculateDimensions, height, src, width])
+              image.src,
+            )}</a></p>`
+            placeholderRef.current.style.zIndex = '2'
+          }
+          // eslint-disable-next-line no-empty
+        } catch {}
+      }
+    }, [calculateDimensions, height, src, width])
 
-  return (
-    <figure style={style} className="inline-block">
-      {defaultImage ? (
-        <img src={defaultImage} alt={alt} {...rest} ref={realImageRef} />
-      ) : (
-        <div
-          className="transition-none relative max-w-full m-auto inline-block min-h-[1px]"
-          style={{
-            height: height || calculatedSize.height,
-            width: width || calculatedSize.width,
+    return (
+      <figure style={style} className="inline-block">
+        {defaultImage ? (
+          <img src={defaultImage} alt={alt} {...rest} ref={realImageRef} />
+        ) : (
+          <div
+            className="transition-none relative max-w-full m-auto inline-block min-h-[1px]"
+            style={{
+              height: loaded ? undefined : height || calculatedSize.height,
+              width: loaded ? undefined : width || calculatedSize.width,
 
-            ...(overflowHidden
-              ? { overflow: 'hidden', borderRadius: '3px' }
-              : {}),
-          }}
-          ref={wrapRef}
-        >
-          <LazyLoad
-            offset={300}
-            once
-            placeholder={
-              <PlaceholderImage
-                height={height}
-                width={width}
-                backgroundColor={backgroundColor}
-              />
-            }
+              ...(overflowHidden
+                ? { overflow: 'hidden', borderRadius: '3px' }
+                : {}),
+            }}
+            ref={wrapRef}
+            data-info={JSON.stringify({ height, width, calculatedSize })}
           >
-            <Image
-              src={src}
-              alt={alt.replace(/^[!¡]/, '') || ''}
-              popup={popup}
-              loaded={loaded}
-              loaderFn={loaderFn}
-            />
-            {!loaded && (
-              <PlaceholderImage
-                height={height}
-                width={width}
-                backgroundColor={backgroundColor}
+            <LazyLoad
+              offset={300}
+              once
+              placeholder={
+                <PlaceholderImage
+                  height={height}
+                  width={width}
+                  backgroundColor={backgroundColor}
+                />
+              }
+            >
+              <Image
+                src={src}
+                alt={alt.replace(/^[!¡]/, '') || ''}
+                popup={popup}
+                loaded={loaded}
+                loaderFn={loaderFn}
               />
-            )}
-          </LazyLoad>
-        </div>
-      )}
-      {alt && (alt.startsWith('!') || alt.startsWith('¡')) && (
-        <figcaption className={styles['img-alt']}>{alt.slice(1)}</figcaption>
-      )}
-    </figure>
-  )
-})
+              {!loaded && (
+                <PlaceholderImage
+                  height={height}
+                  width={width}
+                  backgroundColor={backgroundColor}
+                />
+              )}
+            </LazyLoad>
+          </div>
+        )}
+        {alt && (alt.startsWith('!') || alt.startsWith('¡')) && (
+          <figcaption className={styles['img-alt']}>{alt.slice(1)}</figcaption>
+        )}
+      </figure>
+    )
+  }),
+)
 
 const PlaceholderImage = memo(
   forwardRef<
@@ -202,22 +217,3 @@ const PlaceholderImage = memo(
     )
   }),
 )
-export const ImageLazyWithPopup: FC<
-  { src: string; alt?: string } & Partial<
-    ImageProps &
-      ClassAttributes<HTMLImageElement> &
-      ImgHTMLAttributes<HTMLImageElement>
-  >
-> = (props) => {
-  const { src, alt, height, width, ...rest } = props
-  return (
-    <ImageLazy
-      src={src}
-      alt={alt || src}
-      height={height}
-      width={width}
-      popup
-      {...rest}
-    ></ImageLazy>
-  )
-}

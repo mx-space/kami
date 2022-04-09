@@ -1,9 +1,10 @@
-import { ImageLazyWithPopup } from 'components/universal/Image'
+import { ImageLazy, ImageLazyRef } from 'components/universal/Image'
 import { reaction } from 'mobx'
 import { observer } from 'mobx-react-lite'
-import React, { FC, useContext, useEffect, useState } from 'react'
+import React, { FC, useContext, useEffect, useRef, useState } from 'react'
 import { useStore } from 'store'
 import { calculateDimensions } from 'utils/images'
+
 import { ImageSizeMetaContext } from '../../../../context/image-size'
 
 const getContainerSize = () => {
@@ -20,10 +21,16 @@ const getContainerSize = () => {
  */
 const _Image: FC<{ src: string; alt?: string }> = observer(({ src, alt }) => {
   const { appUIStore } = useStore()
+  const imageRef = useRef<ImageLazyRef>(null)
   useEffect(() => {
     const disposer = reaction(
       () => appUIStore.viewport.w | appUIStore.viewport.h,
       () => {
+        if (imageRef.current?.status === 'loaded') {
+          disposer()
+
+          return
+        }
         setMaxWidth(getContainerSize())
       },
     )
@@ -63,8 +70,7 @@ const _Image: FC<{ src: string; alt?: string }> = observer(({ src, alt }) => {
   }
 
   const max = {
-    width: maxWidth ?? 500,
-
+    width: maxWidth ?? 644,
     height: Infinity,
   }
 
@@ -74,9 +80,11 @@ const _Image: FC<{ src: string; alt?: string }> = observer(({ src, alt }) => {
   }
 
   return (
-    <ImageLazyWithPopup
+    <ImageLazy
+      popup
+      ref={imageRef}
       src={src}
-      alt={alt}
+      alt={alt || src}
       backgroundColor={accent}
       height={cal.height}
       width={cal.width}
