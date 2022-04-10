@@ -1,5 +1,5 @@
 import { ImageLazy } from 'components/universal/Image'
-import pick from 'lodash/pick'
+import pick from 'lodash-es/pick'
 import Link from 'next/link'
 import { FC, MouseEvent, ReactNode, forwardRef, memo } from 'react'
 

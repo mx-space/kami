@@ -1,5 +1,5 @@
 import classNames from 'clsx'
-import throttle from 'lodash/throttle'
+import throttle from 'lodash-es/throttle'
 import {
   FC,
   memo,
@@ -12,9 +12,11 @@ import {
 import { TransitionGroup } from 'react-transition-group'
 import { CustomEventTypes } from 'types/events'
 import { eventBus } from 'utils'
+
 import { RightLeftTransitionView } from '../Transition/right-left'
 import styles from './index.module.css'
 import { TocItem } from './item'
+
 export type TocHeading = {
   title: string
   depth: number

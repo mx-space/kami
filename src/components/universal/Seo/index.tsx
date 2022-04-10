@@ -1,12 +1,14 @@
 import { useInitialData, useThemeConfig } from 'hooks/use-initial-data'
 import { sample } from 'lodash-es'
-import merge from 'lodash/merge'
+import merge from 'lodash-es/merge'
 import { observer } from 'mobx-react-lite'
 import { NextSeo, NextSeoProps } from 'next-seo'
 import type { OpenGraph } from 'next-seo/lib/types'
 import { FC } from 'react'
+
 import { useStore } from '../../../store'
 import { getRandomImage } from '../../../utils'
+
 type SEOProps = {
   title: string
   description?: string

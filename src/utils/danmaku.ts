@@ -6,8 +6,9 @@
  * @FilePath: /mx-web/utils/danmaku.ts
  * @Copyright
  */
-import range from 'lodash/range'
-import sample from 'lodash/sample'
+import range from 'lodash-es/range'
+import sample from 'lodash-es/sample'
+
 const createDanmakuWrap = () => {
   const $root = document.body
   const $wrap = document.getElementById('dangmaku')

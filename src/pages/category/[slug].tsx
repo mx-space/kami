@@ -1,10 +1,12 @@
-import { CategoryModel, CategoryWithChildrenModel } from '@mx-space/api-client'
 import { RightLeftTransitionView } from 'components/universal/Transition/right-left'
-import omit from 'lodash/omit'
+import omit from 'lodash-es/omit'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { TransitionGroup } from 'react-transition-group'
 import { apiClient } from 'utils/client'
+
+import { CategoryModel, CategoryWithChildrenModel } from '@mx-space/api-client'
+
 import { ArticleLayout } from '../../components/layouts/ArticleLayout'
 import { SEO } from '../../components/universal/Seo'
 
