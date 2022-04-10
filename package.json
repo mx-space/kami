@@ -105,7 +105,7 @@
     "js-yaml": "*",
     "lint-staged": "12.3.7",
     "next-compose-plugins": "2.2.1",
-    "next-pwa": "5.4.7",
+    "next-pwa": "5.5.0",
     "postcss": "8.4.12",
     "postcss-import": "14.1.0",
     "postcss-nested": "5.0.6",
