@@ -8,7 +8,7 @@ specifiers:
   '@floating-ui/react-dom': 0.6.1
   '@innei-util/eslint-config-react-ts': latest
   '@innei-util/prettier': latest
-  '@mx-space/api-client': 0.9.0
+  '@mx-space/api-client': 0.9.1
   '@next/bundle-analyzer': 12.1.4
   '@trivago/prettier-plugin-sort-imports': 3.2.0
   '@types/inflection': 1.13.0
@@ -78,7 +78,7 @@ specifiers:
 
 dependencies:
   '@floating-ui/react-dom': 0.6.1_17da3c48954ec03de9c1c37ece0f2b26
-  '@mx-space/api-client': 0.9.0
+  '@mx-space/api-client': 0.9.1
   axios: 0.26.1
   clsx: 1.1.1
   css-spring: 4.1.0
@@ -1655,8 +1655,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.11
     dev: true
 
-  /@mx-space/api-client/0.9.0:
-    resolution: {integrity: sha512-ARmqDUKJ22RC2lOtf37PwuxGywOx4L1a77LNvERzs4tmIqnEaljSBCWtdopRCHwL0rHvhzXFnF3gu6srxn04ZQ==}
+  /@mx-space/api-client/0.9.1:
+    resolution: {integrity: sha512-VTEVcwA+m7EIbxMf0dzyzSxGmrrcTR0s0sBflR4srwhNzlegpZJOtPHenOX6+6r+xDFBZ2PesSh0WGMWvciXKw==}
     engines: {pnpm: '>=6'}
     dependencies:
       camelcase-keys: 7.0.2
@@ -4139,7 +4139,7 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
     dependencies:
-      minimist: 1.2.5
+      minimist: 1.2.6
     dev: true
 
   /json5/2.2.1:
@@ -4312,6 +4312,7 @@ packages:
   /lru-cache/7.8.0:
     resolution: {integrity: sha512-AmXqneQZL3KZMIgBpaPTeI6pfwh+xQ2vutMsyqOu1TBdEXFZgpG/80wuJ531w2ZN7TI0/oc8CPxzh/DKQudZqg==}
     engines: {node: '>=12'}
+    deprecated: Please update to latest patch version to fix memory leak https://github.com/isaacs/node-lru-cache/issues/227
     dev: true
 
   /magic-string/0.25.7:
