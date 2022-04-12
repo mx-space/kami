@@ -6,6 +6,7 @@ import {
   memo,
   useMemo,
 } from 'react'
+
 import { ArticleLayoutContextProvider } from './hooks'
 import styles from './index.module.css'
 import { ArticleLayoutTitle } from './title'
@@ -55,9 +56,7 @@ export const ArticleLayout = memo(
               timeout={useMemo(() => ({ enter: delay ?? 300 }), [delay])}
               key={id}
             >
-              <article className="main-article-md" key={id}>
-                {children}
-              </article>
+              {children}
             </BottomUpTransitionView>
           </main>
         </ArticleLayoutContextProvider>

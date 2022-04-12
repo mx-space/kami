@@ -7,6 +7,7 @@ import { ReactNode, forwardRef, useCallback } from 'react'
 import { useStore } from 'store'
 import { resolveUrl } from 'utils'
 import { apiClient } from 'utils/client'
+
 interface NoteLayoutProps {
   title: string
   tips?: string
@@ -40,10 +41,10 @@ export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
           unmountOnExit
           timeout={0}
         >
-          <article className={'note-article main-article-md relative'}>
-            <h1>
+          <div className={'note-article relative'}>
+            <div className="title-headline text-light-brown">
               <span className="inline-flex items-center">
-                {dateFormat}
+                <time className="font-medium">{dateFormat}</time>
                 <div className="ml-4 inline-block">
                   {isLogged ? (
                     bookmark ? (
@@ -62,23 +63,24 @@ export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
                   ) : null}
                 </div>
               </span>
-            </h1>
+            </div>
+            <article>
+              <h1 title={tips} className="text-center !mt-4 !before:hidden">
+                {title}
+                {isLogged && url ? (
+                  <a
+                    className="edit-link"
+                    target="_blank"
+                    href={resolveUrl(`/#/notes/edit?id=${id}`, url.adminUrl)!}
+                  >
+                    编辑
+                  </a>
+                ) : null}
+              </h1>
 
-            <h2 title={tips} className="text-center">
-              {title}
-              {isLogged && url ? (
-                <a
-                  className="edit-link"
-                  target="_blank"
-                  href={resolveUrl(`/#/notes/edit?id=${id}`, url.adminUrl)!}
-                >
-                  编辑
-                </a>
-              ) : null}
-            </h2>
-
-            {children}
-          </article>
+              {children}
+            </article>
+          </div>
         </BottomUpTransitionView>
 
         <NoteTimelineList noteId={id} />

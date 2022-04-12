@@ -406,6 +406,11 @@ article > h1 {
   margin-top: 5em;
 }
 
+figure {
+  width: 100% !important;
+  text-align: center !important;
+}
+
 /* layer */
 .app-content {
   min-height: calc(100vh - 10vw - 7.75em);
@@ -427,7 +432,8 @@ main {
 }
 
 article > h1:first-child,
-h1.headline {
+h1.headline,
+.title-headline {
   margin-top: 0;
   font-size: 1.2rem;
 
@@ -453,13 +459,6 @@ h1.headline {
 
 .note-content pre > code {
   max-height: 25em;
-}
-
-.main-article-md {
-  figure {
-    width: 100% !important;
-    text-align: center !important;
-  }
 }
 
 .kami-more {

@@ -1,4 +1,3 @@
-import { PostModel } from '@mx-space/api-client'
 import { ArticleLayout } from 'components/layouts/ArticleLayout'
 import {
   FeHash,
@@ -30,6 +29,9 @@ import { message } from 'react-message-popup'
 import { store, useStore } from 'store'
 import { apiClient } from 'utils/client'
 import { springScrollToTop } from 'utils/spring'
+
+import { PostModel } from '@mx-space/api-client'
+
 import { Copyright } from '../../../components/widgets/Copyright'
 import {
   getSummaryFromMd,
@@ -212,12 +214,15 @@ export const PostView: PageOnlyProps = observer((props) => {
               <ImageSizeMetaContext.Provider
                 value={imagesRecord2Map(post.images)}
               >
-                <Markdown
-                  codeBlockFully
-                  value={post.text}
-                  escapeHtml={false}
-                  toc
-                />
+                <article>
+                  <h1 className="hidden">{post.title}</h1>
+                  <Markdown
+                    codeBlockFully
+                    value={post.text}
+                    escapeHtml={false}
+                    toc
+                  />
+                </article>
               </ImageSizeMetaContext.Provider>
               {post.copyright && isClientSide() ? (
                 <Copyright

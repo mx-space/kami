@@ -1,4 +1,3 @@
-import { PageModel } from '@mx-space/api-client'
 import { ArticleLayout } from 'components/layouts/ArticleLayout'
 import { buildStoreDataLoadableView } from 'components/universal/LoadableView'
 import { Markdown } from 'components/universal/Markdown'
@@ -13,6 +12,9 @@ import { store, useStore } from 'store'
 import { noop } from 'utils'
 import { imagesRecord2Map } from 'utils/images'
 import { springScrollToTop } from 'utils/spring'
+
+import { PageModel } from '@mx-space/api-client'
+
 import { Seo } from '../../components/universal/Seo'
 import { ImageSizeMetaContext } from '../../context/image-size'
 import styles from './index.module.css'
@@ -47,7 +49,10 @@ const PageView: PageOnlyProps = observer((props) => {
           [page.images],
         )}
       >
-        <Markdown value={text} escapeHtml={false} toc />
+        <article>
+          <h1 className="hidden">{title}</h1>
+          <Markdown value={text} escapeHtml={false} toc />
+        </article>
       </ImageSizeMetaContext.Provider>
       {useMemo(
         () => (
