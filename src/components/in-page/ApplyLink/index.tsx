@@ -70,7 +70,6 @@ export const ApplyForLink: FC = () => {
       message.error('请填写网站名称')
       return
     }
-    console.log(state)
 
     apiClient.link.applyLink({ ...state }).then(() => {
       dispatch({ type: 'reset' })
