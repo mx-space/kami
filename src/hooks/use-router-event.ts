@@ -1,11 +1,20 @@
 import { Router } from 'next/router'
-import QProgress from 'qier-progress'
 import { useEffect } from 'react'
+import { isClientSide, isServerSide } from 'utils'
+
+import QProgress from '../../third/qp'
 import { useAnalyze } from './use-analyze'
-const Progress = new QProgress({ colorful: false, color: '#27ae60' })
+
 export const useRouterEvent = () => {
   const { pageview } = useAnalyze()
   useEffect(() => {
+    if (isServerSide()) {
+      return
+    }
+    const Progress = new QProgress({ colorful: false, color: '#27ae60' })
+    if (isClientSide()) {
+      ;(window as any).process = Progress
+    }
     Router.events.on('routeChangeStart', () => {
       Progress.start()
       history.backPath = history.backPath
@@ -23,5 +32,5 @@ export const useRouterEvent = () => {
     })
 
     Router.events.on('routeChangeComplete', (url) => pageview(url))
-  })
+  }, [])
 }

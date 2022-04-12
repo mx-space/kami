@@ -42,7 +42,7 @@ export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
           timeout={0}
         >
           <div className={'note-article relative'}>
-            <div className="title-headline text-light-brown">
+            <div className="title-headline text-light-brown dark:text-shizuku-text">
               <span className="inline-flex items-center">
                 <time className="font-medium">{dateFormat}</time>
                 <div className="ml-4 inline-block">

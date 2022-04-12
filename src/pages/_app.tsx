@@ -1,6 +1,7 @@
 // prettier-ignore-start
 import 'windi.css'
 import 'assets/styles/main.css'
+import '../../third/qp/index.css'
 
 // prettier-ignore-end
 import { BasicLayout } from 'components/layouts/BasicLayout'

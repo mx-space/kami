@@ -1,4 +1,6 @@
-import { FC, memo } from 'react'
+import { FC, memo, useEffect, useState } from 'react'
+import { useInView } from 'react-intersection-observer'
+
 import styles from './index.module.css'
 
 export type LoadingProps = {
@@ -6,9 +8,21 @@ export type LoadingProps = {
 }
 
 export const Loading: FC<LoadingProps> = memo(({ loadingText }) => {
+  const [pause, setPause] = useState(true)
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+  })
+
+  useEffect(() => {
+    if (inView) {
+      setPause(false)
+    } else {
+      setPause(true)
+    }
+  }, [inView])
   return (
-    <div className={styles['loading']}>
-      <div className="icon">
+    <div className={styles['loading']} ref={ref}>
+      <div className="icon" key="icon">
         <svg
           className="m-auto bg-transparent block"
           width="200px"
@@ -17,15 +31,17 @@ export const Loading: FC<LoadingProps> = memo(({ loadingText }) => {
           preserveAspectRatio="xMidYMid"
         >
           <circle cx="50" cy="51.3828" r="13" fill="#e15b64">
-            <animate
-              attributeName="cy"
-              dur="1s"
-              repeatCount="indefinite"
-              calcMode="spline"
-              keySplines="0.45 0 0.9 0.55;0 0.45 0.55 0.9"
-              keyTimes="0;0.5;1"
-              values="23;77;23"
-            ></animate>
+            {!pause && (
+              <animate
+                attributeName="cy"
+                dur="1s"
+                repeatCount="indefinite"
+                calcMode="spline"
+                keySplines="0.45 0 0.9 0.55;0 0.45 0.55 0.9"
+                keyTimes="0;0.5;1"
+                values="23;77;23"
+              ></animate>
+            )}
           </circle>
         </svg>
       </div>
