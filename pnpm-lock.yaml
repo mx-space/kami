@@ -50,7 +50,6 @@ specifiers:
   postcss-nested: 5.0.6
   postcss-preset-env: 7.4.3
   prettier: 2.6.2
-  qier-progress: 1.0.4
   randomcolor: 0.6.2
   react: 18.0.0
   react-countup: 6.2.0
@@ -89,7 +88,6 @@ dependencies:
   mobx-react-lite: 3.3.0_ec6945183068133ff61c88d19e8f3079
   next: 12.1.4_react-dom@18.0.0+react@18.0.0
   next-seo: 5.4.0_c0abbb53577d424fe320649841fdc7d4
-  qier-progress: 1.0.4
   randomcolor: 0.6.2
   react: 18.0.0
   react-countup: 6.2.0_react@18.0.0
@@ -5191,11 +5189,6 @@ packages:
     resolution: {integrity: sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==}
     engines: {node: '>=6'}
     dev: true
-
-  /qier-progress/1.0.4:
-    resolution: {integrity: sha512-gCxgoM2wxW7GCo/iEpOlaunVo2cf+/AJfG6wtYIbYz18GXtUhFjgZjX2s+otWh/P8ppVgGULASkWtXfZQEd2FQ==}
-    engines: {node: '>=6.0.0'}
-    dev: false
 
   /queue-microtask/1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
