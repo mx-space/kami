@@ -1,5 +1,3 @@
-import { MaidianAction } from 'constants/maidian'
-import { NoteModel, RequestError } from '@mx-space/api-client'
 import { NotePasswordConfrim } from 'components/in-page/NotePasswordConfirm'
 import { BanCopy } from 'components/in-page/WarningOverlay/ban-copy'
 import { ArticleLayout } from 'components/layouts/ArticleLayout'
@@ -18,6 +16,7 @@ import {
   ArticleFooterAction,
 } from 'components/widgets/ArticleAction'
 import CommentWrap from 'components/widgets/Comment'
+import { MaidianAction } from 'constants/maidian'
 import dayjs from 'dayjs'
 import { useAnalyze } from 'hooks/use-analyze'
 import { useHeaderMeta, useHeaderShare } from 'hooks/use-header-meta'
@@ -35,6 +34,9 @@ import { store, useStore } from 'store'
 import { imagesRecord2Map } from 'utils/images'
 import { springScrollToTop } from 'utils/spring'
 import { parseDate } from 'utils/time'
+
+import { NoteModel, RequestError } from '@mx-space/api-client'
+
 import { Seo } from '../../components/universal/Seo'
 import { ImageSizeMetaContext } from '../../context/image-size'
 import {
@@ -219,12 +221,15 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
             )}
 
             <BanCopy>
-              <Markdown
-                value={text}
-                escapeHtml={false}
-                renderers={Markdownrenderers}
-                toc
-              />
+              <article>
+                <h1 className="hidden">{title}</h1>
+                <Markdown
+                  value={text}
+                  escapeHtml={false}
+                  renderers={Markdownrenderers}
+                  toc
+                />
+              </article>
             </BanCopy>
           </ImageSizeMetaContext.Provider>
         )}

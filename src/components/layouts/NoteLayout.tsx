@@ -64,8 +64,11 @@ export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
                 </div>
               </span>
             </div>
-            <article>
-              <h1 title={tips} className="text-center !mt-4 !before:hidden">
+            <div>
+              <h1
+                title={tips}
+                className="text-center !mt-4 !before:hidden headline text-brown dark:text-shizuku-text"
+              >
                 {title}
                 {isLogged && url ? (
                   <a
@@ -79,7 +82,7 @@ export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
               </h1>
 
               {children}
-            </article>
+            </div>
           </div>
         </BottomUpTransitionView>
 
