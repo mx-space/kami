@@ -8,54 +8,77 @@ import {
   RadixIconsAvatar,
   SiGlyphGlobal,
 } from 'components/universal/Icons'
-import { FC, useCallback } from 'react'
-import { useForm } from 'react-hook-form'
+import { FC, useCallback, useReducer } from 'react'
 import { message } from 'react-message-popup'
 import { apiClient } from 'utils/client'
-import isEmail from 'validator/lib/isEmail'
-import isURL from 'validator/lib/isURL'
+
 import { Input } from '../../universal/Input'
 import styles from './index.module.css'
 
-type Field = `friend-${'author' | 'avatar' | 'desc' | 'email' | 'url' | 'name'}`
+const initialState = {
+  author: '',
+  avatar: '',
+  description: '',
+  email: '',
+  url: '',
+  name: '',
+}
 
-export const ApplyForLink: FC = () => {
-  const {
-    register,
-    handleSubmit: submitHook,
-    reset,
-  } = useForm<Record<Field, string>>({
-    shouldFocusError: true,
-  })
-  const handleSubmit = submitHook(
-    (d) => {
-      apiClient.friend
-        .applyLink({
-          author: d['friend-author'],
-          url: d['friend-url'],
-          avatar: d['friend-avatar'],
-          description: d['friend-desc'],
-          email: d['friend-email'],
-          name: d['friend-name'],
-        })
+type Action =
+  | { type: 'set'; data: Partial<typeof initialState> }
+  | { type: 'reset' }
 
-        .then(() => {
-          message.success('感谢你能和我交朋友~')
-          message.success('待主人查看之后将会通知您哦')
-        })
+const useFormData = () => {
+  const [state, dispatch] = useReducer(
+    (state: typeof initialState, payload: Action) => {
+      switch (payload.type) {
+        case 'set':
+          return { ...state, ...payload.data }
+        case 'reset':
+          return initialState
+      }
     },
-    (err) => {
-      console.log(err)
-
-      const firstError = Object.entries(err)
-      const [name, value] = firstError[0]
-
-      message.error(`${name}: ${value.message}`)
-    },
+    { ...initialState },
   )
+  return [state, dispatch] as const
+}
+export const ApplyForLink: FC = () => {
+  const [state, dispatch] = useFormData()
+  const handleSubmit = useCallback(() => {
+    const { author, avatar, description: desc, email, url, name } = state
+    if (!author) {
+      message.error('请填写昵称')
+      return
+    }
+    if (!avatar) {
+      message.error('请填写头像')
+      return
+    }
+    if (!desc) {
+      message.error('请填写简介')
+      return
+    }
+    if (!email) {
+      message.error('请填写邮箱')
+      return
+    }
+    if (!url) {
+      message.error('请填写网址')
+      return
+    }
+    if (!name) {
+      message.error('请填写网站名称')
+      return
+    }
+    console.log(state)
+
+    apiClient.link.applyLink({ ...state }).then(() => {
+      dispatch({ type: 'reset' })
+    })
+  }, [state])
 
   const handleReset = useCallback(() => {
-    reset({})
+    dispatch({ type: 'reset' })
   }, [])
   return (
     <article className={styles.wrap}>
@@ -65,56 +88,56 @@ export const ApplyForLink: FC = () => {
           placeholder={'昵称 *'}
           required
           prefix={<PhUser />}
-          {...register('friend-author', {
-            maxLength: { value: 20, message: '乃的名字太长了!' },
-            required: { value: true, message: '输入你的大名吧' },
-          })}
+          value={state.author}
+          onChange={(e) => {
+            dispatch({ type: 'set', data: { author: e.target.value } })
+          }}
         />
         <Input
           placeholder={'站点标题 *'}
           required
           prefix={<MdiFountainPenTip />}
-          {...register('friend-name', {
-            maxLength: { value: 20, message: '标题太长了 www' },
-            required: { value: true, message: '标题是必须的啦' },
-          })}
+          value={state.name}
+          onChange={(e) => {
+            dispatch({ type: 'set', data: { name: e.target.value } })
+          }}
         />
         <Input
           placeholder={'网站 * https://'}
           required
           prefix={<SiGlyphGlobal />}
-          {...register('friend-url', {
-            validate: (value) => isURL(value, { require_protocol: true }),
-            required: true,
-          })}
+          value={state.url}
+          onChange={(e) => {
+            dispatch({ type: 'set', data: { url: e.target.value } })
+          }}
         />
         <Input
           placeholder={'头像链接 * https://'}
           required
           prefix={<RadixIconsAvatar />}
-          {...register('friend-avatar', {
-            validate: (value) => isURL(value, { require_protocol: true }),
-            required: true,
-          })}
+          value={state.avatar}
+          onChange={(e) => {
+            dispatch({ type: 'set', data: { avatar: e.target.value } })
+          }}
         />
         <Input
           placeholder={'留下你的邮箱哦 *'}
           required
           prefix={<MdiEmailFastOutline />}
-          {...register('friend-email', {
-            validate: (value) => isEmail(value),
-            required: { message: '邮箱不能为空哦', value: true },
-          })}
+          value={state.email}
+          onChange={(e) => {
+            dispatch({ type: 'set', data: { email: e.target.value } })
+          }}
         />
         <Input
           multi
           maxLength={50}
           placeholder={'描述 *'}
           required
-          {...register('friend-desc', {
-            maxLength: { message: '最大长度 50 !', value: 50 },
-            required: { message: '描述信息不能为空哦', value: true },
-          })}
+          value={state.description}
+          onChange={(e) => {
+            dispatch({ type: 'set', data: { description: e.target.value } })
+          }}
         />
       </form>
       <div className={'text-right mt-[5px]'}>
