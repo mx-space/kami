@@ -16,7 +16,6 @@
  * @FilePath: /web/pages/_document.tsx
  * @MIT
  */
-
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 
 export default class MyDocument extends Document {
@@ -58,16 +57,6 @@ export default class MyDocument extends Document {
             href="/apple-icon-180.png"
           />
           <meta name="apple-mobile-web-app-capable" content="yes" />
-
-          <link
-            href="https://fonts.beixibaobao.com/css2?family=Noto+Sans+SC:wght@100;300;400;500&display=swap"
-            rel="stylesheet"
-          />
-          <link
-            href="https://cdn.jsdelivr.net/gh/Innei/zshrc@0.1.1/webfont/OperatorMono.css"
-            rel="stylesheet"
-            type="text/css"
-          />
 
           <link rel="sitemap" href="/sitemap.xml" />
 

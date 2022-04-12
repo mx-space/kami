@@ -1,7 +1,9 @@
 import { FC } from 'react'
 import ReactDOM from 'react-dom'
+
 import { FadeInOutTransitionView } from '../Transition/fade-in-out'
 import styles from './index.module.css'
+
 interface NoticePanelProps {
   icon: JSX.Element
   text: string | JSX.Element

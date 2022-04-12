@@ -1,11 +1,5 @@
-import { genSpringKeyframes } from 'utils/spring'
 import { BaseTransitionView } from './base'
 
-const [name] = genSpringKeyframes(
-  'fade-overlay',
-  { opacity: 0 },
-  { opacity: 1 },
-)
 const duration = 150
 
 const defaultStyle = {
@@ -15,8 +9,8 @@ const defaultStyle = {
 
 const transitionStyles = {
   entering: { opacity: 0 },
-  entered: { animation: `${name} 1000ms linear both` },
-  exiting: { animation: `${name} 1000ms linear both reverse` },
+  entered: { opacity: 1 },
+  exiting: { opacity: 1 },
   exited: { opacity: 0 },
 }
 

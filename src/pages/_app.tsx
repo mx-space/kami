@@ -1,38 +1,39 @@
-// organize-imports-ignore
+// prettier-ignore-start
 import 'windi.css'
-// organize-imports-ignore
 import 'assets/styles/main.css'
 
-import { AggregateRoot } from '@mx-space/api-client'
+// prettier-ignore-end
+import { BasicLayout } from 'components/layouts/BasicLayout'
+import { DebugLayout } from 'components/layouts/DebugLayout'
+import { NoDataErrorView } from 'components/universal/Error/no-data'
+import Loader from 'components/universal/Loader'
+import { MetaFooter } from 'components/universal/Meta/footer'
+import { DynamicHeadMeta } from 'components/universal/Meta/head'
+import { defaultConfigs } from 'configs.default'
+import { InitialContextProvider, InitialDataType } from 'context/initial-data'
+import { RootStoreProvider } from 'context/root-store'
+import { useCheckLogged } from 'hooks/use-check-logged'
+import { useCheckOldBrowser } from 'hooks/use-check-old-browser'
+import { useInitialData } from 'hooks/use-initial-data'
+import { useResizeScrollEvent } from 'hooks/use-resize-scroll-event'
+import { useRouterEvent } from 'hooks/use-router-event'
+import { useScreenMedia } from 'hooks/use-screen-media'
+import { observer } from 'mobx-react-lite'
 import { NextSeo } from 'next-seo'
 import NextApp, { AppContext } from 'next/app'
 import { useRouter } from 'next/router'
 import React, { FC, memo, useEffect, useMemo } from 'react'
-import useMount from 'react-use/lib/useMount'
-
-import { InitialContextProvider, InitialDataType } from 'context/initial-data'
-import { useCheckLogged } from 'hooks/use-check-logged'
-import { useCheckOldBrowser } from 'hooks/use-check-old-browser'
-import { useResizeScrollEvent } from 'hooks/use-resize-scroll-event'
-import { useRouterEvent } from 'hooks/use-router-event'
-import { BasicLayout } from 'components/layouts/BasicLayout'
-import { useScreenMedia } from 'hooks/use-screen-media'
-import { NoDataErrorView } from 'components/universal/Error/no-data'
-import Loader from 'components/universal/Loader'
-import { DynamicHeadMeta } from 'components/universal/Meta/head'
-import { RootStoreProvider } from 'context/root-store'
 import { KamiConfig } from 'types/config'
 import { $axios, apiClient } from 'utils/client'
 import { printToConsole } from 'utils/console'
-import { DebugLayout } from 'components/layouts/DebugLayout'
-import { MetaFooter } from 'components/universal/Meta/footer'
-import { defaultConfigs } from 'configs.default'
-import { useInitialData } from 'hooks/use-initial-data'
-import { observer } from 'mobx-react-lite'
-import { TokenKey, isServerSide } from '../utils'
-import { useStore } from '../store'
-import client from '../socket'
+
+import { AggregateRoot } from '@mx-space/api-client'
+
 import Package from '~/package.json'
+
+import client from '../socket'
+import { useStore } from '../store'
+import { TokenKey, isServerSide, loadStyleSheet } from '../utils'
 
 const version = `v${Package.version}` || ''
 
@@ -50,21 +51,26 @@ const Content: FC = observer((props) => {
   useResizeScrollEvent()
   const initialData: AggregateRoot | null = useInitialData()
 
-  useMount(() => {
-    {
-      try {
-        const { user } = initialData
-        // set user
-        master.setUser(user)
-        checkLogin()
-        client.initIO()
-      } finally {
-        document.body.classList.remove('loading')
-      }
+  useEffect(() => {
+    loadStyleSheet(
+      'https://fonts.beixibaobao.com/css2?family=Noto+Sans+SC:wght@100;300;400;500&display=swap',
+    )
+    loadStyleSheet(
+      'https://cdn.jsdelivr.net/gh/Innei/zshrc@0.1.1/webfont/OperatorMono.css',
+    )
+    try {
+      const { user } = initialData
+      // set user
+      master.setUser(user)
+      checkLogin()
+      client.initIO()
+    } finally {
+      document.body.classList.remove('loading')
     }
+
     checkBrowser()
     printToConsole()
-  })
+  }, [])
 
   return (
     <>
