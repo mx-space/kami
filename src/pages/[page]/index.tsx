@@ -50,7 +50,7 @@ const PageView: PageOnlyProps = observer((props) => {
         )}
       >
         <article>
-          <h1 className="hidden">{title}</h1>
+          <h1 className="sr-only">{title}</h1>
           <Markdown value={text} escapeHtml={false} toc />
         </article>
       </ImageSizeMetaContext.Provider>

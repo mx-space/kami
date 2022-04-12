@@ -215,7 +215,7 @@ export const PostView: PageOnlyProps = observer((props) => {
                 value={imagesRecord2Map(post.images)}
               >
                 <article>
-                  <h1 className="hidden">{post.title}</h1>
+                  <h1 className="sr-only">{post.title}</h1>
                   <Markdown
                     codeBlockFully
                     value={post.text}
