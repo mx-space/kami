@@ -5,7 +5,7 @@ overrides:
   '@types/react': 17.0.44
 
 specifiers:
-  '@floating-ui/react-dom': 0.6.1
+  '@floating-ui/react-dom': 0.6.2
   '@innei-util/eslint-config-react-ts': latest
   '@innei-util/prettier': 0.8.2
   '@mx-space/api-client': 0.9.2
@@ -74,7 +74,7 @@ specifiers:
   zx: 6.0.7
 
 dependencies:
-  '@floating-ui/react-dom': 0.6.1_17da3c48954ec03de9c1c37ece0f2b26
+  '@floating-ui/react-dom': 0.6.2_17da3c48954ec03de9c1c37ece0f2b26
   '@mx-space/api-client': 0.9.2
   axios: 0.26.1
   clsx: 1.1.1
@@ -1477,8 +1477,8 @@ packages:
       '@floating-ui/core': 0.6.1
     dev: false
 
-  /@floating-ui/react-dom/0.6.1_17da3c48954ec03de9c1c37ece0f2b26:
-    resolution: {integrity: sha512-XQbdgj1uWAViEua9PkfzgqOWjYP3dZy21pYpUYB7i5WOf1ZBAqTgCkyipjpJdxP8qGftjnhrTROLGs+DNGYnJg==}
+  /@floating-ui/react-dom/0.6.2_17da3c48954ec03de9c1c37ece0f2b26:
+    resolution: {integrity: sha512-nMk1ZDllNLagXrM4NmRkmC0BGxcDQUPIJsBxmvc45SzgjolcQK9b1Y0rGTqvJJIe6ae7xFd3c707vg5wM4hs5g==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
