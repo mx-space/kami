@@ -114,7 +114,7 @@
     "stylelint-config-standard": "25.0.0",
     "typescript": "4.6.3",
     "windicss": "3.5.1",
-    "windicss-webpack-plugin": "1.6.9",
+    "windicss-webpack-plugin": "1.6.10",
     "zx": "6.0.7"
   },
   "resolutions": {
