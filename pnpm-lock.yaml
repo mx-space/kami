@@ -54,7 +54,7 @@ specifiers:
   react: 18.0.0
   react-countup: 6.2.0
   react-dom: 18.0.0
-  react-intersection-observer: 8.33.1
+  react-intersection-observer: 8.34.0
   react-lazyload: 3.2.0
   react-markdown: 4.3.1
   react-masonry-css: 1.0.16
@@ -92,7 +92,7 @@ dependencies:
   react: 18.0.0
   react-countup: 6.2.0_react@18.0.0
   react-dom: 18.0.0_react@18.0.0
-  react-intersection-observer: 8.33.1_react@18.0.0
+  react-intersection-observer: 8.34.0_react@18.0.0
   react-markdown: 4.3.1_react@18.0.0
   react-masonry-css: 1.0.16_react@18.0.0
   react-message-popup: 1.0.0-alpha.1_react-dom@18.0.0+react@18.0.0
@@ -5251,8 +5251,8 @@ packages:
       scheduler: 0.21.0
     dev: false
 
-  /react-intersection-observer/8.33.1_react@18.0.0:
-    resolution: {integrity: sha512-3v+qaJvp3D1MlGHyM+KISVg/CMhPiOlO6FgPHcluqHkx4YFCLuyXNlQ/LE6UkbODXlQcLOppfX6UMxCEkUhDLw==}
+  /react-intersection-observer/8.34.0_react@18.0.0:
+    resolution: {integrity: sha512-TYKh52Zc0Uptp5/b4N91XydfSGKubEhgZRtcg1rhTKABXijc4Sdr1uTp5lJ8TN27jwUsdXxjHXtHa0kPj704sw==}
     peerDependencies:
       react: ^15.0.0 || ^16.0.0 || ^17.0.0|| ^18.0.0
     dependencies:
