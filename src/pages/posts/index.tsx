@@ -1,4 +1,3 @@
-import { Pager, PaginateResult, PostModel } from '@mx-space/api-client'
 import { PostBlock } from 'components/in-page/PostBlock'
 import { TagFAB } from 'components/in-page/SpecialButton/float-post-tag'
 import { ArticleLayout } from 'components/layouts/ArticleLayout'
@@ -12,6 +11,9 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import { apiClient } from 'utils/client'
 import { springScrollToTop } from 'utils/spring'
+
+import { Pager, PaginateResult, PostModel } from '@mx-space/api-client'
+
 import { SEO } from '../../components/universal/Seo'
 
 const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
@@ -32,10 +34,10 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query.page, router.query.year])
   const fetch = async () => {
-    const { page, year, size = 10 } = router.query as any
-    const payload = await apiClient.post.getList(page, size, {
-      year: +year || undefined,
-    })
+    const { page, year, size = 10 } = router.query as any,
+      payload = await apiClient.post.getList(page, size, {
+        year: +year || undefined,
+      })
     setPagination(payload.pagination)
     setPosts(payload.data)
   }

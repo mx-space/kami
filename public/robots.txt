@@ -1,3 +1,4 @@
-# allow google
 User-agent: *
-Allow: /
+Disallow: /api
+Sitemap: /sitemap.xml
+Sitemap: /sitemap
