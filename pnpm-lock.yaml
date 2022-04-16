@@ -58,7 +58,7 @@ specifiers:
   react-lazyload: 3.2.0
   react-markdown: 4.3.1
   react-masonry-css: 1.0.16
-  react-message-popup: 1.0.0-alpha.1
+  react-message-popup: 1.0.0-alpha.2
   react-toastify: 8.2.0
   react-transition-group: 4.4.2
   react-use: 17.3.2
@@ -95,7 +95,7 @@ dependencies:
   react-intersection-observer: 8.34.0_react@18.0.0
   react-markdown: 4.3.1_react@18.0.0
   react-masonry-css: 1.0.16_react@18.0.0
-  react-message-popup: 1.0.0-alpha.1_react-dom@18.0.0+react@18.0.0
+  react-message-popup: 1.0.0-alpha.2_react-dom@18.0.0+react@18.0.0
   react-toastify: 8.2.0_react-dom@18.0.0+react@18.0.0
   react-transition-group: 4.4.2_react-dom@18.0.0+react@18.0.0
   react-use: 17.3.2_react-dom@18.0.0+react@18.0.0
@@ -5292,8 +5292,8 @@ packages:
       react: 18.0.0
     dev: false
 
-  /react-message-popup/1.0.0-alpha.1_react-dom@18.0.0+react@18.0.0:
-    resolution: {integrity: sha512-gFiu0lt1hlx5QLgjoQErJNXJETlYzLN1/nElAZpfjxfO5UHWu1Y0KYYzFKUfttUyLM4ApClyOGDK/y71h5hs9Q==}
+  /react-message-popup/1.0.0-alpha.2_react-dom@18.0.0+react@18.0.0:
+    resolution: {integrity: sha512-YQiYMTu+qnlmHHDgTogg8PyDGd6jBxvcOBnioRzxrzOBkLr8yKhbXee7kH22DXghlXCbBZBHNvOdCEUMrvmE7Q==}
     engines: {pnpm: '>=6'}
     peerDependencies:
       react: ^18.0.0
