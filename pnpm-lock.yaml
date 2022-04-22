@@ -12,7 +12,7 @@ specifiers:
   '@next/bundle-analyzer': 12.1.5
   '@trivago/prettier-plugin-sort-imports': 3.2.0
   '@types/inflection': 1.13.0
-  '@types/js-cookie': 3.0.1
+  '@types/js-cookie': 3.0.2
   '@types/lodash-es': 4.17.6
   '@types/node': 17.0.18
   '@types/randomcolor': 0.5.6
@@ -109,7 +109,7 @@ devDependencies:
   '@next/bundle-analyzer': 12.1.5
   '@trivago/prettier-plugin-sort-imports': 3.2.0_prettier@2.6.2
   '@types/inflection': 1.13.0
-  '@types/js-cookie': 3.0.1
+  '@types/js-cookie': 3.0.2
   '@types/lodash-es': 4.17.6
   '@types/node': 17.0.18
   '@types/randomcolor': 0.5.6
@@ -1844,8 +1844,8 @@ packages:
     resolution: {integrity: sha512-aLkWa0C0vO5b4Sr798E26QgOkss68Un0bLjs7u9qxzPT5CG+8DuNTffWES58YzJs3hrVAOs1wonycqEBqNJubA==}
     dev: false
 
-  /@types/js-cookie/3.0.1:
-    resolution: {integrity: sha512-7wg/8gfHltklehP+oyJnZrz9XBuX5ZPP4zB6UsI84utdlkRYLnOm2HfpLXazTwZA+fpGn0ir8tGNgVnMEleBGQ==}
+  /@types/js-cookie/3.0.2:
+    resolution: {integrity: sha512-6+0ekgfusHftJNYpihfkMu8BWdeHs9EOJuGcSofErjstGPfPGEu9yTu4t460lTzzAMl2cM5zngQJqPMHbbnvYA==}
     dev: true
 
   /@types/json-schema/7.0.11:
