@@ -76,3 +76,14 @@ export function loadStyleSheet(href: string) {
     },
   }
 }
+
+export function appendStyle(style: string) {
+  const $style = document.createElement('style')
+  $style.innerHTML = style
+  document.head.appendChild($style)
+  return {
+    remove: () => {
+      $style.parentNode && $style.parentNode.removeChild($style)
+    },
+  }
+}

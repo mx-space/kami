@@ -9,7 +9,7 @@ import Link from 'next/link'
 import React, { Fragment, useEffect, useMemo } from 'react'
 import RemoveMarkdown from 'remove-markdown'
 import { store, useStore } from 'store'
-import { noop } from 'utils'
+import { appendStyle, noop } from 'utils'
 import { imagesRecord2Map } from 'utils/images'
 import { springScrollToTop } from 'utils/spring'
 
@@ -23,6 +23,16 @@ const PageView: PageOnlyProps = observer((props) => {
   const { pageStore } = useStore()
   const page = pageStore.get(props.id) || (noop as PageModel)
   const { title, subtitle, text } = page
+
+  useEffect(() => {
+    if (page.meta?.style) {
+      const $style = appendStyle(page.meta.style)
+
+      return () => {
+        $style && $style.remove()
+      }
+    }
+  }, [page.meta?.style])
 
   useHeaderMeta(page.title, page.subtitle || '')
   useHeaderShare(page.title, page.text)
