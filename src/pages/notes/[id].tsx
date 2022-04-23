@@ -141,8 +141,9 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
     try {
       setTips(
         `创建于 ${parseDate(note.created, 'YYYY-MM-DD dddd')}${
-          note.modified &&
-          `, 修改于 ${parseDate(note.modified, 'YYYY-MM-DD dddd')}`
+          note.modified
+            ? `, 修改于 ${parseDate(note.modified, 'YYYY-MM-DD dddd')}`
+            : ''
         }, 全文字数: ${wordCount}, 阅读次数: ${note.count.read}, 喜欢次数: ${
           note.count.like
         }`,
