@@ -1,5 +1,6 @@
 import { RelativeTime } from 'components/universal/RelativeTime'
 import { DetailedHTMLProps, FC, HTMLAttributes, memo, useMemo } from 'react'
+
 import styles from './index.module.css'
 
 interface CommentProps {
@@ -8,6 +9,7 @@ interface CommentProps {
   content: JSX.Element
   datetime: string
   commentKey: string
+  location?: string
   actions?: (JSX.Element | null)[]
 }
 
@@ -23,6 +25,8 @@ export const Comment: FC<
     content,
     datetime,
     commentKey,
+
+    location,
     ...rest
   } = props
   const key = useMemo(() => {
@@ -46,6 +50,7 @@ export const Comment: FC<
               <RelativeTime date={datetime} />{' '}
               <span className="truncate break-all">{key}</span>
             </span>
+            {location && <span>来自：{location}</span>}
           </div>
           <div className={styles['detail']}>{content}</div>
           <ul className={styles['actions']}>
