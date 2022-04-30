@@ -36,7 +36,7 @@ specifiers:
   husky: 7.0.4
   js-cookie: 3.0.1
   js-yaml: '*'
-  lint-staged: 12.3.8
+  lint-staged: 12.4.1
   lodash-es: 4.17.21
   medium-zoom: 1.0.6
   mobx: 6.5.0
@@ -127,7 +127,7 @@ devDependencies:
   eslint: 8.13.0
   husky: 7.0.4
   js-yaml: 4.1.0
-  lint-staged: 12.3.8
+  lint-staged: 12.4.1
   next-compose-plugins: 2.2.1
   next-pwa: 5.5.2_next@12.1.4
   postcss: 8.4.13
@@ -4046,8 +4046,8 @@ packages:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
 
-  /lint-staged/12.3.8:
-    resolution: {integrity: sha512-0+UpNaqIwKRSGAFOCcpuYNIv/j5QGVC+xUVvmSdxHO+IfIGoHbFLo3XcPmV/LLnsVj5EAncNHVtlITSoY5qWGQ==}
+  /lint-staged/12.4.1:
+    resolution: {integrity: sha512-PTXgzpflrQ+pODQTG116QNB+Q6uUTDg5B5HqGvNhoQSGt8Qy+MA/6zSnR8n38+sxP5TapzeQGTvoKni0KRS8Vg==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
