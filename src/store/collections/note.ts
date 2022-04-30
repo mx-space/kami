@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { NoteModel } from '@mx-space/api-client'
 import { makeObservable, observable, runInAction } from 'mobx'
 import { message } from 'react-message-popup'
 import { apiClient, isLikedBefore, setLikeId } from 'utils'
+
+import { NoteModel } from '@mx-space/api-client'
+
 import { Store } from '../helper/base'
 import { Id } from '../helper/structure'
 import { FetchOption } from '../types/options'
@@ -86,7 +88,10 @@ export class NoteStore extends Store<NoteModel> {
         }
       }
     }
-    const data = await apiClient.note.getNoteById(id, password)
+    const data = await apiClient.note.getNoteById(
+      id as number,
+      password as string,
+    )
 
     runInAction(() => {
       this.add(data.data)

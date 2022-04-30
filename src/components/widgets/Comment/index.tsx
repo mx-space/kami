@@ -1,4 +1,3 @@
-import { CommentModel, Pager } from '@mx-space/api-client'
 import { observer } from 'mobx-react-lite'
 import {
   FC,
@@ -12,6 +11,9 @@ import {
 import { useInView } from 'react-intersection-observer'
 import { message } from 'react-message-popup'
 import { apiClient } from 'utils/client'
+
+import { CommentModel, Pager } from '@mx-space/api-client'
+
 import { useStore } from '../../../store'
 import { NoSSR, flattenChildren } from '../../../utils'
 import { Pagination } from '../../universal/Pagination'
@@ -113,15 +115,14 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
 
   const [commentShow, setCommentShow] = useState(false)
 
-  const [ref, inView, entry] = useInView({
-    /* Optional options */
+  const { ref } = useInView({
     threshold: 0.5,
+    onChange(inView) {
+      if (inView && !commentShow) {
+        fetchComments()
+      }
+    },
   })
-  useEffect(() => {
-    if (inView && !commentShow) {
-      fetchComments()
-    }
-  }, [inView])
 
   useEffect(() => {
     setComments([])

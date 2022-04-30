@@ -91,7 +91,7 @@ const RecentlyPage: NextPage = () => {
     })
   }, [])
 
-  const [ref, inView] = useInView()
+  const { ref, inView } = useInView()
 
   useEffect(() => {
     if (inView && hasNext) {

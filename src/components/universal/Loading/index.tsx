@@ -1,4 +1,4 @@
-import { FC, memo, useEffect, useState } from 'react'
+import { FC, memo, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 import styles from './index.module.css'
@@ -9,17 +9,17 @@ export type LoadingProps = {
 
 export const Loading: FC<LoadingProps> = memo(({ loadingText }) => {
   const [pause, setPause] = useState(true)
-  const { ref, inView } = useInView({
+  const { ref } = useInView({
     threshold: 0.5,
+    onChange(inView) {
+      if (inView) {
+        setPause(false)
+      } else {
+        setPause(true)
+      }
+    },
   })
 
-  useEffect(() => {
-    if (inView) {
-      setPause(false)
-    } else {
-      setPause(true)
-    }
-  }, [inView])
   return (
     <div className={styles['loading']} ref={ref}>
       <div className="icon" key="icon">

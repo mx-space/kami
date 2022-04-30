@@ -21,13 +21,15 @@ export const Heading = () => {
     const currentIndex = useMemo(() => index++, [])
     const title = props.children?.[0].props.value
 
-    const [ref, inView] = useInView({ rootMargin: '-33% 0% -33% 0%' })
+    const { ref } = useInView({
+      rootMargin: '-33% 0% -33% 0%',
+      onChange(inView) {
+        if (inView) {
+          eventBus.emit(CustomEventTypes.TOC, currentIndex)
+        }
+      },
+    })
 
-    useEffect(() => {
-      if (inView) {
-        eventBus.emit(CustomEventTypes.TOC, currentIndex)
-      }
-    }, [inView])
     return (
       <Fragment>
         {createElement<DOMAttributes<HTMLHeadingElement>, HTMLHeadingElement>(
