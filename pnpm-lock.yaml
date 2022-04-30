@@ -62,7 +62,7 @@ specifiers:
   react-toastify: 8.2.0
   react-transition-group: 4.4.2
   react-use: 17.3.2
-  remove-markdown: 0.3.0
+  remove-markdown: 0.5.0
   rimraf: '*'
   socket.io-client: 4.5.0
   stylelint: 14.8.1
@@ -99,7 +99,7 @@ dependencies:
   react-toastify: 8.2.0_react-dom@18.1.0+react@18.1.0
   react-transition-group: 4.4.2_react-dom@18.1.0+react@18.1.0
   react-use: 17.3.2_react-dom@18.1.0+react@18.1.0
-  remove-markdown: 0.3.0
+  remove-markdown: 0.5.0
   socket.io-client: 4.5.0
   validator: 13.7.0
 
@@ -5483,8 +5483,8 @@ packages:
       xtend: 4.0.2
     dev: false
 
-  /remove-markdown/0.3.0:
-    resolution: {integrity: sha1-XktmdJOpNXlyjz1S7MHbnKUF3Jg=}
+  /remove-markdown/0.5.0:
+    resolution: {integrity: sha512-x917M80K97K5IN1L8lUvFehsfhR8cYjGQ/yAMRI9E7JIKivtl5Emo5iD13DhMr+VojzMCiYk8V2byNPwT/oapg==}
     dev: false
 
   /repeat-string/1.6.1:
