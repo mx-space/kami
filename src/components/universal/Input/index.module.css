@@ -67,6 +67,6 @@
     display: block;
     overflow: auto;
     resize: none;
-    padding: 0.5em 0;
+    line-height: 1.8;
   }
 }
