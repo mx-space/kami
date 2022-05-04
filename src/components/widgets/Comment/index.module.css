@@ -35,6 +35,7 @@
 
 .comment-at {
   margin-right: 12px;
+  color: var(--primary);
 }
 
 .guest-avatar {

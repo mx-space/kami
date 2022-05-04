@@ -1,13 +1,19 @@
 import { Input } from 'components/universal/Input'
 import { FC, useEffect, useState } from 'react'
 import { message } from 'react-message-popup'
+
 import styles from './index.module.css'
+
 interface PaginationProps {
   total: number
   current: number
   onChange: (next: number) => void
   hideOnSinglePage?: boolean
 }
+const noStyle = {
+  pointerEvents: 'none',
+  opacity: '0',
+} as const
 export const Pagination: FC<PaginationProps> = (props) => {
   const { total, current, onChange, hideOnSinglePage = false } = props
   const [value, setValue] = useState(current.toString())
@@ -21,28 +27,21 @@ export const Pagination: FC<PaginationProps> = (props) => {
   return (
     <div className={styles['pager']}>
       <svg
-        width="2em"
-        height="2em"
-        viewBox="0 0 24 24"
         className={styles['icon']}
-        style={
-          current - 1 <= 0
-            ? {
-                cursor: 'not-allowed',
-                opacity: '0.8',
-              }
-            : undefined
-        }
+        style={current - 1 <= 0 ? noStyle : undefined}
         onClick={() => {
           const prev = current - 1
           if (prev > 0) {
             onChange(current - 1)
           }
         }}
+        width="1em"
+        height="1em"
+        viewBox="0 0 24 24"
       >
         <path
-          d="M14.71 15.88L10.83 12l3.88-3.88a.996.996 0 1 0-1.41-1.41L8.71 11.3a.996.996 0 0 0 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0c.38-.39.39-1.03 0-1.42z"
           fill="currentColor"
+          d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6l6 6l1.41-1.41z"
         ></path>
       </svg>
 
@@ -67,31 +66,26 @@ export const Pagination: FC<PaginationProps> = (props) => {
             }
           }}
         />
-        <span className="flex-shrink-0">/ {total}</span>
+        <span className="flex-shrink-0">
+          / <span className="ml-4">{total}</span>
+        </span>
       </div>
       <svg
-        width="2em"
-        height="2em"
-        viewBox="0 0 24 24"
-        className={styles['icon']}
+        width="1em"
+        height="1em"
         onClick={() => {
           const next = current + 1
           if (next <= total) {
             onChange(current + 1)
           }
         }}
-        style={
-          current + 1 > total
-            ? {
-                cursor: 'not-allowed',
-                opacity: '0.8',
-              }
-            : undefined
-        }
+        style={current + 1 > total ? noStyle : undefined}
+        className={styles['icon']}
+        viewBox="0 0 24 24"
       >
         <path
-          d="M9.29 15.88L13.17 12L9.29 8.12a.996.996 0 1 1 1.41-1.41l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3a.996.996 0 0 1-1.41 0c-.38-.39-.39-1.03 0-1.42z"
           fill="currentColor"
+          d="M8.59 16.59L13.17 12L8.59 7.41L10 6l6 6l-6 6l-1.41-1.41z"
         ></path>
       </svg>
     </div>

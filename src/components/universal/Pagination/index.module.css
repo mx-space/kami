@@ -6,6 +6,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 32px;
+  font-size: 16px;
 
   .input {
     width: 2rem;
@@ -14,6 +16,8 @@
     border: 1px solid transparent;
     padding: 0;
     transition: border 0.5s;
+    transform: translateY(0px);
+    color: var(--white);
 
     &:hover {
       border: 1px solid var(--yellow);
@@ -25,6 +29,19 @@
   margin: 0 4px;
   cursor: pointer;
   display: inline;
+  height: 20px;
+  width: 20px;
+  padding: 6px;
+
+  @apply box-content rounded-xl;
+
+  transition: background-color 0.5s;
+  color: var(--black);
+
+  &:hover {
+    background: var(--yellow);
+    color: var(--white);
+  }
 }
 
 .nav {
