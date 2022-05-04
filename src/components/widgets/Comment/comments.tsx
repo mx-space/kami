@@ -158,6 +158,7 @@ const SingleComment: FC<{ comment: CommentModel }> = memo(
         location={comment.location}
         key={comment.id}
         data-comment-id={comment.id}
+        id={`comments-${comment.key}`}
         author={
           <a href={url} rel={'nofollow'}>
             {comment.author}
