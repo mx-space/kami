@@ -1,6 +1,8 @@
 import { InitialDataType } from 'context/initial-data'
 import { FC } from 'react'
+
 import 'react/next'
+import 'react-dom/next'
 
 declare global {
   export interface History {
