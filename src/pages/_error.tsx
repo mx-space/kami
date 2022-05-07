@@ -1,9 +1,11 @@
-import { RequestError } from '@mx-space/api-client'
+import axios, { AxiosError } from 'axios'
 import { ErrorView } from 'components/universal/Error'
 import { isNumber } from 'lodash-es'
 import { NextPage } from 'next'
 import { useEffect } from 'react'
 import { message } from 'react-message-popup'
+
+import { RequestError } from '@mx-space/api-client'
 
 const ErrorPage: NextPage<{ statusCode: number; err: any }> = ({
   statusCode = 500,
@@ -27,8 +29,12 @@ const getCode = (err, res): number => {
     return 500
   }
   if (err instanceof RequestError) {
-    // status maybe  ECONNREFUSED
-    return isNumber(err.status) ? err.status : 408
+    // @see:  https://github.com/axios/axios/pull/3645
+    const axiosError = err.raw as AxiosError
+
+    return isNumber(axiosError.response?.status)
+      ? axiosError.response!.status
+      : 408
   }
   if (res?.statusCode === 500 && err?.statusCode === 500) {
     return 500
