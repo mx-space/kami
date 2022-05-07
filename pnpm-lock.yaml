@@ -29,7 +29,7 @@ specifiers:
   clsx: 1.1.1
   cross-env: '*'
   css-spring: 4.1.0
-  dayjs: 1.11.1
+  dayjs: 1.11.2
   devtools-detector: 2.0.6
   dotenv: 16.0.0
   eslint: '*'
@@ -79,7 +79,7 @@ dependencies:
   axios: 0.27.2
   clsx: 1.1.1
   css-spring: 4.1.0
-  dayjs: 1.11.1
+  dayjs: 1.11.2
   devtools-detector: 2.0.6
   js-cookie: 3.0.1
   lodash-es: 4.17.21
@@ -187,14 +187,14 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/code-frame': 7.16.7
-      '@babel/generator': 7.17.9
+      '@babel/generator': 7.17.10
       '@babel/helper-compilation-targets': 7.17.7_@babel+core@7.13.10
       '@babel/helper-module-transforms': 7.17.7
       '@babel/helpers': 7.17.9
-      '@babel/parser': 7.17.9
+      '@babel/parser': 7.17.10
       '@babel/template': 7.16.7
-      '@babel/traverse': 7.17.9
-      '@babel/types': 7.17.0
+      '@babel/traverse': 7.17.10
+      '@babel/types': 7.17.10
       convert-source-map: 1.8.0
       debug: 4.3.4
       gensync: 1.0.0-beta.2
@@ -232,7 +232,7 @@ packages:
   /@babel/generator/7.13.9:
     resolution: {integrity: sha512-mHOOmY0Axl/JCTkxTU6Lf5sWOg/v8nUa+Xkt4zMTftX0wqmb6Sh7J8gvcehBw7q0AhrhAR+FDacKjCZ2X8K+Sw==}
     dependencies:
-      '@babel/types': 7.17.0
+      '@babel/types': 7.17.10
       jsesc: 2.5.2
       source-map: 0.5.7
     dev: true
@@ -244,15 +244,6 @@ packages:
       '@babel/types': 7.17.10
       '@jridgewell/gen-mapping': 0.1.1
       jsesc: 2.5.2
-    dev: true
-
-  /@babel/generator/7.17.9:
-    resolution: {integrity: sha512-rAdDousTwxbIxbz5I7GEQ3lUip+xVCXooZNbsydCWs3xA7ZsYOv+CFRdzGxRX78BmQHu9B1Eso59AOZQOJDEdQ==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/types': 7.17.10
-      jsesc: 2.5.2
-      source-map: 0.5.7
     dev: true
 
   /@babel/helper-annotate-as-pure/7.16.7:
@@ -511,14 +502,6 @@ packages:
 
   /@babel/parser/7.17.10:
     resolution: {integrity: sha512-n2Q6i+fnJqzOaq2VkdXxy2TCPCWQZHiCo0XqmrCvDWcZQKRyZzYi4Z0yxlBuN0w+r2ZHmre+Q087DSrw3pbJDQ==}
-    engines: {node: '>=6.0.0'}
-    hasBin: true
-    dependencies:
-      '@babel/types': 7.17.10
-    dev: true
-
-  /@babel/parser/7.17.9:
-    resolution: {integrity: sha512-vqUSBLP8dQHFPdPi9bc5GK9vRkYHJ49fsZdtoJ8EQ8ibpwk5rPKfvNIwChB0KVXcIjcepEBBd2VHC5r9Gy8ueg==}
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
@@ -1343,11 +1326,11 @@ packages:
     resolution: {integrity: sha512-xys5xi5JEhzC3RzEmSGrs/b3pJW/o87SypZ+G/PhaE7uqVQNv/jlmVIBXuoh5atqQ434LfXV+sf23Oxj0bchJQ==}
     dependencies:
       '@babel/code-frame': 7.16.7
-      '@babel/generator': 7.17.9
+      '@babel/generator': 7.17.10
       '@babel/helper-function-name': 7.17.9
       '@babel/helper-split-export-declaration': 7.16.7
-      '@babel/parser': 7.17.9
-      '@babel/types': 7.17.0
+      '@babel/parser': 7.17.10
+      '@babel/types': 7.17.10
       debug: 4.3.4
       globals: 11.12.0
       lodash: 4.17.21
@@ -1373,37 +1356,11 @@ packages:
       - supports-color
     dev: true
 
-  /@babel/traverse/7.17.9:
-    resolution: {integrity: sha512-PQO8sDIJ8SIwipTPiR71kJQCKQYB5NGImbOviK8K+kg5xkNSYXLBupuX9QhatFowrsvo9Hj8WgArg3W7ijNAQw==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/code-frame': 7.16.7
-      '@babel/generator': 7.17.10
-      '@babel/helper-environment-visitor': 7.16.7
-      '@babel/helper-function-name': 7.17.9
-      '@babel/helper-hoist-variables': 7.16.7
-      '@babel/helper-split-export-declaration': 7.16.7
-      '@babel/parser': 7.17.10
-      '@babel/types': 7.17.10
-      debug: 4.3.4
-      globals: 11.12.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /@babel/types/7.13.0:
     resolution: {integrity: sha512-hE+HE8rnG1Z6Wzo+MhaKE5lM5eMx71T4EHJgku2E3xIfaULhDcxiiRxUYgwX8qwP1BBSlag+TdGOt6JAidIZTA==}
     dependencies:
       '@babel/helper-validator-identifier': 7.16.7
       lodash: 4.17.21
-      to-fast-properties: 2.0.0
-    dev: true
-
-  /@babel/types/7.17.0:
-    resolution: {integrity: sha512-TmKSNO4D5rzhL5bjWFcVHHLETzfQ/AmbKpKPOSjlP0WoHZ6L911fgoOKY4Alp/emzG4cHJdyN49zpgkbXFEHHw==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/helper-validator-identifier': 7.16.7
       to-fast-properties: 2.0.0
     dev: true
 
@@ -2881,8 +2838,8 @@ packages:
     engines: {node: '>= 12'}
     dev: true
 
-  /dayjs/1.11.1:
-    resolution: {integrity: sha512-ER7EjqVAMkRRsxNCC5YqJ9d9VQYuWdGt7aiH2qA5R5wt8ZmWaP2dLUSIK6y/kVzLMlmh1Tvu5xUf4M/wdGJ5KA==}
+  /dayjs/1.11.2:
+    resolution: {integrity: sha512-F4LXf1OeU9hrSYRPTTj/6FbO4HTjPKXvEIC1P2kcnFurViINCVk3ZV0xAS3XVx9MkMsXbbqlK6hjseaYbgKEHw==}
     dev: false
 
   /debug/2.6.9:
