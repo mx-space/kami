@@ -5,7 +5,7 @@ overrides:
   '@types/react': 17.0.45
 
 specifiers:
-  '@floating-ui/react-dom': 0.6.3
+  '@floating-ui/react-dom': 0.7.0
   '@innei-util/eslint-config-react-ts': latest
   '@innei-util/prettier': 0.8.2
   '@mx-space/api-client': 0.9.4
@@ -74,7 +74,7 @@ specifiers:
   zx: 6.1.0
 
 dependencies:
-  '@floating-ui/react-dom': 0.6.3_fjh4ypl5eyqw2cfwhekzhnvvn4
+  '@floating-ui/react-dom': 0.7.0_fjh4ypl5eyqw2cfwhekzhnvvn4
   '@mx-space/api-client': 0.9.4
   axios: 0.27.2
   clsx: 1.1.1
@@ -1491,18 +1491,18 @@ packages:
       - supports-color
     dev: true
 
-  /@floating-ui/core/0.6.2:
-    resolution: {integrity: sha512-jktYRmZwmau63adUG3GKOAVCofBXkk55S/zQ94XOorAHhwqFIOFAy1rSp2N0Wp6/tGbe9V3u/ExlGZypyY17rg==}
+  /@floating-ui/core/0.7.0:
+    resolution: {integrity: sha512-W7+i5Suhhvv97WDTW//KqUA43f/2a4abprM1rWqtLM9lIlJ29tbFI8h232SvqunXon0WmKNEKVjbOsgBhTnbLw==}
     dev: false
 
-  /@floating-ui/dom/0.4.5:
-    resolution: {integrity: sha512-b+prvQgJt8pieaKYMSJBXHxX/DYwdLsAWxKYqnO5dO2V4oo/TYBZJAUQCVNjTWWsrs6o4VDrNcP9+E70HAhJdw==}
+  /@floating-ui/dom/0.5.0:
+    resolution: {integrity: sha512-PS75dnMg4GdWjDFOiOs15cDzYJpukRNHqQn0ugrBlsrpk2n+y8bwZ24XrsdLSL7kxshmxxr2nTNycLnmRIvV7g==}
     dependencies:
-      '@floating-ui/core': 0.6.2
+      '@floating-ui/core': 0.7.0
     dev: false
 
-  /@floating-ui/react-dom/0.6.3_fjh4ypl5eyqw2cfwhekzhnvvn4:
-    resolution: {integrity: sha512-hC+pS5D6AgS2wWjbmSQ6UR6Kpy+drvWGJIri6e1EDGADTPsCaa4KzCgmCczHrQeInx9tqs81EyDmbKJYY2swKg==}
+  /@floating-ui/react-dom/0.7.0_fjh4ypl5eyqw2cfwhekzhnvvn4:
+    resolution: {integrity: sha512-mpYGykTqwtBYT+ZTQQ2OfZ6wXJNuUgmqqD9ooCgbMRgvul6InFOTtWYvtujps439hmOFiVPm4PoBkEEn5imidg==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -1510,7 +1510,7 @@ packages:
       react:
         optional: true
     dependencies:
-      '@floating-ui/dom': 0.4.5
+      '@floating-ui/dom': 0.5.0
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
       use-isomorphic-layout-effect: 1.1.2_jf7exnlqiayjnziahgkymlrxlu
