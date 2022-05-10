@@ -105,7 +105,7 @@
     "@types/ua-parser-js": "0.7.36",
     "@types/validator": "13.7.2",
     "cross-env": "*",
-    "dotenv": "16.0.0",
+    "dotenv": "16.0.1",
     "eslint": "*",
     "husky": "7.0.4",
     "js-yaml": "*",
