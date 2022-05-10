@@ -31,7 +31,7 @@ specifiers:
   css-spring: 4.1.0
   dayjs: 1.11.2
   devtools-detector: 2.0.6
-  dotenv: 16.0.0
+  dotenv: 16.0.1
   eslint: '*'
   husky: 7.0.4
   js-cookie: 3.0.1
@@ -123,7 +123,7 @@ devDependencies:
   '@types/ua-parser-js': 0.7.36
   '@types/validator': 13.7.2
   cross-env: 7.0.3
-  dotenv: 16.0.0
+  dotenv: 16.0.1
   eslint: 8.14.0
   husky: 7.0.4
   js-yaml: 4.1.0
@@ -2997,8 +2997,8 @@ packages:
       domhandler: 4.3.0
     dev: false
 
-  /dotenv/16.0.0:
-    resolution: {integrity: sha512-qD9WU0MPM4SWLPJy/r2Be+2WgQj8plChsyrCNQzW/0WjvcJQiKQJ9mH3ZgB3fxbUUxgc/11ZJ0Fi5KiimWGz2Q==}
+  /dotenv/16.0.1:
+    resolution: {integrity: sha512-1K6hR6wtk2FviQ4kEiSjFiH5rpzEVi8WW0x96aztHVMhEspNpc4DVOUTEHtEva5VThQ8IaBX1Pe4gSzpVVUsKQ==}
     engines: {node: '>=12'}
     dev: true
 
