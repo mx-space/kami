@@ -69,7 +69,7 @@ specifiers:
   stylelint-config-standard: 25.0.0
   typescript: 4.6.4
   validator: 13.7.0
-  windicss: 3.5.2
+  windicss: 3.5.3
   windicss-webpack-plugin: 1.7.2
   zx: 6.1.0
 
@@ -140,7 +140,7 @@ devDependencies:
   stylelint: 14.8.2
   stylelint-config-standard: 25.0.0_stylelint@14.8.2
   typescript: 4.6.4
-  windicss: 3.5.2
+  windicss: 3.5.3
   windicss-webpack-plugin: 1.7.2
   zx: 6.1.0
 
@@ -2190,7 +2190,7 @@ packages:
     dependencies:
       debug: 4.3.4
       jiti: 1.13.0
-      windicss: 3.5.2
+      windicss: 3.5.3
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2204,7 +2204,7 @@ packages:
       fast-glob: 3.2.11
       magic-string: 0.26.1
       micromatch: 4.0.5
-      windicss: 3.5.2
+      windicss: 3.5.3
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3909,12 +3909,6 @@ packages:
   /is-callable/1.2.4:
     resolution: {integrity: sha512-nsuwtxZfMX67Oryl9LCQ+upnC0Z0BgpwntpS89m1H/TLF0zNfzfLMV/9Wa/6MZsj0acpEjAO0KF1xT6ZdLl95w==}
     engines: {node: '>= 0.4'}
-    dev: true
-
-  /is-core-module/2.8.1:
-    resolution: {integrity: sha512-SdNCUs284hr40hFTFP6l0IfZ/RSrMXF3qgoRHd3/79unUTvrFO/JoXwkGm+5J/Oe3E/b5GsnG330uUNgRpu1PA==}
-    dependencies:
-      has: 1.0.3
     dev: true
 
   /is-core-module/2.9.0:
@@ -5726,7 +5720,7 @@ packages:
     resolution: {integrity: sha512-Hhtrw0nLeSrFQ7phPp4OOcVjLPIeMnRlr5mcnVuMe7M/7eBn98A3hmFRLoFo3DLZkivSYwhRUJTyPyWAk56WLw==}
     hasBin: true
     dependencies:
-      is-core-module: 2.8.1
+      is-core-module: 2.9.0
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
     dev: true
@@ -6762,13 +6756,13 @@ packages:
       lodash: 4.17.21
       pathe: 0.2.0
       webpack-virtual-modules: 0.4.3
-      windicss: 3.5.2
+      windicss: 3.5.3
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /windicss/3.5.2:
-    resolution: {integrity: sha512-Vy06iCcKXjR9izEViwIcwdaZHouzNWmjqWmVt3lyfZVNm6hWz6ME6s+6pIwrHMbylbal9hW3M9LRbN9mzFhccQ==}
+  /windicss/3.5.3:
+    resolution: {integrity: sha512-Zsb38RscfZJa218GUREJyFu6EF1xD5DZ+b0XL1Kac3BGDtYwVmXJMmOahMK4mZSEy3gWO8aqUQMny0nbJFG6yA==}
     engines: {node: '>= 12'}
     hasBin: true
     dev: true
