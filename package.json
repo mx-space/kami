@@ -107,7 +107,7 @@
     "cross-env": "*",
     "dotenv": "16.0.1",
     "eslint": "*",
-    "husky": "7.0.4",
+    "husky": "8.0.1",
     "js-yaml": "*",
     "lint-staged": "12.4.1",
     "next-compose-plugins": "2.2.1",
