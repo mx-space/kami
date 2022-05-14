@@ -178,7 +178,7 @@ pre > code {
   @media (max-width: 599px) {
     & {
       margin: 0;
-      padding: 0;
+      padding: 10px 0;
       background-color: initial;
       box-shadow: unset;
     }

@@ -67,7 +67,7 @@ export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
             <div>
               <h1
                 title={tips}
-                className="text-center !mt-4 !before:hidden headline text-brown dark:text-shizuku-text"
+                className="text-center !mt-8 !before:hidden headline text-brown dark:text-shizuku-text"
               >
                 {title}
                 {isLogged && url ? (
