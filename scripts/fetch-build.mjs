@@ -26,7 +26,7 @@ async function main() {
   }
 
   const arrayBuffer = await fetch(
-    `https://small-lake-9960.tukon479.workers.dev/${downloadUrl}`,
+    `https://cc.shizuri.net//${downloadUrl}`,
   ).then((res) => res.arrayBuffer())
   const buffer = Buffer.from(arrayBuffer)
   const tmpName = (Math.random() * 10).toString(16)
