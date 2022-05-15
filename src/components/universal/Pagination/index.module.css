@@ -17,7 +17,6 @@
     padding: 0;
     transition: border 0.5s;
     transform: translateY(0px);
-    color: var(--white);
 
     &:hover {
       border: 1px solid var(--yellow);
