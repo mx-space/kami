@@ -54,7 +54,7 @@ const Content: FC = observer((props) => {
 
   useEffect(() => {
     loadStyleSheet(
-      'https://fonts.beixibaobao.com/css2?family=Noto+Sans+SC:wght@100;300;400;500&display=swap',
+      'https://fonts.loli.net/css2?family=Noto+Sans+SC:wght@100;300;400;500&display=swap',
     )
     loadStyleSheet(
       'https://cdn.jsdelivr.net/gh/Innei/zshrc@0.1.1/webfont/OperatorMono.css',
