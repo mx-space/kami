@@ -64,7 +64,7 @@ specifiers:
   react-use: 17.3.2
   remove-markdown: 0.5.0
   rimraf: '*'
-  socket.io-client: 4.5.0
+  socket.io-client: 4.5.1
   stylelint: 14.8.2
   stylelint-config-standard: 25.0.0
   typescript: 4.6.4
@@ -100,7 +100,7 @@ dependencies:
   react-transition-group: 4.4.2_ef5jwxihqo6n7gxfmzogljlgcm
   react-use: 17.3.2_ef5jwxihqo6n7gxfmzogljlgcm
   remove-markdown: 0.5.0
-  socket.io-client: 4.5.0
+  socket.io-client: 4.5.1
   validator: 13.7.0
 
 devDependencies:
@@ -1897,7 +1897,7 @@ packages:
     dev: true
 
   /@types/json5/0.0.29:
-    resolution: {integrity: sha1-7ihweulOEdK4J7y+UnC86n8+ce4=}
+    resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: true
 
   /@types/lodash-es/4.17.6:
@@ -5940,8 +5940,8 @@ packages:
       is-fullwidth-code-point: 4.0.0
     dev: true
 
-  /socket.io-client/4.5.0:
-    resolution: {integrity: sha512-HW61c1G7OrYGxaI79WRn17+b03iBCdvhBj4iqyXHBoL5M8w2MSO/vChsjA93knG4GYEai1/vbXWJna9dzxXtSg==}
+  /socket.io-client/4.5.1:
+    resolution: {integrity: sha512-e6nLVgiRYatS+AHXnOnGi4ocOpubvOUCGhyWw8v+/FxW8saHkinG6Dfhi9TU0Kt/8mwJIAASxvw6eujQmjdZVA==}
     engines: {node: '>=10.0.0'}
     dependencies:
       '@socket.io/component-emitter': 3.1.0
