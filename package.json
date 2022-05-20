@@ -57,7 +57,7 @@
   ],
   "dependencies": {
     "@floating-ui/react-dom": "0.7.1",
-    "@mx-space/api-client": "0.9.4",
+    "@mx-space/api-client": "0.10.0",
     "axios": "0.27.2",
     "clsx": "1.1.1",
     "css-spring": "4.1.0",
@@ -80,7 +80,7 @@
     "react-message-popup": "1.0.0-alpha.2",
     "react-toastify": "9.0.1",
     "react-transition-group": "4.4.2",
-    "react-use": "17.3.2",
+    "react-use": "17.4.0",
     "remove-markdown": "0.5.0",
     "socket.io-client": "4.5.1",
     "validator": "13.7.0"
@@ -115,7 +115,7 @@
     "postcss": "8.4.14",
     "postcss-import": "14.1.0",
     "postcss-nested": "5.0.6",
-    "postcss-preset-env": "7.5.0",
+    "postcss-preset-env": "7.6.0",
     "prettier": "2.6.2",
     "react-lazyload": "3.2.0",
     "rimraf": "*",
@@ -127,7 +127,7 @@
     "zx": "6.1.0"
   },
   "resolutions": {
-    "react-use": "17.3.2",
+    "react-use": "17.4.0",
     "@types/react": "17.0.45"
   }
 }
