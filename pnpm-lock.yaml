@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 overrides:
-  react-use: 17.3.2
+  react-use: 17.4.0
   '@types/react': 17.0.45
 
 specifiers:
@@ -61,7 +61,7 @@ specifiers:
   react-message-popup: 1.0.0-alpha.2
   react-toastify: 9.0.1
   react-transition-group: 4.4.2
-  react-use: 17.3.2
+  react-use: 17.4.0
   remove-markdown: 0.5.0
   rimraf: '*'
   socket.io-client: 4.5.1
@@ -98,7 +98,7 @@ dependencies:
   react-message-popup: 1.0.0-alpha.2_ef5jwxihqo6n7gxfmzogljlgcm
   react-toastify: 9.0.1_ef5jwxihqo6n7gxfmzogljlgcm
   react-transition-group: 4.4.2_ef5jwxihqo6n7gxfmzogljlgcm
-  react-use: 17.3.2_ef5jwxihqo6n7gxfmzogljlgcm
+  react-use: 17.4.0_ef5jwxihqo6n7gxfmzogljlgcm
   remove-markdown: 0.5.0
   socket.io-client: 4.5.1
   validator: 13.7.0
@@ -2966,7 +2966,7 @@ packages:
   /dom-helpers/5.2.1:
     resolution: {integrity: sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==}
     dependencies:
-      '@babel/runtime': 7.16.7
+      '@babel/runtime': 7.17.9
       csstype: 3.0.11
     dev: false
 
@@ -5532,11 +5532,11 @@ packages:
       tslib: 2.3.1
     dev: false
 
-  /react-use/17.3.2_ef5jwxihqo6n7gxfmzogljlgcm:
-    resolution: {integrity: sha512-bj7OD0/1wL03KyWmzFXAFe425zziuTf7q8olwCYBfOeFHY1qfO1FAMjROQLsLZYwG4Rx63xAfb7XAbBrJsZmEw==}
+  /react-use/17.4.0_ef5jwxihqo6n7gxfmzogljlgcm:
+    resolution: {integrity: sha512-TgbNTCA33Wl7xzIJegn1HndB4qTS9u03QUwyNycUnXaweZkE4Kq2SB+Yoxx8qbshkZGYBDvUXbXWRUmQDcZZ/Q==}
     peerDependencies:
-      react: ^16.8.0  || ^17.0.0
-      react-dom: ^16.8.0  || ^17.0.0
+      react: ^16.8.0  || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0  || ^17.0.0 || ^18.0.0
     peerDependenciesMeta:
       react:
         optional: true
