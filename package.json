@@ -2,7 +2,7 @@
   "name": "mx-kami",
   "license": "GPL-3.0",
   "private": false,
-  "version": "3.6.11",
+  "version": "3.7.0-alpha.0",
   "engines": {
     "node": ">=14"
   },
