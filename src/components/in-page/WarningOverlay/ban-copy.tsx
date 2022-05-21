@@ -1,5 +1,5 @@
 import { OverLay } from 'components/universal/Overlay'
-import { MaidianAction } from 'constants/maidian'
+import { TrackerAction } from 'constants/tracker'
 import { useAnalyze } from 'hooks/use-analyze'
 import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
@@ -25,7 +25,7 @@ export const BanCopy: FC = observer((props) => {
       }
       e.preventDefault()
       setShowCopyWarn(true)
-      event({ action: MaidianAction.BanCopy, label: router.asPath })
+      event({ action: TrackerAction.BanCopy, label: router.asPath })
     }
 
     return () => {

@@ -1,23 +1,15 @@
 import type { AxiosError } from 'axios'
-import { NotePasswordConfrim } from 'components/in-page/NotePasswordConfirm'
+import { NoteFooterActionBar } from 'components/in-page/Note/NoteActionBar'
+import { NoteFooterNavigation } from 'components/in-page/Note/NoteFooterNavigation'
+import { NotePasswordConfrim } from 'components/in-page/Note/NotePasswordConfirm'
+import { NoteTopic } from 'components/in-page/Note/NoteTopic'
 import { BanCopy } from 'components/in-page/WarningOverlay/ban-copy'
 import { ArticleLayout } from 'components/layouts/ArticleLayout'
 import { NoteLayout } from 'components/layouts/NoteLayout'
-import {
-  MdiClockTimeThreeOutline,
-  PhBookOpen,
-} from 'components/universal/Icons'
-import { LikeButton } from 'components/universal/LikeButton'
 import { Loading } from 'components/universal/Loading'
 import { Markdown } from 'components/universal/Markdown'
-import { NumberRecorder } from 'components/universal/NumberRecorder'
-import { RelativeTime } from 'components/universal/RelativeTime'
-import type { ActionProps } from 'components/widgets/ArticleAction'
-import { ArticleFooterAction } from 'components/widgets/ArticleAction'
 import CommentWrap from 'components/widgets/Comment'
-import { MaidianAction } from 'constants/maidian'
 import dayjs from 'dayjs'
-import { useAnalyze } from 'hooks/use-analyze'
 import { useHeaderMeta, useHeaderShare } from 'hooks/use-header-meta'
 import { useLoadSerifFont } from 'hooks/use-load-serif-font'
 import { useNoteMusic } from 'hooks/use-music'
@@ -32,7 +24,6 @@ import { message } from 'react-message-popup'
 import { useUpdate } from 'react-use'
 import { store, useStore } from 'store'
 import { imagesRecord2Map } from 'utils/images'
-import { springScrollToTop } from 'utils/spring'
 import { parseDate } from 'utils/time'
 
 import type { NoteModel } from '@mx-space/api-client'
@@ -40,13 +31,7 @@ import { RequestError } from '@mx-space/api-client'
 
 import { Seo } from '../../components/universal/Seo'
 import { ImageSizeMetaContext } from '../../context/image-size'
-import {
-  getSummaryFromMd,
-  isDev,
-  mood2icon,
-  noop,
-  weather2icon,
-} from '../../utils'
+import { getSummaryFromMd, isDev, noop } from '../../utils'
 
 const renderLines: FC<{ value: string }> = ({ value }) => {
   return <span className="indent">{value}</span>
@@ -98,6 +83,7 @@ const useUpdateNote = (id: string) => {
     note?.weather,
     note?.hide,
     note?.isDeleted,
+    note?.topicId,
   ])
 }
 
@@ -236,9 +222,10 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
           </ImageSizeMetaContext.Provider>
         )}
 
-        <FooterNavigation id={props.id} />
+        {note.topic && <NoteTopic noteId={props.id} topic={note.topic} />}
+        <NoteFooterNavigation id={props.id} />
         <div className="pb-4"></div>
-        <FooterActionBar id={props.id} />
+        <NoteFooterActionBar id={props.id} />
       </NoteLayout>
       {!isSecret && (
         <ArticleLayout
@@ -251,127 +238,6 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
             allowComment={note.allowComment ?? true}
           />
         </ArticleLayout>
-      )}
-    </>
-  )
-})
-
-const FooterActionBar: FC<{ id: string }> = observer(({ id }) => {
-  const { noteStore } = useStore()
-  const note = noteStore.get(id)
-
-  if (!note) {
-    return null
-  }
-  const nid = note.nid
-  const { mood, weather } = note
-  const isSecret = note.secret ? dayjs(note.secret).isAfter(new Date()) : false
-  const isLiked = noteStore.isLiked(nid)
-  const actions: ActionProps = {
-    informs: [],
-    actions: [
-      {
-        name: (
-          <div className="inline-flex items-center leading-[1]">
-            <div className="h-[1rem] w-[1rem] relative mr-2">
-              <LikeButton
-                checked={isLiked}
-                width={'2rem'}
-                className={
-                  'absolute inset-0 -translate-y-1/2 -translate-x-1/2 transform '
-                }
-              />
-            </div>
-            <NumberRecorder number={note.count?.like || 0} />
-          </div>
-        ),
-        color: isLiked ? '#e74c3c' : undefined,
-
-        callback: () => {
-          noteStore.like(nid)
-        },
-      },
-    ],
-  }
-  {
-    if (weather) {
-      actions.informs!.push({
-        name: weather,
-        icon: weather2icon(weather),
-      })
-    }
-    if (mood) {
-      actions.informs!.push({
-        name: mood,
-        icon: mood2icon(mood),
-      })
-    }
-
-    actions.informs!.push(
-      {
-        name: <RelativeTime date={note.created} />,
-        icon: <MdiClockTimeThreeOutline />,
-      },
-      {
-        name: note.count.read.toString(),
-        icon: <PhBookOpen />,
-      },
-    )
-  }
-
-  return <>{!isSecret && <ArticleFooterAction {...actions} />}</>
-})
-
-const FooterNavigation: FC<{ id: string }> = observer(({ id }) => {
-  const { noteStore } = useStore()
-  const [prev, next] =
-    noteStore.relationMap.get(id) ||
-    ([noop, noop] as [Partial<NoteModel>, Partial<NoteModel>])
-  const router = useRouter()
-  const { event } = useAnalyze()
-  return (
-    <>
-      {(!!next || !!prev) && (
-        <section className="kami-more">
-          {!!next && (
-            <button
-              className="btn green"
-              onClick={() => {
-                router.push('/notes/[id]', `/notes/${next.nid}`)
-              }}
-            >
-              前一篇
-            </button>
-          )}
-          {
-            <button
-              className="btn yellow"
-              onClick={() => {
-                const note = noteStore.get(id)
-
-                event({
-                  action: MaidianAction.NoteToTimeline,
-                  label: `Note Id ${note?.nid} ${note?.title}`,
-                })
-
-                springScrollToTop()
-                router.push('/timeline?type=note')
-              }}
-            >
-              时间线
-            </button>
-          }
-          {!!prev && (
-            <button
-              className="btn green"
-              onClick={() => {
-                router.push('/notes/[id]', `/notes/${prev.nid}`)
-              }}
-            >
-              后一篇
-            </button>
-          )}
-        </section>
       )}
     </>
   )

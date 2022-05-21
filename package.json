@@ -57,7 +57,7 @@
   ],
   "dependencies": {
     "@floating-ui/react-dom": "0.7.1",
-    "@mx-space/api-client": "0.10.1",
+    "@mx-space/api-client": "0.10.2",
     "axios": "0.27.2",
     "clsx": "1.1.1",
     "css-spring": "4.1.0",
@@ -86,8 +86,8 @@
     "validator": "13.7.0"
   },
   "devDependencies": {
-    "@innei/eslint-config-react-ts": "latest",
-    "@innei/prettier": "latest",
+    "@innei/eslint-config-react-ts": "0.9.2",
+    "@innei/prettier": "0.9.2",
     "@next/bundle-analyzer": "12.1.6",
     "@trivago/prettier-plugin-sort-imports": "3.2.0",
     "@types/inflection": "1.13.0",
@@ -119,7 +119,7 @@
     "prettier": "2.6.2",
     "react-lazyload": "3.2.0",
     "rimraf": "*",
-    "stylelint": "14.8.2",
+    "stylelint": "14.8.3",
     "stylelint-config-standard": "25.0.0",
     "typescript": "4.6.4",
     "windicss": "3.5.4",

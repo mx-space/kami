@@ -1,4 +1,4 @@
-import { MaidianAction } from 'constants/maidian'
+import { TrackerAction } from 'constants/tracker'
 import { useAnalyze } from 'hooks/use-analyze'
 import type { DetailedHTMLProps, HTMLAttributes } from 'react'
 import { memo, useRef } from 'react'
@@ -46,7 +46,7 @@ export const Switch = NoSSR(
               className={styles['sakura-img']}
               onClick={() => {
                 event({
-                  action: MaidianAction.ToggleColorMode,
+                  action: TrackerAction.ToggleColorMode,
                   label: 'toggle color',
                 })
                 if (containerRef.current) {

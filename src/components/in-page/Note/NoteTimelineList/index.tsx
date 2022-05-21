@@ -3,11 +3,13 @@
  */
 import clsx from 'clsx'
 import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
+import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC } from 'react'
-import { memo, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import { usePrevious } from 'react-use'
+import { useStore } from 'store'
 import { apiClient } from 'utils/client'
 
 import type { NoteModel } from '@mx-space/api-client'
@@ -22,8 +24,11 @@ type NotePartial = Pick<NoteModel, 'id' | 'nid' | 'created' | 'title'>
 
 export const NoteTimelineList: FC<
   NoteTimelineListProps & JSX.IntrinsicElements['div']
-> = memo((props) => {
+> = observer((props) => {
   const { className, noteId } = props
+
+  const { noteStore } = useStore()
+  const note = noteStore.get(noteId)
   const [list, setList] = useState<NotePartial[]>([])
   const prevList = usePrevious(list)
 
@@ -61,6 +66,16 @@ export const NoteTimelineList: FC<
             </BottomUpTransitionView>
           ))}
         </TransitionGroup>
+        {note?.topic && (
+          <>
+            <hr className="border-0 h-[0.5px] w-3/4 bg-black dark:bg-white !bg-opacity-50 my-4" />
+            <p className="text-gray-2 truncate break-all">
+              此文章收录于专栏：
+              <br />
+              {note.topic.name}
+            </p>
+          </>
+        )}
       </ul>
     </div>
   )

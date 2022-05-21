@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { MusicIcon, PauseIcon } from 'components/universal/Icons'
 import { Seo } from 'components/universal/Seo'
-import { MaidianAction } from 'constants/maidian'
+import { TrackerAction } from 'constants/tracker'
 import { useAnalyze } from 'hooks/use-analyze'
 import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'
@@ -32,7 +32,7 @@ export const SectionMusic: FC<SectionMusicProps> = memo((props) => {
   const loadList = (id: number[]) => {
     runInAction(() => {
       event({
-        action: MaidianAction.PlayMusicList,
+        action: TrackerAction.PlayMusicList,
         label: `Play ${id.join(',')} music list`,
       })
       musicStore.setPlaylist(id)
@@ -122,7 +122,7 @@ const PlayingSongItem: FC<SongItemProps> = observer((props) => {
   }, [playId])
 
   useEffect(() => {
-    event({ action: MaidianAction.PlayingSong, label: `Song ${playId}` })
+    event({ action: TrackerAction.PlayingSong, label: `Song ${playId}` })
   }, [playId])
   return (
     <li

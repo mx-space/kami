@@ -4,7 +4,7 @@ import {
   FaSolidHeadphonesAlt,
 } from 'components/universal/Icons'
 import { ScaleTransitionView } from 'components/universal/Transition/scale'
-import { MaidianAction } from 'constants/maidian'
+import { TrackerAction } from 'constants/tracker'
 import { useAnalyze } from 'hooks/use-analyze'
 import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'
@@ -65,7 +65,7 @@ export const FooterActions: FC = observer(() => {
         <button
           onClick={() => {
             event({
-              action: MaidianAction.FooterPlayerClick,
+              action: TrackerAction.FooterPlayerClick,
             })
             runInAction(() => {
               musicStore.setHide(!musicStore.isHide)

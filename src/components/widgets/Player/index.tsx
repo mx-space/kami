@@ -1,5 +1,5 @@
 import { default as classNames, default as clsx } from 'clsx'
-import { MaidianAction } from 'constants/maidian'
+import { TrackerAction } from 'constants/tracker'
 import { useAnalyze } from 'hooks/use-analyze'
 import { observer } from 'mobx-react-lite'
 import {
@@ -268,7 +268,7 @@ export const _MusicMiniPlayerStoreControlled = observer(() => {
     if (musicStore.isPlay) {
       requestAnimationFrame(() => {
         event({
-          action: MaidianAction.MusicPlay,
+          action: TrackerAction.MusicPlay,
         })
         ref.current?.play()
       })

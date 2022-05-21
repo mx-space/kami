@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import { EmptyIcon, IonSearch } from 'components/universal/Icons'
 import type { OverlayProps } from 'components/universal/Overlay'
 import { OverLay } from 'components/universal/Overlay'
-import { MaidianAction } from 'constants/maidian'
+import { TrackerAction } from 'constants/tracker'
 import { useAnalyze } from 'hooks/use-analyze'
 import { useHotKey } from 'hooks/use-hotkey'
 import { throttle } from 'lodash-es'
@@ -63,7 +63,7 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
     search(keyword)
       ?.then((res) => {
         event({
-          action: MaidianAction.Search,
+          action: TrackerAction.Search,
           label: keyword,
         })
         if (!res) {
@@ -239,7 +239,7 @@ export const SearchHotKey: FC = memo(() => {
   const { event } = useAnalyze()
   const [show, setShow] = useState(false)
   const handler = () => {
-    event({ action: MaidianAction.CommandKTap, label: 'cmd+k' })
+    event({ action: TrackerAction.CommandKTap, label: 'cmd+k' })
     setShow(true)
   }
 
@@ -258,7 +258,7 @@ export const SearchFAB = memo(() => {
   useEffect(() => {
     if (show) {
       event({
-        action: MaidianAction.SearchFAB,
+        action: TrackerAction.SearchFAB,
       })
     }
   }, [show])

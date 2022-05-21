@@ -1,4 +1,4 @@
-import { NoteTimelineList } from 'components/in-page/NoteTimelineList'
+import { NoteTimelineList } from 'components/in-page/Note/NoteTimelineList'
 import { FaRegularBookmark, FaSolidBookmark } from 'components/universal/Icons'
 import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
 import dayjs from 'dayjs'

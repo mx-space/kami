@@ -1,5 +1,6 @@
-import type { MaidianAction } from 'constants/maidian'
+import type { TrackerAction } from 'constants/tracker'
 import { useCallback } from 'react'
+import { isDev } from 'utils'
 
 import { useThemeConfig } from './use-initial-data'
 
@@ -26,17 +27,17 @@ export const useAnalyze = () => {
 
   // https://developers.google.com/analytics/devguides/collection/gtagjs/events
   const event = useCallback(
-    ({
-      action,
-      category,
-      label,
-      value,
-    }: {
-      action: MaidianAction
+    (options: {
+      action: TrackerAction
       label?: string
       category?: string
       value?: number
     }) => {
+      const { action, category, label, value } = options
+      if (isDev) {
+        console.log('event', options)
+        return
+      }
       if (!GA_TRACKING_ID || !isEnableGA) {
         return
       }

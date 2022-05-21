@@ -19,10 +19,13 @@
   width: 80px;
   height: 80px;
   box-sizing: border-box;
-  border: 3px #bbb solid;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 1px 2px 9px 0 rgb(0 0 0 / 32%);
+
+  &.shadow {
+    border: 3px #bbb solid;
+    box-shadow: 1px 2px 9px 0 rgb(0 0 0 / 32%);
+  }
 
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;

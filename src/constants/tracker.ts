@@ -1,4 +1,4 @@
-export enum MaidianAction {
+export enum TrackerAction {
   MusicPlay = 'music_play',
   PlayMusicList = 'play_music_list',
 
@@ -12,4 +12,5 @@ export enum MaidianAction {
   Search = 'search',
 
   SearchFAB = 'search_fab',
+  Impression = 'impression',
 }
