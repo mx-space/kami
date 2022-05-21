@@ -1,10 +1,12 @@
 import { ArticleLayout } from 'components/layouts/ArticleLayout'
+import { Divider } from 'components/universal/Divider'
 import { Pagination } from 'components/universal/Pagination'
 import { SEO } from 'components/universal/Seo'
 import { RightLeftTransitionView } from 'components/universal/Transition/right-left'
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import { useCallback, useEffect, useState } from 'react'
+import Linkify from 'react-linkify'
 import { TransitionGroup } from 'react-transition-group'
 import { apiClient } from 'utils'
 
@@ -37,7 +39,20 @@ const TopicDetailPage: NextPage<TopicModel> = (props) => {
       subtitle={pager ? `共收录${pager.total}篇文章` : ''}
     >
       <SEO title={`专栏 - ${name}`} />
-      <article className="article-list">
+      <div className="topic-info -mt-8">
+        <p>
+          <span>{props.introduce}</span>
+        </p>
+        {props.description && (
+          <>
+            <Divider />
+            <p>
+              <Linkify>{props.description}</Linkify>
+            </p>
+          </>
+        )}
+      </div>
+      <div className="article-list mt-16">
         <ul>
           <TransitionGroup>
             {notes &&
@@ -67,7 +82,7 @@ const TopicDetailPage: NextPage<TopicModel> = (props) => {
             total={pager.totalPage}
           />
         )}
-      </article>
+      </div>
     </ArticleLayout>
   )
 }
