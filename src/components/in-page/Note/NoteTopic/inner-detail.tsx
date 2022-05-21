@@ -33,7 +33,7 @@ export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
           <h1 className="text-lg font-medium !m-0 py-2">{topic.name}</h1>
         </a>
       </Link>
-      <Divider />
+
       <p className="break-all line-clamp-2 text-gray-2">
         <Linkify>{topic.introduce}</Linkify>
       </p>
