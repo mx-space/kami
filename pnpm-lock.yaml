@@ -8,7 +8,7 @@ specifiers:
   '@floating-ui/react-dom': 0.7.1
   '@innei/eslint-config-react-ts': 0.9.2
   '@innei/prettier': 0.9.2
-  '@mx-space/api-client': 0.10.2
+  '@mx-space/api-client': 0.10.3
   '@next/bundle-analyzer': 12.1.6
   '@trivago/prettier-plugin-sort-imports': 3.2.0
   '@types/inflection': 1.13.0
@@ -75,7 +75,7 @@ specifiers:
 
 dependencies:
   '@floating-ui/react-dom': 0.7.1_fjh4ypl5eyqw2cfwhekzhnvvn4
-  '@mx-space/api-client': 0.10.2
+  '@mx-space/api-client': 0.10.3
   axios: 0.27.2
   clsx: 1.1.1
   css-spring: 4.1.0
@@ -1732,8 +1732,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.13
     dev: true
 
-  /@mx-space/api-client/0.10.2:
-    resolution: {integrity: sha512-H30WJFvmKaTm0TmVs/v1VtZmDxl66oRyiMnk6GjtRcOuF5JVifD4DWsK51QjsNkB2iM4zXSTEkQrUgHoMUO4pQ==}
+  /@mx-space/api-client/0.10.3:
+    resolution: {integrity: sha512-BlFzfjTtKZKY0/q2VHcjf3hFXE1bYwulEH/eCAcn/UBoqo1AYoz6lNAHdiMiV9eACm+OF3Tp3SqCIZl57PIq2w==}
     engines: {pnpm: '>=6'}
     dependencies:
       camelcase-keys: 7.0.2

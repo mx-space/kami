@@ -118,7 +118,7 @@ html.dark img {
 }
 
 body * {
-  transition: color 0.1s ease-in, background 0.1s ease-in, border 0.1s ease-in;
+  transition: color 0.1s, background 0.1s, border 0.1s;
 }
 
 body {
@@ -169,7 +169,7 @@ p:last-child {
 }
 
 a:hover {
-  color: var(--yellow);
+  color: var(--primary);
 }
 
 a,

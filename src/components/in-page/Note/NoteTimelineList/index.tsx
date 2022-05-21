@@ -82,9 +82,13 @@ export const NoteTimelineList: FC<
                 strategy="fixed"
                 wrapperClassNames="flex flex-grow flex-shrink min-w-0"
                 triggerComponent={() => (
-                  <span className="flex-grow truncate">
-                    {note?.topic?.name}
-                  </span>
+                  <Link href={`/notes/topics/${note?.topic?.slug}`}>
+                    <a>
+                      <span className="flex-grow truncate">
+                        {note?.topic?.name}
+                      </span>
+                    </a>
+                  </Link>
                 )}
               >
                 <ImpressionView

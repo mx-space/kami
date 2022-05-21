@@ -3,6 +3,7 @@ import { Divider, DividerVertical } from 'components/universal/Divider'
 import { FloatPopover } from 'components/universal/FloatPopover'
 import { ImpressionView } from 'components/universal/ImpressionView'
 import { TrackerAction } from 'constants/tracker'
+import Link from 'next/link'
 import type { FC } from 'react'
 import { useMemo } from 'react'
 import { textToBigCharOrWord } from 'utils/word'
@@ -42,7 +43,15 @@ export const NoteTopic: FC<{ noteId: string; topic: TopicModel }> = (props) => {
           />
           <div className="flex-grow flex flex-col self-start">
             <span className="text-md font-medium mb-2">
-              <FloatPopover triggerComponent={() => <span>{name}</span>}>
+              <FloatPopover
+                triggerComponent={() => (
+                  <Link href={`/notes/topics/${topic.slug}`}>
+                    <a>
+                      <span>{name}</span>
+                    </a>
+                  </Link>
+                )}
+              >
                 <ImpressionView
                   trackerMessage={`曝光 - 内页话题 - ${topic.name}`}
                   action={TrackerAction.Impression}

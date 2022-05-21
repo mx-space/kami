@@ -1,6 +1,7 @@
 import { Divider, DividerVertical } from 'components/universal/Divider'
 import { MdiClockOutline, MdiFountainPenTip } from 'components/universal/Icons'
 import { RelativeTime } from 'components/universal/RelativeTime'
+import Link from 'next/link'
 import type { FC } from 'react'
 import { useEffect, useState } from 'react'
 import { apiClient } from 'utils'
@@ -26,7 +27,11 @@ export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
 
   return (
     <div role={'dialog'} className="flex flex-col">
-      <h1 className="text-lg font-medium !m-0 py-2">{topic.name}</h1>
+      <Link href={`/notes/topics/${topic.slug}`}>
+        <a>
+          <h1 className="text-lg font-medium !m-0 py-2">{topic.name}</h1>
+        </a>
+      </Link>
       <Divider />
       <p className="break-all line-clamp-2 text-gray-2">{topic.introduce}</p>
       <Divider />

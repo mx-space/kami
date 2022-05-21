@@ -1,4 +1,8 @@
 .footer {
+  a:hover {
+    color: var(--yellow);
+  }
+
   p {
     @apply my-2 leading-7;
   }

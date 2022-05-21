@@ -16,7 +16,7 @@ const noStyle = {
   opacity: '0',
 } as const
 export const Pagination: FC<PaginationProps> = (props) => {
-  const { total, current, onChange, hideOnSinglePage = false } = props
+  const { total, current, onChange, hideOnSinglePage = true } = props
   const [value, setValue] = useState(current.toString())
   useEffect(() => {
     setValue(current.toString())

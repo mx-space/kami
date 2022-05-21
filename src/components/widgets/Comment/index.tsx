@@ -164,7 +164,6 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
             <div className="text-center">
               {page && page.totalPage !== 0 && page.total !== undefined && (
                 <Pagination
-                  hideOnSinglePage
                   current={page.currentPage || 1}
                   onChange={(page) => {
                     document.getElementById('comment-anchor')?.scrollIntoView({
