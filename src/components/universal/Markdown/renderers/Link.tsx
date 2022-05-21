@@ -1,6 +1,9 @@
 import Router from 'next/router'
-import { FC, memo, useCallback, useMemo } from 'react'
+import type { FC } from 'react'
+import { memo, useCallback, useMemo } from 'react'
+
 import styles from './index.module.css'
+
 export const RenderLink: FC<{
   href: string
   key?: string

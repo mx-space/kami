@@ -1,3 +1,4 @@
+import type { AxiosError } from 'axios'
 import { NotePasswordConfrim } from 'components/in-page/NotePasswordConfirm'
 import { BanCopy } from 'components/in-page/WarningOverlay/ban-copy'
 import { ArticleLayout } from 'components/layouts/ArticleLayout'
@@ -11,10 +12,8 @@ import { Loading } from 'components/universal/Loading'
 import { Markdown } from 'components/universal/Markdown'
 import { NumberRecorder } from 'components/universal/NumberRecorder'
 import { RelativeTime } from 'components/universal/RelativeTime'
-import {
-  ActionProps,
-  ArticleFooterAction,
-} from 'components/widgets/ArticleAction'
+import type { ActionProps } from 'components/widgets/ArticleAction'
+import { ArticleFooterAction } from 'components/widgets/ArticleAction'
 import CommentWrap from 'components/widgets/Comment'
 import { MaidianAction } from 'constants/maidian'
 import dayjs from 'dayjs'
@@ -25,9 +24,10 @@ import { useNoteMusic } from 'hooks/use-music'
 import { isEqual, omit } from 'lodash-es'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react-lite'
-import { NextPage } from 'next'
+import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React, { FC, useEffect, useMemo, useRef, useState } from 'react'
+import type { FC } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { message } from 'react-message-popup'
 import { useUpdate } from 'react-use'
 import { store, useStore } from 'store'
@@ -35,7 +35,8 @@ import { imagesRecord2Map } from 'utils/images'
 import { springScrollToTop } from 'utils/spring'
 import { parseDate } from 'utils/time'
 
-import { NoteModel, RequestError } from '@mx-space/api-client'
+import type { NoteModel } from '@mx-space/api-client'
+import { RequestError } from '@mx-space/api-client'
 
 import { Seo } from '../../components/universal/Seo'
 import { ImageSizeMetaContext } from '../../context/image-size'
@@ -433,7 +434,7 @@ PP.getInitialProps = async (ctx) => {
     return res as any
   } catch (err: any) {
     if (err instanceof RequestError) {
-      if (err.status !== 403) {
+      if ((err.raw as AxiosError).response?.status !== 403) {
         throw err
       }
       return { needPassword: true, id: +id }

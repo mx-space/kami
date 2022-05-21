@@ -1,6 +1,6 @@
-import { FC } from 'react'
+import type { FC } from 'react'
 import { Transition } from 'react-transition-group'
-import { TransitionProps } from 'react-transition-group/Transition'
+import type { TransitionProps } from 'react-transition-group/Transition'
 
 export interface BaseTransitionViewProps {
   id?: string

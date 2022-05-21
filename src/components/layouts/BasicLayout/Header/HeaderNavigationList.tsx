@@ -1,13 +1,17 @@
-import { useFloating } from '@floating-ui/react-dom'
 import clsx from 'clsx'
 import { FontIcon } from 'components/universal/FontIcon'
 import { RootPortal } from 'components/universal/Portal'
 import { useHeaderNavList } from 'hooks/use-header-nav-list'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
-import React, { FC, useCallback } from 'react'
+import type { FC } from 'react'
+import React, { useCallback } from 'react'
 import { Transition } from 'react-transition-group'
+
+import { useFloating } from '@floating-ui/react-dom'
+
 import styles from './index.module.css'
+
 const transitionStyles = {
   entering: { opacity: 0, visibility: 'hidden', transform: 'translateY(10px)' },
   entered: { opacity: 1, visibility: 'visible', transform: 'translateY(0)' },

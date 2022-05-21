@@ -8,7 +8,8 @@ import {
   RadixIconsAvatar,
   SiGlyphGlobal,
 } from 'components/universal/Icons'
-import { FC, useCallback, useReducer } from 'react'
+import type { FC } from 'react'
+import { useCallback, useReducer } from 'react'
 import { message } from 'react-message-popup'
 import { apiClient } from 'utils/client'
 

@@ -1,5 +1,7 @@
 import spring, { toString } from 'css-spring'
+
 import { isClientSide } from './utils'
+
 const cache = new Map<string, string>()
 export type SpringOption = {
   precision?: number

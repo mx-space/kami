@@ -1,10 +1,14 @@
 import { GATEWAY_URL } from 'constants/env'
-import { camelcaseKeys } from '@mx-space/api-client'
-import io, { Socket } from 'socket.io-client'
-import { EventTypes } from 'types/events'
+import type { Socket } from 'socket.io-client'
+import io from 'socket.io-client'
+import type { EventTypes } from 'types/events'
 import { isDev } from 'utils'
+
+import { camelcaseKeys } from '@mx-space/api-client'
+
 import { eventBus } from '../utils/event-emitter'
 import { eventHandler } from './handler'
+
 export class SocketClient {
   public socket!: Socket
 

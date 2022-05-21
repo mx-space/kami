@@ -1,5 +1,6 @@
 import { uniqBy } from 'lodash-es'
 import { useMemo } from 'react'
+
 import { useInitialData, useKamiConfig } from './use-initial-data'
 
 export const useHeaderNavList = () => {

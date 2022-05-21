@@ -1,5 +1,6 @@
 import { RelativeTime } from 'components/universal/RelativeTime'
-import { DetailedHTMLProps, FC, HTMLAttributes, memo, useMemo } from 'react'
+import type { DetailedHTMLProps, FC, HTMLAttributes } from 'react'
+import { memo, useMemo } from 'react'
 
 import styles from './index.module.css'
 

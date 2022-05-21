@@ -1,5 +1,6 @@
-import { CustomEventTypes } from 'types/events'
-import { EventTypes } from '../types/events'
+import type { CustomEventTypes } from 'types/events'
+
+import type { EventTypes } from '../types/events'
 
 export class EventEmitter {
   private observers: Record<string, Function[]> = {}

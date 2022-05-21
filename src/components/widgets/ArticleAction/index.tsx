@@ -7,7 +7,9 @@
  * Mark: Coding with Love
  */
 import { EntypoCreativeCommons } from 'components/universal/Icons'
-import { DetailedHTMLProps, FC, HTMLAttributes, memo } from 'react'
+import type { DetailedHTMLProps, FC, HTMLAttributes } from 'react'
+import { memo } from 'react'
+
 import styles from './index.module.css'
 
 type BaseAction = {

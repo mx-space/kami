@@ -1,4 +1,6 @@
-import { FC, default as React } from 'react'
+import type { FC } from 'react'
+import { default as React } from 'react'
+
 export const RenderSpoiler: FC<{ value: string }> = (props) => {
   return (
     <del className={'spoiler'} title={'你知道的太多了'}>

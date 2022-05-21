@@ -1,5 +1,6 @@
 import { useKamiConfig } from 'hooks/use-initial-data'
-import { FC, memo } from 'react'
+import type { FC } from 'react'
+import { memo } from 'react'
 
 export const DefaultLogo: FC<JSX.IntrinsicElements['svg']> = memo((props) => {
   return (

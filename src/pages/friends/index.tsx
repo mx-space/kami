@@ -1,4 +1,3 @@
-import { LinkModel, LinkState, LinkType } from '@mx-space/api-client'
 import {
   BannedSection,
   FavoriteSection,
@@ -8,10 +7,15 @@ import {
 import { Markdown } from 'components/universal/Markdown'
 import { useInitialData } from 'hooks/use-initial-data'
 import { shuffle } from 'lodash-es'
-import { NextPage } from 'next'
-import { FC, createElement, useEffect, useState } from 'react'
+import type { NextPage } from 'next'
+import type { FC } from 'react'
+import { createElement, useEffect, useState } from 'react'
 import { NoSSR } from 'utils'
 import { apiClient } from 'utils/client'
+
+import type { LinkModel } from '@mx-space/api-client'
+import { LinkState, LinkType } from '@mx-space/api-client'
+
 import { ApplyForLink } from '../../components/in-page/ApplyLink'
 import { ArticleLayout } from '../../components/layouts/ArticleLayout'
 import { SEO } from '../../components/universal/Seo'

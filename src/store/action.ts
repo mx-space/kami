@@ -7,7 +7,8 @@
  * @Coding with Love
  */
 import { makeAutoObservable } from 'mobx'
-import { FootAction } from './types/actions'
+
+import type { FootAction } from './types/actions'
 
 export default class ActionStore {
   constructor() {

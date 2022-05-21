@@ -1,6 +1,7 @@
-import { ProjectModel } from '@mx-space/api-client'
 import { Store } from 'store/helper/base'
 import { apiClient } from 'utils'
+
+import type { ProjectModel } from '@mx-space/api-client'
 
 export class ProjectStore extends Store<ProjectModel> {
   async fetchById(id: string, force = false) {

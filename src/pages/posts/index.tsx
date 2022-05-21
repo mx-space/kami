@@ -5,14 +5,14 @@ import { EmptyIcon } from 'components/universal/Icons'
 import { Loading } from 'components/universal/Loading'
 import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
 import { SearchFAB } from 'components/widgets/Search'
-import { NextPage } from 'next'
+import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React, { Fragment, useEffect, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import { apiClient } from 'utils/client'
 import { springScrollToTop } from 'utils/spring'
 
-import { Pager, PaginateResult, PostModel } from '@mx-space/api-client'
+import type { Pager, PaginateResult, PostModel } from '@mx-space/api-client'
 
 import { SEO } from '../../components/universal/Seo'
 

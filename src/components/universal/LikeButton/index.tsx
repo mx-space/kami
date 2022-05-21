@@ -1,5 +1,6 @@
 import clsx from 'clsx'
-import { FC } from 'react'
+import type { FC } from 'react'
+
 import styles from './index.module.css'
 
 export const LikeButton: FC<{

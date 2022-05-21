@@ -1,15 +1,17 @@
 /**
  * 日记: 左侧时间线
  */
-
-import { NoteModel } from '@mx-space/api-client'
 import clsx from 'clsx'
 import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
 import Link from 'next/link'
-import { FC, memo, useEffect, useState } from 'react'
+import type { FC } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import { usePrevious } from 'react-use'
 import { apiClient } from 'utils/client'
+
+import type { NoteModel } from '@mx-space/api-client'
+
 import styles from './index.module.css'
 
 interface NoteTimelineListProps {

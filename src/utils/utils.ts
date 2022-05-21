@@ -8,7 +8,7 @@
  */
 import type { ServerResponse } from 'http'
 import dynamic from 'next/dynamic'
-import { ComponentType, FC } from 'react'
+import type { FC } from 'react'
 import RemoveMarkdown from 'remove-markdown'
 
 export const isClientSide = () => {

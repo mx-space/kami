@@ -13,7 +13,7 @@ import { appendStyle, noop } from 'utils'
 import { imagesRecord2Map } from 'utils/images'
 import { springScrollToTop } from 'utils/spring'
 
-import { PageModel } from '@mx-space/api-client'
+import type { PageModel } from '@mx-space/api-client'
 
 import { Seo } from '../../components/universal/Seo'
 import { ImageSizeMetaContext } from '../../context/image-size'

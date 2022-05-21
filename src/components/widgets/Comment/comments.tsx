@@ -1,7 +1,7 @@
 import { Markdown } from 'components/universal/Markdown'
 import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
+import type { FC } from 'react'
 import {
-  FC,
   Fragment,
   createElement,
   memo,
@@ -11,12 +11,12 @@ import {
   useState,
 } from 'react'
 import { message } from 'react-message-popup'
-import { Id } from 'store/helper/structure'
+import type { Id } from 'store/helper/structure'
 import { EventTypes } from 'types/events'
 import { eventBus } from 'utils'
 import { apiClient } from 'utils/client'
 
-import { CommentModel } from '@mx-space/api-client'
+import type { CommentModel } from '@mx-space/api-client'
 
 import { CommentContext, openCommentMessage } from '.'
 import { useStore } from '../../../store'

@@ -9,7 +9,8 @@
 import { Markdown } from 'components/universal/Markdown'
 import { RelativeTime } from 'components/universal/RelativeTime'
 import { observer } from 'mobx-react-lite'
-import { FC } from 'react'
+import type { FC } from 'react'
+
 import { useStore } from '../../../../store'
 import { Avatar } from '../../../universal/Avatar'
 import style from './index.module.css'

@@ -1,8 +1,9 @@
 import { Seo } from 'components/universal/Seo'
 import { isNumber } from 'lodash-es'
-import { NextPage } from 'next'
+import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { isServerSide } from 'utils'
+
 import styles from './index.module.css'
 
 export const errorToText = (statusCode: number) => {

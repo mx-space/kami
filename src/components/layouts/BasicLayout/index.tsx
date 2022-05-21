@@ -6,8 +6,8 @@ import { SearchHotKey } from 'components/widgets/Search'
 import { useMediaToggle } from 'hooks/use-media-toggle'
 import { useThemeBackground } from 'hooks/use-theme-background'
 import { observer } from 'mobx-react-lite'
+import type { FC } from 'react'
 import {
-  FC,
   useCallback,
   useEffect,
   useLayoutEffect,

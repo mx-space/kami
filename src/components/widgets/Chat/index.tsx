@@ -1,17 +1,20 @@
 import { BxBxPaperPlane } from 'components/universal/Icons'
 import { RightLeftTransitionView } from 'components/universal/Transition/right-left'
 import { observer } from 'mobx-react-lite'
-import { FC, forwardRef, useEffect, useRef, useState } from 'react'
+import type { FC } from 'react'
+import { forwardRef, useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { message } from 'react-message-popup'
 import client from 'socket'
 import { EventTypes } from 'types/events'
+
 import { useStore } from '../../../store'
 import { stopEventDefault } from '../../../utils/dom'
 import { eventBus } from '../../../utils/event-emitter'
 import { OwnerMessage } from './components/message'
 // import { STORE_PREFIX } from './components/setting'
 import style from './index.module.css'
+
 const STORE_PREFIX = 'chat'
 
 const _ChatPanel: FC<any> = observer(

@@ -1,6 +1,7 @@
 import { Avatar } from 'components/universal/Avatar'
 import { RelativeTime } from 'components/universal/RelativeTime'
-import { FC, memo, useRef } from 'react'
+import type { FC } from 'react'
+import { memo, useRef } from 'react'
 import { store } from 'store'
 
 const wrapperProps = { className: '!border-none !shadow-none' }

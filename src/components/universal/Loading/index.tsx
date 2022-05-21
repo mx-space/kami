@@ -1,4 +1,5 @@
-import { FC, memo, useState } from 'react'
+import type { FC } from 'react'
+import { memo, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 import styles from './index.module.css'

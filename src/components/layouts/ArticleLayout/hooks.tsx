@@ -1,5 +1,7 @@
 import { createContext, useContext } from 'react'
+
 import type { ArticleLayoutProps } from '.'
+
 export type ArticleLayoutContextProps = ArticleLayoutProps
 
 const ArticleLayoutContext = createContext<ArticleLayoutContextProps>({})

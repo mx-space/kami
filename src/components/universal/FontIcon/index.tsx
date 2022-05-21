@@ -1,4 +1,6 @@
-import { FC, createElement, memo, useEffect } from 'react'
+import type { FC } from 'react'
+import { createElement, memo, useEffect } from 'react'
+
 import { CodiconGithubInverted } from '../Icons'
 import {
   FaSolidCircle,

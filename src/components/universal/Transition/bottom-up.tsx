@@ -1,7 +1,9 @@
-import { FC } from 'react'
-import { TransitionProps } from 'react-transition-group/Transition'
+import type { FC } from 'react'
+import type { TransitionProps } from 'react-transition-group/Transition'
 import { genSpringKeyframes } from 'utils/spring'
-import { BaseTransitionView, BaseTransitionViewProps } from './base'
+
+import type { BaseTransitionViewProps } from './base'
+import { BaseTransitionView } from './base'
 
 const name = `bottom-up-spring`
 genSpringKeyframes(

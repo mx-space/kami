@@ -1,6 +1,7 @@
-import { NoteMusicRecord } from '@mx-space/api-client'
 import { useEffect, useMemo } from 'react'
 import { useStore } from 'store'
+
+import type { NoteMusicRecord } from '@mx-space/api-client'
 
 export const useMusic = (musicList: number[] | null) => {
   const { musicStore } = useStore()

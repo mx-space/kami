@@ -1,4 +1,4 @@
-import { UrlObject } from 'url'
+import type { UrlObject } from 'url'
 
 export declare enum LayoutType {
   Post,

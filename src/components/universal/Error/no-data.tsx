@@ -1,5 +1,6 @@
 import { API_URL } from 'constants/env'
-import { FC } from 'react'
+import type { FC } from 'react'
+
 import { ErrorView } from '.'
 
 export const NoDataErrorView: FC = (props) => {

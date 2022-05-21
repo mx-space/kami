@@ -1,8 +1,10 @@
 import { observer } from 'mobx-react-lite'
 import rc from 'randomcolor'
-import { FC, useEffect, useMemo, useState } from 'react'
+import type { FC } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import LazyLoad from 'react-lazyload'
 import { useStore } from 'store'
+
 import styles from './index.module.css'
 
 const generateColorFromMode = (

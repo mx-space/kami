@@ -1,6 +1,7 @@
 import { makeAutoObservable, runInAction } from 'mobx'
 import { isClientSide } from 'utils'
-import { ViewportRecord } from './types'
+
+import type { ViewportRecord } from './types'
 
 export default class AppUIStore {
   constructor() {

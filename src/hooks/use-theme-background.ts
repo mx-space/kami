@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useStore } from 'store'
+
 import { useKamiConfig } from './use-initial-data'
 
 const loadStyle = (css: string) => {

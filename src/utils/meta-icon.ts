@@ -18,7 +18,8 @@ import {
   FaSolidSmile,
   FaSolidTired,
 } from 'components/universal/Icons/emoji'
-import React, { FC } from 'react'
+import type { FC } from 'react'
+import React from 'react'
 
 export const weather2icon = (weather: string) => {
   const map: Record<string, FC> = {

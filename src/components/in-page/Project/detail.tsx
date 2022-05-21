@@ -1,8 +1,10 @@
 import { Loading } from 'components/universal/Loading'
 import { Markdown } from 'components/universal/Markdown'
 import { SliderImagesPopup } from 'components/universal/SliderImagesPopup'
-import { FC, useEffect } from 'react'
+import type { FC } from 'react'
+import { useEffect } from 'react'
 import { useStore } from 'store'
+
 import styles from './detail.module.css'
 import { ProjectIcon } from './project-icon'
 

@@ -1,8 +1,10 @@
+import type { AxiosError } from 'axios'
 import { API_URL } from 'constants/env'
+import { message } from 'react-message-popup'
+
 import { allControllers, createClient } from '@mx-space/api-client'
 import { axiosAdaptor } from '@mx-space/api-client/lib/adaptors/axios'
-import { AxiosError } from 'axios'
-import { message } from 'react-message-popup'
+
 import { getToken } from './cookie'
 import { isClientSide } from './utils'
 

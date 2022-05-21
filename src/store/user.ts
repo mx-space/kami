@@ -6,9 +6,10 @@
  * @FilePath: /web/common/store/user.ts
  * @Mark: Coding with Love
  */
-import { UserModel } from '@mx-space/api-client'
 import { makeAutoObservable } from 'mobx'
 import { apiClient } from 'utils/client'
+
+import type { UserModel } from '@mx-space/api-client'
 
 export interface UrlConfig {
   adminUrl: string

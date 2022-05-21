@@ -3,11 +3,11 @@ import { makeObservable, observable, runInAction } from 'mobx'
 import { message } from 'react-message-popup'
 import { apiClient, isLikedBefore, setLikeId } from 'utils'
 
-import { NoteModel } from '@mx-space/api-client'
+import type { NoteModel } from '@mx-space/api-client'
 
 import { Store } from '../helper/base'
-import { Id } from '../helper/structure'
-import { FetchOption } from '../types/options'
+import type { Id } from '../helper/structure'
+import type { FetchOption } from '../types/options'
 
 export class NoteStore extends Store<NoteModel> {
   constructor() {

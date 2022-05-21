@@ -6,8 +6,8 @@
  * @FilePath: /web/common/markdown/rules/comment-at.tsx
  * @Coding with Love
  */
-
 import isMongoId from 'validator/lib/isMongoId'
+
 /**
  * parse (@username) to github user profile
  */

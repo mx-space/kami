@@ -1,9 +1,10 @@
-import { MaidianAction } from 'constants/maidian'
 import { OverLay } from 'components/universal/Overlay'
+import { MaidianAction } from 'constants/maidian'
 import { useAnalyze } from 'hooks/use-analyze'
 import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
-import { FC, useEffect, useRef, useState } from 'react'
+import type { FC } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useStore } from 'store'
 
 export const BanCopy: FC = observer((props) => {

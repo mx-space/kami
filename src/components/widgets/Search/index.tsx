@@ -1,20 +1,14 @@
 import clsx from 'clsx'
 import { EmptyIcon, IonSearch } from 'components/universal/Icons'
-import { OverLay, OverlayProps } from 'components/universal/Overlay'
+import type { OverlayProps } from 'components/universal/Overlay'
+import { OverLay } from 'components/universal/Overlay'
 import { MaidianAction } from 'constants/maidian'
 import { useAnalyze } from 'hooks/use-analyze'
 import { useHotKey } from 'hooks/use-hotkey'
 import { throttle } from 'lodash-es'
 import Link from 'next/link'
-import {
-  FC,
-  KeyboardEventHandler,
-  memo,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import type { FC, KeyboardEventHandler } from 'react'
+import { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { useStore } from 'store'
 import { apiClient } from 'utils'
 

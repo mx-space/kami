@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import type { FC } from 'react'
 import { genSpringKeyframes } from 'utils/spring'
 
 const [name] = genSpringKeyframes(

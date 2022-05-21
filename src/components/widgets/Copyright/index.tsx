@@ -1,7 +1,8 @@
 import dayjs from 'dayjs'
 import { observer } from 'mobx-react-lite'
-import { FC } from 'react'
+import type { FC } from 'react'
 import { useStore } from 'store'
+
 import styles from './index.module.css'
 
 export interface CopyrightProps {

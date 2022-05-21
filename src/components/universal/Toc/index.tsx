@@ -1,14 +1,7 @@
 import classNames from 'clsx'
 import throttle from 'lodash-es/throttle'
-import {
-  FC,
-  memo,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import type { FC } from 'react'
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import { CustomEventTypes } from 'types/events'
 import { eventBus } from 'utils'

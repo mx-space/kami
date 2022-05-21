@@ -1,4 +1,3 @@
-import { ProjectModel } from '@mx-space/api-client'
 import { ProjectList } from 'components/in-page/Project/list'
 import { CodiconGithubInverted } from 'components/universal/Icons'
 import { Loading } from 'components/universal/Loading'
@@ -6,6 +5,9 @@ import { BottomUpTransitionView } from 'components/universal/Transition/bottom-u
 import { useEffect, useState } from 'react'
 import { useStore } from 'store'
 import { apiClient } from 'utils'
+
+import type { ProjectModel } from '@mx-space/api-client'
+
 import { SEO } from '../../components/universal/Seo'
 
 const ProjectView = () => {

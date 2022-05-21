@@ -1,9 +1,12 @@
 import { MaidianAction } from 'constants/maidian'
 import { useAnalyze } from 'hooks/use-analyze'
-import { DetailedHTMLProps, HTMLAttributes, memo, useRef } from 'react'
+import type { DetailedHTMLProps, HTMLAttributes } from 'react'
+import { memo, useRef } from 'react'
 import { NoSSR } from 'utils'
 import { genSpringKeyframes } from 'utils/spring'
+
 import styles from './index.module.css'
+
 const [down] = genSpringKeyframes(
   'sakura',
   {

@@ -1,14 +1,15 @@
-import { AggregateTop } from '@mx-space/api-client'
 import { HomeIntro } from 'components/in-page/Home/intro'
 import { HomeRandomSay } from 'components/in-page/Home/random-say'
 import { HomeSections } from 'components/in-page/Home/section'
 import { useInitialData } from 'hooks/use-initial-data'
 import { omit } from 'lodash-es'
 import { observer } from 'mobx-react-lite'
-import { NextPage } from 'next'
+import type { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import React, { createContext, useContext } from 'react'
 import { apiClient } from 'utils/client'
+
+import type { AggregateTop } from '@mx-space/api-client'
 
 const IndexViewContext = createContext({ doAnimation: true })
 

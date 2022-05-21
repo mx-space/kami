@@ -6,8 +6,8 @@ import {
 } from 'components/universal/Icons'
 import omit from 'lodash-es/omit'
 import shuffle from 'lodash-es/shuffle'
+import type { FC } from 'react'
 import React, {
-  FC,
   memo,
   useCallback,
   useEffect,
@@ -19,6 +19,7 @@ import { message } from 'react-message-popup'
 import { isDev } from 'utils'
 import isEmail from 'validator/lib/isEmail'
 import isUrl from 'validator/lib/isURL'
+
 import { useStore } from '../../../store'
 import { Input } from '../../universal/Input'
 import styles from './index.module.css'

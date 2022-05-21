@@ -57,7 +57,7 @@
   ],
   "dependencies": {
     "@floating-ui/react-dom": "0.7.1",
-    "@mx-space/api-client": "0.10.0",
+    "@mx-space/api-client": "0.10.1",
     "axios": "0.27.2",
     "clsx": "1.1.1",
     "css-spring": "4.1.0",
@@ -86,8 +86,8 @@
     "validator": "13.7.0"
   },
   "devDependencies": {
-    "@innei-util/eslint-config-react-ts": "latest",
-    "@innei-util/prettier": "0.8.2",
+    "@innei/eslint-config-react-ts": "latest",
+    "@innei/prettier": "latest",
     "@next/bundle-analyzer": "12.1.6",
     "@trivago/prettier-plugin-sort-imports": "3.2.0",
     "@types/inflection": "1.13.0",

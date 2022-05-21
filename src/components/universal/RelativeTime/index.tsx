@@ -7,7 +7,8 @@
  * @Mark: Coding with Love
  */
 import dayjs from 'dayjs'
-import { FC, useEffect, useState } from 'react'
+import type { FC } from 'react'
+import { useEffect, useState } from 'react'
 import { relativeTimeFromNow } from 'utils'
 
 export const RelativeTime: FC<{ date: string | Date }> = (props) => {

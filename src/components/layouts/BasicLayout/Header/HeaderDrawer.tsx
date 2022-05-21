@@ -2,9 +2,11 @@ import classNames from 'clsx'
 import { LaTimes } from 'components/universal/Icons'
 import { OverLay } from 'components/universal/Overlay'
 import { useRouter } from 'next/router'
-import React, { FC, Fragment, memo, useEffect } from 'react'
+import type { FC } from 'react'
+import React, { Fragment, memo, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { NoSSR } from 'utils'
+
 import styles from './index.module.css'
 
 const _HeaderDrawer: FC<{ show: boolean; onExit: () => void }> = memo(

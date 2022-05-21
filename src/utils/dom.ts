@@ -6,8 +6,7 @@
  * @FilePath: /web/utils/dom.ts
  * @Copyright
  */
-
-import { BaseSyntheticEvent } from 'react'
+import type { BaseSyntheticEvent } from 'react'
 
 export const stopEventDefault = <T extends BaseSyntheticEvent>(e: T) => {
   e.preventDefault()

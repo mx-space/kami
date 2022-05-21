@@ -1,6 +1,8 @@
-import { FC } from 'react'
-import { TransitionProps } from 'react-transition-group/Transition'
-import { BaseTransitionView, BaseTransitionViewProps } from './base'
+import type { FC } from 'react'
+import type { TransitionProps } from 'react-transition-group/Transition'
+
+import type { BaseTransitionViewProps } from './base'
+import { BaseTransitionView } from './base'
 
 const defaultStyle = {
   transition: `transform 500ms ease`,

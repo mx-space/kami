@@ -13,7 +13,7 @@ import {
   remove,
   toBarPerc,
 } from './helpers'
-import { Configuration } from './types'
+import type { Configuration } from './types'
 
 /********************************************************
  *  Usage:                                              *

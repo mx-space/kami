@@ -1,7 +1,7 @@
-import axios, { AxiosError } from 'axios'
+import type { AxiosError } from 'axios'
 import { ErrorView } from 'components/universal/Error'
 import { isNumber } from 'lodash-es'
-import { NextPage } from 'next'
+import type { NextPage } from 'next'
 import { useEffect } from 'react'
 import { message } from 'react-message-popup'
 

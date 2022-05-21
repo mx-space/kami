@@ -4,18 +4,13 @@ import type { TocProps } from 'components/universal/Toc'
 import { range } from 'lodash-es'
 import { observer } from 'mobx-react-lite'
 import dynamic from 'next/dynamic'
-import React, {
-  ElementType,
-  FC,
-  RefObject,
-  memo,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
-import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
+import type { ElementType, FC, RefObject } from 'react'
+import React, { memo, useEffect, useMemo, useState } from 'react'
+import type { ReactMarkdownProps } from 'react-markdown'
+import ReactMarkdown from 'react-markdown'
 import { ensuredForwardRef } from 'react-use'
 import { useStore } from 'store'
+
 import { CodeBlock } from '../CodeBlock'
 import styles from './index.module.css'
 import { processDetails } from './process-tag'

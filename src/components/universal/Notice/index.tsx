@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import type { FC } from 'react'
 import ReactDOM from 'react-dom'
 
 import { FadeInOutTransitionView } from '../Transition/fade-in-out'

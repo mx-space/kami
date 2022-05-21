@@ -1,9 +1,12 @@
 import clsx from 'clsx'
 import { LikeButton } from 'components/universal/LikeButton'
 import { observer } from 'mobx-react-lite'
-import React, { FC, memo } from 'react'
+import type { FC } from 'react'
+import React, { memo } from 'react'
 import { useStore } from 'store'
+
 import styles from './index.module.css'
+
 export const HeaderActionButton: FC<JSX.IntrinsicElements['button']> = (
   props,
 ) => {

@@ -2,7 +2,9 @@ import { IcBaselineArrowForwardIos } from 'components/universal/Icons'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import randomColor from 'randomcolor'
-import { DetailedHTMLProps, HTMLAttributes, ReactNode, forwardRef } from 'react'
+import type { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react'
+import { forwardRef } from 'react'
+
 import { useStore } from '../../../../store'
 
 export interface SectionNewsProps {

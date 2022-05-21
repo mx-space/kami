@@ -1,4 +1,6 @@
-import { FC, memo, useEffect, useRef, useState } from 'react'
+import type { FC } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
+
 import styles from './index.module.css'
 
 interface NumberRecorderProps {

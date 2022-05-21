@@ -1,7 +1,9 @@
 import Link from 'next/link'
-import { FC } from 'react'
+import type { FC } from 'react'
+
 import styles from './list.module.css'
 import { ProjectIcon } from './project-icon'
+
 export type Project = {
   id: string
   avatar?: string

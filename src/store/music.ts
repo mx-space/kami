@@ -1,4 +1,5 @@
 import { makeAutoObservable, runInAction } from 'mobx'
+
 export class MusicStore {
   constructor() {
     makeAutoObservable(this)

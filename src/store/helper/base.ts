@@ -6,7 +6,9 @@ import {
   runInAction,
   toJS,
 } from 'mobx'
-import { Id, KeyValueCollection } from './structure'
+
+import type { Id } from './structure'
+import { KeyValueCollection } from './structure'
 
 type Identifiable = { id: Id }
 export class Store<T extends Identifiable> extends KeyValueCollection<

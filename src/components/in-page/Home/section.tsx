@@ -1,4 +1,3 @@
-import { AggregateTop } from '@mx-space/api-client'
 import {
   FaSolidKissWinkHeart,
   MdiDrawPen,
@@ -10,21 +9,19 @@ import { useThemeConfig } from 'hooks/use-initial-data'
 import { shuffle } from 'lodash-es'
 import Router from 'next/router'
 import { useIndexViewContext } from 'pages'
-import React, {
-  FC,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import type { FC } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { message } from 'react-message-popup'
 import { TransitionGroup } from 'react-transition-group'
 import { NoSSR, apiClient, getRandomImage, stopEventDefault } from 'utils'
-import styles from './section.module.css'
-import SectionNews, { SectionCard, SectionNewsProps } from './SectionNews'
+
+import type { AggregateTop } from '@mx-space/api-client'
+
+import type { SectionNewsProps } from './SectionNews'
+import SectionNews, { SectionCard } from './SectionNews'
 import { FriendsSection } from './SectionNews/friend'
 import { SectionWrap } from './SectionNews/section'
+import styles from './section.module.css'
 
 const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
   const config = useThemeConfig()

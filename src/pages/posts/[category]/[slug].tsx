@@ -11,10 +11,8 @@ import { Markdown } from 'components/universal/Markdown'
 import { NumberRecorder } from 'components/universal/NumberRecorder'
 import Outdate from 'components/universal/Outdate'
 import { Seo } from 'components/universal/Seo'
-import {
-  ActionProps,
-  ArticleFooterAction,
-} from 'components/widgets/ArticleAction'
+import type { ActionProps } from 'components/widgets/ArticleAction'
+import { ArticleFooterAction } from 'components/widgets/ArticleAction'
 import { CommentLazy } from 'components/widgets/Comment'
 import { ImageSizeMetaContext } from 'context'
 import dayjs from 'dayjs'
@@ -30,7 +28,7 @@ import { store, useStore } from 'store'
 import { apiClient } from 'utils/client'
 import { springScrollToTop } from 'utils/spring'
 
-import { PostModel } from '@mx-space/api-client'
+import type { PostModel } from '@mx-space/api-client'
 
 import { Copyright } from '../../../components/widgets/Copyright'
 import {

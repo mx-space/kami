@@ -1,5 +1,5 @@
-import { InitialDataType } from 'context/initial-data'
-import { FC } from 'react'
+import type { InitialDataType } from 'context/initial-data'
+import type { FC } from 'react'
 
 import 'react/next'
 import 'react-dom/next'

@@ -5,10 +5,11 @@ import { BottomUpTransitionView } from 'components/universal/Transition/bottom-u
 import { useThemeConfig } from 'hooks/use-initial-data'
 import { observer } from 'mobx-react-lite'
 import { useIndexViewContext } from 'pages'
-import { FC } from 'react'
+import type { FC } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import { useStore } from 'store'
 import { NoSSR } from 'utils'
+
 import styles from './intro.module.css'
 
 const wrapperProps = { className: '!w-full !h-full !border-none !shadow-none' }

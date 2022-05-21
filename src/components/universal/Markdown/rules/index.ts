@@ -1,4 +1,5 @@
 import { commentAt } from './comment-at'
+
 /*
  * @Author: Innei
  * @Date: 2020-06-11 12:25:50
@@ -9,6 +10,7 @@ import { commentAt } from './comment-at'
  */
 import { mentions } from './mentions'
 import { spoiler } from './spoiler'
+
 export { commentAt } from './comment-at'
 export const plugins = { mentions, spoiler, commentAt }
 

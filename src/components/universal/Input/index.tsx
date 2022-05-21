@@ -1,10 +1,12 @@
 import classNames from 'clsx'
 import merge from 'lodash-es/merge'
-import {
+import type {
   DetailedHTMLProps,
   ForwardedRef,
   HTMLAttributes,
   InputHTMLAttributes,
+} from 'react'
+import {
   createContext,
   forwardRef,
   memo,
@@ -13,6 +15,7 @@ import {
   useRef,
   useState,
 } from 'react'
+
 import styles from './index.module.css'
 
 interface InputProps {

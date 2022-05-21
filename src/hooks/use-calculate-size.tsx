@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useReducer, useRef } from 'react'
+
 import { calculateDimensions } from '../utils'
 
 const initialState = { height: 0, width: 0 }

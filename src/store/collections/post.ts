@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { apiClient } from 'utils'
 
-import { PostModel } from '@mx-space/api-client'
+import type { PostModel } from '@mx-space/api-client'
 
 import { Store } from '../helper/base'
 

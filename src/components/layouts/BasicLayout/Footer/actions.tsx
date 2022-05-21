@@ -1,19 +1,21 @@
-import { MaidianAction } from 'constants/maidian'
 import classNames from 'clsx'
 import {
   BxBxsArrowToTop,
   FaSolidHeadphonesAlt,
 } from 'components/universal/Icons'
 import { ScaleTransitionView } from 'components/universal/Transition/scale'
+import { MaidianAction } from 'constants/maidian'
 import { useAnalyze } from 'hooks/use-analyze'
 import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'
-import React, { FC, useEffect, useState } from 'react'
+import type { FC } from 'react'
+import React, { useEffect, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import { useStore } from 'store'
 import { EventTypes } from 'types/events'
 import { eventBus } from 'utils'
 import { springScrollToTop } from 'utils/spring'
+
 // TODO chat panel
 export const FooterActions: FC = observer(() => {
   const { userStore, appStore, actionStore, musicStore } = useStore()

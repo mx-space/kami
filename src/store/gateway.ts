@@ -6,7 +6,6 @@
  * @FilePath: /mx-web/store/gateway.ts
  * @MIT
  */
-
 import { makeAutoObservable } from 'mobx'
 
 export default class GatewayStore {

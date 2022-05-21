@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import { ImageLazy } from 'components/universal/Image'
-import { FC, memo, useEffect, useRef, useState } from 'react'
+import type { FC } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 
 export const ProjectIcon: FC<{ avatar?: string; name?: string }> = memo(
   (props) => {

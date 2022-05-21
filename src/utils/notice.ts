@@ -3,6 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { ToastContainer, toast } from 'react-toastify'
 import { store } from 'store'
+
 import { isDev, isServerSide } from './utils'
 
 export class Notice {

@@ -7,9 +7,9 @@ import { RelativeTime } from 'components/universal/RelativeTime'
 import { Seo } from 'components/universal/Seo'
 import throttle from 'lodash-es/throttle'
 import { observer } from 'mobx-react-lite'
-import { NextPage } from 'next'
+import type { NextPage } from 'next'
+import type { FC } from 'react'
 import React, {
-  FC,
   Fragment,
   memo,
   useCallback,
@@ -23,7 +23,7 @@ import { EventTypes } from 'types/events'
 import { NoSSR, eventBus } from 'utils'
 import { apiClient } from 'utils/client'
 
-import { RecentlyModel } from '@mx-space/api-client'
+import type { RecentlyModel } from '@mx-space/api-client'
 
 import styles from './index.module.css'
 

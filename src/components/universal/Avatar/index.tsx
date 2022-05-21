@@ -1,9 +1,7 @@
 import clsx from 'clsx'
 import rc from 'randomcolor'
+import type { DetailedHTMLProps, FC, ImgHTMLAttributes } from 'react'
 import {
-  DetailedHTMLProps,
-  FC,
-  ImgHTMLAttributes,
   createElement,
   memo,
   useEffect,
@@ -11,7 +9,9 @@ import {
   useRef,
   useState,
 } from 'react'
+
 import styles from './index.module.css'
+
 interface AvatarProps {
   url?: string
   imageUrl: string
