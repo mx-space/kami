@@ -9,7 +9,9 @@ import { NoteLayout } from 'components/layouts/NoteLayout'
 import { Loading } from 'components/universal/Loading'
 import { Markdown } from 'components/universal/Markdown'
 import CommentWrap from 'components/widgets/Comment'
+import { TrackerAction } from 'constants/tracker'
 import dayjs from 'dayjs'
+import { useAnalyze } from 'hooks/use-analyze'
 import { useHeaderMeta, useHeaderShare } from 'hooks/use-header-meta'
 import { useLoadSerifFont } from 'hooks/use-load-serif-font'
 import { useNoteMusic } from 'hooks/use-music'
@@ -40,7 +42,7 @@ const renderLines: FC<{ value: string }> = ({ value }) => {
 const useUpdateNote = (id: string) => {
   const note = store.noteStore.get(id)
   const beforeModel = useRef<NoteModel>()
-
+  const { event } = useAnalyze()
   useEffect(() => {
     const hideMessage = '此生活记录已被作者删除或隐藏'
     if (note?.isDeleted) {
@@ -64,6 +66,11 @@ const useUpdateNote = (id: string) => {
         return
       }
       message.info('生活记录已更新')
+
+      event({
+        action: TrackerAction.Interaction,
+        label: `实时更新生活记录触发 - ${note.title}`,
+      })
 
       if (isDev) {
         console.log(

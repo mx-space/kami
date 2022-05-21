@@ -122,12 +122,26 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
 
   const [currentSelect, setCurrentSelect] = useState(0)
   const listRef = useRef<HTMLUListElement>(null)
+
+  const trackerOne = useRef(false)
   const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = useCallback(
     (e) => {
       if (!listRef.current) {
         return
       }
       const $ = listRef.current
+
+      const tracker = () => {
+        if (trackerOne.current) {
+          return
+        }
+
+        event({
+          action: TrackerAction.Interaction,
+          label: `搜索触发键盘操作：${e.key}`,
+        })
+        trackerOne.current = true
+      }
       switch (e.key) {
         case 'Enter': {
           ;(
@@ -135,6 +149,7 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
               0,
             ) as HTMLLinkElement
           )?.click()
+          tracker()
           break
         }
         case 'ArrowDown': {
@@ -142,6 +157,7 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
             const index = currentSelect + 1
             return index ? index % list.length : 0
           })
+          tracker()
           break
         }
         case 'ArrowUp': {
@@ -149,6 +165,7 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
             const index = currentSelect - 1
             return index < 0 ? list.length - 1 : index
           })
+          tracker()
           break
         }
       }
@@ -267,7 +284,7 @@ export const SearchFAB = memo(() => {
   useEffect(() => {
     if (show) {
       event({
-        action: TrackerAction.Interaction,
+        action: TrackerAction.Impression,
         label: `搜索框被唤醒`,
       })
     }
