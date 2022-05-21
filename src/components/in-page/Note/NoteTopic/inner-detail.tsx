@@ -18,12 +18,17 @@ export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
   const [pagination, setPagination] = useState<Pager>()
 
   useEffect(() => {
-    apiClient.note.getNoteByTopicId(topicId, 1, 1).then((res) => {
-      const { data, pagination } = res
+    apiClient.note
+      .getNoteByTopicId(topicId, 1, 1, {
+        sortBy: 'created',
+        sortOrder: -1,
+      })
+      .then((res) => {
+        const { data, pagination } = res
 
-      setNotes(data)
-      setPagination(pagination)
-    })
+        setNotes(data)
+        setPagination(pagination)
+      })
   }, [topicId])
 
   return (
