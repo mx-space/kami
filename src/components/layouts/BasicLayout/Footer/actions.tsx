@@ -65,7 +65,8 @@ export const FooterActions: FC = observer(() => {
         <button
           onClick={() => {
             event({
-              action: TrackerAction.FooterPlayerClick,
+              action: TrackerAction.Click,
+              label: `底部播放器点击`,
             })
             runInAction(() => {
               musicStore.setHide(!musicStore.isHide)

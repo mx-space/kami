@@ -268,7 +268,8 @@ export const _MusicMiniPlayerStoreControlled = observer(() => {
     if (musicStore.isPlay) {
       requestAnimationFrame(() => {
         event({
-          action: TrackerAction.MusicPlay,
+          action: TrackerAction.Interaction,
+          label: `音乐播放状态：${musicStore.isPlay ? '播放' : '暂停'}`,
         })
         ref.current?.play()
       })

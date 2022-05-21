@@ -25,7 +25,10 @@ export const BanCopy: FC = observer((props) => {
       }
       e.preventDefault()
       setShowCopyWarn(true)
-      event({ action: TrackerAction.BanCopy, label: router.asPath })
+      event({
+        action: TrackerAction.Interaction,
+        label: `禁止复制触发，在 ${router.asPath}`,
+      })
     }
 
     return () => {

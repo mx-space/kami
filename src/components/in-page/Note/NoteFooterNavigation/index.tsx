@@ -3,11 +3,11 @@ import { useAnalyze } from 'hooks/use-analyze'
 import { noop } from 'lodash-es'
 import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
-import { FC } from 'react'
+import type { FC } from 'react'
 import { useStore } from 'store'
 import { springScrollToTop } from 'utils/spring'
 
-import { NoteModel } from '@mx-space/api-client'
+import type { NoteModel } from '@mx-space/api-client'
 
 export const NoteFooterNavigation: FC<{ id: string }> = observer(({ id }) => {
   const { noteStore } = useStore()
@@ -37,8 +37,8 @@ export const NoteFooterNavigation: FC<{ id: string }> = observer(({ id }) => {
                 const note = noteStore.get(id)
 
                 event({
-                  action: TrackerAction.NoteToTimeline,
-                  label: `Note Id ${note?.nid} ${note?.title}`,
+                  action: TrackerAction.Click,
+                  label: `时间线点击 - ${note?.nid} - ${note?.title}`,
                 })
 
                 springScrollToTop()

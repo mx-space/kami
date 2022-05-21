@@ -32,8 +32,8 @@ export const SectionMusic: FC<SectionMusicProps> = memo((props) => {
   const loadList = (id: number[]) => {
     runInAction(() => {
       event({
-        action: TrackerAction.PlayMusicList,
-        label: `Play ${id.join(',')} music list`,
+        action: TrackerAction.Interaction,
+        label: `加载音乐播放列表，ID：${id.join(',')}`,
       })
       musicStore.setPlaylist(id)
       musicStore.isHide = false
@@ -122,7 +122,10 @@ const PlayingSongItem: FC<SongItemProps> = observer((props) => {
   }, [playId])
 
   useEffect(() => {
-    event({ action: TrackerAction.PlayingSong, label: `Song ${playId}` })
+    event({
+      action: TrackerAction.Interaction,
+      label: `开始播放音乐：${playId}`,
+    })
   }, [playId])
   return (
     <li

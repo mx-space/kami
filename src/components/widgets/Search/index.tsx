@@ -71,8 +71,8 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
     search(deferValue)
       ?.then((res) => {
         event({
-          action: TrackerAction.Search,
-          label: deferValue,
+          action: TrackerAction.Interaction,
+          label: `搜索触发：${deferValue}`,
         })
         if (!res) {
           setLoading(false)
@@ -248,7 +248,7 @@ export const SearchHotKey: FC = memo(() => {
   const { event } = useAnalyze()
   const [show, setShow] = useState(false)
   const handler = () => {
-    event({ action: TrackerAction.CommandKTap, label: 'cmd+k' })
+    event({ action: TrackerAction.Click, label: 'cmd+k' })
     setShow(true)
   }
 
@@ -267,7 +267,8 @@ export const SearchFAB = memo(() => {
   useEffect(() => {
     if (show) {
       event({
-        action: TrackerAction.SearchFAB,
+        action: TrackerAction.Interaction,
+        label: `搜索框被唤醒`,
       })
     }
   }, [show])

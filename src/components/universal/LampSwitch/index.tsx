@@ -46,13 +46,13 @@ export const Switch = NoSSR(
               className={styles['sakura-img']}
               onClick={() => {
                 event({
-                  action: TrackerAction.ToggleColorMode,
-                  label: 'toggle color',
+                  action: TrackerAction.Interaction,
+                  label: `颜色切换`,
                 })
                 if (containerRef.current) {
                   // containerRef.current.style.top = '0'
                   containerRef.current.style.animation = `${down} .5s linear both`
-                  containerRef.current.onanimationend = (ev) => {
+                  containerRef.current.onanimationend = () => {
                     if (containerRef.current) {
                       containerRef.current.style.animation = `${up} .5s linear both`
 
