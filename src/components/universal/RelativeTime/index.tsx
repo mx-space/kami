@@ -11,11 +11,15 @@ import type { FC } from 'react'
 import { useEffect, useState } from 'react'
 import { relativeTimeFromNow } from 'utils'
 
-export const RelativeTime: FC<{ date: string | Date }> = (props) => {
-  // const { date } = props
+export const RelativeTime: FC<{
+  date: string | Date
+  displayAbsoluteTimeAfterDay?: number
+}> = (props) => {
   const [relative, setRelative] = useState<string>(
     relativeTimeFromNow(props.date),
   )
+
+  const { displayAbsoluteTimeAfterDay = 29 } = props
 
   useEffect(() => {
     setRelative(relativeTimeFromNow(props.date))
@@ -23,7 +27,10 @@ export const RelativeTime: FC<{ date: string | Date }> = (props) => {
       setRelative(relativeTimeFromNow(props.date))
     }, 1000)
 
-    if (Math.abs(dayjs(props.date).diff(new Date(), 'd')) > 29) {
+    if (
+      Math.abs(dayjs(props.date).diff(new Date(), 'd')) >
+      displayAbsoluteTimeAfterDay
+    ) {
       timer = clearInterval(timer)
       setRelative(
         Intl.DateTimeFormat('en-us', {
@@ -38,7 +45,7 @@ export const RelativeTime: FC<{ date: string | Date }> = (props) => {
     return () => {
       timer = clearInterval(timer)
     }
-  }, [props.date])
+  }, [props.date, displayAbsoluteTimeAfterDay])
 
   return <>{relative}</>
 }

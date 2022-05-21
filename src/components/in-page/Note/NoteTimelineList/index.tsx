@@ -2,7 +2,11 @@
  * 日记: 左侧时间线
  */
 import clsx from 'clsx'
+import { Divider } from 'components/universal/Divider'
+import { FloatPopover } from 'components/universal/FloatPopover'
+import { ImpressionView } from 'components/universal/ImpressionView'
 import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
+import { TrackerAction } from 'constants/tracker'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC } from 'react'
@@ -14,6 +18,7 @@ import { apiClient } from 'utils/client'
 
 import type { NoteModel } from '@mx-space/api-client'
 
+import { InnerTopicDetail } from '../NoteTopic/inner-detail'
 import styles from './index.module.css'
 
 interface NoteTimelineListProps {
@@ -68,11 +73,27 @@ export const NoteTimelineList: FC<
         </TransitionGroup>
         {note?.topic && (
           <>
-            <hr className="border-0 h-[0.5px] w-3/4 bg-black dark:bg-white !bg-opacity-50 my-4" />
-            <p className="text-gray-2 truncate break-all">
+            <Divider className="!w-3/4" />
+            <p className="text-gray-2 flex flex-col min-w-0 overflow-hidden">
               此文章收录于专栏：
               <br />
-              {note.topic.name}
+              <FloatPopover
+                placement="right"
+                strategy="fixed"
+                wrapperClassNames="flex flex-grow flex-shrink min-w-0"
+                triggerComponent={() => (
+                  <span className="flex-grow truncate">
+                    {note?.topic?.name}
+                  </span>
+                )}
+              >
+                <ImpressionView
+                  trackerMessage={`曝光 - 左侧时间线话题内页展开 - ${note?.topic?.name}`}
+                  action={TrackerAction.Impression}
+                >
+                  <InnerTopicDetail topic={note?.topic} />
+                </ImpressionView>
+              </FloatPopover>
             </p>
           </>
         )}

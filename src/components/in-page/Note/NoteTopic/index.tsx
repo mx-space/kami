@@ -1,12 +1,15 @@
 import { Avatar } from 'components/universal/Avatar'
+import { Divider, DividerVertical } from 'components/universal/Divider'
 import { FloatPopover } from 'components/universal/FloatPopover'
 import { ImpressionView } from 'components/universal/ImpressionView'
 import { TrackerAction } from 'constants/tracker'
-import type { FC} from 'react';
+import type { FC } from 'react'
 import { useMemo } from 'react'
 import { textToBigCharOrWord } from 'utils/word'
 
 import type { TopicModel } from '@mx-space/api-client/types/models/topic'
+
+import { InnerTopicDetail } from './inner-detail'
 
 export const NoteTopic: FC<{ noteId: string; topic: TopicModel }> = (props) => {
   const { topic } = props
@@ -18,9 +21,12 @@ export const NoteTopic: FC<{ noteId: string; topic: TopicModel }> = (props) => {
     >
       <div data-hide-print>
         <div className="text-md">
-          <strong>文章被专栏收录：</strong>
+          <strong>
+            文章被专栏收录：
+            <DividerVertical />
+          </strong>
         </div>
-        <hr className="border-0 h-[0.5px] my-4 !bg-opacity-20 bg-black dark:bg-white " />
+        <Divider />
         <div className="flex items-center gap-4">
           <Avatar
             size={60}
@@ -37,7 +43,12 @@ export const NoteTopic: FC<{ noteId: string; topic: TopicModel }> = (props) => {
           <div className="flex-grow flex flex-col self-start">
             <span className="text-md font-medium mb-2">
               <FloatPopover triggerComponent={() => <span>{name}</span>}>
-                <div className="text-sm">{introduce}</div>
+                <ImpressionView
+                  trackerMessage={`曝光 - 内页话题 - ${topic.name}`}
+                  action={TrackerAction.Impression}
+                >
+                  <InnerTopicDetail topic={topic} />
+                </ImpressionView>
               </FloatPopover>
             </span>
 

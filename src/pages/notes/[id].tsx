@@ -224,7 +224,7 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
             </BanCopy>
           </ImageSizeMetaContext.Provider>
         )}
-
+        <div className="pb-4" />
         {note.topic && <NoteTopic noteId={props.id} topic={note.topic} />}
         <NoteFooterNavigation id={props.id} />
         <div className="pb-4"></div>

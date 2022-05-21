@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import type { FC } from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
@@ -13,13 +14,14 @@ export const FloatPopover: FC<{
   headless?: boolean
   placement?: Placement
   strategy?: Strategy
+  wrapperClassNames?: string
 }> = (props) => {
   const { x, y, reference, floating, strategy, update } = useFloating({
     middleware: [flip({ padding: 20 }), offset(10), shift()],
     strategy: props.strategy,
     placement: props.placement ?? 'bottom-start',
   })
-  const { headless = false } = props
+  const { headless = false, wrapperClassNames } = props
   const TriggerComponent = props.triggerComponent
   const [currentStatus, setCurrentStatus] = useState(false)
   const [open, setOpen] = useState(false)
@@ -78,7 +80,7 @@ export const FloatPopover: FC<{
   return (
     <>
       <div
-        className="inline-block"
+        className={clsx('inline-block', wrapperClassNames)}
         ref={reference}
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
@@ -87,7 +89,11 @@ export const FloatPopover: FC<{
       </div>
 
       {createPortal(
-        <div className="float-popover">
+        <div
+          className="float-popover"
+          onMouseOver={handleMouseOver}
+          onMouseOut={handleMouseOut}
+        >
           <div ref={containerRef}></div>
           {open && (
             <div
