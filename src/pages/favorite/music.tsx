@@ -2,8 +2,10 @@ import type { PlayListType } from 'components/in-page/SectionMusic'
 import { SectionMusic } from 'components/in-page/SectionMusic'
 import { RiNeteaseCloudMusicFill } from 'components/universal/Icons'
 import { Loading } from 'components/universal/Loading'
+import { TrackerAction } from 'constants/tracker'
+import { useAnalyze } from 'hooks/use-analyze'
 import type { NextPage } from 'next'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { message } from 'react-message-popup'
 import { apiClient } from 'utils'
 
@@ -39,7 +41,13 @@ const MusicView: NextPage = () => {
         message.error(err.message)
       })
   }, [])
-
+  const { event } = useAnalyze()
+  const trackerClick = useCallback(() => {
+    event({
+      action: TrackerAction.Click,
+      label: '音乐页面点击去个人主页',
+    })
+  }, [])
   if (!data) {
     return <Loading />
   }
@@ -55,6 +63,7 @@ const MusicView: NextPage = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center"
+            onClick={trackerClick}
           >
             <RiNeteaseCloudMusicFill height={'3rem'} width={'3rem'} />
 

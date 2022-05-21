@@ -2,7 +2,9 @@ import { ProjectList } from 'components/in-page/Project/list'
 import { CodiconGithubInverted } from 'components/universal/Icons'
 import { Loading } from 'components/universal/Loading'
 import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
-import { useEffect, useState } from 'react'
+import { TrackerAction } from 'constants/tracker'
+import { useAnalyze } from 'hooks/use-analyze'
+import { useCallback, useEffect, useState } from 'react'
 import { useStore } from 'store'
 import { apiClient } from 'utils'
 
@@ -28,7 +30,14 @@ const ProjectView = () => {
       })
   }, [])
   const { userStore } = useStore()
+  const { event } = useAnalyze()
   const githubUsername = userStore.master?.socialIds?.github
+  const trackerClick = useCallback(() => {
+    event({
+      action: TrackerAction.Click,
+      label: '项目页 GitHub 图标点击',
+    })
+  }, [])
   return (
     <main>
       <SEO title={'项目'} />
@@ -45,6 +54,7 @@ const ProjectView = () => {
                 className="!text-inherit inline-flex ml-2"
                 target="_blank"
                 aria-label="view on GitHub"
+                onClick={trackerClick}
               >
                 <CodiconGithubInverted />
               </a>
