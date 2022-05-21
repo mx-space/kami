@@ -34,8 +34,12 @@ export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
       </Link>
       <Divider />
       <p className="break-all line-clamp-2 text-gray-2">{topic.introduce}</p>
-      <Divider />
-      <p className="text-gray-1">{topic.description}</p>
+      {topic.description && (
+        <>
+          <Divider />
+          <p className="text-gray-1">{topic.description}</p>
+        </>
+      )}
       {notes[0] && (
         <>
           <Divider />
