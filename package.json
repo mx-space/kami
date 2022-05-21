@@ -29,7 +29,7 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "prettier --ignore-path ./.gitignore --write ",
-      "eslint --cache"
+      "eslint --cache --fix"
     ],
     "config.init.yaml": [
       "npm run gen-config && git add src/configs.default.ts"
