@@ -1,5 +1,5 @@
 import { Avatar } from 'components/universal/Avatar'
-import { Divider, DividerVertical } from 'components/universal/Divider'
+import { Divider } from 'components/universal/Divider'
 import { FloatPopover } from 'components/universal/FloatPopover'
 import { ImpressionView } from 'components/universal/ImpressionView'
 import { TrackerAction } from 'constants/tracker'
@@ -22,10 +22,7 @@ export const NoteTopic: FC<{ noteId: string; topic: TopicModel }> = (props) => {
     >
       <div data-hide-print>
         <div className="text-md">
-          <strong>
-            文章被专栏收录：
-            <DividerVertical />
-          </strong>
+          <strong>文章被专栏收录：</strong>
         </div>
         <Divider />
         <div className="flex items-center gap-4">
