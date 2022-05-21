@@ -1,7 +1,6 @@
 import type { InitialDataType } from 'context/initial-data'
 import type { FC } from 'react'
 
-import 'react/next'
 import 'react-dom/next'
 
 declare global {

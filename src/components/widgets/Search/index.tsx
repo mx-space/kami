@@ -8,7 +8,14 @@ import { useHotKey } from 'hooks/use-hotkey'
 import { throttle } from 'lodash-es'
 import Link from 'next/link'
 import type { FC, KeyboardEventHandler } from 'react'
-import { memo, useCallback, useEffect, useRef, useState } from 'react'
+import {
+  memo,
+  useCallback,
+  useDeferredValue,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { useStore } from 'store'
 import { apiClient } from 'utils'
 
@@ -53,6 +60,7 @@ const search = throttle((keyword: string) => {
 export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
   const { defaultKeyword } = props
   const [keyword, setKeyword] = useState(defaultKeyword || '')
+  const deferValue = useDeferredValue(keyword)
   const [loading, setLoading] = useState(false)
   const [list, setList] = useState<SearchListType[]>([])
   const { event } = useAnalyze()
@@ -60,11 +68,11 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
     setLoading(true)
     setCurrentSelect(0)
 
-    search(keyword)
+    search(deferValue)
       ?.then((res) => {
         event({
           action: TrackerAction.Search,
-          label: keyword,
+          label: deferValue,
         })
         if (!res) {
           setLoading(false)
@@ -110,7 +118,7 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
         console.log(err)
         setLoading(false)
       })
-  }, [keyword])
+  }, [deferValue])
 
   const [currentSelect, setCurrentSelect] = useState(0)
   const listRef = useRef<HTMLUListElement>(null)
@@ -159,6 +167,7 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
     shadow-lg
     min-h-50 rounded-xl flex flex-col overflow-hidden text-[--black]"
       onKeyDown={handleKeyDown}
+      role="dialog"
     >
       <input
         autoFocus
