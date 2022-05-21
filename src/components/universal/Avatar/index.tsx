@@ -9,6 +9,7 @@ import {
   useRef,
   useState,
 } from 'react'
+import { useInView } from 'react-intersection-observer'
 
 import { FlexText } from '../FlexText'
 import styles from './index.module.css'
@@ -23,13 +24,15 @@ interface AvatarProps {
   useRandomColor?: boolean
   shadow?: boolean
   text?: string
+
+  lazy?: boolean
 }
 
 export const Avatar: FC<
   AvatarProps &
     DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
 > = memo((props) => {
-  const { useRandomColor = true, shadow = true } = props
+  const { useRandomColor = true, shadow = true, lazy = true } = props
   const avatarRef = useRef<HTMLDivElement>(null)
   const randomColor = useMemo(
     () =>
@@ -39,8 +42,21 @@ export const Avatar: FC<
     [props.src, useRandomColor],
   )
   const [loaded, setLoaded] = useState(false)
+  const [inView, setInView] = useState(lazy ? false : true)
+
+  const { ref } = useInView({
+    triggerOnce: true,
+    onChange(inView) {
+      if (inView) {
+        setInView(true)
+      }
+    },
+  })
   useEffect(() => {
     if (!props.imageUrl) {
+      return
+    }
+    if (!inView) {
       return
     }
     const image = new Image()
@@ -50,10 +66,11 @@ export const Avatar: FC<
       setLoaded(true)
     }
     image.onerror = () => {}
-  }, [props.imageUrl])
+  }, [inView, props.imageUrl])
 
   const { wrapperProps = {} } = props
   const { className, ...restProps } = wrapperProps
+
   return (
     <div
       className={clsx(
@@ -69,6 +86,7 @@ export const Avatar: FC<
       }
       {...restProps}
     >
+      {lazy && <div ref={ref} />}
       {createElement(props.url ? 'a' : 'div', {
         style: { backgroundColor: loaded ? undefined : randomColor },
         className: styles['avatar'],
@@ -87,7 +105,9 @@ export const Avatar: FC<
             style={
               props.imageUrl
                 ? {
-                    backgroundImage: `url(${props.imageUrl})`,
+                    backgroundImage: loaded
+                      ? `url(${props.imageUrl})`
+                      : undefined,
                     opacity: loaded ? 1 : 0,
                   }
                 : {}
