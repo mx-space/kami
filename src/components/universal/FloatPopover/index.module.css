@@ -1,0 +1,17 @@
+.popover-root {
+  @apply p-4 relative bg-light-bg rounded-lg overflow-hidden z-2;
+
+  box-shadow: 0 0 10px rgb(0 0 0 / 10%), 0 5px 20px rgb(0 0 0 / 20%);
+}
+
+////
+.popover-root {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}

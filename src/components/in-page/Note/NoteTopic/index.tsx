@@ -1,10 +1,12 @@
 import { Avatar } from 'components/universal/Avatar'
+import { FloatPopover } from 'components/universal/FloatPopover'
 import { ImpressionView } from 'components/universal/ImpressionView'
 import { TrackerAction } from 'constants/tracker'
-import { FC, useMemo } from 'react'
+import type { FC} from 'react';
+import { useMemo } from 'react'
 import { textToBigCharOrWord } from 'utils/word'
 
-import { TopicModel } from '@mx-space/api-client/types/models/topic'
+import type { TopicModel } from '@mx-space/api-client/types/models/topic'
 
 export const NoteTopic: FC<{ noteId: string; topic: TopicModel }> = (props) => {
   const { topic } = props
@@ -33,7 +35,12 @@ export const NoteTopic: FC<{ noteId: string; topic: TopicModel }> = (props) => {
             )}
           />
           <div className="flex-grow flex flex-col self-start">
-            <span className="text-md font-medium mb-2">{name}</span>
+            <span className="text-md font-medium mb-2">
+              <FloatPopover triggerComponent={() => <span>{name}</span>}>
+                <div className="text-sm">{introduce}</div>
+              </FloatPopover>
+            </span>
+
             <p className="opacity-60 text-shizuku-text text-sm line-clamp-2">
               {introduce}
             </p>
