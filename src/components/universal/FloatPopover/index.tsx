@@ -1,23 +1,10 @@
-import type {
-  FC} from 'react';
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import type { FC } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { isClientSide } from 'utils'
 
-import type {
-  Placement,
-  Strategy} from '@floating-ui/react-dom';
-import {
-  flip,
-  offset,
-  shift,
-  useFloating,
-} from '@floating-ui/react-dom'
+import type { Placement, Strategy } from '@floating-ui/react-dom'
+import { flip, offset, shift, useFloating } from '@floating-ui/react-dom'
 
 import styles from './index.module.css'
 
@@ -28,16 +15,7 @@ export const FloatPopover: FC<{
   strategy?: Strategy
 }> = (props) => {
   const { x, y, reference, floating, strategy, update } = useFloating({
-    middleware: [
-      // autoPlacement({
-      //   alignment: 'start',
-      //   allowedPlacements: ['top', 'bottom'],
-      //   padding: 20,
-      // }),
-      flip({ padding: 20 }),
-      offset(10),
-      shift(),
-    ],
+    middleware: [flip({ padding: 20 }), offset(10), shift()],
     strategy: props.strategy,
     placement: props.placement ?? 'bottom-start',
   })

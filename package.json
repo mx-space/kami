@@ -28,8 +28,8 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "prettier --ignore-path ./.gitignore --write ",
-      "eslint --cache --fix"
+      "eslint --cache --fix",
+      "prettier --ignore-path ./.gitignore --write "
     ],
     "config.init.yaml": [
       "npm run gen-config && git add src/configs.default.ts"
