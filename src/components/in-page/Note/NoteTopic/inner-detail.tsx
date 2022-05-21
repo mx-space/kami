@@ -4,6 +4,7 @@ import { RelativeTime } from 'components/universal/RelativeTime'
 import Link from 'next/link'
 import type { FC } from 'react'
 import { useEffect, useState } from 'react'
+import Linkify from 'react-linkify'
 import { apiClient } from 'utils'
 
 import type { NoteModel, Pager } from '@mx-space/api-client'
@@ -33,11 +34,15 @@ export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
         </a>
       </Link>
       <Divider />
-      <p className="break-all line-clamp-2 text-gray-2">{topic.introduce}</p>
+      <p className="break-all line-clamp-2 text-gray-2">
+        <Linkify>{topic.introduce}</Linkify>
+      </p>
       {topic.description && (
         <>
           <Divider />
-          <p className="text-gray-1">{topic.description}</p>
+          <p className="text-gray-1">
+            <Linkify>{topic.description}</Linkify>
+          </p>
         </>
       )}
       {notes[0] && (

@@ -6,6 +6,7 @@ import { TrackerAction } from 'constants/tracker'
 import Link from 'next/link'
 import type { FC } from 'react'
 import { useMemo } from 'react'
+import Linkify from 'react-linkify'
 import { textToBigCharOrWord } from 'utils/word'
 
 import type { TopicModel } from '@mx-space/api-client/types/models/topic'
@@ -59,7 +60,7 @@ export const NoteTopic: FC<{ noteId: string; topic: TopicModel }> = (props) => {
             </span>
 
             <p className="opacity-60 text-shizuku-text text-sm line-clamp-2">
-              {introduce}
+              <Linkify>{introduce}</Linkify>
             </p>
           </div>
         </div>

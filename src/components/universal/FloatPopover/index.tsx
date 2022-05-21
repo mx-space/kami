@@ -25,13 +25,16 @@ export const FloatPopover: FC<{
   const TriggerComponent = props.triggerComponent
   const [currentStatus, setCurrentStatus] = useState(false)
   const [open, setOpen] = useState(false)
-
+  const updateOnce = useRef(false)
   const handleMouseOver = useCallback(() => {
     setCurrentStatus(true)
 
-    requestAnimationFrame(() => {
-      update()
-    })
+    if (!updateOnce.current) {
+      requestAnimationFrame(() => {
+        update()
+        updateOnce.current = true
+      })
+    }
   }, [])
 
   const containerRef = useRef<HTMLDivElement>(null)
