@@ -84,7 +84,7 @@ interface Header {
   menu: Menu[]
 }
 
-interface Menu {
+export interface Menu {
   title: string
   path: string
   type?: string

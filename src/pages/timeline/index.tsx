@@ -1,4 +1,6 @@
 import { FaSolidBookmark } from 'components/universal/Icons'
+import { TrackerAction } from 'constants/tracker'
+import { useAnalyze } from 'hooks/use-analyze'
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -145,6 +147,17 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
 
   const arr = Array.from(sortedMap)
   const router = useRouter()
+
+  const { event } = useAnalyze()
+
+  useEffect(() => {
+    if (props.memory) {
+      event({
+        action: TrackerAction.Impression,
+        label: '时间线 - 回忆',
+      })
+    }
+  }, [props.memory])
 
   return (
     <ArticleLayout

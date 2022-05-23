@@ -1,12 +1,15 @@
 import clsx from 'clsx'
 import { FontIcon } from 'components/universal/FontIcon'
 import { RootPortal } from 'components/universal/Portal'
+import { TrackerAction } from 'constants/tracker'
+import { useAnalyze } from 'hooks/use-analyze'
 import { useHeaderNavList } from 'hooks/use-header-nav-list'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC } from 'react'
 import React, { useCallback } from 'react'
 import { Transition } from 'react-transition-group'
+import type { Menu } from 'types/config'
 
 import { useFloating } from '@floating-ui/react-dom'
 
@@ -19,7 +22,7 @@ const transitionStyles = {
   exited: { opacity: 0, visibility: 'hidden', transform: 'translateY(10px)' },
 }
 
-const MenuLink = (props: { menu: any; isPublicUrl: boolean }) => {
+const MenuLink: FC<{ menu: Menu; isPublicUrl: boolean }> = (props) => {
   const { menu, isPublicUrl } = props
 
   const { x, y, reference, floating, strategy, update } = useFloating({
@@ -36,9 +39,19 @@ const MenuLink = (props: { menu: any; isPublicUrl: boolean }) => {
       setOpen(true)
     }
   }, [menu.subMenu, update])
+  const { event } = useAnalyze()
+  const tracker = useCallback((message) => {
+    event({
+      action: TrackerAction.Click,
+      label: message,
+    })
+  }, [])
   return (
     <div className="relative" key={menu.title} onMouseLeave={close}>
-      <Link href={menu.path}>
+      <Link
+        href={menu.path}
+        onClick={() => tracker(`一级导航点击 - ${menu.title}`)}
+      >
         <a
           onMouseEnter={popup}
           ref={reference}
@@ -71,9 +84,13 @@ const MenuLink = (props: { menu: any; isPublicUrl: boolean }) => {
                   }}
                 >
                   <div>
-                    {menu.subMenu.map((m) => {
+                    {menu.subMenu?.map((m) => {
                       return (
-                        <Link href={m.path} key={m.path}>
+                        <Link
+                          href={m.path}
+                          key={m.path}
+                          onClick={() => tracker(`二级导航点击 - ${m.title}`)}
+                        >
                           <a>
                             <li key={m.title}>
                               <FontIcon icon={m.icon} />

@@ -1,8 +1,10 @@
 import clsx from 'clsx'
 import { LikeButton } from 'components/universal/LikeButton'
+import { TrackerAction } from 'constants/tracker'
+import { useAnalyze } from 'hooks/use-analyze'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import React, { memo } from 'react'
+import React, { memo, useCallback, useRef } from 'react'
 import { useStore } from 'store'
 
 import styles from './index.module.css'
@@ -32,11 +34,23 @@ export const HeaderActionLikeButtonForNote: FC<{ id: number }> = observer(
     const liked = noteStore.isLiked(id)
 
     const onLike = () => noteStore.like(id)
+    const { event } = useAnalyze()
+    const trackerLikeOnce = useRef(false)
 
+    const trackerLike = useCallback(() => {
+      if (!trackerLikeOnce.current) {
+        event({
+          action: TrackerAction.Interaction,
+          label: '顶部喜欢触发',
+        })
+
+        trackerLikeOnce.current = true
+      }
+    }, [])
     return (
       <HeaderActionButton>
         <div onClick={onLike} className="flex items-center justify-center">
-          <div className={styles['like-button']}>
+          <div className={styles['like-button']} onClick={trackerLike}>
             <LikeButton checked={liked} />
           </div>
 

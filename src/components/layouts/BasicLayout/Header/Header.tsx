@@ -1,6 +1,8 @@
 import classNames from 'clsx'
 import { IcBaselineMenuOpen } from 'components/universal/Icons'
 import { CustomLogo as Logo } from 'components/universal/Logo'
+import { TrackerAction } from 'constants/tracker'
+import { useAnalyze } from 'hooks/use-analyze'
 import { useInitialData } from 'hooks/use-initial-data'
 import { useSingleAndDoubleClick } from 'hooks/use-single-double-click'
 import { observer } from 'mobx-react-lite'
@@ -20,12 +22,18 @@ export const _Header: FC = observer(() => {
   const {
     seo: { title },
   } = useInitialData()
-  const { appStore, userStore } = useStore()
+  const { appStore } = useStore()
 
   const router = useRouter()
+  const { event } = useAnalyze()
   const clickFunc = useSingleAndDoubleClick(
     () => {
       router.push('/')
+
+      event({
+        action: TrackerAction.Click,
+        label: '点击 - 顶部 Logo',
+      })
     },
     () => void router.push('/login'),
   )
@@ -63,14 +71,7 @@ export const _Header: FC = observer(() => {
               }
               onClick={clickFunc}
             >
-              <div
-                className={styles['header-logo']}
-                onDoubleClick={() => {
-                  if (!userStore.isLogged) {
-                    router.push('/login')
-                  }
-                }}
-              >
+              <div className={styles['header-logo']}>
                 <Logo />
               </div>
               <h1 className={styles['title']}>{title}</h1>

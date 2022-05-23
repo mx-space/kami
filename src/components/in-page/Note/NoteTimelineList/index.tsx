@@ -7,10 +7,11 @@ import { FloatPopover } from 'components/universal/FloatPopover'
 import { ImpressionView } from 'components/universal/ImpressionView'
 import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
 import { TrackerAction } from 'constants/tracker'
+import { useAnalyze } from 'hooks/use-analyze'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC } from 'react'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import { usePrevious } from 'react-use'
 import { useStore } from 'store'
@@ -43,6 +44,26 @@ export const NoteTimelineList: FC<
     })
   }, [noteId])
 
+  const { event } = useAnalyze()
+
+  const TopicComp = useCallback(
+    () => (
+      <Link
+        href={`/notes/topics/${note?.topic?.slug}`}
+        onClick={() =>
+          event({
+            action: TrackerAction.Click,
+            label: `左侧时间线点击去话题页 - ${note?.topic?.name}`,
+          })
+        }
+      >
+        <a>
+          <span className="flex-grow truncate">{note?.topic?.name}</span>
+        </a>
+      </Link>
+    ),
+    [note?.topic?.name, note?.topic?.slug],
+  )
   return (
     <div className={clsx(className, styles['container'])}>
       <ul className={clsx(styles.list)}>
@@ -81,15 +102,7 @@ export const NoteTimelineList: FC<
                 placement="right"
                 strategy="fixed"
                 wrapperClassNames="flex flex-grow flex-shrink min-w-0"
-                triggerComponent={() => (
-                  <Link href={`/notes/topics/${note?.topic?.slug}`}>
-                    <a>
-                      <span className="flex-grow truncate">
-                        {note?.topic?.name}
-                      </span>
-                    </a>
-                  </Link>
-                )}
+                triggerComponent={TopicComp}
               >
                 <ImpressionView
                   trackerMessage={`曝光 - 左侧时间线话题内页展开 - ${note?.topic?.name}`}

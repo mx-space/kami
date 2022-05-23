@@ -1,12 +1,13 @@
 import type { TrackerAction } from 'constants/tracker'
 import { useCallback } from 'react'
+import { useStore } from 'store'
 import { isDev } from 'utils'
 
 import { useThemeConfig } from './use-initial-data'
 
 export const useAnalyze = () => {
   const config = useThemeConfig()
-
+  const { userStore } = useStore()
   const GA_TRACKING_ID = config.function.analyze.ga
 
   const isEnableGA = config.function.analyze.enable
@@ -34,7 +35,7 @@ export const useAnalyze = () => {
       value?: number
     }) => {
       const { action, label, category = label, value } = options
-      if (isDev) {
+      if (isDev || userStore.isLogged) {
         console.log('event', options)
         return
       }
@@ -52,7 +53,7 @@ export const useAnalyze = () => {
         console.log(err)
       }
     },
-    [GA_TRACKING_ID, isEnableGA],
+    [GA_TRACKING_ID, isEnableGA, userStore.isLogged],
   )
 
   return {

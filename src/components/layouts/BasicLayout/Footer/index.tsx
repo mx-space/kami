@@ -1,9 +1,18 @@
+import { ImpressionView } from 'components/universal/ImpressionView'
+import { TrackerAction } from 'constants/tracker'
+import { useAnalyze } from 'hooks/use-analyze'
 import { useInitialData, useThemeConfig } from 'hooks/use-initial-data'
 import { useFooterBackground } from 'hooks/use-theme-background'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC } from 'react'
-import React, { Fragment, createElement, memo, useMemo } from 'react'
+import React, {
+  Fragment,
+  createElement,
+  memo,
+  useCallback,
+  useMemo,
+} from 'react'
 import { isServerSide } from 'utils'
 
 import Package from '~/package.json'
@@ -40,6 +49,14 @@ export const FooterContent: FC = observer(() => {
   const icp = kamiConfig.site.footer.icp
   const navigation = kamiConfig.site.footer.navigation
 
+  const { event } = useAnalyze()
+  const trackerToGithub = useCallback(() => {
+    event({
+      action: TrackerAction.Click,
+      label: '底部点击去 Github',
+    })
+  }, [])
+
   return (
     <div className={styles.wrap}>
       <div className="left to-center">
@@ -54,21 +71,30 @@ export const FooterContent: FC = observer(() => {
             {motto.content}
           </span>
         </p>
-        <p className="justify-center flex space-x-2 children:flex-shrink-0 flex-wrap">
-          <span>Powered by </span>
-          <a href="https://github.com/mx-space">{'mx-space'}</a>.
-          <a href="https://github.com/mx-space/kami" title={version}>
-            {'Kami'}
-          </a>
-          {'.'}
-          {icp.enable && !!icp.label && !!icp.link && (
-            <div className="text-center inline-block">
-              <a href={icp.link} target={'_blank'} rel={'noreferrer'}>
-                {icp.label}
-              </a>
-            </div>
-          )}
-        </p>
+        <ImpressionView trackerMessage="底部曝光">
+          <p className="justify-center flex space-x-2 children:flex-shrink-0 flex-wrap">
+            <span>Powered by </span>
+            <a href="https://github.com/mx-space" onClick={trackerToGithub}>
+              {'mx-space'}
+            </a>
+            .
+            <a
+              href="https://github.com/mx-space/kami"
+              onClick={trackerToGithub}
+              title={version}
+            >
+              {'Kami'}
+            </a>
+            {'.'}
+            {icp.enable && !!icp.label && !!icp.link && (
+              <div className="text-center inline-block">
+                <a href={icp.link} target={'_blank'} rel={'noreferrer'}>
+                  {icp.label}
+                </a>
+              </div>
+            )}
+          </p>
+        </ImpressionView>
       </div>
       <div className="right to-center">
         <p className={'phone:mr-0 mr-12'}>

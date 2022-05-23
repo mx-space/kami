@@ -1,18 +1,31 @@
 import { FontIcon } from 'components/universal/FontIcon'
+import { TrackerAction } from 'constants/tracker'
+import { useAnalyze } from 'hooks/use-analyze'
 import { useHeaderNavList } from 'hooks/use-header-nav-list'
 import Link from 'next/link'
-import React, { memo } from 'react'
+import React, { memo, useCallback } from 'react'
 
 import styles from './index.module.css'
 
 export const HeaderDrawerNavigation: React.FC = memo(() => {
   const { mergedMenu } = useHeaderNavList()
+  const { event } = useAnalyze()
+  const tracker = useCallback((message) => {
+    event({
+      action: TrackerAction.Click,
+      label: message,
+    })
+  }, [])
+
   return (
     <>
       {mergedMenu.map((m) => {
         return (
           <div key={m.title} className={styles['link-section']}>
-            <Link href={m.path}>
+            <Link
+              href={m.path}
+              onClick={() => tracker(`内页导航点击 - ${m.title}`)}
+            >
               <a>
                 <div className={styles['parent']}>
                   <FontIcon icon={m.icon} />
@@ -24,7 +37,11 @@ export const HeaderDrawerNavigation: React.FC = memo(() => {
               {m.subMenu &&
                 m.subMenu.map((m) => {
                   return (
-                    <Link href={m.path} key={m.title}>
+                    <Link
+                      href={m.path}
+                      key={m.title}
+                      onClick={() => tracker(`内页导航点击 - ${m.title}`)}
+                    >
                       <a>
                         <div className={styles['children']}>
                           <FontIcon icon={m.icon} />

@@ -148,6 +148,9 @@ function:
     enable: true
     ga: ''
     baidu: ''
+    umami:
+      id: ''
+      url: ''
   netease:
     username: example
     # password 敏感字段不应该暴露, 后续看看怎么操作

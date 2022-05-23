@@ -5,13 +5,14 @@ import {
 import { LikeButton } from 'components/universal/LikeButton'
 import { NumberRecorder } from 'components/universal/NumberRecorder'
 import { RelativeTime } from 'components/universal/RelativeTime'
-import {
-  ActionProps,
-  ArticleFooterAction,
-} from 'components/widgets/ArticleAction'
+import type { ActionProps } from 'components/widgets/ArticleAction'
+import { ArticleFooterAction } from 'components/widgets/ArticleAction'
+import { TrackerAction } from 'constants/tracker'
 import dayjs from 'dayjs'
+import { useAnalyze } from 'hooks/use-analyze'
 import { observer } from 'mobx-react-lite'
-import { FC } from 'react'
+import type { FC } from 'react'
+import { useRef } from 'react'
 import { useStore } from 'store'
 import { mood2icon, weather2icon } from 'utils'
 
@@ -19,6 +20,8 @@ export const NoteFooterActionBar: FC<{ id: string }> = observer(({ id }) => {
   const { noteStore } = useStore()
   const note = noteStore.get(id)
 
+  const trackerLikeOnce = useRef(false)
+  const { event } = useAnalyze()
   if (!note) {
     return null
   }
@@ -48,6 +51,15 @@ export const NoteFooterActionBar: FC<{ id: string }> = observer(({ id }) => {
 
         callback: () => {
           noteStore.like(nid)
+
+          if (!trackerLikeOnce.current) {
+            event({
+              action: TrackerAction.Interaction,
+              label: '日记底部喜欢触发',
+            })
+
+            trackerLikeOnce.current = true
+          }
         },
       },
     ],

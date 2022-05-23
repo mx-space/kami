@@ -194,7 +194,6 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
             article: {
               publishedTime: note.created,
               modifiedTime: note.modified || undefined,
-              tags: ['Note of Life'],
             },
           },
         }}

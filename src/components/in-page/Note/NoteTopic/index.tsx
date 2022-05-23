@@ -3,9 +3,10 @@ import { Divider } from 'components/universal/Divider'
 import { FloatPopover } from 'components/universal/FloatPopover'
 import { ImpressionView } from 'components/universal/ImpressionView'
 import { TrackerAction } from 'constants/tracker'
+import { useAnalyze } from 'hooks/use-analyze'
 import Link from 'next/link'
 import type { FC } from 'react'
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import Linkify from 'react-linkify'
 import { textToBigCharOrWord } from 'utils/word'
 
@@ -16,6 +17,15 @@ import { InnerTopicDetail } from './inner-detail'
 export const NoteTopic: FC<{ noteId: string; topic: TopicModel }> = (props) => {
   const { topic } = props
   const { icon, name, introduce } = topic
+
+  const { event } = useAnalyze()
+  const handleTrackerClick = useCallback(() => {
+    event({
+      action: TrackerAction.Click,
+      label: `话题点击 进入详情 / ${name}`,
+    })
+  }, [name])
+
   return (
     <ImpressionView
       action={TrackerAction.Impression}
@@ -43,7 +53,10 @@ export const NoteTopic: FC<{ noteId: string; topic: TopicModel }> = (props) => {
             <span className="text-md font-medium mb-2">
               <FloatPopover
                 triggerComponent={() => (
-                  <Link href={`/notes/topics/${topic.slug}`}>
+                  <Link
+                    href={`/notes/topics/${topic.slug}`}
+                    onClick={handleTrackerClick}
+                  >
                     <a>
                       <span>{name}</span>
                     </a>

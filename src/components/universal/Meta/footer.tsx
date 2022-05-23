@@ -42,6 +42,7 @@ export const MetaFooter = memo(() => {
               key="umami-analyze"
               defer
               data-website-id={analyze.umami.id}
+              data-cache="true"
               src={`${analyze.umami.url.replace(/\/$/, '')}/umami.js`}
             ></script>,
           )

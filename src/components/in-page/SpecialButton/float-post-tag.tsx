@@ -3,6 +3,8 @@ import { OverLay } from 'components/universal/Overlay'
 import { BigTag } from 'components/universal/Tag'
 import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
 import { RightLeftTransitionView } from 'components/universal/Transition/right-left'
+import { TrackerAction } from 'constants/tracker'
+import { useAnalyze } from 'hooks/use-analyze'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC } from 'react'
@@ -34,6 +36,7 @@ const _FloatPostTagButton: FC = observer(() => {
     setTags(tags)
   }
   const idSymbol = useRef(Symbol())
+  const { event } = useAnalyze()
   useEffect(() => {
     actionStore.removeActionBySymbol(idSymbol.current)
     const action = {
@@ -44,6 +47,11 @@ const _FloatPostTagButton: FC = observer(() => {
           fetchTags()
         }
         setShowTags(true)
+
+        event({
+          action: TrackerAction.Click,
+          label: '标签 FAB 点击',
+        })
       },
     }
     requestAnimationFrame(() => {
