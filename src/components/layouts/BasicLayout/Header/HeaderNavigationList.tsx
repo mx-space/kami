@@ -48,11 +48,9 @@ const MenuLink: FC<{ menu: Menu; isPublicUrl: boolean }> = (props) => {
   }, [])
   return (
     <div className="relative" key={menu.title} onMouseLeave={close}>
-      <Link
-        href={menu.path}
-        onClick={() => tracker(`一级导航点击 - ${menu.title}`)}
-      >
+      <Link href={menu.path}>
         <a
+          onClick={() => tracker(`一级导航点击 - ${menu.title}`)}
           onMouseEnter={popup}
           ref={reference}
           rel={isPublicUrl ? 'noopener noreferrer' : undefined}
@@ -86,12 +84,10 @@ const MenuLink: FC<{ menu: Menu; isPublicUrl: boolean }> = (props) => {
                   <div>
                     {menu.subMenu?.map((m) => {
                       return (
-                        <Link
-                          href={m.path}
-                          key={m.path}
-                          onClick={() => tracker(`二级导航点击 - ${m.title}`)}
-                        >
-                          <a>
+                        <Link href={m.path} key={m.path}>
+                          <a
+                            onClick={() => tracker(`二级导航点击 - ${m.title}`)}
+                          >
                             <li key={m.title}>
                               <FontIcon icon={m.icon} />
                               <span>{m.title}</span>

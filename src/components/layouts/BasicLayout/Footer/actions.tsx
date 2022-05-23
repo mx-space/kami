@@ -9,7 +9,7 @@ import { useAnalyze } from 'hooks/use-analyze'
 import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import { useStore } from 'store'
 import { EventTypes } from 'types/events'
@@ -39,12 +39,19 @@ export const FooterActions: FC = observer(() => {
   }, [])
 
   const { event } = useAnalyze()
+  const toTop = useCallback(() => {
+    springScrollToTop()
+    event({
+      action: TrackerAction.Click,
+      label: '底部点击回到顶部',
+    })
+  }, [])
   return (
     <>
       <div className="action">
         <button
           className={classNames('top', isOverflow ? 'active' : '')}
-          onClick={springScrollToTop}
+          onClick={toTop}
         >
           <BxBxsArrowToTop />
         </button>
