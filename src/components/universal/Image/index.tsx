@@ -66,7 +66,7 @@ const Image: FC<
         )}
         data-status={loaded ? 'loaded' : 'loading'}
       >
-        <img src={src} alt={alt} ref={imageRef} />
+        <img src={src} alt={alt} ref={imageRef} loading="lazy" />
       </div>
     </>
   )

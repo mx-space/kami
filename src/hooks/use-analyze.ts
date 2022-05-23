@@ -33,7 +33,7 @@ export const useAnalyze = () => {
       category?: string
       value?: number
     }) => {
-      const { action, category, label, value } = options
+      const { action, label, category = label, value } = options
       if (isDev) {
         console.log('event', options)
         return
