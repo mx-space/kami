@@ -66,7 +66,7 @@ specifiers:
   remove-markdown: 0.5.0
   rimraf: '*'
   socket.io-client: 4.5.1
-  stylelint: 14.8.3
+  stylelint: 14.8.4
   stylelint-config-standard: 25.0.0
   typescript: 4.6.4
   validator: 13.7.0
@@ -139,8 +139,8 @@ devDependencies:
   prettier: 2.6.2
   react-lazyload: 3.2.0_ef5jwxihqo6n7gxfmzogljlgcm
   rimraf: 3.0.2
-  stylelint: 14.8.3
-  stylelint-config-standard: 25.0.0_stylelint@14.8.3
+  stylelint: 14.8.4
+  stylelint-config-standard: 25.0.0_stylelint@14.8.4
   typescript: 4.6.4
   windicss: 3.5.4
   windicss-webpack-plugin: 1.7.3
@@ -2298,7 +2298,7 @@ packages:
     dev: true
 
   /array-union/1.0.2:
-    resolution: {integrity: sha1-mjRBDk9OPaI96jdb5b5w8kd47Dk=}
+    resolution: {integrity: sha512-Dxr6QJj/RdU/hCaBjOfxW+q6lyuVE6JFWIrAUpuOOhoJJoQ99cUn3igRaHVB5P9WrgFVN0FfArM3x0cueOU8ng==}
     engines: {node: '>=0.10.0'}
     dependencies:
       array-uniq: 1.0.3
@@ -6231,25 +6231,25 @@ packages:
     dependencies:
       react: 18.1.0
 
-  /stylelint-config-recommended/7.0.0_stylelint@14.8.3:
+  /stylelint-config-recommended/7.0.0_stylelint@14.8.4:
     resolution: {integrity: sha512-yGn84Bf/q41J4luis1AZ95gj0EQwRX8lWmGmBwkwBNSkpGSpl66XcPTulxGa/Z91aPoNGuIGBmFkcM1MejMo9Q==}
     peerDependencies:
       stylelint: ^14.4.0
     dependencies:
-      stylelint: 14.8.3
+      stylelint: 14.8.4
     dev: true
 
-  /stylelint-config-standard/25.0.0_stylelint@14.8.3:
+  /stylelint-config-standard/25.0.0_stylelint@14.8.4:
     resolution: {integrity: sha512-21HnP3VSpaT1wFjFvv9VjvOGDtAviv47uTp3uFmzcN+3Lt+RYRv6oAplLaV51Kf792JSxJ6svCJh/G18E9VnCA==}
     peerDependencies:
       stylelint: ^14.4.0
     dependencies:
-      stylelint: 14.8.3
-      stylelint-config-recommended: 7.0.0_stylelint@14.8.3
+      stylelint: 14.8.4
+      stylelint-config-recommended: 7.0.0_stylelint@14.8.4
     dev: true
 
-  /stylelint/14.8.3:
-    resolution: {integrity: sha512-aLpskXwSgFEBYbFRKA/BfuyYMGuXNtn2t5GqoffNPSezvw97x/vVNWcZNF0+cwt+LBjfvyq9/MRE3OjInGRgNA==}
+  /stylelint/14.8.4:
+    resolution: {integrity: sha512-VoyFmif50YNL2R1NC0NxbprTbvnihiqE9tdwb/IAUvlncoS3dEllSSEfvTaQQ6BTCp6iv6daIg5v7ryRSlBdgw==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
