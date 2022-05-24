@@ -1,5 +1,9 @@
 import { NoteTimelineList } from 'components/in-page/Note/NoteTimelineList'
-import { FaRegularBookmark, FaSolidBookmark } from 'components/universal/Icons'
+import {
+  FluentEyeHide20Regular,
+  RegularBookmark,
+  SolidBookmark,
+} from 'components/universal/Icons'
 import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
 import dayjs from 'dayjs'
 import { observer } from 'mobx-react-lite'
@@ -46,22 +50,27 @@ export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
             <div className="title-headline text-light-brown dark:text-shizuku-text">
               <span className="inline-flex items-center">
                 <time className="font-medium">{dateFormat}</time>
-                <div className="ml-4 inline-block">
+                <div className="ml-4 inline-flex space-x-2 items-center">
                   {isLogged ? (
                     bookmark ? (
-                      <FaSolidBookmark
+                      <SolidBookmark
                         className="text-red cursor-pointer"
                         onClick={onMarkToggle}
                       />
                     ) : (
-                      <FaRegularBookmark
+                      <RegularBookmark
                         className="cursor-pointer"
                         onClick={onMarkToggle}
                       />
                     )
                   ) : bookmark ? (
-                    <FaSolidBookmark className="text-red" />
+                    <SolidBookmark className="text-red" />
                   ) : null}
+                  {note?.hide && (
+                    <FluentEyeHide20Regular
+                      className={!isLogged ? 'text-red' : ''}
+                    />
+                  )}
                 </div>
               </span>
             </div>

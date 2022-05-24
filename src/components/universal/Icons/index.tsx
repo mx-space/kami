@@ -229,23 +229,23 @@ export function IonSearch(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-export function FaSolidBookmark(props: SVGProps<SVGSVGElement>) {
+export function SolidBookmark(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg width="0.75em" height="1em" viewBox="0 0 384 512" {...props}>
+    <svg width="1em" height="1em" viewBox="0 0 16 16" {...props}>
       <path
         fill="currentColor"
-        d="M0 512V48C0 21.49 21.49 0 48 0h288c26.51 0 48 21.49 48 48v464L192 400L0 512z"
+        d="M3.78 13.918a.5.5 0 0 1-.778-.416V4.01a2 2 0 0 1 1.996-2l6-.011a2 2 0 0 1 2.004 1.996v9.506a.5.5 0 0 1-.778.416l-4.222-2.82l-4.222 2.82Z"
       ></path>
     </svg>
   )
 }
 
-export function FaRegularBookmark(props: SVGProps<SVGSVGElement>) {
+export function RegularBookmark(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg width="0.75em" height="1em" viewBox="0 0 384 512" {...props}>
+    <svg width="1em" height="1em" viewBox="0 0 16 16" {...props}>
       <path
         fill="currentColor"
-        d="M336 0H48C21.49 0 0 21.49 0 48v464l192-112l192 112V48c0-26.51-21.49-48-48-48zm0 428.43l-144-84l-144 84V54a6 6 0 0 1 6-6h276c3.314 0 6 2.683 6 5.996V428.43z"
+        d="M3.78 13.918a.5.5 0 0 1-.778-.416V4.01a2 2 0 0 1 1.996-2l6-.011a2 2 0 0 1 2.004 1.996v9.506a.5.5 0 0 1-.778.416l-4.222-2.82l-4.222 2.82ZM12.002 4l-.007-.118A1 1 0 0 0 11 3l-6 .01a1 1 0 0 0-.998 1v8.557l3.722-2.486a.5.5 0 0 1 .556 0l3.722 2.486V4Z"
       ></path>
     </svg>
   )
@@ -520,6 +520,27 @@ export function MdiClockOutline(props: SVGProps<SVGSVGElement>) {
         fill="currentColor"
         d="M12 20a8 8 0 0 0 8-8a8 8 0 0 0-8-8a8 8 0 0 0-8 8a8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10a10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67l-.75 1.23L11 13V7h1.5Z"
       ></path>
+    </svg>
+  )
+}
+
+export function FluentEyeHide20Regular(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg width="1em" height="1em" viewBox="0 0 20 20" {...props}>
+      <g fill="none">
+        <path
+          d="M2.854 2.146a.5.5 0 1 0-.708.708l3.5 3.498a8.097 8.097 0 0 0-3.366 5.046a.5.5 0 1 0 .98.204a7.09 7.09 0 0 1 3.107-4.528L7.953 8.66a3.5 3.5 0 1 0 4.886 4.886l4.307 4.308a.5.5 0 0 0 .708-.708l-15-15zm9.265 10.68A2.5 2.5 0 1 1 8.673 9.38l3.446 3.447z"
+          fill="currentColor"
+        ></path>
+        <path
+          d="M10.123 8.002l3.375 3.374a3.5 3.5 0 0 0-3.374-3.374z"
+          fill="currentColor"
+        ></path>
+        <path
+          d="M10 6c-.57 0-1.129.074-1.666.213l-.803-.803A7.648 7.648 0 0 1 10 5c3.693 0 6.942 2.673 7.72 6.398a.5.5 0 0 1-.98.204C16.058 8.327 13.207 6 10 6z"
+          fill="currentColor"
+        ></path>
+      </g>
     </svg>
   )
 }

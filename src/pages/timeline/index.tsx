@@ -1,4 +1,4 @@
-import { FaSolidBookmark } from 'components/universal/Icons'
+import { SolidBookmark } from 'components/universal/Icons'
 import { TrackerAction } from 'constants/tracker'
 import { useAnalyze } from 'hooks/use-analyze'
 import type { NextPage } from 'next'
@@ -202,12 +202,12 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
                         </a>
                       </Link>
                       {item.important && (
-                        <FaSolidBookmark
+                        <SolidBookmark
                           className="text-red mr-4 cursor-pointer"
                           onClick={() => {
                             router.push({ query: { memory: true } })
                           }}
-                        ></FaSolidBookmark>
+                        ></SolidBookmark>
                       )}
 
                       <span className={'meta'}>
