@@ -36,7 +36,13 @@ const TopicDetailPage: NextPage<TopicModel> = (props) => {
   return (
     <ArticleLayout
       title={`专栏 · ${name}`}
-      subtitle={pager ? `共收录${pager.total}篇文章` : ''}
+      subtitle={
+        pager
+          ? pager.total
+            ? `共收录${pager.total}篇文章`
+            : '这里还没有收录任何内容哦'
+          : ''
+      }
     >
       <SEO title={`专栏 - ${name}`} />
       <div className="topic-info -mt-8">
