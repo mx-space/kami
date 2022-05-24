@@ -1,11 +1,16 @@
+import { FloatPopover } from 'components/universal/FloatPopover'
 import {
   MdiEmailFastOutline,
   MdiLanguageMarkdown,
   PhUser,
   SiGlyphGlobal,
 } from 'components/universal/Icons'
+import { ImpressionView } from 'components/universal/ImpressionView'
+import { kaomoji } from 'constants/kaomoji'
+import { TrackerAction } from 'constants/tracker'
+import { useAnalyze } from 'hooks/use-analyze'
+import { sample } from 'lodash-es'
 import omit from 'lodash-es/omit'
-import shuffle from 'lodash-es/shuffle'
 import type { FC } from 'react'
 import React, {
   memo,
@@ -69,7 +74,7 @@ export const CommentBox: FC<{
     }
   }
 
-  const handleInsertEmoji = (emoji: string) => {
+  const handleInsertEmoji = useCallback((emoji: string) => {
     if (!taRef.current) {
       return
     }
@@ -90,7 +95,7 @@ export const CommentBox: FC<{
 
       $ta.focus()
     })
-  }
+  }, [])
 
   const handleCancel = () => {
     onCancel?.()
@@ -236,25 +241,23 @@ export const CommentBox: FC<{
         }
       />
 
-      <div className={styles['actions-wrapper']}>
-        <button className="btn flex-shrink-0 mr-[12px] cursor-default pointer-events-none">
-          <MdiLanguageMarkdown className="text-2xl" />
-        </button>
-        <div className={styles['emoji-wrapper']}>
-          <div className={styles['emojis']}>
-            {EMOJI_LIST.map((emoji, i) => (
-              <button
-                className={styles['emoji']}
-                key={i}
-                onClick={() => handleInsertEmoji(emoji)}
-              >
-                {emoji}
+      <div
+        className={'relative flex justify-between mt-2 flex-wrap items-center'}
+      >
+        <div className="flex-shrink-0 flex space-x-2 items-center">
+          <FloatPopover
+            triggerComponent={() => (
+              <button className="btn blue text-lg flex-shrink-0 mr-[12px] cursor-default pointer-events-none">
+                <MdiLanguageMarkdown />
               </button>
-            ))}
-          </div>
+            )}
+          >
+            评论支持部分 Markdown 语法
+          </FloatPopover>
+          <KaomojiButton onClickKaomoji={handleInsertEmoji} />
         </div>
 
-        <div className={styles['submit-wrapper']}>
+        <div className={'whitespace-nowrap flex-shrink-0'}>
           {onCancel && (
             <button className="btn red" onClick={handleCancel}>
               取消回复
@@ -273,33 +276,47 @@ export const CommentBox: FC<{
   )
 })
 
-const EMOJI_LIST = shuffle([
-  '(๑•̀ㅂ•́)و✧',
-  '(°ー°〃)',
-  'o(￣ヘ￣o＃)',
-  '(๑¯◡¯๑)',
-  '( •̀ .̫ •́ )✧',
-  '(つд⊂)',
-  '(o´ω`o)',
-  '(•౪• )',
-  '(>▽<)',
-
-  '(๑•̀ㅂ•́) ✧',
-  'ლ(╹◡╹ლ)',
-  '_(:з」∠)_',
-  'Ծ‸Ծ',
-  ' ʕ •̀ o •́ ʔ',
-  ' (⑉･̆⌓･̆⑉)',
-  ' ♫.(◕∠◕).♫',
-  ' | •́ ▾ •̀ |',
-  ' 〳 ° ▾ ° 〵',
-  ' | •́ ▾ •̀ |',
-  ' ⋋╏ ❛ ◡ ❛ ╏⋌',
-  ' (・∀・)',
-  ' (^・ω・^ )',
-  '(´･ω･`)  ',
-  '(๑´ㅂ`๑) ',
-  '(๑˘ ₃˘๑) ',
-  '(●’ω`●）',
-  '(´･ω･`)  ',
-])
+const KaomojiButton: FC<{ onClickKaomoji: (kaomoji: string) => any }> = memo(
+  ({ onClickKaomoji }) => {
+    const { event } = useAnalyze()
+    const [trackerOnce, setOnce] = useState(false)
+    const handleTrack = useCallback(() => {
+      setOnce(true)
+    }, [])
+    return (
+      <FloatPopover
+        trigger="both"
+        wrapperClassNames="flex-shrink-0"
+        triggerComponent={memo(() => (
+          <button className="btn green mr-[12px] cursor-pointer">
+            {sample(kaomoji)}
+          </button>
+        ))}
+      >
+        <ImpressionView
+          shouldTrack={!trackerOnce}
+          trackerMessage="曝光 Kaomoji 面板"
+          onTrack={handleTrack}
+        >
+          <div className="w-[300px] overflow-auto max-w-[80vw] h-[300px] max-h-[50vh]">
+            {kaomoji.map((emoji, i) => (
+              <button
+                className="text-blue p-2"
+                key={i}
+                onClick={() => {
+                  event({
+                    action: TrackerAction.Click,
+                    label: 'Kaomoji',
+                  })
+                  onClickKaomoji(emoji)
+                }}
+              >
+                {emoji}
+              </button>
+            ))}
+          </div>
+        </ImpressionView>
+      </FloatPopover>
+    )
+  },
+)

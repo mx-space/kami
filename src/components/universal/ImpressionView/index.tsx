@@ -1,13 +1,25 @@
 import { TrackerAction } from 'constants/tracker'
 import { useAnalyze } from 'hooks/use-analyze'
 import type { FC } from 'react'
-import { useState } from 'react'
+import { memo, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 
-export const ImpressionView: FC<{
+type ImpressionProps = {
   trackerMessage?: string
   action?: TrackerAction
-}> = (props) => {
+  onTrack?: () => any
+}
+export const ImpressionView: FC<{ shouldTrack?: boolean } & ImpressionProps> = (
+  props,
+) => {
+  const { shouldTrack, ...rest } = props
+  if (!shouldTrack) {
+    return <>{props.children}</>
+  }
+  return <_ImpressionView {...rest} />
+}
+
+const _ImpressionView: FC<ImpressionProps> = memo((props) => {
   const [impression, setImpression] = useState(false)
   const { event } = useAnalyze()
   const { ref } = useInView({
@@ -20,6 +32,8 @@ export const ImpressionView: FC<{
           action: props.action ?? TrackerAction.Impression,
           label: props.trackerMessage,
         })
+
+        props.onTrack?.()
       }
     },
   })
@@ -30,4 +44,4 @@ export const ImpressionView: FC<{
       {!impression && <div ref={ref}></div>}
     </>
   )
-}
+})

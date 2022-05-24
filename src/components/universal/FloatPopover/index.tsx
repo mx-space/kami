@@ -1,32 +1,41 @@
 import clsx from 'clsx'
 import type { FC } from 'react'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { useClickAway } from 'react-use'
 import { isClientSide } from 'utils'
 
-import type { Placement, Strategy } from '@floating-ui/react-dom'
+import type { UseFloatingProps } from '@floating-ui/react-dom'
 import { flip, offset, shift, useFloating } from '@floating-ui/react-dom'
 
 import styles from './index.module.css'
 
-export const FloatPopover: FC<{
-  triggerComponent: FC
-  headless?: boolean
-  placement?: Placement
-  strategy?: Strategy
-  wrapperClassNames?: string
-}> = (props) => {
+export const FloatPopover: FC<
+  {
+    triggerComponent: FC
+    headless?: boolean
+    wrapperClassNames?: string
+    trigger?: 'click' | 'hover' | 'both'
+  } & UseFloatingProps
+> = (props) => {
+  const {
+    headless = false,
+    wrapperClassNames,
+    triggerComponent: TriggerComponent,
+    trigger = 'hover',
+    ...rest
+  } = props
+
   const { x, y, reference, floating, strategy, update } = useFloating({
-    middleware: [flip({ padding: 20 }), offset(10), shift()],
-    strategy: props.strategy,
-    placement: props.placement ?? 'bottom-start',
+    middleware: rest.middleware ?? [flip({ padding: 20 }), offset(10), shift()],
+    strategy: rest.strategy,
+    placement: rest.placement ?? 'bottom-start',
+    whileElementsMounted: rest.whileElementsMounted,
   })
-  const { headless = false, wrapperClassNames } = props
-  const TriggerComponent = props.triggerComponent
   const [currentStatus, setCurrentStatus] = useState(false)
   const [open, setOpen] = useState(false)
   const updateOnce = useRef(false)
-  const handleMouseOver = useCallback(() => {
+  const doPopoverShow = useCallback(() => {
     setCurrentStatus(true)
 
     if (!updateOnce.current) {
@@ -37,10 +46,11 @@ export const FloatPopover: FC<{
     }
   }, [])
 
+  const containerAnchorRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!containerRef.current) {
+    if (!containerAnchorRef.current) {
       return
     }
 
@@ -57,7 +67,7 @@ export const FloatPopover: FC<{
   }, [currentStatus])
 
   const handleTransition = (status: 'in' | 'out') => {
-    const nextElementSibling = containerRef.current
+    const nextElementSibling = containerAnchorRef.current
       ?.nextElementSibling as HTMLDivElement
 
     if (!nextElementSibling) {
@@ -75,18 +85,63 @@ export const FloatPopover: FC<{
     }
   }
 
-  const handleMouseOut = useCallback(() => setCurrentStatus(false), [])
+  useClickAway(containerRef, () => {
+    if (trigger == 'click' || trigger == 'both') {
+      doPopoverDisappear()
+      clickTriggerFlag.current = false
+    }
+  })
+
+  const doPopoverDisappear = useCallback(() => setCurrentStatus(false), [])
+
+  const clickTriggerFlag = useRef(false)
+  const handleMouseOut = useCallback(() => {
+    if (clickTriggerFlag.current === true) {
+      return
+    }
+    doPopoverDisappear()
+  }, [])
+  const handleClickTrigger = useCallback(() => {
+    clickTriggerFlag.current = true
+    doPopoverShow()
+  }, [])
+
+  const listener = useMemo(() => {
+    switch (trigger) {
+      case 'click':
+        return {
+          onClick: doPopoverShow,
+        }
+      case 'hover':
+        return {
+          onMouseOver: doPopoverShow,
+          onMouseOut: doPopoverDisappear,
+        }
+      case 'both':
+        return {
+          onClick: handleClickTrigger,
+          onMouseOver: doPopoverShow,
+          onMouseOut: handleMouseOut,
+        }
+    }
+  }, [
+    doPopoverDisappear,
+    doPopoverShow,
+    handleClickTrigger,
+    handleMouseOut,
+    trigger,
+  ])
 
   if (!isClientSide()) {
     return null
   }
+
   return (
     <>
       <div
         className={clsx('inline-block', wrapperClassNames)}
         ref={reference}
-        onMouseOver={handleMouseOver}
-        onMouseOut={handleMouseOut}
+        {...listener}
       >
         <TriggerComponent />
       </div>
@@ -94,10 +149,10 @@ export const FloatPopover: FC<{
       {createPortal(
         <div
           className="float-popover"
-          onMouseOver={handleMouseOver}
-          onMouseOut={handleMouseOut}
+          {...(trigger === 'hover' || trigger === 'both' ? listener : {})}
+          ref={containerRef}
         >
-          <div ref={containerRef}></div>
+          <div ref={containerAnchorRef}></div>
           {open && (
             <div
               className={headless ? '' : styles['popover-root']}
