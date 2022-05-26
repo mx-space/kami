@@ -4,7 +4,7 @@ import { useThemeConfig } from 'hooks/use-initial-data'
 import type { FC, ReactNode } from 'react'
 import React, { memo, useMemo } from 'react'
 
-import { autoPlacement } from '@floating-ui/react-dom'
+import { autoPlacement, offset, shift } from '@floating-ui/react-dom'
 
 export const DonatePopover: FC<{ children: ReactNode }> = memo((props) => {
   const {
@@ -25,9 +25,10 @@ export const DonatePopover: FC<{ children: ReactNode }> = memo((props) => {
         autoPlacement({
           autoAlignment: true,
         }),
+        shift(),
+        offset(10),
       ]}
       triggerComponent={() => El}
-      trigger="both"
     >
       <ImpressionView trackerMessage="曝光 - 资助弹层">
         <div className="flex space-x-2">
