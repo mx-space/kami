@@ -18,6 +18,7 @@ import { ImageSizeMetaContext } from 'context'
 import dayjs from 'dayjs'
 import { useHeaderMeta, useHeaderShare } from 'hooks/use-header-meta'
 import { useInitialData, useThemeConfig } from 'hooks/use-initial-data'
+import { useBackgroundOpacity } from 'hooks/use-theme-background'
 import { isEqual } from 'lodash-es'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react-lite'
@@ -102,7 +103,6 @@ export const PostView: PageOnlyProps = observer((props) => {
   const { postStore } = useStore()
   const post: PostModel = postStore.get(props.id) || noop
 
-  useUpdatePost(post.id)
   const [actions, setAction] = useState({} as ActionProps)
 
   const description = post.summary ?? getSummaryFromMd(post.text).slice(0, 150)
@@ -116,6 +116,7 @@ export const PostView: PageOnlyProps = observer((props) => {
   useEffect(() => {
     springScrollToTop()
   }, [post.id])
+
   useEffect(() => {
     setAction({
       informs: [
@@ -183,6 +184,8 @@ export const PostView: PageOnlyProps = observer((props) => {
   // header meta
   useHeaderMeta(post.title, post.category.name)
   useHeaderShare(post.title, post.text)
+  useUpdatePost(post.id)
+  useBackgroundOpacity(0.2)
 
   return (
     <>

@@ -21,13 +21,20 @@ export const useThemeBackground = () => {
   } = useKamiConfig()
   useEffect(() => {
     const remove = loadStyle(
-      `body { background: url(${
+      `body .bg-fixed > .bg { background: url(${
         background.src[colorMode] || background.src.light || background.src.dark
       }) ${background.position}; background-color: var(--light-bg);  }`,
     )
 
     return remove
   }, [background.position, background.src, colorMode])
+}
+
+export const useBackgroundOpacity = (opacity: number) => {
+  useEffect(() => {
+    const remove = loadStyle(`body .bg-fixed { opacity: ${opacity}; }`)
+    return remove
+  }, [opacity])
 }
 
 export const useFooterBackground = (footerClassName: string) => {

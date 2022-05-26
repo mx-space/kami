@@ -84,6 +84,9 @@ export const BasicLayout: FC = observer(({ children }) => {
 
   return (
     <>
+      <div className="inset-0 fixed bg-fixed pointer-events-none transition-opacity duration-100 ease transform-gpu">
+        <div className="bg absolute inset-0 transform-gpu" />
+      </div>
       <Header />
       <div className="app-content">{children}</div>
       <Footer />
