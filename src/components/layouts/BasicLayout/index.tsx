@@ -16,7 +16,7 @@ import {
 } from 'react'
 
 import { useStore } from '../../../store'
-import { Switch } from '../../universal/LampSwitch'
+import { LampSwitch } from '../../universal/LampSwitch'
 import { NoticePanel as ColorModeNoticePanel } from '../../universal/Notice'
 
 export const BasicLayout: FC = observer(({ children }) => {
@@ -92,7 +92,7 @@ export const BasicLayout: FC = observer(({ children }) => {
       <Footer />
       <MusicMiniPlayerStoreControlled />
       {!(appStore.viewport.mobile || appStore.viewport.pad) && (
-        <Switch onClick={handleChangeColorMode} />
+        <LampSwitch onClick={handleChangeColorMode} />
       )}
 
       <ColorModeNoticePanel

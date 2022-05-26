@@ -26,7 +26,7 @@ const [up] = genSpringKeyframes(
     translateY: '0',
   },
 )
-export const Switch = NoSSR(
+export const LampSwitch = NoSSR(
   memo<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>>(
     (props = {}) => {
       const containerRef = useRef<HTMLDivElement>(null)
