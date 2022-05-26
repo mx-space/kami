@@ -1,5 +1,6 @@
 import ActionStore from './action'
 import AppUIStore from './app'
+import { CommentStore } from './collections/comment'
 import { NoteStore } from './collections/note'
 import { PageStore } from './collections/page'
 import { PostStore } from './collections/post'
@@ -21,6 +22,7 @@ export interface RootStore {
   // collections start
   postStore: PostStore
   noteStore: NoteStore
+  commentStore: CommentStore
   pageStore: PageStore
   sayStore: SayStore
   projectStore: ProjectStore
@@ -32,6 +34,9 @@ export class RootStore {
     this.appUIStore = new AppUIStore()
     this.musicStore = new MusicStore()
     this.actionStore = new ActionStore()
+
+    this.commentStore = new CommentStore()
+
     this.postStore = new PostStore()
     this.noteStore = new NoteStore()
     this.pageStore = new PageStore()

@@ -1,13 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import {
-  Fragment,
-  createContext,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
+import { Fragment, useCallback, useEffect, useMemo, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { message } from 'react-message-popup'
 import { apiClient } from 'utils/client'
@@ -21,14 +14,6 @@ import { CommentBox } from './box'
 import { Comments } from './comments'
 import styles from './index.module.css'
 import { CommentLoading } from './loading'
-
-export type CommentType = 'Note' | 'Post' | 'Page'
-
-export const CommentContext = createContext({
-  type: '' as CommentType,
-  refresh: {} as (page?: number, size?: number, force?: boolean) => any,
-  collection: new Map<string, Omit<CommentModel, 'children'>>(),
-})
 
 export const openCommentMessage = async () => {
   const { destory } = await message.loading({
@@ -49,15 +34,14 @@ export const openCommentMessage = async () => {
 }
 
 interface CommentWrapProps {
-  type: CommentType
   id: string
   allowComment: boolean
 }
 
 const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
-  const { type, id, allowComment } = props
+  const { id, allowComment } = props
   const [comments, setComments] = useState([] as CommentModel[])
-  const [page, setPage] = useState({} as Pager)
+  const [pagination, setPagination] = useState({} as Pager)
   const { userStore } = useStore()
   const logged = userStore.isLogged
   const collection = useMemo(
@@ -65,23 +49,23 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
     [],
   )
 
+  const { commentStore } = useStore()
+
   const fetchComments = useCallback(
     (page = 1, size = 10) => {
-      apiClient.comment
-        .getByRefId(id, { page, size })
+      commentStore.fetchComment(id, page, size).then(({ data, pagination }) => {
+        collection.clear()
 
-        .then(({ data, pagination: page }) => {
-          collection.clear()
-
-          flattenChildren(data as CommentModel[]).forEach((i) => {
-            collection.set(i.id, i)
-          })
-
-          setComments(data)
-          setPage(page)
-          setCommentShow(true)
+        flattenChildren(data as CommentModel[]).forEach((i) => {
+          collection.set(i.id, i)
         })
+
+        setComments(data)
+        setPagination(pagination)
+        setCommentShow(true)
+      })
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [collection, id],
   )
 
@@ -92,7 +76,6 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
         if (logged) {
           await apiClient.comment.proxy.master.comment(id).post({
             params: {
-              ref: type,
               ts: Date.now(),
             },
             data: { ...model },
@@ -110,7 +93,7 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
         console.error(e)
       }
     },
-    [fetchComments, id, logged, type],
+    [fetchComments, id, logged],
   )
 
   const [commentShow, setCommentShow] = useState(false)
@@ -141,30 +124,29 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
   }, [id])
   return (
     <div className={styles.wrap} ref={ref} data-hide-print id="comments">
-      <CommentContext.Provider
-        value={{ type, refresh: fetchComments, collection }}
-      >
-        {allowComment && (
-          <h1 className="headline">
-            {comments.length
-              ? `共有${comments.length}条评论`
-              : '亲亲留个评论再走呗'}
-          </h1>
-        )}
+      {allowComment && (
+        <h1 className="headline">
+          {comments.length
+            ? `共有${comments.length}条评论`
+            : '亲亲留个评论再走呗'}
+        </h1>
+      )}
 
-        {allowComment ? (
-          <CommentBox onSubmit={handleComment} />
-        ) : (
-          <h1 className="headline">主人禁止了评论</h1>
-        )}
-        <span id="comment-anchor"></span>
-        {commentShow ? (
-          <Fragment>
-            <Comments comments={comments} id={id} />
-            <div className="text-center">
-              {page && page.totalPage !== 0 && page.total !== undefined && (
+      {allowComment ? (
+        <CommentBox onSubmit={handleComment} />
+      ) : (
+        <h1 className="headline">主人禁止了评论</h1>
+      )}
+      <span id="comment-anchor"></span>
+      {commentShow ? (
+        <Fragment>
+          <Comments id={id} />
+          <div className="text-center">
+            {pagination &&
+              pagination.totalPage !== 0 &&
+              pagination.total !== undefined && (
                 <Pagination
-                  current={page.currentPage || 1}
+                  current={pagination.currentPage || 1}
                   onChange={(page) => {
                     document.getElementById('comment-anchor')?.scrollIntoView({
                       behavior: 'smooth',
@@ -174,15 +156,14 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
                       fetchComments(page)
                     })
                   }}
-                  total={page.totalPage}
+                  total={pagination.totalPage}
                 />
               )}
-            </div>
-          </Fragment>
-        ) : (
-          <CommentLoading />
-        )}
-      </CommentContext.Provider>
+          </div>
+        </Fragment>
+      ) : (
+        <CommentLoading />
+      )}
     </div>
   )
 })
