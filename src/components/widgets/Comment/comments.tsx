@@ -55,11 +55,7 @@ const CommentList: FC<CommentsProps> = observer(({ id }) => {
         )
 
         if (parentComment) {
-          // TODO
-          commentStore.updateComment({
-            ...parentComment,
-            children: [...parentComment.children, data],
-          })
+          parentComment.children.push(data)
         }
       } else {
         commentStore.addComment(data)

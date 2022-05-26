@@ -99,11 +99,7 @@ const PageView: PageOnlyProps = observer((props) => {
         ),
         [hasNext, hasPrev, indexInPages, pages],
       )}
-      <CommentLazy
-        type="Page"
-        id={page.id}
-        allowComment={page.allowComment ?? true}
-      />
+      <CommentLazy id={page.id} allowComment={page.allowComment ?? true} />
     </ArticleLayout>
   )
 })

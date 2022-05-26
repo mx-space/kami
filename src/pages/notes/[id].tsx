@@ -8,7 +8,7 @@ import { ArticleLayout } from 'components/layouts/ArticleLayout'
 import { NoteLayout } from 'components/layouts/NoteLayout'
 import { Loading } from 'components/universal/Loading'
 import { Markdown } from 'components/universal/Markdown'
-import CommentWrap from 'components/widgets/Comment'
+import { CommentLazy } from 'components/widgets/Comment'
 import { TrackerAction } from 'constants/tracker'
 import dayjs from 'dayjs'
 import { useAnalyze } from 'hooks/use-analyze'
@@ -241,11 +241,7 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
           style={{ minHeight: 'unset', paddingTop: '0' }}
           key={'at'}
         >
-          <CommentWrap
-            type={'Note'}
-            id={id}
-            allowComment={note.allowComment ?? true}
-          />
+          <CommentLazy id={id} allowComment={note.allowComment ?? true} />
         </ArticleLayout>
       )}
     </>

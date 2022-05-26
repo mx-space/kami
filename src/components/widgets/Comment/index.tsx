@@ -171,5 +171,3 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
 const CommentWrap = NoSSR(_CommentWrap)
 export { CommentWrap as CommentLazy }
 export const minHeightProperty = { minHeight: '400px' }
-
-export default CommentWrap
