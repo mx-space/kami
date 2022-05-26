@@ -123,5 +123,7 @@ function:
   donate:
     enable: false
     link: https://afdian.net/@example
+    qrcode: []
+
   ban_devtool:
     enable: false

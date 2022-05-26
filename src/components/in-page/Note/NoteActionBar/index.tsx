@@ -1,4 +1,5 @@
 import {
+  GgCoffee,
   MdiClockTimeThreeOutline,
   PhBookOpen,
 } from 'components/universal/Icons'
@@ -7,9 +8,11 @@ import { NumberRecorder } from 'components/universal/NumberRecorder'
 import { RelativeTime } from 'components/universal/RelativeTime'
 import type { ActionProps } from 'components/widgets/ArticleAction'
 import { ArticleFooterAction } from 'components/widgets/ArticleAction'
+import { DonatePopover } from 'components/widgets/Donate'
 import { TrackerAction } from 'constants/tracker'
 import dayjs from 'dayjs'
 import { useAnalyze } from 'hooks/use-analyze'
+import { useThemeConfig } from 'hooks/use-initial-data'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useRef } from 'react'
@@ -29,9 +32,21 @@ export const NoteFooterActionBar: FC<{ id: string }> = observer(({ id }) => {
   const { mood, weather } = note
   const isSecret = note.secret ? dayjs(note.secret).isAfter(new Date()) : false
   const isLiked = noteStore.isLiked(nid)
+
+  const themeConfig = useThemeConfig()
+  const donateConfig = themeConfig.function.donate
+
   const actions: ActionProps = {
     informs: [],
     actions: [
+      donateConfig.enable && {
+        icon: <GgCoffee fontSize={'1.2em'} />,
+        name: '',
+        wrapperComponent: DonatePopover,
+        callback: () => {
+          window.open(donateConfig.link)
+        },
+      },
       {
         name: (
           <div className="inline-flex items-center leading-[1]">

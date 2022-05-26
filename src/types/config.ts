@@ -18,6 +18,7 @@ interface Function {
   donate: {
     enable: boolean
     link: string
+    qrcode: string[]
   }
 
   player: {

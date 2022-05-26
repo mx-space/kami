@@ -158,3 +158,5 @@ function:
   donate:
     enable: true
     link: https://afdian.net/@Innei
+    qrcode:
+      - https://cdn.jsdelivr.net/gh/Innei/img-bed@master/20191211132347.png

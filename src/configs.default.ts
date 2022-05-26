@@ -168,6 +168,7 @@ export const defaultConfigs = {
     donate: {
       enable: false,
       link: 'https://afdian.net/@example',
+      qrcode: [],
     },
     banDevtool: {
       enable: false,

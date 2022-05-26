@@ -7,15 +7,17 @@
  * Mark: Coding with Love
  */
 import { EntypoCreativeCommons } from 'components/universal/Icons'
-import type { DetailedHTMLProps, FC, HTMLAttributes } from 'react'
-import { memo } from 'react'
+import type { DetailedHTMLProps, FC, HTMLAttributes, ReactNode } from 'react'
+import { Fragment, memo } from 'react'
 
 import styles from './index.module.css'
 
-type BaseAction = {
+export type BaseAction = {
   icon?: JSX.Element
   name: string | number | JSX.Element
   color?: string
+
+  wrapperComponent?: FC<{ children: ReactNode }>
 }
 
 export interface ActionProps
@@ -73,21 +75,26 @@ export const ArticleFooterAction: FC<ActionProps> = memo((props) => {
           if (!action) {
             return null
           }
+          const { wrapperComponent } = action
+          const Wrapper = wrapperComponent || Fragment
+
           return (
             <span
               key={i}
               className="cursor-pointer inline-flex items-center space-x-2"
               onClick={action.callback}
             >
-              {action.icon && (
-                <span
-                  className="inline-flex items-center"
-                  style={{ color: action.color }}
-                >
-                  {action.icon}
-                </span>
-              )}
-              {action.name}
+              <Wrapper>
+                {action.icon && (
+                  <span
+                    className="inline-flex items-center"
+                    style={{ color: action.color }}
+                  >
+                    {action.icon}
+                  </span>
+                )}
+                {action.name}
+              </Wrapper>
             </span>
           )
         })}

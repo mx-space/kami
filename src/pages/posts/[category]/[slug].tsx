@@ -14,6 +14,7 @@ import { Seo } from 'components/universal/Seo'
 import type { ActionProps } from 'components/widgets/ArticleAction'
 import { ArticleFooterAction } from 'components/widgets/ArticleAction'
 import { CommentLazy } from 'components/widgets/Comment'
+import { DonatePopover } from 'components/widgets/Donate'
 import { ImageSizeMetaContext } from 'context'
 import dayjs from 'dayjs'
 import { useHeaderMeta, useHeaderShare } from 'hooks/use-header-meta'
@@ -140,6 +141,7 @@ export const PostView: PageOnlyProps = observer((props) => {
         donateConfig.enable && {
           icon: <GgCoffee />,
           name: '',
+          wrapperComponent: DonatePopover,
           callback: () => {
             window.open(donateConfig.link)
           },
