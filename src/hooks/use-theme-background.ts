@@ -23,7 +23,7 @@ export const useThemeBackground = () => {
     const remove = loadStyle(
       `body .bg-fixed > .bg { background: url(${
         background.src[colorMode] || background.src.light || background.src.dark
-      }) ${background.position}; background-color: var(--light-bg);  }`,
+      }) ${background.position}; background-color: var(--light-bg);  };`,
     )
 
     return remove

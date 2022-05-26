@@ -26,7 +26,11 @@ const version = Package.version
 const FooterContainer = (props) => {
   useFooterBackground(styles['footer'])
 
-  return <footer className={styles['footer']}>{props.children}</footer>
+  return (
+    <footer className={styles['footer']} id="app-footer">
+      {props.children}
+    </footer>
+  )
 }
 
 const _Footer: FC = observer(() => {

@@ -1,4 +1,6 @@
 .footer {
+  @apply z-3 transform-gpu;
+
   a:hover {
     color: var(--yellow);
   }
