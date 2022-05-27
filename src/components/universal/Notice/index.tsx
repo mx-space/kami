@@ -1,6 +1,6 @@
 import type { FC } from 'react'
-import ReactDOM from 'react-dom'
 
+import { RootPortal } from '../Portal'
 import { FadeInOutTransitionView } from '../Transition/fade-in-out'
 import styles from './index.module.css'
 
@@ -37,20 +37,21 @@ export const NoticePanel: FC<
     return null
   }
 
-  return ReactDOM.createPortal(
-    <FadeInOutTransitionView
-      in={props.in}
-      timeout={{ exit: 500 }}
-      appear
-      unmountOnExit
-      onEntered={() => {
-        setTimeout(() => {
-          props.onExited()
-        }, 3000)
-      }}
-    >
-      <_Notice {...props} />
-    </FadeInOutTransitionView>,
-    document.body,
+  return (
+    <RootPortal>
+      <FadeInOutTransitionView
+        in={props.in}
+        timeout={{ exit: 500 }}
+        appear
+        unmountOnExit
+        onEntered={() => {
+          setTimeout(() => {
+            props.onExited()
+          }, 3000)
+        }}
+      >
+        <_Notice {...props} />
+      </FadeInOutTransitionView>
+    </RootPortal>
   )
 }

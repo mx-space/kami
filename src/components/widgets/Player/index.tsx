@@ -1,4 +1,5 @@
 import { default as classNames, default as clsx } from 'clsx'
+import { RootPortal } from 'components/universal/Portal'
 import { TrackerAction } from 'constants/tracker'
 import { useAnalyze } from 'hooks/use-analyze'
 import { observer } from 'mobx-react-lite'
@@ -11,10 +12,9 @@ import {
   useRef,
   useState,
 } from 'react'
-import { createPortal } from 'react-dom'
 import { useAudio } from 'react-use'
 import { useStore } from 'store'
-import { NoSSR, apiClient, hms, isServerSide } from 'utils'
+import { NoSSR, apiClient, hms } from 'utils'
 
 import styles from './index.module.css'
 
@@ -233,26 +233,24 @@ export const MusicMiniPlayer = forwardRef<
   )
 })
 
-const BottomProgressBar = observer((props) => {
+const BottomProgressBar = observer(() => {
   const {
     musicStore: { playProgress },
   } = useStore()
-  if (isServerSide()) {
-    return null
-  }
 
   if (playProgress === 0) {
     return null
   }
-  return createPortal(
-    <div
-      className="fixed bottom-0 left-0 transform-gpu ease-linear transition-transform right-0 transform scale-y-50 pt-[1px] bg-yellow z-1"
-      style={{
-        transform: `scaleX(${playProgress})`,
-        transformOrigin: 'left',
-      }}
-    ></div>,
-    document.body,
+  return (
+    <RootPortal>
+      <div
+        className="fixed bottom-0 left-0 transform-gpu ease-linear transition-transform right-0 transform scale-y-50 pt-[1px] bg-yellow z-1"
+        style={{
+          transform: `scaleX(${playProgress})`,
+          transformOrigin: 'left',
+        }}
+      ></div>
+    </RootPortal>
   )
 })
 

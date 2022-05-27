@@ -2,9 +2,9 @@ import classNames from 'clsx'
 import { merge } from 'lodash-es'
 import type { CSSProperties, FC, ReactNode } from 'react'
 import { memo, useEffect } from 'react'
-import ReactDOM from 'react-dom'
 import { isServerSide, stopEventDefault } from 'utils'
 
+import { RootPortal } from '../Portal'
 import { FadeInOutTransitionView } from '../Transition/fade-in-out'
 import styles from './index.module.css'
 
@@ -61,8 +61,8 @@ const __OverLay: FC<OverlayProps> = ({
     return null
   }
 
-  return ReactDOM.createPortal(
-    <>
+  return (
+    <RootPortal>
       <FadeInOutTransitionView
         className="z-30"
         in={show}
@@ -85,8 +85,7 @@ const __OverLay: FC<OverlayProps> = ({
           </div>
         </div>
       )}
-    </>,
-    document.body,
+    </RootPortal>
   )
 }
 export const OverLay = memo(__OverLay)

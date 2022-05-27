@@ -1,9 +1,9 @@
 import { BxBxPaperPlane } from 'components/universal/Icons'
+import { RootPortal } from 'components/universal/Portal'
 import { RightLeftTransitionView } from 'components/universal/Transition/right-left'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { forwardRef, useEffect, useRef, useState } from 'react'
-import ReactDOM from 'react-dom'
 import { message } from 'react-message-popup'
 import client from 'socket'
 import { EventTypes } from 'types/events'
@@ -169,15 +169,16 @@ const _ChatPanel: FC<any> = observer(
 export const ChatPanel: FC<{ show: boolean; toggle: () => void }> = (props) => {
   const show = props.show
 
-  return ReactDOM.createPortal(
-    <RightLeftTransitionView
-      timeout={{ exit: 500 }}
-      in={show}
-      unmountOnExit
-      mountOnEnter
-    >
-      <_ChatPanel toggle={props.toggle} />
-    </RightLeftTransitionView>,
-    document.body,
+  return (
+    <RootPortal>
+      <RightLeftTransitionView
+        timeout={{ exit: 500 }}
+        in={show}
+        unmountOnExit
+        mountOnEnter
+      >
+        <_ChatPanel toggle={props.toggle} />
+      </RightLeftTransitionView>
+    </RootPortal>
   )
 }
