@@ -280,6 +280,7 @@ const KaomojiButton: FC<{ onClickKaomoji: (kaomoji: string) => any }> = memo(
   ({ onClickKaomoji }) => {
     const { event } = useAnalyze()
     const [trackerOnce, setOnce] = useState(false)
+    const randomKaomoji = useRef(sample(kaomoji))
     const handleTrack = useCallback(() => {
       setOnce(true)
     }, [])
@@ -289,7 +290,7 @@ const KaomojiButton: FC<{ onClickKaomoji: (kaomoji: string) => any }> = memo(
         wrapperClassNames="flex-shrink-0"
         triggerComponent={memo(() => (
           <button className="btn green mr-[12px] cursor-pointer">
-            {sample(kaomoji)}
+            {randomKaomoji.current}
           </button>
         ))}
       >
