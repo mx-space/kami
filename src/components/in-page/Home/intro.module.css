@@ -17,13 +17,14 @@
 
     .social-icons {
       display: flex;
-      font-size: 1.2em;
       user-select: none;
       margin-top: 1.25em;
     }
 
     .social-icons a {
       display: inline-block;
+
+      @apply h-10 w-10 inline-flex items-center justify-center rounded-full hover:text-current text-current text-2xl;
     }
 
     .social-icons svg {

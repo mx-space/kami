@@ -21,7 +21,7 @@ import {
   RiNeteaseCloudMusicLine,
 } from '../Icons/menu-icon'
 
-export const fontawesomeIconMap = {
+export const iconMap = {
   faBookOpen: IonBook,
   faCircleNotch: FaSolidCircleNotch,
   faComment: FaSolidComment,
@@ -68,8 +68,8 @@ export const FontIcon: FC<{ icon?: JSX.Element | string }> = memo((props) => {
   }
   return (
     <>
-      {fontawesomeIconMap[props.icon] ? (
-        createElement(fontawesomeIconMap[props.icon], { className: 'inline' })
+      {iconMap[props.icon] ? (
+        createElement(iconMap[props.icon], { className: 'inline' })
       ) : (
         <i
           className={

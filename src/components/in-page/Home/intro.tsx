@@ -1,5 +1,6 @@
 import { TextFade } from 'components/universal/Animate/text-anim'
 import { Avatar } from 'components/universal/Avatar'
+import { FloatPopover } from 'components/universal/FloatPopover'
 import { FontIcon } from 'components/universal/FontIcon'
 import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
 import { useThemeConfig } from 'hooks/use-initial-data'
@@ -56,16 +57,25 @@ const Social = NoSSR(() => {
         return (
           <BottomUpTransitionView
             appear={doAnimation}
-            timeout={{ enter: 500 + 30 * i }}
+            timeout={{ enter: 500 + 50 * i }}
             key={item.title}
           >
-            <a
-              href={item.url}
-              target="_blank"
-              style={item.color ? { color: item.color } : undefined}
+            <FloatPopover
+              placement="bottom"
+              triggerComponent={() => (
+                <a
+                  href={item.url}
+                  target="_blank"
+                  style={
+                    item.color ? { backgroundColor: item.color } : undefined
+                  }
+                >
+                  <FontIcon icon={item.icon} />
+                </a>
+              )}
             >
-              <FontIcon icon={item.icon} />
-            </a>
+              {item.title}
+            </FloatPopover>
           </BottomUpTransitionView>
         )
       })}
