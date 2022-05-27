@@ -17,8 +17,8 @@ const defaultStyle = {
 
 const transitionStyles = {
   entering: { opacity: 0 },
-  entered: { animation: `${name} 1000ms linear both`, opacity: 1 },
-  exiting: { animation: `${name} 1000ms linear both reverse`, opacity: 1 },
+  entered: { animation: `${name} 1000ms steps(60) both`, opacity: 1 },
+  exiting: { animation: `${name} 1000ms steps(60) both reverse`, opacity: 1 },
   exited: { opacity: 0 },
 }
 

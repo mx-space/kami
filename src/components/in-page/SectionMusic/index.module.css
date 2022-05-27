@@ -25,7 +25,7 @@
   overflow: hidden;
   padding: 0.75em 1em;
   border-radius: 0.5em;
-  transition: background 1s linear;
+  transition: background 1s steps(60);
   display: flex;
   word-break: break-all;
 

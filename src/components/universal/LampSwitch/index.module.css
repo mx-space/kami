@@ -35,7 +35,7 @@
 }
 
 .sakura-wrap {
-  animation: rotating 2s infinite linear;
+  animation: rotating 2s infinite steps(60);
 
   @apply absolute left-0 right-0 flex justify-center cursor-pointer animate-paused;
 

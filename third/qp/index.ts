@@ -230,7 +230,7 @@ class QProgress {
     css(bar!, {
       height: `${height}px`,
       backgroundColor: color,
-      transition: 'all 0 linear',
+      transition: 'all 0 steps(60)',
       transform: `translate3d(${perc}%, 0, 0)`,
     })
 

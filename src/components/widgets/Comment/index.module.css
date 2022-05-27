@@ -158,7 +158,7 @@
 }
 
 .highlight {
-  animation: highlight 3s linear infinite;
+  animation: highlight 3s steps(60) infinite;
 
   @apply rounded-sm animate-fill-both;
 }
@@ -169,7 +169,7 @@
   }
 
   50% {
-    background-color: #d2edeeee;
+    background-color: #d2edee33;
   }
 
   to {

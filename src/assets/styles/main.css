@@ -10,3 +10,8 @@
     overflow: overlay;
   }
 }
+
+.ease-linear {
+  animation-timing-function: steps(60) !important;
+  transition-timing-function: steps(60) !important;
+}

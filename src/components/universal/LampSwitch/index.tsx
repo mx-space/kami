@@ -51,10 +51,10 @@ export const LampSwitch = NoSSR(
                 })
                 if (containerRef.current) {
                   // containerRef.current.style.top = '0'
-                  containerRef.current.style.animation = `${down} .5s linear both`
+                  containerRef.current.style.animation = `${down} .5s steps(60) both`
                   containerRef.current.onanimationend = () => {
                     if (containerRef.current) {
-                      containerRef.current.style.animation = `${up} .5s linear both`
+                      containerRef.current.style.animation = `${up} .5s steps(60) both`
 
                       containerRef.current.onanimationend = () => {
                         containerRef.current!.style.animation = ''
