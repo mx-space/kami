@@ -36,13 +36,15 @@
 
 .sakura-wrap {
   animation: rotating 2s infinite linear;
-  position: absolute;
+
+  @apply absolute left-0 right-0 flex justify-center cursor-pointer animate-paused;
+
   bottom: -10px;
-  left: 0;
-  right: 0;
   display: flex;
-  justify-content: center;
-  cursor: pointer;
+
+  &:hover {
+    animation-play-state: running;
+  }
 }
 
 @keyframes rotating {
