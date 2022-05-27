@@ -5,7 +5,9 @@ import type { CommentModel } from '@mx-space/api-client'
 
 import { Store } from '../helper/base'
 
-export class CommentStore extends Store<CommentModel> {
+export class CommentStore extends Store<
+  CommentModel & { highlight?: boolean }
+> {
   constructor() {
     super()
     makeObservable(this, {
@@ -24,6 +26,15 @@ export class CommentStore extends Store<CommentModel> {
 
   get commentIdMap() {
     return this.data
+  }
+
+  setHighlightCommnet(id: string, highlight = true) {
+    const comment = this.commentIdMap.get(id)
+    if (!comment) {
+      return
+    }
+
+    comment.highlight = highlight
   }
 
   async fetchComment(refId: string, page = 1, size = 10) {

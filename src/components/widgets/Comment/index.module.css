@@ -156,3 +156,23 @@
     }
   }
 }
+
+.highlight {
+  animation: highlight 3s linear infinite;
+
+  @apply rounded-sm animate-fill-both;
+}
+
+@keyframes highlight {
+  from {
+    background-color: transparent;
+  }
+
+  50% {
+    background-color: #d2edeeee;
+  }
+
+  to {
+    background-color: transparent;
+  }
+}

@@ -173,7 +173,8 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
       location={comment.location}
       key={comment.id}
       data-comment-id={comment.id}
-      id={`comments-${comment.key}`}
+      id={`comments-${comment.id}`}
+      highlight={comment.highlight}
       author={
         <a href={url} rel={'nofollow'}>
           {comment.author}
@@ -197,7 +198,7 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
           disallowedTypes={disallowedTypes}
           renderers={useMemo(
             () => ({
-              commentAt: ({ value }) => <CommentAtRender text={value} />,
+              commentAt: ({ value }) => <CommentAtRender id={value} />,
             }),
             [],
           )}
