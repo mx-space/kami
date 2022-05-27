@@ -9,10 +9,9 @@
     }
 
     .intro-avatar {
-      flex: 0 0 9em;
-      max-width: 9em;
       margin-right: 2em;
-      aspect-ratio: 1;
+      height: 130px;
+      width: 130px;
     }
 
     .social-icons {
