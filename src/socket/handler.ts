@@ -83,6 +83,10 @@ export const eventHandler = (type: EventTypes, data: any) => {
       store.sayStore.remove(id)
       break
     }
+    case EventTypes.COMMENT_CREATE: {
+      store.commentStore.addComment(data)
+      break
+    }
     case EventTypes.DANMAKU_CREATE: {
       createDangmaku({
         text: `${data.author}: ${data.text}`,

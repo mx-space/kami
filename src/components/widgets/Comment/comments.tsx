@@ -2,12 +2,11 @@ import { Markdown } from 'components/universal/Markdown'
 import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import { Fragment, createElement, useEffect, useMemo, useState } from 'react'
+import { Fragment, createElement, useCallback, useMemo, useState } from 'react'
+import type ReactMarkdown from 'react-markdown'
 import { message } from 'react-message-popup'
 import client from 'socket'
 import type { Id } from 'store/helper/structure'
-import { EventTypes } from 'types/events'
-import { eventBus } from 'utils'
 import { apiClient } from 'utils/client'
 
 import type { CommentModel } from '@mx-space/api-client'
@@ -18,37 +17,22 @@ import { Avatar } from './avatar'
 import { CommentBox } from './box'
 import { Comment } from './comment'
 import { Empty } from './empty'
-import { getCommentWrap } from './helper'
 import styles from './index.module.css'
+import { CommentAtRender } from './renderers/comment-at'
 
-interface CommentsProps {
-  id: string
-}
-
-export const Comments: FC<CommentsProps> = observer((props) => {
+export const Comments: FC = observer(() => {
   const { commentStore } = useStore()
   const { comments } = commentStore
   if (comments.length === 0) {
     return <Empty />
   }
 
-  return createElement(CommentList, props)
+  return createElement(CommentList)
 })
 
-const CommentList: FC<CommentsProps> = observer(({ id }) => {
+const CommentList: FC = observer(() => {
   const { commentStore } = useStore()
   const { comments } = commentStore
-
-  // observer gateway event
-
-  useEffect(() => {
-    const handler = (data: CommentModel) => {
-      commentStore.addComment(data)
-    }
-    eventBus.on(EventTypes.COMMENT_CREATE, handler)
-
-    return () => eventBus.off(EventTypes.COMMENT_CREATE, handler)
-  }, [id])
 
   return (
     <BottomUpTransitionView
@@ -65,56 +49,124 @@ const CommentList: FC<CommentsProps> = observer(({ id }) => {
   )
 })
 
+const disallowedTypes: ReactMarkdown.NodeType[] = [
+  'html',
+  'virtualHtml',
+  'linkReference',
+  'imageReference',
+  'table',
+  'tableBody',
+  'tableCell',
+  'tableHead',
+  'tableRow',
+  'emphasis',
+  'thematicBreak',
+  'heading',
+]
+
 const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
   const [replyId, setReplyId] = useState('')
   const { userStore } = useStore()
   const logged = userStore.isLogged
 
   const { commentStore } = useStore()
-  const { commentIdMap, fetchComment, currentRefId } = commentStore
+  const { commentIdMap } = commentStore
 
   const comment = commentIdMap.get(id)!
 
   const [sure, setSure] = useState<null | Id>(null)
 
-  const handleReply = async (model) => {
-    const { success, error } = await openCommentMessage()
-    try {
-      let data: CommentModel
-      if (logged) {
-        data = await apiClient.comment.proxy.master
-          .reply(comment.id)
-          .post({ data: model })
-      } else {
-        data = await apiClient.comment.reply(comment.id, model)
-      }
-      success()
+  const handleReply = useCallback(
+    async (model) => {
+      const { success, error } = await openCommentMessage()
+      try {
+        let data: CommentModel
+        if (logged) {
+          data = await apiClient.comment.proxy.master
+            .reply(comment.id)
+            .post({ data: model })
+        } else {
+          data = await apiClient.comment.reply(comment.id, model)
+        }
+        success()
 
-      if (!client.socket.connected) {
-        commentStore.addComment(data)
+        if (!client.socket.connected) {
+          commentStore.addComment(data)
+        }
+        setReplyId('')
+      } catch (err) {
+        error()
+        console.error(err)
       }
-      setReplyId('')
-    } catch (err) {
-      error()
-      console.error(err)
-    }
-  }
-  const handleDelete = (id: string) => async () => {
-    await apiClient.comment.proxy(id).delete()
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [comment.id, logged],
+  )
+  const handleDelete = useCallback(
+    (id: string) => async () => {
+      await apiClient.comment.proxy(id).delete()
 
-    message.success('删除成功~')
-    commentStore.deleteComment(id)
-  }
-  const getUrl = () => {
+      message.success('删除成功~')
+      commentStore.deleteComment(id)
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  )
+
+  const url = useMemo(() => {
     try {
       const host = new URL(comment.url || '').host
       return `//${host}`
     } catch {
       return undefined
     }
-  }
-  const url = getUrl()
+  }, [comment.url])
 
+  const actionsEl = useMemo(
+    () => [
+      <span
+        key="comment-list-reply-to-0"
+        onClick={() => {
+          if (replyId !== comment.id) setReplyId(comment.id)
+          else setReplyId('')
+        }}
+      >
+        {replyId !== comment.id ? '回复' : '取消回复'}
+      </span>,
+      logged ? (
+        <Fragment>
+          {sure !== comment.id && (
+            <span
+              key="comment-list-delete"
+              onClick={() => {
+                setSure(comment.id)
+                setTimeout(() => {
+                  try {
+                    setSure(null)
+                    // eslint-disable-next-line no-empty
+                  } catch {}
+                }, 8000)
+              }}
+            >
+              删除
+            </span>
+          )}
+          {sure === comment.id && (
+            <span
+              key="comment-list-delete text-red"
+              onClick={() => {
+                handleDelete(comment.id)()
+                setSure(null)
+              }}
+            >
+              真的需要删除?
+            </span>
+          )}
+        </Fragment>
+      ) : null,
+    ],
+    [comment.id, handleDelete, logged, replyId, sure],
+  )
   return (
     <Comment
       // @ts-expect-error
@@ -142,148 +194,18 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
           className={styles['comment']}
           skipHtml
           escapeHtml
-          disallowedTypes={[
-            'html',
-            'virtualHtml',
-            'linkReference',
-            'imageReference',
-            'table',
-            'tableBody',
-            'tableCell',
-            'tableHead',
-            'tableRow',
-            'emphasis',
-            'thematicBreak',
-            'heading',
-          ]}
-          renderers={{
-            commentAt: ({ value }) => {
-              const comment =
-                typeof value === 'string' ? commentIdMap.get(value) : value
-              if (!comment) {
-                return null
-              }
-
-              return (
-                <a
-                  href={'javascript:;'}
-                  className={styles['comment-at']}
-                  onMouseOver={(e) => {
-                    e.stopPropagation()
-                    const $parent = getCommentWrap(comment)
-
-                    if (!$parent) {
-                      return
-                    }
-                    // $parent.classList.add('highlight')
-                    $parent.getAnimations?.().forEach((i) => i.cancel())
-                    const animate = $parent.animate(
-                      [
-                        {
-                          backgroundColor: 'transparent',
-                        },
-                        {
-                          backgroundColor: '#FFEBC9ee',
-                        },
-                      ],
-                      {
-                        duration: 1000,
-                        iterations: Infinity,
-                        direction: 'alternate',
-                        easing: 'linear',
-                        fill: 'both',
-                      },
-                    )
-
-                    if (typeof $parent.getAnimations === 'undefined') {
-                      $parent.getAnimations = () => {
-                        return [animate]
-                      }
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    e.stopPropagation()
-                    const $parent = getCommentWrap(comment)
-
-                    if (!$parent) {
-                      return
-                    }
-                    // $parent.classList.add('highlight')
-
-                    // support only Chrome >= 79 (behind the Experimental Web Platform Features preference)
-                    $parent.getAnimations?.().forEach((a) => a.cancel())
-                  }}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    const $parent = getCommentWrap(comment)
-                    if (!$parent) {
-                      return
-                    }
-                    $parent.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'center',
-                    })
-                    $parent.animate([
-                      {
-                        backgroundColor: '#FFEBC9',
-                      },
-                      {
-                        backgroundColor: 'transparent',
-                      },
-                    ])
-                  }}
-                >
-                  @{comment.author}
-                </a>
-              )
-            },
-          }}
+          disallowedTypes={disallowedTypes}
+          renderers={useMemo(
+            () => ({
+              commentAt: ({ value }) => <CommentAtRender text={value} />,
+            }),
+            [],
+          )}
         />
       }
       datetime={comment.created}
       commentKey={comment.key}
-      actions={[
-        <span
-          key="comment-list-reply-to-0"
-          onClick={() => {
-            if (replyId !== comment.id) setReplyId(comment.id)
-            else setReplyId('')
-          }}
-        >
-          {replyId !== comment.id ? '回复' : '取消回复'}
-        </span>,
-        logged ? (
-          <Fragment>
-            {sure !== comment.id && (
-              <span
-                key="comment-list-delete"
-                onClick={() => {
-                  setSure(comment.id)
-                  setTimeout(() => {
-                    try {
-                      setSure(null)
-                      // eslint-disable-next-line no-empty
-                    } catch {}
-                  }, 8000)
-                }}
-              >
-                删除
-              </span>
-            )}
-            {sure === comment.id && (
-              <span
-                key="comment-list-delete text-red"
-                onClick={() => {
-                  handleDelete(comment.id)()
-                  setSure(null)
-                }}
-              >
-                真的需要删除?
-              </span>
-            )}
-          </Fragment>
-        ) : null,
-      ]}
+      actions={actionsEl}
     >
       {replyId === comment.id && (
         <CommentBox

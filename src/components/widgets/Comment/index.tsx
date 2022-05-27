@@ -140,7 +140,7 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
       <span id="comment-anchor"></span>
       {commentShow ? (
         <Fragment>
-          <Comments id={id} />
+          <Comments />
           <div className="text-center">
             {pagination &&
               pagination.totalPage !== 0 &&

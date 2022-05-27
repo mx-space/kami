@@ -24,6 +24,7 @@ export default defineConfig({
       },
 
       colors: {
+        primary: 'var(--primary)',
         red: 'var(--red)',
         yellow: 'var(--yellow)',
         blue: 'var(--blue)',

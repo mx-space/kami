@@ -33,11 +33,6 @@
   line-height: 2rem;
 }
 
-.comment-at {
-  margin-right: 12px;
-  color: var(--primary);
-}
-
 .guest-avatar {
   height: 39.6px;
   width: 39.8px;
