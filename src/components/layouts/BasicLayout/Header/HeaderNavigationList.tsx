@@ -11,7 +11,7 @@ import React, { useCallback } from 'react'
 import { Transition } from 'react-transition-group'
 import type { Menu } from 'types/config'
 
-import { useFloating } from '@floating-ui/react-dom'
+import { offset, shift, useFloating } from '@floating-ui/react-dom'
 
 import styles from './index.module.css'
 
@@ -28,6 +28,7 @@ const MenuLink: FC<{ menu: Menu; isPublicUrl: boolean }> = (props) => {
   const { x, y, reference, floating, strategy, update } = useFloating({
     placement: 'bottom',
     strategy: 'fixed',
+    middleware: [offset(10), shift()],
   })
 
   const [open, setOpen] = React.useState(false)

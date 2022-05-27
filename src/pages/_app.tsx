@@ -59,9 +59,7 @@ const Content: FC = observer((props) => {
     loadStyleSheet(
       'https://fonts.loli.net/css2?family=Noto+Sans+SC:wght@100;300;400;500&display=swap',
     )
-    loadStyleSheet(
-      'https://cdn.jsdelivr.net/gh/Innei/zshrc@0.1.1/webfont/OperatorMono.css',
-    )
+
     try {
       const { user } = initialData
       // set user

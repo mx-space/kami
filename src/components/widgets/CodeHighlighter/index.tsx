@@ -24,7 +24,7 @@ export const HighLighter: FC<Props> = observer((props) => {
 
   useEffect(() => {
     const css = loadStyleSheet(
-      `https://cdn.jsdelivr.net/gh/PrismJS/prism-themes@master/themes/prism-one-${
+      `https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/prism-themes/1.9.0/prism-one-${
         isPrintMode ? 'light' : colorMode
       }.css`,
     )

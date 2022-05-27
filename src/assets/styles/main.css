@@ -1,6 +1,7 @@
 @import './theme.css';
 @import './extra.css';
 @import './shizuku.css';
+@import './mono.css';
 
 @layer base {
   .overflow-overlay {
