@@ -5,13 +5,15 @@
 }
 
 ////
-.popover-root {
+.popover-root,
+.headless {
   opacity: 0;
   transform: translateY(-10px);
   transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
-.show {
+.show,
+.headless.show {
   opacity: 1;
   transform: translateY(0);
 }

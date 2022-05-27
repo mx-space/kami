@@ -1,13 +1,13 @@
 import clsx from 'clsx'
 import type { FC } from 'react'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { createPortal } from 'react-dom'
 import { useClickAway } from 'react-use'
 import { isClientSide } from 'utils'
 
 import type { UseFloatingProps } from '@floating-ui/react-dom'
 import { flip, offset, shift, useFloating } from '@floating-ui/react-dom'
 
+import { RootPortal } from '../Portal'
 import styles from './index.module.css'
 
 export const FloatPopover: FC<
@@ -16,6 +16,9 @@ export const FloatPopover: FC<
     headless?: boolean
     wrapperClassNames?: string
     trigger?: 'click' | 'hover' | 'both'
+    padding?: number
+    offset?: number
+    popoverWrapperClassNames?: string
   } & UseFloatingProps
 > = (props) => {
   const {
@@ -23,11 +26,18 @@ export const FloatPopover: FC<
     wrapperClassNames,
     triggerComponent: TriggerComponent,
     trigger = 'hover',
+    padding,
+    offset: offsetValue,
+    popoverWrapperClassNames,
     ...rest
   } = props
 
   const { x, y, reference, floating, strategy, update } = useFloating({
-    middleware: rest.middleware ?? [flip({ padding: 20 }), offset(10), shift()],
+    middleware: rest.middleware ?? [
+      flip({ padding: padding ?? 20 }),
+      offset(offsetValue ?? 10),
+      shift(),
+    ],
     strategy: rest.strategy,
     placement: rest.placement ?? 'bottom-start',
     whileElementsMounted: rest.whileElementsMounted,
@@ -136,26 +146,34 @@ export const FloatPopover: FC<
     return null
   }
 
+  const TriggerWrapper = (
+    <div
+      className={clsx('inline-block', wrapperClassNames)}
+      ref={reference}
+      {...listener}
+    >
+      <TriggerComponent />
+    </div>
+  )
+
+  if (!props.children) {
+    return TriggerWrapper
+  }
+
   return (
     <>
-      <div
-        className={clsx('inline-block', wrapperClassNames)}
-        ref={reference}
-        {...listener}
-      >
-        <TriggerComponent />
-      </div>
+      {TriggerWrapper}
 
-      {createPortal(
+      <RootPortal>
         <div
-          className="float-popover"
+          className={clsx('float-popover', popoverWrapperClassNames)}
           {...(trigger === 'hover' || trigger === 'both' ? listener : {})}
           ref={containerRef}
         >
           <div ref={containerAnchorRef}></div>
           {open && (
             <div
-              className={headless ? '' : styles['popover-root']}
+              className={headless ? styles['headless'] : styles['popover-root']}
               ref={floating}
               style={{
                 position: strategy,
@@ -166,9 +184,8 @@ export const FloatPopover: FC<
               {props.children}
             </div>
           )}
-        </div>,
-        document.body,
-      )}
+        </div>
+      </RootPortal>
     </>
   )
 }

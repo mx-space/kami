@@ -246,7 +246,7 @@
 }
 
 .sub-dropdown {
-  @apply bg-light-bg p-2 z-10;
+  @apply bg-light-bg p-2;
 
   border-radius: 0.5em;
   box-shadow: 0 0 1em rgb(20 20 20 / 10%);
@@ -267,16 +267,6 @@
 
   width: 130px;
   z-index: 19;
-  position: absolute;
-  opacity: 0;
-  transition: transform 0.3s, opacity 0.3s, visibility 0.3s;
-  visibility: hidden;
-
-  &.active,
-  &:hover {
-    opacity: 1;
-    visibility: visible;
-  }
 
   a {
     position: relative;
