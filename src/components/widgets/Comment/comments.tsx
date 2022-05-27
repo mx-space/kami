@@ -103,7 +103,7 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
     await apiClient.comment.proxy(id).delete()
 
     message.success('删除成功~')
-    // TODO
+    commentStore.deleteComment(id)
   }
   const getUrl = () => {
     try {
