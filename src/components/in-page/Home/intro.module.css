@@ -24,7 +24,7 @@
     .social-icons a {
       display: inline-block;
 
-      @apply h-10 w-10 inline-flex items-center justify-center rounded-full hover:text-current text-current text-2xl;
+      @apply h-10 w-10 inline-flex items-center justify-center rounded-full hover:text-white text-white text-2xl;
     }
 
     .social-icons svg {
