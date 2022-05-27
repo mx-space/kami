@@ -1,0 +1,60 @@
+.bangumi-item {
+  height: 0;
+  color: #fff;
+  display: block;
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+  padding-bottom: 130%;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+}
+
+.bangumi-item:hover {
+  color: #fff;
+  transform: translateY(-0.5em);
+  box-shadow: 0 0 10px rgb(0 0 0 / 10%), 0 5px 20px rgb(0 0 0 / 20%);
+}
+
+.bangumi-item img {
+  width: 100%;
+}
+
+.bangumi-item h4 {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75em;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  transition: transform 0.3s;
+  transform: translateY(2.5em);
+  background: rgb(0 0 0 / 50%);
+}
+
+.bangumi-item:hover h4 {
+  transform: translateY(0);
+}
+
+.bangumi-status {
+  background: rgb(0 0 0 / 60%);
+}
+
+.bangumi-status,
+.bangumi-status p {
+  position: relative;
+}
+
+.bangumi-status p {
+  margin-top: 0.75em;
+}
+
+.bangumi-status-bar {
+  top: 0;
+  bottom: 0;
+  max-width: 100%;
+  position: absolute;
+  background: crimson;
+}

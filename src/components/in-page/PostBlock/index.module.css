@@ -82,3 +82,20 @@
   clear: both;
   overflow: hidden;
 }
+
+.content {
+  margin-bottom: 1em;
+}
+
+.content p {
+  line-height: 2;
+}
+
+.content video {
+  width: 100%;
+  border-radius: 0.5em;
+}
+
+.content pre > code {
+  max-height: 25em;
+}

@@ -9,6 +9,7 @@ import { apiClient } from 'utils'
 
 import { ImageLazy } from '../../components/universal/Image'
 import { Seo } from '../../components/universal/Seo'
+import styles from './bangumi.module.css'
 
 interface FavoriteBangumiType {
   title: string
@@ -47,18 +48,17 @@ const BangumiView: NextPage = () => {
         <meta name="referrer" content="no-referrer" />
       </Head>
       <Seo title="追番" description="追番" />
-      <section className={'kami-bangumi'}>
+      <section>
         <div className="grid grid-cols-4 <md:grid-cols-2 gap-8">
           {data.map((bangumi) => {
             return (
               <div key={bangumi.id}>
                 <a
-                  className="bangumi-item"
+                  className={styles['bangumi-item']}
                   href={`https://www.bilibili.com/bangumi/media/md${bangumi.id}`}
                   target="_blank"
                   rel="nofollow"
                   data-total={bangumi.count}
-                  style={{ position: 'relative' }}
                 >
                   <ImageLazy
                     height={'100%'}
@@ -70,8 +70,8 @@ const BangumiView: NextPage = () => {
                   />
                   <h4>
                     {bangumi.title}
-                    <div className="bangumi-status">
-                      <div className="bangumi-status-bar"></div>
+                    <div className={styles['bangumi-status']}>
+                      <div className={styles['bangumi-status-bar']}></div>
                       <p className="leading-6">{bangumi.countText ?? 'N/A'}</p>
                     </div>
                   </h4>

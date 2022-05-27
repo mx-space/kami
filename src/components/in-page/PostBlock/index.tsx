@@ -69,7 +69,7 @@ export const PostBlock: FC<PostBlockProps> = observer((props) => {
         )}
         <article
           className={classNames(
-            'note-content',
+            styles['content'],
             hasImage ? styles['has-image'] : null,
           )}
         >

@@ -18,3 +18,38 @@
   color: #fff;
   animation: fade-small-large 0.5s both;
 }
+
+.action {
+  z-index: 9;
+  right: 1rem;
+  bottom: 1rem;
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  width: 2.25em;
+  position: fixed;
+  font-size: 1.2em;
+  transition: bottom 0.3s;
+}
+
+.action button {
+  width: 2.25em;
+  height: 2.25em;
+  color: #795548;
+  color: var(--brown);
+  margin-top: 0.5em;
+  background: #fff;
+  background: var(--light-bg);
+  border-radius: 66%;
+  transition: transform 0.3s;
+  box-shadow: 0 0 10px rgb(0 0 0 / 10%), 0 5px 20px rgb(0 0 0 / 20%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action .top {
+  transform: scale(0);
+}
+
+.action .top.active {
+  transform: scale(1);
+}

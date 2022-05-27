@@ -19,7 +19,7 @@ export const NoteFooterNavigation: FC<{ id: string }> = observer(({ id }) => {
   return (
     <>
       {(!!next || !!prev) && (
-        <section className="kami-more">
+        <section className="mt-4 text-center">
           {!!next && (
             <button
               className="btn green"

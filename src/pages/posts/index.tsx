@@ -79,7 +79,7 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
       </TransitionGroup>
 
       {pagination && (
-        <section className="kami-more">
+        <section className="mt-4 text-center">
           {pagination.hasPrevPage && (
             <button
               className="btn brown"
