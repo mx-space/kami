@@ -16,6 +16,7 @@ export class CommentStore extends Store<CommentModel> {
       updateComment: action,
       addComment: action,
       deleteComment: action,
+      reset: action,
     })
   }
   currentRefId = ''
@@ -124,5 +125,11 @@ export class CommentStore extends Store<CommentModel> {
     return comments.reduce((acc, comment) => {
       return [...acc, comment, ...walkChild(comment)]
     }, allComments)
+  }
+
+  reset() {
+    this.commentIdMap.clear()
+    this.comments.length = 0
+    this.currentRefId = ''
   }
 }

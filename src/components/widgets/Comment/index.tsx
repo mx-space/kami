@@ -51,6 +51,12 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
 
   const { commentStore } = useStore()
 
+  useEffect(() => {
+    return () => {
+      commentStore.reset()
+    }
+  }, [])
+
   const fetchComments = useCallback(
     (page = 1, size = 10) => {
       commentStore.fetchComment(id, page, size).then(({ data, pagination }) => {

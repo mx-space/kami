@@ -83,6 +83,8 @@
         margin-bottom: 4px;
         font-size: 14px;
 
+        @apply text-gray-1;
+
         > span {
           padding-right: 8px;
           font-size: 12px;
