@@ -6,7 +6,7 @@ import { useAnalyze } from 'hooks/use-analyze'
 import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import { memo, useEffect, useMemo } from 'react'
+import { memo, useDeferredValue, useEffect, useMemo } from 'react'
 import { useStore } from 'store'
 
 import styles from './index.module.css'
@@ -114,6 +114,7 @@ const PlayingSongItem: FC<SongItemProps> = observer((props) => {
   const { musicStore } = useStore()
   const { playId, duration: totalTime, time: currentTime } = musicStore
   const { event } = useAnalyze()
+  const playProgress = useDeferredValue(musicStore.playProgress)
   useEffect(() => {
     if (playId === 0) {
       // if playId eq 0 is init state
@@ -137,7 +138,7 @@ const PlayingSongItem: FC<SongItemProps> = observer((props) => {
           : null,
       )}
       style={{
-        backgroundSize: `${musicStore.playProgress * 100}% 100%`,
+        backgroundSize: `${playProgress * 100}% 100%`,
       }}
     >
       <Seo title={`${props.name} · 歌单`} />

@@ -1,3 +1,4 @@
+import { runInAction } from 'mobx'
 import { useEffect, useState } from 'react'
 import { useStore } from 'store'
 import { isServerSide } from 'utils'
@@ -95,7 +96,9 @@ export const useMediaToggle = () => {
   })
 
   useEffect(() => {
-    app.colorMode = value ? 'dark' : 'light'
+    runInAction(() => {
+      app.colorMode = value ? 'dark' : 'light'
+    })
   }, [value])
 
   useEffect(() => {

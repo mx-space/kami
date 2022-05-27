@@ -2,10 +2,12 @@ import { default as classNames, default as clsx } from 'clsx'
 import { RootPortal } from 'components/universal/Portal'
 import { TrackerAction } from 'constants/tracker'
 import { useAnalyze } from 'hooks/use-analyze'
+import { throttle } from 'lodash-es'
 import { observer } from 'mobx-react-lite'
 import {
   forwardRef,
   useCallback,
+  useDeferredValue,
   useEffect,
   useImperativeHandle,
   useMemo,
@@ -13,7 +15,7 @@ import {
   useState,
 } from 'react'
 import { useAudio } from 'react-use'
-import { useStore } from 'store'
+import { store, useStore } from 'store'
 import { NoSSR, apiClient, hms } from 'utils'
 
 import styles from './index.module.css'
@@ -238,22 +240,33 @@ const BottomProgressBar = observer(() => {
     musicStore: { playProgress },
   } = useStore()
 
-  if (playProgress === 0) {
+  const progress = useDeferredValue(playProgress)
+
+  if (progress === 0) {
     return null
   }
+
   return (
     <RootPortal>
       <div
-        className="fixed bottom-0 left-0 transform-gpu ease-linear transition-transform right-0 transform scale-y-50 pt-[1px] bg-yellow z-1"
+        className="fixed bottom-0 left-0 origin-left transform-gpu ease-linear transition-transform right-0 transform scale-y-50 pt-[1px] bg-yellow z-1 duration-1000"
         style={{
-          transform: `scaleX(${playProgress})`,
-          transformOrigin: 'left',
+          transform: `scaleX(${progress})`,
         }}
       ></div>
     </RootPortal>
   )
 })
 
+const changeOfPlayerHandler = throttle(
+  (id, time, totalTime) => {
+    store.musicStore.setPlayingInfo(id, time, totalTime)
+  },
+  1000,
+  {
+    trailing: false,
+  },
+)
 export const _MusicMiniPlayerStoreControlled = observer(() => {
   const ref = useRef<MusicPlayerRef>(null)
   const { musicStore } = useStore()
@@ -300,9 +313,7 @@ export const _MusicMiniPlayerStoreControlled = observer(() => {
         onPlayStateChange={handleChangePlayState}
         playlist={musicStore.list}
         hide={musicStore.isHide}
-        onChange={useCallback((id, time, totalTime) => {
-          musicStore.setPlayingInfo(id, time, totalTime)
-        }, [])}
+        onChange={changeOfPlayerHandler}
       />
       <BottomProgressBar />
     </>

@@ -21,7 +21,9 @@ export const eventHandler = (type: EventTypes, data: any) => {
     case EventTypes.VISITOR_ONLINE:
     case EventTypes.VISITOR_OFFLINE: {
       const { online } = data
-      gatewayStore.online = online
+      runInAction(() => {
+        gatewayStore.online = online
+      })
       break
     }
     case EventTypes.RECENTLY_CREATE: {
