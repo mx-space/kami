@@ -118,16 +118,6 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
     setCommentShow(false)
   }, [id])
 
-  useEffect(() => {
-    if (location.hash.includes('comments')) {
-      requestAnimationFrame(() => {
-        document.getElementById('comments')?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center',
-        })
-      })
-    }
-  }, [id])
   return (
     <div className={styles.wrap} ref={ref} data-hide-print id="comments">
       {allowComment && (

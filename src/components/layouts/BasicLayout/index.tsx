@@ -14,6 +14,7 @@ import {
   useRef,
   useState,
 } from 'react'
+import { springScrollToElement } from 'utils/spring'
 
 import { useStore } from '../../../store'
 import { LampSwitch } from '../../universal/LampSwitch'
@@ -73,11 +74,7 @@ export const BasicLayout: FC = observer(({ children }) => {
       setTimeout(() => {
         const $el = document.getElementById(decodeURIComponent(id))
 
-        if ($el) {
-          $el.scrollIntoView({
-            block: 'center',
-          })
-        }
+        $el && springScrollToElement($el, 1000, -window.innerHeight / 2 + 100)
       }, 50)
     }
   }, [])
