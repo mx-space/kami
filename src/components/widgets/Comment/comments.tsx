@@ -43,23 +43,7 @@ const CommentList: FC<CommentsProps> = observer(({ id }) => {
 
   useEffect(() => {
     const handler = (data: CommentModel) => {
-      const isSubComment =
-        data.parent &&
-        ((typeof data.parent === 'string' &&
-          commentStore.data.has(data.parent)) ||
-          commentStore.data.has((data.parent as CommentModel)?.id))
-
-      if (isSubComment) {
-        const parentComment = commentStore.data.get(
-          typeof data.parent === 'string' ? data.parent : data.parent?.id || '',
-        )
-
-        if (parentComment) {
-          parentComment.children.push(data)
-        }
-      } else {
-        commentStore.addComment(data)
-      }
+      commentStore.addComment(data)
     }
     eventBus.on(EventTypes.COMMENT_CREATE, handler)
 
@@ -96,19 +80,18 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
   const handleReply = async (model) => {
     const { success, error } = await openCommentMessage()
     try {
+      let data: CommentModel
       if (logged) {
-        await apiClient.comment.proxy.master
+        data = await apiClient.comment.proxy.master
           .reply(comment.id)
           .post({ data: model })
       } else {
-        await apiClient.comment.reply(comment.id, model)
+        data = await apiClient.comment.reply(comment.id, model)
       }
       success()
 
-      if (client.socket.connected) {
-        return
-      } else {
-        fetchComment(currentRefId)
+      if (!client.socket.connected) {
+        commentStore.addComment(data)
       }
       setReplyId('')
     } catch (err) {

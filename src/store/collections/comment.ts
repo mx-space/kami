@@ -62,15 +62,36 @@ export class CommentStore extends Store<CommentModel> {
   }
 
   addComment(comment: CommentModel) {
+    if (!comment) {
+      return
+    }
     if (comment.ref !== this.currentRefId) {
       return
     }
 
-    this.comments.unshift(comment)
+    const isSubComment =
+      comment.parent &&
+      ((typeof comment.parent === 'string' && this.data.has(comment.parent)) ||
+        this.data.has((comment.parent as CommentModel)?.id))
 
-    this.walkComments(comment.children).forEach((child) => {
-      this.commentIdMap.set(child.id, child)
-    })
+    if (isSubComment) {
+      const parentComment = this.data.get(
+        typeof comment.parent === 'string'
+          ? comment.parent
+          : comment.parent?.id || '',
+      )
+
+      if (parentComment) {
+        parentComment.children.push(comment)
+        this.updateComment(parentComment)
+      }
+    } else {
+      this.comments.unshift(comment)
+
+      this.walkComments(comment.children).forEach((child) => {
+        this.commentIdMap.set(child.id, child)
+      })
+    }
 
     return comment
   }
