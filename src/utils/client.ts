@@ -6,11 +6,13 @@ import { allControllers, createClient } from '@mx-space/api-client'
 import { axiosAdaptor } from '@mx-space/api-client/lib/adaptors/axios'
 
 import { getToken } from './cookie'
-import { isClientSide } from './utils'
+import { genUUID, isClientSide } from './utils'
 
 export const apiClient = createClient(axiosAdaptor)(API_URL, {
   controllers: allControllers,
 })
+
+const uuid = genUUID()
 
 export const $axios = axiosAdaptor.default
 
@@ -18,8 +20,11 @@ $axios.defaults.timeout = 10000
 
 $axios.interceptors.request.use((config) => {
   const token = getToken()
-  if (token && config.headers) {
-    config.headers['Authorization'] = token
+  if (config.headers) {
+    if (token) {
+      config.headers['Authorization'] = token
+    }
+    config.headers['x-uuid'] = uuid
   }
 
   return config
