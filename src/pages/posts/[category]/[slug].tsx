@@ -23,6 +23,7 @@ import { useBackgroundOpacity } from 'hooks/use-theme-background'
 import { isEqual } from 'lodash-es'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react-lite'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { message } from 'react-message-popup'
@@ -128,8 +129,20 @@ export const PostView: PageOnlyProps = observer((props) => {
         {
           icon: <FeHash />,
           name: `${post.category.name}${
-            post.tags && post.tags.length > 0 ? `[${post.tags.join('-')}]` : ''
+            post.tags.length ? `[${post.tags[0]}]` : ''
           }`,
+
+          tip: () => (
+            <div className="leading-7">
+              <p>
+                分类：
+                <Link href={`/categories/${post.category.slug}`}>
+                  <a>{post.category.name}</a>
+                </Link>
+              </p>
+              <p>{post.tags.length ? `标签：${post.tags.join(', ')}` : ''}</p>
+            </div>
+          ),
         },
         {
           icon: <PhBookOpen />,

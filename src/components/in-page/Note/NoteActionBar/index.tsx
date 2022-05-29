@@ -97,6 +97,13 @@ export const NoteFooterActionBar: FC<{ id: string }> = observer(({ id }) => {
       {
         name: <RelativeTime date={note.created} />,
         icon: <MdiClockTimeThreeOutline />,
+        tip: () => (
+          <p className="leading-7">
+            创建时间：{note.created}
+            <br />
+            修改于：{note.modified || '-'}
+          </p>
+        ),
       },
       {
         name: note.count.read.toString(),

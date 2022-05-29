@@ -1,7 +1,8 @@
 import clsx from 'clsx'
+import { FloatPopover } from 'components/universal/FloatPopover'
 import { EntypoCreativeCommons } from 'components/universal/Icons'
 import type { DetailedHTMLProps, FC, HTMLAttributes, ReactNode } from 'react'
-import { Fragment, memo } from 'react'
+import { Fragment, createElement, memo } from 'react'
 
 import styles from './index.module.css'
 
@@ -9,6 +10,7 @@ export type BaseAction = {
   icon?: JSX.Element
   name: string | number | JSX.Element
   color?: string
+  tip?: string | JSX.Element | FC
 
   wrapperComponent?: FC<{ children: ReactNode }>
 }
@@ -32,8 +34,8 @@ export const ArticleFooterAction: FC<ActionProps> = memo((props) => {
     <div className={styles.root} data-hide-print>
       <div className="note-inform space-x-3" {...rest}>
         {informs.map((inform, index) => {
-          return (
-            <span key={index} className="inline-flex items-center space-x-2">
+          const Inner = (
+            <span className="inline-flex items-center space-x-2">
               {inform.icon && (
                 <span
                   className="flex items-center mr-2"
@@ -44,6 +46,20 @@ export const ArticleFooterAction: FC<ActionProps> = memo((props) => {
               )}
               {inform.name}
             </span>
+          )
+          return (
+            <Fragment key={index}>
+              {inform.tip ? (
+                <FloatPopover
+                  triggerComponent={() => Inner}
+                  wrapperClassNames="inline-flex items-center"
+                >
+                  {mountJSXElementOrFC(inform.tip)}
+                </FloatPopover>
+              ) : (
+                Inner
+              )}
+            </Fragment>
           )
         })}
 
@@ -70,10 +86,8 @@ export const ArticleFooterAction: FC<ActionProps> = memo((props) => {
           }
           const { wrapperComponent } = action
           const Wrapper = wrapperComponent || Fragment
-
-          return (
+          const Inner = (
             <span
-              key={i}
               className={clsx(
                 !!action.callback && 'cursor-pointer',
                 'inline-flex items-center space-x-2',
@@ -93,8 +107,29 @@ export const ArticleFooterAction: FC<ActionProps> = memo((props) => {
               </Wrapper>
             </span>
           )
+          return (
+            <Fragment key={i}>
+              {action.tip ? (
+                <FloatPopover
+                  triggerComponent={() => Inner}
+                  wrapperClassNames="inline-flex items-center"
+                >
+                  {mountJSXElementOrFC(action.tip)}
+                </FloatPopover>
+              ) : (
+                Inner
+              )}
+            </Fragment>
+          )
         })}
       </div>
     </div>
   )
 })
+
+const mountJSXElementOrFC = (render: FC | ReactNode | JSX.Element) => {
+  if (typeof render === 'function') {
+    return createElement(render as any)
+  }
+  return render
+}

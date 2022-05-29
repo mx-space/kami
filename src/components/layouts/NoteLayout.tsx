@@ -1,4 +1,5 @@
 import { NoteTimelineList } from 'components/in-page/Note/NoteTimelineList'
+import { FloatPopover } from 'components/universal/FloatPopover'
 import {
   FluentEyeHide20Regular,
   RegularBookmark,
@@ -75,11 +76,10 @@ export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
               </span>
             </div>
             <div>
-              <h1
-                title={tips}
-                className="text-center !mt-8 !before:hidden headline text-brown dark:text-shizuku-text"
-              >
-                {title}
+              <h1 className="text-center !mt-8 !before:hidden headline text-brown dark:text-shizuku-text">
+                <FloatPopover triggerComponent={() => <>{title}</>}>
+                  {tips}
+                </FloatPopover>
                 {isLogged && url ? (
                   <a
                     className="edit-link"

@@ -43,7 +43,7 @@ export const useHeaderNavList = () => {
           title: name,
           id,
 
-          path: `/category/${slug}`,
+          path: `/categories/${slug}`,
           type: 'Custom',
         }
       })

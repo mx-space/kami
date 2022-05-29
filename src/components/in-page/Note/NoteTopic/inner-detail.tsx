@@ -32,7 +32,7 @@ export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
   }, [topicId])
 
   return (
-    <div role={'dialog'} className="flex flex-col">
+    <div className="flex flex-col w-[400px]">
       <Link href={`/notes/topics/${topic.slug}`}>
         <a>
           <h1 className="text-lg font-medium !m-0 py-2">{topic.name}</h1>
@@ -45,7 +45,7 @@ export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
       {topic.description && (
         <>
           <Divider />
-          <p className="text-gray-1">
+          <p className="text-gray-1 leading-8">
             <Linkify>{topic.description}</Linkify>
           </p>
         </>

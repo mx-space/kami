@@ -58,7 +58,7 @@ export const RenderLink: FC<{
             break
           }
           case 'category': {
-            Router.push('/category/[slug]', toUrlParser.pathname)
+            Router.push('/categories/[slug]', toUrlParser.pathname)
             break
           }
           default: {

@@ -186,6 +186,7 @@ export const FloatPopover: FC<
                     top: y ?? '',
                     left: x ?? '',
                   }}
+                  role="dialog"
                 >
                   {props.children}
                 </div>
