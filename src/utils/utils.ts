@@ -57,12 +57,9 @@ export function flattenChildren<T extends { children: T[] }>(
 }
 
 export const resolveUrl = (pathname: string | undefined, base: string) => {
-  const _URL = new URL(base)
-
-  return pathname ? _URL.origin.concat(pathname) : _URL.origin
+  return base.replace(/\/$/, '').concat(pathname || '')
 }
 
-// export const NoSSR = <T>(comp: ComponentType<T>) => noSSR(() => comp, {})
 export const NoSSR = <T = any>(comp: FC<T>) =>
   dynamic(() => Promise.resolve(comp), { ssr: false }) as FC<T>
 

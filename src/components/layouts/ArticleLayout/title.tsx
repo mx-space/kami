@@ -38,9 +38,7 @@ export const ArticleLayoutTitle: FC<{ animate?: boolean }> = observer(
               target="_blank"
               href={
                 resolveUrl(
-                  `/#/${
-                    type === 'page' ? 'extra/page' : 'posts'
-                  }/edit?id=${id}`,
+                  `#/${type === 'page' ? 'pages' : 'posts'}/edit?id=${id}`,
                   url.adminUrl,
                 )!
               }
