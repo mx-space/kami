@@ -23,7 +23,7 @@ const MenuLink: FC<{ menu: Menu; isPublicUrl: boolean }> = (props) => {
     })
   }, [])
   return (
-    <div className="relative" key={menu.title} onMouseLeave={close}>
+    <div className="relative" key={menu.title}>
       <FloatPopover
         headless
         placement="bottom"

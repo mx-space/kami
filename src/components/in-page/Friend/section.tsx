@@ -77,7 +77,6 @@ export const FriendSection: FC<FriendSectionProps> = ({ data }) => {
 }
 
 const Card: FC<{ link: LinkModel }> = ({ link }) => {
-  const [size, setSize] = useState(80)
   const [focused, setFocus] = useState(false)
 
   return (
@@ -92,7 +91,7 @@ const Card: FC<{ link: LinkModel }> = ({ link }) => {
         setFocus(false)
       }, [])}
     >
-      <CircleAvatar focus={focused} size={size} src={link.avatar} />
+      <CircleAvatar focus={focused} size={80} src={link.avatar} />
       <span className="flex flex-col justify-start space-y-2 h-full py-3">
         <span className="text-lg">{link.name}</span>
         <span className="text-deepgray text-sm line-clamp-2 break-all">
