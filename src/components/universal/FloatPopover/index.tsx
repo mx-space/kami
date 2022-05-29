@@ -1,8 +1,8 @@
 import clsx from 'clsx'
 import type { FC } from 'react'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useClickAway } from 'react-use'
-import { isClientSide } from 'utils'
+import { NoSSR } from 'utils'
 
 import type { UseFloatingProps } from '@floating-ui/react-dom'
 import { flip, offset, shift, useFloating } from '@floating-ui/react-dom'
@@ -20,172 +20,180 @@ export const FloatPopover: FC<
     offset?: number
     popoverWrapperClassNames?: string
   } & UseFloatingProps
-> = (props) => {
-  const {
-    headless = false,
-    wrapperClassNames,
-    triggerComponent: TriggerComponent,
-    trigger = 'hover',
-    padding,
-    offset: offsetValue,
-    popoverWrapperClassNames,
-    ...rest
-  } = props
+> = NoSSR(
+  memo((props) => {
+    const {
+      headless = false,
+      wrapperClassNames,
+      triggerComponent: TriggerComponent,
+      trigger = 'hover',
+      padding,
+      offset: offsetValue,
+      popoverWrapperClassNames,
+      ...rest
+    } = props
+    const [mounted, setMounted] = useState(false)
+    const { x, y, reference, floating, strategy, update } = useFloating({
+      middleware: rest.middleware ?? [
+        flip({ padding: padding ?? 20 }),
+        offset(offsetValue ?? 10),
+        shift(),
+      ],
+      strategy: rest.strategy,
+      placement: rest.placement ?? 'bottom-start',
+      whileElementsMounted: rest.whileElementsMounted,
+    })
+    const [currentStatus, setCurrentStatus] = useState(false)
+    const [open, setOpen] = useState(false)
+    const updateOnce = useRef(false)
+    const doPopoverShow = useCallback(() => {
+      setCurrentStatus(true)
+      setMounted(true)
 
-  const { x, y, reference, floating, strategy, update } = useFloating({
-    middleware: rest.middleware ?? [
-      flip({ padding: padding ?? 20 }),
-      offset(offsetValue ?? 10),
-      shift(),
-    ],
-    strategy: rest.strategy,
-    placement: rest.placement ?? 'bottom-start',
-    whileElementsMounted: rest.whileElementsMounted,
-  })
-  const [currentStatus, setCurrentStatus] = useState(false)
-  const [open, setOpen] = useState(false)
-  const updateOnce = useRef(false)
-  const doPopoverShow = useCallback(() => {
-    setCurrentStatus(true)
-
-    if (!updateOnce.current) {
-      requestAnimationFrame(() => {
-        update()
-        updateOnce.current = true
-      })
-    }
-  }, [])
-
-  const containerAnchorRef = useRef<HTMLDivElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (!containerAnchorRef.current) {
-      return
-    }
-
-    if (currentStatus) {
-      setOpen(true)
-      requestAnimationFrame(() => {
-        handleTransition('in')
-      })
-    } else {
-      requestAnimationFrame(() => {
-        handleTransition('out')
-      })
-    }
-  }, [currentStatus])
-
-  const handleTransition = (status: 'in' | 'out') => {
-    const nextElementSibling = containerAnchorRef.current
-      ?.nextElementSibling as HTMLDivElement
-
-    if (!nextElementSibling) {
-      return
-    }
-
-    if (status === 'in') {
-      nextElementSibling.ontransitionend = null
-      nextElementSibling?.classList.add(styles.show)
-    } else {
-      nextElementSibling?.classList.remove(styles.show)
-      nextElementSibling!.ontransitionend = () => {
-        setOpen(false)
+      if (!updateOnce.current) {
+        requestAnimationFrame(() => {
+          update()
+          updateOnce.current = true
+        })
       }
-    }
-  }
+    }, [])
 
-  useClickAway(containerRef, () => {
-    if (trigger == 'click' || trigger == 'both') {
+    const [containerAnchorRef, setContainerAnchorRef] =
+      useState<HTMLDivElement | null>()
+    const containerRef = useRef<HTMLDivElement>(null)
+
+    const handleTransition = useCallback(
+      (status: 'in' | 'out') => {
+        const nextElementSibling =
+          containerAnchorRef?.nextElementSibling as HTMLDivElement
+
+        if (!nextElementSibling) {
+          return
+        }
+
+        if (status === 'in') {
+          nextElementSibling.ontransitionend = null
+          nextElementSibling?.classList.add(styles.show)
+        } else {
+          nextElementSibling?.classList.remove(styles.show)
+          nextElementSibling!.ontransitionend = () => {
+            setOpen(false)
+            setMounted(false)
+          }
+        }
+      },
+      [containerAnchorRef?.nextElementSibling],
+    )
+
+    useEffect(() => {
+      if (!containerAnchorRef) {
+        return
+      }
+
+      if (currentStatus) {
+        setOpen(true)
+        requestAnimationFrame(() => {
+          handleTransition('in')
+        })
+      } else {
+        requestAnimationFrame(() => {
+          handleTransition('out')
+        })
+      }
+    }, [currentStatus, containerAnchorRef, handleTransition])
+
+    useClickAway(containerRef, () => {
+      if (trigger == 'click' || trigger == 'both') {
+        doPopoverDisappear()
+        clickTriggerFlag.current = false
+      }
+    })
+
+    const doPopoverDisappear = useCallback(() => setCurrentStatus(false), [])
+
+    const clickTriggerFlag = useRef(false)
+    const handleMouseOut = useCallback(() => {
+      if (clickTriggerFlag.current === true) {
+        return
+      }
       doPopoverDisappear()
-      clickTriggerFlag.current = false
+    }, [])
+    const handleClickTrigger = useCallback(() => {
+      clickTriggerFlag.current = true
+      doPopoverShow()
+    }, [])
+
+    const listener = useMemo(() => {
+      switch (trigger) {
+        case 'click':
+          return {
+            onClick: doPopoverShow,
+          }
+        case 'hover':
+          return {
+            onMouseOver: doPopoverShow,
+            onMouseOut: doPopoverDisappear,
+          }
+        case 'both':
+          return {
+            onClick: handleClickTrigger,
+            onMouseOver: doPopoverShow,
+            onMouseOut: handleMouseOut,
+          }
+      }
+    }, [
+      doPopoverDisappear,
+      doPopoverShow,
+      handleClickTrigger,
+      handleMouseOut,
+      trigger,
+    ])
+
+    const TriggerWrapper = (
+      <div
+        className={clsx('inline-block', wrapperClassNames)}
+        ref={reference}
+        {...listener}
+      >
+        <TriggerComponent />
+      </div>
+    )
+
+    if (!props.children) {
+      return TriggerWrapper
     }
-  })
 
-  const doPopoverDisappear = useCallback(() => setCurrentStatus(false), [])
+    return (
+      <>
+        {TriggerWrapper}
 
-  const clickTriggerFlag = useRef(false)
-  const handleMouseOut = useCallback(() => {
-    if (clickTriggerFlag.current === true) {
-      return
-    }
-    doPopoverDisappear()
-  }, [])
-  const handleClickTrigger = useCallback(() => {
-    clickTriggerFlag.current = true
-    doPopoverShow()
-  }, [])
-
-  const listener = useMemo(() => {
-    switch (trigger) {
-      case 'click':
-        return {
-          onClick: doPopoverShow,
-        }
-      case 'hover':
-        return {
-          onMouseOver: doPopoverShow,
-          onMouseOut: doPopoverDisappear,
-        }
-      case 'both':
-        return {
-          onClick: handleClickTrigger,
-          onMouseOver: doPopoverShow,
-          onMouseOut: handleMouseOut,
-        }
-    }
-  }, [
-    doPopoverDisappear,
-    doPopoverShow,
-    handleClickTrigger,
-    handleMouseOut,
-    trigger,
-  ])
-
-  if (!isClientSide()) {
-    return null
-  }
-
-  const TriggerWrapper = (
-    <div
-      className={clsx('inline-block', wrapperClassNames)}
-      ref={reference}
-      {...listener}
-    >
-      <TriggerComponent />
-    </div>
-  )
-
-  if (!props.children) {
-    return TriggerWrapper
-  }
-
-  return (
-    <>
-      {TriggerWrapper}
-
-      <RootPortal>
-        <div
-          className={clsx('float-popover', popoverWrapperClassNames)}
-          {...(trigger === 'hover' || trigger === 'both' ? listener : {})}
-          ref={containerRef}
-        >
-          <div ref={containerAnchorRef}></div>
-          {open && (
+        {mounted && (
+          <RootPortal>
             <div
-              className={headless ? styles['headless'] : styles['popover-root']}
-              ref={floating}
-              style={{
-                position: strategy,
-                top: y ?? '',
-                left: x ?? '',
-              }}
+              className={clsx('float-popover', popoverWrapperClassNames)}
+              {...(trigger === 'hover' || trigger === 'both' ? listener : {})}
+              ref={containerRef}
             >
-              {props.children}
+              <div ref={setContainerAnchorRef}></div>
+              {open && (
+                <div
+                  className={
+                    headless ? styles['headless'] : styles['popover-root']
+                  }
+                  ref={floating}
+                  style={{
+                    position: strategy,
+                    top: y ?? '',
+                    left: x ?? '',
+                  }}
+                >
+                  {props.children}
+                </div>
+              )}
             </div>
-          )}
-        </div>
-      </RootPortal>
-    </>
-  )
-}
+          </RootPortal>
+        )}
+      </>
+    )
+  }),
+)

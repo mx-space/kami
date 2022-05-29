@@ -1,11 +1,4 @@
-/*
- * @Author: Innei
- * @Date: 2021-05-29 19:31:30
- * @LastEditTime: 2021-08-28 16:39:26
- * @LastEditors: Innei
- * @FilePath: /web/components/Action/index.tsx
- * Mark: Coding with Love
- */
+import clsx from 'clsx'
 import { EntypoCreativeCommons } from 'components/universal/Icons'
 import type { DetailedHTMLProps, FC, HTMLAttributes, ReactNode } from 'react'
 import { Fragment, memo } from 'react'
@@ -58,7 +51,7 @@ export const ArticleFooterAction: FC<ActionProps> = memo((props) => {
           <a
             href="https://creativecommons.org/licenses/by-nc-nd/4.0/"
             target={'_blank'}
-            className="inline-flex items-center text-current"
+            className="inline-flex items-center text-current cursor-pointer"
           >
             <span
               title={'创作共用保留署名-非商业-禁止演绎4.0国际许可证'}
@@ -81,7 +74,10 @@ export const ArticleFooterAction: FC<ActionProps> = memo((props) => {
           return (
             <span
               key={i}
-              className="cursor-pointer inline-flex items-center space-x-2"
+              className={clsx(
+                !!action.callback && 'cursor-pointer',
+                'inline-flex items-center space-x-2',
+              )}
               onClick={action.callback}
             >
               <Wrapper>

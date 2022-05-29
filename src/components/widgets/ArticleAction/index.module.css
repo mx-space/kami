@@ -21,9 +21,11 @@
 
     .note-inform,
     .note-action {
+      @apply text-gray-2;
+
       display: inline-flex;
       align-items: center;
-      color: #888;
+
       user-select: none;
       font-weight: normal;
       flex-shrink: 0;
@@ -31,10 +33,6 @@
 
     .note-action {
       margin: 0 0 0 auto;
-    }
-
-    .note-inform span {
-      cursor: pointer;
     }
   }
 }
