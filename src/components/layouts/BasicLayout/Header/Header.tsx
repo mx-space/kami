@@ -8,7 +8,7 @@ import { useSingleAndDoubleClick } from 'hooks/use-single-double-click'
 import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useStore } from 'store'
 import { NoSSR } from 'utils'
 
@@ -39,6 +39,24 @@ export const _Header: FC = observer(() => {
   )
 
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const showPageHeader = useMemo(
+    () =>
+      appStore.headerNav.show &&
+      (appStore.scrollDirection == 'down' || appStore.viewport.mobile) &&
+      appStore.isOverPostTitleHeight,
+    [
+      appStore.headerNav.show,
+      appStore.isOverPostTitleHeight,
+      appStore.scrollDirection,
+      appStore.viewport.mobile,
+    ],
+  )
+  // NOTE: fix `tab` focus element lead to header dislocation
+  const appHeaderRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    appHeaderRef.current?.scrollIntoView()
+  }, [showPageHeader])
 
   return (
     <>
@@ -56,15 +74,13 @@ export const _Header: FC = observer(() => {
           className={classNames(
             styles['nav-container'],
             'overflow-hidden',
-            appStore.headerNav.show &&
-              (appStore.scrollDirection == 'down' ||
-                appStore.viewport.mobile) &&
-              appStore.isOverPostTitleHeight
-              ? styles['toggle']
-              : null,
+            showPageHeader ? styles['toggle'] : null,
           )}
         >
-          <div className={classNames(styles['head-swiper'], 'justify-between')}>
+          <div
+            className={classNames(styles['head-swiper'], 'justify-between')}
+            ref={appHeaderRef}
+          >
             <div
               className={
                 'flex items-center justify-center cursor-pointer select-none'

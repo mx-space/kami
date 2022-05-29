@@ -19,6 +19,11 @@ export const FloatPopover: FC<
     padding?: number
     offset?: number
     popoverWrapperClassNames?: string
+
+    /**
+     * 不消失
+     */
+    debug?: boolean
   } & UseFloatingProps
 > = NoSSR(
   memo((props) => {
@@ -30,6 +35,7 @@ export const FloatPopover: FC<
       padding,
       offset: offsetValue,
       popoverWrapperClassNames,
+      debug,
       ...rest
     } = props
     const [mounted, setMounted] = useState(false)
@@ -109,7 +115,12 @@ export const FloatPopover: FC<
       }
     })
 
-    const doPopoverDisappear = useCallback(() => setCurrentStatus(false), [])
+    const doPopoverDisappear = useCallback(() => {
+      if (debug) {
+        return
+      }
+      setCurrentStatus(false)
+    }, [])
 
     const clickTriggerFlag = useRef(false)
     const handleMouseOut = useCallback(() => {
@@ -124,18 +135,25 @@ export const FloatPopover: FC<
     }, [])
 
     const listener = useMemo(() => {
+      const baseListener = {
+        onFocus: doPopoverShow,
+        onBlur: doPopoverDisappear,
+      }
       switch (trigger) {
         case 'click':
           return {
+            ...baseListener,
             onClick: doPopoverShow,
           }
         case 'hover':
           return {
+            ...baseListener,
             onMouseOver: doPopoverShow,
             onMouseOut: doPopoverDisappear,
           }
         case 'both':
           return {
+            ...baseListener,
             onClick: handleClickTrigger,
             onMouseOver: doPopoverShow,
             onMouseOut: handleMouseOut,
@@ -151,6 +169,8 @@ export const FloatPopover: FC<
 
     const TriggerWrapper = (
       <div
+        role={'button'}
+        tabIndex={0}
         className={clsx('inline-block', wrapperClassNames)}
         ref={reference}
         {...listener}

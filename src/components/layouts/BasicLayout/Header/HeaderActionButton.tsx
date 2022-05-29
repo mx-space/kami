@@ -33,7 +33,10 @@ export const HeaderActionLikeButtonForNote: FC<{ id: number }> = observer(
     const { noteStore } = useStore()
     const liked = noteStore.isLiked(id)
 
-    const onLike = () => noteStore.like(id)
+    const onLike = () => {
+      noteStore.like(id)
+      trackerLike()
+    }
     const { event } = useAnalyze()
     const trackerLikeOnce = useRef(false)
 
@@ -48,9 +51,9 @@ export const HeaderActionLikeButtonForNote: FC<{ id: number }> = observer(
       }
     }, [])
     return (
-      <HeaderActionButton>
-        <div onClick={onLike} className="flex items-center justify-center">
-          <div className={styles['like-button']} onClick={trackerLike}>
+      <HeaderActionButton onClick={onLike}>
+        <div className="flex items-center justify-center">
+          <div className={styles['like-button']}>
             <LikeButton checked={liked} />
           </div>
 

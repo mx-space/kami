@@ -1,5 +1,5 @@
 .header {
-  @apply fixed top-0 left-0 right-0;
+  @apply fixed top-0 left-0 right-0 overflow-hidden;
 
   background-color: var(--bg-opacity);
 }
@@ -160,7 +160,7 @@
 }
 
 .nav-container {
-  height: 4rem;
+  height: 8rem;
 
   @apply mx-20 relative;
 
@@ -168,14 +168,11 @@
     @apply mx-8;
   }
 
-  & > .head-swiper {
-    transition: transform 0.5s;
-  }
+  transform: translateY(0);
+  transition: transform 0.5s;
 
   &.toggle {
-    & > .head-swiper {
-      transform: translateY(-100%);
-    }
+    transform: translateY(-50%) !important;
 
     & .head-info {
       overflow: hidden;

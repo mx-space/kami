@@ -24,6 +24,7 @@ const MenuLink: FC<{ menu: Menu; isPublicUrl: boolean }> = (props) => {
   }, [])
   return (
     <FloatPopover
+      strategy={'fixed'}
       headless
       placement="bottom"
       offset={0}
@@ -31,6 +32,7 @@ const MenuLink: FC<{ menu: Menu; isPublicUrl: boolean }> = (props) => {
       triggerComponent={() => (
         <Link href={menu.path}>
           <a
+            tabIndex={-1}
             onClick={() => tracker(`一级导航点击 - ${menu.title}`)}
             rel={isPublicUrl ? 'noopener noreferrer' : undefined}
             target={isPublicUrl ? '_blank' : undefined}
@@ -45,20 +47,22 @@ const MenuLink: FC<{ menu: Menu; isPublicUrl: boolean }> = (props) => {
     >
       {menu.subMenu?.length ? (
         <ul className={clsx(styles['sub-dropdown'])}>
-          <div>
-            {menu.subMenu?.map((m) => {
-              return (
-                <Link href={m.path} key={m.path}>
-                  <a onClick={() => tracker(`二级导航点击 - ${m.title}`)}>
-                    <li key={m.title}>
-                      <FontIcon icon={m.icon} />
-                      <span>{m.title}</span>
-                    </li>
-                  </a>
-                </Link>
-              )
-            })}
-          </div>
+          {menu.subMenu?.map((m, i) => {
+            return (
+              <Link href={m.path} key={m.path} tabIndex={i + 10} role="button">
+                <a
+                  onClick={() => tracker(`二级导航点击 - ${m.title}`)}
+                  tabIndex={i + 10}
+                  role="button"
+                >
+                  <li key={m.title}>
+                    <FontIcon icon={m.icon} />
+                    <span>{m.title}</span>
+                  </li>
+                </a>
+              </Link>
+            )
+          })}
         </ul>
       ) : null}
     </FloatPopover>
@@ -72,7 +76,7 @@ export const HeaderNavigationList: FC = observer(() => {
       {mergedMenu.map((_menu) => {
         const isPublicUrl = _menu.path.startsWith('http')
         return (
-          <div className="relative" key={_menu.title}>
+          <div className="relative" key={_menu.title} role="button">
             <MenuLink isPublicUrl={isPublicUrl} menu={_menu}></MenuLink>
           </div>
         )
