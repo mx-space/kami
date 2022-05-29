@@ -23,47 +23,45 @@ const MenuLink: FC<{ menu: Menu; isPublicUrl: boolean }> = (props) => {
     })
   }, [])
   return (
-    <div className="relative" key={menu.title}>
-      <FloatPopover
-        headless
-        placement="bottom"
-        offset={0}
-        popoverWrapperClassNames={'z-19 relative'}
-        triggerComponent={() => (
-          <Link href={menu.path}>
-            <a
-              onClick={() => tracker(`一级导航点击 - ${menu.title}`)}
-              rel={isPublicUrl ? 'noopener noreferrer' : undefined}
-              target={isPublicUrl ? '_blank' : undefined}
-            >
-              <span className={styles['link-item']}>
-                <FontIcon icon={menu.icon} />
-                <span className={styles['link-title']}>{menu.title}</span>
-              </span>
-            </a>
-          </Link>
-        )}
-      >
-        {menu.subMenu?.length ? (
-          <ul className={clsx(styles['sub-dropdown'])}>
-            <div>
-              {menu.subMenu?.map((m) => {
-                return (
-                  <Link href={m.path} key={m.path}>
-                    <a onClick={() => tracker(`二级导航点击 - ${m.title}`)}>
-                      <li key={m.title}>
-                        <FontIcon icon={m.icon} />
-                        <span>{m.title}</span>
-                      </li>
-                    </a>
-                  </Link>
-                )
-              })}
-            </div>
-          </ul>
-        ) : null}
-      </FloatPopover>
-    </div>
+    <FloatPopover
+      headless
+      placement="bottom"
+      offset={0}
+      popoverWrapperClassNames={'z-19 relative'}
+      triggerComponent={() => (
+        <Link href={menu.path}>
+          <a
+            onClick={() => tracker(`一级导航点击 - ${menu.title}`)}
+            rel={isPublicUrl ? 'noopener noreferrer' : undefined}
+            target={isPublicUrl ? '_blank' : undefined}
+          >
+            <span className={styles['link-item']}>
+              <FontIcon icon={menu.icon} />
+              <span className={styles['link-title']}>{menu.title}</span>
+            </span>
+          </a>
+        </Link>
+      )}
+    >
+      {menu.subMenu?.length ? (
+        <ul className={clsx(styles['sub-dropdown'])}>
+          <div>
+            {menu.subMenu?.map((m) => {
+              return (
+                <Link href={m.path} key={m.path}>
+                  <a onClick={() => tracker(`二级导航点击 - ${m.title}`)}>
+                    <li key={m.title}>
+                      <FontIcon icon={m.icon} />
+                      <span>{m.title}</span>
+                    </li>
+                  </a>
+                </Link>
+              )
+            })}
+          </div>
+        </ul>
+      ) : null}
+    </FloatPopover>
   )
 }
 
