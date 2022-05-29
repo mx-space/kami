@@ -193,7 +193,7 @@ a,
 
 /* -- 禁用的按钮 */
 .btn[disabled] {
-  opacity: 0.5;
+  filter: grayscale(1);
   cursor: not-allowed;
 }
 

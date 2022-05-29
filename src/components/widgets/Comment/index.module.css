@@ -158,7 +158,7 @@
 }
 
 .highlight {
-  animation: highlight 3s steps(60) infinite;
+  animation: highlight 1s ease;
 
   @apply rounded-sm animate-fill-both;
 }
@@ -168,11 +168,7 @@
     background-color: transparent;
   }
 
-  50% {
-    background-color: #d2edee33;
-  }
-
   to {
-    background-color: transparent;
+    background-color: #d2edee66;
   }
 }

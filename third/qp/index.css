@@ -71,15 +71,9 @@
     #1890ff
   );
 
-  -webkit-animation: 2s steps(60) infinite ins;
-  animation: 2s steps(60) infinite ins;
-
-  -webkit-transition: opacity 0.2s ease-in-out;
+  animation: 2s steps(30) infinite ins;
   transition: opacity 0.2s ease-in-out;
-
-  -webkit-transform-origin: left;
   transform-origin: left;
-
   background-size: 500%;
 }
 

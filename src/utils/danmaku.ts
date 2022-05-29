@@ -66,6 +66,6 @@ export const createDangmaku = ({ color, duration, text }: DanmakuProps) => {
     // dangmaku.style.right = '100vw'
     dangmaku.style.animation = `dangmaku ${
       duration && duration / 1000 > 8 ? duration : 8
-    }s steps(60) `
+    }s steps(30) `
   })
 }
