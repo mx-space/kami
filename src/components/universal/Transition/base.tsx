@@ -1,10 +1,11 @@
-import type { FC } from 'react'
+import type { ElementType, FC } from 'react'
 import { Transition } from 'react-transition-group'
 import type { TransitionProps } from 'react-transition-group/Transition'
 
 export interface BaseTransitionViewProps {
   id?: string
   className?: string
+  component?: ElementType
 }
 
 export const BaseTransitionView: (
@@ -12,7 +13,7 @@ export const BaseTransitionView: (
   transitionStyles: any,
 ) => FC<BaseTransitionViewProps & Partial<TransitionProps>> =
   (defaultStyle, transitionStyles) => (props) => {
-    const { id, className, ...rest } = props
+    const { id, className, component: Component = 'div', ...rest } = props
     return (
       <Transition
         key={id}
@@ -25,7 +26,7 @@ export const BaseTransitionView: (
       >
         {(state) => {
           return (
-            <div
+            <Component
               style={{
                 ...defaultStyle,
                 ...transitionStyles[state],
@@ -33,7 +34,7 @@ export const BaseTransitionView: (
               className={className}
             >
               {props.children}
-            </div>
+            </Component>
           )
         }}
       </Transition>

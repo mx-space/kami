@@ -24,6 +24,8 @@ export const _Header: FC = observer(() => {
   } = useInitialData()
   const { appStore } = useStore()
 
+  const { isPadOrMobile } = appStore
+
   const router = useRouter()
   const { event } = useAnalyze()
   const clickFunc = useSingleAndDoubleClick(
@@ -130,14 +132,16 @@ export const _Header: FC = observer(() => {
             [appStore.headerNav.meta, appStore.headerNav.title],
           )}
         </nav>
-        <HeaderDrawer
-          show={drawerOpen}
-          onExit={() => {
-            setDrawerOpen(false)
-          }}
-        >
-          <HeaderDrawerNavigation />
-        </HeaderDrawer>
+        {isPadOrMobile && (
+          <HeaderDrawer
+            show={drawerOpen}
+            onExit={() => {
+              setDrawerOpen(false)
+            }}
+          >
+            <HeaderDrawerNavigation />
+          </HeaderDrawer>
+        )}
       </header>
     </>
   )

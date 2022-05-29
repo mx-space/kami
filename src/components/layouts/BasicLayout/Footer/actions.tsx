@@ -35,6 +35,7 @@ export const FooterActions: FC = observer(() => {
     <RootPortal>
       <div className={styles.action}>
         <button
+          aria-label="to top"
           className={classNames(
             styles['top'],
             isOverflow ? styles['active'] : '',
@@ -51,13 +52,19 @@ export const FooterActions: FC = observer(() => {
                 unmountOnExit
                 timeout={{ exit: 300 }}
               >
-                <button onClick={action.onClick}>{action.icon}</button>
+                <button
+                  aria-label="footer action button"
+                  onClick={action.onClick}
+                >
+                  {action.icon}
+                </button>
               </ScaleTransitionView>
             )
           })}
         </TransitionGroup>
 
         <button
+          aria-label="open player"
           onClick={() => {
             event({
               action: TrackerAction.Click,

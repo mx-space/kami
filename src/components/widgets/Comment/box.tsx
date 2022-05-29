@@ -247,7 +247,10 @@ export const CommentBox: FC<{
         <div className="flex-shrink-0 flex space-x-2 items-center">
           <FloatPopover
             triggerComponent={() => (
-              <button className="btn blue text-lg flex-shrink-0 mr-[12px] cursor-default pointer-events-none">
+              <button
+                aria-label="support markdown"
+                className="btn blue text-lg flex-shrink-0 mr-[12px] cursor-default pointer-events-none"
+              >
                 <MdiLanguageMarkdown />
               </button>
             )}
@@ -302,6 +305,7 @@ const KaomojiButton: FC<{ onClickKaomoji: (kaomoji: string) => any }> = memo(
           <div className="w-[300px] overflow-auto max-w-[80vw] h-[300px] max-h-[50vh]">
             {kaomoji.map((emoji, i) => (
               <button
+                aria-label="kaomoji panel"
                 className="text-blue p-2"
                 key={i}
                 onClick={() => {

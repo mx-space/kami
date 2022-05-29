@@ -21,8 +21,8 @@ import Document, { Head, Html, Main, NextScript } from 'next/document'
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html>
-        <Head lang={'zh-cn'}>
+      <Html lang={'zh-cn'}>
+        <Head>
           <meta charSet="UTF-8" />
           <link rel="manifest" href="/manifest.json" />
 

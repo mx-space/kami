@@ -40,6 +40,7 @@ const MenuLink: FC<{ menu: Menu; isPublicUrl: boolean }> = (props) => {
             <span className={styles['link-item']}>
               <FontIcon icon={menu.icon} />
               <span className={styles['link-title']}>{menu.title}</span>
+              {!menu.title && <span className="sr-only">header icon</span>}
             </span>
           </a>
         </Link>
@@ -76,7 +77,12 @@ export const HeaderNavigationList: FC = observer(() => {
       {mergedMenu.map((_menu) => {
         const isPublicUrl = _menu.path.startsWith('http')
         return (
-          <div className="relative" key={_menu.title} role="button">
+          <div
+            className="relative"
+            key={_menu.title}
+            role="button"
+            aria-label={_menu.title || 'header nav'}
+          >
             <MenuLink isPublicUrl={isPublicUrl} menu={_menu}></MenuLink>
           </div>
         )

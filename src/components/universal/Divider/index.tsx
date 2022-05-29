@@ -8,7 +8,7 @@ export const Divider: FC<
   return (
     <hr
       className={clsx(
-        'border-0 h-[0.5px] my-4 !bg-opacity-20 bg-black dark:bg-white',
+        'border-0 h-[0.5px] my-4 !bg-opacity-30 bg-black dark:bg-white',
         className,
       )}
       {...rest}
@@ -23,7 +23,7 @@ export const DividerVertical: FC<
   return (
     <span
       className={clsx(
-        '!bg-opacity-20 bg-black dark:bg-white inline-block h-full mx-4 w-[0.5px] text-transparent',
+        '!bg-opacity-30 bg-black dark:bg-white inline-block h-full mx-4 w-[0.5px] text-transparent',
         className,
       )}
       {...rest}

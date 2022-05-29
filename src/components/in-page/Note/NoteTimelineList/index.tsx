@@ -66,10 +66,11 @@ export const NoteTimelineList: FC<
   )
   return (
     <div className={clsx(className, styles['container'])}>
-      <ul className={clsx(styles.list)}>
-        <TransitionGroup>
+      <div className={clsx(styles.list)}>
+        <TransitionGroup component={'ul'}>
           {list.map((item, i) => (
             <BottomUpTransitionView
+              component={'li'}
               key={item.id}
               timeout={{
                 enter: prevList?.length
@@ -77,25 +78,23 @@ export const NoteTimelineList: FC<
                   : 100 * i,
               }}
             >
-              <li key={item.id}>
-                <Link href={`/notes/${item.nid}`}>
-                  <a
-                    className={clsx(
-                      item.id === props.noteId ? styles['active'] : null,
-                      styles.item,
-                    )}
-                  >
-                    {item.title}
-                  </a>
-                </Link>
-              </li>
+              <Link href={`/notes/${item.nid}`} key={item.id}>
+                <a
+                  className={clsx(
+                    item.id === props.noteId ? styles['active'] : null,
+                    styles.item,
+                  )}
+                >
+                  {item.title}
+                </a>
+              </Link>
             </BottomUpTransitionView>
           ))}
         </TransitionGroup>
         {note?.topic && (
           <>
             <Divider className="!w-3/4" />
-            <p className="text-gray-2 flex flex-col min-w-0 overflow-hidden">
+            <p className="text-gray-1 flex flex-col min-w-0 overflow-hidden">
               此文章收录于专栏：
               <br />
               <FloatPopover
@@ -114,7 +113,7 @@ export const NoteTimelineList: FC<
             </p>
           </>
         )}
-      </ul>
+      </div>
     </div>
   )
 })

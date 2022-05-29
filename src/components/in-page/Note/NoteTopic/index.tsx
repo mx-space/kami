@@ -72,7 +72,7 @@ export const NoteTopic: FC<{ noteId: string; topic: TopicModel }> = (props) => {
               </FloatPopover>
             </span>
 
-            <p className="opacity-60 text-shizuku-text text-sm line-clamp-2">
+            <p className="opacity-80 text-shizuku-text text-sm line-clamp-2">
               <Linkify>{introduce}</Linkify>
             </p>
           </div>
