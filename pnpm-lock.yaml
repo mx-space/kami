@@ -60,7 +60,7 @@ specifiers:
   react-markdown: 4.3.1
   react-masonry-css: 1.0.16
   react-message-popup: 1.0.0-alpha.2
-  react-toastify: 9.0.1
+  react-toastify: 9.0.2
   react-transition-group: 4.4.2
   react-use: 17.4.0
   remove-markdown: 0.5.0
@@ -98,7 +98,7 @@ dependencies:
   react-markdown: 4.3.1_react@18.1.0
   react-masonry-css: 1.0.16_react@18.1.0
   react-message-popup: 1.0.0-alpha.2_ef5jwxihqo6n7gxfmzogljlgcm
-  react-toastify: 9.0.1_ef5jwxihqo6n7gxfmzogljlgcm
+  react-toastify: 9.0.2_ef5jwxihqo6n7gxfmzogljlgcm
   react-transition-group: 4.4.2_ef5jwxihqo6n7gxfmzogljlgcm
   react-use: 17.4.0_ef5jwxihqo6n7gxfmzogljlgcm
   remove-markdown: 0.5.0
@@ -3189,7 +3189,7 @@ packages:
     dev: true
 
   /escape-string-regexp/1.0.5:
-    resolution: {integrity: sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=}
+    resolution: {integrity: sha512-vbRorB5FUQWvla16U8R/qgaFIya2qGzwDrNmCZuYKrbdSUMG6I1ZCGQRefkRVhuOkIGVne7BQ35DSfo1qvJqFg==}
     engines: {node: '>=0.8.0'}
     dev: true
 
@@ -3540,7 +3540,7 @@ packages:
     dev: true
 
   /find-up/2.1.0:
-    resolution: {integrity: sha1-RdG35QbHF93UgndaK3eSCjwMV6c=}
+    resolution: {integrity: sha512-NWzkk0jSJtTt08+FBFMvXoeZnOJD+jTtsRmBYbAIzJdX6l7dLgR7CTubCM5/eDdPUBvLCeVasP1brfVR/9/EZQ==}
     engines: {node: '>=4'}
     dependencies:
       locate-path: 2.0.0
@@ -3825,7 +3825,7 @@ packages:
     dev: true
 
   /has-flag/3.0.0:
-    resolution: {integrity: sha1-tdRU3CGZriJWmfNGfloH87lVuv0=}
+    resolution: {integrity: sha512-sKJf1+ceQBr4SMkvQnBDNDtf4TXpVhVGateu0t918bl30FnbE2m4vNLX+VWe/dpjlb+HugGYzW7uQXH98HPEYw==}
     engines: {node: '>=4'}
     dev: true
 
@@ -5597,8 +5597,8 @@ packages:
       react-dom: 18.1.0_react@18.1.0
     dev: false
 
-  /react-toastify/9.0.1_ef5jwxihqo6n7gxfmzogljlgcm:
-    resolution: {integrity: sha512-c2zeZHkCX+WXuItS/JRqQ/8CH8Qm/je+M0rt09xe9fnu5YPJigtNOdD8zX4fwLA093V2am3abkGfOowwpkrwOQ==}
+  /react-toastify/9.0.2_ef5jwxihqo6n7gxfmzogljlgcm:
+    resolution: {integrity: sha512-IknOvdh7LNzeLKmZTn7EXYC4kaSM0VdUvRuNdBJs/F/NMgRW9kFXbzAUb8rpQxIH+p1YJ3KVbfmL5ThCPH6o0A==}
     peerDependencies:
       react: '>=16'
       react-dom: '>=16'
