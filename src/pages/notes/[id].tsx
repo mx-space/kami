@@ -113,9 +113,9 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
   useEffect(() => {
     // FIXME: SSR 之后的 hydrate 没有同步数据
     if (!noteStore.relationMap.has(props.id)) {
-      noteStore.fetchById(note.id, undefined, { force: true })
+      noteStore.fetchById(note.nid, undefined, { force: true })
     }
-  }, [note.id])
+  }, [note.nid])
 
   useHeaderShare(note.title, note.text)
   useUpdateNote(note.id)
