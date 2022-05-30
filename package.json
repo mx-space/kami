@@ -130,5 +130,10 @@
   "resolutions": {
     "react-use": "17.4.0",
     "@types/react": "17.0.45"
+  },
+  "nextBundleAnalysis": {
+    "budget": 358400,
+    "budgetPercentIncreaseRed": 20,
+    "showDetails": true
   }
 }
