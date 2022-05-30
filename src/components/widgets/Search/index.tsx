@@ -1,10 +1,4 @@
 import clsx from 'clsx'
-import { EmptyIcon, IonSearch } from 'components/universal/Icons'
-import type { OverlayProps } from 'components/universal/Overlay'
-import { OverLay } from 'components/universal/Overlay'
-import { TrackerAction } from 'constants/tracker'
-import { useAnalyze } from 'hooks/use-analyze'
-import { useHotKey } from 'hooks/use-hotkey'
 import { throttle } from 'lodash-es'
 import Link from 'next/link'
 import type { FC, KeyboardEventHandler } from 'react'
@@ -16,8 +10,15 @@ import {
   useRef,
   useState,
 } from 'react'
-import { useStore } from 'store'
 import { apiClient } from 'utils'
+
+import { EmptyIcon, IonSearch } from '~/components/universal/Icons'
+import type { OverlayProps } from '~/components/universal/Overlay'
+import { OverLay } from '~/components/universal/Overlay'
+import { TrackerAction } from '~/constants/tracker'
+import { useAnalyze } from '~/hooks/use-analyze'
+import { useHotKey } from '~/hooks/use-hotkey'
+import { useStore } from '~/store'
 
 import styles from './index.module.css'
 

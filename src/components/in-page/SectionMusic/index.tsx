@@ -1,13 +1,14 @@
 import clsx from 'clsx'
-import { MusicIcon, PauseIcon } from 'components/universal/Icons'
-import { Seo } from 'components/universal/Seo'
-import { TrackerAction } from 'constants/tracker'
-import { useAnalyze } from 'hooks/use-analyze'
 import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { memo, useDeferredValue, useEffect, useMemo } from 'react'
-import { useStore } from 'store'
+
+import { MusicIcon, PauseIcon } from '~/components/universal/Icons'
+import { Seo } from '~/components/universal/Seo'
+import { TrackerAction } from '~/constants/tracker'
+import { useAnalyze } from '~/hooks/use-analyze'
+import { useStore } from '~/store'
 
 import styles from './index.module.css'
 

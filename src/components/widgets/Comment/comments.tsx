@@ -1,15 +1,16 @@
-import { Markdown } from 'components/universal/Markdown'
-import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { Fragment, createElement, useCallback, useMemo, useState } from 'react'
 import type ReactMarkdown from 'react-markdown'
 import { message } from 'react-message-popup'
-import client from 'socket'
-import type { Id } from 'store/helper/structure'
-import { apiClient } from 'utils/client'
+import { socketClient } from 'socket'
 
 import type { CommentModel } from '@mx-space/api-client'
+
+import { Markdown } from '~/components/universal/Markdown'
+import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
+import type { Id } from '~/store/helper/structure'
+import { apiClient } from '~/utils/client'
 
 import { openCommentMessage } from '.'
 import { useStore } from '../../../store'
@@ -90,7 +91,7 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
         }
         success()
 
-        if (!client.socket.connected) {
+        if (!socketClient.socket.connected) {
           commentStore.addComment(data)
         }
         setReplyId('')

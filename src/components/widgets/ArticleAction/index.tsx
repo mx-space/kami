@@ -1,8 +1,9 @@
 import clsx from 'clsx'
-import { FloatPopover } from 'components/universal/FloatPopover'
-import { EntypoCreativeCommons } from 'components/universal/Icons'
 import type { DetailedHTMLProps, FC, HTMLAttributes, ReactNode } from 'react'
 import { Fragment, createElement, memo } from 'react'
+
+import { FloatPopover } from '~/components/universal/FloatPopover'
+import { EntypoCreativeCommons } from '~/components/universal/Icons'
 
 import styles from './index.module.css'
 

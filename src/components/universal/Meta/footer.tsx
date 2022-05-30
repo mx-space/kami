@@ -1,5 +1,6 @@
-import { useThemeConfig } from 'hooks/use-initial-data'
 import { memo, useMemo } from 'react'
+
+import { useThemeConfig } from '~/hooks/use-initial-data'
 
 export const MetaFooter = memo(() => {
   const themeConfig = useThemeConfig()

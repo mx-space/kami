@@ -1,8 +1,9 @@
-import { Divider } from 'components/universal/Divider'
 import dayjs from 'dayjs'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import { useStore } from 'store'
+
+import { Divider } from '~/components/universal/Divider'
+import { useStore } from '~/store'
 
 import styles from './index.module.css'
 

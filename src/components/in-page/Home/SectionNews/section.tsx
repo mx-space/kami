@@ -1,9 +1,10 @@
-import { IcBaselineArrowForwardIos } from 'components/universal/Icons'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import randomColor from 'randomcolor'
 import type { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react'
 import { forwardRef } from 'react'
+
+import { IcBaselineArrowForwardIos } from '~/components/universal/Icons'
 
 import { useStore } from '../../../../store'
 

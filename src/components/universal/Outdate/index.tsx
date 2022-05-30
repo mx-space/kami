@@ -6,9 +6,10 @@
  * @FilePath: /web/components/Outdate/index.tsx
  * @Mark: Coding with Love
  */
-import { RelativeTime } from 'components/universal/RelativeTime'
 import dayjs from 'dayjs'
 import React from 'react'
+
+import { RelativeTime } from '~/components/universal/RelativeTime'
 
 // TODO re-design style
 export default (function OutdateNotice({ time }: { time: string | Date }) {

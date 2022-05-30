@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { makeObservable, observable, runInAction } from 'mobx'
 import { message } from 'react-message-popup'
-import { apiClient, isLikedBefore, setLikeId } from 'utils'
 
 import type { NoteModel } from '@mx-space/api-client'
+
+import { apiClient } from '~/utils/client'
+import { isLikedBefore, setLikeId } from '~/utils/cookie'
 
 import { Store } from '../helper/base'
 import type { Id } from '../helper/structure'

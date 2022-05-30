@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import { loadScript } from 'utils/load-script'
+
+import { loadScript } from '~/utils/load-script'
 
 export const Mermaid = (props) => {
   useEffect(() => {

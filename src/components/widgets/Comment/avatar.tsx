@@ -3,7 +3,8 @@ import rc from 'randomcolor'
 import type { FC } from 'react'
 import { useEffect, useMemo, useState } from 'react'
 import LazyLoad from 'react-lazyload'
-import { useStore } from 'store'
+
+import { useStore } from '~/store'
 
 import styles from './index.module.css'
 

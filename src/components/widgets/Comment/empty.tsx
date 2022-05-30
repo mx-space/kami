@@ -1,7 +1,8 @@
-import { EmptyIcon } from 'components/universal/Icons'
 import { sample } from 'lodash-es'
 import type { FC } from 'react'
 import { memo } from 'react'
+
+import { EmptyIcon } from '~/components/universal/Icons'
 
 import { minHeightProperty } from '.'
 import styles from './index.module.css'

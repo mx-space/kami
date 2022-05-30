@@ -1,12 +1,21 @@
 import type { AxiosError } from 'axios'
-import { API_URL } from 'constants/env'
 import { message } from 'react-message-popup'
 
 import { allControllers, createClient } from '@mx-space/api-client'
 import { axiosAdaptor } from '@mx-space/api-client/lib/adaptors/axios'
 
+import { API_URL } from '~/constants/env'
+
 import { getToken } from './cookie'
-import { genUUID, isClientSide } from './utils'
+import { isClientSide } from './env'
+
+const genUUID = () => {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+    const r = (Math.random() * 16) | 0
+    const v = c === 'x' ? r : (r & 0x3) | 0x8
+    return v.toString(16)
+  })
+}
 
 export const apiClient = createClient(axiosAdaptor)(API_URL, {
   controllers: allControllers,

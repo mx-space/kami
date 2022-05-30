@@ -1,9 +1,11 @@
-import { API_URL } from 'constants/env'
-import { useInitialData, useKamiConfig } from 'hooks/use-initial-data'
 import Head from 'next/head'
 import type { FC } from 'react'
 import React, { memo, useEffect } from 'react'
-import { isDev, loadScript } from 'utils'
+
+import { API_URL } from '~/constants/env'
+import { useInitialData, useKamiConfig } from '~/hooks/use-initial-data'
+import { isDev } from '~/utils/env'
+import { loadScript } from '~/utils/load-script'
 
 export const DynamicHeadMeta: FC = memo(() => {
   const initialData = useInitialData()

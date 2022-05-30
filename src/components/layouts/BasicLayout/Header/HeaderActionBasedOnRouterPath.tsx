@@ -1,7 +1,8 @@
-import { useInitialData } from 'hooks/use-initial-data'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import React, { Fragment, memo } from 'react'
+
+import { useInitialData } from '~/hooks/use-initial-data'
 
 import {
   HeaderActionButton,

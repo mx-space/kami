@@ -1,11 +1,3 @@
-import {
-  FaSolidKissWinkHeart,
-  MdiDrawPen,
-  PhUsersDuotone,
-} from 'components/universal/Icons'
-import { IcTwotoneSignpost } from 'components/universal/Icons/menu-icon'
-import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
-import { useThemeConfig } from 'hooks/use-initial-data'
 import { shuffle } from 'lodash-es'
 import Router from 'next/router'
 import { useIndexViewContext } from 'pages'
@@ -16,6 +8,15 @@ import { TransitionGroup } from 'react-transition-group'
 import { NoSSR, apiClient, getRandomImage, stopEventDefault } from 'utils'
 
 import type { AggregateTop } from '@mx-space/api-client'
+
+import {
+  FaSolidKissWinkHeart,
+  MdiDrawPen,
+  PhUsersDuotone,
+} from '~/components/universal/Icons'
+import { IcTwotoneSignpost } from '~/components/universal/Icons/menu-icon'
+import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
+import { useThemeConfig } from '~/hooks/use-initial-data'
 
 import type { SectionNewsProps } from './SectionNews'
 import SectionNews, { SectionCard } from './SectionNews'

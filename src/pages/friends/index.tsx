@@ -1,20 +1,21 @@
-import {
-  BannedSection,
-  FavoriteSection,
-  FriendSection,
-  OutdateSection,
-} from 'components/in-page/Friend/section'
-import { Markdown } from 'components/universal/Markdown'
-import { useInitialData } from 'hooks/use-initial-data'
 import { shuffle } from 'lodash-es'
 import type { NextPage } from 'next'
 import type { FC } from 'react'
 import { createElement, useEffect, useState } from 'react'
 import { NoSSR } from 'utils'
-import { apiClient } from 'utils/client'
 
 import type { LinkModel } from '@mx-space/api-client'
 import { LinkState, LinkType } from '@mx-space/api-client'
+
+import {
+  BannedSection,
+  FavoriteSection,
+  FriendSection,
+  OutdateSection,
+} from '~/components/in-page/Friend/section'
+import { Markdown } from '~/components/universal/Markdown'
+import { useInitialData } from '~/hooks/use-initial-data'
+import { apiClient } from '~/utils/client'
 
 import { ApplyForLink } from '../../components/in-page/ApplyLink'
 import { ArticleLayout } from '../../components/layouts/ArticleLayout'

@@ -2,7 +2,8 @@ import { observer } from 'mobx-react-lite'
 import rc from 'randomcolor'
 import type { FC, MouseEventHandler } from 'react'
 import { useMemo } from 'react'
-import { useStore } from 'store'
+
+import { useStore } from '~/store'
 
 import { MdiTagHeartOutline } from '../Icons'
 import styles from './index.module.css'

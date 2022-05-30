@@ -1,11 +1,12 @@
 import type { AxiosError } from 'axios'
-import { ErrorView } from 'components/universal/Error'
 import { isNumber } from 'lodash-es'
 import type { NextPage } from 'next'
 import { useEffect } from 'react'
 import { message } from 'react-message-popup'
 
 import { RequestError } from '@mx-space/api-client'
+
+import { ErrorView } from '~/components/universal/Error'
 
 const ErrorPage: NextPage<{ statusCode: number; err: any }> = ({
   statusCode = 500,

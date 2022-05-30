@@ -1,8 +1,8 @@
 import type { DevtoolsDetectorListener } from 'devtools-detector'
 
-import Package from '~/package.json'
+import Package from '~/../package.json'
 
-import { isDev, isServerSide } from './utils'
+import { isDev, isServerSide } from './env'
 
 const version = `v${Package.version}` || ''
 

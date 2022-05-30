@@ -1,10 +1,11 @@
-import { Avatar } from 'components/universal/Avatar'
-import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
 import type { FC } from 'react'
 import { useCallback, useMemo, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 
 import type { LinkModel } from '@mx-space/api-client'
+
+import { Avatar } from '~/components/universal/Avatar'
+import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 
 import styles from './section.module.css'
 

@@ -1,7 +1,8 @@
 import clsx from 'clsx'
 import type { FC } from 'react'
 import { memo, useEffect } from 'react'
-import { springScrollToElement } from 'utils/spring'
+
+import { springScrollToElement } from '~/utils/spring'
 
 import styles from './index.module.css'
 

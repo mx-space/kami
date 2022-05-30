@@ -3,9 +3,10 @@ import type { FC } from 'react'
 import { Fragment, useCallback, useEffect, useMemo, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { message } from 'react-message-popup'
-import { apiClient } from 'utils/client'
 
 import type { CommentModel, Pager } from '@mx-space/api-client'
+
+import { apiClient } from '~/utils/client'
 
 import { useStore } from '../../../store'
 import { NoSSR, flattenChildren } from '../../../utils'

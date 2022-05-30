@@ -1,5 +1,6 @@
-import { Loading } from 'components/universal/Loading'
 import React, { memo } from 'react'
+
+import { Loading } from '~/components/universal/Loading'
 
 export const CommentLoading = memo(() => {
   return (

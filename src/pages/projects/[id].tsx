@@ -1,9 +1,10 @@
-import { ProjectDetail } from 'components/in-page/Project/detail'
 import type { NextPage } from 'next'
-import { useStore } from 'store'
-import { apiClient } from 'utils/client'
 
 import type { ProjectModel } from '@mx-space/api-client'
+
+import { ProjectDetail } from '~/components/in-page/Project/detail'
+import { useStore } from '~/store'
+import { apiClient } from '~/utils/client'
 
 import { SEO } from '../../components/universal/Seo'
 

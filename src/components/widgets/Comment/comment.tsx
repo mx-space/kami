@@ -1,8 +1,9 @@
 import clsx from 'clsx'
-import { RelativeTime } from 'components/universal/RelativeTime'
 import type { DetailedHTMLProps, FC, HTMLAttributes } from 'react'
 import { memo, useCallback, useMemo } from 'react'
-import { springScrollToElement } from 'utils/spring'
+
+import { RelativeTime } from '~/components/universal/RelativeTime'
+import { springScrollToElement } from '~/utils/spring'
 
 import styles from './index.module.css'
 

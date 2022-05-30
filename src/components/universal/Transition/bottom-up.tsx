@@ -1,6 +1,7 @@
 import type { FC } from 'react'
 import type { TransitionProps } from 'react-transition-group/Transition'
-import { genSpringKeyframes } from 'utils/spring'
+
+import { genSpringKeyframes } from '~/utils/spring'
 
 import type { BaseTransitionViewProps } from './base'
 import { BaseTransitionView } from './base'

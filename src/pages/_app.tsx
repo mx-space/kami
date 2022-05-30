@@ -3,23 +3,6 @@ import 'windi.css'
 import 'assets/styles/main.css'
 import '../../third/qp/index.css'
 
-// prettier-ignore-end
-import { BasicLayout } from 'components/layouts/BasicLayout'
-import { DebugLayout } from 'components/layouts/DebugLayout'
-import { NoDataErrorView } from 'components/universal/Error/no-data'
-import Loader from 'components/universal/Loader'
-import { MetaFooter } from 'components/universal/Meta/footer'
-import { DynamicHeadMeta } from 'components/universal/Meta/head'
-import { defaultConfigs } from 'configs.default'
-import type { InitialDataType } from 'context/initial-data'
-import { InitialContextProvider } from 'context/initial-data'
-import { RootStoreProvider } from 'context/root-store'
-import { useCheckLogged } from 'hooks/use-check-logged'
-import { useCheckOldBrowser } from 'hooks/use-check-old-browser'
-import { useInitialData } from 'hooks/use-initial-data'
-import { useResizeScrollEvent } from 'hooks/use-resize-scroll-event'
-import { useRouterEvent } from 'hooks/use-router-event'
-import { useScreenMedia } from 'hooks/use-screen-media'
 import { observer } from 'mobx-react-lite'
 import { NextSeo } from 'next-seo'
 import type { AppContext } from 'next/app'
@@ -27,17 +10,35 @@ import NextApp from 'next/app'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import React, { memo, useEffect, useMemo } from 'react'
-import type { KamiConfig } from 'types/config'
-import { $axios, apiClient } from 'utils/client'
-import { printToConsole } from 'utils/console'
 
 import type { AggregateRoot } from '@mx-space/api-client'
 
-import Package from '~/package.json'
+import Package from '~/../package.json'
+// prettier-ignore-end
+import { BasicLayout } from '~/components/layouts/BasicLayout'
+import { DebugLayout } from '~/components/layouts/DebugLayout'
+import { NoDataErrorView } from '~/components/universal/Error/no-data'
+import Loader from '~/components/universal/Loader'
+import { MetaFooter } from '~/components/universal/Meta/footer'
+import { DynamicHeadMeta } from '~/components/universal/Meta/head'
+import { defaultConfigs } from '~/configs.default'
+import type { InitialDataType } from '~/context/initial-data'
+import { InitialContextProvider } from '~/context/initial-data'
+import { RootStoreProvider } from '~/context/root-store'
+import { useCheckLogged } from '~/hooks/use-check-logged'
+import { useCheckOldBrowser } from '~/hooks/use-check-old-browser'
+import { useInitialData } from '~/hooks/use-initial-data'
+import { useResizeScrollEvent } from '~/hooks/use-resize-scroll-event'
+import { useRouterEvent } from '~/hooks/use-router-event'
+import { useScreenMedia } from '~/hooks/use-screen-media'
+import type { KamiConfig } from '~/types/config'
+import { $axios, apiClient } from '~/utils/client'
+import { printToConsole } from '~/utils/console'
+import { isServerSide } from '~/utils/env'
+import { loadStyleSheet } from '~/utils/load-script'
 
-import client from '../socket'
 import { useStore } from '../store'
-import { TokenKey, isServerSide, loadStyleSheet } from '../utils'
+import { TokenKey } from '../utils/cookie'
 
 const version = `v${Package.version}` || ''
 
@@ -65,7 +66,9 @@ const Content: FC = observer((props) => {
       // set user
       master.setUser(user)
       checkLogin()
-      client.initIO()
+      import('../socket/index').then(({ socketClient }) => {
+        socketClient.initIO()
+      })
     } finally {
       document.body.classList.remove('loading')
     }

@@ -1,5 +1,5 @@
 import { makeAutoObservable, runInAction } from 'mobx'
-import { isClientSide } from 'utils'
+import { isClientSide } from 'utils/env'
 
 import type { ViewportRecord } from './types'
 

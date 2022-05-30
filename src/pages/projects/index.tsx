@@ -1,14 +1,15 @@
-import { ProjectList } from 'components/in-page/Project/list'
-import { CodiconGithubInverted } from 'components/universal/Icons'
-import { Loading } from 'components/universal/Loading'
-import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
-import { TrackerAction } from 'constants/tracker'
-import { useAnalyze } from 'hooks/use-analyze'
 import { useCallback, useEffect, useState } from 'react'
-import { useStore } from 'store'
 import { apiClient } from 'utils'
 
 import type { ProjectModel } from '@mx-space/api-client'
+
+import { ProjectList } from '~/components/in-page/Project/list'
+import { CodiconGithubInverted } from '~/components/universal/Icons'
+import { Loading } from '~/components/universal/Loading'
+import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
+import { TrackerAction } from '~/constants/tracker'
+import { useAnalyze } from '~/hooks/use-analyze'
+import { useStore } from '~/store'
 
 import { SEO } from '../../components/universal/Seo'
 

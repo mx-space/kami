@@ -11,15 +11,6 @@ import dynamic from 'next/dynamic'
 import type { FC } from 'react'
 import RemoveMarkdown from 'remove-markdown'
 
-export const isClientSide = () => {
-  return typeof window !== 'undefined'
-}
-export const isServerSide = () => {
-  return !isClientSide()
-}
-
-export const isDev = process.env.NODE_ENV === 'development'
-
 export function getSummaryFromMd(text: string): string
 export function getSummaryFromMd(
   text: string,
@@ -97,11 +88,3 @@ export const noop = new Proxy(_noop, {
     return Reflect.apply(noop, this, arguments)
   },
 })
-
-export const genUUID = () => {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-    const r = (Math.random() * 16) | 0
-    const v = c === 'x' ? r : (r & 0x3) | 0x8
-    return v.toString(16)
-  })
-}

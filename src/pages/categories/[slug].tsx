@@ -1,14 +1,15 @@
-import { RightLeftTransitionView } from 'components/universal/Transition/right-left'
 import omit from 'lodash-es/omit'
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import { TransitionGroup } from 'react-transition-group'
-import { apiClient } from 'utils/client'
 
 import type {
   CategoryModel,
   CategoryWithChildrenModel,
 } from '@mx-space/api-client'
+
+import { RightLeftTransitionView } from '~/components/universal/Transition/right-left'
+import { apiClient } from '~/utils/client'
 
 import { ArticleLayout } from '../../components/layouts/ArticleLayout'
 import { SEO } from '../../components/universal/Seo'

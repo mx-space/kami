@@ -1,27 +1,49 @@
-import { Footer } from 'components/layouts/BasicLayout/Footer'
-import { Header } from 'components/layouts/BasicLayout/Header'
-import { BiMoonStarsFill, PhSunBold } from 'components/universal/Icons'
-import { MusicMiniPlayerStoreControlled } from 'components/widgets/Player'
-import { SearchHotKey } from 'components/widgets/Search'
-import { useMediaToggle } from 'hooks/use-media-toggle'
-import { useThemeBackground } from 'hooks/use-theme-background'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import {
+import React, {
   useCallback,
   useEffect,
   useLayoutEffect,
   useRef,
   useState,
 } from 'react'
-import { springScrollToElement } from 'utils/spring'
 
-import { useStore } from '../../../store'
-import { LampSwitch } from '../../universal/LampSwitch'
-import { NoticePanel as ColorModeNoticePanel } from '../../universal/Notice'
+import { BiMoonStarsFill, PhSunBold } from '~/components/universal/Icons/layout'
+import { useRootStore } from '~/context'
+import { useMediaToggle } from '~/hooks/use-media-toggle'
+import { useThemeBackground } from '~/hooks/use-theme-background'
+import { springScrollToElement } from '~/utils/spring'
 
+const ColorModeNoticePanel = React.lazy(() =>
+  import('../../universal/Notice').then((mo) => ({
+    default: mo.NoticePanel,
+  })),
+)
+const Header = React.lazy(() =>
+  import('./Header').then(({ Header }) => ({ default: Header })),
+)
+const SearchHotKey = React.lazy(() =>
+  import('~/components/widgets/Search').then((mo) => ({
+    default: mo.SearchHotKey,
+  })),
+)
+const Footer = React.lazy(() =>
+  import('./Footer').then((mo) => ({
+    default: mo.Footer,
+  })),
+)
+const LampSwitch = React.lazy(() =>
+  import('../../universal/LampSwitch').then((mo) => ({
+    default: mo.LampSwitch,
+  })),
+)
+const MusicMiniPlayerStoreControlled = React.lazy(() =>
+  import('~/components/widgets/Player').then((mo) => ({
+    default: mo.MusicMiniPlayerStoreControlled,
+  })),
+)
 export const BasicLayout: FC = observer(({ children }) => {
-  const { appStore, actionStore } = useStore()
+  const { appStore, actionStore } = useRootStore()
 
   const { toggle, value: isDark } = useMediaToggle()
 

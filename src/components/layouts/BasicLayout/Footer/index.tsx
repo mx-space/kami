@@ -1,21 +1,15 @@
-import { ImpressionView } from 'components/universal/ImpressionView'
-import { TrackerAction } from 'constants/tracker'
-import { useAnalyze } from 'hooks/use-analyze'
-import { useInitialData, useThemeConfig } from 'hooks/use-initial-data'
-import { useFooterBackground } from 'hooks/use-theme-background'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC } from 'react'
-import React, {
-  Fragment,
-  createElement,
-  memo,
-  useCallback,
-  useMemo,
-} from 'react'
-import { isServerSide } from 'utils'
+import React, { Fragment, useCallback, useMemo } from 'react'
 
-import Package from '~/package.json'
+import Package from '~/../package.json'
+import { ImpressionView } from '~/components/universal/ImpressionView'
+import { TrackerAction } from '~/constants/tracker'
+import { useAnalyze } from '~/hooks/use-analyze'
+import { useInitialData, useThemeConfig } from '~/hooks/use-initial-data'
+import { useFooterBackground } from '~/hooks/use-theme-background'
+import { NoSSR } from '~/utils'
 
 import { useStore } from '../../../../store'
 import { FooterActions } from './actions'
@@ -125,9 +119,4 @@ export const FooterContent: FC = observer(() => {
     </div>
   )
 })
-export const Footer = memo(() => {
-  if (isServerSide()) {
-    return null
-  }
-  return createElement(_Footer)
-})
+export const Footer = NoSSR(_Footer)

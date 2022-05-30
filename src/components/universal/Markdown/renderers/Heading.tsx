@@ -1,8 +1,9 @@
 import type { DOMAttributes, FC } from 'react'
 import React, { Fragment, createElement, memo, useMemo } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { CustomEventTypes } from 'types/events'
 import { eventBus, isClientSide } from 'utils'
+
+import { CustomEventTypes } from '~/types/events'
 
 export const Heading = () => {
   let index = 0

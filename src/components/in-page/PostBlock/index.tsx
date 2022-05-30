@@ -1,15 +1,16 @@
 import classNames from 'clsx'
-import { useInitialData } from 'hooks/use-initial-data'
 import { observer } from 'mobx-react-lite'
 import Router from 'next/router'
 import type { FC } from 'react'
 import React, { useCallback, useMemo } from 'react'
 import removeMd from 'remove-markdown'
-import { useStore } from 'store'
-import { springScrollToTop } from 'utils/spring'
-import { parseDate } from 'utils/time'
 
 import type { PostModel } from '@mx-space/api-client'
+
+import { useInitialData } from '~/hooks/use-initial-data'
+import { useStore } from '~/store'
+import { springScrollToTop } from '~/utils/spring'
+import { parseDate } from '~/utils/time'
 
 import styles from './index.module.css'
 

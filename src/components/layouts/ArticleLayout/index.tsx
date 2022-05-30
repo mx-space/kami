@@ -1,6 +1,7 @@
-import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
 import type { DetailedHTMLProps, HTMLAttributes } from 'react'
 import { forwardRef, memo, useMemo } from 'react'
+
+import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 
 import { ArticleLayoutContextProvider } from './hooks'
 import styles from './index.module.css'

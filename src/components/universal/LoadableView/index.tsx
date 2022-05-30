@@ -1,9 +1,10 @@
-import type { LoadingProps } from 'components/universal/Loading'
-import { Loading } from 'components/universal/Loading'
 import { observer } from 'mobx-react-lite'
 import type { NextPage } from 'next'
 import React, { Fragment, memo, useEffect } from 'react'
-import type { Store } from 'store/helper/base'
+
+import type { LoadingProps } from '~/components/universal/Loading'
+import { Loading } from '~/components/universal/Loading'
+import type { Store } from '~/store/helper/base'
 
 export const LoadableView = memo<
   { data?: null | undefined | object; children?: any } & LoadingProps

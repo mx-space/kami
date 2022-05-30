@@ -1,11 +1,12 @@
 import clsx from 'clsx'
-import { LikeButton } from 'components/universal/LikeButton'
-import { TrackerAction } from 'constants/tracker'
-import { useAnalyze } from 'hooks/use-analyze'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import React, { memo, useCallback, useRef } from 'react'
-import { useStore } from 'store'
+
+import { LikeButton } from '~/components/universal/LikeButton'
+import { TrackerAction } from '~/constants/tracker'
+import { useAnalyze } from '~/hooks/use-analyze'
+import { useStore } from '~/store'
 
 import styles from './index.module.css'
 

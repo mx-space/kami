@@ -1,17 +1,18 @@
 /**
  * 申请友链的表单
  */
+import type { FC } from 'react'
+import { useCallback, useReducer } from 'react'
+import { message } from 'react-message-popup'
+
 import {
   MdiEmailFastOutline,
   MdiFountainPenTip,
   PhUser,
   RadixIconsAvatar,
   SiGlyphGlobal,
-} from 'components/universal/Icons'
-import type { FC } from 'react'
-import { useCallback, useReducer } from 'react'
-import { message } from 'react-message-popup'
-import { apiClient } from 'utils/client'
+} from '~/components/universal/Icons'
+import { apiClient } from '~/utils/client'
 
 import { Input } from '../../universal/Input'
 import styles from './index.module.css'

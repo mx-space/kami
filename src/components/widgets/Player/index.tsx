@@ -1,7 +1,4 @@
 import { default as classNames, default as clsx } from 'clsx'
-import { RootPortal } from 'components/universal/Portal'
-import { TrackerAction } from 'constants/tracker'
-import { useAnalyze } from 'hooks/use-analyze'
 import { throttle } from 'lodash-es'
 import { observer } from 'mobx-react-lite'
 import {
@@ -15,8 +12,12 @@ import {
   useState,
 } from 'react'
 import { useAudio } from 'react-use'
-import { store, useStore } from 'store'
 import { NoSSR, apiClient, hms } from 'utils'
+
+import { RootPortal } from '~/components/universal/Portal'
+import { TrackerAction } from '~/constants/tracker'
+import { useAnalyze } from '~/hooks/use-analyze'
+import { store, useStore } from '~/store'
 
 import styles from './index.module.css'
 

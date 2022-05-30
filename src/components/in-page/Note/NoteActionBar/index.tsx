@@ -1,23 +1,24 @@
+import dayjs from 'dayjs'
+import { observer } from 'mobx-react-lite'
+import type { FC } from 'react'
+import { useRef } from 'react'
+
 import {
   GgCoffee,
   MdiClockTimeThreeOutline,
   PhBookOpen,
-} from 'components/universal/Icons'
-import { LikeButton } from 'components/universal/LikeButton'
-import { NumberRecorder } from 'components/universal/NumberRecorder'
-import { RelativeTime } from 'components/universal/RelativeTime'
-import type { ActionProps } from 'components/widgets/ArticleAction'
-import { ArticleFooterAction } from 'components/widgets/ArticleAction'
-import { DonatePopover } from 'components/widgets/Donate'
-import { TrackerAction } from 'constants/tracker'
-import dayjs from 'dayjs'
-import { useAnalyze } from 'hooks/use-analyze'
-import { useThemeConfig } from 'hooks/use-initial-data'
-import { observer } from 'mobx-react-lite'
-import type { FC } from 'react'
-import { useRef } from 'react'
-import { useStore } from 'store'
-import { mood2icon, weather2icon } from 'utils'
+} from '~/components/universal/Icons'
+import { LikeButton } from '~/components/universal/LikeButton'
+import { NumberRecorder } from '~/components/universal/NumberRecorder'
+import { RelativeTime } from '~/components/universal/RelativeTime'
+import type { ActionProps } from '~/components/widgets/ArticleAction'
+import { ArticleFooterAction } from '~/components/widgets/ArticleAction'
+import { DonatePopover } from '~/components/widgets/Donate'
+import { mood2icon, weather2icon } from '~/constants/meta-icon'
+import { TrackerAction } from '~/constants/tracker'
+import { useAnalyze } from '~/hooks/use-analyze'
+import { useThemeConfig } from '~/hooks/use-initial-data'
+import { useStore } from '~/store'
 
 export const NoteFooterActionBar: FC<{ id: string }> = observer(({ id }) => {
   const { noteStore } = useStore()

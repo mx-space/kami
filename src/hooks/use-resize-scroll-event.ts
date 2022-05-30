@@ -1,6 +1,8 @@
-import { debounce, throttle } from 'lodash-es'
+import debounce from 'lodash-es/debounce'
+import throttle from 'lodash-es/throttle'
 import { useEffect, useRef } from 'react'
-import { useStore } from 'store'
+
+import { useStore } from '~/store'
 
 export const useResizeScrollEvent = () => {
   const _currentY = useRef(0)
