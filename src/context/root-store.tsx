@@ -28,7 +28,7 @@ export function useRootStore() {
 export const store = initializeStore()
 export function RootStoreProvider({ children }: { children: ReactNode }) {
   if (isDev && isClientSide() && !window.store) {
-    Object.defineProperty(window, '~/store', {
+    Object.defineProperty(window, 'store', {
       get() {
         return store
       },
