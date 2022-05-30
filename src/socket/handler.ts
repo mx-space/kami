@@ -1,7 +1,8 @@
 import { runInAction } from 'mobx'
 import { message } from 'react-message-popup'
-import { EventTypes } from 'types/events'
 import { isDev } from 'utils'
+
+import { EventTypes } from '~/types/events'
 
 import { store } from '../store'
 import { createDangmaku } from '../utils/danmaku'

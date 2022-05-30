@@ -1,9 +1,10 @@
-import { TrackerAction } from 'constants/tracker'
-import { useAnalyze } from 'hooks/use-analyze'
 import type { DetailedHTMLProps, HTMLAttributes } from 'react'
 import { memo, useRef } from 'react'
 import { NoSSR } from 'utils'
-import { genSpringKeyframes } from 'utils/spring'
+
+import { TrackerAction } from '~/constants/tracker'
+import { useAnalyze } from '~/hooks/use-analyze'
+import { genSpringKeyframes } from '~/utils/spring'
 
 import styles from './index.module.css'
 

@@ -1,19 +1,20 @@
-import { JamTags } from 'components/universal/Icons'
-import { OverLay } from 'components/universal/Overlay'
-import { BigTag } from 'components/universal/Tag'
-import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
-import { RightLeftTransitionView } from 'components/universal/Transition/right-left'
-import { TrackerAction } from 'constants/tracker'
-import { useAnalyze } from 'hooks/use-analyze'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC } from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
-import { store } from 'store'
 import { NoSSR, apiClient } from 'utils'
 
 import type { PostModel, TagModel } from '@mx-space/api-client'
+
+import { JamTags } from '~/components/universal/Icons'
+import { OverLay } from '~/components/universal/Overlay'
+import { BigTag } from '~/components/universal/Tag'
+import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
+import { RightLeftTransitionView } from '~/components/universal/Transition/right-left'
+import { TrackerAction } from '~/constants/tracker'
+import { useAnalyze } from '~/hooks/use-analyze'
+import { store } from '~/store'
 
 const _FloatPostTagButton: FC = observer(() => {
   const { actionStore, appUIStore } = store

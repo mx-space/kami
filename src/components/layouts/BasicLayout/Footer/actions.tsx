@@ -1,19 +1,20 @@
 import classNames from 'clsx'
-import {
-  BxBxsArrowToTop,
-  FaSolidHeadphonesAlt,
-} from 'components/universal/Icons'
-import { RootPortal } from 'components/universal/Portal'
-import { ScaleTransitionView } from 'components/universal/Transition/scale'
-import { TrackerAction } from 'constants/tracker'
-import { useAnalyze } from 'hooks/use-analyze'
 import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import React, { useCallback } from 'react'
 import { TransitionGroup } from 'react-transition-group'
-import { useStore } from 'store'
-import { springScrollToTop } from 'utils/spring'
+
+import {
+  BxBxsArrowToTop,
+  FaSolidHeadphonesAlt,
+} from '~/components/universal/Icons'
+import { RootPortal } from '~/components/universal/Portal'
+import { ScaleTransitionView } from '~/components/universal/Transition/scale'
+import { TrackerAction } from '~/constants/tracker'
+import { useAnalyze } from '~/hooks/use-analyze'
+import { useStore } from '~/store'
+import { springScrollToTop } from '~/utils/spring'
 
 import styles from './actions.module.css'
 

@@ -2,7 +2,8 @@ import { configure } from 'mobx'
 import { enableStaticRendering } from 'mobx-react-lite'
 import type { ReactNode } from 'react'
 import React, { createContext, useContext } from 'react'
-import { isClientSide, isDev, isServerSide } from 'utils/env'
+
+import { isClientSide, isDev, isServerSide } from '~/utils/env'
 
 import { RootStore } from '../store/root-store'
 
@@ -27,7 +28,7 @@ export function useRootStore() {
 export const store = initializeStore()
 export function RootStoreProvider({ children }: { children: ReactNode }) {
   if (isDev && isClientSide() && !window.store) {
-    Object.defineProperty(window, 'store', {
+    Object.defineProperty(window, '~/store', {
       get() {
         return store
       },

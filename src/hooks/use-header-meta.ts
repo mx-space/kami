@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import { useStore } from 'store'
+
+import { useStore } from '~/store'
 
 /**
  * 设置头部 信息 (标题) 分享等操作

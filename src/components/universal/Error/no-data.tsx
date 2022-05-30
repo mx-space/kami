@@ -1,9 +1,10 @@
-import { API_URL } from 'constants/env'
 import type { FC } from 'react'
+
+import { API_URL } from '~/constants/env'
 
 import { ErrorView } from '.'
 
-export const NoDataErrorView: FC = (props) => {
+export const NoDataErrorView: FC = () => {
   return (
     <ErrorView
       noSeo

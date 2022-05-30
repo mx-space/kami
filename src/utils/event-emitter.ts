@@ -1,4 +1,4 @@
-import type { CustomEventTypes } from 'types/events'
+import type { CustomEventTypes } from '~/types/events'
 
 import type { EventTypes } from '../types/events'
 

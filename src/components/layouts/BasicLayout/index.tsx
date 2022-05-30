@@ -1,6 +1,3 @@
-import { BiMoonStarsFill, PhSunBold } from 'components/universal/Icons/layout'
-import { useMediaToggle } from 'hooks/use-media-toggle'
-import { useThemeBackground } from 'hooks/use-theme-background'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import React, {
@@ -10,9 +7,12 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import { springScrollToElement } from 'utils/spring'
 
-import { useStore } from '../../../store'
+import { BiMoonStarsFill, PhSunBold } from '~/components/universal/Icons/layout'
+import { useRootStore } from '~/context'
+import { useMediaToggle } from '~/hooks/use-media-toggle'
+import { useThemeBackground } from '~/hooks/use-theme-background'
+import { springScrollToElement } from '~/utils/spring'
 
 const ColorModeNoticePanel = React.lazy(() =>
   import('../../universal/Notice').then((mo) => ({
@@ -23,7 +23,7 @@ const Header = React.lazy(() =>
   import('./Header').then(({ Header }) => ({ default: Header })),
 )
 const SearchHotKey = React.lazy(() =>
-  import('components/widgets/Search').then((mo) => ({
+  import('~/components/widgets/Search').then((mo) => ({
     default: mo.SearchHotKey,
   })),
 )
@@ -38,12 +38,12 @@ const LampSwitch = React.lazy(() =>
   })),
 )
 const MusicMiniPlayerStoreControlled = React.lazy(() =>
-  import('components/widgets/Player').then((mo) => ({
+  import('~/components/widgets/Player').then((mo) => ({
     default: mo.MusicMiniPlayerStoreControlled,
   })),
 )
 export const BasicLayout: FC = observer(({ children }) => {
-  const { appStore, actionStore } = useStore()
+  const { appStore, actionStore } = useRootStore()
 
   const { toggle, value: isDark } = useMediaToggle()
 

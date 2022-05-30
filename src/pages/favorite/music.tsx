@@ -1,13 +1,14 @@
-import type { PlayListType } from 'components/in-page/SectionMusic'
-import { SectionMusic } from 'components/in-page/SectionMusic'
-import { RiNeteaseCloudMusicFill } from 'components/universal/Icons'
-import { Loading } from 'components/universal/Loading'
-import { TrackerAction } from 'constants/tracker'
-import { useAnalyze } from 'hooks/use-analyze'
 import type { NextPage } from 'next'
 import { useCallback, useEffect, useState } from 'react'
 import { message } from 'react-message-popup'
 import { apiClient } from 'utils'
+
+import type { PlayListType } from '~/components/in-page/SectionMusic'
+import { SectionMusic } from '~/components/in-page/SectionMusic'
+import { RiNeteaseCloudMusicFill } from '~/components/universal/Icons'
+import { Loading } from '~/components/universal/Loading'
+import { TrackerAction } from '~/constants/tracker'
+import { useAnalyze } from '~/hooks/use-analyze'
 
 import { Seo } from '../../components/universal/Seo'
 

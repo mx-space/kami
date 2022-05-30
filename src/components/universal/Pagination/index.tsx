@@ -1,7 +1,8 @@
-import { Input } from 'components/universal/Input'
 import type { FC } from 'react'
 import { useEffect, useState } from 'react'
 import { message } from 'react-message-popup'
+
+import { Input } from '~/components/universal/Input'
 
 import styles from './index.module.css'
 

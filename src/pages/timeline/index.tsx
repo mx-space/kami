@@ -1,6 +1,3 @@
-import { SolidBookmark } from 'components/universal/Icons'
-import { TrackerAction } from 'constants/tracker'
-import { useAnalyze } from 'hooks/use-analyze'
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -8,10 +5,14 @@ import type { FC } from 'react'
 import { Fragment, memo, useEffect, useState } from 'react'
 import CountUp from 'react-countup'
 import { usePrevious } from 'react-use'
-import { apiClient } from 'utils/client'
-import { dayOfYear, daysOfYear, secondOfDay, secondOfDays } from 'utils/time'
 
 import type { TimelineData } from '@mx-space/api-client'
+
+import { SolidBookmark } from '~/components/universal/Icons'
+import { TrackerAction } from '~/constants/tracker'
+import { useAnalyze } from '~/hooks/use-analyze'
+import { apiClient } from '~/utils/client'
+import { dayOfYear, daysOfYear, secondOfDay, secondOfDays } from '~/utils/time'
 
 import { ArticleLayout } from '../../components/layouts/ArticleLayout'
 import { SEO } from '../../components/universal/Seo'

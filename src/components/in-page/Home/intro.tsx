@@ -1,15 +1,16 @@
-import { TextFade } from 'components/universal/Animate/text-anim'
-import { Avatar } from 'components/universal/Avatar'
-import { FloatPopover } from 'components/universal/FloatPopover'
-import { FontIcon } from 'components/universal/FontIcon'
-import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
-import { useThemeConfig } from 'hooks/use-initial-data'
 import { observer } from 'mobx-react-lite'
 import { useIndexViewContext } from 'pages'
 import type { FC } from 'react'
 import { TransitionGroup } from 'react-transition-group'
-import { useStore } from 'store'
 import { NoSSR } from 'utils'
+
+import { TextFade } from '~/components/universal/Animate/text-anim'
+import { Avatar } from '~/components/universal/Avatar'
+import { FloatPopover } from '~/components/universal/FloatPopover'
+import { FontIcon } from '~/components/universal/FontIcon'
+import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
+import { useThemeConfig } from '~/hooks/use-initial-data'
+import { useStore } from '~/store'
 
 import styles from './intro.module.css'
 

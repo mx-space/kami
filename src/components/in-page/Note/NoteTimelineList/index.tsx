@@ -2,22 +2,23 @@
  * 日记: 左侧时间线
  */
 import clsx from 'clsx'
-import { Divider } from 'components/universal/Divider'
-import { FloatPopover } from 'components/universal/FloatPopover'
-import { ImpressionView } from 'components/universal/ImpressionView'
-import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
-import { TrackerAction } from 'constants/tracker'
-import { useAnalyze } from 'hooks/use-analyze'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC } from 'react'
 import { useCallback, useEffect, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import { usePrevious } from 'react-use'
-import { useStore } from 'store'
-import { apiClient } from 'utils/client'
 
 import type { NoteModel } from '@mx-space/api-client'
+
+import { Divider } from '~/components/universal/Divider'
+import { FloatPopover } from '~/components/universal/FloatPopover'
+import { ImpressionView } from '~/components/universal/ImpressionView'
+import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
+import { TrackerAction } from '~/constants/tracker'
+import { useAnalyze } from '~/hooks/use-analyze'
+import { useStore } from '~/store'
+import { apiClient } from '~/utils/client'
 
 import { InnerTopicDetail } from '../NoteTopic/inner-detail'
 import styles from './index.module.css'

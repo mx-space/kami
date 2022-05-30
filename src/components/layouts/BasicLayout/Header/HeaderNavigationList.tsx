@@ -1,14 +1,15 @@
 import clsx from 'clsx'
-import { FloatPopover } from 'components/universal/FloatPopover'
-import { FontIcon } from 'components/universal/FontIcon'
-import { TrackerAction } from 'constants/tracker'
-import { useAnalyze } from 'hooks/use-analyze'
-import { useHeaderNavList } from 'hooks/use-header-nav-list'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC } from 'react'
 import React, { useCallback } from 'react'
-import type { Menu } from 'types/config'
+
+import { FloatPopover } from '~/components/universal/FloatPopover'
+import { FontIcon } from '~/components/universal/FontIcon'
+import { TrackerAction } from '~/constants/tracker'
+import { useAnalyze } from '~/hooks/use-analyze'
+import { useHeaderNavList } from '~/hooks/use-header-nav-list'
+import type { Menu } from '~/types/config'
 
 import styles from './index.module.css'
 

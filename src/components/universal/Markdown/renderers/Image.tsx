@@ -1,11 +1,12 @@
-import type { ImageLazyRef } from 'components/universal/Image'
-import { ImageLazy } from 'components/universal/Image'
 import { reaction } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { useStore } from 'store'
-import { calculateDimensions } from 'utils/images'
+
+import type { ImageLazyRef } from '~/components/universal/Image'
+import { ImageLazy } from '~/components/universal/Image'
+import { useStore } from '~/store'
+import { calculateDimensions } from '~/utils/images'
 
 import { ImageSizeMetaContext } from '../../../../context/image-size'
 

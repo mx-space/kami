@@ -1,5 +1,6 @@
 import type { FC } from 'react'
-import { genSpringKeyframes } from 'utils/spring'
+
+import { genSpringKeyframes } from '~/utils/spring'
 
 const [name] = genSpringKeyframes(
   'text-up',

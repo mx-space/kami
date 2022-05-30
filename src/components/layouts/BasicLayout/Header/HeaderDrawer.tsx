@@ -1,13 +1,14 @@
 import classNames from 'clsx'
-import { LaTimes } from 'components/universal/Icons'
-import { OverLay } from 'components/universal/Overlay'
-import { RootPortal } from 'components/universal/Portal'
-import { TrackerAction } from 'constants/tracker'
-import { useAnalyze } from 'hooks/use-analyze'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import React, { Fragment, memo, useEffect } from 'react'
 import { NoSSR } from 'utils'
+
+import { LaTimes } from '~/components/universal/Icons'
+import { OverLay } from '~/components/universal/Overlay'
+import { RootPortal } from '~/components/universal/Portal'
+import { TrackerAction } from '~/constants/tracker'
+import { useAnalyze } from '~/hooks/use-analyze'
 
 import styles from './index.module.css'
 

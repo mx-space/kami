@@ -1,11 +1,12 @@
-import { BottomUpTransitionView } from 'components/universal/Transition/bottom-up'
 import { observer } from 'mobx-react-lite'
 import randomColor from 'randomcolor'
 import { useEffect, useMemo } from 'react'
 import ReactMarkdown from 'react-markdown'
 import Masonry from 'react-masonry-css'
 import { TransitionGroup } from 'react-transition-group'
-import { relativeTimeFromNow } from 'utils/time'
+
+import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
+import { relativeTimeFromNow } from '~/utils/time'
 
 import { SEO } from '../../components/universal/Seo'
 import { useStore } from '../../store'

@@ -7,9 +7,10 @@
  * @Mark: Coding with Love
  */
 import { makeAutoObservable } from 'mobx'
-import { apiClient } from 'utils/client'
 
 import type { UserModel } from '@mx-space/api-client'
+
+import { apiClient } from '~/utils/client'
 
 export interface UrlConfig {
   adminUrl: string

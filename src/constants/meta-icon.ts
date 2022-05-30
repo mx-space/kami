@@ -1,10 +1,13 @@
+import type { FC } from 'react'
+import React from 'react'
+
 import {
   BiCloudLightningRainFill,
   BiCloudRainFill,
   MdiCloud,
   MdiSnowflake,
   RiSunCloudyFill,
-} from 'components/universal/Icons'
+} from '~/components/universal/Icons'
 import {
   FaSolidAngry,
   FaSolidFlushed,
@@ -16,10 +19,8 @@ import {
   FaSolidSadTear,
   FaSolidSmile,
   FaSolidTired,
-} from 'components/universal/Icons/emoji'
-import { PhSunBold } from 'components/universal/Icons/layout'
-import type { FC } from 'react'
-import React from 'react'
+} from '~/components/universal/Icons/emoji'
+import { PhSunBold } from '~/components/universal/Icons/layout'
 
 export const weather2icon = (weather: string) => {
   const map: Record<string, FC> = {

@@ -1,8 +1,9 @@
-import { TextFade } from 'components/universal/Animate/text-anim'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import { useStore } from 'store'
 import { isClientSide, resolveUrl } from 'utils'
+
+import { TextFade } from '~/components/universal/Animate/text-anim'
+import { useStore } from '~/store'
 
 import { useArticleLayoutProps } from './hooks'
 import styles from './index.module.css'

@@ -1,9 +1,10 @@
-import { Avatar } from 'components/universal/Avatar'
-import { ImpressionView } from 'components/universal/ImpressionView'
-import { RelativeTime } from 'components/universal/RelativeTime'
 import type { FC } from 'react'
 import { memo, useRef } from 'react'
-import { store } from 'store'
+
+import { Avatar } from '~/components/universal/Avatar'
+import { ImpressionView } from '~/components/universal/ImpressionView'
+import { RelativeTime } from '~/components/universal/RelativeTime'
+import { store } from '~/store'
 
 const wrapperProps = { className: '!border-none !shadow-none' }
 export const ToastCard: FC<{

@@ -1,8 +1,9 @@
-import { TextFade } from 'components/universal/Animate/text-anim'
 import type { FC } from 'react'
 import { memo, useEffect } from 'react'
 import { useUpdate } from 'react-use'
 import { apiClient } from 'utils'
+
+import { TextFade } from '~/components/universal/Animate/text-anim'
 
 let cacheSay = ''
 

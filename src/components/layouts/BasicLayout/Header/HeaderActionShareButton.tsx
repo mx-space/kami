@@ -1,8 +1,9 @@
-import { MdiShare } from 'components/universal/Icons'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import React, { memo } from 'react'
-import { useStore } from 'store'
+
+import { MdiShare } from '~/components/universal/Icons'
+import { useStore } from '~/store'
 
 import {
   HeaderActionButton,

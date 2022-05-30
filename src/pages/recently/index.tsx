@@ -1,10 +1,4 @@
 import clsx from 'clsx'
-import { JamTrash } from 'components/universal/Icons'
-import { Input } from 'components/universal/Input'
-import { Loading } from 'components/universal/Loading'
-import { Markdown } from 'components/universal/Markdown'
-import { RelativeTime } from 'components/universal/RelativeTime'
-import { Seo } from 'components/universal/Seo'
 import throttle from 'lodash-es/throttle'
 import { observer } from 'mobx-react-lite'
 import type { NextPage } from 'next'
@@ -18,12 +12,19 @@ import React, {
   useState,
 } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { useStore } from 'store'
-import { EventTypes } from 'types/events'
 import { NoSSR, eventBus } from 'utils'
-import { apiClient } from 'utils/client'
 
 import type { RecentlyModel } from '@mx-space/api-client'
+
+import { JamTrash } from '~/components/universal/Icons'
+import { Input } from '~/components/universal/Input'
+import { Loading } from '~/components/universal/Loading'
+import { Markdown } from '~/components/universal/Markdown'
+import { RelativeTime } from '~/components/universal/RelativeTime'
+import { Seo } from '~/components/universal/Seo'
+import { useStore } from '~/store'
+import { EventTypes } from '~/types/events'
+import { apiClient } from '~/utils/client'
 
 import styles from './index.module.css'
 

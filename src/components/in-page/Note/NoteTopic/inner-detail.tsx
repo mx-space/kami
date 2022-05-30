@@ -1,6 +1,3 @@
-import { Divider, DividerVertical } from 'components/universal/Divider'
-import { MdiClockOutline, MdiFountainPenTip } from 'components/universal/Icons'
-import { RelativeTime } from 'components/universal/RelativeTime'
 import Link from 'next/link'
 import type { FC } from 'react'
 import { useEffect, useState } from 'react'
@@ -9,6 +6,13 @@ import { apiClient } from 'utils'
 
 import type { NoteModel, Pager } from '@mx-space/api-client'
 import type { TopicModel } from '@mx-space/api-client/types/models/topic'
+
+import { Divider, DividerVertical } from '~/components/universal/Divider'
+import {
+  MdiClockOutline,
+  MdiFountainPenTip,
+} from '~/components/universal/Icons'
+import { RelativeTime } from '~/components/universal/RelativeTime'
 
 export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
   const { topic } = props

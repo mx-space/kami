@@ -1,8 +1,9 @@
-import { ImageLazy } from 'components/universal/Image'
 import pick from 'lodash-es/pick'
 import Link from 'next/link'
 import type { FC, MouseEvent, ReactNode } from 'react'
 import { forwardRef, memo } from 'react'
+
+import { ImageLazy } from '~/components/universal/Image'
 
 import styles from './index.module.css'
 import { SectionWrap } from './section'

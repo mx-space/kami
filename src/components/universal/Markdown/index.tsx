@@ -1,6 +1,4 @@
 import clsx from 'clsx'
-import CustomRules from 'components/universal/Markdown/rules'
-import type { TocProps } from 'components/universal/Toc'
 import { range } from 'lodash-es'
 import { observer } from 'mobx-react-lite'
 import dynamic from 'next/dynamic'
@@ -9,7 +7,10 @@ import React, { memo, useEffect, useMemo, useState } from 'react'
 import type { ReactMarkdownProps } from 'react-markdown'
 import ReactMarkdown from 'react-markdown'
 import { ensuredForwardRef } from 'react-use'
-import { useStore } from 'store'
+
+import CustomRules from '~/components/universal/Markdown/rules'
+import type { TocProps } from '~/components/universal/Toc'
+import { useStore } from '~/store'
 
 import { CodeBlock } from '../CodeBlock'
 import styles from './index.module.css'
@@ -29,7 +30,7 @@ import { Heading } from './renderers/Heading'
 import { Image } from './renderers/Image'
 
 const Toc = dynamic<TocProps>(
-  () => import('components/universal/Toc').then((m) => m.Toc),
+  () => import('~/components/universal/Toc').then((m) => m.Toc),
   {
     ssr: false,
   },

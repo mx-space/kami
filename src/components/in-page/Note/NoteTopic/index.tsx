@@ -1,16 +1,17 @@
-import { Avatar } from 'components/universal/Avatar'
-import { Divider } from 'components/universal/Divider'
-import { FloatPopover } from 'components/universal/FloatPopover'
-import { ImpressionView } from 'components/universal/ImpressionView'
-import { TrackerAction } from 'constants/tracker'
-import { useAnalyze } from 'hooks/use-analyze'
 import Link from 'next/link'
 import type { FC } from 'react'
 import { useCallback, useMemo } from 'react'
 import Linkify from 'react-linkify'
-import { textToBigCharOrWord } from 'utils/word'
 
 import type { TopicModel } from '@mx-space/api-client/types/models/topic'
+
+import { Avatar } from '~/components/universal/Avatar'
+import { Divider } from '~/components/universal/Divider'
+import { FloatPopover } from '~/components/universal/FloatPopover'
+import { ImpressionView } from '~/components/universal/ImpressionView'
+import { TrackerAction } from '~/constants/tracker'
+import { useAnalyze } from '~/hooks/use-analyze'
+import { textToBigCharOrWord } from '~/utils/word'
 
 import { InnerTopicDetail } from './inner-detail'
 

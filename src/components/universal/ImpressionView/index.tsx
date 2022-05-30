@@ -1,8 +1,9 @@
-import { TrackerAction } from 'constants/tracker'
-import { useAnalyze } from 'hooks/use-analyze'
 import type { FC } from 'react'
 import { memo, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
+
+import { TrackerAction } from '~/constants/tracker'
+import { useAnalyze } from '~/hooks/use-analyze'
 
 type ImpressionProps = {
   trackerMessage?: string

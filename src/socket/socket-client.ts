@@ -1,10 +1,11 @@
-import { GATEWAY_URL } from 'constants/env'
 import type { Socket } from 'socket.io-client'
 import io from 'socket.io-client'
-import type { EventTypes } from 'types/events'
 import { isDev } from 'utils'
 
 import { camelcaseKeys } from '@mx-space/api-client'
+
+import { GATEWAY_URL } from '~/constants/env'
+import type { EventTypes } from '~/types/events'
 
 import { eventBus } from '../utils/event-emitter'
 import { eventHandler } from './handler'

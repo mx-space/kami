@@ -1,8 +1,9 @@
 import { observer } from 'mobx-react-lite'
 import type { FC, MouseEventHandler } from 'react'
 import { useCallback } from 'react'
-import { useStore } from 'store'
-import { springScrollToElement } from 'utils/spring'
+
+import { useStore } from '~/store'
+import { springScrollToElement } from '~/utils/spring'
 
 export const CommentAtRender: FC<{ id: string }> = observer(({ id: value }) => {
   const { commentStore } = useStore()

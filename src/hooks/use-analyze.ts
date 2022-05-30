@@ -1,7 +1,8 @@
-import type { TrackerAction } from 'constants/tracker'
 import { useCallback } from 'react'
-import { useStore } from 'store'
-import { isDev } from 'utils/env'
+
+import type { TrackerAction } from '~/constants/tracker'
+import { useStore } from '~/store'
+import { isDev } from '~/utils/env'
 
 import { useThemeConfig } from './use-initial-data'
 
