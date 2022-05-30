@@ -30,14 +30,15 @@ import React, { memo, useEffect, useMemo } from 'react'
 import type { KamiConfig } from 'types/config'
 import { $axios, apiClient } from 'utils/client'
 import { printToConsole } from 'utils/console'
+import { isServerSide } from 'utils/env'
+import { loadStyleSheet } from 'utils/load-script'
 
 import type { AggregateRoot } from '@mx-space/api-client'
 
 import Package from '~/package.json'
 
-import client from '../socket'
 import { useStore } from '../store'
-import { TokenKey, isServerSide, loadStyleSheet } from '../utils'
+import { TokenKey } from '../utils/cookie'
 
 const version = `v${Package.version}` || ''
 
@@ -65,7 +66,9 @@ const Content: FC = observer((props) => {
       // set user
       master.setUser(user)
       checkLogin()
-      client.initIO()
+      import('../socket/index').then(({ socketClient }) => {
+        socketClient.initIO()
+      })
     } finally {
       document.body.classList.remove('loading')
     }

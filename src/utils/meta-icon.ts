@@ -3,7 +3,6 @@ import {
   BiCloudRainFill,
   MdiCloud,
   MdiSnowflake,
-  PhSunBold,
   RiSunCloudyFill,
 } from 'components/universal/Icons'
 import {
@@ -18,6 +17,7 @@ import {
   FaSolidSmile,
   FaSolidTired,
 } from 'components/universal/Icons/emoji'
+import { PhSunBold } from 'components/universal/Icons/layout'
 import type { FC } from 'react'
 import React from 'react'
 

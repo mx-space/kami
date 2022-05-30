@@ -5,7 +5,7 @@ import type { FC } from 'react'
 import { Fragment, createElement, useCallback, useMemo, useState } from 'react'
 import type ReactMarkdown from 'react-markdown'
 import { message } from 'react-message-popup'
-import client from 'socket'
+import { socketClient } from 'socket'
 import type { Id } from 'store/helper/structure'
 import { apiClient } from 'utils/client'
 
@@ -90,7 +90,7 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
         }
         success()
 
-        if (!client.socket.connected) {
+        if (!socketClient.socket.connected) {
           commentStore.addComment(data)
         }
         setReplyId('')

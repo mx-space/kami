@@ -6,14 +6,8 @@ import { useFooterBackground } from 'hooks/use-theme-background'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC } from 'react'
-import React, {
-  Fragment,
-  createElement,
-  memo,
-  useCallback,
-  useMemo,
-} from 'react'
-import { isServerSide } from 'utils'
+import React, { Fragment, useCallback, useMemo } from 'react'
+import { NoSSR } from 'utils'
 
 import Package from '~/package.json'
 
@@ -125,9 +119,4 @@ export const FooterContent: FC = observer(() => {
     </div>
   )
 })
-export const Footer = memo(() => {
-  if (isServerSide()) {
-    return null
-  }
-  return createElement(_Footer)
-})
+export const Footer = NoSSR(_Footer)

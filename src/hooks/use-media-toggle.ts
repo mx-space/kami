@@ -1,7 +1,7 @@
 import { runInAction } from 'mobx'
 import { useEffect, useState } from 'react'
 import { useStore } from 'store'
-import { isServerSide } from 'utils'
+import { isServerSide } from 'utils/env'
 
 interface DarkModeConfig {
   classNameDark?: string // A className to set "dark mode". Default = "dark-mode".

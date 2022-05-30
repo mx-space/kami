@@ -1,6 +1,6 @@
 import { Router } from 'next/router'
 import { useEffect } from 'react'
-import { isClientSide, isServerSide } from 'utils'
+import { isClientSide, isServerSide } from 'utils/env'
 
 import QProgress from '../../third/qp'
 import { useAnalyze } from './use-analyze'

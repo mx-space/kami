@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 import { ToastContainer, toast } from 'react-toastify'
 import { store } from 'store'
 
-import { isDev, isServerSide } from './utils'
+import { isDev, isServerSide } from './env'
 
 export class Notice {
   static shared = new Notice()

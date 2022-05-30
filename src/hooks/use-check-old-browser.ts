@@ -63,6 +63,7 @@ function checkOldBrowser() {
     return false
   })()
   if (isOld) {
+    window.alert('欧尼酱, 乃的浏览器太老了, 更新一下啦（o´ﾟ□ﾟ`o）')
     return {
       isOld: true,
       msg: `User browser is too old. UA: ${ua}`,

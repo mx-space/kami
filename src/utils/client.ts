@@ -6,7 +6,8 @@ import { allControllers, createClient } from '@mx-space/api-client'
 import { axiosAdaptor } from '@mx-space/api-client/lib/adaptors/axios'
 
 import { getToken } from './cookie'
-import { genUUID, isClientSide } from './utils'
+import { isClientSide } from './env'
+import { genUUID } from './utils'
 
 export const apiClient = createClient(axiosAdaptor)(API_URL, {
   controllers: allControllers,

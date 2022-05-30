@@ -23,7 +23,11 @@ if (isProd) {
 }
 const configs = withPlugins(plugins, {
   swcMinify: true,
-
+  experimental: {
+    scrollRestoration: true,
+    legacyBrowsers: false,
+    browsersListForSwc: true,
+  },
   webpack: (config, options) => {
     config.plugins.push(new WindiCSSWebpackPlugin())
 

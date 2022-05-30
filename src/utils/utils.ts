@@ -11,15 +11,6 @@ import dynamic from 'next/dynamic'
 import type { FC } from 'react'
 import RemoveMarkdown from 'remove-markdown'
 
-export const isClientSide = () => {
-  return typeof window !== 'undefined'
-}
-export const isServerSide = () => {
-  return !isClientSide()
-}
-
-export const isDev = process.env.NODE_ENV === 'development'
-
 export function getSummaryFromMd(text: string): string
 export function getSummaryFromMd(
   text: string,

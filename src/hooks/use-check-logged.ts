@@ -1,7 +1,8 @@
 import { message } from 'react-message-popup'
 import { useStore } from 'store'
-import { devtoolForbidden, getToken, removeToken } from 'utils'
 import { apiClient } from 'utils/client'
+import { devtoolForbidden } from 'utils/console'
+import { getToken, removeToken } from 'utils/cookie'
 
 import { useThemeConfig } from './use-initial-data'
 

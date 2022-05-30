@@ -1,6 +1,6 @@
 import spring, { toString } from 'css-spring'
 
-import { isClientSide } from './utils'
+import { isClientSide } from './env'
 
 const cache = new Map<string, string>()
 export type SpringOption = {
