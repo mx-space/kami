@@ -41,7 +41,7 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
       - uses: pnpm/action-setup@v2.2.2
         with:
-          version: 6.0.2
+          version: 7.x.x
           run_install: true
       - name: Build project
         run: |
