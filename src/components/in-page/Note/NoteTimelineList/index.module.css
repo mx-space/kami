@@ -6,6 +6,12 @@
   font-family: var(--sans-font);
 
   color: var(--shizuku-text-color);
+
+  &:hover {
+    .item {
+      @apply opacity-100;
+    }
+  }
 }
 
 .list {

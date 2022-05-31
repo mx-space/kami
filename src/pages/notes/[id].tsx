@@ -23,6 +23,7 @@ import { NoteLayout } from '~/components/layouts/NoteLayout'
 import { Loading } from '~/components/universal/Loading'
 import { Markdown } from '~/components/universal/Markdown'
 import { CommentLazy } from '~/components/widgets/Comment'
+import { SearchFAB } from '~/components/widgets/Search'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useHeaderMeta, useHeaderShare } from '~/hooks/use-header-meta'
@@ -245,6 +246,8 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
           <CommentLazy id={id} allowComment={note.allowComment ?? true} />
         </ArticleLayout>
       )}
+
+      <SearchFAB />
     </>
   )
 })

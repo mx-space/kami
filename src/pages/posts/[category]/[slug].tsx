@@ -27,6 +27,7 @@ import type { ActionProps } from '~/components/widgets/ArticleAction'
 import { ArticleFooterAction } from '~/components/widgets/ArticleAction'
 import { CommentLazy } from '~/components/widgets/Comment'
 import { DonatePopover } from '~/components/widgets/Donate'
+import { SearchFAB } from '~/components/widgets/Search'
 import { useHeaderMeta, useHeaderShare } from '~/hooks/use-header-meta'
 import { useInitialData, useThemeConfig } from '~/hooks/use-initial-data'
 import { useBackgroundOpacity } from '~/hooks/use-theme-background'
@@ -269,6 +270,8 @@ export const PostView: PageOnlyProps = observer((props) => {
             webUrl,
           ],
         )}
+
+        <SearchFAB />
       </ArticleLayout>
     </>
   )
