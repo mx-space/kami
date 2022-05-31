@@ -1,3 +1,10 @@
+.root {
+  @apply w-[800px] max-w-[80vw] max-h-[60vh] h-[600px];
+  @apply bg-bg-opacity shadow-lg min-h-50 rounded-xl flex flex-col overflow-hidden text-[--black];
+
+  backdrop-filter: blur(20px) saturate(180%);
+}
+
 .item {
   @apply flex py-4 !text-[inherit] overflow-hidden;
   @apply w-full justify-between;

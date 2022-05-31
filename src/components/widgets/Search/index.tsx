@@ -179,14 +179,7 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
   )
 
   return (
-    <div
-      className="w-[800px] max-w-[80vw] max-h-[60vh] h-[600px] 
-    bg-bg-opacity backdrop-filter backdrop-blur-lg backdrop-brightness-125
-    shadow-lg
-    min-h-50 rounded-xl flex flex-col overflow-hidden text-[--black]"
-      onKeyDown={handleKeyDown}
-      role="dialog"
-    >
+    <div className={styles['root']} onKeyDown={handleKeyDown} role="dialog">
       <input
         autoFocus
         className="p-4 px-5 w-full text-[16px] leading-4 bg-transparent"

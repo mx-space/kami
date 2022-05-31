@@ -6,7 +6,7 @@
   align-items: center;
 
   .box {
-    backdrop-filter: blur(5px);
+    backdrop-filter: saturate(180%) blur(20px);
     background-color: var(--bg-opacity);
     height: 200px;
     width: 200px;

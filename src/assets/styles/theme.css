@@ -15,7 +15,7 @@
 
   --code-bg: transparent;
   --black: #353535;
-  --bg-opacity: rgb(255 255 255 / 50%);
+  --bg-opacity: rgba(255, 255, 255, 0.72);
 
   --gray: var(--gray-4);
   --deep-gray: var(--gray-1);
@@ -51,7 +51,7 @@ html.dark {
   --pink: #eb4b63 !important;
 
   --black: #ddd;
-  --bg-opacity: rgb(17 17 17 / 50%);
+  --bg-opacity: rgba(29, 29, 31, 0.72);
 
   --gary-1: rgb(142, 142, 147);
   --gray-2: rgb(99, 99, 102);
@@ -62,7 +62,7 @@ html.dark {
 
   @supports not (backdrop-filter: blur(1px)) {
     & {
-      --bg-opacity: rgb(17 17 17 / 98%);
+      --bg-opacity: rgba(29, 29, 31, 0.98);
     }
   }
 }
