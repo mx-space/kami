@@ -2,7 +2,8 @@ import clsx from 'clsx'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC } from 'react'
-import React, { useCallback } from 'react'
+import React, { useCallback, useContext, useEffect } from 'react'
+import { Modifier, ShortcutContext } from 'react-shortcut-guide'
 
 import { FloatPopover } from '~/components/universal/FloatPopover'
 import { FontIcon } from '~/components/universal/FontIcon'
@@ -13,8 +14,10 @@ import type { Menu } from '~/types/config'
 
 import styles from './index.module.css'
 
-const MenuLink: FC<{ menu: Menu; isPublicUrl: boolean }> = (props) => {
-  const { menu, isPublicUrl } = props
+const MenuLink: FC<{ menu: Menu; isPublicUrl: boolean; index: number }> = (
+  props,
+) => {
+  const { menu, isPublicUrl, index } = props
 
   const { event } = useAnalyze()
   const tracker = useCallback((message) => {
@@ -23,6 +26,27 @@ const MenuLink: FC<{ menu: Menu; isPublicUrl: boolean }> = (props) => {
       label: message,
     })
   }, [])
+  const { registerShortcut } = useContext(ShortcutContext)
+  const id = `header-menu-${index}`
+  useEffect(() => {
+    if (index + 1 >= 10) {
+      return
+    }
+
+    if (!menu.title) {
+      return
+    }
+    const key = (index + 1).toString()
+    return registerShortcut(
+      key as any,
+      [Modifier.None],
+      () => {
+        document.getElementById(id)?.click()
+      },
+      `前往 - ${menu.title}`,
+    )
+  }, [index, menu.path, menu.title, id])
+
   return (
     <FloatPopover
       strategy={'fixed'}
@@ -33,6 +57,7 @@ const MenuLink: FC<{ menu: Menu; isPublicUrl: boolean }> = (props) => {
       triggerComponent={() => (
         <Link href={menu.path}>
           <a
+            id={id}
             tabIndex={-1}
             onClick={() => tracker(`一级导航点击 - ${menu.title}`)}
             rel={isPublicUrl ? 'noopener noreferrer' : undefined}
@@ -75,7 +100,7 @@ export const HeaderNavigationList: FC = observer(() => {
   const { mergedMenu } = useHeaderNavList()
   return (
     <>
-      {mergedMenu.map((_menu) => {
+      {mergedMenu.map((_menu, index) => {
         const isPublicUrl = _menu.path.startsWith('http')
         return (
           <div
@@ -84,7 +109,11 @@ export const HeaderNavigationList: FC = observer(() => {
             role="button"
             aria-label={_menu.title || 'header nav'}
           >
-            <MenuLink isPublicUrl={isPublicUrl} menu={_menu}></MenuLink>
+            <MenuLink
+              isPublicUrl={isPublicUrl}
+              menu={_menu}
+              index={index}
+            ></MenuLink>
           </div>
         )
       })}

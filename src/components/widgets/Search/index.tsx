@@ -10,6 +10,7 @@ import {
   useRef,
   useState,
 } from 'react'
+import { Modifier, useShortcut } from 'react-shortcut-guide'
 import { apiClient } from 'utils'
 
 import { EmptyIcon, IonSearch } from '~/components/universal/Icons'
@@ -17,7 +18,6 @@ import type { OverlayProps } from '~/components/universal/Overlay'
 import { OverLay } from '~/components/universal/Overlay'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
-import { useHotKey } from '~/hooks/use-hotkey'
 import { useStore } from '~/store'
 
 import styles from './index.module.css'
@@ -245,9 +245,15 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
 export const SearchOverlay: FC<OverlayProps> = (props) => {
   const { ...rest } = props
 
-  useHotKey({ key: 'Escape', preventInput: false }, () => {
-    props.onClose()
-  })
+  useShortcut(
+    'Escape',
+    [Modifier.None],
+    () => {
+      props.onClose()
+    },
+    '关闭搜索框',
+    { hiddenInPanel: true },
+  )
   return (
     <OverLay childrenOutside center {...rest}>
       <SearchPanel />
@@ -262,11 +268,10 @@ export const SearchHotKey: FC = memo(() => {
     event({ action: TrackerAction.Click, label: 'cmd+k' })
     setShow(true)
   }
+  useShortcut('K', [Modifier.Command], handler, '搜索')
+  useShortcut('K', [Modifier.Control], handler, '搜索', { hiddenInPanel: true })
+  useShortcut('/', [Modifier.None], handler, '搜索')
 
-  useHotKey({ key: 'k', modifier: ['Meta'], preventInput: false }, handler)
-  useHotKey({ key: 'k', modifier: ['Control'], preventInput: false }, handler)
-
-  useHotKey({ key: '/', preventInput: true }, handler)
   return <SearchOverlay show={show} onClose={() => setShow(false)} />
 })
 

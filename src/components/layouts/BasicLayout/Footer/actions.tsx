@@ -3,6 +3,7 @@ import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import React, { useCallback } from 'react'
+import { Modifier, useShortcut } from 'react-shortcut-guide'
 import { TransitionGroup } from 'react-transition-group'
 
 import {
@@ -31,6 +32,24 @@ export const FooterActions: FC = observer(() => {
       label: '底部点击回到顶部',
     })
   }, [])
+
+  const handlePlayMusic = useCallback(() => {
+    event({
+      action: TrackerAction.Click,
+      label: `底部播放器点击`,
+    })
+    runInAction(() => {
+      musicStore.setHide(!musicStore.isHide)
+      musicStore.setPlay(!musicStore.isHide)
+    })
+  }, [])
+
+  useShortcut(
+    'P',
+    [Modifier.Command, Modifier.Shift],
+    handlePlayMusic,
+    '播放音乐',
+  )
 
   return (
     <RootPortal>
@@ -64,19 +83,7 @@ export const FooterActions: FC = observer(() => {
           })}
         </TransitionGroup>
 
-        <button
-          aria-label="open player"
-          onClick={() => {
-            event({
-              action: TrackerAction.Click,
-              label: `底部播放器点击`,
-            })
-            runInAction(() => {
-              musicStore.setHide(!musicStore.isHide)
-              musicStore.setPlay(!musicStore.isHide)
-            })
-          }}
-        >
+        <button aria-label="open player" onClick={handlePlayMusic}>
           <FaSolidHeadphonesAlt />
         </button>
       </div>

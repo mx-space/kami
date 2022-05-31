@@ -10,6 +10,7 @@ import NextApp from 'next/app'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import React, { memo, useEffect, useMemo } from 'react'
+import { ShortcutProvider } from 'react-shortcut-guide'
 
 import type { AggregateRoot } from '@mx-space/api-client'
 
@@ -22,9 +23,11 @@ import Loader from '~/components/universal/Loader'
 import { MetaFooter } from '~/components/universal/Meta/footer'
 import { DynamicHeadMeta } from '~/components/universal/Meta/head'
 import { defaultConfigs } from '~/configs.default'
+import { TrackerAction } from '~/constants/tracker'
 import type { InitialDataType } from '~/context/initial-data'
 import { InitialContextProvider } from '~/context/initial-data'
 import { RootStoreProvider } from '~/context/root-store'
+import { useAnalyze } from '~/hooks/use-analyze'
 import { useCheckLogged } from '~/hooks/use-check-logged'
 import { useCheckOldBrowser } from '~/hooks/use-check-old-browser'
 import { useInitialData } from '~/hooks/use-initial-data'
@@ -55,7 +58,7 @@ const Content: FC = observer((props) => {
   useRouterEvent()
   useResizeScrollEvent()
   const initialData: AggregateRoot | null = useInitialData()
-
+  const { event } = useAnalyze()
   useEffect(() => {
     loadStyleSheet(
       'https://fonts.loli.net/css2?family=Noto+Sans+SC:wght@100;300;400;500&display=swap',
@@ -78,7 +81,22 @@ const Content: FC = observer((props) => {
   }, [])
 
   return (
-    <>
+    <ShortcutProvider
+      options={useMemo(
+        () => ({
+          darkMode: 'class',
+          darkClassName: 'html.dark',
+          onGuidePanelOpen() {
+            event({
+              label: 'Guide 唤醒了',
+              action: TrackerAction.Interaction,
+            })
+          },
+        }),
+
+        [],
+      )}
+    >
       <DynamicHeadMeta />
       <NextSeo
         title={`${initialData.seo.title} · ${initialData.seo.description}`}
@@ -88,7 +106,7 @@ const Content: FC = observer((props) => {
       <div id="next">{props.children}</div>
       <Loader />
       <MetaFooter />
-    </>
+    </ShortcutProvider>
   )
 })
 
@@ -110,6 +128,7 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
       <NoDataErrorView />
     )
   }, [Component, initData.aggregateData, pageProps])
+
   return (
     <RootStoreProvider>
       <InitialContextProvider value={initData}>{Inner}</InitialContextProvider>
