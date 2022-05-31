@@ -4,12 +4,16 @@ import React, {
   useCallback,
   useEffect,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react'
+import { ShortcutProvider } from 'react-shortcut-guide'
 
 import { BiMoonStarsFill, PhSunBold } from '~/components/universal/Icons/layout'
+import { TrackerAction } from '~/constants/tracker'
 import { useRootStore } from '~/context'
+import { useAnalyze } from '~/hooks/use-analyze'
 import { useMediaToggle } from '~/hooks/use-media-toggle'
 import { useThemeBackground } from '~/hooks/use-theme-background'
 import { springScrollToElement } from '~/utils/spring'
@@ -100,9 +104,23 @@ export const BasicLayout: FC = observer(({ children }) => {
       }, 50)
     }
   }, [])
-
+  const { event } = useAnalyze()
   return (
-    <>
+    <ShortcutProvider
+      options={useMemo(
+        () => ({
+          darkMode: 'class',
+          darkClassName: 'html.dark',
+          onGuidePanelOpen: () => {
+            event({
+              label: 'Guide 被打开了',
+              action: TrackerAction.Interaction,
+            })
+          },
+        }),
+        [],
+      )}
+    >
       <div className="inset-0 fixed bg-fixed pointer-events-none transition-opacity duration-500 ease transform-gpu">
         <div className="bg absolute inset-0 transform-gpu" />
       </div>
@@ -122,6 +140,6 @@ export const BasicLayout: FC = observer(({ children }) => {
       />
 
       <SearchHotKey />
-    </>
+    </ShortcutProvider>
   )
 })
