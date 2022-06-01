@@ -102,6 +102,7 @@ const __Markdown: FC<MdProps> = ensuredForwardRef<HTMLDivElement, MdProps>(
           styles['md'],
           codeBlockFully ? styles['code-fully'] : undefined,
         )}
+        suppressHydrationWarning
       >
         <ReactMarkdown
           source={value ?? (props.children as string)}

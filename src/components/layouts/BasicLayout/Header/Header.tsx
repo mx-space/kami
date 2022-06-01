@@ -3,7 +3,6 @@ import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { NoSSR } from 'utils'
 
 import { IcBaselineMenuOpen } from '~/components/universal/Icons'
 import { CustomLogo as Logo } from '~/components/universal/Logo'
@@ -19,7 +18,7 @@ import { HeaderDrawerNavigation } from './HeaderDrawerNavigation'
 import { MenuList } from './HeaderMenuList'
 import styles from './index.module.css'
 
-export const _Header: FC = observer(() => {
+export const Header: FC = observer(() => {
   const {
     seo: { title },
   } = useInitialData()
@@ -147,4 +146,3 @@ export const _Header: FC = observer(() => {
     </>
   )
 })
-export const Header = NoSSR(_Header)

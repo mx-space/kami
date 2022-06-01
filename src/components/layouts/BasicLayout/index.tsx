@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import React, {
+  Suspense,
   useCallback,
   useEffect,
   useLayoutEffect,
@@ -18,14 +19,18 @@ import { useMediaToggle } from '~/hooks/use-media-toggle'
 import { useThemeBackground } from '~/hooks/use-theme-background'
 import { springScrollToElement } from '~/utils/spring'
 
+const Header = React.lazy(() =>
+  import('./Header').then((mo) => ({
+    default: mo.Header,
+  })),
+)
+
 const ColorModeNoticePanel = React.lazy(() =>
   import('../../universal/Notice').then((mo) => ({
     default: mo.NoticePanel,
   })),
 )
-const Header = React.lazy(() =>
-  import('./Header').then(({ Header }) => ({ default: Header })),
-)
+
 const SearchHotKey = React.lazy(() =>
   import('~/components/widgets/Search').then((mo) => ({
     default: mo.SearchHotKey,
@@ -124,22 +129,27 @@ export const BasicLayout: FC = observer(({ children }) => {
       <div className="inset-0 fixed bg-fixed pointer-events-none transition-opacity duration-500 ease transform-gpu">
         <div className="bg absolute inset-0 transform-gpu" />
       </div>
-      <Header />
+      <Suspense fallback={null}>
+        <Header />
+      </Suspense>
+
       <div className="app-content">{children}</div>
-      <Footer />
-      <MusicMiniPlayerStoreControlled />
-      {!(appStore.viewport.mobile || appStore.viewport.pad) && (
-        <LampSwitch onClick={handleChangeColorMode} />
-      )}
+      <Suspense fallback={null}>
+        <Footer />
+        <MusicMiniPlayerStoreControlled />
+        {!(appStore.viewport.mobile || appStore.viewport.pad) && (
+          <LampSwitch onClick={handleChangeColorMode} />
+        )}
 
-      <ColorModeNoticePanel
-        {...tip}
-        onExited={() => setNotice(false)}
-        in={showNotice}
-        key={'notice'}
-      />
+        <ColorModeNoticePanel
+          {...tip}
+          onExited={() => setNotice(false)}
+          in={showNotice}
+          key={'notice'}
+        />
 
-      <SearchHotKey />
+        <SearchHotKey />
+      </Suspense>
     </ShortcutProvider>
   )
 })

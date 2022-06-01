@@ -1,11 +1,11 @@
 import type { DOMAttributes, FC } from 'react'
 import React, { Fragment, createElement, memo, useMemo } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { eventBus, isClientSide } from 'utils'
+import { eventBus } from 'utils'
 
 import { CustomEventTypes } from '~/types/events'
 
-export const Heading = () => {
+export const Heading: () => React.ElementType<any> = () => {
   let index = 0
 
   const RenderHeading: FC<{
@@ -39,7 +39,6 @@ export const Heading = () => {
     )
   })
 
-  return isClientSide()
-    ? RenderHeading
-    : ({ level, children }) => createElement(`h${level}`, null, children)
+  // const isClient = useIsClient()
+  return RenderHeading
 }

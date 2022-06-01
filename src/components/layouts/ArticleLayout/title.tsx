@@ -24,7 +24,7 @@ export const ArticleLayoutTitle: FC<{ animate?: boolean }> = observer(
     }
     return (
       <section className={styles['post-title']}>
-        <h1 className={styles['h1']}>
+        <h1 className={styles['h1']} suppressHydrationWarning>
           {isClientSide() ? (
             <TextFade appear={animate} key={title}>
               {title}
@@ -50,7 +50,7 @@ export const ArticleLayoutTitle: FC<{ animate?: boolean }> = observer(
         </h1>
 
         {subtitle && (
-          <h2>
+          <h2 suppressHydrationWarning>
             {isClientSide() && subtitleAnimation ? (
               typeof subtitle === 'string' ? (
                 <TextFade appear={animate} key={subtitle}>

@@ -25,17 +25,7 @@ export const ArticleLayout = memo(
       DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
   >(
     (
-      {
-        children,
-        title,
-        subtitle,
-        delay,
-        subtitleAnimation = true,
-        type,
-        id,
-        titleAnimate,
-        ...rest
-      },
+      { children, title, subtitle, delay, type, id, titleAnimate, ...rest },
       ref: any,
     ) => {
       return (

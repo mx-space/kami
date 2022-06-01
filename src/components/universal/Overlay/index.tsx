@@ -4,7 +4,7 @@ import type { CSSProperties, FC, ReactNode } from 'react'
 import { memo, useEffect } from 'react'
 import { stopEventDefault } from 'utils'
 
-import { isServerSide } from '~/utils/env'
+import { useIsClient } from '~/hooks/use-is-client'
 
 import { RootPortal } from '../Portal'
 import { FadeInOutTransitionView } from '../Transition/fade-in-out'
@@ -59,7 +59,8 @@ const __OverLay: FC<OverlayProps> = ({
   childrenOutside = false,
   ...props
 }) => {
-  if (isServerSide()) {
+  const isClient = useIsClient()
+  if (!isClient) {
     return null
   }
 

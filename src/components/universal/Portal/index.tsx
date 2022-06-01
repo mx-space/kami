@@ -1,10 +1,12 @@
 import type { FC } from 'react'
 import { memo } from 'react'
 import { createPortal } from 'react-dom'
-import { isServerSide } from 'utils'
+
+import { useIsClient } from '~/hooks/use-is-client'
 
 export const RootPortal: FC = memo((props) => {
-  if (isServerSide()) {
+  const isClient = useIsClient()
+  if (!isClient) {
     return null
   }
 
