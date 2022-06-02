@@ -60,7 +60,7 @@ specifiers:
   react-markdown: 4.3.1
   react-masonry-css: 1.0.16
   react-message-popup: 1.0.0-alpha.2
-  react-shortcut-guide: 0.2.3
+  react-shortcut-guide: 0.2.4
   react-toastify: 9.0.3
   react-transition-group: 4.4.2
   react-use: 17.4.0
@@ -99,7 +99,7 @@ dependencies:
   react-markdown: 4.3.1_react@18.1.0
   react-masonry-css: 1.0.16_react@18.1.0
   react-message-popup: 1.0.0-alpha.2_ef5jwxihqo6n7gxfmzogljlgcm
-  react-shortcut-guide: 0.2.3
+  react-shortcut-guide: 0.2.4
   react-toastify: 9.0.3_ef5jwxihqo6n7gxfmzogljlgcm
   react-transition-group: 4.4.2_ef5jwxihqo6n7gxfmzogljlgcm
   react-use: 17.4.0_ef5jwxihqo6n7gxfmzogljlgcm
@@ -355,7 +355,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/template': 7.16.7
-      '@babel/types': 7.18.2
+      '@babel/types': 7.18.4
     dev: true
 
   /@babel/helper-hoist-variables/7.16.7:
@@ -376,7 +376,7 @@ packages:
     resolution: {integrity: sha512-LVtS6TqjJHFc+nYeITRo6VLXve70xmq7wPhWTqDJusJEgGmkAACWwMiTNrvfoQo6hEhFwAIixNkvB0jPXDL8Wg==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.18.2
+      '@babel/types': 7.18.4
     dev: true
 
   /@babel/helper-module-transforms/7.18.0:
@@ -390,7 +390,7 @@ packages:
       '@babel/helper-validator-identifier': 7.16.7
       '@babel/template': 7.16.7
       '@babel/traverse': 7.18.2
-      '@babel/types': 7.18.2
+      '@babel/types': 7.18.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -435,7 +435,7 @@ packages:
     resolution: {integrity: sha512-txyMCGroZ96i+Pxr3Je3lzEJjqwaRC9buMUgtomcrLe5Nd0+fk1h0LLA+ixUF5OW7AhHuQ7Es1WcQJZmZsz2XA==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.18.2
+      '@babel/types': 7.18.4
     dev: true
 
   /@babel/helper-skip-transparent-expression-wrappers/7.16.0:
@@ -449,7 +449,7 @@ packages:
     resolution: {integrity: sha512-xbWoy/PFoxSWazIToT9Sif+jJTlrMcndIsaOKvTA6u7QEo7ilkRZpjew18/W3c7nm8fXdUDXh02VXTbZ0pGDNw==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.18.2
+      '@babel/types': 7.18.4
     dev: true
 
   /@babel/helper-validator-identifier/7.16.7:
@@ -480,7 +480,7 @@ packages:
     dependencies:
       '@babel/template': 7.16.7
       '@babel/traverse': 7.18.2
-      '@babel/types': 7.18.2
+      '@babel/types': 7.18.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -507,7 +507,7 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
-      '@babel/types': 7.18.2
+      '@babel/types': 7.18.4
     dev: true
 
   /@babel/parser/7.18.4:
@@ -1336,8 +1336,8 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/code-frame': 7.16.7
-      '@babel/parser': 7.18.3
-      '@babel/types': 7.18.2
+      '@babel/parser': 7.18.4
+      '@babel/types': 7.18.4
     dev: true
 
   /@babel/traverse/7.13.0:
@@ -5602,8 +5602,8 @@ packages:
       react-dom: 18.1.0_react@18.1.0
     dev: false
 
-  /react-shortcut-guide/0.2.3:
-    resolution: {integrity: sha512-c12D6LqqVRuI6v12kulaE1megb1vJLVJ6gvICcpQFbgfBrqO8io+dN7nrYazhay/gp6i0lDrmsFclEWOjGnAoA==}
+  /react-shortcut-guide/0.2.4:
+    resolution: {integrity: sha512-vaW5vyrZ+PIiSwHB0cVgM509+jZoDWxq3wXS34trv5IK9DSCyAbYLEFjATMkmw1k09QIqUndJxztDVG/X0QuzQ==}
     dependencies:
       lodash.debounce: 4.0.8
     dev: false
