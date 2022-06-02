@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import { Fragment, useCallback, useEffect, useMemo, useState } from 'react'
+import { Fragment, useCallback, useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { message } from 'react-message-popup'
 import { useHash } from 'react-use'
@@ -10,12 +10,7 @@ import type { CommentModel, Pager } from '@mx-space/api-client'
 import { apiClient } from '~/utils/client'
 
 import { useStore } from '../../../store'
-import {
-  NoSSR,
-  flattenChildren,
-  isClientSide,
-  springScrollToElement,
-} from '../../../utils'
+import { NoSSR, isClientSide, springScrollToElement } from '../../../utils'
 import { Pagination } from '../../universal/Pagination'
 import { CommentBox } from './box'
 import { Comments } from './comments'
@@ -51,10 +46,6 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
   const [pagination, setPagination] = useState({} as Pager)
   const { userStore } = useStore()
   const logged = userStore.isLogged
-  const collection = useMemo(
-    () => new Map<string, Omit<CommentModel, 'children'>>(),
-    [],
-  )
 
   const { commentStore } = useStore()
 
@@ -69,12 +60,6 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
       return commentStore
         .fetchComment(id, page, size)
         .then(({ data, pagination }) => {
-          collection.clear()
-
-          flattenChildren(data as CommentModel[]).forEach((i) => {
-            collection.set(i.id, i)
-          })
-
           setComments(data)
           setPagination(pagination)
           setCommentShow(true)
@@ -82,8 +67,8 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
           return data
         })
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [collection, id],
+
+    [id],
   )
 
   const handleComment = useCallback(

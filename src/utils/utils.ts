@@ -35,18 +35,6 @@ export function getSummaryFromMd(
   return description
 }
 
-export function flattenChildren<T extends { children: T[] }>(
-  data: T[],
-  level = 0,
-): Omit<T, 'children'>[] {
-  return data.reduce(
-    (arr, { children = [], ...rest }) =>
-      // @ts-ignore
-      arr.concat([{ ...rest }], flattenChildren(children, level + 1)),
-    [],
-  )
-}
-
 export const resolveUrl = (pathname: string | undefined, base: string) => {
   return base.replace(/\/$/, '').concat(pathname || '')
 }
