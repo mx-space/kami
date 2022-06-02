@@ -66,17 +66,15 @@ const TopicDetailPage: NextPage<TopicModel> = (props) => {
               notes.map((note) => {
                 const date = new Date(note.created)
                 return (
-                  <RightLeftTransitionView key={note.id}>
-                    <li>
-                      <Link href={`/notes/${note.nid}`}>
-                        <a>{note.title}</a>
-                      </Link>
-                      <span className={'meta'}>
-                        {(date.getMonth() + 1).toString().padStart(2, '0')}/
-                        {date.getDate().toString().padStart(2, '0')}/
-                        {date.getFullYear()}
-                      </span>
-                    </li>
+                  <RightLeftTransitionView key={note.id} component={'li'}>
+                    <Link href={`/notes/${note.nid}`}>
+                      <a>{note.title}</a>
+                    </Link>
+                    <span className={'meta'}>
+                      {(date.getMonth() + 1).toString().padStart(2, '0')}/
+                      {date.getDate().toString().padStart(2, '0')}/
+                      {date.getFullYear()}
+                    </span>
                   </RightLeftTransitionView>
                 )
               })}

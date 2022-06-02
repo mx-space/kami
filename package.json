@@ -57,7 +57,7 @@
   ],
   "dependencies": {
     "@floating-ui/react-dom": "0.7.1",
-    "@mx-space/api-client": "0.10.6",
+    "@mx-space/api-client": "0.10.8",
     "axios": "0.27.2",
     "clsx": "1.1.1",
     "css-spring": "4.1.0",
@@ -111,7 +111,7 @@
     "eslint": "*",
     "husky": "8.0.1",
     "js-yaml": "*",
-    "lint-staged": "12.5.0",
+    "lint-staged": "13.0.0",
     "next-compose-plugins": "2.2.1",
     "next-pwa": "5.5.2",
     "postcss": "8.4.14",

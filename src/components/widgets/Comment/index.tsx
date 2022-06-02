@@ -3,13 +3,19 @@ import type { FC } from 'react'
 import { Fragment, useCallback, useEffect, useMemo, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { message } from 'react-message-popup'
+import { useHash } from 'react-use'
 
 import type { CommentModel, Pager } from '@mx-space/api-client'
 
 import { apiClient } from '~/utils/client'
 
 import { useStore } from '../../../store'
-import { NoSSR, flattenChildren } from '../../../utils'
+import {
+  NoSSR,
+  flattenChildren,
+  isClientSide,
+  springScrollToElement,
+} from '../../../utils'
 import { Pagination } from '../../universal/Pagination'
 import { CommentBox } from './box'
 import { Comments } from './comments'
@@ -59,18 +65,22 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
   }, [])
 
   const fetchComments = useCallback(
-    (page = 1, size = 10) => {
-      commentStore.fetchComment(id, page, size).then(({ data, pagination }) => {
-        collection.clear()
+    async (page = 1, size = 10) => {
+      return commentStore
+        .fetchComment(id, page, size)
+        .then(({ data, pagination }) => {
+          collection.clear()
 
-        flattenChildren(data as CommentModel[]).forEach((i) => {
-          collection.set(i.id, i)
+          flattenChildren(data as CommentModel[]).forEach((i) => {
+            collection.set(i.id, i)
+          })
+
+          setComments(data)
+          setPagination(pagination)
+          setCommentShow(true)
+
+          return data
         })
-
-        setComments(data)
-        setPagination(pagination)
-        setCommentShow(true)
-      })
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [collection, id],
@@ -103,10 +113,28 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
     [fetchComments, id, logged],
   )
 
-  const [commentShow, setCommentShow] = useState(false)
+  const hash = useHash()
+
+  const shouldPreloadComment = isClientSide() && hash.includes('#comments-')
+
+  const [commentShow, setCommentShow] = useState(shouldPreloadComment)
+
+  useEffect(() => {
+    if (shouldPreloadComment) {
+      setCommentShow(true)
+      fetchComments().then(() => {
+        setTimeout(() => {
+          const $el = document.getElementById(location.hash.slice(1))
+
+          $el && springScrollToElement($el, 1000, -250)
+        }, 1000)
+      })
+    }
+  }, [fetchComments, shouldPreloadComment])
 
   const { ref } = useInView({
     threshold: 0.5,
+    triggerOnce: true,
     onChange(inView) {
       if (inView && !commentShow) {
         fetchComments()
