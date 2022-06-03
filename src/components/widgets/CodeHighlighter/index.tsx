@@ -79,7 +79,7 @@ export const HighLighter: FC<Props> = observer((props) => {
   return (
     <div className={styles['code-wrap']}>
       <span className={styles['language-tip']} aria-hidden>
-        {language}
+        {language?.toUpperCase()}
       </span>
 
       <pre className="line-numbers !bg-transparent" data-start="1">

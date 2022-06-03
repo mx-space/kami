@@ -27,7 +27,7 @@
   width: 2.25em;
   position: fixed;
   font-size: 1.2em;
-  transition: bottom 0.3s;
+  transition: bottom 0.3s, transform 0.5s;
 }
 
 .action button {
@@ -52,4 +52,8 @@
 
 .action .top.active {
   transform: scale(1);
+}
+
+.action.hidden {
+  transform: translateX(200%);
 }

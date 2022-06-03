@@ -169,7 +169,7 @@ export const FloatPopover: FC<
 
     const TriggerWrapper = (
       <div
-        role={'button'}
+        role={trigger === 'both' || trigger === 'click' ? 'button' : 'note'}
         tabIndex={0}
         className={clsx('inline-block', wrapperClassNames)}
         ref={reference}

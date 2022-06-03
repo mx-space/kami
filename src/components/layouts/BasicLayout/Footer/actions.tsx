@@ -1,8 +1,9 @@
 import classNames from 'clsx'
+import clsx from 'clsx'
 import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import React, { useCallback } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { Modifier, useShortcut } from 'react-shortcut-guide'
 import { TransitionGroup } from 'react-transition-group'
 
@@ -19,10 +20,22 @@ import { springScrollToTop } from '~/utils/spring'
 
 import styles from './actions.module.css'
 
-// TODO chat panel
+const timeout = { exit: 300 }
 export const FooterActions: FC = observer(() => {
   const { appStore, actionStore, musicStore } = useStore()
-  const { isOverFirstScreenHeight: isOverflow } = appStore
+  const {
+    isOverFirstScreenHeight: isOverflow,
+    isPadOrMobile,
+    scrollDirection,
+  } = appStore
+
+  const shouldHideActionButtons = useMemo(() => {
+    if (!isPadOrMobile) {
+      return false
+    }
+
+    return isOverflow && scrollDirection == 'down'
+  }, [isOverflow, isPadOrMobile, scrollDirection])
 
   const { event } = useAnalyze()
   const toTop = useCallback(() => {
@@ -53,7 +66,12 @@ export const FooterActions: FC = observer(() => {
 
   return (
     <RootPortal>
-      <div className={styles.action}>
+      <div
+        className={clsx(
+          styles.action,
+          shouldHideActionButtons && styles['hidden'],
+        )}
+      >
         <button
           aria-label="to top"
           className={classNames(
@@ -66,18 +84,18 @@ export const FooterActions: FC = observer(() => {
         </button>
         <TransitionGroup>
           {actionStore.actions.map((action, i) => {
-            return (
-              <ScaleTransitionView
-                key={i}
-                unmountOnExit
-                timeout={{ exit: 300 }}
+            const El = (
+              <button
+                aria-label="footer action button"
+                onClick={action.onClick}
               >
-                <button
-                  aria-label="footer action button"
-                  onClick={action.onClick}
-                >
-                  {action.icon}
-                </button>
+                {action.icon}
+              </button>
+            )
+
+            return (
+              <ScaleTransitionView key={i} unmountOnExit timeout={timeout}>
+                {El}
               </ScaleTransitionView>
             )
           })}

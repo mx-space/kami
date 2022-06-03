@@ -121,12 +121,14 @@ export const PostView: PageOnlyProps = observer((props) => {
     springScrollToTop()
   }, [post.id])
 
+  const createTime = dayjs(post.created).locale('cn').format('YYYY年M月D日')
+
   useEffect(() => {
     setAction({
       informs: [
         {
           icon: <MdiCalendar />,
-          name: dayjs(post.created).locale('cn').format('YYYY年M月DD日'),
+          name: createTime,
         },
         {
           icon: <FeHash />,
@@ -190,12 +192,13 @@ export const PostView: PageOnlyProps = observer((props) => {
     post.category.name,
     post.copyright,
     post.count.read,
-    post.created,
     post.tags,
     donateConfig.enable,
     donateConfig.link,
     post.count.like,
     post.count,
+    createTime,
+    post.category.slug,
   ])
 
   // header meta
