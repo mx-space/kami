@@ -43,6 +43,34 @@ const useDarkMode = (
   }, [storageKey])
 
   useEffect(() => {
+    const handler = (e: MediaQueryListEvent) => {
+      const storageValue = localStorage.getItem(storageKey || 'darkMode')
+      if (storageValue === null) {
+        setDarkMode(e.matches)
+      }
+    }
+
+    const focusHandler = () => {
+      const storageValue = localStorage.getItem(storageKey || 'darkMode')
+      if (storageValue === null) {
+        setDarkMode(window.matchMedia('(prefers-color-scheme: dark)').matches)
+      }
+    }
+
+    window.addEventListener('focus', focusHandler)
+    window
+      .matchMedia('(prefers-color-scheme: dark)')
+      .addEventListener('change', handler)
+
+    return () => {
+      window.removeEventListener('focus', focusHandler)
+      window
+        .matchMedia('(prefers-color-scheme: dark)')
+        .removeEventListener('change', handler)
+    }
+  }, [storageKey])
+
+  useEffect(() => {
     if (isServerSide()) {
       return
     }
@@ -104,7 +132,7 @@ export const useMediaToggle = () => {
 
   useEffect(() => {
     const handler = () => {
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches && value) {
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches === value) {
         localStorage.removeItem(darkModeKey)
       }
     }
