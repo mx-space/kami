@@ -4,7 +4,7 @@
   position: fixed;
   top: -10vh;
   right: 3rem;
-  z-index: 0;
+  z-index: 1;
 }
 
 .select-line {
