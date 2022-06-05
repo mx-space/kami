@@ -126,7 +126,7 @@
     "typescript": "4.7.3",
     "windicss": "3.5.4",
     "windicss-webpack-plugin": "1.7.3",
-    "zx": "6.2.2"
+    "zx": "6.2.3"
   },
   "resolutions": {
     "react-use": "17.4.0",
