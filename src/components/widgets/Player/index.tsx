@@ -250,7 +250,10 @@ const BottomProgressBar = observer(() => {
   return (
     <RootPortal>
       <div
-        className="fixed bottom-0 left-0 origin-left transform-gpu ease-linear transition-transform right-0 transform scale-y-50 pt-[1px] bg-yellow z-1 duration-1000"
+        className={
+          'fixed bottom-0 left-0 origin-left transform-gpu ease-linear transition-transform right-0' +
+          ' transform scale-y-50 pt-[2px] bg-yellow duration-1000 z-99'
+        }
         style={{
           transform: `scaleX(${progress})`,
         }}
