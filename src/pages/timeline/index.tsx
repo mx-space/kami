@@ -187,35 +187,33 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
             </h1>
 
             <ul className={styles['timeline-wrap']}>
-              {value.map((item, i) => {
+              {value.map((item) => {
                 return (
-                  <div key={item.id}>
-                    <li key={item.id} className="flex items-center">
-                      <Link href={item.href} as={item.as}>
-                        <a>
-                          <span className={'date'}>
-                            {Intl.DateTimeFormat('en-us', {
-                              month: '2-digit',
-                              day: '2-digit',
-                            }).format(item.date)}
-                          </span>
-                          <span className={'title'}>{item.title}</span>
-                        </a>
-                      </Link>
-                      {item.important && (
-                        <SolidBookmark
-                          className="text-red mr-4 cursor-pointer"
-                          onClick={() => {
-                            router.push({ query: { memory: true } })
-                          }}
-                        ></SolidBookmark>
-                      )}
+                  <li key={item.id} className="flex items-center">
+                    <Link href={item.href} as={item.as}>
+                      <a>
+                        <span className={'date'}>
+                          {Intl.DateTimeFormat('en-us', {
+                            month: '2-digit',
+                            day: '2-digit',
+                          }).format(item.date)}
+                        </span>
+                        <span className={'title'}>{item.title}</span>
+                      </a>
+                    </Link>
+                    {item.important && (
+                      <SolidBookmark
+                        className="text-red mr-4 cursor-pointer"
+                        onClick={() => {
+                          router.push({ query: { memory: true } })
+                        }}
+                      ></SolidBookmark>
+                    )}
 
-                      <span className={'meta'}>
-                        {item.meta.map((m, i) => (i === 0 ? m : `/${m}`))}
-                      </span>
-                    </li>
-                  </div>
+                    <span className={'meta'}>
+                      {item.meta.map((m, i) => (i === 0 ? m : `/${m}`))}
+                    </span>
+                  </li>
                 )
               })}
             </ul>
