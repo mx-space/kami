@@ -1,4 +1,5 @@
 import { defineConfig } from 'windicss/helpers'
+import plugin from 'windicss/plugin'
 
 export default defineConfig({
   extract: {
@@ -6,7 +7,30 @@ export default defineConfig({
     exclude: ['node_modules', '.git', '.next'],
   },
   darkMode: 'class',
-  plugins: [require('windicss/plugin/line-clamp')],
+  plugins: [
+    require('windicss/plugin/line-clamp'),
+    plugin(({ addComponents, addDynamic, variants }) => {
+      const styles = {
+        '.content-auto': {
+          'content-visibility': 'auto',
+        },
+      }
+      addComponents(styles)
+      addDynamic(
+        'contain-intrinsic',
+        ({ Utility, Style }) => {
+          return Utility.handler
+            .handleStatic(Style('contain-intrinsic'))
+            .handleNumber(0, Infinity, 'int', (number) => `${number}px`)
+            .handleSize((size) => {
+              return size
+            })
+            .createProperty('contain-intrinsic-size')
+        },
+        variants('contain-intrinsic'),
+      )
+    }),
+  ],
   theme: {
     extend: {
       screens: {

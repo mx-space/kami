@@ -120,7 +120,7 @@ export const FloatPopover: FC<
         return
       }
       setCurrentStatus(false)
-    }, [])
+    }, [debug])
 
     const clickTriggerFlag = useRef(false)
     const handleMouseOut = useCallback(() => {
