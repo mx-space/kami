@@ -8,7 +8,8 @@ import type {
   CategoryWithChildrenModel,
 } from '@mx-space/api-client'
 
-import { RightLeftTransitionView } from '~/components/universal/Transition/right-left'
+import { TimelineListWrapper } from '~/components/universal/TimelineListWrapper'
+import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { apiClient } from '~/utils/client'
 
 import { ArticleLayout } from '../../components/layouts/ArticleLayout'
@@ -27,40 +28,41 @@ const CategoryListView: NextPage<CategoryListViewProps> = (props) => {
       title={`分类 - ${category.name}`}
       subtitle={
         children.length
-          ? `当前共有${children.length}篇文章, 加油！`
+          ? `当前共有 ${children.length} 篇文章, 加油！`
           : `这里还有没有内容呢，再接再厉！`
       }
     >
       <SEO title={`分类: ${category.name}`} />
       <article className="article-list">
-        <ul>
-          <TransitionGroup key={category.id} appear>
-            {children.map((child, i) => {
-              const date = new Date(child.created)
+        <TransitionGroup
+          key={category.id}
+          appear
+          component={TimelineListWrapper}
+        >
+          {children.map((child, i) => {
+            const date = new Date(child.created)
 
-              return (
-                <RightLeftTransitionView
-                  key={child.id}
-                  timeout={{ enter: 700 + 50 * i }}
+            return (
+              <BottomUpTransitionView
+                key={child.id}
+                timeout={{ enter: 700 + 50 * i }}
+                component="li"
+              >
+                <Link
+                  href={'/posts/[category]/[slug]'}
+                  as={`/posts/${category.slug}/${child.slug}`}
                 >
-                  <li>
-                    <Link
-                      href={'/posts/[category]/[slug]'}
-                      as={`/posts/${category.slug}/${child.slug}`}
-                    >
-                      <a>{child.title}</a>
-                    </Link>
-                    <span className={'meta'}>
-                      {(date.getMonth() + 1).toString().padStart(2, '0')}/
-                      {date.getDate().toString().padStart(2, '0')}/
-                      {date.getFullYear()}
-                    </span>
-                  </li>
-                </RightLeftTransitionView>
-              )
-            })}
-          </TransitionGroup>
-        </ul>
+                  <a>{child.title}</a>
+                </Link>
+                <span className={'meta'}>
+                  {(date.getMonth() + 1).toString().padStart(2, '0')}/
+                  {date.getDate().toString().padStart(2, '0')}/
+                  {date.getFullYear()}
+                </span>
+              </BottomUpTransitionView>
+            )
+          })}
+        </TransitionGroup>
       </article>
     </ArticleLayout>
   )

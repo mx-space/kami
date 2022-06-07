@@ -9,6 +9,7 @@ import { usePrevious } from 'react-use'
 import type { TimelineData } from '@mx-space/api-client'
 
 import { SolidBookmark } from '~/components/universal/Icons'
+import { TimelineListWrapper } from '~/components/universal/TimelineListWrapper'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { apiClient } from '~/utils/client'
@@ -164,29 +165,28 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
     <ArticleLayout
       title={!props.memory ? '时间线' : '回忆'}
       subtitle={[
-        `共有${
+        `共有 ${
           arr.flat(2).filter((i) => typeof i === 'object').length
-        }篇文章，${!props.memory ? '再接再厉' : '回顾一下从前吧'}`,
+        } 篇文章，${!props.memory ? '再接再厉' : '回顾一下从前吧'}`,
       ]}
       delay={500}
       key={props.memory ? 'memory' : 'timeline'}
     >
       {!props.memory && (
-        <div style={{ marginTop: '-3rem', marginBottom: '3rem' }}>
+        <div className={'-mt-12 mb-12 text-shizuku-text'}>
           <Progress />
           <p>活在当下，珍惜眼下</p>
         </div>
       )}
       <SEO title={'时间线'} />
-      {arr.reverse().map(([year, value], j) => {
+      {arr.reverse().map(([year, value]) => {
         return (
           <article className="article-list" key={year}>
             <h1 key={1}>
               {year}
               <small className={styles['count']}>({value.length})</small>
             </h1>
-
-            <ul className={styles['timeline-wrap']}>
+            <TimelineListWrapper>
               {value.map((item) => {
                 return (
                   <li key={item.id} className="flex items-center">
@@ -216,7 +216,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
                   </li>
                 )
               })}
-            </ul>
+            </TimelineListWrapper>
           </article>
         )
       })}

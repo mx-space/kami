@@ -62,7 +62,10 @@ export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
             <DividerVertical />
             最近更新
             <DividerVertical />
-            {notes[0]?.title}（
+            <Link href={`/notes/${notes[0].nid}`}>
+              <a>{notes[0]?.title}</a>
+            </Link>
+            （
             {
               <RelativeTime
                 date={notes[0].modified || notes[0].created}

@@ -12,6 +12,7 @@ import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { Divider } from '~/components/universal/Divider'
 import { Pagination } from '~/components/universal/Pagination'
 import { SEO } from '~/components/universal/Seo'
+import { TimelineListWrapper } from '~/components/universal/TimelineListWrapper'
 import { RightLeftTransitionView } from '~/components/universal/Transition/right-left'
 
 const TopicDetailPage: NextPage<TopicModel> = (props) => {
@@ -60,26 +61,25 @@ const TopicDetailPage: NextPage<TopicModel> = (props) => {
         )}
       </div>
       <div className="article-list mt-16">
-        <ul>
-          <TransitionGroup>
-            {notes &&
-              notes.map((note) => {
-                const date = new Date(note.created)
-                return (
-                  <RightLeftTransitionView key={note.id} component={'li'}>
-                    <Link href={`/notes/${note.nid}`}>
-                      <a>{note.title}</a>
-                    </Link>
-                    <span className={'meta'}>
-                      {(date.getMonth() + 1).toString().padStart(2, '0')}/
-                      {date.getDate().toString().padStart(2, '0')}/
-                      {date.getFullYear()}
-                    </span>
-                  </RightLeftTransitionView>
-                )
-              })}
-          </TransitionGroup>
-        </ul>
+        <TransitionGroup component={TimelineListWrapper}>
+          {notes &&
+            notes.map((note) => {
+              const date = new Date(note.created)
+              return (
+                <RightLeftTransitionView key={note.id} component={'li'}>
+                  <Link href={`/notes/${note.nid}`}>
+                    <a>{note.title}</a>
+                  </Link>
+                  <span className={'meta'}>
+                    {(date.getMonth() + 1).toString().padStart(2, '0')}/
+                    {date.getDate().toString().padStart(2, '0')}/
+                    {date.getFullYear()}
+                  </span>
+                </RightLeftTransitionView>
+              )
+            })}
+        </TransitionGroup>
+
         {pager && (
           <Pagination
             current={pager.currentPage}
