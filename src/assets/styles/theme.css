@@ -38,6 +38,8 @@
 }
 
 html.dark {
+  color-scheme: dark;
+
   --red: rgb(255, 69, 58) !important;
   --blue: #81cffa !important;
   --green: #1f8f93 !important;
@@ -114,7 +116,7 @@ body::-webkit-scrollbar {
 }
 
 html.dark img {
-  filter: brightness(0.6) !important;
+  filter: brightness(0.9) !important;
 }
 
 body * {

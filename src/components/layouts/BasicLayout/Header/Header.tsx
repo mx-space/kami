@@ -9,6 +9,7 @@ import { CustomLogo as Logo } from '~/components/universal/Logo'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useInitialData } from '~/hooks/use-initial-data'
+import { useIsClient } from '~/hooks/use-is-client'
 import { useSingleAndDoubleClick } from '~/hooks/use-single-double-click'
 import { useStore } from '~/store'
 
@@ -60,6 +61,33 @@ export const Header: FC = observer(() => {
     appHeaderRef.current?.scrollIntoView()
   }, [showPageHeader])
 
+  const MemoComponent = useMemo(
+    () => (
+      <div
+        className={classNames(
+          styles['head-swiper'],
+          styles['swiper-metawrapper'],
+          'flex justify-between truncate',
+        )}
+      >
+        <div className={styles['head-info']}>
+          <div className={styles['desc']}>
+            <div className={styles['meta']}>{appStore.headerNav.meta}</div>
+            <div className={styles['title']}>{appStore.headerNav.title}</div>
+          </div>
+        </div>
+        <div className={styles['right-wrapper']}>
+          <HeaderActionBasedOnRouterPath />
+        </div>
+      </div>
+    ),
+    [appStore.headerNav.meta, appStore.headerNav.title],
+  )
+  const isClient = useIsClient()
+  if (!isClient) {
+    return null
+  }
+
   return (
     <>
       <header
@@ -105,32 +133,7 @@ export const Header: FC = observer(() => {
             </div>
             <MenuList />
           </div>
-          {useMemo(
-            () => (
-              <div
-                className={classNames(
-                  styles['head-swiper'],
-                  styles['swiper-metawrapper'],
-                  'flex justify-between truncate',
-                )}
-              >
-                <div className={styles['head-info']}>
-                  <div className={styles['desc']}>
-                    <div className={styles['meta']}>
-                      {appStore.headerNav.meta}
-                    </div>
-                    <div className={styles['title']}>
-                      {appStore.headerNav.title}
-                    </div>
-                  </div>
-                </div>
-                <div className={styles['right-wrapper']}>
-                  <HeaderActionBasedOnRouterPath />
-                </div>
-              </div>
-            ),
-            [appStore.headerNav.meta, appStore.headerNav.title],
-          )}
+          {MemoComponent}
         </nav>
         {isPadOrMobile && (
           <HeaderDrawer

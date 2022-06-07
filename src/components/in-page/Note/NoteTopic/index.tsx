@@ -53,6 +53,7 @@ export const NoteTopic: FC<{ noteId: string; topic: TopicModel }> = (props) => {
           <div className="flex-grow flex flex-col self-start">
             <span className="text-md font-medium mb-2">
               <FloatPopover
+                strategy="absolute"
                 triggerComponent={() => (
                   <Link
                     href={`/notes/topics/${topic.slug}`}
