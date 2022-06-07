@@ -75,6 +75,11 @@ html.dark {
   }
 }
 
+*::selection {
+  background: var(--primary);
+  color: var(--white);
+}
+
 html {
   font: 14px/1.15 var(--sans-font);
   color: var(--black);

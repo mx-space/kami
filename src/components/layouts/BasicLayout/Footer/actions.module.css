@@ -33,17 +33,17 @@
 .action button {
   width: 2.25em;
   height: 2.25em;
-  color: #795548;
   color: var(--brown);
   margin-top: 0.5em;
-  background: #fff;
   background: var(--light-bg);
   border-radius: 66%;
   transition: transform 0.3s;
-  box-shadow: 0 0 10px rgb(0 0 0 / 10%), 0 5px 20px rgb(0 0 0 / 20%);
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
+  @apply shadow-out-sm;
 }
 
 .action .top {

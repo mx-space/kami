@@ -73,7 +73,7 @@ export const Comment: FC<
             </span>
             {location && <span>来自：{location}</span>}
           </div>
-          <div className={styles['detail']}>{content}</div>
+          <div className={'text-shizuku-text'}>{content}</div>
           <ul className={styles['actions']}>
             {actions && actions.map((action, i) => <li key={i}>{action}</li>)}
           </ul>

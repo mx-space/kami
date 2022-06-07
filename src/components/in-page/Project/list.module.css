@@ -20,7 +20,7 @@
 
     a:hover .project-icon,
     img {
-      box-shadow: 0 0 10px rgb(0 0 0 / 10%), 0 5px 20px rgb(0 0 0 / 20%);
+      @apply shadow-out-sm;
     }
   }
 }

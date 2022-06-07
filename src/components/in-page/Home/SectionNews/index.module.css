@@ -93,8 +93,8 @@
       linear,
       left top,
       left bottom,
-      from(rgb(0 0 0 / 0%)),
-      to(rgb(0 0 0 / 55.7%))
+      from(rgb(128 128 128 / 0%)),
+      to(rgb(128 128 128 / 55.7%))
     );
     z-index: 2;
   }

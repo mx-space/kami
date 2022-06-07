@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import type { FC } from 'react'
 import { default as React } from 'react'
 
@@ -32,7 +33,7 @@ export const RenderListItem: FC<{ checked?: null | undefined | boolean }> = (
 ) => {
   const isChecked = typeof props.checked == 'boolean'
   return (
-    <li className={isChecked ? 'list-none' : ''}>
+    <li className={clsx(isChecked ? 'list-none' : undefined, 'mb-2')}>
       {isChecked ? (
         <label className="inline-flex items-center">
           {/*  @ts-ignore */}

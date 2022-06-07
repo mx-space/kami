@@ -9,7 +9,7 @@
 
   &:hover {
     .item {
-      @apply opacity-100;
+      @apply text-gray-1 opacity-100;
     }
   }
 }
@@ -25,17 +25,21 @@
   li {
     @apply truncate;
   }
+
+  li:hover .item {
+    @apply text-primary;
+  }
 }
 
 .item {
-  @apply opacity-60 text-left;
+  @apply opacity-80 text-left text-gray-1;
 
   width: 10rem;
   transition: opacity 0.5s, margin 0.5s, color 0.5s;
   font-variant-numeric: tabular-nums;
 
   &.active {
-    @apply opacity-100 ml-2;
+    @apply ml-2 opacity-100;
   }
 }
 

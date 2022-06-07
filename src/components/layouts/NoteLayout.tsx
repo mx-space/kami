@@ -78,7 +78,10 @@ export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
             </div>
             <div>
               <h1 className="text-center !mt-8 !before:hidden headline text-brown dark:text-shizuku-text">
-                <FloatPopover triggerComponent={() => <>{title}</>}>
+                <FloatPopover
+                  triggerComponent={() => <>{title}</>}
+                  placement="bottom"
+                >
                   {tips}
                 </FloatPopover>
                 {isLogged && url ? (

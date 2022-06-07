@@ -1,7 +1,5 @@
 .popover-root {
-  @apply p-4 relative bg-light-bg rounded-lg overflow-hidden z-2;
-
-  box-shadow: 0 0 10px rgb(0 0 0 / 10%), 0 5px 10px rgb(0 0 0 / 10%);
+  @apply p-4 relative bg-light-bg rounded-lg overflow-hidden z-2 shadow-out-sm;
 }
 
 ////
