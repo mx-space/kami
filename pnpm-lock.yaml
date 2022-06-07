@@ -61,7 +61,7 @@ specifiers:
   react-masonry-css: 1.0.16
   react-message-popup: 1.0.0-alpha.2
   react-shortcut-guide: 0.2.4
-  react-toastify: 9.0.3
+  react-toastify: 9.0.4
   react-transition-group: 4.4.2
   react-use: 17.4.0
   remove-markdown: 0.5.0
@@ -100,7 +100,7 @@ dependencies:
   react-masonry-css: 1.0.16_react@18.1.0
   react-message-popup: 1.0.0-alpha.2_ef5jwxihqo6n7gxfmzogljlgcm
   react-shortcut-guide: 0.2.4
-  react-toastify: 9.0.3_ef5jwxihqo6n7gxfmzogljlgcm
+  react-toastify: 9.0.4_ef5jwxihqo6n7gxfmzogljlgcm
   react-transition-group: 4.4.2_ef5jwxihqo6n7gxfmzogljlgcm
   react-use: 17.4.0_ef5jwxihqo6n7gxfmzogljlgcm
   remove-markdown: 0.5.0
@@ -5577,8 +5577,8 @@ packages:
       lodash.debounce: 4.0.8
     dev: false
 
-  /react-toastify/9.0.3_ef5jwxihqo6n7gxfmzogljlgcm:
-    resolution: {integrity: sha512-0QZJk0SqYBxouRBGCFU3ymvjlwimRRhVH7SzqGRiVrQ001KSoUNbGKx9Yq42aoPv18n45yJzEFG82zqv3HnASg==}
+  /react-toastify/9.0.4_ef5jwxihqo6n7gxfmzogljlgcm:
+    resolution: {integrity: sha512-MYmJ1V5F6DEU+TFxBb+pGGsveFPt4tjr4yK+TopXkU3sXPD9F2tFhX+G2HBLZpqObT2O6Z9jbXSg3JpaxuWtWw==}
     peerDependencies:
       react: '>=16'
       react-dom: '>=16'
