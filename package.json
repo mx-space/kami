@@ -111,7 +111,7 @@
     "eslint": "*",
     "husky": "8.0.1",
     "js-yaml": "*",
-    "lint-staged": "13.0.0",
+    "lint-staged": "13.0.1",
     "next-compose-plugins": "2.2.1",
     "next-pwa": "5.5.4",
     "postcss": "8.4.14",
