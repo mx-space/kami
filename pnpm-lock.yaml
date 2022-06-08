@@ -68,7 +68,7 @@ specifiers:
   rimraf: '*'
   socket.io-client: 4.5.1
   stylelint: 14.9.0
-  stylelint-config-standard: 25.0.0
+  stylelint-config-standard: 26.0.0
   typescript: 4.7.3
   validator: 13.7.0
   windicss: 3.5.4
@@ -142,7 +142,7 @@ devDependencies:
   react-lazyload: 3.2.0_ef5jwxihqo6n7gxfmzogljlgcm
   rimraf: 3.0.2
   stylelint: 14.9.0
-  stylelint-config-standard: 25.0.0_stylelint@14.9.0
+  stylelint-config-standard: 26.0.0_stylelint@14.9.0
   typescript: 4.7.3
   windicss: 3.5.4
   windicss-webpack-plugin: 1.7.3
@@ -6293,21 +6293,21 @@ packages:
     dependencies:
       react: 18.1.0
 
-  /stylelint-config-recommended/7.0.0_stylelint@14.9.0:
-    resolution: {integrity: sha512-yGn84Bf/q41J4luis1AZ95gj0EQwRX8lWmGmBwkwBNSkpGSpl66XcPTulxGa/Z91aPoNGuIGBmFkcM1MejMo9Q==}
+  /stylelint-config-recommended/8.0.0_stylelint@14.9.0:
+    resolution: {integrity: sha512-IK6dWvE000+xBv9jbnHOnBq01gt6HGVB2ZTsot+QsMpe82doDQ9hvplxfv4YnpEuUwVGGd9y6nbaAnhrjcxhZQ==}
     peerDependencies:
-      stylelint: ^14.4.0
+      stylelint: ^14.8.0
     dependencies:
       stylelint: 14.9.0
     dev: true
 
-  /stylelint-config-standard/25.0.0_stylelint@14.9.0:
-    resolution: {integrity: sha512-21HnP3VSpaT1wFjFvv9VjvOGDtAviv47uTp3uFmzcN+3Lt+RYRv6oAplLaV51Kf792JSxJ6svCJh/G18E9VnCA==}
+  /stylelint-config-standard/26.0.0_stylelint@14.9.0:
+    resolution: {integrity: sha512-hUuB7LaaqM8abvkOO84wh5oYSkpXgTzHu2Zza6e7mY+aOmpNTjoFBRxSLlzY0uAOMWEFx0OMKzr+reG1BUtcqQ==}
     peerDependencies:
-      stylelint: ^14.4.0
+      stylelint: ^14.9.0
     dependencies:
       stylelint: 14.9.0
-      stylelint-config-recommended: 7.0.0_stylelint@14.9.0
+      stylelint-config-recommended: 8.0.0_stylelint@14.9.0
     dev: true
 
   /stylelint/14.9.0:
