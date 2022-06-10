@@ -36,7 +36,7 @@ function checkOldBrowser() {
       alert(
         '欧尼酱, 乃真的要使用 IE 浏览器吗, 不如换个 Chrome 好不好嘛（o´ﾟ□ﾟ`o）',
       )
-      location.href = 'https://www.google.com/chrome/'
+      location.href = 'https://www.google.cn/chrome/'
       return true
     }
     // check build-in methods
