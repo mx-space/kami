@@ -1,4 +1,4 @@
-import classNames from 'clsx'
+import clsx from 'clsx'
 import mediumZoom from 'medium-zoom'
 import type { DetailedHTMLProps, FC, ImgHTMLAttributes } from 'react'
 import {
@@ -60,7 +60,7 @@ const Image: FC<
   return (
     <>
       <div
-        className={classNames(
+        className={clsx(
           styles['lazyload-image'],
           !loaded && styles['image-hide'],
         )}
@@ -148,7 +148,10 @@ export const ImageLazy = memo(
           <img src={defaultImage} alt={alt} {...rest} ref={realImageRef} />
         ) : (
           <div
-            className="transition-none relative max-w-full m-auto inline-block min-h-[1px]"
+            className={clsx(
+              'transition-none relative max-w-full m-auto inline-block min-h-[1px]',
+              rest.className,
+            )}
             style={{
               height: loaded ? undefined : height || calculatedSize.height,
               width: loaded ? undefined : width || calculatedSize.width,
@@ -204,7 +207,7 @@ const PlaceholderImage = memo(
     const { backgroundColor, height, width } = props
     return (
       <div
-        className={classNames(styles['placeholder-image'], props.className)}
+        className={clsx(styles['placeholder-image'], props.className)}
         ref={ref}
         style={{
           height,

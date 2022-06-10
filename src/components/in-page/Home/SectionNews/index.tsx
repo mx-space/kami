@@ -35,7 +35,7 @@ const Card: FC<CardProps> = (props) => {
   return (
     <div className={styles['card-container']}>
       <div className={styles['card-cover-wrap']}>
-        <ImageLazy src={cover} />
+        <ImageLazy src={cover} className="dark:brightness-50 dark:filter" />
       </div>
       <div className={styles['card-header']}></div>
       {title && (

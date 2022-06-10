@@ -243,7 +243,11 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
           style={{ minHeight: 'unset', paddingTop: '0' }}
           key={'at'}
         >
-          <CommentLazy id={id} allowComment={note.allowComment ?? true} />
+          <CommentLazy
+            id={id}
+            key={id}
+            allowComment={note.allowComment ?? true}
+          />
         </ArticleLayout>
       )}
 

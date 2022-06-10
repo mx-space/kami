@@ -255,6 +255,7 @@ export const PostView: PageOnlyProps = observer((props) => {
               <ArticleFooterAction {...actions} />
 
               <CommentLazy
+                key={post.id}
                 id={post.id}
                 allowComment={post.allowComment ?? true}
               />

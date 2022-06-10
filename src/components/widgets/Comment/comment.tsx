@@ -43,7 +43,7 @@ export const Comment: FC<
       keyArr.length > 5
         ? `${keyArr.slice(0, 3).join('.')}...${keyArr
             .slice(4, keyArr.length - 1)
-            .reduce((acc, cur) => acc + +cur, 0)}+${keyArr.at(-1)}`
+            .reduce((acc, cur) => acc + +cur, 0)}+${keyArr[keyArr.length - 1]}`
         : keyArr.join('.')
     }`
   }, [commentKey])
