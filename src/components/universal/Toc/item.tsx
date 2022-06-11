@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import type { FC } from 'react'
-import { memo, useEffect } from 'react'
+import { memo, useEffect, useMemo } from 'react'
 
 import { springScrollToElement } from '~/utils/spring'
 
@@ -21,14 +21,18 @@ export const TocItem: FC<{
       history.replaceState(state, '', `#${title}`)
     }
   }, [active, title])
+  const renderDepth = useMemo(() => {
+    const result = depth - rootDepth
+
+    return result == 0 ? 1 : result
+  }, [depth, rootDepth])
   return (
     <a
       data-index={index}
       href={`#${title}`}
       className={clsx(styles['toc-link'], active && styles['active'])}
       style={{
-        paddingLeft:
-          depth > rootDepth ? `${1.2 * depth - rootDepth}rem` : undefined,
+        paddingLeft: depth >= rootDepth ? `${1.2 * renderDepth}rem` : undefined,
       }}
       data-depth={depth}
       onClick={(e) => {

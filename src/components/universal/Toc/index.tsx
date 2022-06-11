@@ -91,7 +91,7 @@ export const Toc: FC<TocProps> = memo(({ headings: $headings }) => {
                     key={heading.title}
                     rootDepth={headings.reduce(
                       (d, cur) => Math.min(d, cur.depth),
-                      1,
+                      headings[0].depth,
                     )}
                   />
                 </RightLeftTransitionView>
