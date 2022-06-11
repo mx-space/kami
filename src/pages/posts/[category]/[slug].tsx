@@ -20,7 +20,7 @@ import {
 } from '~/components/universal/Icons'
 import { buildStoreDataLoadableView } from '~/components/universal/LoadableView'
 import { Markdown } from '~/components/universal/Markdown'
-import { NumberRecorder } from '~/components/universal/NumberRecorder'
+import { NumberTransition } from '~/components/universal/NumberRecorder'
 import Outdate from '~/components/universal/Outdate'
 import { Seo } from '~/components/universal/Seo'
 import type { ActionProps } from '~/components/widgets/ArticleAction'
@@ -166,8 +166,8 @@ export const PostView: PageOnlyProps = observer((props) => {
         {
           icon: <IonThumbsup />,
           name: (
-            <span className="leading-[1.1]">
-              <NumberRecorder number={post.count?.like || 0} />
+            <span className="leading-[1.1] inline-flex items-center">
+              <NumberTransition number={post.count?.like || 0} />
             </span>
           ),
           color: isThumbsUpBefore(post.id) ? '#f1c40f' : undefined,

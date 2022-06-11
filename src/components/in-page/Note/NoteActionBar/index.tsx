@@ -9,7 +9,7 @@ import {
   PhBookOpen,
 } from '~/components/universal/Icons'
 import { LikeButton } from '~/components/universal/LikeButton'
-import { NumberRecorder } from '~/components/universal/NumberRecorder'
+import { NumberTransition } from '~/components/universal/NumberRecorder'
 import { RelativeTime } from '~/components/universal/RelativeTime'
 import type { ActionProps } from '~/components/widgets/ArticleAction'
 import { ArticleFooterAction } from '~/components/widgets/ArticleAction'
@@ -60,7 +60,10 @@ export const NoteFooterActionBar: FC<{ id: string }> = observer(({ id }) => {
                 }
               />
             </div>
-            <NumberRecorder number={note.count?.like || 0} />
+            <NumberTransition
+              number={note.count?.like || 0}
+              className={'ml-4'}
+            />
           </div>
         ),
         color: isLiked ? '#e74c3c' : undefined,

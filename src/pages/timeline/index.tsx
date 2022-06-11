@@ -9,6 +9,7 @@ import { usePrevious } from 'react-use'
 import type { TimelineData } from '@mx-space/api-client'
 
 import { SolidBookmark } from '~/components/universal/Icons'
+import { NumberTransition } from '~/components/universal/NumberRecorder'
 import { TimelineListWrapper } from '~/components/universal/TimelineListWrapper'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
@@ -41,6 +42,21 @@ const PROGRESS_DURATION = 2000
 const Progress: FC = memo(() => {
   const [percentOfYear, setPercentYear] = useState<number>(0)
   const [percentOfDay, setPercentDay] = useState<number>(0)
+  const [currentYear, setCurrentYear] = useState<number>(
+    new Date().getFullYear(),
+  )
+  const [currentDay, setCurrentDay] = useState<number>(dayOfYear())
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const year = new Date().getFullYear()
+      const day = dayOfYear()
+      setCurrentDay(day)
+      setCurrentYear(year)
+    }, PROGRESS_DURATION)
+    return () => clearInterval(timer)
+  }, [])
+
   const prevPercentYear = usePrevious(percentOfYear)
   const prevPercentDay = usePrevious(percentOfDay)
   function updatePercent() {
@@ -61,8 +77,10 @@ const Progress: FC = memo(() => {
   }, [])
   return (
     <Fragment>
-      <p className="my-4">
-        今天是 {new Date().getFullYear()} 年的第 {dayOfYear()} 天
+      <p className="mt-4 inline-flex items-center">
+        <span className="flex-shrink-0">今天是 {currentYear} 年的第</span>
+        <NumberTransition number={currentDay} className="mx-1" />
+        <span className="flex-shrink-0">天</span>
       </p>
       <p className="my-4">
         今年已过{' '}
