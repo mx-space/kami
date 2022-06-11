@@ -1,5 +1,7 @@
 # Kami.
 
+[![wakatime](https://wakatime.com/badge/github/mx-space/kami.svg)](https://wakatime.com/badge/github/mx-space/kami)
+
 小小空间，大大梦想。
 
 Small space, big dream.
