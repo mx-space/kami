@@ -19,7 +19,7 @@ const LoginView: NextPage = () => {
   const handleLogin = async () => {
     const data = await apiClient.user.login(username, password)
 
-    setToken(data.token, 7)
+    setToken(data.token)
     if (history.backPath && history.backPath.length) {
       Router.push(history.backPath.pop()!)
     } else {

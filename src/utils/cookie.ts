@@ -11,11 +11,11 @@ export function getToken(): string | null {
   return token ? `bearer ${token}` : null
 }
 
-export function setToken(token: string, expires: number | Date) {
+export function setToken(token: string) {
   if (typeof token !== 'string') {
     return
   }
-  return Cookies.set(TokenKey, token, { expires })
+  return Cookies.set(TokenKey, token)
 }
 
 export function removeToken() {
