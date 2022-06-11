@@ -38,7 +38,8 @@ html.dark {
 }
 
 #write p,
-#write .paragraph {
+#write .paragraph,
+#write ph {
   margin: 1rem 0;
 }
 
@@ -81,7 +82,8 @@ html.dark {
   position: relative;
 }
 
-#write blockquote > .paragraph {
+#write blockquote > .paragraph,
+#write blockquote > ph {
   padding: 10px 0;
   margin: 0;
 }
@@ -104,6 +106,7 @@ html.dark {
 #write h4::before,
 #write h5::before,
 #write h6::before {
+  font-family: var(--sans-font);
   border: 0 none !important;
   border-radius: 0 !important;
   position: static !important;
@@ -122,7 +125,7 @@ html.dark {
   text-align: right;
   color: var(--light-brown);
   opacity: 0.5;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: normal;
 }
 

@@ -114,7 +114,8 @@ pre > code {
   }
 }
 
-.paragraph {
+.paragraph,
+ph {
   margin: 0.5rem 0;
   line-height: 1.8;
 }
