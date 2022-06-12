@@ -52,16 +52,16 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
           {posts.length > 0 ? (
             <Fragment>
               {posts.map((post, i) => {
-                const { slug, text, created, title, id } = post
-
                 return (
-                  <BottomUpTransitionView key={id} timeout={{ enter: 250 * i }}>
+                  <BottomUpTransitionView
+                    key={post.id}
+                    timeout={{ enter: 250 * i }}
+                  >
                     <PostBlock
-                      title={title}
-                      date={created}
-                      text={text}
-                      slug={slug}
-                      raw={post}
+                      post={post}
+                      onPinChange={() => {
+                        fetch()
+                      }}
                     />
                   </BottomUpTransitionView>
                 )

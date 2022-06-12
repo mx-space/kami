@@ -1,33 +1,36 @@
-import classNames from 'clsx'
+import clsx from 'clsx'
 import { observer } from 'mobx-react-lite'
 import Router from 'next/router'
 import type { FC } from 'react'
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import removeMd from 'remove-markdown'
 
 import type { PostModel } from '@mx-space/api-client'
 
+import { PhPushPin } from '~/components/universal/Icons'
 import { useInitialData } from '~/hooks/use-initial-data'
 import { useStore } from '~/store'
+import { apiClient } from '~/utils'
 import { springScrollToTop } from '~/utils/spring'
 import { parseDate } from '~/utils/time'
 
 import styles from './index.module.css'
 
 interface PostBlockProps {
-  date: Date | string
-  title: string
-  text: string
-  slug: string
-  raw: PostModel
-  map?: Map<string, string>
+  post: PostModel
+  onPinChange: () => any
 }
 
 export const PostBlock: FC<PostBlockProps> = observer((props) => {
   const {
     appStore: { viewport },
+    userStore: { isLogged },
   } = useStore()
-  const { date, title, text, slug, raw } = props
+
+  const post = props.post
+
+  const { created: date, title, slug, pin, text, id } = post
+
   const parsedTime = viewport?.mobile
     ? parseDate(date, 'MM-DD ddd')
     : parseDate(date, 'YYYY-MM-DD ddd')
@@ -43,33 +46,66 @@ export const PostBlock: FC<PostBlockProps> = observer((props) => {
     })
     return map
   }, [initialData.categories])
+
   const goToPost = useCallback(() => {
-    const categorySlug = raw.category?.slug ?? categoryMap.get(raw.categoryId)
+    const categorySlug = post.category?.slug ?? categoryMap.get(post.categoryId)
     Router.push('/posts/[category]/[slug]', `/posts/${categorySlug}/${slug}`)
     springScrollToTop()
-  }, [categoryMap, raw.category?.slug, raw.categoryId, slug])
-  const hasImage = props.raw.images?.length > 0 && props.raw.images[0].src
+  }, [categoryMap, post.category?.slug, post.categoryId, slug])
+  const hasImage = post.images?.length > 0 && post.images[0].src
+
+  const [pinState, setPinState] = useState(!!pin)
+
+  const handlePin = async () => {
+    await apiClient.post.proxy(id).patch({
+      data: {
+        pin: !pin,
+      },
+    })
+    setPinState(!pinState)
+    props.onPinChange()
+  }
+
+  const pinEl = (
+    <i
+      className={clsx(
+        'absolute right-0 top-0 bottom-0 items-center hidden',
+        isLogged && 'cursor-pointer !inline-flex',
+        !isLogged && pinState && 'pointer-events-none',
+        pinState && 'text-red !inline-flex',
+      )}
+      role={'button'}
+      onClick={handlePin}
+    >
+      <PhPushPin />
+    </i>
+  )
+
+  const tilteEl = (
+    <>
+      <div className={styles.title} onClick={goToPost}>
+        {title}
+      </div>
+    </>
+  )
   return (
     <>
-      <h1 className={classNames(styles.head, 'headline')}>
-        <div className="inline-flex items-center">
+      <h1 className={clsx(styles.head, 'headline')}>
+        <div className="inline-flex items-center relative w-[calc(100%-1rem)]">
           {d}
           <small className="text-gray-2">（{week}）</small>
+          {viewport.mobile && pinEl}
         </div>
         {!viewport?.mobile && (
-          <div className={styles.title} onClick={goToPost}>
-            {title}
-          </div>
+          <>
+            {tilteEl} {pinEl}
+          </>
         )}
       </h1>
       <div className={styles.text}>
-        {viewport?.mobile && (
-          <h2 className={styles.title} onClick={goToPost}>
-            {title}
-          </h2>
-        )}
+        {viewport?.mobile && tilteEl}
         <article
-          className={classNames(
+          className={clsx(
             styles['content'],
             hasImage ? styles['has-image'] : null,
           )}
