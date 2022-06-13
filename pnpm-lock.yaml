@@ -30,7 +30,7 @@ specifiers:
   cross-env: '*'
   css-spring: 4.1.0
   dayjs: 1.11.3
-  devtools-detector: 2.0.8
+  devtools-detector: 2.0.9
   dotenv: 16.0.1
   eslint: '*'
   husky: 8.0.1
@@ -83,7 +83,7 @@ dependencies:
   clsx: 1.1.1
   css-spring: 4.1.0
   dayjs: 1.11.3
-  devtools-detector: 2.0.8
+  devtools-detector: 2.0.9
   js-cookie: 3.0.1
   lodash-es: 4.17.21
   medium-zoom: 1.0.6
@@ -2972,8 +2972,8 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: false
 
-  /devtools-detector/2.0.8:
-    resolution: {integrity: sha512-+vlIfyg6SkYB67gBwzctPoi5GIEDdKa33Q6E699GlGjvPmypBxAq95+yLwVedUuvegHR79ozJ2ByHDTVDk74tw==}
+  /devtools-detector/2.0.9:
+    resolution: {integrity: sha512-PNjniLWBvgnO7BvY4WA4mxCaHe6PSa8eZs7RFpG8C+jmyl/HqTKeoCaularFi2eEmiy5CH8MkwuZO/PZX6rHvw==}
     dependencies:
       compare-versions: 3.6.0
     dev: false
