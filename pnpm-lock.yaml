@@ -74,7 +74,7 @@ specifiers:
   validator: 13.7.0
   windicss: 3.5.4
   windicss-webpack-plugin: 1.7.3
-  zx: 6.2.4
+  zx: 6.2.5
 
 dependencies:
   '@floating-ui/react-dom': 0.7.2_fjh4ypl5eyqw2cfwhekzhnvvn4
@@ -148,7 +148,7 @@ devDependencies:
   typescript: 4.7.3
   windicss: 3.5.4
   windicss-webpack-plugin: 1.7.3
-  zx: 6.2.4
+  zx: 6.2.5
 
 packages:
 
@@ -6132,7 +6132,7 @@ packages:
     dev: true
 
   /split/0.3.3:
-    resolution: {integrity: sha1-zQ7qXmOiEd//frDwkcQTPi0N0o8=}
+    resolution: {integrity: sha512-wD2AeVmxXRBoX44wAycgjVpMhvbwdI2aZjCkvfNcH1YqHQvJVa1duWc73OyVGJUc05fhFaTZeQ/PYsrmyH0JVA==}
     dependencies:
       through: 2.3.8
     dev: true
@@ -6167,7 +6167,7 @@ packages:
     dev: false
 
   /stream-combiner/0.0.4:
-    resolution: {integrity: sha1-TV5DPBhSYd3mI8o/RMWGvPXErRQ=}
+    resolution: {integrity: sha512-rT00SPnTVyRsaSz5zgSPma/aHSOic5U1prhYdRy5HS2kTZviFpmDgzilbtsJsxiroqACmayynDN/9VzIbX5DOw==}
     dependencies:
       duplexer: 0.1.2
     dev: true
@@ -6473,7 +6473,7 @@ packages:
     dev: false
 
   /through/2.3.8:
-    resolution: {integrity: sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU=}
+    resolution: {integrity: sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==}
     dev: true
 
   /tlds/1.231.0:
@@ -7113,8 +7113,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /zx/6.2.4:
-    resolution: {integrity: sha512-wBDObcY5tKDOIOuGrg3XwrhCa6V6eeZLQDVbbpgN9pdhiyOJA/So9R9i5vKN7cGGWkcKKHy29i8kJtx02j+kSg==}
+  /zx/6.2.5:
+    resolution: {integrity: sha512-aTEZSL8sp1IhMUhxlXRTPH6MwzcuTBA3G4LLuH68NIj8kENfcaVGV7cn8LQXXHwG1M9LDI6ST6Qcw0EOrhRAVA==}
     engines: {node: '>= 16.0.0'}
     hasBin: true
     dependencies:
