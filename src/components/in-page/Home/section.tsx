@@ -36,7 +36,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
     randomImages[currentImageIndex.current++ % randomImages.length]
   const sections = useRef({
     postSection: {
-      title: '最新博文',
+      title: '近期技术输出',
       icon: <IcTwotoneSignpost />,
       moreUrl: 'posts',
       content: posts.slice(0, 4).map((p) => {
@@ -49,7 +49,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
       }),
     } as SectionNewsProps,
     noteSection: {
-      title: '随便写写',
+      title: '用文字记录生活',
       icon: <MdiDrawPen />,
       moreUrl: 'notes',
       content: notes.slice(0, 4).map((n) => {
