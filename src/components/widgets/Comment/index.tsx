@@ -5,7 +5,7 @@ import { useInView } from 'react-intersection-observer'
 import { message } from 'react-message-popup'
 import { useHash } from 'react-use'
 
-import type { CommentModel, Pager } from '@mx-space/api-client'
+import type { Pager } from '@mx-space/api-client'
 
 import { apiClient } from '~/utils/client'
 
@@ -42,12 +42,12 @@ interface CommentWrapProps {
 
 const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
   const { id, allowComment } = props
-  const [comments, setComments] = useState([] as CommentModel[])
+
   const [pagination, setPagination] = useState({} as Pager)
-  const { userStore } = useStore()
+  const { userStore, commentStore } = useStore()
   const logged = userStore.isLogged
 
-  const { commentStore } = useStore()
+  const comments = commentStore.comments
 
   useEffect(() => {
     return () => {
@@ -60,7 +60,6 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
       return commentStore
         .fetchComment(id, page, size)
         .then(({ data, pagination }) => {
-          setComments(data)
           setPagination(pagination)
           setCommentShow(true)
 
@@ -128,7 +127,6 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
   })
 
   useEffect(() => {
-    setComments([])
     setCommentShow(false)
   }, [id])
 

@@ -22,6 +22,7 @@ export class CommentStore extends Store<
     })
   }
   currentRefId = ''
+
   comments = [] as CommentModel[]
 
   get commentIdMap() {
@@ -77,7 +78,10 @@ export class CommentStore extends Store<
     if (!comment) {
       return
     }
-    if (comment.ref !== this.currentRefId) {
+
+    const refId =
+      typeof comment.ref === 'string' ? comment.ref : (comment.ref as any).id
+    if (refId !== this.currentRefId) {
       return
     }
 
@@ -98,8 +102,8 @@ export class CommentStore extends Store<
         this.updateComment(parentComment)
       }
     } else {
-      this.comments.unshift(comment)
-
+      this.comments = [comment, ...this.comments]
+      this.commentIdMap.set(comment.id, comment)
       this.walkComments(comment.children).forEach((child) => {
         this.commentIdMap.set(child.id, child)
       })

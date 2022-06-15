@@ -38,7 +38,6 @@ const CommentList: FC = observer(() => {
   return (
     <BottomUpTransitionView
       appear
-      id={'comments-wrap'}
       timeout={useMemo(() => ({ appear: 300, enter: 500 }), [])}
     >
       <div id={'comments-wrap'}>
