@@ -208,14 +208,18 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
               {value.map((item) => {
                 return (
                   <li key={item.id} className="flex items-center">
+                    <span
+                      className={
+                        'text-shizuku-text mr-2 tabular-nums w-12 inline-block'
+                      }
+                    >
+                      {Intl.DateTimeFormat('en-us', {
+                        month: '2-digit',
+                        day: '2-digit',
+                      }).format(item.date)}
+                    </span>
                     <Link href={item.href} as={item.as}>
-                      <a>
-                        <span className={'date'}>
-                          {Intl.DateTimeFormat('en-us', {
-                            month: '2-digit',
-                            day: '2-digit',
-                          }).format(item.date)}
-                        </span>
+                      <a className="leading-6">
                         <span className={'title'}>{item.title}</span>
                       </a>
                     </Link>
