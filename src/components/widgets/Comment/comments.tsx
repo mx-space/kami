@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { Fragment, createElement, useCallback, useMemo, useState } from 'react'
@@ -43,9 +44,12 @@ const CommentList: FC = observer(() => {
       timeout={useMemo(() => ({ appear: 300, enter: 500 }), [])}
     >
       <div id={'comments-wrap'}>
-        {comments.map((comment) => {
-          return <InnerCommentList id={comment.id} key={comment.id} />
-        })}
+        {comments
+          .slice()
+          .sort((comment) => (comment.pin ? -1 : 1))
+          .map((comment) => {
+            return <InnerCommentList id={comment.id} key={comment.id} />
+          })}
       </div>
     </BottomUpTransitionView>
   )
@@ -72,7 +76,7 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
   const logged = userStore.isLogged
 
   const { commentStore } = useStore()
-  const { commentIdMap } = commentStore
+  const { commentIdMap, comments } = commentStore
 
   const comment = commentIdMap.get(id)!
 
@@ -175,8 +179,14 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
         pin: !comment.pin,
       },
     })
-    comment.pin = !comment.pin
-  }, [comment])
+
+    runInAction(() => {
+      for (const currentComment of comments) {
+        currentComment.pin = false
+      }
+      comment.pin = !comment.pin
+    })
+  }, [comment, comments])
   return (
     <Comment
       // @ts-expect-error
