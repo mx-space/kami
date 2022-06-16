@@ -237,7 +237,7 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
         />
       )}
 
-      {logged && comment.children.length === 0 && (
+      {logged && !comment.parent && (
         <div
           className={clsx(
             'absolute right-4 top-4 hover:opacity-100 opacity-30 transition-opacity duration-300',
