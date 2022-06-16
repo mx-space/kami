@@ -240,7 +240,7 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
       {logged && !comment.parent && (
         <div
           className={clsx(
-            'absolute right-4 top-4 hover:opacity-100 opacity-30 transition-opacity duration-300',
+            'absolute right-5 top-5 hover:opacity-100 opacity-30 transition-opacity duration-300',
 
             comment.pin && 'text-red !opacity-100',
           )}
@@ -252,7 +252,7 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
       )}
 
       {!logged && comment.pin && (
-        <div className="absolute right-4 top-4 text-red">
+        <div className="absolute right-5 top-5 text-red">
           <PhPushPin />
         </div>
       )}
