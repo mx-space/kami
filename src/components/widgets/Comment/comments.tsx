@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { Fragment, createElement, useCallback, useMemo, useState } from 'react'
@@ -7,6 +8,7 @@ import { socketClient } from 'socket'
 
 import type { CommentModel } from '@mx-space/api-client'
 
+import { PhPushPin } from '~/components/universal/Icons'
 import { Markdown } from '~/components/universal/Markdown'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import type { Id } from '~/store/helper/structure'
@@ -167,6 +169,14 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
     ],
     [comment.id, handleDelete, logged, replyId, sure],
   )
+  const handlePinComment = useCallback(async () => {
+    await apiClient.comment.proxy(comment.id).patch({
+      data: {
+        pin: !comment.pin,
+      },
+    })
+    comment.pin = !comment.pin
+  }, [comment])
   return (
     <Comment
       // @ts-expect-error
@@ -215,6 +225,26 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
           onSubmit={handleReply}
           onCancel={() => setReplyId('')}
         />
+      )}
+
+      {logged && comment.children.length === 0 && (
+        <div
+          className={clsx(
+            'absolute right-4 top-4 hover:opacity-100 opacity-30 transition-opacity duration-300',
+
+            comment.pin && 'text-red !opacity-100',
+          )}
+          role={'button'}
+          onClick={handlePinComment}
+        >
+          <PhPushPin />
+        </div>
+      )}
+
+      {!logged && comment.pin && (
+        <div className="absolute right-4 top-4 text-red">
+          <PhPushPin />
+        </div>
       )}
 
       {children}

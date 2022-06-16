@@ -57,7 +57,7 @@
   ],
   "dependencies": {
     "@floating-ui/react-dom": "0.7.2",
-    "@mx-space/api-client": "0.10.9",
+    "@mx-space/api-client": "0.10.10",
     "axios": "0.27.2",
     "clsx": "1.1.1",
     "css-spring": "4.1.0",

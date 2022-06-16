@@ -8,7 +8,7 @@ specifiers:
   '@floating-ui/react-dom': 0.7.2
   '@innei/eslint-config-react-ts': 0.9.2
   '@innei/prettier': 0.9.2
-  '@mx-space/api-client': 0.10.9
+  '@mx-space/api-client': 0.10.10
   '@next/bundle-analyzer': 12.1.6
   '@trivago/prettier-plugin-sort-imports': 3.2.0
   '@types/inflection': 1.13.0
@@ -78,7 +78,7 @@ specifiers:
 
 dependencies:
   '@floating-ui/react-dom': 0.7.2_spprgxbbbwrf7revoq66vrfk2y
-  '@mx-space/api-client': 0.10.9
+  '@mx-space/api-client': 0.10.10
   axios: 0.27.2
   clsx: 1.1.1
   css-spring: 4.1.0
@@ -1741,8 +1741,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.13
     dev: true
 
-  /@mx-space/api-client/0.10.9:
-    resolution: {integrity: sha512-miFAcdBitj9Lrx/Ei4MFrFqk+jh/in5J/j1IJFKVM+KuyYwB1hVuJ3gNJwLDWZ0AVtyjA33KGQnDsKGsQktdKA==}
+  /@mx-space/api-client/0.10.10:
+    resolution: {integrity: sha512-WyisWutPNY5AujWXGWMAuz+bc5V5BexT7LVuvdi41A88Ey5OilmtX9F4lv9vnSaxGkAprYRlIkwS68t3f18fGA==}
     engines: {pnpm: '>=6'}
     dependencies:
       camelcase-keys: 7.0.2
@@ -4226,7 +4226,7 @@ packages:
     dev: true
 
   /javascript-natural-sort/0.7.1:
-    resolution: {integrity: sha1-+eIwPUUH9tdDVac2ZNFED7Wg71k=}
+    resolution: {integrity: sha512-nO6jcEfZWQXDhOiBtG2KvKyEptz7RVbpGP4vTD2hLBdmNQSsCiicO2Ioinv6UI4y9ukqnBpy+XZ9H6uLNgJTlw==}
     dev: true
 
   /jest-worker/26.6.2:
