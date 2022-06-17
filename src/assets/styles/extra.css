@@ -413,6 +413,7 @@ a.edit-link {
   margin-left: 0.5rem;
   opacity: 0.8;
   color: var(--green);
+  user-select: none;
 }
 
 .mermaid > svg {
