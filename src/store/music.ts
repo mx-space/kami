@@ -1,4 +1,5 @@
-import { makeAutoObservable, runInAction } from 'mobx'
+import { shuffle } from 'lodash-es'
+import { makeAutoObservable } from 'mobx'
 
 export class MusicStore {
   constructor() {
@@ -25,11 +26,9 @@ export class MusicStore {
   }
 
   setPlayingInfo(id: number, time: number, duration: number) {
-    runInAction(() => {
-      this.playId = id
-      this.time = time
-      this.duration = duration
-    })
+    this.playId = id
+    this.time = time
+    this.duration = duration
   }
 
   reset() {
@@ -45,9 +44,11 @@ export class MusicStore {
   }
   resetList() {
     this.resetPlayingSongState()
-    this.list = window.data?.config.function.player.id ?? [
-      563534789, 1447327083, 1450252250,
-    ]
+    this.list = shuffle(
+      window.data?.config.function.player.id ?? [
+        563534789, 1447327083, 1450252250,
+      ],
+    )
   }
 
   empty() {

@@ -1,4 +1,3 @@
-import classNames from 'clsx'
 import clsx from 'clsx'
 import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'
@@ -74,10 +73,7 @@ export const FooterActions: FC = observer(() => {
       >
         <button
           aria-label="to top"
-          className={classNames(
-            styles['top'],
-            isOverflow ? styles['active'] : '',
-          )}
+          className={clsx(styles['top'], isOverflow ? styles['active'] : '')}
           onClick={toTop}
         >
           <BxBxsArrowToTop />
