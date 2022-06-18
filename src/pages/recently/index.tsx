@@ -2,12 +2,14 @@ import clsx from 'clsx'
 import throttle from 'lodash-es/throttle'
 import { observer } from 'mobx-react-lite'
 import type { NextPage } from 'next'
+import Link from 'next/link'
 import type { FC } from 'react'
 import React, {
   Fragment,
   memo,
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react'
@@ -16,7 +18,8 @@ import { NoSSR, eventBus } from 'utils'
 
 import type { RecentlyModel } from '@mx-space/api-client'
 
-import { JamTrash } from '~/components/universal/Icons'
+import { Divider } from '~/components/universal/Divider'
+import { JamTrash, PhLinkFill } from '~/components/universal/Icons'
 import { Input } from '~/components/universal/Input'
 import { Loading } from '~/components/universal/Loading'
 import { Markdown } from '~/components/universal/Markdown'
@@ -25,6 +28,7 @@ import { Seo } from '~/components/universal/Seo'
 import { useStore } from '~/store'
 import { EventTypes } from '~/types/events'
 import { apiClient } from '~/utils/client'
+import { urlBuilder } from '~/utils/url'
 
 import styles from './index.module.css'
 
@@ -127,7 +131,10 @@ const RecentlyPage: NextPage = () => {
                       isLogged ? 'from-me' : 'from-them',
                     )}
                   >
-                    <Markdown value={d.content}></Markdown>
+                    <div className="overflow-hidden">
+                      <Markdown value={d.content}></Markdown>
+                      {d.ref && <RefPreview refModel={d.ref} />}
+                    </div>
 
                     <div className="text-sm float-right">
                       <RelativeTime date={d.created} />
@@ -148,13 +155,35 @@ const RecentlyPage: NextPage = () => {
           )}
 
           {hasNext && (
-            <div style={{ height: '20px' }} ref={ref}>
+            <div className="h-8" ref={ref}>
               {loading && <Loading />}
             </div>
           )}
         </Fragment>
       )}
     </main>
+  )
+}
+
+const RefPreview: FC<{ refModel: any }> = (props) => {
+  const title = props.refModel?.title
+
+  const url = useMemo(() => {
+    return urlBuilder.build(props.refModel)
+  }, [props.refModel])
+
+  if (!title) {
+    return null
+  }
+
+  return (
+    <>
+      <Divider className="my-1 bg-current w-12" />
+      <p className="leading-[1.8] flex items-center">
+        发表于： <PhLinkFill className="mr-2" />
+        <Link href={url}>{title}</Link>
+      </p>
+    </>
   )
 }
 
