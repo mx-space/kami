@@ -303,7 +303,7 @@ input[type='checkbox']:before {
   z-index: 1;
   width: 1rem;
   height: 1rem;
-  border: 2px solid #f2f2f2;
+  border: 1px solid var(--gray-2);
 }
 
 input[type='checkbox']:checked:before {
@@ -312,6 +312,7 @@ input[type='checkbox']:checked:before {
   border-color: var(--primary);
   border-top-style: none;
   border-right-style: none;
+  border-width: 2px;
 }
 
 input[type='checkbox']:after {
@@ -322,6 +323,7 @@ input[type='checkbox']:after {
   width: 1.1rem;
   height: 1.1rem;
   background: var(--light-bg);
+  transition: background 0.5s;
 }
 
 /* - 表格 */

@@ -10,6 +10,7 @@ import { socketClient } from 'socket'
 import type { CommentModel } from '@mx-space/api-client'
 
 import { PhPushPin } from '~/components/universal/Icons'
+import { ImpressionView } from '~/components/universal/ImpressionView'
 import { Markdown } from '~/components/universal/Markdown'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import type { Id } from '~/store/helper/structure'
@@ -230,6 +231,8 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
     >
       {replyId === comment.id && (
         <CommentBox
+          commentId={comment.id}
+          refId={comment.ref}
           autoFocus
           key={'box'}
           onSubmit={handleReply}
@@ -252,9 +255,11 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
       )}
 
       {!logged && comment.pin && (
-        <div className="absolute right-5 top-5 text-red">
-          <PhPushPin />
-        </div>
+        <ImpressionView trackerMessage={`置顶评论曝光`}>
+          <div className="absolute right-5 top-5 text-red">
+            <PhPushPin />
+          </div>
+        </ImpressionView>
       )}
 
       {children}

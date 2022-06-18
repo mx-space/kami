@@ -1,16 +1,19 @@
 import { sample } from 'lodash-es'
 import omit from 'lodash-es/omit'
+import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import React, {
+  createContext,
   memo,
   useCallback,
+  useContext,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from 'react'
 import { message } from 'react-message-popup'
-import { isDev } from 'utils'
+import { apiClient, isDev } from 'utils'
 import isEmail from 'validator/lib/isEmail'
 import isUrl from 'validator/lib/isURL'
 
@@ -33,16 +36,30 @@ import styles from './index.module.css'
 const USER_PREFIX = 'mx-space-comment-author'
 const USER_DRAFT = 'mx-space-comment-draft'
 
+const initialState = {
+  syncToRecently: false,
+}
+
+const CommentSendingContext = createContext({
+  ...initialState,
+  setConfig(config: Partial<typeof initialState>) {},
+})
+
 export const CommentBox: FC<{
   onSubmit: ({ text, author, mail, url }) => any
   onCancel?: () => any
   autoFocus?: boolean
-}> = memo(({ onSubmit, onCancel, autoFocus = false }) => {
+
+  refId: string
+  commentId?: string
+}> = memo(({ onSubmit, onCancel, autoFocus = false, refId, commentId }) => {
   const [author, setAuthor] = useState(isDev ? '测试昵称' : '')
   const [mail, setMail] = useState(isDev ? 'test@innei.ren' : '')
   const [url, setUrl] = useState(isDev ? 'https://test.innei.ren' : '')
   const [text, setText] = useState('')
   const taRef = useRef<HTMLTextAreaElement>(null)
+
+  const [config, setConfig] = useState(initialState)
 
   useEffect(() => {
     const $ref = taRef.current
@@ -143,6 +160,15 @@ export const CommentBox: FC<{
     }
     localStorage.setItem(USER_PREFIX, JSON.stringify(omit(model, ['text'])))
     onSubmit(model).then(() => {
+      if (config.syncToRecently) {
+        apiClient.recently.proxy.post({
+          data: {
+            content: text,
+            ref: refId,
+          },
+        })
+      }
+
       reset()
     })
   }
@@ -261,7 +287,17 @@ export const CommentBox: FC<{
           <KaomojiButton onClickKaomoji={handleInsertEmoji} />
         </div>
 
-        <div className={'whitespace-nowrap flex-shrink-0'}>
+        <div className={'whitespace-nowrap flex-shrink-0 flex items-center'}>
+          <CommentSendingContext.Provider
+            value={{
+              setConfig(patch) {
+                setConfig({ ...config, ...patch })
+              },
+              ...config,
+            }}
+          >
+            <CommentBoxOption refId={refId} commentId={commentId} />
+          </CommentSendingContext.Provider>
           {onCancel && (
             <button className="btn red" onClick={handleCancel}>
               取消回复
@@ -279,6 +315,31 @@ export const CommentBox: FC<{
     </div>
   )
 })
+
+const CommentBoxOption = observer<{ commentId?: string; refId: string }>(
+  (props) => {
+    const { userStore } = useStore()
+    const { isLogged } = userStore
+    const { syncToRecently, setConfig } = useContext(CommentSendingContext)
+    return (
+      <>
+        {isLogged && !props.commentId && (
+          <fieldset className="inline-flex items-center">
+            <input
+              type="checkbox"
+              id="comment-box-sync"
+              checked={syncToRecently}
+              onChange={(e) => {
+                setConfig({ syncToRecently: e.target.checked })
+              }}
+            />
+            <label htmlFor="comment-box-sync text-gray-2">同步到速记</label>
+          </fieldset>
+        )}
+      </>
+    )
+  },
+)
 
 const KaomojiButton: FC<{ onClickKaomoji: (kaomoji: string) => any }> = memo(
   ({ onClickKaomoji }) => {
