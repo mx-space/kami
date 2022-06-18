@@ -36,8 +36,8 @@
 }
 
 .guest-avatar {
-  height: 39.6px;
-  width: 39.8px;
+  height: 40px;
+  width: 40px;
   position: relative;
   border-radius: 50%;
   box-shadow: 4px 3px 20px -1px var(--gray);
