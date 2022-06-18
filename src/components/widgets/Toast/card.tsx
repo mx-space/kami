@@ -23,8 +23,7 @@ export const ToastCard: FC<{
         className="relative flex space-x-4 items-center p-4 w-full text-[12px] bg-bg-opacity overflow-hidden
     text-inherit border border-shallow border-opacity-50
     rounded-xl backdrop-filter backdrop-brightness-150 backdrop-brightness-110 backdrop-saturate-150 backdrop-blur-md
-  select-none cursor-pointer mb-4 
-    "
+  select-none cursor-pointer mb-4"
       >
         <div className="flex-shrink-0">
           <Avatar
@@ -34,7 +33,7 @@ export const ToastCard: FC<{
             wrapperProps={wrapperProps}
           />
         </div>
-        <div className="flex-grow relative flex-shrink min-w-0 break-all leading-[1.5]">
+        <div className="flex-grow relative flex-shrink min-w-0 break-all leading-[1.5] pr-10">
           <p className="text-[1.05em] leading-none font-medium truncate">
             {title}
           </p>
@@ -48,7 +47,7 @@ export const ToastCard: FC<{
           )}
         </div>
 
-        <div className="flex-shrink-0 text-[0.8em] self-start text-gray-2">
+        <div className="absolute right-4 top-4 text-[0.8em] self-start text-gray-2">
           <RelativeTime date={date.current} />
         </div>
       </div>
