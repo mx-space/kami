@@ -1,7 +1,9 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 
 import type { TrackerAction } from '~/constants/tracker'
 import { useStore } from '~/store'
+import { CustomEventTypes } from '~/types/events'
+import { eventBus } from '~/utils'
 import { isDev } from '~/utils/env'
 
 import { useThemeConfig } from './use-initial-data'
@@ -17,6 +19,29 @@ declare global {
       push(options: any): void
     }
   }
+}
+
+type TrackerOptions = {
+  action: TrackerAction
+  label?: string
+  category?: string
+  value?: number
+}
+export const useRootTrackerListener = () => {
+  const { event } = useAnalyze()
+  useEffect(() => {
+    eventBus.on(CustomEventTypes.Tracker, (options: TrackerOptions) => {
+      event(options)
+    })
+
+    return () => {
+      eventBus.off(CustomEventTypes.Tracker)
+    }
+  }, [])
+}
+
+export const emitTrackerEvent = (options: TrackerOptions) => {
+  eventBus.emit(CustomEventTypes.Tracker, options)
 }
 
 export const useAnalyze = () => {
@@ -43,12 +68,7 @@ export const useAnalyze = () => {
 
   // https://developers.google.com/analytics/devguides/collection/gtagjs/events
   const event = useCallback(
-    (options: {
-      action: TrackerAction
-      label?: string
-      category?: string
-      value?: number
-    }) => {
+    (options: TrackerOptions) => {
       const { action, label, category = label, value } = options
       if (isDev || userStore.isLogged) {
         console.log('event', options)

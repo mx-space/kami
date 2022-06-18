@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import { ToastContainer, toast } from 'react-toastify'
 
 import { ToastCard } from '~/components/widgets/Toast/card'
+import { TrackerAction } from '~/constants/tracker'
+import { emitTrackerEvent } from '~/hooks/use-analyze'
 import { store } from '~/store'
 
 import { isDev, isServerSide } from './env'
@@ -97,6 +99,10 @@ export class Notice {
     return new Promise((r) => {
       this.initNotice().then((b) => {
         if (b && !document.hasFocus()) {
+          emitTrackerEvent({
+            action: TrackerAction.Interaction,
+            label: '外部通知触发',
+          })
           const notification = new Notification(title, {
             body: text,
             image:
@@ -132,6 +138,10 @@ export class Notice {
       return
     }
 
+    emitTrackerEvent({
+      action: TrackerAction.Interaction,
+      label: '内嵌通知触发',
+    })
     toast(React.createElement(ToastCard, { text, title, description }), {
       autoClose: duration,
 

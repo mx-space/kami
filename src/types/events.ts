@@ -1,5 +1,6 @@
 export enum CustomEventTypes {
   TOC = 'toc',
+  Tracker = 'tracker',
 }
 
 export enum EventTypes {

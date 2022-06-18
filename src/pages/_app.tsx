@@ -25,6 +25,7 @@ import { defaultConfigs } from '~/configs.default'
 import type { InitialDataType } from '~/context/initial-data'
 import { InitialContextProvider } from '~/context/initial-data'
 import { RootStoreProvider } from '~/context/root-store'
+import { useRootTrackerListener } from '~/hooks/use-analyze'
 import { useCheckLogged } from '~/hooks/use-check-logged'
 import { useCheckOldBrowser } from '~/hooks/use-check-old-browser'
 import { useInitialData } from '~/hooks/use-initial-data'
@@ -54,6 +55,7 @@ const Content: FC = observer((props) => {
   const { check: checkLogin } = useCheckLogged()
   useRouterEvent()
   useResizeScrollEvent()
+  useRootTrackerListener()
   const initialData: AggregateRoot | null = useInitialData()
 
   useEffect(() => {
