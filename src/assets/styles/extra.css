@@ -1,19 +1,7 @@
 html.dark {
-  blockquote {
-    background: var(--shizuku-background-color);
-    border-left: 5px solid var(--shizuku-theme-color);
-  }
-
   article {
     color: var(--shizuku-text-color);
   }
-
-  .is-note .note-article::after {
-    background-image: linear-gradient(-45deg, transparent 50%, #333 0);
-    border-left: 1px solid #555;
-    border-top: 1px solid #555;
-  }
-
   :not(pre) > code {
     background-color: #3c3a3b;
     color: var(--shizuku-theme-color);
@@ -125,8 +113,6 @@ ph {
   margin: -30px -45px;
   padding: 30px 45px;
   border-radius: 0 6px 6px 0;
-  box-shadow: 3px 5px 6px -5px rgb(51 51 51 / 20%),
-    2px 3px 8px -5px rgb(51 51 51 / 20%);
 
   #write {
     h1,
@@ -145,6 +131,14 @@ ph {
 
   @media (min-width: 599px) {
     border: 1px solid rgb(187 187 187 / 20%);
+    clip-path: polygon(
+      3rem 0%,
+      100% 0,
+      100% calc(100% - 3rem),
+      calc(100% - 3rem) 100%,
+      0 100%,
+      0 0
+    );
 
     &::before,
     &::after {
@@ -159,7 +153,7 @@ ph {
     &::before {
       height: 58.8px;
       transform: rotate(45deg) translateX(27px) translateY(6px);
-      border-left: 1px solid #ccc;
+      border-left: 1px solid var(--gray-5);
       z-index: 1;
     }
 
@@ -167,11 +161,11 @@ ph {
       background-image: linear-gradient(
         -45deg,
         transparent 50%,
-        rgb(153 151 151 / 12.3%) 0
+        var(--gray-6) 0
       );
-      border-left: 1px solid #ccc;
-      border-top: 1px solid #ccc;
-      border-top-left-radius: 8px;
+      border-left: 1px solid var(--gray-5);
+      border-top: 1px solid var(--gray-5);
+      border-top-left-radius: 3px;
       transition: border 0.2s, background 0.2s;
     }
   }
@@ -271,6 +265,8 @@ ph {
   margin-right: calc(-3em + 2px);
   border: none;
   padding: 1em 5em;
+  clip-path: initial !important;
+  outline: none !important;
 
   @media screen and (max-width: 900px) {
     margin-left: -1.25em;

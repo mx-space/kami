@@ -115,8 +115,8 @@
   height: 56px;
   z-index: 5;
   backdrop-filter: blur(20px) saturate(180%);
-  box-shadow: 0 0 1em rgb(0 0 0 / 10%);
   transition: transform 0.5s, backdrop-filter 0.5s;
+  box-shadow: 0 0 1px var(--gray-1) inset;
 
   &.hide {
     transform: translateY(-100%);
@@ -244,9 +244,9 @@
 
 .sub-dropdown {
   @apply bg-light-bg p-2;
+  @apply shadow-out-sm;
 
   border-radius: 0.5em;
-  box-shadow: 0 0 1em rgb(20 20 20 / 10%);
 
   & li {
     @apply list-none py-3 px-2 justify-around flex items-center;

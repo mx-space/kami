@@ -287,7 +287,22 @@ blockquote {
   line-height: 1.8;
   background: #f5fafd;
   padding: 1em 1em 1em 2em;
-  border-left: 3px var(--blue) solid;
+  outline: 1px var(--blue) solid;
+  clip-path: polygon(
+    2em 0%,
+    100% 0,
+    100% calc(100% - 2em),
+    calc(100% - 2em) 100%,
+    0 100%,
+    0 2em
+  );
+}
+
+html.dark {
+  blockquote {
+    background: var(--shizuku-background-color);
+    outline: 1px var(--green) solid;
+  }
 }
 
 input[type='checkbox'] {
