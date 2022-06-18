@@ -324,7 +324,7 @@ const CommentBoxOption = observer<{ commentId?: string; refId: string }>(
     return (
       <>
         {isLogged && !props.commentId && (
-          <fieldset className="inline-flex items-center">
+          <fieldset className="inline-flex items-center children:cursor-pointer">
             <input
               type="checkbox"
               id="comment-box-sync"
@@ -333,7 +333,9 @@ const CommentBoxOption = observer<{ commentId?: string; refId: string }>(
                 setConfig({ syncToRecently: e.target.checked })
               }}
             />
-            <label htmlFor="comment-box-sync text-gray-2">同步到速记</label>
+            <label htmlFor="comment-box-sync" className="text-shizuku">
+              同步到速记
+            </label>
           </fieldset>
         )}
       </>
