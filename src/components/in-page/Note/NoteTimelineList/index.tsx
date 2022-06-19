@@ -12,7 +12,9 @@ import type { NoteModel } from '@mx-space/api-client'
 
 import { Divider } from '~/components/universal/Divider'
 import { FloatPopover } from '~/components/universal/FloatPopover'
+import { MaterialSymbolsArrowCircleRightOutlineRounded } from '~/components/universal/Icons'
 import { ImpressionView } from '~/components/universal/ImpressionView'
+import { LeftRightTransitionView } from '~/components/universal/Transition/left-right'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useStore } from '~/store'
@@ -68,20 +70,26 @@ export const NoteTimelineList: FC<
     <div className={clsx(className, styles['container'])}>
       <div className={clsx(styles.list)}>
         <ul ref={animationParent}>
-          {list.map((item) => (
-            <li key={item.id}>
-              <Link href={`/notes/${item.nid}`} key={item.id}>
-                <a
-                  className={clsx(
-                    item.id === props.noteId ? styles['active'] : null,
-                    styles.item,
-                  )}
-                >
-                  {item.title}
-                </a>
-              </Link>
-            </li>
-          ))}
+          {list.map((item) => {
+            const isCurrent = item.id === props.noteId
+            return (
+              <li key={item.id} className="flex items-center">
+                <LeftRightTransitionView in={isCurrent}>
+                  <MaterialSymbolsArrowCircleRightOutlineRounded className="text-pink" />
+                </LeftRightTransitionView>
+                <Link href={`/notes/${item.nid}`} key={item.id}>
+                  <a
+                    className={clsx(
+                      isCurrent ? styles['active'] : null,
+                      styles.item,
+                    )}
+                  >
+                    {item.title}
+                  </a>
+                </Link>
+              </li>
+            )
+          })}
         </ul>
         {note?.topic && (
           <>

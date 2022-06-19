@@ -32,7 +32,7 @@
 }
 
 .item {
-  @apply opacity-80 text-left text-gray-1;
+  @apply opacity-80 text-left text-gray-1 truncate min-w-0;
 
   width: 10rem;
   transition: opacity 0.5s, margin 0.5s, color 0.5s;
