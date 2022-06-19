@@ -6,15 +6,13 @@ import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC } from 'react'
 import { useCallback, useEffect, useState } from 'react'
-import { TransitionGroup } from 'react-transition-group'
-import { usePrevious } from 'react-use'
 
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import type { NoteModel } from '@mx-space/api-client'
 
 import { Divider } from '~/components/universal/Divider'
 import { FloatPopover } from '~/components/universal/FloatPopover'
 import { ImpressionView } from '~/components/universal/ImpressionView'
-import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useStore } from '~/store'
@@ -37,7 +35,6 @@ export const NoteTimelineList: FC<
   const { noteStore } = useStore()
   const note = noteStore.get(noteId)
   const [list, setList] = useState<NotePartial[]>([])
-  const prevList = usePrevious(list)
 
   useEffect(() => {
     apiClient.note.getMiddleList(noteId, 10).then(({ data }) => {
@@ -65,20 +62,14 @@ export const NoteTimelineList: FC<
     ),
     [note?.topic?.name, note?.topic?.slug],
   )
+
+  const [animationParent] = useAutoAnimate<HTMLUListElement>()
   return (
     <div className={clsx(className, styles['container'])}>
       <div className={clsx(styles.list)}>
-        <TransitionGroup component={'ul'}>
-          {list.map((item, i) => (
-            <BottomUpTransitionView
-              component={'li'}
-              key={item.id}
-              timeout={{
-                enter: prevList?.length
-                  ? 100 * Math.abs(prevList.length - i)
-                  : 100 * i,
-              }}
-            >
+        <ul ref={animationParent}>
+          {list.map((item) => (
+            <li key={item.id}>
               <Link href={`/notes/${item.nid}`} key={item.id}>
                 <a
                   className={clsx(
@@ -89,9 +80,9 @@ export const NoteTimelineList: FC<
                   {item.title}
                 </a>
               </Link>
-            </BottomUpTransitionView>
+            </li>
           ))}
-        </TransitionGroup>
+        </ul>
         {note?.topic && (
           <>
             <Divider className="!w-3/4" />
