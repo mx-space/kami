@@ -67,7 +67,7 @@ export const NoteTimelineList: FC<
 
   const [animationParent] = useAutoAnimate<HTMLUListElement>()
   return (
-    <div className={clsx(className, styles['container'])}>
+    <div className={clsx(className, styles['container'])} data-hide-print>
       <div className={clsx(styles.list)}>
         <ul ref={animationParent}>
           {list.map((item) => {

@@ -32,7 +32,7 @@ export const ArticleFooterAction: FC<ActionProps> = memo((props) => {
   const { actions = [], informs = [], copyright = true, ...rest } = props
 
   return (
-    <div className={styles.root} data-hide-print>
+    <div className={styles.root}>
       <div className="note-inform space-x-3" {...rest}>
         {informs.map((inform, index) => {
           const Inner = (
@@ -80,7 +80,7 @@ export const ArticleFooterAction: FC<ActionProps> = memo((props) => {
         )}
       </div>
 
-      <div className="note-action min-h-4 space-x-4">
+      <div className="note-action min-h-4 space-x-4" data-hide-print>
         {actions.map((action, i) => {
           if (!action) {
             return null

@@ -322,27 +322,6 @@ ph {
 /* for print */
 
 @media print {
-  p,
-  div,
-  article {
-    font-family: var(--serif-font) !important;
-  }
-
-  h1,
-  h1 *,
-  h2,
-  h2 *,
-  h3,
-  h3 *,
-  h4,
-  h4 *,
-  h5,
-  h5 *,
-  h6,
-  h6 * {
-    font-family: var(--sans-font) !important;
-  }
-
   nav,
   header,
   footer,
@@ -351,11 +330,13 @@ ph {
   .kami-toc,
   .loader,
   *[data-hide-print] {
-    display: none;
+    display: none !important;
   }
 
-  body {
-    background: none;
+  body,
+  body:before,
+  body .bg-fixed > .bg {
+    background: none !important;
   }
 
   .is-note .note-article {
