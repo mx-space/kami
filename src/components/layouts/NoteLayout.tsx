@@ -86,6 +86,7 @@ export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
                 </FloatPopover>
                 {isLogged && url ? (
                   <a
+                    data-hide-print
                     className="edit-link"
                     target="_blank"
                     href={resolveUrl(`#/notes/edit?id=${id}`, url.adminUrl)!}

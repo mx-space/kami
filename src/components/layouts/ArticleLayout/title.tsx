@@ -35,6 +35,7 @@ export const ArticleLayoutTitle: FC<{ animate?: boolean }> = observer(
 
           {type && id && isLogged && url ? (
             <a
+              data-hide-print
               className="edit-link float-right text-green"
               target="_blank"
               href={
