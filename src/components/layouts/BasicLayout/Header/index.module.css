@@ -116,7 +116,6 @@
   z-index: 5;
   backdrop-filter: blur(20px) saturate(180%);
   transition: transform 0.5s, backdrop-filter 0.5s;
-  box-shadow: 0 0 1px var(--gray-1) inset;
 
   &.hide {
     transform: translateY(-100%);

@@ -128,7 +128,7 @@ export const useMediaToggle = () => {
     runInAction(() => {
       app.colorMode = value ? 'dark' : 'light'
     })
-  }, [value])
+  }, [app, value])
 
   useEffect(() => {
     const handler = () => {

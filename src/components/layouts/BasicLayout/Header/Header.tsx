@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
+import { Divider } from '~/components/universal/Divider'
 import { IcBaselineMenuOpen } from '~/components/universal/Icons'
 import { CustomLogo as Logo } from '~/components/universal/Logo'
 import { TrackerAction } from '~/constants/tracker'
@@ -89,63 +90,63 @@ export const Header: FC = observer(() => {
   }
 
   return (
-    <>
-      <header
+    <header
+      className={classNames(
+        styles['header'],
+        !appStore.headerNav.show &&
+          appStore.isOverFirstScreenHeight &&
+          appStore.viewport.mobile
+          ? styles['hide']
+          : null,
+      )}
+    >
+      <Divider className="!m-0 transform scale-y-50 absolute bottom-0 left-0 right-0" />
+
+      <nav
         className={classNames(
-          styles['header'],
-          !appStore.headerNav.show &&
-            appStore.isOverFirstScreenHeight &&
-            appStore.viewport.mobile
-            ? styles['hide']
-            : null,
+          styles['nav-container'],
+          'overflow-hidden',
+          showPageHeader ? styles['toggle'] : null,
         )}
       >
-        <nav
-          className={classNames(
-            styles['nav-container'],
-            'overflow-hidden',
-            showPageHeader ? styles['toggle'] : null,
-          )}
+        <div
+          className={classNames(styles['head-swiper'], 'justify-between')}
+          ref={appHeaderRef}
         >
           <div
-            className={classNames(styles['head-swiper'], 'justify-between')}
-            ref={appHeaderRef}
+            className={
+              'flex items-center justify-center cursor-pointer select-none'
+            }
+            onClick={clickFunc}
           >
-            <div
-              className={
-                'flex items-center justify-center cursor-pointer select-none'
-              }
-              onClick={clickFunc}
-            >
-              <div className={styles['header-logo']}>
-                <Logo />
-              </div>
-              <h1 className={styles['title']}>{title}</h1>
+            <div className={styles['header-logo']}>
+              <Logo />
             </div>
-
-            <div
-              className={styles['more-button']}
-              onClick={() => {
-                setDrawerOpen(true)
-              }}
-            >
-              <IcBaselineMenuOpen className="text-2xl" />
-            </div>
-            <MenuList />
+            <h1 className={styles['title']}>{title}</h1>
           </div>
-          {MemoComponent}
-        </nav>
-        {isPadOrMobile && (
-          <HeaderDrawer
-            show={drawerOpen}
-            onExit={() => {
-              setDrawerOpen(false)
+
+          <div
+            className={styles['more-button']}
+            onClick={() => {
+              setDrawerOpen(true)
             }}
           >
-            <HeaderDrawerNavigation />
-          </HeaderDrawer>
-        )}
-      </header>
-    </>
+            <IcBaselineMenuOpen className="text-2xl" />
+          </div>
+          <MenuList />
+        </div>
+        {MemoComponent}
+      </nav>
+      {isPadOrMobile && (
+        <HeaderDrawer
+          show={drawerOpen}
+          onExit={() => {
+            setDrawerOpen(false)
+          }}
+        >
+          <HeaderDrawerNavigation />
+        </HeaderDrawer>
+      )}
+    </header>
   )
 })

@@ -2,6 +2,8 @@ import type { FC } from 'react'
 import { memo } from 'react'
 import NumberCounter from 'react-smooth-number-counter'
 
+import { ClientOnly } from '../ClientOnly'
+
 interface NumberRecorderProps {
   number: number
   className?: string
@@ -9,10 +11,12 @@ interface NumberRecorderProps {
 
 export const NumberTransition: FC<NumberRecorderProps> = memo((props) => {
   return (
-    <NumberCounter
-      value={props.number}
-      transition={500}
-      className={props.className}
-    />
+    <ClientOnly>
+      <NumberCounter
+        value={props.number}
+        transition={500}
+        className={props.className}
+      />
+    </ClientOnly>
   )
 })
