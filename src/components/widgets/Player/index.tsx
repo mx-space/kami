@@ -106,7 +106,18 @@ export const MusicMiniPlayer = forwardRef<
     loop: false,
     onEnded() {
       setCursor((cursor) => {
-        return ++cursor % len
+        const nextCursor = cursor + 1
+        const afterCursor = nextCursor % len
+
+        // if afterCursor == cursor, it means playlist only one song. so it will not loop play
+        // so manually trigger play
+
+        if (afterCursor === cursor) {
+          setTimeout(() => {
+            play()
+          }, 100)
+        }
+        return afterCursor
       })
     },
     onLoadedData: onChangeAudio,
@@ -176,6 +187,7 @@ export const MusicMiniPlayer = forwardRef<
 
   return (
     <div
+      data-hide-print
       className={classNames(
         styles['player'],
         !state.paused && styles['play'],
@@ -253,6 +265,7 @@ const BottomProgressBar = observer(() => {
         className={
           'fixed bottom-0 left-0 origin-left transform-gpu ease-linear transition-transform right-0' +
           ' transform scale-y-50 pt-[2px] bg-yellow duration-1000 z-99'
+          // +' hover:pt-[8px] hover:cursor-pointer'
         }
         style={{
           transform: `scaleX(${progress})`,
