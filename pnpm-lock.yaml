@@ -6,6 +6,7 @@ overrides:
 
 specifiers:
   '@floating-ui/react-dom': 0.7.2
+  '@formkit/auto-animate': 1.0.0-beta.1
   '@innei/eslint-config-react-ts': 0.9.2
   '@innei/prettier': 0.9.2
   '@mx-space/api-client': 0.10.11
@@ -78,6 +79,7 @@ specifiers:
 
 dependencies:
   '@floating-ui/react-dom': 0.7.2_h3umwasw2xj55xde6qtxq6tis4
+  '@formkit/auto-animate': 1.0.0-beta.1_react@18.2.0
   '@mx-space/api-client': 0.10.11
   axios: 0.27.2
   clsx: 1.1.1
@@ -1564,6 +1566,20 @@ packages:
       use-isomorphic-layout-effect: 1.1.2_issp6eja53bx2taimj6tb2noxy
     transitivePeerDependencies:
       - '@types/react'
+    dev: false
+
+  /@formkit/auto-animate/1.0.0-beta.1_react@18.2.0:
+    resolution: {integrity: sha512-I3OWOBaPZKSJL4bsooXI8kC3q7bcgibD2oML0P/Lir6MnbvUe/0/7EH8br024juvM/Ulm9C9xGx9CJUQYrOWSA==}
+    peerDependencies:
+      react: ^16.8.0
+      vue: ^3.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      vue:
+        optional: true
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /@humanwhocodes/config-array/0.9.5:
