@@ -63,7 +63,7 @@ specifiers:
   react-message-popup: 1.0.0-alpha.2
   react-shortcut-guide: 0.2.5
   react-smooth-number-counter: https://github.com/Innei/react-smooth-number-counter.git
-  react-toastify: 9.0.4
+  react-toastify: 9.0.5
   react-transition-group: 4.4.2
   react-use: 17.4.0
   remove-markdown: 0.5.0
@@ -104,7 +104,7 @@ dependencies:
   react-message-popup: 1.0.0-alpha.2_biqbaboplfbrettd7655fr4n2y
   react-shortcut-guide: 0.2.5
   react-smooth-number-counter: github.com/Innei/react-smooth-number-counter/6be776817e507970a7e3177b8c3277b0b9d3e779
-  react-toastify: 9.0.4_biqbaboplfbrettd7655fr4n2y
+  react-toastify: 9.0.5_biqbaboplfbrettd7655fr4n2y
   react-transition-group: 4.4.2_biqbaboplfbrettd7655fr4n2y
   react-use: 17.4.0_biqbaboplfbrettd7655fr4n2y
   remove-markdown: 0.5.0
@@ -336,7 +336,7 @@ packages:
       '@babel/traverse': 7.18.5
       debug: 4.3.4
       lodash.debounce: 4.0.8
-      resolve: 1.22.0
+      resolve: 1.22.1
       semver: 6.3.0
     transitivePeerDependencies:
       - supports-color
@@ -1863,7 +1863,7 @@ packages:
       builtin-modules: 3.2.0
       deepmerge: 4.2.2
       is-module: 1.0.0
-      resolve: 1.22.0
+      resolve: 1.22.1
       rollup: 2.70.1
     dev: true
 
@@ -4739,7 +4739,7 @@ packages:
     resolution: {integrity: sha512-/5CMN3T0R4XTj4DcGaexo+roZSdSFW/0AOOTROrjxzCG1wrWXEsGbRKevjlIL+ZDE4sZlJr5ED4YW0yqmkK+eA==}
     dependencies:
       hosted-git-info: 2.8.9
-      resolve: 1.22.0
+      resolve: 1.22.1
       semver: 5.7.1
       validate-npm-package-license: 3.0.4
     dev: true
@@ -5602,8 +5602,8 @@ packages:
       lodash.debounce: 4.0.8
     dev: false
 
-  /react-toastify/9.0.4_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-MYmJ1V5F6DEU+TFxBb+pGGsveFPt4tjr4yK+TopXkU3sXPD9F2tFhX+G2HBLZpqObT2O6Z9jbXSg3JpaxuWtWw==}
+  /react-toastify/9.0.5_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-dszPCeQINY+Nm6HmsiAXT/7wsazPqv0S/RuhIYLAW+fTKcd3T1iRjZG0XqrN9nvAzqaE5J6uxMaiBrOevxjY8g==}
     peerDependencies:
       react: '>=16'
       react-dom: '>=16'
