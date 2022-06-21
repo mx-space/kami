@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { ToastContainer, toast } from 'react-toastify'
 
 import { ToastCard } from '~/components/widgets/Toast/card'
@@ -21,7 +21,7 @@ export class Notice {
     if (!this.$wrap) {
       this.$wrap = document.createElement('div')
       document.documentElement.appendChild(this.$wrap)
-      ReactDOM.render(
+      createRoot(this.$wrap!).render(
         React.createElement(ToastContainer, {
           autoClose: 3000,
           pauseOnHover: true,
@@ -29,13 +29,12 @@ export class Notice {
           newestOnTop: true,
           closeOnClick: true,
           closeButton: false,
-          toastClassName: ({ type }: any) => '',
+          toastClassName: () => '',
           bodyClassName: () => '',
           style: {
             width: 350,
           },
         }),
-        this.$wrap!,
       )
     }
 
@@ -47,9 +46,14 @@ export class Notice {
         r(false)
       } else if (Notification.permission !== 'denied') {
         try {
-          Notification.requestPermission().then((p) =>
-            p === 'granted' ? r(true) : r(false),
-          )
+          Notification.requestPermission().then((p) => {
+            emitTrackerEvent({
+              action: TrackerAction.Interaction,
+              label: p == 'granted' ? '通知开启' : '拒绝开启通知',
+            })
+
+            return p == 'granted' ? r(true) : r(false)
+          })
         } catch (error) {
           // Safari doesn't return a promise for requestPermissions and it
           // throws a TypeError. It takes a callback as the first argument
@@ -138,16 +142,18 @@ export class Notice {
       return
     }
 
-    emitTrackerEvent({
-      action: TrackerAction.Interaction,
-      label: '内嵌通知触发',
-    })
-    toast(React.createElement(ToastCard, { text, title, description }), {
-      autoClose: duration,
+    requestAnimationFrame(() => {
+      emitTrackerEvent({
+        action: TrackerAction.Interaction,
+        label: '内嵌通知触发',
+      })
+      toast(React.createElement(ToastCard, { text, title, description }), {
+        autoClose: duration,
 
-      onClick(e) {
-        onclick?.(e.nativeEvent)
-      },
+        onClick(e) {
+          onclick?.(e.nativeEvent)
+        },
+      })
     })
   }
 }
