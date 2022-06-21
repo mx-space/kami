@@ -45,6 +45,8 @@ export const BanCopy: FC = observer((props) => {
         }}
         show={showCopyWarn}
         center
+        blur
+        darkness={0.5}
       >
         <h1 className={'mt-0 text-red pointer-events-none'}>注意: </h1>
         <div className="my-3 text-white text-opacity-80 pointer-events-none">
