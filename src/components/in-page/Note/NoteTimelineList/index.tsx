@@ -36,11 +36,18 @@ export const NoteTimelineList: FC<
 
   const { noteStore } = useStore()
   const note = noteStore.get(noteId)
-  const [list, setList] = useState<NotePartial[]>([])
+  const [list, setList] = useState<NotePartial[]>([note as any])
 
   useEffect(() => {
+    const now = +new Date()
     apiClient.note.getMiddleList(noteId, 10).then(({ data }) => {
-      setList(data)
+      const gapTime = +new Date() - now
+      setTimeout(
+        () => {
+          setList(data)
+        },
+        gapTime > 500 ? 0 : gapTime,
+      )
     })
   }, [noteId])
 
@@ -93,7 +100,7 @@ export const NoteTimelineList: FC<
         </ul>
         {note?.topic && (
           <>
-            <Divider className="!w-3/4" />
+            {list.length && <Divider className="!w-3/4" />}
             <p className="text-gray-1 flex flex-col min-w-0 overflow-hidden">
               此文章收录于专栏：
               <br />
