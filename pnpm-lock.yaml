@@ -53,7 +53,7 @@ specifiers:
   prettier: 2.7.1
   randomcolor: 0.6.2
   react: 18.2.0
-  react-countup: 6.2.0
+  react-countup: 6.3.0
   react-dom: 18.2.0
   react-intersection-observer: 9.3.3
   react-lazyload: 3.2.0
@@ -95,7 +95,7 @@ dependencies:
   next-seo: 5.4.0_2nrpme5s5xmpdgccbbbdwhosda
   randomcolor: 0.6.2
   react: 18.2.0
-  react-countup: 6.2.0_react@18.2.0
+  react-countup: 6.3.0_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-intersection-observer: 9.3.3_react@18.2.0
   react-linkify: 1.0.0-alpha
@@ -2797,8 +2797,8 @@ packages:
       yaml: 1.10.2
     dev: true
 
-  /countup.js/2.1.0:
-    resolution: {integrity: sha512-VanMzLEjkt3Hp/ty5BXikM8s4wE3OH4m1AnFro7THR86nYGRvGfGCoV+zrRJcqTbZi7X1egkLSIeUKDz7+4XLA==}
+  /countup.js/2.2.0:
+    resolution: {integrity: sha512-m0TvFNXm9/eFqJm+QiKVI8e0wRUHzlQSewz9dqVjlhl2DFoZtceLbomwzxHz0hJ1+r4zBC7wSpR/TpthG49h6g==}
     dev: false
 
   /cross-env/7.0.3:
@@ -5493,15 +5493,15 @@ packages:
     resolution: {integrity: sha512-Mn6TbyYpFgwFuQ8KJKqf3bqqY9O1y37/0jgSK/61PUxV4QfIMv0+K2ioq8DfOjkBslcjwSzRfIDEXfzA9aCx7A==}
     dev: false
 
-  /react-countup/6.2.0_react@18.2.0:
-    resolution: {integrity: sha512-3WOKAQpWgjyFoH231SHEpIpHhDGb5g5EkTppM6T7vLa3X+8WMdw6750vVcY0wxysKiY00gTFhDwSB5qLU+xPZA==}
+  /react-countup/6.3.0_react@18.2.0:
+    resolution: {integrity: sha512-uZsE+kuisXp/3OZeAuq2lzp6sXKmzw331Et5CRy4ueR9VcOp7z7T6/O1F04BC2Pa2frKmIITsghi3Hh933qWXQ==}
     peerDependencies:
       react: '>= 16.3.0'
     peerDependenciesMeta:
       react:
         optional: true
     dependencies:
-      countup.js: 2.1.0
+      countup.js: 2.2.0
       react: 18.2.0
     dev: false
 
