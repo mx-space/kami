@@ -15,16 +15,12 @@
 }
 
 .list {
-  @apply sticky truncate;
+  @apply sticky;
 
   top: 50vh;
   transform: translateY(-50%);
   width: calc(10rem + 12px);
   max-height: calc(100vh - 20em);
-
-  li {
-    @apply truncate;
-  }
 
   li:hover .item {
     @apply text-primary;
