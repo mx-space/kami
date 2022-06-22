@@ -3,7 +3,6 @@ import Router from 'next/router'
 import { useIndexViewContext } from 'pages'
 import type { FC } from 'react'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { message } from 'react-message-popup'
 import { TransitionGroup } from 'react-transition-group'
 import { NoSSR, apiClient, getRandomImage, stopEventDefault } from 'utils'
 
@@ -15,6 +14,8 @@ import {
   PhUsersDuotone,
 } from '~/components/universal/Icons'
 import { IcTwotoneSignpost } from '~/components/universal/Icons/menu-icon'
+import { LikeButton } from '~/components/universal/LikeButton'
+import { NoticePanel } from '~/components/universal/Notice'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { useThemeConfig } from '~/hooks/use-initial-data'
 
@@ -76,6 +77,8 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
 
   const { doAnimation } = useIndexViewContext()
 
+  const [showLikeThisNotice, setShowLikeThisNotice] = useState(false)
+
   const SectionCompList = [
     <SectionNews {...sections.current.postSection} key="1" />,
     <SectionNews {...sections.current.noteSection} key="2" />,
@@ -125,7 +128,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
             .proxy('like_this')
             .post({ params: { ts: Date.now() } })
             .then(() => {
-              message.success('感谢喜欢 ❤️')
+              setShowLikeThisNotice(true)
               setLike((like) => like + 1)
             })
         }, [])}
@@ -136,6 +139,19 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
         src={useMemo(() => getRandomUnRepeatImage(), [])}
         href="/feed"
       />
+
+      <NoticePanel
+        in={showLikeThisNotice}
+        onExited={useCallback(() => {
+          setShowLikeThisNotice(false)
+        }, [])}
+        text="感谢喜欢！"
+        icon={
+          <div className="flex items-center">
+            <LikeButton checked width={'120px'} />
+          </div>
+        }
+      ></NoticePanel>
     </SectionWrap>,
   ]
 

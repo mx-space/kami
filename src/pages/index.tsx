@@ -1,4 +1,4 @@
-import { omit } from 'lodash-es'
+import omit from 'lodash-es/omit'
 import { observer } from 'mobx-react-lite'
 import type { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
@@ -10,8 +10,8 @@ import { HomeIntro } from '~/components/in-page/Home/intro'
 import { HomeRandomSay } from '~/components/in-page/Home/random-say'
 import { HomeSections } from '~/components/in-page/Home/section'
 import { useInitialData } from '~/hooks/use-initial-data'
-import { Notice } from '~/utils'
 import { apiClient } from '~/utils/client'
+import { Notice } from '~/utils/notice'
 
 const IndexViewContext = createContext({ doAnimation: true })
 

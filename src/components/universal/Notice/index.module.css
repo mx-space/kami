@@ -12,6 +12,12 @@
     width: 200px;
     border-radius: 24px;
     position: relative;
+    pointer-events: all;
+
+    > * {
+      cursor: default;
+      user-select: none;
+    }
 
     .icon-wrap {
       height: 80%;

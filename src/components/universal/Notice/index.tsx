@@ -1,4 +1,7 @@
 import type { FC } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
+
+import { useIsClient } from '~/hooks/use-is-client'
 
 import { RootPortal } from '../Portal'
 import { FadeInOutTransitionView } from '../Transition/fade-in-out'
@@ -9,7 +12,7 @@ interface NoticePanelProps {
   text: string | JSX.Element
 }
 
-const _Notice: FC<NoticePanelProps> = (props) => {
+const Notice: FC<NoticePanelProps> = (props) => {
   const { icon, text } = props
   return (
     <div className={styles['f-wrap']}>
@@ -31,9 +34,28 @@ const _Notice: FC<NoticePanelProps> = (props) => {
 }
 
 export const NoticePanel: FC<
-  NoticePanelProps & { in: boolean; onExited: () => any }
+  NoticePanelProps & { in: boolean; onExited: () => any; duration?: number }
 > = (props) => {
-  if (typeof document === 'undefined') {
+  const isClient = useIsClient()
+
+  const timerRef = useRef<any>()
+
+  const handleWantoDisappear = useCallback(() => {
+    timerRef.current = clearTimeout(timerRef.current)
+    timerRef.current = setTimeout(() => {
+      props.onExited()
+    }, props.duration || 3000)
+  }, [props])
+
+  useEffect(() => {
+    timerRef.current = clearTimeout(timerRef.current)
+
+    timerRef.current = setTimeout(() => {
+      handleWantoDisappear()
+    }, props.duration || 3000)
+  }, [props, handleWantoDisappear])
+
+  if (!isClient) {
     return null
   }
 
@@ -44,13 +66,9 @@ export const NoticePanel: FC<
         timeout={{ exit: 500 }}
         appear
         unmountOnExit
-        onEntered={() => {
-          setTimeout(() => {
-            props.onExited()
-          }, 3000)
-        }}
+        onEntered={handleWantoDisappear}
       >
-        <_Notice {...props} />
+        <Notice {...props} />
       </FadeInOutTransitionView>
     </RootPortal>
   )

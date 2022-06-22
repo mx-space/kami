@@ -72,8 +72,8 @@ export const BasicLayout: FC = observer(({ children }) => {
       icon: !isDark ? <BiMoonStarsFill /> : <PhSunBold />,
     })
 
-    setNotice(!showNotice)
-  }, [isDark, showNotice, toggle])
+    setNotice(true)
+  }, [isDark, toggle])
   const idSymbol = useRef(Symbol())
   useEffect(() => {
     actionStore.removeActionBySymbol(idSymbol.current)
@@ -145,7 +145,7 @@ export const BasicLayout: FC = observer(({ children }) => {
           {...tip}
           onExited={() => setNotice(false)}
           in={showNotice}
-          key={'notice'}
+          key="panel"
         />
 
         <SearchHotKey />
