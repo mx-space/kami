@@ -1,4 +1,5 @@
 import type { AxiosError } from 'axios'
+import { CanceledError } from 'axios'
 import { message } from 'react-message-popup'
 
 import { allControllers, createClient } from '@mx-space/api-client'
@@ -42,6 +43,10 @@ $axios.interceptors.request.use((config) => {
 $axios.interceptors.response.use(
   undefined,
   (error: AxiosError<Record<string, any> | undefined>) => {
+    if (error instanceof CanceledError) {
+      return Promise.reject(error)
+    }
+
     if (process.env.NODE_ENV === 'development') {
       console.error(error.message)
     }

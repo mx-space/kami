@@ -1,17 +1,11 @@
+import { CanceledError } from 'axios'
 import clsx from 'clsx'
 import { throttle } from 'lodash-es'
 import Link from 'next/link'
 import type { FC, KeyboardEventHandler } from 'react'
-import {
-  memo,
-  useCallback,
-  useDeferredValue,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { Modifier, useShortcut } from 'react-shortcut-guide'
-import { apiClient } from 'utils'
+import { $axios, apiClient } from 'utils'
 
 import { EmptyIcon, IonSearch } from '~/components/universal/Icons'
 import type { OverlayProps } from '~/components/universal/Overlay'
@@ -32,27 +26,45 @@ type SearchListType = {
   url: string
   id: string
 }
-let lastResponse = [+new Date(), null] as [number, any]
+
+let controller: AbortController | null
 const search = throttle((keyword: string) => {
-  return new Promise<Awaited<
-    ReturnType<typeof apiClient.search.searchByAlgolia>
-  > | null>((resolve, reject) => {
-    const date = +new Date()
+  return new Promise<
+    | Awaited<ReturnType<typeof apiClient.search.searchByAlgolia>>
+    | null
+    | undefined
+  >((resolve, reject) => {
     if (!keyword) {
-      lastResponse = [date, null]
       resolve(null)
       return
     }
-    apiClient.search
-      .searchByAlgolia(keyword)
+
+    if (controller) {
+      controller.abort()
+    }
+
+    controller = new AbortController()
+
+    $axios
+      .get<Awaited<ReturnType<typeof apiClient.search.searchByAlgolia>>>(
+        apiClient.search.proxy('algolia').toString(true),
+        {
+          signal: controller.signal,
+          params: {
+            keyword,
+          },
+        },
+      )
       .then((data) => {
-        // 只给最后一个请求返回结果
-        if (date > lastResponse[0]) {
-          lastResponse = [date, data]
-        }
-        resolve(lastResponse[1])
+        resolve(data.data)
       })
       .catch((err) => {
+        if (!err) {
+          return resolve(undefined)
+        }
+        if (err instanceof CanceledError) {
+          return resolve(undefined)
+        }
         reject(err)
       })
   })
@@ -61,7 +73,7 @@ const search = throttle((keyword: string) => {
 export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
   const { defaultKeyword } = props
   const [keyword, setKeyword] = useState(defaultKeyword || '')
-  const deferValue = useDeferredValue(keyword)
+
   const [loading, setLoading] = useState(false)
   const [list, setList] = useState<SearchListType[]>([])
   const { event } = useAnalyze()
@@ -69,13 +81,18 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
     setLoading(true)
     setCurrentSelect(0)
 
-    search(deferValue)
+    search(keyword)
       ?.then((res) => {
+        if (typeof res === 'undefined') {
+          return
+        }
+        console.log(res)
+
         event({
           action: TrackerAction.Interaction,
-          label: `搜索触发：${deferValue}`,
+          label: `搜索触发：${keyword}`,
         })
-        if (!res) {
+        if (res === null) {
           setLoading(false)
           setList([])
           return
@@ -119,7 +136,7 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
         console.log(err)
         setLoading(false)
       })
-  }, [deferValue])
+  }, [keyword])
 
   const [currentSelect, setCurrentSelect] = useState(0)
   const listRef = useRef<HTMLUListElement>(null)
