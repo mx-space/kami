@@ -3,7 +3,7 @@ import Link from 'next/link'
 import type { FC } from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
-import { NoSSR, apiClient } from 'utils'
+import { apiClient } from 'utils/client'
 
 import type { PostModel, TagModel } from '@mx-space/api-client'
 
@@ -15,6 +15,7 @@ import { RightLeftTransitionView } from '~/components/universal/Transition/right
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { store } from '~/store'
+import { NoSSRWrapper } from '~/utils/no-ssr'
 
 const _FloatPostTagButton: FC = observer(() => {
   const { actionStore, appUIStore } = store
@@ -149,4 +150,4 @@ const _FloatPostTagButton: FC = observer(() => {
   )
 })
 
-export const TagFAB = NoSSR(_FloatPostTagButton)
+export const TagFAB = NoSSRWrapper(_FloatPostTagButton)

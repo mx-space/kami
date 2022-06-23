@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from 'react'
-import { apiClient } from 'utils'
 
 import type { ProjectModel } from '@mx-space/api-client'
 
@@ -10,6 +9,7 @@ import { BottomUpTransitionView } from '~/components/universal/Transition/bottom
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useStore } from '~/store'
+import { apiClient } from '~/utils/client'
 
 import { SEO } from '../../components/universal/Seo'
 

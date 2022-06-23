@@ -5,7 +5,6 @@ import Link from 'next/link'
 import type { FC, KeyboardEventHandler } from 'react'
 import { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { Modifier, useShortcut } from 'react-shortcut-guide'
-import { $axios, apiClient } from 'utils'
 
 import { EmptyIcon, IonSearch } from '~/components/universal/Icons'
 import type { OverlayProps } from '~/components/universal/Overlay'
@@ -13,6 +12,7 @@ import { OverLay } from '~/components/universal/Overlay'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useStore } from '~/store'
+import { $axios, apiClient } from '~/utils/client'
 
 import styles from './index.module.css'
 

@@ -2,7 +2,6 @@ import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import React, { Fragment, useEffect, useMemo } from 'react'
 import RemoveMarkdown from 'remove-markdown'
-import { appendStyle, noop } from 'utils'
 
 import type { PageModel } from '@mx-space/api-client'
 
@@ -14,7 +13,9 @@ import { useHeaderMeta, useHeaderShare } from '~/hooks/use-header-meta'
 import { useInitialData } from '~/hooks/use-initial-data'
 import { store, useStore } from '~/store'
 import { imagesRecord2Map } from '~/utils/images'
+import { appendStyle } from '~/utils/load-script'
 import { springScrollToTop } from '~/utils/spring'
+import { noop } from '~/utils/utils'
 
 import { Seo } from '../../components/universal/Seo'
 import { ImageSizeMetaContext } from '../../context/image-size'

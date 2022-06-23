@@ -2,11 +2,11 @@ import type { NextPage } from 'next'
 import Router from 'next/router'
 import { useState } from 'react'
 import { message } from 'react-message-popup'
-import { releaseDevtool } from 'utils'
 
 import { CarbonPassword, PhUser } from '~/components/universal/Icons'
 import { Input } from '~/components/universal/Input'
 import { apiClient } from '~/utils/client'
+import { releaseDevtool } from '~/utils/console'
 
 import { useStore } from '../../store'
 import { setToken } from '../../utils/cookie'

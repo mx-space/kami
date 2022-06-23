@@ -2,7 +2,6 @@ import { shuffle } from 'lodash-es'
 import type { NextPage } from 'next'
 import type { FC } from 'react'
 import { createElement, useEffect, useState } from 'react'
-import { NoSSR } from 'utils'
 
 import type { LinkModel } from '@mx-space/api-client'
 import { LinkState, LinkType } from '@mx-space/api-client'
@@ -16,6 +15,7 @@ import {
 import { Markdown } from '~/components/universal/Markdown'
 import { useInitialData } from '~/hooks/use-initial-data'
 import { apiClient } from '~/utils/client'
+import { NoSSRWrapper } from '~/utils/no-ssr'
 
 import { ApplyForLink } from '../../components/in-page/ApplyLink'
 import { ArticleLayout } from '../../components/layouts/ArticleLayout'
@@ -122,7 +122,7 @@ const _Footer: FC = () => {
   )
 }
 
-const Footer = NoSSR(_Footer)
+const Footer = NoSSRWrapper(_Footer)
 FriendsView.getInitialProps = async () => {
   const { data } = await apiClient.link.getAll()
 

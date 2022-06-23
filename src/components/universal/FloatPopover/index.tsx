@@ -2,10 +2,11 @@ import clsx from 'clsx'
 import type { FC } from 'react'
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useClickAway } from 'react-use'
-import { NoSSR } from 'utils'
 
 import type { UseFloatingProps } from '@floating-ui/react-dom'
 import { flip, offset, shift, useFloating } from '@floating-ui/react-dom'
+
+import { NoSSRWrapper } from '~/utils/no-ssr'
 
 import { RootPortal } from '../Portal'
 import styles from './index.module.css'
@@ -25,7 +26,7 @@ export const FloatPopover: FC<
      */
     debug?: boolean
   } & UseFloatingProps
-> = NoSSR(
+> = NoSSRWrapper(
   memo((props) => {
     const {
       headless = false,

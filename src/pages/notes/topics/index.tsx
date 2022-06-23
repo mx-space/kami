@@ -8,7 +8,7 @@ import type { TopicModel } from '@mx-space/api-client/types/models/topic'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { SEO } from '~/components/universal/Seo'
 import { RightLeftTransitionView } from '~/components/universal/Transition/right-left'
-import { apiClient } from '~/utils'
+import { apiClient } from '~/utils/client'
 
 // TODO
 const TopicPage: NextPage = () => {

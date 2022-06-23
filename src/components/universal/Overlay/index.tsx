@@ -2,9 +2,9 @@ import classNames from 'clsx'
 import { merge } from 'lodash-es'
 import type { CSSProperties, FC, ReactNode } from 'react'
 import { memo, useEffect } from 'react'
-import { stopEventDefault } from 'utils'
 
 import { useIsClient } from '~/hooks/use-is-client'
+import { stopEventDefault } from '~/utils/dom'
 
 import { RootPortal } from '../Portal'
 import { FadeInOutTransitionView } from '../Transition/fade-in-out'

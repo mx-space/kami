@@ -3,10 +3,10 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { message } from 'react-message-popup'
-import { apiClient } from 'utils'
 
 import { Loading } from '~/components/universal/Loading'
 import { useStore } from '~/store'
+import { apiClient } from '~/utils/client'
 
 import { ImageLazy } from '../../components/universal/Image'
 import { Seo } from '../../components/universal/Seo'

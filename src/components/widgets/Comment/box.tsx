@@ -13,7 +13,6 @@ import React, {
   useState,
 } from 'react'
 import { message } from 'react-message-popup'
-import { apiClient, isDev } from 'utils'
 import isEmail from 'validator/lib/isEmail'
 import isUrl from 'validator/lib/isURL'
 
@@ -28,6 +27,8 @@ import { ImpressionView } from '~/components/universal/ImpressionView'
 import { kaomoji } from '~/constants/kaomoji'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
+import { apiClient } from '~/utils/client'
+import { isDev } from '~/utils/env'
 
 import { useStore } from '../../../store'
 import { Input } from '../../universal/Input'

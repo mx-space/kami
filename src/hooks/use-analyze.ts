@@ -3,8 +3,8 @@ import { useCallback, useEffect } from 'react'
 import type { TrackerAction } from '~/constants/tracker'
 import { useStore } from '~/store'
 import { CustomEventTypes } from '~/types/events'
-import { eventBus } from '~/utils'
 import { isDev } from '~/utils/env'
+import { eventBus } from '~/utils/event-emitter'
 
 import { useThemeConfig } from './use-initial-data'
 

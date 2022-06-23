@@ -43,10 +43,6 @@ import { TokenKey } from '../utils/cookie'
 
 const version = `v${Package.version}` || ''
 
-if (isServerSide()) {
-  React.useLayoutEffect = useEffect
-}
-
 const Content: FC = observer((props) => {
   const { userStore: master } = useStore()
 

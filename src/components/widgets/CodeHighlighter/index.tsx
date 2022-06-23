@@ -2,7 +2,8 @@ import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { message } from 'react-message-popup'
-import { loadScript, loadStyleSheet } from 'utils'
+
+import { loadScript, loadStyleSheet } from '~/utils/load-script'
 
 import { useStore } from '../../../store'
 import styles from './index.module.css'

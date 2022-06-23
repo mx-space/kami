@@ -1,9 +1,9 @@
 import type { DOMAttributes, FC } from 'react'
 import React, { Fragment, createElement, memo, useMemo } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { eventBus } from 'utils'
 
 import { CustomEventTypes } from '~/types/events'
+import { eventBus } from '~/utils/event-emitter'
 
 export const Heading: () => React.ElementType<any> = () => {
   let index = 0
