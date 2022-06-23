@@ -12,8 +12,9 @@ import {
 } from 'react'
 import LazyLoad from 'react-lazyload'
 
+import { escapeHTMLTag } from '~/utils/utils'
+
 import { useCalculateSize } from '../../../hooks/use-calculate-size'
-import { escapeHTMLTag } from '../../../utils'
 import styles from './index.module.css'
 
 interface ImageProps {

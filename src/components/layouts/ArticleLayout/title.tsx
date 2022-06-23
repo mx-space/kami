@@ -1,14 +1,14 @@
 import { observer } from 'mobx-react-lite'
-import type { FC } from 'react'
-import { isClientSide, resolveUrl } from 'utils'
 
 import { TextFade } from '~/components/universal/Animate/text-anim'
+import { useIsClient } from '~/hooks/use-is-client'
 import { useStore } from '~/store'
+import { resolveUrl } from '~/utils/utils'
 
 import { useArticleLayoutProps } from './hooks'
 import styles from './index.module.css'
 
-export const ArticleLayoutTitle: FC<{ animate?: boolean }> = observer(
+export const ArticleLayoutTitle = observer<{ animate?: boolean }>(
   ({ animate = true }) => {
     const { userStore } = useStore()
     const {
@@ -19,13 +19,14 @@ export const ArticleLayoutTitle: FC<{ animate?: boolean }> = observer(
       subtitleAnimation = true,
     } = useArticleLayoutProps()
     const { isLogged, url } = userStore
+    const isClientSide = useIsClient()
     if (!title) {
       return null
     }
     return (
       <section className={styles['post-title']}>
         <h1 className={styles['h1']} suppressHydrationWarning>
-          {isClientSide() ? (
+          {isClientSide ? (
             <TextFade appear={animate} key={title}>
               {title}
             </TextFade>
@@ -52,7 +53,7 @@ export const ArticleLayoutTitle: FC<{ animate?: boolean }> = observer(
 
         {subtitle && (
           <h2 suppressHydrationWarning>
-            {isClientSide() && subtitleAnimation ? (
+            {isClientSide && subtitleAnimation ? (
               typeof subtitle === 'string' ? (
                 <TextFade appear={animate} key={subtitle}>
                   {subtitle}

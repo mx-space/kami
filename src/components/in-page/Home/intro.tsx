@@ -1,8 +1,6 @@
 import { observer } from 'mobx-react-lite'
-import { useIndexViewContext } from 'pages'
 import type { FC } from 'react'
 import { TransitionGroup } from 'react-transition-group'
-import { NoSSR } from 'utils'
 
 import { TextFade } from '~/components/universal/Animate/text-anim'
 import { Avatar } from '~/components/universal/Avatar'
@@ -10,7 +8,9 @@ import { FloatPopover } from '~/components/universal/FloatPopover'
 import { FontIcon } from '~/components/universal/FontIcon'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { useThemeConfig } from '~/hooks/use-initial-data'
+import { useIndexViewContext } from '~/pages'
 import { useStore } from '~/store'
+import { NoSSRWrapper } from '~/utils/no-ssr'
 
 import styles from './intro.module.css'
 
@@ -48,7 +48,7 @@ export const HomeIntro: FC = observer(() => {
   )
 })
 // 首页 社交 图标栏
-const Social = NoSSR(() => {
+const Social: FC = NoSSRWrapper(() => {
   const config = useThemeConfig()
   const { doAnimation } = useIndexViewContext()
   const { social } = config.site

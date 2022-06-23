@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import { loadStyleSheet } from 'utils'
+
+import { loadStyleSheet } from '~/utils/load-script'
 
 export const useLoadSerifFont = () => {
   useEffect(() => {

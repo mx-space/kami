@@ -2,7 +2,6 @@ import Link from 'next/link'
 import type { FC } from 'react'
 import { useEffect, useState } from 'react'
 import Linkify from 'react-linkify'
-import { apiClient } from 'utils'
 
 import type { NoteModel, Pager } from '@mx-space/api-client'
 import type { TopicModel } from '@mx-space/api-client/types/models/topic'
@@ -13,6 +12,7 @@ import {
   MdiFountainPenTip,
 } from '~/components/universal/Icons'
 import { RelativeTime } from '~/components/universal/RelativeTime'
+import { apiClient } from '~/utils/client'
 
 export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
   const { topic } = props

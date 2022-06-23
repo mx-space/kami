@@ -9,7 +9,7 @@ import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useInitialData, useThemeConfig } from '~/hooks/use-initial-data'
 import { useFooterBackground } from '~/hooks/use-theme-background'
-import { NoSSR } from '~/utils'
+import { NoSSRWrapper } from '~/utils/no-ssr'
 
 import { useStore } from '../../../../store'
 import { FooterActions } from './actions'
@@ -119,4 +119,4 @@ export const FooterContent: FC = observer(() => {
     </div>
   )
 })
-export const Footer = NoSSR(_Footer)
+export const Footer = NoSSRWrapper(_Footer)

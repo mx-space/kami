@@ -11,7 +11,7 @@ import { IconTransition } from '~/components/universal/IconTransition'
 import { PhPushPin, PhPushPinFill } from '~/components/universal/Icons'
 import { useInitialData } from '~/hooks/use-initial-data'
 import { useStore } from '~/store'
-import { apiClient } from '~/utils'
+import { apiClient } from '~/utils/client'
 import { springScrollToTop } from '~/utils/spring'
 import { parseDate } from '~/utils/time'
 

@@ -1,15 +1,8 @@
-/*
- * @Author: Innei
- * @Date: 2021-01-26 11:26:43
- * @LastEditTime: 2021-01-26 11:34:32
- * @LastEditors: Innei
- * @FilePath: /web/components/Time/index.tsx
- * @Mark: Coding with Love
- */
 import dayjs from 'dayjs'
 import type { FC } from 'react'
 import { useEffect, useState } from 'react'
-import { relativeTimeFromNow } from 'utils'
+
+import { relativeTimeFromNow } from '~/utils/time'
 
 export const RelativeTime: FC<{
   date: string | Date

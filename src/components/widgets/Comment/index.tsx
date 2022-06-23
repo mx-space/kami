@@ -7,10 +7,12 @@ import { useHash } from 'react-use'
 
 import type { Pager } from '@mx-space/api-client'
 
+import { useIsClient } from '~/hooks/use-is-client'
 import { apiClient } from '~/utils/client'
+import { NoSSRWrapper } from '~/utils/no-ssr'
+import { springScrollToElement } from '~/utils/spring'
 
 import { useStore } from '../../../store'
-import { NoSSR, isClientSide, springScrollToElement } from '../../../utils'
 import { Pagination } from '../../universal/Pagination'
 import { CommentBox } from './box'
 import { Comments } from './comments'
@@ -98,8 +100,9 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
   )
 
   const hash = useHash()
+  const isClientSide = useIsClient()
 
-  const shouldPreloadComment = isClientSide() && hash.includes('#comments-')
+  const shouldPreloadComment = isClientSide && hash.includes('#comments-')
 
   const [commentShow, setCommentShow] = useState(shouldPreloadComment)
 
@@ -176,4 +179,4 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
   )
 })
 
-export const CommentLazy = NoSSR(_CommentWrap)
+export const CommentLazy = NoSSRWrapper(_CommentWrap)

@@ -14,7 +14,7 @@ import React, {
   useState,
 } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { NoSSR, eventBus } from 'utils'
+import { eventBus } from 'utils/event-emitter'
 
 import type { RecentlyModel } from '@mx-space/api-client'
 
@@ -28,6 +28,7 @@ import { Seo } from '~/components/universal/Seo'
 import { useStore } from '~/store'
 import { EventTypes } from '~/types/events'
 import { apiClient } from '~/utils/client'
+import { NoSSRWrapper } from '~/utils/no-ssr'
 import { urlBuilder } from '~/utils/url'
 
 import styles from './index.module.css'
@@ -236,4 +237,4 @@ const RecentlyBox: FC = memo(() => {
     </form>
   )
 })
-export default NoSSR(observer(RecentlyPage))
+export default NoSSRWrapper(observer(RecentlyPage))

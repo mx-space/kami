@@ -12,12 +12,14 @@ import {
   useState,
 } from 'react'
 import { useAudio } from 'react-use'
-import { NoSSR, apiClient, hms } from 'utils'
 
 import { RootPortal } from '~/components/universal/Portal'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { store, useStore } from '~/store'
+import { apiClient } from '~/utils/client'
+import { NoSSRWrapper } from '~/utils/no-ssr'
+import { hms } from '~/utils/time'
 
 import styles from './index.module.css'
 
@@ -337,6 +339,6 @@ export const _MusicMiniPlayerStoreControlled = observer(() => {
   )
 })
 
-export const MusicMiniPlayerStoreControlled = NoSSR(
+export const MusicMiniPlayerStoreControlled = NoSSRWrapper(
   _MusicMiniPlayerStoreControlled,
 )

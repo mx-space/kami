@@ -1,9 +1,9 @@
 import type { DetailedHTMLProps, HTMLAttributes } from 'react'
 import { memo, useRef } from 'react'
-import { NoSSR } from 'utils'
 
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
+import { NoSSRWrapper } from '~/utils/no-ssr'
 import { genSpringKeyframes } from '~/utils/spring'
 
 import styles from './index.module.css'
@@ -27,7 +27,7 @@ const [up] = genSpringKeyframes(
     translateY: '0',
   },
 )
-export const LampSwitch = NoSSR(
+export const LampSwitch = NoSSRWrapper(
   memo<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>>(
     (props = {}) => {
       const containerRef = useRef<HTMLDivElement>(null)

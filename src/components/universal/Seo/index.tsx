@@ -7,9 +7,9 @@ import type { OpenGraph } from 'next-seo/lib/types'
 import type { FC } from 'react'
 
 import { useInitialData, useThemeConfig } from '~/hooks/use-initial-data'
+import { getRandomImage } from '~/utils/images'
 
 import { useStore } from '../../../store'
-import { getRandomImage } from '../../../utils'
 
 type SEOProps = {
   title: string

@@ -2,7 +2,6 @@ import dayjs from 'dayjs'
 import { observer } from 'mobx-react-lite'
 import type { ReactNode } from 'react'
 import { forwardRef, useCallback } from 'react'
-import { resolveUrl } from 'utils'
 
 import { NoteTimelineList } from '~/components/in-page/Note/NoteTimelineList'
 import { FloatPopover } from '~/components/universal/FloatPopover'
@@ -14,6 +13,7 @@ import {
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { useStore } from '~/store'
 import { apiClient } from '~/utils/client'
+import { resolveUrl } from '~/utils/utils'
 
 import { IconTransition } from '../universal/IconTransition'
 

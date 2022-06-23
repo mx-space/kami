@@ -1,10 +1,9 @@
-import { shuffle } from 'lodash-es'
+import shuffle from 'lodash-es/shuffle'
 import Router from 'next/router'
 import { useIndexViewContext } from 'pages'
 import type { FC } from 'react'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
-import { NoSSR, apiClient, getRandomImage, stopEventDefault } from 'utils'
 
 import type { AggregateTop } from '@mx-space/api-client'
 
@@ -18,6 +17,10 @@ import { LikeButton } from '~/components/universal/LikeButton'
 import { NoticePanel } from '~/components/universal/Notice'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { useThemeConfig } from '~/hooks/use-initial-data'
+import { apiClient } from '~/utils/client'
+import { stopEventDefault } from '~/utils/dom'
+import { getRandomImage } from '~/utils/images'
+import { NoSSRWrapper } from '~/utils/no-ssr'
 
 import type { SectionNewsProps } from './SectionNews'
 import SectionNews, { SectionCard } from './SectionNews'
@@ -170,7 +173,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
   )
 }
 
-export const HomeSections = NoSSR(_Sections)
+export const HomeSections = NoSSRWrapper(_Sections)
 
 function buildRoute<T extends { id: string } & { nid?: number }>(
   type: keyof typeof ContentType,

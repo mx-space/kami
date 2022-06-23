@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { useCallback, useEffect, useState } from 'react'
 import Linkify from 'react-linkify'
 import { TransitionGroup } from 'react-transition-group'
-import { apiClient } from 'utils'
 
 import type { NoteModel, Pager } from '@mx-space/api-client'
 import type { TopicModel } from '@mx-space/api-client/types/models/topic'
@@ -14,6 +13,7 @@ import { Pagination } from '~/components/universal/Pagination'
 import { SEO } from '~/components/universal/Seo'
 import { TimelineListWrapper } from '~/components/universal/TimelineListWrapper'
 import { RightLeftTransitionView } from '~/components/universal/Transition/right-left'
+import { apiClient } from '~/utils/client'
 
 const TopicDetailPage: NextPage<TopicModel> = (props) => {
   const { name } = props

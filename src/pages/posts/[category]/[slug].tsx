@@ -30,20 +30,17 @@ import { DonatePopover } from '~/components/widgets/Donate'
 import { SearchFAB } from '~/components/widgets/Search'
 import { useHeaderMeta, useHeaderShare } from '~/hooks/use-header-meta'
 import { useInitialData, useThemeConfig } from '~/hooks/use-initial-data'
+import { useIsClient } from '~/hooks/use-is-client'
 import { useBackgroundOpacity } from '~/hooks/use-theme-background'
 import { store, useStore } from '~/store'
 import { apiClient } from '~/utils/client'
+import { isLikedBefore, setLikeId } from '~/utils/cookie'
+import { imagesRecord2Map } from '~/utils/images'
+import { getSummaryFromMd } from '~/utils/markdown'
 import { springScrollToTop } from '~/utils/spring'
+import { noop } from '~/utils/utils'
 
 import { Copyright } from '../../../components/widgets/Copyright'
-import {
-  getSummaryFromMd,
-  imagesRecord2Map,
-  isClientSide,
-  isLikedBefore,
-  noop,
-  setLikeId,
-} from '../../../utils'
 
 const storeThumbsUpCookie = setLikeId
 
@@ -206,6 +203,7 @@ export const PostView: PageOnlyProps = observer((props) => {
   useHeaderShare(post.title, post.text)
   useUpdatePost(post.id)
   useBackgroundOpacity(0.2)
+  const isClientSide = useIsClient()
 
   return (
     <>
@@ -245,7 +243,7 @@ export const PostView: PageOnlyProps = observer((props) => {
                   />
                 </article>
               </ImageSizeMetaContext.Provider>
-              {post.copyright && isClientSide() ? (
+              {post.copyright && isClientSide ? (
                 <Copyright
                   date={post.modified}
                   link={new URL(location.pathname, webUrl).toString()}
@@ -272,6 +270,7 @@ export const PostView: PageOnlyProps = observer((props) => {
             post.text,
             post.title,
             webUrl,
+            isClientSide,
           ],
         )}
 
