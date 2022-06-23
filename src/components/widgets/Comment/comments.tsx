@@ -9,7 +9,8 @@ import { socketClient } from 'socket'
 
 import type { CommentModel } from '@mx-space/api-client'
 
-import { PhPushPin } from '~/components/universal/Icons'
+import { IconTransition } from '~/components/universal/IconTransition'
+import { PhPushPin, PhPushPinFill } from '~/components/universal/Icons'
 import { ImpressionView } from '~/components/universal/ImpressionView'
 import { Markdown } from '~/components/universal/Markdown'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
@@ -182,10 +183,11 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
     })
 
     runInAction(() => {
+      const commentPinStatus = comment.pin
       for (const currentComment of comments) {
         currentComment.pin = false
       }
-      comment.pin = !comment.pin
+      comment.pin = !commentPinStatus
     })
   }, [comment, comments])
   return (
@@ -250,7 +252,11 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
           role={'button'}
           onClick={handlePinComment}
         >
-          <PhPushPin />
+          <IconTransition
+            currentState={comment.pin ? 'solid' : 'regular'}
+            regularIcon={<PhPushPin />}
+            solidIcon={<PhPushPinFill />}
+          />
         </div>
       )}
 

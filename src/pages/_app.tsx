@@ -102,6 +102,8 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
 ) => {
   const { initData, Component, pageProps } = props
 
+  const router = useRouter()
+
   const Inner = useMemo(() => {
     // 兜底页
     return initData.aggregateData ? (
@@ -112,7 +114,15 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
       <NoDataErrorView />
     )
   }, [Component, initData.aggregateData, pageProps])
-
+  if (router.route.startsWith('/dev')) {
+    return (
+      <RootStoreProvider>
+        <DebugLayout>
+          <Component {...pageProps} />
+        </DebugLayout>
+      </RootStoreProvider>
+    )
+  }
   return (
     <RootStoreProvider>
       <InitialContextProvider value={initData}>{Inner}</InitialContextProvider>
@@ -120,10 +130,6 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
   )
 }
 const Wrapper = memo((props) => {
-  const router = useRouter()
-  if (router.route.startsWith('/dev')) {
-    return <DebugLayout>{props.children}</DebugLayout>
-  }
   return (
     <BasicLayout>
       <Content>{props.children}</Content>

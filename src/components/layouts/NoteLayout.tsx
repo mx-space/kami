@@ -15,6 +15,8 @@ import { BottomUpTransitionView } from '~/components/universal/Transition/bottom
 import { useStore } from '~/store'
 import { apiClient } from '~/utils/client'
 
+import { IconTransition } from '../universal/IconTransition'
+
 interface NoteLayoutProps {
   title: string
   tips?: string
@@ -54,17 +56,21 @@ export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
                 <time className="font-medium">{dateFormat}</time>
                 <div className="ml-4 inline-flex space-x-2 items-center">
                   {isLogged ? (
-                    bookmark ? (
-                      <SolidBookmark
-                        className="text-red cursor-pointer"
-                        onClick={onMarkToggle}
-                      />
-                    ) : (
-                      <RegularBookmark
-                        className="cursor-pointer"
-                        onClick={onMarkToggle}
-                      />
-                    )
+                    <IconTransition
+                      currentState={bookmark ? 'solid' : 'regular'}
+                      regularIcon={
+                        <RegularBookmark
+                          className="cursor-pointer"
+                          onClick={onMarkToggle}
+                        />
+                      }
+                      solidIcon={
+                        <SolidBookmark
+                          className="text-red cursor-pointer"
+                          onClick={onMarkToggle}
+                        />
+                      }
+                    />
                   ) : bookmark ? (
                     <SolidBookmark className="text-red" />
                   ) : null}

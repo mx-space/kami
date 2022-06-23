@@ -7,7 +7,8 @@ import removeMd from 'remove-markdown'
 
 import type { PostModel } from '@mx-space/api-client'
 
-import { PhPushPin } from '~/components/universal/Icons'
+import { IconTransition } from '~/components/universal/IconTransition'
+import { PhPushPin, PhPushPinFill } from '~/components/universal/Icons'
 import { useInitialData } from '~/hooks/use-initial-data'
 import { useStore } from '~/store'
 import { apiClient } from '~/utils'
@@ -59,7 +60,7 @@ export const PostBlock: FC<PostBlockProps> = observer((props) => {
   const handlePin = async () => {
     await apiClient.post.proxy(id).patch({
       data: {
-        pin: !pin,
+        pin: !pinState,
       },
     })
     setPinState(!pinState)
@@ -67,9 +68,9 @@ export const PostBlock: FC<PostBlockProps> = observer((props) => {
   }
 
   const pinEl = (
-    <i
+    <div
       className={clsx(
-        'absolute right-0 top-0 bottom-0 items-center hidden',
+        'absolute right-0 top-0 bottom-0 items-center hidden overflow-hidden h-5 w-5',
         isLogged && 'cursor-pointer !inline-flex',
         !isLogged && pinState && 'pointer-events-none',
         pinState && 'text-red !inline-flex',
@@ -77,8 +78,14 @@ export const PostBlock: FC<PostBlockProps> = observer((props) => {
       role={'button'}
       onClick={handlePin}
     >
-      <PhPushPin />
-    </i>
+      <i className="absolute h-full w-full">
+        <IconTransition
+          currentState={pinState ? 'solid' : 'regular'}
+          regularIcon={<PhPushPin />}
+          solidIcon={<PhPushPinFill />}
+        />
+      </i>
+    </div>
   )
 
   const tilteEl = (
