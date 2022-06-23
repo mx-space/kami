@@ -4,7 +4,6 @@ import React, {
   Suspense,
   useCallback,
   useEffect,
-  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -99,7 +98,7 @@ export const BasicLayout: FC = observer(({ children }) => {
     handleChangeColorMode,
   ])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (location.hash) {
       const id = location.hash.replace(/^#/, '')
       setTimeout(() => {
