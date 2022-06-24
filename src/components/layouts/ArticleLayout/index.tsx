@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import type { DetailedHTMLProps, HTMLAttributes } from 'react'
 import { forwardRef, memo, useMemo } from 'react'
 
@@ -25,13 +26,23 @@ export const ArticleLayout = memo(
       DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
   >(
     (
-      { children, title, subtitle, delay, type, id, titleAnimate, ...rest },
+      {
+        children,
+        title,
+        subtitle,
+        delay,
+        type,
+        id,
+        titleAnimate,
+        className,
+        ...rest
+      },
       ref: any,
     ) => {
       return (
         <ArticleLayoutContextProvider value={{ title, id, subtitle, type }}>
           <main
-            className={styles['is-article']}
+            className={clsx(styles['is-article'], className)}
             ref={ref}
             {...rest}
             id={'article-wrap'}

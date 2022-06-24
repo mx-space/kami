@@ -38,6 +38,7 @@
   "scripts": {
     "start": "npm run dev",
     "prebuild": "rimraf .next",
+    "predev": "rimraf .next",
     "dev": "cross-env NODE_ENV=development next dev -p 2323",
     "analyze": "cross-env NODE_ENV=production ANALYZE=true BUNDLE_ANALYZE=browser next build",
     "build": "cross-env NODE_ENV=production next build",

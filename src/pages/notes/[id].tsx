@@ -5,8 +5,13 @@ import { toJS } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import type { FC } from 'react'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, {
+  createElement,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import { message } from 'react-message-popup'
 import { useUpdate } from 'react-use'
 
@@ -14,14 +19,14 @@ import type { NoteModel } from '@mx-space/api-client'
 import { RequestError } from '@mx-space/api-client'
 
 import { NoteFooterActionBar } from '~/components/in-page/Note/NoteActionBar'
-import { NoteFooterNavigation } from '~/components/in-page/Note/NoteFooterNavigation'
+import { NoteFooterActionBarForMobile } from '~/components/in-page/Note/NoteFooterNavigation'
+import { NoteMarkdownRender } from '~/components/in-page/Note/NoteMarkdownRender'
 import { NotePasswordConfrim } from '~/components/in-page/Note/NotePasswordConfirm'
 import { NoteTopic } from '~/components/in-page/Note/NoteTopic'
 import { BanCopy } from '~/components/in-page/WarningOverlay/ban-copy'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { NoteLayout } from '~/components/layouts/NoteLayout'
 import { Loading } from '~/components/universal/Loading'
-import { Markdown } from '~/components/universal/Markdown'
 import { CommentLazy } from '~/components/widgets/Comment'
 import { SearchFAB } from '~/components/widgets/Search'
 import { TrackerAction } from '~/constants/tracker'
@@ -38,10 +43,6 @@ import { noop } from '~/utils/utils'
 import { Seo } from '../../components/universal/Seo'
 import { ImageSizeMetaContext } from '../../context/image-size'
 import { isDev } from '../../utils/env'
-
-const renderLines: FC<{ value: string }> = ({ value }) => {
-  return <span className="indent">{value}</span>
-}
 
 const useUpdateNote = (id: string) => {
   const note = store.noteStore.get(id)
@@ -98,7 +99,6 @@ const useUpdateNote = (id: string) => {
   ])
 }
 
-const Markdownrenderers = { text: renderLines }
 const NoteView: React.FC<{ id: string }> = observer((props) => {
   const { userStore, noteStore } = useStore()
   const note = noteStore.get(props.id) || (noop as NoteModel)
@@ -186,22 +186,21 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
 
   return (
     <>
-      <Seo
-        {...{
-          title,
-          description,
+      {createElement(Seo, {
+        title,
+        description,
 
-          openGraph: {
-            title,
-            type: 'article',
-            description,
-            article: {
-              publishedTime: note.created,
-              modifiedTime: note.modified || undefined,
-            },
+        openGraph: {
+          title,
+          type: 'article',
+          description,
+          article: {
+            publishedTime: note.created,
+            modifiedTime: note.modified || undefined,
+            tags: note.topic ? [note.topic.name] : [],
           },
-        }}
-      />
+        },
+      })}
 
       <NoteLayout title={title} date={note.created} tips={tips} id={note.id}>
         {isSecret && !userStore.isLogged ? (
@@ -224,26 +223,21 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
             <BanCopy>
               <article>
                 <h1 className="sr-only">{title}</h1>
-                <Markdown
-                  value={text}
-                  escapeHtml={false}
-                  renderers={Markdownrenderers}
-                  toc
-                />
+                <NoteMarkdownRender text={text} />
               </article>
             </BanCopy>
           </ImageSizeMetaContext.Provider>
         )}
         <div className="pb-4" />
         {note.topic && <NoteTopic noteId={props.id} topic={note.topic} />}
-        <NoteFooterNavigation id={props.id} />
+        <NoteFooterActionBarForMobile id={props.id} />
         <div className="pb-4"></div>
         <NoteFooterActionBar id={props.id} />
       </NoteLayout>
       {!isSecret && (
         <ArticleLayout
-          style={{ minHeight: 'unset', paddingTop: '0' }}
-          key={'at'}
+          className="!pt-0 !min-h-[unset]"
+          key={`comments-${props.id}`}
         >
           <CommentLazy
             id={id}

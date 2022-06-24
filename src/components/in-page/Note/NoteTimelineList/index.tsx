@@ -29,7 +29,7 @@ interface NoteTimelineListProps {
 
 type NotePartial = Pick<NoteModel, 'id' | 'nid' | 'created' | 'title'>
 
-export const NoteTimelineList: FC<
+const ObserveredNoteTimelineList: FC<
   NoteTimelineListProps & JSX.IntrinsicElements['div']
 > = observer((props) => {
   const { className, noteId } = props
@@ -123,4 +123,16 @@ export const NoteTimelineList: FC<
       </div>
     </div>
   )
+})
+
+export const NoteTimelineList: FC<
+  NoteTimelineListProps & JSX.IntrinsicElements['div']
+> = observer((props) => {
+  const {
+    appUIStore: { isPadOrMobile },
+  } = useStore()
+  if (isPadOrMobile) {
+    return null
+  }
+  return <ObserveredNoteTimelineList {...props} />
 })

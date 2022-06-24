@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { isClientSide } from 'utils/env'
 
 import type { ViewportRecord } from './types'
@@ -26,10 +26,8 @@ export default class AppUIStore {
 
   updatePosition(direction: 'up' | 'down') {
     if (typeof document !== 'undefined') {
-      runInAction(() => {
-        this.position = document.documentElement.scrollTop
-        this.scrollDirection = direction
-      })
+      this.position = document.documentElement.scrollTop
+      this.scrollDirection = direction
     }
   }
 

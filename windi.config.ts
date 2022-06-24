@@ -16,7 +16,7 @@ export default defineConfig({
         },
         '.shadow-out-sm': {
           'box-shadow':
-            '0 0 10px rgb(128 128 128 / 10%), 0 5px 20px rgb(128 128 128 / 20%)',
+            '0 0 10px rgb(120 120 120 / 10%), 0 5px 20px rgb(120 120 120 / 20%)',
         },
       }
       addComponents(styles)

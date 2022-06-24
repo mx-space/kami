@@ -64,3 +64,15 @@ export const NoteFooterNavigation: FC<{ id: string }> = observer(({ id }) => {
     </>
   )
 })
+
+export const NoteFooterActionBarForMobile: typeof NoteFooterNavigation =
+  observer((props) => {
+    const {
+      appUIStore: { isPadOrMobile },
+    } = useStore()
+
+    if (isPadOrMobile) {
+      return <NoteFooterNavigation {...props} />
+    }
+    return null
+  })
