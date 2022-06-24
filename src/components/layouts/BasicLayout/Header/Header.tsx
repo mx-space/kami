@@ -24,7 +24,10 @@ export const Header: FC = observer(() => {
   const {
     seo: { title },
   } = useInitialData()
-  const { appStore } = useStore()
+  const {
+    appStore,
+    userStore: { isLogged, url },
+  } = useStore()
 
   const { isPadOrMobile } = appStore
 
@@ -39,7 +42,13 @@ export const Header: FC = observer(() => {
         label: '点击 - 顶部 Logo',
       })
     },
-    () => void router.push('/login'),
+    () => {
+      if (isLogged && url?.adminUrl) {
+        location.href = url.adminUrl
+      } else {
+        router.push('/login')
+      }
+    },
   )
 
   const [drawerOpen, setDrawerOpen] = useState(false)
