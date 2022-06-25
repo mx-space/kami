@@ -8,9 +8,11 @@ RUN node -e "console.log(process.env)"
 COPY . .
 RUN npm i -g pnpm
 RUN pnpm install
-
 RUN pnpm run build
 RUN rm -rf .next/cache
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+USER nextjs
 EXPOSE 2323
 CMD echo "MixSpace Web [Kami] Image." && node server.js
 
