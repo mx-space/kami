@@ -59,7 +59,7 @@ export const Avatar: FC<
     if (!inView) {
       return
     }
-    const image = new Image()
+    const image = new window.Image()
 
     image.src = props.imageUrl as string
     image.onload = () => {
@@ -100,19 +100,15 @@ export const Avatar: FC<
           : {}),
 
         children: props.imageUrl ? (
-          <div
-            className={styles['image']}
-            style={
-              props.imageUrl
-                ? {
-                    backgroundImage: loaded
-                      ? `url(${props.imageUrl})`
-                      : undefined,
-                    opacity: loaded ? 1 : 0,
-                  }
-                : {}
-            }
-          />
+          <div className={styles['image']} style={{ opacity: loaded ? 1 : 0 }}>
+            {loaded && (
+              <img
+                src={props.imageUrl}
+                height={props.size}
+                width={props.size}
+              ></img>
+            )}
+          </div>
         ) : props.text ? (
           <div className="flex flex-grow relative h-full w-full items-center justify-center">
             <FlexText size={0.8} text={props.text} />

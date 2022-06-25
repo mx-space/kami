@@ -1,9 +1,7 @@
 import pick from 'lodash-es/pick'
 import Link from 'next/link'
 import type { FC, MouseEvent, ReactNode } from 'react'
-import { forwardRef, memo } from 'react'
-
-import { ImageLazy } from '~/components/universal/Image'
+import { forwardRef, memo, useEffect, useState } from 'react'
 
 import styles from './index.module.css'
 import { SectionWrap } from './section'
@@ -32,10 +30,18 @@ interface CardProps {
 
 const Card: FC<CardProps> = (props) => {
   const { cover, shade = true, title, children } = props
+
+  const [isMounted, setIsMounted] = useState(false)
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
   return (
     <div className={styles['card-container']}>
       <div className={styles['card-cover-wrap']}>
-        <ImageLazy src={cover} className="dark:brightness-50 dark:filter" />
+        {isMounted && (
+          <img src={cover} className="dark:brightness-50 dark:filter" />
+        )}
       </div>
       <div className={styles['card-header']}></div>
       {title && (
