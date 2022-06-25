@@ -20,45 +20,55 @@ export const NoteFooterNavigation: FC<{ id: string }> = observer(({ id }) => {
   return (
     <>
       {(!!next || !!prev) && (
-        <section className="mt-4 text-center">
-          {!!next && (
-            <button
-              className="btn green"
-              onClick={() => {
-                router.push('/notes/[id]', `/notes/${next.nid}`)
-              }}
-            >
-              前一篇
-            </button>
-          )}
-          {
-            <button
-              className="btn yellow"
-              onClick={() => {
-                const note = noteStore.get(id)
+        <section
+          className="mt-4 text-center relative px-6 py-4"
+          data-hide-print
+        >
+          <div className="flex justify-between">
+            {!!next && (
+              <div
+                tabIndex={1}
+                role={'button'}
+                className="hover:text-primary"
+                onClick={() => {
+                  router.push('/notes/[id]', `/notes/${next.nid}`)
+                }}
+              >
+                前一篇
+              </div>
+            )}
 
-                event({
-                  action: TrackerAction.Click,
-                  label: `时间线点击 - ${note?.nid} - ${note?.title}`,
-                })
+            {!!prev && (
+              <div
+                tabIndex={1}
+                role={'button'}
+                className="hover:text-primary"
+                onClick={() => {
+                  router.push('/notes/[id]', `/notes/${prev.nid}`)
+                }}
+              >
+                后一篇
+              </div>
+            )}
+          </div>
+          <div
+            tabIndex={1}
+            role={'button'}
+            className="hover:text-primary absolute left-1/2 top-0 bottom-0 flex items-center -translate-x-1/2 transform"
+            onClick={() => {
+              const note = noteStore.get(id)
 
-                springScrollToTop()
-                router.push('/timeline?type=note')
-              }}
-            >
-              时间线
-            </button>
-          }
-          {!!prev && (
-            <button
-              className="btn green"
-              onClick={() => {
-                router.push('/notes/[id]', `/notes/${prev.nid}`)
-              }}
-            >
-              后一篇
-            </button>
-          )}
+              event({
+                action: TrackerAction.Click,
+                label: `时间线点击 - ${note?.nid} - ${note?.title}`,
+              })
+
+              springScrollToTop()
+              router.push('/timeline?type=note')
+            }}
+          >
+            时间线
+          </div>
         </section>
       )}
     </>

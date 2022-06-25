@@ -9,7 +9,7 @@ import { TransitionGroup } from 'react-transition-group'
 import {
   BxBxsArrowToTop,
   FaSolidHeadphonesAlt,
-} from '~/components/universal/Icons'
+} from '~/components/universal/Icons/for-footer'
 import { RootPortal } from '~/components/universal/Portal'
 import { ScaleTransitionView } from '~/components/universal/Transition/scale'
 import { TrackerAction } from '~/constants/tracker'

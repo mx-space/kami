@@ -11,7 +11,7 @@ import {
   FaSolidKissWinkHeart,
   MdiDrawPen,
   PhUsersDuotone,
-} from '~/components/universal/Icons'
+} from '~/components/universal/Icons/for-home'
 import { IcTwotoneSignpost } from '~/components/universal/Icons/menu-icon'
 import { LikeButton } from '~/components/universal/LikeButton'
 import { NoticePanel } from '~/components/universal/Notice'

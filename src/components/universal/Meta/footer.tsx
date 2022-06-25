@@ -31,6 +31,7 @@ export const MetaFooter = memo(() => {
             <script
               key="baidu-analyze"
               async
+              defer
               src={`https://hm.baidu.com/hm.js?${analyze.baidu}`}
             />,
           )

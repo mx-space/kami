@@ -4,7 +4,7 @@ import randomColor from 'randomcolor'
 import type { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react'
 import { forwardRef } from 'react'
 
-import { IcBaselineArrowForwardIos } from '~/components/universal/Icons'
+import { IcBaselineArrowForwardIos } from '~/components/universal/Icons/for-home'
 
 import { useStore } from '../../../../store'
 
