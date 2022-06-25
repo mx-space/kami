@@ -14,6 +14,7 @@ import { TimelineListWrapper } from '~/components/universal/TimelineListWrapper'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { apiClient } from '~/utils/client'
+import { springScrollToElement } from '~/utils/spring'
 import { dayOfYear, daysOfYear, secondOfDay, secondOfDays } from '~/utils/time'
 
 import { ArticleLayout } from '../../components/layouts/ArticleLayout'
@@ -142,7 +143,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
         meta: [
           note.mood ? `这天的心情: ${note.mood}` : undefined,
           note.weather ? `这天的天气: ${note.weather}` : undefined,
-          '点滴',
+          '生活点滴',
         ].filter(Boolean) as string[],
         date,
         as: `/notes/${note.nid}`,
@@ -179,6 +180,38 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
     }
   }, [props.memory])
 
+  useEffect(() => {
+    setTimeout(() => {
+      const jumpToId = new URLSearchParams(location.search).get('id')
+      if (jumpToId) {
+        const target = document.querySelector(
+          `[data-id="${jumpToId}"]`,
+        ) as HTMLElement
+
+        if (target) {
+          springScrollToElement(target, undefined, -500)
+          target.animate(
+            [
+              {
+                backgroundColor: 'var(--yellow)',
+              },
+              {
+                backgroundColor: 'transparent',
+              },
+            ],
+            {
+              duration: 1500,
+              easing: 'ease-in-out',
+              fill: 'both',
+              iterations: 1,
+            },
+          )
+        }
+      }
+      // wait for user focus
+    }, 100)
+  }, [])
+
   return (
     <ArticleLayout
       title={!props.memory ? '时间线' : '回忆'}
@@ -207,7 +240,11 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
             <TimelineListWrapper>
               {value.map((item) => {
                 return (
-                  <li key={item.id} className="flex items-center">
+                  <li
+                    key={item.id}
+                    className="flex items-center flex-wrap"
+                    data-id={item.id}
+                  >
                     <span
                       className={
                         'text-shizuku-text mr-2 tabular-nums w-12 inline-block'

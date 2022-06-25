@@ -79,7 +79,7 @@ export const NoteFooterNavigation: FC<{ id: string }> = observer(({ id }) => {
                 })
 
                 springScrollToTop()
-                router.push('/timeline?type=note')
+                router.push(`/timeline?type=note&id=${id}`)
               }}
             >
               <span>时间线</span>
