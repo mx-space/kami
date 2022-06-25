@@ -5,10 +5,17 @@ import type { FC } from 'react'
 
 import type { NoteModel } from '@mx-space/api-client'
 
+import { Divider } from '~/components/universal/Divider'
+import { MdiClockTimeThreeOutline } from '~/components/universal/Icons'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useStore } from '~/store'
 import { springScrollToTop } from '~/utils/spring'
+
+import {
+  IcRoundKeyboardDoubleArrowLeft,
+  IcRoundKeyboardDoubleArrowRight,
+} from '../../../universal/Icons/arrow'
 
 export const NoteFooterNavigation: FC<{ id: string }> = observer(({ id }) => {
   const { noteStore } = useStore()
@@ -20,56 +27,66 @@ export const NoteFooterNavigation: FC<{ id: string }> = observer(({ id }) => {
   return (
     <>
       {(!!next || !!prev) && (
-        <section
-          className="mt-4 text-center relative px-6 py-4"
-          data-hide-print
-        >
-          <div className="flex justify-between">
-            {!!next && (
-              <div
-                tabIndex={1}
-                role={'button'}
-                className="hover:text-primary"
-                onClick={() => {
-                  router.push('/notes/[id]', `/notes/${next.nid}`)
-                }}
-              >
-                前一篇
-              </div>
-            )}
-
-            {!!prev && (
-              <div
-                tabIndex={1}
-                role={'button'}
-                className="hover:text-primary"
-                onClick={() => {
-                  router.push('/notes/[id]', `/notes/${prev.nid}`)
-                }}
-              >
-                后一篇
-              </div>
-            )}
-          </div>
-          <div
-            tabIndex={1}
-            role={'button'}
-            className="hover:text-primary absolute left-1/2 top-0 bottom-0 flex items-center -translate-x-1/2 transform"
-            onClick={() => {
-              const note = noteStore.get(id)
-
-              event({
-                action: TrackerAction.Click,
-                label: `时间线点击 - ${note?.nid} - ${note?.title}`,
-              })
-
-              springScrollToTop()
-              router.push('/timeline?type=note')
-            }}
+        <>
+          <Divider className="!w-15 m-auto" />
+          <section
+            className="mt-4 text-center relative text-gray-1 py-2"
+            data-hide-print
           >
-            时间线
-          </div>
-        </section>
+            <div className="flex justify-between items-center children:inline-flex children:items-center children:space-x-2 children:px-2 children:py-2">
+              {!!next && (
+                <>
+                  <div
+                    tabIndex={1}
+                    role={'button'}
+                    className="hover:text-primary"
+                    onClick={() => {
+                      router.push('/notes/[id]', `/notes/${next.nid}`)
+                    }}
+                  >
+                    <IcRoundKeyboardDoubleArrowLeft />
+                    <span>前一篇</span>
+                  </div>
+                </>
+              )}
+
+              {!!prev && (
+                <>
+                  <div
+                    tabIndex={1}
+                    role={'button'}
+                    className="hover:text-primary"
+                    onClick={() => {
+                      router.push('/notes/[id]', `/notes/${prev.nid}`)
+                    }}
+                  >
+                    <IcRoundKeyboardDoubleArrowRight />
+                    <span>后一篇</span>
+                  </div>
+                </>
+              )}
+            </div>
+            <div
+              tabIndex={1}
+              role={'button'}
+              className="opacity-80 text-pink hover:text-primary absolute left-1/2 top-0 bottom-0 flex items-center -translate-x-1/2 transform space-x-2"
+              onClick={() => {
+                const note = noteStore.get(id)
+
+                event({
+                  action: TrackerAction.Click,
+                  label: `时间线点击 - ${note?.nid} - ${note?.title}`,
+                })
+
+                springScrollToTop()
+                router.push('/timeline?type=note')
+              }}
+            >
+              <span>时间线</span>
+              <MdiClockTimeThreeOutline />
+            </div>
+          </section>
+        </>
       )}
     </>
   )
