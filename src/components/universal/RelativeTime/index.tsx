@@ -2,7 +2,7 @@ import dayjs from 'dayjs'
 import type { FC } from 'react'
 import { useEffect, useState } from 'react'
 
-import { relativeTimeFromNow } from '~/utils/time'
+import { parseDate, relativeTimeFromNow } from '~/utils/time'
 
 export const RelativeTime: FC<{
   date: string | Date
@@ -25,15 +25,8 @@ export const RelativeTime: FC<{
       displayAbsoluteTimeAfterDay
     ) {
       timer = clearInterval(timer)
-      setRelative(
-        Intl.DateTimeFormat('en-us', {
-          day: '2-digit',
-          month: '2-digit',
-          year: '2-digit',
-        }).format(
-          typeof props.date === 'string' ? new Date(props.date) : props.date,
-        ),
-      )
+      // @ts-expect-error
+      setRelative(parseDate(props.date, 'YY 年 M 月 D 日'))
     }
     return () => {
       timer = clearInterval(timer)

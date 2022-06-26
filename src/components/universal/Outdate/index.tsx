@@ -3,11 +3,15 @@ import React from 'react'
 
 import { RelativeTime } from '~/components/universal/RelativeTime'
 
+import { Banner } from '../banner'
+
 export default (function OutdateNotice({ time }: { time: string | Date }) {
   return dayjs().diff(dayjs(time), 'day') > 60 ? (
-    <blockquote className="mb-20">
-      这篇文章上次修改于 <RelativeTime date={new Date(time)} />
-      ，可能其部分内容已经发生变化，如有疑问可询问作者。
-    </blockquote>
+    <Banner type="warning" className="mb-10">
+      <span className="leading-[1.8]">
+        这篇文章上次修改于 <RelativeTime date={new Date(time)} />
+        ，可能部分内容已经不适用，如有疑问可询问作者。
+      </span>
+    </Banner>
   ) : null
 })
