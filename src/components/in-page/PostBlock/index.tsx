@@ -97,7 +97,7 @@ export const PostBlock: FC<PostBlockProps> = observer((props) => {
   )
   return (
     <>
-      <h1 className={clsx(styles.head, 'headline')}>
+      <h1 className={clsx(styles.head, 'headline', viewport.mobile && '!mb-0')}>
         <div className="inline-flex items-center relative w-[calc(100%-1rem)]">
           {d}
           <small className="text-gray-2">（{week}）</small>
@@ -110,7 +110,9 @@ export const PostBlock: FC<PostBlockProps> = observer((props) => {
         )}
       </h1>
       <div className={styles.text}>
-        {viewport?.mobile && tilteEl}
+        {viewport?.mobile && (
+          <div className="text-lg my-2 font-medium">{tilteEl}</div>
+        )}
         <article
           className={clsx(
             styles['content'],
