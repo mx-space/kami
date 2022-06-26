@@ -3,7 +3,7 @@ import { message } from 'react-message-popup'
 import { useStore } from '~/store'
 import { apiClient } from '~/utils/client'
 import { devtoolForbidden } from '~/utils/console'
-import { getToken, removeToken } from '~/utils/cookie'
+import { getToken, removeToken, setToken } from '~/utils/cookie'
 
 import { useThemeConfig } from './use-initial-data'
 
@@ -15,7 +15,7 @@ export const useCheckLogged = () => {
     },
   } = useThemeConfig()
   return {
-    check() {
+    async check() {
       return requestAnimationFrame(() => {
         const token = getToken()
         if (token) {
@@ -25,6 +25,13 @@ export const useCheckLogged = () => {
               if (ok) {
                 master.setToken(token)
                 message.success(`欢迎回来, ${master.name}`, 1500)
+
+                // refresh token
+                apiClient.user.proxy.login
+                  .put<{ token: string }>()
+                  .then((res) => {
+                    setToken(res.token)
+                  })
               } else {
                 removeToken()
                 message.warn('登录身份过期了, 再登录一下吧!', 2000)
