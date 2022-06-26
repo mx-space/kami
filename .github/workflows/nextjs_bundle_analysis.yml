@@ -23,7 +23,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '16.x'
-          cache: 'pnpm'
 
       - name: Cache pnpm modules
         uses: actions/cache@v3
