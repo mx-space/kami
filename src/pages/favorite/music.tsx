@@ -58,12 +58,12 @@ const MusicView: NextPage = () => {
       <Seo title={`歌单`} />
 
       {data.detail && (
-        <div className="flex my-2 justify-end">
+        <div className="flex my-2 justify-end phone:justify-center">
           <a
             href={`https://music.163.com/#/user/home?id=${data.detail.userId}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center"
+            className="flex items-center justify-center phone:flex-col phone:space-y-4 phone:mb-4"
             onClick={trackerClick}
           >
             <RiNeteaseCloudMusicFill height={'3rem'} width={'3rem'} />
