@@ -32,6 +32,7 @@ import { SearchFAB } from '~/components/widgets/Search'
 import { useHeaderMeta, useHeaderShare } from '~/hooks/use-header-meta'
 import { useInitialData, useThemeConfig } from '~/hooks/use-initial-data'
 import { useIsClient } from '~/hooks/use-is-client'
+import { useJumpToSimpleMarkdownRender } from '~/hooks/use-jump-to-render'
 import { useBackgroundOpacity } from '~/hooks/use-theme-background'
 import { store, useStore } from '~/store'
 import { apiClient } from '~/utils/client'
@@ -204,6 +205,8 @@ export const PostView: PageOnlyProps = observer((props) => {
   useHeaderShare(post.title, post.text)
   useUpdatePost(post.id)
   useBackgroundOpacity(0.2)
+  useJumpToSimpleMarkdownRender(post.id)
+
   const isClientSide = useIsClient()
 
   return (

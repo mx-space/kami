@@ -11,6 +11,7 @@ import { Markdown } from '~/components/universal/Markdown'
 import { CommentLazy } from '~/components/widgets/Comment'
 import { useHeaderMeta, useHeaderShare } from '~/hooks/use-header-meta'
 import { useInitialData } from '~/hooks/use-initial-data'
+import { useJumpToSimpleMarkdownRender } from '~/hooks/use-jump-to-render'
 import { store, useStore } from '~/store'
 import { imagesRecord2Map } from '~/utils/images'
 import { appendStyle } from '~/utils/load-script'
@@ -38,6 +39,7 @@ const PageView: PageOnlyProps = observer((props) => {
 
   useHeaderMeta(page.title, page.subtitle || '')
   useHeaderShare(page.title, page.text)
+  useJumpToSimpleMarkdownRender(page.id)
 
   useEffect(() => {
     springScrollToTop()

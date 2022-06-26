@@ -32,6 +32,7 @@ import { SearchFAB } from '~/components/widgets/Search'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useHeaderMeta, useHeaderShare } from '~/hooks/use-header-meta'
+import { useJumpToSimpleMarkdownRender } from '~/hooks/use-jump-to-render'
 import { useLoadSerifFont } from '~/hooks/use-load-serif-font'
 import { useNoteMusic } from '~/hooks/use-music'
 import { store, useStore } from '~/store'
@@ -184,6 +185,7 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
     }
   }, [isSecret, secretDate])
 
+  useJumpToSimpleMarkdownRender(props.id)
   return (
     <>
       {createElement(Seo, {
