@@ -23,6 +23,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '16.x'
+          cache: 'pnpm'
 
       - name: Cache pnpm modules
         uses: actions/cache@v3
@@ -32,7 +33,7 @@ jobs:
           path: ~/.pnpm-store
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/pnpm-lock.yaml') }}
       - uses: actions/cache@v3
         with:
           path: |
