@@ -10,6 +10,7 @@ import { message } from 'react-message-popup'
 
 import type { PostModel } from '@mx-space/api-client'
 
+import { PostRelated } from '~/components/in-page/Post/post-related'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import {
   FeHash,
@@ -243,6 +244,8 @@ export const PostView: PageOnlyProps = observer((props) => {
                   />
                 </article>
               </ImageSizeMetaContext.Provider>
+
+              <PostRelated id={post.id} />
               {post.copyright && isClientSide ? (
                 <Copyright
                   date={post.modified}
@@ -250,6 +253,7 @@ export const PostView: PageOnlyProps = observer((props) => {
                   title={post.title}
                 />
               ) : null}
+
               <ArticleFooterAction {...actions} />
 
               <CommentLazy
