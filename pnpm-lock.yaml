@@ -40,7 +40,7 @@ specifiers:
   lint-staged: 13.0.3
   lodash-es: 4.17.21
   medium-zoom: 1.0.6
-  mobx: 6.6.0
+  mobx: 6.6.1
   mobx-react-lite: 3.4.0
   next: 12.1.6
   next-compose-plugins: 2.2.1
@@ -89,8 +89,8 @@ dependencies:
   js-cookie: 3.0.1
   lodash-es: 4.17.21
   medium-zoom: 1.0.6
-  mobx: 6.6.0
-  mobx-react-lite: 3.4.0_5bx6dzokqdjvseagkoblw2h36i
+  mobx: 6.6.1
+  mobx-react-lite: 3.4.0_m26jawr67gnusmh4egzqtnhxru
   next: 12.1.6_biqbaboplfbrettd7655fr4n2y
   next-seo: 5.4.0_2nrpme5s5xmpdgccbbbdwhosda
   randomcolor: 0.6.2
@@ -4550,7 +4550,7 @@ packages:
     resolution: {integrity: sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==}
     dev: true
 
-  /mobx-react-lite/3.4.0_5bx6dzokqdjvseagkoblw2h36i:
+  /mobx-react-lite/3.4.0_m26jawr67gnusmh4egzqtnhxru:
     resolution: {integrity: sha512-bRuZp3C0itgLKHu/VNxi66DN/XVkQG7xtoBVWxpvC5FhAqbOCP21+nPhULjnzEqd7xBMybp6KwytdUpZKEgpIQ==}
     peerDependencies:
       mobx: ^6.1.0
@@ -4565,13 +4565,13 @@ packages:
       react-native:
         optional: true
     dependencies:
-      mobx: 6.6.0
+      mobx: 6.6.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /mobx/6.6.0:
-    resolution: {integrity: sha512-MNTKevLH/6DShLZcmSL351+JgiJPO56A4GUpoiDQ3/yZ0mAtclNLdHK9q4BcQhibx8/JSDupfTpbX2NZPemlRg==}
+  /mobx/6.6.1:
+    resolution: {integrity: sha512-7su3UZv5JF+ohLr2opabjbUAERfXstMY+wiBtey8yNAPoB8H187RaQXuhFjNkH8aE4iHbDWnhDFZw0+5ic4nGQ==}
     dev: false
 
   /mrmime/1.0.0:
