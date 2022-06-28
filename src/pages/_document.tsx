@@ -30,7 +30,7 @@ export default class MyDocument extends Document {
           <meta name="apple-mobile-web-app-capable" content="yes" />
 
           <meta name="msapplication-starturl" content="/" />
-
+          <link rel="alternate" href="/feed" type="application/atom+xml" />
           <link
             rel="apple-touch-icon"
             sizes="180x180"
