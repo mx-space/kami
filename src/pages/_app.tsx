@@ -5,15 +5,14 @@ import '../../third/qp/index.css'
 
 import { observer } from 'mobx-react-lite'
 import { NextSeo } from 'next-seo'
-import type { AppContext } from 'next/app'
 import NextApp from 'next/app'
+import type { AppContext } from 'next/app'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import React, { memo, useEffect, useMemo } from 'react'
 
 import type { AggregateRoot } from '@mx-space/api-client'
 
-import Package from '~/../package.json'
 // prettier-ignore-end
 import { BasicLayout } from '~/components/layouts/BasicLayout'
 import { DebugLayout } from '~/components/layouts/DebugLayout'
@@ -21,7 +20,6 @@ import { NoDataErrorView } from '~/components/universal/Error/no-data'
 import Loader from '~/components/universal/Loader'
 import { MetaFooter } from '~/components/universal/Meta/footer'
 import { DynamicHeadMeta } from '~/components/universal/Meta/head'
-import { defaultConfigs } from '~/configs.default'
 import type { InitialDataType } from '~/context/initial-data'
 import { InitialContextProvider } from '~/context/initial-data'
 import { RootStoreProvider } from '~/context/root-store'
@@ -32,16 +30,11 @@ import { useInitialData } from '~/hooks/use-initial-data'
 import { useResizeScrollEvent } from '~/hooks/use-resize-scroll-event'
 import { useRouterEvent } from '~/hooks/use-router-event'
 import { useScreenMedia } from '~/hooks/use-screen-media'
-import type { KamiConfig } from '~/types/config'
-import { $axios, apiClient } from '~/utils/client'
 import { printToConsole } from '~/utils/console'
-import { isServerSide } from '~/utils/env'
 import { loadStyleSheet } from '~/utils/load-script'
 
 import { useStore } from '../store'
-import { TokenKey } from '../utils/cookie'
-
-const version = `v${Package.version}` || ''
+import { attachRequestProxy, fetchInitialData } from './prepare'
 
 const Content: FC = observer((props) => {
   const { userStore: master } = useStore()
@@ -137,83 +130,19 @@ App.getInitialProps = async (props: AppContext) => {
   const ctx = props.ctx
   const request = ctx.req
 
-  if (request && isServerSide()) {
-    let ip =
-      ((request.headers['x-forwarded-for'] ||
-        request.headers['X-Forwarded-For'] ||
-        request.headers['X-Real-IP'] ||
-        request.headers['x-real-ip'] ||
-        request.connection.remoteAddress ||
-        request.socket.remoteAddress) as string) || undefined
-    if (ip && ip.split(',').length > 0) {
-      ip = ip.split(',')[0]
-    }
-    ip && ($axios.defaults.headers.common['x-forwarded-for'] = ip as string)
+  attachRequestProxy(request)
 
-    $axios.defaults.headers.common[
-      'User-Agent'
-    ] = `${request.headers['user-agent']} NextJS/v${Package.dependencies.next} Kami/${version}`
-
-    // forward auth token
-    const cookie = request.headers.cookie
-    if (cookie) {
-      const token = cookie
-        .split(';')
-        .find((str) => {
-          const [key] = str.split('=')
-
-          return key === TokenKey
-        })
-        ?.split('=')[1]
-      if (token) {
-        $axios.defaults.headers['Authorization'] = `bearer ${token.replace(
-          /^Bearer\s/i,
-          '',
-        )}`
-      }
-
-      // $axios.defaults.headers['cookie'] = cookie
-    }
-  }
-
-  async function getInitialData() {
-    const [aggregateDataState, configSnippetState] = await Promise.allSettled([
-      apiClient.aggregate.getAggregateData(),
-      apiClient.snippet.getByReferenceAndName<KamiConfig>(
-        'theme',
-        process.env.NEXT_PUBLIC_SNIPPET_NAME || 'kami',
-      ),
-    ])
-
-    let aggregateData: AggregateRoot | null = null
-    let configSnippet: KamiConfig | null = null
-    let reason = null as null | string
-    if (aggregateDataState.status === 'fulfilled') {
-      aggregateData = aggregateDataState.value
-    } else {
-      //  TODO 请求异常处理
-      reason = aggregateDataState?.reason
-      console.error(`Fetch aggregate data error: ${aggregateDataState.reason}`)
-    }
-
-    if (configSnippetState.status === 'fulfilled') {
-      configSnippet = { ...configSnippetState.value }
-    } else {
-      configSnippet = defaultConfigs as any
-    }
-
-    return { aggregateData, config: configSnippet, reason }
-  }
-  const initialData = globalThis.data ?? (await getInitialData())
+  const data = await fetchInitialData()
   const appProps = await (async () => {
     try {
+      // Next 会从小组件向上渲染整个页面，有可能在此报错。兜底
       return await NextApp.getInitialProps(props)
     } catch (e) {
       // 只有无数据 也就是 服务端不跑起来 或者接口不对的时候 捕获异常
       // 这是为什么呢 说来说去还是 nextjs 太辣鸡了 只能各种 hack
       // 只能这样了
 
-      if (!initialData.reason) {
+      if (!data.reason) {
         // 这里抛出，和官网直接 await getProps 一样，异常走到 _error 处理
         throw e
       }
@@ -227,7 +156,7 @@ App.getInitialProps = async (props: AppContext) => {
   })()
   return {
     ...appProps,
-    initData: initialData,
+    initData: data,
   }
 }
 
