@@ -15,10 +15,11 @@ interface OverLayProps {
   center?: boolean
   darkness?: number
   blur?: boolean
+  zIndex?: number
 }
 
 const _OverLay: FC<OverLayProps & { child: any }> = (props) => {
-  const { onClose, center, darkness, blur = false } = props
+  const { onClose, center, darkness, blur = false, zIndex } = props
 
   useEffect(() => {
     document.documentElement.style.overflow = 'hidden'
@@ -31,9 +32,9 @@ const _OverLay: FC<OverLayProps & { child: any }> = (props) => {
   return (
     <div
       className={classNames(styles['container'], center && styles['center'])}
+      style={typeof zIndex != 'undefined' ? { zIndex } : undefined}
     >
       <div
-        key="overlay"
         className={styles['overlay']}
         style={merge<Partial<CSSProperties>, Partial<CSSProperties>>(
           darkness ? { backgroundColor: `rgba(0,0,0,${darkness})` } : {},
@@ -52,11 +53,13 @@ export type OverlayProps = OverLayProps & {
   children?: ReactNode
   /** 子代节点独立于 Overlay 内部 */
   childrenOutside?: boolean
+  zIndex?: number
 }
 
 const __OverLay: FC<OverlayProps> = ({
   show,
   childrenOutside = false,
+
   ...props
 }) => {
   const isClient = useIsClient()
@@ -82,6 +85,13 @@ const __OverLay: FC<OverlayProps> = ({
           className="z-99 fixed inset-0 flex items-center justify-center"
           tabIndex={-1}
           onClick={props.onClose}
+          style={
+            typeof props.zIndex != 'undefined'
+              ? {
+                  zIndex: props.zIndex,
+                }
+              : undefined
+          }
         >
           <div onClick={stopEventDefault} tabIndex={-1}>
             {props.children}

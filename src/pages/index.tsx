@@ -9,6 +9,7 @@ import type { AggregateTop } from '@mx-space/api-client'
 import { HomeIntro } from '~/components/in-page/Home/intro'
 import { HomeRandomSay } from '~/components/in-page/Home/random-say'
 import { HomeSections } from '~/components/in-page/Home/section'
+import { useModalStack } from '~/components/universal/Modal/stack.context'
 import { useInitialData } from '~/hooks/use-initial-data'
 import { apiClient } from '~/utils/client'
 import { Notice } from '~/utils/notice'
@@ -28,6 +29,17 @@ const IndexView: NextPage<AggregateTop> = (props) => {
 
   useEffect(() => {
     Notice.shared.initNotice()
+  }, [])
+
+  const { popup } = useModalStack()
+  useEffect(() => {
+    popup({
+      component: <div>111</div>,
+    })
+
+    popup({
+      component: <div>2222</div>,
+    })
   }, [])
 
   return (
