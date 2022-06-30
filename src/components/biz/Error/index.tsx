@@ -2,7 +2,7 @@ import isNumber from 'lodash-es/isNumber'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 
-import { Seo } from '~/components/universal/Seo'
+import { Seo } from '~/components/biz/Seo'
 import { isServerSide } from '~/utils/env'
 
 import styles from './index.module.css'

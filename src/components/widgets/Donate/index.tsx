@@ -3,8 +3,8 @@ import React, { useMemo } from 'react'
 
 import { autoPlacement, offset, shift } from '@floating-ui/react-dom'
 
+import { ImpressionView } from '~/components/biz/ImpressionView'
 import { FloatPopover } from '~/components/universal/FloatPopover'
-import { ImpressionView } from '~/components/universal/ImpressionView'
 import { useThemeConfig } from '~/hooks/use-initial-data'
 import { NoSSRWrapper } from '~/utils/no-ssr'
 

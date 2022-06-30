@@ -10,7 +10,7 @@ import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { apiClient } from '~/utils/client'
 
-import { Seo } from '../../components/universal/Seo'
+import { Seo } from '../../components/biz/Seo'
 
 interface PersonalPlayListType {
   id: number

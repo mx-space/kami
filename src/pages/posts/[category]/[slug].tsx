@@ -10,6 +10,8 @@ import { message } from 'react-message-popup'
 
 import type { PostModel } from '@mx-space/api-client'
 
+import { buildStoreDataLoadableView } from '~/components/biz/LoadableView'
+import { Seo } from '~/components/biz/Seo'
 import { PostRelated } from '~/components/in-page/Post/post-related'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import {
@@ -19,11 +21,9 @@ import {
   MdiCalendar,
   PhBookOpen,
 } from '~/components/universal/Icons'
-import { buildStoreDataLoadableView } from '~/components/universal/LoadableView'
 import { Markdown } from '~/components/universal/Markdown'
 import { NumberTransition } from '~/components/universal/NumberRecorder'
 import Outdate from '~/components/universal/Outdate'
-import { Seo } from '~/components/universal/Seo'
 import type { ActionProps } from '~/components/widgets/ArticleAction'
 import { ArticleFooterAction } from '~/components/widgets/ArticleAction'
 import { CommentLazy } from '~/components/widgets/Comment'

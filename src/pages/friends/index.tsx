@@ -17,9 +17,9 @@ import { useInitialData } from '~/hooks/use-initial-data'
 import { apiClient } from '~/utils/client'
 import { NoSSRWrapper } from '~/utils/no-ssr'
 
+import { SEO } from '../../components/biz/Seo'
 import { ApplyForLink } from '../../components/in-page/ApplyLink'
 import { ArticleLayout } from '../../components/layouts/ArticleLayout'
-import { SEO } from '../../components/universal/Seo'
 
 const renderTitle = (text: string) => {
   return <h1 className="!text-xl headline !mt-12">{text}</h1>

@@ -5,8 +5,8 @@ import RemoveMarkdown from 'remove-markdown'
 
 import type { PageModel } from '@mx-space/api-client'
 
+import { buildStoreDataLoadableView } from '~/components/biz/LoadableView'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
-import { buildStoreDataLoadableView } from '~/components/universal/LoadableView'
 import { Markdown } from '~/components/universal/Markdown'
 import { CommentLazy } from '~/components/widgets/Comment'
 import { useHeaderMeta, useHeaderShare } from '~/hooks/use-header-meta'
@@ -18,7 +18,7 @@ import { appendStyle } from '~/utils/load-script'
 import { springScrollToTop } from '~/utils/spring'
 import { noop } from '~/utils/utils'
 
-import { Seo } from '../../components/universal/Seo'
+import { Seo } from '../../components/biz/Seo'
 import { ImageSizeMetaContext } from '../../context/image-size'
 import styles from './index.module.css'
 

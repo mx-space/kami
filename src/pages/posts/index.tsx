@@ -15,7 +15,7 @@ import { SearchFAB } from '~/components/widgets/Search'
 import { apiClient } from '~/utils/client'
 import { springScrollToTop } from '~/utils/spring'
 
-import { SEO } from '../../components/universal/Seo'
+import { SEO } from '../../components/biz/Seo'
 
 const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
   const [pagination, setPagination] = useState<Pager | null>(null)

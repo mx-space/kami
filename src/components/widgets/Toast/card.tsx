@@ -1,8 +1,8 @@
 import type { FC } from 'react'
 import { memo, useRef } from 'react'
 
+import { ImpressionView } from '~/components/biz/ImpressionView'
 import { Avatar } from '~/components/universal/Avatar'
-import { ImpressionView } from '~/components/universal/ImpressionView'
 import { RelativeTime } from '~/components/universal/RelativeTime'
 import { store } from '~/store'
 

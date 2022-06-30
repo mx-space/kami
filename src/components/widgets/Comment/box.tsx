@@ -16,6 +16,7 @@ import { message } from 'react-message-popup'
 import isEmail from 'validator/lib/isEmail'
 import isUrl from 'validator/lib/isURL'
 
+import { ImpressionView } from '~/components/biz/ImpressionView'
 import { FloatPopover } from '~/components/universal/FloatPopover'
 import {
   MdiEmailFastOutline,
@@ -23,7 +24,6 @@ import {
   PhUser,
   SiGlyphGlobal,
 } from '~/components/universal/Icons'
-import { ImpressionView } from '~/components/universal/ImpressionView'
 import { kaomoji } from '~/constants/kaomoji'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'

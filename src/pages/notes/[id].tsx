@@ -41,7 +41,7 @@ import { getSummaryFromMd } from '~/utils/markdown'
 import { parseDate } from '~/utils/time'
 import { noop } from '~/utils/utils'
 
-import { Seo } from '../../components/universal/Seo'
+import { Seo } from '../../components/biz/Seo'
 import { ImageSizeMetaContext } from '../../context/image-size'
 import { isDev } from '../../utils/env'
 

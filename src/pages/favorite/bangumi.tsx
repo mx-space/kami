@@ -8,8 +8,8 @@ import { Loading } from '~/components/universal/Loading'
 import { useStore } from '~/store'
 import { apiClient } from '~/utils/client'
 
+import { Seo } from '../../components/biz/Seo'
 import { ImageLazy } from '../../components/universal/Image'
-import { Seo } from '../../components/universal/Seo'
 import styles from './bangumi.module.css'
 
 interface FavoriteBangumiType {

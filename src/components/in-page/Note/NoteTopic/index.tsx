@@ -5,10 +5,10 @@ import Linkify from 'react-linkify'
 
 import type { TopicModel } from '@mx-space/api-client/types/models/topic'
 
+import { ImpressionView } from '~/components/biz/ImpressionView'
 import { Avatar } from '~/components/universal/Avatar'
 import { Divider } from '~/components/universal/Divider'
 import { FloatPopover } from '~/components/universal/FloatPopover'
-import { ImpressionView } from '~/components/universal/ImpressionView'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { textToBigCharOrWord } from '~/utils/word'

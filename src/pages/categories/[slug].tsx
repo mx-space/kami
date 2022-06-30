@@ -12,8 +12,8 @@ import { TimelineListWrapper } from '~/components/universal/TimelineListWrapper'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { apiClient } from '~/utils/client'
 
+import { SEO } from '../../components/biz/Seo'
 import { ArticleLayout } from '../../components/layouts/ArticleLayout'
-import { SEO } from '../../components/universal/Seo'
 
 interface CategoryListViewProps {
   category: CategoryModel

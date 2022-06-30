@@ -4,7 +4,7 @@ import type { FC } from 'react'
 import React, { Fragment, useCallback, useMemo } from 'react'
 
 import Package from '~/../package.json'
-import { ImpressionView } from '~/components/universal/ImpressionView'
+import { ImpressionView } from '~/components/biz/ImpressionView'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useInitialData, useThemeConfig } from '~/hooks/use-initial-data'

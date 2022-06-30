@@ -5,8 +5,8 @@ import { TransitionGroup } from 'react-transition-group'
 
 import type { TopicModel } from '@mx-space/api-client/types/models/topic'
 
+import { SEO } from '~/components/biz/Seo'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
-import { SEO } from '~/components/universal/Seo'
 import { RightLeftTransitionView } from '~/components/universal/Transition/right-left'
 import { apiClient } from '~/utils/client'
 

@@ -6,7 +6,7 @@ import { message } from 'react-message-popup'
 
 import { RequestError } from '@mx-space/api-client'
 
-import { ErrorView } from '~/components/universal/Error'
+import { ErrorView } from '~/components/biz/Error'
 
 const ErrorPage: NextPage<{ statusCode: number; err: any }> = ({
   statusCode = 500,

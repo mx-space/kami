@@ -8,7 +8,7 @@ import { TransitionGroup } from 'react-transition-group'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { relativeTimeFromNow } from '~/utils/time'
 
-import { SEO } from '../../components/universal/Seo'
+import { SEO } from '../../components/biz/Seo'
 import { useStore } from '../../store'
 import { hexToRGB } from '../../utils/color'
 import styles from './index.module.css'

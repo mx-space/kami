@@ -6,7 +6,7 @@ import { ProjectDetail } from '~/components/in-page/Project/detail'
 import { useStore } from '~/store'
 import { apiClient } from '~/utils/client'
 
-import { SEO } from '../../components/universal/Seo'
+import { SEO } from '../../components/biz/Seo'
 
 type ProjectViewProps = ProjectModel
 

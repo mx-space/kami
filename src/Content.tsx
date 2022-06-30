@@ -5,9 +5,9 @@ import { useEffect } from 'react'
 
 import type { AggregateRoot } from '@mx-space/api-client'
 
+import { MetaFooter } from '~/components/biz/Meta/footer'
+import { DynamicHeadMeta } from '~/components/biz/Meta/head'
 import Loader from '~/components/universal/Loader'
-import { MetaFooter } from '~/components/universal/Meta/footer'
-import { DynamicHeadMeta } from '~/components/universal/Meta/head'
 import { useRootTrackerListener } from '~/hooks/use-analyze'
 import { useCheckLogged } from '~/hooks/use-check-logged'
 import { useCheckOldBrowser } from '~/hooks/use-check-old-browser'

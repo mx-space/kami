@@ -11,7 +11,7 @@ import { useAnalyze } from '~/hooks/use-analyze'
 import { useStore } from '~/store'
 import { apiClient } from '~/utils/client'
 
-import { SEO } from '../../components/universal/Seo'
+import { SEO } from '../../components/biz/Seo'
 
 const ProjectView = () => {
   const [projects, setProjects] = useState<ProjectModel[]>([])

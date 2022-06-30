@@ -17,8 +17,8 @@ import { apiClient } from '~/utils/client'
 import { springScrollToElement } from '~/utils/spring'
 import { dayOfYear, daysOfYear, secondOfDay, secondOfDays } from '~/utils/time'
 
+import { SEO } from '../../components/biz/Seo'
 import { ArticleLayout } from '../../components/layouts/ArticleLayout'
-import { SEO } from '../../components/universal/Seo'
 import styles from './index.module.css'
 
 interface TimeLineViewProps extends TimelineData {
