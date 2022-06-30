@@ -1,5 +1,11 @@
 import { uniqueId } from 'lodash-es'
-import type { FC, ReactChildren, ReactElement, ReactNode } from 'react'
+import type {
+  FC,
+  FunctionComponentElement,
+  ReactChildren,
+  ReactElement,
+  ReactNode,
+} from 'react'
 import React, {
   createContext,
   createElement,
@@ -39,7 +45,7 @@ interface UniversalProps {
 }
 
 interface IModalStackStateType extends UniversalProps {
-  component: ReactNode
+  component: FunctionComponentElement<any>
   id: string
   disposer: Disposer
 }
@@ -50,9 +56,11 @@ export const ModalStackProvider: FC<{
   const { children } = props
   const [modalStack, setModalStack] = useState<IModalStackStateType[]>([])
 
-  const modalRefMap = useRef(new Map<string, ModalRefObject>())
+  const modalRefMap = useRef(
+    new WeakMap<FunctionComponentElement<any>, ModalRefObject>(),
+  )
 
-  const popup = useCallback((comp: IModalStackComponent) => {
+  const popup = useCallback((comp: IModalStackComponent): Disposer => {
     const { component, props, modalProps, ...rest } = comp
 
     const id = uniqueId('modal-stack-')
@@ -62,14 +70,14 @@ export const ModalStackProvider: FC<{
       })
     }
 
-    let $modalElement: ReactNode
+    let $modalElement: FunctionComponentElement<any>
     if (React.isValidElement(component)) {
       $modalElement = createElement(
         Modal,
         {
           ...modalProps,
           ref: (ins) => {
-            modalRefMap.current.set(id, ins!)
+            modalRefMap.current.set($modalElement, ins!)
           },
         },
         component,
@@ -84,17 +92,16 @@ export const ModalStackProvider: FC<{
         {
           ...modalProps,
           ref(ins) {
-            modalRefMap.current.set(id, ins!)
+            modalRefMap.current.set($modalElement, ins!)
           },
         },
         createElement(component as any, props),
       )
     } else {
-      $modalElement = null
-
       console.error(
         'ModalStackProvider: component must be ReactElement or React.FC',
       )
+      return () => null
     }
 
     setModalStack((stack) => {
@@ -125,15 +132,16 @@ export const ModalStackProvider: FC<{
             <OverLay
               childrenOutside
               show
-              // TODO dispose when transition end
-              // onClose={disposer}
               onClose={() => {
-                modalRefMap.current
-                  .get(id)!
-                  .dismiss()
-                  .then(() => {
+                const instance = modalRefMap.current.get(Component)
+
+                if (!instance) {
+                  disposer()
+                } else {
+                  instance.dismiss().then(() => {
                     disposer()
                   })
+                }
               }}
               zIndex={60 + index}
               key={id}
