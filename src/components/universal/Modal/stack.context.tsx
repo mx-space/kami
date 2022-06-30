@@ -5,12 +5,15 @@ import React, {
   createElement,
   useCallback,
   useContext,
+  useRef,
   useState,
 } from 'react'
 
 import { useIsClient } from '~/hooks/use-is-client'
 
+import type { ModalProps, ModalRefObject } from '.'
 import { Modal } from '.'
+import type { OverlayProps } from '../Overlay'
 import { OverLay } from '../Overlay'
 
 type Disposer = () => void
@@ -25,13 +28,17 @@ const ModalStackContext = createContext<ModalStackContextType>({
 
 export const useModalStack = () => useContext(ModalStackContext)
 
-export interface IModalStackComponent {
+export interface IModalStackComponent extends UniversalProps {
   component: ReactNode | ReactElement | React.FC
   props?: any
-  modalProps?: any
+  modalProps?: ModalProps
 }
 
-interface IModalStackStateType {
+interface UniversalProps {
+  overlayProps?: OverlayProps
+}
+
+interface IModalStackStateType extends UniversalProps {
   component: ReactNode
   id: string
   disposer: Disposer
@@ -43,8 +50,10 @@ export const ModalStackProvider: FC<{
   const { children } = props
   const [modalStack, setModalStack] = useState<IModalStackStateType[]>([])
 
+  const modalRefMap = useRef(new Map<string, ModalRefObject>())
+
   const popup = useCallback((comp: IModalStackComponent) => {
-    const { component, props, modalProps } = comp
+    const { component, props, modalProps, ...rest } = comp
 
     const id = uniqueId('modal-stack-')
     const disposer = () => {
@@ -55,7 +64,16 @@ export const ModalStackProvider: FC<{
 
     let $modalElement: ReactNode
     if (React.isValidElement(component)) {
-      $modalElement = createElement(Modal, modalProps, component)
+      $modalElement = createElement(
+        Modal,
+        {
+          ...modalProps,
+          ref: (ins) => {
+            modalRefMap.current.set(id, ins!)
+          },
+        },
+        component,
+      )
 
       // JSX
     } else if (typeof component === 'function') {
@@ -63,7 +81,12 @@ export const ModalStackProvider: FC<{
 
       $modalElement = createElement(
         Modal,
-        modalProps,
+        {
+          ...modalProps,
+          ref(ins) {
+            modalRefMap.current.set(id, ins!)
+          },
+        },
         createElement(component as any, props),
       )
     } else {
@@ -81,6 +104,7 @@ export const ModalStackProvider: FC<{
           component: $modalElement,
           id,
           disposer,
+          ...rest,
         },
       ]
     })
@@ -95,15 +119,25 @@ export const ModalStackProvider: FC<{
 
       {isClient &&
         modalStack.map((comp, index) => {
-          const { component: Component, id, disposer } = comp
+          const { component: Component, id, disposer, overlayProps } = comp
 
           return (
             <OverLay
               childrenOutside
               show
-              onClose={disposer}
+              // TODO dispose when transition end
+              // onClose={disposer}
+              onClose={() => {
+                modalRefMap.current
+                  .get(id)!
+                  .dismiss()
+                  .then(() => {
+                    disposer()
+                  })
+              }}
               zIndex={60 + index}
               key={id}
+              {...overlayProps}
             >
               {Component}
             </OverLay>

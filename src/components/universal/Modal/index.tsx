@@ -1,5 +1,7 @@
 import clsx from 'clsx'
-import type { FC } from 'react'
+import { forwardRef, useImperativeHandle } from 'react'
+
+import styles from './index.module.css'
 
 export interface ModalProps {
   title?: string
@@ -8,10 +10,30 @@ export interface ModalProps {
   modalClassName?: string
 }
 
-export const Modal: FC<ModalProps> = (props) => {
+export type ModalRefObject = {
+  dismiss: () => Promise<null>
+}
+export const Modal = forwardRef<ModalRefObject, ModalProps>((props, ref) => {
+  useImperativeHandle(ref, () => ({
+    dismiss() {
+      console.log('000000000000')
+
+      return Promise.resolve(null)
+    },
+  }))
+
+  const className =
+    'bg-light-bg max-w-65vw max-h-70vh min-h-8 min-w-30 rounded-md'
+
+  const { title } = props
   return (
-    <div className={clsx('bg-white h-50 w-50 fixed', props.modalClassName)}>
-      {props.children}
+    <div className={clsx(className, props.modalClassName)}>
+      {title && (
+        <div className={styles['title-wrapper']}>
+          <h4>{title}</h4>
+        </div>
+      )}
+      <div className={styles['content']}>{props.children}</div>
     </div>
   )
-}
+})

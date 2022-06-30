@@ -1,0 +1,11 @@
+.title-wrapper {
+  @apply h-12 flex items-center px-4;
+
+  > h4 {
+    @apply font-medium text-lg;
+  }
+}
+
+.content {
+  @apply p-4;
+}

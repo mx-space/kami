@@ -35,10 +35,12 @@ const IndexView: NextPage<AggregateTop> = (props) => {
   useEffect(() => {
     popup({
       component: <div>111</div>,
+      modalProps: { title: 'aaaaa' },
     })
 
     popup({
       component: <div>2222</div>,
+      modalProps: { title: 'aaaaaxxxx' },
     })
   }, [])
 
