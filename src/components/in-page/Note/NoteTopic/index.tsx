@@ -59,9 +59,7 @@ export const NoteTopic: FC<{ noteId: string; topic: TopicModel }> = (props) => {
                     href={`/notes/topics/${topic.slug}`}
                     onClick={handleTrackerClick}
                   >
-                    <a>
-                      <span>{name}</span>
-                    </a>
+                    <span>{name}</span>
                   </Link>
                 )}
               >

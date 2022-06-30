@@ -64,9 +64,7 @@ const ObserveredNoteTimelineList: FC<
           })
         }
       >
-        <a>
-          <span className="flex-grow truncate">{note?.topic?.name}</span>
-        </a>
+        <span className="flex-grow truncate">{note?.topic?.name}</span>
       </Link>
     ),
     [note?.topic?.name, note?.topic?.slug],
@@ -84,15 +82,15 @@ const ObserveredNoteTimelineList: FC<
                 <LeftRightTransitionView in={isCurrent}>
                   <MaterialSymbolsArrowCircleRightOutlineRounded className="text-pink" />
                 </LeftRightTransitionView>
-                <Link href={`/notes/${item.nid}`} key={item.id}>
-                  <a
-                    className={clsx(
-                      isCurrent ? styles['active'] : null,
-                      styles.item,
-                    )}
-                  >
-                    {item.title}
-                  </a>
+                <Link
+                  className={clsx(
+                    isCurrent ? styles['active'] : null,
+                    styles.item,
+                  )}
+                  href={`/notes/${item.nid}`}
+                  key={item.id}
+                >
+                  {item.title}
                 </Link>
               </li>
             )

@@ -99,8 +99,11 @@ export const FooterContent: FC = observer(() => {
           {navigation.map((nav, i) => {
             return (
               <Fragment key={nav.name}>
-                <Link href={nav.path}>
-                  <a target={nav.newtab ? '_blank' : undefined}>{nav.name}</a>
+                <Link
+                  href={nav.path}
+                  target={nav.newtab ? '_blank' : undefined}
+                >
+                  {nav.name}
                 </Link>
                 {i === navigation.length - 1 ? '' : ' · '}
               </Fragment>

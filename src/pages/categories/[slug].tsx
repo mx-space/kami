@@ -48,11 +48,8 @@ const CategoryListView: NextPage<CategoryListViewProps> = (props) => {
                 timeout={{ enter: 700 + 50 * i }}
                 component="li"
               >
-                <Link
-                  href={'/posts/[category]/[slug]'}
-                  as={`/posts/${category.slug}/${child.slug}`}
-                >
-                  <a>{child.title}</a>
+                <Link href={`/posts/${category.slug}/${child.slug}`}>
+                  {child.title}
                 </Link>
                 <span className={'meta'}>
                   {(date.getMonth() + 1).toString().padStart(2, '0')}/
