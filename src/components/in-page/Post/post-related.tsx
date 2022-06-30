@@ -24,10 +24,11 @@ export const PostRelated = observer<{ id: string }>((props) => {
         {post.related.map((post) => {
           return (
             <li key={post.id}>
-              <Link href={`/posts/${post.category.slug}/${post.slug}`}>
-                <a className="leading-10 underline-current underline underline-dashed">
-                  {post.title}
-                </a>
+              <Link
+                href={`/posts/${post.category.slug}/${post.slug}`}
+                className="leading-10 underline-current underline underline-dashed"
+              >
+                {post.title}
               </Link>
             </li>
           )

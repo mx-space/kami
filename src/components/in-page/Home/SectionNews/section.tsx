@@ -63,9 +63,7 @@ export const SectionWrap = observer(
                 }}
               >
                 <Link href={moreUrl}>
-                  <a>
-                    <IcBaselineArrowForwardIos />
-                  </a>
+                  <IcBaselineArrowForwardIos />
                 </Link>
               </h3>
             )}

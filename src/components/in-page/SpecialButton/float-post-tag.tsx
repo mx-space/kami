@@ -130,7 +130,7 @@ const _FloatPostTagButton: FC = observer(() => {
                             href={'/posts/[category]/[slug]'}
                             as={`/posts/${child.category.slug}/${child.slug}`}
                           >
-                            <a>{child.title}</a>
+                            {child.title}
                           </Link>
                           <span className={'meta'}>
                             {Intl.DateTimeFormat('en-US').format(date)}

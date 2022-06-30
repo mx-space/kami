@@ -38,9 +38,7 @@ export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
   return (
     <div className="flex flex-col w-[400px]">
       <Link href={`/notes/topics/${topic.slug}`}>
-        <a>
-          <h1 className="text-lg font-medium !m-0 py-2">{topic.name}</h1>
-        </a>
+        <h1 className="text-lg font-medium !m-0 py-2">{topic.name}</h1>
       </Link>
 
       <p className="break-all line-clamp-2 text-gray-2">
@@ -63,8 +61,8 @@ export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
             <span className="flex-shrink-0">最近更新</span>
             <DividerVertical />
             <span className="flex-shrink inline-flex min-w-0">
-              <Link href={`/notes/${notes[0].nid}`}>
-                <a className="truncate">{notes[0]?.title}</a>
+              <Link href={`/notes/${notes[0].nid}`} className="truncate">
+                {notes[0]?.title}
               </Link>
               <span className="flex-shrink-0">
                 （

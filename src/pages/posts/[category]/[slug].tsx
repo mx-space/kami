@@ -140,7 +140,7 @@ export const PostView: PageOnlyProps = observer((props) => {
               <p>
                 分类：
                 <Link href={`/categories/${post.category.slug}`}>
-                  <a>{post.category.name}</a>
+                  {post.category.name}
                 </Link>
               </p>
               <p>{post.tags.length ? `标签：${post.tags.join(', ')}` : ''}</p>
