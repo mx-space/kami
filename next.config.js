@@ -23,6 +23,7 @@ if (isProd) {
 }
 const configs = withPlugins(plugins, {
   swcMinify: true,
+  output: 'standalone',
   experimental: {
     scrollRestoration: true,
     legacyBrowsers: false,
