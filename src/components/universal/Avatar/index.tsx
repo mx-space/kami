@@ -1,15 +1,7 @@
 import clsx from 'clsx'
 import rc from 'randomcolor'
 import type { DetailedHTMLProps, FC, ImgHTMLAttributes } from 'react'
-import {
-  createElement,
-  memo,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
-import { useInView } from 'react-intersection-observer'
+import { createElement, memo, useMemo, useRef, useState } from 'react'
 
 import { FlexText } from '../FlexText'
 import styles from './index.module.css'
@@ -41,32 +33,7 @@ export const Avatar: FC<
         : 'var(--gray)',
     [props.src, useRandomColor],
   )
-  const [loaded, setLoaded] = useState(false)
-  const [inView, setInView] = useState(lazy ? false : true)
-
-  const { ref } = useInView({
-    triggerOnce: true,
-    onChange(inView) {
-      if (inView) {
-        setInView(true)
-      }
-    },
-  })
-  useEffect(() => {
-    if (!props.imageUrl) {
-      return
-    }
-    if (!inView) {
-      return
-    }
-    const image = new window.Image()
-
-    image.src = props.imageUrl as string
-    image.onload = () => {
-      setLoaded(true)
-    }
-    image.onerror = () => {}
-  }, [inView, props.imageUrl])
+  const [loaded, setLoaded] = useState(!lazy)
 
   const { wrapperProps = {} } = props
   const { className, ...restProps } = wrapperProps
@@ -86,7 +53,6 @@ export const Avatar: FC<
       }
       {...restProps}
     >
-      {lazy && <div ref={ref} />}
       {createElement(props.url ? 'a' : 'div', {
         style: { backgroundColor: loaded ? undefined : randomColor },
         className: styles['avatar'],
@@ -101,13 +67,13 @@ export const Avatar: FC<
 
         children: props.imageUrl ? (
           <div className={styles['image']} style={{ opacity: loaded ? 1 : 0 }}>
-            {loaded && (
-              <img
-                src={props.imageUrl}
-                height={props.size}
-                width={props.size}
-              ></img>
-            )}
+            <img
+              src={props.imageUrl}
+              height={props.size}
+              width={props.size}
+              onLoad={() => setLoaded(true)}
+              loading={lazy ? 'lazy' : 'eager'}
+            ></img>
           </div>
         ) : props.text ? (
           <div className="flex flex-grow relative h-full w-full items-center justify-center">
