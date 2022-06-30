@@ -17,8 +17,8 @@ import type { InitialDataType } from '~/context/initial-data'
 import { InitialContextProvider } from '~/context/initial-data'
 import { RootStoreProvider } from '~/context/root-store'
 
+import { Content } from '../Content'
 import { attachRequestProxy, fetchInitialData } from '../prepare'
-import { Content } from './Content'
 
 interface DataModel {
   initData: InitialDataType
