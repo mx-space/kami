@@ -34,6 +34,7 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
     fetch()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query.page, router.query.year])
+
   const fetch = async () => {
     const { page, year, size = 10 } = router.query as any,
       payload = await apiClient.post.getList(page, size, {

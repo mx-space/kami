@@ -9,7 +9,7 @@ import { $axios, apiClient } from '~/utils/client'
 import { TokenKey } from '~/utils/cookie'
 import { isServerSide } from '~/utils/env'
 
-import PKG from '../../package.json'
+import PKG from '../package.json'
 
 export const attachRequestProxy = (request?: IncomingMessage) => {
   if (!request) {
