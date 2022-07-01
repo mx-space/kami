@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import React, { Fragment, memo, useEffect } from 'react'
 
-import { LaTimes } from '~/components/universal/Icons'
+import { LaTimes } from '~/components/universal/Icons/layout'
 import { OverLay } from '~/components/universal/Overlay'
 import { RootPortal } from '~/components/universal/Portal'
 import { TrackerAction } from '~/constants/tracker'
