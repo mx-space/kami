@@ -16,6 +16,7 @@ import { DebugLayout } from '~/components/layouts/DebugLayout'
 import type { InitialDataType } from '~/context/initial-data'
 import { InitialContextProvider } from '~/context/initial-data'
 import { RootStoreProvider } from '~/context/root-store'
+import { isDev } from '~/utils/env'
 
 import { Content } from '../Content'
 import { attachRequestProxy, fetchInitialData } from '../prepare'
@@ -40,7 +41,7 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
       <NoDataErrorView />
     )
   }, [Component, initData.aggregateData, pageProps])
-  if (router.route.startsWith('/dev')) {
+  if (router.route.startsWith('/dev') && isDev) {
     return (
       <RootStoreProvider>
         <DebugLayout>
