@@ -1,4 +1,4 @@
-import { uniqueId } from 'lodash-es'
+import uniqueId from 'lodash-es/uniqueId'
 import type {
   FC,
   FunctionComponentElement,
@@ -22,6 +22,7 @@ import { Modal } from '.'
 import type { OverlayProps } from '../Overlay'
 import { OverLay } from '../Overlay'
 
+// FIXME $modalElement memory leak
 /**
  * @param {boolean} immediately 立即销毁，不会等待动画结束
  */
@@ -111,11 +112,13 @@ export const ModalStackProvider: FC<{
     const id = uniqueId('modal-stack-')
 
     let $modalElement: FunctionComponentElement<any>
+
     if (React.isValidElement(component)) {
       $modalElement = createElement(
         Modal,
         {
           ...modalProps,
+          key: id,
           ref: (ins) => {
             modalRefMap.current.set($modalElement, ins!)
           },
@@ -131,6 +134,7 @@ export const ModalStackProvider: FC<{
         Modal,
         {
           ...modalProps,
+          key: id,
           ref(ins) {
             modalRefMap.current.set($modalElement, ins!)
           },
@@ -257,9 +261,11 @@ export const ModalStackProvider: FC<{
           dismissFnMapRef.current.set(Component, onClose)
           return (
             <OverLay
+              // center={false}
+              // standaloneWrapperClassName={'items-end justify-center'}
               childrenOutside
               show={extraProps.overlayShow}
-              onClose={() => onClose()}
+              onClose={() => disposer()}
               zIndex={60 + index}
               key={id}
               {...overlayProps}

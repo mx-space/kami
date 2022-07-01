@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import classNames from 'clsx'
 import { merge } from 'lodash-es'
 import type { CSSProperties, FC, ReactNode } from 'react'
@@ -55,6 +56,8 @@ export type OverlayProps = OverLayProps & {
   childrenOutside?: boolean
 
   zIndex?: number
+
+  standaloneWrapperClassName?: string
 }
 
 const __OverLay: FC<OverlayProps> = ({
@@ -92,7 +95,11 @@ const __OverLay: FC<OverlayProps> = ({
       </FadeInOutTransitionView>
       {!isExitAnimationEnd && childrenOutside && (
         <div
-          className="z-99 fixed inset-0 flex items-center justify-center"
+          className={clsx(
+            'z-99 fixed inset-0 flex',
+            props.center && 'items-center justify-center',
+            props.standaloneWrapperClassName,
+          )}
           tabIndex={-1}
           onClick={props.onClose}
           style={
@@ -110,5 +117,9 @@ const __OverLay: FC<OverlayProps> = ({
       )}
     </RootPortal>
   )
+}
+
+__OverLay.defaultProps = {
+  center: true,
 }
 export const OverLay = memo(__OverLay)
