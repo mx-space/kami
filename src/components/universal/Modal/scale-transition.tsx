@@ -11,7 +11,7 @@ const defaultStyle = {
 }
 
 const transitionStyles = {
-  entering: { transform: `scale(1) translateY(0)`, opacity: 1 },
+  entering: { transform: `scale(1) translateY(50px)`, opacity: 1 },
   entered: { transform: `scale(1) translateY(0)`, opacity: 1 },
   exiting: { transform: `scale(0.5) translateY(0)`, opacity: 0.3 },
   exited: { transform: `scale(0.5) translateY(0)`, opacity: 0.3 },
