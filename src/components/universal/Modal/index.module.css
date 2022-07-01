@@ -1,11 +1,19 @@
+.modal {
+  @apply bg-light-bg max-w-65vw max-h-70vh phone:max-w-95vw min-h-8 min-w-30 rounded-lg block overflow-hidden shadow-md relative;
+}
+
+.close-btn {
+  @apply absolute h-16 top-0 right-0 w-16 flex items-center justify-center;
+}
+
 .title-wrapper {
-  @apply h-12 flex items-center px-4;
+  @apply h-16 px-6 relative box-content inline-flex items-center;
 
   > h4 {
-    @apply font-medium text-lg;
+    @apply font-medium text-lg m-0;
   }
 }
 
 .content {
-  @apply p-4;
+  @apply p-6 -mt-5;
 }

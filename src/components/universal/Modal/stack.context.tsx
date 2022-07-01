@@ -83,6 +83,14 @@ export const ModalStackProvider: FC<{
 }> = (props) => {
   const { children } = props
   const [modalStack, setModalStack] = useState<IModalStackStateType[]>([])
+  const [extraModalPropsMap, setExtraModalPropsMap] = useState<
+    Map<
+      string,
+      {
+        overlayShow: boolean
+      }
+    >
+  >(new Map())
 
   const modalRefMap = useRef(
     new WeakMap<FunctionComponentElement<any>, ModalRefObject>(),
@@ -146,6 +154,13 @@ export const ModalStackProvider: FC<{
         },
       ]
     })
+
+    setExtraModalPropsMap((map) => {
+      map.set(id, {
+        overlayShow: true,
+      })
+      return new Map(map)
+    })
     return disposer
   }, [])
 
@@ -192,18 +207,29 @@ export const ModalStackProvider: FC<{
       {isClient &&
         modalStack.map((comp, index) => {
           const { component: Component, id, disposer, overlayProps } = comp
+          const extraProps = extraModalPropsMap.get(id)!
 
           return (
             <OverLay
               childrenOutside
-              show
+              show={extraProps.overlayShow}
               onClose={() => {
                 const instance = modalRefMap.current.get(Component)
 
                 if (!instance) {
                   disposer()
                 } else {
-                  instance.dismiss().then(() => {
+                  const dismissTask = instance.dismiss()
+
+                  setExtraModalPropsMap((map) => {
+                    map.set(id, {
+                      ...extraProps,
+                      overlayShow: false,
+                    })
+                    return new Map(map)
+                  })
+
+                  dismissTask.then(() => {
                     disposer()
                   })
                 }
