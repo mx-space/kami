@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import { forwardRef, useCallback, useImperativeHandle } from 'react'
 
-import { LaTimes } from '../Icons/layout'
 import styles from './index.module.css'
 
 export interface ModalProps {
@@ -25,7 +24,7 @@ export const Modal = forwardRef<ModalRefObject, ModalProps>((props, ref) => {
   }))
 
   const className =
-    'bg-light-bg max-w-65vw max-h-70vh min-h-8 min-w-30 rounded-md block overflow-hidden shadow-md'
+    'bg-light-bg max-w-65vw max-h-70vh min-h-8 min-w-30 rounded-md block overflow-hidden shadow-md relative'
 
   const { title } = props
   return (
@@ -36,13 +35,27 @@ export const Modal = forwardRef<ModalRefObject, ModalProps>((props, ref) => {
         </div>
       )}
       <div
-        className="absolute h-12 top-0 right-0 w-12 flex items-center justify-center"
+        className="absolute h-12 top-0 right-0 w-10 flex items-center justify-center"
         onClick={dismiss}
         role={'button'}
       >
-        <LaTimes />
+        <CloseIcon />
       </div>
       <div className={styles['content']}>{props.children}</div>
     </div>
   )
 })
+
+const CloseIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1.2em"
+    height="1.2em"
+    viewBox="0 0 32 32"
+  >
+    <path
+      fill="currentColor"
+      d="M24 9.4L22.6 8L16 14.6L9.4 8L8 9.4l6.6 6.6L8 22.6L9.4 24l6.6-6.6l6.6 6.6l1.4-1.4l-6.6-6.6L24 9.4z"
+    ></path>
+  </svg>
+)
