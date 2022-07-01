@@ -26,10 +26,16 @@ type Disposer = () => void
 
 export type ModalStackContextType = {
   popup: (comp: IModalStackComponent) => Disposer
+  getStack: () => IModalStackStateType[]
+  findCurrentByName: (name: string) => IModalStackStateType | undefined
+  disposeAll: (immediately?: boolean) => Promise<void>
 }
 
 const ModalStackContext = createContext<ModalStackContextType>({
   popup: () => () => void 0,
+  getStack: () => [],
+  findCurrentByName: () => void 0,
+  disposeAll: () => Promise.resolve(undefined),
 })
 
 export const useModalStack = () => useContext(ModalStackContext)
@@ -42,6 +48,7 @@ export interface IModalStackComponent extends UniversalProps {
 
 interface UniversalProps {
   overlayProps?: OverlayProps
+  name?: string
 }
 
 interface IModalStackStateType extends UniversalProps {
@@ -118,10 +125,44 @@ export const ModalStackProvider: FC<{
     return disposer
   }, [])
 
+  const findCurrentByName = useCallback(
+    (name: string) => {
+      return modalStack.find((item) => item.name === name)
+    },
+    [modalStack],
+  )
+
+  const getStack = useCallback(() => {
+    return modalStack.concat()
+  }, [modalStack])
+
+  const disposeAll = useCallback(
+    async (immediately = false) => {
+      const reversedStack = modalStack.concat().reverse()
+      if (immediately) {
+        reversedStack.forEach((current) => current.disposer())
+      } else {
+        for (const current of reversedStack) {
+          const instance = modalRefMap.current.get(current.component)
+
+          if (!instance) {
+            current.disposer()
+            continue
+          }
+          await instance.dismiss()
+          current.disposer()
+        }
+      }
+    },
+    [modalStack],
+  )
+
   const isClient = useIsClient()
 
   return (
-    <ModalStackContext.Provider value={{ popup }}>
+    <ModalStackContext.Provider
+      value={{ popup, findCurrentByName, getStack, disposeAll }}
+    >
       {children}
 
       {isClient &&
