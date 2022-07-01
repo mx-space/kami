@@ -22,7 +22,7 @@ export const Modal = forwardRef<ModalRefObject, ModalProps>((props, ref) => {
     return new Promise<void>((resolve) => {
       setIn(false)
       setTimeout(() => {
-        resolve(undefined)
+        resolve(null as any)
       }, 250)
     })
   }, [])
