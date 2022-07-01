@@ -25,14 +25,26 @@ import { OverLay } from '../Overlay'
 type Disposer = () => void
 
 export type ModalStackContextType = {
-  popup: (comp: IModalStackComponent) => Disposer
+  /**
+   * 递交一个 Modal
+   */
+  present<T>(comp: IModalStackComponent<T>): Disposer
+  /**
+   * 获取当前所有的 ModalStack
+   */
   getStack: () => IModalStackStateType[]
+  /**
+   * 根据 Name 找到 Modal 实例
+   */
   findCurrentByName: (name: string) => IModalStackStateType | undefined
+  /**
+   * 销毁所有 Modal
+   */
   disposeAll: (immediately?: boolean) => Promise<void>
 }
 
 const ModalStackContext = createContext<ModalStackContextType>({
-  popup: () => () => void 0,
+  present: () => () => void 0,
   getStack: () => [],
   findCurrentByName: () => void 0,
   disposeAll: () => Promise.resolve(undefined),
@@ -40,9 +52,18 @@ const ModalStackContext = createContext<ModalStackContextType>({
 
 export const useModalStack = () => useContext(ModalStackContext)
 
-export interface IModalStackComponent extends UniversalProps {
-  component: ReactNode | ReactElement | React.FC
-  props?: any
+export interface IModalStackComponent<T = any> extends UniversalProps {
+  /**
+   * 传递一个 Modal 组件
+   */
+  component: ReactNode | ReactElement | React.FC<T>
+  /**
+   * 传递组件的 props, 可以是一个函数, 如果是函数, 则会在 Modal 出现的时候调用获取 props
+   */
+  props?: T | (() => T)
+  /**
+   * 传递 Modal 的 Props
+   */
   modalProps?: ModalProps
 }
 
@@ -67,7 +88,7 @@ export const ModalStackProvider: FC<{
     new WeakMap<FunctionComponentElement<any>, ModalRefObject>(),
   )
 
-  const popup = useCallback((comp: IModalStackComponent): Disposer => {
+  const present = useCallback((comp: IModalStackComponent): Disposer => {
     const { component, props, modalProps, ...rest } = comp
 
     const id = uniqueId('modal-stack-')
@@ -102,7 +123,10 @@ export const ModalStackProvider: FC<{
             modalRefMap.current.set($modalElement, ins!)
           },
         },
-        createElement(component as any, props),
+        createElement(
+          component as any,
+          typeof props === 'function' ? props() : props,
+        ),
       )
     } else {
       console.error(
@@ -161,7 +185,7 @@ export const ModalStackProvider: FC<{
 
   return (
     <ModalStackContext.Provider
-      value={{ popup, findCurrentByName, getStack, disposeAll }}
+      value={{ present, findCurrentByName, getStack, disposeAll }}
     >
       {children}
 
