@@ -273,7 +273,14 @@ export const SearchOverlay: FC<OverlayProps> = (props) => {
   )
   return (
     <OverLay childrenOutside center {...rest}>
-      <SearchPanel />
+      <div
+        className={clsx(
+          'transition duration-300 transition-opacity',
+          !props.show && 'opacity-0',
+        )}
+      >
+        <SearchPanel />
+      </div>
     </OverLay>
   )
 }

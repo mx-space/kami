@@ -1,7 +1,7 @@
 import classNames from 'clsx'
 import { merge } from 'lodash-es'
 import type { CSSProperties, FC, ReactNode } from 'react'
-import { memo, useEffect } from 'react'
+import { memo, useEffect, useState } from 'react'
 
 import { useIsClient } from '~/hooks/use-is-client'
 import { stopEventDefault } from '~/utils/dom'
@@ -53,16 +53,25 @@ export type OverlayProps = OverLayProps & {
   children?: ReactNode
   /** 子代节点独立于 Overlay 内部 */
   childrenOutside?: boolean
+
   zIndex?: number
 }
 
 const __OverLay: FC<OverlayProps> = ({
   show,
   childrenOutside = false,
-
   ...props
 }) => {
   const isClient = useIsClient()
+
+  const [isExitAnimationEnd, setIsExitAnimationEnd] = useState(!show)
+
+  useEffect(() => {
+    if (show) {
+      setIsExitAnimationEnd(false)
+    }
+  }, [show])
+
   if (!isClient) {
     return null
   }
@@ -72,6 +81,7 @@ const __OverLay: FC<OverlayProps> = ({
       <FadeInOutTransitionView
         className="z-30"
         in={show}
+        onExited={() => setIsExitAnimationEnd(true)}
         unmountOnExit
         timeout={{ exit: 500 }}
       >
@@ -80,7 +90,7 @@ const __OverLay: FC<OverlayProps> = ({
           child={childrenOutside ? null : props.children}
         ></_OverLay>
       </FadeInOutTransitionView>
-      {show && childrenOutside && (
+      {!isExitAnimationEnd && childrenOutside && (
         <div
           className="z-99 fixed inset-0 flex items-center justify-center"
           tabIndex={-1}

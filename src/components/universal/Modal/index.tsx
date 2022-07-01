@@ -1,12 +1,13 @@
 import clsx from 'clsx'
-import { forwardRef, useCallback, useImperativeHandle } from 'react'
+import { forwardRef, useCallback, useImperativeHandle, useState } from 'react'
 
 import styles from './index.module.css'
+import { ScaleModalTransition } from './scale-transition'
 
 export interface ModalProps {
   title?: string
   // TODO action
-
+  closeable?: boolean
   onClose?: () => any
   modalClassName?: string
 }
@@ -15,42 +16,51 @@ export type ModalRefObject = {
   dismiss: () => Promise<void>
 }
 export const Modal = forwardRef<ModalRefObject, ModalProps>((props, ref) => {
-  const dismiss = useCallback(async () => {
-    return Promise.resolve(undefined)
+  const [modalIn, setIn] = useState(true)
+  const dismiss = useCallback(() => {
+    return new Promise<void>((resolve) => {
+      setIn(false)
+      setTimeout(() => {
+        resolve(undefined)
+      }, 250)
+    })
   }, [])
 
   useImperativeHandle(ref, () => ({
     dismiss,
   }))
 
-  const className =
-    'bg-light-bg max-w-65vw max-h-70vh min-h-8 min-w-30 rounded-md block overflow-hidden shadow-md relative'
-
-  const { title } = props
+  const { title, closeable } = props
   return (
-    <div className={clsx(className, props.modalClassName)}>
-      {title && (
-        <div className={styles['title-wrapper']}>
-          <h4>{title}</h4>
-        </div>
-      )}
-      <div
-        className="absolute h-12 top-0 right-0 w-10 flex items-center justify-center"
-        onClick={dismiss}
-        role={'button'}
-      >
-        <CloseIcon />
+    <ScaleModalTransition in={modalIn} timeout={{ exit: 240 }}>
+      <div className={clsx(styles['modal'], props.modalClassName)}>
+        {title && (
+          <div className={styles['title-wrapper']}>
+            <h4>{title}</h4>
+
+            {/* <Divider className="absolute bottom-0 left-0 right-0 !m-0" /> */}
+          </div>
+        )}
+        {closeable && (
+          <div
+            className={styles['close-btn']}
+            onClick={dismiss}
+            role={'button'}
+          >
+            <CloseIcon />
+          </div>
+        )}
+        <div className={styles['content']}>{props.children}</div>
       </div>
-      <div className={styles['content']}>{props.children}</div>
-    </div>
+    </ScaleModalTransition>
   )
 })
 
 const CloseIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="1.2em"
-    height="1.2em"
+    width="1.4em"
+    height="1.4em"
     viewBox="0 0 32 32"
   >
     <path
