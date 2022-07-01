@@ -10,6 +10,7 @@ export interface ModalProps {
   closeable?: boolean
   onClose?: () => any
   modalClassName?: string
+  contentClassName?: string
 }
 
 export type ModalRefObject = {
@@ -50,7 +51,15 @@ export const Modal = forwardRef<ModalRefObject, ModalProps>((props, ref) => {
             <CloseIcon />
           </div>
         )}
-        <div className={styles['content']}>{props.children}</div>
+        <div
+          className={clsx(
+            styles['content'],
+            title && styles['has-title'],
+            props.contentClassName,
+          )}
+        >
+          {props.children}
+        </div>
       </div>
     </ScaleModalTransition>
   )

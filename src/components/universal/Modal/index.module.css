@@ -15,5 +15,9 @@
 }
 
 .content {
-  @apply p-6 -mt-5;
+  @apply p-6;
+
+  &.has-title {
+    @apply -mt-5;
+  }
 }

@@ -22,7 +22,10 @@ import { Modal } from '.'
 import type { OverlayProps } from '../Overlay'
 import { OverLay } from '../Overlay'
 
-type Disposer = () => void
+/**
+ * @param {boolean} immediately 立即销毁，不会等待动画结束
+ */
+type Disposer = (immediately?: boolean) => void
 
 export type ModalStackContextType = {
   /**
@@ -96,15 +99,16 @@ export const ModalStackProvider: FC<{
     new WeakMap<FunctionComponentElement<any>, ModalRefObject>(),
   )
 
+  const dismissFnMapRef = useRef(
+    new WeakMap<FunctionComponentElement<any>, () => any>(),
+  )
+
+  console.log(modalRefMap.current, dismissFnMapRef.current)
+
   const present = useCallback((comp: IModalStackComponent): Disposer => {
     const { component, props, modalProps, ...rest } = comp
 
     const id = uniqueId('modal-stack-')
-    const disposer = () => {
-      setModalStack((stack) => {
-        return stack.filter((item) => item.id !== id)
-      })
-    }
 
     let $modalElement: FunctionComponentElement<any>
     if (React.isValidElement(component)) {
@@ -141,6 +145,24 @@ export const ModalStackProvider: FC<{
         'ModalStackProvider: component must be ReactElement or React.FC',
       )
       return () => null
+    }
+
+    const disposer = (immediately = false) => {
+      const immediatelyDisposer = () => {
+        setModalStack((stack) => {
+          return stack.filter((item) => item.id !== id)
+        })
+      }
+      if (immediately) {
+        immediatelyDisposer()
+      } else {
+        const fn = dismissFnMapRef.current.get($modalElement)
+        if (!fn) {
+          immediatelyDisposer()
+          return
+        }
+        fn()
+      }
     }
 
     setModalStack((stack) => {
@@ -209,31 +231,35 @@ export const ModalStackProvider: FC<{
           const { component: Component, id, disposer, overlayProps } = comp
           const extraProps = extraModalPropsMap.get(id)!
 
+          const onClose = () => {
+            const instance = modalRefMap.current.get(Component)
+
+            if (!instance) {
+              disposer(true)
+            } else {
+              const dismissTask = instance.dismiss()
+
+              setExtraModalPropsMap((map) => {
+                map.set(id, {
+                  ...extraProps,
+                  overlayShow: false,
+                })
+                return new Map(map)
+              })
+
+              dismissTask.then(() => {
+                disposer(true)
+                extraModalPropsMap.delete(id)
+              })
+            }
+          }
+
+          dismissFnMapRef.current.set(Component, onClose)
           return (
             <OverLay
               childrenOutside
               show={extraProps.overlayShow}
-              onClose={() => {
-                const instance = modalRefMap.current.get(Component)
-
-                if (!instance) {
-                  disposer()
-                } else {
-                  const dismissTask = instance.dismiss()
-
-                  setExtraModalPropsMap((map) => {
-                    map.set(id, {
-                      ...extraProps,
-                      overlayShow: false,
-                    })
-                    return new Map(map)
-                  })
-
-                  dismissTask.then(() => {
-                    disposer()
-                  })
-                }
-              }}
+              onClose={() => onClose()}
               zIndex={60 + index}
               key={id}
               {...overlayProps}
