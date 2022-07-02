@@ -95,10 +95,10 @@ export const NoteFooterNavigation: FC<{ id: string }> = observer(({ id }) => {
 export const NoteFooterActionBarForMobile: typeof NoteFooterNavigation =
   observer((props) => {
     const {
-      appUIStore: { isPadOrMobile },
+      appUIStore: { isNarrowThanLaptop: isWiderThanLaptop },
     } = useStore()
 
-    if (isPadOrMobile) {
+    if (isWiderThanLaptop) {
       return <NoteFooterNavigation {...props} />
     }
     return null

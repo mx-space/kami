@@ -245,7 +245,7 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
       {logged && !comment.parent && (
         <div
           className={clsx(
-            'absolute right-5 top-5 hover:opacity-100 opacity-30 transition-opacity duration-300',
+            'absolute right-3 top-5 hover:opacity-100 opacity-30 transition-opacity duration-300',
 
             comment.pin && 'text-red !opacity-100',
           )}
@@ -262,7 +262,7 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
 
       {!logged && comment.pin && (
         <ImpressionView trackerMessage={`置顶评论曝光`}>
-          <div className="absolute right-5 top-5 text-red">
+          <div className="absolute right-3 top-5 text-red">
             <PhPushPin />
           </div>
         </ImpressionView>

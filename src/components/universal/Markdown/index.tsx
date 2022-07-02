@@ -9,10 +9,12 @@ import ReactMarkdown from 'react-markdown'
 import { ensuredForwardRef } from 'react-use'
 
 import CustomRules from '~/components/universal/Markdown/rules'
-import type { TocProps } from '~/components/universal/Toc'
+import type { TocProps } from '~/components/widgets/Toc'
 import { useStore } from '~/store'
 
 import { CodeBlock } from '../CodeBlock'
+import { BiListNested } from '../Icons'
+import { useModalStack } from '../Modal/stack.context'
 import styles from './index.module.css'
 import { processDetails } from './process-tag'
 import {
@@ -30,7 +32,7 @@ import { Heading } from './renderers/Heading'
 import { Image } from './renderers/Image'
 
 const Toc = dynamic<TocProps>(
-  () => import('~/components/universal/Toc').then((m) => m.Toc),
+  () => import('~/components/widgets/Toc').then((m) => m.Toc),
   {
     ssr: false,
   },
@@ -139,7 +141,30 @@ const __Markdown: FC<MdProps> = ensuredForwardRef<HTMLDivElement, MdProps>(
 export const Markdown = memo(__Markdown)
 
 export const TOC: FC<TocProps> = observer((props) => {
-  const { appStore } = useStore()
-  const { isPadOrMobile } = appStore
-  return !isPadOrMobile ? <Toc {...props} /> : null
+  const { appStore, actionStore } = useStore()
+  const { isNarrowThanLaptop: isWiderThanLaptop } = appStore
+  const { present } = useModalStack()
+  useEffect(() => {
+    if (!isWiderThanLaptop || props.headings.length == 0) {
+      return
+    }
+    const id = Symbol('toc')
+    actionStore.appendActions({
+      icon: <BiListNested />,
+      id,
+      onClick() {
+        present({
+          component: <Toc useAsWeight {...props} />,
+          modalProps: {
+            title: 'Table of Content',
+            noBlur: true,
+          },
+        })
+      },
+    })
+    return () => {
+      actionStore.removeActionBySymbol(id)
+    }
+  }, [actionStore, isWiderThanLaptop, present, props])
+  return !isWiderThanLaptop ? <Toc {...props} /> : null
 })

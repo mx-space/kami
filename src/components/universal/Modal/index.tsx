@@ -15,6 +15,7 @@ export interface ModalProps {
   onClose?: () => any
   modalClassName?: string
   contentClassName?: string
+  noBlur?: boolean
 }
 
 export type ModalRefObject = {
@@ -57,6 +58,7 @@ export const Modal = observer<
         className={clsx(
           styles['modal'],
           useDrawerStyle && styles['drawer'],
+          props.noBlur && styles['no-blur'],
           props.modalClassName,
         )}
       >

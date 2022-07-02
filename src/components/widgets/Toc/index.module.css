@@ -21,6 +21,22 @@
   font-family: var(--sans-font);
   line-height: 1.15;
 
+  &.weight {
+    @apply relative transform-none right-0;
+
+    a {
+      @apply !opacity-80;
+
+      &::before {
+        @apply !opacity-80;
+      }
+    }
+
+    .container {
+      @apply relative top-0;
+    }
+  }
+
   .container {
     color: #888;
     font-size: 0.85em;
