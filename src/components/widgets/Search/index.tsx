@@ -78,6 +78,9 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
   const [list, setList] = useState<SearchListType[]>([])
   const { event } = useAnalyze()
   useEffect(() => {
+    if (!keyword) {
+      return
+    }
     setLoading(true)
     setCurrentSelect(0)
 
@@ -86,7 +89,6 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
         if (typeof res === 'undefined') {
           return
         }
-        console.log(res)
 
         event({
           action: TrackerAction.Interaction,
@@ -222,8 +224,12 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
           {list.length === 0 && !loading ? (
             <div className="flex h-full items-center justify-center">
               <div className="flex flex-col items-center space-y-2">
-                <EmptyIcon />
-                <span>无内容</span>
+                {!keyword ? (
+                  <IonSearch className="text-[60px]" />
+                ) : !loading ? (
+                  <EmptyIcon />
+                ) : null}
+                <span>{keyword && '无内容'}</span>
               </div>
             </div>
           ) : (
