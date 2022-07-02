@@ -25,7 +25,6 @@ import { Modal } from '.'
 import type { OverlayProps } from '../Overlay'
 import { Overlay } from '../Overlay'
 
-// FIXME $modalElement memory leak
 /**
  * @param {boolean} immediately 立即销毁，不会等待动画结束
  */
