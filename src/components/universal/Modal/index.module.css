@@ -2,10 +2,18 @@
   @apply bg-bg-opacity max-w-65vw max-h-70vh phone:max-w-95vw min-h-8 min-w-30 rounded-lg block overflow-hidden shadow-md relative;
 
   backdrop-filter: blur(20px) saturate(180%);
+
+  &.no-blur {
+    @apply bg-light-bg;
+
+    backdrop-filter: none;
+  }
 }
 
 .modal.drawer {
-  @apply !max-w-full !w-full !max-h-90vh;
+  @apply !max-w-screen !w-full !max-h-90vh !w-screen;
+
+  border-radius: 12px 12px 0 0;
 }
 
 .close-btn {

@@ -1,5 +1,5 @@
 .root {
-  @apply w-[800px] max-w-[80vw] max-h-[60vh] h-[600px];
+  @apply w-[800px] max-w-[80vw] max-h-[60vh] h-[600px] phone:max-w-[100vw] phone:max-h-[90vh] phone:rounded-none phone:h-screen;
   @apply bg-bg-opacity shadow-lg min-h-50 rounded-xl flex flex-col overflow-hidden text-[--black];
 
   backdrop-filter: blur(20px) saturate(180%);

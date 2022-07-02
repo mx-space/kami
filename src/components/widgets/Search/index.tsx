@@ -1,6 +1,7 @@
 import { CanceledError } from 'axios'
 import clsx from 'clsx'
 import { throttle } from 'lodash-es'
+import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC, KeyboardEventHandler } from 'react'
 import { memo, useCallback, useEffect, useRef, useState } from 'react'
@@ -265,9 +266,14 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
     </div>
   )
 })
-export const SearchOverlay: FC<OverlayProps> = (props) => {
+export const SearchOverlay: FC<OverlayProps> = observer((props) => {
   const { ...rest } = props
 
+  const {
+    appUIStore: {
+      viewport: { mobile },
+    },
+  } = useStore()
   useShortcut(
     'Escape',
     [Modifier.None],
@@ -278,7 +284,12 @@ export const SearchOverlay: FC<OverlayProps> = (props) => {
     { hiddenInPanel: true },
   )
   return (
-    <OverLay childrenOutside center {...rest}>
+    <OverLay
+      childrenOutside
+      center={!mobile}
+      standaloneWrapperClassName={clsx(mobile && 'items-start justify-center')}
+      {...rest}
+    >
       <div
         className={clsx(
           'transition duration-300 transition-opacity',
@@ -289,8 +300,7 @@ export const SearchOverlay: FC<OverlayProps> = (props) => {
       </div>
     </OverLay>
   )
-}
-
+})
 export const SearchHotKey: FC = memo(() => {
   const { event } = useAnalyze()
   const [show, setShow] = useState(false)

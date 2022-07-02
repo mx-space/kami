@@ -129,9 +129,9 @@ export const NoteTimelineList: FC<
   NoteTimelineListProps & JSX.IntrinsicElements['div']
 > = observer((props) => {
   const {
-    appUIStore: { isPadOrMobile },
+    appUIStore: { isNarrowThanLaptop: isWiderThanLaptop },
   } = useStore()
-  if (isPadOrMobile) {
+  if (isWiderThanLaptop) {
     return null
   }
   return <ObserveredNoteTimelineList {...props} />
