@@ -1,4 +1,6 @@
+import clsx from 'clsx'
 import uniqueId from 'lodash-es/uniqueId'
+import { observer } from 'mobx-react-lite'
 import type {
   FC,
   FunctionComponentElement,
@@ -16,6 +18,7 @@ import React, {
 } from 'react'
 
 import { useIsClient } from '~/hooks/use-is-client'
+import { useStore } from '~/store'
 
 import type { ModalProps, ModalRefObject } from '.'
 import { Modal } from '.'
@@ -73,7 +76,15 @@ export interface IModalStackComponent<T = any> extends UniversalProps {
 
 interface UniversalProps {
   overlayProps?: OverlayProps
+  /**
+   * Only used by find stack
+   */
   name?: string
+  /**
+   * 在移动端视图 使用底部 Drawer 样式
+   * @default true
+   */
+  useBottomDrawerInMobile?: boolean
 }
 
 interface IModalStackStateType extends UniversalProps {
@@ -84,7 +95,7 @@ interface IModalStackStateType extends UniversalProps {
 
 export const ModalStackProvider: FC<{
   children?: ReactNode | ReactChildren
-}> = (props) => {
+}> = observer((props) => {
   const { children } = props
   const [modalStack, setModalStack] = useState<IModalStackStateType[]>([])
   const [extraModalPropsMap, setExtraModalPropsMap] = useState<
@@ -104,45 +115,26 @@ export const ModalStackProvider: FC<{
     new WeakMap<FunctionComponentElement<any>, () => any>(),
   )
 
-  console.log(modalRefMap.current, dismissFnMapRef.current)
-
   const present = useCallback((comp: IModalStackComponent): Disposer => {
-    const { component, props, modalProps, ...rest } = comp
+    const {
+      component,
+      props,
+      modalProps,
+      useBottomDrawerInMobile = true,
+      ...rest
+    } = comp
 
     const id = uniqueId('modal-stack-')
 
-    let $modalElement: FunctionComponentElement<any>
-
+    let modalChildren: ReactChildren | ReactNode[] | ReactNode
     if (React.isValidElement(component)) {
-      $modalElement = createElement(
-        Modal,
-        {
-          ...modalProps,
-          key: id,
-          ref: (ins) => {
-            modalRefMap.current.set($modalElement, ins!)
-          },
-        },
-        component,
-      )
-
+      modalChildren = component
       // JSX
     } else if (typeof component === 'function') {
       // React.FC
-
-      $modalElement = createElement(
-        Modal,
-        {
-          ...modalProps,
-          key: id,
-          ref(ins) {
-            modalRefMap.current.set($modalElement, ins!)
-          },
-        },
-        createElement(
-          component as any,
-          typeof props === 'function' ? props() : props,
-        ),
+      modalChildren = createElement(
+        component as any,
+        typeof props === 'function' ? props() : props,
       )
     } else {
       console.error(
@@ -150,6 +142,24 @@ export const ModalStackProvider: FC<{
       )
       return () => null
     }
+
+    const $modalElement: FunctionComponentElement<any> = createElement(
+      Modal,
+      {
+        ...modalProps,
+        modalId: id,
+        useBottomDrawerInMobile,
+        key: id,
+        ref: (ins) => {
+          modalRefMap.current.set($modalElement, ins!)
+        },
+        disposer: () => {
+          dismissFnMapRef.current.delete($modalElement)
+          setModalStack((prev) => prev.filter((item) => item.id !== id))
+        },
+      },
+      modalChildren,
+    )
 
     const disposer = (immediately = false) => {
       const immediatelyDisposer = () => {
@@ -192,7 +202,7 @@ export const ModalStackProvider: FC<{
 
   const findCurrentByName = useCallback(
     (name: string) => {
-      return modalStack.find((item) => item.name === name)
+      return modalStack.find((item) => item.name === name || item.id === name)
     },
     [modalStack],
   )
@@ -224,6 +234,13 @@ export const ModalStackProvider: FC<{
 
   const isClient = useIsClient()
 
+  // TODO  抽离 不再依赖
+  const {
+    appUIStore: {
+      viewport: { mobile },
+    },
+  } = useStore()
+
   return (
     <ModalStackContext.Provider
       value={{ present, findCurrentByName, getStack, disposeAll }}
@@ -232,7 +249,13 @@ export const ModalStackProvider: FC<{
 
       {isClient &&
         modalStack.map((comp, index) => {
-          const { component: Component, id, disposer, overlayProps } = comp
+          const {
+            component: Component,
+            id,
+            disposer,
+            overlayProps,
+            useBottomDrawerInMobile = true,
+          } = comp
           const extraProps = extraModalPropsMap.get(id)!
 
           const onClose = () => {
@@ -261,8 +284,10 @@ export const ModalStackProvider: FC<{
           dismissFnMapRef.current.set(Component, onClose)
           return (
             <OverLay
-              // center={false}
-              // standaloneWrapperClassName={'items-end justify-center'}
+              center={!mobile && useBottomDrawerInMobile}
+              standaloneWrapperClassName={clsx(
+                mobile && useBottomDrawerInMobile && 'items-end justify-center',
+              )}
               childrenOutside
               show={extraProps.overlayShow}
               onClose={() => disposer()}
@@ -276,4 +301,4 @@ export const ModalStackProvider: FC<{
         })}
     </ModalStackContext.Provider>
   )
-}
+})
