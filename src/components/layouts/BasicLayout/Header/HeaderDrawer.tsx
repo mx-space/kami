@@ -40,7 +40,7 @@ const _HeaderDrawer: FC<{ show: boolean; onExit: () => void }> = memo(
     return (
       <RootPortal>
         <Fragment>
-          <OverLay show={show} onClose={onExit}></OverLay>
+          <OverLay show={show} darkness={0} onClose={onExit}></OverLay>
           <div
             className={classNames(
               styles['drawer'],

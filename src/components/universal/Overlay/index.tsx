@@ -1,6 +1,5 @@
 import clsx from 'clsx'
-import classNames from 'clsx'
-import { merge } from 'lodash-es'
+import { isUndefined, merge } from 'lodash-es'
 import type { CSSProperties, FC, ReactNode } from 'react'
 import { memo, useEffect, useState } from 'react'
 
@@ -32,13 +31,15 @@ const _OverLay: FC<OverLayProps & { child: any }> = (props) => {
 
   return (
     <div
-      className={classNames(styles['container'], center && styles['center'])}
+      className={clsx(styles['container'], center && styles['center'])}
       style={typeof zIndex != 'undefined' ? { zIndex } : undefined}
     >
       <div
         className={styles['overlay']}
         style={merge<Partial<CSSProperties>, Partial<CSSProperties>>(
-          darkness ? { backgroundColor: `rgba(0,0,0,${darkness})` } : {},
+          !isUndefined(darkness)
+            ? { backgroundColor: `rgba(0,0,0,${darkness})` }
+            : {},
           blur ? { backdropFilter: 'blur(5px)' } : {},
         )}
         onClick={onClose}
@@ -82,7 +83,6 @@ const __OverLay: FC<OverlayProps> = ({
   return (
     <RootPortal>
       <FadeInOutTransitionView
-        className="z-30"
         in={show}
         onExited={() => setIsExitAnimationEnd(true)}
         unmountOnExit

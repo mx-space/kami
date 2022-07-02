@@ -77,9 +77,12 @@
   width: 300px;
   max-width: 80vw;
   transform: translateX(100%);
+  transition-property: transform, opacity, outline-color;
+  outline: 9999px transparent solid;
 
   &.show {
     transform: translateX(0);
+    outline-color: rgba(0, 0, 0, 0.3);
   }
 
   & a {

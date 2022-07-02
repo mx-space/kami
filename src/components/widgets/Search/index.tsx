@@ -292,7 +292,7 @@ export const SearchOverlay: FC<OverlayProps> = observer((props) => {
     >
       <div
         className={clsx(
-          'transition duration-300 transition-opacity',
+          'transition duration-200 transition-opacity',
           !props.show && 'opacity-0',
         )}
       >
