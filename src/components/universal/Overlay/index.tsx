@@ -18,54 +18,26 @@ interface OverLayProps {
   zIndex?: number
 }
 
-const _OverLay: FC<OverLayProps & { child: any }> = (props) => {
-  const { onClose, center, darkness, blur = false, zIndex } = props
-
-  useEffect(() => {
-    document.documentElement.style.overflow = 'hidden'
-
-    return () => {
-      document.documentElement.style.overflow = ''
-    }
-  }, [])
-
-  return (
-    <div
-      className={clsx(styles['container'], center && styles['center'])}
-      style={typeof zIndex != 'undefined' ? { zIndex } : undefined}
-    >
-      <div
-        className={styles['overlay']}
-        style={merge<Partial<CSSProperties>, Partial<CSSProperties>>(
-          !isUndefined(darkness)
-            ? { backgroundColor: `rgba(0,0,0,${darkness})` }
-            : {},
-          blur ? { backdropFilter: 'blur(5px)' } : {},
-        )}
-        onClick={onClose}
-      ></div>
-
-      {props.child}
-    </div>
-  )
-}
-
 export type OverlayProps = OverLayProps & {
   show: boolean
   children?: ReactNode
-  /** 子代节点独立于 Overlay 内部 */
-  childrenOutside?: boolean
 
   zIndex?: number
 
   standaloneWrapperClassName?: string
 }
 
-const __OverLay: FC<OverlayProps> = ({
-  show,
-  childrenOutside = false,
-  ...props
-}) => {
+const OverLay: FC<OverlayProps> = (props) => {
+  const {
+    onClose,
+    show,
+    blur,
+    center,
+
+    darkness,
+    standaloneWrapperClassName,
+    zIndex,
+  } = props
   const isClient = useIsClient()
 
   const [isExitAnimationEnd, setIsExitAnimationEnd] = useState(!show)
@@ -76,36 +48,54 @@ const __OverLay: FC<OverlayProps> = ({
     }
   }, [show])
 
+  useEffect(() => {
+    document.documentElement.style.overflow = show ? 'hidden' : ''
+  }, [show])
+
   if (!isClient) {
     return null
   }
 
   return (
     <RootPortal>
-      <FadeInOutTransitionView
-        in={show}
-        onExited={() => setIsExitAnimationEnd(true)}
-        unmountOnExit
-        timeout={{ exit: 500 }}
-      >
-        <_OverLay
-          {...props}
-          child={childrenOutside ? null : props.children}
-        ></_OverLay>
-      </FadeInOutTransitionView>
-      {!isExitAnimationEnd && childrenOutside && (
+      {!isExitAnimationEnd && (
+        <div
+          className={clsx(styles['container'], center && styles['center'])}
+          style={typeof zIndex != 'undefined' ? { zIndex } : undefined}
+        >
+          <FadeInOutTransitionView
+            in={show}
+            onExited={() => setIsExitAnimationEnd(true)}
+            unmountOnExit
+            timeout={{ exit: 500 }}
+          >
+            <div
+              className={styles['overlay']}
+              style={merge<Partial<CSSProperties>, Partial<CSSProperties>>(
+                !isUndefined(darkness)
+                  ? { backgroundColor: `rgba(0,0,0,${darkness})` }
+                  : {},
+                blur ? { backdropFilter: 'blur(5px)' } : {},
+              )}
+              onClick={onClose}
+            ></div>
+          </FadeInOutTransitionView>
+        </div>
+      )}
+
+      {!isExitAnimationEnd && (
         <div
           className={clsx(
             'z-99 fixed inset-0 flex',
             props.center && 'items-center justify-center',
-            props.standaloneWrapperClassName,
+            standaloneWrapperClassName,
           )}
           tabIndex={-1}
           onClick={props.onClose}
           style={
             typeof props.zIndex != 'undefined'
               ? {
-                  zIndex: props.zIndex,
+                  zIndex: props.zIndex + 1,
                 }
               : undefined
           }
@@ -119,7 +109,7 @@ const __OverLay: FC<OverlayProps> = ({
   )
 }
 
-__OverLay.defaultProps = {
+OverLay.defaultProps = {
   center: true,
 }
-export const OverLay = memo(__OverLay)
+export const Overlay = memo(OverLay)

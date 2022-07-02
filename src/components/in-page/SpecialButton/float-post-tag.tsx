@@ -8,7 +8,7 @@ import { apiClient } from 'utils/client'
 import type { PostModel, TagModel } from '@mx-space/api-client'
 
 import { JamTags } from '~/components/universal/Icons'
-import { OverLay } from '~/components/universal/Overlay'
+import { Overlay } from '~/components/universal/Overlay'
 import { BigTag } from '~/components/universal/Tag'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { RightLeftTransitionView } from '~/components/universal/Transition/right-left'
@@ -67,8 +67,11 @@ const _FloatPostTagButton: FC = observer(() => {
   }, [tags.length])
 
   return (
-    <OverLay
+    <Overlay
+      center={false}
       show={showTags}
+      blur
+      darkness={0.02}
       onClose={() => {
         setShowTags(false)
         setTagPost([])
@@ -79,7 +82,7 @@ const _FloatPostTagButton: FC = observer(() => {
           maxWidth:
             appUIStore.viewport.w > 800 ? '50vw' : 'calc(100vw - 100px)',
         }}
-        className="m-auto relative h-full"
+        className="m-auto h-screen w-screen absolute inset-0"
         onClick={() => {
           setShowTags(false)
           setTagPost([])
@@ -110,7 +113,7 @@ const _FloatPostTagButton: FC = observer(() => {
         </div>
 
         <div className="top-[50vh] absolute">
-          <article className="article-list !all:text-light-400">
+          <article className="article-list text-shizuku-text">
             <ul>
               <TransitionGroup>
                 {postWithTag ? (
@@ -146,7 +149,7 @@ const _FloatPostTagButton: FC = observer(() => {
           </article>
         </div>
       </div>
-    </OverLay>
+    </Overlay>
   )
 })
 

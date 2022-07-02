@@ -23,7 +23,7 @@ import { useStore } from '~/store'
 import type { ModalProps, ModalRefObject } from '.'
 import { Modal } from '.'
 import type { OverlayProps } from '../Overlay'
-import { OverLay } from '../Overlay'
+import { Overlay } from '../Overlay'
 
 // FIXME $modalElement memory leak
 /**
@@ -283,12 +283,11 @@ export const ModalStackProvider: FC<{
 
           dismissFnMapRef.current.set(Component, onClose)
           return (
-            <OverLay
+            <Overlay
               center={!mobile && useBottomDrawerInMobile}
               standaloneWrapperClassName={clsx(
                 mobile && useBottomDrawerInMobile && 'items-end justify-center',
               )}
-              childrenOutside
               show={extraProps.overlayShow}
               onClose={() => disposer()}
               zIndex={60 + index}
@@ -296,7 +295,7 @@ export const ModalStackProvider: FC<{
               {...overlayProps}
             >
               {Component}
-            </OverLay>
+            </Overlay>
           )
         })}
     </ModalStackContext.Provider>

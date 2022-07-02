@@ -1,9 +1,10 @@
+import clsx from 'clsx'
 import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import { useEffect, useRef, useState } from 'react'
 
-import { OverLay } from '~/components/universal/Overlay'
+import { Overlay } from '~/components/universal/Overlay'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useStore } from '~/store'
@@ -39,7 +40,7 @@ export const BanCopy: FC = observer((props) => {
   return (
     <>
       <div ref={ref}>{props.children}</div>
-      <OverLay
+      <Overlay
         onClose={() => {
           setShowCopyWarn(false)
         }}
@@ -48,11 +49,18 @@ export const BanCopy: FC = observer((props) => {
         blur
         darkness={0.5}
       >
-        <h1 className={'mt-0 text-red pointer-events-none'}>注意: </h1>
-        <div className="my-3 text-white text-opacity-80 pointer-events-none">
-          <p>本文章为站长原创, 保留版权所有, 禁止复制.</p>
+        <div
+          className={clsx(
+            'transition duration-200 transition-opacity',
+            !showCopyWarn && 'opacity-0',
+          )}
+        >
+          <h1 className={'mt-0 text-red pointer-events-none'}>注意: </h1>
+          <div className="my-3 text-white text-opacity-80 pointer-events-none">
+            <p>本文章为站长原创, 保留版权所有, 禁止复制.</p>
+          </div>
         </div>
-      </OverLay>
+      </Overlay>
     </>
   )
 })

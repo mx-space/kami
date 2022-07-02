@@ -9,7 +9,7 @@ import { Modifier, useShortcut } from 'react-shortcut-guide'
 
 import { EmptyIcon, IonSearch } from '~/components/universal/Icons'
 import type { OverlayProps } from '~/components/universal/Overlay'
-import { OverLay } from '~/components/universal/Overlay'
+import { Overlay } from '~/components/universal/Overlay'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useStore } from '~/store'
@@ -284,8 +284,7 @@ export const SearchOverlay: FC<OverlayProps> = observer((props) => {
     { hiddenInPanel: true },
   )
   return (
-    <OverLay
-      childrenOutside
+    <Overlay
       center={!mobile}
       standaloneWrapperClassName={clsx(mobile && 'items-start justify-center')}
       {...rest}
@@ -298,7 +297,7 @@ export const SearchOverlay: FC<OverlayProps> = observer((props) => {
       >
         <SearchPanel />
       </div>
-    </OverLay>
+    </Overlay>
   )
 })
 export const SearchHotKey: FC = memo(() => {

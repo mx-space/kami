@@ -4,7 +4,7 @@ import type { FC } from 'react'
 import React, { Fragment, memo, useEffect } from 'react'
 
 import { LaTimes } from '~/components/universal/Icons/layout'
-import { OverLay } from '~/components/universal/Overlay'
+import { Overlay } from '~/components/universal/Overlay'
 import { RootPortal } from '~/components/universal/Portal'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
@@ -40,7 +40,7 @@ const _HeaderDrawer: FC<{ show: boolean; onExit: () => void }> = memo(
     return (
       <RootPortal>
         <Fragment>
-          <OverLay show={show} darkness={0} onClose={onExit}></OverLay>
+          <Overlay show={show} darkness={0} onClose={onExit}></Overlay>
           <div
             className={classNames(
               styles['drawer'],
