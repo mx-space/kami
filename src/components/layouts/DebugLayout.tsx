@@ -1,8 +1,18 @@
 import type { FC } from 'react'
+import { useEffect } from 'react'
+
+import { store } from '~/store'
 
 import { ModalStackProvider } from '../universal/Modal/stack.context'
 
 export const DebugLayout: FC = (props) => {
+  useEffect(() => {
+    store.appUIStore.updateViewport()
+
+    window.onresize = () => {
+      store.appUIStore.updateViewport()
+    }
+  }, [])
   return (
     <ModalStackProvider>
       <div

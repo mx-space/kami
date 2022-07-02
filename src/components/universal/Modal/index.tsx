@@ -1,6 +1,10 @@
 import clsx from 'clsx'
-import { forwardRef, useCallback, useImperativeHandle, useState } from 'react'
+import { observer } from 'mobx-react-lite'
+import { useCallback, useImperativeHandle, useState } from 'react'
 
+import { useStore } from '~/store'
+
+import { BottomUpTransitionView } from '../Transition/bottom-up'
 import styles from './index.module.css'
 import { ScaleModalTransition } from './scale-transition'
 
@@ -16,25 +20,46 @@ export interface ModalProps {
 export type ModalRefObject = {
   dismiss: () => Promise<void>
 }
-export const Modal = forwardRef<ModalRefObject, ModalProps>((props, ref) => {
-  const [modalIn, setIn] = useState(true)
-  const dismiss = useCallback(() => {
-    return new Promise<void>((resolve) => {
-      setIn(false)
-      setTimeout(() => {
-        resolve(null as any)
-      }, 250)
-    })
-  }, [])
+export const Modal = observer<
+  ModalProps & {
+    modalId: string
+    useBottomDrawerInMobile: boolean
+    disposer: () => void
+  },
+  ModalRefObject
+>(
+  (props, ref) => {
+    const [modalIn, setIn] = useState(true)
+    const dismiss = useCallback(() => {
+      return new Promise<void>((resolve) => {
+        setIn(false)
+        setTimeout(() => {
+          resolve(null as any)
+          props.disposer()
+        }, 200)
+      })
+    }, [props])
 
-  useImperativeHandle(ref, () => ({
-    dismiss,
-  }))
+    useImperativeHandle(ref, () => ({
+      dismiss,
+    }))
 
-  const { title, closeable } = props
-  return (
-    <ScaleModalTransition in={modalIn} timeout={{ exit: 240 }}>
-      <div className={clsx(styles['modal'], props.modalClassName)}>
+    const {
+      appUIStore: {
+        viewport: { mobile },
+      },
+    } = useStore()
+
+    const { title, closeable } = props
+    const useDrawerStyle = mobile && props.useBottomDrawerInMobile
+    const Children = (
+      <div
+        className={clsx(
+          styles['modal'],
+          useDrawerStyle && styles['drawer'],
+          props.modalClassName,
+        )}
+      >
         {title && (
           <div className={styles['title-wrapper']}>
             <h4>{title}</h4>
@@ -61,9 +86,21 @@ export const Modal = forwardRef<ModalRefObject, ModalProps>((props, ref) => {
           {props.children}
         </div>
       </div>
-    </ScaleModalTransition>
-  )
-})
+    )
+    return useDrawerStyle ? (
+      <BottomUpTransitionView in={modalIn} timeout={{ exit: 200 }}>
+        {Children}
+      </BottomUpTransitionView>
+    ) : (
+      <ScaleModalTransition in={modalIn} timeout={{ exit: 200 }}>
+        {Children}
+      </ScaleModalTransition>
+    )
+  },
+  {
+    forwardRef: true,
+  },
+)
 
 const CloseIcon = () => (
   <svg
