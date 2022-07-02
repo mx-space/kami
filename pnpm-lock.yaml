@@ -75,7 +75,7 @@ specifiers:
   validator: 13.7.0
   windicss: 3.5.6
   windicss-webpack-plugin: 1.7.3
-  zx: 7.0.6
+  zx: 7.0.7
 
 dependencies:
   '@floating-ui/react-dom': 0.7.2_h3umwasw2xj55xde6qtxq6tis4
@@ -150,7 +150,7 @@ devDependencies:
   typescript: 4.7.4
   windicss: 3.5.6
   windicss-webpack-plugin: 1.7.3
-  zx: 7.0.6
+  zx: 7.0.7
 
 packages:
 
@@ -7138,8 +7138,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /zx/7.0.6:
-    resolution: {integrity: sha512-zTEUyKHamrr7KAWAunDE9Zo45/XHr7BOK9Y2aDWjOPowjouJlPaNZk4zLi/DFIQcW1vEhAiWvhmhLxlPsq3ohQ==}
+  /zx/7.0.7:
+    resolution: {integrity: sha512-cWF5cWqqrTVxgEPmQ8w/LvUXOK3rJTdgC+Tt1nz113+YncNIO0X6UXgCY72UfE8Az/lwOubbEJARXpQ+7RiM9g==}
     engines: {node: '>= 16.0.0'}
     hasBin: true
     dependencies:
