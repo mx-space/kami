@@ -12,7 +12,6 @@ interface Function {
     umami: {
       url: string
       id: string
-      jsname: string
     }
   }
 
