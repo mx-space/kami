@@ -37,7 +37,7 @@ export const MetaFooter = memo(() => {
           )
         }
 
-        if (analyze.umami.url && analyze.umami.id) {
+        if (analyze.umami.url && analyze.umami.id && analyze.umami.jsname) {
           tags.push(
             <script
               async
@@ -45,7 +45,7 @@ export const MetaFooter = memo(() => {
               defer
               data-website-id={analyze.umami.id}
               data-cache="true"
-              src={`${analyze.umami.url.replace(/\/$/, '')}/umami.js`}
+              src={`${analyze.umami.url.replace(/\/$/, '')}/${analyze.umami.jsname}.js`}
             ></script>,
           )
         }

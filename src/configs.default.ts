@@ -163,6 +163,7 @@ export const defaultConfigs = {
       umami: {
         id: '',
         url: '',
+        jsname: 'umami',
       },
     },
     donate: {
