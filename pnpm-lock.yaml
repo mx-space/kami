@@ -27,7 +27,7 @@ specifiers:
   '@types/ua-parser-js': 0.7.36
   '@types/validator': 13.7.3
   axios: 0.27.2
-  clsx: 1.1.1
+  clsx: 1.2.0
   cross-env: '*'
   css-spring: 4.1.0
   dayjs: 1.11.3
@@ -82,7 +82,7 @@ dependencies:
   '@formkit/auto-animate': 1.0.0-beta.1_react@18.2.0
   '@mx-space/api-client': 0.10.12
   axios: 0.27.2
-  clsx: 1.1.1
+  clsx: 1.2.0
   css-spring: 4.1.0
   dayjs: 1.11.3
   devtools-detector: 2.0.10
@@ -2678,8 +2678,8 @@ packages:
       is-regexp: 2.1.0
     dev: true
 
-  /clsx/1.1.1:
-    resolution: {integrity: sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA==}
+  /clsx/1.2.0:
+    resolution: {integrity: sha512-EPRP7XJsM1y0iCU3Z7C7jFKdQboXSeHgEfzQUTlz7m5NP3hDrlz48aUsmNGp4pC+JOW9WA3vIRqlYuo/bl4Drw==}
     engines: {node: '>=6'}
     dev: false
 
@@ -5604,7 +5604,7 @@ packages:
       react:
         optional: true
     dependencies:
-      clsx: 1.1.1
+      clsx: 1.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
