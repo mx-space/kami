@@ -28,10 +28,12 @@
   --gray-6: rgb(242, 242, 247);
 
   --serif-font: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC',
-    'Source Han Serif', source-han-serif-sc, SongTi SC, 'PingFang SC', SimSum,
-    'Hiragino Sans GB', 'Heiti SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei';
-  --sans-font: -apple-system, PingFang SC, Helvetica, noto sans sc,
-    hiragino sans gb, microsoft yahei, 'sans-serif';
+    'Source Han Serif', source-han-serif-sc, SongTi SC, SimSum,
+    'Hiragino Sans GB', system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+    'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+  --sans-font: system-ui, -apple-system, PingFang SC, 'Microsoft YaHei',
+    Segoe UI, Roboto, Helvetica, noto sans sc, hiragino sans gb, 'sans-serif',
+    Apple Color Emoji, Segoe UI Emoji, Not Color Emoji;
   --monospace-font: OperatorMonoSSmLig Nerd Font, JetBrains Mono, Operator Mono,
     Monaco, Consolas, 'Courier New', Courier, monospace;
   --mono-font: var(--monospace-font);

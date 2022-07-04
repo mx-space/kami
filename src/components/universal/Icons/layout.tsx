@@ -22,13 +22,16 @@ export function PhSunBold(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-export function LaTimes(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg width="0.69em" height="1em" viewBox="0 0 352 512" {...props}>
-      <path
-        fill="currentColor"
-        d="m242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28L75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256L9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
-      ></path>
-    </svg>
-  )
-}
+export const CloseIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1.4em"
+    height="1.4em"
+    viewBox="0 0 32 32"
+  >
+    <path
+      fill="currentColor"
+      d="M24 9.4L22.6 8L16 14.6L9.4 8L8 9.4l6.6 6.6L8 22.6L9.4 24l6.6-6.6l6.6 6.6l1.4-1.4l-6.6-6.6L24 9.4z"
+    ></path>
+  </svg>
+)

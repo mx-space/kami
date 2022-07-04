@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import React, { Fragment, memo, useEffect } from 'react'
 
-import { LaTimes } from '~/components/universal/Icons/layout'
+import { CloseIcon } from '~/components/universal/Icons/layout'
 import { Overlay } from '~/components/universal/Overlay'
 import { RootPortal } from '~/components/universal/Portal'
 import { TrackerAction } from '~/constants/tracker'
@@ -40,7 +40,7 @@ const _HeaderDrawer: FC<{ show: boolean; onExit: () => void }> = memo(
     return (
       <RootPortal>
         <Fragment>
-          <Overlay show={show} darkness={0} onClose={onExit}></Overlay>
+          <Overlay show={show} onClose={onExit} zIndex={60} />
           <div
             className={classNames(
               styles['drawer'],
@@ -49,7 +49,7 @@ const _HeaderDrawer: FC<{ show: boolean; onExit: () => void }> = memo(
           >
             <div className="pb-4 text-right">
               <span className={'p-4 inline-block -mr-5 -mt-4'} onClick={onExit}>
-                <LaTimes />
+                <CloseIcon />
               </span>
             </div>
 
