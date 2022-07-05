@@ -29,3 +29,5 @@ run
 src/pages/dev
 
 public/md.md
+
+json-schema.json

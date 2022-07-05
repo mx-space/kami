@@ -164,6 +164,7 @@ export const defaultConfigs = {
         id: '',
         url: '',
         jsname: 'umami',
+        endpoint: 'collect',
       },
     },
     donate: {

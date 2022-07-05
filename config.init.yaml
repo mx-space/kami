@@ -120,6 +120,9 @@ function:
     umami:
       id: ''
       url: ''
+      jsname: 'umami'
+      # 这是我魔改版本 umami 专属
+      endpoint: 'collect'
   donate:
     enable: false
     link: https://afdian.net/@example

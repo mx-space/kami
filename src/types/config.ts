@@ -13,6 +13,7 @@ interface Function {
       url: string
       id: string
       jsname: string
+      endpoint?: string
     }
   }
 
