@@ -1,9 +1,9 @@
+process.title = 'Kami (NextJS)'
+
 const WindiCSSWebpackPlugin = require('windicss-webpack-plugin')
-
-const env = require('dotenv').config().parsed || {}
-
 const withPlugins = require('next-compose-plugins')
 
+const env = require('dotenv').config().parsed || {}
 const isProd = process.env.NODE_ENV === 'production'
 
 const plugins = []
@@ -11,6 +11,7 @@ const plugins = []
 if (process.env.ANALYZE === 'true') {
   plugins.push([require('@next/bundle-analyzer')({ enabled: true })])
 }
+
 if (isProd) {
   plugins.push([
     require('next-pwa'),
