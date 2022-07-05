@@ -34,7 +34,7 @@ const configs = withPlugins(plugins, {
 
     return config
   },
-
+  output: 'standalone',
   assetPrefix: isProd ? env.ASSETPREFIX || undefined : undefined,
   eslint: {
     ignoreDuringBuilds: true,
