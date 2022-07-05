@@ -23,13 +23,12 @@ export const useCheckLogged = () => {
             .checkTokenValid(token)
             .then(({ ok }) => {
               if (ok) {
-                master.setToken(token)
-                message.success(`欢迎回来, ${master.name}`, 1500)
-
                 // refresh token
                 apiClient.user.proxy.login
                   .put<{ token: string }>()
                   .then((res) => {
+                    master.setToken(res.token)
+                    message.success(`欢迎回来, ${master.name}`, 1500)
                     setToken(res.token)
                   })
               } else {

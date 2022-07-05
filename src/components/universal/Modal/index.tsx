@@ -1,6 +1,6 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { observer } from 'mobx-react-lite'
-import { useCallback, useImperativeHandle, useState } from 'react'
+import { forwardRef, useCallback, useImperativeHandle, useState } from 'react'
 
 import { useStore } from '~/store'
 
@@ -22,15 +22,15 @@ export interface ModalProps {
 export type ModalRefObject = {
   dismiss: () => Promise<void>
 }
-export const Modal = observer<
-  ModalProps & {
-    modalId: string
-    useBottomDrawerInMobile: boolean
-    disposer: () => void
-  },
-  ModalRefObject
->(
-  (props, ref) => {
+export const Modal = observer(
+  forwardRef<
+    ModalRefObject,
+    ModalProps & {
+      modalId: string
+      useBottomDrawerInMobile: boolean
+      disposer: () => void
+    }
+  >((props, ref) => {
     const [modalIn, setIn] = useState(true)
     const dismiss = useCallback(() => {
       return new Promise<void>((resolve) => {
@@ -99,8 +99,5 @@ export const Modal = observer<
         {Children}
       </ScaleModalTransition>
     )
-  },
-  {
-    forwardRef: true,
-  },
+  }),
 )

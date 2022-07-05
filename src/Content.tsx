@@ -39,9 +39,9 @@ export const Content: FC = observer((props) => {
 
     try {
       const { user } = initialData
+      checkLogin()
       // set user
       master.setUser(user)
-      checkLogin()
       import('./socket/index').then(({ socketClient }) => {
         socketClient.initIO()
       })
