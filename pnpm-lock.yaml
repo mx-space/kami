@@ -19,7 +19,7 @@ specifiers:
   '@types/randomcolor': 0.5.6
   '@types/react': 17.0.47
   '@types/react-color': 3.0.6
-  '@types/react-dom': 18.0.5
+  '@types/react-dom': 18.0.6
   '@types/react-lazyload': 3.2.0
   '@types/react-syntax-highlighter': 15.5.2
   '@types/react-transition-group': 4.4.5
@@ -123,7 +123,7 @@ devDependencies:
   '@types/randomcolor': 0.5.6
   '@types/react': 17.0.47
   '@types/react-color': 3.0.6
-  '@types/react-dom': 18.0.5
+  '@types/react-dom': 18.0.6
   '@types/react-lazyload': 3.2.0
   '@types/react-syntax-highlighter': 15.5.2
   '@types/react-transition-group': 4.4.5
@@ -2103,8 +2103,8 @@ packages:
       '@types/reactcss': 1.2.6
     dev: true
 
-  /@types/react-dom/18.0.5:
-    resolution: {integrity: sha512-OWPWTUrY/NIrjsAPkAk1wW9LZeIjSvkXRhclsFO8CZcZGCOg2G0YZy4ft+rOyYxy8B7ui5iZzi9OkDebZ7/QSA==}
+  /@types/react-dom/18.0.6:
+    resolution: {integrity: sha512-/5OFZgfIPSwy+YuIBP/FgJnQnsxhZhjjrnxudMddeblOouIodEQ75X14Rr4wGSG/bknL+Omy9iWlLo1u/9GzAA==}
     dependencies:
       '@types/react': 17.0.47
     dev: true
