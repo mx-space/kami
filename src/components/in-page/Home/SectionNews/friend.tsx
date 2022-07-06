@@ -1,3 +1,4 @@
+import { shuffle } from 'lodash-es'
 import type { FC } from 'react'
 import { memo, useEffect, useState } from 'react'
 
@@ -21,13 +22,17 @@ export const FriendItem: FC<LinkModel> = memo((props) => {
 export const FriendsSection: FC = memo(() => {
   const [friends, setFriends] = useState<LinkModel[]>([])
   useEffect(() => {
-    apiClient.link.getAllPaginated(1, 20).then((res) => {
+    apiClient.link.getAll().then((res) => {
       const data = res.data as LinkModel[]
       setFriends(
-        data.filter(
-          (i) =>
-            i.type === LinkType.Friend && i.state === LinkState.Pass && !i.hide,
-        ),
+        shuffle(
+          data.filter(
+            (i) =>
+              i.type === LinkType.Friend &&
+              i.state === LinkState.Pass &&
+              !i.hide,
+          ),
+        ).slice(0, 20),
       )
     })
   }, [])
