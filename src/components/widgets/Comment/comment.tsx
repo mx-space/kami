@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import type { DetailedHTMLProps, FC, HTMLAttributes } from 'react'
 import { memo, useCallback, useMemo } from 'react'
 

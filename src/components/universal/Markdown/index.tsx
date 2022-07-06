@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { range } from 'lodash-es'
 import { observer } from 'mobx-react-lite'
 import dynamic from 'next/dynamic'

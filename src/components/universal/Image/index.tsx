@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import mediumZoom from 'medium-zoom'
 import type { DetailedHTMLProps, FC, ImgHTMLAttributes } from 'react'
 import {

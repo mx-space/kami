@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import rc from 'randomcolor'
 import type { DetailedHTMLProps, FC, ImgHTMLAttributes } from 'react'
 import { createElement, memo, useMemo, useRef, useState } from 'react'

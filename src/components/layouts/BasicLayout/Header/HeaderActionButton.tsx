@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import React, { memo, useCallback, useRef } from 'react'

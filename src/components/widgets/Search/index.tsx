@@ -1,5 +1,5 @@
 import { CanceledError } from 'axios'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { throttle } from 'lodash-es'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'

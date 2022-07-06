@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { observer } from 'mobx-react-lite'
 import Router from 'next/router'
 import type { FC } from 'react'
