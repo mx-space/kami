@@ -2,8 +2,8 @@ import { observer } from 'mobx-react-lite'
 import rc from 'randomcolor'
 import type { FC } from 'react'
 import { useEffect, useMemo, useState } from 'react'
-import LazyLoad from 'react-lazyload'
 
+import { LazyLoad } from '~/components/universal/Lazyload'
 import { useStore } from '~/store'
 
 import styles from './index.module.css'
@@ -48,7 +48,7 @@ export const Avatar: FC<AvatarProps> = observer(({ src }) => {
       style={ready ? undefined : { backgroundColor: randomColor }}
       data-avatar={src}
     >
-      <LazyLoad offset={250}>
+      <LazyLoad>
         <div
           className={styles['avatar']}
           style={

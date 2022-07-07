@@ -10,11 +10,11 @@ import {
   useRef,
   useState,
 } from 'react'
-import LazyLoad from 'react-lazyload'
 
 import { escapeHTMLTag } from '~/utils/utils'
 
 import { useCalculateSize } from '../../../hooks/use-calculate-size'
+import { LazyLoad } from '../Lazyload'
 import styles from './index.module.css'
 
 interface ImageProps {
@@ -166,7 +166,6 @@ export const ImageLazy = memo(
           >
             <LazyLoad
               offset={300}
-              once
               placeholder={
                 <PlaceholderImage
                   height={height}
