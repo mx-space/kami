@@ -185,7 +185,7 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
     }
   }, [isSecret, secretDate])
 
-  useJumpToSimpleMarkdownRender(props.id)
+  useJumpToSimpleMarkdownRender(note.id)
   return (
     <>
       {createElement(Seo, {
