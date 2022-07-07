@@ -20,8 +20,6 @@ specifiers:
   '@types/react': 17.0.47
   '@types/react-color': 3.0.6
   '@types/react-dom': 18.0.6
-  '@types/react-lazyload': 3.2.0
-  '@types/react-syntax-highlighter': 15.5.2
   '@types/react-transition-group': 4.4.5
   '@types/remove-markdown': 0.3.1
   '@types/ua-parser-js': 0.7.36
@@ -56,7 +54,6 @@ specifiers:
   react-countup: 6.3.0
   react-dom: 18.2.0
   react-intersection-observer: 9.3.5
-  react-lazyload: 3.2.0
   react-linkify: 1.0.0-alpha
   react-markdown: 4.3.1
   react-masonry-css: 1.0.16
@@ -124,8 +121,6 @@ devDependencies:
   '@types/react': 17.0.47
   '@types/react-color': 3.0.6
   '@types/react-dom': 18.0.6
-  '@types/react-lazyload': 3.2.0
-  '@types/react-syntax-highlighter': 15.5.2
   '@types/react-transition-group': 4.4.5
   '@types/remove-markdown': 0.3.1
   '@types/ua-parser-js': 0.7.36
@@ -143,7 +138,6 @@ devDependencies:
   postcss-nested: 5.0.6_postcss@8.4.14
   postcss-preset-env: 7.7.2_postcss@8.4.14
   prettier: 2.7.1
-  react-lazyload: 3.2.0_biqbaboplfbrettd7655fr4n2y
   rimraf: 3.0.2
   stylelint: 14.9.1
   stylelint-config-standard: 26.0.0_stylelint@14.9.1
@@ -2105,18 +2099,6 @@ packages:
 
   /@types/react-dom/18.0.6:
     resolution: {integrity: sha512-/5OFZgfIPSwy+YuIBP/FgJnQnsxhZhjjrnxudMddeblOouIodEQ75X14Rr4wGSG/bknL+Omy9iWlLo1u/9GzAA==}
-    dependencies:
-      '@types/react': 17.0.47
-    dev: true
-
-  /@types/react-lazyload/3.2.0:
-    resolution: {integrity: sha512-4+r+z8Cf7L/mgxA1vl5uHx5GS/8gY2jqq2p5r5WCm+nUsg9KilwQ+8uaJA3EUlLj57AOzOfGGwwRJ5LOVl8fwA==}
-    dependencies:
-      '@types/react': 17.0.47
-    dev: true
-
-  /@types/react-syntax-highlighter/15.5.2:
-    resolution: {integrity: sha512-cJJvwU8lQv/efGSo/LmPoaOqWi/B0AG4CNKKCn7HPUL25SqiPn1Vl+fV1JiUigJv97ruTZ8mo08+b8/0zoYufA==}
     dependencies:
       '@types/react': 17.0.47
     dev: true
@@ -5637,19 +5619,6 @@ packages:
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: false
-
-  /react-lazyload/3.2.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-zJlrG8QyVZz4+xkYZH5v1w3YaP5wEFaYSUWC4CT9UXfK75IfRAIEdnyIUF+dXr3kX2MOtL1lUaZmaQZqrETwgw==}
-    peerDependencies:
-      react: ^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-      react-dom: ^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-    dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-    dev: true
 
   /react-linkify/1.0.0-alpha:
     resolution: {integrity: sha512-7gcIUvJkAXXttt1fmBK9cwn+1jTa4hbKLGCZ9J1U6EOkyb2/+LKL1Z28d9rtDLMnpvImlNlLPdTPooorl5cpmg==}
