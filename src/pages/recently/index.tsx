@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import throttle from 'lodash-es/throttle'
 import { observer } from 'mobx-react-lite'
 import type { NextPage } from 'next'

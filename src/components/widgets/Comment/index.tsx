@@ -159,12 +159,13 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
                 <Pagination
                   current={pagination.currentPage || 1}
                   onChange={(page) => {
-                    document.getElementById('comment-anchor')?.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'center',
-                    })
+                    fetchComments(page)
                     requestAnimationFrame(() => {
-                      fetchComments(page)
+                      springScrollToElement(
+                        document.getElementById('comment-anchor')!,
+                        1000,
+                        -100,
+                      )
                     })
                   }}
                   total={pagination.totalPage}

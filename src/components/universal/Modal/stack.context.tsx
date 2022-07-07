@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import uniqueId from 'lodash-es/uniqueId'
 import { observer } from 'mobx-react-lite'
 import type {

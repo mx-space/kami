@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import type { DetailedHTMLProps, FC, HTMLAttributes, ReactNode } from 'react'
 import { Fragment, createElement, memo } from 'react'
 

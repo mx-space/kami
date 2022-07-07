@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import type { DetailedHTMLProps, HTMLAttributes } from 'react'
 import { forwardRef, memo, useMemo } from 'react'
 
