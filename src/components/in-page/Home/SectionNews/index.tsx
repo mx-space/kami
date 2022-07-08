@@ -64,14 +64,15 @@ const SectionNews: FC<SectionNewsProps> = memo(
         {content.map((item, i) => {
           return (
             <div key={i}>
-              <Link {...pick(item, ['href', 'as'])}>
-                <a className={styles['news-article']}>
-                  <Card cover={item.background}>
-                    <div className={styles['text-mask']}>
-                      <span>{item.title}</span>
-                    </div>
-                  </Card>
-                </a>
+              <Link
+                {...pick(item, ['href', 'as'])}
+                className={styles['news-article']}
+              >
+                <Card cover={item.background}>
+                  <div className={styles['text-mask']}>
+                    <span>{item.title}</span>
+                  </div>
+                </Card>
               </Link>
             </div>
           )

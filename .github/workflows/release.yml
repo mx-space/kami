@@ -44,14 +44,19 @@ jobs:
           NETEASE_PHONE: ${{ secrets.NETEASE_PHONE }}
           NETEASE_PASSWORD: ${{ secrets.NETEASE_PASSWORD }}
         run: |
-          yarn build
+          npm run build
           cd .next
           pwd
           rm -rf cache
-          # cd ./standalone
-          # ln -s ../static/ ./.next/static
-          # cd ..
+          cp ../next.config.js ./standalone/next.config.js
+          cp -r ../public ./standalone/public
+          cd ./standalone
+          echo 'process.title = "Kami (NextJS)"' >>server.js
+          mv ../static/ ./.next/static
+
+          cd ..
           zip --symlinks -r ../release.zip ./*
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1

@@ -55,20 +55,19 @@ const MenuLink: FC<{ menu: Menu; isPublicUrl: boolean; index: number }> = (
       offset={0}
       popoverWrapperClassNames={'z-19 relative'}
       triggerComponent={() => (
-        <Link href={menu.path}>
-          <a
-            id={id}
-            tabIndex={-1}
-            onClick={() => tracker(`一级导航点击 - ${menu.title}`)}
-            rel={isPublicUrl ? 'noopener noreferrer' : undefined}
-            target={isPublicUrl ? '_blank' : undefined}
-          >
-            <span className={styles['link-item']}>
-              <FontIcon icon={menu.icon} />
-              <span className={styles['link-title']}>{menu.title}</span>
-              {!menu.title && <span className="sr-only">header icon</span>}
-            </span>
-          </a>
+        <Link
+          href={menu.path}
+          id={id}
+          tabIndex={-1}
+          onClick={() => tracker(`一级导航点击 - ${menu.title}`)}
+          rel={isPublicUrl ? 'noopener noreferrer' : undefined}
+          target={isPublicUrl ? '_blank' : undefined}
+        >
+          <span className={styles['link-item']}>
+            <FontIcon icon={menu.icon} />
+            <span className={styles['link-title']}>{menu.title}</span>
+            {!menu.title && <span className="sr-only">header icon</span>}
+          </span>
         </Link>
       )}
     >
@@ -76,17 +75,17 @@ const MenuLink: FC<{ menu: Menu; isPublicUrl: boolean; index: number }> = (
         <ul className={clsx(styles['sub-dropdown'])}>
           {menu.subMenu?.map((m, i) => {
             return (
-              <Link href={m.path} key={m.path} tabIndex={i + 10} role="button">
-                <a
-                  onClick={() => tracker(`二级导航点击 - ${m.title}`)}
-                  tabIndex={i + 10}
-                  role="button"
-                >
-                  <li key={m.title}>
-                    <FontIcon icon={m.icon} />
-                    <span>{m.title}</span>
-                  </li>
-                </a>
+              <Link
+                href={m.path}
+                key={m.path}
+                tabIndex={i + 10}
+                role="button"
+                onClick={() => tracker(`二级导航点击 - ${m.title}`)}
+              >
+                <li key={m.title}>
+                  <FontIcon icon={m.icon} />
+                  <span>{m.title}</span>
+                </li>
               </Link>
             )
           })}

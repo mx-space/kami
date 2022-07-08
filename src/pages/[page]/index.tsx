@@ -74,13 +74,12 @@ const PageView: PageOnlyProps = observer((props) => {
             <div>
               {hasPrev && (
                 <Fragment>
-                  <Link href={`/${pages[indexInPages - 1].slug}`}>
-                    <a className="flex flex-col justify-end">
-                      <h2 className="text-indigo-400">回顾一下：</h2>
-                      <p className="text-left">
-                        {pages[indexInPages - 1].title}
-                      </p>
-                    </a>
+                  <Link
+                    href={`/${pages[indexInPages - 1].slug}`}
+                    className="flex flex-col justify-end"
+                  >
+                    <h2 className="text-indigo-400">回顾一下：</h2>
+                    <p className="text-left">{pages[indexInPages - 1].title}</p>
                   </Link>
                 </Fragment>
               )}
@@ -88,13 +87,14 @@ const PageView: PageOnlyProps = observer((props) => {
             <div>
               {hasNext && (
                 <Fragment>
-                  <Link href={`/${pages[indexInPages + 1].slug}`}>
-                    <a className="flex flex-col justify-end">
-                      <h2 className="text-indigo-400">继续了解：</h2>
-                      <p className="text-right">
-                        {pages[indexInPages + 1].title}
-                      </p>
-                    </a>
+                  <Link
+                    href={`/${pages[indexInPages + 1].slug}`}
+                    className="flex flex-col justify-end"
+                  >
+                    <h2 className="text-indigo-400">继续了解：</h2>
+                    <p className="text-right">
+                      {pages[indexInPages + 1].title}
+                    </p>
                   </Link>
                 </Fragment>
               )}

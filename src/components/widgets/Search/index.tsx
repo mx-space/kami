@@ -242,20 +242,19 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
                     setCurrentSelect(index)
                   }, 40)}
                 >
-                  <Link href={item.url}>
-                    <a
-                      className={clsx(
-                        styles['item'],
-                        index === currentSelect && styles['active'],
-                      )}
-                    >
-                      <span className="block flex-1 flex-shrink-0 truncate">
-                        {item.title}
-                      </span>
-                      <span className="text-gray-2 block text-deepgray flex-grow-0 flex-shrink-0">
-                        {item.subtitle}
-                      </span>
-                    </a>
+                  <Link
+                    href={item.url}
+                    className={clsx(
+                      styles['item'],
+                      index === currentSelect && styles['active'],
+                    )}
+                  >
+                    <span className="block flex-1 flex-shrink-0 truncate">
+                      {item.title}
+                    </span>
+                    <span className="text-gray-2 block text-deepgray flex-grow-0 flex-shrink-0">
+                      {item.subtitle}
+                    </span>
                   </Link>
                 </li>
               )

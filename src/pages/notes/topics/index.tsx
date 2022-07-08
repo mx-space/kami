@@ -26,9 +26,7 @@ const TopicPage: NextPage = () => {
           <TransitionGroup>
             {topics.map((topic) => (
               <RightLeftTransitionView key={topic.id} component={'li'}>
-                <Link href={`/notes/topics/${topic.slug}`}>
-                  <a>{topic.name}</a>
-                </Link>
+                <Link href={`/notes/topics/${topic.slug}`}>{topic.name}</Link>
               </RightLeftTransitionView>
             ))}
           </TransitionGroup>
