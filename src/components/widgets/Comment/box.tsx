@@ -215,12 +215,16 @@ export const CommentBox: FC<{
     [],
   )
 
+  const noticeOnce = useRef(false)
+
   const handleCommentBoxClick = useCallback(() => {
     if (userStore.isLogged) {
       return
     }
-
-    message.warn('欧尼酱，文明发言哦，否则评论会被移入垃圾箱哦')
+    if (!noticeOnce.current) {
+      message.warn('欧尼酱，文明发言哦，否则评论会被移入垃圾箱哦')
+      noticeOnce.current = true
+    }
   }, [userStore.isLogged])
   return (
     <div className="my-4">

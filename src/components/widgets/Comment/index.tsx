@@ -32,7 +32,7 @@ export const openCommentMessage = async () => {
     },
     error: () => {
       destory()
-      message.error({ content: '失败了, 555', duration: 2000 })
+      message.error({ content: '失败了, www', duration: 2000 })
     },
   }
 }

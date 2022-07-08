@@ -63,18 +63,29 @@ export const Input = memo(
       })
       const C = useMemo(() => (size.height + size.width) * 2, [size])
       useEffect(() => {
-        requestAnimationFrame(() => {
-          if (!inputWrapRef.current) {
-            return
-          }
-          const $input = inputWrapRef.current
+        if (!inputWrapRef.current) {
+          return
+        }
+        const $input = inputWrapRef.current
 
+        const resizeObserver = new ResizeObserver((entries) => {
+          // const size = {
+          //   height: entries[0].borderBoxSize[0].blockSize,
+          //   width: entries[0].borderBoxSize[0].inlineSize,
+          // }
+          const $target = entries[0].target
           const size = {
-            height: $input.clientHeight,
-            width: $input.clientWidth,
+            height: $target.clientHeight,
+            width: $target.clientWidth,
           }
           setSize(size)
         })
+        resizeObserver.observe($input)
+
+        return () => {
+          resizeObserver.unobserve($input)
+          resizeObserver.disconnect()
+        }
       }, [inputWrapRef])
 
       return (
