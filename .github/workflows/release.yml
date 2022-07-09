@@ -16,6 +16,9 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          lfs: true
+      - name: Checkout LFS objects
+        run: git lfs checkout
 
       - uses: actions/setup-node@v3
         with:
@@ -42,18 +45,7 @@ jobs:
           NEXT_PUBLIC_APIURL: https://innei.ren/api/v2
           NEXT_PUBLIC_GATEWAY_URL: https://api.innei.ren
         run: |
-          npm run build
-          cd .next
-          pwd
-          rm -rf cache
-          cp ../next.config.js ./standalone/next.config.js
-          cp -r ../public ./standalone/public
-          cd ./standalone
-          echo 'process.title = "Kami (NextJS)"' >>server.js
-          mv ../static/ ./.next/static
-
-          cd ..
-          zip --symlinks -r ../release.zip ./*
+          sh standalone-build.sh
 
       - name: Create Release
         id: create_release

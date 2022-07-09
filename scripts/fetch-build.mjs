@@ -32,18 +32,19 @@ async function main() {
   const tmpName = (Math.random() * 10).toString(16)
   writeFileSync(`/tmp/${tmpName}.zip`, buffer, { flag: 'w' })
   // pwd: ~/mx/kami
-  await $`git checkout master`
-  await $`git branch --set-upstream-to=origin/master master`
+  // await $`git checkout master`
+  // await $`git branch --set-upstream-to=origin/master master`
   // await $`git pull`
-  await $`git lfs fetch --all`
-  await $`git lfs pull`
+  // await $`git lfs fetch --all`
+  // await $`git lfs pull`
   // await $`pnpm i`
   await $`rm -rf ./.next`
-  await $`unzip /tmp/${tmpName}.zip -d ./.next`
+  await $`unzip /tmp/${tmpName}.zip -d ./dist`
   await $`rm /tmp/${tmpName}.zip`
 
-  // standalone is not stable, temporally disable
-  await nothrow($`pm2 reload ecosystem.standalone.config.js --update-env`)
+  await nothrow(
+    $`cd dist/standalone && pm2 reload ecosystem.config.js --update-env`,
+  )
   // await nothrow($`pm2 reload ecosystem.config.js --update-env`)
   console.log('等待 15 秒')
   await sleep(15000)

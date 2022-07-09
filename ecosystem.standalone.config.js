@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'mx-kami',
-      script: '.next/standalone/server.js',
+      script: 'server.js',
       autorestart: true,
       watch: false,
       max_memory_restart: '180M',
