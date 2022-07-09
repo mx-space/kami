@@ -41,8 +41,6 @@ jobs:
           ASSETPREFIX: ${{ secrets.ASSETPREFIX }}
           NEXT_PUBLIC_APIURL: https://innei.ren/api/v2
           NEXT_PUBLIC_GATEWAY_URL: https://api.innei.ren
-          NETEASE_PHONE: ${{ secrets.NETEASE_PHONE }}
-          NETEASE_PASSWORD: ${{ secrets.NETEASE_PASSWORD }}
         run: |
           npm run build
           cd .next
