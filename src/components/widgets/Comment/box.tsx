@@ -1,5 +1,6 @@
 import { sample } from 'lodash-es'
 import omit from 'lodash-es/omit'
+import markdownEscape from 'markdown-escape'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import React, {
@@ -382,7 +383,7 @@ const KaomojiButton: FC<{ onClickKaomoji: (kaomoji: string) => any }> = memo(
                     action: TrackerAction.Click,
                     label: 'Kaomoji',
                   })
-                  onClickKaomoji(emoji)
+                  onClickKaomoji(markdownEscape(emoji))
                 }}
               >
                 {emoji}

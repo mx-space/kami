@@ -15,6 +15,7 @@ specifiers:
   '@types/inflection': 1.13.0
   '@types/js-cookie': 3.0.2
   '@types/lodash-es': 4.17.6
+  '@types/markdown-escape': 1.1.0
   '@types/node': 17.0.18
   '@types/randomcolor': 0.5.6
   '@types/react': 17.0.47
@@ -37,6 +38,7 @@ specifiers:
   js-yaml: '*'
   lint-staged: 13.0.3
   lodash-es: 4.17.21
+  markdown-escape: 1.1.0
   medium-zoom: 1.0.6
   mobx: 6.6.1
   mobx-react-lite: 3.4.0
@@ -85,6 +87,7 @@ dependencies:
   devtools-detector: 2.0.10
   js-cookie: 3.0.1
   lodash-es: 4.17.21
+  markdown-escape: 1.1.0
   medium-zoom: 1.0.6
   mobx: 6.6.1
   mobx-react-lite: 3.4.0_m26jawr67gnusmh4egzqtnhxru
@@ -116,6 +119,7 @@ devDependencies:
   '@types/inflection': 1.13.0
   '@types/js-cookie': 3.0.2
   '@types/lodash-es': 4.17.6
+  '@types/markdown-escape': 1.1.0
   '@types/node': 17.0.18
   '@types/randomcolor': 0.5.6
   '@types/react': 17.0.47
@@ -1987,6 +1991,10 @@ packages:
 
   /@types/lodash/4.14.178:
     resolution: {integrity: sha512-0d5Wd09ItQWH1qFbEyQ7oTQ3GZrMfth5JkbN3EvTKLXcHLRDSXeLnlvlOn0wvxVIwK5o2M8JzP/OWz7T3NRsbw==}
+    dev: true
+
+  /@types/markdown-escape/1.1.0:
+    resolution: {integrity: sha512-bJZh73L6fSt8MmTON/btR8hiKRipoIoPfLO41lxr6l65QXdG1rwUjR8Hu5xU7XYHBwKHiJZ+sTQ8L2TKkQrBpw==}
     dev: true
 
   /@types/minimatch/3.0.5:
@@ -4471,6 +4479,10 @@ packages:
   /map-stream/0.1.0:
     resolution: {integrity: sha512-CkYQrPYZfWnu/DAmVCpTSX/xHpKZ80eKh2lAkyA6AJTef6bW+6JpbQZN5rofum7da+SyN1bi5ctTm+lTfcCW3g==}
     dev: true
+
+  /markdown-escape/1.1.0:
+    resolution: {integrity: sha512-f1+ARFbzLrBdC0Lj30uREn+zthrK/h1PO5UhN5IMDQvI2lSFn+8U06a5LHaxxYMhHD0mJoJ2BROJ/Sju5aw6+g==}
+    dev: false
 
   /markdown-escapes/1.0.4:
     resolution: {integrity: sha512-8z4efJYk43E0upd0NbVXwgSTQs6cT3T06etieCMEg7dRbzCbxUCK/GHlX8mhHRDcp+OLlHkPKsvqQTCvsRl2cg==}
