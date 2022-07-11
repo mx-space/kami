@@ -70,7 +70,7 @@ App.getInitialProps = async (props: AppContext) => {
 
   attachRequestProxy(request)
 
-  const data = await fetchInitialData()
+  const data: InitialDataType & { reason?: any } = await fetchInitialData()
   const appProps = await (async () => {
     try {
       // Next 会从小组件向上渲染整个页面，有可能在此报错。兜底

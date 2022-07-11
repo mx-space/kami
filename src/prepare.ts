@@ -7,9 +7,10 @@ import { defaultConfigs } from '~/configs.default'
 import type { KamiConfig } from '~/types/config'
 import { $axios, apiClient } from '~/utils/client'
 import { TokenKey } from '~/utils/cookie'
-import { isServerSide } from '~/utils/env'
+import { isClientSide, isServerSide } from '~/utils/env'
 
 import PKG from '../package.json'
+import type { InitialDataType } from './context'
 
 export const attachRequestProxy = (request?: IncomingMessage) => {
   if (!request) {
@@ -56,7 +57,11 @@ export const attachRequestProxy = (request?: IncomingMessage) => {
   }
 }
 
-export async function fetchInitialData() {
+export async function fetchInitialData(): Promise<InitialDataType> {
+  if (isClientSide() && window.data) {
+    return window.data
+  }
+
   const [aggregateDataState, configSnippetState] = await Promise.allSettled([
     apiClient.aggregate.getAggregateData(),
     apiClient.snippet.getByReferenceAndName<KamiConfig>(
@@ -67,7 +72,7 @@ export async function fetchInitialData() {
 
   let aggregateData: AggregateRoot | null = null
   let configSnippet: KamiConfig | null = null
-  let reason = null as null | string
+  let reason = undefined as undefined | string
   if (aggregateDataState.status === 'fulfilled') {
     aggregateData = aggregateDataState.value
   } else {
@@ -82,5 +87,6 @@ export async function fetchInitialData() {
     configSnippet = defaultConfigs as any
   }
 
+  // @ts-ignore
   return { aggregateData, config: configSnippet, reason }
 }
