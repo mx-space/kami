@@ -12,6 +12,7 @@ import type { PostModel } from '@mx-space/api-client'
 
 import { buildStoreDataLoadableView } from '~/components/biz/LoadableView'
 import { Seo } from '~/components/biz/Seo'
+import { wrapperNextPage } from '~/components/biz/WrapperNextPage'
 import { PostRelated } from '~/components/in-page/Post/post-related'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import {
@@ -295,4 +296,4 @@ PP.getInitialProps = async (ctx) => {
   return data
 }
 
-export default PP
+export default wrapperNextPage(PP)
