@@ -8,7 +8,6 @@ import { usePrevious } from 'react-use'
 
 import type { TimelineData } from '@mx-space/api-client'
 
-import { wrapperNextPage } from '~/components/biz/WrapperNextPage'
 import { SolidBookmark } from '~/components/universal/Icons'
 import { NumberTransition } from '~/components/universal/NumberRecorder'
 import { TimelineListWrapper } from '~/components/universal/TimelineListWrapper'
@@ -302,4 +301,4 @@ TimeLineView.getInitialProps = async (ctx) => {
     memory: !!memory,
   } as TimeLineViewProps
 }
-export default wrapperNextPage(TimeLineView)
+export default TimeLineView

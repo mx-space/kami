@@ -2,7 +2,6 @@ import type { NextPage } from 'next'
 
 import type { ProjectModel } from '@mx-space/api-client'
 
-import { wrapperNextPage } from '~/components/biz/WrapperNextPage'
 import { ProjectDetail } from '~/components/in-page/Project/detail'
 import { useStore } from '~/store'
 import { apiClient } from '~/utils/client'
@@ -36,4 +35,4 @@ ProjectView.getInitialProps = async (ctx) => {
   return data
 }
 
-export default wrapperNextPage(ProjectView)
+export default ProjectView

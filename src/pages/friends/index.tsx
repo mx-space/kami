@@ -6,7 +6,6 @@ import { createElement, useEffect, useState } from 'react'
 import type { LinkModel } from '@mx-space/api-client'
 import { LinkState, LinkType } from '@mx-space/api-client'
 
-import { wrapperNextPage } from '~/components/biz/WrapperNextPage'
 import {
   BannedSection,
   FavoriteSection,
@@ -159,4 +158,4 @@ FriendsView.getInitialProps = async () => {
 
   return { friends: shuffle(friends), collections, outdated, banned }
 }
-export default wrapperNextPage(FriendsView)
+export default FriendsView

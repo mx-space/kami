@@ -8,7 +8,6 @@ import type { NoteModel, Pager } from '@mx-space/api-client'
 import type { TopicModel } from '@mx-space/api-client/types/models/topic'
 
 import { SEO } from '~/components/biz/Seo'
-import { wrapperNextPage } from '~/components/biz/WrapperNextPage'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { Divider } from '~/components/universal/Divider'
 import { Pagination } from '~/components/universal/Pagination'
@@ -94,4 +93,4 @@ TopicDetailPage.getInitialProps = async (ctx) => {
   const { topicSlug } = ctx.query
   return await apiClient.topic.getTopicBySlug(topicSlug as string)
 }
-export default wrapperNextPage(TopicDetailPage)
+export default TopicDetailPage
