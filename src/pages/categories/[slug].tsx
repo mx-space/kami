@@ -8,6 +8,7 @@ import type {
   CategoryWithChildrenModel,
 } from '@mx-space/api-client'
 
+import { wrapperNextPage } from '~/components/biz/WrapperNextPage'
 import { TimelineListWrapper } from '~/components/universal/TimelineListWrapper'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { apiClient } from '~/utils/client'
@@ -77,4 +78,4 @@ CategoryListView.getInitialProps = async (ctx) => {
   }
 }
 
-export default CategoryListView
+export default wrapperNextPage(CategoryListView)
