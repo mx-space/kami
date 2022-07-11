@@ -15,18 +15,27 @@ const createMockContext = (router: NextRouter): NextPageContext => {
   }
 }
 
+// only use once getInitialProps result from server fetch, because it will be reset after each fetch and fetch in csr.
+let useServerPropsOnce = false
 export function wrapperNextPage<T extends NextPage<any>>(NextPage: T) {
   if (isClientSide()) {
-    const Page: NextPage<any> = memo(() => {
+    const Page: NextPage<any> = memo((props) => {
       const router = useRouter()
       const [loading, setLoading] = useState(
         NextPage.getInitialProps ? true : false,
       )
 
-      const [dataProps, setProps] = useState(null)
+      const [dataProps, setProps] = useState(!useServerPropsOnce ? props : null)
 
       useEffect(() => {
         if (!NextPage.getInitialProps) {
+          setLoading(false)
+          return
+        }
+
+        if (!useServerPropsOnce) {
+          useServerPropsOnce = true
+          setLoading(false)
           return
         }
 

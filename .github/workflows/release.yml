@@ -91,4 +91,4 @@ jobs:
             cd mx/kami
             git reset --hard
             node scripts/fetch-build.mjs
-            sh scripts/update-cdn.sh
+            # sh scripts/update-cdn.sh
