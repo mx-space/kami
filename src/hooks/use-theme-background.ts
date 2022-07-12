@@ -55,5 +55,5 @@ export const useFooterBackground = (footerClassName: string) => {
     )
 
     return remove
-  })
+  }, [background.position, background.src, colorMode, footerClassName])
 }
