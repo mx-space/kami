@@ -291,12 +291,12 @@ blockquote {
   padding: 1em 1em 1em 2em;
   outline: 1px var(--blue) solid;
   clip-path: polygon(
-    2em 0%,
+    1em 0%,
     100% 0,
-    100% calc(100% - 2em),
-    calc(100% - 2em) 100%,
+    100% calc(100% - 1em),
+    calc(100% - 1em) 100%,
     0 100%,
-    0 2em
+    0 1em
   );
 }
 
