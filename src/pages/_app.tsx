@@ -18,8 +18,8 @@ import { InitialContextProvider } from '~/context/initial-data'
 import { RootStoreProvider } from '~/context/root-store'
 import { isDev } from '~/utils/env'
 
-import { Content } from '../Content'
-import { attachRequestProxy, fetchInitialData } from '../prepare'
+import { Content } from '../components/layouts/AppLayout'
+import { attachRequestProxy, fetchInitialData } from '../utils/app'
 
 interface DataModel {
   initData: InitialDataType

@@ -123,7 +123,7 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
     }
   }, [note.nid])
 
-  useHeaderShare(note.title, note.text)
+  useHeaderShare(note.title)
   useUpdateNote(note.id)
   useLoadSerifFont()
   useHeaderMeta(

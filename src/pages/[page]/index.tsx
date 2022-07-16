@@ -38,7 +38,7 @@ const PageView: PageOnlyProps = observer((props) => {
   }, [page.meta?.style])
 
   useHeaderMeta(page.title, page.subtitle || '')
-  useHeaderShare(page.title, page.text)
+  useHeaderShare(page.title)
   useJumpToSimpleMarkdownRender(page.id)
 
   useEffect(() => {

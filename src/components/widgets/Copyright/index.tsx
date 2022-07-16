@@ -29,6 +29,7 @@ export const Copyright: FC<CopyrightProps> = observer((props) => {
             navigator.clipboard.writeText(link)
           }}
           data-hide-print
+          className="select-none"
         >
           [复制]
         </a>

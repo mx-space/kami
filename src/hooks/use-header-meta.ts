@@ -1,3 +1,4 @@
+import { runInAction } from 'mobx'
 import { useEffect } from 'react'
 
 import { useStore } from '~/store'
@@ -25,21 +26,25 @@ export const useHeaderMeta = (title: string, description: string) => {
   }, [])
 }
 
-export const useHeaderShare = (title: string, text: string) => {
+export const useHeaderShare = (title: string, text?: string) => {
   const { appStore } = useStore()
 
   useEffect(() => {
-    appStore.shareData = {
-      text,
-      title,
-      url: location.href,
-    }
+    runInAction(() => {
+      appStore.shareData = {
+        text,
+        title,
+        url: location.href,
+      }
+    })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [title, text])
 
   useEffect(() => {
     return () => {
-      appStore.shareData = null
+      runInAction(() => {
+        appStore.shareData = null
+      })
     }
   }, [])
 }

@@ -22,7 +22,7 @@ export default class AppUIStore {
     show: false,
   }
 
-  shareData: { title: string; text: string; url: string } | null = null
+  shareData: { title: string; text?: string; url: string } | null = null
 
   updatePosition(direction: 'up' | 'down') {
     if (typeof document !== 'undefined') {

@@ -203,10 +203,11 @@ export const PostView: PageOnlyProps = observer((props) => {
 
   // header meta
   useHeaderMeta(post.title, post.category.name)
-  useHeaderShare(post.title, post.text)
+  useHeaderShare(post.title)
   useUpdatePost(post.id)
   useBackgroundOpacity(0.2)
   useJumpToSimpleMarkdownRender(post.id)
+  useHeaderShare(post.title)
 
   const isClientSide = useIsClient()
 

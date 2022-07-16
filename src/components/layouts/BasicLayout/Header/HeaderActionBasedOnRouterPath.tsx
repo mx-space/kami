@@ -29,6 +29,7 @@ export const HeaderActionBasedOnRouterPath: FC = memo(() => {
           return (
             <>
               <HeaderActionButtonsContainer>
+                <HeaderActionShareButton />
                 <HeaderActionButton className="h-10 w-20" tabIndex={-1}>
                   <HeaderActionLikeButtonForNote id={id} />
                 </HeaderActionButton>

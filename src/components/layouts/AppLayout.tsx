@@ -19,7 +19,7 @@ import { useScreenMedia } from '~/hooks/use-screen-media'
 import { printToConsole } from '~/utils/console'
 import { loadStyleSheet } from '~/utils/load-script'
 
-import { useStore } from './store'
+import { useStore } from '../../store'
 
 export const Content: FC = observer((props) => {
   const { userStore: master } = useStore()
@@ -42,7 +42,7 @@ export const Content: FC = observer((props) => {
       checkLogin()
       // set user
       master.setUser(user)
-      import('./socket/index').then(({ socketClient }) => {
+      import('../../socket/index').then(({ socketClient }) => {
         socketClient.initIO()
       })
     } finally {
