@@ -1,12 +1,13 @@
 import type { AxiosError } from 'axios'
 import { isNumber } from 'lodash-es'
 import type { NextPage } from 'next'
+import { NextSeo } from 'next-seo'
 import { useEffect } from 'react'
-import { message } from 'react-message-popup'
 
 import { RequestError } from '@mx-space/api-client'
 
 import { ErrorView } from '~/components/biz/Error'
+import { useIsClient } from '~/hooks/use-is-client'
 
 const ErrorPage: NextPage<{ statusCode: number; err: any }> = ({
   statusCode = 500,
@@ -14,15 +15,27 @@ const ErrorPage: NextPage<{ statusCode: number; err: any }> = ({
 }) => {
   useEffect(() => {
     console.log('[ErrorPage]: ', statusCode, err)
-    if (err) {
-      const errMessage = err._message || err.message
+    // if (err) {
+    //   const errMessage = err._message || err.message
 
-      if (errMessage) {
-        message.error(errMessage)
-      }
-    }
+    // if (errMessage) {
+    //   message.error(errMessage)
+    // }
+    // }
   }, [err, statusCode])
-  return <ErrorView showBackButton showRefreshButton statusCode={statusCode} />
+
+  const isClient = useIsClient()
+
+  // FIXME error page hydrate error, cause error data not equal to server side.
+  return isClient ? (
+    <ErrorView
+      showBackButton
+      showRefreshButton
+      statusCode={parseInt(document.title)}
+    />
+  ) : (
+    <NextSeo title={statusCode.toString()} />
+  )
 }
 
 const getCode = (err, res): number => {

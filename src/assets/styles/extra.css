@@ -403,6 +403,7 @@ pre[class*='language-'] > code {
   display: block;
   overflow: auto;
   padding-left: 3.8rem;
+  padding-bottom: 10px;
 }
 
 pre[class*='language-'] {
