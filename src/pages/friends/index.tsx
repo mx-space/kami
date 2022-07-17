@@ -6,7 +6,7 @@ import { createElement, useEffect, useState } from 'react'
 import type { LinkModel } from '@mx-space/api-client'
 import { LinkState, LinkType } from '@mx-space/api-client'
 
-import { wrapperNextPage } from '~/components/biz/WrapperNextPage'
+import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import {
   BannedSection,
   FavoriteSection,

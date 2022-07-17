@@ -5,7 +5,7 @@ import RemoveMarkdown from 'remove-markdown'
 
 import type { PageModel } from '@mx-space/api-client'
 
-import { buildStoreDataLoadableView } from '~/components/biz/LoadableView'
+import { buildStoreDataLoadableView } from '~/components/app/LoadableView'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { Markdown } from '~/components/universal/Markdown'
 import { CommentLazy } from '~/components/widgets/Comment'

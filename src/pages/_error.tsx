@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 
 import { RequestError } from '@mx-space/api-client'
 
-import { ErrorView } from '~/components/biz/Error'
+import { ErrorView, errorToText } from '~/components/app/Error'
 import { useIsClient } from '~/hooks/use-is-client'
 
 const ErrorPage: NextPage<{ statusCode: number; err: any }> = ({
@@ -25,16 +25,17 @@ const ErrorPage: NextPage<{ statusCode: number; err: any }> = ({
   }, [err, statusCode])
 
   const isClient = useIsClient()
-
+  const parseCodeInTitle = 'document' in globalThis && parseInt(document.title)
+  const isValidStatusCode = isNumber(parseCodeInTitle) && statusCode >= 400
   // FIXME error page hydrate error, cause error data not equal to server side.
   return isClient ? (
     <ErrorView
       showBackButton
       showRefreshButton
-      statusCode={parseInt(document.title)}
+      statusCode={isValidStatusCode ? parseCodeInTitle : statusCode}
     />
   ) : (
-    <NextSeo title={statusCode.toString()} />
+    <NextSeo title={`${statusCode.toString()} - ${errorToText(statusCode)}`} />
   )
 }
 

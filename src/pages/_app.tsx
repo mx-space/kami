@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import React, { memo, useMemo } from 'react'
 
-import { NoDataErrorView } from '~/components/biz/Error/no-data'
+import { NoDataErrorView } from '~/components/app/Error/no-data'
 import { BasicLayout } from '~/components/layouts/BasicLayout'
 import { DebugLayout } from '~/components/layouts/DebugLayout'
 import type { InitialDataType } from '~/context/initial-data'

@@ -18,7 +18,7 @@ import { useUpdate } from 'react-use'
 import type { NoteModel } from '@mx-space/api-client'
 import { RequestError } from '@mx-space/api-client'
 
-import { wrapperNextPage } from '~/components/biz/WrapperNextPage'
+import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { NoteFooterActionBar } from '~/components/in-page/Note/NoteActionBar'
 import { NoteFooterActionBarForMobile } from '~/components/in-page/Note/NoteFooterNavigation'
 import { NoteMarkdownRender } from '~/components/in-page/Note/NoteMarkdownRender'

@@ -1,5 +1,5 @@
-import { sample } from 'lodash-es'
 import merge from 'lodash-es/merge'
+import sample from 'lodash-es/sample'
 import { observer } from 'mobx-react-lite'
 import type { NextSeoProps } from 'next-seo'
 import { NextSeo } from 'next-seo'

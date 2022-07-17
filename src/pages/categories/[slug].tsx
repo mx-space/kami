@@ -8,7 +8,7 @@ import type {
   CategoryWithChildrenModel,
 } from '@mx-space/api-client'
 
-import { wrapperNextPage } from '~/components/biz/WrapperNextPage'
+import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { TimelineListWrapper } from '~/components/universal/TimelineListWrapper'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { apiClient } from '~/utils/client'

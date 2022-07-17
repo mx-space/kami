@@ -10,9 +10,9 @@ import { message } from 'react-message-popup'
 
 import type { PostModel } from '@mx-space/api-client'
 
-import { buildStoreDataLoadableView } from '~/components/biz/LoadableView'
+import { buildStoreDataLoadableView } from '~/components/app/LoadableView'
+import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { Seo } from '~/components/biz/Seo'
-import { wrapperNextPage } from '~/components/biz/WrapperNextPage'
 import { PostRelated } from '~/components/in-page/Post/post-related'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import {
