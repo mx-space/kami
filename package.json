@@ -96,7 +96,7 @@
     "@innei/eslint-config-react-ts": "0.9.2",
     "@innei/prettier": "0.9.3",
     "@next/bundle-analyzer": "12.2.2",
-    "@trivago/prettier-plugin-sort-imports": "3.2.0",
+    "@trivago/prettier-plugin-sort-imports": "3.3.0",
     "@types/inflection": "1.13.0",
     "@types/js-cookie": "3.0.2",
     "@types/lodash-es": "4.17.6",
