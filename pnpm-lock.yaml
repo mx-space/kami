@@ -5,7 +5,7 @@ overrides:
   '@types/react': 17.0.47
 
 specifiers:
-  '@floating-ui/react-dom': 0.7.2
+  '@floating-ui/react-dom': 1.0.0
   '@formkit/auto-animate': 1.0.0-beta.1
   '@innei/eslint-config-react-ts': 0.9.2
   '@innei/prettier': 0.9.3
@@ -77,7 +77,7 @@ specifiers:
   zx: 7.0.7
 
 dependencies:
-  '@floating-ui/react-dom': 0.7.2_h3umwasw2xj55xde6qtxq6tis4
+  '@floating-ui/react-dom': 1.0.0_biqbaboplfbrettd7655fr4n2y
   '@formkit/auto-animate': 1.0.0-beta.1_react@18.2.0
   '@mx-space/api-client': 0.10.12
   axios: 0.27.2
@@ -1530,18 +1530,18 @@ packages:
       - supports-color
     dev: true
 
-  /@floating-ui/core/0.7.3:
-    resolution: {integrity: sha512-buc8BXHmG9l82+OQXOFU3Kr2XQx9ys01U/Q9HMIrZ300iLc8HLMgh7dcCqgYzAzf4BkoQvDcXf5Y+CuEZ5JBYg==}
+  /@floating-ui/core/1.0.0:
+    resolution: {integrity: sha512-sm3nW0hHAxTv3gRDdCH8rNVQxijF+qPFo5gAeXCErRjKC7Qc28lIQ3R9Vd7Gw+KgwfA7RhRydDFuGeI0peGq7A==}
     dev: false
 
-  /@floating-ui/dom/0.5.3:
-    resolution: {integrity: sha512-vpjWB1uC7rajvgA58uzlJZgtWqrdDQLw+XVA3w63ZTmsWwRmVd0Gl5Dy9VMAViI9cP7hBWaJt23Jy3AVgVYnoQ==}
+  /@floating-ui/dom/1.0.0:
+    resolution: {integrity: sha512-PMqJvY5Fae8HVQgUqM+lidprS6p9LSvB0AUhCdYKqr3YCaV+WaWCeVNBtXPRY2YIdrgcsL2+vd5F07FxgihHUw==}
     dependencies:
-      '@floating-ui/core': 0.7.3
+      '@floating-ui/core': 1.0.0
     dev: false
 
-  /@floating-ui/react-dom/0.7.2_h3umwasw2xj55xde6qtxq6tis4:
-    resolution: {integrity: sha512-1T0sJcpHgX/u4I1OzIEhlcrvkUN8ln39nz7fMoE/2HDHrPiMFoOGR7++GYyfUmIQHkkrTinaeQsO3XWubjSvGg==}
+  /@floating-ui/react-dom/1.0.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-uiOalFKPG937UCLm42RxjESTWUVpbbatvlphQAU6bsv+ence6IoVG8JOUZcy8eW81NkU+Idiwvx10WFLmR4MIg==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -1549,12 +1549,9 @@ packages:
       react:
         optional: true
     dependencies:
-      '@floating-ui/dom': 0.5.3
+      '@floating-ui/dom': 1.0.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      use-isomorphic-layout-effect: 1.1.2_issp6eja53bx2taimj6tb2noxy
-    transitivePeerDependencies:
-      - '@types/react'
     dev: false
 
   /@formkit/auto-animate/1.0.0-beta.1_react@18.2.0:
@@ -1998,6 +1995,7 @@ packages:
 
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
+    dev: true
 
   /@types/ps-tree/1.1.2:
     resolution: {integrity: sha512-ZREFYlpUmPQJ0esjxoG1fMvB2HNaD3z+mjqdSosZvd3RalncI9NEur73P8ZJz4YQdL64CmV1w0RuqoRUlhQRBw==}
@@ -2032,6 +2030,7 @@ packages:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
       csstype: 3.1.0
+    dev: true
 
   /@types/reactcss/1.2.6:
     resolution: {integrity: sha512-qaIzpCuXNWomGR1Xq8SCFTtF4v8V27Y6f+b9+bzHiv087MylI/nTCqqdChNeWS7tslgROmYB7yeiruWX7WnqNg==}
@@ -2051,6 +2050,7 @@ packages:
 
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
+    dev: true
 
   /@types/trusted-types/2.0.2:
     resolution: {integrity: sha512-F5DIZ36YVLE+PN+Zwws4kJogq47hNgX3Nx6WyDJ3kcplxyke3XIzB8uK5n/Lpm1HBsbGzd6nmGehL8cPekP+Tg==}
@@ -6747,21 +6747,6 @@ packages:
     dependencies:
       punycode: 2.1.1
     dev: true
-
-  /use-isomorphic-layout-effect/1.1.2_issp6eja53bx2taimj6tb2noxy:
-    resolution: {integrity: sha512-49L8yCO3iGT/ZF9QttjwLF/ZD9Iwto5LnH5LmEdk/6cFmXddqi2ulF0edxTwjj+7mqvpVVGQWvbXZdn32wRSHA==}
-    peerDependencies:
-      '@types/react': '*'
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      react:
-        optional: true
-    dependencies:
-      '@types/react': 17.0.47
-      react: 18.2.0
-    dev: false
 
   /use-sync-external-store/1.1.0_react@18.2.0:
     resolution: {integrity: sha512-SEnieB2FPKEVne66NpXPd1Np4R1lTNKfjuy3XdIoPQKYBAFdzbzSZlSn1KJZUiihQLQC5Znot4SBz1EOTBwQAQ==}
