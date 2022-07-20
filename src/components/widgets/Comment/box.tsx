@@ -20,8 +20,8 @@ import isUrl from 'validator/lib/isURL'
 import { ImpressionView } from '~/components/biz/ImpressionView'
 import { FloatPopover } from '~/components/universal/FloatPopover'
 import {
+  GridiconsNoticeOutline,
   MdiEmailFastOutline,
-  MdiLanguageMarkdown,
   PhUser,
   SiGlyphGlobal,
 } from '~/components/universal/Icons'
@@ -285,13 +285,17 @@ export const CommentBox: FC<{
             triggerComponent={() => (
               <button
                 aria-label="support markdown"
-                className="btn blue text-lg flex-shrink-0 mr-[12px] cursor-default pointer-events-none"
+                className="btn blue text-lg flex-shrink-0 mr-2 cursor-default pointer-events-none !p-2 rounded-full"
               >
-                <MdiLanguageMarkdown />
+                <GridiconsNoticeOutline />
               </button>
             )}
           >
-            评论支持部分 Markdown 语法
+            <div className="leading-7">
+              <p>评论支持部分 Markdown 语法</p>
+              <p>评论可能被移入垃圾箱</p>
+              <p>评论可能需要审核，审核通过后才会显示</p>
+            </div>
           </FloatPopover>
           <KaomojiButton onClickKaomoji={handleInsertEmoji} />
         </div>
@@ -332,9 +336,10 @@ const CommentBoxOption = observer<{ commentId?: string; refId: string }>(
     const { syncToRecently, isWhispers, setConfig } = useContext(
       CommentSendingContext,
     )
+    const isReply = !!props.commentId
     return (
       <>
-        {isLogged && !props.commentId && (
+        {isLogged && !isReply && (
           <fieldset className="inline-flex items-center children:cursor-pointer">
             <input
               type="checkbox"
@@ -349,7 +354,7 @@ const CommentBoxOption = observer<{ commentId?: string; refId: string }>(
             </label>
           </fieldset>
         )}
-        {!isLogged && (
+        {!isLogged && !isReply && (
           <fieldset className="inline-flex items-center children:cursor-pointer">
             <input
               type="checkbox"

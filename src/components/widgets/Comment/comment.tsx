@@ -2,6 +2,7 @@ import { clsx } from 'clsx'
 import type { DetailedHTMLProps, FC, HTMLAttributes } from 'react'
 import { memo, useCallback, useMemo } from 'react'
 
+import { LaUserSecret } from '~/components/universal/Icons'
 import { RelativeTime } from '~/components/universal/RelativeTime'
 import { springScrollToElement } from '~/utils/spring'
 
@@ -16,6 +17,7 @@ interface CommentProps {
   location?: string
   actions?: (JSX.Element | null)[]
   highlight?: boolean
+  whispers?: boolean
 }
 
 export const Comment: FC<
@@ -27,6 +29,7 @@ export const Comment: FC<
     author,
     children,
     avatar,
+    whispers,
     content,
     datetime,
     commentKey,
@@ -72,6 +75,7 @@ export const Comment: FC<
               </span>
             </span>
             {location && <span>来自：{location}</span>}
+            {whispers && <LaUserSecret />}
           </div>
           <div className={'text-shizuku-text'}>{content}</div>
           <ul className={styles['actions']}>

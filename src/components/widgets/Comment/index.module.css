@@ -84,6 +84,7 @@
         justify-content: flex-start;
         margin-bottom: 4px;
         font-size: 14px;
+        align-items: center;
 
         @apply text-gray-1;
 

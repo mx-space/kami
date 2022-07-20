@@ -192,6 +192,7 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
   }, [comment, comments])
   return (
     <Comment
+      whispers={comment.isWhispers}
       // @ts-expect-error
       location={comment.location}
       key={comment.id}
