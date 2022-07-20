@@ -40,6 +40,7 @@ const USER_DRAFT = 'mx-space-comment-draft'
 
 const initialState = {
   syncToRecently: false,
+  isWhispers: false,
 }
 
 const CommentSendingContext = createContext({
@@ -48,7 +49,7 @@ const CommentSendingContext = createContext({
 })
 
 export const CommentBox: FC<{
-  onSubmit: ({ text, author, mail, url }) => any
+  onSubmit: ({ text, author, mail, url, isWhispers }) => any
   onCancel?: () => any
   autoFocus?: boolean
 
@@ -159,6 +160,7 @@ export const CommentBox: FC<{
       text,
       mail,
       url: url || undefined,
+      isWhispers: config.isWhispers,
     }
     localStorage.setItem(USER_PREFIX, JSON.stringify(omit(model, ['text'])))
     onSubmit(model).then(() => {
@@ -326,7 +328,9 @@ const CommentBoxOption = observer<{ commentId?: string; refId: string }>(
   (props) => {
     const { userStore } = useStore()
     const { isLogged } = userStore
-    const { syncToRecently, setConfig } = useContext(CommentSendingContext)
+    const { syncToRecently, isWhispers, setConfig } = useContext(
+      CommentSendingContext,
+    )
     return (
       <>
         {isLogged && !props.commentId && (
@@ -341,6 +345,21 @@ const CommentBoxOption = observer<{ commentId?: string; refId: string }>(
             />
             <label htmlFor="comment-box-sync" className="text-shizuku">
               同步到速记
+            </label>
+          </fieldset>
+        )}
+        {!isLogged && (
+          <fieldset className="inline-flex items-center children:cursor-pointer">
+            <input
+              type="checkbox"
+              id="comment-box-whispers"
+              checked={isWhispers}
+              onChange={(e) => {
+                setConfig({ isWhispers: e.target.checked })
+              }}
+            />
+            <label htmlFor="comment-box-whispers" className="text-shizuku">
+              悄悄话
             </label>
           </fieldset>
         )}
