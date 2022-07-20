@@ -45,6 +45,7 @@ const initialState = {
 
 const CommentSendingContext = createContext({
   ...initialState,
+  // eslint-disable-next-line unused-imports/no-unused-vars
   setConfig(config: Partial<typeof initialState>) {},
 })
 

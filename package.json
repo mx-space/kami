@@ -58,9 +58,9 @@
     "last 2 Firefox versions"
   ],
   "dependencies": {
-    "@floating-ui/react-dom": "0.7.2",
+    "@floating-ui/react-dom": "1.0.0",
     "@formkit/auto-animate": "1.0.0-beta.1",
-    "@mx-space/api-client": "0.10.12",
+    "@mx-space/api-client": "0.10.13",
     "axios": "0.27.2",
     "clsx": "1.2.1",
     "css-spring": "4.1.0",
@@ -72,7 +72,7 @@
     "medium-zoom": "1.0.6",
     "mobx": "6.6.1",
     "mobx-react-lite": "3.4.0",
-    "next": "12.2.1",
+    "next": "12.2.2",
     "next-seo": "5.4.0",
     "randomcolor": "0.6.2",
     "react": "18.2.0",
@@ -93,7 +93,7 @@
     "validator": "13.7.0"
   },
   "devDependencies": {
-    "@innei/eslint-config-react-ts": "0.9.2",
+    "@innei/eslint-config-react-ts": "0.9.3",
     "@innei/prettier": "0.9.3",
     "@next/bundle-analyzer": "12.2.2",
     "@trivago/prettier-plugin-sort-imports": "3.3.0",
