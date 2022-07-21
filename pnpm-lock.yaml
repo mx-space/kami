@@ -46,6 +46,7 @@ specifiers:
   next-compose-plugins: 2.2.1
   next-pwa: 5.5.4
   next-seo: 5.4.0
+  next-suspense: 0.1.3
   postcss: 8.4.14
   postcss-import: 14.1.0
   postcss-nested: 5.0.6
@@ -93,6 +94,7 @@ dependencies:
   mobx-react-lite: 3.4.0_m26jawr67gnusmh4egzqtnhxru
   next: 12.2.2_biqbaboplfbrettd7655fr4n2y
   next-seo: 5.4.0_7gpduzaz4csxytrukenoyuq3te
+  next-suspense: 0.1.3_next@12.2.2
   randomcolor: 0.6.2
   react: 18.2.0
   react-countup: 6.3.0_react@18.2.0
@@ -405,7 +407,7 @@ packages:
     resolution: {integrity: sha512-0NFvs3VkuSYbFi1x2Vd6tKrywq+z/cLeYC/RJNFrIX/30Bf5aiGYbtvGXolEktzJH8o5E5KJ3tT+nkxuuZFVlA==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.18.7
+      '@babel/types': 7.18.9
     dev: true
 
   /@babel/helper-module-transforms/7.18.6:
@@ -480,7 +482,7 @@ packages:
     resolution: {integrity: sha512-iNpIgTgyAvDQpDj76POqg+YEt8fPxx3yaNBg3S30dxNKm2SWfYhD0TGrK/Eu9wHpUW63VQU894TsTg+GLbUa1g==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.18.7
+      '@babel/types': 7.18.9
     dev: true
 
   /@babel/helper-skip-transparent-expression-wrappers/7.16.0:
@@ -4825,6 +4827,18 @@ packages:
       next: 12.2.2_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /next-suspense/0.1.3_next@12.2.2:
+    resolution: {integrity: sha512-eo2HImfMlRUsg5t9MmoX0cV0Cdw7jgYbCeGolHHSnmsnT8LN0yVJhRKy+cBJY5DGumPOqRFgEwGiIV1WqpA0Eg==}
+    engines: {pnpm: '>=7'}
+    peerDependencies:
+      next: '>=10'
+    peerDependenciesMeta:
+      next:
+        optional: true
+    dependencies:
+      next: 12.2.2_biqbaboplfbrettd7655fr4n2y
     dev: false
 
   /next/12.2.2_biqbaboplfbrettd7655fr4n2y:

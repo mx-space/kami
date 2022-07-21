@@ -288,7 +288,9 @@ export const PostView: PageOnlyProps = observer((props) => {
     </>
   )
 })
+
 const PP = buildStoreDataLoadableView(store.postStore, PostView)
+
 PP.getInitialProps = async (ctx) => {
   const { query } = ctx
   const { category, slug } = query as any
