@@ -7,7 +7,7 @@ overrides:
 specifiers:
   '@floating-ui/react-dom': 1.0.0
   '@formkit/auto-animate': 1.0.0-beta.1
-  '@innei/eslint-config-react-ts': 0.9.3
+  '@innei/eslint-config-react-ts': 0.9.4
   '@innei/prettier': 0.9.4
   '@mx-space/api-client': 0.10.13
   '@next/bundle-analyzer': 12.2.3
@@ -114,7 +114,7 @@ dependencies:
   validator: 13.7.0
 
 devDependencies:
-  '@innei/eslint-config-react-ts': 0.9.3_he2ccbldppg44uulnyq4rwocfa
+  '@innei/eslint-config-react-ts': 0.9.4
   '@innei/prettier': 0.9.4
   '@next/bundle-analyzer': 12.2.3
   '@trivago/prettier-plugin-sort-imports': 3.3.0_prettier@2.7.1
@@ -1602,17 +1602,15 @@ packages:
       - supports-color
     dev: true
 
-  /@innei/eslint-config-react-ts/0.9.3_he2ccbldppg44uulnyq4rwocfa:
-    resolution: {integrity: sha512-dncvlw4FvL3AtSEmHRseMUF322/i1t7hJI+1lIYY27Tq9o3m2IN65YkhR/88AMb9W+V7bTYVuaPs7CMA1lEOdg==}
-    peerDependencies:
-      typescript: '>=4'
+  /@innei/eslint-config-react-ts/0.9.4:
+    resolution: {integrity: sha512-1HOJhMUUC7ylpWMSSrAjDBTmgLlyxtqtprnH4n0bDhve+mu6Shz7AgQniezOsRjEW+x957XwMYfCNY4jOf5B9w==}
     dependencies:
       '@innei/eslint-config-ts': 0.9.4
+      eslint: 8.20.0
       eslint-plugin-react: 7.30.1_eslint@8.20.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.20.0
       typescript: 4.7.4
     transitivePeerDependencies:
-      - eslint
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
       - supports-color
