@@ -34,11 +34,12 @@ async function main() {
   // pwd: ~/mx/kami
   // await $`git checkout master`
   // await $`git branch --set-upstream-to=origin/master master`
-  // await $`git pull`
+  await $`git pull`
   // await $`git lfs fetch --all`
   // await $`git lfs pull`
   // await $`pnpm i`
   await $`rm -rf ./.next`
+  await $`rm -rf ./dist`
   await $`unzip /tmp/${tmpName}.zip -d ./dist`
   await $`rm /tmp/${tmpName}.zip`
 
