@@ -53,19 +53,21 @@ export const Avatar: FC<
       }
       {...restProps}
     >
-      {createElement(props.url ? 'a' : 'div', {
-        style: { backgroundColor: loaded ? undefined : randomColor },
-        className: styles['avatar'],
+      {createElement(
+        props.url ? 'a' : 'div',
+        {
+          style: { backgroundColor: loaded ? undefined : randomColor },
+          className: styles['avatar'],
 
-        ...(props.url
-          ? {
-              href: props.url,
-              target: '_blank',
-              rel: 'noreferrer',
-            }
-          : {}),
-
-        children: props.imageUrl ? (
+          ...(props.url
+            ? {
+                href: props.url,
+                target: '_blank',
+                rel: 'noreferrer',
+              }
+            : {}),
+        },
+        props.imageUrl ? (
           <div className={styles['image']} style={{ opacity: loaded ? 1 : 0 }}>
             <img
               src={props.imageUrl}
@@ -73,14 +75,14 @@ export const Avatar: FC<
               width={props.size}
               onLoad={() => setLoaded(true)}
               loading={lazy ? 'lazy' : 'eager'}
-            ></img>
+            />
           </div>
         ) : props.text ? (
           <div className="flex flex-grow relative h-full w-full items-center justify-center">
             <FlexText size={0.8} text={props.text} />
           </div>
         ) : null,
-      })}
+      )}
     </div>
   )
 })

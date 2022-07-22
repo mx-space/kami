@@ -90,7 +90,10 @@ export const Toc: FC<TocProps> = memo(
             {headings &&
               headings.map((heading, i) => {
                 return (
-                  <RightLeftTransitionView timeout={{ enter: 100 * i }}>
+                  <RightLeftTransitionView
+                    timeout={{ enter: 100 * i }}
+                    key={heading.depth}
+                  >
                     <TocItem
                       index={heading.index}
                       onClick={handleItemClick}
