@@ -79,7 +79,7 @@
     "react": "18.2.0",
     "react-countup": "6.3.0",
     "react-dom": "18.2.0",
-    "react-intersection-observer": "9.3.5",
+    "react-intersection-observer": "9.4.0",
     "react-linkify": "1.0.0-alpha",
     "react-markdown": "4.3.1",
     "react-masonry-css": "1.0.16",
