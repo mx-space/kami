@@ -37,6 +37,7 @@ const useNoteMetaBanner = (note?: NoteModel) => {
     type: string
     message: string
     className: string
+    style?: any
   }
 
   if (!banner) {
@@ -127,9 +128,10 @@ export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
             {banner && (
               <div
                 className={clsx(
-                  'mt-8 p-4 text-center ml-[calc(-3em)] mr-[calc(-3em)] leading-8',
+                  'mt-8 p-4 flex justify-center ml-[calc(-3em)] mr-[calc(-3em)] w900:ml-[-1.25em] w900:mr-[-1.25em] w900:text-sm leading-8',
                   banner.className,
                 )}
+                style={banner.style}
               >
                 {banner.message}
               </div>
