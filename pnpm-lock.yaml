@@ -61,7 +61,7 @@ specifiers:
   react-markdown: 4.3.1
   react-masonry-css: 1.0.16
   react-message-popup: 1.0.0-alpha.2
-  react-shortcut-guide: 0.2.7
+  react-shortcut-guide: 0.3.2
   react-smooth-number-counter: https://github.com/Innei/react-smooth-number-counter.git
   react-toastify: 9.0.7
   react-transition-group: 4.4.2
@@ -104,7 +104,7 @@ dependencies:
   react-markdown: 4.3.1_react@18.2.0
   react-masonry-css: 1.0.16_react@18.2.0
   react-message-popup: 1.0.0-alpha.2_biqbaboplfbrettd7655fr4n2y
-  react-shortcut-guide: 0.2.7
+  react-shortcut-guide: 0.3.2
   react-smooth-number-counter: github.com/Innei/react-smooth-number-counter/6be776817e507970a7e3177b8c3277b0b9d3e779
   react-toastify: 9.0.7_biqbaboplfbrettd7655fr4n2y
   react-transition-group: 4.4.2_biqbaboplfbrettd7655fr4n2y
@@ -4381,6 +4381,7 @@ packages:
 
   /lodash.debounce/4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
+    dev: true
 
   /lodash.merge/4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
@@ -5624,10 +5625,8 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /react-shortcut-guide/0.2.7:
-    resolution: {integrity: sha512-U7K1BrpQR+EdTC5lP8Ur0CZAexCa/Njwn3HPA2arraBMDg4qusbTR919oqwOoBxivcnfog6ocgp0+HcT3xF/tQ==}
-    dependencies:
-      lodash.debounce: 4.0.8
+  /react-shortcut-guide/0.3.2:
+    resolution: {integrity: sha512-FZv1tJoPOEGYln44c6T5moc5eSPoIANmixqM0WpncRQTjJiXO8dX6+rqZTRo1SkKf6TUcwaHzgbi+FgLpYBrIQ==}
     dev: false
 
   /react-toastify/9.0.7_biqbaboplfbrettd7655fr4n2y:
