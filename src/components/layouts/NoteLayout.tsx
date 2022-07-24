@@ -1,7 +1,10 @@
+import clsx from 'clsx'
 import dayjs from 'dayjs'
 import { observer } from 'mobx-react-lite'
 import type { ReactNode } from 'react'
 import { forwardRef, useCallback } from 'react'
+
+import type { NoteModel } from '@mx-space/api-client'
 
 import { NoteTimelineList } from '~/components/in-page/Note/NoteTimelineList'
 import { FloatPopover } from '~/components/universal/FloatPopover'
@@ -15,7 +18,43 @@ import { useStore } from '~/store'
 import { apiClient } from '~/utils/client'
 import { resolveUrl } from '~/utils/utils'
 
+import { ClientOnly } from '../universal/ClientOnly'
 import { IconTransition } from '../universal/IconTransition'
+
+const bannerClassNames = {
+  info: `bg-light-blue-50 dark:bg-light-blue-800 dark:text-white`,
+  warning: `bg-orange-100 dark:bg-orange-800 dark:text-white`,
+  error: `bg-rose-100 dark:bg-rose-800 dark:text-white`,
+  success: `bg-emerald-100 dark:bg-emerald-800 dark:text-white`,
+  secondary: `bg-sky-100 dark:bg-sky-800 dark:text-white`,
+}
+const useNoteMetaBanner = (note?: NoteModel) => {
+  if (!note) {
+    return
+  }
+  const meta = note?.meta
+  const banner = meta?.banner as {
+    type: string
+    message: string
+    className: string
+  }
+
+  if (!banner) {
+    return
+  }
+
+  if (typeof banner === 'string') {
+    return {
+      type: 'info',
+      message: banner,
+      className: bannerClassNames.info,
+    }
+  }
+  banner.type ??= 'info'
+  banner.className ??= bannerClassNames[banner.type]
+
+  return banner
+}
 
 interface NoteLayoutProps {
   title: string
@@ -36,6 +75,7 @@ export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
     } = useStore()
     const note = noteStore.get(id)
     const bookmark = note?.hasMemory
+    const banner = useNoteMetaBanner(note)
     const onMarkToggle = useCallback(async () => {
       await apiClient.note.proxy(id).patch({ data: { hasMemory: !bookmark } })
     }, [bookmark, id])
@@ -51,37 +91,49 @@ export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
           timeout={0}
         >
           <div className={'note-article relative'}>
-            <div className="title-headline text-light-brown dark:text-shizuku-text">
-              <span className="inline-flex items-center">
-                <time className="font-medium">{dateFormat}</time>
-                <div className="ml-4 inline-flex space-x-2 items-center">
-                  {isLogged ? (
-                    <IconTransition
-                      currentState={bookmark ? 'solid' : 'regular'}
-                      regularIcon={
-                        <RegularBookmark
-                          className="cursor-pointer"
-                          onClick={onMarkToggle}
-                        />
-                      }
-                      solidIcon={
-                        <SolidBookmark
-                          className="text-red cursor-pointer"
-                          onClick={onMarkToggle}
-                        />
-                      }
-                    />
-                  ) : bookmark ? (
-                    <SolidBookmark className="text-red" />
-                  ) : null}
-                  {note?.hide && (
-                    <FluentEyeHide20Regular
-                      className={!isLogged ? 'text-red' : ''}
-                    />
-                  )}
-                </div>
-              </span>
-            </div>
+            <ClientOnly>
+              <div className="title-headline text-light-brown dark:text-shizuku-text">
+                <span className="inline-flex items-center">
+                  <time className="font-medium">{dateFormat}</time>
+                  <div className="ml-4 inline-flex space-x-2 items-center">
+                    {isLogged ? (
+                      <IconTransition
+                        currentState={bookmark ? 'solid' : 'regular'}
+                        regularIcon={
+                          <RegularBookmark
+                            className="cursor-pointer"
+                            onClick={onMarkToggle}
+                          />
+                        }
+                        solidIcon={
+                          <SolidBookmark
+                            className="text-red cursor-pointer"
+                            onClick={onMarkToggle}
+                          />
+                        }
+                      />
+                    ) : bookmark ? (
+                      <SolidBookmark className="text-red" />
+                    ) : null}
+                    {note?.hide && (
+                      <FluentEyeHide20Regular
+                        className={!isLogged ? 'text-red' : ''}
+                      />
+                    )}
+                  </div>
+                </span>
+              </div>
+            </ClientOnly>
+            {banner && (
+              <div
+                className={clsx(
+                  'mt-8 p-4 text-center ml-[calc(-3em)] mr-[calc(-3em)] leading-8',
+                  banner.className,
+                )}
+              >
+                {banner.message}
+              </div>
+            )}
             <div>
               <h1 className="text-center !mt-8 !before:hidden headline text-brown dark:text-shizuku-text">
                 <FloatPopover

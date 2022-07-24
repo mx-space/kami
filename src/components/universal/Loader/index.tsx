@@ -7,7 +7,7 @@ const Loader: FC = memo(() => {
   const ref = useRef<HTMLDivElement>(null)
   return (
     <>
-      <div className="loader" ref={ref}></div>
+      <div className="loader" ref={ref} />
       <div className="loader-logo">
         <CustomLogo
           className="animation"
