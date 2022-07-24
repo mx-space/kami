@@ -60,8 +60,8 @@ export const NoteFooterNavigation: FC<{ id: string }> = observer(({ id }) => {
                       router.push('/notes/[id]', `/notes/${prev.nid}`)
                     }}
                   >
-                    <IcRoundKeyboardDoubleArrowRight />
                     <span>后一篇</span>
+                    <IcRoundKeyboardDoubleArrowRight />
                   </div>
                 </>
               )}
