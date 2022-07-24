@@ -178,7 +178,7 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
     let timer: any
     if (isSecret) {
       timer = setTimeout(() => {
-        message.info('刷新以查看解锁的文章', 3)
+        message.info('刷新以查看解锁的文章', 10e3)
       }, +secretDate - +new Date())
     }
     return () => {
@@ -234,7 +234,7 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
         <div className="pb-4" />
         {note.topic && <NoteTopic noteId={props.id} topic={note.topic} />}
         <NoteFooterActionBarForMobile id={props.id} />
-        <div className="pb-4"></div>
+        <div className="pb-4" />
         <NoteFooterActionBar id={props.id} />
       </NoteLayout>
       {!isSecret && (
