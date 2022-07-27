@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 overrides:
   react-use: 17.4.0
-  '@types/react': 17.0.47
+  '@types/react': 17.0.48
 
 specifiers:
   '@floating-ui/react-dom': 1.0.0
@@ -18,7 +18,7 @@ specifiers:
   '@types/markdown-escape': 1.1.0
   '@types/node': 17.0.18
   '@types/randomcolor': 0.5.6
-  '@types/react': 17.0.47
+  '@types/react': 17.0.48
   '@types/react-color': 3.0.6
   '@types/react-dom': 18.0.6
   '@types/react-transition-group': 4.4.5
@@ -124,7 +124,7 @@ devDependencies:
   '@types/markdown-escape': 1.1.0
   '@types/node': 17.0.18
   '@types/randomcolor': 0.5.6
-  '@types/react': 17.0.47
+  '@types/react': 17.0.48
   '@types/react-color': 3.0.6
   '@types/react-dom': 18.0.6
   '@types/react-transition-group': 4.4.5
@@ -2007,24 +2007,24 @@ packages:
   /@types/react-color/3.0.6:
     resolution: {integrity: sha512-OzPIO5AyRmLA7PlOyISlgabpYUa3En74LP8mTMa0veCA719SvYQov4WLMsHvCgXP+L+KI9yGhYnqZafVGG0P4w==}
     dependencies:
-      '@types/react': 17.0.47
+      '@types/react': 17.0.48
       '@types/reactcss': 1.2.6
     dev: true
 
   /@types/react-dom/18.0.6:
     resolution: {integrity: sha512-/5OFZgfIPSwy+YuIBP/FgJnQnsxhZhjjrnxudMddeblOouIodEQ75X14Rr4wGSG/bknL+Omy9iWlLo1u/9GzAA==}
     dependencies:
-      '@types/react': 17.0.47
+      '@types/react': 17.0.48
     dev: true
 
   /@types/react-transition-group/4.4.5:
     resolution: {integrity: sha512-juKD/eiSM3/xZYzjuzH6ZwpP+/lejltmiS3QEzV/vmb/Q8+HfDmxu+Baga8UEMGBqV88Nbg4l2hY/K2DkyaLLA==}
     dependencies:
-      '@types/react': 17.0.47
+      '@types/react': 17.0.48
     dev: true
 
-  /@types/react/17.0.47:
-    resolution: {integrity: sha512-mk0BL8zBinf2ozNr3qPnlu1oyVTYq+4V7WA76RgxUAtf0Em/Wbid38KN6n4abEkvO4xMTBWmnP1FtQzgkEiJoA==}
+  /@types/react/17.0.48:
+    resolution: {integrity: sha512-zJ6IYlJ8cYYxiJfUaZOQee4lh99mFihBoqkOSEGV+dFi9leROW6+PgstzQ+w3gWTnUfskALtQPGHK6dYmPj+2A==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
@@ -2034,7 +2034,7 @@ packages:
   /@types/reactcss/1.2.6:
     resolution: {integrity: sha512-qaIzpCuXNWomGR1Xq8SCFTtF4v8V27Y6f+b9+bzHiv087MylI/nTCqqdChNeWS7tslgROmYB7yeiruWX7WnqNg==}
     dependencies:
-      '@types/react': 17.0.47
+      '@types/react': 17.0.48
     dev: true
 
   /@types/remove-markdown/0.3.1:
