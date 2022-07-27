@@ -91,7 +91,7 @@ const Progress: FC = memo(() => {
           duration={PROGRESS_DURATION / 1000}
           decimals={8}
           start={prevPercentYear ?? 0}
-        ></CountUp>
+        />
         %
       </p>
       <p className="my-4">
@@ -102,7 +102,7 @@ const Progress: FC = memo(() => {
           useEasing={false}
           decimals={8}
           start={prevPercentDay ?? 0}
-        ></CountUp>
+        />
         %
       </p>
     </Fragment>
@@ -265,7 +265,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
                         onClick={() => {
                           router.push({ query: { memory: true } })
                         }}
-                      ></SolidBookmark>
+                      />
                     )}
 
                     <span className={'meta'}>

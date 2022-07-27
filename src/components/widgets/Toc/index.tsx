@@ -28,7 +28,7 @@ export const Toc: FC<TocProps> = memo(
     const headings = useMemo(() => {
       return Array.from($headings).map((el) => {
         const depth = +el.tagName.slice(1)
-        const title = el.id
+        const title = el.id || el.textContent || ''
 
         const index = Number(el.dataset['index'])
 
@@ -92,7 +92,7 @@ export const Toc: FC<TocProps> = memo(
                 return (
                   <RightLeftTransitionView
                     timeout={{ enter: 100 * i }}
-                    key={heading.depth}
+                    key={`${heading.index}${heading.title}`}
                   >
                     <TocItem
                       index={heading.index}

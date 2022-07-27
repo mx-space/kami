@@ -1,6 +1,8 @@
 import omit from 'lodash-es/omit'
 import type { NextPage } from 'next'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 
 import type {
@@ -21,8 +23,14 @@ interface CategoryListViewProps {
   children: CategoryWithChildrenModel['children']
 }
 
+const isViewedPath = new Set()
 const CategoryListView: NextPage<CategoryListViewProps> = (props) => {
   const { category, children } = props
+
+  const { asPath } = useRouter()
+  useEffect(() => {
+    isViewedPath.add(asPath)
+  }, [asPath])
 
   return (
     <ArticleLayout
@@ -37,7 +45,7 @@ const CategoryListView: NextPage<CategoryListViewProps> = (props) => {
       <article className="article-list">
         <TransitionGroup
           key={category.id}
-          appear
+          appear={!isViewedPath.has(asPath)}
           component={TimelineListWrapper}
         >
           {children.map((child, i) => {
