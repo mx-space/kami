@@ -43,7 +43,7 @@ const Card: FC<CardProps> = (props) => {
           <img src={cover} className="dark:brightness-50 dark:filter" />
         )}
       </div>
-      <div className={styles['card-header']}></div>
+      <div className={styles['card-header']} />
       {title && (
         <div className={styles['card-title']}>
           <h3>{title}</h3>

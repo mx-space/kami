@@ -195,7 +195,7 @@ export const FloatPopover: FC<
               {...(trigger === 'hover' || trigger === 'both' ? listener : {})}
               ref={containerRef}
             >
-              <div ref={setContainerAnchorRef}></div>
+              <div ref={setContainerAnchorRef} />
               {open && (
                 <div
                   className={

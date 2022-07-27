@@ -81,7 +81,7 @@ export const MenuList: FC = memo(() => {
         <div
           className={styles['anchor-ball']}
           style={{ left: `${ballOffsetLeft}px` }}
-        ></div>
+        />
       ) : null}
     </div>
   )

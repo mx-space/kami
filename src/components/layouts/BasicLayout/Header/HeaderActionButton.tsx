@@ -21,7 +21,7 @@ export const HeaderActionButton: FC<JSX.IntrinsicElements['button']> = (
         className,
       )}
       {...rest}
-    ></button>
+    />
   )
 }
 export const HeaderActionButtonsContainer = memo((props) => {

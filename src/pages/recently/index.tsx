@@ -115,7 +115,7 @@ const RecentlyPage: NextPage = () => {
       <Seo title="动态" />
       <h2 className="text-opacity-80">谢谢你听我诉说</h2>
       {isLogged && <RecentlyBox />}
-      <div className="pb-4"></div>
+      <div className="pb-4" />
       {data.length === 0 && loading ? (
         <Loading />
       ) : (
@@ -133,7 +133,7 @@ const RecentlyPage: NextPage = () => {
                     )}
                   >
                     <div className="overflow-hidden">
-                      <Markdown value={d.content}></Markdown>
+                      <Markdown value={d.content} />
                       {d.ref && <RefPreview refModel={d.ref} />}
                     </div>
 
@@ -149,7 +149,7 @@ const RecentlyPage: NextPage = () => {
                     )}
                   </div>
 
-                  <div className="clear-both"></div>
+                  <div className="clear-both" />
                 </Fragment>
               ))}
             </div>

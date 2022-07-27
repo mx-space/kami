@@ -25,7 +25,7 @@ export const NoDataErrorView: FC = () => {
         style={{
           backgroundImage: `url("https://fastly.jsdelivr.net/gh/mx-space/docs-images@master/images/chichi-1.jpeg")`,
         }}
-      ></div>
+      />
     </>
   )
 }

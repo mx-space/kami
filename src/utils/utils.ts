@@ -17,7 +17,7 @@ export const escapeHTMLTag = (html: string) => {
 
 const _noop = {}
 export const noop = new Proxy(_noop, {
-  get(a, b, c) {
+  get() {
     return noop
   },
   apply() {

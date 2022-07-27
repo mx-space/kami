@@ -54,7 +54,7 @@ export const Avatar: FC<AvatarProps> = observer(({ src }) => {
           style={
             ready ? { backgroundImage: `url(${src})`, opacity: 1 } : undefined
           }
-        ></div>
+        />
       </LazyLoad>
     </div>
   )

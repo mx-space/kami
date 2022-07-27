@@ -42,7 +42,7 @@ const _ImpressionView: FC<ImpressionProps> = memo((props) => {
   return (
     <>
       {props.children}
-      {!impression && <div ref={ref}></div>}
+      {!impression && <div ref={ref} />}
     </>
   )
 })

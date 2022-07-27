@@ -182,7 +182,7 @@ export const MusicMiniPlayer = forwardRef<
             'bg-cover bg-center bg-no-repeat h-full w-full',
           )}
           style={{ backgroundImage: `url(${cur.pic})` }}
-        ></div>
+        />
       ),
     [cur?.pic],
   )
@@ -209,18 +209,18 @@ export const MusicMiniPlayer = forwardRef<
                 <path
                   d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18a1 1 0 0 0 0-1.69L9.54 5.98A.998.998 0 0 0 8 6.82z"
                   fill="currentColor"
-                ></path>
+                />
               </svg>
             ) : (
               <svg width="1em" height="1em" viewBox="0 0 32 32">
                 <path
                   d="M12 6h-2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2z"
                   fill="currentColor"
-                ></path>
+                />
                 <path
                   d="M22 6h-2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2z"
                   fill="currentColor"
-                ></path>
+                />
               </svg>
             )}
           </div>
@@ -272,7 +272,7 @@ const BottomProgressBar = observer(() => {
         style={{
           transform: `scaleX(${progress})`,
         }}
-      ></div>
+      />
     </RootPortal>
   )
 })

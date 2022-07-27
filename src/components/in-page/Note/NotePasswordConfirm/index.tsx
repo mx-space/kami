@@ -12,7 +12,7 @@ export const NotePasswordConfrim: React.FC<{
         <strong className="font-medium text-2xl">此文章需要密码</strong>
       </p>
       <div className="space-x-3 text-center space-y-3">
-        <Input ref={ref} type="password"></Input>
+        <Input ref={ref} type="password" />
         <button
           className="btn yellow flex-shrink-0"
           onClick={() => {

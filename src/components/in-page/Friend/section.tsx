@@ -110,7 +110,7 @@ const CircleAvatar: FC<{ focus: boolean; src: string; size: number }> = (
   const C = useMemo(() => size * Math.PI, [size])
   return (
     <span className="inline-block relative">
-      <Avatar imageUrl={src} wrapperProps={friendAvatarWrapperProps}></Avatar>
+      <Avatar imageUrl={src} wrapperProps={friendAvatarWrapperProps} />
       <span className={styles['border']}>
         <svg>
           <circle
@@ -121,7 +121,7 @@ const CircleAvatar: FC<{ focus: boolean; src: string; size: number }> = (
               strokeDasharray: `${C}px`,
               strokeDashoffset: !focus ? `${C}px` : '0',
             }}
-          ></circle>
+          />
         </svg>
       </span>
     </span>

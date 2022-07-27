@@ -41,7 +41,7 @@ export const Loading: FC<LoadingProps> = memo(({ loadingText }) => {
                 keySplines="0.45 0 0.9 0.55;0 0.45 0.55 0.9"
                 keyTimes="0;0.5;1"
                 values="23;77;23"
-              ></animate>
+              />
             )}
           </circle>
         </svg>

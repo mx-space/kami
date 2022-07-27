@@ -118,7 +118,7 @@ export const Input = memo(
                     // '--C': `${C}px`,
                   }}
                   className={styles['rect']}
-                ></rect>
+                />
               </svg>
             </div>
           )}

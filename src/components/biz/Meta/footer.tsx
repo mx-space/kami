@@ -49,7 +49,7 @@ export const MetaFooter = memo(() => {
               src={`${analyze.umami.url.replace(/\/$/, '')}/${
                 analyze.umami.jsname || 'umami'
               }.js`}
-            ></script>,
+            />,
           )
         }
 

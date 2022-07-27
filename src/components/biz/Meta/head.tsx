@@ -42,9 +42,7 @@ export const DynamicHeadMeta: FC = memo(() => {
         />
       ) : null}
 
-      {style ? (
-        <style dangerouslySetInnerHTML={{ __html: style }}></style>
-      ) : null}
+      {style ? <style dangerouslySetInnerHTML={{ __html: style }} /> : null}
       {css && css.length
         ? css.map((href, i) => <link rel="stylesheet" href={href} key={i} />)
         : null}

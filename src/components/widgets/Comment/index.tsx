@@ -148,7 +148,7 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
       ) : (
         <h1 className="headline">主人禁止了评论</h1>
       )}
-      <span id="comment-anchor"></span>
+      <span id="comment-anchor" />
       {commentShow ? (
         <Fragment>
           <Comments />

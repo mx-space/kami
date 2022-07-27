@@ -214,7 +214,7 @@ const PlaceholderImage = memo(
           width,
           color: backgroundColor,
         }}
-      ></div>
+      />
     )
   }),
 )

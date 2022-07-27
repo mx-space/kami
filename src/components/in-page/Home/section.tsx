@@ -154,7 +154,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
             <LikeButton checked width={'120px'} />
           </div>
         }
-      ></NoticePanel>
+      />
     </SectionWrap>,
   ]
 

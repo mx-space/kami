@@ -136,7 +136,7 @@ export const PostBlock: FC<PostBlockProps> = observer((props) => {
               return r.length >= 250 ? `${r.slice(0, 250)}..` : r
             }, [text])}
           </p>
-          <div className="mb-10"></div>
+          <div className="mb-10" />
         </article>
         <section className={styles.navigator}>
           <button className={styles.btn} onClick={goToPost}>
@@ -144,7 +144,7 @@ export const PostBlock: FC<PostBlockProps> = observer((props) => {
           </button>
         </section>
       </div>
-      <div className="pb-8 mb-4"></div>
+      <div className="pb-8 mb-4" />
     </>
   )
 })

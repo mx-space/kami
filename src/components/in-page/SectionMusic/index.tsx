@@ -47,7 +47,7 @@ export const SectionMusic: FC<SectionMusicProps> = memo((props) => {
     <section className={styles['kami-music']}>
       <div className={styles['music-cover']}>
         <div className={clsx(styles['fixed-cover'], styles['sticky-cover'])}>
-          <img src={props.src}></img>
+          <img src={props.src} />
           <h3 className="leading-[1.8]">{props.name}</h3>
         </div>
       </div>

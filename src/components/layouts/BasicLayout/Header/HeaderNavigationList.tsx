@@ -108,11 +108,7 @@ export const HeaderNavigationList: FC = observer(() => {
             role="button"
             aria-label={_menu.title || 'header nav'}
           >
-            <MenuLink
-              isPublicUrl={isPublicUrl}
-              menu={_menu}
-              index={index}
-            ></MenuLink>
+            <MenuLink isPublicUrl={isPublicUrl} menu={_menu} index={index} />
           </div>
         )
       })}

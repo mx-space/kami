@@ -38,30 +38,30 @@ const FriendsView: NextPage<
         {friends.length > 0 && (
           <>
             {collections.length !== 0 && renderTitle('我的朋友')}
-            <FriendSection data={friends}></FriendSection>
+            <FriendSection data={friends} />
           </>
         )}
         {collections.length > 0 && (
           <>
             {friends.length !== 0 && renderTitle('我的收藏')}
-            <FavoriteSection data={collections}></FavoriteSection>
+            <FavoriteSection data={collections} />
           </>
         )}
 
         {outdated.length > 0 && (
           <>
             {friends.length !== 0 && renderTitle('以下站点无法访问，已失联')}
-            <OutdateSection data={outdated}></OutdateSection>
+            <OutdateSection data={outdated} />
           </>
         )}
         {banned.length > 0 && (
           <>
             {friends.length !== 0 && renderTitle('以下站点不合规，已被禁止')}
-            <BannedSection data={banned}></BannedSection>
+            <BannedSection data={banned} />
           </>
         )}
       </article>
-      <div className="pb-12"></div>
+      <div className="pb-12" />
       <Footer />
     </ArticleLayout>
   )

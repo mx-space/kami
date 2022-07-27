@@ -44,7 +44,7 @@ export const Pagination: FC<PaginationProps> = (props) => {
         <path
           fill="currentColor"
           d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6l6 6l1.41-1.41z"
-        ></path>
+        />
       </svg>
 
       <div className={styles['nav']}>
@@ -88,7 +88,7 @@ export const Pagination: FC<PaginationProps> = (props) => {
         <path
           fill="currentColor"
           d="M8.59 16.59L13.17 12L8.59 7.41L10 6l6 6l-6 6l-1.41-1.41z"
-        ></path>
+        />
       </svg>
     </div>
   )
