@@ -7,11 +7,7 @@ import type { BaseTransitionViewProps } from './base'
 import { BaseTransitionView } from './base'
 
 const name = `bottom-up-spring`
-genSpringKeyframes(
-  name,
-  { translateY: '3em', opacity: 0 },
-  { translateY: '0em', opacity: 1 },
-)
+
 const defaultStyle = {
   opacity: 0,
 }
@@ -25,4 +21,10 @@ const transitionStyles = {
 
 export const BottomUpTransitionView: FC<
   BaseTransitionViewProps & Partial<TransitionProps>
-> = BaseTransitionView(defaultStyle, transitionStyles)
+> = BaseTransitionView(defaultStyle, transitionStyles, () =>
+  genSpringKeyframes(
+    name,
+    { translateY: '3em', opacity: 0 },
+    { translateY: '0em', opacity: 1 },
+  ),
+)

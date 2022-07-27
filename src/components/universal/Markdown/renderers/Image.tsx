@@ -5,6 +5,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 
 import type { ImageLazyRef } from '~/components/universal/Image'
 import { ImageLazy } from '~/components/universal/Image'
+import { useIsClient } from '~/hooks/use-is-client'
 import { useStore } from '~/store'
 import { calculateDimensions } from '~/utils/images'
 
@@ -64,7 +65,7 @@ const _Image: FC<{ src: string; alt?: string }> = observer(({ src, alt }) => {
   }, [])
 
   if (isPrintMode) {
-    return <img src={src} alt={alt}></img>
+    return <img src={src} alt={alt} />
   }
 
   const { accent, height, width } = images.get(src) || {
@@ -99,7 +100,8 @@ const _Image: FC<{ src: string; alt?: string }> = observer(({ src, alt }) => {
   )
 })
 const style = { padding: '1rem 0' }
-export const Image =
-  typeof document === 'undefined'
-    ? ({ src, alt }) => <img src={src} alt={alt} />
-    : _Image
+export const Image: FC<any> = (props) => {
+  const { src, alt } = props
+  const isClient = useIsClient()
+  return !isClient ? <img src={src} alt={alt} /> : <_Image {...props} />
+}

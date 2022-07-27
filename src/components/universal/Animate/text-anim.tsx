@@ -1,12 +1,9 @@
 import type { FC } from 'react'
 
+import { useOnceClientEffect } from '~/hooks/use-once-client-effect'
 import { genSpringKeyframes } from '~/utils/spring'
 
-const [name] = genSpringKeyframes(
-  'text-up',
-  { translateY: '10px', opacity: 0 },
-  { translateY: '0px', opacity: 1 },
-)
+const springName = 'text-up'
 
 export const TextFade: FC<
   {
@@ -25,6 +22,15 @@ export const TextFade: FC<
     text,
     ...rest
   } = props
+
+  useOnceClientEffect(() => {
+    genSpringKeyframes(
+      springName,
+      { translateY: '10px', opacity: 0 },
+      { translateY: '0px', opacity: 1 },
+    )
+  })
+
   if (!appear) {
     return <div {...rest}>{text ?? children}</div>
   }
@@ -35,7 +41,7 @@ export const TextFade: FC<
           key={i}
           className="inline-block whitespace-pre"
           style={{
-            animation: `${name} ${duration}ms both linear`,
+            animation: `${springName} ${duration}ms both linear`,
             animationDelay: `${i * delay}ms`,
           }}
         >

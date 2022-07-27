@@ -8,12 +8,6 @@ import { BaseTransitionView } from './base'
 
 const name = `right-left-spring`
 
-genSpringKeyframes(
-  name,
-  { translateX: '3em', opacity: 0 },
-  { translateX: '0em', opacity: 1 },
-)
-
 const defaultStyle = {
   opacity: 0,
 }
@@ -27,4 +21,10 @@ const transitionStyles = {
 
 export const RightLeftTransitionView: FC<
   BaseTransitionViewProps & Partial<TransitionProps>
-> = BaseTransitionView(defaultStyle, transitionStyles)
+> = BaseTransitionView(defaultStyle, transitionStyles, () => {
+  genSpringKeyframes(
+    name,
+    { translateX: '3em', opacity: 0 },
+    { translateX: '0em', opacity: 1 },
+  )
+})

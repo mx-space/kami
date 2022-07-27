@@ -78,7 +78,7 @@ const OverLay: FC<OverlayProps> = (props) => {
                 blur ? { backdropFilter: 'blur(5px)' } : {},
               )}
               onClick={onClose}
-            ></div>
+            />
           </FadeInOutTransitionView>
         </div>
       )}

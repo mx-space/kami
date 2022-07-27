@@ -1,6 +1,9 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import type { ElementType, FC } from 'react'
 import { Transition } from 'react-transition-group'
 import type { TransitionProps } from 'react-transition-group/Transition'
+
+import { useOnceClientEffect } from '~/hooks/use-once-client-effect'
 
 export interface BaseTransitionViewProps {
   id?: string
@@ -11,9 +14,14 @@ export interface BaseTransitionViewProps {
 export const BaseTransitionView: (
   defaultStyle: any,
   transitionStyles: any,
+  genSpringEffectFn?: () => any,
 ) => FC<BaseTransitionViewProps & Partial<TransitionProps>> =
-  (defaultStyle, transitionStyles) => (props) => {
+  (defaultStyle, transitionStyles, genSpringEffectFn) => (props) => {
     const { id, className, component: Component = 'div', ...rest } = props
+    useOnceClientEffect(() => {
+      genSpringEffectFn?.()
+    })
+
     return (
       <Transition
         key={id}

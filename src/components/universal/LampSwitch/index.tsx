@@ -3,34 +3,41 @@ import { memo, useRef } from 'react'
 
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
+import { useOnceClientEffect } from '~/hooks/use-once-client-effect'
 import { NoSSRWrapper } from '~/utils/no-ssr'
 import { genSpringKeyframes } from '~/utils/spring'
 
 import styles from './index.module.css'
 
-const [down] = genSpringKeyframes(
-  'sakura',
-  {
-    translateY: '0vh',
-  },
-  {
-    translateY: '10vh',
-  },
-)
+const sakuraSpringNameUp = 'sakura-up'
+const sakuraSpringNameDown = 'sakura-down'
 
-const [up] = genSpringKeyframes(
-  'sakura-up',
-  {
-    translateY: '10vh',
-  },
-  {
-    translateY: '0',
-  },
-)
 export const LampSwitch = NoSSRWrapper(
   memo<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>>(
     (props = {}) => {
       const containerRef = useRef<HTMLDivElement>(null)
+
+      useOnceClientEffect(() => {
+        genSpringKeyframes(
+          sakuraSpringNameDown,
+          {
+            translateY: '0vh',
+          },
+          {
+            translateY: '10vh',
+          },
+        )
+
+        genSpringKeyframes(
+          sakuraSpringNameUp,
+          {
+            translateY: '10vh',
+          },
+          {
+            translateY: '0',
+          },
+        )
+      })
 
       const { event } = useAnalyze()
       return (
@@ -40,7 +47,7 @@ export const LampSwitch = NoSSRWrapper(
           data-hide-print
         >
           <div className={styles['select-line']}>
-            <div className={styles['line']}></div>
+            <div className={styles['line']} />
           </div>
           <div className={styles['sakura-wrap']} {...props}>
             <div
@@ -52,10 +59,10 @@ export const LampSwitch = NoSSRWrapper(
                 })
                 if (containerRef.current) {
                   // containerRef.current.style.top = '0'
-                  containerRef.current.style.animation = `${down} .5s steps(60) both`
+                  containerRef.current.style.animation = `${sakuraSpringNameDown} .5s steps(60) both`
                   containerRef.current.onanimationend = () => {
                     if (containerRef.current) {
-                      containerRef.current.style.animation = `${up} .5s steps(60) both`
+                      containerRef.current.style.animation = `${sakuraSpringNameUp} .5s steps(60) both`
 
                       containerRef.current.onanimationend = () => {
                         containerRef.current!.style.animation = ''
@@ -64,7 +71,7 @@ export const LampSwitch = NoSSRWrapper(
                   }
                 }
               }}
-            ></div>
+            />
           </div>
         </div>
       )
