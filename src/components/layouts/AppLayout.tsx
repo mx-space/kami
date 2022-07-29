@@ -7,7 +7,6 @@ import type { AggregateRoot } from '@mx-space/api-client'
 
 import { MetaFooter } from '~/components/biz/Meta/footer'
 import { DynamicHeadMeta } from '~/components/biz/Meta/head'
-import Loader from '~/components/universal/Loader'
 import { ModalStackProvider } from '~/components/universal/Modal/stack.context'
 import { useRootTrackerListener } from '~/hooks/use-analyze'
 import { useCheckLogged } from '~/hooks/use-check-logged'
@@ -62,7 +61,7 @@ export const Content: FC = observer((props) => {
       />
 
       <div id="next">{props.children}</div>
-      <Loader />
+
       <MetaFooter />
     </ModalStackProvider>
   )
