@@ -256,7 +256,12 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
                         day: '2-digit',
                       }).format(item.date)}
                     </span>
-                    <Link href={item.href} as={item.as} className="leading-6">
+                    <Link
+                      target="_blank"
+                      href={item.href}
+                      as={item.as}
+                      className="leading-6"
+                    >
                       <span className={'title'}>{item.title}</span>
                     </Link>
                     {item.important && (

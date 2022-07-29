@@ -68,7 +68,9 @@ const TopicDetailPage: NextPage<TopicModel> = (props) => {
               const date = new Date(note.created)
               return (
                 <RightLeftTransitionView key={note.id} component={'li'}>
-                  <Link href={`/notes/${note.nid}`}>{note.title}</Link>
+                  <Link href={`/notes/${note.nid}`} target="_blank">
+                    {note.title}
+                  </Link>
                   <span className={'meta'}>
                     {(date.getMonth() + 1).toString().padStart(2, '0')}/
                     {date.getDate().toString().padStart(2, '0')}/
