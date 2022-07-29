@@ -17,7 +17,7 @@ import { Loader } from '~/components/universal/Loader'
 import type { InitialDataType } from '~/context/initial-data'
 import { InitialContextProvider } from '~/context/initial-data'
 import { RootStoreProvider } from '~/context/root-store'
-import { isClientSide, isDev } from '~/utils/env'
+import { isDev } from '~/utils/env'
 
 import { Content } from '../components/layouts/AppLayout'
 import { attachRequestProxy, fetchInitialData } from '../utils/app'
@@ -25,12 +25,14 @@ import { attachRequestProxy, fetchInitialData } from '../utils/app'
 interface DataModel {
   initData: InitialDataType
 }
-const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
-  props,
-) => {
+const App: FC<
+  DataModel & {
+    Component: any
+    pageProps: any
+    err: any
+  }
+> = (props) => {
   const { initData, Component, pageProps } = props
-
-  isClientSide() && document.body.classList.remove('loading')
 
   const router = useRouter()
 
@@ -99,10 +101,10 @@ App.getInitialProps = async (props: AppContext) => {
       return null
     }
   })()
+
   return {
     ...appProps,
     initData: data,
-    referer: request?.headers.referer,
   }
 }
 

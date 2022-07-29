@@ -3,7 +3,7 @@ import { memo, useRef } from 'react'
 
 import { CustomLogo } from '~/components/universal/Logo'
 
-export const Loader: FC = memo(() => {
+export const Loader: FC<{ onFinish?: () => any }> = memo((props) => {
   const ref = useRef<HTMLDivElement>(null)
   return (
     <>
@@ -43,19 +43,7 @@ export const Loader: FC = memo(() => {
             transform: translate(-50%, -50%) scale(1.5);
             animation: fade-out 1s ease-out;
           }
-          body.loading .loader:before {
-            pointer-events: all;
-            opacity: 1;
-            transition: opacity 0.2s;
-            animation: none;
-          }
-          body.loading .loader-logo {
-            transform: translate(-50%, -50%) scale(1);
-            transition: transform 0.8s cubic-bezier(0.5, 0, 0.5, 1.5);
-          }
-          body.loading .loader-logo .animation {
-            animation: none;
-          }
+
           @keyframes zoom-in {
             50% {
               transform: translate3d(0, 0, -300px);
@@ -90,6 +78,7 @@ export const Loader: FC = memo(() => {
           onAnimationEnd={(e) => {
             ref.current?.remove()
             ;(e.target as any)?.remove()
+            props.onFinish?.()
           }}
         />
       </div>
