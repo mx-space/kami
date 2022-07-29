@@ -24,7 +24,7 @@ export default class AppUIStore {
 
   shareData: { title: string; text?: string; url: string } | null = null
 
-  updatePosition(direction: 'up' | 'down', y: number) {
+  updatePosition(direction: 'up' | 'down' | null, y: number) {
     if (typeof document !== 'undefined') {
       this.position = y
       this.scrollDirection = direction

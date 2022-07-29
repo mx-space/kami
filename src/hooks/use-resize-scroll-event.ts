@@ -12,9 +12,16 @@ export const useResizeScrollEvent = () => {
     const handleScroll = throttle(
       () => {
         const currentY = document.documentElement.scrollTop
-        const direction = _currentY.current > currentY ? 'up' : 'down'
-        app.updatePosition(direction, currentY)
-        _currentY.current = currentY
+        const shouldUpdateDirection =
+          Math.abs(_currentY.current - currentY) > 100
+
+        if (shouldUpdateDirection) {
+          const direction = _currentY.current > currentY ? 'up' : 'down'
+          app.updatePosition(direction, currentY)
+          _currentY.current = currentY
+        } else {
+          app.updatePosition(app.scrollDirection, currentY)
+        }
       },
       16,
       { leading: false },
