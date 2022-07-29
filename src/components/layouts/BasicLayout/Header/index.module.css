@@ -1,7 +1,29 @@
 .header {
   @apply fixed top-0 left-0 right-0 overflow-hidden;
 
-  background-color: var(--bg-opacity);
+  height: 56px;
+  z-index: 5;
+
+  &::before {
+    @apply absolute inset-0;
+
+    backdrop-filter: blur(20px) saturate(180%);
+    transition: transform 0.5s, backdrop-filter 0.5s, opacity 0.5s;
+    background-color: var(--bg-opacity);
+    z-index: 0;
+    content: '';
+    opacity: var(--opacity);
+
+    @apply border-solid border-b border-black border-opacity-10;
+  }
+
+  &.hide {
+    transform: translateY(-100%);
+  }
+}
+
+:global(html.dark) .header::before {
+  @apply border-white border-opacity-10;
 }
 
 .head-swiper {
@@ -110,17 +132,6 @@
 
 .link-section {
   @apply mb-4;
-}
-
-.header {
-  height: 56px;
-  z-index: 5;
-  backdrop-filter: blur(20px) saturate(180%);
-  transition: transform 0.5s, backdrop-filter 0.5s;
-
-  &.hide {
-    transform: translateY(-100%);
-  }
 }
 
 .header-logo {

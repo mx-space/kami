@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
-import { Divider } from '~/components/universal/Divider'
 import { IcBaselineMenuOpen } from '~/components/universal/Icons'
 import { CustomLogo as Logo } from '~/components/universal/Logo'
 import { TrackerAction } from '~/constants/tracker'
@@ -108,9 +107,12 @@ export const Header: FC = observer(() => {
           ? styles['hide']
           : null,
       )}
+      style={
+        {
+          '--opacity': appStore.headerOpacity,
+        } as any
+      }
     >
-      <Divider className="!m-0 transform scale-y-50 absolute bottom-0 left-0 right-0" />
-
       <nav
         className={classNames(
           styles['nav-container'],

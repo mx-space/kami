@@ -50,6 +50,7 @@ export const ArticleLayout = memo(
           >
             <ArticleLayoutTitle animate={titleAnimate} />
             <BottomUpTransitionView
+              in
               timeout={useMemo(() => ({ enter: delay ?? 300 }), [delay])}
               key={id}
             >

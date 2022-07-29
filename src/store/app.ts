@@ -10,7 +10,7 @@ export default class AppUIStore {
 
   viewport: ViewportRecord = {} as any
 
-  position = 0
+  private position = 0
   scrollDirection: 'up' | 'down' | null = null
 
   colorMode: 'light' | 'dark' = 'light'
@@ -24,11 +24,16 @@ export default class AppUIStore {
 
   shareData: { title: string; text?: string; url: string } | null = null
 
-  updatePosition(direction: 'up' | 'down') {
+  updatePosition(direction: 'up' | 'down', y: number) {
     if (typeof document !== 'undefined') {
-      this.position = document.documentElement.scrollTop
+      this.position = y
       this.scrollDirection = direction
     }
+  }
+
+  get headerOpacity() {
+    const threshold = 50
+    return this.position >= threshold ? 1 : this.position / threshold
   }
 
   get isOverFirstScreenHeight() {

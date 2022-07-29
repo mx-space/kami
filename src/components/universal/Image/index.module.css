@@ -63,39 +63,35 @@
 }
 
 @keyframes blur {
-  from {
-    filter: blur(10px);
-  }
-
-  to {
-    filter: blur(0);
+   {
+    0% {
+      opacity: 0;
+      filter: brightness(1) blur(20px);
+    }
+    10% {
+      opacity: 1;
+      filter: brightness(2) blur(10px);
+    }
+    100% {
+      opacity: 1;
+      filter: brightness(1) blur(0);
+    }
   }
 }
 
 @keyframes blur-dark {
-  from {
-    filter: blur(10px) brightness(0.6);
-  }
-
-  to {
-    filter: blur(0) brightness(0.6);
-  }
-}
-
-/* @keyframes blur {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
+   {
+    0% {
+      opacity: 0;
+      filter: brightness(1) blur(20px);
+    }
+    10% {
+      opacity: 1;
+      filter: brightness(0.5) blur(10px);
+    }
+    100% {
+      opacity: 1;
+      filter: brightness(1) blur(0);
+    }
   }
 }
-@keyframes blur-dark {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
- */

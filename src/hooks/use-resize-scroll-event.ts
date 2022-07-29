@@ -13,10 +13,10 @@ export const useResizeScrollEvent = () => {
       () => {
         const currentY = document.documentElement.scrollTop
         const direction = _currentY.current > currentY ? 'up' : 'down'
-        app.updatePosition(direction)
+        app.updatePosition(direction, currentY)
         _currentY.current = currentY
       },
-      50,
+      16,
       { leading: false },
     )
 
