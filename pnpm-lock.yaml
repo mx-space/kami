@@ -64,7 +64,7 @@ specifiers:
   react-shortcut-guide: 0.3.3
   react-smooth-number-counter: https://github.com/Innei/react-smooth-number-counter.git
   react-toastify: 9.0.7
-  react-transition-group: 4.4.2
+  react-transition-group: 4.4.4
   react-use: 17.4.0
   remove-markdown: 0.5.0
   rimraf: '*'
@@ -107,7 +107,7 @@ dependencies:
   react-shortcut-guide: 0.3.3
   react-smooth-number-counter: github.com/Innei/react-smooth-number-counter/6be776817e507970a7e3177b8c3277b0b9d3e779
   react-toastify: 9.0.7_biqbaboplfbrettd7655fr4n2y
-  react-transition-group: 4.4.2_biqbaboplfbrettd7655fr4n2y
+  react-transition-group: 4.4.4_biqbaboplfbrettd7655fr4n2y
   react-use: 17.4.0_biqbaboplfbrettd7655fr4n2y
   remove-markdown: 0.5.0
   socket.io-client: 4.5.1
@@ -1305,13 +1305,6 @@ packages:
       '@babel/types': 7.18.9
       esutils: 2.0.3
     dev: true
-
-  /@babel/runtime/7.16.7:
-    resolution: {integrity: sha512-9E9FJowqAsytyOY6LG+1KuueckRL+aQW+mKvXRXnuFGyRAyepJPmEo9vgMfXUA6O9u3IeEdv9MAkppFcaQwogQ==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      regenerator-runtime: 0.13.9
-    dev: false
 
   /@babel/runtime/7.18.0:
     resolution: {integrity: sha512-YMQvx/6nKEaucl0MY56mwIG483xk8SDNdlUwb2Ts6FUpr7fm85DxEmsY18LXBNhcTz6tO6JwZV8w1W06v8UKeg==}
@@ -4832,7 +4825,7 @@ packages:
     dev: true
 
   /object-assign/4.1.1:
-    resolution: {integrity: sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=}
+    resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
 
   /object-inspect/1.12.2:
@@ -5685,8 +5678,8 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /react-transition-group/4.4.2_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-/RNYfRAMlZwDSr6z4zNKV6xu53/e2BuaBbGhbyYIXTrmgu/bGHzmqOs7mJSJBHy9Ud+ApHx3QjrkKSp1pxvlFg==}
+  /react-transition-group/4.4.4_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-TKS7/dTpwBKEG9nrzVK3qNzvaJyKzEIFB5xVtnKdjEk5wTstklWnNJ/N3RM6uKG8wm36nlgHTT7+UZT3LIFHLA==}
     peerDependencies:
       react: '>=16.6.0'
       react-dom: '>=16.6.0'
@@ -5694,7 +5687,7 @@ packages:
       react:
         optional: true
     dependencies:
-      '@babel/runtime': 7.16.7
+      '@babel/runtime': 7.18.0
       dom-helpers: 5.2.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
