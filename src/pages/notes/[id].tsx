@@ -1,6 +1,7 @@
 import type { AxiosError } from 'axios'
 import dayjs from 'dayjs'
-import { isEqual, omit } from 'lodash-es'
+import isEqual from 'lodash-es/isEqual'
+import omit from 'lodash-es/omit'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import type { NextPage } from 'next'

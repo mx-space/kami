@@ -1,4 +1,4 @@
-import { uniqBy } from 'lodash-es'
+import uniqBy from 'lodash-es/uniqBy'
 import { useMemo } from 'react'
 
 import { useInitialData, useKamiConfig } from './use-initial-data'

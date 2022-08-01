@@ -1,5 +1,5 @@
 import type { AxiosError } from 'axios'
-import { isNumber } from 'lodash-es'
+import isNumber from 'lodash-es/isNumber'
 import type { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import { useEffect } from 'react'

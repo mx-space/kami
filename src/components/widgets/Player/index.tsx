@@ -1,5 +1,5 @@
 import { default as classNames, default as clsx } from 'clsx'
-import { throttle } from 'lodash-es'
+import throttle from 'lodash-es/throttle'
 import { observer } from 'mobx-react-lite'
 import {
   forwardRef,

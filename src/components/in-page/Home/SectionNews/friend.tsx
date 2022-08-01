@@ -1,4 +1,4 @@
-import { shuffle } from 'lodash-es'
+import shuffle from 'lodash-es/shuffle'
 import type { FC } from 'react'
 import { memo, useEffect, useState } from 'react'
 
