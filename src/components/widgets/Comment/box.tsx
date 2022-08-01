@@ -1,5 +1,5 @@
-import { sample } from 'lodash-es'
 import omit from 'lodash-es/omit'
+import sample from 'lodash-es/sample'
 import markdownEscape from 'markdown-escape'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'

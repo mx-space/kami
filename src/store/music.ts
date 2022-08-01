@@ -1,4 +1,4 @@
-import { shuffle } from 'lodash-es'
+import shuffle from 'lodash-es/shuffle'
 import { makeAutoObservable } from 'mobx'
 
 export class MusicStore {

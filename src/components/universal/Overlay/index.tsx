@@ -1,5 +1,6 @@
 import { clsx } from 'clsx'
-import { isUndefined, merge } from 'lodash-es'
+import isUndefined from 'lodash-es/isUndefined'
+import merge from 'lodash-es/merge'
 import type { CSSProperties, FC, ReactNode } from 'react'
 import { memo, useEffect, useState } from 'react'
 

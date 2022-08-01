@@ -1,4 +1,4 @@
-import { shuffle } from 'lodash-es'
+import shuffle from 'lodash-es/shuffle'
 import type { NextPage } from 'next'
 import type { FC } from 'react'
 import { createElement, useEffect, useState } from 'react'

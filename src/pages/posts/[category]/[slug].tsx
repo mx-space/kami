@@ -1,6 +1,6 @@
 import { ImageSizeMetaContext } from 'context'
 import dayjs from 'dayjs'
-import { isEqual } from 'lodash-es'
+import isEqual from 'lodash-es/isEqual'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'

@@ -52,6 +52,7 @@ const Social: FC = NoSSRWrapper(() => {
   const config = useThemeConfig()
   const { doAnimation } = useIndexViewContext()
   const { social } = config.site
+
   return (
     <TransitionGroup appear={doAnimation} className="social-icons space-x-4">
       {social.map((item, i) => {

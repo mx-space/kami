@@ -1,5 +1,5 @@
 import { clsx } from 'clsx'
-import { range } from 'lodash-es'
+import range from 'lodash-es/range'
 import { observer } from 'mobx-react-lite'
 import dynamic from 'next/dynamic'
 import type { ElementType, FC, RefObject } from 'react'

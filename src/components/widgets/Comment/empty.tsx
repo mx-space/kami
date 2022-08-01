@@ -1,5 +1,5 @@
 import { clsx } from 'clsx'
-import { sample } from 'lodash-es'
+import sample from 'lodash-es/sample'
 import type { FC } from 'react'
 import { memo } from 'react'
 

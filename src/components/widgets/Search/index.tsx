@@ -1,6 +1,6 @@
 import { CanceledError } from 'axios'
 import { clsx } from 'clsx'
-import { throttle } from 'lodash-es'
+import throttle from 'lodash-es/throttle'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC, KeyboardEventHandler } from 'react'

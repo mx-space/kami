@@ -3,6 +3,7 @@ import { createElement, memo, useEffect } from 'react'
 
 import { CodiconGithubInverted } from '../Icons'
 import {
+  AkarIconsMention,
   FaSolidCircle,
   FaSolidCircleNotch,
   FaSolidComment,
@@ -16,6 +17,7 @@ import {
   IcTwotoneSignpost,
   IconParkOutlineTencentQq,
   IonBook,
+  JamRssFeed,
   MdiFlask,
   MdiTwitter,
   RiNeteaseCloudMusicLine,
@@ -39,6 +41,8 @@ export const iconMap = {
   faTwitter: MdiTwitter,
   faFlask: MdiFlask,
   faTv: IcBaselineLiveTv,
+  faFeed: JamRssFeed,
+  faMention: AkarIconsMention,
 }
 
 let hasAppended = false

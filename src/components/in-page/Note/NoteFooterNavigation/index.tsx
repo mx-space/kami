@@ -1,4 +1,3 @@
-import { noop } from 'lodash-es'
 import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
@@ -11,6 +10,7 @@ import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useStore } from '~/store'
 import { springScrollToTop } from '~/utils/spring'
+import { noop } from '~/utils/utils'
 
 import {
   IcRoundKeyboardDoubleArrowLeft,
