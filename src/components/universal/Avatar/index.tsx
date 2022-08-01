@@ -75,6 +75,7 @@ export const Avatar: FC<
               width={props.size}
               onLoad={() => setLoaded(true)}
               loading={lazy ? 'lazy' : 'eager'}
+              className="aspect-square"
             />
           </div>
         ) : props.text ? (

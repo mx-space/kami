@@ -9,6 +9,7 @@ export default defineConfig({
   darkMode: 'class',
   plugins: [
     require('windicss/plugin/line-clamp'),
+    require('windicss/plugin/aspect-ratio'),
     plugin(({ addComponents, addDynamic, variants }) => {
       const styles = {
         '.content-auto': {
