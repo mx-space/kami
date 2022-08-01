@@ -64,7 +64,7 @@ specifiers:
   react-shortcut-guide: 0.3.3
   react-smooth-number-counter: https://github.com/Innei/react-smooth-number-counter.git
   react-toastify: 9.0.7
-  react-transition-group: 4.4.4
+  react-transition-group: 4.4.5
   react-use: 17.4.0
   remove-markdown: 0.5.0
   rimraf: '*'
@@ -107,7 +107,7 @@ dependencies:
   react-shortcut-guide: 0.3.3
   react-smooth-number-counter: github.com/Innei/react-smooth-number-counter/6be776817e507970a7e3177b8c3277b0b9d3e779
   react-toastify: 9.0.7_biqbaboplfbrettd7655fr4n2y
-  react-transition-group: 4.4.4_biqbaboplfbrettd7655fr4n2y
+  react-transition-group: 4.4.5_biqbaboplfbrettd7655fr4n2y
   react-use: 17.4.0_biqbaboplfbrettd7655fr4n2y
   remove-markdown: 0.5.0
   socket.io-client: 4.5.1
@@ -5678,8 +5678,8 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /react-transition-group/4.4.4_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-TKS7/dTpwBKEG9nrzVK3qNzvaJyKzEIFB5xVtnKdjEk5wTstklWnNJ/N3RM6uKG8wm36nlgHTT7+UZT3LIFHLA==}
+  /react-transition-group/4.4.5_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g==}
     peerDependencies:
       react: '>=16.6.0'
       react-dom: '>=16.6.0'
