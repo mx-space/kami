@@ -7,6 +7,7 @@ import {
   useCallback,
   useEffect,
   useImperativeHandle,
+  useMemo,
   useRef,
   useState,
 } from 'react'
@@ -106,7 +107,7 @@ export const ImageLazy = memo(
 
     const [loaded, setLoad] = useState(false)
     const loaderFn = useCallback(() => {
-      if (!src) {
+      if (!src || loaded) {
         return
       }
 
@@ -141,7 +142,18 @@ export const ImageLazy = memo(
           // eslint-disable-next-line no-empty
         } catch {}
       }
-    }, [calculateDimensions, height, src, width])
+    }, [calculateDimensions, height, src, width, loaded])
+    const memoPlaceholderImage = useMemo(
+      () => (
+        <PlaceholderImage
+          height={height}
+          width={width}
+          backgroundColor={backgroundColor}
+          ref={placeholderRef}
+        />
+      ),
+      [backgroundColor, height, width],
+    )
 
     return (
       <figure style={style} className="inline-block">
@@ -164,16 +176,7 @@ export const ImageLazy = memo(
             ref={wrapRef}
             data-info={JSON.stringify({ height, width, calculatedSize })}
           >
-            <LazyLoad
-              offset={300}
-              placeholder={
-                <PlaceholderImage
-                  height={height}
-                  width={width}
-                  backgroundColor={backgroundColor}
-                />
-              }
-            >
+            <LazyLoad offset={100} placeholder={memoPlaceholderImage}>
               <Image
                 src={src}
                 alt={alt.replace(/^[!¡]/, '') || ''}
@@ -181,13 +184,7 @@ export const ImageLazy = memo(
                 loaded={loaded}
                 loaderFn={loaderFn}
               />
-              {!loaded && (
-                <PlaceholderImage
-                  height={height}
-                  width={width}
-                  backgroundColor={backgroundColor}
-                />
-              )}
+              {!loaded && memoPlaceholderImage}
             </LazyLoad>
           </div>
         )}
