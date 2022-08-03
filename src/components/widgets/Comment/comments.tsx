@@ -200,7 +200,7 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
       id={`comments-${comment.id}`}
       highlight={comment.highlight}
       author={
-        <a href={url} rel={'nofollow'}>
+        <a href={url} rel={'nofollow'} target="_blank">
           {comment.author}
         </a>
       }
