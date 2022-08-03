@@ -11,6 +11,10 @@ cd ./standalone
 echo 'process.title = "Kami (NextJS)"' >>server.js
 mv ../static/ ./.next/static
 
+# move workbox
+cp ../sw.js ./public/sw.js
+cp ../workbox-*.js ./public
+
 cp $CWD/ecosystem.standalone.config.js ./ecosystem.config.js
 
 cd ..

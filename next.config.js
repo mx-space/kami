@@ -48,10 +48,6 @@ const configs = withPlugins(plugins, {
       { source: '/feed', destination: '/api/feed' },
       { source: '/rss', destination: '/api/feed' },
       { source: '/atom.xml', destination: '/api/feed' },
-      {
-        source: '/service-worker.js',
-        destination: '/_next/static/service-worker.js',
-      },
     ]
 
     return {
