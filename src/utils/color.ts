@@ -1,11 +1,3 @@
-/*
- * @Author: Innei
- * @Date: 2020-05-26 17:52:41
- * @LastEditTime: 2020-06-14 20:17:06
- * @LastEditors: Innei
- * @FilePath: /mx-web/utils/color.ts
- * @Copyright
- */
 export function hexToRGB(hex: string, alpha: number) {
   const r = parseInt(hex.slice(1, 3), 16)
   const g = parseInt(hex.slice(3, 5), 16)
@@ -16,4 +8,14 @@ export function hexToRGB(hex: string, alpha: number) {
   } else {
     return `rgb(${r}, ${g}, ${b})`
   }
+}
+
+export const isDarkColorHex = (color: string) => {
+  const hex = color.replace('#', '')
+  const c_r = parseInt(hex.substring(0, 2), 16)
+  const c_g = parseInt(hex.substring(2, 4), 16)
+  const c_b = parseInt(hex.substring(4, 6), 16)
+  const brightness = (c_r * 299 + c_g * 587 + c_b * 114) / 1000
+
+  return brightness <= 155
 }

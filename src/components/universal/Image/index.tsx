@@ -12,6 +12,7 @@ import {
   useState,
 } from 'react'
 
+import { isDarkColorHex } from '~/utils/color'
 import { escapeHTMLTag } from '~/utils/utils'
 
 import { useCalculateSize } from '../../../hooks/use-calculate-size'
@@ -88,7 +89,7 @@ export const ImageLazy = memo(
       alt = src,
       height,
       width,
-      backgroundColor,
+      backgroundColor = 'rgb(111,111,111)',
       popup = false,
       style,
       overflowHidden = false,
@@ -133,16 +134,17 @@ export const ImageLazy = memo(
       image.onerror = () => {
         try {
           if (placeholderRef && placeholderRef.current) {
-            placeholderRef.current.innerHTML = `<p style="color: currentColor; filter: invert(100%) brightness(1.5)"><span>图片加载失败!</span><br/>
+            placeholderRef.current.innerHTML = `<p style="color: ${
+              isDarkColorHex(backgroundColor) ? '#eee' : '#333'
+            } ;z-index: 2"><span>图片加载失败!</span><br/>
           <a href="${escapeHTMLTag(image.src)}" target="_blank">${escapeHTMLTag(
               image.src,
             )}</a></p>`
-            placeholderRef.current.style.zIndex = '2'
           }
           // eslint-disable-next-line no-empty
         } catch {}
       }
-    }, [calculateDimensions, height, src, width, loaded])
+    }, [src, loaded, height, width, calculateDimensions, backgroundColor])
     const memoPlaceholderImage = useMemo(
       () => (
         <PlaceholderImage
