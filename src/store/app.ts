@@ -33,7 +33,9 @@ export default class AppUIStore {
 
   get headerOpacity() {
     const threshold = 50
-    return this.position >= threshold ? 1 : this.position / threshold
+    return this.position >= threshold
+      ? 1
+      : Math.floor((this.position / threshold) * 100) / 100
   }
 
   get isOverFirstScreenHeight() {
