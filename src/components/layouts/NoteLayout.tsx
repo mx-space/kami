@@ -1,12 +1,12 @@
 import clsx from 'clsx'
 import dayjs from 'dayjs'
 import { observer } from 'mobx-react-lite'
+import dynamic from 'next/dynamic'
 import type { ReactNode } from 'react'
 import { forwardRef, useCallback } from 'react'
 
 import type { NoteModel } from '@mx-space/api-client'
 
-import { NoteTimelineList } from '~/components/in-page/Note/NoteTimelineList'
 import { FloatPopover } from '~/components/universal/FloatPopover'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { useStore } from '~/store'
@@ -20,6 +20,12 @@ import {
   FluentEyeHide20Regular,
   RegularBookmark,
 } from '../universal/Icons/layout'
+
+const NoteTimelineList = dynamic(() =>
+  import('~/components/in-page/Note/NoteTimelineList').then(
+    (mo) => mo.NoteTimelineList,
+  ),
+)
 
 const bannerClassNames = {
   info: `bg-light-blue-50 dark:bg-light-blue-800 dark:text-white`,
