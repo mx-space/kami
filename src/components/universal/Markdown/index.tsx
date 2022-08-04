@@ -31,7 +31,7 @@ import {
 import { Heading } from './renderers/Heading'
 import { Image } from './renderers/Image'
 
-const Toc = dynamic<TocProps>(
+const Toc = dynamic(
   () => import('~/components/widgets/Toc').then((m) => m.Toc),
   {
     ssr: false,
