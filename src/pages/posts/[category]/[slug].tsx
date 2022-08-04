@@ -3,6 +3,7 @@ import dayjs from 'dayjs'
 import isEqual from 'lodash-es/isEqual'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react-lite'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
@@ -22,12 +23,8 @@ import {
   MdiCalendar,
 } from '~/components/universal/Icons/for-post'
 import { Markdown } from '~/components/universal/Markdown'
-import { NumberTransition } from '~/components/universal/NumberRecorder'
 import Outdate from '~/components/universal/Outdate'
 import type { ActionProps } from '~/components/widgets/ArticleAction'
-import { ArticleFooterAction } from '~/components/widgets/ArticleAction'
-import { CommentLazy } from '~/components/widgets/Comment'
-import { DonatePopover } from '~/components/widgets/Donate'
 import { SearchFAB } from '~/components/widgets/Search'
 import { useHeaderMeta, useHeaderShare } from '~/hooks/use-header-meta'
 import { useInitialData, useThemeConfig } from '~/hooks/use-initial-data'
@@ -43,6 +40,24 @@ import { springScrollToTop } from '~/utils/spring'
 import { noop } from '~/utils/utils'
 
 import { Copyright } from '../../../components/widgets/Copyright'
+
+const ArticleFooterAction = dynamic(() =>
+  import('~/components/widgets/ArticleAction').then(
+    (mo) => mo.ArticleFooterAction,
+  ),
+)
+const DonatePopover = dynamic(() =>
+  import('~/components/widgets/Donate').then((mo) => mo.DonatePopover),
+)
+const CommentLazy = dynamic(() =>
+  import('~/components/widgets/Comment').then((mo) => mo.CommentLazy),
+)
+
+const NumberTransition = dynamic(() =>
+  import('~/components/universal/NumberRecorder').then(
+    (mo) => mo.NumberTransition,
+  ),
+)
 
 const storeThumbsUpCookie = setLikeId
 

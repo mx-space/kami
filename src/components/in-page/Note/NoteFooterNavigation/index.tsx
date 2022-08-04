@@ -92,7 +92,7 @@ export const NoteFooterNavigation: FC<{ id: string }> = observer(({ id }) => {
   )
 })
 
-export const NoteFooterActionBarForMobile: typeof NoteFooterNavigation =
+export const NoteFooterNavigationBarForMobile: typeof NoteFooterNavigation =
   observer((props) => {
     const {
       appUIStore: { isNarrowThanLaptop: isWiderThanLaptop },
