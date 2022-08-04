@@ -8,7 +8,7 @@ import removeMd from 'remove-markdown'
 import type { PostModel } from '@mx-space/api-client'
 
 import { IconTransition } from '~/components/universal/IconTransition'
-import { PhPushPin, PhPushPinFill } from '~/components/universal/Icons'
+import { PhPushPin, PhPushPinFill } from '~/components/universal/Icons/for-post'
 import { useInitialData } from '~/hooks/use-initial-data'
 import { useStore } from '~/store'
 import { apiClient } from '~/utils/client'

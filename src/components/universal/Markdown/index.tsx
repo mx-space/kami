@@ -13,7 +13,7 @@ import type { TocProps } from '~/components/widgets/Toc'
 import { useStore } from '~/store'
 
 import { CodeBlock } from '../CodeBlock'
-import { BiListNested } from '../Icons'
+import { BiListNested } from '../Icons/shared'
 import { useModalStack } from '../Modal/stack.context'
 import styles from './index.module.css'
 import { processDetails } from './process-tag'

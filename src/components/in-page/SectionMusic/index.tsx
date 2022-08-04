@@ -5,7 +5,7 @@ import type { FC } from 'react'
 import { memo, useDeferredValue, useEffect, useMemo } from 'react'
 
 import { Seo } from '~/components/biz/Seo'
-import { MusicIcon, PauseIcon } from '~/components/universal/Icons'
+import { MusicIcon, PauseIcon } from '~/components/universal/Icons/for-fav'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useStore } from '~/store'

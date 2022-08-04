@@ -5,7 +5,7 @@ import { useMemo } from 'react'
 
 import { useStore } from '~/store'
 
-import { MdiTagHeartOutline } from '../Icons'
+import { MdiTagHeartOutline } from '../Icons/for-note'
 import styles from './index.module.css'
 
 interface BigTagProps {

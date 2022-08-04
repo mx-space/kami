@@ -3,7 +3,7 @@ import type { DetailedHTMLProps, FC, HTMLAttributes, ReactNode } from 'react'
 import { Fragment, createElement, memo } from 'react'
 
 import { FloatPopover } from '~/components/universal/FloatPopover'
-import { EntypoCreativeCommons } from '~/components/universal/Icons'
+import { EntypoCreativeCommons } from '~/components/universal/Icons/for-post'
 
 import styles from './index.module.css'
 

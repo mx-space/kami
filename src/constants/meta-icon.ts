@@ -2,13 +2,6 @@ import type { FC } from 'react'
 import React from 'react'
 
 import {
-  BiCloudLightningRainFill,
-  BiCloudRainFill,
-  MdiCloud,
-  MdiSnowflake,
-  RiSunCloudyFill,
-} from '~/components/universal/Icons'
-import {
   FaSolidAngry,
   FaSolidFlushed,
   FaSolidFrownOpen,
@@ -21,6 +14,13 @@ import {
   FaSolidTired,
 } from '~/components/universal/Icons/emoji'
 import { PhSunBold } from '~/components/universal/Icons/layout'
+import {
+  BiCloudLightningRainFill,
+  BiCloudRainFill,
+  MdiCloud,
+  MdiSnowflake,
+  RiSunCloudyFill,
+} from '~/components/universal/Icons/weather'
 
 export const weather2icon = (weather: string) => {
   const map: Record<string, FC> = {

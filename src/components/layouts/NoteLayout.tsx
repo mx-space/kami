@@ -8,11 +8,6 @@ import type { NoteModel } from '@mx-space/api-client'
 
 import { NoteTimelineList } from '~/components/in-page/Note/NoteTimelineList'
 import { FloatPopover } from '~/components/universal/FloatPopover'
-import {
-  FluentEyeHide20Regular,
-  RegularBookmark,
-  SolidBookmark,
-} from '~/components/universal/Icons'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { useStore } from '~/store'
 import { apiClient } from '~/utils/client'
@@ -20,6 +15,11 @@ import { resolveUrl } from '~/utils/utils'
 
 import { ClientOnly } from '../universal/ClientOnly'
 import { IconTransition } from '../universal/IconTransition'
+import { SolidBookmark } from '../universal/Icons/for-note'
+import {
+  FluentEyeHide20Regular,
+  RegularBookmark,
+} from '../universal/Icons/layout'
 
 const bannerClassNames = {
   info: `bg-light-blue-50 dark:bg-light-blue-800 dark:text-white`,

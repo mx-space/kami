@@ -3,7 +3,7 @@ import sample from 'lodash-es/sample'
 import type { FC } from 'react'
 import { memo } from 'react'
 
-import { EmptyIcon } from '~/components/universal/Icons'
+import { EmptyIcon } from '~/components/universal/Icons/for-comment'
 
 import styles from './index.module.css'
 

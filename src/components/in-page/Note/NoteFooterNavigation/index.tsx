@@ -5,7 +5,7 @@ import type { FC } from 'react'
 import type { NoteModel } from '@mx-space/api-client'
 
 import { Divider } from '~/components/universal/Divider'
-import { MdiClockTimeThreeOutline } from '~/components/universal/Icons'
+import { MdiClockTimeThreeOutline } from '~/components/universal/Icons/for-note'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useStore } from '~/store'

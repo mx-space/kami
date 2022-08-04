@@ -15,13 +15,12 @@ import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { Seo } from '~/components/biz/Seo'
 import { PostRelated } from '~/components/in-page/Post/post-related'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
+import { GgCoffee, PhBookOpen } from '~/components/universal/Icons/for-note'
 import {
   FeHash,
-  GgCoffee,
   IonThumbsup,
   MdiCalendar,
-  PhBookOpen,
-} from '~/components/universal/Icons'
+} from '~/components/universal/Icons/for-post'
 import { Markdown } from '~/components/universal/Markdown'
 import { NumberTransition } from '~/components/universal/NumberRecorder'
 import Outdate from '~/components/universal/Outdate'
