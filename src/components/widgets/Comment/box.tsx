@@ -24,7 +24,7 @@ import {
   MdiEmailFastOutline,
   PhUser,
   SiGlyphGlobal,
-} from '~/components/universal/Icons'
+} from '~/components/universal/Icons/for-comment'
 import { kaomoji } from '~/constants/kaomoji'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'

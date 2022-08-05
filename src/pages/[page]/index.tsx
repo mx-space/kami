@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react-lite'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import React, { Fragment, useEffect, useMemo } from 'react'
 import RemoveMarkdown from 'remove-markdown'
@@ -8,7 +9,6 @@ import type { PageModel } from '@mx-space/api-client'
 import { buildStoreDataLoadableView } from '~/components/app/LoadableView'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { Markdown } from '~/components/universal/Markdown'
-import { CommentLazy } from '~/components/widgets/Comment'
 import { useHeaderMeta, useHeaderShare } from '~/hooks/use-header-meta'
 import { useInitialData } from '~/hooks/use-initial-data'
 import { useJumpToSimpleMarkdownRender } from '~/hooks/use-jump-to-render'
@@ -21,6 +21,10 @@ import { noop } from '~/utils/utils'
 import { Seo } from '../../components/biz/Seo'
 import { ImageSizeMetaContext } from '../../context/image-size'
 import styles from './index.module.css'
+
+const CommentLazy = dynamic(() =>
+  import('~/components/widgets/Comment').then((mo) => mo.CommentLazy),
+)
 
 const PageView: PageOnlyProps = observer((props) => {
   const { pageStore } = useStore()

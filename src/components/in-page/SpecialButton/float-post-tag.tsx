@@ -7,7 +7,7 @@ import { apiClient } from 'utils/client'
 
 import type { PostModel, TagModel } from '@mx-space/api-client'
 
-import { JamTags } from '~/components/universal/Icons'
+import { JamTags } from '~/components/universal/Icons/layout'
 import { Overlay } from '~/components/universal/Overlay'
 import { BigTag } from '~/components/universal/Tag'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'

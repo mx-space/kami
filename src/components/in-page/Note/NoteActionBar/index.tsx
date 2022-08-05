@@ -7,7 +7,7 @@ import {
   GgCoffee,
   MdiClockTimeThreeOutline,
   PhBookOpen,
-} from '~/components/universal/Icons'
+} from '~/components/universal/Icons/for-note'
 import { LikeButton } from '~/components/universal/LikeButton'
 import { NumberTransition } from '~/components/universal/NumberRecorder'
 import { RelativeTime } from '~/components/universal/RelativeTime'

@@ -1,9 +1,9 @@
 import type { FC } from 'react'
 import { createElement, memo, useEffect } from 'react'
 
-import { CodiconGithubInverted } from '../Icons'
 import {
   AkarIconsMention,
+  CodiconGithubInverted,
   FaSolidCircle,
   FaSolidCircleNotch,
   FaSolidComment,

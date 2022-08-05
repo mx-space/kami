@@ -13,7 +13,7 @@ import type { TocProps } from '~/components/widgets/Toc'
 import { useStore } from '~/store'
 
 import { CodeBlock } from '../CodeBlock'
-import { BiListNested } from '../Icons'
+import { BiListNested } from '../Icons/shared'
 import { useModalStack } from '../Modal/stack.context'
 import styles from './index.module.css'
 import { processDetails } from './process-tag'
@@ -31,7 +31,7 @@ import {
 import { Heading } from './renderers/Heading'
 import { Image } from './renderers/Image'
 
-const Toc = dynamic<TocProps>(
+const Toc = dynamic(
   () => import('~/components/widgets/Toc').then((m) => m.Toc),
   {
     ssr: false,

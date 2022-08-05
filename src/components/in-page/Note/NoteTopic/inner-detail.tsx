@@ -10,7 +10,7 @@ import { Divider, DividerVertical } from '~/components/universal/Divider'
 import {
   MdiClockOutline,
   MdiFountainPenTip,
-} from '~/components/universal/Icons'
+} from '~/components/universal/Icons/for-note'
 import { RelativeTime } from '~/components/universal/RelativeTime'
 import { apiClient } from '~/utils/client'
 

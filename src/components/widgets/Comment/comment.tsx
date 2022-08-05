@@ -2,7 +2,7 @@ import { clsx } from 'clsx'
 import type { DetailedHTMLProps, FC, HTMLAttributes } from 'react'
 import { memo, useCallback, useMemo } from 'react'
 
-import { LaUserSecret } from '~/components/universal/Icons'
+import { LaUserSecret } from '~/components/universal/Icons/for-comment'
 import { RelativeTime } from '~/components/universal/RelativeTime'
 import { springScrollToElement } from '~/utils/spring'
 

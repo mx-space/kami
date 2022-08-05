@@ -11,7 +11,7 @@ import type { CommentModel } from '@mx-space/api-client'
 
 import { ImpressionView } from '~/components/biz/ImpressionView'
 import { IconTransition } from '~/components/universal/IconTransition'
-import { PhPushPin, PhPushPinFill } from '~/components/universal/Icons'
+import { PhPushPin, PhPushPinFill } from '~/components/universal/Icons/for-post'
 import { Markdown } from '~/components/universal/Markdown'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import type { Id } from '~/store/helper/structure'

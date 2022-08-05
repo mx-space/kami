@@ -4,7 +4,7 @@ import { message } from 'react-message-popup'
 
 import type { PlayListType } from '~/components/in-page/SectionMusic'
 import { SectionMusic } from '~/components/in-page/SectionMusic'
-import { RiNeteaseCloudMusicFill } from '~/components/universal/Icons'
+import { RiNeteaseCloudMusicFill } from '~/components/universal/Icons/for-fav'
 import { Loading } from '~/components/universal/Loading'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'

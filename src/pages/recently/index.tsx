@@ -20,7 +20,7 @@ import type { RecentlyModel } from '@mx-space/api-client'
 
 import { Seo } from '~/components/biz/Seo'
 import { Divider } from '~/components/universal/Divider'
-import { JamTrash, PhLinkFill } from '~/components/universal/Icons'
+import { JamTrash, PhLinkFill } from '~/components/universal/Icons/for-recently'
 import { Input } from '~/components/universal/Input'
 import { Loading } from '~/components/universal/Loading'
 import { Markdown } from '~/components/universal/Markdown'

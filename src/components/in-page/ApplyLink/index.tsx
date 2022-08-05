@@ -7,11 +7,11 @@ import { message } from 'react-message-popup'
 
 import {
   MdiEmailFastOutline,
-  MdiFountainPenTip,
   PhUser,
   RadixIconsAvatar,
   SiGlyphGlobal,
-} from '~/components/universal/Icons'
+} from '~/components/universal/Icons/for-comment'
+import { MdiFountainPenTip } from '~/components/universal/Icons/for-note'
 import { apiClient } from '~/utils/client'
 
 import { Input } from '../../universal/Input'

@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import React, { memo } from 'react'
 
-import { MdiShare } from '~/components/universal/Icons'
+import { MdiShare } from '~/components/universal/Icons/layout'
 import { useStore } from '~/store'
 
 import {

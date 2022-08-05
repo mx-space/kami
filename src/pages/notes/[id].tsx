@@ -5,6 +5,7 @@ import omit from 'lodash-es/omit'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import type { NextPage } from 'next'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import React, {
   createElement,
@@ -20,16 +21,12 @@ import type { NoteModel } from '@mx-space/api-client'
 import { RequestError } from '@mx-space/api-client'
 
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
-import { NoteFooterActionBar } from '~/components/in-page/Note/NoteActionBar'
-import { NoteFooterActionBarForMobile } from '~/components/in-page/Note/NoteFooterNavigation'
+import { NoteFooterNavigationBarForMobile } from '~/components/in-page/Note/NoteFooterNavigation'
 import { NoteMarkdownRender } from '~/components/in-page/Note/NoteMarkdownRender'
 import { NotePasswordConfrim } from '~/components/in-page/Note/NotePasswordConfirm'
-import { NoteTopic } from '~/components/in-page/Note/NoteTopic'
 import { BanCopy } from '~/components/in-page/WarningOverlay/ban-copy'
-import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { NoteLayout } from '~/components/layouts/NoteLayout'
 import { Loading } from '~/components/universal/Loading'
-import { CommentLazy } from '~/components/widgets/Comment'
 import { SearchFAB } from '~/components/widgets/Search'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
@@ -46,6 +43,28 @@ import { noop } from '~/utils/utils'
 import { Seo } from '../../components/biz/Seo'
 import { ImageSizeMetaContext } from '../../context/image-size'
 import { isDev } from '../../utils/env'
+
+const NoteTopic = dynamic(() =>
+  import('~/components/in-page/Note/NoteTopic').then((mo) => mo.NoteTopic),
+)
+
+const CommentLazy = dynamic(() =>
+  import('~/components/widgets/Comment').then((mo) => mo.CommentLazy),
+)
+
+const ArticleLayout = dynamic(() =>
+  import('~/components/layouts/ArticleLayout').then((mo) => mo.ArticleLayout),
+)
+
+const NoteFooterActionBar = dynamic(
+  () =>
+    import('~/components/in-page/Note/NoteActionBar').then(
+      (mo) => mo.NoteFooterActionBar,
+    ),
+  {
+    ssr: false,
+  },
+)
 
 const useUpdateNote = (id: string) => {
   const note = store.noteStore.get(id)
@@ -234,7 +253,7 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
         )}
         <div className="pb-4" />
         {note.topic && <NoteTopic noteId={props.id} topic={note.topic} />}
-        <NoteFooterActionBarForMobile id={props.id} />
+        <NoteFooterNavigationBarForMobile id={props.id} />
         <div className="pb-4" />
         <NoteFooterActionBar id={props.id} />
       </NoteLayout>
