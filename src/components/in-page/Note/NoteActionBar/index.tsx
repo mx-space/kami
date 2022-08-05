@@ -103,9 +103,10 @@ export const NoteFooterActionBar: FC<{ id: string }> = observer(({ id }) => {
         icon: <MdiClockTimeThreeOutline />,
         tip: () => (
           <p className="leading-7">
-            创建时间：{note.created}
+            创建时间：{new Date(note.created).toLocaleDateString()}
             <br />
-            修改于：{note.modified || '-'}
+            修改于：
+            {note.modified ? new Date(note.modified).toLocaleTimeString() : '-'}
           </p>
         ),
       },
