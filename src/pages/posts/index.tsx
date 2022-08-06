@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import React, { Fragment, useEffect, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
@@ -8,14 +9,20 @@ import type { Pager, PaginateResult, PostModel } from '@mx-space/api-client'
 import { PostBlock } from '~/components/in-page/PostBlock'
 import { TagFAB } from '~/components/in-page/SpecialButton/float-post-tag'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
-import { EmptyIcon } from '~/components/universal/Icons/for-comment'
 import { Loading } from '~/components/universal/Loading'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
-import { SearchFAB } from '~/components/widgets/Search'
 import { apiClient } from '~/utils/client'
 import { springScrollToTop } from '~/utils/spring'
 
 import { SEO } from '../../components/biz/Seo'
+
+const SearchFAB = dynamic(() =>
+  import('~/components/widgets/Search').then((mo) => mo.SearchFAB),
+)
+
+const EmptyIcon = dynamic(() =>
+  import('~/components/universal/Icons/for-comment').then((mo) => mo.EmptyIcon),
+)
 
 const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
   const [pagination, setPagination] = useState<Pager | null>(null)

@@ -8,6 +8,7 @@ import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import React, {
+  Suspense,
   createElement,
   useEffect,
   useMemo,
@@ -21,13 +22,10 @@ import type { NoteModel } from '@mx-space/api-client'
 import { RequestError } from '@mx-space/api-client'
 
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
-import { NoteFooterNavigationBarForMobile } from '~/components/in-page/Note/NoteFooterNavigation'
 import { NoteMarkdownRender } from '~/components/in-page/Note/NoteMarkdownRender'
 import { NotePasswordConfrim } from '~/components/in-page/Note/NotePasswordConfirm'
-import { BanCopy } from '~/components/in-page/WarningOverlay/ban-copy'
 import { NoteLayout } from '~/components/layouts/NoteLayout'
 import { Loading } from '~/components/universal/Loading'
-import { SearchFAB } from '~/components/widgets/Search'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useHeaderMeta, useHeaderShare } from '~/hooks/use-header-meta'
@@ -44,16 +42,38 @@ import { Seo } from '../../components/biz/Seo'
 import { ImageSizeMetaContext } from '../../context/image-size'
 import { isDev } from '../../utils/env'
 
+const SearchFAB = React.lazy(() =>
+  import('~/components/widgets/Search').then((mo) => ({
+    default: mo.SearchFAB,
+  })),
+)
+
+const BanCopy = dynamic(() =>
+  import('~/components/in-page/WarningOverlay/ban-copy').then(
+    (mo) => mo.BanCopy,
+  ),
+)
+
+const NoteFooterNavigationBarForMobile = dynamic(() =>
+  import('~/components/in-page/Note/NoteFooterNavigation').then(
+    (mo) => mo.NoteFooterNavigationBarForMobile,
+  ),
+)
+
 const NoteTopic = dynamic(() =>
   import('~/components/in-page/Note/NoteTopic').then((mo) => mo.NoteTopic),
 )
 
-const CommentLazy = dynamic(() =>
-  import('~/components/widgets/Comment').then((mo) => mo.CommentLazy),
+const CommentLazy = React.lazy(() =>
+  import('~/components/widgets/Comment').then((mo) => ({
+    default: mo.CommentLazy,
+  })),
 )
 
-const ArticleLayout = dynamic(() =>
-  import('~/components/layouts/ArticleLayout').then((mo) => mo.ArticleLayout),
+const ArticleLayout = React.lazy(() =>
+  import('~/components/layouts/ArticleLayout').then((mo) => ({
+    default: mo.ArticleLayout,
+  })),
 )
 
 const NoteFooterActionBar = dynamic(
@@ -257,20 +277,23 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
         <div className="pb-4" />
         <NoteFooterActionBar id={props.id} />
       </NoteLayout>
-      {!isSecret && (
-        <ArticleLayout
-          className="!pt-0 !min-h-[unset]"
-          key={`comments-${props.id}`}
-        >
-          <CommentLazy
-            id={id}
-            key={id}
-            allowComment={note.allowComment ?? true}
-          />
-        </ArticleLayout>
-      )}
-
-      <SearchFAB />
+      <Suspense fallback={null}>
+        {!isSecret && (
+          <ArticleLayout
+            className="!pt-0 !min-h-[unset]"
+            key={`comments-${props.id}`}
+          >
+            <CommentLazy
+              id={id}
+              key={id}
+              allowComment={note.allowComment ?? true}
+            />
+          </ArticleLayout>
+        )}
+      </Suspense>
+      <Suspense fallback={null}>
+        <SearchFAB />
+      </Suspense>
     </>
   )
 })

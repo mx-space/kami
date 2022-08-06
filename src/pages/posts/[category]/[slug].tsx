@@ -25,7 +25,6 @@ import {
 import { Markdown } from '~/components/universal/Markdown'
 import Outdate from '~/components/universal/Outdate'
 import type { ActionProps } from '~/components/widgets/ArticleAction'
-import { SearchFAB } from '~/components/widgets/Search'
 import { useHeaderMeta, useHeaderShare } from '~/hooks/use-header-meta'
 import { useInitialData, useThemeConfig } from '~/hooks/use-initial-data'
 import { useIsClient } from '~/hooks/use-is-client'
@@ -39,7 +38,13 @@ import { getSummaryFromMd } from '~/utils/markdown'
 import { springScrollToTop } from '~/utils/spring'
 import { noop } from '~/utils/utils'
 
-import { Copyright } from '../../../components/widgets/Copyright'
+const Copyright = dynamic(() =>
+  import('../../../components/widgets/Copyright').then((mo) => mo.Copyright),
+)
+
+const SearchFAB = dynamic(() =>
+  import('~/components/widgets/Search').then((mo) => mo.SearchFAB),
+)
 
 const ArticleFooterAction = dynamic(() =>
   import('~/components/widgets/ArticleAction').then(
