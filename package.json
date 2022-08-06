@@ -119,7 +119,7 @@
     "lint-staged": "13.0.3",
     "next-compose-plugins": "2.2.1",
     "next-pwa": "5.5.5",
-    "postcss": "8.4.14",
+    "postcss": "8.4.16",
     "postcss-import": "14.1.0",
     "postcss-nested": "5.0.6",
     "postcss-preset-env": "7.7.2",
