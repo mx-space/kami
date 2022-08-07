@@ -12,6 +12,7 @@ import type { CommentModel } from '@mx-space/api-client'
 import { ImpressionView } from '~/components/biz/ImpressionView'
 import { IconTransition } from '~/components/universal/IconTransition'
 import { PhPushPin, PhPushPinFill } from '~/components/universal/Icons/for-post'
+import { ImageTagPreview } from '~/components/universal/ImageTagPreview'
 import { Markdown } from '~/components/universal/Markdown'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import type { Id } from '~/store/helper/structure'
@@ -223,6 +224,7 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
           renderers={useMemo(
             () => ({
               commentAt: ({ value }) => <CommentAtRender id={value} />,
+              image: ({ src, alt }) => <ImageTagPreview src={src} alt={alt} />,
             }),
             [],
           )}
