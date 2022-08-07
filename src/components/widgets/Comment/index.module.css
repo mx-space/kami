@@ -11,6 +11,10 @@
   }
 }
 
+.whispers-input {
+  @apply bg-dark-50 bg-opacity-10;
+}
+
 .comment {
   font-size: 14px;
 

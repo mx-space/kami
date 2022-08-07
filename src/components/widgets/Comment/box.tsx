@@ -270,6 +270,12 @@ export const CommentBox: FC<{
         onChange={setter['text']}
         autoFocus={autoFocus}
         onClick={handleCommentBoxClick}
+        wrapperProps={useMemo(
+          () => ({
+            className: config.isWhispers ? styles['whispers-input'] : '',
+          }),
+          [config.isWhispers],
+        )}
         placeholder={
           !logged
             ? '嘿 ︿(￣︶￣)︿, 留个评论好不好嘛~'

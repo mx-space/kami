@@ -150,6 +150,7 @@ export const Input = memo(
               className={classNames(
                 styles['input'],
                 prefix ? styles['has-prefix'] : null,
+                rest.className,
               )}
             />
           ) : (
@@ -170,6 +171,7 @@ export const Input = memo(
               className={classNames(
                 styles['input'],
                 prefix ? styles['has-prefix'] : null,
+                rest.className,
               )}
             />
           )}
