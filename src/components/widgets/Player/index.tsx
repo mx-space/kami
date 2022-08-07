@@ -22,6 +22,7 @@ import { NoSSRWrapper } from '~/utils/no-ssr'
 import { hms } from '~/utils/time'
 
 import styles from './index.module.css'
+import { Lyrics } from './lyrics'
 
 const METO_ENDPOINT = 'https://api.i-meto.com/meting/api'
 
@@ -163,6 +164,14 @@ export const MusicMiniPlayer = forwardRef<
     },
   }))
 
+  useEffect(() => {
+    window.player = {
+      next() {
+        setCursor((c) => ++c % len)
+      },
+    }
+  }, [])
+
   const handleChangePlayState = useCallback(() => {
     if (state.paused) {
       play()
@@ -196,6 +205,7 @@ export const MusicMiniPlayer = forwardRef<
         hide && styles['hide'],
       )}
     >
+      {!hide && <Lyrics />}
       <div className={styles['root']}>
         <div className={styles['cover']}>
           {Pic}
