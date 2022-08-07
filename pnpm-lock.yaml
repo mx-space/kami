@@ -63,7 +63,7 @@ specifiers:
   react-message-popup: 1.0.0-alpha.2
   react-shortcut-guide: 0.3.4
   react-smooth-number-counter: https://github.com/Innei/react-smooth-number-counter.git
-  react-toastify: 9.0.7
+  react-toastify: 9.0.8
   react-transition-group: 4.4.5
   react-use: 17.4.0
   remove-markdown: 0.5.0
@@ -106,7 +106,7 @@ dependencies:
   react-message-popup: 1.0.0-alpha.2_biqbaboplfbrettd7655fr4n2y
   react-shortcut-guide: 0.3.4
   react-smooth-number-counter: github.com/Innei/react-smooth-number-counter/6be776817e507970a7e3177b8c3277b0b9d3e779
-  react-toastify: 9.0.7_biqbaboplfbrettd7655fr4n2y
+  react-toastify: 9.0.8_biqbaboplfbrettd7655fr4n2y
   react-transition-group: 4.4.5_biqbaboplfbrettd7655fr4n2y
   react-use: 17.4.0_biqbaboplfbrettd7655fr4n2y
   remove-markdown: 0.5.0
@@ -5668,8 +5668,8 @@ packages:
     resolution: {integrity: sha512-W/o3xK1zMepjfzh1RZiLBSNMRqrTZxFNhivJewDCMQqUP1/MXNcgXFy63xDn4R3XHQ6zlIo4UxOO0c7ztWXrLA==}
     dev: false
 
-  /react-toastify/9.0.7_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-UG5P/2F/fYdbK+v3XRWHM6xfMkWeLM+k2swKvwU8oO9DXx31GkeoH7Z6slBTkavZ0VjoQ+n/YD6xOBqEwN7HRg==}
+  /react-toastify/9.0.8_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-EwM+teWt49HSHx+67qI08yLAW1zAsBxCXLCsUfxHYv1W7/R3ZLhrqKalh7j+kjgPna1h5LQMSMwns4tB4ww2yQ==}
     peerDependencies:
       react: '>=16'
       react-dom: '>=16'
