@@ -16,6 +16,7 @@ import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { Seo } from '~/components/biz/Seo'
 import { PostRelated } from '~/components/in-page/Post/post-related'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
+import { Banner } from '~/components/universal/Banner'
 import { GgCoffee, PhBookOpen } from '~/components/universal/Icons/for-note'
 import {
   FeHash,
@@ -249,6 +250,16 @@ export const PostView: PageOnlyProps = observer((props) => {
         {useMemo(
           () => (
             <>
+              {post.summary && (
+                <Banner
+                  type="info"
+                  placement="left"
+                  showIcon={false}
+                  className="mb-8"
+                >
+                  <p>摘要： {post.summary}</p>
+                </Banner>
+              )}
               <Outdate time={post.modified || post.created} />
               <ImageSizeMetaContext.Provider
                 value={imagesRecord2Map(post.images)}
@@ -283,17 +294,18 @@ export const PostView: PageOnlyProps = observer((props) => {
             </>
           ),
           [
-            actions,
-            post.allowComment,
-            post.copyright,
-            post.created,
-            post.id,
-            post.images,
+            post.summary,
             post.modified,
-            post.text,
+            post.created,
+            post.images,
             post.title,
-            webUrl,
+            post.text,
+            post.id,
+            post.copyright,
+            post.allowComment,
             isClientSide,
+            webUrl,
+            actions,
           ],
         )}
 

@@ -1,3 +1,4 @@
+import colors from 'windicss/colors'
 import { defineConfig } from 'windicss/helpers'
 import plugin from 'windicss/plugin'
 
@@ -81,6 +82,10 @@ export default defineConfig({
           text: 'var(--shizuku-text-color)',
           theme: 'var(--shizuku-theme-color)',
           bg: 'var(--shizuku-background-color)',
+        },
+
+        default: {
+          ...colors,
         },
       },
     },

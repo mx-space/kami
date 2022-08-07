@@ -118,6 +118,7 @@ export const PostBlock: FC<PostBlockProps> = observer((props) => {
         {viewport?.mobile && (
           <div className="text-lg my-2 font-medium">{tilteEl}</div>
         )}
+        {post.summary && <p className="mb-2">摘要：{post.summary}</p>}
         <article
           className={clsx(
             styles['content'],
@@ -130,6 +131,7 @@ export const PostBlock: FC<PostBlockProps> = observer((props) => {
               style={{ backgroundImage: `url(${hasImage})` }}
             />
           )}
+
           <p>
             {useMemo(() => {
               const r = removeMd(text)
