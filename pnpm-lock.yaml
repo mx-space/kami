@@ -61,7 +61,7 @@ specifiers:
   react-markdown: 4.3.1
   react-masonry-css: 1.0.16
   react-message-popup: 1.0.0-alpha.2
-  react-shortcut-guide: 0.3.3
+  react-shortcut-guide: 0.3.4
   react-smooth-number-counter: https://github.com/Innei/react-smooth-number-counter.git
   react-toastify: 9.0.7
   react-transition-group: 4.4.5
@@ -104,7 +104,7 @@ dependencies:
   react-markdown: 4.3.1_react@18.2.0
   react-masonry-css: 1.0.16_react@18.2.0
   react-message-popup: 1.0.0-alpha.2_biqbaboplfbrettd7655fr4n2y
-  react-shortcut-guide: 0.3.3
+  react-shortcut-guide: 0.3.4
   react-smooth-number-counter: github.com/Innei/react-smooth-number-counter/6be776817e507970a7e3177b8c3277b0b9d3e779
   react-toastify: 9.0.7_biqbaboplfbrettd7655fr4n2y
   react-transition-group: 4.4.5_biqbaboplfbrettd7655fr4n2y
@@ -5664,8 +5664,8 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /react-shortcut-guide/0.3.3:
-    resolution: {integrity: sha512-/hlApel5vMdd4L4tcUUhDlgQHRvgvy479742mkLNcB5I8nMB5azlNn5zd4W6Nh3Z+gPZK8LxufXwIq4uhB3shA==}
+  /react-shortcut-guide/0.3.4:
+    resolution: {integrity: sha512-W/o3xK1zMepjfzh1RZiLBSNMRqrTZxFNhivJewDCMQqUP1/MXNcgXFy63xDn4R3XHQ6zlIo4UxOO0c7ztWXrLA==}
     dev: false
 
   /react-toastify/9.0.7_biqbaboplfbrettd7655fr4n2y:
