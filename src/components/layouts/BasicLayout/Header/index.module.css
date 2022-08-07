@@ -14,7 +14,7 @@
     content: '';
     opacity: var(--opacity);
 
-    @apply border-solid border-b border-black border-opacity-10;
+    border-bottom: 1px solid rgb(187 187 187 / 20%);
   }
 
   &.hide {
