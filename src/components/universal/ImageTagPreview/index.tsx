@@ -7,14 +7,15 @@ export const ImageTagPreview: FC<{ src: string; alt: string }> = (props) => {
   const { src, alt } = props
   return (
     <FloatPopover
+      wrapperClassNames="inline"
       triggerComponent={() => (
         <a
           href={src}
           target="_blank"
-          className="text-primary inline-flex items-center space-x-1"
+          className="align-middle text-primary space-x-1"
         >
-          <IonSearch />
-          <span>查看图片</span>
+          <IonSearch className="!inline !align-middle relative top-[-2px]" />
+          <span className="leading-[14px]">查看图片</span>
         </a>
       )}
     >
