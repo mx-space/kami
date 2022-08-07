@@ -115,7 +115,6 @@ export const BasicLayout: FC = observer(({ children }) => {
         () => ({
           darkMode: 'class',
           darkClassName: 'html.dark',
-          holdCommandTimeout: 2500,
           onGuidePanelOpen: () => {
             event({
               label: 'Guide 被打开了',
