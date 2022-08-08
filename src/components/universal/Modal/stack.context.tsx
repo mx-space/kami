@@ -13,6 +13,7 @@ import React, {
   createElement,
   useCallback,
   useContext,
+  useMemo,
   useRef,
   useState,
 } from 'react'
@@ -242,7 +243,10 @@ export const ModalStackProvider: FC<{
 
   return (
     <ModalStackContext.Provider
-      value={{ present, findCurrentByName, getStack, disposeAll }}
+      value={useMemo(
+        () => ({ present, findCurrentByName, getStack, disposeAll }),
+        [disposeAll, findCurrentByName, getStack, present],
+      )}
     >
       {children}
 

@@ -34,7 +34,10 @@ export const InitialContextProvider: FC<{ value: InitialDataType }> = memo(
 
     return (
       <InitialContext.Provider
-        value={{ ...props.value, config: mergeThemeConfig }}
+        value={useMemo(
+          () => ({ ...props.value, config: mergeThemeConfig }),
+          [mergeThemeConfig, props.value],
+        )}
       >
         {props.children}
       </InitialContext.Provider>
