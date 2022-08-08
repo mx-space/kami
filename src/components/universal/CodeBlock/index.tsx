@@ -2,10 +2,10 @@ import { Mermaid } from '~/components/universal/Mermaid'
 import { HighLighter } from '~/components/widgets/CodeHighlighter'
 
 export const CodeBlock = (props: {
-  language: string | undefined
-  value: string
+  lang: string | undefined
+  content: string
 }) => {
-  if (props.language === 'mermaid') {
+  if (props.lang === 'mermaid') {
     return <Mermaid {...props} />
   } else {
     return <HighLighter {...props} />

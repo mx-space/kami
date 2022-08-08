@@ -9,12 +9,12 @@ import { useStore } from '../../../store'
 import styles from './index.module.css'
 
 interface Props {
-  language: string | undefined
-  value: string
+  lang: string | undefined
+  content: string
 }
 
 export const HighLighter: FC<Props> = observer((props) => {
-  const { language, value } = props
+  const { lang: language, content: value } = props
   const { appUIStore } = useStore()
   const { colorMode } = appUIStore
   const handleCopy = useCallback(() => {

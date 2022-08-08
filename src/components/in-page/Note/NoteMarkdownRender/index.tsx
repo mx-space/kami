@@ -1,13 +1,15 @@
-import type { FC } from 'react'
+import type { MarkdownToJSX } from 'markdown-to-jsx'
 import { memo } from 'react'
 
 import { Markdown } from '~/components/universal/Markdown'
 
-const renderLines: FC<{ value: string }> = ({ value }) => {
-  return <span className="indent">{value}</span>
+const Markdownrenderers: Partial<MarkdownToJSX.Rules> = {
+  text: {
+    react(node) {
+      return <span className="indent">{node.content}</span>
+    },
+  },
 }
-
-const Markdownrenderers = { text: renderLines }
 
 export const NoteMarkdownRender = memo((props: { text: string }) => {
   return (

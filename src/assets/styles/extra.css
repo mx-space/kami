@@ -201,6 +201,10 @@ ph {
 
   > p:first-child {
     margin-bottom: 2rem;
+
+    & > .indent {
+      text-indent: 0 !important;
+    }
   }
 }
 

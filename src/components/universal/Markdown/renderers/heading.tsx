@@ -9,15 +9,23 @@ interface HeadingProps {
   id: string
   className?: string
   children: React.ReactNode
+  level: number
 }
 export const MHeading: () => FC<HeadingProps> = () => {
   let index = 0
 
-  // eslint-disable-next-line prefer-arrow-callback
-  const RenderHeading = function Heading(this: number, props: HeadingProps) {
+  const RenderHeading = (props: HeadingProps) => {
     const currentIndex = useMemo(() => index++, [])
     // TODO  nested children heading
-    const title = props.children?.[0]
+
+    const title: string = (function findTitle(child) {
+      if (!child) {
+        return ''
+      }
+      const children = child.props?.children
+      return typeof children === 'string' ? children : findTitle(children)
+      // @ts-ignore
+    })(props.children[0])
 
     const { ref } = useInView({
       rootMargin: '-33% 0% -33% 0%',
@@ -31,7 +39,7 @@ export const MHeading: () => FC<HeadingProps> = () => {
     return (
       <Fragment>
         {createElement<DOMAttributes<HTMLHeadingElement>, HTMLHeadingElement>(
-          `h${this}`,
+          `h${props.level}`,
           {
             id: title,
             'data-index': currentIndex,

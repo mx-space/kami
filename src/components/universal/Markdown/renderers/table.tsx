@@ -1,13 +1,13 @@
 import type { FC } from 'react'
 
-export const RenderTableHead: FC = (props) => {
+export const MTableHead: FC = (props) => {
   return <thead>{props.children}</thead>
 }
 
-export const RenderTableRow: FC = (props) => {
+export const MTableRow: FC = (props) => {
   return <tr>{props.children}</tr>
 }
 
-export const RenderTableBody: FC = (props) => {
+export const MTableBody: FC = (props) => {
   return <tbody>{props.children}</tbody>
 }
