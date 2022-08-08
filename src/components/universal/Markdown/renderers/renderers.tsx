@@ -9,9 +9,7 @@ export const RenderSpoiler: FC<{ value: string }> = (props) => {
     </del>
   )
 }
-export const RenderParagraph: FC<{}> = (props) => {
-  return <p className={'paragraph'}>{props.children}</p>
-}
+
 export const RenderCommentAt: FC<{ value: string }> = ({ value }) => {
   return <>@{value}</>
 }

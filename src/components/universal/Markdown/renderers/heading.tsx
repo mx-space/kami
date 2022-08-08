@@ -1,19 +1,23 @@
 import type { DOMAttributes, FC } from 'react'
-import React, { Fragment, createElement, memo, useMemo } from 'react'
+import React, { Fragment, createElement, useMemo } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 import { CustomEventTypes } from '~/types/events'
 import { eventBus } from '~/utils/event-emitter'
 
-export const Heading: () => React.ElementType<any> = () => {
+interface HeadingProps {
+  id: string
+  className?: string
+  children: React.ReactNode
+}
+export const MHeading: () => FC<HeadingProps> = () => {
   let index = 0
 
-  const RenderHeading: FC<{
-    level: 1 | 2 | 3 | 4 | 5 | 6
-    key?: number
-  }> = memo((props) => {
+  // eslint-disable-next-line prefer-arrow-callback
+  const RenderHeading = function Heading(this: number, props: HeadingProps) {
     const currentIndex = useMemo(() => index++, [])
-    const title = props.children?.[0].props.value
+    // TODO  nested children heading
+    const title = props.children?.[0]
 
     const { ref } = useInView({
       rootMargin: '-33% 0% -33% 0%',
@@ -27,7 +31,7 @@ export const Heading: () => React.ElementType<any> = () => {
     return (
       <Fragment>
         {createElement<DOMAttributes<HTMLHeadingElement>, HTMLHeadingElement>(
-          `h${props.level}`,
+          `h${this}`,
           {
             id: title,
             'data-index': currentIndex,
@@ -37,8 +41,7 @@ export const Heading: () => React.ElementType<any> = () => {
         )}
       </Fragment>
     )
-  })
+  }
 
-  // const isClient = useIsClient()
   return RenderHeading
 }

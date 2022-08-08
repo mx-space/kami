@@ -4,7 +4,7 @@ import { memo, useCallback, useMemo } from 'react'
 
 import styles from './index.module.css'
 
-export const RenderLink: FC<{
+export const MLink: FC<{
   href: string
   key?: string
   children?: JSX.Element | JSX.Element[]

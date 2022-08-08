@@ -1,35 +1,21 @@
 import { clsx } from 'clsx'
 import range from 'lodash-es/range'
+import { compiler } from 'markdown-to-jsx'
 import { observer } from 'mobx-react-lite'
 import dynamic from 'next/dynamic'
 import type { ElementType, FC, RefObject } from 'react'
 import React, { memo, useEffect, useMemo, useState } from 'react'
 import type { ReactMarkdownProps } from 'react-markdown'
-import ReactMarkdown from 'react-markdown'
 import { ensuredForwardRef } from 'react-use'
 
-import CustomRules from '~/components/universal/Markdown/rules'
 import type { TocProps } from '~/components/widgets/Toc'
 import { useStore } from '~/store'
 
-import { CodeBlock } from '../CodeBlock'
 import { BiListNested } from '../Icons/shared'
 import { useModalStack } from '../Modal/stack.context'
 import styles from './index.module.css'
 import { processDetails } from './process-tag'
-import {
-  RenderCommentAt,
-  RenderLink,
-  RenderListItem,
-  RenderParagraph,
-  RenderReference,
-  RenderSpoiler,
-  RenderTableBody,
-  RenderTableHead,
-  RenderTableRow,
-} from './renderers'
-import { Heading } from './renderers/Heading'
-import { Image } from './renderers/Image'
+import { MHeading, MImage, MLink, MParagraph } from './renderers'
 
 const Toc = dynamic(
   () => import('~/components/widgets/Toc').then((m) => m.Toc),
@@ -94,6 +80,25 @@ const __Markdown: FC<MdProps> = ensuredForwardRef<HTMLDivElement, MdProps>(
       )
     }, [ref, value])
 
+    const node = useMemo(() => {
+      const Heading = MHeading()
+      return compiler(value || '', {
+        wrapper: null,
+        overrides: {
+          p: MParagraph,
+          img: MImage,
+          a: MLink,
+          h1: memo(Heading.bind(1)),
+          h2: memo(Heading.bind(2)),
+          h3: memo(Heading.bind(3)),
+          h4: memo(Heading.bind(4)),
+          h5: memo(Heading.bind(5)),
+          h6: memo(Heading.bind(6)),
+        },
+        additionalParserRules: {},
+      })
+    }, [value])
+
     return (
       <div
         id="write"
@@ -106,7 +111,8 @@ const __Markdown: FC<MdProps> = ensuredForwardRef<HTMLDivElement, MdProps>(
         )}
         suppressHydrationWarning
       >
-        <ReactMarkdown
+        {node}
+        {/* <ReactMarkdown
           source={value ?? (props.children as string)}
           // source={TestText}
           {...rest}
@@ -130,7 +136,7 @@ const __Markdown: FC<MdProps> = ensuredForwardRef<HTMLDivElement, MdProps>(
             [renderers],
           )}
           plugins={CustomRules}
-        />
+        /> */}
 
         {props.toc && <TOC headings={headings} />}
       </div>
