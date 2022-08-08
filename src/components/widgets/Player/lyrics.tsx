@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 
+import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { store } from '~/store'
 
 import type { LyricsContent } from './lyrics.clsss'
@@ -40,7 +41,8 @@ const LyricsRender: FC<{ lyrics: string }> = observer(({ lyrics }) => {
 
   const [animationParent] = useAutoAnimate<HTMLUListElement>()
   const classNameMap = useRef([
-    'text-gray-1',
+    'opacity-0',
+    'text-gray-1 !scale-125',
     'filter blur-[2px]',
     'filter blur-[4px]',
   ]).current
@@ -50,16 +52,24 @@ const LyricsRender: FC<{ lyrics: string }> = observer(({ lyrics }) => {
       <div className="absolute bottom-2">
         <ul
           ref={animationParent}
-          className="text-gray-1 pl-2 !hover:children:text-shizuku-text !hover:children:filter-none children:transition-all duration-500"
+          className="text-gray-1 pl-2 !hover:children:text-shizuku-text !hover:children:filter-none"
         >
           {list.map((item, index) => {
             return (
               <li
                 key={item.hms}
                 data-hms={item.hms}
-                className={clsx(classNameMap[index], 'my-2')}
+                className={clsx(
+                  'my-2 transform origin-left transition-all opacity-100 scale-100 !duration-500 ease-in-out',
+                  classNameMap[index],
+                )}
               >
-                <p>{item.content}</p>
+                <BottomUpTransitionView
+                  key={item.hms}
+                  timeout={{ enter: index * 50 }}
+                >
+                  <p>{item.content}</p>
+                </BottomUpTransitionView>
               </li>
             )
           })}
