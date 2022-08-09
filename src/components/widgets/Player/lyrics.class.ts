@@ -67,7 +67,17 @@ export class LyricsManager {
         },
       ].concat(this._timeline.list.slice(0, size - 1))
     }
-    return this._timeline.list.slice(index, index + size)
+    const result = this._timeline.list.slice(index, index + size)
+    return result.length < size
+      ? result.concat(
+          Array.from({ length: size - result.length }).map((_, i) => {
+            return {
+              content: '',
+              hms: `END-${i}`,
+            }
+          }),
+        )
+      : result
   }
 
   private searchNumberInRange(target: number) {
