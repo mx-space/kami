@@ -30,6 +30,7 @@ import {
   MTableHead,
   MTableRow,
 } from './renderers'
+import { MDetails } from './renderers/collapse'
 import { MFootNote } from './renderers/footnotes'
 
 const Toc = dynamic(
@@ -95,7 +96,7 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo(
     }, [ref, value])
 
     const node = useMemo(() => {
-      if (!value || typeof props.children != 'string') return null
+      if (!value && typeof props.children != 'string') return null
 
       const Heading = MHeading()
 
@@ -109,6 +110,7 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo(
           tr: MTableRow,
           tbody: MTableBody,
           footer: MFootNote,
+          details: MDetails,
         },
         extendsRules: {
           link: {
