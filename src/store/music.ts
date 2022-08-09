@@ -44,6 +44,7 @@ export class MusicStore {
   }
   resetList() {
     this.resetPlayingSongState()
+
     this.list = shuffle(
       window.data?.config.function.player.id ?? [
         563534789, 1447327083, 1450252250,

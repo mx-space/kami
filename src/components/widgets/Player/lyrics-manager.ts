@@ -20,7 +20,6 @@ export class LyricsManager {
   constructor(public readonly lyrics: string) {
     this._lines = lyrics.split('\n')
     this._timeline = (() => {
-      const raw = [] as string[]
       const list = [] as any[]
       const tsList = [] as number[]
       for (const line of this._lines) {
@@ -57,12 +56,28 @@ export class LyricsManager {
     })()
   }
 
-  getCurrentTimeline(time: number) {
-    const index = this.searchNumberInRange(time) - 1
+  getCurrentTimeline(time: number, size = 4): LyricsContent[] {
+    // 第一行 是上一行 第二行开始是当前行以及后面的
+    const index = this.searchNumberInRange(time) - 2
     if (index <= 0) {
-      return this._timeline.list.slice(0, 3)
+      return [
+        {
+          hms: 'start',
+          content: '',
+        },
+      ].concat(this._timeline.list.slice(0, size - 1))
     }
-    return this._timeline.list.slice(index, index + 3)
+    const result = this._timeline.list.slice(index, index + size)
+    return result.length < size
+      ? result.concat(
+          Array.from({ length: size - result.length }).map((_, i) => {
+            return {
+              content: '',
+              hms: `END-${i}`,
+            }
+          }),
+        )
+      : result
   }
 
   private searchNumberInRange(target: number) {

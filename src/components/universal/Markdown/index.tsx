@@ -247,10 +247,10 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo(
 
 export const TOC: FC<TocProps> = observer((props) => {
   const { appStore, actionStore } = useStore()
-  const { isNarrowThanLaptop: isWiderThanLaptop } = appStore
+  const { isNarrowThanLaptop } = appStore
   const { present } = useModalStack()
   useEffect(() => {
-    if (!isWiderThanLaptop || props.headings.length == 0) {
+    if (!isNarrowThanLaptop || props.headings.length == 0) {
       return
     }
     const id = Symbol('toc')
@@ -270,6 +270,6 @@ export const TOC: FC<TocProps> = observer((props) => {
     return () => {
       actionStore.removeActionBySymbol(id)
     }
-  }, [actionStore, isWiderThanLaptop, present, props])
-  return !isWiderThanLaptop ? <Toc {...props} /> : null
+  }, [actionStore, isNarrowThanLaptop, present, props])
+  return !isNarrowThanLaptop ? <Toc {...props} /> : null
 })
