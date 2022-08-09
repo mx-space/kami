@@ -1,3 +1,4 @@
+import shuffle from 'lodash-es/shuffle'
 import { makeAutoObservable } from 'mobx'
 
 export class MusicStore {
@@ -43,12 +44,12 @@ export class MusicStore {
   }
   resetList() {
     this.resetPlayingSongState()
-    this.list = [1808492017]
-    // this.list = shuffle(https://music.163.com/song?id=1808492017&userid=84302804
-    //   window.data?.config.function.player.id ?? [
-    //     563534789, 1447327083, 1450252250,
-    //   ],https://music.163.com/song?id=&userid=84302804
-    // )
+
+    this.list = shuffle(
+      window.data?.config.function.player.id ?? [
+        563534789, 1447327083, 1450252250,
+      ],
+    )
   }
 
   empty() {

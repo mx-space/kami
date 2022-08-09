@@ -10,8 +10,8 @@ import { withDesktopOnly } from '~/components/biz/view-only/desktop'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { store } from '~/store'
 
-import type { LyricsContent } from './lyrics.class'
-import { LyricsManager } from './lyrics.class'
+import type { LyricsContent } from './lyrics-manager'
+import { LyricsManager } from './lyrics-manager'
 import { useFetchLyrics } from './use-fetch'
 
 export const Lyrics: FC = withDesktopOnly(
