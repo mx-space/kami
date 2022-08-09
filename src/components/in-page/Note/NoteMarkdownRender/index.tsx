@@ -3,7 +3,7 @@ import { memo } from 'react'
 
 import { Markdown } from '~/components/universal/Markdown'
 
-const Markdownrenderers: Partial<MarkdownToJSX.Rules> = {
+const Markdownrenderers: { [name: string]: Partial<MarkdownToJSX.Rule> } = {
   text: {
     react(node) {
       return <span className="indent">{node.content}</span>
@@ -15,7 +15,7 @@ export const NoteMarkdownRender = memo((props: { text: string }) => {
   return (
     <Markdown
       value={props.text}
-      escapeHtml={false}
+      disableParsingRawHTML
       renderers={Markdownrenderers}
       toc
     />
