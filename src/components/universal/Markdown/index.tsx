@@ -105,7 +105,6 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo(
         overrides: {
           p: MParagraph,
           img: MImage,
-          a: MLink,
           thead: MTableHead,
           tr: MTableRow,
           tbody: MTableBody,
@@ -201,7 +200,7 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo(
                   {node.items.map((item, i) => {
                     let className = ''
                     if (item[0]?.type == 'gfmTask') {
-                      className = 'list-none inline-flex items-center'
+                      className = 'list-none flex items-center'
                     }
 
                     return (

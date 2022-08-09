@@ -1,3 +1,4 @@
+import { sanitizeUrl } from 'markdown-to-jsx'
 import type { FC } from 'react'
 import { useEffect } from 'react'
 
@@ -67,10 +68,17 @@ export const ProjectDetail: FC<{ id: string }> = (props) => {
       <article className="mt-12">
         <Markdown
           value={text}
-          escapeHtml={false}
           codeBlockFully
           renderers={{
-            link: Link,
+            link: {
+              react(node, output, state) {
+                return (
+                  <Link href={sanitizeUrl(node.target)!}>
+                    {output(node.content, state!)}
+                  </Link>
+                )
+              },
+            },
           }}
         />
       </article>
@@ -78,9 +86,14 @@ export const ProjectDetail: FC<{ id: string }> = (props) => {
   )
 }
 
-const Link = (props) => {
+const Link: FC<{ href: string }> = (props) => {
   return (
-    <a href={props.href} target={'_blank'} rel="noreferrer">
+    <a
+      href={props.href}
+      target={'_blank'}
+      rel="noreferrer"
+      className="border-b border-b-default-yellow-100 border-opacity-20 pb-1"
+    >
       {props.children}
     </a>
   )
