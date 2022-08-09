@@ -1,4 +1,5 @@
 import { clsx } from 'clsx'
+import { sanitizeUrl } from 'markdown-to-jsx'
 import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
@@ -216,15 +217,37 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
                   ''
                 } `
               : ''
-          }${comment.text}`}
+          }${comment.text}\n\n`}
           className={styles['comment']}
           skipHtml
           escapeHtml
           disallowedTypes={disallowedTypes}
           renderers={useMemo(
             () => ({
-              commentAt: ({ value }) => <CommentAtRender id={value} />,
-              image: ({ src, alt }) => <ImageTagPreview src={src} alt={alt} />,
+              commentAt: {
+                react(node, _, state) {
+                  const { content } = node
+                  const id = content[0]?.content
+                  if (!id) {
+                    return <></>
+                  }
+
+                  return <CommentAtRender id={id} key={state?.key} />
+                },
+              },
+              image: {
+                react(node, _, state) {
+                  const { alt, target } = node
+
+                  return (
+                    <ImageTagPreview
+                      alt={alt}
+                      src={sanitizeUrl(target)!}
+                      key={state?.key}
+                    />
+                  )
+                },
+              },
             }),
             [],
           )}

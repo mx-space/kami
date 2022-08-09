@@ -1,7 +1,7 @@
 import { clsx } from 'clsx'
 import range from 'lodash-es/range'
 import type { MarkdownToJSX } from 'markdown-to-jsx'
-import { compiler } from 'markdown-to-jsx'
+import { compiler, sanitizeUrl } from 'markdown-to-jsx'
 import { observer } from 'mobx-react-lite'
 import dynamic from 'next/dynamic'
 import type { FC, RefObject } from 'react'
@@ -10,11 +10,15 @@ import { ensuredForwardRef } from 'react-use'
 
 import type { TocProps } from '~/components/widgets/Toc'
 import { useStore } from '~/store'
+import { springScrollToElement } from '~/utils/spring'
 
 import { CodeBlock } from '../CodeBlock'
 import { BiListNested } from '../Icons/shared'
 import { useModalStack } from '../Modal/stack.context'
 import styles from './index.module.css'
+import { CommentAtRule } from './parsers/comment-at'
+import { GithubMentionRule } from './parsers/gh-mention'
+import { SpoilderRule } from './parsers/spoiler'
 import { processDetails } from './process-tag'
 import {
   MHeading,
@@ -25,6 +29,7 @@ import {
   MTableHead,
   MTableRow,
 } from './renderers'
+import { MFootNote } from './renderers/footnotes'
 
 const Toc = dynamic(
   () => import('~/components/widgets/Toc').then((m) => m.Toc),
@@ -37,13 +42,13 @@ interface MdProps {
   toc?: boolean
   [key: string]: any
   style?: React.CSSProperties
-  readonly renderers?: Partial<MarkdownToJSX.Rules>
+  readonly renderers?: { [key: string]: Partial<MarkdownToJSX.Rule> }
   wrapperProps?: React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   >
   codeBlockFully?: boolean
-  children?: string
+  className?: string
 }
 
 const __Markdown: FC<MdProps & MarkdownToJSX.Options> = ensuredForwardRef<
@@ -56,7 +61,7 @@ const __Markdown: FC<MdProps & MarkdownToJSX.Options> = ensuredForwardRef<
     style,
     wrapperProps = {},
     codeBlockFully = false,
-    ...rest
+    className,
   } = props
 
   useEffect(() => {
@@ -91,13 +96,11 @@ const __Markdown: FC<MdProps & MarkdownToJSX.Options> = ensuredForwardRef<
   }, [ref, value])
 
   const node = useMemo(() => {
-    const footnotes: {
-      footnote: string
-      id: string
-    }[] = []
+    if (!value) return null
+
     const Heading = MHeading()
 
-    return compiler(value || '', {
+    return compiler(`${value}`, {
       wrapper: null,
       overrides: {
         p: MParagraph,
@@ -106,37 +109,57 @@ const __Markdown: FC<MdProps & MarkdownToJSX.Options> = ensuredForwardRef<
         thead: MTableHead,
         tr: MTableRow,
         tbody: MTableBody,
+        footer: MFootNote,
       },
       extendsRules: {
+        link: {
+          react(node, output, state) {
+            const { target, title } = node
+            return (
+              <MLink href={sanitizeUrl(target)!} title={title} key={state?.key}>
+                {output(node.content, state!)}
+              </MLink>
+            )
+          },
+        },
         heading: {
           react(node, output, state) {
             return (
-              <Heading id={node.id} level={node.level}>
+              <Heading id={node.id} level={node.level} key={state?.key}>
                 {output(node.content, state!)}
               </Heading>
             )
           },
         },
-        footnote: {
-          parse(capture) {
-            footnotes.push({
-              footnote: capture[2].replace(': ', ''),
-              id: capture[1],
-            })
+        // TODO
+        // footnote: {
+        //   parse(capture) {
+        //     footnotes.set(capture[1], {
+        //       footnote: capture[2].replace(': ', ''),
+        //       id: capture[1],
+        //     })
 
-            return {}
-          },
-        },
+        //     return {}
+        //   },
+        // },
         footnoteReference: {
           react(node, output, state) {
-            const { content: id } = node
-
             return (
-              <sup>
-                <a title={id || undefined} href={footnotes[+id].footnote}>
-                  {id}
-                </a>
-              </sup>
+              <a
+                key={state?.key}
+                href={sanitizeUrl(node.target)!}
+                onClick={(e) => {
+                  e.preventDefault()
+
+                  springScrollToElement(
+                    document.getElementById(node.content)!,
+                    undefined,
+                    -window.innerHeight / 2,
+                  )
+                }}
+              >
+                <sup key={state?.key}>{node.content}</sup>
+              </a>
             )
           },
         },
@@ -151,9 +174,46 @@ const __Markdown: FC<MdProps & MarkdownToJSX.Options> = ensuredForwardRef<
             )
           },
         },
+        gfmTask: {
+          react(node, _, state) {
+            return (
+              <label className="inline-flex items-center mr-2" key={state?.key}>
+                <input type="checkbox" checked={node.completed} readOnly />
+              </label>
+            )
+          },
+        },
+
+        list: {
+          react(node, output, state) {
+            const Tag = node.ordered ? 'ol' : 'ul'
+
+            return (
+              <Tag key={state?.key} start={node.start}>
+                {node.items.map((item, i) => {
+                  let className = ''
+                  if (item[0]?.type == 'gfmTask') {
+                    className = 'list-none inline-flex items-center'
+                  }
+
+                  return (
+                    <li className={className} key={i}>
+                      {output(item, state!)}
+                    </li>
+                  )
+                })}
+              </Tag>
+            )
+          },
+        },
+
         ...renderers,
       },
-      additionalParserRules: {},
+      additionalParserRules: {
+        spoilder: SpoilderRule,
+        githubMention: GithubMentionRule,
+        commentAt: CommentAtRule,
+      },
     })
   }, [value, renderers])
 
@@ -169,32 +229,7 @@ const __Markdown: FC<MdProps & MarkdownToJSX.Options> = ensuredForwardRef<
       )}
       suppressHydrationWarning
     >
-      {node}
-      {/* <ReactMarkdown
-          source={value ?? (props.children as string)}
-          // source={TestText}
-          {...rest}
-          renderers={useMemo(
-            () => ({
-              code: CodeBlock,
-              pre: CodeBlock,
-              image: Image,
-              heading: Heading(),
-              link: RenderLink,
-              spoiler: RenderSpoiler,
-              paragraph: RenderParagraph,
-              commentAt: RenderCommentAt,
-              linkReference: RenderReference,
-              listItem: RenderListItem,
-              tableHead: RenderTableHead,
-              tableRow: RenderTableRow,
-              tableBody: RenderTableBody,
-              ...renderers,
-            }),
-            [renderers],
-          )}
-          plugins={CustomRules}
-        /> */}
+      {className ? <div className={className}>{node}</div> : node}
 
       {props.toc && <TOC headings={headings} />}
     </div>

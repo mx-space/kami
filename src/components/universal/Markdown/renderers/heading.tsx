@@ -1,5 +1,12 @@
 import type { DOMAttributes, FC } from 'react'
-import React, { Fragment, createElement, useMemo } from 'react'
+import React, {
+  Fragment,
+  createElement,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import { useInView } from 'react-intersection-observer'
 
 import { CustomEventTypes } from '~/types/events'
@@ -18,14 +25,15 @@ export const MHeading: () => FC<HeadingProps> = () => {
     const currentIndex = useMemo(() => index++, [])
     // TODO  nested children heading
 
-    const title: string = (function findTitle(child) {
-      if (!child) {
-        return ''
+    const [id, setId] = useState('')
+
+    useEffect(() => {
+      if (!$titleRef.current) {
+        return
       }
-      const children = child.props?.children
-      return typeof children === 'string' ? children : findTitle(children)
-      // @ts-ignore
-    })(props.children[0])
+
+      setId($titleRef.current.textContent || '')
+    }, [])
 
     const { ref } = useInView({
       rootMargin: '-33% 0% -33% 0%',
@@ -36,16 +44,21 @@ export const MHeading: () => FC<HeadingProps> = () => {
       },
     })
 
+    const $titleRef = useRef<HTMLHeadingElement>(null)
+
     return (
       <Fragment>
         {createElement<DOMAttributes<HTMLHeadingElement>, HTMLHeadingElement>(
           `h${props.level}`,
           {
-            id: title,
+            id,
+            ref: $titleRef,
             'data-index': currentIndex,
-            ref,
           } as any,
-          props.children,
+          <Fragment>
+            {props.children}
+            <span ref={ref} />
+          </Fragment>,
         )}
       </Fragment>
     )

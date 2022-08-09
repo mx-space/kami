@@ -39,7 +39,7 @@ specifiers:
   lint-staged: 13.0.3
   lodash-es: 4.17.21
   markdown-escape: 1.1.0
-  markdown-to-jsx: npm:@innei/markdown-to-jsx@7.1.3-6
+  markdown-to-jsx: npm:@innei/markdown-to-jsx@7.1.3-9
   medium-zoom: 1.0.6
   mobx: 6.6.1
   mobx-react-lite: 3.4.0
@@ -62,7 +62,7 @@ specifiers:
   react-markdown: 4.3.1
   react-masonry-css: 1.0.16
   react-message-popup: 1.0.0-alpha.2
-  react-shortcut-guide: 0.3.4
+  react-shortcut-guide: 0.3.5
   react-smooth-number-counter: https://github.com/Innei/react-smooth-number-counter.git
   react-toastify: 9.0.8
   react-transition-group: 4.4.5
@@ -90,7 +90,7 @@ dependencies:
   js-cookie: 3.0.1
   lodash-es: 4.17.21
   markdown-escape: 1.1.0
-  markdown-to-jsx: /@innei/markdown-to-jsx/7.1.3-6_react@18.2.0
+  markdown-to-jsx: /@innei/markdown-to-jsx/7.1.3-9_react@18.2.0
   medium-zoom: 1.0.6
   mobx: 6.6.1
   mobx-react-lite: 3.4.0_m26jawr67gnusmh4egzqtnhxru
@@ -106,7 +106,7 @@ dependencies:
   react-markdown: 4.3.1_react@18.2.0
   react-masonry-css: 1.0.16_react@18.2.0
   react-message-popup: 1.0.0-alpha.2_biqbaboplfbrettd7655fr4n2y
-  react-shortcut-guide: 0.3.4
+  react-shortcut-guide: 0.3.5
   react-smooth-number-counter: github.com/Innei/react-smooth-number-counter/6be776817e507970a7e3177b8c3277b0b9d3e779
   react-toastify: 9.0.8_biqbaboplfbrettd7655fr4n2y
   react-transition-group: 4.4.5_biqbaboplfbrettd7655fr4n2y
@@ -1627,8 +1627,8 @@ packages:
       - supports-color
     dev: true
 
-  /@innei/markdown-to-jsx/7.1.3-6_react@18.2.0:
-    resolution: {integrity: sha512-hoH1unu0/OZFPmBUt1tayvoJtluAFVs18ZOZ58gQCk3y8T9mcg8rEr0jVAAJNxK6GwUAsbCpfyOiy17ESAB1Yg==}
+  /@innei/markdown-to-jsx/7.1.3-9_react@18.2.0:
+    resolution: {integrity: sha512-IugUGZcJXnwk/iCSKC7X/RGVcYm+aNJWrHflX5jSpdQl+PjcMkxvAeFDRCs/dx5R8p5KC6sRLezHrin4mm59KQ==}
     engines: {node: '>= 10'}
     peerDependencies:
       react: '>= 0.14.0'
@@ -5678,8 +5678,8 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /react-shortcut-guide/0.3.4:
-    resolution: {integrity: sha512-W/o3xK1zMepjfzh1RZiLBSNMRqrTZxFNhivJewDCMQqUP1/MXNcgXFy63xDn4R3XHQ6zlIo4UxOO0c7ztWXrLA==}
+  /react-shortcut-guide/0.3.5:
+    resolution: {integrity: sha512-W++caMm3gOP6KdNDFLtC5DwQAMxAcmyDB/vveImHHwcOmCg3eCUkzGlexU6UXhsFseTZbizVWiqlaldSlZBtgw==}
     dev: false
 
   /react-toastify/9.0.8_biqbaboplfbrettd7655fr4n2y:

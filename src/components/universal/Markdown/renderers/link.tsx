@@ -2,11 +2,12 @@ import Router from 'next/router'
 import type { FC } from 'react'
 import { memo, useCallback, useMemo } from 'react'
 
+import { FloatPopover } from '../../FloatPopover'
 import styles from './index.module.css'
 
 export const MLink: FC<{
   href: string
-  key?: string
+  title?: string
   children?: JSX.Element | JSX.Element[]
 }> = memo((props) => {
   const ExtendIcon = useMemo(
@@ -72,11 +73,24 @@ export const MLink: FC<{
 
   return (
     <div className={styles['link']}>
-      <a href={props.href} target={'_blank'} onClick={handleRedirect}>
-        {props.children}
-      </a>
-      <div className={styles['popup']}>{props.href}</div>
-      {ExtendIcon}
+      <FloatPopover
+        triggerComponent={() => (
+          <>
+            <a
+              href={props.href}
+              target={'_blank'}
+              onClick={handleRedirect}
+              title={props.title}
+            >
+              {props.children}
+            </a>
+
+            {ExtendIcon}
+          </>
+        )}
+      >
+        <p>{props.href}</p>
+      </FloatPopover>
     </div>
   )
 })
