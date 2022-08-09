@@ -266,12 +266,7 @@ export const PostView: PageOnlyProps = observer((props) => {
               >
                 <article>
                   <h1 className="sr-only">{post.title}</h1>
-                  <Markdown
-                    codeBlockFully
-                    value={post.text}
-                    escapeHtml={false}
-                    toc
-                  />
+                  <Markdown codeBlockFully value={post.text} toc />
                 </article>
               </ImageSizeMetaContext.Provider>
 
