@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { clsx } from 'clsx'
 import range from 'lodash-es/range'
 import type { MarkdownToJSX } from 'markdown-to-jsx'
@@ -40,7 +41,7 @@ const Toc = dynamic(
 interface MdProps {
   value?: string
   toc?: boolean
-  [key: string]: any
+
   style?: React.CSSProperties
   readonly renderers?: { [key: string]: Partial<MarkdownToJSX.Rule> }
   wrapperProps?: React.DetailedHTMLProps<
@@ -51,192 +52,196 @@ interface MdProps {
   className?: string
 }
 
-const __Markdown: FC<MdProps & MarkdownToJSX.Options> = ensuredForwardRef<
-  HTMLDivElement,
-  MdProps
->((props, ref) => {
-  const {
-    value,
-    renderers,
-    style,
-    wrapperProps = {},
-    codeBlockFully = false,
-    className,
-  } = props
+export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo(
+  ensuredForwardRef<HTMLDivElement, MdProps>((props, ref) => {
+    const {
+      value,
+      renderers,
+      style,
+      wrapperProps = {},
+      codeBlockFully = false,
+      className,
+    } = props
 
-  useEffect(() => {
-    const _ = ref as RefObject<HTMLElement>
-    if (!_.current) {
-      return
-    }
-    const $ = _.current as HTMLElement
-    //  process raw html tag
-    processDetails($)
-  }, [ref])
+    useEffect(() => {
+      const _ = ref as RefObject<HTMLElement>
+      if (!_.current) {
+        return
+      }
+      const $ = _.current as HTMLElement
+      //  process raw html tag
+      processDetails($)
+    }, [ref])
 
-  const [headings, setHeadings] = useState<HTMLElement[]>([])
+    const [headings, setHeadings] = useState<HTMLElement[]>([])
 
-  useEffect(() => {
-    const _ = ref as RefObject<HTMLElement>
-    if (!_.current) {
-      return
-    }
-    const $ = _.current
-    // FIXME: 可能存在 memory leak
+    useEffect(() => {
+      const _ = ref as RefObject<HTMLElement>
+      if (!_.current) {
+        return
+      }
+      const $ = _.current
+      // FIXME: 可能存在 memory leak
 
-    setHeadings(
-      Array.from(
-        $.querySelectorAll(
-          range(0, 6)
-            .map((i) => `h${i}`)
-            .join(', '),
+      setHeadings(
+        Array.from(
+          $.querySelectorAll(
+            range(0, 6)
+              .map((i) => `h${i}`)
+              .join(', '),
+          ),
         ),
-      ),
+      )
+    }, [ref, value])
+
+    const node = useMemo(() => {
+      if (!value || typeof props.children != 'string') return null
+
+      const Heading = MHeading()
+
+      return compiler(`${value || props.children}`, {
+        wrapper: null,
+        overrides: {
+          p: MParagraph,
+          img: MImage,
+          a: MLink,
+          thead: MTableHead,
+          tr: MTableRow,
+          tbody: MTableBody,
+          footer: MFootNote,
+        },
+        extendsRules: {
+          link: {
+            react(node, output, state) {
+              const { target, title } = node
+              return (
+                <MLink
+                  href={sanitizeUrl(target)!}
+                  title={title}
+                  key={state?.key}
+                >
+                  {output(node.content, state!)}
+                </MLink>
+              )
+            },
+          },
+          heading: {
+            react(node, output, state) {
+              return (
+                <Heading id={node.id} level={node.level} key={state?.key}>
+                  {output(node.content, state!)}
+                </Heading>
+              )
+            },
+          },
+          // TODO
+          // footnote: {
+          //   parse(capture) {
+          //     footnotes.set(capture[1], {
+          //       footnote: capture[2].replace(': ', ''),
+          //       id: capture[1],
+          //     })
+
+          //     return {}
+          //   },
+          // },
+          footnoteReference: {
+            react(node, output, state) {
+              return (
+                <a
+                  key={state?.key}
+                  href={sanitizeUrl(node.target)!}
+                  onClick={(e) => {
+                    e.preventDefault()
+
+                    springScrollToElement(
+                      document.getElementById(node.content)!,
+                      undefined,
+                      -window.innerHeight / 2,
+                    )
+                  }}
+                >
+                  <sup key={state?.key}>{node.content}</sup>
+                </a>
+              )
+            },
+          },
+          codeBlock: {
+            react(node, output, state) {
+              return (
+                <CodeBlock
+                  key={state?.key}
+                  content={node.content}
+                  lang={node.lang}
+                />
+              )
+            },
+          },
+          gfmTask: {
+            react(node, _, state) {
+              return (
+                <label
+                  className="inline-flex items-center mr-2"
+                  key={state?.key}
+                >
+                  <input type="checkbox" checked={node.completed} readOnly />
+                </label>
+              )
+            },
+          },
+
+          list: {
+            react(node, output, state) {
+              const Tag = node.ordered ? 'ol' : 'ul'
+
+              return (
+                <Tag key={state?.key} start={node.start}>
+                  {node.items.map((item, i) => {
+                    let className = ''
+                    if (item[0]?.type == 'gfmTask') {
+                      className = 'list-none inline-flex items-center'
+                    }
+
+                    return (
+                      <li className={className} key={i}>
+                        {output(item, state!)}
+                      </li>
+                    )
+                  })}
+                </Tag>
+              )
+            },
+          },
+
+          ...renderers,
+        },
+        additionalParserRules: {
+          spoilder: SpoilderRule,
+          githubMention: GithubMentionRule,
+          commentAt: CommentAtRule,
+        },
+      })
+    }, [value, renderers])
+
+    return (
+      <div
+        id="write"
+        style={style}
+        {...wrapperProps}
+        ref={ref}
+        className={clsx(
+          styles['md'],
+          codeBlockFully ? styles['code-fully'] : undefined,
+        )}
+        suppressHydrationWarning
+      >
+        {className ? <div className={className}>{node}</div> : node}
+
+        {props.toc && <TOC headings={headings} />}
+      </div>
     )
-  }, [ref, value])
-
-  const node = useMemo(() => {
-    if (!value) return null
-
-    const Heading = MHeading()
-
-    return compiler(`${value}`, {
-      wrapper: null,
-      overrides: {
-        p: MParagraph,
-        img: MImage,
-        a: MLink,
-        thead: MTableHead,
-        tr: MTableRow,
-        tbody: MTableBody,
-        footer: MFootNote,
-      },
-      extendsRules: {
-        link: {
-          react(node, output, state) {
-            const { target, title } = node
-            return (
-              <MLink href={sanitizeUrl(target)!} title={title} key={state?.key}>
-                {output(node.content, state!)}
-              </MLink>
-            )
-          },
-        },
-        heading: {
-          react(node, output, state) {
-            return (
-              <Heading id={node.id} level={node.level} key={state?.key}>
-                {output(node.content, state!)}
-              </Heading>
-            )
-          },
-        },
-        // TODO
-        // footnote: {
-        //   parse(capture) {
-        //     footnotes.set(capture[1], {
-        //       footnote: capture[2].replace(': ', ''),
-        //       id: capture[1],
-        //     })
-
-        //     return {}
-        //   },
-        // },
-        footnoteReference: {
-          react(node, output, state) {
-            return (
-              <a
-                key={state?.key}
-                href={sanitizeUrl(node.target)!}
-                onClick={(e) => {
-                  e.preventDefault()
-
-                  springScrollToElement(
-                    document.getElementById(node.content)!,
-                    undefined,
-                    -window.innerHeight / 2,
-                  )
-                }}
-              >
-                <sup key={state?.key}>{node.content}</sup>
-              </a>
-            )
-          },
-        },
-        codeBlock: {
-          react(node, output, state) {
-            return (
-              <CodeBlock
-                key={state?.key}
-                content={node.content}
-                lang={node.lang}
-              />
-            )
-          },
-        },
-        gfmTask: {
-          react(node, _, state) {
-            return (
-              <label className="inline-flex items-center mr-2" key={state?.key}>
-                <input type="checkbox" checked={node.completed} readOnly />
-              </label>
-            )
-          },
-        },
-
-        list: {
-          react(node, output, state) {
-            const Tag = node.ordered ? 'ol' : 'ul'
-
-            return (
-              <Tag key={state?.key} start={node.start}>
-                {node.items.map((item, i) => {
-                  let className = ''
-                  if (item[0]?.type == 'gfmTask') {
-                    className = 'list-none inline-flex items-center'
-                  }
-
-                  return (
-                    <li className={className} key={i}>
-                      {output(item, state!)}
-                    </li>
-                  )
-                })}
-              </Tag>
-            )
-          },
-        },
-
-        ...renderers,
-      },
-      additionalParserRules: {
-        spoilder: SpoilderRule,
-        githubMention: GithubMentionRule,
-        commentAt: CommentAtRule,
-      },
-    })
-  }, [value, renderers])
-
-  return (
-    <div
-      id="write"
-      style={style}
-      {...wrapperProps}
-      ref={ref}
-      className={clsx(
-        styles['md'],
-        codeBlockFully ? styles['code-fully'] : undefined,
-      )}
-      suppressHydrationWarning
-    >
-      {className ? <div className={className}>{node}</div> : node}
-
-      {props.toc && <TOC headings={headings} />}
-    </div>
-  )
-})
-
-export const Markdown = memo(__Markdown)
+  }),
+)
 
 export const TOC: FC<TocProps> = observer((props) => {
   const { appStore, actionStore } = useStore()
