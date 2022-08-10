@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react'
 
 import { loadScript, loadStyleSheet } from '~/utils/load-script'
 
-//  $$c = \\pm\\sqrt{a^2 + b^2}$$
+//  $ c = \\pm\\sqrt{a^2 + b^2} $
 export const KateXRule: MarkdownToJSX.Rule = {
   match: simpleInlineRegex(
     /^\$\s{1,}((?:\[.*?\]|<.*?>(?:.*?<.*?>)?|`.*?`|.)*?)\s{1,}\$/,
