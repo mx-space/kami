@@ -12,6 +12,7 @@ import { useStore } from '~/store'
 import { isDev } from '~/utils/env'
 import { springScrollToElement } from '~/utils/spring'
 
+import { CodeBlock } from '../CodeBlock'
 import { BiListNested } from '../Icons/shared'
 import { useModalStack } from '../Modal/stack.context'
 import styles from './index.module.css'
