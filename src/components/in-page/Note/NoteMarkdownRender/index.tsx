@@ -5,8 +5,12 @@ import { Markdown } from '~/components/universal/Markdown'
 
 const Markdownrenderers: { [name: string]: Partial<MarkdownToJSX.Rule> } = {
   text: {
-    react(node) {
-      return <span className="indent">{node.content}</span>
+    react(node, _, state) {
+      return (
+        <span className="indent" key={state?.key}>
+          {node.content}
+        </span>
+      )
     },
   },
 }

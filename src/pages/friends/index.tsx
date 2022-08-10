@@ -94,7 +94,7 @@ const _Footer: FC = () => {
             react(node, output, state?) {
               return createElement(
                 `h${node.level}`,
-                { className: 'headline' },
+                { className: 'headline', key: state?.key },
                 output(node.content, state!),
               )
             },

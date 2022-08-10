@@ -73,7 +73,7 @@ export const ProjectDetail: FC<{ id: string }> = (props) => {
             link: {
               react(node, output, state) {
                 return (
-                  <Link href={sanitizeUrl(node.target)!}>
+                  <Link href={sanitizeUrl(node.target)!} key={state?.key}>
                     {output(node.content, state!)}
                   </Link>
                 )

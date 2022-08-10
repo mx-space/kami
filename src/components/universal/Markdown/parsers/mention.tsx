@@ -19,10 +19,10 @@ const prefixToUrlMap = {
   TG: 'https://t.me/',
 }
 
-// (GH@Innei) (TW@Innei) (TG@Innei)
+// {GH@Innei} {TW@Innei} {TG@Innei}
 export const MentionRule: MarkdownToJSX.Rule = {
   match: simpleInlineRegex(
-    /^\(((?<prefix>(GH)|(TW)|(TG))@(?<name>\w+\b))\)\s?(?!\[.*?\])/,
+    /^\{((?<prefix>(GH)|(TW)|(TG))@(?<name>\w+\b))\}\s?(?!\[.*?\])/,
   ),
   order: Priority.MIN,
   parse(capture) {

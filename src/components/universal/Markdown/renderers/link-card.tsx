@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import type { FC } from 'react'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
+import RemoveMarkdown from 'remove-markdown'
 
 import { apiClient } from '~/utils/client'
 import { getRandomImage } from '~/utils/images'
@@ -15,9 +16,10 @@ export enum LinkCardSource {
 export interface LinkCardProps {
   id: string
   source: LinkCardSource
+  className?: string
 }
 export const LinkCard: FC<LinkCardProps> = (props) => {
-  const { id, source } = props
+  const { id, source, className } = props
   const [loading, setLoading] = useState(true)
   const fetchFnRef = useRef<() => Promise<any>>()
   const [fullUrl, setFullUrl] = useState('')
@@ -48,9 +50,9 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
                 const { title, images, text } = res.data
                 setCardInfo({
                   title,
-                  desc: `${text.slice(0, 50)}...`,
+                  desc: `${RemoveMarkdown(text).slice(0, 50)}...`,
                   // TODO
-                  image: images?.[0].src || getRandomImage(1)[0],
+                  image: images?.[0]?.src || getRandomImage(1)[0],
                 })
               })
             }
@@ -70,7 +72,7 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
                 const { title, images, text, summary } = res
                 setCardInfo({
                   title,
-                  desc: summary ?? `${text.slice(0, 50)}...`,
+                  desc: summary ?? `${RemoveMarkdown(text).slice(0, 50)}...`,
                   // TODO
                   image: images?.[0].src || getRandomImage(1)[0],
                 })
@@ -127,8 +129,9 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
       target={'_blank'}
       ref={ref}
       className={clsx(
-        cardInfo && styles['card-grid'],
+        (cardInfo || loading) && styles['card-grid'],
         loading && styles['skeleton'],
+        className,
       )}
     >
       <div className={styles['contents']}>

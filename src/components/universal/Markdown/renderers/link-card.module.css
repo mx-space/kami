@@ -10,7 +10,7 @@
   max-width: 100%;
   overflow: hidden;
   margin: 16px auto;
-  padding: 12px;
+  padding: 12px 18px;
 
   font-family: var(--sans-font);
 
@@ -57,7 +57,7 @@
 }
 
 .image {
-  @apply aspect-square flex-shrink-0;
+  @apply aspect-square flex-shrink-0 inline-flex items-center;
 
   height: 60px;
   width: 60px;

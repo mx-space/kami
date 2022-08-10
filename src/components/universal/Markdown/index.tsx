@@ -11,6 +11,7 @@ import { ensuredForwardRef } from 'react-use'
 
 import type { TocProps } from '~/components/widgets/Toc'
 import { useStore } from '~/store'
+import { isDev } from '~/utils/env'
 import { springScrollToElement } from '~/utils/spring'
 
 import { CodeBlock } from '../CodeBlock'
@@ -31,6 +32,7 @@ import {
 } from './renderers'
 import { MDetails } from './renderers/collapse'
 import { MFootNote } from './renderers/footnotes'
+import { LinkCard, LinkCardSource } from './renderers/link-card'
 
 const Toc = dynamic(
   () => import('~/components/widgets/Toc').then((m) => m.Toc),
@@ -137,22 +139,49 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo(
           // },
           footnoteReference: {
             react(node, output, state) {
-              return (
-                <a
-                  key={state?.key}
-                  href={sanitizeUrl(node.target)!}
-                  onClick={(e) => {
-                    e.preventDefault()
+              const { footnoteMap, target, content } = node
+              const footnote = footnoteMap.get(content)
+              const linkCardId = (() => {
+                try {
+                  const thisUrl = new URL(footnote?.footnote?.replace(': ', ''))
+                  const isCurrentHost =
+                    thisUrl.hostname === window.location.hostname
 
-                    springScrollToElement(
-                      document.getElementById(node.content)!,
-                      undefined,
-                      -window.innerHeight / 2,
-                    )
-                  }}
-                >
-                  <sup key={state?.key}>{node.content}</sup>
-                </a>
+                  if (!isCurrentHost && !isDev) {
+                    return undefined
+                  }
+                  const pathname = thisUrl.pathname
+                  return pathname.slice(1)
+                } catch {
+                  return undefined
+                }
+              })()
+
+              return (
+                <>
+                  <a
+                    key={state?.key}
+                    href={sanitizeUrl(target)!}
+                    onClick={(e) => {
+                      e.preventDefault()
+
+                      springScrollToElement(
+                        document.getElementById(content)!,
+                        undefined,
+                        -window.innerHeight / 2,
+                      )
+                    }}
+                  >
+                    <sup key={state?.key}>^{content}</sup>
+                  </a>
+                  {linkCardId && (
+                    <LinkCard
+                      id={linkCardId}
+                      source={LinkCardSource.Self}
+                      // className="float-right"
+                    />
+                  )}
+                </>
               )
             },
           },

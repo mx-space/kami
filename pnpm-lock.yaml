@@ -40,7 +40,7 @@ specifiers:
   lint-staged: 13.0.3
   lodash-es: 4.17.21
   markdown-escape: 1.1.0
-  markdown-to-jsx: npm:@innei/markdown-to-jsx@7.1.3-9
+  markdown-to-jsx: npm:@innei/markdown-to-jsx@7.1.3-11
   medium-zoom: 1.0.6
   mobx: 6.6.1
   mobx-react-lite: 3.4.0
@@ -91,7 +91,7 @@ dependencies:
   js-cookie: 3.0.1
   lodash-es: 4.17.21
   markdown-escape: 1.1.0
-  markdown-to-jsx: /@innei/markdown-to-jsx/7.1.3-9_react@18.2.0
+  markdown-to-jsx: /@innei/markdown-to-jsx/7.1.3-11_react@18.2.0
   medium-zoom: 1.0.6
   mobx: 6.6.1
   mobx-react-lite: 3.4.0_m26jawr67gnusmh4egzqtnhxru
@@ -1629,8 +1629,8 @@ packages:
       - supports-color
     dev: true
 
-  /@innei/markdown-to-jsx/7.1.3-9_react@18.2.0:
-    resolution: {integrity: sha512-IugUGZcJXnwk/iCSKC7X/RGVcYm+aNJWrHflX5jSpdQl+PjcMkxvAeFDRCs/dx5R8p5KC6sRLezHrin4mm59KQ==}
+  /@innei/markdown-to-jsx/7.1.3-11_react@18.2.0:
+    resolution: {integrity: sha512-uJ+rSBPckR5odKz27t2MqpUQsd7TGsylIi+/z4hh0K1lWb0QoUj/Pq2nPKFKpsN4OwH1cnfRtVgQTDGffHE+OQ==}
     engines: {node: '>= 10'}
     peerDependencies:
       react: '>= 0.14.0'
