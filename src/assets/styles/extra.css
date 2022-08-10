@@ -131,14 +131,14 @@ ph {
 
   @media (min-width: 599px) {
     border: 1px solid rgb(187 187 187 / 20%);
-    clip-path: polygon(
+    /* clip-path: polygon(
       3rem 0%,
       100% 0,
       100% calc(100% - 3rem),
       calc(100% - 3rem) 100%,
       0 100%,
       0 0
-    );
+    ); */
 
     &::before,
     &::after {
@@ -201,6 +201,10 @@ ph {
 
   > p:first-child {
     margin-bottom: 2rem;
+
+    & > .indent {
+      text-indent: 0 !important;
+    }
   }
 }
 
@@ -492,3 +496,5 @@ pre[class*='language-'] {
     transform: translate3d(2000px, 0, 0);
   }
 }
+
+/* Toast end */

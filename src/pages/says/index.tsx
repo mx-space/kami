@@ -1,7 +1,7 @@
+import Markdown from 'markdown-to-jsx'
 import { observer } from 'mobx-react-lite'
 import randomColor from 'randomcolor'
-import { useEffect, useMemo } from 'react'
-import ReactMarkdown from 'react-markdown'
+import { useEffect, useMemo, useRef } from 'react'
 import Masonry from 'react-masonry-css'
 import { TransitionGroup } from 'react-transition-group'
 
@@ -33,7 +33,9 @@ const SayView = () => {
       ]),
     )
   }, [appStore.colorMode, says])
-
+  const options = useRef({
+    disableParsingRawHTML: true,
+  }).current
   return (
     <main>
       <SEO title={'说说'} />
@@ -60,19 +62,10 @@ const SayView = () => {
                     backgroundColor: hexToRGB(color || '', 0.05),
                   }}
                 >
-                  <ReactMarkdown
+                  <Markdown
                     className="mb-2"
-                    allowedTypes={[
-                      'paragraph',
-                      'link',
-                      'inlineCode',
-                      'strong',
-                      'text',
-                    ]}
-                    escapeHtml={false}
-                  >
-                    {say.text}
-                  </ReactMarkdown>
+                    options={options}
+                  >{`${say.text}\n\n`}</Markdown>
                   <p className={styles['author']}>
                     <div className="flex-shrink-0">
                       {`发布于 ${relativeTimeFromNow(say.created)}`}

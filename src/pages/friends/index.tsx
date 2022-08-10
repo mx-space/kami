@@ -90,15 +90,16 @@ const _Footer: FC = () => {
         key="md"
         wrapperProps={{ id: undefined, style: { whiteSpace: 'pre-line' } }}
         renderers={{
-          heading: (props) => {
-            return createElement(
-              `h${props.level}`,
-              { className: 'headline' },
-              props.children,
-            )
+          heading: {
+            react(node, output, state?) {
+              return createElement(
+                `h${node.level}`,
+                { className: 'headline', key: state?.key },
+                output(node.content, state!),
+              )
+            },
           },
         }}
-        escapeHtml={false}
         value={
           [
             `**在申请友链之前请先将本站加入贵站的友链中**`,

@@ -12,7 +12,7 @@ export const useRouterEvent = () => {
     if (isServerSide()) {
       return
     }
-    const Progress = new QProgress({ colorful: false, color: '#27ae60' })
+    const Progress = new QProgress({ colorful: false, color: 'var(--primary)' })
     if (isClientSide()) {
       ;(window as any).process = Progress
     }

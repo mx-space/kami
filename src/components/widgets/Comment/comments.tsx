@@ -1,9 +1,9 @@
 import { clsx } from 'clsx'
+import { sanitizeUrl } from 'markdown-to-jsx'
 import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { Fragment, createElement, useCallback, useMemo, useState } from 'react'
-import type ReactMarkdown from 'react-markdown'
 import { message } from 'react-message-popup'
 import { socketClient } from 'socket'
 
@@ -57,21 +57,6 @@ const CommentList: FC = observer(() => {
     </BottomUpTransitionView>
   )
 })
-
-const disallowedTypes: ReactMarkdown.NodeType[] = [
-  'html',
-  'virtualHtml',
-  'linkReference',
-  'imageReference',
-  'table',
-  'tableBody',
-  'tableCell',
-  'tableHead',
-  'tableRow',
-  'emphasis',
-  'thematicBreak',
-  'heading',
-]
 
 const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
   const [replyId, setReplyId] = useState('')
@@ -216,15 +201,36 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
                   ''
                 } `
               : ''
-          }${comment.text}`}
+          }${comment.text}\n\n`}
           className={styles['comment']}
-          skipHtml
-          escapeHtml
-          disallowedTypes={disallowedTypes}
+          disableParsingRawHTML
+          // TODO disable allow type
           renderers={useMemo(
             () => ({
-              commentAt: ({ value }) => <CommentAtRender id={value} />,
-              image: ({ src, alt }) => <ImageTagPreview src={src} alt={alt} />,
+              commentAt: {
+                react(node, _, state) {
+                  const { content } = node
+                  const id = content[0]?.content
+                  if (!id) {
+                    return <></>
+                  }
+
+                  return <CommentAtRender id={id} key={state?.key} />
+                },
+              },
+              image: {
+                react(node, _, state) {
+                  const { alt, target } = node
+
+                  return (
+                    <ImageTagPreview
+                      alt={alt}
+                      src={sanitizeUrl(target)!}
+                      key={state?.key}
+                    />
+                  )
+                },
+              },
             }),
             [],
           )}

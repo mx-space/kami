@@ -211,6 +211,7 @@ html.dark {
   filter: invert(50%);
   transition: background 0.5s;
   text-decoration: none;
+  border-radius: 3px;
 
   &:hover {
     background: transparent;

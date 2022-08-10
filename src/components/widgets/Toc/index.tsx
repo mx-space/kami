@@ -11,11 +11,6 @@ import { RightLeftTransitionView } from '../../universal/Transition/right-left'
 import styles from './index.module.css'
 import { TocItem } from './item'
 
-export type TocHeading = {
-  title: string
-  depth: number
-}
-
 export type TocProps = {
   headings: HTMLElement[]
 

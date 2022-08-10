@@ -58,7 +58,7 @@ Live Demo:
 
 ## How to usage
 
-> **note**
+> **info**
 > 在此之前，请先完成部署 Mix Space
 
 参考[文档](https://mx-docs.iucky.cn/deploy/kami/)
@@ -75,6 +75,15 @@ git lfs pull
 ```
 
 方可获取到图片文件。
+
+## Markdown 扩展语法
+
+- GFM
+- Insert: `++Insert++`
+- Spoilder: `||Spoilder||`
+- Mention: `{GH@Innei}` `{TW@Innei}` `{TG@Innei}`
+- KateX: `$ c = \\pm\\sqrt{a^2 + b^2} $`
+- Mark: `==Mark==`
 
 ## Migration to Kami v3
 

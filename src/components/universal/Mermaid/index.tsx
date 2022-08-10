@@ -1,8 +1,9 @@
+import type { FC } from 'react'
 import { useEffect } from 'react'
 
 import { loadScript } from '~/utils/load-script'
 
-export const Mermaid = (props) => {
+export const Mermaid: FC<{ content: string }> = (props) => {
   useEffect(() => {
     loadScript(
       'https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/mermaid/8.9.0/mermaid.min.js',
@@ -16,5 +17,5 @@ export const Mermaid = (props) => {
       }
     })
   }, [])
-  return <div className="mermaid">{props.value}</div>
+  return <div className="mermaid">{props.content}</div>
 }
