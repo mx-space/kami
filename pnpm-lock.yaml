@@ -19,6 +19,7 @@ specifiers:
   '@types/node': 17.0.18
   '@types/randomcolor': 0.5.6
   '@types/react': 17.0.48
+  '@types/react-collapse': ^5.0.1
   '@types/react-color': 3.0.6
   '@types/react-dom': 18.0.6
   '@types/react-transition-group': 4.4.5
@@ -55,6 +56,7 @@ specifiers:
   prettier: 2.7.1
   randomcolor: 0.6.2
   react: 18.2.0
+  react-collapse: ^5.1.1
   react-countup: 6.3.0
   react-dom: 18.2.0
   react-intersection-observer: 9.4.0
@@ -98,6 +100,7 @@ dependencies:
   next-suspense: 0.1.3_next@12.2.2
   randomcolor: 0.6.2
   react: 18.2.0
+  react-collapse: 5.1.1_react@18.2.0
   react-countup: 6.3.0_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-intersection-observer: 9.4.0_react@18.2.0
@@ -125,6 +128,7 @@ devDependencies:
   '@types/node': 17.0.18
   '@types/randomcolor': 0.5.6
   '@types/react': 17.0.48
+  '@types/react-collapse': 5.0.1
   '@types/react-color': 3.0.6
   '@types/react-dom': 18.0.6
   '@types/react-transition-group': 4.4.5
@@ -2011,6 +2015,12 @@ packages:
 
   /@types/randomcolor/0.5.6:
     resolution: {integrity: sha512-lKkW8DGUQpZldTrwa+HM5rY+7eTyaHOMTsnj9ewt7AAwXuMPwBmkLlfh8+SXdgOhBW9iNI4x4zRjQ/TQZkdycQ==}
+    dev: true
+
+  /@types/react-collapse/5.0.1:
+    resolution: {integrity: sha512-Iq3OrqvzCIP0DmAawU4T2VKH6XAplbjo/D7Qk14mcfQ92plU+OrA2SF10r2XrcFg1Wvya/5f8w1vS29RVpdoLQ==}
+    dependencies:
+      '@types/react': 17.0.48
     dev: true
 
   /@types/react-color/3.0.6:
@@ -5443,6 +5453,17 @@ packages:
 
   /randomcolor/0.6.2:
     resolution: {integrity: sha512-Mn6TbyYpFgwFuQ8KJKqf3bqqY9O1y37/0jgSK/61PUxV4QfIMv0+K2ioq8DfOjkBslcjwSzRfIDEXfzA9aCx7A==}
+    dev: false
+
+  /react-collapse/5.1.1_react@18.2.0:
+    resolution: {integrity: sha512-k6cd7csF1o9LBhQ4AGBIdxB60SUEUMQDAnL2z1YvYNr9KoKr+nDkhN6FK7uGaBd/rYrYfrMpzpmJEIeHRYogBw==}
+    peerDependencies:
+      react: '>=16.3.0'
+    peerDependenciesMeta:
+      react:
+        optional: true
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-countup/6.3.0_react@18.2.0:

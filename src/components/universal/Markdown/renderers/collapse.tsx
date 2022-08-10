@@ -1,41 +1,44 @@
-import type { FC } from 'react'
-import React, { useEffect, useRef } from 'react'
+import clsx from 'clsx'
+import type { FC, ReactNode } from 'react'
+import React, { useState } from 'react'
+import { Collapse } from 'react-collapse'
 
-export const MDetails: FC = (props) => {
-  const outerRef = useRef(null)
+import { IcRoundKeyboardDoubleArrowRight } from '../../Icons/arrow'
+import styles from './collapse.module.css'
 
-  const children = <details>{props.children}</details>
+export const MDetails: FC<{ children: ReactNode[] }> = (props) => {
+  const [open, setOpen] = useState(false)
 
-  const [calculatedHeight, setCalculatedHeight] = React.useState(0)
-
-  useEffect(() => {
-    if (!outerRef.current) {
-      return
-    }
-    const observer = new ResizeObserver(() => {
-      setCalculatedHeight($wrapper.scrollHeight)
-    })
-
-    const $wrapper = outerRef.current as HTMLElement
-    observer.observe($wrapper)
-
-    return () => {
-      observer.disconnect()
-    }
-  }, [])
-
-  const cloned = useRef(
-    React.cloneElement(children, { ref: outerRef, open: true }),
-  ).current
+  const $head = props.children[0]
 
   return (
-    <div className="w-full relative">
-      {React.Children.map(props.children, (child) => {
-        return React.cloneElement(child as any, {})
-      })}
-      <div className="opacity-0 absolute pointer-events-none invisible">
-        {cloned}
+    <div className={styles.collapse}>
+      <div
+        className={styles.title}
+        onClick={() => {
+          setOpen((o) => !o)
+        }}
+      >
+        <i
+          className={clsx(
+            'mr-2 transform transition-transform duration-500',
+            open && 'rotate-90',
+          )}
+        >
+          <IcRoundKeyboardDoubleArrowRight />
+        </i>
+        {$head}
       </div>
+      <Collapse isOpened={open} className="my-2">
+        <div
+          className={clsx(
+            open ? 'opacity-100' : 'opacity-0',
+            'transition-opacity duration-500',
+          )}
+        >
+          {props.children.slice(1)}
+        </div>
+      </Collapse>
     </div>
   )
 }

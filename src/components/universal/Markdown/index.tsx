@@ -20,7 +20,6 @@ import styles from './index.module.css'
 import { CommentAtRule } from './parsers/comment-at'
 import { MentionRule } from './parsers/mention'
 import { SpoilderRule } from './parsers/spoiler'
-import { processDetails } from './process-tag'
 import {
   MHeading,
   MImage,
@@ -63,16 +62,6 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo(
       codeBlockFully = false,
       className,
     } = props
-
-    useEffect(() => {
-      const _ = ref as RefObject<HTMLElement>
-      if (!_.current) {
-        return
-      }
-      const $ = _.current as HTMLElement
-      //  process raw html tag
-      processDetails($)
-    }, [ref])
 
     const [headings, setHeadings] = useState<HTMLElement[]>([])
 
