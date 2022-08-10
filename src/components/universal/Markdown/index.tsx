@@ -18,7 +18,7 @@ import { BiListNested } from '../Icons/shared'
 import { useModalStack } from '../Modal/stack.context'
 import styles from './index.module.css'
 import { CommentAtRule } from './parsers/comment-at'
-import { GithubMentionRule } from './parsers/gh-mention'
+import { MentionRule } from './parsers/mention'
 import { SpoilderRule } from './parsers/spoiler'
 import { processDetails } from './process-tag'
 import {
@@ -218,7 +218,7 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo(
         },
         additionalParserRules: {
           spoilder: SpoilderRule,
-          githubMention: GithubMentionRule,
+          mention: MentionRule,
           commentAt: CommentAtRule,
         },
       })

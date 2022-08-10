@@ -14,6 +14,7 @@ import {
   FaSolidSubway,
   FaSolidUserFriends,
   IcBaselineLiveTv,
+  IcBaselineTelegram,
   IcTwotoneSignpost,
   IconParkOutlineTencentQq,
   IonBook,
@@ -43,6 +44,7 @@ export const iconMap = {
   faTv: IcBaselineLiveTv,
   faFeed: JamRssFeed,
   faMention: AkarIconsMention,
+  faTelegram: IcBaselineTelegram,
 }
 
 let hasAppended = false
