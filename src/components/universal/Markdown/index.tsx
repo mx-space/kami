@@ -19,6 +19,9 @@ import { BiListNested } from '../Icons/shared'
 import { useModalStack } from '../Modal/stack.context'
 import styles from './index.module.css'
 import { CommentAtRule } from './parsers/comment-at'
+import { InsertRule } from './parsers/ins'
+import { KateXRule } from './parsers/katex'
+import { MarkRule } from './parsers/mark'
 import { MentionRule } from './parsers/mention'
 import { SpoilderRule } from './parsers/spoiler'
 import {
@@ -238,6 +241,9 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo(
           spoilder: SpoilderRule,
           mention: MentionRule,
           commentAt: CommentAtRule,
+          mark: MarkRule,
+          ins: InsertRule,
+          kateX: KateXRule,
         },
       })
     }, [value, props.children, renderers])
