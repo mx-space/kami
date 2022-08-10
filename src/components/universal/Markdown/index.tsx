@@ -31,7 +31,6 @@ import {
 } from './renderers'
 import { MDetails } from './renderers/collapse'
 import { MFootNote } from './renderers/footnotes'
-import { LinkCard, LinkCardSource } from './renderers/link-card'
 
 const Toc = dynamic(
   () => import('~/components/widgets/Toc').then((m) => m.Toc),
@@ -224,9 +223,7 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo(
           styles['md'],
           codeBlockFully ? styles['code-fully'] : undefined,
         )}
-        suppressHydrationWarning
       >
-        <LinkCard link="" source={LinkCardSource.Self} />
         {className ? <div className={className}>{node}</div> : node}
 
         {props.toc && <TOC headings={headings} />}

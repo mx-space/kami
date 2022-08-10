@@ -41,6 +41,8 @@
   font-size: 15px;
   font-weight: 500;
   margin-bottom: 2px;
+
+  @apply text-shizuku-text;
 }
 
 .desc {
@@ -60,10 +62,15 @@
   height: 60px;
   width: 60px;
   margin-left: 20px;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .skeleton {
+  & .title,
+  & .desc {
+    border-radius: 99px;
+  }
+
   & .title {
     width: 50%;
     height: 20px;
@@ -74,6 +81,7 @@
   & .desc {
     width: 100%;
     margin-top: 12px;
+    height: 14px;
 
     @apply bg-gray-5;
   }
