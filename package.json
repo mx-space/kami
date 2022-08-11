@@ -119,7 +119,7 @@
     "husky": "8.0.1",
     "js-yaml": "*",
     "lint-staged": "13.0.3",
-    "markdown-to-jsx": "npm:@innei/markdown-to-jsx@7.1.3-11",
+    "markdown-to-jsx": "npm:@innei/markdown-to-jsx@7.1.3-14",
     "next-compose-plugins": "2.2.1",
     "next-pwa": "5.5.5",
     "postcss": "8.4.16",
