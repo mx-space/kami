@@ -34,7 +34,7 @@ import {
 } from './renderers'
 import { MDetails } from './renderers/collapse'
 import { MFootNote } from './renderers/footnotes'
-import { LinkCard, LinkCardSource } from './renderers/link-card'
+import { LinkCard } from './renderers/link-card'
 
 const Toc = dynamic(
   () => import('~/components/widgets/Toc').then((m) => m.Toc),
@@ -176,7 +176,7 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
                 {linkCardId && (
                   <LinkCard
                     id={linkCardId}
-                    source={LinkCardSource.Self}
+                    source={'self'}
                     // className="float-right"
                   />
                 )}

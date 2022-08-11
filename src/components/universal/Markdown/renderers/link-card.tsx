@@ -9,10 +9,7 @@ import { getRandomImage } from '~/utils/images'
 
 import styles from './link-card.module.css'
 
-export enum LinkCardSource {
-  Self,
-  GHRepo,
-}
+export type LinkCardSource = 'gh' | 'self'
 export interface LinkCardProps {
   id: string
   source: LinkCardSource
@@ -31,7 +28,7 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
 
   const isValidType = useMemo(() => {
     switch (source) {
-      case LinkCardSource.Self: {
+      case 'self': {
         const [variant, params, ...rest] = id.split('/')
 
         if (!params) {
@@ -87,7 +84,7 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
           }
         }
       }
-      case LinkCardSource.GHRepo: {
+      case 'gh': {
         // e.g. mx-space/kami
         const [namespace, repo, ...rest] = id.split('/')
         if (!namespace || !repo) {

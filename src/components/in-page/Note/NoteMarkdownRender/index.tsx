@@ -16,12 +16,5 @@ const Markdownrenderers: { [name: string]: Partial<MarkdownToJSX.Rule> } = {
 }
 
 export const NoteMarkdownRender = memo((props: { text: string }) => {
-  return (
-    <Markdown
-      value={props.text}
-      disableParsingRawHTML
-      renderers={Markdownrenderers}
-      toc
-    />
-  )
+  return <Markdown value={props.text} renderers={Markdownrenderers} toc />
 })
