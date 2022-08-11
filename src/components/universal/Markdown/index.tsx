@@ -64,6 +64,11 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
     wrapperProps = {},
     codeBlockFully = false,
     className,
+    overrides,
+    extendsRules,
+    additionalParserRules,
+
+    ...rest
   } = props
 
   const [headings, setHeadings] = useState<HTMLElement[]>([])
@@ -88,6 +93,7 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
 
     return compiler(`${value || props.children}`, {
       wrapper: null,
+      // @ts-ignore
       overrides: {
         p: MParagraph,
         img: MImage,
@@ -99,7 +105,9 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
 
         // for custom react component
         LinkCard,
+        ...overrides,
       },
+
       extendsRules: {
         link: {
           react(node, output, state) {
@@ -220,6 +228,7 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
           },
         },
 
+        ...extendsRules,
         ...renderers,
       },
       additionalParserRules: {
@@ -230,9 +239,19 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
         ins: InsertRule,
         kateX: KateXRule,
         container: ContainerRule,
+        ...additionalParserRules,
       },
+      ...rest,
     })
-  }, [value, props.children, renderers])
+  }, [
+    value,
+    props.children,
+    overrides,
+    extendsRules,
+    renderers,
+    additionalParserRules,
+    rest,
+  ])
 
   return (
     <div

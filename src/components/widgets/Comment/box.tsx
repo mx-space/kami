@@ -288,32 +288,41 @@ export const CommentBox: FC<{
       >
         <div className="flex-shrink-0 flex space-x-2 items-center">
           <FloatPopover
-            triggerComponent={() => (
-              <button
-                aria-label="support markdown"
-                className="btn blue text-lg flex-shrink-0 mr-2 cursor-default pointer-events-none !p-2 rounded-full"
-              >
-                <GridiconsNoticeOutline />
-              </button>
-            )}
+            triggerComponent={
+              useRef(() => (
+                <button
+                  aria-label="support markdown"
+                  className="btn blue text-lg flex-shrink-0 mr-2 cursor-default pointer-events-none !p-2 rounded-full"
+                >
+                  <GridiconsNoticeOutline />
+                </button>
+              )).current
+            }
           >
-            <div className="leading-7">
-              <p>评论支持部分 Markdown 语法</p>
-              <p>评论可能被移入垃圾箱</p>
-              <p>评论可能需要审核，审核通过后才会显示</p>
-            </div>
+            {
+              useRef(
+                <div className="leading-7">
+                  <p>评论支持部分 Markdown 语法</p>
+                  <p>评论可能被移入垃圾箱</p>
+                  <p>评论可能需要审核，审核通过后才会显示</p>
+                </div>,
+              ).current
+            }
           </FloatPopover>
           <KaomojiButton onClickKaomoji={handleInsertEmoji} />
         </div>
 
         <div className={'whitespace-nowrap flex-shrink-0 flex items-center'}>
           <CommentSendingContext.Provider
-            value={{
-              setConfig(patch) {
-                setConfig({ ...config, ...patch })
-              },
-              ...config,
-            }}
+            value={useMemo(
+              () => ({
+                setConfig(patch) {
+                  setConfig({ ...config, ...patch })
+                },
+                ...config,
+              }),
+              [config],
+            )}
           >
             <CommentBoxOption refId={refId} commentId={commentId} />
           </CommentSendingContext.Provider>
@@ -343,6 +352,7 @@ const CommentBoxOption = observer<{ commentId?: string; refId: string }>(
       CommentSendingContext,
     )
     const isReply = !!props.commentId
+
     return (
       <>
         {isLogged && !isReply && (

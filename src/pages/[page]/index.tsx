@@ -25,7 +25,7 @@ import styles from './index.module.css'
 const CommentLazy = dynamic(() =>
   import('~/components/widgets/Comment').then((mo) => mo.CommentLazy),
 )
-
+const EMPTY_ARRAY = []
 const PageView: PageOnlyProps = observer((props) => {
   const { pageStore } = useStore()
   const page = pageStore.get(props.id) || (noop as PageModel)

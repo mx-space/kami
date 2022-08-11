@@ -1,9 +1,17 @@
 import { clsx } from 'clsx'
+import type { MarkdownToJSX } from 'markdown-to-jsx'
 import { sanitizeUrl } from 'markdown-to-jsx'
 import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import { Fragment, createElement, useCallback, useMemo, useState } from 'react'
+import {
+  Fragment,
+  createElement,
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import { message } from 'react-message-popup'
 import { socketClient } from 'socket'
 
@@ -205,7 +213,19 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
           forceBlock
           className={styles['comment']}
           disableParsingRawHTML
-          // TODO disable allow type
+          disabledTypes={
+            useRef<MarkdownToJSX.RuleName[]>([
+              'heading',
+              'blockQuote',
+              'footnote',
+              'table',
+              'tableSeparator',
+              'gfmTask',
+              'headingSetext',
+              'footnoteReference',
+              'htmlSelfClosing',
+            ]).current
+          }
           renderers={useMemo(
             () => ({
               commentAt: {

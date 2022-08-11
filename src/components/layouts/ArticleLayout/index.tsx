@@ -40,7 +40,12 @@ export const ArticleLayout = memo(
       ref: any,
     ) => {
       return (
-        <ArticleLayoutContextProvider value={{ title, id, subtitle, type }}>
+        <ArticleLayoutContextProvider
+          value={useMemo(
+            () => ({ title, id, subtitle, type }),
+            [id, subtitle, title, type],
+          )}
+        >
           <main
             className={clsx(styles['is-article'], className)}
             ref={ref}
