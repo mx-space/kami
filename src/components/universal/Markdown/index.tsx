@@ -5,7 +5,14 @@ import { compiler, sanitizeUrl } from 'markdown-to-jsx'
 import { observer } from 'mobx-react-lite'
 import dynamic from 'next/dynamic'
 import type { FC } from 'react'
-import React, { memo, useEffect, useMemo, useRef, useState } from 'react'
+import React, {
+  Fragment,
+  memo,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 
 import type { TocProps } from '~/components/widgets/Toc'
 import { useStore } from '~/store'
@@ -157,9 +164,8 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
             })()
 
             return (
-              <>
+              <Fragment key={state?.key}>
                 <a
-                  key={state?.key}
                   href={sanitizeUrl(target)!}
                   onClick={(e) => {
                     e.preventDefault()
@@ -180,7 +186,7 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
                     // className="float-right"
                   />
                 )}
-              </>
+              </Fragment>
             )
           },
         },
