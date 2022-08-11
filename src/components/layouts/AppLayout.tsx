@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite'
 import { NextSeo } from 'next-seo'
 import type { FC } from 'react'
-import { useEffect } from 'react'
+import { useEffect, useInsertionEffect } from 'react'
 
 import type { AggregateRoot } from '@mx-space/api-client'
 
@@ -32,11 +32,13 @@ export const Content: FC = observer((props) => {
   useRootTrackerListener()
   const initialData: AggregateRoot | null = useInitialData()
 
-  useEffect(() => {
+  useInsertionEffect(() => {
     loadStyleSheet(
       'https://fonts.loli.net/css2?family=Noto+Sans+SC:wght@100;300;400;500&display=swap',
     )
+  }, [])
 
+  useEffect(() => {
     try {
       const { user } = initialData
       checkLogin()

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import type { FC } from 'react'
-import React, { memo, useEffect } from 'react'
+import React, { memo, useInsertionEffect } from 'react'
 
 import { API_URL } from '~/constants/env'
 import { useInitialData, useKamiConfig } from '~/hooks/use-initial-data'
@@ -19,8 +19,8 @@ export const DynamicHeadMeta: FC = memo(() => {
     themeConfig.site.footer.background.src
   const { css, js, script, style } = themeConfig.site.custom
 
-  useEffect(() => {
-    js && js.length && js.forEach((src, i) => loadScript(src))
+  useInsertionEffect(() => {
+    js && js.length && js.forEach((src) => loadScript(src))
 
     if (script) {
       eval(script)

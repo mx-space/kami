@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import React, { useCallback, useEffect, useRef } from 'react'
+import React, { useCallback, useInsertionEffect, useRef } from 'react'
 import { message } from 'react-message-popup'
 
 import { loadScript, loadStyleSheet } from '~/utils/load-script'
@@ -23,7 +23,7 @@ export const HighLighter: FC<Props> = observer((props) => {
   }, [value])
   const isPrintMode = appUIStore.mediaType === 'print'
 
-  useEffect(() => {
+  useInsertionEffect(() => {
     const css = loadStyleSheet(
       `https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/prism-themes/1.9.0/prism-one-${
         isPrintMode ? 'light' : colorMode
@@ -34,7 +34,7 @@ export const HighLighter: FC<Props> = observer((props) => {
       css?.remove()
     }
   }, [colorMode, isPrintMode])
-  useEffect(() => {
+  useInsertionEffect(() => {
     loadStyleSheet(
       'https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/prism/1.23.0/plugins/line-numbers/prism-line-numbers.min.css',
     )

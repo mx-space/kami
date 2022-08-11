@@ -63,7 +63,7 @@ export function loadStyleSheet(href: string) {
   $link.crossOrigin = 'anonymous'
   cssSet.add(href)
 
-  $link.onerror = (e) => {
+  $link.onerror = () => {
     $link.onerror = null
     cssSet.delete(href)
   }

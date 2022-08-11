@@ -5,7 +5,7 @@ import {
   simpleInlineRegex,
 } from 'markdown-to-jsx'
 import type { FC } from 'react'
-import { useEffect, useState } from 'react'
+import { useInsertionEffect, useState } from 'react'
 
 import { loadScript, loadStyleSheet } from '~/utils/load-script'
 
@@ -32,7 +32,7 @@ const LateX: FC<{ children: string }> = (props) => {
 
   const [html, setHtml] = useState('')
 
-  useEffect(() => {
+  useInsertionEffect(() => {
     loadStyleSheet(
       'https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/KaTeX/0.15.2/katex.min.css',
     )

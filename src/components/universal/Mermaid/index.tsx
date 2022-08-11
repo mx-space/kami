@@ -1,10 +1,10 @@
 import type { FC } from 'react'
-import { useEffect } from 'react'
+import { useInsertionEffect } from 'react'
 
 import { loadScript } from '~/utils/load-script'
 
 export const Mermaid: FC<{ content: string }> = (props) => {
-  useEffect(() => {
+  useInsertionEffect(() => {
     loadScript(
       'https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/mermaid/8.9.0/mermaid.min.js',
     ).then(() => {
