@@ -17,6 +17,7 @@ import { BiListNested } from '../Icons/shared'
 import { useModalStack } from '../Modal/stack.context'
 import styles from './index.module.css'
 import { CommentAtRule } from './parsers/comment-at'
+import { ContainerRule } from './parsers/container'
 import { InsertRule } from './parsers/ins'
 import { KateXRule } from './parsers/katex'
 import { MarkRule } from './parsers/mark'
@@ -66,10 +67,19 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
   } = props
 
   const [headings, setHeadings] = useState<HTMLElement[]>([])
+  const headingsRef = useRef([] as HTMLElement[])
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
-    ref.current && setHeadings((h) => h.concat())
-  }, [])
+    if (!ref.current) {
+      return
+    }
+    setHeadings(headingsRef.current.concat())
+    headingsRef.current.length = 0
+
+    return () => {
+      setHeadings([])
+    }
+  }, [value, props.children])
 
   const node = useMemo(() => {
     if (!value && typeof props.children != 'string') return null
@@ -86,6 +96,9 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
         tbody: MTableBody,
         footer: MFootNote,
         details: MDetails,
+
+        // for custom react component
+        LinkCard,
       },
       extendsRules: {
         link: {
@@ -106,7 +119,7 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
                 level={node.level}
                 key={state?.key}
                 getRef={(ref) => {
-                  ref.current && headings.push(ref.current)
+                  ref.current && headingsRef.current.push(ref.current)
                 }}
               >
                 {output(node.content, state!)}
@@ -216,6 +229,7 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
         mark: MarkRule,
         ins: InsertRule,
         kateX: KateXRule,
+        container: ContainerRule,
       },
     })
   }, [value, props.children, renderers])

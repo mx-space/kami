@@ -201,7 +201,8 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
                   ''
                 } `
               : ''
-          }${comment.text}\n\n`}
+          }${comment.text}`}
+          forceBlock
           className={styles['comment']}
           disableParsingRawHTML
           // TODO disable allow type

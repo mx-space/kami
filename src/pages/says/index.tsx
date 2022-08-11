@@ -1,3 +1,4 @@
+import type { MarkdownToJSX } from 'markdown-to-jsx'
 import Markdown from 'markdown-to-jsx'
 import { observer } from 'mobx-react-lite'
 import randomColor from 'randomcolor'
@@ -33,8 +34,9 @@ const SayView = () => {
       ]),
     )
   }, [appStore.colorMode, says])
-  const options = useRef({
+  const options = useRef<MarkdownToJSX.Options>({
     disableParsingRawHTML: true,
+    forceBlock: true,
   }).current
   return (
     <main>
@@ -65,7 +67,7 @@ const SayView = () => {
                   <Markdown
                     className="mb-2"
                     options={options}
-                  >{`${say.text}\n\n`}</Markdown>
+                  >{`${say.text}`}</Markdown>
                   <p className={styles['author']}>
                     <div className="flex-shrink-0">
                       {`发布于 ${relativeTimeFromNow(say.created)}`}
