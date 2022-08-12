@@ -1,6 +1,6 @@
 import { clsx } from 'clsx'
-import type { FC } from 'react'
-import { memo, useCallback, useEffect, useMemo } from 'react'
+import type { FC, RefObject } from 'react'
+import { memo, useCallback, useEffect, useMemo, useRef } from 'react'
 
 import { springScrollToElement } from '~/utils/spring'
 
@@ -13,14 +13,41 @@ export const TocItem: FC<{
   rootDepth: number
   onClick: (i: number) => void
   index: number
+  containerRef: RefObject<HTMLDivElement>
 }> = memo((props) => {
-  const { index, active, depth, title, rootDepth, onClick } = props
+  const { index, active, depth, title, rootDepth, onClick, containerRef } =
+    props
+  const $ref = useRef<HTMLAnchorElement>(null)
   useEffect(() => {
     if (active) {
       const state = history.state
       history.replaceState(state, '', `#${title}`)
     }
   }, [active, title])
+
+  useEffect(() => {
+    if (!$ref.current || !active || !containerRef.current) {
+      return
+    }
+    // NOTE animation group will wrap a element as a scroller container
+    const $scoller = containerRef.current.children?.item(0)
+
+    if (!$scoller) {
+      return
+    }
+    const itemHeight = $ref.current.offsetHeight
+
+    const thisItemTop = index * itemHeight
+    const currentScrollerTop = $scoller.scrollTop
+
+    if (
+      currentScrollerTop - thisItemTop >= 0 ||
+      thisItemTop >= currentScrollerTop
+    ) {
+      $scoller.scrollTop = thisItemTop
+    }
+  }, [active, containerRef, index])
+
   const renderDepth = useMemo(() => {
     const result = depth - rootDepth
 
@@ -28,6 +55,7 @@ export const TocItem: FC<{
   }, [depth, rootDepth])
   return (
     <a
+      ref={$ref}
       data-index={index}
       href={`#${title}`}
       className={clsx(styles['toc-link'], active && styles['active'])}
