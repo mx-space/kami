@@ -30,7 +30,7 @@ specifiers:
   clsx: 1.2.1
   cross-env: '*'
   css-spring: 4.1.0
-  dayjs: 1.11.4
+  dayjs: 1.11.5
   devtools-detector: 2.0.10
   dotenv: 16.0.1
   eslint: '*'
@@ -86,7 +86,7 @@ dependencies:
   axios: 0.27.2
   clsx: 1.2.1
   css-spring: 4.1.0
-  dayjs: 1.11.4
+  dayjs: 1.11.5
   devtools-detector: 2.0.10
   js-cookie: 3.0.1
   lodash-es: 4.17.21
@@ -2911,8 +2911,8 @@ packages:
     engines: {node: '>= 12'}
     dev: true
 
-  /dayjs/1.11.4:
-    resolution: {integrity: sha512-Zj/lPM5hOvQ1Bf7uAvewDaUcsJoI6JmNqmHhHl3nyumwe0XHwt8sWdOVAPACJzCebL8gQCi+K49w7iKWnGwX9g==}
+  /dayjs/1.11.5:
+    resolution: {integrity: sha512-CAdX5Q3YW3Gclyo5Vpqkgpj8fSdLQcRuzfX6mC6Phy0nfJ0eGYOeS7m4mt2plDWLAtA4TqTakvbboHvUxfe4iA==}
     dev: false
 
   /debug/2.6.9:
