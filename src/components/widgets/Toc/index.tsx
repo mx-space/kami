@@ -96,10 +96,12 @@ export const Toc: FC<TocProps> = memo(
                       depth={heading.depth}
                       title={heading.title}
                       key={heading.title}
-                      rootDepth={headings.reduce(
-                        (d: number, cur) => Math.min(d, cur.depth),
-                        headings[0].depth,
-                      )}
+                      rootDepth={
+                        headings.reduce(
+                          (d: number, cur) => Math.min(d, cur.depth),
+                          headings[0].depth,
+                        ) as any as number
+                      }
                     />
                   </RightLeftTransitionView>
                 )

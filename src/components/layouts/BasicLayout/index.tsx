@@ -133,6 +133,7 @@ export const BasicLayout: FC = observer(({ children }) => {
       </Suspense>
 
       <div className="app-content">{children}</div>
+
       <Suspense fallback={null}>
         <Footer />
         <MusicMiniPlayerStoreControlled />
