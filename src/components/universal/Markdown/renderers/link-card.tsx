@@ -135,16 +135,14 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
         <div className={styles['title']}>{cardInfo?.title}</div>
         <div className={styles['desc']}>{cardInfo?.desc}</div>
       </div>
-      <div className={styles['image']}>
-        {cardInfo?.image && (
-          <img
-            src={cardInfo.image}
-            onError={(e) => {
-              ;(e.target as HTMLImageElement).src = ''
-            }}
-          />
-        )}
-      </div>
+      <div
+        className={styles['image']}
+        style={{
+          backgroundImage: cardInfo?.image
+            ? `url(${cardInfo.image})`
+            : undefined,
+        }}
+      />
     </a>
   )
 }
