@@ -1,7 +1,8 @@
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import { Priority, blockRegex } from 'markdown-to-jsx'
 
-import { Carousel } from '../../Carousel'
+import { Carousel } from '../components/carousel'
+import { pickImagesFromMarkdown } from '../utils/image'
 
 const shouldCatchContainerName = ['carousel', 'gallery'].join('|')
 export const ContainerRule: MarkdownToJSX.Rule = {
@@ -24,10 +25,7 @@ export const ContainerRule: MarkdownToJSX.Rule = {
     switch (name) {
       case 'carousel':
         return (
-          <Carousel
-            key={state?.key}
-            images={content.split('\n').filter(Boolean)}
-          />
+          <Carousel key={state?.key} images={pickImagesFromMarkdown(content)} />
         )
       case 'gallery': {
         return <div key={state?.key} />
