@@ -4,10 +4,10 @@ import type { FC } from 'react'
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 
+import { RightLeftTransitionView } from '~/components/universal/Transition/right-left'
 import { CustomEventTypes } from '~/types/events'
 import { eventBus } from '~/utils/event-emitter'
 
-import { RightLeftTransitionView } from '../../universal/Transition/right-left'
 import styles from './index.module.css'
 import { TocItem } from './item'
 
@@ -17,10 +17,15 @@ export type TocProps = {
   useAsWeight?: boolean
 }
 
+type Headings = {
+  depth: number
+  index: number
+  title: string
+}[]
 export const Toc: FC<TocProps> = memo(
   ({ headings: $headings, useAsWeight }) => {
     const containerRef = useRef<HTMLDivElement>(null)
-    const headings = useMemo(() => {
+    const headings: Headings = useMemo(() => {
       return Array.from($headings).map((el) => {
         const depth = +el.tagName.slice(1)
         const title = el.id || el.textContent || ''
@@ -69,6 +74,17 @@ export const Toc: FC<TocProps> = memo(
       }, 350)
     }, [])
 
+    const rootDepth = useMemo(
+      () =>
+        headings?.length
+          ? (headings.reduce(
+              (d: number, cur) => Math.min(d, cur.depth),
+              headings[0]?.depth || 0,
+            ) as any as number)
+          : 0,
+      [headings],
+    )
+
     return (
       <section
         className={classNames(
@@ -83,27 +99,15 @@ export const Toc: FC<TocProps> = memo(
         >
           <TransitionGroup className={styles['anime-wrapper']}>
             {headings &&
-              headings.map((heading, i) => {
+              headings.map((heading) => {
                 return (
-                  <RightLeftTransitionView
-                    timeout={{ enter: 100 * i }}
-                    key={`${heading.index}${heading.title}`}
-                  >
-                    <TocItem
-                      index={heading.index}
-                      onClick={handleItemClick}
-                      active={heading.index === index}
-                      depth={heading.depth}
-                      title={heading.title}
-                      key={heading.title}
-                      rootDepth={
-                        headings.reduce(
-                          (d: number, cur) => Math.min(d, cur.depth),
-                          headings[0].depth,
-                        ) as any as number
-                      }
-                    />
-                  </RightLeftTransitionView>
+                  <MemoedItem
+                    heading={heading}
+                    isActive={heading.index === index}
+                    onClick={handleItemClick}
+                    key={heading.title}
+                    rootDepth={rootDepth}
+                  />
                 )
               })}
           </TransitionGroup>
@@ -112,3 +116,47 @@ export const Toc: FC<TocProps> = memo(
     )
   },
 )
+const MemoedItem = memo<{
+  isActive: boolean
+  heading: Headings[0]
+  rootDepth: number
+  onClick: (i: number) => void
+}>(
+  (props) => {
+    const { heading, isActive, onClick, rootDepth } = props
+
+    return (
+      <RightLeftTransitionView
+        timeout={
+          useRef({
+            exit: 50,
+            enter: 50 * heading.index,
+          }).current
+        }
+        key={heading.title}
+      >
+        <TocItem
+          index={heading.index}
+          onClick={onClick}
+          active={isActive}
+          depth={heading.depth}
+          title={heading.title}
+          key={heading.title}
+          rootDepth={rootDepth}
+        />
+      </RightLeftTransitionView>
+    )
+  },
+  (a, b) => {
+    // FUCK react transition group alway inject onExited props into Child element, but this props alway change, so ignore it.
+
+    return (
+      a.heading === b.heading &&
+      a.isActive === b.isActive &&
+      a.onClick === b.onClick &&
+      a.rootDepth === b.rootDepth
+    )
+  },
+)
+
+MemoedItem.displayName = 'MemoedItem'

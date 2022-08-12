@@ -1,3 +1,4 @@
+import { sanitizeUrl } from 'markdown-to-jsx'
 import { reaction } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
@@ -107,10 +108,11 @@ export const MImage: FC<
   >
 > = (props) => {
   const { src, alt } = props
+  const sanitizedUrl = sanitizeUrl(src!)
   const isClient = useIsClient()
   return !isClient ? (
-    <img src={src} alt={alt} />
+    <img src={sanitizedUrl!} alt={alt} />
   ) : (
-    <_Image src={src!} alt={alt} />
+    <_Image src={sanitizedUrl!} alt={alt} />
   )
 }
