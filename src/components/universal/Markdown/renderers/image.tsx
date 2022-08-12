@@ -100,8 +100,17 @@ const _Image: FC<{ src: string; alt?: string }> = observer(({ src, alt }) => {
   )
 })
 const style = { padding: '1rem 0' }
-export const MImage: FC<any> = (props) => {
+export const MImage: FC<
+  React.DetailedHTMLProps<
+    React.ImgHTMLAttributes<HTMLImageElement>,
+    HTMLImageElement
+  >
+> = (props) => {
   const { src, alt } = props
   const isClient = useIsClient()
-  return !isClient ? <img src={src} alt={alt} /> : <_Image {...props} />
+  return !isClient ? (
+    <img src={src} alt={alt} />
+  ) : (
+    <_Image src={src!} alt={alt} />
+  )
 }

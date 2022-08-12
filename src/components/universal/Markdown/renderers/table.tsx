@@ -1,13 +1,16 @@
 import type { FC } from 'react'
 
-export const MTableHead: FC = (props) => {
-  return <thead>{props.children}</thead>
+export const MTableHead: FC<JSX.IntrinsicElements['thead']> = (props) => {
+  const { children, ...rest } = props
+  return <thead {...rest}>{children}</thead>
 }
 
-export const MTableRow: FC = (props) => {
-  return <tr>{props.children}</tr>
+export const MTableRow: FC<JSX.IntrinsicElements['tr']> = (props) => {
+  const { children, ...rest } = props
+  return <tr {...rest}>{children}</tr>
 }
 
-export const MTableBody: FC = (props) => {
-  return <tbody>{props.children}</tbody>
+export const MTableBody: FC<JSX.IntrinsicElements['tbody']> = (props) => {
+  const { children, ...rest } = props
+  return <tbody {...rest}>{children}</tbody>
 }

@@ -107,6 +107,7 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
         thead: MTableHead,
         tr: MTableRow,
         tbody: MTableBody,
+        // FIXME: footer tag in raw html will renders not as expected, but footer tag in this markdown lib will wrapper as linkReferer footnotes
         footer: MFootNote,
         details: MDetails,
 
