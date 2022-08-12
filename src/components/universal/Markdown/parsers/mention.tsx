@@ -36,22 +36,25 @@ export const MentionRule: MarkdownToJSX.Rule = {
       type: 'mention',
     }
   },
-  react(result) {
+  react(result, _, state) {
     const { content } = result
     if (!content) {
-      return <></>
+      return null as any
     }
 
     const { prefix, name } = content
     if (!name) {
-      return <></>
+      return null as any
     }
 
     const Icon = prefixToIconMap[prefix]
     const urlPrefix = prefixToUrlMap[prefix]
 
     return (
-      <div className="inline-flex items-center align-bottom space-x-2 mr-2">
+      <div
+        className="inline-flex items-center align-bottom space-x-2 mr-2"
+        key={state?.key}
+      >
         {Icon}
         <a href={`${urlPrefix}${name}`}>{name}</a>
       </div>
