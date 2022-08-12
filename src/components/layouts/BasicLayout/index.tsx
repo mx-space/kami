@@ -73,12 +73,12 @@ export const BasicLayout: FC = observer(({ children }) => {
 
     setNotice(true)
   }, [isDark, toggle])
-  const idSymbol = useRef(Symbol())
+  const actionId = useRef('basic')
   useEffect(() => {
-    actionStore.removeActionBySymbol(idSymbol.current)
+    actionStore.removeActionById(actionId.current)
     if (appStore.viewport.mobile || appStore.viewport.pad) {
       const action = {
-        id: idSymbol.current,
+        id: actionId.current,
         icon:
           appStore.colorMode === 'dark' ? <PhSunBold /> : <BiMoonStarsFill />,
         onClick: handleChangeColorMode,
@@ -87,7 +87,7 @@ export const BasicLayout: FC = observer(({ children }) => {
 
       return () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        actionStore.removeActionBySymbol(idSymbol.current)
+        actionStore.removeActionById(actionId.current)
       }
     }
   }, [

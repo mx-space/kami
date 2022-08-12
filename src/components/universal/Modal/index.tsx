@@ -1,6 +1,12 @@
 import { clsx } from 'clsx'
 import { observer } from 'mobx-react-lite'
-import { forwardRef, useCallback, useImperativeHandle, useState } from 'react'
+import {
+  forwardRef,
+  useCallback,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react'
 
 import { useStore } from '~/store'
 
@@ -38,9 +44,9 @@ export const Modal = observer(
         setTimeout(() => {
           resolve(null as any)
           props.disposer()
-        }, 200)
+        }, 300)
       })
-    }, [props])
+    }, [props.disposer])
 
     useImperativeHandle(ref, () => ({
       dismiss,
@@ -66,8 +72,6 @@ export const Modal = observer(
         {title && (
           <div className={styles['title-wrapper']}>
             <h4>{title}</h4>
-
-            {/* <Divider className="absolute bottom-0 left-0 right-0 !m-0" /> */}
           </div>
         )}
         {closeable && (
@@ -90,12 +94,14 @@ export const Modal = observer(
         </div>
       </div>
     )
+
+    const timeout = useRef({ exit: 200 }).current
     return useDrawerStyle ? (
-      <BottomUpTransitionView in={modalIn} timeout={{ exit: 200 }}>
+      <BottomUpTransitionView in={modalIn} timeout={timeout}>
         {Children}
       </BottomUpTransitionView>
     ) : (
-      <ScaleModalTransition in={modalIn} timeout={{ exit: 200 }}>
+      <ScaleModalTransition in={modalIn} timeout={timeout}>
         {Children}
       </ScaleModalTransition>
     )

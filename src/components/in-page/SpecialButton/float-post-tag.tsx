@@ -37,13 +37,13 @@ const _FloatPostTagButton: FC = observer(() => {
 
     setTags(tags)
   }
-  const idSymbol = useRef(Symbol())
+  const actionId = useRef('tag')
   const { event } = useAnalyze()
   useEffect(() => {
-    actionStore.removeActionBySymbol(idSymbol.current)
+    actionStore.removeActionById(actionId.current)
     const action = {
       icon: <JamTags />,
-      id: idSymbol.current,
+      id: actionId.current,
       onClick: () => {
         if (tags.length == 0) {
           fetchTags()
@@ -62,7 +62,7 @@ const _FloatPostTagButton: FC = observer(() => {
 
     return () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      actionStore.removeActionBySymbol(idSymbol.current)
+      actionStore.removeActionById(actionId.current)
     }
   }, [tags.length])
 

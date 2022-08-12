@@ -79,8 +79,8 @@ export const FooterActions: FC = observer(() => {
           <BxBxsArrowToTop />
         </button>
         <TransitionGroup>
-          {actionStore.actions.map((action, i) => {
-            const El = (
+          {actionStore.actions.map((action) => {
+            const El = action.element ?? (
               <button
                 aria-label="footer action button"
                 onClick={action.onClick}
@@ -90,7 +90,11 @@ export const FooterActions: FC = observer(() => {
             )
 
             return (
-              <ScaleTransitionView key={i} unmountOnExit timeout={timeout}>
+              <ScaleTransitionView
+                key={action.id}
+                unmountOnExit
+                timeout={timeout}
+              >
                 {El}
               </ScaleTransitionView>
             )

@@ -335,7 +335,7 @@ export const SearchHotKey: FC = memo(() => {
 export const SearchFAB = memo(() => {
   const [show, setShow] = useState(false)
   const { actionStore } = useStore()
-  const idSymbol = useRef(Symbol())
+  const actionId = useRef('search-fab')
   const { event } = useAnalyze()
   useEffect(() => {
     if (show) {
@@ -346,10 +346,10 @@ export const SearchFAB = memo(() => {
     }
   }, [show])
   useEffect(() => {
-    actionStore.removeActionBySymbol(idSymbol.current)
+    actionStore.removeActionById(actionId.current)
     const action = {
       icon: <IonSearch />,
-      id: idSymbol.current,
+      id: actionId.current,
       onClick: () => {
         setShow(true)
       },
@@ -360,7 +360,7 @@ export const SearchFAB = memo(() => {
 
     return () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      actionStore.removeActionBySymbol(idSymbol.current)
+      actionStore.removeActionById(actionId.current)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

@@ -1,5 +1,6 @@
 export type FootAction = {
-  id: symbol
-  icon: JSX.Element
+  id: string
+  icon: React.ReactNode
   onClick: () => void | Promise<void>
+  element?: JSX.Element
 }

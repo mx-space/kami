@@ -75,7 +75,7 @@ export interface IModalStackComponent<T = any> extends UniversalProps {
 }
 
 interface UniversalProps {
-  overlayProps?: OverlayProps
+  overlayProps?: Partial<OverlayProps>
   /**
    * Only used by find stack
    */

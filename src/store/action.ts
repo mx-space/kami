@@ -16,19 +16,6 @@ export default class ActionStore {
   }
   private _actions: FootAction[] = []
 
-  resetActions() {
-    this._actions = []
-  }
-
-  /**
-   * clear and set actions (replace)
-   * @param actions
-   */
-  setActions(actions: FootAction[]) {
-    this.resetActions()
-    this._actions.push(...actions)
-  }
-
   appendActions(actions: FootAction[] | FootAction) {
     if (Array.isArray(actions)) {
       this._actions.push(...actions)
@@ -37,19 +24,13 @@ export default class ActionStore {
     }
   }
 
-  removeAction(action: FootAction) {
-    const index = this._actions.indexOf(action)
-    if (index !== -1) {
-      this._actions.splice(index, 1)
-    }
-  }
   removeActionByIndex(index: number) {
     if (index !== -1) {
       this._actions.splice(index, 1)
     }
   }
 
-  removeActionBySymbol(id: symbol) {
+  removeActionById(id: string) {
     const index = this._actions.findIndex((i) => i.id === id)
 
     this.removeActionByIndex(index)

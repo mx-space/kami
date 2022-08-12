@@ -20,7 +20,8 @@ import { isDev } from '~/utils/env'
 import { springScrollToElement } from '~/utils/spring'
 
 import { CodeBlock } from '../CodeBlock'
-import { BiListNested } from '../Icons/shared'
+import { FloatPopover } from '../FloatPopover'
+import { FluentList16Filled } from '../Icons/shared'
 import { useModalStack } from '../Modal/stack.context'
 import styles from './index.module.css'
 import { CommentAtRule } from './parsers/comment-at'
@@ -280,19 +281,42 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
 
 export const TOC: FC<TocProps> = observer((props) => {
   const { appStore, actionStore } = useStore()
-  const { isNarrowThanLaptop } = appStore
+  const {
+    isNarrowThanLaptop,
+    viewport: { mobile },
+  } = appStore
   const { present } = useModalStack()
+
   useEffect(() => {
     if (!isNarrowThanLaptop || props.headings.length == 0) {
       return
     }
-    const id = Symbol('toc')
+
+    const InnerToc = () => <Toc {...props} useAsWeight />
+    const id = 'toc'
     actionStore.appendActions({
-      icon: <BiListNested />,
+      element: !mobile ? (
+        <FloatPopover
+          placement="left-end"
+          strategy="fixed"
+          wrapperClassNames="flex flex-1"
+          offset={20}
+          triggerComponent={() => (
+            <button aria-label="toc button">
+              <FluentList16Filled />
+            </button>
+          )}
+          trigger="click"
+        >
+          <InnerToc />
+        </FloatPopover>
+      ) : undefined,
+      icon: mobile ? <FluentList16Filled /> : null,
       id,
       onClick() {
         present({
-          component: <Toc useAsWeight {...props} />,
+          component: <InnerToc />,
+
           modalProps: {
             title: 'Table of Content',
             noBlur: true,
@@ -301,8 +325,8 @@ export const TOC: FC<TocProps> = observer((props) => {
       },
     })
     return () => {
-      actionStore.removeActionBySymbol(id)
+      actionStore.removeActionById(id)
     }
-  }, [actionStore, isNarrowThanLaptop, present, props])
+  }, [actionStore, isNarrowThanLaptop, mobile, present, props])
   return !isNarrowThanLaptop ? <Toc {...props} /> : null
 })
