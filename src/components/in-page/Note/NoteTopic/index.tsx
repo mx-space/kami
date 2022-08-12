@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import type { FC } from 'react'
 import { useCallback, useMemo } from 'react'
-import Linkify from 'react-linkify'
 
 import type { TopicModel } from '@mx-space/api-client/types/models/topic'
 
@@ -14,6 +13,7 @@ import { useAnalyze } from '~/hooks/use-analyze'
 import { textToBigCharOrWord } from '~/utils/word'
 
 import { InnerTopicDetail } from './inner-detail'
+import { NoteTopicMarkdownRender } from './markdown-render'
 
 export const NoteTopic: FC<{ noteId: string; topic: TopicModel }> = (props) => {
   const { topic } = props
@@ -73,7 +73,7 @@ export const NoteTopic: FC<{ noteId: string; topic: TopicModel }> = (props) => {
             </span>
 
             <p className="opacity-80 text-shizuku-text text-sm line-clamp-2">
-              <Linkify>{introduce}</Linkify>
+              <NoteTopicMarkdownRender>{introduce}</NoteTopicMarkdownRender>
             </p>
           </div>
         </div>

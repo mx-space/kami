@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import type { FC } from 'react'
 import { useEffect, useState } from 'react'
-import Linkify from 'react-linkify'
 
 import type { NoteModel, Pager } from '@mx-space/api-client'
 import type { TopicModel } from '@mx-space/api-client/types/models/topic'
@@ -13,6 +12,8 @@ import {
 } from '~/components/universal/Icons/for-note'
 import { RelativeTime } from '~/components/universal/RelativeTime'
 import { apiClient } from '~/utils/client'
+
+import { NoteTopicMarkdownRender } from './markdown-render'
 
 export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
   const { topic } = props
@@ -42,13 +43,15 @@ export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
       </Link>
 
       <p className="break-all line-clamp-2 text-gray-2">
-        <Linkify>{topic.introduce}</Linkify>
+        <NoteTopicMarkdownRender>{topic.introduce}</NoteTopicMarkdownRender>
       </p>
       {topic.description && (
         <>
           <Divider />
           <p className="text-gray-1 leading-8">
-            <Linkify>{topic.description}</Linkify>
+            <NoteTopicMarkdownRender>
+              {topic.description}
+            </NoteTopicMarkdownRender>
           </p>
         </>
       )}

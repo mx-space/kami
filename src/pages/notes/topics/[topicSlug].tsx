@@ -1,7 +1,6 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import { useCallback, useEffect, useState } from 'react'
-import Linkify from 'react-linkify'
 import { TransitionGroup } from 'react-transition-group'
 
 import type { NoteModel, Pager } from '@mx-space/api-client'
@@ -9,6 +8,7 @@ import type { TopicModel } from '@mx-space/api-client/types/models/topic'
 
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { SEO } from '~/components/biz/Seo'
+import { NoteTopicMarkdownRender } from '~/components/in-page/Note/NoteTopic/markdown-render'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { Divider } from '~/components/universal/Divider'
 import { Pagination } from '~/components/universal/Pagination'
@@ -36,6 +36,7 @@ const TopicDetailPage: NextPage<TopicModel> = (props) => {
   const handleChangePage = useCallback((page: number) => {
     fetch(page)
   }, [])
+
   return (
     <ArticleLayout
       title={`专栏 · ${name}`}
@@ -55,9 +56,9 @@ const TopicDetailPage: NextPage<TopicModel> = (props) => {
         {props.description && (
           <>
             <Divider />
-            <p>
-              <Linkify>{props.description}</Linkify>
-            </p>
+            <NoteTopicMarkdownRender>
+              {props.description}
+            </NoteTopicMarkdownRender>
           </>
         )}
       </div>
