@@ -50,23 +50,23 @@ export const Toc: FC<TocProps> = memo(
       }
     }, [])
 
-    const setMaxWidth = throttle(() => {
-      if (containerRef.current) {
-        containerRef.current.style.maxWidth = `${
-          document.documentElement.getBoundingClientRect().width -
-          containerRef.current.getBoundingClientRect().x -
-          30
-        }px`
-      }
-    }, 14)
-
     useEffect(() => {
+      const setMaxWidth = throttle(() => {
+        if (containerRef.current) {
+          containerRef.current.style.maxWidth = `${
+            document.documentElement.getBoundingClientRect().width -
+            containerRef.current.getBoundingClientRect().x -
+            30
+          }px`
+        }
+      }, 14)
       window.addEventListener('resize', setMaxWidth)
+      setMaxWidth()
 
       return () => {
         window.removeEventListener('resize', setMaxWidth)
       }
-    }, [setMaxWidth])
+    }, [])
 
     const handleItemClick = useCallback((i) => {
       setTimeout(() => {
@@ -102,6 +102,7 @@ export const Toc: FC<TocProps> = memo(
               headings.map((heading) => {
                 return (
                   <MemoedItem
+                    containerRef={containerRef}
                     heading={heading}
                     isActive={heading.index === index}
                     onClick={handleItemClick}
@@ -121,9 +122,10 @@ const MemoedItem = memo<{
   heading: Headings[0]
   rootDepth: number
   onClick: (i: number) => void
+  containerRef: any
 }>(
   (props) => {
-    const { heading, isActive, onClick, rootDepth } = props
+    const { heading, isActive, onClick, rootDepth, containerRef } = props
 
     return (
       <RightLeftTransitionView
@@ -136,6 +138,7 @@ const MemoedItem = memo<{
         key={heading.title}
       >
         <TocItem
+          containerRef={containerRef}
           index={heading.index}
           onClick={onClick}
           active={isActive}
