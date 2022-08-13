@@ -44,6 +44,12 @@ export const Gallery: FC<GalleryProps> = (props) => {
             height: 600,
           },
         )
+        const alt = image.name
+        const title = image.footnote
+        const imageCaption =
+          title ||
+          (['!', '¡'].some((ch) => ch == alt?.[0]) ? alt?.slice(1) : '') ||
+          ''
         return (
           <div
             style={childStyle}
@@ -55,7 +61,7 @@ export const Gallery: FC<GalleryProps> = (props) => {
               backgroundColor={info?.accent}
               getParentElWidth={() => maxWidth}
               src={image.url}
-              alt={image.name || image.footnote || ''}
+              alt={imageCaption}
               height={height}
               width={width}
             />

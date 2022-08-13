@@ -212,7 +212,7 @@ export const ImageLazy = memo(
             <LazyLoad offset={100} placeholder={memoPlaceholderImage}>
               <Image
                 src={src}
-                alt={alt.replace(/^[!¡]/, '') || ''}
+                alt={alt}
                 popup={popup}
                 loaded={loaded}
                 loaderFn={loaderFn}
@@ -221,9 +221,7 @@ export const ImageLazy = memo(
             </LazyLoad>
           </div>
         )}
-        {alt && (alt.startsWith('!') || alt.startsWith('¡')) && (
-          <figcaption className={styles['img-alt']}>{alt.slice(1)}</figcaption>
-        )}
+        {alt && <figcaption className={styles['img-alt']}>{alt}</figcaption>}
       </figure>
     )
   }),

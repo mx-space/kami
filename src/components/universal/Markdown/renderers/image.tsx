@@ -89,7 +89,7 @@ const _Image: FC<{ src: string; alt?: string }> = observer(({ src, alt }) => {
       popup
       ref={imageRef}
       src={src}
-      alt={alt || src}
+      alt={alt}
       backgroundColor={accent}
       height={cal.height}
       width={cal.width}
@@ -107,12 +107,17 @@ export const MImage: FC<
     HTMLImageElement
   >
 > = (props) => {
-  const { src, alt } = props
+  const { src, alt, title } = props
   const sanitizedUrl = sanitizeUrl(src!)
   const isClient = useIsClient()
+  const imageCaption =
+    title ||
+    (['!', '¡'].some((ch) => ch == alt?.[0]) ? alt?.slice(1) : '') ||
+    ''
+
   return !isClient ? (
-    <img src={sanitizedUrl!} alt={alt} />
+    <img src={sanitizedUrl!} alt={imageCaption} title={title} />
   ) : (
-    <_Image src={sanitizedUrl!} alt={alt} />
+    <_Image src={sanitizedUrl!} alt={imageCaption} />
   )
 }

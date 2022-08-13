@@ -42,7 +42,14 @@ export const ContainerRule: MarkdownToJSX.Rule = {
           break
         }
 
-        return <Banner type={params} className="my-4" message={content} />
+        return (
+          <Banner
+            type={params}
+            className="my-4"
+            message={content}
+            key={state?.key}
+          />
+        )
       }
     }
 
