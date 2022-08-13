@@ -269,7 +269,6 @@ ph {
   margin-right: calc(-3em + 2px);
   border: none;
   padding: 1em 5em;
-  clip-path: initial !important;
   outline: none !important;
 
   @media screen and (max-width: 900px) {

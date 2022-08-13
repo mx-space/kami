@@ -1,15 +1,19 @@
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import { Priority, blockRegex } from 'markdown-to-jsx'
 
-import { Carousel } from '../components/carousel'
+import { Banner } from '../../Banner'
 import { Gallery } from '../components/gallery'
 import { pickImagesFromMarkdown } from '../utils/image'
 
-const shouldCatchContainerName = ['carousel', 'gallery'].join('|')
+const shouldCatchContainerName = [
+  'gallery',
+  'banner',
+  /* 'carousel', */
+].join('|')
 export const ContainerRule: MarkdownToJSX.Rule = {
   match: blockRegex(
     new RegExp(
-      `^\\s*::: *(?<name>(${shouldCatchContainerName}))? *\n(?<content>[\\s\\S]+?)\\s*::: *(?:\n *)+\n?`,
+      `^\\s*::: *(?<name>(${shouldCatchContainerName})) *({(?<params>(.*?))})? *\n(?<content>[\\s\\S]+?)\\s*::: *(?:\n *)+\n?`,
     ),
   ),
   order: Priority.MED,
@@ -21,28 +25,39 @@ export const ContainerRule: MarkdownToJSX.Rule = {
   },
   // @ts-ignore
   react(node, _, state) {
-    const { name, content } = node
+    const { name, content, params } = node
 
     switch (name) {
-      case 'carousel':
-        return (
-          <Carousel key={state?.key} images={pickImagesFromMarkdown(content)} />
-        )
+      // case 'carousel':
+      //   return (
+      //     <Carousel key={state?.key} images={pickImagesFromMarkdown(content)} />
+      //   )
       case 'gallery': {
         return (
           <Gallery key={state?.key} images={pickImagesFromMarkdown(content)} />
         )
       }
+      case 'banner': {
+        if (!params) {
+          break
+        }
+
+        return <Banner type={params} className="my-4" message={content} />
+      }
     }
 
-    return null
+    return (
+      <div key={state?.key}>
+        <p>{content}</p>
+      </div>
+    )
   },
 }
 
 /**
- * carousel container
+ * gallery container
  *
- * ::: carousel
+ * ::: gallery
  * ![name](url)
  * ![name](url)
  * ![name](url)
