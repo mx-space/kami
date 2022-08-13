@@ -51,6 +51,9 @@ export const Toc: FC<TocProps> = memo(
     }, [])
 
     useEffect(() => {
+      if (useAsWeight) {
+        return
+      }
       const setMaxWidth = throttle(() => {
         if (containerRef.current) {
           containerRef.current.style.maxWidth = `${
@@ -66,7 +69,7 @@ export const Toc: FC<TocProps> = memo(
       return () => {
         window.removeEventListener('resize', setMaxWidth)
       }
-    }, [])
+    }, [useAsWeight])
 
     const handleItemClick = useCallback((i) => {
       setTimeout(() => {
@@ -102,7 +105,7 @@ export const Toc: FC<TocProps> = memo(
               headings.map((heading) => {
                 return (
                   <MemoedItem
-                    containerRef={containerRef}
+                    containerRef={useAsWeight ? undefined : containerRef}
                     heading={heading}
                     isActive={heading.index === index}
                     onClick={handleItemClick}

@@ -437,8 +437,8 @@ article > h1 {
 }
 
 figure {
-  width: 100% !important;
-  text-align: center !important;
+  width: 100%;
+  text-align: center;
 }
 
 /* layer */

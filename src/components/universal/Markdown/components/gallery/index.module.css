@@ -1,0 +1,14 @@
+.container {
+  scroll-snap-type: x mandatory;
+}
+
+.child {
+  scroll-snap-align: center;
+  margin-right: 15px;
+
+  text-align: center;
+}
+
+.child:last-child {
+  margin-right: 0;
+}

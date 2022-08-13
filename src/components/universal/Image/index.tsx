@@ -1,6 +1,11 @@
 import { clsx } from 'clsx'
 import mediumZoom from 'medium-zoom'
-import type { DetailedHTMLProps, FC, ImgHTMLAttributes } from 'react'
+import type {
+  CSSProperties,
+  DetailedHTMLProps,
+  FC,
+  ImgHTMLAttributes,
+} from 'react'
 import {
   forwardRef,
   memo,
@@ -28,8 +33,7 @@ interface ImageProps {
   backgroundColor?: string
   popup?: boolean
   overflowHidden?: boolean
-  parentWrapperWidth?: number
-  parentWrapperWidthRadio?: number
+  getParentElWidth?: (parentElementWidth: number) => number
 }
 
 const Image: FC<
@@ -95,8 +99,7 @@ export const ImageLazy = memo(
       popup = false,
       style,
       overflowHidden = false,
-      parentWrapperWidth,
-      parentWrapperWidthRadio,
+      getParentElWidth = (w) => w,
       ...rest
     } = props
     useImperativeHandle(ref, () => {
@@ -118,13 +121,17 @@ export const ImageLazy = memo(
 
       const image = new window.Image()
       image.src = src as string
+      // FIXME
       const parentElement = wrapRef.current?.parentElement?.parentElement
-      if (!height && !width && (parentWrapperWidth || parentElement)) {
+
+      if (!height && !width) {
         calculateDimensions(
           image,
-          (parentWrapperWidth ??
-            parseFloat(getComputedStyle(parentElement!).width)) *
-            (parentWrapperWidthRadio ?? 1),
+          getParentElWidth(
+            parentElement
+              ? parseFloat(getComputedStyle(parentElement).width)
+              : 0,
+          ),
         )
       }
 
@@ -156,9 +163,8 @@ export const ImageLazy = memo(
       loaded,
       height,
       width,
-      parentWrapperWidth,
       calculateDimensions,
-      parentWrapperWidthRadio,
+      getParentElWidth,
       backgroundColor,
     ])
     const memoPlaceholderImage = useMemo(
@@ -173,7 +179,7 @@ export const ImageLazy = memo(
       [backgroundColor, height, width],
     )
 
-    const imageWrapperStyle = useMemo(
+    const imageWrapperStyle = useMemo<CSSProperties>(
       () => ({
         height: loaded ? undefined : height || calculatedSize.height,
         width: loaded ? undefined : width || calculatedSize.width,
