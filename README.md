@@ -84,6 +84,49 @@ git lfs pull
 - Mention: `{GH@Innei}` `{TW@Innei}` `{TG@Innei}`
 - KateX: `$ c = \\pm\\sqrt{a^2 + b^2} $`
 - Mark: `==Mark==`
+- React Component (JSX)
+- Container: `::: type {params}`
+
+### 支持的 Container
+
+1. Gallery
+
+一个多图展示容器。
+
+```mark
+::: gallery
+![alt](url "title")
+![alt](url "title")
+:::
+```
+
+2. Banner
+
+提示容器。可选参数 `info` `warning` `error` `success`
+
+```mark
+::: banner {info}
+一个提示。
+:::
+```
+
+### 支持的 React Component
+
+1. LinkCard
+
+```js
+<LinkCard id="notes/111" source="self" />
+```
+
+```ts
+type LinkCardSource = 'gh' | 'self'
+
+interface LinkCardProps {
+  id: string
+  source: LinkCardSource
+  className?: string
+}
+```
 
 ## Migration to Kami v3
 
