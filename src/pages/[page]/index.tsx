@@ -58,7 +58,11 @@ const PageView: PageOnlyProps = observer((props) => {
     <ArticleLayout title={title} subtitle={subtitle} id={props.id} type="page">
       <Seo
         title={title}
-        openGraph={useRef({ type: 'article' }).current}
+        openGraph={
+          useRef<{
+            type: 'article'
+          }>({ type: 'article' }).current
+        }
         description={RemoveMarkdown(text).slice(0, 100).replace('\n', '')}
       />
       <ImageSizeMetaContext.Provider
