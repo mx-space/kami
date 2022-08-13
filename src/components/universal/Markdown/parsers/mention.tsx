@@ -56,7 +56,13 @@ export const MentionRule: MarkdownToJSX.Rule = {
         key={state?.key}
       >
         {Icon}
-        <a href={`${urlPrefix}${name}`}>{name}</a>
+        <a
+          target={'_blank'}
+          rel="noreferrer nofollow"
+          href={`${urlPrefix}${name}`}
+        >
+          {name}
+        </a>
       </div>
     )
   },
