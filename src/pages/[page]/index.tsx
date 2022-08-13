@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import React, { Fragment, useEffect, useMemo } from 'react'
+import React, { Fragment, useEffect, useMemo, useRef } from 'react'
 import RemoveMarkdown from 'remove-markdown'
 
 import type { PageModel } from '@mx-space/api-client'
@@ -25,7 +25,7 @@ import styles from './index.module.css'
 const CommentLazy = dynamic(() =>
   import('~/components/widgets/Comment').then((mo) => mo.CommentLazy),
 )
-const EMPTY_ARRAY = []
+
 const PageView: PageOnlyProps = observer((props) => {
   const { pageStore } = useStore()
   const page = pageStore.get(props.id) || (noop as PageModel)
@@ -58,7 +58,11 @@ const PageView: PageOnlyProps = observer((props) => {
     <ArticleLayout title={title} subtitle={subtitle} id={props.id} type="page">
       <Seo
         title={title}
-        openGraph={{ type: 'article' }}
+        openGraph={
+          useRef<{
+            type: 'article'
+          }>({ type: 'article' }).current
+        }
         description={RemoveMarkdown(text).slice(0, 100).replace('\n', '')}
       />
       <ImageSizeMetaContext.Provider

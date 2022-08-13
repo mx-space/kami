@@ -13,7 +13,7 @@ export const TocItem: FC<{
   rootDepth: number
   onClick: (i: number) => void
   index: number
-  containerRef: RefObject<HTMLDivElement>
+  containerRef?: RefObject<HTMLDivElement>
 }> = memo((props) => {
   const { index, active, depth, title, rootDepth, onClick, containerRef } =
     props
@@ -26,7 +26,7 @@ export const TocItem: FC<{
   }, [active, title])
 
   useEffect(() => {
-    if (!$ref.current || !active || !containerRef.current) {
+    if (!$ref.current || !active || !containerRef?.current) {
       return
     }
     // NOTE animation group will wrap a element as a scroller container
@@ -36,13 +36,14 @@ export const TocItem: FC<{
       return
     }
     const itemHeight = $ref.current.offsetHeight
-
-    const thisItemTop = index * itemHeight
     const currentScrollerTop = $scoller.scrollTop
+    const scollerContainerHeight = $scoller.clientHeight
+    const thisItemTop = index * itemHeight
 
     if (
       currentScrollerTop - thisItemTop >= 0 ||
-      thisItemTop >= currentScrollerTop
+      (thisItemTop >= currentScrollerTop &&
+        thisItemTop >= scollerContainerHeight)
     ) {
       $scoller.scrollTop = thisItemTop
     }

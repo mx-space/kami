@@ -57,7 +57,7 @@
 }
 
 .image {
-  @apply aspect-square flex-shrink-0 inline-flex items-center;
+  @apply aspect-square flex-shrink-0 bg-cover bg-no-repeat bg-center;
 
   height: 60px;
   width: 60px;

@@ -1,6 +1,11 @@
 import { clsx } from 'clsx'
 import mediumZoom from 'medium-zoom'
-import type { DetailedHTMLProps, FC, ImgHTMLAttributes } from 'react'
+import type {
+  CSSProperties,
+  DetailedHTMLProps,
+  FC,
+  ImgHTMLAttributes,
+} from 'react'
 import {
   forwardRef,
   memo,
@@ -15,9 +20,9 @@ import {
 import { isDarkColorHex } from '~/utils/color'
 import { escapeHTMLTag } from '~/utils/utils'
 
-import { useCalculateSize } from '../../../hooks/use-calculate-size'
 import { LazyLoad } from '../Lazyload'
 import styles from './index.module.css'
+import { useCalculateSize } from './use-calculate-size'
 
 interface ImageProps {
   defaultImage?: string
@@ -28,6 +33,7 @@ interface ImageProps {
   backgroundColor?: string
   popup?: boolean
   overflowHidden?: boolean
+  getParentElWidth?: (parentElementWidth: number) => number
 }
 
 const Image: FC<
@@ -93,6 +99,7 @@ export const ImageLazy = memo(
       popup = false,
       style,
       overflowHidden = false,
+      getParentElWidth = (w) => w,
       ...rest
     } = props
     useImperativeHandle(ref, () => {
@@ -114,10 +121,17 @@ export const ImageLazy = memo(
 
       const image = new window.Image()
       image.src = src as string
-      if (!height && !width && wrapRef.current?.parentElement?.parentElement) {
+      // FIXME
+      const parentElement = wrapRef.current?.parentElement?.parentElement
+
+      if (!height && !width) {
         calculateDimensions(
-          wrapRef.current?.parentElement?.parentElement,
           image,
+          getParentElWidth(
+            parentElement
+              ? parseFloat(getComputedStyle(parentElement).width)
+              : 0,
+          ),
         )
       }
 
@@ -144,7 +158,15 @@ export const ImageLazy = memo(
           // eslint-disable-next-line no-empty
         } catch {}
       }
-    }, [src, loaded, height, width, calculateDimensions, backgroundColor])
+    }, [
+      src,
+      loaded,
+      height,
+      width,
+      calculateDimensions,
+      getParentElWidth,
+      backgroundColor,
+    ])
     const memoPlaceholderImage = useMemo(
       () => (
         <PlaceholderImage
@@ -157,6 +179,22 @@ export const ImageLazy = memo(
       [backgroundColor, height, width],
     )
 
+    const imageWrapperStyle = useMemo<CSSProperties>(
+      () => ({
+        height: loaded ? undefined : height || calculatedSize.height,
+        width: loaded ? undefined : width || calculatedSize.width,
+
+        ...(overflowHidden ? { overflow: 'hidden', borderRadius: '3px' } : {}),
+      }),
+      [
+        calculatedSize.height,
+        calculatedSize.width,
+        height,
+        loaded,
+        overflowHidden,
+        width,
+      ],
+    )
     return (
       <figure style={style} className="inline-block">
         {defaultImage ? (
@@ -167,14 +205,7 @@ export const ImageLazy = memo(
               'transition-none relative max-w-full m-auto inline-block min-h-[1px]',
               rest.className,
             )}
-            style={{
-              height: loaded ? undefined : height || calculatedSize.height,
-              width: loaded ? undefined : width || calculatedSize.width,
-
-              ...(overflowHidden
-                ? { overflow: 'hidden', borderRadius: '3px' }
-                : {}),
-            }}
+            style={imageWrapperStyle}
             ref={wrapRef}
             data-info={JSON.stringify({ height, width, calculatedSize })}
           >

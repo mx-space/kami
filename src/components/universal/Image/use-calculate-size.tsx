@@ -23,8 +23,8 @@ export const useCalculateSize = () => {
   )
   const timer = useRef<any>()
   const calculateOnImageEl = useCallback(
-    (parentEl: HTMLElement, imageEl: HTMLImageElement) => {
-      if (!parentEl || !imageEl) {
+    (imageEl: HTMLImageElement, parentElWidth?: number) => {
+      if (!parentElWidth || !imageEl) {
         return
       }
 
@@ -33,11 +33,10 @@ export const useCalculateSize = () => {
           h = imageEl.naturalHeight
         if (w && h) {
           clearInterval(timer.current)
-          const parentElWidth = getComputedStyle(parentEl).width
 
           const calculated = calculateDimensions(w, h, {
             height: Infinity,
-            width: parseInt(parentElWidth),
+            width: +parentElWidth,
           })
 
           dispatch({

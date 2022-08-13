@@ -225,7 +225,7 @@ html.dark {
   color: var(--pink);
   font-family: var(--serif-font);
   padding-bottom: 24px;
-  clip-path: initial !important;
+
   outline: none !important;
 
   &::before {

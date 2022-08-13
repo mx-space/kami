@@ -4,19 +4,20 @@ import {
   parseCaptureInline,
   simpleInlineRegex,
 } from 'markdown-to-jsx'
+import { Fragment } from 'react'
 
 // @
 export const CommentAtRule: MarkdownToJSX.Rule = {
   match: simpleInlineRegex(/^@(\w+)\s/),
   order: Priority.LOW,
   parse: parseCaptureInline,
-  react(node) {
+  react(node, _, state) {
     const { content } = node
 
     if (!content || !content[0]?.content) {
-      return <></>
+      return <Fragment key={state?.key} />
     }
 
-    return <span>@{content[0]?.content}</span>
+    return <span key={state?.key}>@{content[0]?.content}</span>
   },
 }
