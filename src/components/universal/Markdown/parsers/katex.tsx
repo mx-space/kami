@@ -9,14 +9,14 @@ import { useInsertionEffect, useState } from 'react'
 
 import { loadScript, loadStyleSheet } from '~/utils/load-script'
 
-//  $ c = \\pm\\sqrt{a^2 + b^2} $
+//  $ c = \pm\sqrt{a^2 + b^2} $
 export const KateXRule: MarkdownToJSX.Rule = {
   match: simpleInlineRegex(
     /^\$\s{1,}((?:\[.*?\]|<.*?>(?:.*?<.*?>)?|`.*?`|.)*?)\s{1,}\$/,
   ),
   order: Priority.LOW,
   parse: parseCaptureInline,
-  react(node, output, state?) {
+  react(node, _, state?) {
     try {
       const str = node.content.map((item) => item.content).join('')
 

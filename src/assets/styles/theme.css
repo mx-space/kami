@@ -294,7 +294,6 @@ blockquote {
 html.dark {
   blockquote {
     background: var(--shizuku-background-color);
-    outline: 1px var(--green) solid;
   }
 }
 
