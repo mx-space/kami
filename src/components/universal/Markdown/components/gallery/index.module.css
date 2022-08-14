@@ -1,10 +1,13 @@
 .container {
   scroll-snap-type: x mandatory;
+  display: flex;
+  align-items: flex-start;
 }
 
 .child {
   scroll-snap-align: center;
   margin-right: 15px;
+  flex-shrink: 0;
 
   text-align: center;
 }
