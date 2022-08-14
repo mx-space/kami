@@ -55,10 +55,13 @@ const Image: FC<
     }
     const $image = imageRef.current
     if ($image) {
-      mediumZoom($image, {
+      const zoom = mediumZoom($image, {
         background: 'var(--light-bg)',
-        margin: 50,
       })
+
+      return () => {
+        zoom.detach(zoom.getImages())
+      }
     }
   }, [popup])
 
@@ -92,7 +95,7 @@ export const ImageLazy = memo(
     const {
       defaultImage,
       src,
-      alt = src,
+      alt,
       height,
       width,
       backgroundColor = 'rgb(111,111,111)',
@@ -148,12 +151,12 @@ export const ImageLazy = memo(
       image.onerror = () => {
         try {
           if (placeholderRef && placeholderRef.current) {
-            placeholderRef.current.innerHTML = `<p style="color: ${
+            placeholderRef.current.innerHTML = `<p style="color:${
               isDarkColorHex(backgroundColor) ? '#eee' : '#333'
-            } ;z-index: 2"><span>图片加载失败!</span><br/>
-          <a href="${escapeHTMLTag(image.src)}" target="_blank">${escapeHTMLTag(
-              image.src,
-            )}</a></p>`
+            };z-index:2"><span>图片加载失败!</span><br/>
+          <a style="margin: 0 12px;word-break:break-all;white-space:pre-wrap;display:inline-block;" href="${escapeHTMLTag(
+            image.src,
+          )}" target="_blank">${escapeHTMLTag(image.src)}</a></p>`
           }
           // eslint-disable-next-line no-empty
         } catch {}

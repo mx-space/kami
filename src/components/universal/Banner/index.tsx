@@ -37,7 +37,6 @@ const iconColorMap = {
   error: 'text-default-red-500',
 }
 
-// TODO
 export const Banner: FC<{
   type: 'warning' | 'error' | 'success' | 'info'
   message?: string | React.ReactNode
@@ -51,9 +50,10 @@ export const Banner: FC<{
   return (
     <div
       className={clsx(
-        'p-6 flex items-center space-x-4 rounded-md border text-dark-100 ' +
-          `${bgColorMap[props.type] || bgColorMap.info} 
-        } ${borderColorMap[props.type] || borderColorMap.info}`,
+        'phone:block p-6 flex items-center space-x-4 rounded-md border text-dark-100 ' +
+          `${bgColorMap[props.type] || bgColorMap.info} ${
+            borderColorMap[props.type] || borderColorMap.info
+          }`,
         placement == 'center' ? 'justify-center' : 'justify-start',
         props.className,
       )}
@@ -62,7 +62,7 @@ export const Banner: FC<{
         <Icon
           className={`text-3xl self-start flex-shrink-0 ${
             iconColorMap[props.type] || iconColorMap.info
-          } mr-2`}
+          } mr-2 phone:float-left phone:-mr-2`}
         />
       )}
       {props.message ? (

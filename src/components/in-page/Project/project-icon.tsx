@@ -15,7 +15,7 @@ export const ProjectIcon: FC<{ avatar?: string; name?: string }> = memo(
         )}
       >
         {props.avatar ? (
-          <ImageLazy src={props.avatar} alt={props.name} />
+          <ImageLazy src={props.avatar} />
         ) : (
           <FlexText
             text={props.name?.charAt(0).toUpperCase() || ''}
