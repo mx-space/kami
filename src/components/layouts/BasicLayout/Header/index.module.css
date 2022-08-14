@@ -182,37 +182,37 @@
   transform: translateY(0);
   transition: transform 0.5s;
 
-  &.toggle {
-    transform: translateY(-50%) !important;
+  & .head-info {
+    overflow: hidden;
+    flex-shrink: 1;
+    margin-right: 20px;
 
-    & .head-info {
+    & .desc {
+      position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
       flex-shrink: 1;
-      margin-right: 20px;
 
-      & .desc {
+      & > div {
         position: relative;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        flex-shrink: 1;
+        animation: swipe-up 0.5s ease-in-out forwards;
+        bottom: -5rem;
+      }
 
-        & > div {
-          position: relative;
-          animation: swipe-up 0.5s ease-in-out forwards;
-          bottom: -5rem;
-        }
+      & > div:nth-child(1) {
+        opacity: 0;
+      }
 
-        & > div:nth-child(1) {
-          opacity: 0;
-        }
-
-        & > div:nth-child(2) {
-          opacity: 0.5;
-          animation-timing-function: ease;
-        }
+      & > div:nth-child(2) {
+        opacity: 0.5;
+        animation-timing-function: ease;
       }
     }
+  }
+
+  &.toggle {
+    transform: translateY(-50%) !important;
   }
 }
 
