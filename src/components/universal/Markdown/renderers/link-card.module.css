@@ -18,6 +18,7 @@
 
   background-color: #f3f3f380;
   backdrop-filter: blur(20px) saturate(180%);
+  transition: background-color 0.2s ease-in-out;
 }
 
 :global(html.dark) .card-grid {
@@ -91,5 +92,20 @@
     width: 50px;
 
     @apply bg-gray-5;
+  }
+
+  &.error {
+    background-color: #e1534a50 !important;
+
+    & .title,
+    & .desc,
+    & .image {
+      background-color: #e1534a79;
+      color: transparent;
+    }
+
+    & .image {
+      background-image: none !important;
+    }
   }
 }

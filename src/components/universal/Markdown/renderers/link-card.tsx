@@ -18,7 +18,9 @@ export interface LinkCardProps {
 export const LinkCard: FC<LinkCardProps> = (props) => {
   const { id, source, className } = props
   const [loading, setLoading] = useState(true)
+  const [isError, setIsError] = useState(false)
   const fetchFnRef = useRef<() => Promise<any>>()
+
   const [fullUrl, setFullUrl] = useState('')
   const [cardInfo, setCardInfo] = useState<{
     title: string
@@ -101,7 +103,10 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
       return
     }
     setLoading(true)
-    await fetchFnRef.current()
+
+    await fetchFnRef.current().catch(() => {
+      setIsError(true)
+    })
     setLoading(false)
   }, [])
 
@@ -127,7 +132,8 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
       ref={ref}
       className={clsx(
         (cardInfo || loading) && styles['card-grid'],
-        loading && styles['skeleton'],
+        (loading || isError) && styles['skeleton'],
+        isError && styles['error'],
         className,
       )}
     >
