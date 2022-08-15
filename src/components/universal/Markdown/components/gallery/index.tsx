@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import type { FC } from 'react'
-import { useContext, useMemo, useRef, useState } from 'react'
+import { useContext, useEffect, useMemo, useRef, useState } from 'react'
 
 import { ImageLazy } from '~/components/universal/Image'
 import { ImageSizeMetaContext } from '~/context'
@@ -21,9 +21,28 @@ export const Gallery: FC<GalleryProps> = (props) => {
     () => containerRef?.clientWidth || 0,
     [containerRef?.clientWidth],
   )
+
+  const [updated, setUpdated] = useState({})
+  useEffect(() => {
+    if (!containerRef) {
+      return
+    }
+
+    const ob = new ResizeObserver(() => {
+      setUpdated({})
+    })
+
+    ob.observe(containerRef)
+    return () => {
+      ob.disconnect()
+    }
+  }, [containerRef])
+
   const childStyle = useRef({
     width: `calc(100% - ${IMAGE_CONTAINER_MARGIN_INSET}px)`,
   }).current
+
+  void updated
 
   return (
     <div
@@ -35,7 +54,7 @@ export const Gallery: FC<GalleryProps> = (props) => {
     >
       {images.map((image) => {
         const info = imageMeta.get(image.url)
-        const maxWidth = containerWidth - 60
+        const maxWidth = containerWidth - IMAGE_CONTAINER_MARGIN_INSET
         const { height, width } = calculateDimensions(
           info?.width || 0,
           info?.height || 0,
@@ -60,7 +79,7 @@ export const Gallery: FC<GalleryProps> = (props) => {
             <ImageLazy
               popup
               backgroundColor={info?.accent}
-              getParentElWidth={() => maxWidth}
+              getParentElWidth={maxWidth}
               src={image.url}
               alt={imageCaption}
               height={height}

@@ -33,7 +33,7 @@ interface ImageProps {
   backgroundColor?: string
   popup?: boolean
   overflowHidden?: boolean
-  getParentElWidth?: (parentElementWidth: number) => number
+  getParentElWidth?: ((parentElementWidth: number) => number) | number
 }
 
 const Image: FC<
@@ -130,11 +130,13 @@ export const ImageLazy = memo(
       if (!height && !width) {
         calculateDimensions(
           image,
-          getParentElWidth(
-            parentElement
-              ? parseFloat(getComputedStyle(parentElement).width)
-              : 0,
-          ),
+          typeof getParentElWidth == 'function'
+            ? getParentElWidth(
+                parentElement
+                  ? parseFloat(getComputedStyle(parentElement).width)
+                  : 0,
+              )
+            : getParentElWidth,
         )
       }
 
