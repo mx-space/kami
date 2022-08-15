@@ -133,7 +133,7 @@ const RecentlyPage: NextPage = () => {
                     )}
                   >
                     <div className="overflow-hidden">
-                      <Markdown value={d.content} />
+                      <Markdown value={d.content} forceBlock />
                       {d.ref && <RefPreview refModel={d.ref} />}
                     </div>
 
@@ -179,7 +179,7 @@ const RefPreview: FC<{ refModel: any }> = (props) => {
 
   return (
     <>
-      <Divider className="my-1 bg-current w-12" />
+      <Divider className="my-1 bg-current w-12 opacity-50" />
       <p className="leading-[1.8] flex items-center">
         发表于： <PhLinkFill className="mr-2" />
         <Link href={url}>{title}</Link>
