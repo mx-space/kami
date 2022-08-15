@@ -24,7 +24,7 @@
       max-width: 80%;
       word-wrap: break-word;
       margin-bottom: 0.7em;
-      padding: 5px 20px;
+      padding: 10px 20px;
 
       .del {
         @apply transition cursor-pointer absolute right-[-12px] top-0 bottom-0;
@@ -83,4 +83,8 @@
       }
     }
   }
+}
+
+.md:global(> blockquote) {
+  border-radius: 13px;
 }

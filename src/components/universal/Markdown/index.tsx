@@ -270,6 +270,7 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
       className={clsx(
         styles['md'],
         codeBlockFully ? styles['code-fully'] : undefined,
+        wrapperProps.className,
       )}
     >
       {className ? <div className={className}>{node}</div> : node}

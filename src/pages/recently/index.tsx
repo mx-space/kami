@@ -109,6 +109,12 @@ const RecentlyPage: NextPage = () => {
   const handleDelete = async (id: string) => {
     await apiClient.shorthand.proxy(id).delete()
   }
+
+  const wrapperProps = useRef({
+    id: '',
+    className: styles['md'],
+  }).current
+
   return (
     <main className="max-w-[50em] relative">
       <h1>动态</h1>
@@ -133,11 +139,15 @@ const RecentlyPage: NextPage = () => {
                     )}
                   >
                     <div className="overflow-hidden">
-                      <Markdown value={d.content} forceBlock />
+                      <Markdown
+                        forceBlock
+                        value={d.content}
+                        wrapperProps={wrapperProps}
+                      />
                       {d.ref && <RefPreview refModel={d.ref} />}
                     </div>
 
-                    <div className="text-sm float-right">
+                    <div className="text-sm float-right mt-1">
                       <RelativeTime date={d.created} />
                     </div>
 
@@ -179,7 +189,7 @@ const RefPreview: FC<{ refModel: any }> = (props) => {
 
   return (
     <>
-      <Divider className="my-1 bg-current w-12 opacity-50" />
+      <Divider className="my-4 bg-current w-12 opacity-50" />
       <p className="leading-[1.8] flex items-center">
         发表于： <PhLinkFill className="mr-2" />
         <Link href={url}>{title}</Link>

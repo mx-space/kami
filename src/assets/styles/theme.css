@@ -187,6 +187,10 @@ p:last-child {
   margin-bottom: 0;
 }
 
+p:first-child {
+  margin-top: 0;
+}
+
 a:hover {
   color: var(--primary);
 }

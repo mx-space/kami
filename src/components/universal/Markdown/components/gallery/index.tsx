@@ -24,6 +24,7 @@ export const Gallery: FC<GalleryProps> = (props) => {
   const childStyle = useRef({
     width: `calc(100% - ${IMAGE_CONTAINER_MARGIN_INSET}px)`,
   }).current
+
   return (
     <div
       className={clsx(
