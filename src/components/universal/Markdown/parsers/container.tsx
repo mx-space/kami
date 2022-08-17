@@ -5,11 +5,7 @@ import { Banner } from '../../Banner'
 import { Gallery } from '../components/gallery'
 import { pickImagesFromMarkdown } from '../utils/image'
 
-const shouldCatchContainerName = [
-  'gallery',
-  'banner',
-  /* 'carousel', */
-].join('|')
+const shouldCatchContainerName = ['gallery', 'banner', 'carousel'].join('|')
 export const ContainerRule: MarkdownToJSX.Rule = {
   match: blockRegex(
     new RegExp(
@@ -28,10 +24,7 @@ export const ContainerRule: MarkdownToJSX.Rule = {
     const { name, content, params } = node
 
     switch (name) {
-      // case 'carousel':
-      //   return (
-      //     <Carousel key={state?.key} images={pickImagesFromMarkdown(content)} />
-      //   )
+      case 'carousel':
       case 'gallery': {
         return (
           <Gallery key={state?.key} images={pickImagesFromMarkdown(content)} />
