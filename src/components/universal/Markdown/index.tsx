@@ -8,12 +8,14 @@ import type { FC } from 'react'
 import React, {
   Fragment,
   memo,
+  useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from 'react'
 
+import { ErrorBoundary } from '~/components/app/ErrorBoundary'
 import type { TocProps } from '~/components/widgets/Toc'
 import { useStore } from '~/store'
 import { isDev } from '~/utils/env'
@@ -261,22 +263,33 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
     rest,
   ])
 
-  return (
-    <div
-      id="write"
-      style={style}
-      {...wrapperProps}
-      ref={ref}
-      className={clsx(
-        styles['md'],
-        codeBlockFully ? styles['code-fully'] : undefined,
-        wrapperProps.className,
-      )}
-    >
-      {className ? <div className={className}>{node}</div> : node}
+  const RenderError = useCallback(
+    () => (
+      <div>
+        Markdown RenderError, Raw: <br /> {value || props.children}
+      </div>
+    ),
+    [props.children, value],
+  )
 
-      {props.toc && <TOC headings={headings} />}
-    </div>
+  return (
+    <ErrorBoundary FallbackComponent={RenderError}>
+      <div
+        id="write"
+        style={style}
+        {...wrapperProps}
+        ref={ref}
+        className={clsx(
+          styles['md'],
+          codeBlockFully ? styles['code-fully'] : undefined,
+          wrapperProps.className,
+        )}
+      >
+        {className ? <div className={className}>{node}</div> : node}
+
+        {props.toc && <TOC headings={headings} />}
+      </div>
+    </ErrorBoundary>
   )
 })
 

@@ -10,17 +10,21 @@ export const useHeaderMeta = (title: string, description: string) => {
   const { appStore } = useStore()
 
   useEffect(() => {
-    appStore.headerNav = {
-      title,
-      meta: description,
-      show: true,
-    }
+    runInAction(() => {
+      appStore.headerNav = {
+        title,
+        meta: description,
+        show: true,
+      }
+    })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [description, title])
 
   useEffect(() => {
     return () => {
-      appStore.headerNav.show = false
+      runInAction(() => {
+        appStore.headerNav.show = false
+      })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
