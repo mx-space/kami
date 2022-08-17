@@ -9,9 +9,11 @@ import {
   useRef,
   useState,
 } from 'react'
+import { useInView } from 'react-intersection-observer'
 
 import { ImageLazy } from '~/components/universal/Image'
 import { ImageSizeMetaContext } from '~/context'
+import { useStateRef } from '~/hooks/use-state-ref'
 import { calculateDimensions } from '~/utils/images'
 
 import type { MImageType } from '../../utils/image'
@@ -31,7 +33,7 @@ export const Gallery: FC<GalleryProps> = (props) => {
     [containerRef?.clientWidth],
   )
 
-  const [updated, setUpdated] = useState({})
+  const [, setUpdated] = useState({})
   const memoedChildContainerWidthRef = useRef(0)
 
   useEffect(() => {
@@ -79,21 +81,45 @@ export const Gallery: FC<GalleryProps> = (props) => {
     [],
   )
   const handleScrollTo = useCallback(
-    (i: number) => {
+    (i: number, animated = true) => {
+      autoplayTimerRef.current = clearInterval(autoplayTimerRef.current)
       if (!containerRef) {
         return
       }
 
       containerRef.scrollTo({
         left: memoedChildContainerWidthRef.current * i,
-        behavior: 'smooth',
+        behavior: animated ? 'smooth' : 'auto',
       })
     },
     [containerRef],
   )
 
+  const autoplayTimerRef = useRef(null as any)
+
+  const currentIndexRef = useStateRef(currentIndex)
+  const { ref } = useInView({
+    initialInView: false,
+    onChange(inView) {
+      if (inView) {
+        autoplayTimerRef.current = setInterval(() => {
+          const index = (currentIndexRef.current + 1) % images.length
+          handleScrollTo(index, index == 0 ? false : true)
+        }, 3000)
+      } else {
+        autoplayTimerRef.current = clearInterval(autoplayTimerRef.current)
+      }
+    },
+  })
+
+  useEffect(() => {
+    return () => {
+      clearInterval(autoplayTimerRef.current)
+    }
+  }, [])
+
   return (
-    <div className={clsx('w-full', 'relative')}>
+    <div className={clsx('w-full', 'relative')} ref={ref}>
       <div
         className={clsx(
           'w-full whitespace-nowrap overflow-auto',
