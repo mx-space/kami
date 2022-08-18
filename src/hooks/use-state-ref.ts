@@ -1,10 +1,3 @@
-import type { MutableRefObject } from 'react'
-import { useEffect, useRef } from 'react'
+import { useStateToRef } from 'react-shortcut-guide'
 
-export const useStateRef = <T>(state: T): MutableRefObject<T> => {
-  const ref = useRef<T>(state)
-  useEffect(() => {
-    ref.current = state
-  }, [state])
-  return ref
-}
+export const useStateRef = useStateToRef

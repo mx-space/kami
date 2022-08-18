@@ -1,3 +1,9 @@
+.root {
+  &:hover .indicator {
+    opacity: 1;
+  }
+}
+
 .container {
   scroll-snap-type: x mandatory;
   display: flex;
@@ -20,7 +26,8 @@
 }
 
 .indicator {
-  @apply absolute bottom-[24px] left-[50%] flex bg-bg-opacity rounded-[24px] z-1 px-6 py-4;
+  @apply absolute bottom-[24px] left-[50%] flex bg-bg-opacity rounded-[24px] z-1 px-6 py-4 opacity-0;
+  @apply transition-opacity duration-300;
 
   transform: translateX(-50%);
   backdrop-filter: blur(20px) saturate(180%);

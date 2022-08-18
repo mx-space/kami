@@ -19,11 +19,14 @@ import { calculateDimensions } from '~/utils/images'
 import type { MImageType } from '../../utils/image'
 import styles from './index.module.css'
 
+const IMAGE_CONTAINER_MARGIN_INSET = 60
+const CHILD_GAP = 15
+const AUTOPLAY_DURATION = 5000
+
 interface GalleryProps {
   images: MImageType[]
 }
-const IMAGE_CONTAINER_MARGIN_INSET = 60
-const CHILD_GAP = 15
+
 export const Gallery: FC<GalleryProps> = (props) => {
   const { images } = props
   const imageMeta = useContext(ImageSizeMetaContext)
@@ -69,7 +72,7 @@ export const Gallery: FC<GalleryProps> = (props) => {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleOnScroll: UIEventHandler<HTMLDivElement> = useCallback(
-    throttle((e) => {
+    throttle<UIEventHandler<HTMLDivElement>>((e) => {
       const $ = e.target as HTMLDivElement
 
       const index = Math.floor(
@@ -81,15 +84,14 @@ export const Gallery: FC<GalleryProps> = (props) => {
     [],
   )
   const handleScrollTo = useCallback(
-    (i: number, animated = true) => {
-      autoplayTimerRef.current = clearInterval(autoplayTimerRef.current)
+    (i: number) => {
       if (!containerRef) {
         return
       }
 
       containerRef.scrollTo({
         left: memoedChildContainerWidthRef.current * i,
-        behavior: animated ? 'smooth' : 'auto',
+        behavior: 'smooth',
       })
     },
     [containerRef],
@@ -98,14 +100,43 @@ export const Gallery: FC<GalleryProps> = (props) => {
   const autoplayTimerRef = useRef(null as any)
 
   const currentIndexRef = useStateRef(currentIndex)
+  const totalImageLengthRef = useStateRef(images.length)
+
+  // 向后翻页状态
+  const isForward = useRef(true)
+
+  const autoplayRef = useRef(true)
+  const handleCancelAutoplay = useCallback(() => {
+    if (!autoplayRef.current) {
+      return
+    }
+
+    autoplayRef.current = false
+    clearInterval(autoplayTimerRef.current)
+  }, [])
+
   const { ref } = useInView({
     initialInView: false,
+    triggerOnce: images.length < 2,
     onChange(inView) {
+      if (totalImageLengthRef.current < 2 || !autoplayRef.current) {
+        return
+      }
       if (inView) {
         autoplayTimerRef.current = setInterval(() => {
-          const index = (currentIndexRef.current + 1) % images.length
-          handleScrollTo(index, index == 0 ? false : true)
-        }, 3000)
+          if (
+            currentIndexRef.current + 1 > totalImageLengthRef.current - 1 &&
+            isForward.current
+          ) {
+            isForward.current = false
+          }
+          if (currentIndexRef.current - 1 < 0 && !isForward.current) {
+            isForward.current = true
+          }
+
+          const index = currentIndexRef.current + (isForward.current ? 1 : -1)
+          handleScrollTo(index)
+        }, AUTOPLAY_DURATION)
       } else {
         autoplayTimerRef.current = clearInterval(autoplayTimerRef.current)
       }
@@ -119,7 +150,12 @@ export const Gallery: FC<GalleryProps> = (props) => {
   }, [])
 
   return (
-    <div className={clsx('w-full', 'relative')} ref={ref}>
+    <div
+      className={clsx('w-full', 'relative', styles['root'])}
+      ref={ref}
+      onWheel={handleCancelAutoplay}
+      onTouchStart={handleCancelAutoplay}
+    >
       <div
         className={clsx(
           'w-full whitespace-nowrap overflow-auto',
@@ -173,7 +209,7 @@ export const Gallery: FC<GalleryProps> = (props) => {
           return (
             <div
               className={clsx(
-                'h-[6px] w-[6px] rounded-full bg-light-font opacity-50 transition-opacity duration-200 ease-in-out cursor-pointer',
+                'h-[6px] w-[6px] rounded-full bg-dark-50 opacity-50 transition-opacity duration-200 ease-in-out cursor-pointer',
                 currentIndex == i && '!opacity-100',
               )}
               key={i}
