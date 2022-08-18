@@ -36,6 +36,8 @@
   .num {
     opacity: 0.6;
     margin-right: 0.75em;
+    width: 3ch;
+    text-align: right;
 
     @apply flex-shrink-0;
 
