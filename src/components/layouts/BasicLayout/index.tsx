@@ -110,21 +110,7 @@ export const BasicLayout: FC = observer(({ children }) => {
   }, [])
   const { event } = useAnalyze()
   return (
-    <ShortcutProvider
-      options={useMemo(
-        () => ({
-          darkMode: 'class',
-          darkClassName: 'html.dark',
-          onGuidePanelOpen: () => {
-            event({
-              label: 'Guide 被打开了',
-              action: TrackerAction.Interaction,
-            })
-          },
-        }),
-        [],
-      )}
-    >
+    <>
       <div className="inset-0 fixed bg-fixed pointer-events-none transition-opacity duration-500 ease transform-gpu">
         <div className="bg absolute inset-0 transform-gpu" />
       </div>
@@ -133,7 +119,21 @@ export const BasicLayout: FC = observer(({ children }) => {
       </Suspense>
 
       <div className="app-content">{children}</div>
-
+      <ShortcutProvider
+        options={useMemo(
+          () => ({
+            darkMode: 'class',
+            darkClassName: 'html.dark',
+            onGuidePanelOpen: () => {
+              event({
+                label: 'Guide 被打开了',
+                action: TrackerAction.Interaction,
+              })
+            },
+          }),
+          [],
+        )}
+      />
       <Suspense fallback={null}>
         <Footer />
         <MusicMiniPlayerStoreControlled />
@@ -150,6 +150,6 @@ export const BasicLayout: FC = observer(({ children }) => {
 
         <SearchHotKey />
       </Suspense>
-    </ShortcutProvider>
+    </>
   )
 })
