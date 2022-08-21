@@ -71,7 +71,7 @@ specifiers:
   rimraf: '*'
   socket.io-client: 4.5.1
   stylelint: 14.11.0
-  stylelint-config-standard: 27.0.0
+  stylelint-config-standard: 28.0.0
   tilg: 0.1.1
   typescript: 4.7.4
   validator: 13.7.0
@@ -149,7 +149,7 @@ devDependencies:
   prettier: 2.7.1
   rimraf: 3.0.2
   stylelint: 14.11.0
-  stylelint-config-standard: 27.0.0_stylelint@14.11.0
+  stylelint-config-standard: 28.0.0_stylelint@14.11.0
   tilg: 0.1.1_react@18.2.0
   typescript: 4.7.4
   windicss: 3.5.6
@@ -3970,12 +3970,6 @@ packages:
       has: 1.0.3
     dev: true
 
-  /is-core-module/2.9.0:
-    resolution: {integrity: sha512-+5FPy5PnwmO3lvfMb0AsoPaBG+5KHUI0wYFXOtYPnVVVspTFUuMZNfNaNVRt3FZadstu2c8x23vykRW/NBoU6A==}
-    dependencies:
-      has: 1.0.3
-    dev: true
-
   /is-date-object/1.0.5:
     resolution: {integrity: sha512-9YQaSxsAiSwcvS33MBk3wTCVnWK+HhF8VZR2jRxehM16QcVOdHqPn4VPHmRK4lSr38n9JriurInLcP90xsYNfQ==}
     engines: {node: '>= 0.4'}
@@ -5737,7 +5731,7 @@ packages:
     resolution: {integrity: sha512-Hhtrw0nLeSrFQ7phPp4OOcVjLPIeMnRlr5mcnVuMe7M/7eBn98A3hmFRLoFo3DLZkivSYwhRUJTyPyWAk56WLw==}
     hasBin: true
     dependencies:
-      is-core-module: 2.9.0
+      is-core-module: 2.10.0
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
     dev: true
@@ -5755,7 +5749,7 @@ packages:
     resolution: {integrity: sha512-iMDbmAWtfU+MHpxt/I5iWI7cY6YVEZUQ3MBgPQ++XD1PELuJHIl82xBmObyP2KyQmkNB2dsqF7seoQQiAn5yDQ==}
     hasBin: true
     dependencies:
-      is-core-module: 2.9.0
+      is-core-module: 2.10.0
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
     dev: true
@@ -6240,10 +6234,10 @@ packages:
       stylelint: 14.11.0
     dev: true
 
-  /stylelint-config-standard/27.0.0_stylelint@14.11.0:
-    resolution: {integrity: sha512-J+wxyODWQCW2kgdhVzj51a4cFcJkglkMQrjPU/1Jo8w2oKSKK5ZRqHvDDWxEmjYWIYbMhhIMS5dOgVpGUMIACw==}
+  /stylelint-config-standard/28.0.0_stylelint@14.11.0:
+    resolution: {integrity: sha512-q/StuowDdDmFCravzGHAwgS9pjX0bdOQUEBBDIkIWsQuYGgYz/xsO8CM6eepmIQ1fc5bKdDVimlJZ6MoOUcJ5Q==}
     peerDependencies:
-      stylelint: ^14.10.0
+      stylelint: ^14.11.0
     dependencies:
       stylelint: 14.11.0
       stylelint-config-recommended: 9.0.0_stylelint@14.11.0
