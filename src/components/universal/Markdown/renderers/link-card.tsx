@@ -1,9 +1,14 @@
+import axios from 'axios'
 import clsx from 'clsx'
 import type { FC } from 'react'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import RemoveMarkdown from 'remove-markdown'
 
+import { camelcaseKeys } from '@mx-space/api-client'
+
+import { useIsMounted } from '~/hooks/use-is-mounted'
+import { useSafeSetState } from '~/hooks/use-safe-setState'
 import { apiClient } from '~/utils/client'
 import { getRandomImage } from '~/utils/images'
 
@@ -12,21 +17,25 @@ import styles from './link-card.module.css'
 export type LinkCardSource = 'gh' | 'self'
 export interface LinkCardProps {
   id: string
-  source: LinkCardSource
+  source?: LinkCardSource
   className?: string
 }
 export const LinkCard: FC<LinkCardProps> = (props) => {
-  const { id, source, className } = props
+  const { id, source = 'self', className } = props
+  const mountedRef = useIsMounted()
+
   const [loading, setLoading] = useState(true)
   const [isError, setIsError] = useState(false)
   const fetchFnRef = useRef<() => Promise<any>>()
 
-  const [fullUrl, setFullUrl] = useState('')
-  const [cardInfo, setCardInfo] = useState<{
+  const [fullUrl, _setFullUrl] = useState('about:blank')
+  const [cardInfo, _setCardInfo] = useState<{
     title: string
     desc?: string
     image: string
   }>()
+  const setFullUrl = useSafeSetState(_setFullUrl, mountedRef)
+  const setCardInfo = useSafeSetState(_setCardInfo, mountedRef)
 
   const isValidType = useMemo(() => {
     switch (source) {
@@ -93,7 +102,20 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
           return false
         }
 
-        // TODO
+        fetchFnRef.current = async () => {
+          // https://api.github.com/repos/mx-space/core
+          const data = await axios
+            .get<any>(`https://api.github.com/repos/${namespace}/${repo}`)
+            .then((data) => camelcaseKeys(data.data, { deep: true }))
+
+          setCardInfo({
+            image: data.owner.avatarUrl,
+            title: data.fullName,
+            desc: data.description,
+          })
+          setFullUrl(data.htmlUrl)
+        }
+
         return !rest.length
       }
     }
