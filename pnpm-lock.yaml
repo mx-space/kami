@@ -46,7 +46,7 @@ specifiers:
   mobx-react-lite: 3.4.0
   next: 12.2.5
   next-compose-plugins: 2.2.1
-  next-pwa: 5.5.6
+  next-pwa: 5.6.0
   next-seo: 5.5.0
   next-suspense: 0.1.3
   postcss: 8.4.16
@@ -141,7 +141,7 @@ devDependencies:
   js-yaml: 4.1.0
   lint-staged: 13.0.3
   next-compose-plugins: 2.2.1
-  next-pwa: 5.5.6_next@12.2.5
+  next-pwa: 5.6.0_next@12.2.5
   postcss: 8.4.16
   postcss-import: 14.1.0_postcss@8.4.16
   postcss-nested: 5.0.6_postcss@8.4.16
@@ -4570,8 +4570,8 @@ packages:
     resolution: {integrity: sha512-OjJ+fV15FXO2uQXQagLD4C0abYErBjyjE0I0FHpOEIB8upw0hg1ldFP6cqHTJBH1cZqy96OeR3u1dJ+Ez2D4Bg==}
     dev: true
 
-  /next-pwa/5.5.6_next@12.2.5:
-    resolution: {integrity: sha512-TklBB5XwAWk6i9eX4dlQ+uCesbN3zJ7iZtgRc8/aVbWC/Ygay30kcUWGmFNmGENInIGnLP4josvkVY/zGm2SQQ==}
+  /next-pwa/5.6.0_next@12.2.5:
+    resolution: {integrity: sha512-XV8g8C6B7UmViXU8askMEYhWwQ4qc/XqJGnexbLV68hzKaGHZDMtHsm2TNxFcbR7+ypVuth/wwpiIlMwpRJJ5A==}
     peerDependencies:
       next: '>=9.0.0'
     peerDependenciesMeta:
