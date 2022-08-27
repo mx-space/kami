@@ -15,7 +15,9 @@ export function setToken(token: string) {
   if (typeof token !== 'string') {
     return
   }
-  return Cookies.set(TokenKey, token)
+  return Cookies.set(TokenKey, token, {
+    expires: 14,
+  })
 }
 
 export function removeToken() {
