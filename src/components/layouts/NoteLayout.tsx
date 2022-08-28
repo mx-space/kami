@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite'
 import dynamic from 'next/dynamic'
 import type { ReactNode } from 'react'
 import { forwardRef, useCallback } from 'react'
+import { Collapse } from 'react-collapse'
 
 import type { NoteModel } from '@mx-space/api-client'
 
@@ -131,17 +132,19 @@ export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
                 </span>
               </div>
             </ClientOnly>
-            {banner && (
-              <div
-                className={clsx(
-                  'mt-8 p-4 flex justify-center ml-[calc(-3em)] mr-[calc(-3em)] w900:ml-[-1.25em] w900:mr-[-1.25em] w900:text-sm leading-8',
-                  banner.className,
-                )}
-                style={banner.style}
-              >
-                {banner.message}
-              </div>
-            )}
+            <Collapse isOpened={!!banner}>
+              {banner && (
+                <div
+                  className={clsx(
+                    'mt-8 p-4 flex justify-center ml-[calc(-3em)] mr-[calc(-3em)] w900:ml-[-1.25em] w900:mr-[-1.25em] w900:text-sm leading-8',
+                    banner.className,
+                  )}
+                  style={banner.style}
+                >
+                  {banner.message}
+                </div>
+              )}
+            </Collapse>
             <div>
               <h1 className="text-center !mt-8 !before:hidden headline text-brown dark:text-shizuku-text">
                 <FloatPopover

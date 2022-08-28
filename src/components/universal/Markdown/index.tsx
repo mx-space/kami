@@ -273,7 +273,7 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
   )
 
   return (
-    <ErrorBoundary FallbackComponent={RenderError}>
+    <ErrorBoundary fallbackComponent={RenderError}>
       <div
         id="write"
         style={style}

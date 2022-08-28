@@ -5,7 +5,7 @@ import { clsx } from 'clsx'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC } from 'react'
-import { useCallback, useEffect, useState } from 'react'
+import { memo, useCallback, useEffect, useRef, useState } from 'react'
 
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import type { NoteModel } from '@mx-space/api-client'
@@ -17,6 +17,7 @@ import { MaterialSymbolsArrowCircleRightOutlineRounded } from '~/components/univ
 import { LeftRightTransitionView } from '~/components/universal/Transition/left-right'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
+import { useIsMounted } from '~/hooks/use-is-mounted'
 import { useStore } from '~/store'
 import { apiClient } from '~/utils/client'
 
@@ -37,18 +38,32 @@ const ObserveredNoteTimelineList: FC<
   const { noteStore } = useStore()
   const note = noteStore.get(noteId)
   const [list, setList] = useState<NotePartial[]>([note as any])
-
+  const mountedRef = useIsMounted()
+  const requestNoteIdRef = useRef<string>()
   useEffect(() => {
     const now = +new Date()
+    requestNoteIdRef.current = noteId
+
+    let timer: any
     apiClient.note.getMiddleList(noteId, 10).then(({ data }) => {
       const gapTime = +new Date() - now
-      setTimeout(
+      timer = setTimeout(
         () => {
+          if (!mountedRef.current) {
+            return
+          }
+
+          if (requestNoteIdRef.current !== noteId) {
+            return
+          }
+
           setList(data)
         },
         gapTime > 500 ? 0 : gapTime,
       )
     })
+
+    return () => clearTimeout(timer)
   }, [noteId])
 
   const { event } = useAnalyze()
@@ -76,24 +91,8 @@ const ObserveredNoteTimelineList: FC<
       <div className={clsx(styles.list)}>
         <ul ref={animationParent}>
           {list.map((item) => {
-            const isCurrent = item.id === props.noteId
-            return (
-              <li key={item.id} className="flex items-center">
-                <LeftRightTransitionView in={isCurrent}>
-                  <MaterialSymbolsArrowCircleRightOutlineRounded className="text-pink" />
-                </LeftRightTransitionView>
-                <Link
-                  className={clsx(
-                    isCurrent ? styles['active'] : null,
-                    styles.item,
-                  )}
-                  href={`/notes/${item.nid}`}
-                  key={item.id}
-                >
-                  {item.title}
-                </Link>
-              </li>
-            )
+            const isCurrent = item.id === noteId
+            return <MemoedItem key={item.id} item={item} active={isCurrent} />
           })}
         </ul>
         {note?.topic && (
@@ -122,6 +121,39 @@ const ObserveredNoteTimelineList: FC<
     </div>
   )
 })
+
+export const MemoedItem = memo<{
+  active: boolean
+  item: NotePartial
+}>(
+  (props) => {
+    const { active, item } = props
+    console.log('render', item.id)
+
+    return (
+      <li className="flex items-center">
+        <LeftRightTransitionView in={active}>
+          <MaterialSymbolsArrowCircleRightOutlineRounded className="text-pink" />
+        </LeftRightTransitionView>
+        <Link
+          className={clsx(active ? styles['active'] : null, styles.item)}
+          href={`/notes/${item.nid}`}
+          key={item.id}
+        >
+          {item.title}
+        </Link>
+      </li>
+    )
+  },
+  (prevProps, nextProps) => {
+    return (
+      prevProps.active === nextProps.active &&
+      prevProps.item.id === nextProps.item.id &&
+      prevProps.item.title === nextProps.item.title &&
+      prevProps.item.nid === nextProps.item.nid
+    )
+  },
+)
 
 export const NoteTimelineList: FC<
   NoteTimelineListProps & JSX.IntrinsicElements['div']

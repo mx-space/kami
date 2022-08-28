@@ -2,7 +2,7 @@ import React, { PureComponent, createElement } from 'react'
 
 export class ErrorBoundary extends PureComponent<{
   children: React.ReactNode
-  FallbackComponent?: React.ComponentType<any>
+  fallbackComponent?: React.ComponentType<any>
   [k: string]: any
 }> {
   state: any = {
@@ -27,8 +27,8 @@ export class ErrorBoundary extends PureComponent<{
     if (errorInfo) {
       return (
         // @ts-ignore
-        this.props.FallbackComponent ? (
-          createElement(this.props.FallbackComponent, {
+        this.props.fallbackComponent ? (
+          createElement(this.props.fallbackComponent, {
             error: errorInfo.error,
             errorInfo,
           })

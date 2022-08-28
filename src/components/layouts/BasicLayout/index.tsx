@@ -76,7 +76,7 @@ export const BasicLayout: FC = observer(({ children }) => {
   const actionId = useRef('basic')
   useEffect(() => {
     actionStore.removeActionById(actionId.current)
-    if (appStore.viewport.mobile || appStore.viewport.pad) {
+    if (appStore.isNarrowThanLaptop) {
       const action = {
         id: actionId.current,
         icon:
@@ -93,8 +93,7 @@ export const BasicLayout: FC = observer(({ children }) => {
   }, [
     actionStore,
     appStore.colorMode,
-    appStore.viewport.mobile,
-    appStore.viewport.pad,
+    appStore.isNarrowThanLaptop,
     handleChangeColorMode,
   ])
 
@@ -137,7 +136,7 @@ export const BasicLayout: FC = observer(({ children }) => {
       <Suspense fallback={null}>
         <Footer />
         <MusicMiniPlayerStoreControlled />
-        {!(appStore.viewport.mobile || appStore.viewport.pad) && (
+        {!appStore.isNarrowThanLaptop && (
           <LampSwitch onClick={handleChangeColorMode} />
         )}
 
