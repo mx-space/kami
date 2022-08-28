@@ -30,6 +30,17 @@ interface Function {
   banDevtool: {
     enable: boolean
   }
+
+  notification: {
+    [key: string]: NotificationType
+  }
+}
+
+interface NotificationType {
+  title?: string
+  message: string
+  toLink?: string
+  icon?: string
 }
 
 interface Site {

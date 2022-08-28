@@ -130,3 +130,5 @@ function:
 
   ban_devtool:
     enable: false
+
+  notification: {}

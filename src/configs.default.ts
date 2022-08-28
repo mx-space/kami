@@ -175,5 +175,6 @@ export const defaultConfigs = {
     banDevtool: {
       enable: false,
     },
+    notification: {},
   },
 }

@@ -160,3 +160,13 @@ function:
     link: https://afdian.net/@Innei
     qrcode:
       - https://cdn.jsdelivr.net/gh/Innei/img-bed@master/20191211132347.png
+
+  ban_devtool:
+    enable: false
+
+  notification:
+    welcome:
+      title: 润润团！小润书
+      message: 听我说，一起润
+      icon: https://xiaorunshu.com/android-chrome-192x192.png
+      to-link: //xiaorunshu.com

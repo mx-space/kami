@@ -1,6 +1,5 @@
 import React from 'react'
-import { createRoot } from 'react-dom/client'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 
 import { ToastCard } from '~/components/widgets/Toast/card'
 import { TrackerAction } from '~/constants/tracker'
@@ -13,29 +12,10 @@ export class Notice {
   static shared = new Notice()
   isInit = false
   private $wrap?: HTMLDivElement
+
   initNotice(): Promise<boolean> {
     if (isServerSide()) {
       return new Promise((r) => r(false))
-    }
-
-    if (!this.$wrap) {
-      this.$wrap = document.createElement('div')
-      document.documentElement.appendChild(this.$wrap)
-      createRoot(this.$wrap!).render(
-        React.createElement(ToastContainer, {
-          autoClose: 3000,
-          pauseOnHover: true,
-          hideProgressBar: true,
-          newestOnTop: true,
-          closeOnClick: true,
-          closeButton: false,
-          toastClassName: () => '',
-          bodyClassName: () => '',
-          style: {
-            width: 350,
-          },
-        }),
-      )
     }
 
     return new Promise((r) => {
@@ -74,6 +54,9 @@ export class Notice {
     })
   }
 
+  /**
+   * 通知，若页面活跃则显示页面内通知，否则系统通知
+   */
   async notice({
     title,
     text,
@@ -96,7 +79,7 @@ export class Notice {
         title: text,
         text: description,
         duration: 5000,
-        onclick,
+        onClick: onclick,
       })
     }
 
@@ -129,32 +112,36 @@ export class Notice {
     text,
     title,
     duration = 5000,
-    onclick = null,
+    onClick = null,
+    avatar,
     description,
   }: {
     text?: string
-    title: string
+    title?: string
     duration?: number
     description?: string
-    onclick?: ((ev: MouseEvent) => void) | null
+    string?: string
+    avatar?: string
+    onClick?: ((ev: MouseEvent) => void) | null
   }) {
     if (isServerSide()) {
       return
     }
 
-    requestAnimationFrame(() => {
-      emitTrackerEvent({
-        action: TrackerAction.Interaction,
-        label: '内嵌通知触发',
-      })
-      toast(React.createElement(ToastCard, { text, title, description }), {
+    emitTrackerEvent({
+      action: TrackerAction.Interaction,
+      label: '内嵌通知触发',
+    })
+    toast(
+      React.createElement(ToastCard, { text, title, description, avatar }),
+      {
         autoClose: duration,
 
         onClick(e) {
-          onclick?.(e.nativeEvent)
+          onClick?.(e.nativeEvent)
         },
-      })
-    })
+      },
+    )
   }
 }
 

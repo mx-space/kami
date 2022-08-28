@@ -226,6 +226,8 @@ export const PostView: PageOnlyProps = observer((props) => {
 
   const isClientSide = useIsClient()
 
+  const imagesMap = useMemo(() => imagesRecord2Map(post.images), [post.images])
+
   return (
     <>
       <Seo
@@ -261,9 +263,7 @@ export const PostView: PageOnlyProps = observer((props) => {
                 </Banner>
               )}
               <Outdate time={post.modified || post.created} />
-              <ImageSizeMetaContext.Provider
-                value={imagesRecord2Map(post.images)}
-              >
+              <ImageSizeMetaContext.Provider value={imagesMap}>
                 <article>
                   <h1 className="sr-only">{post.title}</h1>
                   <Markdown codeBlockFully value={post.text} toc />

@@ -8,7 +8,9 @@ import NextApp from 'next/app'
 import type { AppContext } from 'next/app'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
-import React, { memo, useMemo } from 'react'
+import React, { memo, useMemo, useRef } from 'react'
+import type { ToastContainerProps } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 
 import { NoDataErrorView } from '~/components/app/Error/no-data'
 import { BasicLayout } from '~/components/layouts/BasicLayout'
@@ -57,10 +59,26 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
   )
 }
 const Wrapper = memo((props) => {
+  const toastOptions = useRef<ToastContainerProps>({
+    autoClose: 3000,
+    pauseOnHover: true,
+    hideProgressBar: true,
+    newestOnTop: true,
+    closeOnClick: true,
+    closeButton: false,
+    toastClassName: () => '',
+    bodyClassName: () => '',
+    style: {
+      width: 350,
+    },
+  })
   return (
-    <BasicLayout>
-      <Content>{props.children}</Content>
-    </BasicLayout>
+    <>
+      <BasicLayout>
+        <Content>{props.children}</Content>
+      </BasicLayout>
+      <ToastContainer {...toastOptions.current} />
+    </>
   )
 })
 // @ts-ignore

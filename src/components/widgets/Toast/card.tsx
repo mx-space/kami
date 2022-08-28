@@ -4,16 +4,19 @@ import { memo, useRef } from 'react'
 import { ImpressionView } from '~/components/biz/ImpressionView'
 import { Avatar } from '~/components/universal/Avatar'
 import { RelativeTime } from '~/components/universal/RelativeTime'
+import { useInitialData } from '~/hooks/use-initial-data'
 import { store } from '~/store'
 
 const wrapperProps = { className: '!border-none !shadow-none' }
 export const ToastCard: FC<{
-  title: string
+  title?: string
   description?: string
   text?: string
+  avatar?: string
 }> = memo((props) => {
   const { userStore } = store
-  const { description, text, title } = props
+  const { seo } = useInitialData()
+  const { description, text, title = seo.title } = props
   const date = useRef(new Date())
   return (
     <ImpressionView
@@ -28,13 +31,13 @@ export const ToastCard: FC<{
         <div className="flex-shrink-0">
           <Avatar
             useRandomColor={false}
-            imageUrl={userStore.master?.avatar || ''}
+            imageUrl={props.avatar || userStore.master?.avatar || ''}
             size={40}
             wrapperProps={wrapperProps}
           />
         </div>
         <div className="flex-grow relative flex-shrink min-w-0 break-all leading-[1.5] pr-10">
-          <p className="text-[1.05em] leading-none font-medium truncate">
+          <p className="text-[1.05em] leading-none font-medium truncate mb-1">
             {title}
           </p>
           {text && (
@@ -42,6 +45,7 @@ export const ToastCard: FC<{
               <span>{text}</span>
             </p>
           )}
+
           {description && (
             <p className="text-gray-2 line-clamp-2">{description}</p>
           )}
