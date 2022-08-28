@@ -136,7 +136,7 @@ export class Notice {
       React.createElement(ToastCard, { text, title, description, avatar }),
       {
         autoClose: duration,
-
+        position: store.appUIStore.isPadOrMobile ? 'top-center' : 'top-right',
         onClick(e) {
           onClick?.(e.nativeEvent)
         },

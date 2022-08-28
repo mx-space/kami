@@ -1,5 +1,6 @@
+import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import { memo, useRef } from 'react'
+import { useRef } from 'react'
 
 import { ImpressionView } from '~/components/biz/ImpressionView'
 import { Avatar } from '~/components/universal/Avatar'
@@ -13,8 +14,9 @@ export const ToastCard: FC<{
   description?: string
   text?: string
   avatar?: string
-}> = memo((props) => {
-  const { userStore } = store
+}> = observer((props) => {
+  const { userStore, appStore } = store
+  const isPadOrMobile = appStore.isPadOrMobile
   const { seo } = useInitialData()
   const { description, text, title = seo.title } = props
   const date = useRef(new Date())
@@ -26,7 +28,10 @@ export const ToastCard: FC<{
         className="relative flex space-x-4 items-center p-4 w-full text-[12px] bg-bg-opacity overflow-hidden
     text-inherit border border-shallow border-opacity-50
     rounded-xl backdrop-filter backdrop-brightness-150 backdrop-brightness-110 backdrop-saturate-150 backdrop-blur-md
-  select-none cursor-pointer mb-4"
+  select-none cursor-pointer mb-4 mr-4 box-border ml-auto"
+        style={{
+          width: isPadOrMobile ? 'calc(100% - 16px - 16px)' : '350px',
+        }}
       >
         <div className="flex-shrink-0">
           <Avatar

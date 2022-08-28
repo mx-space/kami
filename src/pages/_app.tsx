@@ -68,9 +68,6 @@ const Wrapper = memo((props) => {
     closeButton: false,
     toastClassName: () => '',
     bodyClassName: () => '',
-    style: {
-      width: 350,
-    },
   })
   return (
     <>
