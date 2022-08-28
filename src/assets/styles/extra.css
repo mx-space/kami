@@ -460,6 +460,19 @@ pre[class*='language-'] {
   animation-name: Toastify__bounceOutRight;
 }
 
+@keyframes Toastify__trackProgress {
+  0% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(0);
+  }
+}
+
+.Toastify__progress-bar--animated {
+  animation: Toastify__trackProgress linear 1 forwards;
+}
+
 @keyframes Toastify__bounceInRight {
   from,
   60%,
