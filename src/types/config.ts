@@ -31,7 +31,7 @@ interface Function {
     enable: boolean
   }
 
-  notification: {
+  notification?: {
     [key: string]: NotificationType
   }
 }

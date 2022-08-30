@@ -33,8 +33,6 @@ const IndexView: NextPage<AggregateTop> = (props) => {
   }, [])
 
   useEffect(() => {
-    console.log(notification)
-
     if (!notification?.welcome) {
       return
     }
@@ -54,7 +52,7 @@ const IndexView: NextPage<AggregateTop> = (props) => {
     return () => {
       clearTimeout(timer)
     }
-  }, [notification.welcome])
+  }, [notification?.welcome])
 
   return (
     <main>
