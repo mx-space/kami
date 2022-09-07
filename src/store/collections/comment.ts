@@ -102,7 +102,7 @@ export class CommentStore extends Store<
         this.updateComment(parentComment)
       }
     } else {
-      this.comments = [comment, ...this.comments]
+      this.comments = [comment, ...(this.comments.filter(item => item.id !== comment.id))]
       this.commentIdMap.set(comment.id, comment)
       this.walkComments(comment.children).forEach((child) => {
         this.commentIdMap.set(child.id, child)

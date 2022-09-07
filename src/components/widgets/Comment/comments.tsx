@@ -55,14 +55,9 @@ const CommentList: FC = observer(() => {
       timeout={useMemo(() => ({ appear: 300, enter: 500 }), [])}
     >
       <div id={'comments-wrap'}>
-        {comments
-          .slice()
-          .sort(
-            (comment1, comment2) => Number(comment2.pin) - Number(comment1.pin)
-          )
-          .map((comment) => {
-            return <InnerCommentList id={comment.id} key={comment.id} />
-          })}
+        {comments.map((comment) => {
+          return <InnerCommentList id={comment.id} key={comment.id} />
+        })}
       </div>
     </BottomUpTransitionView>
   )
@@ -177,15 +172,16 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
         pin: !comment.pin,
       },
     })
-
+    
     runInAction(() => {
       const commentPinStatus = comment.pin
       for (const currentComment of comments) {
         currentComment.pin = false
       }
       comment.pin = !commentPinStatus
+      commentStore.addComment(comment)
     })
-  }, [comment, comments])
+  }, [comment, comments, commentStore])
   return (
     <Comment
       whispers={comment.isWhispers}
