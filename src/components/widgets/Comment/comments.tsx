@@ -1,7 +1,6 @@
 import { clsx } from 'clsx'
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import { sanitizeUrl } from 'markdown-to-jsx'
-import { runInAction } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import {
@@ -55,12 +54,9 @@ const CommentList: FC = observer(() => {
       timeout={useMemo(() => ({ appear: 300, enter: 500 }), [])}
     >
       <div id={'comments-wrap'}>
-        {comments
-          .slice()
-          .sort((comment) => (comment.pin ? -1 : 1))
-          .map((comment) => {
-            return <InnerCommentList id={comment.id} key={comment.id} />
-          })}
+        {comments.map((comment) => {
+          return <InnerCommentList id={comment.id} key={comment.id} />
+        })}
       </div>
     </BottomUpTransitionView>
   )
@@ -170,19 +166,18 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
     [comment.id, handleDelete, logged, replyId, sure],
   )
   const handlePinComment = useCallback(async () => {
+    const nextPinStatus = !comment.pin
     await apiClient.comment.proxy(comment.id).patch({
       data: {
-        pin: !comment.pin,
+        pin: nextPinStatus,
       },
     })
 
-    runInAction(() => {
-      const commentPinStatus = comment.pin
-      for (const currentComment of comments) {
-        currentComment.pin = false
-      }
-      comment.pin = !commentPinStatus
-    })
+    if (nextPinStatus) {
+      commentStore.pinComment(comment.id)
+    } else {
+      commentStore.unPinComment(comment.id)
+    }
   }, [comment, comments])
   return (
     <Comment

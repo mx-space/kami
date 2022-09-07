@@ -19,6 +19,8 @@ export class CommentStore extends Store<
       addComment: action,
       deleteComment: action,
       reset: action,
+      pinComment: action,
+      unPinComment: action,
     })
   }
   currentRefId = ''
@@ -38,13 +40,16 @@ export class CommentStore extends Store<
     comment.highlight = highlight
   }
 
-  async fetchComment(refId: string, page = 1, size = 10) {
+  private currentFetchPage = 1
+
+  async fetchComment(refId: string, page = this.currentFetchPage, size = 10) {
     const data = await apiClient.comment.getByRefId(refId, {
       page,
       size,
     })
 
     this.currentRefId = refId
+    this.currentFetchPage = page
     this.comments = [...data.data]
     this.data.clear()
 
@@ -102,7 +107,14 @@ export class CommentStore extends Store<
         this.updateComment(parentComment)
       }
     } else {
-      this.comments = [comment, ...this.comments]
+      const hasPinComment = this.comments.findIndex((comment) => comment.pin)
+
+      if (-~hasPinComment) {
+        this.comments = [this.comments[0], comment, ...this.comments.slice(1)]
+      } else {
+        this.comments = [comment, ...this.comments]
+      }
+
       this.commentIdMap.set(comment.id, comment)
       this.walkComments(comment.children).forEach((child) => {
         this.commentIdMap.set(child.id, child)
@@ -110,6 +122,34 @@ export class CommentStore extends Store<
     }
 
     return comment
+  }
+
+  unPinComment(id: string) {
+    const comment = this.commentIdMap.get(id)
+    if (!comment) {
+      return
+    }
+    comment.pin = false
+    this.fetchComment(this.currentRefId)
+  }
+
+  pinComment(id: string) {
+    const comment = this.commentIdMap.get(id)
+    if (!comment) {
+      return
+    }
+    const commentPinStatus = comment.pin
+
+    for (const currentComment of this.comments) {
+      currentComment.pin = false
+    }
+    comment.pin = !commentPinStatus
+
+    const pinCommentIndex = this.comments.findIndex((comment) => comment.pin)
+    if (-~pinCommentIndex) {
+      const pinComment = this.comments.splice(pinCommentIndex, 1)[0]
+      this.comments = [pinComment, ...this.comments]
+    }
   }
 
   deleteComment(id: string) {
