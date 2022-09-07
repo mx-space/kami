@@ -285,3 +285,8 @@ html.dark {
   max-width: 100%;
   box-sizing: content-box;
 }
+
+#write i {
+  display: inline;
+  vertical-align: bottom;
+}
