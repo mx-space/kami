@@ -57,7 +57,9 @@ const CommentList: FC = observer(() => {
       <div id={'comments-wrap'}>
         {comments
           .slice()
-          .sort((comment) => (comment.pin ? -1 : 1))
+          .sort(
+            (comment1, comment2) => Number(comment2.pin) - Number(comment1.pin)
+          )
           .map((comment) => {
             return <InnerCommentList id={comment.id} key={comment.id} />
           })}
