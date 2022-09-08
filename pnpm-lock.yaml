@@ -10,7 +10,7 @@ specifiers:
   '@innei/eslint-config-react-ts': 0.9.4
   '@innei/prettier': 0.9.4
   '@mx-space/api-client': 0.10.14
-  '@next/bundle-analyzer': 12.2.5
+  '@next/bundle-analyzer': 12.3.0
   '@trivago/prettier-plugin-sort-imports': 3.3.0
   '@types/inflection': 1.13.0
   '@types/js-cookie': 3.0.2
@@ -118,7 +118,7 @@ dependencies:
 devDependencies:
   '@innei/eslint-config-react-ts': 0.9.4_typescript@4.8.3
   '@innei/prettier': 0.9.4
-  '@next/bundle-analyzer': 12.2.5
+  '@next/bundle-analyzer': 12.3.0
   '@trivago/prettier-plugin-sort-imports': 3.3.0_prettier@2.7.1
   '@types/inflection': 1.13.0
   '@types/js-cookie': 3.0.2
@@ -1751,8 +1751,8 @@ packages:
       camelcase-keys: 7.0.2
     dev: false
 
-  /@next/bundle-analyzer/12.2.5:
-    resolution: {integrity: sha512-lj7ese4GnfbO8tCc9/g1O3/hzgb+pVkrsNgfF929CgZHCFQxplqxY++MIO4aCFwzt0vDx0KL78LOVxzjDDKjlA==}
+  /@next/bundle-analyzer/12.3.0:
+    resolution: {integrity: sha512-hzRLHIrtwOiGEku9rmG7qZk+OQhnqQOL+ycl2XrjBaztBN/xaqnjoG4+HEf9L7ELN943BR+K/ZlaF2OEgbGm+Q==}
     dependencies:
       webpack-bundle-analyzer: 4.3.0
     transitivePeerDependencies:
@@ -2348,12 +2348,6 @@ packages:
   /acorn-walk/8.2.0:
     resolution: {integrity: sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==}
     engines: {node: '>=0.4.0'}
-    dev: true
-
-  /acorn/8.7.1:
-    resolution: {integrity: sha512-Xx54uLJQZ19lKygFXOWsscKUbsBZW0CPykPhVQdhIeIwrbPmJzqeASDInc8nKBnp/JT6igTs82qPXz069H8I/A==}
-    engines: {node: '>=0.4.0'}
-    hasBin: true
     dev: true
 
   /acorn/8.8.0:
@@ -6656,7 +6650,7 @@ packages:
     engines: {node: '>= 10.13.0'}
     hasBin: true
     dependencies:
-      acorn: 8.7.1
+      acorn: 8.8.0
       acorn-walk: 8.2.0
       chalk: 4.1.2
       commander: 6.2.1
