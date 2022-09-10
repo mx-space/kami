@@ -15,7 +15,7 @@ fs.writeFileSync(
   require('prettier').format(
     `// sync with config.init.yaml
 export const defaultConfigs = ${JSON.stringify(
-      require('@mx-space/api-client').camelcaseKeys(config, { deep: true }),
+      require('@mx-space/api-client').simpleCamelcaseKeys(config),
       null,
       2,
     )}

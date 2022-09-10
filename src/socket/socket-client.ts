@@ -1,7 +1,7 @@
 import type { Socket } from 'socket.io-client'
 import { io } from 'socket.io-client'
 
-import { camelcaseKeys } from '@mx-space/api-client'
+import { simpleCamelcaseKeys as camelcaseKeys } from '@mx-space/api-client'
 
 import { GATEWAY_URL } from '~/constants/env'
 import type { EventTypes } from '~/types/events'
@@ -32,16 +32,13 @@ export class SocketClient {
       'message',
       (payload: string | Record<'type' | 'data', any>) => {
         if (typeof payload !== 'string') {
-          return this.handleEvent(
-            payload.type,
-            camelcaseKeys(payload.data, { deep: true }),
-          )
+          return this.handleEvent(payload.type, camelcaseKeys(payload.data))
         }
         const { data, type } = JSON.parse(payload) as {
           data: any
           type: EventTypes
         }
-        this.handleEvent(type, camelcaseKeys(data, { deep: true }))
+        this.handleEvent(type, camelcaseKeys(data))
       },
     )
   }
