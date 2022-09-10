@@ -53,9 +53,6 @@ export const DynamicHeadMeta: FC = memo(() => {
       <meta name="application-name" content={title} />
       <meta name="apple-mobile-web-app-title" content={title} />
       <meta name="msapplication-tooltip" content={title} />
-      <meta name="theme-color" content="#39C5BB" />
-      <meta name="msapplication-navbutton-color" content="#39C5BB" />
-      <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
       {/* for favicon */}
       <link rel="shortcut icon" href={favicon} />

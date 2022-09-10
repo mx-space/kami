@@ -24,41 +24,15 @@ export default class MyDocument extends Document {
       <Html lang={'zh-cn'}>
         <Head>
           <meta charSet="UTF-8" />
-          <link rel="manifest" href="/manifest.json" />
 
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
-
-          <meta name="msapplication-starturl" content="/" />
           <link rel="alternate" href="/feed" type="application/atom+xml" />
-          <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/apple-icon-180.png"
-          />
-          <link
-            rel="apple-touch-icon"
-            sizes="167x167"
-            href="/apple-icon-167.png"
-          />
-          <link
-            rel="apple-touch-icon"
-            sizes="152x152"
-            href="/apple-icon-152.png"
-          />
-          <link
-            rel="apple-touch-icon"
-            sizes="120x120"
-            href="/apple-icon-120.png"
-          />
-          <link
-            data-n-head="ssr"
-            rel="apple-touch-startup-image"
-            href="/apple-icon-180.png"
-          />
           <meta name="apple-mobile-web-app-capable" content="yes" />
-
           <link rel="sitemap" href="/sitemap.xml" />
+          <meta name="theme-color" content="#39C5BB" />
+          <meta name="msapplication-navbutton-color" content="#39C5BB" />
+          <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
           {/* FIXME: hack to load loader style first */}
           <style
