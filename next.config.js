@@ -32,16 +32,7 @@ const configs = withPlugins(plugins, {
     ignoreDuringBuilds: true,
   },
   async rewrites() {
-    const beforeFiles = [
-      { source: '/sitemap.xml', destination: '/api/sitemap' },
-      { source: '/sitemap', destination: '/api/sitemap' },
-      { source: '/feed', destination: '/api/feed' },
-      { source: '/rss', destination: '/api/feed' },
-      { source: '/atom.xml', destination: '/api/feed' },
-    ]
-
     return {
-      beforeFiles,
       fallback: [
         { source: '/:page*/:slug*', destination: '/posts/:page*/:slug*' },
       ],
