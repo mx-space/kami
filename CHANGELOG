@@ -1,0 +1,3143 @@
+## [3.15.1](https://github.com/mx-space/kami/compare/v3.15.0...v3.15.1) (2022-09-25)
+
+
+### Bug Fixes
+
+* safe setstate hook ([df08fc2](https://github.com/mx-space/kami/commit/df08fc2279b308e96e5d3d213aaa31119700833a))
+
+
+### Features
+
+* ui adjust ([57bfa33](https://github.com/mx-space/kami/commit/57bfa33a1ed01ba565ac745cd821ef1f0cdc210e))
+
+
+
+# [3.15.0](https://github.com/mx-space/kami/compare/v3.14.8...v3.15.0) (2022-09-10)
+
+
+### Bug Fixes
+
+* **deps:** update dependency devtools-detector to v2.0.12 ([22056d7](https://github.com/mx-space/kami/commit/22056d7ea9006a202e71b7b7ed4cc3ee5d627919))
+* **deps:** update dependency mobx to v6.6.2 ([b8ba1c0](https://github.com/mx-space/kami/commit/b8ba1c0087fa89e9e1fd45481d071cc622cd2d99))
+* update lock file ([f2ef110](https://github.com/mx-space/kami/commit/f2ef1105e31f7bd022fc3d03aa75c06d45c6b948))
+
+
+
+## [3.14.8](https://github.com/mx-space/kami/compare/v3.14.7...v3.14.8) (2022-09-07)
+
+
+### Bug Fixes
+
+* comment pin sort ([449623b](https://github.com/mx-space/kami/commit/449623b8ba56abaad3e0fee497daf0289eefdeb1))
+* **deps:** update dependency socket.io-client to v4.5.2 ([1c826ef](https://github.com/mx-space/kami/commit/1c826efb34f233602c07174cb98982ac89409642))
+* inline markdown icon style ([6d5d318](https://github.com/mx-space/kami/commit/6d5d3180d29158aceb8c037bd1138f8ed3bebb5d))
+* notification maybe null ([b010af9](https://github.com/mx-space/kami/commit/b010af9e528864ad2ab2f4adccf1836afc55d96e))
+
+
+### Features
+
+* improve toast style ([efbab23](https://github.com/mx-space/kami/commit/efbab235e2eddd043857766f8295c40a49fc2ab9))
+
+
+
+## [3.14.7](https://github.com/mx-space/kami/compare/v3.14.6...v3.14.7) (2022-08-28)
+
+
+### Bug Fixes
+
+* auth token expires time ([e177d26](https://github.com/mx-space/kami/commit/e177d26963e4769b4a9e4ab9b3ccc9d967e5fbc6))
+* **deps:** update dependency react-countup to v6.3.1 ([4b5aa2f](https://github.com/mx-space/kami/commit/4b5aa2f380d5b9e36f245608cb3ea528d638e26d))
+* toast auto close ([8e286ba](https://github.com/mx-space/kami/commit/8e286bacd142add59a6bb5c5db098af009da5df8))
+
+
+### Features
+
+* custom welcome notification ([b48c97e](https://github.com/mx-space/kami/commit/b48c97e644eba49d0cdb1cda2e845cce9ed5844d))
+
+
+### Performance Improvements
+
+* fetch note timeline ([fb143d9](https://github.com/mx-space/kami/commit/fb143d903ab4bd2450ca944bf1838cc0715323eb))
+
+
+
+## [3.14.6](https://github.com/mx-space/kami/compare/v3.14.5...v3.14.6) (2022-08-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @formkit/auto-animate to v1.0.0-beta.2 ([79fab54](https://github.com/mx-space/kami/commit/79fab54b15b4ddb707a16737323d5ffdead8dce1))
+* **deps:** update dependency @formkit/auto-animate to v1.0.0-beta.3 ([1dec90d](https://github.com/mx-space/kami/commit/1dec90d4b63fa4d2b1995087a6d16d9896e95d7a))
+
+
+### Features
+
+* `LinkCard` support github repo ([00ed6a0](https://github.com/mx-space/kami/commit/00ed6a06c4cd545834e8391b6b65e410f6d938fb))
+
+
+
+## [3.14.5](https://github.com/mx-space/kami/compare/v3.14.4...v3.14.5) (2022-08-18)
+
+
+### Bug Fixes
+
+* autoplay ([aace7e0](https://github.com/mx-space/kami/commit/aace7e083b36033c2a07b5a087c0199912c110bc))
+* improve list num pos ([e321314](https://github.com/mx-space/kami/commit/e321314caa838ffe9990581b3f45ff083a7453fc))
+
+
+
+## [3.14.4](https://github.com/mx-space/kami/compare/v3.14.3...v3.14.4) (2022-08-17)
+
+
+### Bug Fixes
+
+* fix some thing ([3b7b173](https://github.com/mx-space/kami/commit/3b7b173d3b9ebf7fbbe9da47ae021f5a8d2c4465))
+
+
+### Features
+
+* gallery autoplay ([7917207](https://github.com/mx-space/kami/commit/7917207de5d67ce05bf5443f46436bd1355bbd46))
+* **gallery:** scroll indicator ([5be91f0](https://github.com/mx-space/kami/commit/5be91f00077b36344ca8f0d7ac1842f234d13fe2))
+
+
+
+## [3.14.3](https://github.com/mx-space/kami/compare/v3.14.2...v3.14.3) (2022-08-16)
+
+
+### Bug Fixes
+
+* **deps:** update dependency devtools-detector to v2.0.11 ([d6175ae](https://github.com/mx-space/kami/commit/d6175aecb83334dae3855379d12506961d3e9240))
+* gallery resize observer ([9b4edd0](https://github.com/mx-space/kami/commit/9b4edd069727074b6eee6d40437fb08305065e7e))
+* recently markdown render style ([aac7d73](https://github.com/mx-space/kami/commit/aac7d737c71fbc984ef6c3253aa01f6183199ed1))
+
+
+### Features
+
+* improve ui ([08cc91d](https://github.com/mx-space/kami/commit/08cc91d07c1489980e7b5926a5ff800ff6df6861))
+* **link-card:** fetch error fallback style ([26100d7](https://github.com/mx-space/kami/commit/26100d7437f7e4e9ece3ea637fbf056d27e634f3))
+
+
+
+## [3.14.2](https://github.com/mx-space/kami/compare/v3.14.1...v3.14.2) (2022-08-14)
+
+
+### Bug Fixes
+
+* `Image` ([8322445](https://github.com/mx-space/kami/commit/832244527672c52be0ed206e32af313f922dc2bb))
+* blockquote style ([0eacd84](https://github.com/mx-space/kami/commit/0eacd849c3271b1921e46ad83e5c3125bf41615b))
+* gallery figcaption pos ([41e786c](https://github.com/mx-space/kami/commit/41e786c58934f0e8aed999bcc6c9b3267ccf7e37))
+* header swiper style ([3054fd1](https://github.com/mx-space/kami/commit/3054fd1d8a8808a9480274a85882910d68515fa5))
+* nofollow link ([b1b5f52](https://github.com/mx-space/kami/commit/b1b5f528021d91516256c7408e884f512b4464c1))
+
+
+### Features
+
+* **markdown:** support image title ([0c1dcdc](https://github.com/mx-space/kami/commit/0c1dcdc09ccf9b5d616d52a51373ad8bf92c5816))
+
+
+
+## [3.14.1](https://github.com/mx-space/kami/compare/v3.14.0...v3.14.1) (2022-08-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency dayjs to v1.11.5 ([ebefad9](https://github.com/mx-space/kami/commit/ebefad938020cb1e462814101d7ee759b145f772))
+* md render props ([a404526](https://github.com/mx-space/kami/commit/a404526b41009f77226a5a978b4bf28db43dbe1a))
+* other override of markdown ([f7f806a](https://github.com/mx-space/kami/commit/f7f806a206f4924ee91eaf05fc5c3263416fd62a))
+* toc depth ([2cf6c6d](https://github.com/mx-space/kami/commit/2cf6c6d29e01f5e7793a3e0fe01e5d678c10a432))
+* toc style in laptop ([0f7fe66](https://github.com/mx-space/kami/commit/0f7fe66110f5755bc1cd35f2afba337680c7385a))
+
+
+### Features
+
+* auto reveal to current toc item ([bbbbc4b](https://github.com/mx-space/kami/commit/bbbbc4be49136e38a30f258f021ef22a14ac7961))
+* support markdown container ([#1360](https://github.com/mx-space/kami/issues/1360)) ([2f27994](https://github.com/mx-space/kami/commit/2f2799459a21402bdba04952cf9149e3ad0d720f))
+
+
+### Performance Improvements
+
+* improve toc perfermance ([4629415](https://github.com/mx-space/kami/commit/4629415951b2c354b9fdbe1477f81898b0f10d04))
+
+
+
+# [3.14.0](https://github.com/mx-space/kami/compare/v3.13.11...v3.14.0) (2022-08-11)
+
+
+### Bug Fixes
+
+* add missing key ([5a51b09](https://github.com/mx-space/kami/commit/5a51b09a3e8c70b6b4036e7a636483ca056354e5))
+* casesentive file ([f31fbb3](https://github.com/mx-space/kami/commit/f31fbb384cbd59e2d256fdb1d5080a1e14de4709))
+* decrease trigger shortcut panel timeout ([7dacfcd](https://github.com/mx-space/kami/commit/7dacfcdfe2e9c4a4831462ac78f3b28c307f0721))
+* **deps:** update dependency react-shortcut-guide to v0.3.5 ([9bb4d27](https://github.com/mx-space/kami/commit/9bb4d2749291a7d778cfa4d2ba1ce4fc79f730c2))
+* **deps:** update dependency react-toastify to v9.0.8 ([74e401b](https://github.com/mx-space/kami/commit/74e401b3a52b2525bec936ca0d88eba1c328d409))
+* disable type for comment ([3c7fdae](https://github.com/mx-space/kami/commit/3c7fdae9e5459d3ba9d02dc4a39f3727fc377a4f))
+* link card usage ([c6216c6](https://github.com/mx-space/kami/commit/c6216c6a4d461ca1c94be35b6331015ef8e3b665))
+* lyrics style ([#1351](https://github.com/mx-space/kami/issues/1351)) ([5f1b63b](https://github.com/mx-space/kami/commit/5f1b63b514b6a6a7fe7361f993771fe925edb812))
+* memo context state ([d92c6eb](https://github.com/mx-space/kami/commit/d92c6ebf35cab35ffd2c95517f7bcb1306d8728e))
+* merge conflict ([cf85862](https://github.com/mx-space/kami/commit/cf85862546e1946f5cf95743230709abb5c0bd16))
+
+
+### Features
+
+* init markdown ([7bb7819](https://github.com/mx-space/kami/commit/7bb7819af1645fea1c4830ede3778d6236e9a0ce))
+* markdown container init ([ef267b5](https://github.com/mx-space/kami/commit/ef267b55df7ad8ebbe3a330fec03660280e7f5ac))
+* use react 18 feature ([9bfd7a6](https://github.com/mx-space/kami/commit/9bfd7a6c3926ca561ac5886e5e2dc18dadf03130))
+
+
+
+## [3.13.11](https://github.com/mx-space/kami/compare/v3.13.10...v3.13.11) (2022-08-07)
+
+
+### Bug Fixes
+
+* change isoTimeString to locale string ([ca37b6d](https://github.com/mx-space/kami/commit/ca37b6da47e9b6ceda59ee8424fefcbc11eaf87e))
+* checkbox style on ios safari ([daca342](https://github.com/mx-space/kami/commit/daca3429d21dce2936838a2d9eecdfc54f99331a))
+* header bottom color ([921e663](https://github.com/mx-space/kami/commit/921e6639208446690a0f6ea2def4ec6c9c64ba27))
+* header like button width ([3955ef2](https://github.com/mx-space/kami/commit/3955ef2605806bd8bc8938ddc45d4647c75d962c))
+* netease icon ([0032aab](https://github.com/mx-space/kami/commit/0032aab417a542a9b78cf94ea40ffdebbfaa20bc))
+* position ([32fcc31](https://github.com/mx-space/kami/commit/32fcc31daa55ec0d58989232e07014747ec82598))
+* shortcut guide hold key event ([94ee27e](https://github.com/mx-space/kami/commit/94ee27e31e968bff3ccb7c06652250d8610e23cc))
+* show post summary ([1ade293](https://github.com/mx-space/kami/commit/1ade293e1edffd7dc218753a33d8f6e73db1d7b0))
+
+
+### Features
+
+* improve image in comment ([5872b55](https://github.com/mx-space/kami/commit/5872b5531b05c5c785f27b05a89c2a40583f64b7))
+* support music lyrics ([59a572b](https://github.com/mx-space/kami/commit/59a572b8d7d39e958d294089187c60fec1d0a7c6))
+
+
+### Performance Improvements
+
+* maybe reduce size ([#1344](https://github.com/mx-space/kami/issues/1344)) ([a3f2a36](https://github.com/mx-space/kami/commit/a3f2a3688d8a985588a1992247108edcc8863bbc))
+
+
+
+## [3.13.10](https://github.com/mx-space/kami/compare/v3.13.9...v3.13.10) (2022-08-04)
+
+
+### Bug Fixes
+
+* image load error text color ([6b1e959](https://github.com/mx-space/kami/commit/6b1e9596eaf417e425f5114f60708658e76dd7dc))
+
+
+### Performance Improvements
+
+* headerbar opacity animation ([d4a33f8](https://github.com/mx-space/kami/commit/d4a33f86645143f44c9324374d7214da9dee0d7c))
+
+
+
+## [3.13.9](https://github.com/mx-space/kami/compare/v3.13.8...v3.13.9) (2022-08-03)
+
+
+### Bug Fixes
+
+* **comment:** open in a tab ([2989a78](https://github.com/mx-space/kami/commit/2989a7854c350b016cde9df8c04f33a4ce0cc9e4))
+* placeholder image and show error url ([52761c5](https://github.com/mx-space/kami/commit/52761c5720d852ff4601053871250d8a8f9280a4))
+* standlone build with workbox ([019f362](https://github.com/mx-space/kami/commit/019f362e33df228dc88867f0b242732ea986f9a9))
+
+
+
+## [3.13.8](https://github.com/mx-space/kami/compare/v3.13.7...v3.13.8) (2022-08-03)
+
+
+### Bug Fixes
+
+* avatar 1:1 ([e442c83](https://github.com/mx-space/kami/commit/e442c83ba86e6950465cac529985bcbd56fbf31e))
+
+
+
+## [3.13.7](https://github.com/mx-space/kami/compare/v3.13.6...v3.13.7) (2022-08-01)
+
+
+### Bug Fixes
+
+* avatar lazyload stat style ([57773d2](https://github.com/mx-space/kami/commit/57773d2efbc2fe61a96faecc6a99babac1fc50ff))
+* **deps:** update dependency react-transition-group to v4.4.4 ([cbb9c09](https://github.com/mx-space/kami/commit/cbb9c096357344135b3b840865c9b4de9f63e323))
+* header swiper with scroll threshold ([2e05ee1](https://github.com/mx-space/kami/commit/2e05ee16fe0239c0b344e063baef79086f503b6b))
+* transition group crash ([e9f0478](https://github.com/mx-space/kami/commit/e9f0478be0833e279582ba590ccf577f1cc6bd47))
+
+
+
+## [3.13.6](https://github.com/mx-space/kami/compare/v3.13.5...v3.13.6) (2022-07-29)
+
+
+### Bug Fixes
+
+* open in new tab ([cf98847](https://github.com/mx-space/kami/commit/cf988477eabb8629540c080f51405ef1c1fdad25))
+* shortcut box size ([f86f601](https://github.com/mx-space/kami/commit/f86f6019a992b545e93b5d7277d27c1c7396ca14))
+
+
+### Features
+
+* header ui improve ([3d1e860](https://github.com/mx-space/kami/commit/3d1e8603dc89562af6b23b23d5ed9509b2f77b31))
+
+
+
+## [3.13.5](https://github.com/mx-space/kami/compare/v3.13.4...v3.13.5) (2022-07-27)
+
+
+### Bug Fixes
+
+* maybe reduce hydate error ([b07b054](https://github.com/mx-space/kami/commit/b07b054bcee47d00ff3dd6b18dc1276715c64b27))
+* **nav:** swap icon and label pos ([b06d2dd](https://github.com/mx-space/kami/commit/b06d2dd4c2e8a3dd8fd6d03b2c196d6041b9b7ca))
+* toc ([a548940](https://github.com/mx-space/kami/commit/a548940726750bb4164fcd321f2d93d3160f5f07))
+
+
+
+## [3.13.4](https://github.com/mx-space/kami/compare/v3.13.3...v3.13.4) (2022-07-24)
+
+
+### Bug Fixes
+
+* note banner style on mobile ([d2b372c](https://github.com/mx-space/kami/commit/d2b372c7ce27493b23180596f6275201db428726))
+* show notice overtime ([2e92d22](https://github.com/mx-space/kami/commit/2e92d22047566a01bb381d3d23b9c1da24ae7dc9))
+
+
+
+## [3.13.3](https://github.com/mx-space/kami/compare/v3.13.2...v3.13.3) (2022-07-24)
+
+
+### Bug Fixes
+
+* ci fetch ([edbdd30](https://github.com/mx-space/kami/commit/edbdd3003227e47c950bde11bc6f60dfdcc449b1))
+* **deps:** update dependency next-seo to v5.5.0 ([#1332](https://github.com/mx-space/kami/issues/1332)) ([0f34fb9](https://github.com/mx-space/kami/commit/0f34fb903e55aec7ea1bbb3acdec3fcafb7e66dd))
+* **deps:** update dependency react-intersection-observer to v9.4.0 ([#1335](https://github.com/mx-space/kami/issues/1335)) ([cedf034](https://github.com/mx-space/kami/commit/cedf0346b61124bc69a0a4a7ba55995a2521f88e))
+* **deps:** update dependency react-shortcut-guide to v0.3.2 ([#1336](https://github.com/mx-space/kami/issues/1336)) ([36f9ffe](https://github.com/mx-space/kami/commit/36f9ffe5dfb0d063acfc939f6a4ab20737322bb1))
+
+
+### Features
+
+* note banner ([4573188](https://github.com/mx-space/kami/commit/45731883814e825ae201bea0de4cc04d64ed91d6))
+
+
+
+## [3.13.2](https://github.com/mx-space/kami/compare/v3.13.1...v3.13.2) (2022-07-22)
+
+
+### Bug Fixes
+
+* eslint error ([a8e0bbe](https://github.com/mx-space/kami/commit/a8e0bbef6ff6cd8d1eedd4cc4ffe8d4c27823143))
+
+
+
+## [3.13.1](https://github.com/mx-space/kami/compare/v3.13.0...v3.13.1) (2022-07-20)
+
+
+### Bug Fixes
+
+* **deps:** update dependency dayjs to v1.11.4 ([84b0589](https://github.com/mx-space/kami/commit/84b058919f9f6a51f52a86ca4df691b64cb7cd56))
+
+
+### Features
+
+* comment improve ([c2d7760](https://github.com/mx-space/kami/commit/c2d7760790a8e06feed4a017999e6f77df51c7af))
+* comment whispers ([7c717e0](https://github.com/mx-space/kami/commit/7c717e04218c9db44e2539222077539705f5c101))
+
+
+
+# [3.13.0](https://github.com/mx-space/kami/compare/v3.13.0-alpha.0...v3.13.0) (2022-07-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-toastify to v9.0.6 ([1e12bd1](https://github.com/mx-space/kami/commit/1e12bd1e71588a25281a2b4e04dbdba79f66fec9))
+* **deps:** update dependency react-toastify to v9.0.7 ([a255395](https://github.com/mx-space/kami/commit/a255395a2492cf14778449e83eac8e97f434ac84))
+
+
+
+# [3.13.0-alpha.0](https://github.com/mx-space/kami/compare/v3.12.2...v3.13.0-alpha.0) (2022-07-17)
+
+
+### Bug Fixes
+
+* error page title ([5837e67](https://github.com/mx-space/kami/commit/5837e67361d16024708a9f6cb07acd6f6a4b008f))
+
+
+### Features
+
+* add error view ([14500e1](https://github.com/mx-space/kami/commit/14500e120f143dcdc854cc725f765a13a2bbb96b))
+* add more bug ([c90528f](https://github.com/mx-space/kami/commit/c90528f9e4b5a575b2151a12954fe0ff540ee7e1))
+
+
+### Performance Improvements
+
+* reduce fetch in router change ([5537b61](https://github.com/mx-space/kami/commit/5537b612fbd1054187f423df89d127b8bd48fc87))
+* reduce footer bg render ([e9d1ea0](https://github.com/mx-space/kami/commit/e9d1ea0c48e330880a62e0d39e95093b98bbd6e8))
+
+
+
+## [3.12.2](https://github.com/mx-space/kami/compare/v3.12.1...v3.12.2) (2022-07-11)
+
+
+### Bug Fixes
+
+* too more fetch root data ([3afacc0](https://github.com/mx-space/kami/commit/3afacc0db77b853ecf9c323eb65fc4440cbe4b38))
+
+
+### Performance Improvements
+
+* improve again router navigation speedup ([5e908f0](https://github.com/mx-space/kami/commit/5e908f0f989a68e50da356e104fbb58e02d82f1e))
+
+
+
+## [3.12.1](https://github.com/mx-space/kami/compare/v3.12.0...v3.12.1) (2022-07-11)
+
+
+### Reverts
+
+* speed-up navigation to server-fetched route ([#1323](https://github.com/mx-space/kami/issues/1323)) ([dec0980](https://github.com/mx-space/kami/commit/dec09803c86b18c81c9bb04ffd004f96246526f3))
+
+
+
+# [3.12.0](https://github.com/mx-space/kami/compare/v3.11.11...v3.12.0) (2022-07-11)
+
+
+### Bug Fixes
+
+* docker build ([030b4c0](https://github.com/mx-space/kami/commit/030b4c05da180470b987825fbe76050907c88f18))
+
+
+### Features
+
+* speed-up navigation to server-fetched route ([#1323](https://github.com/mx-space/kami/issues/1323)) ([fb8ee00](https://github.com/mx-space/kami/commit/fb8ee00bd9801dffd0574f8d6e45373846fbe95a))
+
+
+
+## [3.11.11](https://github.com/mx-space/kami/compare/v3.11.10...v3.11.11) (2022-07-09)
+
+
+### Bug Fixes
+
+* standalone build ([27911bd](https://github.com/mx-space/kami/commit/27911bdb742f274852ae9d9304b8366da312dcc2))
+
+
+
+## [3.11.10](https://github.com/mx-space/kami/compare/v3.11.9...v3.11.10) (2022-07-09)
+
+
+### Bug Fixes
+
+* enable `newNextLinkBehavior` ([84f61d0](https://github.com/mx-space/kami/commit/84f61d0e1524b6139a39b89e8f60ed54402342d1))
+* **input:** surround line cover the element when resize ([47bbdd1](https://github.com/mx-space/kami/commit/47bbdd1e76cfb4a7afaa2ebff60f329830b9e55c))
+* kaomoji escape markdown ([43a57fe](https://github.com/mx-space/kami/commit/43a57fef2b6d99ad9043630b6af755778dea8cdd))
+
+
+### Features
+
+* update next and standalone build ([#1316](https://github.com/mx-space/kami/issues/1316)) ([5228c4d](https://github.com/mx-space/kami/commit/5228c4d8d84508b4e0378205e33ab9f6d4a85184))
+
+
+
+## [3.11.9](https://github.com/mx-space/kami/compare/v3.11.8...v3.11.9) (2022-07-07)
+
+
+### Bug Fixes
+
+* also random friends in home page ([5f63ad5](https://github.com/mx-space/kami/commit/5f63ad50bf30d09338f731905dc3c098fb2dc70d))
+* closure in hook ([4ac9e5e](https://github.com/mx-space/kami/commit/4ac9e5e3bc7b11513740fec02fc0c7f991ec1b0e))
+* **deps:** update dependency clsx to v1.2.1 ([a2b063a](https://github.com/mx-space/kami/commit/a2b063a0497f9c7a63ee44ede0341a2f8973dece))
+
+
+
+## [3.11.8](https://github.com/mx-space/kami/compare/v3.11.7...v3.11.8) (2022-07-05)
+
+
+### Bug Fixes
+
+* set token after re-login then fetch data ([c96781c](https://github.com/mx-space/kami/commit/c96781c6602b6839595db6e5bca7abd7f563b161))
+
+
+### Features
+
+* add process title ([55e8ab3](https://github.com/mx-space/kami/commit/55e8ab33ea1785b56548e0dd801b9ab87e4f2a45))
+* umami custom ([c5edc47](https://github.com/mx-space/kami/commit/c5edc47c9c3b099d2ed82499a3480e664859a28a))
+
+
+
+## [3.11.7](https://github.com/mx-space/kami/compare/v3.11.6...v3.11.7) (2022-07-04)
+
+
+### Bug Fixes
+
+* header drawer can not click ([b0c6238](https://github.com/mx-space/kami/commit/b0c623897238e2e02ee5c9d3f5bcac2c308a87c2))
+
+
+
+## [3.11.6](https://github.com/mx-space/kami/compare/v3.11.5...v3.11.6) (2022-07-03)
+
+
+### Bug Fixes
+
+* shortcut panel dependency ([343c4d5](https://github.com/mx-space/kami/commit/343c4d54bef09d0e878956e8e2b8e32fef5acf59))
+
+
+
+## [3.11.5](https://github.com/mx-space/kami/compare/v3.11.4...v3.11.5) (2022-07-03)
+
+
+### Bug Fixes
+
+* **deps:** update dependency clsx to v1.2.0 ([#1311](https://github.com/mx-space/kami/issues/1311)) ([5833cab](https://github.com/mx-space/kami/commit/5833cab4cb1f2c74e73e3838449a1ce1d6a096cd))
+
+
+### Features
+
+* add algolia logo bar on search ([134492c](https://github.com/mx-space/kami/commit/134492cf87f533a7c4d44505e66315625828194c))
+
+
+
+## [3.11.4](https://github.com/mx-space/kami/compare/v3.11.3...v3.11.4) (2022-07-02)
+
+
+### Bug Fixes
+
+* header drawer overlay flash ([7c0f26e](https://github.com/mx-space/kami/commit/7c0f26ecb2c79f83d01d855959e7527f69ac0cd7))
+* overlay ([1fb7ef8](https://github.com/mx-space/kami/commit/1fb7ef8cb18b0aa2858afa6931e07806faf7f8f6))
+
+
+
+## [3.11.3](https://github.com/mx-space/kami/compare/v3.11.2...v3.11.3) (2022-07-02)
+
+
+### Bug Fixes
+
+* add atom discover ([8b37cbf](https://github.com/mx-space/kami/commit/8b37cbfc26f3ec01abd4ff2bc2fa51c3f5b98248))
+* close button position ([688bf37](https://github.com/mx-space/kami/commit/688bf3755808946cdaa7886656d8a976ea9fb7ff))
+* **deps:** update dependency devtools-detector to v2.0.10 ([4ce142f](https://github.com/mx-space/kami/commit/4ce142f81c16a36e62f2477d61e81fe3abfb80ad))
+* **deps:** update dependency mobx to v6.6.1 ([0689482](https://github.com/mx-space/kami/commit/06894829f6eafa1f4ad752599717e817c2a55900))
+* **deps:** update dependency react-intersection-observer to v9.3.5 ([a36ceaf](https://github.com/mx-space/kami/commit/a36ceafc12539d1879bfb72ec7df87aa71c1542e))
+* move `Content` outside ([25153cf](https://github.com/mx-space/kami/commit/25153cf7838932442d6855d31b59338685249772))
+* only in dev can route to dev routes ([4df9587](https://github.com/mx-space/kami/commit/4df95876588ade514dbde36421b9371b8c70d47a))
+* overlay center props ([8214343](https://github.com/mx-space/kami/commit/821434342bd3f8c33d712609339f754c3ec7cc32))
+* search ([32e2296](https://github.com/mx-space/kami/commit/32e2296761b1709a1d2c9a0e32ae21a6c0d33a71))
+* support toc on mobile viewport & UI improve ([3df2c96](https://github.com/mx-space/kami/commit/3df2c969ac935df39c5fe96f1f3ba0f7e3eb0eb2))
+* use weakMap ([80d0180](https://github.com/mx-space/kami/commit/80d01801aa2ef7d797cb7c6a22725282a7c61e06))
+
+
+### Features
+
+* add some method on stack modal ([b8a2a87](https://github.com/mx-space/kami/commit/b8a2a879e9de4ca3770410b50b9931fe91916e0c))
+* close button for modal ([99cecaa](https://github.com/mx-space/kami/commit/99cecaa8ee8d27f62a44ecea36729c3bf2cf202a))
+* drawer of modal ([cf4d9db](https://github.com/mx-space/kami/commit/cf4d9dba33b9f440159750d8b6e8fd8dc9229f7e))
+* modal animation ([f2d8fd2](https://github.com/mx-space/kami/commit/f2d8fd2ca8fcdcd967ccae536da08561370d3793))
+* modal stack ([dd3d73e](https://github.com/mx-space/kami/commit/dd3d73e3a9d7d60f1a684aad101fa6d59394e0c5))
+* modal stack init ([22b5371](https://github.com/mx-space/kami/commit/22b5371df9e5af6f6c7989147a911406f1341569))
+* modal transition ([be0be84](https://github.com/mx-space/kami/commit/be0be84e53cbbc53e5cfe3adaf8bcd19c37addd3))
+
+
+
+## [3.11.2](https://github.com/mx-space/kami/compare/v3.11.1...v3.11.2) (2022-06-26)
+
+
+### Features
+
+* jump to markdown render ([cd7bce3](https://github.com/mx-space/kami/commit/cd7bce3beb3330251b5475f591fe4bbce1f40624))
+* refresh token ([6db1352](https://github.com/mx-space/kami/commit/6db135251a620ae07af8c41eb65244da55fedd9b))
+
+
+
+## [3.11.1](https://github.com/mx-space/kami/compare/v3.11.0...v3.11.1) (2022-06-26)
+
+
+### Bug Fixes
+
+* header drawer leading ([ad3406b](https://github.com/mx-space/kami/commit/ad3406b410a2109b164a94d15a6bb05af31122e6))
+* improve music page ui ([cc4bbeb](https://github.com/mx-space/kami/commit/cc4bbebda2aee59e136e9196a418cf5a5516fe6d))
+* post block title style in mobile ([511713e](https://github.com/mx-space/kami/commit/511713e29eeb20c523ae68876146b5efa18bf310))
+
+
+
+# [3.11.0](https://github.com/mx-space/kami/compare/v3.10.6...v3.11.0) (2022-06-26)
+
+
+### Features
+
+* improve banner ui ([af3d35a](https://github.com/mx-space/kami/commit/af3d35a3cdba6db430336341a563ed4099267255))
+* post related ([c856a41](https://github.com/mx-space/kami/commit/c856a41dcd1526afceb293cb13f839df303df2d5))
+
+
+
+## [3.10.6](https://github.com/mx-space/kami/compare/v3.10.5...v3.10.6) (2022-06-25)
+
+
+### Bug Fixes
+
+* improve UI ([6a7b9d8](https://github.com/mx-space/kami/commit/6a7b9d86ac94e1297112f8b0a6570a19b87c3678))
+
+
+### Features
+
+* double click logo jump to admin url if logged ([0c09d3c](https://github.com/mx-space/kami/commit/0c09d3c35d209ce8697d624d531f9d530ce3fa16))
+* jump to timeline anchor highlight ([8a6b079](https://github.com/mx-space/kami/commit/8a6b079eab76cef8799079f53abd6563d2a05753))
+* re-design note footer nav bar ([f97eed0](https://github.com/mx-space/kami/commit/f97eed088a21805b84e8fa03456145652bfb64bd))
+
+
+
+## [3.10.5](https://github.com/mx-space/kami/compare/v3.10.4...v3.10.5) (2022-06-24)
+
+
+### Bug Fixes
+
+* color notice panel toggle mode will disappear ([18e1f7b](https://github.com/mx-space/kami/commit/18e1f7b908d69b003940659ce9b1414bfc376b1f))
+* **deps:** update dependency react-intersection-observer to v9.3.4 ([2aba47b](https://github.com/mx-space/kami/commit/2aba47bfda93fd3f0b28cf50b3e64eb988f5344e))
+* reduce size ([#1292](https://github.com/mx-space/kami/issues/1292)) ([c744220](https://github.com/mx-space/kami/commit/c74422059d679ace728bdfc0317f6a8867a62ce8))
+* search value ([1630b6f](https://github.com/mx-space/kami/commit/1630b6f752978636d42e0551effca312c38f861c))
+
+
+### Features
+
+* icon transition ([97150c0](https://github.com/mx-space/kami/commit/97150c0bf33b8afb0b47fc468d4c8390c82efa54))
+
+
+
+## [3.10.4](https://github.com/mx-space/kami/compare/v3.10.3...v3.10.4) (2022-06-22)
+
+
+### Bug Fixes
+
+* **ban-copy:** overlay opacity ([3e3e342](https://github.com/mx-space/kami/commit/3e3e342c75dc90223cd8153fcdfc5cc3b7265d8d))
+* icon transition ([2dcb4ff](https://github.com/mx-space/kami/commit/2dcb4ffd49d72d74eb400b598d38bac43755e539))
+
+
+### Features
+
+* **note-timeline:** optimize animate ([3d3c1cd](https://github.com/mx-space/kami/commit/3d3c1cdab4b3d91dfa6081044aa04d5bcb9de476))
+
+
+
+## [3.10.3](https://github.com/mx-space/kami/compare/v3.10.2...v3.10.3) (2022-06-21)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-countup to v6.3.0 ([#1288](https://github.com/mx-space/kami/issues/1288)) ([7fdb641](https://github.com/mx-space/kami/commit/7fdb641261028f364f70c56ee11d47d852cb46bd))
+* **deps:** update dependency react-toastify to v9.0.5 ([e1573ec](https://github.com/mx-space/kami/commit/e1573ec2d3f41a6014f55502aeba32b034ddc9f1))
+* header divider style ([08ddb4c](https://github.com/mx-space/kami/commit/08ddb4c141bd27fd7b173c1b7f97a137bbe764f7))
+* hide edit btn in print ([0d48fec](https://github.com/mx-space/kami/commit/0d48fec28066ef04c6bc0e29c7a7de16b1cda421))
+* media print style ([c3ea81e](https://github.com/mx-space/kami/commit/c3ea81ee80b05b0e96be417285092785a266c4de))
+
+
+### Features
+
+* add notification tracker ([c57a810](https://github.com/mx-space/kami/commit/c57a810cbab5264008c747e5a24d9715f523369d))
+* **note-timeline:** add icon for current item ([cadee4e](https://github.com/mx-space/kami/commit/cadee4ea345dc2dc50ce6abcbb0bc4f12cd545bd))
+
+
+
+## [3.10.2](https://github.com/mx-space/kami/compare/v3.10.1...v3.10.2) (2022-06-19)
+
+
+### Bug Fixes
+
+* comment avatar 1:1 ([bddfa88](https://github.com/mx-space/kami/commit/bddfa88d468d6823e025cb681a6087718a8b0504))
+* loop single song ([7483c65](https://github.com/mx-space/kami/commit/7483c653278c972326a9d3cd6b26bb0307f35c48))
+* shuffle play list ([3c4cbbc](https://github.com/mx-space/kami/commit/3c4cbbc3cd80342cfc3f7bca6c8615835b66e725))
+
+
+### Features
+
+* improve animate for timeline ([#1286](https://github.com/mx-space/kami/issues/1286)) ([4c05449](https://github.com/mx-space/kami/commit/4c05449de5c3ef9b247200942b536b5c0370ff33))
+
+
+
+## [3.10.1](https://github.com/mx-space/kami/compare/v3.10.0...v3.10.1) (2022-06-18)
+
+
+### Bug Fixes
+
+* style ([0340df6](https://github.com/mx-space/kami/commit/0340df6ef41daa101dc4798e47f7eff59a83ad3c))
+* ui improve ([fed8574](https://github.com/mx-space/kami/commit/fed85744822e39d9272c7a759ac7452ccf38ba77))
+
+
+
+# [3.10.0](https://github.com/mx-space/kami/compare/v3.9.7...v3.10.0) (2022-06-18)
+
+
+### Bug Fixes
+
+* adjust timeline style ([e766af7](https://github.com/mx-space/kami/commit/e766af7d7a7290634417f8ba701b87a609e1b330))
+* **comment:** pin icon pos ([bbc23df](https://github.com/mx-space/kami/commit/bbc23df94a184acb812e5abe3c870bc5c0cfbc8b))
+* copywrite ([fe2fc44](https://github.com/mx-space/kami/commit/fe2fc44f84546a8b7184b177543d19cc675cdc1c))
+* improve toast card style ([1360311](https://github.com/mx-space/kami/commit/13603118df8c7cc7b19598952d66c6f5a12606c3))
+* only root comment can pined ([db0d51d](https://github.com/mx-space/kami/commit/db0d51df3a8076839d96942e8857d1ac2de22155))
+* select none of edit link ([de63e37](https://github.com/mx-space/kami/commit/de63e37b4bc48a9c20ebb8c67a816ab012df2c4c))
+
+
+### Features
+
+* add notice tracker ([3d97b94](https://github.com/mx-space/kami/commit/3d97b94627cda227036cad6f6a1de5895718f746))
+* comment sync to recently ([df17e71](https://github.com/mx-space/kami/commit/df17e714b3c9bde1e15afd9d66600eda430a85c3))
+* recently ref ([38fdf99](https://github.com/mx-space/kami/commit/38fdf99e7b6c199e89e672b11b1e625b98333eaa))
+
+
+
+## [3.9.7](https://github.com/mx-space/kami/compare/v3.9.6...v3.9.7) (2022-06-16)
+
+
+### Bug Fixes
+
+* comment sort and pin once ([c5d7a1f](https://github.com/mx-space/kami/commit/c5d7a1f7aa4624d82cea844fe508650f2cdae6b5))
+
+
+### Features
+
+* comment pin ([83bf832](https://github.com/mx-space/kami/commit/83bf832cfb6120fb51fcde2984dcce6927b4c2b7))
+
+
+
+## [3.9.6](https://github.com/mx-space/kami/compare/v3.9.5...v3.9.6) (2022-06-15)
+
+
+### Bug Fixes
+
+* comment realtime lost ([bf497e2](https://github.com/mx-space/kami/commit/bf497e2ab695cb3e9b430e1f50f5903d7485e366))
+* **deps:** update dependency devtools-detector to v2.0.9 ([0092e2e](https://github.com/mx-space/kami/commit/0092e2ed3b24bad746a2e343963b1e461a66b243))
+
+
+
+## [3.9.5](https://github.com/mx-space/kami/compare/v3.9.3...v3.9.5) (2022-06-12)
+
+
+### Bug Fixes
+
+* get toc root depth ([fa82a76](https://github.com/mx-space/kami/commit/fa82a7658fa25c29943a98e837f4bb97897394d3))
+* theme color ([322b525](https://github.com/mx-space/kami/commit/322b5258e76418d9bb0d54ec3c1c0200f0cea553))
+* ui improve ([aac8eb0](https://github.com/mx-space/kami/commit/aac8eb0d6a2968407f1b60f6560ef65ec2f223fc))
+
+
+### Features
+
+* post pin ([a5695ed](https://github.com/mx-space/kami/commit/a5695ed70ff23559137c8c8a31a9266e715d8596))
+
+
+
+## [3.9.3](https://github.com/mx-space/kami/compare/v3.9.2...v3.9.3) (2022-06-11)
+
+
+### Bug Fixes
+
+* remove auth token expired time ([0bfe476](https://github.com/mx-space/kami/commit/0bfe47664ffd827c2d530d1fc79f7e9390b37eb4))
+
+
+### Features
+
+* change number transition ([477eba4](https://github.com/mx-space/kami/commit/477eba4b3f9de8061006adb225ecddc990c98543))
+
+
+
+## [3.9.2](https://github.com/mx-space/kami/compare/v3.9.1...v3.9.2) (2022-06-10)
+
+
+### Bug Fixes
+
+* color adjust ([d96e3af](https://github.com/mx-space/kami/commit/d96e3af7c7deb555893e2534fa571b63df29c411))
+* color improve ([13faae1](https://github.com/mx-space/kami/commit/13faae187ea8591feba12f5fa630d1c1e90e7604))
+* **deps:** update dependency react-toastify to v9.0.4 ([57ec62e](https://github.com/mx-space/kami/commit/57ec62e7336f2bb5bae7a5762cf669d28ea8c631))
+* fetch comment once ([190b6ed](https://github.com/mx-space/kami/commit/190b6edc8b23dc922d315088d6188fc4031c548a))
+
+
+
+## [3.9.1](https://github.com/mx-space/kami/compare/v3.9.0...v3.9.1) (2022-06-07)
+
+
+### Bug Fixes
+
+* color mode auto toggle ([67395bd](https://github.com/mx-space/kami/commit/67395bd0a47b9fc2617f048dfd2780622a9eea18))
+* **deps:** update dependency dayjs to v1.11.3 ([1b7b230](https://github.com/mx-space/kami/commit/1b7b23087a99464a353fb3711a0434b239b49147))
+* **deps:** update dependency devtools-detector to v2.0.8 ([95f111c](https://github.com/mx-space/kami/commit/95f111c8c941f62f082bfc968be2087f3b5d9e33))
+* floatover debug ([9949575](https://github.com/mx-space/kami/commit/9949575ecb24a765b05888cc740a0c70ef964045))
+* player progress style ([d79b025](https://github.com/mx-space/kami/commit/d79b025129b8fc4a0347d33af80175a781ffc574))
+* ui improve ([23507b8](https://github.com/mx-space/kami/commit/23507b8a689bac44496ade89ae1c0b0402d9a20d))
+
+
+### Features
+
+* add images ([4e1da3a](https://github.com/mx-space/kami/commit/4e1da3afc33512e3d71cb71cff1be9c1986acb3b))
+
+
+
+# [3.9.0](https://github.com/mx-space/kami/compare/v3.8.5-alpha.2...v3.9.0) (2022-06-03)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-intersection-observer to v9.2.2 ([b72b2fd](https://github.com/mx-space/kami/commit/b72b2fd5fe96dbbc88f35a5e886d8f4b137b19cb))
+* **deps:** update dependency react-shortcut-guide to v0.2.4 ([7ba39c0](https://github.com/mx-space/kami/commit/7ba39c0dca58ced774437d7f89d6186d6695b716))
+* some ui improve ([33dba9a](https://github.com/mx-space/kami/commit/33dba9a5c5c2d9339bacd250b2d7d7f353efc4a8))
+
+
+
+## [3.8.5-alpha.2](https://github.com/mx-space/kami/compare/v3.8.5-alpha.1...v3.8.5-alpha.2) (2022-06-02)
+
+
+### Bug Fixes
+
+* comment hash trigger ([5611c6e](https://github.com/mx-space/kami/commit/5611c6e3431dae77475cfa63564006283e5f54bf))
+* **deps:** update dependency @mx-space/api-client to v0.10.6 ([308cd18](https://github.com/mx-space/kami/commit/308cd182969b6175dd6877454ea11c8a00511a42))
+* **deps:** update dependency react-shortcut-guide to v0.2.3 ([3a4b624](https://github.com/mx-space/kami/commit/3a4b624f31b25149d56e574c75cc0033bd38e5ce))
+* **deps:** update dependency react-toastify to v9.0.3 ([87d0da6](https://github.com/mx-space/kami/commit/87d0da6c9ec03205a7fdb7a6229ddb468b06354d))
+* guide provide ([f05400c](https://github.com/mx-space/kami/commit/f05400c6ec97654af478986b6c303761e1056876))
+* try fix react hydration error ([bda8fab](https://github.com/mx-space/kami/commit/bda8fabfb6603b991330c5013ccf289ff256e7a5))
+
+
+
+## [3.8.5-alpha.1](https://github.com/mx-space/kami/compare/v3.8.5-alpha.0...v3.8.5-alpha.1) (2022-05-31)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-intersection-observer to v9.2.0 ([#1241](https://github.com/mx-space/kami/issues/1241)) ([44972ff](https://github.com/mx-space/kami/commit/44972ff0cd14da2be045ce1fa411ee3104c5bc93))
+* fade transition flash when exit ([b31f413](https://github.com/mx-space/kami/commit/b31f413880dd04dc9426aca9b258960b6e5fed94))
+* window define field ([6c11ece](https://github.com/mx-space/kami/commit/6c11ece09fb88c97a5c81fdc9f6db0e3495210ec))
+
+
+### Features
+
+* add search FAB ([f64b804](https://github.com/mx-space/kami/commit/f64b80420a9f344c5707568d1fef9aeda0bbd6fa))
+* add shortcut guide ([6a5025d](https://github.com/mx-space/kami/commit/6a5025d2e4b27e497bc4e6689130fb110cb37bf2))
+* improve blur background ([db5f2c5](https://github.com/mx-space/kami/commit/db5f2c5aa25ee9b6a688f491572ba13acd92f472))
+
+
+
+## [3.8.5-alpha.0](https://github.com/mx-space/kami/compare/v3.8.4...v3.8.5-alpha.0) (2022-05-30)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-toastify to v9.0.2 ([3435407](https://github.com/mx-space/kami/commit/3435407324544cc489c94b0683f9b7137ad4d610))
+* focus ([4176f71](https://github.com/mx-space/kami/commit/4176f71f49eed5900f65b02c6f198cc6ca0a8ceb))
+* improve a11y ([268a105](https://github.com/mx-space/kami/commit/268a10562db9cf708c98330dbfdb22d1927c6472))
+
+
+### Performance Improvements
+
+* reduce bundle size ([#1245](https://github.com/mx-space/kami/issues/1245)) ([591bc19](https://github.com/mx-space/kami/commit/591bc190976fe8bb6b456d1969c997367c3e3579))
+
+
+
+## [3.8.4](https://github.com/mx-space/kami/compare/v3.8.3...v3.8.4) (2022-05-29)
+
+
+### Bug Fixes
+
+* add float popover delay ([4c538a2](https://github.com/mx-space/kami/commit/4c538a292edd6133f810155140bb7425700673f0))
+* close window ([8ec6cc8](https://github.com/mx-space/kami/commit/8ec6cc80642c5d9e5744c051bed11d5c9b37d7b3))
+* robots ([c667aab](https://github.com/mx-space/kami/commit/c667aabc413178d4733ca04b3c8f9f0e9699eccc))
+
+
+
+## [3.8.3](https://github.com/mx-space/kami/compare/v3.8.2...v3.8.3) (2022-05-29)
+
+
+### Bug Fixes
+
+* fetch note ([92bfa53](https://github.com/mx-space/kami/commit/92bfa5371b85502b61c5c1cac940328b174e6458))
+* resolve url ([ae206cd](https://github.com/mx-space/kami/commit/ae206cdf931e911c5ae2975859b692a1cba9ffee))
+
+
+### Features
+
+* add uuid header ([a6bccd9](https://github.com/mx-space/kami/commit/a6bccd90037ce5cc7a3979dcebbbc3bdcd32989b))
+* improve ui ([2e616f2](https://github.com/mx-space/kami/commit/2e616f25b8eddf2a11e6675e829763688a4dcae8))
+
+
+### Performance Improvements
+
+* css ([84fe64a](https://github.com/mx-space/kami/commit/84fe64afd609793eeddd044c087c2548474a848d))
+
+
+
+## [3.8.2](https://github.com/mx-space/kami/compare/v3.8.1...v3.8.2) (2022-05-27)
+
+
+### Performance Improvements
+
+* throttle fps to 60 ([0a552cb](https://github.com/mx-space/kami/commit/0a552cbd3b7f69b335c531c2276202c76e3239e3))
+
+
+
+## [3.8.1](https://github.com/mx-space/kami/compare/v3.8.0...v3.8.1) (2022-05-27)
+
+
+### Bug Fixes
+
+* footer action postion & cleanup css ([b6fd079](https://github.com/mx-space/kami/commit/b6fd079606f11c8c135257b914e11e1b0a3d0913))
+
+
+### Performance Improvements
+
+* improve music perfermance ([ecaadbf](https://github.com/mx-space/kami/commit/ecaadbf04072a80f845c24d4c8916d5bf0f29d8f))
+
+
+
+# [3.8.0](https://github.com/mx-space/kami/compare/v3.8.0-alpha.2...v3.8.0) (2022-05-27)
+
+
+### Bug Fixes
+
+* avatar round ([834360e](https://github.com/mx-space/kami/commit/834360ef16cd53763f910533d7e45080ca952f28))
+* icon color ([19d950b](https://github.com/mx-space/kami/commit/19d950bd86a37c6464e6c74a77bca6c0547ddc40))
+
+
+### Features
+
+* follow up intro icon style ([b87689d](https://github.com/mx-space/kami/commit/b87689d5844e48768b63ad7b3cf3698c0c1977b6))
+
+
+
+# [3.8.0-alpha.2](https://github.com/mx-space/kami/compare/v3.8.0-alpha.1...v3.8.0-alpha.2) (2022-05-27)
+
+
+### Bug Fixes
+
+* hash scroll ([f568143](https://github.com/mx-space/kami/commit/f568143537be4324f023461b6af2330da768c31c))
+* thrid party css ([1d960fb](https://github.com/mx-space/kami/commit/1d960fba2f287d322a96fcde6a2c57c1c13d9200))
+
+
+
+# [3.8.0-alpha.1](https://github.com/mx-space/kami/compare/v3.8.0-alpha.0...v3.8.0-alpha.1) (2022-05-27)
+
+
+### Bug Fixes
+
+* random kaomoji ([1c9ae5e](https://github.com/mx-space/kami/commit/1c9ae5e0d5a827ab62fb4e3d0e4d6c64829ecf33))
+* style typo ([7dd3123](https://github.com/mx-space/kami/commit/7dd3123695ac85821fd93e31ee17c96bd663fe62))
+
+
+
+# [3.8.0-alpha.0](https://github.com/mx-space/kami/compare/v3.7.8...v3.8.0-alpha.0) (2022-05-27)
+
+
+### Bug Fixes
+
+* add comment to store ([3db306e](https://github.com/mx-space/kami/commit/3db306e39610cd387f8d6d07db545ee0a29761e3))
+* delete comment ([1228c3f](https://github.com/mx-space/kami/commit/1228c3f459d62a88cb77d2ee96d998cc65ef420e))
+* float position ([c622684](https://github.com/mx-space/kami/commit/c6226843505112489a759ce91f1a4b3870c0d44c))
+* type erro ([c5864e3](https://github.com/mx-space/kami/commit/c5864e320e9ab22cc0a7cfd51ee934cf3ac9d43a))
+
+
+
+## [3.7.8](https://github.com/mx-space/kami/compare/v3.7.7...v3.7.8) (2022-05-26)
+
+
+### Bug Fixes
+
+* footer z-index ([b397287](https://github.com/mx-space/kami/commit/b3972873f616928089758e6b159138c9e861626f))
+
+
+### Features
+
+* add donate popover ([663793c](https://github.com/mx-space/kami/commit/663793cae628d5b9b40ebb4068f13d9481298e4e))
+
+
+
+## [3.7.7](https://github.com/mx-space/kami/compare/v3.7.6...v3.7.7) (2022-05-26)
+
+
+### Bug Fixes
+
+* highlight language tip ([1330228](https://github.com/mx-space/kami/commit/133022845bdb18b50ba395faa479582765fce403))
+
+
+### Features
+
+* add baidu tracker ([2743d59](https://github.com/mx-space/kami/commit/2743d599272ebb4284676f8a5f8dcf00f4fe1547))
+* add hide icon ([7a3a53f](https://github.com/mx-space/kami/commit/7a3a53f5b4837859c6c229c4bb4d74ff2a04d306))
+
+
+
+## [3.7.6](https://github.com/mx-space/kami/compare/v3.7.5...v3.7.6) (2022-05-24)
+
+
+### Bug Fixes
+
+* copy ([1221b9b](https://github.com/mx-space/kami/commit/1221b9b418dc17791bdc41b2e4a39459cb7a4606))
+* **deps:** update dependency mobx to v6.6.0 ([#1234](https://github.com/mx-space/kami/issues/1234)) ([8fd79d3](https://github.com/mx-space/kami/commit/8fd79d38b77bc1f78b060ceb4f3d416609bc140d))
+
+
+### Features
+
+* kaomoji panel ([d4a4760](https://github.com/mx-space/kami/commit/d4a4760452f06efcdd5c7bcb864469d6c38fab95))
+
+
+
+## [3.7.5](https://github.com/mx-space/kami/compare/v3.7.4...v3.7.5) (2022-05-23)
+
+
+### Bug Fixes
+
+* tracker ([6ac703d](https://github.com/mx-space/kami/commit/6ac703dd929bce099efcfbf8b7b8fdfb64517332))
+
+
+### Features
+
+* add more tracker ([310fc2b](https://github.com/mx-space/kami/commit/310fc2bacc48001c97b834d59be09625a3b74cfa))
+
+
+
+## [3.7.4](https://github.com/mx-space/kami/compare/v3.7.3...v3.7.4) (2022-05-23)
+
+
+
+## [3.7.3](https://github.com/mx-space/kami/compare/v3.7.2...v3.7.3) (2022-05-21)
+
+
+### Bug Fixes
+
+* add tracker ([19b651a](https://github.com/mx-space/kami/commit/19b651a9408133512c8b42cc6d85b8044ff3bd08))
+
+
+
+## [3.7.2](https://github.com/mx-space/kami/compare/v3.7.1...v3.7.2) (2022-05-21)
+
+
+### Bug Fixes
+
+* topic latest update ([cf19a4b](https://github.com/mx-space/kami/commit/cf19a4b05d7814d39fc6c2e74515a0b48564611e))
+
+
+
+## [3.7.1](https://github.com/mx-space/kami/compare/v3.7.0...v3.7.1) (2022-05-21)
+
+
+### Bug Fixes
+
+* popover postion shake ([716aa67](https://github.com/mx-space/kami/commit/716aa671b50f944d3bd7cd800b6a1a2920ad894d))
+* topic has no descrption and hidden ([4d1d402](https://github.com/mx-space/kami/commit/4d1d402442234643dde7cb3acbf1052c5cd4c2c2))
+* topic style ([46f836c](https://github.com/mx-space/kami/commit/46f836c461c8f317bcc393cf5d33a6724aabafbf))
+
+
+### Features
+
+* add info on detail page ([f8dd26e](https://github.com/mx-space/kami/commit/f8dd26efcedebcfe83af934d726ff3b651b11f18))
+
+
+
+# [3.7.0](https://github.com/mx-space/kami/compare/v3.7.0-alpha.0...v3.7.0) (2022-05-21)
+
+
+### Bug Fixes
+
+* remove divider ([4ae1758](https://github.com/mx-space/kami/commit/4ae1758dd3d76872e73ccf6dfa13748667a2233f))
+
+
+
+# [3.7.0-alpha.0](https://github.com/mx-space/kami/compare/v3.6.11...v3.7.0-alpha.0) (2022-05-21)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @floating-ui/react-dom to v0.7.1 ([7336fa1](https://github.com/mx-space/kami/commit/7336fa1a34883bb7f3407bcb9eacffd40633e932))
+* **deps:** update dependency socket.io-client to v4.5.1 ([63a7ade](https://github.com/mx-space/kami/commit/63a7ade4329cd719ca75d9fb56c2785190394567))
+* order of lint ([5e50bbf](https://github.com/mx-space/kami/commit/5e50bbfb006a701295d65ba09cc28c1b5ef2c4db))
+* search modal and react type ([a92399f](https://github.com/mx-space/kami/commit/a92399f13862cb81449a4c41aee0aa9c26f91ff8))
+
+
+### Features
+
+* **component:** popover ([3b53938](https://github.com/mx-space/kami/commit/3b539389966de69a1b3ff57c0ee65edc04f3b852))
+* note topic detail ([8194cf9](https://github.com/mx-space/kami/commit/8194cf99f561ac186f3667ac37558ac5e036ff3a))
+* note topic view ([28833c8](https://github.com/mx-space/kami/commit/28833c8717feb33200393341edabf55aab1ad511))
+* show topic name on header meta ([d898890](https://github.com/mx-space/kami/commit/d89889068cc900c1549bfde17cc941fa2f361950))
+* topic page ([1697432](https://github.com/mx-space/kami/commit/16974328bf4457903e37f185bf3dc952cdff1faf))
+
+
+
+## [3.6.11](https://github.com/mx-space/kami/compare/v3.6.10...v3.6.11) (2022-05-15)
+
+
+### Bug Fixes
+
+* pagination input color ([265bd6e](https://github.com/mx-space/kami/commit/265bd6e5fa2f2108e434dac889a9af35ac6153cc))
+* worker gfw ban ([a612d4b](https://github.com/mx-space/kami/commit/a612d4b48dd6e56ebbfa043a1b97e8eaf83c3628))
+
+
+
+## [3.6.10](https://github.com/mx-space/kami/compare/v3.6.9...v3.6.10) (2022-05-14)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @floating-ui/react-dom to v0.7.0 ([#1219](https://github.com/mx-space/kami/issues/1219)) ([7b8e48f](https://github.com/mx-space/kami/commit/7b8e48fd54b9c347de4e4af8fc61514c5670276b))
+* **deps:** update dependency dayjs to v1.11.2 ([734ec60](https://github.com/mx-space/kami/commit/734ec60e666cb221ae17e0bb2639968e2cd265e7))
+* **deps:** update dependency mobx-react-lite to v3.4.0 ([#1216](https://github.com/mx-space/kami/issues/1216)) ([ce4692d](https://github.com/mx-space/kami/commit/ce4692d4cf087c6594c68e8e58a5cd247f63d16e))
+* note layout style ([4c0c2ae](https://github.com/mx-space/kami/commit/4c0c2aeaffa4a83fa88234399ee8cb9815dfee5b))
+
+
+
+## [3.6.9](https://github.com/mx-space/kami/compare/v3.6.8...v3.6.9) (2022-05-07)
+
+
+### Bug Fixes
+
+* disable pnpm 7 strict peer deps ([156955f](https://github.com/mx-space/kami/commit/156955f4a5050806e396cca91392617000a609e1))
+* error status render ([8fa8300](https://github.com/mx-space/kami/commit/8fa83007bdc9387591574629d76eb1b9bc3cccb6))
+
+
+
+## [3.6.8](https://github.com/mx-space/kami/compare/v3.6.7...v3.6.8) (2022-05-04)
+
+
+### Bug Fixes
+
+* pagination style ([cdddbbe](https://github.com/mx-space/kami/commit/cdddbbe9780fd8d185d05f9f8be9db480250117f))
+
+
+### Features
+
+* add comment key for single comment ([8068347](https://github.com/mx-space/kami/commit/80683471f181be9749112e9f869c0c7f2ed3ce04))
+
+
+
+## [3.6.7](https://github.com/mx-space/kami/compare/v3.6.6...v3.6.7) (2022-05-02)
+
+
+### Bug Fixes
+
+* textarea line height style ([43e8c54](https://github.com/mx-space/kami/commit/43e8c546a89602457efcdd7d738c5d16e80cb8ec))
+
+
+
+## [3.6.6](https://github.com/mx-space/kami/compare/v3.6.5...v3.6.6) (2022-04-30)
+
+
+### Bug Fixes
+
+* **deps:** update dependency axios to v0.27.2 ([#1196](https://github.com/mx-space/kami/issues/1196)) ([988e737](https://github.com/mx-space/kami/commit/988e7376a70f305109b7834a94428bbfd81a2ed2))
+* **deps:** update react monorepo to v18.1.0 (minor) ([#1200](https://github.com/mx-space/kami/issues/1200)) ([01eb92e](https://github.com/mx-space/kami/commit/01eb92e8f4e78061eaa0d3b9f73046a6518b66f1))
+
+
+
+## [3.6.5](https://github.com/mx-space/kami/compare/v3.6.4...v3.6.5) (2022-04-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency socket.io-client to v4.5.0 ([#1195](https://github.com/mx-space/kami/issues/1195)) ([ed5843c](https://github.com/mx-space/kami/commit/ed5843c315a153a343c9e19172d04e20e44b5a08))
+
+
+### Features
+
+* show comment location ([5d8ab4d](https://github.com/mx-space/kami/commit/5d8ab4d3d74672f045f2f6180deeec9ca0d38d33))
+
+
+
+## [3.6.4](https://github.com/mx-space/kami/compare/v3.6.3...v3.6.4) (2022-04-23)
+
+
+### Bug Fixes
+
+* note title tip if not `modified` ([6ee4f47](https://github.com/mx-space/kami/commit/6ee4f47c515730b7501b54de1ad0b1f1e89499d2))
+
+
+
+## [3.6.3](https://github.com/mx-space/kami/compare/v3.6.2...v3.6.3) (2022-04-23)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @floating-ui/react-dom to v0.6.2 ([7f3610f](https://github.com/mx-space/kami/commit/7f3610f9769124dd9ae3dc693244d21a0f09dbcf))
+* **deps:** update dependency @floating-ui/react-dom to v0.6.3 ([0911b30](https://github.com/mx-space/kami/commit/0911b303e622281f553f98b222e1621764dad06c))
+* **deps:** update dependency dayjs to v1.11.1 ([fbf2124](https://github.com/mx-space/kami/commit/fbf212445d5d7bd8fceae6254c21fd7fe7f1c839))
+* **deps:** update dependency react-intersection-observer to v8.34.0 ([#1176](https://github.com/mx-space/kami/issues/1176)) ([dd92e86](https://github.com/mx-space/kami/commit/dd92e8664cc586f7cefc3c3f5870eb7a7f41cfc6))
+* **deps:** update dependency react-message-popup to v1.0.0-alpha.2 ([7307e52](https://github.com/mx-space/kami/commit/7307e52b1608f93717aeca8053c5287b9898e211))
+* robots txt ([7a6f59c](https://github.com/mx-space/kami/commit/7a6f59c20da16f460717bfabe4538769f1bdae01))
+* sr-only ([7237d90](https://github.com/mx-space/kami/commit/7237d90017c1c5a651b144d354947e37ffad232f))
+
+
+### Features
+
+* add meta style support for page ([86fd90b](https://github.com/mx-space/kami/commit/86fd90b65a6efadfbb4565434d06582ab302a2cf))
+
+
+
+## [3.6.2](https://github.com/mx-space/kami/compare/v3.6.1...v3.6.2) (2022-04-12)
+
+
+### Bug Fixes
+
+* note layout reader experience ([bf71891](https://github.com/mx-space/kami/commit/bf71891e8e34efa45a9ce9e30a6689aec8072076))
+
+
+
+## [3.6.1](https://github.com/mx-space/kami/compare/v3.6.0...v3.6.1) (2022-04-12)
+
+
+### Bug Fixes
+
+* dark mode and update next ([29fcf69](https://github.com/mx-space/kami/commit/29fcf691b829126787ee73bbc40edc77c037f2d8))
+* make screen reader better ([5acccca](https://github.com/mx-space/kami/commit/5acccca4e92dcd73034feb3d991f2fe14d2e5800))
+* process not show ([345ee4e](https://github.com/mx-space/kami/commit/345ee4ed5dec8bd80be5c27226be3b6c719d5c7e))
+
+
+
+# [3.6.0](https://github.com/mx-space/kami/compare/v3.6.0-alpha.0...v3.6.0) (2022-04-12)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @mx-space/api-client to v0.9.1 ([4429641](https://github.com/mx-space/kami/commit/442964107198ade0863719d74913a66494286ca1))
+* link apply ([a424f97](https://github.com/mx-space/kami/commit/a424f97de62f2dce461e3e4e16d8c78f44b47b65))
+* lodash-es instead of lodash ([9b10aa7](https://github.com/mx-space/kami/commit/9b10aa786197cd8ef8280b0a385f0d3fb559c456))
+
+
+
+# [3.6.0-alpha.0](https://github.com/mx-space/kami/compare/v3.5.10...v3.6.0-alpha.0) (2022-04-09)
+
+
+### Bug Fixes
+
+* data on global ([ffb9c66](https://github.com/mx-space/kami/commit/ffb9c66aa1b8f3ece1108cd19d1a87e57c8684ae))
+* image lazy size ([2fb9dc7](https://github.com/mx-space/kami/commit/2fb9dc79ff47fee245eb64ca4ffa76e53c54b56c))
+* load script ([c58df44](https://github.com/mx-space/kami/commit/c58df447f6a54a13dbd13eea5b0a583c75f4ee85))
+* update react to v18 ([dfea315](https://github.com/mx-space/kami/commit/dfea315005ed360aa29892fedabd0a0f871d37d5))
+
+
+
+## [3.5.10](https://github.com/mx-space/kami/compare/v3.5.9...v3.5.10) (2022-04-07)
+
+
+### Bug Fixes
+
+* ignore next dependency upgrade ([4f15b8e](https://github.com/mx-space/kami/commit/4f15b8e3748d07a5846fa68a825fea7b642b802a))
+
+
+### Features
+
+* add netease logo ([1849ac9](https://github.com/mx-space/kami/commit/1849ac94c6086c31b38454face0dff16245f1719))
+
+
+
+## [3.5.9](https://github.com/mx-space/kami/compare/v3.5.8...v3.5.9) (2022-03-31)
+
+
+### Bug Fixes
+
+* downgrade next to v12.1.0 ([277f66f](https://github.com/mx-space/kami/commit/277f66f98ff0d9bd5df77f93bfcb975d21105fcb))
+
+
+
+## [3.5.8](https://github.com/mx-space/kami/compare/v3.5.7...v3.5.8) (2022-03-31)
+
+
+### Bug Fixes
+
+* input min 16px for ios ([f2e5b65](https://github.com/mx-space/kami/commit/f2e5b65f920b3ef54214bd8329be32250bcb86cf))
+* reduce interval performance cost ([5b3bbf4](https://github.com/mx-space/kami/commit/5b3bbf48ef7348aa8c3611b9a402b07acacec6dd))
+* remove nextjs experiement config ([af16347](https://github.com/mx-space/kami/commit/af1634705ab489320b73197f06a3980201477f63))
+
+
+
+## [3.5.7](https://github.com/mx-space/kami/compare/v3.5.6...v3.5.7) (2022-03-31)
+
+
+### Bug Fixes
+
+* add lfs pull on script ([e64da70](https://github.com/mx-space/kami/commit/e64da701b6a58fa83b4b5833f995e2bfb0367365))
+* code highlight twice ([fe29319](https://github.com/mx-space/kami/commit/fe293197bf4029665cd497abcc63ab1a71a29830))
+* **deps:** update dependency @mx-space/api-client to v0.8.2 ([6deb288](https://github.com/mx-space/kami/commit/6deb28856ab07862f4113e2e8fd2ca182498266f))
+* **deps:** update dependency next-seo to v5.3.0 ([#1155](https://github.com/mx-space/kami/issues/1155)) ([83b4b6e](https://github.com/mx-space/kami/commit/83b4b6eddb26b28a956e98d8de5a8bb857d82a03))
+* **deps:** update dependency react-hook-form to v7.29.0 ([#1157](https://github.com/mx-space/kami/issues/1157)) ([ea2ceef](https://github.com/mx-space/kami/commit/ea2ceef12bbbd0591b90b737a0dcab970d0f9a36))
+* in non-boolean ([c8d10bb](https://github.com/mx-space/kami/commit/c8d10bb860ad258ba31a41633db240d422583e4a))
+* input prefix icon too large on mobile ([aca73f3](https://github.com/mx-space/kami/commit/aca73f33cffcaea9e23111076eb388bf395fbf15))
+
+
+
+## [3.5.6](https://github.com/mx-space/kami/compare/v3.5.5...v3.5.6) (2022-03-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency next-seo to v5.2.0 ([#1146](https://github.com/mx-space/kami/issues/1146)) ([364589a](https://github.com/mx-space/kami/commit/364589ae7d49b824870f59614affc7f2660aa787))
+* image embed-in ([d41ba77](https://github.com/mx-space/kami/commit/d41ba770568518701f22acfb85fd4e954013ab12))
+
+
+
+## [3.5.5](https://github.com/mx-space/kami/compare/v3.5.4...v3.5.5) (2022-03-21)
+
+
+### Bug Fixes
+
+* image lazyload ([c9db09b](https://github.com/mx-space/kami/commit/c9db09bf0095f51d88fb79b4b5eed1e91c512d0a))
+
+
+
+## [3.5.4](https://github.com/mx-space/kami/compare/v3.5.3...v3.5.4) (2022-03-20)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-hook-form to v7.28.1 ([49672ee](https://github.com/mx-space/kami/commit/49672eecfb8109c90c4800de5a223a4d767eeb2a))
+* remove nextjs rewrite path, maybe this is bug ([f224894](https://github.com/mx-space/kami/commit/f22489406863ea10c8591c727df92e59c1726282))
+
+
+
+## [3.5.3](https://github.com/mx-space/kami/compare/v3.5.2...v3.5.3) (2022-03-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-hook-form to v7.28.0 ([#1125](https://github.com/mx-space/kami/issues/1125)) ([37f315f](https://github.com/mx-space/kami/commit/37f315f6190fbd5fb4eae1fe18ee8a9410e479ac))
+* lock file update ([373df26](https://github.com/mx-space/kami/commit/373df2641b8f38dcc84d87d2c316b0904c7d3e96))
+* remove env ([b629965](https://github.com/mx-space/kami/commit/b6299653290077608a3227ec2f1a1bce6431f77d))
+* single or double click ([b901984](https://github.com/mx-space/kami/commit/b901984d6822a1a72131a7b86ac264894a2ac5be))
+
+
+### Features
+
+* forhidden apply link if not allowed ([2133ba3](https://github.com/mx-space/kami/commit/2133ba3d71976aaf7ea5317378da5f50f3cb58eb))
+
+
+
+## [3.5.2](https://github.com/mx-space/kami/compare/v3.5.1...v3.5.2) (2022-03-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @mx-space/api-client to v0.7.4 ([e4f5102](https://github.com/mx-space/kami/commit/e4f5102ffcad5904eddc35eb740184e0da4d3d98))
+
+
+### Features
+
+* kbar-search support arrow to select ([ea213fc](https://github.com/mx-space/kami/commit/ea213fc7fbf71ff476d7257268caeb72e74bcb85))
+
+
+
+## [3.5.1](https://github.com/mx-space/kami/compare/v3.5.0...v3.5.1) (2022-03-12)
+
+
+### Bug Fixes
+
+* sitemap rewrite ([440b3e0](https://github.com/mx-space/kami/commit/440b3e0c39e66a3702bea4cddf7054d3337ae233))
+
+
+
+# [3.5.0](https://github.com/mx-space/kami/compare/v3.4.24...v3.5.0) (2022-03-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @floating-ui/react-dom to v0.6.0 ([#1120](https://github.com/mx-space/kami/issues/1120)) ([d2b38c5](https://github.com/mx-space/kami/commit/d2b38c555e805591584db0f9d92e684782fa6a4a))
+* **deps:** update dependency axios to v0.26.1 ([645eb86](https://github.com/mx-space/kami/commit/645eb86cf903ed6af91c7d8386c7a93aceec8925))
+* play song collect ([57b30ea](https://github.com/mx-space/kami/commit/57b30ea3ce10f424e10dc36443aafd26b0894cc6))
+
+
+### Features
+
+* move to serverless function on server ([2f958e5](https://github.com/mx-space/kami/commit/2f958e52261692af656034419af895be3e5b0a64))
+
+
+
+## [3.4.24](https://github.com/mx-space/kami/compare/v3.4.23...v3.4.24) (2022-03-07)
+
+
+### Bug Fixes
+
+* comment long key style ([3dbbddc](https://github.com/mx-space/kami/commit/3dbbddc0427a8f06298d221715f93800bb3caea4))
+* docker file case ([18bd5af](https://github.com/mx-space/kami/commit/18bd5afda94408dc823896d9e44a5430caaabf0a))
+
+
+
+## [3.4.23](https://github.com/mx-space/kami/compare/v3.4.22...v3.4.23) (2022-03-05)
+
+
+### Bug Fixes
+
+* video max-width ([6c71578](https://github.com/mx-space/kami/commit/6c7157884de7361c51b6ebf7dc0193113706919e))
+
+
+
+## [3.4.22](https://github.com/mx-space/kami/compare/v3.4.21...v3.4.22) (2022-03-01)
+
+
+### Bug Fixes
+
+* default config route ([cf57b88](https://github.com/mx-space/kami/commit/cf57b882677837263663c877f1b868602a41dcb8))
+* **deps:** update dependency dayjs to v1.10.8 ([be6bf9d](https://github.com/mx-space/kami/commit/be6bf9dc6da385cf913cf99be28fed5232676c61))
+
+
+
+## [3.4.21](https://github.com/mx-space/kami/compare/v3.4.20...v3.4.21) (2022-02-27)
+
+
+### Bug Fixes
+
+* error message if null ([d2c3e30](https://github.com/mx-space/kami/commit/d2c3e302ba00ee5311e49b067bd5816953641b95))
+
+
+
+## [3.4.20](https://github.com/mx-space/kami/compare/v3.4.19...v3.4.20) (2022-02-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency mobx to v6.4.2 ([f3ed9db](https://github.com/mx-space/kami/commit/f3ed9dba1fde8f81e988421e39effd14ea8d98de))
+* header background ([935dfaa](https://github.com/mx-space/kami/commit/935dfaaf86e643d8237f116316b48e55988d67d4))
+* header dropdown pos if resize ([3568918](https://github.com/mx-space/kami/commit/35689180e43031495909d1d444eead2bf9178b39))
+
+
+
+## [3.4.19](https://github.com/mx-space/kami/compare/v3.4.18...v3.4.19) (2022-02-25)
+
+
+### Bug Fixes
+
+* ignore song id 0 in maidian ([f92a00f](https://github.com/mx-space/kami/commit/f92a00f3e1908e183006271c7edf25a622616513))
+
+
+### Features
+
+* add some event ([0e5d9ea](https://github.com/mx-space/kami/commit/0e5d9eaaaaa449af58b0ae8d0408723d27d09a2f))
+
+
+
+## [3.4.18](https://github.com/mx-space/kami/compare/v3.4.17...v3.4.18) (2022-02-23)
+
+
+### Bug Fixes
+
+* next version ([e49e3e8](https://github.com/mx-space/kami/commit/e49e3e811debcb3665b8157faf953624617a1a11))
+* revert next version down to v12.0.10 ([913a319](https://github.com/mx-space/kami/commit/913a31933ed469c4923fc8229b33a560b0b01a5e))
+* update lock file ([b514f14](https://github.com/mx-space/kami/commit/b514f14a8ec4c031c7b8a4dfdc4243edc50db690))
+
+
+
+## [3.4.17](https://github.com/mx-space/kami/compare/v3.4.16...v3.4.17) (2022-02-20)
+
+
+### Bug Fixes
+
+* **deps:** update dependency mobx to v6.4.1 ([e5d463c](https://github.com/mx-space/kami/commit/e5d463ce4289047560ed0b9c53fece387f73c30b))
+* **deps:** update dependency react-hook-form to v7.27.1 ([69e5463](https://github.com/mx-space/kami/commit/69e54631329de5e28f648f28103139f32ce85fe6))
+
+
+
+## [3.4.16](https://github.com/mx-space/kami/compare/v3.4.15...v3.4.16) (2022-02-19)
+
+
+### Bug Fixes
+
+* note action position ([cc494a2](https://github.com/mx-space/kami/commit/cc494a21fcd5d1c7fbb296ad29bd596058497445))
+* player tip visible ([1c9056e](https://github.com/mx-space/kami/commit/1c9056e0bd1759a8d4828a06ec399a18f965e65b))
+
+
+
+## [3.4.15](https://github.com/mx-space/kami/compare/v3.4.14...v3.4.15) (2022-02-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency mobx-react-lite to v3.3.0 ([#1090](https://github.com/mx-space/kami/issues/1090)) ([2709e5b](https://github.com/mx-space/kami/commit/2709e5b300f2018d92046db702f273c6c21c88bd))
+* **deps:** update dependency next to v12.1.0 [security] ([#1091](https://github.com/mx-space/kami/issues/1091)) ([4a46b32](https://github.com/mx-space/kami/commit/4a46b32a3a61d8a5126f17a6a4d31463a177ac5e))
+
+
+
+## [3.4.14](https://github.com/mx-space/kami/compare/v3.4.13...v3.4.14) (2022-02-18)
+
+
+### Bug Fixes
+
+* comment title style ([daa5aef](https://github.com/mx-space/kami/commit/daa5aef02c01d15ea420f00c98c7d024624dc72d))
+* header background ([19da883](https://github.com/mx-space/kami/commit/19da8832967d1415f4b136d696cd8d9bbdcd5c7e))
+* list item style ([94256d2](https://github.com/mx-space/kami/commit/94256d2890e85d4084d2309c674fab8aad141c9e))
+
+
+
+## [3.4.13](https://github.com/mx-space/kami/compare/v3.4.12...v3.4.13) (2022-02-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-toastify to v8.2.0 ([#1082](https://github.com/mx-space/kami/issues/1082)) ([ba91745](https://github.com/mx-space/kami/commit/ba91745759372057cd5e1c7148e73c1f17434cca))
+
+
+### Features
+
+* umami collect ([1d1f19d](https://github.com/mx-space/kami/commit/1d1f19dca60b113bd075df28810bd4754dda071b))
+
+
+
+## [3.4.12](https://github.com/mx-space/kami/compare/v3.4.11...v3.4.12) (2022-02-15)
+
+
+### Bug Fixes
+
+* add image error event ([d3f1dea](https://github.com/mx-space/kami/commit/d3f1dea23ba8f7d88f7ad7adbee2f23a6eebc5fa))
+* convert script to mjs ([18500d2](https://github.com/mx-space/kami/commit/18500d244e4e55515aad2596ae5a25dee286511b))
+* get ip from header ([582e9c9](https://github.com/mx-space/kami/commit/582e9c995ab4809db4b9ae3715d02eb999d7db00))
+* improve markdown css ([06dd561](https://github.com/mx-space/kami/commit/06dd56119acb369a2cf9d2a5374283a68b533ca3))
+* only show passed link ([8331cd9](https://github.com/mx-space/kami/commit/8331cd9c1c9bfd60dd1b791fc16a60207f20aa92))
+* remove player animate ([493c91f](https://github.com/mx-space/kami/commit/493c91f6ce756debf2ede1e45b3bac3870ed16e6))
+
+
+### Features
+
+* add baidu analyze ([f5b049f](https://github.com/mx-space/kami/commit/f5b049f0e3910e2ba43194d2140975af9eba2977))
+
+
+
+## [3.4.11](https://github.com/mx-space/kami/compare/v3.4.10...v3.4.11) (2022-02-14)
+
+
+### Bug Fixes
+
+* **deps:** update dependency axios to v0.26.0 ([#1079](https://github.com/mx-space/kami/issues/1079)) ([abf23ef](https://github.com/mx-space/kami/commit/abf23ef586bbed771ad55bdec9861c3a30ea8fe2))
+
+
+### Features
+
+* seed randomcolor ([5c4d4ff](https://github.com/mx-space/kami/commit/5c4d4ff8d1f7742ca90753e6bc968087877ea01d))
+* toggle color favicon ([7b8d2d7](https://github.com/mx-space/kami/commit/7b8d2d704973d5bfb91c7dbaec226e7f27fc474d))
+
+
+
+## [3.4.10](https://github.com/mx-space/kami/compare/v3.4.9...v3.4.10) (2022-02-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-hook-form to v7.27.0 ([#1076](https://github.com/mx-space/kami/issues/1076)) ([43d376a](https://github.com/mx-space/kami/commit/43d376a37fbe1129d156f44da8f723aeccfd39fd))
+* error catch and handle ([78326c7](https://github.com/mx-space/kami/commit/78326c7e6691b5cdb167a0d1440d3f92edfdd816))
+* friend random in ssr mode ([b5de2c4](https://github.com/mx-space/kami/commit/b5de2c48bae7bcc47558dde487137d41872e0d93))
+* 无数据时的兜底页 ([9e4f8fb](https://github.com/mx-space/kami/commit/9e4f8fbf415d6e1a374c818d05d7448b7313b5f7))
+
+
+
+## [3.4.9](https://github.com/mx-space/kami/compare/v3.4.8...v3.4.9) (2022-02-11)
+
+
+### Bug Fixes
+
+* **music:** remove active transtion music cover ([6ae51d0](https://github.com/mx-space/kami/commit/6ae51d0dbefd851cf2fa38e3e0b8e7d63573173b))
+
+
+### Features
+
+* add info when comment ([c0615da](https://github.com/mx-space/kami/commit/c0615dad0def1883c81be49513103eb7999d9c04))
+* player animate ([448e392](https://github.com/mx-space/kami/commit/448e392685397421f5e87fa51528ceac5d4bb015))
+
+
+
+## [3.4.8](https://github.com/mx-space/kami/compare/v3.4.7...v3.4.8) (2022-02-11)
+
+
+### Bug Fixes
+
+* early return hook ([1f7d243](https://github.com/mx-space/kami/commit/1f7d243097cc969dcfddbcff5b649c047b79bbcf))
+
+
+
+## [3.4.7](https://github.com/mx-space/kami/compare/v3.4.6...v3.4.7) (2022-02-09)
+
+
+### Features
+
+* add 埋点 ([5f50959](https://github.com/mx-space/kami/commit/5f50959bdf2aae3da5ec73ce1ab80a2b0c2b76f6))
+
+
+
+## [3.4.6](https://github.com/mx-space/kami/compare/v3.4.5...v3.4.6) (2022-02-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @mx-space/api-client to v0.6.3 ([7020de7](https://github.com/mx-space/kami/commit/7020de70c244299622decdff87ced287d22716ae))
+* **deps:** update dependency react-hook-form to v7.26.1 ([e75532c](https://github.com/mx-space/kami/commit/e75532c84b6737a0f8ecd02bb17c01e3d981d1b2))
+* ecodeURLCompoent for post slug ([db198e5](https://github.com/mx-space/kami/commit/db198e57319bf04b598a51a2fe91c7aa473cc907))
+* logo color ([48dc980](https://github.com/mx-space/kami/commit/48dc98098fd41c4ba59168aa246baac67250880d))
+
+
+
+## [3.4.5](https://github.com/mx-space/kami/compare/v3.4.4...v3.4.5) (2022-02-06)
+
+
+### Bug Fixes
+
+* logo animation ([3669fee](https://github.com/mx-space/kami/commit/3669feebc89de875a04312e761428faec796de30))
+* remove toast css ([3fde469](https://github.com/mx-space/kami/commit/3fde4697fdc1e4017a0438f886960d4ad38679c5))
+
+
+### Features
+
+* spring pull sakura ([aad327b](https://github.com/mx-space/kami/commit/aad327ba6e108fb4a4c6f7dc958f3a21ca0993a4))
+
+
+### Reverts
+
+* Revert "refactor: revert tailwindcss" ([341d87b](https://github.com/mx-space/kami/commit/341d87b4ba84ce314ee7b5662b05834ae3b8b5e2))
+
+
+
+## [3.4.4](https://github.com/mx-space/kami/compare/v3.4.3...v3.4.4) (2022-02-04)
+
+
+### Bug Fixes
+
+* ci ([c6d16d3](https://github.com/mx-space/kami/commit/c6d16d33d3d1eaeca65d7773b8f49306e22815f2))
+
+
+
+## [3.4.3](https://github.com/mx-space/kami/compare/v3.4.2...v3.4.3) (2022-02-04)
+
+
+### Bug Fixes
+
+* comment standlone ([32146a7](https://github.com/mx-space/kami/commit/32146a7532c64681617d776440995093c7cec7e2))
+
+
+
+## [3.4.2](https://github.com/mx-space/kami/compare/v3.4.1...v3.4.2) (2022-02-04)
+
+
+### Bug Fixes
+
+* adjust overlay style ([7dfb46a](https://github.com/mx-space/kami/commit/7dfb46adeb8ecd948515a15fddb8ab8daa4d6647))
+* player state ([6244e57](https://github.com/mx-space/kami/commit/6244e57c214855798cc0a5b06007076b21a7afda))
+* remove `p` global style ([1685377](https://github.com/mx-space/kami/commit/168537731ad9ef4031e54dfe25c8ab45ac3ca2c8))
+
+
+### Features
+
+* add github icon on project list ([9513733](https://github.com/mx-space/kami/commit/9513733edbb58c81886f6016329563d5ac4e7ac3))
+* notification card new design ([3b4a1cc](https://github.com/mx-space/kami/commit/3b4a1ccaa3b0e576cf7647f20bef63bd2af040bb))
+
+
+
+## [3.4.1](https://github.com/mx-space/kami/compare/v3.4.0...v3.4.1) (2022-02-03)
+
+
+### Bug Fixes
+
+* adjust style ([499f47a](https://github.com/mx-space/kami/commit/499f47a18d48f4b56587a60dc4d0c9d69309f24d))
+* **search:** loading bar ([3d90289](https://github.com/mx-space/kami/commit/3d902895a840c11e211d9ed5caa31519153c41ae))
+
+
+
+# [3.4.0](https://github.com/mx-space/kami/compare/v3.3.8...v3.4.0) (2022-02-03)
+
+
+### Bug Fixes
+
+* add hotkey bind for windows `ctrl` ([ec2a8e6](https://github.com/mx-space/kami/commit/ec2a8e6a4b584fa4436dfbb2acb7e07e6c770254))
+* **deps:** update dependency @mx-space/api-client to v0.6.2 ([20de336](https://github.com/mx-space/kami/commit/20de33681e7a3ebac83d1dad4508b86a0489d648))
+* hash jump ([3363cb8](https://github.com/mx-space/kami/commit/3363cb8372367a12035146226de1f66bf5502c2d))
+* search panel style ([514ee28](https://github.com/mx-space/kami/commit/514ee287b0a0788f3474adb7c5f88d36839901bd))
+
+
+### Features
+
+* add hotkey support ([59a44ec](https://github.com/mx-space/kami/commit/59a44ec346cf56fa9d095b645e8f5b948fbda6c4))
+* add human interface guidelines color as css var ([3b1b6fc](https://github.com/mx-space/kami/commit/3b1b6fcc54a87b6e650014fa42c45e8a545ab15f))
+* add search panel ([b52b5cc](https://github.com/mx-space/kami/commit/b52b5cc0d8f209b62e8dc85198b3e3b68a9a97e8))
+
+
+
+## [3.3.8](https://github.com/mx-space/kami/compare/v3.3.7...v3.3.8) (2022-02-02)
+
+
+### Bug Fixes
+
+* **chat:** disable the chat box temporarily ([53dce50](https://github.com/mx-space/kami/commit/53dce50b40d850742a44c821a875141c98be0780))
+* header action button style ([8db839c](https://github.com/mx-space/kami/commit/8db839cc887d8f76c89580e148d7963fcc90d235))
+
+
+
+## [3.3.7](https://github.com/mx-space/kami/compare/v3.3.6...v3.3.7) (2022-01-31)
+
+
+### Bug Fixes
+
+* get avatar when src is `null` ([4c99ede](https://github.com/mx-space/kami/commit/4c99ede012d53671561571db09ad3ec39965f301))
+* text animate ([e800f99](https://github.com/mx-space/kami/commit/e800f99438856031d35e1785f07ada6516d4d6b2))
+
+
+
+## [3.3.6](https://github.com/mx-space/kami/compare/v3.3.5...v3.3.6) (2022-01-31)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @mx-space/api-client to v0.6.1 ([89897a7](https://github.com/mx-space/kami/commit/89897a7e5dbc615ad0b5ed99cdc1230d713fb0f2))
+
+
+### Features
+
+* friend avatar new design ([52fa087](https://github.com/mx-space/kami/commit/52fa08735e9618406ab8646347c92fc4535d5e3d))
+
+
+
+## [3.3.5](https://github.com/mx-space/kami/compare/v3.3.4...v3.3.5) (2022-01-30)
+
+
+### Bug Fixes
+
+* standalone is not stable, temporally disable ([7a34127](https://github.com/mx-space/kami/commit/7a3412715ba60468294c61070ae8d2f3324f04ec))
+
+
+### Features
+
+* new design of friend page ([165b39f](https://github.com/mx-space/kami/commit/165b39f4862c5e51c2aea9e09efab86986fcbf9c))
+
+
+
+## [3.3.4](https://github.com/mx-space/kami/compare/v3.3.3...v3.3.4) (2022-01-30)
+
+
+### Bug Fixes
+
+* include symbollinks ([f78a313](https://github.com/mx-space/kami/commit/f78a31348a64dc6639cd84f4d0750688c05c1b53))
+
+
+
+## [3.3.3](https://github.com/mx-space/kami/compare/v3.3.2...v3.3.3) (2022-01-30)
+
+
+### Bug Fixes
+
+* google font cdn ([1a31e78](https://github.com/mx-space/kami/commit/1a31e785d88db0cec1c7ee359f82c43a4d644b3d))
+
+
+### Features
+
+* add standalone build ([400a8aa](https://github.com/mx-space/kami/commit/400a8aaa61ac5e68615a6fbafa9b192889ab565b))
+
+
+
+## [3.3.2](https://github.com/mx-space/kami/compare/v3.3.1...v3.3.2) (2022-01-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-hook-form to v7.25.1 ([#1042](https://github.com/mx-space/kami/issues/1042)) ([cced896](https://github.com/mx-space/kami/commit/cced896a322efbcb1771e92c3368c158190481bf))
+* say card footer desctipion ([a49fc20](https://github.com/mx-space/kami/commit/a49fc20d4ac4476d9efdc729d8248d8b73fd2ca3))
+
+
+### Features
+
+* add meta for api_url expose ([191ce98](https://github.com/mx-space/kami/commit/191ce983b1a64e564d335bb1e432e327c47575c9))
+
+
+
+## [3.3.1](https://github.com/mx-space/kami/compare/v3.3.0...v3.3.1) (2022-01-28)
+
+
+### Features
+
+* scroll spring ([42e4a5b](https://github.com/mx-space/kami/commit/42e4a5bda92b58dfaa43f5fb7b623ddb34b33f7f))
+* spring animte via css ([1f2b42b](https://github.com/mx-space/kami/commit/1f2b42b993d8fe93570eafdc25dea2ffc73dce69))
+
+
+
+# [3.3.0](https://github.com/mx-space/kami/compare/v3.2.2...v3.3.0) (2022-01-27)
+
+
+### Features
+
+* adjust transition ([a114479](https://github.com/mx-space/kami/commit/a114479a7a0b76bc8495b3751cb13a36279223cd))
+
+
+
+## [3.2.2](https://github.com/mx-space/kami/compare/v3.2.1...v3.2.2) (2022-01-25)
+
+
+### Bug Fixes
+
+* **icon:** use resize observer ([6afe055](https://github.com/mx-space/kami/commit/6afe055e3f568d9060911f5ac9ef0fe39fcbbad8))
+
+
+
+## [3.2.1](https://github.com/mx-space/kami/compare/v3.2.0...v3.2.1) (2022-01-24)
+
+
+### Bug Fixes
+
+* page transition ([840bca5](https://github.com/mx-space/kami/commit/840bca5ce5a9b90df64230df095ff06e072a96db))
+
+
+### Features
+
+* add transition on say view ([375ff29](https://github.com/mx-space/kami/commit/375ff2947a3e48c3f48335f8a676f0713c77402e))
+
+
+
+# [3.2.0](https://github.com/mx-space/kami/compare/v3.1.2...v3.2.0) (2022-01-24)
+
+
+### Bug Fixes
+
+* article layout transition ([4e7bcb8](https://github.com/mx-space/kami/commit/4e7bcb8478faa6c102574d68484aa1d779611f7a))
+* dark mode detect if system mode ([914dacb](https://github.com/mx-space/kami/commit/914dacbe1ceb194d33ebaa74da5b184e3416e263))
+* image placeholder ([428d838](https://github.com/mx-space/kami/commit/428d838cb30c9c859666c1314886d2d968451cfa))
+
+
+### Features
+
+* flex text ([fcde96a](https://github.com/mx-space/kami/commit/fcde96abcd3452dbce6eb56e00c97a90f9680165))
+* **project:** list new design ([8b280f9](https://github.com/mx-space/kami/commit/8b280f90d9c402d72f6967b49a52209460ce4edf))
+
+
+
+## [3.1.2](https://github.com/mx-space/kami/compare/v3.1.1...v3.1.2) (2022-01-21)
+
+
+### Bug Fixes
+
+* bump script ([9d6ab77](https://github.com/mx-space/kami/commit/9d6ab77f9cf59040d03ad51dbc09ffcf8f04cbfb))
+
+
+
+## [3.1.1](https://github.com/mx-space/kami/compare/v3.1.0...v3.1.1) (2022-01-21)
+
+
+### Bug Fixes
+
+* default disable ban devtool & mod avatar rc ([90a3f77](https://github.com/mx-space/kami/commit/90a3f775727bf5bbb27686876121813e0a49d7fa))
+* dont do anime if not first load index page ([feb882e](https://github.com/mx-space/kami/commit/feb882e88f4cc0c4b11640318069d2baf7fbc22b))
+* project detail style ([9ebd572](https://github.com/mx-space/kami/commit/9ebd5724cc74969f3026510a5f5ca5d957e403fb))
+* use leading call of resize event ([3f70e93](https://github.com/mx-space/kami/commit/3f70e93de8684546e24edcfc4f51d01fed17616c))
+
+
+
+# [3.1.0](https://github.com/mx-space/kami/compare/v3.0.3...v3.1.0) (2022-01-20)
+
+
+### Bug Fixes
+
+* button style on dark mode ([15c47ea](https://github.com/mx-space/kami/commit/15c47ea961794f90cd3966979e22f0569e0facf8))
+* nossr util ([22c3831](https://github.com/mx-space/kami/commit/22c3831b76122c986e3afd940e7bc3c0d358b97b))
+* overflow props error ([b07efb0](https://github.com/mx-space/kami/commit/b07efb033ffcd984318af3b1692ef59a50a163fd))
+
+
+### Features
+
+* add ban console ([7b5f9be](https://github.com/mx-space/kami/commit/7b5f9be4f9197f44abce8db327f62ae3253dc732))
+* re-style project page ([125ea14](https://github.com/mx-space/kami/commit/125ea1457fa6bca456051ad104a4534c666b7d83))
+
+
+
+## [3.0.3](https://github.com/mx-space/kami/compare/v3.0.2...v3.0.3) (2022-01-19)
+
+
+### Bug Fixes
+
+* add format on generate default config ([60a6984](https://github.com/mx-space/kami/commit/60a6984460f24d31a22be15aa328d1ac4251f6c1))
+* **deps:** update dependency axios to v0.25.0 ([#1031](https://github.com/mx-space/kami/issues/1031)) ([5c2db39](https://github.com/mx-space/kami/commit/5c2db39590ee5adcc493b98c85da4e9088b7501e))
+* image  zoom overlay zindex ([000fbf9](https://github.com/mx-space/kami/commit/000fbf9ec4f3ecc1bc1a12ae28ab88b26305cfc3))
+* use-form type error ([434a104](https://github.com/mx-space/kami/commit/434a1040cdeb51353ce8fd8cd7d93492b0f86d54))
+
+
+
+## [3.0.2](https://github.com/mx-space/kami/compare/v3.0.1...v3.0.2) (2022-01-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-countup to v6.1.1 ([34c7e9d](https://github.com/mx-space/kami/commit/34c7e9dc599a034fbb3fda4b85c5dd20759f9a5b))
+* **deps:** update dependency react-message-popup to v0.1.3 ([a350be2](https://github.com/mx-space/kami/commit/a350be2064aee9ec3c9b625d05af14dc79d5d548))
+* type error ([1fde51c](https://github.com/mx-space/kami/commit/1fde51c0768f47e8d0051c09504a5db704449e77))
+
+
+
+## [3.0.1](https://github.com/mx-space/kami/compare/v3.0.0...v3.0.1) (2022-01-13)
+
+
+### Bug Fixes
+
+* build script ([79998b9](https://github.com/mx-space/kami/commit/79998b9ef100f9e0c12ffd3ed521c7c05598f204))
+* import ([5ec3634](https://github.com/mx-space/kami/commit/5ec3634176bd1e5824a22e997b4f464a0466edd2))
+* rqeuest message popup ([ee3b040](https://github.com/mx-space/kami/commit/ee3b040b6da622315e635d7b95362f210faef698))
+
+
+### Features
+
+* repalce react message popup ([b57f2ae](https://github.com/mx-space/kami/commit/b57f2ae745323cfa6fb3d8083f0a4d8a2a244060))
+
+
+
+# [3.0.0](https://github.com/mx-space/kami/compare/v2.4.10...v3.0.0) (2022-01-12)
+
+
+### Bug Fixes
+
+* action style ([36b34a5](https://github.com/mx-space/kami/commit/36b34a5e7e94a0b481ce59279e214ee885d29891))
+* adjust style ([ea12abf](https://github.com/mx-space/kami/commit/ea12abf7deb16421912b286907d256e103b7502f))
+* background re-render ([b620f4a](https://github.com/mx-space/kami/commit/b620f4a31e76a9b2b65e0c571a6f67442f284a3e))
+* background render more ([1e3be71](https://github.com/mx-space/kami/commit/1e3be712e260d21bed55ba789526d550901a7431))
+* build error ([32fb943](https://github.com/mx-space/kami/commit/32fb943abc3828bb1406850e225232db3ba46a93))
+* config merge ([d420f51](https://github.com/mx-space/kami/commit/d420f51d975f3133f63135c3d86ba443aac94c1a))
+* css duplicate ([65122ab](https://github.com/mx-space/kami/commit/65122ab5b31a082b1d87995cd16a7fca091540c3))
+* data merge and mount ([f445bbc](https://github.com/mx-space/kami/commit/f445bbc9f50d78157c986ce9feabeda3cf369c12))
+* **deps:** update dependency @mx-space/extra to v0.5.1 ([197a94e](https://github.com/mx-space/kami/commit/197a94ea8107cf366d0b7bf6c7b7978a02d9092b))
+* **deps:** update dependency @mx-space/extra to v0.5.2 ([e04701e](https://github.com/mx-space/kami/commit/e04701eb525fef358dbd2bbd84398942bc826b22))
+* **deps:** update dependency mobx to v6.3.10 ([25e4de0](https://github.com/mx-space/kami/commit/25e4de0084cf0b13cc9b09fb2e4ec854e11d6c28))
+* **deps:** update dependency mobx to v6.3.12 ([cba9358](https://github.com/mx-space/kami/commit/cba93589cf0fd19df504e26a11c4c71428d9f727))
+* **deps:** update dependency mobx-react-lite to v3.2.3 ([145deb6](https://github.com/mx-space/kami/commit/145deb6aceb19c37291bcba4e4fd146d0d1181f8))
+* **deps:** update dependency react-hook-form to v7.22.3 ([5a2ed2e](https://github.com/mx-space/kami/commit/5a2ed2e2db0a784c3d4f8da303f7ee9641d5f7d4))
+* **deps:** update dependency react-hook-form to v7.22.4 ([41a9c49](https://github.com/mx-space/kami/commit/41a9c492c33ae00907f1ae157ed668d06ae147c4))
+* **deps:** update dependency react-hook-form to v7.22.5 ([4354245](https://github.com/mx-space/kami/commit/43542452342a980a371734f4e4a3a49cdf1cb591))
+* **deps:** update dependency socket.io-client to v4.4.1 ([97636bf](https://github.com/mx-space/kami/commit/97636bff549654103ee5dced27ef03b583437ccd))
+* dumplicate css rule ([9afb289](https://github.com/mx-space/kami/commit/9afb289de97d01423ec8cefba2238f50ac1af2fd))
+* extra api lib version ([7acc265](https://github.com/mx-space/kami/commit/7acc26570da20dbf5ea60dbc97d793cbd81b037e))
+* footer action style ([0ccbd91](https://github.com/mx-space/kami/commit/0ccbd91eafaca6836374bcab63781653134eb791))
+* forward error statuscode to error page ([13fce8e](https://github.com/mx-space/kami/commit/13fce8e86837f6c12319fd11f379cc8a6a0837cc))
+* login token & forward cookit ([f3730a7](https://github.com/mx-space/kami/commit/f3730a79c40b044235e6984564d4e091df606dc8))
+* markdonw code block fully ([90f3320](https://github.com/mx-space/kami/commit/90f3320d1a3794ff64d918bcf0c6edbead8a2640))
+* merge default theme config ([29fe283](https://github.com/mx-space/kami/commit/29fe2832a63889d430867e2fa3a07f4fc7e32525))
+* netease api ([66246c3](https://github.com/mx-space/kami/commit/66246c3ddb86e3acbd95a73ff2b08e7eff075187))
+* next config redefine ([41e6953](https://github.com/mx-space/kami/commit/41e6953c6cdf496a9730987bc0547a09bf2671a1))
+* note like sync staus ([3ac232d](https://github.com/mx-space/kami/commit/3ac232de7ef4924b856a1cae87f6f28d15aadb1d))
+* note update hook ([1f56775](https://github.com/mx-space/kami/commit/1f56775cf5a214ba7addceeae6d919938a1c5ffa))
+* player autoplay & toc index ([13f7d2f](https://github.com/mx-space/kami/commit/13f7d2fa46a69d3ac9e16086573815706fe05a93))
+* react render message memory leak ([401b099](https://github.com/mx-space/kami/commit/401b0991e20519300859725595ffd17728607369))
+* remove if undefined token ([364fdc5](https://github.com/mx-space/kami/commit/364fdc5c64b6c24a6ca83448dc8ccf2fa9081922))
+* some markdown style ([7221f56](https://github.com/mx-space/kami/commit/7221f56189a892c11ffa7b42228fd21ef67439c6))
+* toc index ([c442392](https://github.com/mx-space/kami/commit/c4423923ca97dd92b59042d65e2eafcf0a83c900))
+* user store type ([c50c9bd](https://github.com/mx-space/kami/commit/c50c9bd924b7d4ec8443febefecb46d54a5f6368))
+
+
+### Features
+
+* add custom js,css support ([39cce24](https://github.com/mx-space/kami/commit/39cce24bfe3bef961b6fdbefc306be307a13c1f2))
+* add player list customize ([3057582](https://github.com/mx-space/kami/commit/3057582cfed4a7c011004db23783ded884bdec7b))
+* all config can dynamic set ([936fe50](https://github.com/mx-space/kami/commit/936fe5069bcb66a1af042a37cb156a4e02b6f7fa))
+* footer nav dynamic config ([3cefb8e](https://github.com/mx-space/kami/commit/3cefb8ead3cb6ad1afd5c10cc524d7060b7a07d7))
+* gen default configs ([f14973e](https://github.com/mx-space/kami/commit/f14973eb32ab5f5662f158787d5a567207ad614b))
+* modify `pagination` style ([1594a16](https://github.com/mx-space/kami/commit/1594a16099e87bf6bcc976744ded1b2ae8b7001e))
+* new design of markdown link reference ([1d72b53](https://github.com/mx-space/kami/commit/1d72b531413fecce5f6115c1d2cde878297cd11b))
+* say store ([1f61644](https://github.com/mx-space/kami/commit/1f61644f484c62774ecdd46d963995c6c0a843a4))
+* support custom logo ([95b0b2d](https://github.com/mx-space/kami/commit/95b0b2de68d546faeda50f45d9aff10155aef992))
+* update bubble style ([0861d09](https://github.com/mx-space/kami/commit/0861d0975e5eb7aba681ac631587e21edcce2ac5))
+* update checkbox style ([ed91435](https://github.com/mx-space/kami/commit/ed91435a3d4052419499f4842e8828a582c20497))
+
+
+
+## [2.4.10](https://github.com/mx-space/kami/compare/v2.4.9...v2.4.10) (2021-12-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency mobx to v6.3.9 ([7821ba9](https://github.com/mx-space/kami/commit/7821ba9d6e1fd250fee7220f0054c4a084a6bd40))
+* **deps:** update dependency react-hook-form to v7.22.0 ([#979](https://github.com/mx-space/kami/issues/979)) ([edb087e](https://github.com/mx-space/kami/commit/edb087ef92fc5f4a21c131894738add4ffe9a932))
+* **deps:** update dependency react-hook-form to v7.22.1 ([0a2a881](https://github.com/mx-space/kami/commit/0a2a8813bf02953c8978043ac27931f30c5655df))
+* **deps:** update dependency react-hook-form to v7.22.2 ([6d8580e](https://github.com/mx-space/kami/commit/6d8580e70c83618d6e83beddfb48c65c1928284d))
+* note password validate ([fd6eeae](https://github.com/mx-space/kami/commit/fd6eeaee226b5534d1b8dc396d82589b6c452a3c))
+
+
+
+## [2.4.9](https://github.com/mx-space/kami/compare/v2.4.8...v2.4.9) (2021-12-06)
+
+
+### Bug Fixes
+
+* header menu seq ([1fcc798](https://github.com/mx-space/kami/commit/1fcc7981ed18735805ca0185b066b26bb156c809))
+
+
+
+## [2.4.8](https://github.com/mx-space/kami/compare/v2.4.7...v2.4.8) (2021-12-01)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-hook-form to v7.20.5 ([d74affd](https://github.com/mx-space/kami/commit/d74affdc729dbf5e9be443d42cb06e71fa120528))
+
+
+### Features
+
+* **link:** auto redirect to permanent link ([214a37c](https://github.com/mx-space/kami/commit/214a37cf149c86fe197eb827d38882d1e1a850d9))
+
+
+
+## [2.4.7](https://github.com/mx-space/kami/compare/v2.4.6...v2.4.7) (2021-11-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency mobx to v6.3.8 ([bf56a36](https://github.com/mx-space/kami/commit/bf56a365a8465dd745d7f1bb2d7a3e6fa35a5d77))
+* **deps:** update dependency react-hook-form to v7.20.3 ([2261a6d](https://github.com/mx-space/kami/commit/2261a6d003be0e402bc9cfc4cf16ba9415b6b1ec))
+* **deps:** update dependency react-hook-form to v7.20.4 ([fe336c3](https://github.com/mx-space/kami/commit/fe336c3d3dc74701ad7461604b22059e81e3c9f7))
+* lazyload mermaid if needed ([9bfade3](https://github.com/mx-space/kami/commit/9bfade3dd6aea20c9505a8325d466a223dfebe8e))
+* modified time if null ([7ad753a](https://github.com/mx-space/kami/commit/7ad753aea9f0441b081d7b3dfd1274c9087d9658))
+
+
+
+## [2.4.6](https://github.com/mx-space/kami/compare/v2.4.5...v2.4.6) (2021-11-26)
+
+
+### Bug Fixes
+
+* fonticon replace ([d310a50](https://github.com/mx-space/kami/commit/d310a50e00cc76d397105c77a669f7cbb40dc89c))
+
+
+
+## [2.4.5](https://github.com/mx-space/kami/compare/v2.4.4...v2.4.5) (2021-11-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency mobx to v6.3.7 ([c2d3a66](https://github.com/mx-space/kami/commit/c2d3a66c8866bced7ad2d1d988004ab7c6dc0d7d))
+* **deps:** update dependency react-hook-form to v7.19.2 ([08d1f1f](https://github.com/mx-space/kami/commit/08d1f1f7efb01c3778f06d281d0c2834443a0e72))
+* **deps:** update dependency react-hook-form to v7.19.3 ([4a91ab3](https://github.com/mx-space/kami/commit/4a91ab37221a1ceb58f931b155f97997b66ddf81))
+* **deps:** update dependency react-hook-form to v7.19.4 ([990caa9](https://github.com/mx-space/kami/commit/990caa988b57331d71ebbf93c7b15a21cfce053d))
+* **deps:** update dependency react-hook-form to v7.19.5 ([68e2e3e](https://github.com/mx-space/kami/commit/68e2e3e6af53ad10e41e94880cf144f09b770bef))
+* **deps:** update dependency react-hook-form to v7.20.1 ([a5575dc](https://github.com/mx-space/kami/commit/a5575dc37af4ccb2799f8c301a1943c62f754d86))
+* **deps:** update dependency react-hook-form to v7.20.2 ([a927292](https://github.com/mx-space/kami/commit/a927292cb4a92c40acfd8db58c29d6be60111cbf))
+* **deps:** update dependency react-intersection-observer to v8.32.3 ([e2cdef7](https://github.com/mx-space/kami/commit/e2cdef75698b4ac64204dfba03f679aa1a42598a))
+* **deps:** update dependency react-intersection-observer to v8.32.4 ([d390a87](https://github.com/mx-space/kami/commit/d390a8780c3171c4a4ab0374f62c1612f0f41269))
+* **deps:** update dependency react-intersection-observer to v8.32.5 ([2eb0435](https://github.com/mx-space/kami/commit/2eb043593191f5e0d1a8ce0f27549e1751511015))
+* **deps:** update dependency react-syntax-highlighter to v15.4.5 ([84f2496](https://github.com/mx-space/kami/commit/84f2496084cceed5d77912932b1189b4f1e245c2))
+* **deps:** update dependency socket.io-client to v4.4.0 ([b39ae63](https://github.com/mx-space/kami/commit/b39ae6366097d55b7d0869e67ea96c2669fa8dce))
+* menu order ([d92dae7](https://github.com/mx-space/kami/commit/d92dae761de7180bf02a9592371fde3c226601b2))
+
+
+### Features
+
+* add string format of fontawesome icon ([d2b5250](https://github.com/mx-space/kami/commit/d2b52502c66e4ea9682cada161cb31bee6e23338))
+
+
+
+## [2.4.4](https://github.com/mx-space/kami/compare/v2.4.3...v2.4.4) (2021-11-08)
+
+
+### Bug Fixes
+
+* **docker:** replace docker node image to fix swc lib missing ([2b553f2](https://github.com/mx-space/kami/commit/2b553f2d9ddc6e8e45a9491e167ca651fe5fddca))
+
+
+
+## [2.4.3](https://github.com/mx-space/kami/compare/v2.4.2...v2.4.3) (2021-11-08)
+
+
+### Bug Fixes
+
+* chrome 3d transition & safe-area ([1dca515](https://github.com/mx-space/kami/commit/1dca51594fb237b7fc9df675d19d0f61c1f80bf0))
+
+
+
+## [2.4.2](https://github.com/mx-space/kami/compare/v2.4.1...v2.4.2) (2021-11-08)
+
+
+### Bug Fixes
+
+* **deps:** update dependency mobx to v6.3.6 ([ea0eff3](https://github.com/mx-space/kami/commit/ea0eff3521a8f0177cdb03a47448cf9d0ce52720))
+* **deps:** update dependency mobx-react-lite to v3.2.2 ([8f9cbdd](https://github.com/mx-space/kami/commit/8f9cbdde6a519155da955bdaf2c0f21a7f08f28f))
+* **deps:** update dependency react-countup to v6.1.0 ([58cb62d](https://github.com/mx-space/kami/commit/58cb62de5c9d7e74174e9242af6ac2c0c24dce91))
+* **deps:** update dependency react-hook-form to v7.18.1 ([b765527](https://github.com/mx-space/kami/commit/b7655271d3bb85e50626ebdeced171a51fd2945e))
+* **deps:** update dependency react-hook-form to v7.19.1 ([bc385af](https://github.com/mx-space/kami/commit/bc385af8a348438f39f5bb420efd2ef62420860f))
+* **deps:** update dependency tailwindcss to v2.2.19 ([f2787eb](https://github.com/mx-space/kami/commit/f2787ebf618bbbe0c07c5ff4b47a6db7ff20cdca))
+* **deps:** update dependency validator to v13.7.0 [security] ([532a66f](https://github.com/mx-space/kami/commit/532a66f6eed9760920a8439edc9df36a11d38ed8))
+
+
+
+## [2.4.1](https://github.com/mx-space/kami/compare/v2.4.0...v2.4.1) (2021-10-28)
+
+
+### Bug Fixes
+
+* nextjs 12 handle preload css in jsx ([7bb3459](https://github.com/mx-space/kami/commit/7bb3459409daa3c3b754eb88f4885ac053b6a6b6))
+* **script:** pull code first and install ([cf74f34](https://github.com/mx-space/kami/commit/cf74f347b45b474cceddc7b3040d19acfad46369))
+
+
+
+# [2.4.0](https://github.com/mx-space/kami/compare/v2.3.7...v2.4.0) (2021-10-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @fortawesome/react-fontawesome to v0.1.16 ([44d47e0](https://github.com/mx-space/kami/commit/44d47e044a219f9e3807279b7acfc4e848b0a472))
+* **deps:** update dependency mobx to v6.3.4 ([71b6174](https://github.com/mx-space/kami/commit/71b61742fc6af62d1080e47c69eacbbeec44e3b8))
+* **deps:** update dependency mobx to v6.3.5 ([d6f4e18](https://github.com/mx-space/kami/commit/d6f4e18d90e14e9afd752d372dd04eab72d5fcb4))
+* **deps:** update dependency react-hook-form to v7.17.5 ([9b991ff](https://github.com/mx-space/kami/commit/9b991ffad832f95254ab1239c13eeb78124aa727))
+* **deps:** update dependency react-intersection-observer to v8.32.2 ([cc7fae1](https://github.com/mx-space/kami/commit/cc7fae1144b42368f095ea1666b510711c141faf))
+* **deps:** update dependency socket.io-client to v4.3.2 ([07d8f67](https://github.com/mx-space/kami/commit/07d8f6763fd228b5c93cc74f2ef4c8d7cd7bf17a))
+* **deps:** update dependency tailwindcss to v2.2.17 ([3aacb1d](https://github.com/mx-space/kami/commit/3aacb1dcfaef3a7d04bc2906625b6a5c26381eb8))
+* **deps:** update dependency ua-parser-js to v0.7.30 ([3fd654f](https://github.com/mx-space/kami/commit/3fd654f1e28dad3f353b381dcec317566f659aa7))
+* get tags from package ([d04425c](https://github.com/mx-space/kami/commit/d04425c9ae68a5067b8479b31aa0a22bcc7d70f9))
+
+
+### Features
+
+* update next to v12 ([a67b9cb](https://github.com/mx-space/kami/commit/a67b9cb7f57f89260258a90de6de0aa11b6e9947))
+
+
+
+## [2.3.7](https://github.com/mx-space/kami/compare/v2.3.6...v2.3.7) (2021-10-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency camelcase-keys to v7.0.1 ([744ca12](https://github.com/mx-space/kami/commit/744ca12ccf79aa140c9892ba0f1b806902412ee7))
+* remove recently unnessary props ([8bf3e7a](https://github.com/mx-space/kami/commit/8bf3e7a8b221a198112bb6e857830c36b5454774))
+
+
+
+## [2.3.6](https://github.com/mx-space/kami/compare/v2.3.5...v2.3.6) (2021-10-02)
+
+
+### Bug Fixes
+
+* pass argv ([3614563](https://github.com/mx-space/kami/commit/3614563c7202e14ebdeee047c83c64a425565f21))
+* socket payload camelcased data key ([c9db2ba](https://github.com/mx-space/kami/commit/c9db2ba98f533f6efef33920d8cb2b7f4b9bd331))
+
+
+
+## [2.3.5](https://github.com/mx-space/kami/compare/v2.3.4...v2.3.5) (2021-10-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-hook-form to v7.16.1 ([36b9c74](https://github.com/mx-space/kami/commit/36b9c74c20f3ad1148dc062329fa0c2d337c514c))
+* **deps:** update dependency react-hook-form to v7.16.2 ([e56990a](https://github.com/mx-space/kami/commit/e56990a9a8cc64da1d64be10ac77db63f882ba58))
+* **deps:** update dependency tailwindcss to v2.2.16 ([76a799a](https://github.com/mx-space/kami/commit/76a799a35097ac89ea218924bbf8418d6079d87c))
+* ga env var ([47c86fc](https://github.com/mx-space/kami/commit/47c86fc7809d1ecce36e7977e16c18dbd030cdb1))
+* notification click open url ([55b3a4d](https://github.com/mx-space/kami/commit/55b3a4d9b38e9c398d7fdcf6ba769927d6c8cbd7))
+
+
+
+## [2.3.4](https://github.com/mx-space/kami/compare/v2.3.2...v2.3.4) (2021-09-25)
+
+
+### Bug Fixes
+
+* comment avatar ([991db90](https://github.com/mx-space/kami/commit/991db90a7d51fe0ae4a64617354fdbdea1c0b80c))
+* **deps:** update dependency next-seo to v4.28.0 ([9c6397d](https://github.com/mx-space/kami/commit/9c6397d7ba719fce6307a98ed2470fbb8c41720f))
+* **deps:** update dependency next-seo to v4.28.1 ([06c99bd](https://github.com/mx-space/kami/commit/06c99bd7bfc50cfd1ff4b5d503785179d7b8745d))
+
+
+
+## [2.3.2](https://github.com/mx-space/kami/compare/v2.3.1...v2.3.2) (2021-09-20)
+
+
+### Bug Fixes
+
+* clean `.env` ([259e769](https://github.com/mx-space/kami/commit/259e7694f407cac52857b72c35dc45c96dbf13d3))
+* empty say ([31d5999](https://github.com/mx-space/kami/commit/31d5999ae24b58664922a9aac130c85f649ad38d))
+
+
+
+## [2.3.1](https://github.com/mx-space/kami/compare/v2.3.0...v2.3.1) (2021-09-13)
+
+
+### Bug Fixes
+
+* next config ([4e2d5f5](https://github.com/mx-space/kami/commit/4e2d5f502f37a572245440914d636b459e65c1c9))
+
+
+
+# [2.3.0](https://github.com/mx-space/kami/compare/v2.2.1...v2.3.0) (2021-09-13)
+
+
+### Features
+
+* simple render from server ([937bff3](https://github.com/mx-space/kami/commit/937bff3ae0c61c1e52bb14fa598952b29b2fcd97))
+
+
+
+## [2.2.1](https://github.com/mx-space/kami/compare/v2.2.0...v2.2.1) (2021-09-13)
+
+
+### Bug Fixes
+
+* rss & sitemap ([bc923a5](https://github.com/mx-space/kami/commit/bc923a5f4d128cb9ae21573f3de684eba10bfc54))
+
+
+
+# [2.2.0](https://github.com/mx-space/kami/compare/v2.1.1...v2.2.0) (2021-09-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency dayjs to v1.10.7 ([0d52fc0](https://github.com/mx-space/kami/commit/0d52fc0dac7bc8d035675b8331fb596af90edb18))
+
+
+### Features
+
+* mermaid support ([2b10b68](https://github.com/mx-space/kami/commit/2b10b685af3fed0b95a6604e2a671ef930a5477f))
+
+
+
+## [2.1.1](https://github.com/mx-space/kami/compare/v2.1.0...v2.1.1) (2021-09-10)
+
+
+
+# [2.1.0](https://github.com/mx-space/kami/compare/v2.0.7...v2.1.0) (2021-09-10)
+
+
+
+## [2.0.7](https://github.com/mx-space/kami/compare/v2.0.6...v2.0.7) (2021-09-10)
+
+
+### Bug Fixes
+
+* env inject ([f3c2fbc](https://github.com/mx-space/kami/commit/f3c2fbc92f95e863cde3e077aab42e132e91aa45))
+
+
+
+## [2.0.6](https://github.com/mx-space/kami/compare/v2.0.5...v2.0.6) (2021-09-10)
+
+
+### Bug Fixes
+
+* env; ([95a85ab](https://github.com/mx-space/kami/commit/95a85ab563b0275b987f537e38632711962fc756))
+
+
+
+## [2.0.5](https://github.com/mx-space/kami/compare/v2.0.4...v2.0.5) (2021-09-10)
+
+
+### Bug Fixes
+
+* temp disable devtool ([503c596](https://github.com/mx-space/kami/commit/503c5963bdc603e5d46e4f6f277749dea3cd5d7b))
+
+
+
+## [2.0.4](https://github.com/mx-space/kami/compare/v2.0.3...v2.0.4) (2021-09-10)
+
+
+### Bug Fixes
+
+* **deps:** update dependency tailwindcss to v2.2.15 ([7b25a41](https://github.com/mx-space/kami/commit/7b25a41e734df40f59305e25f04ad86d67eb3b71))
+
+
+
+## [2.0.3](https://github.com/mx-space/kami/compare/v2.0.2...v2.0.3) (2021-09-10)
+
+
+
+## [2.0.2](https://github.com/mx-space/kami/compare/v1.18.0...v2.0.2) (2021-09-10)
+
+
+### Bug Fixes
+
+* outdate v2 compatibility ([063e5d3](https://github.com/mx-space/kami/commit/063e5d39265a3200dbb6aef7e1c66c7fc1407597))
+* v2 compatibility ([f1575fa](https://github.com/mx-space/kami/commit/f1575fabe2e568c79fa87f0e2a473bbf23ca7d1f))
+
+
+### Features
+
+* api v2 ([e7eea73](https://github.com/mx-space/kami/commit/e7eea73f03c6345ea142dcfbc6aa336627389311))
+
+
+
+# [1.18.0](https://github.com/mx-space/kami/compare/v1.17.0...v1.18.0) (2021-09-10)
+
+
+### Bug Fixes
+
+* [CodeFactor] Apply fixes to commit 3dce179 ([#794](https://github.com/mx-space/kami/issues/794)) ([9c2e7cc](https://github.com/mx-space/kami/commit/9c2e7ccc0013784e98183236e8523a6528d8046d))
+* **deps:** update dependency @fortawesome/react-fontawesome to v0.1.15 ([10e46ac](https://github.com/mx-space/kami/commit/10e46ac68be10bb64e4aa3eacff9f2dad103662c))
+* **deps:** update dependency axios to v0.21.2 ([1eeb190](https://github.com/mx-space/kami/commit/1eeb190c7368f8cc0e634b3d3c4d7d103d22cb32))
+* **deps:** update dependency axios to v0.21.3 ([e33cc08](https://github.com/mx-space/kami/commit/e33cc089996152cdec6f5eb3b14411cc8be6002c))
+* **deps:** update dependency axios to v0.21.4 ([327faf6](https://github.com/mx-space/kami/commit/327faf661af8123dbd85d21cddfcfcf4382d0202))
+* **deps:** update dependency js-cookie to v3 ([#797](https://github.com/mx-space/kami/issues/797)) ([a392ea3](https://github.com/mx-space/kami/commit/a392ea31ed2b3af468036e6a66de29d36cfe6a24))
+* **deps:** update dependency js-cookie to v3.0.1 ([c7d5334](https://github.com/mx-space/kami/commit/c7d5334fc26bdca2f626cd8f831614740b12dc52))
+* **deps:** update dependency mobx to v6.3.3 ([6d56a3d](https://github.com/mx-space/kami/commit/6d56a3d0a6a394a1af84282b2ed4091682df2547))
+* **deps:** update dependency mobx-react-lite to v3.2.1 ([3680d3a](https://github.com/mx-space/kami/commit/3680d3ac994af2418e99cc749837b79c5d5f58f4))
+* **deps:** update dependency next to v11.1.1 ([a8edf92](https://github.com/mx-space/kami/commit/a8edf92b2e6b0e797c0b958da3f1c6ff44221620))
+* **deps:** update dependency next to v11.1.2 ([98aa89e](https://github.com/mx-space/kami/commit/98aa89e67aab102ae51e0c22730954da9f319134))
+* **deps:** update dependency rc-queue-anim to v2 ([#787](https://github.com/mx-space/kami/issues/787)) ([1893d9a](https://github.com/mx-space/kami/commit/1893d9a4272b72ddfea5ebad3501e72114987e98))
+* **deps:** update dependency react-intersection-observer to v8.32.1 ([ae4f202](https://github.com/mx-space/kami/commit/ae4f20250bc7022cb79ecbc426d5fb6a4ffe8daa))
+* **deps:** update dependency react-medium-image-zoom to v4.3.5 ([6369604](https://github.com/mx-space/kami/commit/6369604e62490dabdd2ccc416598c474ae573395))
+* **deps:** update dependency react-syntax-highlighter to v15.4.4 ([89ab4c9](https://github.com/mx-space/kami/commit/89ab4c95c462213977451ec1c23b8ab79c3d4da0))
+* **deps:** update dependency tailwindcss to v2.2.10 ([75c898e](https://github.com/mx-space/kami/commit/75c898ec6acbd69dcef30b1415fd36abd6b3dfdf))
+* **deps:** update dependency tailwindcss to v2.2.11 ([6ad63a5](https://github.com/mx-space/kami/commit/6ad63a5c5e4c3269b09243c9bb63a27ba78f5e5f))
+* **deps:** update dependency tailwindcss to v2.2.12 ([3b04777](https://github.com/mx-space/kami/commit/3b04777f84454caf9fb24120b88681f939450cf2))
+* **deps:** update dependency tailwindcss to v2.2.13 ([a4c6f4c](https://github.com/mx-space/kami/commit/a4c6f4c95d42e77cc54c7926349a3f425e326953))
+* **deps:** update dependency tailwindcss to v2.2.14 ([971c0cb](https://github.com/mx-space/kami/commit/971c0cb07d296b29093bfb405c0463dfe1c29e23))
+* **deps:** update dependency tailwindcss to v2.2.5 ([51c5ba0](https://github.com/mx-space/kami/commit/51c5ba0aaa1060c0160d5a1b6652eaba0c863d8d))
+* **deps:** update dependency tailwindcss to v2.2.6 ([1ab32ce](https://github.com/mx-space/kami/commit/1ab32ce2e0325e47712415d8e627e72113dcff39))
+* **deps:** update dependency tailwindcss to v2.2.7 ([795f168](https://github.com/mx-space/kami/commit/795f168ae6cb3f3c22f4111584c970432ab873f1))
+* **deps:** update dependency tailwindcss to v2.2.8 ([95b731e](https://github.com/mx-space/kami/commit/95b731e88c079b62ff0efea895dcd7dda3a56976))
+* **deps:** update dependency tailwindcss to v2.2.9 ([0fe6e2c](https://github.com/mx-space/kami/commit/0fe6e2cb2c6eee5e2142ae3cbca636dd85622a92))
+* **deps:** update font awesome ([f66734a](https://github.com/mx-space/kami/commit/f66734a1f7e46fe832444b00c5c3ea09b6d3aaad))
+* image caled overflow ([688a692](https://github.com/mx-space/kami/commit/688a6928f89a1df86af118b716cdee5a972944e2))
+* oncopy ([3dce179](https://github.com/mx-space/kami/commit/3dce179195a5201c332eb3b9e61ab0a1a022bf3f))
+* randome image url ([905d56e](https://github.com/mx-space/kami/commit/905d56ef21f6bc1dd897da15060459075098aeaf))
+* useLayoutEffect on ssr ([94e9829](https://github.com/mx-space/kami/commit/94e982912b648dd00f9f83c0fe0e9e6efdfe07c9))
+
+
+### Features
+
+* add note nav ([17b75a2](https://github.com/mx-space/kami/commit/17b75a27ca62b8f236f1e11d0ee9e73a80b7f27d))
+
+
+
+# [1.17.0](https://github.com/mx-space/kami/compare/v1.16.0...v1.17.0) (2021-07-08)
+
+
+### Bug Fixes
+
+* **deps:** update dependency camelcase-keys to v7 ([#745](https://github.com/mx-space/kami/issues/745)) ([1d0d744](https://github.com/mx-space/kami/commit/1d0d744a3f4d5a14ed4d24307c72aff217348a01))
+* **deps:** update dependency dayjs to v1.10.6 ([888887b](https://github.com/mx-space/kami/commit/888887b4aa2aa08e43381e6548c5d5e7242deb62))
+* **deps:** update dependency next-seo to v4.25.1 ([#731](https://github.com/mx-space/kami/issues/731)) ([f4051aa](https://github.com/mx-space/kami/commit/f4051aa1075ca21d02c95423dd9d59a74ae8e4f7))
+* **deps:** update dependency next-seo to v4.26.0 ([#738](https://github.com/mx-space/kami/issues/738)) ([bc69d85](https://github.com/mx-space/kami/commit/bc69d85951e54eda49c46c40f9c5e87d0c12d65d))
+* **deps:** update dependency react-countup to v4.4.0 ([#749](https://github.com/mx-space/kami/issues/749)) ([5a9cb09](https://github.com/mx-space/kami/commit/5a9cb09cee60f53ea7702ffa55436c87bab5576f))
+* **deps:** update dependency react-medium-image-zoom to v4.3.4 ([b1d8cae](https://github.com/mx-space/kami/commit/b1d8cae787158909e4c7d43ff675c48811c717bc))
+* **deps:** update dependency tailwindcss to v2.2.2 ([#735](https://github.com/mx-space/kami/issues/735)) ([15df03d](https://github.com/mx-space/kami/commit/15df03dcd1b321039202a2faa5a4acf789903737))
+* **deps:** update dependency tailwindcss to v2.2.4 ([a7c8c73](https://github.com/mx-space/kami/commit/a7c8c73aab0a2eddad3a180b3fe8d2f2d7d17c17))
+* netease https ([2edfee3](https://github.com/mx-space/kami/commit/2edfee3a18dc91ecbc54bce0ed4d31e078428338))
+* netease player song url ([bf5b702](https://github.com/mx-space/kami/commit/bf5b702400e40d026eda1abdad38d739d4f81890))
+* not? emmm ([17d439f](https://github.com/mx-space/kami/commit/17d439f6156d9d423c7ead281421223b66141f63))
+* skip spider bot ([697df79](https://github.com/mx-space/kami/commit/697df79e94ed8684127c5de1bd29c46bc67e8041))
+* timeline style ([60698fe](https://github.com/mx-space/kami/commit/60698fe31a7ddbcf6c375dc6ec06245e5557074e))
+* update next 11 ([0fa3dad](https://github.com/mx-space/kami/commit/0fa3dada337476bfb2dcdf1297c62f66fd2c8667))
+
+
+### Reverts
+
+* downgrade io to v2 ([517b7f9](https://github.com/mx-space/kami/commit/517b7f9d14b600cd70061f4d36eea98a25e4ac3d))
+
+
+
+# [1.16.0](https://github.com/mx-space/kami/compare/v1.15.0...v1.16.0) (2021-06-12)
+
+
+### Bug Fixes
+
+* **deps:** update dependency dayjs to v1.10.5 ([ec6d93f](https://github.com/mx-space/kami/commit/ec6d93f5564c09549a66a719cbe8019d67f9729e))
+* **deps:** update dependency mobx to v6.3.2 ([#676](https://github.com/mx-space/kami/issues/676)) ([be04e9f](https://github.com/mx-space/kami/commit/be04e9f3a1cffeb7dc391f546a9a8c28404af368))
+* **deps:** update dependency neteasecloudmusicapi to v4.0.13 ([cd4b62b](https://github.com/mx-space/kami/commit/cd4b62bb5f5e153e17309b46063a65fea20aa403))
+* **deps:** update dependency neteasecloudmusicapi to v4.0.14 ([d75eb07](https://github.com/mx-space/kami/commit/d75eb075d0932171c28f671973d3b764f700778c))
+* **deps:** update dependency neteasecloudmusicapi to v4.0.15 ([92ac539](https://github.com/mx-space/kami/commit/92ac53982b2b9d194222914a78d8101588d254a4))
+* **deps:** update dependency neteasecloudmusicapi to v4.0.16 ([7834d5e](https://github.com/mx-space/kami/commit/7834d5e3fbdad15875d2d59a723d472cd56b4c69))
+* **deps:** update dependency react-hook-form to v6.15.8 ([e9d1a4a](https://github.com/mx-space/kami/commit/e9d1a4aa76096a7847110bc8abcc6e641b601457))
+* **deps:** update dependency react-transition-group to v4.4.2 ([2c0c1f5](https://github.com/mx-space/kami/commit/2c0c1f5d08d07b879f9d37a13873e089edc84050))
+* **deps:** update dependency tailwindcss to v2.1.3 ([e3c0f5f](https://github.com/mx-space/kami/commit/e3c0f5f71a30d0435650d209f84a7dd2eb235580))
+* **deps:** update dependency tailwindcss to v2.1.4 ([5c17aab](https://github.com/mx-space/kami/commit/5c17aabe1f8f776d38cba956889d0f02db1e7421))
+* devtools-detector ([9fa37de](https://github.com/mx-space/kami/commit/9fa37de3f437739e745d8c7c7ac9452da828628e))
+* fucking netease music ([4c05d92](https://github.com/mx-space/kami/commit/4c05d923eacd3b1af5f123ebe144a40f5c686900))
+* messsage date ([89a3f52](https://github.com/mx-space/kami/commit/89a3f52d0750eb8fe80876f2f7353146afb7d418))
+* random image ([f13e4ea](https://github.com/mx-space/kami/commit/f13e4ea27901bbb80953f7b0f47fbb3248c86014))
+* vercel ([bd540d7](https://github.com/mx-space/kami/commit/bd540d7c0f16355ce2065b75de5a106514824813))
+
+
+### Features
+
+* add pagination for pages ([b63bb4f](https://github.com/mx-space/kami/commit/b63bb4f066f3f6fa3b3caeaaadd1de9a43883a25))
+
+
+
+# [1.15.0](https://github.com/mx-space/kami/compare/v1.13.1...v1.15.0) (2021-05-21)
+
+
+### Bug Fixes
+
+* config ([0e91da9](https://github.com/mx-space/kami/commit/0e91da946439350d2753395997373c281def03a1))
+* copy ([7360034](https://github.com/mx-space/kami/commit/73600343d1c268a4d9a3be66cc5faf5a6d464c98))
+* date format error ([b397a92](https://github.com/mx-space/kami/commit/b397a929ff7a0c2c163fb6660d74d829fd244f2b))
+* **deps:** update dependency inflection to v1.13.1 ([#650](https://github.com/mx-space/kami/issues/650)) ([74f52ce](https://github.com/mx-space/kami/commit/74f52ce4cbbc2aeaa3316fe3e483c9ba42159e2c))
+* **deps:** update dependency react-intersection-observer to v8.32.0 ([#674](https://github.com/mx-space/kami/issues/674)) ([e228245](https://github.com/mx-space/kami/commit/e228245afc427a6cdade9db0929e09f043f1581a))
+* **deps:** update dependency sitemap to v7 ([#651](https://github.com/mx-space/kami/issues/651)) ([e26810b](https://github.com/mx-space/kami/commit/e26810b44c74d30927a7bcd448f91d0ff793b893))
+* env & del style ([4ce4c94](https://github.com/mx-space/kami/commit/4ce4c9421810c20c887c44083742bc009c343e77))
+* header action style ([39ba285](https://github.com/mx-space/kami/commit/39ba28509403c18f3c9b8c1cc09a0eda3e2b4867))
+* header meta style ([051e0aa](https://github.com/mx-space/kami/commit/051e0aaa87ded69ef469719d27de3d3e9c20664b))
+* loader style ([b5687c4](https://github.com/mx-space/kami/commit/b5687c43623b8450b3f46821b50b11e1b26ed8ab))
+* relative time error ([8978f67](https://github.com/mx-space/kami/commit/8978f67ebc55387cf375a458ed22e8eeab86ef05))
+* some bug ([ea625a1](https://github.com/mx-space/kami/commit/ea625a17697f97a87212765def5ef55a2e4418a4))
+* some style improve ([12d53f5](https://github.com/mx-space/kami/commit/12d53f54dcabc0d9343c5473abeb7e2b57bfd0c6))
+* type error ([a879490](https://github.com/mx-space/kami/commit/a8794908f13c56c40998aa392260524014edb97a))
+
+
+### Features
+
+* new music player ([24440d8](https://github.com/mx-space/kami/commit/24440d8629078fb96bf5891c17a19dee835cad90))
+* rss style ([fb17cf8](https://github.com/mx-space/kami/commit/fb17cf80275f4f56f85f7570e3229e237477c48a))
+
+
+
+## [1.13.1](https://github.com/mx-space/kami/compare/v1.13.0...v1.13.1) (2021-05-04)
+
+
+### Bug Fixes
+
+* ts types error ([bfb2e8f](https://github.com/mx-space/kami/commit/bfb2e8f1d233bcee1118ec8d0def2e7fbe52755b))
+
+
+
+# [1.13.0](https://github.com/mx-space/kami/compare/v1.11.0...v1.13.0) (2021-05-04)
+
+
+### Bug Fixes
+
+* add `ts` to like api ([4cae2da](https://github.com/mx-space/kami/commit/4cae2da295351f6e580823f4cc24c6e5a14917c4))
+* **deps:** update dependency @types/classnames to v2.3.0 ([625e6be](https://github.com/mx-space/kami/commit/625e6beba91e9d0db112778c34c91879a04a3900))
+* **deps:** update dependency mobx to v6.2.0 ([#615](https://github.com/mx-space/kami/issues/615)) ([9f3f1e9](https://github.com/mx-space/kami/commit/9f3f1e99ce21a72e5d5e39016f5062dcc26317e3))
+* **deps:** update dependency mobx to v6.3.0 ([#635](https://github.com/mx-space/kami/issues/635)) ([bbe0f8f](https://github.com/mx-space/kami/commit/bbe0f8f23bfdd2944d1c73834fc78e8979670771))
+* **deps:** update dependency neteasecloudmusicapi to v4.0.10 ([577a717](https://github.com/mx-space/kami/commit/577a717250548a3b2077a5a413ad83dc25a08190))
+* **deps:** update dependency neteasecloudmusicapi to v4.0.11 ([16d2fa3](https://github.com/mx-space/kami/commit/16d2fa3afe6fda70dd4b10e50f77ed667525717e))
+* **deps:** update dependency neteasecloudmusicapi to v4.0.12 ([abb2c07](https://github.com/mx-space/kami/commit/abb2c075cb07484bebbd6fa390272767632e5cf2))
+* **deps:** update dependency next-offline to v5.0.5 ([75591df](https://github.com/mx-space/kami/commit/75591df2def28477f2b7b58c97570a981c2766c4))
+* **deps:** update dependency next-seo to v4.24.0 ([#626](https://github.com/mx-space/kami/issues/626)) ([d8ee17d](https://github.com/mx-space/kami/commit/d8ee17dd35f778708cb1a78deaaa2340bde67544))
+* **deps:** update dependency react-hook-form to v6.15.6 ([61befb1](https://github.com/mx-space/kami/commit/61befb1529ae01c4875a91ba5af5aca49a55da24))
+* **deps:** update dependency react-hook-form to v6.15.7 ([6633ea3](https://github.com/mx-space/kami/commit/6633ea37f59f24a79eb2407e336df42c2fce4832))
+* **deps:** update dependency react-intersection-observer to v8.31.1 ([9d00fdc](https://github.com/mx-space/kami/commit/9d00fdc1487f748c9bcdcb69882955a6aed1efae))
+* **deps:** update dependency react-use to v17.2.3 ([31c672b](https://github.com/mx-space/kami/commit/31c672bcb9111a1ee65888bb3d8d3328bc9ba855))
+* **deps:** update dependency react-use to v17.2.4 ([c5f581e](https://github.com/mx-space/kami/commit/c5f581eb6519cc42e68307562f121e14fc80e7a9))
+* **deps:** update dependency tailwindcss to v2.1.1 ([#606](https://github.com/mx-space/kami/issues/606)) ([7127e26](https://github.com/mx-space/kami/commit/7127e267ca354a9511c2da8aa19e54c14ddde61d))
+* **deps:** update dependency tailwindcss to v2.1.2 ([4a71644](https://github.com/mx-space/kami/commit/4a716447f05ca8ae1b1f586d6e0e5ae3b058679a))
+* **deps:** update dependency ua-parser-js to v0.7.28 ([876066c](https://github.com/mx-space/kami/commit/876066cef561c45366b96a1ad42a6bfd091fb373))
+* **deps:** update dependency validator to v13.6.0 ([#631](https://github.com/mx-space/kami/issues/631)) ([de3e6e2](https://github.com/mx-space/kami/commit/de3e6e22a77482cc3c08985913e0e403bfe80b0b))
+* I am so stupid. ([a0385f9](https://github.com/mx-space/kami/commit/a0385f9785922c50ae7251ae5a03fb7c0e562212))
+* image max height ([6954cf1](https://github.com/mx-space/kami/commit/6954cf1621018243842186bce0b1962fccf2c7e3))
+* image resize after window resize ([0d14c80](https://github.com/mx-space/kami/commit/0d14c804aad342bf378577847abafa593e848fe9))
+* like action ([48ef29c](https://github.com/mx-space/kami/commit/48ef29c8bb607b22ec536c82844a0b4be9054272))
+* like count reactity ([2e4ef89](https://github.com/mx-space/kami/commit/2e4ef89e8f359e3e977a2b490b074c8cafc87416))
+* like this ([7972c0d](https://github.com/mx-space/kami/commit/7972c0d3d8c4166ceb44b3c1427d7e36d670885f))
+* more bug ([1adbc3e](https://github.com/mx-space/kami/commit/1adbc3edfb5a8a41c2f72afe29697104a265150b))
+* more pref. improved ([0c3329c](https://github.com/mx-space/kami/commit/0c3329c5f8b89a8af37518aa68cc61d229af62ba))
+* nossr ([13fce70](https://github.com/mx-space/kami/commit/13fce70e765783d9f798220d5e0b3e8d5826103a))
+* something ([40a9479](https://github.com/mx-space/kami/commit/40a9479d1be5c40970f3112bb0b7e072d4b1058c))
+* toc ([c96e1a6](https://github.com/mx-space/kami/commit/c96e1a62e3b125a7f635bcb22db3a2262bf53f84))
+* use getInitialProps instead of getServerProps ([8b27c86](https://github.com/mx-space/kami/commit/8b27c86b7f61bfa680862055aba1a723ffe79cb6))
+
+
+
+# [1.11.0](https://github.com/mx-space/kami/compare/v1.10.0...v1.11.0) (2021-04-05)
+
+
+### Bug Fixes
+
+* btn ([1f543a9](https://github.com/mx-space/kami/commit/1f543a9fe3aac1bf196e011e3af72952483f2c05))
+* **deps:** update dependency mobx to v6.1.7 ([0c0581d](https://github.com/mx-space/kami/commit/0c0581d0931a2ba3dd8f6e4fdbcfb332cf81771f))
+* **deps:** update dependency mobx to v6.1.8 ([96855d3](https://github.com/mx-space/kami/commit/96855d3aaf992d19c2c60dd559191336b8aea45f))
+* **deps:** update dependency neteasecloudmusicapi to v4.0.4 ([15996fa](https://github.com/mx-space/kami/commit/15996facc2d7a3ec87ac68c3ab6e1916ee90865e))
+* **deps:** update dependency neteasecloudmusicapi to v4.0.5 ([cc30326](https://github.com/mx-space/kami/commit/cc30326e966d50535f1b4ee374e3d327d00b8c15))
+* **deps:** update dependency neteasecloudmusicapi to v4.0.6 ([e04c492](https://github.com/mx-space/kami/commit/e04c492427e9f16cc5b75fc72c088848ac17a8bb))
+* **deps:** update dependency neteasecloudmusicapi to v4.0.8 ([b416456](https://github.com/mx-space/kami/commit/b41645674d39fa67c5a4054b26d059a55fe042c1))
+* **deps:** update dependency neteasecloudmusicapi to v4.0.9 ([f56d641](https://github.com/mx-space/kami/commit/f56d641b201773403f5b28b31a6f0b0e952a5ef4))
+* **deps:** update dependency next-seo to v4.20.0 ([#541](https://github.com/mx-space/kami/issues/541)) ([c88ac75](https://github.com/mx-space/kami/commit/c88ac75532f11a040bc27e91856f545aa621f224))
+* **deps:** update dependency next-seo to v4.22.0 ([#579](https://github.com/mx-space/kami/issues/579)) ([114e2d3](https://github.com/mx-space/kami/commit/114e2d37340430c2e8b9112b0a086a990ecba461))
+* **deps:** update dependency next-seo to v4.23.0 ([#585](https://github.com/mx-space/kami/issues/585)) ([8639980](https://github.com/mx-space/kami/commit/86399804fc9add1e5b094d7e534bdbd9838b4617))
+* **deps:** update dependency react-hook-form to v6.15.2 ([d14d471](https://github.com/mx-space/kami/commit/d14d4715f0d59e5cda82cf615e04dd30347905af))
+* **deps:** update dependency react-hook-form to v6.15.3 ([65e21f7](https://github.com/mx-space/kami/commit/65e21f7bc34e7f03a79e0f2a04bf282c376db553))
+* **deps:** update dependency react-hook-form to v6.15.4 ([32b0909](https://github.com/mx-space/kami/commit/32b0909a43e62bab9e4c066e317fc312c357b431))
+* **deps:** update dependency react-hook-form to v6.15.5 ([902c649](https://github.com/mx-space/kami/commit/902c649c12a7cc104ae62c04a028a64e1f3fd532))
+* **deps:** update dependency react-use to v17.2.1 ([#568](https://github.com/mx-space/kami/issues/568)) ([fdde396](https://github.com/mx-space/kami/commit/fdde3964858f5fd7130a5c8625cd5cc875fd8e68))
+* **deps:** update dependency sitemap to v6.4.0 ([#532](https://github.com/mx-space/kami/issues/532)) ([19821bb](https://github.com/mx-space/kami/commit/19821bb2832583b929d96805a65ee3e01409dfef))
+* **deps:** update dependency tailwindcss to v2.0.4 ([435847e](https://github.com/mx-space/kami/commit/435847efd6dc207af2950ee5334f754f2627dd59))
+* **deps:** update dependency ua-parser-js to v0.7.25 ([34fd057](https://github.com/mx-space/kami/commit/34fd05768a15dc1a69ef517237762a73ab37a372))
+* **deps:** update dependency ua-parser-js to v0.7.26 ([42d1fb1](https://github.com/mx-space/kami/commit/42d1fb1336d66f05a850b7728d11e5fe0c571f08))
+* **deps:** update dependency ua-parser-js to v0.7.27 ([afd8ffc](https://github.com/mx-space/kami/commit/afd8ffc2199de9a956346ab57968ea49e701d6d8))
+* **deps:** update font awesome ([81dcf85](https://github.com/mx-space/kami/commit/81dcf852abb1ee9c53cc8ecf8d26568b746e1765))
+* **deps:** update react monorepo to v17.0.2 ([6bed4f8](https://github.com/mx-space/kami/commit/6bed4f8d768928e6b5cfde2dbb68496f7b891af3))
+* drawer overflow ([53361ac](https://github.com/mx-space/kami/commit/53361ace18afa6f6ea046a6201873580ecc8c1e4))
+* header drawer overflow on lower screen. ([edc2371](https://github.com/mx-space/kami/commit/edc237105d4ed76eed013060611b21ce24558ffd))
+* **header:** anchor ball transiton ([563dc8c](https://github.com/mx-space/kami/commit/563dc8cc4bd81dc4274c676882e7c0ef41b04003))
+* if logged can't see secret ([1b35581](https://github.com/mx-space/kami/commit/1b35581a493e72298507bbfebe4b74d7e3fa3681))
+* message greeting ([c6af8e6](https://github.com/mx-space/kami/commit/c6af8e640dd89ec69a561d0bd6684c09a3b921c9))
+* note secret not hide if owner ([121fe39](https://github.com/mx-space/kami/commit/121fe39e81e06f02541ad09ccb39d66108166b50))
+* outdate block style ([0fe1b5f](https://github.com/mx-space/kami/commit/0fe1b5ff949bdf0081788f2613b506099a76293d))
+* remove forbidden console ([7c427ad](https://github.com/mx-space/kami/commit/7c427ad693b15895784b098d7b7c3a476884828c))
+* scroll event ([e699246](https://github.com/mx-space/kami/commit/e699246c0cf4ae39b88227488e235844fca8c691))
+* some styles ([9a3bc08](https://github.com/mx-space/kami/commit/9a3bc087fb90284995cb2fc7ca10652d455d43ab))
+* style on firefox ([2081de7](https://github.com/mx-space/kami/commit/2081de745978ab09af531d6523f95bf248ef56d2))
+* twitter url ([92fc6d7](https://github.com/mx-space/kami/commit/92fc6d7b32a63463ad16f03fa2b4a3df21b6f9a4))
+* typo in property ([f533123](https://github.com/mx-space/kami/commit/f53312320b147de1d4500d16f9f52c2f162f102c))
+
+
+### Features
+
+* add note secret ([31fe5fb](https://github.com/mx-space/kami/commit/31fe5fb9a23ba5cb50ca8a838496aec8fe6e3a62))
+* adjust style ([dc3ba52](https://github.com/mx-space/kami/commit/dc3ba524f6229f8d16ee82e99c6d8c754d8aacf0))
+* forbidden open devtools ([834b829](https://github.com/mx-space/kami/commit/834b8296abe82b2799cb292be59954aaab309e08))
+* re-danmuku ([14c1629](https://github.com/mx-space/kami/commit/14c1629574f7073e79a15eadc40e1881ccb60984))
+* refactor $bus & add recently page ([df48fb1](https://github.com/mx-space/kami/commit/df48fb13c0a478f5d239fc6e4850fd2f1d3b6bfb))
+
+
+
+# [1.10.0](https://github.com/mx-space/kami/compare/v1.9.0...v1.10.0) (2021-02-12)
+
+
+### Bug Fixes
+
+* **deps:** update dependency dayjs to v1.10.4 ([070e297](https://github.com/mx-space/kami/commit/070e2971ba392183e5030d0388190abfe77df0b6))
+* **deps:** update dependency mobx to v6.0.5 ([67d12f1](https://github.com/mx-space/kami/commit/67d12f15b10b9b7f8cbb14b4d7b314ee5ddac2dd))
+* **deps:** update dependency mobx to v6.1.4 ([#493](https://github.com/mx-space/kami/issues/493)) ([c9ecd4b](https://github.com/mx-space/kami/commit/c9ecd4b6445973b202d722ccf4a6e8763da7fdf1))
+* **deps:** update dependency mobx to v6.1.5 ([5296469](https://github.com/mx-space/kami/commit/5296469cd4d31e9f9528a8a0e9c76af6030ee2cb))
+* **deps:** update dependency mobx to v6.1.6 ([788fbc1](https://github.com/mx-space/kami/commit/788fbc103b1f1e5304510d84290cef9e9dffebd4))
+* **deps:** update dependency mobx-react-lite to v3.1.7 ([0af662b](https://github.com/mx-space/kami/commit/0af662bcb96cf948dd68f317b488d1a39656356f))
+* **deps:** update dependency mobx-react-lite to v3.2.0 ([#494](https://github.com/mx-space/kami/issues/494)) ([72444d6](https://github.com/mx-space/kami/commit/72444d6a2db623d62e626e37e002b40630cb2a00))
+* **deps:** update dependency next-seo to v4.19.0 ([#495](https://github.com/mx-space/kami/issues/495)) ([3225117](https://github.com/mx-space/kami/commit/322511774f5b29c7c4b03a8f795408d44858d394))
+* **deps:** update dependency react-hook-form to v6.14.2 ([2681b58](https://github.com/mx-space/kami/commit/2681b5869d4bb75036a8666d1d0849db16226a89))
+* **deps:** update dependency react-hook-form to v6.15.1 ([#502](https://github.com/mx-space/kami/issues/502)) ([63e4c72](https://github.com/mx-space/kami/commit/63e4c72191d79bf3da57438b98734e4e5bf33d28))
+* **deps:** update dependency react-use to v17 ([#498](https://github.com/mx-space/kami/issues/498)) ([f9f6537](https://github.com/mx-space/kami/commit/f9f653758a6eefbc656764ab2bf5afd040fa421f))
+* **deps:** update dependency react-use to v17.1.1 ([be2977c](https://github.com/mx-space/kami/commit/be2977c2f1ed3156b27407ffd3fa5fc8bfd5e2bd))
+* **deps:** update dependency sitemap to v6.3.6 ([a5fb473](https://github.com/mx-space/kami/commit/a5fb473c50c252fa356ae4583dc815af04ad3370))
+* **deps:** update dependency tailwindcss to v2.0.3 ([6904227](https://github.com/mx-space/kami/commit/6904227801f6340df5e6363c99628f25c4e395a7))
+* **deps:** update dependency ua-parser-js to v0.7.24 ([78b52d2](https://github.com/mx-space/kami/commit/78b52d25d7daa6f5db67fea54e2ad9495fe02661))
+* dropdown comp ([ed3eddd](https://github.com/mx-space/kami/commit/ed3eddd1b0d91c263cb5f978cf62530661ee2aff))
+* fix some bugs ([6ce58bb](https://github.com/mx-space/kami/commit/6ce58bb491046bc01c1843c88a0c16b43f8d8e43))
+* **header:** display `0` if not match route ([49b1044](https://github.com/mx-space/kami/commit/49b1044d92302ebe50a6d3a5909b3e73384a6719))
+* post block headline style ([4b571a0](https://github.com/mx-space/kami/commit/4b571a00c4eb6b931cca93882cf06cca2ad4560b))
+* router change transition ([9e87d57](https://github.com/mx-space/kami/commit/9e87d57532f1f7f8ea6f2b1e81effb8b1ee059a8))
+* textarea resize ([f11c447](https://github.com/mx-space/kami/commit/f11c447f0b368e109ffc4fa201a7cf88a65d9249))
+
+
+### Features
+
+* add api ([e2ad5fc](https://github.com/mx-space/kami/commit/e2ad5fc979438ee4ff1c00e90d0a081646740df2))
+* add login entry ([d2a7d34](https://github.com/mx-space/kami/commit/d2a7d344125dc6b7d2ab9e1b678f78a2aa349842))
+* add share api ([6649a3b](https://github.com/mx-space/kami/commit/6649a3bb8114fb9af20201e3f3f71e2ca2ef710a))
+* add tailwind ([5ac9428](https://github.com/mx-space/kami/commit/5ac94287268034571b58d74476ce4a9704139e93))
+* adjust header style ([941eddf](https://github.com/mx-space/kami/commit/941eddf2094f09a821c6d37d64be56a43480e9d3))
+* head nav swiper ([4e1cce2](https://github.com/mx-space/kami/commit/4e1cce27d522bec7e3a4c2ecd7cd1c2de4372458))
+* header action button ([a161b16](https://github.com/mx-space/kami/commit/a161b1654fd95a5c6903f6aadd117918d4597e50))
+* header design (2/4 ([1613a12](https://github.com/mx-space/kami/commit/1613a12ad7f8b358c660278d5bec4ba5e946c827))
+* header done ([ab0bd62](https://github.com/mx-space/kami/commit/ab0bd6299e79e09dee5d21f328cb41e7facf6173))
+* like button ([f9378da](https://github.com/mx-space/kami/commit/f9378da08f0b3fcb550134beb9195dcbeddb1dc2))
+* link apply add email notice ([5f26958](https://github.com/mx-space/kami/commit/5f26958043b45fc1306f60f3fda70e3cd1955799))
+* reactive relative date ([f4babd1](https://github.com/mx-space/kami/commit/f4babd173b21b2217d8548b779abc21e25fa7207))
+* redesign header (not completed.) ([3928c6d](https://github.com/mx-space/kami/commit/3928c6da8197da47a9035b5b51ffd19367fc8dd7))
+* refactor header menu dropdown ([8e1cd17](https://github.com/mx-space/kami/commit/8e1cd174498d38b5dd02b9c8bacb0db9a3ccd9ce))
+* update copyright warn ([1cc0c83](https://github.com/mx-space/kami/commit/1cc0c831cd9c34520a5d2d4c731bcc26333f5a14))
+
+
+
+# [1.9.0](https://github.com/mx-space/kami/compare/v1.8.0...v1.9.0) (2021-01-14)
+
+
+### Bug Fixes
+
+* **deps:** update dependency dayjs to v1.10.2 ([32ca4ea](https://github.com/mx-space/kami/commit/32ca4ea521465e0642363c5ef15fbe27d8398812))
+* **deps:** update dependency dayjs to v1.10.3 ([14c9342](https://github.com/mx-space/kami/commit/14c9342c277b0c8c19f1a635eea9abeca879a552))
+* **deps:** update dependency gitlog to v4.0.4 ([99b30cf](https://github.com/mx-space/kami/commit/99b30cf9447a723bedf84f7ddeaa6285e4d80cf0))
+* **deps:** update dependency react-use to v15.3.6 ([83262cb](https://github.com/mx-space/kami/commit/83262cb356b40b59edbb14fd79d39c33cd9ff875))
+* **deps:** update dependency react-use to v15.3.7 ([b897f3a](https://github.com/mx-space/kami/commit/b897f3a417d027ad54ad88e7925e9d39ac85eec4))
+* **deps:** update dependency react-use to v15.3.8 ([ebc2a8f](https://github.com/mx-space/kami/commit/ebc2a8f6110e63f0ae8cf19604a9337d316d31db))
+* **deps:** update dependency sass to v1.32.1 ([64560b3](https://github.com/mx-space/kami/commit/64560b3b3dfbfef7cb9a6582f835812d4da3ff3e))
+* **deps:** update dependency sass to v1.32.2 ([9a78e2f](https://github.com/mx-space/kami/commit/9a78e2f52194425c27ebfd7b13ab7d3a45e880e2))
+* **deps:** update dependency socket.io-client to v2.4.0 ([#461](https://github.com/mx-space/kami/issues/461)) ([95b5b65](https://github.com/mx-space/kami/commit/95b5b6528f00427dcd75217617066772d9db831f))
+* **deps:** update font awesome ([959a8a7](https://github.com/mx-space/kami/commit/959a8a7faa79b347c90a72998b6f41a2cd6ca071))
+* image preview in print mode ([906c6f1](https://github.com/mx-space/kami/commit/906c6f107cc9aa6696294d6e518194e77123a354))
+* image wrapper cal ([f401f99](https://github.com/mx-space/kami/commit/f401f99d35552ba43c31a9b18d12dfcb71579eec))
+* toc focus after scroll end ([cf5c87e](https://github.com/mx-space/kami/commit/cf5c87e52072582fc2418269bfb528e4686d9168))
+* transition and image caluate ([8d20059](https://github.com/mx-space/kami/commit/8d2005964b2b6ec0a0ea903127500af201950c23))
+
+
+### Features
+
+* add edit link to admin ([b3dd2e7](https://github.com/mx-space/kami/commit/b3dd2e7746ab77346ad74ad57fa8dd5696f1ad53))
+* add router transition ([86183d6](https://github.com/mx-space/kami/commit/86183d6d6559eefad271c19ef0041c13da66439f))
+* add toc auto-focus ([fcd8a14](https://github.com/mx-space/kami/commit/fcd8a1469e8663411718d5c773c1db286c60f1ad))
+
+
+
+# [1.8.0](https://github.com/mx-space/kami/compare/v1.5.0-alpha...v1.8.0) (2021-01-04)
+
+
+### Bug Fixes
+
+* apply link wrong field ([420f0d1](https://github.com/mx-space/kami/commit/420f0d1afb132e0c702d93c79247f9b639bb53f4))
+* **comment:** fix comment box actions wrapper wrap ([c919f77](https://github.com/mx-space/kami/commit/c919f77a23f95d4a8e9d6400d2f967fd2724ce1e))
+* **deps:** update dependency @fortawesome/react-fontawesome to v0.1.12 ([e5fd320](https://github.com/mx-space/kami/commit/e5fd32025d759f923c59ef7eee78088cb2408b64))
+* **deps:** update dependency @fortawesome/react-fontawesome to v0.1.14 ([77738f2](https://github.com/mx-space/kami/commit/77738f25cf2c0f61188f335bef35587c90931a21))
+* **deps:** update dependency axios to v0.21.0 ([#353](https://github.com/mx-space/kami/issues/353)) ([570e6b8](https://github.com/mx-space/kami/commit/570e6b84cd4427ff6b9073080b2bf15a3704416a))
+* **deps:** update dependency axios to v0.21.1 ([459baed](https://github.com/mx-space/kami/commit/459baed1cf23016b2a5f6825f66561bfca2092f7))
+* **deps:** update dependency dayjs to v1.10.1 ([#457](https://github.com/mx-space/kami/issues/457)) ([c1164d7](https://github.com/mx-space/kami/commit/c1164d74210acdb11e1ffc04381a9a1597fbe62c))
+* **deps:** update dependency dayjs to v1.9.3 ([de41e88](https://github.com/mx-space/kami/commit/de41e88a504347342a03b20dc1fa87b6dbfa3776))
+* **deps:** update dependency dayjs to v1.9.4 ([0bbc973](https://github.com/mx-space/kami/commit/0bbc9731b5c14a9ef67a755bc258bec0d529837d))
+* **deps:** update dependency dayjs to v1.9.5 ([0881bb1](https://github.com/mx-space/kami/commit/0881bb1d24ebc8c4ad0ef2d33079ab6d42476808))
+* **deps:** update dependency dayjs to v1.9.6 ([a0a3e87](https://github.com/mx-space/kami/commit/a0a3e878b9b0c7dd12514cd62052f59dd637cff3))
+* **deps:** update dependency dayjs to v1.9.7 ([#424](https://github.com/mx-space/kami/issues/424)) ([db36ec6](https://github.com/mx-space/kami/commit/db36ec69da1536eae2bd96c1e8ad093305c1b511))
+* **deps:** update dependency dayjs to v1.9.8 ([732cabc](https://github.com/mx-space/kami/commit/732cabc77952c6d1bd0138099c2e65671a0bda54))
+* **deps:** update dependency intersection-observer to v0.12.0 ([#431](https://github.com/mx-space/kami/issues/431)) ([82179c1](https://github.com/mx-space/kami/commit/82179c117a22694fc15f1393394174e204057eee))
+* **deps:** update dependency mobx to v6.0.4 ([2d88774](https://github.com/mx-space/kami/commit/2d88774b5f0731880b0e2b41d9abb576e4064476))
+* **deps:** update dependency mobx-react-lite to v2.2.2 ([#324](https://github.com/mx-space/kami/issues/324)) ([5690f53](https://github.com/mx-space/kami/commit/5690f53676edc7d51946982bfe328e49349a6c73))
+* **deps:** update dependency mobx-react-lite to v3.1.6 ([8d1caa5](https://github.com/mx-space/kami/commit/8d1caa522a3aa6790b12c897538540e85be78058))
+* **deps:** update dependency next-offline to v5.0.3 ([ccb065d](https://github.com/mx-space/kami/commit/ccb065decfc10948383649e2c0404a7361d11622))
+* **deps:** update dependency next-seo to v4.11.0 ([#309](https://github.com/mx-space/kami/issues/309)) ([4d573ed](https://github.com/mx-space/kami/commit/4d573ededa21263d80176b446996399be944d278))
+* **deps:** update dependency next-seo to v4.13.0 ([#336](https://github.com/mx-space/kami/issues/336)) ([5245d69](https://github.com/mx-space/kami/commit/5245d691713999d4938f0599ec87ada4f8f3286f))
+* **deps:** update dependency next-seo to v4.14.0 ([#346](https://github.com/mx-space/kami/issues/346)) ([cca0645](https://github.com/mx-space/kami/commit/cca06458c04521a3441fdc4c0f538381517017f6))
+* **deps:** update dependency next-seo to v4.14.1 ([f20c028](https://github.com/mx-space/kami/commit/f20c028cc1a9936c5af6f2a1eb07ed1710c8ebca))
+* **deps:** update dependency next-seo to v4.15.0 ([#375](https://github.com/mx-space/kami/issues/375)) ([800fdd9](https://github.com/mx-space/kami/commit/800fdd97858c88cb98e996d77f9d099bb6b55f78))
+* **deps:** update dependency next-seo to v4.15.1 ([1bf513b](https://github.com/mx-space/kami/commit/1bf513b080187803fa4bf077430dac37de28d72a))
+* **deps:** update dependency react-color to v2.19.3 ([#363](https://github.com/mx-space/kami/issues/363)) ([24d831c](https://github.com/mx-space/kami/commit/24d831cf852b7d6b12ba1d47f3ec4a1d92fa5576))
+* **deps:** update dependency react-intersection-observer to v8.29.1 ([8cf102c](https://github.com/mx-space/kami/commit/8cf102ccb3b1ef5591a7e5cac6fd92eedfeac429))
+* **deps:** update dependency react-intersection-observer to v8.30.1 ([#377](https://github.com/mx-space/kami/issues/377)) ([6e0bb4f](https://github.com/mx-space/kami/commit/6e0bb4fb21828fa2ceeea0ceb607b2450eb871b0))
+* **deps:** update dependency react-intersection-observer to v8.30.2 ([53f431d](https://github.com/mx-space/kami/commit/53f431da5d5982fc9e7e4b12cb26f43ce8be968f))
+* **deps:** update dependency react-intersection-observer to v8.30.3 ([c9ed701](https://github.com/mx-space/kami/commit/c9ed7012f669a2c09ae34fa397e654afc94b8b44))
+* **deps:** update dependency react-syntax-highlighter to v15.2.1 ([#321](https://github.com/mx-space/kami/issues/321)) ([3c45e19](https://github.com/mx-space/kami/commit/3c45e19a549de6454510a174f157030e524276c9))
+* **deps:** update dependency react-syntax-highlighter to v15.3.0 ([#370](https://github.com/mx-space/kami/issues/370)) ([dff70a3](https://github.com/mx-space/kami/commit/dff70a3cc5b1d395dd2ae80582d4411c72269924))
+* **deps:** update dependency react-syntax-highlighter to v15.4.3 ([#429](https://github.com/mx-space/kami/issues/429)) ([2f859bf](https://github.com/mx-space/kami/commit/2f859bf0dcff3bd961c27e49fde6e5dfabcaf1f9))
+* **deps:** update dependency sass to v1.27.0 ([#323](https://github.com/mx-space/kami/issues/323)) ([5a560c1](https://github.com/mx-space/kami/commit/5a560c1a265a5c1fc2615b877c6fb5cc7ca56b1e))
+* **deps:** update dependency sass to v1.27.1 ([1271232](https://github.com/mx-space/kami/commit/12712325e113718e29994109072c225ee36a6de1))
+* **deps:** update dependency sass to v1.27.2 ([4483763](https://github.com/mx-space/kami/commit/4483763f16cdc5f9ecb94016bacfb6cdd07ebd87))
+* **deps:** update dependency sass to v1.28.0 ([#373](https://github.com/mx-space/kami/issues/373)) ([fd87533](https://github.com/mx-space/kami/commit/fd8753396eb3864e6c90ef5a0270181842358144))
+* **deps:** update dependency sass to v1.30.0 ([#422](https://github.com/mx-space/kami/issues/422)) ([dfbadab](https://github.com/mx-space/kami/commit/dfbadab08c810ef4dbf25378f00d5838c3bdf19f))
+* **deps:** update dependency sass to v1.32.0 ([#451](https://github.com/mx-space/kami/issues/451)) ([c745cbb](https://github.com/mx-space/kami/commit/c745cbbf78505c59f24a17fa239e513fb072a9ff))
+* **deps:** update dependency sitemap to v6.3.3 ([e06c2bf](https://github.com/mx-space/kami/commit/e06c2bfd3468465c4f145026708ecf553e436667))
+* **deps:** update dependency sitemap to v6.3.4 ([740ba6a](https://github.com/mx-space/kami/commit/740ba6acbabceda18f54b4b743a6e4f5c59aadb5))
+* **deps:** update dependency sitemap to v6.3.5 ([ce47361](https://github.com/mx-space/kami/commit/ce4736117c3e063349f81fe752de0f9f9cc0ef4b))
+* **deps:** update dependency ua-parser-js to v0.7.23 ([#425](https://github.com/mx-space/kami/issues/425)) ([cd9a4e1](https://github.com/mx-space/kami/commit/cd9a4e1618e5fe044bdd38c4414a49094ec1d830))
+* **deps:** update dependency validator to v13.5.2 ([#416](https://github.com/mx-space/kami/issues/416)) ([16a946a](https://github.com/mx-space/kami/commit/16a946a709061c21a370da0a1bf182c7f8dfc9f6))
+* **deps:** update react monorepo to v16.14.0 (minor) ([#335](https://github.com/mx-space/kami/issues/335)) ([e18eab1](https://github.com/mx-space/kami/commit/e18eab1cd9696dc8466e1493fe76906566b2460f))
+* disable debug code in prod ([64c1519](https://github.com/mx-space/kami/commit/64c15197c70b5c1dc2a76c170dbf8f783c8c81f4))
+* head logo can't return back home page ([d3cb554](https://github.com/mx-space/kami/commit/d3cb55408b9b9f3a044091ff98e8edb3d9fcedab))
+* image render wrong size ([57348a5](https://github.com/mx-space/kami/commit/57348a5d7b8fee7f344c313848b778ab3fb10bb2))
+* **init:** fix init first time ([ca29e83](https://github.com/mx-space/kami/commit/ca29e837567ab81b3c5a2f0afb60f172f99fc4a9))
+* link filter ([7e68d71](https://github.com/mx-space/kami/commit/7e68d718828d18c64d8330a02a740ebdfe32ee04))
+* link popover font-size ([f0fb41b](https://github.com/mx-space/kami/commit/f0fb41b5a0c2757a9c873112a84d264bb66102cc))
+* loading status ([b46aac0](https://github.com/mx-space/kami/commit/b46aac0d1a32b9f9cb3c2993abad16be68cdb9f9))
+* pm2 config script error ([e8365af](https://github.com/mx-space/kami/commit/e8365af597d5efe82e751a7209ebe3f5210d86da))
+* revert mobx-lite version ([0ef4c2a](https://github.com/mx-space/kami/commit/0ef4c2a098edcbae88dad02b27ff4454adef98d9))
+* **timeline:** list disc ([60e9ece](https://github.com/mx-space/kami/commit/60e9ece404b9bfd09e5bfdc37a85b92bf607b56f))
+* toc re-render ([6d5d468](https://github.com/mx-space/kami/commit/6d5d46802a1adced6058edd416e7f3dfc487eecc))
+
+
+### Features
+
+* add note music ([bf5b342](https://github.com/mx-space/kami/commit/bf5b3428314eb3d0be82a654fbea15a0659b3efc))
+* add random say ([b9617e3](https://github.com/mx-space/kami/commit/b9617e341cdbf667f7ff448e6ec8dcce34547aec))
+* add style for web print ([568fb01](https://github.com/mx-space/kami/commit/568fb0180dd629880927e101287c016723ac9889))
+* change loding style ([74ac26f](https://github.com/mx-space/kami/commit/74ac26f77f616b0ea129b4cec5470af8a85ec75a))
+* comment draft ([56bd03b](https://github.com/mx-space/kami/commit/56bd03b4a076e5dc5dfd556a97e42c6dbb5bb50d))
+* **comment:** add emoji ([f6d8955](https://github.com/mx-space/kami/commit/f6d89554a694da54236afab6c2d4e0bcde0305de))
+* getServerSideProps ([36b3861](https://github.com/mx-space/kami/commit/36b3861a0b467a41257ac80e924542bd1fde917c))
+* image accent color ([243843c](https://github.com/mx-space/kami/commit/243843c5baa7c7e44ee10974db42f85bbf6a18fb))
+* markdown editor (preview) ([827dc6f](https://github.com/mx-space/kami/commit/827dc6ff7c37ec26b44d82768f344a21ed1d2aa5))
+* note mark, toc, note layout ([1bfd534](https://github.com/mx-space/kami/commit/1bfd534d4632e2a483c53f22b066d84e28f0fd0b))
+* **socket:** real time update comments list ([f043aae](https://github.com/mx-space/kami/commit/f043aae03a904ccf9b7a5899902149fc4f32cb18))
+* **socket:** real time update post and note ([082a60a](https://github.com/mx-space/kami/commit/082a60a775916e513e9a9e2c90f4b13fb0a46a5e))
+* timeline view ([1fd9b56](https://github.com/mx-space/kami/commit/1fd9b56549f94fec7899d79142a75b87f14296c6))
+
+
+
+# [1.5.0-alpha](https://github.com/mx-space/kami/compare/v1.4.1...v1.5.0-alpha) (2020-10-08)
+
+
+### Bug Fixes
+
+* **anim:** note layout anime ([8cc3733](https://github.com/mx-space/kami/commit/8cc3733787ff0f27651cd3e59efa054df72cb3ea))
+* **deps:** update dependency @fortawesome/fontawesome-svg-core to v1.2.31 ([#296](https://github.com/mx-space/kami/issues/296)) ([744fc65](https://github.com/mx-space/kami/commit/744fc6588e99d01adf52c53ac6717fa01102c410))
+* **deps:** update dependency @sentry/webpack-plugin to v1.13.0 ([#283](https://github.com/mx-space/kami/issues/283)) ([74b4082](https://github.com/mx-space/kami/commit/74b408280cd4914f1e18dd6afd85e636dae041ac))
+* **deps:** update dependency dayjs to v1.9.1 ([#292](https://github.com/mx-space/kami/issues/292)) ([731d99d](https://github.com/mx-space/kami/commit/731d99d122c1e9447a6ed173304ff7db20b2c691))
+* **deps:** update dependency gitlog to v4.0.1 ([b0f76d8](https://github.com/mx-space/kami/commit/b0f76d89a8fbc4ac0edca61bc534bd741f4c1644))
+* **deps:** update dependency gitlog to v4.0.2 ([6f8f97d](https://github.com/mx-space/kami/commit/6f8f97d7aaed58987bd811d94c13066f9e1ba923))
+* **deps:** update dependency gitlog to v4.0.3 ([c92f3ad](https://github.com/mx-space/kami/commit/c92f3ad6a5b31461df3e61ebe88c550fc4d182dd))
+* **deps:** update dependency mobx to v6 ([#301](https://github.com/mx-space/kami/issues/301)) ([bbb83b7](https://github.com/mx-space/kami/commit/bbb83b718815b3ca619f9a8fc4b548508070cfe5))
+* **deps:** update dependency mobx to v6.0.1 ([d524c9b](https://github.com/mx-space/kami/commit/d524c9b9cb0be07f40a4b8b39b06a7f1be254ec3))
+* **deps:** update dependency mobx-react-lite to v3 ([#299](https://github.com/mx-space/kami/issues/299)) ([44ac23a](https://github.com/mx-space/kami/commit/44ac23a1a885554c8592908aeee8b2bf9b269ea3))
+* **deps:** update dependency next-seo to v4.10.0 ([#287](https://github.com/mx-space/kami/issues/287)) ([7d23ca1](https://github.com/mx-space/kami/commit/7d23ca11186374f5bca3f9fb962aa2236295671f))
+* **deps:** update dependency next-seo to v4.10.1 ([5073475](https://github.com/mx-space/kami/commit/5073475e68f5b7f6ad77af52afcc13d89db430c9))
+* **deps:** update dependency react-intersection-observer to v8.28.6 ([4be73df](https://github.com/mx-space/kami/commit/4be73df6996807f481dbd45adaff6a60b6d4ede8))
+* **deps:** update dependency react-intersection-observer to v8.29.0 ([#294](https://github.com/mx-space/kami/issues/294)) ([34cd0f6](https://github.com/mx-space/kami/commit/34cd0f64d954aeea387391954e85be1206e1e052))
+* **deps:** update dependency react-syntax-highlighter to v14 ([#306](https://github.com/mx-space/kami/issues/306)) ([72aa9be](https://github.com/mx-space/kami/commit/72aa9be4185a7480d251d9515e8ed773c2b8bfef))
+* **deps:** update dependency react-syntax-highlighter to v14.0.2 ([7bd96f4](https://github.com/mx-space/kami/commit/7bd96f4f7c30adb229afc6a59f0e9d7967f5aa22))
+* **deps:** update dependency react-syntax-highlighter to v15 ([#313](https://github.com/mx-space/kami/issues/313)) ([406b011](https://github.com/mx-space/kami/commit/406b01170b9a36dc541db7f02a7a124d968f2cfe))
+* **deps:** update dependency socket.io-client to v2.3.1 ([0f92ff1](https://github.com/mx-space/kami/commit/0f92ff1b7c745610351e412cdaa9958d70f50883))
+* **deps:** update font awesome ([c1777b9](https://github.com/mx-space/kami/commit/c1777b98f4486fe452c9b8dc6dc47b82a6a2bd13))
+* **deps:** update font awesome to v5.15.0 (minor) ([#297](https://github.com/mx-space/kami/issues/297)) ([69f8124](https://github.com/mx-space/kami/commit/69f8124766e7367689505249eab1bfe61998bdad))
+* lamp zindex ([0d98c2e](https://github.com/mx-space/kami/commit/0d98c2ec07a0cfcf5f97aa7b2d0e15fb3f3f5ea2))
+* **layout:** card style and toc position ([fbf0fe6](https://github.com/mx-space/kami/commit/fbf0fe6e08e158f6395442c0a815c33253d64e32))
+* mobile overflow-x ([1c63a4f](https://github.com/mx-space/kami/commit/1c63a4fa4b0938b1eb62cc4847601a6922ca6633))
+* **posts:** change post block layout ([aaaed30](https://github.com/mx-space/kami/commit/aaaed3064061003b4a64634e07c610dd878cfb32))
+* **style:** post block iamge preview ([a7ac987](https://github.com/mx-space/kami/commit/a7ac987587f48379c010ee0a5fbf49342dffb0cd))
+* toc and sticky ([eedebb0](https://github.com/mx-space/kami/commit/eedebb086183808b69438101b37120b413165bd4))
+
+
+### Features
+
+* **layout:** change color add image preview on post block ([edd806a](https://github.com/mx-space/kami/commit/edd806aa8cb1622884bf06c917a4219da3420fa5))
+
+
+
+## [1.4.1](https://github.com/mx-space/kami/compare/v1.4.0...v1.4.1) (2020-09-23)
+
+
+
+# [1.4.0](https://github.com/mx-space/kami/compare/v1.3.0...v1.4.0) (2020-09-23)
+
+
+### Bug Fixes
+
+* avatar ([5567cb0](https://github.com/mx-space/kami/commit/5567cb0d48e66c88f816015b2354d15479b45e05))
+* crash ([57b6824](https://github.com/mx-space/kami/commit/57b68243fe6e266a089b5c22bca1ee83d07782db))
+* deps ([c92bce2](https://github.com/mx-space/kami/commit/c92bce224d4ac3f73efba3a1ce55c9af71406b67))
+* **deps:** update dependency @sentry/webpack-plugin to v1.12.1 ([605ccbe](https://github.com/mx-space/kami/commit/605ccbe4322a4a612b4a4b0caf57d92239efc1e8))
+* **deps:** update dependency animate-uri to v1.3.0 ([f8a3c32](https://github.com/mx-space/kami/commit/f8a3c3206711d9aec07621dc7290068347b3999b))
+* **deps:** update dependency antd to v4.5.3 ([6201305](https://github.com/mx-space/kami/commit/62013051e34962e2f80563851d9c49e7058c01b2))
+* **deps:** update dependency antd to v4.5.4 ([8c3585e](https://github.com/mx-space/kami/commit/8c3585ed2797ce3dfa2ea707b0ab04d6792e160f))
+* **deps:** update dependency antd to v4.6.1 ([#233](https://github.com/mx-space/kami/issues/233)) ([88ec569](https://github.com/mx-space/kami/commit/88ec569eee9315bbf7757c4dfaec40231fe6d380))
+* **deps:** update dependency antd to v4.6.2 ([ed3c003](https://github.com/mx-space/kami/commit/ed3c003e0d08b37b216a5c5246145cd624a58152))
+* **deps:** update dependency antd to v4.6.3 ([73abbed](https://github.com/mx-space/kami/commit/73abbed5956e683842cc78a76f130a004b217367))
+* **deps:** update dependency dayjs to v1.8.33 ([8c3b5a0](https://github.com/mx-space/kami/commit/8c3b5a0a660009b7c144db67d20e9d0f969f65e6))
+* **deps:** update dependency dayjs to v1.8.34 ([5a8281f](https://github.com/mx-space/kami/commit/5a8281f6bd28dcc850d635cbd5775a3ff2e0bd8b))
+* **deps:** update dependency dayjs to v1.8.35 ([5030692](https://github.com/mx-space/kami/commit/50306925a1c1309e6e8ffcc67e8bae5e77e715de))
+* **deps:** update dependency dayjs to v1.8.36 ([8b2de69](https://github.com/mx-space/kami/commit/8b2de6958f76bbf6f68b3c0c40f6b77be9fde342))
+* **deps:** update dependency mobx to v5.15.6 ([23f6a06](https://github.com/mx-space/kami/commit/23f6a063c4f991563de6db97c96106fc81093b93))
+* **deps:** update dependency mobx to v5.15.7 ([2cf6ea2](https://github.com/mx-space/kami/commit/2cf6ea2d394ff6eedc04979e41454e12150a1994))
+* **deps:** update dependency mobx-react-lite to v2.1.0 ([#240](https://github.com/mx-space/kami/issues/240)) ([86ea1e4](https://github.com/mx-space/kami/commit/86ea1e40c61834941d942f8e259202a6452c8b2e))
+* **deps:** update dependency mobx-react-lite to v2.2.0 ([#243](https://github.com/mx-space/kami/issues/243)) ([4e7e43c](https://github.com/mx-space/kami/commit/4e7e43c00dfae6c313a4fb408827c997e56a7af9))
+* **deps:** update dependency mobx-react-lite to v2.2.1 ([cbfe32d](https://github.com/mx-space/kami/commit/cbfe32d4d397c4a9d2e0533d7f5fbe5accce3ca3))
+* **deps:** update dependency mobx-react-lite to v2.2.2 ([21011a1](https://github.com/mx-space/kami/commit/21011a111efc870b3045c3f7e0bfcde753213350))
+* **deps:** update dependency react-intersection-observer to v8.28.2 ([#260](https://github.com/mx-space/kami/issues/260)) ([e0b1ffa](https://github.com/mx-space/kami/commit/e0b1ffa477be936b6b2beab39e2920135fb629cd))
+* **deps:** update dependency react-intersection-observer to v8.28.3 ([09a2dc5](https://github.com/mx-space/kami/commit/09a2dc542f63db993c5e95a754183e56b426bc96))
+* **deps:** update dependency react-intersection-observer to v8.28.4 ([3294c15](https://github.com/mx-space/kami/commit/3294c15986a8b190d3c92f49d74f063dd2963150))
+* **deps:** update dependency react-intersection-observer to v8.28.5 ([6a21fb6](https://github.com/mx-space/kami/commit/6a21fb6458207e0e334fbc28bfa00482be2de4d5))
+* **deps:** update dependency react-syntax-highlighter to v13.3.1 ([ded319e](https://github.com/mx-space/kami/commit/ded319e10863d528cf1f288b8316f92b2c5dcb36))
+* **deps:** update dependency react-syntax-highlighter to v13.5.0 ([#219](https://github.com/mx-space/kami/issues/219)) ([db26a20](https://github.com/mx-space/kami/commit/db26a20340a39f1842c7d730a6f997a23f57262d))
+* **deps:** update dependency react-syntax-highlighter to v13.5.1 ([67096f7](https://github.com/mx-space/kami/commit/67096f754932f05b10a30acc7b7cd16ffae8abe1))
+* **deps:** update dependency react-syntax-highlighter to v13.5.3 ([3702e76](https://github.com/mx-space/kami/commit/3702e767d810f3ea509b9117f187db46acd499bf))
+* **deps:** update dependency react-use to v15.3.4 ([deef3e2](https://github.com/mx-space/kami/commit/deef3e2d85843d2a7b0b6a55bdcd2e8b52759f7e))
+* **deps:** update dependency sass to v1.26.11 ([2d50044](https://github.com/mx-space/kami/commit/2d5004475a81b2e427bb42725fe330dbd0c9795d))
+* **deps:** update dependency sitemap to v6.3.0 ([#258](https://github.com/mx-space/kami/issues/258)) ([a2d5a8d](https://github.com/mx-space/kami/commit/a2d5a8d1d7ba432b615902b6de8d1c75dc016408))
+* **deps:** update dependency sitemap to v6.3.1 ([66a5a29](https://github.com/mx-space/kami/commit/66a5a296458cc150df8a949448e9da8f4c43e3a2))
+* **deps:** update dependency sitemap to v6.3.2 ([7743711](https://github.com/mx-space/kami/commit/7743711bbf2cd54c2fa75fe570a4b54474ae8cf4))
+* **deps:** update dependency ua-parser-js to v0.7.22 ([8ecac72](https://github.com/mx-space/kami/commit/8ecac72bf8fa6c5edfec2bb0e9b60aa7e9178abc))
+* **deps:** update dependency validator to v13.1.17 ([b424089](https://github.com/mx-space/kami/commit/b424089b5eb8fd89025c84dd19359ded57a025dd))
+* **image:** image margin ([de6720c](https://github.com/mx-space/kami/commit/de6720c544ffbc98f0d10fa3aaecae3f1c9609d3))
+* input color and remove antd ([27834e5](https://github.com/mx-space/kami/commit/27834e5a02f157731f60bcd8e1ad8abe8a0c2190))
+* input stroke style ([88be779](https://github.com/mx-space/kami/commit/88be779f5de4550376dd50f12ed3c43d7f04b0c3))
+* **input:** dashoffset border ([823f63f](https://github.com/mx-space/kami/commit/823f63fc4721ed403b51fa04d1c4663ec614bbb8))
+* message crash hacky ([ef6573a](https://github.com/mx-space/kami/commit/ef6573adacc8ba220edf6d974867150ac4076562))
+* message type ([5112f75](https://github.com/mx-space/kami/commit/5112f750e01fad6cee094fcf61af2cd982fcc995))
+* more style ([50efbeb](https://github.com/mx-space/kami/commit/50efbeb8d021a98a954cf1f8822c900c2be2ca68))
+* observer ([e453810](https://github.com/mx-space/kami/commit/e453810ac64e42795b85689ea667fe349248a7f0))
+* project previewer ([29d1376](https://github.com/mx-space/kami/commit/29d13767ec2b57627d83551017d95e8a93085e3d))
+* rss ([fa6c8ce](https://github.com/mx-space/kami/commit/fa6c8ce1ad4d127db8cbe7231e3da1d627d38f43))
+* spoiler style ([28f7419](https://github.com/mx-space/kami/commit/28f74196264c4890fd84e06ee44ea82c44d5af9e))
+* **style:** input border and message wrap ([e8cbf05](https://github.com/mx-space/kami/commit/e8cbf052605eaad85dcfe976a37001d1a02ac96f))
+* too many request initData ([2cf5ec8](https://github.com/mx-space/kami/commit/2cf5ec83fddad0f1fe15312f73b866c1cfd28ae2))
+* type error ([b50f678](https://github.com/mx-space/kami/commit/b50f67822dfbab1a9117a1b967a71f5dccd98ba0))
+* use absolute href ([0841457](https://github.com/mx-space/kami/commit/08414577301ef78bc59d9dd270b39377673934b5))
+
+
+### Features
+
+* input component ([6dd2605](https://github.com/mx-space/kami/commit/6dd26050f012d642293ec4bf1375b35deef78ea2))
+* **layout:** chagne note layout ([6b7f3a4](https://github.com/mx-space/kami/commit/6b7f3a42bc8729e49b5e1d928a9326cc27ab50ce))
+* **message:** remove antd ([48f8145](https://github.com/mx-space/kami/commit/48f81454e8f784e6efec1c027f0443e98bb6ccc3))
+
+
+
+# [1.3.0](https://github.com/mx-space/kami/compare/v1.2.1...v1.3.0) (2020-08-08)
+
+
+### Bug Fixes
+
+* **config:** rewrite ([1f1fc26](https://github.com/mx-space/kami/commit/1f1fc26e5c4af0c859e3cce35dac9278be167cc9))
+* **deps:** update dependency antd to v4.5.0 ([4abf027](https://github.com/mx-space/kami/commit/4abf027c09797d2b48d68ca57e9c0e4dde820e36))
+* **deps:** update dependency antd to v4.5.1 ([7aaebda](https://github.com/mx-space/kami/commit/7aaebda769aa12749842e6455371a121cb53b449))
+* **deps:** update dependency antd to v4.5.2 ([781d07d](https://github.com/mx-space/kami/commit/781d07d2c1a0859e77e8cc3032e6dfd6055d8834))
+* **deps:** update dependency dayjs to v1.8.31 ([10c3477](https://github.com/mx-space/kami/commit/10c34774d9123b38e057fded01b761180fd61581))
+* **deps:** update dependency dayjs to v1.8.32 ([9a83e3c](https://github.com/mx-space/kami/commit/9a83e3c491837beae3b9cbadf6948ac4d897004b))
+* **deps:** update dependency mobx to v5.15.5 ([c570f8e](https://github.com/mx-space/kami/commit/c570f8e699e31b09ffd86089d6b16b5d243c5a30))
+* **deps:** update dependency mobx-react to v6.2.3 ([16f380b](https://github.com/mx-space/kami/commit/16f380b2bac817dec8f894d76d26c0fe967d3546))
+* **deps:** update dependency mobx-react to v6.2.5 ([d8caaf3](https://github.com/mx-space/kami/commit/d8caaf30259b5b2d11bde04ca132a7caa96df05d))
+* **deps:** update dependency react-syntax-highlighter to v13.2.1 ([1581665](https://github.com/mx-space/kami/commit/1581665f06d8d94d53f3ce04cd53d0349fe35629))
+* error message ([084cc40](https://github.com/mx-space/kami/commit/084cc40d08310b164a4ff7400eecb4e31343df01))
+* feed description ([0940ed4](https://github.com/mx-space/kami/commit/0940ed40515344b93dd832a00e5ad0fb1dd4997d))
+* **markdown:** spoiler ([1cdb316](https://github.com/mx-space/kami/commit/1cdb316503ade07b3714f9a25dbd9169122ad571))
+* Pagination ([973f717](https://github.com/mx-space/kami/commit/973f717f4a1add85c610a0643e6c468afb3f184c))
+* post router ([7967bea](https://github.com/mx-space/kami/commit/7967bea83aabc7dd003dbab5ea932df81f9b78ed))
+* safari render bug ([88ee93c](https://github.com/mx-space/kami/commit/88ee93c71a0457c393ee8ef13e81f052489d9917))
+* socket.io reconnect time ([5732fe2](https://github.com/mx-space/kami/commit/5732fe2dc30d5e94c6ab0a2ca4926c5166bc4782))
+
+
+### Features
+
+* add comments cache ([c9b84fe](https://github.com/mx-space/kami/commit/c9b84feab95169c83cf85daf5955fd45320be4c5))
+* number recorder ([eca2c75](https://github.com/mx-space/kami/commit/eca2c7548e2cb3c1b8b29119c63b6b9263ecf41a))
+* tag ([0ab8212](https://github.com/mx-space/kami/commit/0ab82124d6e3035a22c49b49c2ba76cb894a4f02))
+* tag ui ([44615d8](https://github.com/mx-space/kami/commit/44615d877b00b9c292a6bd94ac2267e0db379d8d))
+
+
+### Reverts
+
+* **comment:** lazy load once ([305505b](https://github.com/mx-space/kami/commit/305505b234486880c3d189a15c2d7f795772b7f2))
+
+
+
+## [1.2.1](https://github.com/mx-space/kami/compare/v1.0.0...v1.2.1) (2020-07-26)
+
+
+### Bug Fixes
+
+* anime and some image render bugs ([b4ea3ab](https://github.com/mx-space/kami/commit/b4ea3abab5d10d184405001f39df6d6b1dd9fc2f))
+* axios interceptors ([cb846da](https://github.com/mx-space/kami/commit/cb846da9dc1c9046ed8e28ae466ae2cd2fa27211))
+* axois forward ip ([7f06c91](https://github.com/mx-space/kami/commit/7f06c91a61af12bf78861486a3948647f059422b))
+* box animate ([dbc58a4](https://github.com/mx-space/kami/commit/dbc58a4efe535b6b62e5b18b690ee5188aeb3ea5))
+* **cache:** disable cache index ([c971f68](https://github.com/mx-space/kami/commit/c971f68b320a9588ca58d3b20919064734cdb0fd))
+* ci ([0c72a3d](https://github.com/mx-space/kami/commit/0c72a3daf5f22e4450d260f3d30e88cdc082dc01))
+* **ci:** auto release ([64f9fb8](https://github.com/mx-space/kami/commit/64f9fb8d29d446424526e1c640d87bc7cf17aa63))
+* **deps:** pin dependency next-offline to 5.0.2 ([e51ea56](https://github.com/mx-space/kami/commit/e51ea563a92b31d8b251ed1d0212d206a8af1578))
+* **deps:** update dependency antd to v4.3.4 ([e7cb105](https://github.com/mx-space/kami/commit/e7cb105e6c3ad62532f3d856bebc8656b5490b91))
+* **deps:** update dependency antd to v4.3.5 ([9382431](https://github.com/mx-space/kami/commit/938243136a66bfbcb9cfbaa6aa8a9f3ded174fc5))
+* **deps:** update dependency antd to v4.4.0 ([860db76](https://github.com/mx-space/kami/commit/860db766565e09ce9d7ba4abc6743b25c4bf872f))
+* **deps:** update dependency antd to v4.4.1 ([cbaa77c](https://github.com/mx-space/kami/commit/cbaa77ceaa73f7a389c9ccf8a10d3c03f6f7bd77))
+* **deps:** update dependency antd to v4.4.2 ([819928c](https://github.com/mx-space/kami/commit/819928cb88a5f6c85700af43c5ee3ae15ae2b06d))
+* **deps:** update dependency antd to v4.4.3 ([5d72469](https://github.com/mx-space/kami/commit/5d724691e1948a76223c00d6124959c0b31a7f5b))
+* **deps:** update dependency dayjs to v1.8.29 ([e01e549](https://github.com/mx-space/kami/commit/e01e549efb50f12cf038a09ad23913c8c9df1ffe))
+* **deps:** update dependency dayjs to v1.8.30 ([e7ba6e1](https://github.com/mx-space/kami/commit/e7ba6e1dc5e7db241857eadc408cb1d2ec0ac935))
+* **deps:** update dependency intersection-observer to v0.11.0 ([b7c9b2a](https://github.com/mx-space/kami/commit/b7c9b2abd6d57ed9b8e933ef85ede277faf6fe6f))
+* **deps:** update dependency mobx-state-tree to v3.17.2 ([018a933](https://github.com/mx-space/kami/commit/018a933902a4aab324ba987fe34aa0b99a196de0))
+* **deps:** update dependency next-seo to v4.6.0 ([29ddc14](https://github.com/mx-space/kami/commit/29ddc1454e255cde299e52c6a527aa92e5e952a4))
+* **deps:** update dependency next-seo to v4.7.1 ([7ddfd41](https://github.com/mx-space/kami/commit/7ddfd411ae354c0a36cbb18f931f8e7ae6c95f76))
+* **deps:** update dependency next-seo to v4.7.2 ([bb01f93](https://github.com/mx-space/kami/commit/bb01f930af4a4c80f4400f75e82a64723d865f46))
+* **deps:** update dependency next-seo to v4.7.3 ([9808a52](https://github.com/mx-space/kami/commit/9808a52f1f75662fe5be782a6c0908c31f8a5cae))
+* **deps:** update dependency randomcolor to v0.6.2 ([c47265b](https://github.com/mx-space/kami/commit/c47265be1b9c7e3dd77dd96da9dd101376085b5a))
+* **deps:** update dependency react-syntax-highlighter to v13 ([2925151](https://github.com/mx-space/kami/commit/2925151c3c51b753126182608d8fb5c82d176094))
+* **deps:** update dependency sass to v1.26.10 ([60e2b20](https://github.com/mx-space/kami/commit/60e2b20ba469524f5829b79084c176e8ed1ad80e))
+* **deps:** update dependency sass to v1.26.9 ([49e88af](https://github.com/mx-space/kami/commit/49e88af9d2717ee9927e2fe01e28a61d8c7c0d82))
+* **deps:** update dependency sitemap to v6.1.6 ([351ed75](https://github.com/mx-space/kami/commit/351ed75090f56edb088c49b5aa1e44601a76795d))
+* **deps:** update dependency sitemap to v6.1.7 ([cca0a95](https://github.com/mx-space/kami/commit/cca0a95120ad9bd2c2ff71b5b9436a8c6a4045f2))
+* **deps:** update dependency sitemap to v6.2.0 ([905695a](https://github.com/mx-space/kami/commit/905695ad69844b17349826779699442ada61ac34))
+* **deps:** update font awesome ([d803290](https://github.com/mx-space/kami/commit/d8032909353f9691f40e7f3f099c3b4d4d7451e0))
+* fix bug in image component and comment ([ca93c69](https://github.com/mx-space/kami/commit/ca93c697aaa0aae4e6aa835010dac9778eacd12c))
+* if comment failed [#150](https://github.com/mx-space/kami/issues/150). ([6b9f05d](https://github.com/mx-space/kami/commit/6b9f05d410ce9e4b146c02a4f11414a4b1be0e11))
+* image default height ([27dc5a9](https://github.com/mx-space/kami/commit/27dc5a9fb834917bf8a8b0497f5f674271dfdd88))
+* index seo ([75a1405](https://github.com/mx-space/kami/commit/75a140577be12b8cb2aa2e1f029c23543ec2b829))
+* isServer bug ([2dfc686](https://github.com/mx-space/kami/commit/2dfc6869c6483f599bd97f9c3f1afecf5e8c39e1))
+* open image preview when scroll ([117ff04](https://github.com/mx-space/kami/commit/117ff043fc52e217251cf994480c02cb3f4f3c03))
+* remove devtools check which cause compatibility ([905cef3](https://github.com/mx-space/kami/commit/905cef3662fdb22d3cfb09bd2ccc3efb1fa46833))
+* request error ([b9b0c0b](https://github.com/mx-space/kami/commit/b9b0c0b60ad2760145d06c0f5e7a201f7aa19a4c))
+* resize event on mobile ([a40b99a](https://github.com/mx-space/kami/commit/a40b99a23682f8c5801b665516b63d9158918151))
+* sentry env ([f885247](https://github.com/mx-space/kami/commit/f88524727c6b5823f589d6dce0ad2e8b4ab30ac6))
+
+
+### Features
+
+* apply for link and donate ([1efc30a](https://github.com/mx-space/kami/commit/1efc30a5cc764ecbe37715ba9de341ab1e2089c7))
+* copy code block ([34e5535](https://github.com/mx-space/kami/commit/34e5535d09dcba9c04551fcac441c9bccd1b4ac9))
+* **sentry:** add error monitor ([5b6bb9d](https://github.com/mx-space/kami/commit/5b6bb9d70e871bf62d1392356fcb23fc8fbcd6df))
+* **ssr:** forward real ip and ua ([1bab1a0](https://github.com/mx-space/kami/commit/1bab1a05749cbf8758f64cead08079b6fd0fad2c))
+
+
+### Reverts
+
+* "ci(config): auto merge" ([4680c68](https://github.com/mx-space/kami/commit/4680c681f8f3e35a7681f7126d20d9a33470934e))
+* "style(header): remove code" ([13b85ad](https://github.com/mx-space/kami/commit/13b85ad76ad2a4b985c86f6b07149c73d088431b))
+* structure ([c8cdd3d](https://github.com/mx-space/kami/commit/c8cdd3d732d8508fefe8753ec359507778434e53))
+
+
+
+# [1.0.0](https://github.com/mx-space/kami/compare/v1.0.0-rc.6...v1.0.0) (2020-06-20)
+
+
+### Bug Fixes
+
+* anime transition ([2ff9af2](https://github.com/mx-space/kami/commit/2ff9af2592e1ff3dd2f9ba9ed6479b9aced67f60))
+* behavior ([fc20e18](https://github.com/mx-space/kami/commit/fc20e186787f70f729ac963abb0eeb5975e17f81))
+* **deps:** update dependency next-pwa to v2.6.1 ([8a327df](https://github.com/mx-space/kami/commit/8a327dffe1a606b60e7434745a676a23efeb4cba))
+* **deps:** update font awesome ([5e25e6c](https://github.com/mx-space/kami/commit/5e25e6c52bf5cffdbd3c6433034f57ca1a91943b))
+* prism highlight light style ([98f8563](https://github.com/mx-space/kami/commit/98f85636cba250a47eab3d0cd5a471cd5c69a20a))
+* router and image bugs ([cf008bf](https://github.com/mx-space/kami/commit/cf008bf75ad800303077e8b0ba057af300818cad))
+* some issues ([c6a17ce](https://github.com/mx-space/kami/commit/c6a17ce6b47d2d9b8348bfd0991ebfb284185671))
+
+
+### Features
+
+* add travellings ([f5f251c](https://github.com/mx-space/kami/commit/f5f251c6a72b7546b45c6b8fa9fd4676ea9e128c))
+* all images use ImageLazy ([c9f5912](https://github.com/mx-space/kami/commit/c9f5912964c7286e3faac486c24b607a88b24e75))
+* intro style ([029c74c](https://github.com/mx-space/kami/commit/029c74cb9717797f2f930c522d93571add3ca2a7))
+
+
+### Reverts
+
+* modern ([17a6ff9](https://github.com/mx-space/kami/commit/17a6ff9d3e1674f1a5f21c8ea8172831697f5730))
+
+
+
+# [1.0.0-rc.6](https://github.com/mx-space/kami/compare/v1.0.0-rc.5...v1.0.0-rc.6) (2020-06-14)
+
+
+### Bug Fixes
+
+* message duration ([82b9fe0](https://github.com/mx-space/kami/commit/82b9fe04636fe386cc6289ce9102ebd6e79b1113))
+
+
+### Features
+
+* post thumbs up ([b5f6162](https://github.com/mx-space/kami/commit/b5f61628cb68798871ee20e7685e47d618260c7e))
+
+
+### Performance Improvements
+
+* **fc:** memo all components ([3856ffd](https://github.com/mx-space/kami/commit/3856ffde55dea619ccb4304b39be3fd4d7ff8d4f))
+
+
+
+# [1.0.0-rc.5](https://github.com/mx-space/kami/compare/v1.0.0-rc-4...v1.0.0-rc.5) (2020-06-12)
+
+
+### Bug Fixes
+
+* animate ([d599788](https://github.com/mx-space/kami/commit/d59978851f61881a37bbba872db1662101ff52fe))
+* danmaku ([66ccf3f](https://github.com/mx-space/kami/commit/66ccf3f4d663e0df2e96a9b4d6510eb5a8f13e65))
+* **deps:** update dependency @fortawesome/react-fontawesome to v0.1.10 ([38a7892](https://github.com/mx-space/kami/commit/38a7892cd76002e35d71467b040836d645973d87))
+* **deps:** update dependency antd to v4.3.3 ([d93555f](https://github.com/mx-space/kami/commit/d93555fb86aa3bb9b3070df9347470feac04649c))
+* **deps:** update dependency next-pwa to v2.6.0 ([1e75d59](https://github.com/mx-space/kami/commit/1e75d59bed3d5ff8e6c15357db3c7af96376e715))
+* **deps:** update dependency validator to v13.1.1 ([4f7fcaa](https://github.com/mx-space/kami/commit/4f7fcaa6c64afb16b3df481a3bb9ce1b4aaf43ce))
+* errror code ([86c3c5b](https://github.com/mx-space/kami/commit/86c3c5be1ee4f3c234e1d2b4d03376f00883f647))
+* filter ([4e61b94](https://github.com/mx-space/kami/commit/4e61b94e8425a28ca35dda97e586f1537cd0b2b3))
+* handler notice ([9452a1a](https://github.com/mx-space/kami/commit/9452a1a29f7535ad41c0fe90d7de8cb485e3c55e))
+* if mobile ([4f1dc1d](https://github.com/mx-space/kami/commit/4f1dc1d9dba41073417a1faede990cc44d5ba617))
+* image placeholder ([f802152](https://github.com/mx-space/kami/commit/f802152e3cde90adde2d2e1afcf68ee16b228ffd))
+* image popup failed ([a32db9f](https://github.com/mx-space/kami/commit/a32db9fd9956dfaa4bf69f70109b92f386ea7a66))
+* **image:** image alt text style ([315bcab](https://github.com/mx-space/kami/commit/315bcaba49cedc4c87765454370719035e57071c))
+* link icon color ([736d83d](https://github.com/mx-space/kami/commit/736d83d11a57d71bcd217e6412c6d5c3f62199b0))
+* logo title ([95538d9](https://github.com/mx-space/kami/commit/95538d9804ea2b786864c9a52176debe57b19550))
+* markdown crash and render function ([4f6030f](https://github.com/mx-space/kami/commit/4f6030fbd8ab2be1e9cff9a5fdd4bfd156668588))
+* note `p` style ([ae9f889](https://github.com/mx-space/kami/commit/ae9f8894e4a3445614a01e9d3ea892f6d13854fb))
+* notification ([d56850b](https://github.com/mx-space/kami/commit/d56850b5ed996fee455a9b3c018e6a6a3ef88ed1))
+* some bug ([3f41e0a](https://github.com/mx-space/kami/commit/3f41e0a663f2b6e662d4f6babb5570a7ad44ef45))
+* toc tree ([35eb779](https://github.com/mx-space/kami/commit/35eb779e872f18063db5e1df8e01888c78c71b2a))
+* ts3.9 error ([98a1ed0](https://github.com/mx-space/kami/commit/98a1ed04ff0c45f53b9f508876eae2356e91af00))
+* type error ([5ac828b](https://github.com/mx-space/kami/commit/5ac828bb3d38946e9b10e81e3e520eeb53ad333e))
+* update hook ([9ff1001](https://github.com/mx-space/kami/commit/9ff1001f23c0d2828777fa88f791196f150ccfb5))
+* white mode color ([1fc5176](https://github.com/mx-space/kami/commit/1fc517659d46b80b1092b94d69b8a0d937e1a871))
+
+
+### Features
+
+* copyright & forbid comment ([961578d](https://github.com/mx-space/kami/commit/961578d991bfa695cae71059049c47910a059ed2))
+* error text ([6e75790](https://github.com/mx-space/kami/commit/6e75790a69233c9661d442034d5fdcd2f9598ccf))
+* image placeholder ([af65bca](https://github.com/mx-space/kami/commit/af65bca44f0e980010ecf0474c798f4e95e91114))
+* **md:** extend markdown rules ([2395c5f](https://github.com/mx-space/kami/commit/2395c5f79f4b7f95dcfe89b1e71c6928ace865b6))
+* message count ([64676a2](https://github.com/mx-space/kami/commit/64676a2436f4deb85cdd73d201ba9bd158eb8704))
+* redesign notification ([69bda01](https://github.com/mx-space/kami/commit/69bda01fcd81773455a144670db5400438a2659f))
+* **say:** support markdown ([321c0bd](https://github.com/mx-space/kami/commit/321c0bde5947a4edef2fb535e4971c62b2d13990))
+* show category name ([7df4067](https://github.com/mx-space/kami/commit/7df4067a241fbe0b294cddd3be337c3661d86d3a))
+
+
+### Performance Improvements
+
+* bangumi and scroll event ([99c2900](https://github.com/mx-space/kami/commit/99c2900ee186fc8779b73f00970795d2a833dab2))
+
+
+
+# [1.0.0-rc-4](https://github.com/mx-space/kami/compare/v1.0.0-rc-3...v1.0.0-rc-4) (2020-05-29)
+
+
+### Bug Fixes
+
+* always show install app ([c3f7e85](https://github.com/mx-space/kami/commit/c3f7e850bd26b2779ee247334de1a74fe5cc33a9))
+* build command error ([0fa0289](https://github.com/mx-space/kami/commit/0fa028955f9d8bc38c1382a2bdf1454345bcfdb6))
+* comment author link ([a7ef720](https://github.com/mx-space/kami/commit/a7ef720ce6c725bcbc2b4cbf22ae62fe43cfb483))
+* **danmaku:** danmaku emit ([0f11039](https://github.com/mx-space/kami/commit/0f11039f43acc14f93e8c184cc05bd481442b7ab))
+* **player:** player style ([2acbaa6](https://github.com/mx-space/kami/commit/2acbaa60281444d75ad6eb43c166a175f29683f7))
+* random color ([bfd6ea6](https://github.com/mx-space/kami/commit/bfd6ea69d06a337a0a27175505045cf9ebe5096f))
+* say sort ([b4b46cd](https://github.com/mx-space/kami/commit/b4b46cd0bb1bcd60ea3563d10630b0701082868c))
+* style ([ae7932b](https://github.com/mx-space/kami/commit/ae7932bf2e80fec80de52f0688c56f41688b9cfb))
+* subnav on mobile display ([8150fa3](https://github.com/mx-space/kami/commit/8150fa36233a5b7d22cbb22f3a5bee00e2a79334))
+
+
+### Features
+
+* **dangmaku:** dangmaku support ([df260db](https://github.com/mx-space/kami/commit/df260dbe0c2bbb9b0f03368de06f232b72b58756))
+* **dangmaku:** ui ([12419be](https://github.com/mx-space/kami/commit/12419be6cb4e51709eb3865e07ca59952365e19e))
+* icp footer ([1f9e93d](https://github.com/mx-space/kami/commit/1f9e93d19dbfec9c72d1d0e8729be733282a48ff))
+* image desc ([e3d5434](https://github.com/mx-space/kami/commit/e3d543443decbb7285a4f89888dba0311d5ca7da))
+* image lazy load then blur show ([d4783dd](https://github.com/mx-space/kami/commit/d4783dd6a8e93e0cc9cf311453508e7873b333c2))
+* multi timeline ([41a922e](https://github.com/mx-space/kami/commit/41a922e1e42ee4c8aaad03bbc2354e6e659cc12c))
+* say event render ([fe8469a](https://github.com/mx-space/kami/commit/fe8469af8f5c3d18f023788caebcbe078f51bbcc))
+* socket emit danmaku ([fa26442](https://github.com/mx-space/kami/commit/fa264421a75dee66142096cf9ddd6e308b59e1e5))
+
+
+
+# [1.0.0-rc-3](https://github.com/mx-space/kami/compare/v1.0.0-rc-2...v1.0.0-rc-3) (2020-05-25)
+
+
+### Bug Fixes
+
+*  wrong link ([ef42bfc](https://github.com/mx-space/kami/commit/ef42bfc4b5d46069c52b3a3589a37ce099c2908a))
+* note layout image intent ([b3b8f35](https://github.com/mx-space/kami/commit/b3b8f35464b487b52ec23e318360100fddde8df8))
+* safari crash ([dd83fee](https://github.com/mx-space/kami/commit/dd83fee482579ecef5543cdf0f03cc60a6db9650))
+
+
+
+# [1.0.0-rc-2](https://github.com/mx-space/kami/compare/v1.0.0-rc...v1.0.0-rc-2) (2020-05-25)
+
+
+### Bug Fixes
+
+* avatar item style ([506bc32](https://github.com/mx-space/kami/commit/506bc3243747f2335e38a4ea68014143178197d8))
+* center pos ([5eb69cf](https://github.com/mx-space/kami/commit/5eb69cfea68fdf57f06fa82e108e56e97b4d202c))
+* check log ([555b260](https://github.com/mx-space/kami/commit/555b260809797f231ae1b4f0c68cf10bd182f131))
+* dead loop ([2d93efb](https://github.com/mx-space/kami/commit/2d93efbaddeab56bc7f0b131ac99034fb39d0edc))
+* disable some nextjs experimental ([4d7dbf5](https://github.com/mx-space/kami/commit/4d7dbf5f046947023b82ade4c6dfe0878c28e2d6))
+* font load error ([761aebd](https://github.com/mx-space/kami/commit/761aebd87e224168865c21e923d9838a14c8daaa))
+* get token ([eef308a](https://github.com/mx-space/kami/commit/eef308ab81af1b2232ee4a040c1fc9b1f833bb94))
+* image lazy placeholder ([f4764f0](https://github.com/mx-space/kami/commit/f4764f0022aca1bf5d31bfe0358a49c69637ee53))
+* nginx conf ([0ef4f49](https://github.com/mx-space/kami/commit/0ef4f493bb47c286ccadc1964edebdf916888b25))
+* note page comment padding ([ff8f588](https://github.com/mx-space/kami/commit/ff8f5884e7d3e9f7d8de8ef1161a145fac63b05b))
+* prerender carsh ([9fa45d2](https://github.com/mx-space/kami/commit/9fa45d2d4eafae11896395d2989e34cc0c4a59aa))
+* project icon style ([0505420](https://github.com/mx-space/kami/commit/0505420d4a132e0d558c6e5a915b07774aef1c66))
+* pwa icon ([ead1328](https://github.com/mx-space/kami/commit/ead1328eb97b11037104de126b933d668a0d0395))
+* robot ([631e421](https://github.com/mx-space/kami/commit/631e421adb0614669e57028a1b1c18b97a9862a5))
+* scrollbar bug ([d2a0a9f](https://github.com/mx-space/kami/commit/d2a0a9fa890fdc38583d5a5f9fda16af6c81d577))
+* some bugs ([0f4d3a6](https://github.com/mx-space/kami/commit/0f4d3a6baccf9b70cc99892f701eb124f5964850))
+* some styles ([1e29077](https://github.com/mx-space/kami/commit/1e290778752aaddaa3d71934d8f17348b8688df2))
+* too long comment reply ([4f05e60](https://github.com/mx-space/kami/commit/4f05e60cca8d778b95180d2fa1ebce670fb7413c))
+* work service memory crash ([7bd2f61](https://github.com/mx-space/kami/commit/7bd2f61c13e1ee8ee166c9dc9989c189d8a95bc0))
+
+
+### Features
+
+* block ie ([fe88a8e](https://github.com/mx-space/kami/commit/fe88a8ea99195ca2924f74e0fdd754d88cdc96a2))
+* cache api ([7537674](https://github.com/mx-space/kami/commit/753767478fd323e8ab3d1233bbd6bd2b155e5518))
+* change favicon ([5eb6ff0](https://github.com/mx-space/kami/commit/5eb6ff0afaa65bd8c828bb5a059d8d68063baaf6))
+* change to custom logo ([0d514eb](https://github.com/mx-space/kami/commit/0d514eba84327f83f77f26757f14968f0d9b3388))
+* chat ([f5e6b41](https://github.com/mx-space/kami/commit/f5e6b416bc87217bb85828717741b19bdc38efa1))
+* comment delete if authed ([abdd140](https://github.com/mx-space/kami/commit/abdd140e13b3279fbb1d9ef9c8d8c576e8e9cdda))
+* first screen ([a4e0ae1](https://github.com/mx-space/kami/commit/a4e0ae1e46153d688476607d566d9ae5b8a97be4))
+* home page friends ([878dc8b](https://github.com/mx-space/kami/commit/878dc8bb73c4c2d1c63310f8ca6b19f040487ad0))
+* image error placeholder ([fa45536](https://github.com/mx-space/kami/commit/fa455361c53228cb779d38fd204b24ce159ac0e7))
+* image style ([1fd9ec5](https://github.com/mx-space/kami/commit/1fd9ec5cf2393ad15df374e05a47b592863c80bc))
+* log ([e8533f1](https://github.com/mx-space/kami/commit/e8533f164eaa5295146b417eaeb91285434ea709))
+* more wonderful ([81034c8](https://github.com/mx-space/kami/commit/81034c8c4644248d32aa83c52e4b67abbb60bbea))
+* online visitor and observable ([a0fbe81](https://github.com/mx-space/kami/commit/a0fbe81ea403d0e8719d20507dae26732c2fea4d))
+* parse locate path ([ce0fc84](https://github.com/mx-space/kami/commit/ce0fc846d8d481b16563e46cf1b4169079eed695))
+* pwa support ([9b120fc](https://github.com/mx-space/kami/commit/9b120fc097c0dd7354f5718ac0e5f533173ea523))
+* redis ([c230cd0](https://github.com/mx-space/kami/commit/c230cd0e7348350f5c40567d434ba629b0a06c8c))
+* switch animate ([58b3eee](https://github.com/mx-space/kami/commit/58b3eee3e03619660cef415eda6ec36457c560a1))
+* timeline query ([91f41c5](https://github.com/mx-space/kami/commit/91f41c5da41a4408c9a7d1c7afb72fd9a9db1d93))
+* toggle dark mode ([9fcbb77](https://github.com/mx-space/kami/commit/9fcbb7724634c9af3b373a19cf0ede293b6e645f))
+
+
+
+# [1.0.0-rc](https://github.com/mx-space/kami/compare/0.5.0-alpha...v1.0.0-rc) (2020-05-07)
+
+
+### Bug Fixes
+
+* build error ([ecea2b0](https://github.com/mx-space/kami/commit/ecea2b06556b3aec581eb199b50183ecadbfa2a5))
+* cache ([9f4b9ba](https://github.com/mx-space/kami/commit/9f4b9bab5a1b8d199b9f911fc84a58fc66a98a32))
+* category slug error ([b784c99](https://github.com/mx-space/kami/commit/b784c994ac8bc60c45e6f40eac1385d019fa5051))
+* comment error message ([608b616](https://github.com/mx-space/kami/commit/608b616d57a70d0385b863cd8e53ad8b56e4e7d9))
+* document undefined ([fbf19d2](https://github.com/mx-space/kami/commit/fbf19d2831a8b3be75aafff33dabe7cecfb09690))
+* fix say view ssr ([31ddae1](https://github.com/mx-space/kami/commit/31ddae1777fe838aac5791ca98f41a1b5f1e1228))
+* mobile comment view ([032ad16](https://github.com/mx-space/kami/commit/032ad16d62e89cde2bfc0f53b2649d07ecf62020))
+* online image url ([28b512d](https://github.com/mx-space/kami/commit/28b512da3137ba920b0dad460ccf0b8573938024))
+* request error with loop ([ee0900e](https://github.com/mx-space/kami/commit/ee0900ea6445ad3c042841dd88d11123f78cb852))
+
+
+### Features
+
+* like note ([d82cf05](https://github.com/mx-space/kami/commit/d82cf05115dd7722df9041f3a9d2fe49f0adbbfa))
+* sitemap ([636a978](https://github.com/mx-space/kami/commit/636a97876ebedb5ab7a1b782c76875c5aa435083))
+* web login ([a5b3762](https://github.com/mx-space/kami/commit/a5b3762d18a3e3d848d66d92a7e03630f736eda1))
+
+
+
+# [0.5.0-alpha](https://github.com/mx-space/kami/compare/0.4.0...0.5.0-alpha) (2020-05-01)
+
+
+### Bug Fixes
+
+* document is not defined(prod) ([7123022](https://github.com/mx-space/kami/commit/71230229f5bc50884ac2e33d6ba52f643219931c))
+
+
+### Features
+
+* category list view ([6743397](https://github.com/mx-space/kami/commit/6743397538f731ac1b1a00bd757b22cadbdbe7d3))
+* ga ([5eac187](https://github.com/mx-space/kami/commit/5eac187cd57a64311dbac84d8b0d64cea86506c5))
+* **view:** friends ([1763dae](https://github.com/mx-space/kami/commit/1763dae24429370fcce523e60f2f37d848680630))
+* **view:** timeline ([d4958cb](https://github.com/mx-space/kami/commit/d4958cb87491f9cc35028e83b74df043910494e6))
+
+
+
+# [0.4.0](https://github.com/mx-space/kami/compare/0.3.0...0.4.0) (2020-04-30)
+
+
+### Bug Fixes
+
+* cache ([ee18dcb](https://github.com/mx-space/kami/commit/ee18dcb7e4321733b617df378e3bb50b1c01c9eb))
+* crash ([1150239](https://github.com/mx-space/kami/commit/11502399cd05c88cee96c0d88bccd94591a35ee5))
+* http protocol error ([167f61c](https://github.com/mx-space/kami/commit/167f61c0747f88f350ef7116fffda354b2f1c2bd))
+* mobx memory leak ([74ac993](https://github.com/mx-space/kami/commit/74ac99386a564174d3608e74f05c187a901d2e71))
+* pre-render error ([862ff0f](https://github.com/mx-space/kami/commit/862ff0f7ba8cef86633b6533c034956037391770))
+* style ([02dde8f](https://github.com/mx-space/kami/commit/02dde8fa2f8595b139296e4f35a9202b8b3ae54e))
+* toc timeout ([0e35201](https://github.com/mx-space/kami/commit/0e35201cd2c6d0ac7852b5f66968c5f3baa81bde))
+
+
+### Features
+
+* anim ([ba855a9](https://github.com/mx-space/kami/commit/ba855a9232eda3eaac6ee786cca997c23888afe2))
+* comment lazy ([637b00d](https://github.com/mx-space/kami/commit/637b00df109ac220998f48f984b18774ca8fb8f9))
+* error page restyle ([b469da4](https://github.com/mx-space/kami/commit/b469da4901789eef7ca829cebf46c8b23e88f202))
+* markdown render image popup ([3f4c0db](https://github.com/mx-space/kami/commit/3f4c0dbc0e9010ad7a7ac7e6194bbaa5179dea2f))
+* say view anime ([6056901](https://github.com/mx-space/kami/commit/60569016c699530139b647be47c2fd367626f683))
+* seter handler ([e9f0222](https://github.com/mx-space/kami/commit/e9f0222ebe99fa30accf018a164f81e49f283ebd))
+* toc ([5d18cde](https://github.com/mx-space/kami/commit/5d18cdeb747acab1c61e86f7180924824c0304cf))
+
+
+### Reverts
+
+* **server:** mobx server ([96f0b27](https://github.com/mx-space/kami/commit/96f0b2707ea8375763d9f41d29a756d7a8074a32))
+
+
+
+# [0.3.0](https://github.com/mx-space/kami/compare/0.1.0...0.3.0) (2020-04-28)
+
+
+### Bug Fixes
+
+* bangumi cover fix ([1ba3de7](https://github.com/mx-space/kami/commit/1ba3de7a87e161877426f6a5e3ee4b311f2d9dbd))
+* base url ([3d55f4e](https://github.com/mx-space/kami/commit/3d55f4e44b09d020601376a6e5e4d0f7ad4ffcb4))
+* build error ([13132b9](https://github.com/mx-space/kami/commit/13132b94e9fe2d1ebb6260dc734c6bcd0e03af95))
+* env and comment box ([684f7d6](https://github.com/mx-space/kami/commit/684f7d60a2796901a1dd346394d847816a018c54))
+* image load error ([b48156f](https://github.com/mx-space/kami/commit/b48156feb82fc504e224a08c71cb316285450035))
+* mobile menu click ([878448f](https://github.com/mx-space/kami/commit/878448f4feb4c78855f70b0e3d4b84016145fdc1))
+* music store ([1867110](https://github.com/mx-space/kami/commit/1867110a13db7e21649deb7ac5a8a06b4b16fcb1))
+* note seq ([71f6471](https://github.com/mx-space/kami/commit/71f6471d070fce5b18504eea2a422c6bc8860037))
+
+
+### Features
+
+* bangumi view ([1d7e3e2](https://github.com/mx-space/kami/commit/1d7e3e2a96cb510152bf16f43084c005800ff5c1))
+* cache ([fe5c0c0](https://github.com/mx-space/kami/commit/fe5c0c0021f320aaa7abd9813917c2fb52211800))
+* liked music playlist ([8a957e4](https://github.com/mx-space/kami/commit/8a957e44204a9156eaa7074cab9fa55da564df0f))
+* logo ([b758a2b](https://github.com/mx-space/kami/commit/b758a2b7b5cb3489de27134afc3750808f97bcec))
+* markdown render image lazy ([56df0a3](https://github.com/mx-space/kami/commit/56df0a335dbd5a5cee0a6779715fa802224bdb2b))
+* parallax scroll ([7ea6f99](https://github.com/mx-space/kami/commit/7ea6f9920fa0e38f4ea1bd5b3be5944f67f3f1a8))
+* player ([92ab5f3](https://github.com/mx-space/kami/commit/92ab5f338f0fcaf01960a0b2d2cd49635a92433a))
+* project seo ([7d0db0b](https://github.com/mx-space/kami/commit/7d0db0b98650ebbadc2fe25b2dff9e23da1d5bc2))
+* rss ([4a81e6d](https://github.com/mx-space/kami/commit/4a81e6d653dc5a8c827ca5bd80c0af7159681d67))
+* seo ([e72e715](https://github.com/mx-space/kami/commit/e72e71531cc8fffad3c9824eeaddfd4c2ac04946))
+* **store:** music stote ([e43c539](https://github.com/mx-space/kami/commit/e43c539882a31b5304da77360fd3311e40128b52))
+* **view:** music view ([8b3f51b](https://github.com/mx-space/kami/commit/8b3f51b8b9655eec711264aba5d3d50055c450c9))
+
+
+
+# [0.1.0](https://github.com/mx-space/kami/compare/2581d27cfb106fcb4a9b642283537915830af7ba...0.1.0) (2020-04-27)
+
+
+### Bug Fixes
+
+* error ([39d339c](https://github.com/mx-space/kami/commit/39d339ce181bf3f82041368b6587da582bf53f7f))
+* fix some bugs ([190e40f](https://github.com/mx-space/kami/commit/190e40fc6b232d0fb04b3cae13f65b3b8f7c899f))
+* fix some bugs ([ca64fc8](https://github.com/mx-space/kami/commit/ca64fc82654f0fd51512fb05bb91db0222691836))
+* **import:** import error es ([2f747c3](https://github.com/mx-space/kami/commit/2f747c3c7763b19ab98050b2cc0905b0dd9917c9))
+* response view ([fc3fa62](https://github.com/mx-space/kami/commit/fc3fa62c582bb81e8e2953210f22eb11449f1b71))
+* router scroll bug ([b5231c4](https://github.com/mx-space/kami/commit/b5231c4df2b37172e607a86d61da7ae06123c9e9))
+* state text parse error. ([9986c8f](https://github.com/mx-space/kami/commit/9986c8f76824b8c10693f2d55fec03feb765ed9e))
+* style ([5ee343e](https://github.com/mx-space/kami/commit/5ee343ef5711280488da4d7112fc86d9a5ebff49))
+* style and encordUrl ([8a8bc68](https://github.com/mx-space/kami/commit/8a8bc688f9ee55bd35a10e1f4d4f9b0df07b9ea2))
+
+
+### Features
+
+* actions ([1a9f709](https://github.com/mx-space/kami/commit/1a9f709f378d3d1946d1ef89c124243d1c3f5e92))
+* **api:** add request api ([2581d27](https://github.com/mx-space/kami/commit/2581d27cfb106fcb4a9b642283537915830af7ba))
+* **article:** atricle layout ([02c0ce8](https://github.com/mx-space/kami/commit/02c0ce89848e1f376a5864932829ffc71a0229c7))
+* code style ([94c22e3](https://github.com/mx-space/kami/commit/94c22e347861e4d384f41fabb33f7a7de8c0d7ab))
+* comment reply and render ([0ba6c7b](https://github.com/mx-space/kami/commit/0ba6c7b8e4c9c859658e93a121d7b0cebc167266))
+* comment vaild ([df792b3](https://github.com/mx-space/kami/commit/df792b3c6158fded5423d5d700de80f1056d2235))
+* comment wrap ([fffccd6](https://github.com/mx-space/kami/commit/fffccd612b872bf793855818521eb086840818f6))
+* **header:** header style ([43f4a87](https://github.com/mx-space/kami/commit/43f4a879f1d79fffcc1364172bb3b82019e3a14e))
+* loader ([8506526](https://github.com/mx-space/kami/commit/8506526b60a2cd813e98186162c5c9d983f74a5a))
+* no bug is feat ([23388f1](https://github.com/mx-space/kami/commit/23388f18b0b86e0ef4491616cc46296e1e8f5c48))
+* note view ([80785ef](https://github.com/mx-space/kami/commit/80785efd6bac8d1b655999c0716fbc2f6f23a64c))
+* post loading ([3da9285](https://github.com/mx-space/kami/commit/3da9285d204801f6234845ddffcc100ee2816573))
+* post page ([b7b5984](https://github.com/mx-space/kami/commit/b7b5984a9bf9ae00d9f6f73095178f3fdef9c74a))
+* post view ([bd4f2e4](https://github.com/mx-space/kami/commit/bd4f2e4e8b3bdf5be3e102f6f81e3133ed03ca01))
+* posts shallow route ([fec742f](https://github.com/mx-space/kami/commit/fec742fe2acdd6e864b963d810bfb31a6b2eacee))
+* project images zoom popup ([7693ab0](https://github.com/mx-space/kami/commit/7693ab0e7829169290a2f538d64ddf04063d3e20))
+* project summary view ([4b67907](https://github.com/mx-space/kami/commit/4b67907d7d3ae0aef2cae9447d5241dfa6eaf3da))
+* state to icon ([907d47f](https://github.com/mx-space/kami/commit/907d47f5cf7d4c3239b9ee0a25b24b27f9d4e903))
+* **store:** connect store ([4e88dc5](https://github.com/mx-space/kami/commit/4e88dc54e19df30f93736c7da5e26eb877604ac9))
+* **store:** user mobx to store ([085c93e](https://github.com/mx-space/kami/commit/085c93e7ad7ac97698ab072862f3b3644b6052de))
+* **view:** say view ([c869953](https://github.com/mx-space/kami/commit/c86995371e65b3ff9ee1f7bc5e9860c123a92d4c))
+
+
+
