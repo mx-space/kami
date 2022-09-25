@@ -19,7 +19,8 @@
     "before": [
       "git pull --rebase",
       "ni"
-    ]
+    ],
+    "changelog": true
   },
   "husky": {
     "hooks": {
