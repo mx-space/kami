@@ -59,7 +59,7 @@ export const Toc: FC<TocProps> = memo(
           containerRef.current.style.maxWidth = `${
             document.documentElement.getBoundingClientRect().width -
             containerRef.current.getBoundingClientRect().x -
-            30
+            60
           }px`
         }
       }, 14)
