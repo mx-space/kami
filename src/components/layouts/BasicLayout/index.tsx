@@ -14,8 +14,8 @@ import { BiMoonStarsFill, PhSunBold } from '~/components/universal/Icons/layout'
 import { TrackerAction } from '~/constants/tracker'
 import { useRootStore } from '~/context'
 import { useAnalyze } from '~/hooks/use-analyze'
+import { useThemeBackground } from '~/hooks/use-kami'
 import { useMediaToggle } from '~/hooks/use-media-toggle'
-import { useThemeBackground } from '~/hooks/use-theme-background'
 import { springScrollToElement } from '~/utils/spring'
 
 const Header = React.lazy(() =>

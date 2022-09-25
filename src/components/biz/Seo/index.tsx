@@ -1,13 +1,12 @@
 import merge from 'lodash-es/merge'
-import sample from 'lodash-es/sample'
 import { observer } from 'mobx-react-lite'
 import type { NextSeoProps } from 'next-seo'
 import { NextSeo } from 'next-seo'
 import type { OpenGraph } from 'next-seo/lib/types'
 import type { FC } from 'react'
 
-import { useInitialData, useThemeConfig } from '~/hooks/use-initial-data'
-import { getRandomImage } from '~/utils/images'
+import { useInitialData } from '~/hooks/use-initial-data'
+import { useRandomImage } from '~/hooks/use-kami'
 
 import { useStore } from '../../../store'
 
@@ -26,10 +25,8 @@ export const SEO: FC<SEOProps> = observer((props) => {
     user,
   } = useInitialData()
   const Title = `${title} - ${seo.title}`
-  const themeConfig = useThemeConfig()
-  const {
-    site: { figure },
-  } = themeConfig
+
+  const [randomImage] = useRandomImage()
 
   return (
     <NextSeo
@@ -52,7 +49,7 @@ export const SEO: FC<SEOProps> = observer((props) => {
             title: Title,
             images: [
               {
-                url: sample(figure) || getRandomImage()[0],
+                url: randomImage,
                 alt: `${title} - ${seo.title}`,
               },
             ],

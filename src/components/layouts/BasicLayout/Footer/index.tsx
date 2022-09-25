@@ -8,7 +8,7 @@ import { ImpressionView } from '~/components/biz/ImpressionView'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useInitialData, useThemeConfig } from '~/hooks/use-initial-data'
-import { useFooterBackground } from '~/hooks/use-theme-background'
+import { useFooterBackground } from '~/hooks/use-kami'
 import { NoSSRWrapper } from '~/utils/no-ssr'
 
 import { useStore } from '../../../../store'

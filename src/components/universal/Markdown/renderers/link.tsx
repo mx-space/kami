@@ -13,6 +13,10 @@ export const MLink: FC<{
   const ExtendIcon = useMemo(
     () => (
       <svg
+        style={{
+          transform: `translateY(-2px)`,
+          marginLeft: `2px`,
+        }}
         xmlns="http://www.w3.org/2000/svg"
         x="0px"
         y="0px"

@@ -1,6 +1,8 @@
-import { useEffect } from 'react'
+import { shuffle } from 'lodash-es'
+import { useEffect, useRef } from 'react'
 
 import { useStore } from '~/store'
+import { getRandomImage } from '~/utils/images'
 
 import { useKamiConfig } from './use-initial-data'
 
@@ -56,4 +58,17 @@ export const useFooterBackground = (footerClassName: string) => {
 
     return remove
   }, [background.position, background.src, colorMode, footerClassName])
+}
+
+export const useRandomImage = (count: number | 'all' = 1) => {
+  const nextCount = count === 'all' ? undefined : count
+  const {
+    site: { figure },
+  } = useKamiConfig()
+
+  return useRef(
+    figure?.length
+      ? shuffle(figure).slice(0, nextCount)
+      : getRandomImage(nextCount),
+  ).current
 }

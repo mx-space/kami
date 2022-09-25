@@ -17,7 +17,7 @@ import { MaterialSymbolsArrowCircleRightOutlineRounded } from '~/components/univ
 import { LeftRightTransitionView } from '~/components/universal/Transition/left-right'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
-import { useIsMounted } from '~/hooks/use-is-mounted'
+import { useIsUnMounted } from '~/hooks/use-is-unmounted'
 import { useStore } from '~/store'
 import { apiClient } from '~/utils/client'
 
@@ -38,7 +38,7 @@ const ObserveredNoteTimelineList: FC<
   const { noteStore } = useStore()
   const note = noteStore.get(noteId)
   const [list, setList] = useState<NotePartial[]>([note as any])
-  const mountedRef = useIsMounted()
+  const isUnMounted = useIsUnMounted()
   const requestNoteIdRef = useRef<string>()
   useEffect(() => {
     const now = +new Date()
@@ -49,7 +49,7 @@ const ObserveredNoteTimelineList: FC<
       const gapTime = +new Date() - now
       timer = setTimeout(
         () => {
-          if (!mountedRef.current) {
+          if (isUnMounted.current) {
             return
           }
 

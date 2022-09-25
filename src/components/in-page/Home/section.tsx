@@ -1,4 +1,3 @@
-import shuffle from 'lodash-es/shuffle'
 import Router from 'next/router'
 import { useIndexViewContext } from 'pages'
 import type { FC } from 'react'
@@ -16,10 +15,9 @@ import { IcTwotoneSignpost } from '~/components/universal/Icons/menu-icon'
 import { LikeButton } from '~/components/universal/LikeButton'
 import { NoticePanel } from '~/components/universal/Notice'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
-import { useThemeConfig } from '~/hooks/use-initial-data'
+import { useRandomImage } from '~/hooks/use-kami'
 import { apiClient } from '~/utils/client'
 import { stopEventDefault } from '~/utils/dom'
-import { getRandomImage } from '~/utils/images'
 import { NoSSRWrapper } from '~/utils/no-ssr'
 
 import type { SectionNewsProps } from './SectionNews'
@@ -29,10 +27,7 @@ import { SectionWrap } from './SectionNews/section'
 import styles from './section.module.css'
 
 const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
-  const config = useThemeConfig()
-  const randomImages = config.site.figure?.length
-    ? shuffle(config.site.figure)
-    : getRandomImage()
+  const randomImages = useRandomImage('all')
 
   const currentImageIndex = useRef(0)
 

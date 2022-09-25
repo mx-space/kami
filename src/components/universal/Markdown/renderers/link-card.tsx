@@ -7,7 +7,8 @@ import RemoveMarkdown from 'remove-markdown'
 
 import { simpleCamelcaseKeys as camelcaseKeys } from '@mx-space/api-client'
 
-import { useIsMounted } from '~/hooks/use-is-mounted'
+import { useIsUnMounted } from '~/hooks/use-is-unmounted'
+import { useRandomImage } from '~/hooks/use-kami'
 import { useSafeSetState } from '~/hooks/use-safe-setState'
 import { apiClient } from '~/utils/client'
 import { getRandomImage } from '~/utils/images'
@@ -22,7 +23,7 @@ export interface LinkCardProps {
 }
 export const LinkCard: FC<LinkCardProps> = (props) => {
   const { id, source = 'self', className } = props
-  const mountedRef = useIsMounted()
+  const isUnMounted = useIsUnMounted()
 
   const [loading, setLoading] = useState(true)
   const [isError, setIsError] = useState(false)
@@ -34,8 +35,9 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
     desc?: string
     image: string
   }>()
-  const setFullUrl = useSafeSetState(_setFullUrl, mountedRef)
-  const setCardInfo = useSafeSetState(_setCardInfo, mountedRef)
+  const setFullUrl = useSafeSetState(_setFullUrl, isUnMounted)
+  const setCardInfo = useSafeSetState(_setCardInfo, isUnMounted)
+  const [randomImage] = useRandomImage(1)
 
   const isValidType = useMemo(() => {
     switch (source) {
@@ -60,7 +62,7 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
                   title,
                   desc: `${RemoveMarkdown(text).slice(0, 50)}...`,
                   // TODO
-                  image: images?.[0]?.src || getRandomImage(1)[0],
+                  image: images?.[0]?.src || randomImage,
                 })
               })
             }
@@ -163,14 +165,16 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
         <div className={styles['title']}>{cardInfo?.title}</div>
         <div className={styles['desc']}>{cardInfo?.desc}</div>
       </div>
-      <div
-        className={styles['image']}
-        style={{
-          backgroundImage: cardInfo?.image
-            ? `url(${cardInfo.image})`
-            : undefined,
-        }}
-      />
+      {(loading || cardInfo?.image) && (
+        <div
+          className={styles['image']}
+          style={{
+            backgroundImage: cardInfo?.image
+              ? `url(${cardInfo.image})`
+              : undefined,
+          }}
+        />
+      )}
     </a>
   )
 }
