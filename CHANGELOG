@@ -1,3 +1,17 @@
+## [3.15.2](https://github.com/mx-space/kami/compare/v3.15.1...v3.15.2) (2022-09-27)
+
+
+### Bug Fixes
+
+* toc max-width and lamp coincidence ([af05395](https://github.com/mx-space/kami/commit/af05395a2a09f611d760c30db87d7fac33a92122))
+
+
+### Features
+
+* disable comment for site ([475c6ec](https://github.com/mx-space/kami/commit/475c6ec6b00e58b2acefe573e2af3690f6792c25))
+
+
+
 ## [3.15.1](https://github.com/mx-space/kami/compare/v3.15.0...v3.15.1) (2022-09-25)
 
 
@@ -2995,149 +3009,101 @@
 
 
 
-# [1.0.0-rc](https://github.com/mx-space/kami/compare/0.5.0-alpha...v1.0.0-rc) (2020-05-07)
-
-
-### Bug Fixes
-
-* build error ([ecea2b0](https://github.com/mx-space/kami/commit/ecea2b06556b3aec581eb199b50183ecadbfa2a5))
-* cache ([9f4b9ba](https://github.com/mx-space/kami/commit/9f4b9bab5a1b8d199b9f911fc84a58fc66a98a32))
-* category slug error ([b784c99](https://github.com/mx-space/kami/commit/b784c994ac8bc60c45e6f40eac1385d019fa5051))
-* comment error message ([608b616](https://github.com/mx-space/kami/commit/608b616d57a70d0385b863cd8e53ad8b56e4e7d9))
-* document undefined ([fbf19d2](https://github.com/mx-space/kami/commit/fbf19d2831a8b3be75aafff33dabe7cecfb09690))
-* fix say view ssr ([31ddae1](https://github.com/mx-space/kami/commit/31ddae1777fe838aac5791ca98f41a1b5f1e1228))
-* mobile comment view ([032ad16](https://github.com/mx-space/kami/commit/032ad16d62e89cde2bfc0f53b2649d07ecf62020))
-* online image url ([28b512d](https://github.com/mx-space/kami/commit/28b512da3137ba920b0dad460ccf0b8573938024))
-* request error with loop ([ee0900e](https://github.com/mx-space/kami/commit/ee0900ea6445ad3c042841dd88d11123f78cb852))
-
-
-### Features
-
-* like note ([d82cf05](https://github.com/mx-space/kami/commit/d82cf05115dd7722df9041f3a9d2fe49f0adbbfa))
-* sitemap ([636a978](https://github.com/mx-space/kami/commit/636a97876ebedb5ab7a1b782c76875c5aa435083))
-* web login ([a5b3762](https://github.com/mx-space/kami/commit/a5b3762d18a3e3d848d66d92a7e03630f736eda1))
-
-
-
-# [0.5.0-alpha](https://github.com/mx-space/kami/compare/0.4.0...0.5.0-alpha) (2020-05-01)
-
-
-### Bug Fixes
-
-* document is not defined(prod) ([7123022](https://github.com/mx-space/kami/commit/71230229f5bc50884ac2e33d6ba52f643219931c))
-
-
-### Features
-
-* category list view ([6743397](https://github.com/mx-space/kami/commit/6743397538f731ac1b1a00bd757b22cadbdbe7d3))
-* ga ([5eac187](https://github.com/mx-space/kami/commit/5eac187cd57a64311dbac84d8b0d64cea86506c5))
-* **view:** friends ([1763dae](https://github.com/mx-space/kami/commit/1763dae24429370fcce523e60f2f37d848680630))
-* **view:** timeline ([d4958cb](https://github.com/mx-space/kami/commit/d4958cb87491f9cc35028e83b74df043910494e6))
-
-
-
-# [0.4.0](https://github.com/mx-space/kami/compare/0.3.0...0.4.0) (2020-04-30)
-
-
-### Bug Fixes
-
-* cache ([ee18dcb](https://github.com/mx-space/kami/commit/ee18dcb7e4321733b617df378e3bb50b1c01c9eb))
-* crash ([1150239](https://github.com/mx-space/kami/commit/11502399cd05c88cee96c0d88bccd94591a35ee5))
-* http protocol error ([167f61c](https://github.com/mx-space/kami/commit/167f61c0747f88f350ef7116fffda354b2f1c2bd))
-* mobx memory leak ([74ac993](https://github.com/mx-space/kami/commit/74ac99386a564174d3608e74f05c187a901d2e71))
-* pre-render error ([862ff0f](https://github.com/mx-space/kami/commit/862ff0f7ba8cef86633b6533c034956037391770))
-* style ([02dde8f](https://github.com/mx-space/kami/commit/02dde8fa2f8595b139296e4f35a9202b8b3ae54e))
-* toc timeout ([0e35201](https://github.com/mx-space/kami/commit/0e35201cd2c6d0ac7852b5f66968c5f3baa81bde))
-
-
-### Features
-
-* anim ([ba855a9](https://github.com/mx-space/kami/commit/ba855a9232eda3eaac6ee786cca997c23888afe2))
-* comment lazy ([637b00d](https://github.com/mx-space/kami/commit/637b00df109ac220998f48f984b18774ca8fb8f9))
-* error page restyle ([b469da4](https://github.com/mx-space/kami/commit/b469da4901789eef7ca829cebf46c8b23e88f202))
-* markdown render image popup ([3f4c0db](https://github.com/mx-space/kami/commit/3f4c0dbc0e9010ad7a7ac7e6194bbaa5179dea2f))
-* say view anime ([6056901](https://github.com/mx-space/kami/commit/60569016c699530139b647be47c2fd367626f683))
-* seter handler ([e9f0222](https://github.com/mx-space/kami/commit/e9f0222ebe99fa30accf018a164f81e49f283ebd))
-* toc ([5d18cde](https://github.com/mx-space/kami/commit/5d18cdeb747acab1c61e86f7180924824c0304cf))
-
-
-### Reverts
-
-* **server:** mobx server ([96f0b27](https://github.com/mx-space/kami/commit/96f0b2707ea8375763d9f41d29a756d7a8074a32))
-
-
-
-# [0.3.0](https://github.com/mx-space/kami/compare/0.1.0...0.3.0) (2020-04-28)
+# [1.0.0-rc](https://github.com/mx-space/kami/compare/2581d27cfb106fcb4a9b642283537915830af7ba...v1.0.0-rc) (2020-05-07)
 
 
 ### Bug Fixes
 
 * bangumi cover fix ([1ba3de7](https://github.com/mx-space/kami/commit/1ba3de7a87e161877426f6a5e3ee4b311f2d9dbd))
 * base url ([3d55f4e](https://github.com/mx-space/kami/commit/3d55f4e44b09d020601376a6e5e4d0f7ad4ffcb4))
+* build error ([ecea2b0](https://github.com/mx-space/kami/commit/ecea2b06556b3aec581eb199b50183ecadbfa2a5))
 * build error ([13132b9](https://github.com/mx-space/kami/commit/13132b94e9fe2d1ebb6260dc734c6bcd0e03af95))
+* cache ([9f4b9ba](https://github.com/mx-space/kami/commit/9f4b9bab5a1b8d199b9f911fc84a58fc66a98a32))
+* cache ([ee18dcb](https://github.com/mx-space/kami/commit/ee18dcb7e4321733b617df378e3bb50b1c01c9eb))
+* category slug error ([b784c99](https://github.com/mx-space/kami/commit/b784c994ac8bc60c45e6f40eac1385d019fa5051))
+* comment error message ([608b616](https://github.com/mx-space/kami/commit/608b616d57a70d0385b863cd8e53ad8b56e4e7d9))
+* crash ([1150239](https://github.com/mx-space/kami/commit/11502399cd05c88cee96c0d88bccd94591a35ee5))
+* document is not defined(prod) ([7123022](https://github.com/mx-space/kami/commit/71230229f5bc50884ac2e33d6ba52f643219931c))
+* document undefined ([fbf19d2](https://github.com/mx-space/kami/commit/fbf19d2831a8b3be75aafff33dabe7cecfb09690))
 * env and comment box ([684f7d6](https://github.com/mx-space/kami/commit/684f7d60a2796901a1dd346394d847816a018c54))
-* image load error ([b48156f](https://github.com/mx-space/kami/commit/b48156feb82fc504e224a08c71cb316285450035))
-* mobile menu click ([878448f](https://github.com/mx-space/kami/commit/878448f4feb4c78855f70b0e3d4b84016145fdc1))
-* music store ([1867110](https://github.com/mx-space/kami/commit/1867110a13db7e21649deb7ac5a8a06b4b16fcb1))
-* note seq ([71f6471](https://github.com/mx-space/kami/commit/71f6471d070fce5b18504eea2a422c6bc8860037))
-
-
-### Features
-
-* bangumi view ([1d7e3e2](https://github.com/mx-space/kami/commit/1d7e3e2a96cb510152bf16f43084c005800ff5c1))
-* cache ([fe5c0c0](https://github.com/mx-space/kami/commit/fe5c0c0021f320aaa7abd9813917c2fb52211800))
-* liked music playlist ([8a957e4](https://github.com/mx-space/kami/commit/8a957e44204a9156eaa7074cab9fa55da564df0f))
-* logo ([b758a2b](https://github.com/mx-space/kami/commit/b758a2b7b5cb3489de27134afc3750808f97bcec))
-* markdown render image lazy ([56df0a3](https://github.com/mx-space/kami/commit/56df0a335dbd5a5cee0a6779715fa802224bdb2b))
-* parallax scroll ([7ea6f99](https://github.com/mx-space/kami/commit/7ea6f9920fa0e38f4ea1bd5b3be5944f67f3f1a8))
-* player ([92ab5f3](https://github.com/mx-space/kami/commit/92ab5f338f0fcaf01960a0b2d2cd49635a92433a))
-* project seo ([7d0db0b](https://github.com/mx-space/kami/commit/7d0db0b98650ebbadc2fe25b2dff9e23da1d5bc2))
-* rss ([4a81e6d](https://github.com/mx-space/kami/commit/4a81e6d653dc5a8c827ca5bd80c0af7159681d67))
-* seo ([e72e715](https://github.com/mx-space/kami/commit/e72e71531cc8fffad3c9824eeaddfd4c2ac04946))
-* **store:** music stote ([e43c539](https://github.com/mx-space/kami/commit/e43c539882a31b5304da77360fd3311e40128b52))
-* **view:** music view ([8b3f51b](https://github.com/mx-space/kami/commit/8b3f51b8b9655eec711264aba5d3d50055c450c9))
-
-
-
-# [0.1.0](https://github.com/mx-space/kami/compare/2581d27cfb106fcb4a9b642283537915830af7ba...0.1.0) (2020-04-27)
-
-
-### Bug Fixes
-
 * error ([39d339c](https://github.com/mx-space/kami/commit/39d339ce181bf3f82041368b6587da582bf53f7f))
+* fix say view ssr ([31ddae1](https://github.com/mx-space/kami/commit/31ddae1777fe838aac5791ca98f41a1b5f1e1228))
 * fix some bugs ([190e40f](https://github.com/mx-space/kami/commit/190e40fc6b232d0fb04b3cae13f65b3b8f7c899f))
 * fix some bugs ([ca64fc8](https://github.com/mx-space/kami/commit/ca64fc82654f0fd51512fb05bb91db0222691836))
+* http protocol error ([167f61c](https://github.com/mx-space/kami/commit/167f61c0747f88f350ef7116fffda354b2f1c2bd))
+* image load error ([b48156f](https://github.com/mx-space/kami/commit/b48156feb82fc504e224a08c71cb316285450035))
 * **import:** import error es ([2f747c3](https://github.com/mx-space/kami/commit/2f747c3c7763b19ab98050b2cc0905b0dd9917c9))
+* mobile comment view ([032ad16](https://github.com/mx-space/kami/commit/032ad16d62e89cde2bfc0f53b2649d07ecf62020))
+* mobile menu click ([878448f](https://github.com/mx-space/kami/commit/878448f4feb4c78855f70b0e3d4b84016145fdc1))
+* mobx memory leak ([74ac993](https://github.com/mx-space/kami/commit/74ac99386a564174d3608e74f05c187a901d2e71))
+* music store ([1867110](https://github.com/mx-space/kami/commit/1867110a13db7e21649deb7ac5a8a06b4b16fcb1))
+* note seq ([71f6471](https://github.com/mx-space/kami/commit/71f6471d070fce5b18504eea2a422c6bc8860037))
+* online image url ([28b512d](https://github.com/mx-space/kami/commit/28b512da3137ba920b0dad460ccf0b8573938024))
+* pre-render error ([862ff0f](https://github.com/mx-space/kami/commit/862ff0f7ba8cef86633b6533c034956037391770))
+* request error with loop ([ee0900e](https://github.com/mx-space/kami/commit/ee0900ea6445ad3c042841dd88d11123f78cb852))
 * response view ([fc3fa62](https://github.com/mx-space/kami/commit/fc3fa62c582bb81e8e2953210f22eb11449f1b71))
 * router scroll bug ([b5231c4](https://github.com/mx-space/kami/commit/b5231c4df2b37172e607a86d61da7ae06123c9e9))
 * state text parse error. ([9986c8f](https://github.com/mx-space/kami/commit/9986c8f76824b8c10693f2d55fec03feb765ed9e))
+* style ([02dde8f](https://github.com/mx-space/kami/commit/02dde8fa2f8595b139296e4f35a9202b8b3ae54e))
 * style ([5ee343e](https://github.com/mx-space/kami/commit/5ee343ef5711280488da4d7112fc86d9a5ebff49))
 * style and encordUrl ([8a8bc68](https://github.com/mx-space/kami/commit/8a8bc688f9ee55bd35a10e1f4d4f9b0df07b9ea2))
+* toc timeout ([0e35201](https://github.com/mx-space/kami/commit/0e35201cd2c6d0ac7852b5f66968c5f3baa81bde))
 
 
 ### Features
 
 * actions ([1a9f709](https://github.com/mx-space/kami/commit/1a9f709f378d3d1946d1ef89c124243d1c3f5e92))
+* anim ([ba855a9](https://github.com/mx-space/kami/commit/ba855a9232eda3eaac6ee786cca997c23888afe2))
 * **api:** add request api ([2581d27](https://github.com/mx-space/kami/commit/2581d27cfb106fcb4a9b642283537915830af7ba))
 * **article:** atricle layout ([02c0ce8](https://github.com/mx-space/kami/commit/02c0ce89848e1f376a5864932829ffc71a0229c7))
+* bangumi view ([1d7e3e2](https://github.com/mx-space/kami/commit/1d7e3e2a96cb510152bf16f43084c005800ff5c1))
+* cache ([fe5c0c0](https://github.com/mx-space/kami/commit/fe5c0c0021f320aaa7abd9813917c2fb52211800))
+* category list view ([6743397](https://github.com/mx-space/kami/commit/6743397538f731ac1b1a00bd757b22cadbdbe7d3))
 * code style ([94c22e3](https://github.com/mx-space/kami/commit/94c22e347861e4d384f41fabb33f7a7de8c0d7ab))
+* comment lazy ([637b00d](https://github.com/mx-space/kami/commit/637b00df109ac220998f48f984b18774ca8fb8f9))
 * comment reply and render ([0ba6c7b](https://github.com/mx-space/kami/commit/0ba6c7b8e4c9c859658e93a121d7b0cebc167266))
 * comment vaild ([df792b3](https://github.com/mx-space/kami/commit/df792b3c6158fded5423d5d700de80f1056d2235))
 * comment wrap ([fffccd6](https://github.com/mx-space/kami/commit/fffccd612b872bf793855818521eb086840818f6))
+* error page restyle ([b469da4](https://github.com/mx-space/kami/commit/b469da4901789eef7ca829cebf46c8b23e88f202))
+* ga ([5eac187](https://github.com/mx-space/kami/commit/5eac187cd57a64311dbac84d8b0d64cea86506c5))
 * **header:** header style ([43f4a87](https://github.com/mx-space/kami/commit/43f4a879f1d79fffcc1364172bb3b82019e3a14e))
+* like note ([d82cf05](https://github.com/mx-space/kami/commit/d82cf05115dd7722df9041f3a9d2fe49f0adbbfa))
+* liked music playlist ([8a957e4](https://github.com/mx-space/kami/commit/8a957e44204a9156eaa7074cab9fa55da564df0f))
 * loader ([8506526](https://github.com/mx-space/kami/commit/8506526b60a2cd813e98186162c5c9d983f74a5a))
+* logo ([b758a2b](https://github.com/mx-space/kami/commit/b758a2b7b5cb3489de27134afc3750808f97bcec))
+* markdown render image lazy ([56df0a3](https://github.com/mx-space/kami/commit/56df0a335dbd5a5cee0a6779715fa802224bdb2b))
+* markdown render image popup ([3f4c0db](https://github.com/mx-space/kami/commit/3f4c0dbc0e9010ad7a7ac7e6194bbaa5179dea2f))
 * no bug is feat ([23388f1](https://github.com/mx-space/kami/commit/23388f18b0b86e0ef4491616cc46296e1e8f5c48))
 * note view ([80785ef](https://github.com/mx-space/kami/commit/80785efd6bac8d1b655999c0716fbc2f6f23a64c))
+* parallax scroll ([7ea6f99](https://github.com/mx-space/kami/commit/7ea6f9920fa0e38f4ea1bd5b3be5944f67f3f1a8))
+* player ([92ab5f3](https://github.com/mx-space/kami/commit/92ab5f338f0fcaf01960a0b2d2cd49635a92433a))
 * post loading ([3da9285](https://github.com/mx-space/kami/commit/3da9285d204801f6234845ddffcc100ee2816573))
 * post page ([b7b5984](https://github.com/mx-space/kami/commit/b7b5984a9bf9ae00d9f6f73095178f3fdef9c74a))
 * post view ([bd4f2e4](https://github.com/mx-space/kami/commit/bd4f2e4e8b3bdf5be3e102f6f81e3133ed03ca01))
 * posts shallow route ([fec742f](https://github.com/mx-space/kami/commit/fec742fe2acdd6e864b963d810bfb31a6b2eacee))
 * project images zoom popup ([7693ab0](https://github.com/mx-space/kami/commit/7693ab0e7829169290a2f538d64ddf04063d3e20))
+* project seo ([7d0db0b](https://github.com/mx-space/kami/commit/7d0db0b98650ebbadc2fe25b2dff9e23da1d5bc2))
 * project summary view ([4b67907](https://github.com/mx-space/kami/commit/4b67907d7d3ae0aef2cae9447d5241dfa6eaf3da))
+* rss ([4a81e6d](https://github.com/mx-space/kami/commit/4a81e6d653dc5a8c827ca5bd80c0af7159681d67))
+* say view anime ([6056901](https://github.com/mx-space/kami/commit/60569016c699530139b647be47c2fd367626f683))
+* seo ([e72e715](https://github.com/mx-space/kami/commit/e72e71531cc8fffad3c9824eeaddfd4c2ac04946))
+* seter handler ([e9f0222](https://github.com/mx-space/kami/commit/e9f0222ebe99fa30accf018a164f81e49f283ebd))
+* sitemap ([636a978](https://github.com/mx-space/kami/commit/636a97876ebedb5ab7a1b782c76875c5aa435083))
 * state to icon ([907d47f](https://github.com/mx-space/kami/commit/907d47f5cf7d4c3239b9ee0a25b24b27f9d4e903))
 * **store:** connect store ([4e88dc5](https://github.com/mx-space/kami/commit/4e88dc54e19df30f93736c7da5e26eb877604ac9))
+* **store:** music stote ([e43c539](https://github.com/mx-space/kami/commit/e43c539882a31b5304da77360fd3311e40128b52))
 * **store:** user mobx to store ([085c93e](https://github.com/mx-space/kami/commit/085c93e7ad7ac97698ab072862f3b3644b6052de))
+* toc ([5d18cde](https://github.com/mx-space/kami/commit/5d18cdeb747acab1c61e86f7180924824c0304cf))
+* **view:** friends ([1763dae](https://github.com/mx-space/kami/commit/1763dae24429370fcce523e60f2f37d848680630))
+* **view:** music view ([8b3f51b](https://github.com/mx-space/kami/commit/8b3f51b8b9655eec711264aba5d3d50055c450c9))
 * **view:** say view ([c869953](https://github.com/mx-space/kami/commit/c86995371e65b3ff9ee1f7bc5e9860c123a92d4c))
+* **view:** timeline ([d4958cb](https://github.com/mx-space/kami/commit/d4958cb87491f9cc35028e83b74df043910494e6))
+* web login ([a5b3762](https://github.com/mx-space/kami/commit/a5b3762d18a3e3d848d66d92a7e03630f736eda1))
+
+
+### Reverts
+
+* **server:** mobx server ([96f0b27](https://github.com/mx-space/kami/commit/96f0b2707ea8375763d9f41d29a756d7a8074a32))
 
 
 
