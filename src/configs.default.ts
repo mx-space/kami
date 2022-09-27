@@ -153,6 +153,9 @@ export const defaultConfigs = {
     },
   },
   function: {
+    comment: {
+      disable: false,
+    },
     player: {
       id: [563534789, 1447327083, 1450252250],
     },

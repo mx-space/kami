@@ -106,6 +106,8 @@ site:
     css: []
 
 function:
+  comment:
+    disable: false
   player:
     # 默认播放列表
     # 只支持网易云

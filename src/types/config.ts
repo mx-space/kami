@@ -5,6 +5,9 @@ export interface KamiConfig {
 }
 
 interface Function {
+  comment: {
+    disable: boolean
+  }
   analyze: {
     enable: boolean
     ga: string

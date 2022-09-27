@@ -7,6 +7,7 @@ import { useHash } from 'react-use'
 
 import type { Pager } from '@mx-space/api-client'
 
+import { useKamiConfig } from '~/hooks/use-initial-data'
 import { useIsClient } from '~/hooks/use-is-client'
 import { apiClient } from '~/utils/client'
 import { NoSSRWrapper } from '~/utils/no-ssr'
@@ -42,7 +43,7 @@ interface CommentWrapProps {
   allowComment: boolean
 }
 
-const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
+const CommentWrap: FC<CommentWrapProps> = observer((props) => {
   const { id, allowComment } = props
 
   const [pagination, setPagination] = useState({} as Pager)
@@ -180,4 +181,20 @@ const _CommentWrap: FC<CommentWrapProps> = observer((props) => {
   )
 })
 
-export const CommentLazy = NoSSRWrapper(_CommentWrap)
+const Comment: typeof CommentWrap = (props) => {
+  const {
+    function: {
+      comment: { disable },
+    },
+  } = useKamiConfig()
+
+  if (disable) {
+    return (
+      <h1 className="!mt-6 font-semibold text-lg headline">
+        全站评论功能已禁用
+      </h1>
+    )
+  }
+  return <CommentWrap {...props} />
+}
+export const CommentLazy = NoSSRWrapper(Comment)
