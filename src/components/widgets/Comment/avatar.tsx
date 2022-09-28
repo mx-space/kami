@@ -27,7 +27,6 @@ export const Avatar: FC<AvatarProps> = observer(({ src }) => {
     }
     const image = new Image()
     image.src = src
-    image.crossOrigin = 'anonymous'
     image.onload = () => {
       setReady(true)
     }
