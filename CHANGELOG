@@ -1,3 +1,12 @@
+## [3.15.3](https://github.com/mx-space/kami/compare/v3.15.2...v3.15.3) (2022-09-29)
+
+
+### Bug Fixes
+
+* comment avatar disappear ([#1396](https://github.com/mx-space/kami/issues/1396)) ([bbf7a4a](https://github.com/mx-space/kami/commit/bbf7a4a415a57599b08f014ea015de6b4d1729d7))
+
+
+
 ## [3.15.2](https://github.com/mx-space/kami/compare/v3.15.1...v3.15.2) (2022-09-27)
 
 
