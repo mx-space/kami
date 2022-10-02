@@ -60,7 +60,7 @@ specifiers:
   react-dom: 18.2.0
   react-intersection-observer: 9.4.0
   react-masonry-css: 1.0.16
-  react-message-popup: 1.0.0-alpha.4
+  react-message-popup: 1.0.0
   react-shortcut-guide: 0.5.0
   react-smooth-number-counter: https://github.com/Innei/react-smooth-number-counter.git
   react-toastify: 9.0.8
@@ -104,7 +104,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-intersection-observer: 9.4.0_react@18.2.0
   react-masonry-css: 1.0.16_react@18.2.0
-  react-message-popup: 1.0.0-alpha.4_biqbaboplfbrettd7655fr4n2y
+  react-message-popup: 1.0.0_biqbaboplfbrettd7655fr4n2y
   react-shortcut-guide: 0.5.0
   react-smooth-number-counter: github.com/Innei/react-smooth-number-counter/6be776817e507970a7e3177b8c3277b0b9d3e779
   react-toastify: 9.0.8_biqbaboplfbrettd7655fr4n2y
@@ -4101,8 +4101,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /react-message-popup/1.0.0-alpha.4_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-D0e+RScG08BRcuVxb5RXb9hcEUTfQeainEDsNXo7dx2/t0MMh8mSmYHVF6QOoyTWF+b6NwKmeaaQA/sw7kGVEg==}
+  /react-message-popup/1.0.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-fDtLQp29u6nhxtRTfc3f/DBOSLDt8yuAROylv3OQcuStFuKqJnDgmFaFPzkgYf+64x8SsiC7ADQpfZJx6dK8/g==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
