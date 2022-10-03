@@ -1,3 +1,18 @@
+## [3.15.4](https://github.com/mx-space/kami/compare/v3.15.3...v3.15.4) (2022-10-03)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-message-popup to v1.0.0 ([6d74521](https://github.com/mx-space/kami/commit/6d745216ea7a0c5cb7be68043de3f257260545d5))
+
+
+### Features
+
+* **header:** add subtitle ([3bd5695](https://github.com/mx-space/kami/commit/3bd5695525c34d164b2f5a7e5de48d13e64d11d0))
+* **intro:** improve popover style ([f62935c](https://github.com/mx-space/kami/commit/f62935cacd6907aae7929c02103addff6a9e0abf))
+
+
+
 ## [3.15.3](https://github.com/mx-space/kami/compare/v3.15.2...v3.15.3) (2022-09-29)
 
 
