@@ -190,8 +190,8 @@ const Comment: typeof CommentWrap = (props) => {
 
   if (disable) {
     return (
-      <h1 className="!mt-6 font-semibold text-lg headline">
-        全站评论功能已禁用
+      <h1 className="!mt-6 font-semibold text-lg headline text-light-brown dark:text-shizuku-text">
+        全站评论功能未开放
       </h1>
     )
   }
