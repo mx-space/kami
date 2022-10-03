@@ -75,8 +75,11 @@ const Social: FC = NoSSRWrapper(() => {
                   <FontIcon icon={item.icon} />
                 </a>
               )}
+              headless
             >
-              {item.title}
+              <div className="bg-light-bg px-3 py-2 border border-dark-100 border-opacity-10 rounded-full shadow-out-sm">
+                {item.title}
+              </div>
             </FloatPopover>
           </BottomUpTransitionView>
         )
