@@ -48,6 +48,7 @@ interface NotificationType {
 
 interface Site {
   favicon: string
+  subtitle?: string | null
   logoSvg?: string
   figure?: string[]
   header: Header

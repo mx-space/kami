@@ -2,13 +2,13 @@ import classNames from 'clsx'
 import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { memo, useEffect, useMemo, useRef, useState } from 'react'
 
 import { IcBaselineMenuOpen } from '~/components/universal/Icons/layout'
 import { CustomLogo as Logo } from '~/components/universal/Logo'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
-import { useInitialData } from '~/hooks/use-initial-data'
+import { useInitialData, useKamiConfig } from '~/hooks/use-initial-data'
 import { useIsClient } from '~/hooks/use-is-client'
 import { useSingleAndDoubleClick } from '~/hooks/use-single-double-click'
 import { useStore } from '~/store'
@@ -21,14 +21,17 @@ import styles from './index.module.css'
 
 export const Header: FC = observer(() => {
   const {
-    seo: { title },
+    seo: { title, description },
   } = useInitialData()
+  const {
+    site: { subtitle },
+  } = useKamiConfig()
   const {
     appStore,
     userStore: { isLogged, url },
   } = useStore()
 
-  const { isPadOrMobile } = appStore
+  const { isPadOrMobile, headerNav } = appStore
 
   const router = useRouter()
   const { event } = useAnalyze()
@@ -53,11 +56,11 @@ export const Header: FC = observer(() => {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const showPageHeader = useMemo(
     () =>
-      appStore.headerNav.show &&
+      headerNav.show &&
       (appStore.scrollDirection == 'down' || appStore.viewport.mobile) &&
       appStore.isOverPostTitleHeight,
     [
-      appStore.headerNav.show,
+      headerNav.show,
       appStore.isOverPostTitleHeight,
       appStore.scrollDirection,
       appStore.viewport.mobile,
@@ -70,29 +73,10 @@ export const Header: FC = observer(() => {
     appHeaderRef.current?.scrollIntoView()
   }, [showPageHeader])
 
-  const MemoComponent = useMemo(
-    () => (
-      <div
-        className={classNames(
-          styles['head-swiper'],
-          styles['swiper-metawrapper'],
-          'flex justify-between truncate',
-        )}
-      >
-        <div className={styles['head-info']}>
-          <div className={styles['desc']}>
-            <div className={styles['meta']}>{appStore.headerNav.meta}</div>
-            <div className={styles['title']}>{appStore.headerNav.title}</div>
-          </div>
-        </div>
-        <div className={styles['right-wrapper']}>
-          <HeaderActionBasedOnRouterPath />
-        </div>
-      </div>
-    ),
-    [appStore.headerNav.meta, appStore.headerNav.title],
-  )
   const isClient = useIsClient()
+
+  const headerSubTitle = subtitle || description || ''
+  // const headerSubTitle = ''
   if (!isClient) {
     return null
   }
@@ -133,7 +117,19 @@ export const Header: FC = observer(() => {
             <div className={styles['header-logo']}>
               <Logo />
             </div>
-            <h1 className={styles['title']}>{title}</h1>
+            <div className={styles['header-title-wrapper']}>
+              <h1
+                className={classNames(
+                  styles['title'],
+                  headerSubTitle && styles['title-has-sub'],
+                )}
+              >
+                {title}
+              </h1>
+              {headerSubTitle && (
+                <h2 className={styles['subtitle']}>{headerSubTitle}</h2>
+              )}
+            </div>
           </div>
 
           <div
@@ -146,7 +142,7 @@ export const Header: FC = observer(() => {
           </div>
           <MenuList />
         </div>
-        {MemoComponent}
+        <HeaderMetaTitle title={headerNav.title} meta={headerNav.meta} />
       </nav>
       {isPadOrMobile && (
         <HeaderDrawer
@@ -159,5 +155,31 @@ export const Header: FC = observer(() => {
         </HeaderDrawer>
       )}
     </header>
+  )
+})
+
+const HeaderMetaTitle: FC<{
+  title: string
+  meta: string
+}> = memo((props) => {
+  const { title, meta } = props
+  return (
+    <div
+      className={classNames(
+        styles['head-swiper'],
+        styles['swiper-metawrapper'],
+        'flex justify-between truncate',
+      )}
+    >
+      <div className={styles['head-info']}>
+        <div className={styles['desc']}>
+          <div className={styles['meta']}>{meta}</div>
+          <div className={styles['title']}>{title}</div>
+        </div>
+      </div>
+      <div className={styles['right-wrapper']}>
+        <HeaderActionBasedOnRouterPath />
+      </div>
+    </div>
   )
 })

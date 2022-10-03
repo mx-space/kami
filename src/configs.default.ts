@@ -5,6 +5,7 @@ export const defaultConfigs = {
     favicon: '/favicon.svg',
     logoSvg: null,
     figure: null,
+    subtitle: null,
     background: {
       src: {
         light: '/assets/background.png',

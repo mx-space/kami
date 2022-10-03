@@ -7,6 +7,9 @@ site:
   # 随机图片
   figure: null
 
+  # 副标题
+  subtitle: null
+
   background:
     src:
       light: /assets/background.png

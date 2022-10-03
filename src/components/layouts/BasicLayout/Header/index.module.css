@@ -38,8 +38,22 @@
   }
 }
 
+.header-title-wrapper {
+  @apply flex flex-col ml-4 py-2 box-border justify-center;
+
+  height: 4rem;
+}
+
 .title {
-  @apply relative inline-block text-xl font-medium mt-0 ml-4 truncate flex-shrink-0;
+  @apply relative inline-block text-xl font-medium mt-0 truncate flex-shrink-0;
+
+  &.title-has-sub {
+    @apply text-lg;
+  }
+}
+
+.subtitle {
+  @apply !mt-0 text-sm text-gray-2;
 }
 
 .more-button {
