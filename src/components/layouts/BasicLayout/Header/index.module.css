@@ -66,6 +66,16 @@
   }
 }
 
+@screen phone {
+  .header-title-wrapper {
+    @apply ml-2;
+  }
+
+  .subtitle {
+    @apply !-mt-1;
+  }
+}
+
 .header-logo svg {
   height: 2rem;
 }
@@ -73,10 +83,6 @@
 @screen phone {
   .header nav {
     @apply mx-4;
-  }
-
-  .title {
-    @apply ml-1;
   }
 }
 
