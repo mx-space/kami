@@ -53,7 +53,9 @@
 }
 
 .subtitle {
-  @apply !mt-0 text-sm text-gray-2;
+  @apply text-sm text-gray-2;
+
+  margin-top: -0.3rem;
 }
 
 .more-button {
@@ -69,10 +71,6 @@
 @screen phone {
   .header-title-wrapper {
     @apply ml-2;
-  }
-
-  .subtitle {
-    @apply !-mt-1;
   }
 }
 
