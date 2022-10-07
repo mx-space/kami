@@ -168,6 +168,7 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
       {(loading || cardInfo?.image) && (
         <div
           className={styles['image']}
+          data-image={cardInfo?.image || ''}
           style={{
             backgroundImage: cardInfo?.image
               ? `url(${cardInfo.image})`
