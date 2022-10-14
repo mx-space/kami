@@ -11,7 +11,7 @@ specifiers:
   '@innei/prettier': 0.9.5
   '@mx-space/api-client': 1.0.0-alpha.2
   '@next/bundle-analyzer': 12.3.1
-  '@trivago/prettier-plugin-sort-imports': 3.3.0
+  '@trivago/prettier-plugin-sort-imports': 3.3.1
   '@types/inflection': 1.13.0
   '@types/js-cookie': 3.0.2
   '@types/lodash-es': 4.17.6
@@ -118,7 +118,7 @@ devDependencies:
   '@innei/eslint-config-react-ts': 0.9.5_typescript@4.8.4
   '@innei/prettier': 0.9.5
   '@next/bundle-analyzer': 12.3.1
-  '@trivago/prettier-plugin-sort-imports': 3.3.0_prettier@2.7.1
+  '@trivago/prettier-plugin-sort-imports': 3.3.1_prettier@2.7.1
   '@types/inflection': 1.13.0
   '@types/js-cookie': 3.0.2
   '@types/lodash-es': 4.17.6
@@ -362,8 +362,8 @@ packages:
       js-tokens: 4.0.0
     dev: true
 
-  /@babel/parser/7.17.8:
-    resolution: {integrity: sha512-BoHhDJrJXqcg+ZL16Xv39H9n+AqJ4pcDrQBGZN+wHxIysrLZ3/ECwCBUch/1zUNhnsXULcONU3Ei5Hmkfk6kiQ==}
+  /@babel/parser/7.18.9:
+    resolution: {integrity: sha512-9uJveS9eY9DJ0t64YbIBZICtJy8a5QrDEVdiLCG97fVLpDTpGX7t8mMSb6OWw6Lrnjqj4O8zwjELX3dhoMgiBg==}
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
@@ -952,14 +952,14 @@ packages:
       tslib: 2.4.0
     dev: false
 
-  /@trivago/prettier-plugin-sort-imports/3.3.0_prettier@2.7.1:
-    resolution: {integrity: sha512-1y44bVZuIN0RsS3oIiGd5k8Vm3IZXYZnp4VsP2Z/S5L9WAOw43HE2clso66M2S/dDeJ+8sKPqnHsEfh39Vjs3w==}
+  /@trivago/prettier-plugin-sort-imports/3.3.1_prettier@2.7.1:
+    resolution: {integrity: sha512-ITGspeOlFnK1dwJVjqOguGW3Ja8hakxOPFudhpP0YfsDHT0yM0u4TU+62Vl83hCatnhB4+fYhlSZyiifUv4xSg==}
     peerDependencies:
       prettier: 2.x
     dependencies:
       '@babel/core': 7.17.8
       '@babel/generator': 7.17.7
-      '@babel/parser': 7.17.8
+      '@babel/parser': 7.18.9
       '@babel/traverse': 7.17.3
       '@babel/types': 7.17.0
       javascript-natural-sort: 0.7.1
