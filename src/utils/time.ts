@@ -39,6 +39,9 @@ export const relativeTimeFromNow = (
   time: Date | string,
   current = new Date(),
 ) => {
+  if (!time) {
+    return ''
+  }
   time = new Date(time)
   const msPerMinute = 60 * 1000
   const msPerHour = msPerMinute * 60
