@@ -68,7 +68,7 @@ specifiers:
   react-use: 17.4.0
   remove-markdown: 0.5.0
   rimraf: '*'
-  socket.io-client: 4.5.2
+  socket.io-client: 4.5.3
   stylelint: 14.13.0
   stylelint-config-standard: 28.0.0
   tilg: 0.1.1
@@ -111,7 +111,7 @@ dependencies:
   react-transition-group: 4.4.5_biqbaboplfbrettd7655fr4n2y
   react-use: 17.4.0_biqbaboplfbrettd7655fr4n2y
   remove-markdown: 0.5.0
-  socket.io-client: 4.5.2
+  socket.io-client: 4.5.3
   validator: 13.7.0
 
 devDependencies:
@@ -1907,8 +1907,8 @@ packages:
     engines: {node: '>= 4'}
     dev: true
 
-  /engine.io-client/6.2.2:
-    resolution: {integrity: sha512-8ZQmx0LQGRTYkHuogVZuGSpDqYZtCM/nv8zQ68VZ+JkOpazJ7ICdsSpaO6iXwvaU30oFg5QJOJWj8zWqhbKjkQ==}
+  /engine.io-client/6.2.3:
+    resolution: {integrity: sha512-aXPtgF1JS3RuuKcpSrBtimSjYvrbhKW9froICH4s0F3XQWLxsKNxqzG39nnvQZQnva4CMvUK63T7shevxRyYHw==}
     dependencies:
       '@socket.io/component-emitter': 3.1.0
       debug: 4.3.4
@@ -4451,13 +4451,13 @@ packages:
       is-fullwidth-code-point: 4.0.0
     dev: true
 
-  /socket.io-client/4.5.2:
-    resolution: {integrity: sha512-naqYfFu7CLDiQ1B7AlLhRXKX3gdeaIMfgigwavDzgJoIUYulc1qHH5+2XflTsXTPY7BlPH5rppJyUjhjrKQKLg==}
+  /socket.io-client/4.5.3:
+    resolution: {integrity: sha512-I/hqDYpQ6JKwtJOf5ikM+Qz+YujZPMEl6qBLhxiP0nX+TfXKhW4KZZG8lamrD6Y5ngjmYHreESVasVCgi5Kl3A==}
     engines: {node: '>=10.0.0'}
     dependencies:
       '@socket.io/component-emitter': 3.1.0
       debug: 4.3.4
-      engine.io-client: 6.2.2
+      engine.io-client: 6.2.3
       socket.io-parser: 4.2.0
     transitivePeerDependencies:
       - bufferutil
