@@ -70,7 +70,7 @@ specifiers:
   rimraf: '*'
   socket.io-client: 4.5.3
   stylelint: 14.14.0
-  stylelint-config-standard: 28.0.0
+  stylelint-config-standard: 29.0.0
   tilg: 0.1.1
   typescript: 4.8.4
   validator: 13.7.0
@@ -147,7 +147,7 @@ devDependencies:
   prettier: 2.7.1
   rimraf: 3.0.2
   stylelint: 14.14.0
-  stylelint-config-standard: 28.0.0_stylelint@14.14.0
+  stylelint-config-standard: 29.0.0_stylelint@14.14.0
   tilg: 0.1.1_react@18.2.0
   typescript: 4.8.4
   windicss: 3.5.6
@@ -4682,10 +4682,10 @@ packages:
       stylelint: 14.14.0
     dev: true
 
-  /stylelint-config-standard/28.0.0_stylelint@14.14.0:
-    resolution: {integrity: sha512-q/StuowDdDmFCravzGHAwgS9pjX0bdOQUEBBDIkIWsQuYGgYz/xsO8CM6eepmIQ1fc5bKdDVimlJZ6MoOUcJ5Q==}
+  /stylelint-config-standard/29.0.0_stylelint@14.14.0:
+    resolution: {integrity: sha512-uy8tZLbfq6ZrXy4JKu3W+7lYLgRQBxYTUUB88vPgQ+ZzAxdrvcaSUW9hOMNLYBnwH+9Kkj19M2DHdZ4gKwI7tg==}
     peerDependencies:
-      stylelint: ^14.11.0
+      stylelint: ^14.14.0
     dependencies:
       stylelint: 14.14.0
       stylelint-config-recommended: 9.0.0_stylelint@14.14.0
