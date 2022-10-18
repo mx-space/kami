@@ -3,7 +3,7 @@ import { CanceledError } from 'axios'
 import { message } from 'react-message-popup'
 
 import { allControllers, createClient } from '@mx-space/api-client'
-import { axiosAdaptor } from '@mx-space/api-client/esm/adaptors/axios'
+import { axiosAdaptor } from '@mx-space/api-client/dist/adaptors/axios'
 
 import { API_URL } from '~/constants/env'
 
