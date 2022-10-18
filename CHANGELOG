@@ -1,3 +1,25 @@
+# CHANGELOG
+
+## [3.15.5](https://github.com/mx-space/kami/compare/v3.15.4...v3.15.5) (2022-10-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency next-seo to v5.6.0 ([#1415](https://github.com/mx-space/kami/issues/1415)) ([d196483](https://github.com/mx-space/kami/commit/d19648365aefdc225abda6c0c8f479171fb9c212))
+* **deps:** update dependency react-countup to v6.3.2 ([b529c29](https://github.com/mx-space/kami/commit/b529c29316ad9bb190def10e9bbd95a42ca87565))
+* **deps:** update dependency socket.io-client to v4.5.3 ([83febb3](https://github.com/mx-space/kami/commit/83febb33672d51bc93fc9fa02122201b1062cef0))
+* **link-card:** show image url for debug ([7591634](https://github.com/mx-space/kami/commit/7591634ff338126a46b6a26923cfe85c163d6b0a))
+* update own deps to esm ([17ca57a](https://github.com/mx-space/kami/commit/17ca57a5b32ec5b86b107680ed926c39cf3549ff))
+* **utils:** safe guard of relativeTime ([3e11019](https://github.com/mx-space/kami/commit/3e11019a04e2bcca601c8d84cb49b32f7b72435d))
+
+
+### Features
+
+* ui improve ([98f7c32](https://github.com/mx-space/kami/commit/98f7c3291c0c61d744406a5394a13a75d90a2fd3))
+* ui improve ([04f14be](https://github.com/mx-space/kami/commit/04f14be2decf939ba9160c1ad8244ed792189416))
+
+
+
 ## [3.15.4](https://github.com/mx-space/kami/compare/v3.15.3...v3.15.4) (2022-10-03)
 
 
