@@ -17,8 +17,6 @@ interface HeadingProps {
   className?: string
   children: React.ReactNode
   level: number
-
-  getRef?: (ref: React.RefObject<HTMLHeadingElement>) => void
 }
 export const MHeading: () => FC<HeadingProps> = () => {
   let index = 0
@@ -36,7 +34,6 @@ export const MHeading: () => FC<HeadingProps> = () => {
 
       setId($titleRef.current.textContent || '')
 
-      props.getRef?.($titleRef)
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 

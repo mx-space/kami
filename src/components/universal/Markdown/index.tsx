@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { clsx } from 'clsx'
+import range from 'lodash-es/range'
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import { compiler, sanitizeUrl } from 'markdown-to-jsx'
 import { observer } from 'mobx-react-lite'
@@ -82,14 +83,20 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
   } = props
 
   const [headings, setHeadings] = useState<HTMLElement[]>([])
-  const headingsRef = useRef([] as HTMLElement[])
+
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
     if (!ref.current) {
       return
     }
-    setHeadings(headingsRef.current.concat())
-    headingsRef.current.length = 0
+
+    const $headings = ref.current.querySelectorAll(
+      range(1, 6)
+        .map((i) => `h${i}`)
+        .join(','),
+    ) as NodeListOf<HTMLHeadingElement>
+
+    setHeadings(Array.from($headings))
 
     return () => {
       setHeadings([])
@@ -101,7 +108,7 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
 
     const Heading = MHeading()
 
-    return compiler(`${value || props.children}`, {
+    const mdElement = compiler(`${value || props.children}`, {
       wrapper: null,
       // @ts-ignore
       overrides: {
@@ -133,14 +140,7 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
         heading: {
           react(node, output, state) {
             return (
-              <Heading
-                id={node.id}
-                level={node.level}
-                key={state?.key}
-                getRef={(ref) => {
-                  ref.current && headingsRef.current.push(ref.current)
-                }}
-              >
+              <Heading id={node.id} level={node.level} key={state?.key}>
                 {output(node.content, state!)}
               </Heading>
             )
@@ -253,6 +253,8 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
       },
       ...rest,
     })
+
+    return mdElement
   }, [
     value,
     props.children,

@@ -128,7 +128,6 @@ export const MemoedItem = memo<{
 }>(
   (props) => {
     const { active, item } = props
-    console.log('render', item.id)
 
     return (
       <li className="flex items-center">

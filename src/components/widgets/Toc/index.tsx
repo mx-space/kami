@@ -100,7 +100,10 @@ export const Toc: FC<TocProps> = memo(
           className={classNames('container', styles['container'])}
           ref={containerRef}
         >
-          <TransitionGroup className={styles['anime-wrapper']}>
+          <TransitionGroup
+            className={styles['anime-wrapper']}
+            key={`${headings.map((i) => i.title).join('')}`}
+          >
             {headings &&
               headings.map((heading) => {
                 return (
