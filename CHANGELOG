@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [3.15.6](https://github.com/mx-space/kami/compare/v3.15.5...v3.15.6) (2022-10-19)
+
+
+### Bug Fixes
+
+* toc auto-refresh ([a0d58ae](https://github.com/mx-space/kami/commit/a0d58ae7e4ecdec82d477b83ca7957ba340d5aaa))
+
+
+
 ## [3.15.5](https://github.com/mx-space/kami/compare/v3.15.4...v3.15.5) (2022-10-18)
 
 
