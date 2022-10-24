@@ -21,7 +21,7 @@ specifiers:
   '@types/react': 17.0.50
   '@types/react-collapse': 5.0.1
   '@types/react-color': 3.0.6
-  '@types/react-dom': 18.0.6
+  '@types/react-dom': 18.0.7
   '@types/react-transition-group': 4.4.5
   '@types/remove-markdown': 0.3.1
   '@types/ua-parser-js': 0.7.36
@@ -128,7 +128,7 @@ devDependencies:
   '@types/react': 17.0.50
   '@types/react-collapse': 5.0.1
   '@types/react-color': 3.0.6
-  '@types/react-dom': 18.0.6
+  '@types/react-dom': 18.0.7
   '@types/react-transition-group': 4.4.5
   '@types/remove-markdown': 0.3.1
   '@types/ua-parser-js': 0.7.36
@@ -1054,8 +1054,8 @@ packages:
       '@types/reactcss': 1.2.6
     dev: true
 
-  /@types/react-dom/18.0.6:
-    resolution: {integrity: sha512-/5OFZgfIPSwy+YuIBP/FgJnQnsxhZhjjrnxudMddeblOouIodEQ75X14Rr4wGSG/bknL+Omy9iWlLo1u/9GzAA==}
+  /@types/react-dom/18.0.7:
+    resolution: {integrity: sha512-HaXc+BbqAZE1RdsK3tC8SbkFy6UL2xF76lT9rQs5JkPrJg3rWA3Ou/Lhw3YJQzEDkBpmJ79nBsfnd05WrBd2QQ==}
     dependencies:
       '@types/react': 17.0.50
     dev: true
