@@ -18,8 +18,10 @@ const configs = withPlugins(plugins, {
     scrollRestoration: true,
     legacyBrowsers: false,
     browsersListForSwc: true,
-
-    newNextLinkBehavior: true,
+    appDir: true,
+  },
+  images: {
+    disableStaticImages: true,
   },
   webpack: (config, options) => {
     config.plugins.push(new WindiCSSWebpackPlugin())

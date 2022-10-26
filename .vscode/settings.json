@@ -4,9 +4,10 @@
     "Danmaku",
     "mobx"
   ],
-  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.tsdk": "./node_modules/typescript/lib",
   "exportall.config.relExclusion": [
     "/src/common/context",
     "/src/views/Markdown/renderers"
-  ]
+  ],
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }

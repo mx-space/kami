@@ -1,3 +1,5 @@
+'use client'
+
 import { configure } from 'mobx'
 import { enableStaticRendering } from 'mobx-react-lite'
 import type { ReactNode } from 'react'

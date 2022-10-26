@@ -21,7 +21,7 @@ import { RootStoreProvider } from '~/context/root-store'
 import { isDev } from '~/utils/env'
 
 import { Content } from '../components/layouts/AppLayout'
-import { attachRequestProxy, fetchInitialData } from '../utils/app'
+import { fetchInitialData } from '../utils/app'
 
 interface DataModel {
   initData: InitialDataType
@@ -82,8 +82,6 @@ const Wrapper = memo((props) => {
 App.getInitialProps = async (props: AppContext) => {
   const ctx = props.ctx
   const request = ctx.req
-
-  attachRequestProxy(request)
 
   const data: InitialDataType & { reason?: any } = await fetchInitialData()
   const appProps = await (async () => {

@@ -1,3 +1,5 @@
+'use client'
+
 import cloneDeep from 'lodash-es/cloneDeep'
 import mergeWith from 'lodash-es/mergeWith'
 import type { FC } from 'react'

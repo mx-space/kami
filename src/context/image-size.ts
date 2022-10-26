@@ -1,3 +1,5 @@
+'use client'
+
 import { createContext } from 'react'
 
 import type { Image } from '@mx-space/api-client'

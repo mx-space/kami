@@ -1,11 +1,11 @@
 import Router from 'next/router'
-import { useIndexViewContext } from 'pages'
 import type { FC } from 'react'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 
 import type { AggregateTop } from '@mx-space/api-client'
 
+import { useIndexViewContext } from '~/app/page'
 import {
   FaSolidKissWinkHeart,
   MdiDrawPen,
