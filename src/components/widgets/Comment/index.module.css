@@ -67,7 +67,9 @@
 .comment {
   .inner {
     display: flex;
-    padding: 16px 0;
+    padding: 16px 32px 16px 16px;
+    margin-left: -16px;
+    margin-right: -16px;
 
     .comment-avatar {
       position: relative;
@@ -166,9 +168,6 @@
 
 .highlight {
   animation: highlight 1s ease;
-  padding: 16px 32px 16px 16px !important;
-  margin-left: -16px;
-  margin-right: -16px;
 
   @apply rounded-sm animate-fill-both;
 }
