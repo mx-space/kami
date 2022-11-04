@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## [3.15.7](https://github.com/mx-space/kami/compare/v3.15.6...v3.15.7) (2022-11-04)
+
+
+### Bug Fixes
+
+* comment highlight ([#1433](https://github.com/mx-space/kami/issues/1433)) ([32e0dd8](https://github.com/mx-space/kami/commit/32e0dd8b6ec427b36dd133ebd8bd55eebd10d309))
+* **deps:** update dependency dayjs to v1.11.6 ([ee299e6](https://github.com/mx-space/kami/commit/ee299e6bcabdaee32b16e113b40fd15618b6b95e))
+* **deps:** update dependency next-seo to v5.13.0 ([#1436](https://github.com/mx-space/kami/issues/1436)) ([0dabc7d](https://github.com/mx-space/kami/commit/0dabc7d8f0ce2ccc823f51a950eae61b329a0dac))
+* **deps:** update dependency next-seo to v5.9.0 ([#1421](https://github.com/mx-space/kami/issues/1421)) ([aa06dee](https://github.com/mx-space/kami/commit/aa06deea075eb79d4babbd8daa699b98f30b14a6))
+* **deps:** update dependency react-toastify to v9.1.1 ([#1439](https://github.com/mx-space/kami/issues/1439)) ([095f46e](https://github.com/mx-space/kami/commit/095f46e39225562d8ac9a3ba80c2e75a91527789))
+
+
+### Performance Improvements
+
+* **comment:** reduce causing styling shifts ([#1441](https://github.com/mx-space/kami/issues/1441)) ([8bf02f7](https://github.com/mx-space/kami/commit/8bf02f79fa1919764fcf0ca657453689cc32a3f4))
+
+
+
 ## [3.15.6](https://github.com/mx-space/kami/compare/v3.15.5...v3.15.6) (2022-10-19)
 
 
