@@ -46,7 +46,7 @@ specifiers:
   mobx-react-lite: 3.4.0
   next: 12.3.1
   next-compose-plugins: 2.2.1
-  next-seo: 5.14.0
+  next-seo: 5.14.1
   next-suspense: 0.1.3
   postcss: 8.4.18
   postcss-import: 15.0.0
@@ -95,7 +95,7 @@ dependencies:
   mobx: 6.6.2
   mobx-react-lite: 3.4.0_qrr2ojv4n7h7ey2xj7njerqqr4
   next: 12.3.1_biqbaboplfbrettd7655fr4n2y
-  next-seo: 5.14.0_azq6kxkn3od7qdylwkyksrwopy
+  next-seo: 5.14.1_azq6kxkn3od7qdylwkyksrwopy
   next-suspense: 0.1.3_next@12.3.1
   randomcolor: 0.6.2
   react: 18.2.0
@@ -3291,8 +3291,8 @@ packages:
     resolution: {integrity: sha512-OjJ+fV15FXO2uQXQagLD4C0abYErBjyjE0I0FHpOEIB8upw0hg1ldFP6cqHTJBH1cZqy96OeR3u1dJ+Ez2D4Bg==}
     dev: true
 
-  /next-seo/5.14.0_azq6kxkn3od7qdylwkyksrwopy:
-    resolution: {integrity: sha512-VpbVFXbDzy31qoKBH7xoxtzh+nDhEWYOBnlc18zkXmypRd3X9vxdwh7rlr3q2BQTfbfk2J/a6Y2vEb+oTcCW0w==}
+  /next-seo/5.14.1_azq6kxkn3od7qdylwkyksrwopy:
+    resolution: {integrity: sha512-NiJeQbxYP3z+EMp52q8k3Q+OfX2+Yv2WehERDj98r2wjXxL+woKpRBdsSVYolTD0Hm8IWs42SzaISE93RoQdOw==}
     peerDependencies:
       next: ^8.1.1-canary.54 || >=9.0.0
       react: '>=16.0.0'
