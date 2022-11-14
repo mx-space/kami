@@ -42,7 +42,7 @@ specifiers:
   markdown-escape: 1.1.0
   markdown-to-jsx: npm:@innei/markdown-to-jsx@7.1.3-15
   medium-zoom: 1.0.7
-  mobx: 6.6.2
+  mobx: 6.7.0
   mobx-react-lite: 3.4.0
   next: 12.3.1
   next-compose-plugins: 2.2.1
@@ -92,8 +92,8 @@ dependencies:
   markdown-escape: 1.1.0
   markdown-to-jsx: /@innei/markdown-to-jsx/7.1.3-15_react@18.2.0
   medium-zoom: 1.0.7
-  mobx: 6.6.2
-  mobx-react-lite: 3.4.0_qrr2ojv4n7h7ey2xj7njerqqr4
+  mobx: 6.7.0
+  mobx-react-lite: 3.4.0_jofyzmwkboewm6mjrhi25mngky
   next: 12.3.1_biqbaboplfbrettd7655fr4n2y
   next-seo: 5.14.1_azq6kxkn3od7qdylwkyksrwopy
   next-suspense: 0.1.3_next@12.3.1
@@ -3221,7 +3221,7 @@ packages:
     resolution: {integrity: sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==}
     dev: true
 
-  /mobx-react-lite/3.4.0_qrr2ojv4n7h7ey2xj7njerqqr4:
+  /mobx-react-lite/3.4.0_jofyzmwkboewm6mjrhi25mngky:
     resolution: {integrity: sha512-bRuZp3C0itgLKHu/VNxi66DN/XVkQG7xtoBVWxpvC5FhAqbOCP21+nPhULjnzEqd7xBMybp6KwytdUpZKEgpIQ==}
     peerDependencies:
       mobx: ^6.1.0
@@ -3236,13 +3236,13 @@ packages:
       react-native:
         optional: true
     dependencies:
-      mobx: 6.6.2
+      mobx: 6.7.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /mobx/6.6.2:
-    resolution: {integrity: sha512-IOpS0bf3+hXIhDIy+CmlNMBfFpAbHS0aVHcNC+xH/TFYEKIIVDKNYRh9eKlXuVfJ1iRKAp0cRVmO145CyJAMVQ==}
+  /mobx/6.7.0:
+    resolution: {integrity: sha512-1kBLBdSNG2bA522HQdbsTvwAwYf9hq9FWxmlhX7wTsJUAI54907J+ozfGW+LoYUo06vjit748g6QH1AAGLNebw==}
     dev: false
 
   /mrmime/1.0.1:
