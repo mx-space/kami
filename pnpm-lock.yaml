@@ -5,7 +5,7 @@ overrides:
   '@types/react': 17.0.52
 
 specifiers:
-  '@floating-ui/react-dom': 1.0.0
+  '@floating-ui/react-dom': 1.0.1
   '@formkit/auto-animate': 1.0.0-beta.3
   '@innei/eslint-config-react-ts': 0.9.5
   '@innei/prettier': 0.9.5
@@ -79,7 +79,7 @@ specifiers:
   zx: 7.1.1
 
 dependencies:
-  '@floating-ui/react-dom': 1.0.0_biqbaboplfbrettd7655fr4n2y
+  '@floating-ui/react-dom': 1.0.1_biqbaboplfbrettd7655fr4n2y
   '@formkit/auto-animate': 1.0.0-beta.3
   '@mx-space/api-client': 1.0.0-beta.3
   axios: 0.27.2
@@ -619,18 +619,18 @@ packages:
       - supports-color
     dev: true
 
-  /@floating-ui/core/1.0.0:
-    resolution: {integrity: sha512-sm3nW0hHAxTv3gRDdCH8rNVQxijF+qPFo5gAeXCErRjKC7Qc28lIQ3R9Vd7Gw+KgwfA7RhRydDFuGeI0peGq7A==}
+  /@floating-ui/core/1.0.2:
+    resolution: {integrity: sha512-Skfy0YS3NJ5nV9us0uuPN0HDk1Q4edljaOhRBJGDWs9EBa7ZVMYBHRFlhLvvmwEoaIM9BlH6QJFn9/uZg0bACg==}
     dev: false
 
-  /@floating-ui/dom/1.0.0:
-    resolution: {integrity: sha512-PMqJvY5Fae8HVQgUqM+lidprS6p9LSvB0AUhCdYKqr3YCaV+WaWCeVNBtXPRY2YIdrgcsL2+vd5F07FxgihHUw==}
+  /@floating-ui/dom/1.0.5:
+    resolution: {integrity: sha512-4X+Gmcq8meuVaU6odG8CQvHaebKKn5iCp5f/CmdKDMUL0AOnRXVA3afhJ2QzTEZUAxklsSeYuV3RrAwtrxAC3Q==}
     dependencies:
-      '@floating-ui/core': 1.0.0
+      '@floating-ui/core': 1.0.2
     dev: false
 
-  /@floating-ui/react-dom/1.0.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-uiOalFKPG937UCLm42RxjESTWUVpbbatvlphQAU6bsv+ence6IoVG8JOUZcy8eW81NkU+Idiwvx10WFLmR4MIg==}
+  /@floating-ui/react-dom/1.0.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-UW0t1Gi8ikbDRr8cQPVcqIDMBwUEENe5V4wlHWdrJ5egFnRQFBV9JirauTBFI6S8sM1qFUC1i+qa3g87E6CLTw==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -638,7 +638,7 @@ packages:
       react:
         optional: true
     dependencies:
-      '@floating-ui/dom': 1.0.0
+      '@floating-ui/dom': 1.0.5
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
