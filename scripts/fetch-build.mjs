@@ -25,7 +25,7 @@ async function main() {
     throw new Error('no download url')
   }
 
-  const arrayBuffer = await fetch(`https://cc.shizuri.net/${downloadUrl}`).then(
+  const arrayBuffer = await fetch(`https://ghproxy.com/${downloadUrl}`).then(
     (res) => res.arrayBuffer(),
   )
   const buffer = Buffer.from(arrayBuffer)
