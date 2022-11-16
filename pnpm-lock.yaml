@@ -6,7 +6,7 @@ overrides:
 
 specifiers:
   '@floating-ui/react-dom': 1.0.1
-  '@formkit/auto-animate': 1.0.0-beta.3
+  '@formkit/auto-animate': 1.0.0-beta.5
   '@innei/eslint-config-react-ts': 0.9.5
   '@innei/prettier': 0.9.5
   '@mx-space/api-client': 1.0.0-beta.3
@@ -80,7 +80,7 @@ specifiers:
 
 dependencies:
   '@floating-ui/react-dom': 1.0.1_biqbaboplfbrettd7655fr4n2y
-  '@formkit/auto-animate': 1.0.0-beta.3
+  '@formkit/auto-animate': 1.0.0-beta.5
   '@mx-space/api-client': 1.0.0-beta.3
   axios: 0.27.2
   clsx: 1.2.1
@@ -643,8 +643,8 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /@formkit/auto-animate/1.0.0-beta.3:
-    resolution: {integrity: sha512-glsi+ytwQpxT/Ctr9GtcIfVr4dO6mJ04mQbNU8MFSdCdqMopHtyfU5Fib0+9lNFIeR0luY4/0NW95/2R5pKsag==}
+  /@formkit/auto-animate/1.0.0-beta.5:
+    resolution: {integrity: sha512-WoSwyhAZPOe6RB/IgicOtCHtrWwEpfKIZ/H/nxpKfnZL9CB6hhhBGU5bCdMRw7YpAUF2CDlQa+WWh+gCqz5lDg==}
     dev: false
 
   /@humanwhocodes/config-array/0.11.6:

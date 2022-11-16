@@ -60,7 +60,7 @@
   ],
   "dependencies": {
     "@floating-ui/react-dom": "1.0.1",
-    "@formkit/auto-animate": "1.0.0-beta.3",
+    "@formkit/auto-animate": "1.0.0-beta.5",
     "@mx-space/api-client": "1.0.0-beta.3",
     "axios": "0.27.2",
     "clsx": "1.2.1",
