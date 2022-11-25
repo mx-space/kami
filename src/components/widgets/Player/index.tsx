@@ -83,7 +83,7 @@ export const MusicMiniPlayer = forwardRef<
     })
 
     const songUrl = data.url?.replace('http://', 'https://')
-    setCur({ ...json[0], id, url: songUrl })
+    setCur({ ...data, ...json[0], id, url: songUrl })
   }
 
   useEffect(() => {
