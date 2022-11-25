@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## [3.15.8](https://github.com/mx-space/kami/compare/v3.15.7...v3.15.8) (2022-11-25)
+
+
+### Bug Fixes
+
+* cdn url ([bc869c9](https://github.com/mx-space/kami/commit/bc869c9a9de8bf556a03c30936fd83109b7d34e1))
+* **deps:** update dependency @floating-ui/react-dom to v1.0.1 ([9fdab07](https://github.com/mx-space/kami/commit/9fdab074ba8e66c3f4d03062e9e163131e91cff1))
+* **deps:** update dependency @formkit/auto-animate to v1.0.0-beta.5 ([0a068bc](https://github.com/mx-space/kami/commit/0a068bc35e4bd0b6bc7077cae164d06e22ad7d48))
+* **deps:** update dependency @mx-space/api-client to v1.0.0-beta.3 ([1040c4f](https://github.com/mx-space/kami/commit/1040c4fab6a1555ef8f7cde4ecc687b54ae29e64))
+* **deps:** update dependency markdown-escape to v2 ([#1461](https://github.com/mx-space/kami/issues/1461)) ([d512c12](https://github.com/mx-space/kami/commit/d512c1273c095e54fb5f9d513961fc71a27e9601))
+* **deps:** update dependency medium-zoom to v1.0.7 ([a406fcb](https://github.com/mx-space/kami/commit/a406fcbe0d2147578786dae657daae776dbd003b))
+* **deps:** update dependency medium-zoom to v1.0.8 ([4378c16](https://github.com/mx-space/kami/commit/4378c168012c6da00d6b75c29797e36484f6442b))
+* **deps:** update dependency mobx to v6.7.0 ([#1455](https://github.com/mx-space/kami/issues/1455)) ([8436d13](https://github.com/mx-space/kami/commit/8436d137e33db3b94dbad16eb154a5444e197e88))
+* **deps:** update dependency next-seo to v5.14.0 ([#1444](https://github.com/mx-space/kami/issues/1444)) ([4c1ce88](https://github.com/mx-space/kami/commit/4c1ce88616ab3ac4b5f4218dc97e12aed27ed389))
+* **deps:** update dependency next-seo to v5.14.1 ([97d0133](https://github.com/mx-space/kami/commit/97d0133650003fa720498db077de10c9d8e49525))
+* **deps:** update dependency react-intersection-observer to v9.4.1 ([17b51ff](https://github.com/mx-space/kami/commit/17b51fffa70aa8ab0037f03d5635d3228a58aae7))
+* **deps:** update dependency socket.io-client to v4.5.4 ([abb02c2](https://github.com/mx-space/kami/commit/abb02c2ee6114a174aa0703860d931e1505f7a58))
+* **player:** consume own music song data ([97c021a](https://github.com/mx-space/kami/commit/97c021aae56e2998c9efa9047eff5ea9e9a7a73b))
+
+
+### Features
+
+* add umami host-url ([2dfece3](https://github.com/mx-space/kami/commit/2dfece3132487511346ca34c21827d37711b9a00))
+
+
+
 ## [3.15.7](https://github.com/mx-space/kami/compare/v3.15.6...v3.15.7) (2022-11-04)
 
 
