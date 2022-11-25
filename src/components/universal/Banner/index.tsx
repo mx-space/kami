@@ -50,7 +50,7 @@ export const Banner: FC<{
   return (
     <div
       className={clsx(
-        'phone:block p-6 flex items-center space-x-4 rounded-md border text-dark-100 ' +
+        'phone:block p-6 flex items-center space-x-4 rounded-md border text-dark-100 dark:text-[#c4c4c4] dark:bg-transparent ' +
           `${bgColorMap[props.type] || bgColorMap.info} ${
             borderColorMap[props.type] || borderColorMap.info
           }`,
