@@ -46,6 +46,7 @@ export const MetaFooter = memo(() => {
               data-endpoint={analyze.umami.endpoint || 'collect'}
               data-website-id={analyze.umami.id}
               data-cache="true"
+              data-host-url={analyze.umami.hostUrl}
               src={`${analyze.umami.url.replace(/\/$/, '')}/${
                 analyze.umami.jsname || 'umami'
               }.js`}

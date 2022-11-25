@@ -169,6 +169,7 @@ export const defaultConfigs = {
         url: '',
         jsname: 'umami',
         endpoint: 'collect',
+        hostUrl: '/',
       },
     },
     donate: {

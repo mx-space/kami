@@ -128,6 +128,7 @@ function:
       jsname: 'umami'
       # 这是我魔改版本 umami 专属
       endpoint: 'collect'
+      hostUrl: '/'
   donate:
     enable: false
     link: https://afdian.net/@example

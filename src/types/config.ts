@@ -17,6 +17,7 @@ interface Function {
       id: string
       jsname: string
       endpoint?: string
+      hostUrl?: string
     }
   }
 
