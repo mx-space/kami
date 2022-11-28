@@ -17,7 +17,7 @@ specifiers:
   '@types/lodash-es': 4.17.6
   '@types/markdown-escape': 1.1.0
   '@types/node': 17.0.18
-  '@types/randomcolor': 0.5.6
+  '@types/randomcolor': 0.5.7
   '@types/react': 17.0.52
   '@types/react-collapse': 5.0.1
   '@types/react-color': 3.0.6
@@ -124,7 +124,7 @@ devDependencies:
   '@types/lodash-es': 4.17.6
   '@types/markdown-escape': 1.1.0
   '@types/node': 17.0.18
-  '@types/randomcolor': 0.5.6
+  '@types/randomcolor': 0.5.7
   '@types/react': 17.0.52
   '@types/react-collapse': 5.0.1
   '@types/react-color': 3.0.6
@@ -1069,8 +1069,8 @@ packages:
     resolution: {integrity: sha512-ZREFYlpUmPQJ0esjxoG1fMvB2HNaD3z+mjqdSosZvd3RalncI9NEur73P8ZJz4YQdL64CmV1w0RuqoRUlhQRBw==}
     dev: true
 
-  /@types/randomcolor/0.5.6:
-    resolution: {integrity: sha512-lKkW8DGUQpZldTrwa+HM5rY+7eTyaHOMTsnj9ewt7AAwXuMPwBmkLlfh8+SXdgOhBW9iNI4x4zRjQ/TQZkdycQ==}
+  /@types/randomcolor/0.5.7:
+    resolution: {integrity: sha512-LPcG96dGYRCsXlk1fslUNIg6ebEi+bKNyn84uBL/pu2cRSf5i/djD3ArJZOyzszVMVV/DB87va6pMZP+tRSl/w==}
     dev: true
 
   /@types/react-collapse/5.0.1:
