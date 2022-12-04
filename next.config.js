@@ -2,6 +2,7 @@ process.title = 'Kami (NextJS)'
 
 const WindiCSSWebpackPlugin = require('windicss-webpack-plugin')
 const withPlugins = require('next-compose-plugins')
+const path = require('path')
 
 const env = require('dotenv').config().parsed || {}
 const isProd = process.env.NODE_ENV === 'production'
@@ -26,6 +27,10 @@ const configs = withPlugins(plugins, {
     config.resolve.alias = {
       ...config.resolve.alias,
       // your aliases
+      '@mx-space/kami-design': path.resolve(
+        __dirname,
+        './packages/kami-design',
+      ),
     }
 
     config.plugins.push(new WindiCSSWebpackPlugin())
