@@ -1,7 +1,8 @@
 import { action, computed, makeObservable, observable } from 'mobx'
-import { apiClient } from 'utils/client'
 
 import type { CommentModel } from '@mx-space/api-client'
+
+import { apiClient } from '~/utils/client'
 
 import { Store } from '../helper/base'
 
