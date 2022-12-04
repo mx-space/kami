@@ -31,3 +31,5 @@ src/pages/dev
 public/md.md
 
 json-schema.json
+
+packages/kami-design/types
