@@ -1,9 +1,9 @@
 import dayjs from 'dayjs'
 import React from 'react'
 
-import { RelativeTime } from '~/components/universal/RelativeTime'
+import { Banner } from '@mx-space/kami-design/components/Banner'
 
-import { Banner } from '../Banner'
+import { RelativeTime } from '~/components/universal/RelativeTime'
 
 export default (function OutdateNotice({ time }: { time: string | Date }) {
   return dayjs().diff(dayjs(time), 'day') > 60 ? (

@@ -7,7 +7,7 @@
   "type": "module",
   "exports": {
     ".": {
-      "type": "./dist/index.d.ts",
+      "type": "./dist/packages/kami-design/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
@@ -17,6 +17,20 @@
     "./src/*": {
       "import": "./src/*"
     }
+  },
+  "files": [
+    "dist",
+    "lib",
+    "esm",
+    "readme.md",
+    "tsconfig.json",
+    "types",
+    "src"
+  ],
+  "scripts": {
+    "prebuild": "rm -rf dist types",
+    "build": "rollup -c",
+    "types": "rm -rf types && tsc --build tsconfig.types.json && tsc-alias -p tsconfig.types.json"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
@@ -74,6 +88,7 @@
     "rollup-plugin-postcss": "4.0.2",
     "rollup-plugin-terser": "7.0.2",
     "rollup-plugin-windicss": "1.8.8",
-    "typescript": "4.9.3"
+    "typescript": "4.9.3",
+    "tsc-alias": "1.7.0"
   }
 }

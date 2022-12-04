@@ -35,6 +35,12 @@
       ],
       "~": [
         "."
+      ],
+      "@mx-space/kami-design": [
+        "../packages/kami-design"
+      ],
+      "@mx-space/kami-design/*": [
+        "../packages/kami-design/*"
       ]
     }
   },
