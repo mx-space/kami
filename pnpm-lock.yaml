@@ -8,7 +8,7 @@ specifiers:
   '@floating-ui/react-dom': 1.0.1
   '@formkit/auto-animate': 1.0.0-beta.5
   '@innei/eslint-config-react-ts': 0.9.6
-  '@innei/prettier': 0.9.5
+  '@innei/prettier': 0.9.6
   '@mx-space/api-client': 1.0.0-beta.3
   '@next/bundle-analyzer': 12.3.4
   '@trivago/prettier-plugin-sort-imports': 4.0.0
@@ -116,7 +116,7 @@ dependencies:
 
 devDependencies:
   '@innei/eslint-config-react-ts': 0.9.6_typescript@4.9.3
-  '@innei/prettier': 0.9.5
+  '@innei/prettier': 0.9.6
   '@next/bundle-analyzer': 12.3.4
   '@trivago/prettier-plugin-sort-imports': 4.0.0_prettier@2.8.0
   '@types/inflection': 1.13.0
@@ -663,10 +663,14 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
-  /@ianvs/prettier-plugin-sort-imports/3.4.2_prettier@2.8.0:
-    resolution: {integrity: sha512-HB2BLfnm3Jee+GiGtK7f5hLcFbF54VbSAoH9UEaWpjMmrbaZCTViJeuXsycA1Adm2colaHCpqhLW5E70umh6ug==}
+  /@ianvs/prettier-plugin-sort-imports/3.7.1_prettier@2.8.0:
+    resolution: {integrity: sha512-XDnBUUruJY9KgNd7T2ZHnVPWo5B9NzVDCLEMm7HjXTA3rTtMg5Q46gYRjLvampDXSmN8+icu54aRE3IIT8U+1w==}
     peerDependencies:
+      '@vue/compiler-sfc': '>=3.0.0'
       prettier: 2.x
+    peerDependenciesMeta:
+      '@vue/compiler-sfc':
+        optional: true
     dependencies:
       '@babel/core': 7.19.3
       '@babel/generator': 7.19.5
@@ -674,7 +678,8 @@ packages:
       '@babel/traverse': 7.19.4
       '@babel/types': 7.19.4
       javascript-natural-sort: 0.7.1
-      lodash: 4.17.21
+      lodash.clone: 4.5.0
+      lodash.isequal: 4.5.0
       prettier: 2.8.0
     transitivePeerDependencies:
       - supports-color
@@ -726,13 +731,14 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@innei/prettier/0.9.5:
-    resolution: {integrity: sha512-BsVsCo9ygB0DOefqwIl7okmTvN8kSiYXHANiEWcnia3z8AD+wZ69Ruv6s8JLa7Fhds0kXGnlnFaVF/1xjgCJDA==}
+  /@innei/prettier/0.9.6:
+    resolution: {integrity: sha512-hI6/2Gnk5OUkCXWRQLN5RMO9sg2EcfqI6eJ4OIfV2E1iJJ60AO2yjaH0NSJGLakct48c0qXJ7b8gW+vkP7H8hA==}
     dependencies:
-      '@trivago/prettier-plugin-sort-imports': /@ianvs/prettier-plugin-sort-imports/3.4.2_prettier@2.8.0
+      '@trivago/prettier-plugin-sort-imports': /@ianvs/prettier-plugin-sort-imports/3.7.1_prettier@2.8.0
       prettier: 2.8.0
-      prettier-package-json: 2.6.4
+      prettier-package-json: 2.7.0
     transitivePeerDependencies:
+      - '@vue/compiler-sfc'
       - supports-color
     dev: true
 
@@ -1662,17 +1668,6 @@ packages:
     dependencies:
       toggle-selection: 1.0.6
     dev: false
-
-  /cosmiconfig/7.0.1:
-    resolution: {integrity: sha512-a1YWNUV2HwGimB7dU2s1wUMurNKjpx60HxBB6xUM8Re+2s1g1IIfJvFR0/iCF+XHdE0GMTKTuLR32UQff4TEyQ==}
-    engines: {node: '>=10'}
-    dependencies:
-      '@types/parse-json': 4.0.0
-      import-fresh: 3.3.0
-      parse-json: 5.2.0
-      path-type: 4.0.0
-      yaml: 1.10.2
-    dev: true
 
   /cosmiconfig/7.1.0:
     resolution: {integrity: sha512-AdmX6xUzdNASswsFtmwSt7Vj8po9IuqXm0UXz7QKPuEUmPB4XyjGfaAr2PSuELMwkRMVH1EpIkX5bTZGRB3eCA==}
@@ -3024,6 +3019,14 @@ packages:
     resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
     dev: false
 
+  /lodash.clone/4.5.0:
+    resolution: {integrity: sha512-GhrVeweiTD6uTmmn5hV/lzgCQhccwReIVRLHp7LT4SopOjqEZ5BbX8b5WWEtAKasjmy8hR7ZPwsYlxRCku5odg==}
+    dev: true
+
+  /lodash.isequal/4.5.0:
+    resolution: {integrity: sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==}
+    dev: true
+
   /lodash.merge/4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
     dev: true
@@ -4006,13 +4009,13 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-package-json/2.6.4:
-    resolution: {integrity: sha512-aNZvEf0yy0UeqLdTHsFZiYjOEM9kACO02CGUR5XIHdqj3jrpHNlLkmfTaj1V/rvB4vYHHTH0i3qMf2FZ2Qtr/g==}
+  /prettier-package-json/2.7.0:
+    resolution: {integrity: sha512-51I3/fYpBTLDXQDQK7+dfNlJzh5wdKhK8QteSZTZMppQd6aGpr1wqpwlKKZF1KdWA+91rwfpHUBrKwd2PXdXag==}
     hasBin: true
     dependencies:
       '@types/parse-author': 2.0.1
       commander: 4.1.1
-      cosmiconfig: 7.0.1
+      cosmiconfig: 7.1.0
       fs-extra: 10.1.0
       glob: 7.2.3
       minimatch: 3.1.2
