@@ -1,5 +1,6 @@
 import { makeAutoObservable } from 'mobx'
-import { isClientSide } from 'utils/env'
+
+import { isClientSide } from '~/utils/env'
 
 import type { ViewportRecord } from './types'
 
