@@ -12,6 +12,7 @@ if (process.env.ANALYZE === 'true') {
   plugins.push([require('@next/bundle-analyzer')({ enabled: true })])
 }
 
+/** @type {import('next').NextConfig} */
 const configs = withPlugins(plugins, {
   swcMinify: true,
   experimental: {
@@ -22,6 +23,11 @@ const configs = withPlugins(plugins, {
     newNextLinkBehavior: true,
   },
   webpack: (config, options) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      // your aliases
+    }
+
     config.plugins.push(new WindiCSSWebpackPlugin())
 
     return config
