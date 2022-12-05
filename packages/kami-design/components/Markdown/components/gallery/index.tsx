@@ -12,7 +12,7 @@ import {
 import { useInView } from 'react-intersection-observer'
 
 import { ImageLazy } from '~/components/universal/Image'
-import { ImageSizeMetaContext } from '~/context'
+import { ImageSizeMetaContext } from '~/context/image-size'
 import { useStateRef } from '~/hooks/use-state-ref'
 import { calculateDimensions } from '~/utils/images'
 
@@ -166,6 +166,7 @@ export const Gallery: FC<GalleryProps> = (props) => {
       >
         {images.map((image) => {
           const info = imageMeta.get(image.url)
+
           const maxWidth = containerWidth - IMAGE_CONTAINER_MARGIN_INSET
           const { height, width } = calculateDimensions(
             info?.width || 0,

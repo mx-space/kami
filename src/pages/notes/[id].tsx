@@ -29,6 +29,7 @@ import { NoteLayout } from '~/components/layouts/NoteLayout'
 import { Loading } from '~/components/universal/Loading'
 import { SearchFAB } from '~/components/widgets/Search'
 import { TrackerAction } from '~/constants/tracker'
+import { ImageSizeMetaContext } from '~/context/image-size'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useHeaderMeta, useHeaderShare } from '~/hooks/use-header-meta'
 import { useJumpToSimpleMarkdownRender } from '~/hooks/use-jump-to-render'
@@ -41,7 +42,6 @@ import { parseDate } from '~/utils/time'
 import { noop } from '~/utils/utils'
 
 import { Seo } from '../../components/biz/Seo'
-import { ImageSizeMetaContext } from '../../context/image-size'
 import { isDev } from '../../utils/env'
 
 const NoteTopic = dynamic(() =>
