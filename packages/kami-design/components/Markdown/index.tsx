@@ -1,9 +1,17 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { clsx } from 'clsx'
+import range from 'lodash-es/range'
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import { compiler } from 'markdown-to-jsx'
 import type { FC } from 'react'
-import React, { memo, useMemo, useRef } from 'react'
+import React, {
+  createElement,
+  memo,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 
 import styles from './index.module.css'
 import { CommentAtRule } from './parsers/comment-at'
@@ -17,7 +25,7 @@ import { MParagraph, MTableBody, MTableHead, MTableRow } from './renderers'
 import { MDetails } from './renderers/collapse'
 import { MFootNote } from './renderers/footnotes'
 
-interface MdProps {
+export interface MdProps {
   value?: string
   toc?: boolean
 
@@ -29,6 +37,7 @@ interface MdProps {
   >
   codeBlockFully?: boolean
   className?: string
+  tocSlot?: (props: { headings: HTMLElement[] }) => JSX.Element | null
 }
 
 export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
@@ -47,6 +56,25 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
   } = props
 
   const ref = useRef<HTMLDivElement>(null)
+  const [headings, setHeadings] = useState<HTMLElement[]>([])
+
+  useEffect(() => {
+    if (!ref.current) {
+      return
+    }
+
+    const $headings = ref.current.querySelectorAll(
+      range(1, 6)
+        .map((i) => `h${i}`)
+        .join(','),
+    ) as NodeListOf<HTMLHeadingElement>
+
+    setHeadings(Array.from($headings))
+
+    return () => {
+      setHeadings([])
+    }
+  }, [value, props.children])
 
   const node = useMemo(() => {
     if (!value && typeof props.children != 'string') return null
@@ -143,6 +171,8 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
       )}
     >
       {className ? <div className={className}>{node}</div> : node}
+
+      {props.tocSlot ? createElement(props.tocSlot, { headings }) : null}
     </div>
   )
 })
