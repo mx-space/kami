@@ -11,8 +11,9 @@ import {
 } from 'react'
 import { useInView } from 'react-intersection-observer'
 
-import { ImageLazy } from '~/components/universal/Image'
-import { ImageSizeMetaContext } from '~/context'
+import { ImageLazy } from '@mx-space/kami-design/components/Image'
+import { ImageSizeMetaContext } from '@mx-space/kami-design/contexts/image-size'
+
 import { useStateRef } from '~/hooks/use-state-ref'
 import { calculateDimensions } from '~/utils/images'
 

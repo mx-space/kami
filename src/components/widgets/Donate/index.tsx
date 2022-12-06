@@ -2,9 +2,9 @@ import type { FC, ReactNode } from 'react'
 import React, { useMemo } from 'react'
 
 import { autoPlacement, offset, shift } from '@floating-ui/react-dom'
+import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
 
 import { ImpressionView } from '~/components/biz/ImpressionView'
-import { FloatPopover } from '~/components/universal/FloatPopover'
 import { useThemeConfig } from '~/hooks/use-initial-data'
 import { NoSSRWrapper } from '~/utils/no-ssr'
 

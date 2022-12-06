@@ -10,7 +10,11 @@ import React, {
 } from 'react'
 import { ShortcutProvider } from 'react-shortcut-guide'
 
-import { BiMoonStarsFill, PhSunBold } from '~/components/universal/Icons/layout'
+import {
+  BiMoonStarsFill,
+  PhSunBold,
+} from '@mx-space/kami-design/components/Icons/layout'
+
 import { TrackerAction } from '~/constants/tracker'
 import { useRootStore } from '~/context'
 import { useAnalyze } from '~/hooks/use-analyze'

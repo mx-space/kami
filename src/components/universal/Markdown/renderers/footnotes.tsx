@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import { Divider } from '../../Divider'
+import { Divider } from '@mx-space/kami-design/components/Divider'
 
 export const MFootNote: FC = (props) => {
   return (

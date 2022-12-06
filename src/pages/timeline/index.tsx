@@ -7,9 +7,9 @@ import CountUp from 'react-countup'
 import { usePrevious } from 'react-use'
 
 import type { TimelineData } from '@mx-space/api-client'
+import { SolidBookmark } from '@mx-space/kami-design/components/Icons/for-note'
 
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
-import { SolidBookmark } from '~/components/universal/Icons/for-note'
 import { NumberTransition } from '~/components/universal/NumberRecorder'
 import { TimelineListWrapper } from '~/components/universal/TimelineListWrapper'
 import { TrackerAction } from '~/constants/tracker'

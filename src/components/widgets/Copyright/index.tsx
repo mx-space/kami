@@ -2,7 +2,8 @@ import dayjs from 'dayjs'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 
-import { Divider } from '~/components/universal/Divider'
+import { Divider } from '@mx-space/kami-design/components/Divider'
+
 import { useStore } from '~/store'
 
 import styles from './index.module.css'

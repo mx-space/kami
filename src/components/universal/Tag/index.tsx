@@ -3,9 +3,10 @@ import rc from 'randomcolor'
 import type { FC, MouseEventHandler } from 'react'
 import { useMemo } from 'react'
 
+import { MdiTagHeartOutline } from '@mx-space/kami-design/components/Icons/for-note'
+
 import { useStore } from '~/store'
 
-import { MdiTagHeartOutline } from '../Icons/for-note'
 import styles from './index.module.css'
 
 interface BigTagProps {

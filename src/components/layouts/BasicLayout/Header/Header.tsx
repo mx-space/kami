@@ -4,7 +4,8 @@ import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import { memo, useEffect, useMemo, useRef, useState } from 'react'
 
-import { IcBaselineMenuOpen } from '~/components/universal/Icons/layout'
+import { IcBaselineMenuOpen } from '@mx-space/kami-design/components/Icons/layout'
+
 import { CustomLogo as Logo } from '~/components/universal/Logo'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'

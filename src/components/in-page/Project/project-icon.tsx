@@ -2,8 +2,9 @@ import { clsx } from 'clsx'
 import type { FC } from 'react'
 import { memo } from 'react'
 
+import { ImageLazy } from '@mx-space/kami-design/components/Image'
+
 import { FlexText } from '~/components/universal/FlexText'
-import { ImageLazy } from '~/components/universal/Image'
 
 export const ProjectIcon: FC<{ avatar?: string; name?: string }> = memo(
   (props) => {

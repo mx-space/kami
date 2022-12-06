@@ -5,7 +5,8 @@ import type { FC } from 'react'
 import React, { useCallback, useContext, useEffect } from 'react'
 import { Modifier, ShortcutContext } from 'react-shortcut-guide'
 
-import { FloatPopover } from '~/components/universal/FloatPopover'
+import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
+
 import { FontIcon } from '~/components/universal/FontIcon'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'

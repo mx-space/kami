@@ -3,7 +3,8 @@ import type { FC, ReactNode } from 'react'
 import React, { useState } from 'react'
 import { Collapse } from 'react-collapse'
 
-import { IcRoundKeyboardDoubleArrowRight } from '../../Icons/arrow'
+import { IcRoundKeyboardDoubleArrowRight } from '@mx-space/kami-design/components/Icons/arrow'
+
 import styles from './collapse.module.css'
 
 export const MDetails: FC<{ children: ReactNode[] }> = (props) => {

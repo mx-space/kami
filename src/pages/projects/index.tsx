@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react'
 
 import type { ProjectModel } from '@mx-space/api-client'
+import { CodiconGithubInverted } from '@mx-space/kami-design/components/Icons/menu-icon'
 
 import { ProjectList } from '~/components/in-page/Project/list'
-import { CodiconGithubInverted } from '~/components/universal/Icons/menu-icon'
 import { Loading } from '~/components/universal/Loading'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { TrackerAction } from '~/constants/tracker'

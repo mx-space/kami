@@ -16,6 +16,9 @@ import React, {
   useState,
 } from 'react'
 
+import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
+import { FluentList16Filled } from '@mx-space/kami-design/components/Icons/shared'
+
 import { ErrorBoundary } from '~/components/app/ErrorBoundary'
 import type { TocProps } from '~/components/widgets/Toc'
 import { useStore } from '~/store'
@@ -23,8 +26,6 @@ import { isDev } from '~/utils/env'
 import { springScrollToElement } from '~/utils/spring'
 
 import { CodeBlock } from '../CodeBlock'
-import { FloatPopover } from '../FloatPopover'
-import { FluentList16Filled } from '../Icons/shared'
 import { useModalStack } from '../Modal/stack.context'
 import styles from './index.module.css'
 import { CommentAtRule } from './parsers/comment-at'
