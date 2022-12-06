@@ -3,8 +3,9 @@ import Router from 'next/router'
 import { useState } from 'react'
 import { message } from 'react-message-popup'
 
-import { PhUser } from '~/components/universal/Icons/for-comment'
-import { CarbonPassword } from '~/components/universal/Icons/for-login'
+import { PhUser } from '@mx-space/kami-design/components/Icons/for-comment'
+import { CarbonPassword } from '@mx-space/kami-design/components/Icons/for-login'
+
 import { Input } from '~/components/universal/Input'
 import { apiClient } from '~/utils/client'
 import { releaseDevtool } from '~/utils/console'

@@ -12,15 +12,15 @@ import {
   FaSolidSadTear,
   FaSolidSmile,
   FaSolidTired,
-} from '~/components/universal/Icons/emoji'
-import { PhSunBold } from '~/components/universal/Icons/layout'
+} from '@mx-space/kami-design/components/Icons/emoji'
+import { PhSunBold } from '@mx-space/kami-design/components/Icons/layout'
 import {
   BiCloudLightningRainFill,
   BiCloudRainFill,
   MdiCloud,
   MdiSnowflake,
   RiSunCloudyFill,
-} from '~/components/universal/Icons/weather'
+} from '@mx-space/kami-design/components/Icons/weather'
 
 export const weather2icon = (weather: string) => {
   const map: Record<string, FC> = {

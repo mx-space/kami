@@ -13,7 +13,8 @@ import {
 } from 'react'
 import { useAudio } from 'react-use'
 
-import { RootPortal } from '~/components/universal/Portal'
+import { RootPortal } from '@mx-space/kami-design/components/Portal'
+
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { store, useStore } from '~/store'

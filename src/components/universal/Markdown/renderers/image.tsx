@@ -4,13 +4,13 @@ import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 
-import type { ImageLazyRef } from '~/components/universal/Image'
-import { ImageLazy } from '~/components/universal/Image'
+import type { ImageLazyRef } from '@mx-space/kami-design/components/Image'
+import { ImageLazy } from '@mx-space/kami-design/components/Image'
+import { ImageSizeMetaContext } from '@mx-space/kami-design/contexts/image-size'
+
 import { useIsClient } from '~/hooks/use-is-client'
 import { useStore } from '~/store'
 import { calculateDimensions } from '~/utils/images'
-
-import { ImageSizeMetaContext } from '../../../../context/image-size'
 
 const getContainerSize = () => {
   const $wrap = document.getElementById('write')

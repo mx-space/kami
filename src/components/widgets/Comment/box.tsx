@@ -17,14 +17,15 @@ import { message } from 'react-message-popup'
 import isEmail from 'validator/lib/isEmail'
 import isUrl from 'validator/lib/isURL'
 
-import { ImpressionView } from '~/components/biz/ImpressionView'
-import { FloatPopover } from '~/components/universal/FloatPopover'
+import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
 import {
   GridiconsNoticeOutline,
   MdiEmailFastOutline,
   PhUser,
   SiGlyphGlobal,
-} from '~/components/universal/Icons/for-comment'
+} from '@mx-space/kami-design/components/Icons/for-comment'
+
+import { ImpressionView } from '~/components/biz/ImpressionView'
 import { kaomoji } from '~/constants/kaomoji'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'

@@ -6,9 +6,12 @@ import React, { useCallback, useMemo, useState } from 'react'
 import removeMd from 'remove-markdown'
 
 import type { PostModel } from '@mx-space/api-client'
+import {
+  PhPushPin,
+  PhPushPinFill,
+} from '@mx-space/kami-design/components/Icons/for-post'
 
 import { IconTransition } from '~/components/universal/IconTransition'
-import { PhPushPin, PhPushPinFill } from '~/components/universal/Icons/for-post'
 import { useInitialData } from '~/hooks/use-initial-data'
 import { useStore } from '~/store'
 import { apiClient } from '~/utils/client'

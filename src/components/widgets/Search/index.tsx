@@ -7,8 +7,9 @@ import type { FC, KeyboardEventHandler } from 'react'
 import { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { Modifier, useShortcut } from 'react-shortcut-guide'
 
-import { EmptyIcon } from '~/components/universal/Icons/for-comment'
-import { IonSearch } from '~/components/universal/Icons/layout'
+import { EmptyIcon } from '@mx-space/kami-design/components/Icons/for-comment'
+import { IonSearch } from '@mx-space/kami-design/components/Icons/layout'
+
 import type { OverlayProps } from '~/components/universal/Overlay'
 import { Overlay } from '~/components/universal/Overlay'
 import { TrackerAction } from '~/constants/tracker'

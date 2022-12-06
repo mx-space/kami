@@ -3,19 +3,18 @@ import { useRouter } from 'next/router'
 import type { FC } from 'react'
 
 import type { NoteModel } from '@mx-space/api-client'
+import { Divider } from '@mx-space/kami-design/components/Divider'
+import {
+  IcRoundKeyboardDoubleArrowLeft,
+  IcRoundKeyboardDoubleArrowRight,
+} from '@mx-space/kami-design/components/Icons/arrow'
+import { MdiClockTimeThreeOutline } from '@mx-space/kami-design/components/Icons/for-note'
 
-import { Divider } from '~/components/universal/Divider'
-import { MdiClockTimeThreeOutline } from '~/components/universal/Icons/for-note'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useStore } from '~/store'
 import { springScrollToTop } from '~/utils/spring'
 import { noop } from '~/utils/utils'
-
-import {
-  IcRoundKeyboardDoubleArrowLeft,
-  IcRoundKeyboardDoubleArrowRight,
-} from '../../../universal/Icons/arrow'
 
 export const NoteFooterNavigation: FC<{ id: string }> = observer(({ id }) => {
   const { noteStore } = useStore()

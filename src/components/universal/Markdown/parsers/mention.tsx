@@ -5,7 +5,7 @@ import {
   CodiconGithubInverted,
   IcBaselineTelegram,
   MdiTwitter,
-} from '../../Icons/menu-icon'
+} from '@mx-space/kami-design/components/Icons/menu-icon'
 
 const prefixToIconMap = {
   GH: <CodiconGithubInverted />,

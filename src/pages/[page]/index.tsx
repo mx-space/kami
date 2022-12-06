@@ -5,6 +5,7 @@ import React, { Fragment, useEffect, useMemo, useRef } from 'react'
 import RemoveMarkdown from 'remove-markdown'
 
 import type { PageModel } from '@mx-space/api-client'
+import { ImageSizeMetaContext } from '@mx-space/kami-design/contexts/image-size'
 
 import { buildStoreDataLoadableView } from '~/components/app/LoadableView'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
@@ -19,7 +20,6 @@ import { springScrollToTop } from '~/utils/spring'
 import { noop } from '~/utils/utils'
 
 import { Seo } from '../../components/biz/Seo'
-import { ImageSizeMetaContext } from '../../context/image-size'
 import styles from './index.module.css'
 
 const CommentLazy = dynamic(() =>

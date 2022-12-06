@@ -5,13 +5,13 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 
 import type { AggregateTop } from '@mx-space/api-client'
-
 import {
   FaSolidKissWinkHeart,
   MdiDrawPen,
   PhUsersDuotone,
-} from '~/components/universal/Icons/for-home'
-import { IcTwotoneSignpost } from '~/components/universal/Icons/menu-icon'
+} from '@mx-space/kami-design/components/Icons/for-home'
+import { IcTwotoneSignpost } from '@mx-space/kami-design/components/Icons/menu-icon'
+
 import { LikeButton } from '~/components/universal/LikeButton'
 import { NoticePanel } from '~/components/universal/Notice'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'

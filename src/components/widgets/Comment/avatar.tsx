@@ -3,7 +3,8 @@ import rc from 'randomcolor'
 import type { FC } from 'react'
 import { useEffect, useMemo, useState } from 'react'
 
-import { LazyLoad } from '~/components/universal/Lazyload'
+import { LazyLoad } from '@mx-space/kami-design/components/Lazyload'
+
 import { useStore } from '~/store'
 
 import styles from './index.module.css'

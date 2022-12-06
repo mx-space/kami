@@ -17,10 +17,13 @@ import { useInView } from 'react-intersection-observer'
 import { eventBus } from 'utils/event-emitter'
 
 import type { RecentlyModel } from '@mx-space/api-client'
+import { Divider } from '@mx-space/kami-design/components/Divider'
+import {
+  JamTrash,
+  PhLinkFill,
+} from '@mx-space/kami-design/components/Icons/for-recently'
 
 import { Seo } from '~/components/biz/Seo'
-import { Divider } from '~/components/universal/Divider'
-import { JamTrash, PhLinkFill } from '~/components/universal/Icons/for-recently'
 import { Input } from '~/components/universal/Input'
 import { Loading } from '~/components/universal/Loading'
 import { Markdown } from '~/components/universal/Markdown'

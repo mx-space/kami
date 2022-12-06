@@ -1,7 +1,8 @@
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 
-import { Divider } from '~/components/universal/Divider'
+import { Divider } from '@mx-space/kami-design/components/Divider'
+
 import { store } from '~/store'
 
 export const PostRelated = observer<{ id: string }>((props) => {
