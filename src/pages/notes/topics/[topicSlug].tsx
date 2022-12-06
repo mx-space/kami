@@ -5,12 +5,12 @@ import { TransitionGroup } from 'react-transition-group'
 
 import type { NoteModel, Pager } from '@mx-space/api-client'
 import type { TopicModel } from '@mx-space/api-client/types/models/topic'
+import { Divider } from '@mx-space/kami-design/components/Divider'
 
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { SEO } from '~/components/biz/Seo'
 import { NoteTopicMarkdownRender } from '~/components/in-page/Note/NoteTopic/markdown-render'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
-import { Divider } from '~/components/universal/Divider'
 import { Pagination } from '~/components/universal/Pagination'
 import { TimelineListWrapper } from '~/components/universal/TimelineListWrapper'
 import { RightLeftTransitionView } from '~/components/universal/Transition/right-left'

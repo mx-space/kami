@@ -4,11 +4,11 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 
 import type { Pager, PaginateResult, PostModel } from '@mx-space/api-client'
+import { EmptyIcon } from '@mx-space/kami-design/components/Icons/for-comment'
 
 import { PostBlock } from '~/components/in-page/PostBlock'
 import { TagFAB } from '~/components/in-page/SpecialButton/float-post-tag'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
-import { EmptyIcon } from '~/components/universal/Icons/for-comment'
 import { Loading } from '~/components/universal/Loading'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { SearchFAB } from '~/components/widgets/Search'

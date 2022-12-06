@@ -59,6 +59,85 @@ const config = [
       },
     ],
     plugins: [
+      nodeResolve(),
+      commonjs({ include: 'node_modules/**' }),
+      typescript({
+        tsconfig: './tsconfig.json',
+        declaration: false,
+      }),
+      css({
+        // extract: true,
+      }),
+
+      // @ts-ignore
+      peerDepsExternal(),
+
+      esbuild({
+        // All options are optional
+        include: /\.[jt]sx?$/, // default, inferred from `loaders` option
+        exclude: /node_modules/, // default
+        sourceMap: true, // default
+        minify: process.env.NODE_ENV === 'production',
+        target: 'es2017', // default, or 'es20XX', 'esnext'
+        jsx: 'transform', // default, or 'preserve'
+        jsxFactory: 'React.createElement',
+        jsxFragment: 'React.Fragment',
+        // Like @rollup/plugin-replace
+
+        tsconfig: 'tsconfig.json', // default
+        // Add extra loaders
+        loaders: {
+          // Add .json files support
+          // require @rollup/plugin-commonjs
+          '.json': 'json',
+          // Enable JSX in .js files too
+          '.js': 'jsx',
+        },
+      }),
+    ],
+
+    treeshake: true,
+  },
+
+  // TODO merge
+
+  {
+    input: './index.windi.ts',
+    // ignore lib
+    external: [
+      'react',
+      'react-dom',
+      'lodash',
+      'lodash-es',
+      ...Object.keys(globals),
+    ],
+
+    output: [
+      {
+        file: `${dir}/index.windi.cjs`,
+        format: 'cjs',
+        sourcemap: true,
+      },
+      {
+        file: `${dir}/index.windi.min.cjs`,
+        format: 'cjs',
+        sourcemap: true,
+        plugins: [terser()],
+      },
+      {
+        file: `${dir}/index.windi.js`,
+        format: 'esm',
+        sourcemap: true,
+      },
+      {
+        file: `${dir}/index.windi.min.js`,
+        format: 'esm',
+        sourcemap: true,
+        plugins: [terser()],
+      },
+    ],
+    plugins: [
+      // @ts-ignore
       ...WindiCSS(),
       nodeResolve(),
       commonjs({ include: 'node_modules/**' }),
@@ -72,15 +151,7 @@ const config = [
 
       // @ts-ignore
       peerDepsExternal(),
-      // babel({
-      //   babelHelpers: 'bundled',
-      //   extensions: ['.ts', '.tsx', '.jsx', '.js'],
-      //   presets: ['@babel/preset-react'],
-      //   plugins: [
-      //     '@babel/plugin-transform-typescript',
-      //     '@babel/plugin-transform-react-jsx',
-      //   ],
-      // }),
+
       esbuild({
         // All options are optional
         include: /\.[jt]sx?$/, // default, inferred from `loaders` option

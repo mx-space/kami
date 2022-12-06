@@ -2,7 +2,8 @@ import Router from 'next/router'
 import type { FC } from 'react'
 import { memo, useCallback, useMemo } from 'react'
 
-import { FloatPopover } from '../../FloatPopover'
+import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
+
 import styles from './index.module.css'
 
 export const MLink: FC<{

@@ -10,8 +10,9 @@ import {
   PhUser,
   RadixIconsAvatar,
   SiGlyphGlobal,
-} from '~/components/universal/Icons/for-comment'
-import { MdiFountainPenTip } from '~/components/universal/Icons/for-note'
+} from '@mx-space/kami-design/components/Icons/for-comment'
+import { MdiFountainPenTip } from '@mx-space/kami-design/components/Icons/for-note'
+
 import { apiClient } from '~/utils/client'
 
 import { Input } from '../../universal/Input'

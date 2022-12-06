@@ -22,7 +22,7 @@ import {
   MdiFlask,
   MdiTwitter,
   RiNeteaseCloudMusicLine,
-} from '../Icons/menu-icon'
+} from '@mx-space/kami-design/components/Icons/menu-icon'
 
 export const iconMap = {
   faBookOpen: IonBook,

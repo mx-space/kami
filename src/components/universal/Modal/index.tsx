@@ -8,9 +8,10 @@ import {
   useState,
 } from 'react'
 
+import { CloseIcon } from '@mx-space/kami-design/components/Icons/layout'
+
 import { useStore } from '~/store'
 
-import { CloseIcon } from '../Icons/layout'
 import { BottomUpTransitionView } from '../Transition/bottom-up'
 import styles from './index.module.css'
 import { ScaleModalTransition } from './scale-transition'

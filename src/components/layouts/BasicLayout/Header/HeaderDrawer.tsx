@@ -3,9 +3,10 @@ import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import React, { Fragment, memo, useEffect } from 'react'
 
-import { CloseIcon } from '~/components/universal/Icons/layout'
+import { CloseIcon } from '@mx-space/kami-design/components/Icons/layout'
+import { RootPortal } from '@mx-space/kami-design/components/Portal'
+
 import { Overlay } from '~/components/universal/Overlay'
-import { RootPortal } from '~/components/universal/Portal'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { NoSSRWrapper } from '~/utils/no-ssr'

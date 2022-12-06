@@ -1,4 +1,3 @@
-import { ImageSizeMetaContext } from 'context'
 import dayjs from 'dayjs'
 import isEqual from 'lodash-es/isEqual'
 import { toJS } from 'mobx'
@@ -10,19 +9,23 @@ import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { message } from 'react-message-popup'
 
 import type { PostModel } from '@mx-space/api-client'
+import { Banner } from '@mx-space/kami-design/components/Banner'
+import {
+  GgCoffee,
+  PhBookOpen,
+} from '@mx-space/kami-design/components/Icons/for-note'
+import {
+  FeHash,
+  IonThumbsup,
+  MdiCalendar,
+} from '@mx-space/kami-design/components/Icons/for-post'
+import { ImageSizeMetaContext } from '@mx-space/kami-design/contexts/image-size'
 
 import { buildStoreDataLoadableView } from '~/components/app/LoadableView'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { Seo } from '~/components/biz/Seo'
 import { PostRelated } from '~/components/in-page/Post/post-related'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
-import { Banner } from '~/components/universal/Banner'
-import { GgCoffee, PhBookOpen } from '~/components/universal/Icons/for-note'
-import {
-  FeHash,
-  IonThumbsup,
-  MdiCalendar,
-} from '~/components/universal/Icons/for-post'
 import { Markdown } from '~/components/universal/Markdown'
 import Outdate from '~/components/universal/Outdate'
 import type { ActionProps } from '~/components/widgets/ArticleAction'

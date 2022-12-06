@@ -4,12 +4,13 @@ import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { message } from 'react-message-popup'
 
+import { ImageLazy } from '@mx-space/kami-design/components/Image'
+
 import { Loading } from '~/components/universal/Loading'
 import { useStore } from '~/store'
 import { apiClient } from '~/utils/client'
 
 import { Seo } from '../../components/biz/Seo'
-import { ImageLazy } from '../../components/universal/Image'
 import styles from './bangumi.module.css'
 
 interface FavoriteBangumiType {

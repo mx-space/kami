@@ -3,11 +3,11 @@ import type { FC } from 'react'
 import { useCallback, useMemo } from 'react'
 
 import type { TopicModel } from '@mx-space/api-client/types/models/topic'
+import { Divider } from '@mx-space/kami-design/components/Divider'
+import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
 
 import { ImpressionView } from '~/components/biz/ImpressionView'
 import { Avatar } from '~/components/universal/Avatar'
-import { Divider } from '~/components/universal/Divider'
-import { FloatPopover } from '~/components/universal/FloatPopover'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { textToBigCharOrWord } from '~/utils/word'

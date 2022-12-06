@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 
-import { FloatPopover } from '../FloatPopover'
-import { IonSearch } from '../Icons/layout'
+import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
+import { IonSearch } from '@mx-space/kami-design/components/Icons/layout'
 
 export const ImageTagPreview: FC<{ src: string; alt: string }> = (props) => {
   const { src, alt } = props

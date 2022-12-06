@@ -1,7 +1,8 @@
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import { Priority, blockRegex } from 'markdown-to-jsx'
 
-import { Banner } from '../../Banner'
+import { Banner } from '@mx-space/kami-design/components/Banner'
+
 import { Gallery } from '../components/gallery'
 import { pickImagesFromMarkdown } from '../utils/image'
 

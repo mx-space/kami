@@ -1,34 +1,23 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import { sanitizeUrl } from 'markdown-to-jsx'
-import { observer } from 'mobx-react-lite'
-import dynamic from 'next/dynamic'
 import type { FC } from 'react'
-import React, { Fragment, memo, useCallback, useEffect, useMemo } from 'react'
+import React, { Fragment, memo, useCallback, useMemo } from 'react'
 
 import type { MdProps } from '@mx-space/kami-design/components/Markdown'
 import { Markdown as KamiMarkdown } from '@mx-space/kami-design/components/Markdown'
 
 import { ErrorBoundary } from '~/components/app/ErrorBoundary'
-import type { TocProps } from '~/components/widgets/Toc'
-import { useStore } from '~/store'
 import { isDev } from '~/utils/env'
 import { springScrollToElement } from '~/utils/spring'
 
 import { CodeBlock } from '../CodeBlock'
-import { FloatPopover } from '../FloatPopover'
-import { FluentList16Filled } from '../Icons/shared'
-import { useModalStack } from '../Modal/stack.context'
+import { MarkdownToc } from './MarkdownToc'
 import { MHeading, MImage, MLink } from './renderers'
 import { MFootNote } from './renderers/footnotes'
 import { LinkCard } from './renderers/link-card'
 
-const Toc = dynamic(
-  () => import('~/components/widgets/Toc').then((m) => m.Toc),
-  {
-    ssr: false,
-  },
-)
+const Noop = () => null
 
 export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
   const {
@@ -58,9 +47,7 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
   return (
     <ErrorBoundary fallbackComponent={RenderError}>
       <KamiMarkdown
-        tocSlot={
-          props.toc ? ({ headings }) => <TOC headings={headings} /> : () => null
-        }
+        tocSlot={props.toc ? MarkdownToc : Noop}
         {...wrapperProps}
         value={value}
         overrides={{
@@ -131,13 +118,7 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
                   >
                     <sup key={state?.key}>^{content}</sup>
                   </a>
-                  {linkCardId && (
-                    <LinkCard
-                      id={linkCardId}
-                      source={'self'}
-                      // className="float-right"
-                    />
-                  )}
+                  {linkCardId && <LinkCard id={linkCardId} source={'self'} />}
                 </Fragment>
               )
             },
@@ -162,56 +143,4 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
       </KamiMarkdown>
     </ErrorBoundary>
   )
-})
-
-export const TOC: FC<TocProps> = observer((props) => {
-  const { appStore, actionStore } = useStore()
-  const {
-    isNarrowThanLaptop,
-    viewport: { mobile },
-  } = appStore
-  const { present } = useModalStack()
-
-  useEffect(() => {
-    if (!isNarrowThanLaptop || props.headings.length == 0) {
-      return
-    }
-
-    const InnerToc = () => <Toc {...props} useAsWeight />
-    const id = 'toc'
-    actionStore.appendActions({
-      element: !mobile ? (
-        <FloatPopover
-          placement="left-end"
-          strategy="fixed"
-          wrapperClassNames="flex flex-1"
-          offset={20}
-          triggerComponent={() => (
-            <button aria-label="toc button">
-              <FluentList16Filled />
-            </button>
-          )}
-          trigger="click"
-        >
-          <InnerToc />
-        </FloatPopover>
-      ) : undefined,
-      icon: mobile ? <FluentList16Filled /> : null,
-      id,
-      onClick() {
-        present({
-          component: <InnerToc />,
-
-          modalProps: {
-            title: 'Table of Content',
-            noBlur: true,
-          },
-        })
-      },
-    })
-    return () => {
-      actionStore.removeActionById(id)
-    }
-  }, [actionStore, isNarrowThanLaptop, mobile, present, props])
-  return !isNarrowThanLaptop ? <Toc {...props} /> : null
 })

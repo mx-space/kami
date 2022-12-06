@@ -15,10 +15,13 @@ import { message } from 'react-message-popup'
 import { socketClient } from 'socket'
 
 import type { CommentModel } from '@mx-space/api-client'
+import {
+  PhPushPin,
+  PhPushPinFill,
+} from '@mx-space/kami-design/components/Icons/for-post'
 
 import { ImpressionView } from '~/components/biz/ImpressionView'
 import { IconTransition } from '~/components/universal/IconTransition'
-import { PhPushPin, PhPushPinFill } from '~/components/universal/Icons/for-post'
 import { ImageTagPreview } from '~/components/universal/ImageTagPreview'
 import { Markdown } from '~/components/universal/Markdown'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'

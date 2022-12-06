@@ -9,8 +9,9 @@ import { TransitionGroup } from 'react-transition-group'
 import {
   BxBxsArrowToTop,
   FaSolidHeadphonesAlt,
-} from '~/components/universal/Icons/for-footer'
-import { RootPortal } from '~/components/universal/Portal'
+} from '@mx-space/kami-design/components/Icons/for-footer'
+import { RootPortal } from '@mx-space/kami-design/components/Portal'
+
 import { ScaleTransitionView } from '~/components/universal/Transition/scale'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
