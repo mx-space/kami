@@ -1,7 +1,6 @@
 export * from './Banner'
 export * from './Divider'
 export * from './FloatPopover'
-export * from './Icons'
 export * from './Image'
 export * from './Lazyload'
 export * from './Markdown'
