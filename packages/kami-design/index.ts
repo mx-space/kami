@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
+/// <reference path="./env.d.ts" />
+
 // export { Markdown } from './components/Markdown'
 // export { Banner } from './components/Banner'
 // export { Divider, DividerVertical } from './components/Divider'

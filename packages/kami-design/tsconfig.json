@@ -23,7 +23,6 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "incremental": true,
     "baseUrl": ".",
     "paths": {
       "~": [
@@ -41,6 +40,7 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "./*.d.ts"
   ]
 }
