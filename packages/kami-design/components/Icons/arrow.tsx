@@ -1,3 +1,4 @@
+import React from 'react'
 import type { SVGProps } from 'react'
 
 export function IcRoundKeyboardDoubleArrowLeft(props: SVGProps<SVGSVGElement>) {

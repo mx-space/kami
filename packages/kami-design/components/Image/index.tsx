@@ -1,12 +1,6 @@
 import { clsx } from 'clsx'
 import mediumZoom from 'medium-zoom'
-import type {
-  CSSProperties,
-  DetailedHTMLProps,
-  FC,
-  ImgHTMLAttributes,
-} from 'react'
-import {
+import React, {
   forwardRef,
   memo,
   useCallback,
@@ -15,6 +9,12 @@ import {
   useMemo,
   useRef,
   useState,
+} from 'react'
+import type {
+  CSSProperties,
+  DetailedHTMLProps,
+  FC,
+  ImgHTMLAttributes,
 } from 'react'
 
 import { isDarkColorHex } from '~/utils/color'

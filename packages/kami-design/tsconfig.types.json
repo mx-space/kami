@@ -10,21 +10,10 @@
     "allowJs": false,
     "emitDeclarationOnly": true,
     "paths": {
-      "~": [
-        "../../src"
-      ],
-      "~/*": [
-        "../../src/*"
-      ]
+      "~": ["../../src"],
+      "~/*": ["../../src/*"]
     }
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "./*.d.ts"
-  ],
-  "exclude": [
-    "__tests__/**/*",
-    "**/*.test.ts"
-  ]
+  "include": ["**/*.ts", "**/*.tsx", "./*.d.ts"],
+  "exclude": ["__tests__/**/*", "**/*.test.ts"]
 }

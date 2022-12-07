@@ -1,5 +1,6 @@
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import { Priority, blockRegex } from 'markdown-to-jsx'
+import React from 'react'
 
 import { Banner } from '../../Banner'
 import { Gallery } from '../components/gallery'

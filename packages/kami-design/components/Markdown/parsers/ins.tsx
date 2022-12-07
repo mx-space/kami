@@ -4,6 +4,7 @@ import {
   parseCaptureInline,
   simpleInlineRegex,
 } from 'markdown-to-jsx'
+import React from 'react'
 
 //  ++Insert++
 export const InsertRule: MarkdownToJSX.Rule = {
