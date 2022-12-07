@@ -18,6 +18,19 @@
       "import": "./src/*"
     }
   },
+  "bump": {
+    "leading": [
+      "pnpm -C ./packages/kami-design run build"
+    ],
+    "allowed_branches": [
+      "main",
+      "master",
+      "dev/*"
+    ],
+    "publish": true,
+    "commit_message": "chore(release): bump @mx-space/kami-design to v${NEW_VERSION}",
+    "tag-prefix": "@mx-space/kami-design@v"
+  },
   "files": [
     "dist",
     "lib",
