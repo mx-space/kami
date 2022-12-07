@@ -5,6 +5,7 @@ import {
   simpleInlineRegex,
 } from 'markdown-to-jsx'
 import type { FC } from 'react'
+// @ts-ignore
 import { useInsertionEffect, useState } from 'react'
 
 import { loadScript, loadStyleSheet } from '~/utils/load-script'
@@ -39,6 +40,7 @@ const LateX: FC<{ children: string }> = (props) => {
     loadScript(
       'https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/KaTeX/0.15.2/katex.min.js',
     ).then(() => {
+      // @ts-ignore
       const html = window.katex.renderToString(children)
       setHtml(html)
     })
