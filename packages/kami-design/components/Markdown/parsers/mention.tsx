@@ -1,5 +1,6 @@
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import { Priority, simpleInlineRegex } from 'markdown-to-jsx'
+import React from 'react'
 
 import {
   CodiconGithubInverted,

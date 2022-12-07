@@ -1,4 +1,5 @@
 import { clsx } from 'clsx'
+import React from 'react'
 import type { DetailedHTMLProps, FC, HTMLAttributes } from 'react'
 
 export const Divider: FC<

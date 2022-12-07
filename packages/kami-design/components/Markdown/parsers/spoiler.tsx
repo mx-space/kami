@@ -4,6 +4,7 @@ import {
   parseCaptureInline,
   simpleInlineRegex,
 } from 'markdown-to-jsx'
+import React from 'react'
 
 // ||Spoilder||
 export const SpoilderRule: MarkdownToJSX.Rule = {

@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import type { DetailedHTMLProps, FC, HTMLAttributes } from 'react'
+import React from 'react'
 
 export const MParagraph: FC<
   DetailedHTMLProps<HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>

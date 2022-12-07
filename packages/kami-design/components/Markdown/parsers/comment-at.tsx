@@ -4,7 +4,7 @@ import {
   parseCaptureInline,
   simpleInlineRegex,
 } from 'markdown-to-jsx'
-import { Fragment } from 'react'
+import React, { Fragment } from 'react'
 
 // @
 export const CommentAtRule: MarkdownToJSX.Rule = {

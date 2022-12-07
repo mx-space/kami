@@ -5,6 +5,7 @@ import {
   simpleInlineRegex,
 } from 'markdown-to-jsx'
 import type { FC } from 'react'
+import React from 'react'
 // @ts-ignore
 import { useInsertionEffect, useState } from 'react'
 
