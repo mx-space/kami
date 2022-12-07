@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
-  "types": "types/index.d.ts",
+  "types": "dist/index.d.ts",
   "type": "module",
   "exports": {
     ".": {
