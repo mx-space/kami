@@ -1,5 +1,5 @@
+import React, { memo } from 'react'
 import type { FC, SVGProps } from 'react'
-import { memo } from 'react'
 
 export function SiGlyphGlobal(props: SVGProps<SVGSVGElement>) {
   return (

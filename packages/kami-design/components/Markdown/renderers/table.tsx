@@ -1,4 +1,5 @@
 import type { FC } from 'react'
+import React from 'react'
 
 export const MTableHead: FC<JSX.IntrinsicElements['thead']> = (props) => {
   const { children, ...rest } = props

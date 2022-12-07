@@ -4,6 +4,7 @@ import {
   parseCaptureInline,
   simpleInlineRegex,
 } from 'markdown-to-jsx'
+import React from 'react'
 
 //  ==Mark==
 export const MarkRule: MarkdownToJSX.Rule = {
