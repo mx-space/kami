@@ -1,5 +1,7 @@
 // @ts-check
 
+import fs from 'fs'
+import path from 'path'
 import esbuild from 'rollup-plugin-esbuild'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import css from 'rollup-plugin-postcss'
@@ -10,6 +12,119 @@ import commonjs from '@rollup/plugin-commonjs'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import typescript from '@rollup/plugin-typescript'
 
+/**
+ *
+ * @param {boolean} withWidi
+ * @returns {import('rollup').RollupOptions[]}
+ */
+
+const buildComponentsConfig = (withWidi) => {
+  const componentsBase = './components'
+  const resolveComponentDir = (name) => path.resolve(componentsBase, name)
+  const componentsDir = fs
+    .readdirSync(componentsBase)
+    .filter(
+      (name) =>
+        name != 'index.ts' &&
+        fs.statSync(resolveComponentDir(name)).isDirectory(),
+    )
+
+  const configs = []
+  const plugins = []
+
+  if (withWidi) {
+    // FIXME windicss need import
+    plugins.push(...WindiCSS())
+  }
+  for (const componentName of componentsDir) {
+    const componentEntryFile = path.resolve(
+      componentsBase,
+      componentName,
+      'index.tsx',
+    )
+    const hasTsxEntry = fs.existsSync(componentEntryFile)
+
+    let input = ''
+
+    if (hasTsxEntry) {
+      input = componentEntryFile
+    } else {
+      input = path.resolve(componentsBase, componentName, 'index.ts')
+    }
+
+    // execSync(
+    //   `npx dts-bundle-generator -o ` +
+    //     `${dir}/components/${componentName}/index.d.ts ${input} --no-check --silent  --project ./tsconfig.types.json`,
+    // )
+
+    configs.push({
+      input,
+      external: [
+        'react',
+        'react-dom',
+        'lodash',
+        'lodash-es',
+        ...Object.keys(globals),
+      ],
+      output: [
+        {
+          file: `${dir}/components/${componentName}/index${
+            withWidi ? '.windi' : ''
+          }.js`,
+          format: 'esm',
+          sourcemap: true,
+        },
+      ],
+
+      plugins: [
+        ...plugins,
+
+        nodeResolve(),
+        commonjs({ include: 'node_modules/**' }),
+        typescript({
+          tsconfig: './tsconfig.json',
+          declaration: false,
+        }),
+        css({
+          // extract: true,
+        }),
+
+        // @ts-ignore
+        peerDepsExternal(),
+
+        esbuild({
+          include: /\.[jt]sx?$/,
+          exclude: /node_modules/,
+          sourceMap: true,
+          minify: process.env.NODE_ENV === 'production',
+          target: 'es2017',
+          jsx: 'transform',
+          jsxFactory: 'React.createElement',
+          jsxFragment: 'React.Fragment',
+
+          tsconfig: 'tsconfig.json',
+
+          loaders: {
+            '.json': 'json',
+
+            '.js': 'jsx',
+          },
+        }),
+      ],
+
+      treeshake: true,
+    })
+  }
+
+  return configs
+}
+
+/**
+ *
+ * @param {string} filename
+ * @param {*=} config
+ * @returns {import('rollup').RollupOptions}
+ */
 const buildEntryFileConfig = (filename, config) => {
   const baseFilenameWithoutExt = filename.replace(/\.[jt]sx?$/, '')
   const { plugins = [] } = config || {}
@@ -114,6 +229,9 @@ const config = [
       ...WindiCSS(),
     ],
   }),
+
+  ...buildComponentsConfig(false),
+  ...buildComponentsConfig(true),
 ]
 
 export default config

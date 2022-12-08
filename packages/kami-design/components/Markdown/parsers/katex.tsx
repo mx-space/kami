@@ -5,12 +5,12 @@ import {
   simpleInlineRegex,
 } from 'markdown-to-jsx'
 import type { FC } from 'react'
-import React from 'react'
-// @ts-ignore
-import { useInsertionEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { loadScript, loadStyleSheet } from '~/utils/load-script'
 
+// @ts-ignore
+const useInsertionEffect = React.useInsertionEffect || React.useEffect
 //  $ c = \pm\sqrt{a^2 + b^2} $
 export const KateXRule: MarkdownToJSX.Rule = {
   match: simpleInlineRegex(
