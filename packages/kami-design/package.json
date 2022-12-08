@@ -16,6 +16,10 @@
       "import": "./dist/*",
       "require": "./dist/*"
     },
+    "./dist/components/*": {
+      "import": "./dist/components/*",
+      "require": "./dist/components/*"
+    },
     "./src": {
       "import": "./src"
     },
@@ -50,7 +54,7 @@
     "prebuild": "rm -rf dist types",
     "build": "rollup -c",
     "postbuild": "rm -rf **/*.temp.tsx",
-    "types": "rm -rf types && tsc --build tsconfig.types.json && tsc-alias -p tsconfig.types.json && dts-bundle-generator -o ./dist/index.d.ts ./index.ts --no-check --silent  --project ./tsconfig.types.json"
+    "types": "tsx scripts/build-components-dts.ts"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",

@@ -4,8 +4,8 @@ import type { FC } from 'react'
 import { useEffect } from 'react'
 
 import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
+import { FluentList16Filled } from '@mx-space/kami-design/components/Icons/shared'
 
-import { FluentList16Filled } from '~/../packages/kami-design'
 import type { TocProps } from '~/components/widgets/Toc'
 import { useStore } from '~/store'
 
