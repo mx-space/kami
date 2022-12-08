@@ -1,6 +1,5 @@
 // @ts-check
 
-import { execSync } from 'child_process'
 import fs from 'fs'
 import path from 'path'
 import esbuild from 'rollup-plugin-esbuild'
@@ -61,17 +60,8 @@ const buildComponentsConfig = (withWidi) => {
 
     const newContent = `${appendLines.join('\n')}\n${content}`
 
-    const tempInput = `${input}.temp.tsx`
-
-    fs.writeFileSync(tempInput, newContent, 'utf-8')
-
-    execSync(
-      `npx dts-bundle-generator -o ` +
-        `${dir}/components/${componentName}/index.d.ts ${tempInput} --no-check --silent --project ./tsconfig.types.json`,
-    )
-
     configs.push({
-      input: tempInput,
+      input,
       external: [
         'react',
         'react-dom',
@@ -91,6 +81,15 @@ const buildComponentsConfig = (withWidi) => {
 
       plugins: [
         ...plugins,
+
+        {
+          name: 'temp',
+          load: (id) => {
+            if (id === input) {
+              return newContent
+            }
+          },
+        },
 
         nodeResolve(),
         commonjs({ include: 'node_modules/**' }),
@@ -233,7 +232,6 @@ const dir = 'dist'
 const config = [
   buildEntryFileConfig('index.ts'),
 
-  // TODO merge
   buildEntryFileConfig('index.windi.ts', {
     plugins: [
       // @ts-ignore
