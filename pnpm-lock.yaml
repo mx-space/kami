@@ -10,7 +10,7 @@ specifiers:
   '@innei/eslint-config-react-ts': 0.9.6
   '@innei/prettier': 0.9.6
   '@mx-space/api-client': 1.0.0-beta.3
-  '@next/bundle-analyzer': 12.3.4
+  '@next/bundle-analyzer': 13.0.6
   '@trivago/prettier-plugin-sort-imports': 4.0.0
   '@types/inflection': 1.13.0
   '@types/js-cookie': 3.0.2
@@ -117,7 +117,7 @@ dependencies:
 devDependencies:
   '@innei/eslint-config-react-ts': 0.9.6_typescript@4.9.4
   '@innei/prettier': 0.9.6
-  '@next/bundle-analyzer': 12.3.4
+  '@next/bundle-analyzer': 13.0.6
   '@trivago/prettier-plugin-sort-imports': 4.0.0_prettier@2.8.1
   '@types/inflection': 1.13.0
   '@types/js-cookie': 3.0.2
@@ -785,10 +785,10 @@ packages:
     engines: {pnpm: '>=6'}
     dev: false
 
-  /@next/bundle-analyzer/12.3.4:
-    resolution: {integrity: sha512-eKjgRICzbLTmod0UnJcArFVs5uEAiuZwB6NCf84m+btW7jdylUVoOYf1wi5tA14xk5L9Lho7Prm6/XJ8gxYzfQ==}
+  /@next/bundle-analyzer/13.0.6:
+    resolution: {integrity: sha512-DRubgAxddPYog5GlmS3RkNOaRsSNQNNo+icc/i+grzPmJtYvPFsKuy7qCwyt0zSuW9aZfVOZGek1KQJ3c+5R4w==}
     dependencies:
-      webpack-bundle-analyzer: 4.3.0
+      webpack-bundle-analyzer: 4.7.0
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -1641,9 +1641,9 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
-  /commander/6.2.1:
-    resolution: {integrity: sha512-U7VdrJFnJgo4xjrHpTzu0yrHPGImdsmD95ZlgYSEajAn2JKzDhDTPG9kBTefmObL2w/ngeZnilk+OV9CG3d7UA==}
-    engines: {node: '>= 6'}
+  /commander/7.2.0:
+    resolution: {integrity: sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==}
+    engines: {node: '>= 10'}
     dev: true
 
   /commander/9.4.1:
@@ -4985,15 +4985,15 @@ packages:
     engines: {node: '>= 8'}
     dev: true
 
-  /webpack-bundle-analyzer/4.3.0:
-    resolution: {integrity: sha512-J3TPm54bPARx6QG8z4cKBszahnUglcv70+N+8gUqv2I5KOFHJbzBiLx+pAp606so0X004fxM7hqRu10MLjJifA==}
+  /webpack-bundle-analyzer/4.7.0:
+    resolution: {integrity: sha512-j9b8ynpJS4K+zfO5GGwsAcQX4ZHpWV+yRiHDiL+bE0XHJ8NiPYLTNVQdlFYWxtpg9lfAQNlwJg16J9AJtFSXRg==}
     engines: {node: '>= 10.13.0'}
     hasBin: true
     dependencies:
       acorn: 8.8.0
       acorn-walk: 8.2.0
       chalk: 4.1.2
-      commander: 6.2.1
+      commander: 7.2.0
       gzip-size: 6.0.0
       lodash: 4.17.21
       opener: 1.5.2
