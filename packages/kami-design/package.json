@@ -49,6 +49,7 @@
   "scripts": {
     "prebuild": "rm -rf dist types",
     "build": "rollup -c",
+    "postbuild": "rm -rf **/*.temp.tsx",
     "types": "rm -rf types && tsc --build tsconfig.types.json && tsc-alias -p tsconfig.types.json && dts-bundle-generator -o ./dist/index.d.ts ./index.ts --no-check --silent  --project ./tsconfig.types.json"
   },
   "peerDependencies": {
@@ -78,6 +79,11 @@
     "@types/react": "17.0.52",
     "dts-bundle-generator": "^7.1.0",
     "esbuild": "0.15.17",
+    "postcss-windicss": "^1.0.0",
+    "postcss": "8.4.19",
+    "postcss-import": "15.0.1",
+    "postcss-nested": "6.0.0",
+    "postcss-preset-env": "7.8.3",
     "react-use": "17.4.0",
     "rollup": "2.79.0",
     "rollup-plugin-esbuild": "5.0.0",

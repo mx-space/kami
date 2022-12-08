@@ -10,14 +10,11 @@
     "allowJs": false,
     "emitDeclarationOnly": true,
     "skipLibCheck": true,
-    "paths": {
-      "~": [
-        "../../src"
-      ],
-      "~/*": [
-        "../../src/*"
-      ]
-    }
+    "typeRoots": [
+      "./node_modules/@types",
+      "../../node_modules/@types",
+      "./@types",
+    ],
   },
   "include": [
     "**/*.ts",
