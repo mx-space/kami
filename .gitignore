@@ -34,4 +34,4 @@ json-schema.json
 
 packages/kami-design/types
 
-packages/kami-design/components/**/*.tsx.temp.tsx
+packages/kami-design/components/**/*.temp.tsx
