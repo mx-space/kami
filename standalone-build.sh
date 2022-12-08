@@ -8,7 +8,7 @@ cp ../next.config.js ./standalone/next.config.js
 cp -r ../public ./standalone/public
 
 cd ./standalone
-echo 'process.title = "Kami (NextJS)"' >>server.js
+echo ';process.title = "Kami (NextJS)"' >>server.js
 mv ../static/ ./.next/static
 
 # move workbox
