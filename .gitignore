@@ -33,3 +33,5 @@ public/md.md
 json-schema.json
 
 packages/kami-design/types
+
+packages/kami-design/components/**/*.tsx.temp.tsx

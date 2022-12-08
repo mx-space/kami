@@ -12,8 +12,8 @@ import React, {
 import { useInView } from 'react-intersection-observer'
 
 import { ImageSizeMetaContext } from '@mx-space/kami-design/contexts/image-size'
+import { useStateToRef } from '@mx-space/kami-design/hooks/use-state-ref'
 
-import { useStateRef } from '~/hooks/use-state-ref'
 import { calculateDimensions } from '~/utils/images'
 
 import { ImageLazy } from '../../../Image'
@@ -100,8 +100,8 @@ export const Gallery: FC<GalleryProps> = (props) => {
 
   const autoplayTimerRef = useRef(null as any)
 
-  const currentIndexRef = useStateRef(currentIndex)
-  const totalImageLengthRef = useStateRef(images.length)
+  const currentIndexRef = useStateToRef(currentIndex)
+  const totalImageLengthRef = useStateToRef(images.length)
 
   // 向后翻页状态
   const isForward = useRef(true)
