@@ -1,5 +1,6 @@
 // @ts-check
 
+import { execSync } from 'child_process'
 import fs from 'fs'
 import path from 'path'
 import esbuild from 'rollup-plugin-esbuild'
@@ -18,6 +19,7 @@ import typescript from '@rollup/plugin-typescript'
  * @returns {import('rollup').RollupOptions[]}
  */
 
+const envDtsPath = path.resolve(__dirname, 'env.d.ts')
 const buildComponentsConfig = (withWidi) => {
   const componentsBase = './components'
   const resolveComponentDir = (name) => path.resolve(componentsBase, name)
@@ -33,7 +35,6 @@ const buildComponentsConfig = (withWidi) => {
   const plugins = []
 
   if (withWidi) {
-    // FIXME windicss need import
     plugins.push(...WindiCSS())
   }
   for (const componentName of componentsDir) {
@@ -51,14 +52,26 @@ const buildComponentsConfig = (withWidi) => {
     } else {
       input = path.resolve(componentsBase, componentName, 'index.ts')
     }
+    const content = fs.readFileSync(input, 'utf-8')
+    const appendLines = [`/// <reference path="${envDtsPath}" />`]
 
-    // execSync(
-    //   `npx dts-bundle-generator -o ` +
-    //     `${dir}/components/${componentName}/index.d.ts ${input} --no-check --silent  --project ./tsconfig.types.json`,
-    // )
+    if (withWidi) {
+      appendLines.push(`import 'virtual:windi.css'`)
+    }
+
+    const newContent = `${appendLines.join('\n')}\n${content}`
+
+    const tempInput = `${input}.temp.tsx`
+
+    fs.writeFileSync(tempInput, newContent, 'utf-8')
+
+    execSync(
+      `npx dts-bundle-generator -o ` +
+        `${dir}/components/${componentName}/index.d.ts ${tempInput} --no-check --silent --project ./tsconfig.types.json`,
+    )
 
     configs.push({
-      input,
+      input: tempInput,
       external: [
         'react',
         'react-dom',
@@ -85,9 +98,7 @@ const buildComponentsConfig = (withWidi) => {
           tsconfig: './tsconfig.json',
           declaration: false,
         }),
-        css({
-          // extract: true,
-        }),
+        css({}),
 
         // @ts-ignore
         peerDepsExternal(),
