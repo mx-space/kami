@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { throttle } from 'lodash-es'
+import throttle from 'lodash-es/throttle'
 import type { FC, UIEventHandler } from 'react'
 import React, {
   useCallback,
@@ -11,10 +11,11 @@ import React, {
 } from 'react'
 import { useInView } from 'react-intersection-observer'
 
+import { ImageSizeMetaContext } from '@mx-space/kami-design/contexts/image-size'
+
 import { useStateRef } from '~/hooks/use-state-ref'
 import { calculateDimensions } from '~/utils/images'
 
-import { ImageSizeMetaContext } from '../../../../contexts/image-size'
 import { ImageLazy } from '../../../Image'
 import type { MImageType } from '../../utils/image'
 import styles from './index.module.css'

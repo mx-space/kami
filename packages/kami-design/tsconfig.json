@@ -15,7 +15,9 @@
     "skipLibCheck": true,
     "noImplicitAny": false,
     "useDefineForClassFields": true,
-    "lib": ["dom"],
+    "lib": [
+      "dom"
+    ],
     "outDir": "dist",
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
@@ -23,10 +25,28 @@
     "isolatedModules": true,
     "baseUrl": ".",
     "paths": {
-      "~": ["../../src"],
-      "~/*": ["../../src/*"]
+      "~": [
+        "../../src"
+      ],
+      "~/*": [
+        "../../src/*"
+      ],
+      "@mx-space/kami-design": [
+        "./index.ts"
+      ],
+      "@mx-space/kami-design/*": [
+        "./*"
+      ]
     }
   },
-  "exclude": [".next", "server/**/*.*"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "./*.d.ts"]
+  "exclude": [
+    ".next",
+    "server/**/*.*"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "./*.d.ts"
+  ]
 }
