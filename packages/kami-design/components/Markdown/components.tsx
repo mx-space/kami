@@ -27,7 +27,6 @@ import { MFootNote } from './renderers/footnotes'
 
 export interface MdProps {
   value?: string
-  toc?: boolean
 
   style?: React.CSSProperties
   readonly renderers?: { [key: string]: Partial<MarkdownToJSX.Rule> }
