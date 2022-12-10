@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import { memo, useEffect, useRef, useState } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
 
 // TODO: wait for new CSS unit
 export const FlexText: FC<{ text: string; size: number }> = memo((props) => {

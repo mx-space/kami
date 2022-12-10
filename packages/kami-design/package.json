@@ -70,12 +70,12 @@
     "markdown-escape": "^2.0.0",
     "markdown-to-jsx": "npm:@innei/markdown-to-jsx@7.1.3-15",
     "medium-zoom": "^1.0.8",
+    "randomcolor": "^0.6.2",
     "react-collapse": "^5.1.1",
     "react-intersection-observer": "^9.4.1",
     "react-smooth-number-counter": "https://github.com/Innei/react-smooth-number-counter.git",
     "react-transition-group": "^4.4.5",
-    "remove-markdown": "^0.5.0",
-    "randomcolor": "^0.6.2"
+    "remove-markdown": "^0.5.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "22.0.2",
@@ -84,11 +84,11 @@
     "@types/react": "17.0.52",
     "dts-bundle-generator": "^7.1.0",
     "esbuild": "0.15.17",
-    "postcss-windicss": "^1.0.0",
     "postcss": "8.4.19",
     "postcss-import": "15.0.1",
     "postcss-nested": "6.0.0",
     "postcss-preset-env": "7.8.3",
+    "postcss-windicss": "^1.0.0",
     "react-use": "17.4.0",
     "rollup": "2.79.0",
     "rollup-plugin-esbuild": "5.0.0",
