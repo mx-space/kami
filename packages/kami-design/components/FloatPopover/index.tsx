@@ -1,7 +1,14 @@
 import { clsx } from 'clsx'
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, {
+  memo,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import type { FC } from 'react'
-import useClickAway from 'react-use/esm/useClickAway'
+import useClickAway from 'react-use/lib/useClickAway'
 
 import type { UseFloatingProps } from '@floating-ui/react-dom'
 import { flip, offset, shift, useFloating } from '@floating-ui/react-dom'

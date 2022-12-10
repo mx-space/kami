@@ -1,6 +1,6 @@
 import shuffle from 'lodash-es/shuffle'
 import type { FC } from 'react'
-import { memo } from 'react'
+import { memo, useEffect } from 'react'
 import useSWR from 'swr'
 
 import type { LinkModel } from '@mx-space/api-client'
@@ -21,7 +21,7 @@ export const FriendItem: FC<LinkModel> = memo((props) => {
 })
 
 export const FriendsSection: FC = memo(() => {
-  const { data: friends } = useSWR(
+  const { data: friends, mutate } = useSWR(
     'home-friends',
     async () => {
       const res = await apiClient.link.getAll()
@@ -41,6 +41,10 @@ export const FriendsSection: FC = memo(() => {
       revalidateOnReconnect: false,
     },
   )
+
+  useEffect(() => {
+    mutate()
+  }, [])
 
   return (
     <div className={styles['friends-wrap']}>
