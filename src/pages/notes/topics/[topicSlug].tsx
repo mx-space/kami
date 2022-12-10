@@ -9,10 +9,10 @@ import { Divider } from '@mx-space/kami-design/components/Divider'
 
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { SEO } from '~/components/biz/Seo'
+import { TimelineListWrapper } from '~/components/biz/TimelineListWrapper'
 import { NoteTopicMarkdownRender } from '~/components/in-page/Note/NoteTopic/markdown-render'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { Pagination } from '~/components/universal/Pagination'
-import { TimelineListWrapper } from '~/components/universal/TimelineListWrapper'
 import { RightLeftTransitionView } from '~/components/universal/Transition/right-left'
 import { apiClient } from '~/utils/client'
 

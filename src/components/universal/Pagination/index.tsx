@@ -2,7 +2,7 @@ import type { FC } from 'react'
 import { useEffect, useState } from 'react'
 import { message } from 'react-message-popup'
 
-import { Input } from '~/components/universal/Input'
+import { Input } from '@mx-space/kami-design/components/Input'
 
 import styles from './index.module.css'
 

@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite'
 
-import { TextFade } from '~/components/universal/Animate/text-anim'
+import { TextFade } from '@mx-space/kami-design/components/Animate/text-anim'
+
 import { useIsClient } from '~/hooks/use-is-client'
 import { useStore } from '~/store'
 import { resolveUrl } from '~/utils/utils'
