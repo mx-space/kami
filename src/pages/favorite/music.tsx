@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback } from 'react'
 import { message } from 'react-message-popup'
+import useSWR from 'swr'
 
 import { RiNeteaseCloudMusicFill } from '@mx-space/kami-design/components/Icons/for-fav'
 import { Loading } from '@mx-space/kami-design/components/Loading'
@@ -31,18 +32,17 @@ interface MusicData {
 }
 
 const MusicView: NextPage = () => {
-  const [data, setData] = useState<null | MusicData>(null)
-
-  useEffect(() => {
+  const { data, isLoading } = useSWR('kami-music', () =>
     apiClient.serverless.proxy.kami.netease
       .get<any>()
       .then((res) => {
-        setData(res)
+        return res as MusicData
       })
       .catch((err) => {
         message.error(err.message)
-      })
-  }, [])
+      }),
+  )
+
   const { event } = useAnalyze()
   const trackerClick = useCallback(() => {
     event({
@@ -50,7 +50,8 @@ const MusicView: NextPage = () => {
       label: '音乐页面点击去个人主页',
     })
   }, [])
-  if (!data) {
+
+  if (!data || isLoading) {
     return <Loading />
   }
 

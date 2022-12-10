@@ -15,7 +15,7 @@ import React, {
   useState,
 } from 'react'
 import { message } from 'react-message-popup'
-import { useUpdate } from 'react-use'
+import useUpdate from 'react-use/lib/useUpdate'
 
 import type { NoteModel } from '@mx-space/api-client'
 import { RequestError } from '@mx-space/api-client'

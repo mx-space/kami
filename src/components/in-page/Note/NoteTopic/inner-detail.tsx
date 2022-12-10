@@ -1,8 +1,7 @@
 import Link from 'next/link'
 import type { FC } from 'react'
-import { useEffect, useState } from 'react'
+import useSWR from 'swr'
 
-import type { NoteModel, Pager } from '@mx-space/api-client'
 import type { TopicModel } from '@mx-space/api-client/types/models/topic'
 import {
   Divider,
@@ -22,22 +21,12 @@ export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
   const { topic } = props
   const { id: topicId } = topic
 
-  const [notes, setNotes] = useState([] as NoteModel[])
-  const [pagination, setPagination] = useState<Pager>()
-
-  useEffect(() => {
-    apiClient.note
-      .getNoteByTopicId(topicId, 1, 1, {
-        sortBy: 'created',
-        sortOrder: -1,
-      })
-      .then((res) => {
-        const { data, pagination } = res
-
-        setNotes(data)
-        setPagination(pagination)
-      })
-  }, [topicId])
+  const { data, isLoading } = useSWR(`topic-${topicId}`, () =>
+    apiClient.note.getNoteByTopicId(topicId, 1, 1, {
+      sortBy: 'created',
+      sortOrder: -1,
+    }),
+  )
 
   return (
     <div className="flex flex-col w-[400px]">
@@ -58,37 +47,48 @@ export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
           </p>
         </>
       )}
-      {notes[0] && (
-        <>
-          <Divider />
+
+      <Divider />
+      {isLoading ? (
+        <p>获取中...</p>
+      ) : (
+        data?.data[0] && (
           <p className="flex items-center">
             <MdiClockOutline />
             <DividerVertical />
             <span className="flex-shrink-0">最近更新</span>
             <DividerVertical />
             <span className="flex-shrink inline-flex min-w-0">
-              <Link href={`/notes/${notes[0].nid}`} className="truncate">
-                {notes[0]?.title}
+              <Link
+                href={`/data?.data/${data?.data[0].nid}`}
+                className="truncate"
+              >
+                {data?.data[0]?.title}
               </Link>
               <span className="flex-shrink-0">
                 （
                 <RelativeTime
-                  date={notes[0].modified || notes[0].created}
+                  date={data?.data[0].modified || data?.data[0].created}
                   displayAbsoluteTimeAfterDay={Infinity}
                 />
                 ）
               </span>
             </span>
           </p>
+        )
+      )}
+
+      {!isLoading && (
+        <>
+          <Divider />
+          <p className="flex items-center">
+            <MdiFountainPenTip />
+            <DividerVertical />
+            共有文章：
+            {data?.pagination?.total} 篇
+          </p>
         </>
       )}
-      <Divider />
-      <p className="flex items-center">
-        <MdiFountainPenTip />
-        <DividerVertical />
-        共有文章：
-        {pagination?.total} 篇
-      </p>
     </div>
   )
 }

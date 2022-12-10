@@ -17,6 +17,7 @@
 .child {
   scroll-snap-align: center;
   flex-shrink: 0;
+  scroll-snap-stop: always;
 
   text-align: center;
 }

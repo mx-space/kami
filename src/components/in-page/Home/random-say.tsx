@@ -1,43 +1,35 @@
 import type { FC } from 'react'
-import { memo, useEffect } from 'react'
-import { useUpdate } from 'react-use'
-import { apiClient } from 'utils/client'
+import { memo } from 'react'
+import useSWR from 'swr'
 
 import { TextFade } from '@mx-space/kami-design/components/Animate/text-anim'
 
-let cacheSay = ''
+import { apiClient } from '~/utils/client'
 
+let isLoaded = false
 export const HomeRandomSay: FC = memo(() => {
-  const update = useUpdate()
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      cacheSay = ''
-    }, 60 * 1000)
-
-    return () => {
-      clearInterval(timer)
-    }
-  }, [])
-
-  useEffect(() => {
-    if (cacheSay.length > 0) {
-      return
-    }
-    apiClient.say.getRandom().then(({ data }) => {
-      if (!data) {
-        return
-      }
-      cacheSay = `${data.text}  ——${data.author ?? data.source ?? '站长说'}`
-      update()
-    })
-
-    update()
-  }, [])
+  const { data } = useSWR(
+    'home-say',
+    () =>
+      apiClient.say.getRandom().then(({ data }) => {
+        if (!data) {
+          return
+        }
+        return `${data.text}  ——${data.author ?? data.source ?? '站长说'}`
+      }),
+    {
+      refreshInterval: 60_000,
+      revalidateOnFocus: false,
+      revalidateOnMount: !isLoaded,
+      onSuccess() {
+        isLoaded = true
+      },
+    },
+  )
 
   return (
     <div className="overflow-hidden leading-6 text-[#aaa] my-[2rem]">
-      <TextFade text={cacheSay} />
+      <TextFade text={data || ''} key={data} />
     </div>
   )
 })

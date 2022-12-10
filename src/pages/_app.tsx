@@ -1,9 +1,7 @@
-// prettier-ignore-start
 import 'windi.css'
 import 'assets/styles/main.css'
 import '../../third/qp/index.css'
 
-// prettier-ignore-end
 import NextApp from 'next/app'
 import type { AppContext } from 'next/app'
 import { useRouter } from 'next/router'
@@ -11,6 +9,8 @@ import type { FC } from 'react'
 import React, { memo, useMemo, useRef } from 'react'
 import type { ToastContainerProps } from 'react-toastify'
 import { ToastContainer } from 'react-toastify'
+import { SWRConfig } from 'swr'
+import type { FullConfiguration } from 'swr/_internal'
 
 import { NoDataErrorView } from '~/components/app/Error/no-data'
 import { BasicLayout } from '~/components/layouts/BasicLayout'
@@ -19,6 +19,7 @@ import type { InitialDataType } from '~/context/initial-data'
 import { InitialContextProvider } from '~/context/initial-data'
 import { RootStoreProvider } from '~/context/root-store'
 import { isDev } from '~/utils/env'
+import { localStorageProvider } from '~/utils/swr'
 
 import { Content } from '../components/layouts/AppLayout'
 import { attachRequestProxy, fetchInitialData } from '../utils/app'
@@ -69,11 +70,22 @@ const Wrapper = memo((props) => {
     toastClassName: () => '',
     bodyClassName: () => '',
   })
+  const swrConfig = useRef<
+    Partial<FullConfiguration> & {
+      provider?: any
+    }
+  >({
+    refreshInterval: 30_000,
+    provider: localStorageProvider,
+  })
   return (
     <>
-      <BasicLayout>
-        <Content>{props.children}</Content>
-      </BasicLayout>
+      <SWRConfig value={swrConfig.current}>
+        <BasicLayout>
+          <Content>{props.children}</Content>
+        </BasicLayout>
+      </SWRConfig>
+
       <ToastContainer {...toastOptions.current} />
     </>
   )

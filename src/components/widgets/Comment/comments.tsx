@@ -12,7 +12,6 @@ import {
   useState,
 } from 'react'
 import { message } from 'react-message-popup'
-import { socketClient } from 'socket'
 
 import type { CommentModel } from '@mx-space/api-client'
 import {
@@ -25,6 +24,7 @@ import { IconTransition } from '~/components/universal/IconTransition'
 import { ImageTagPreview } from '~/components/universal/ImageTagPreview'
 import { Markdown } from '~/components/universal/Markdown'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
+import { socketClient } from '~/socket'
 import type { Id } from '~/store/helper/structure'
 import { apiClient } from '~/utils/client'
 
@@ -54,7 +54,7 @@ const CommentList: FC = observer(() => {
   return (
     <BottomUpTransitionView
       appear
-      timeout={useMemo(() => ({ appear: 300, enter: 500 }), [])}
+      timeout={useRef({ appear: 300, enter: 500 }).current}
     >
       <div id={'comments-wrap'}>
         {comments.map((comment) => {

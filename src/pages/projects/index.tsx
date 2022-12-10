@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback } from 'react'
+import useSWR from 'swr'
 
-import type { ProjectModel } from '@mx-space/api-client'
 import { CodiconGithubInverted } from '@mx-space/kami-design/components/Icons/menu-icon'
 import { Loading } from '@mx-space/kami-design/components/Loading'
 
@@ -14,22 +14,12 @@ import { apiClient } from '~/utils/client'
 import { SEO } from '../../components/biz/Seo'
 
 const ProjectView = () => {
-  const [projects, setProjects] = useState<ProjectModel[]>([])
-  const [loading, setLoading] = useState(true)
-  useEffect(() => {
-    setLoading(true)
-    apiClient.project
-      .getAll()
-      .then((res) => {
-        const data = res.data
-        setProjects(data)
-        setLoading(false)
-      })
-      .catch((err) => {
-        console.error(err)
-        setLoading(false)
-      })
-  }, [])
+  const { data: projects, isLoading: loading } = useSWR(`project`, () =>
+    apiClient.project.getAll().then((res) => {
+      return res.data
+    }),
+  )
+
   const { userStore } = useStore()
   const { event } = useAnalyze()
   const githubUsername = userStore.master?.socialIds?.github
@@ -62,7 +52,7 @@ const ProjectView = () => {
             )}
           </div>
           <BottomUpTransitionView>
-            <ProjectList projects={projects} />
+            <ProjectList projects={projects || []} />
           </BottomUpTransitionView>
         </>
       )}

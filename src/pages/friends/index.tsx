@@ -1,7 +1,8 @@
 import shuffle from 'lodash-es/shuffle'
 import type { NextPage } from 'next'
 import type { FC } from 'react'
-import { createElement, useEffect, useState } from 'react'
+import { createElement } from 'react'
+import useSWR from 'swr'
 
 import type { LinkModel } from '@mx-space/api-client'
 import { LinkState, LinkType } from '@mx-space/api-client'
@@ -73,11 +74,14 @@ const _Footer: FC = () => {
     user: { avatar, name },
   } = useInitialData()
 
-  const [canApply, setCanApply] = useState(false)
-
-  useEffect(() => {
-    apiClient.link.canApplyLink().then(setCanApply)
-  }, [])
+  const { data: canApply } = useSWR(
+    'can-apply',
+    () => apiClient.link.canApplyLink(),
+    {
+      refreshInterval: 10_000,
+      fallbackData: true,
+    },
+  )
 
   if (!canApply) {
     return <h1 className="headline">主人禁止了申请友链。</h1>

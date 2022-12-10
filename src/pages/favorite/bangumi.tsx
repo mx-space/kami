@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react-lite'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
 import { message } from 'react-message-popup'
+import useSWR from 'swr'
 
 import { ImageLazy } from '@mx-space/kami-design/components/Image'
 import { Loading } from '@mx-space/kami-design/components/Loading'
@@ -21,29 +21,33 @@ interface FavoriteBangumiType {
   countText: string
   id: number
 }
+
 const BangumiView: NextPage = () => {
-  const [data, setData] = useState<null | FavoriteBangumiType[]>(null)
   const { userStore } = useStore()
   const master = userStore.master
 
-  useEffect(() => {
-    if (!master) {
-      return
-    }
+  const { data, isLoading } = useSWR(
+    'bangumi',
+    () =>
+      apiClient.serverless.proxy.kami.bangumi
+        .get<any>()
+        .then((res) => {
+          return res as FavoriteBangumiType[]
+        })
+        .catch((err) => {
+          message.error(err.message)
+        }),
+    {
+      isPaused() {
+        return !master
+      },
+    },
+  )
 
-    apiClient.serverless.proxy.kami.bangumi
-      .get<any>()
-      .then((res) => {
-        setData(res)
-      })
-      .catch((err) => {
-        message.error(err.message)
-      })
-  }, [master])
-
-  if (!data) {
+  if (isLoading || !data) {
     return <Loading />
   }
+
   return (
     <main>
       <Head>
@@ -52,7 +56,7 @@ const BangumiView: NextPage = () => {
       <Seo title="追番" description="追番" />
       <section>
         <div className="grid grid-cols-4 <md:grid-cols-2 gap-8">
-          {data.map((bangumi) => {
+          {data?.map((bangumi) => {
             return (
               <div key={bangumi.id}>
                 <a
@@ -63,6 +67,7 @@ const BangumiView: NextPage = () => {
                   data-total={bangumi.count}
                 >
                   <ImageLazy
+                    className="absolute inset-0 z-0"
                     height={'100%'}
                     width={'100%'}
                     src={`https://i0.wp.com/${bangumi.cover.replace(
