@@ -8,6 +8,9 @@ on:
     paths:
       - '.github/workflows/docker.yml'
       - 'Dockerfile'
+    branches:
+      - master
+      - main
 
 jobs:
   docker:
