@@ -15,8 +15,8 @@ export const escapeHTMLTag = (html: string) => {
     .replace(ic, '&#34;')
 }
 
-const _noop = {}
-export const noop = new Proxy(_noop, {
+const _noop = /* @__PURE__ */ {}
+export const noop = /* @__PURE__ */ new Proxy(_noop, {
   get() {
     return noop
   },

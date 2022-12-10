@@ -2,15 +2,27 @@
 
 import fs from 'fs'
 import path from 'path'
-import esbuild from 'rollup-plugin-esbuild'
+import esbuild, { minify } from 'rollup-plugin-esbuild'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import css from 'rollup-plugin-postcss'
-import { terser } from 'rollup-plugin-terser'
-import WindiCSS from 'rollup-plugin-windicss'
+import { default as WindiCSS } from 'rollup-plugin-windicss'
 
 import commonjs from '@rollup/plugin-commonjs'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import typescript from '@rollup/plugin-typescript'
+
+const packageJson = JSON.parse(
+  fs.readFileSync('./package.json', {
+    encoding: 'utf-8',
+  }),
+)
+const globals = {
+  // @ts-ignore
+  ...(packageJson?.dependencies || {}),
+}
+
+const dir = 'dist'
+const external = ['react', 'react-dom', /^lodash/, ...Object.keys(globals)]
 
 const plugins = [
   ...WindiCSS({}),
@@ -44,8 +56,18 @@ const plugins = [
       '.js': 'jsx',
     },
   }),
+
+  {
+    name: 'replace-env',
+    transform(code) {
+      return {
+        code: code.replace(`process.env.NODE_ENV === "development"`, false),
+      }
+    },
+  },
 ]
 
+const __dirname = path.resolve(import.meta.url.replace('file://', ''), '..')
 const envDtsPath = path.resolve(__dirname, 'env.d.ts')
 /**
  *
@@ -91,13 +113,7 @@ const buildComponentsConfig = (withWidi) => {
 
     configs.push({
       input,
-      external: [
-        'react',
-        'react-dom',
-        'lodash',
-        'lodash-es',
-        ...Object.keys(globals),
-      ],
+      external,
       output: [
         {
           file: `${dir}/components/${componentName}/index${
@@ -139,13 +155,7 @@ const buildEntryFileConfig = (filename) => {
   return {
     input: `./${baseFilenameWithoutExt}.ts`,
     // ignore lib
-    external: [
-      'react',
-      'react-dom',
-      'lodash',
-      'lodash-es',
-      ...Object.keys(globals),
-    ],
+    external,
 
     output: [
       {
@@ -157,7 +167,7 @@ const buildEntryFileConfig = (filename) => {
         file: `${dir}/${baseFilenameWithoutExt}.min.cjs`,
         format: 'cjs',
         sourcemap: false,
-        plugins: [terser()],
+        plugins: [minify()],
       },
       {
         file: `${dir}/${baseFilenameWithoutExt}.js`,
@@ -168,7 +178,7 @@ const buildEntryFileConfig = (filename) => {
         file: `${dir}/${baseFilenameWithoutExt}.min.js`,
         format: 'esm',
         sourcemap: false,
-        plugins: [terser()],
+        plugins: [minify()],
       },
     ],
     plugins: [...plugins],
@@ -176,15 +186,6 @@ const buildEntryFileConfig = (filename) => {
     treeshake: true,
   }
 }
-
-const packageJson = require('./package.json')
-
-const globals = {
-  // @ts-ignore
-  ...(packageJson?.dependencies || {}),
-}
-
-const dir = 'dist'
 
 /**
  * @type {import('rollup').RollupOptions[]}
