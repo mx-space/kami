@@ -1,6 +1,6 @@
 {
   "name": "@mx-space/kami-design",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -47,7 +47,8 @@
     ],
     "publish": true,
     "commit_message": "chore(release): bump @mx-space/kami-design to v${NEW_VERSION}",
-    "tag": false
+    "tag": false,
+    "push": true
   },
   "files": [
     "dist",
