@@ -1,8 +1,9 @@
 import Router from 'next/router'
 import { useIndexViewContext } from 'pages'
 import type { FC } from 'react'
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
+import useSWR from 'swr'
 
 import type { AggregateTop } from '@mx-space/api-client'
 import {
@@ -62,16 +63,9 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
     } as SectionNewsProps,
   })
 
-  const [like, setLike] = useState(0)
-  useEffect(() => {
-    apiClient
-      .proxy('like_this')
-      .get<number>()
-
-      .then((number) => {
-        setLike(~~number)
-      })
-  }, [])
+  const { data: like, mutate } = useSWR('like', () =>
+    apiClient.proxy('like_this').get<number>(),
+  )
 
   const { doAnimation } = useIndexViewContext()
 
@@ -127,7 +121,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
             .post({ params: { ts: Date.now() } })
             .then(() => {
               setShowLikeThisNotice(true)
-              setLike((like) => like + 1)
+              mutate()
             })
         }, [])}
       />

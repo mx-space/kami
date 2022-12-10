@@ -3,7 +3,6 @@ import 'windi.css'
 import 'assets/styles/main.css'
 import '../../third/qp/index.css'
 
-// prettier-ignore-end
 import NextApp from 'next/app'
 import type { AppContext } from 'next/app'
 import { useRouter } from 'next/router'
@@ -11,6 +10,9 @@ import type { FC } from 'react'
 import React, { memo, useMemo, useRef } from 'react'
 import type { ToastContainerProps } from 'react-toastify'
 import { ToastContainer } from 'react-toastify'
+// prettier-ignore-end
+import { SWRConfig } from 'swr'
+import type { PublicConfiguration } from 'swr/_internal'
 
 import { NoDataErrorView } from '~/components/app/Error/no-data'
 import { BasicLayout } from '~/components/layouts/BasicLayout'
@@ -69,11 +71,17 @@ const Wrapper = memo((props) => {
     toastClassName: () => '',
     bodyClassName: () => '',
   })
+  const swrConfig = useRef<Partial<PublicConfiguration>>({
+    refreshInterval: 30_000,
+  })
   return (
     <>
-      <BasicLayout>
-        <Content>{props.children}</Content>
-      </BasicLayout>
+      <SWRConfig value={swrConfig.current}>
+        <BasicLayout>
+          <Content>{props.children}</Content>
+        </BasicLayout>
+      </SWRConfig>
+
       <ToastContainer {...toastOptions.current} />
     </>
   )

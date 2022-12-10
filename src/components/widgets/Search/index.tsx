@@ -1,4 +1,3 @@
-import { CanceledError } from 'axios'
 import { clsx } from 'clsx'
 import throttle from 'lodash-es/throttle'
 import { observer } from 'mobx-react-lite'
@@ -6,6 +5,7 @@ import Link from 'next/link'
 import type { FC, KeyboardEventHandler } from 'react'
 import { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { Modifier, useShortcut } from 'react-shortcut-guide'
+import useSWR from 'swr'
 
 import { EmptyIcon } from '@mx-space/kami-design/components/Icons/for-comment'
 import { IonSearch } from '@mx-space/kami-design/components/Icons/layout'
@@ -14,6 +14,7 @@ import type { OverlayProps } from '~/components/universal/Overlay'
 import { Overlay } from '~/components/universal/Overlay'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
+import useDebounceValue from '~/hooks/use-debounce-value'
 import { useStore } from '~/store'
 import { $axios, apiClient } from '~/utils/client'
 
@@ -30,118 +31,72 @@ type SearchListType = {
   id: string
 }
 
-let controller: AbortController | null
-const search = throttle((keyword: string) => {
-  return new Promise<
-    | Awaited<ReturnType<typeof apiClient.search.searchByAlgolia>>
-    | null
-    | undefined
-  >((resolve, reject) => {
-    if (!keyword) {
-      resolve(null)
-      return
-    }
-
-    if (controller) {
-      controller.abort()
-    }
-
-    controller = new AbortController()
-
-    $axios
-      .get<Awaited<ReturnType<typeof apiClient.search.searchByAlgolia>>>(
-        apiClient.search.proxy('algolia').toString(true),
-        {
-          signal: controller.signal,
-          params: {
-            keyword,
-          },
-        },
-      )
-      .then((data) => {
-        resolve(data.data)
-      })
-      .catch((err) => {
-        if (!err) {
-          return resolve(undefined)
-        }
-        if (err instanceof CanceledError) {
-          return resolve(undefined)
-        }
-        reject(err)
-      })
-  })
-}, 1000)
-
 export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
   const { defaultKeyword } = props
   const [keyword, setKeyword] = useState(defaultKeyword || '')
+  const debouncedKeyword = useDebounceValue(keyword, 360)
 
-  const [loading, setLoading] = useState(false)
   const [list, setList] = useState<SearchListType[]>([])
   const { event } = useAnalyze()
+
+  const { data, isValidating, isLoading } = useSWR(
+    ['search', debouncedKeyword],
+    ([, keyword]) => {
+      if (!keyword) {
+        return
+      }
+      return $axios
+        .get<Awaited<ReturnType<typeof apiClient.search.searchByAlgolia>>>(
+          apiClient.search.proxy('algolia').toString(true),
+          {
+            params: {
+              keyword,
+            },
+          },
+        )
+        .then((data) => data.data)
+    },
+    {
+      revalidateOnFocus: false,
+      refreshInterval: 0,
+    },
+  )
+
+  const loading = isLoading || isValidating
+
   useEffect(() => {
-    if (!keyword) {
+    if (!data?.data) {
       return
     }
-    setLoading(true)
-    setCurrentSelect(0)
 
-    search(keyword)
-      ?.then((res) => {
-        if (typeof res === 'undefined') {
-          return
-        }
-
-        event({
-          action: TrackerAction.Interaction,
-          label: `搜索触发：${keyword}`,
-        })
-        if (res === null) {
-          setLoading(false)
-          setList([])
-          return
-        }
-        const data = res.data
-        if (!data) {
-          setLoading(false)
-          return
-        }
-        const _list: SearchListType[] = data.map((item) => {
-          switch (item.type) {
-            case 'post':
-              return {
-                title: item.title,
-                subtitle: item.category.name,
-                id: item.id,
-                url: `/posts/${item.category.slug}/${item.slug}`,
-              }
-            case 'note':
-              return {
-                title: item.title,
-                subtitle: '生活记录',
-                id: item.id,
-                url: `/notes/${item.nid}`,
-              }
-            case 'page':
-              return {
-                title: item.title,
-                subtitle: '页面',
-                id: item.id,
-                url: `/pages/${item.slug}`,
-              }
+    const _list: SearchListType[] = data?.data.map((item) => {
+      switch (item.type) {
+        case 'post':
+          return {
+            title: item.title,
+            subtitle: item.category.name,
+            id: item.id,
+            url: `/posts/${item.category.slug}/${item.slug}`,
           }
-        })
-
-        setList(_list)
-
-        setLoading(false)
-      })
-      .catch((err) => {
-        console.log(err)
-        setLoading(false)
-      })
-  }, [keyword])
+        case 'note':
+          return {
+            title: item.title,
+            subtitle: '生活记录',
+            id: item.id,
+            url: `/notes/${item.nid}`,
+          }
+        case 'page':
+          return {
+            title: item.title,
+            subtitle: '页面',
+            id: item.id,
+            url: `/pages/${item.slug}`,
+          }
+      }
+    })
+    setCurrentSelect(0)
+    setList(_list)
+  }, [data?.data])
 
   const [currentSelect, setCurrentSelect] = useState(0)
   const listRef = useRef<HTMLUListElement>(null)
