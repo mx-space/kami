@@ -1,7 +1,7 @@
 {
   "name": "@mx-space/kami-design",
   "version": "0.1.1",
-  "main": "dist/index.cjs",
+  "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
