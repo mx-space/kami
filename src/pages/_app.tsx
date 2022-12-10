@@ -12,7 +12,7 @@ import type { ToastContainerProps } from 'react-toastify'
 import { ToastContainer } from 'react-toastify'
 // prettier-ignore-end
 import { SWRConfig } from 'swr'
-import type { PublicConfiguration } from 'swr/_internal'
+import type { FullConfiguration } from 'swr/_internal'
 
 import { NoDataErrorView } from '~/components/app/Error/no-data'
 import { BasicLayout } from '~/components/layouts/BasicLayout'
@@ -21,6 +21,7 @@ import type { InitialDataType } from '~/context/initial-data'
 import { InitialContextProvider } from '~/context/initial-data'
 import { RootStoreProvider } from '~/context/root-store'
 import { isDev } from '~/utils/env'
+import { localStorageProvider } from '~/utils/swr'
 
 import { Content } from '../components/layouts/AppLayout'
 import { attachRequestProxy, fetchInitialData } from '../utils/app'
@@ -71,8 +72,13 @@ const Wrapper = memo((props) => {
     toastClassName: () => '',
     bodyClassName: () => '',
   })
-  const swrConfig = useRef<Partial<PublicConfiguration>>({
+  const swrConfig = useRef<
+    Partial<FullConfiguration> & {
+      provider?: any
+    }
+  >({
     refreshInterval: 30_000,
+    provider: localStorageProvider,
   })
   return (
     <>

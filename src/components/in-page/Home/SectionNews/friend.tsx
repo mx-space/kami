@@ -1,6 +1,7 @@
 import shuffle from 'lodash-es/shuffle'
 import type { FC } from 'react'
-import { memo, useEffect, useState } from 'react'
+import { memo } from 'react'
+import useSWR from 'swr'
 
 import type { LinkModel } from '@mx-space/api-client'
 import { LinkState, LinkType } from '@mx-space/api-client'
@@ -20,25 +21,30 @@ export const FriendItem: FC<LinkModel> = memo((props) => {
 })
 
 export const FriendsSection: FC = memo(() => {
-  const [friends, setFriends] = useState<LinkModel[]>([])
-  useEffect(() => {
-    apiClient.link.getAll().then((res) => {
+  const { data: friends } = useSWR(
+    'home-friends',
+    async () => {
+      const res = await apiClient.link.getAll()
       const data = res.data as LinkModel[]
-      setFriends(
-        shuffle(
-          data.filter(
-            (i) =>
-              i.type === LinkType.Friend &&
-              i.state === LinkState.Pass &&
-              !i.hide,
-          ),
-        ).slice(0, 20),
-      )
-    })
-  }, [])
+      return shuffle(
+        data.filter(
+          (i) =>
+            i.type === LinkType.Friend && i.state === LinkState.Pass && !i.hide,
+        ),
+      ).slice(0, 20)
+    },
+    {
+      fallbackData: [],
+      refreshInterval: 0,
+      revalidateOnFocus: false,
+      revalidateIfStale: false,
+      revalidateOnReconnect: false,
+    },
+  )
+
   return (
     <div className={styles['friends-wrap']}>
-      {friends.map((item) => {
+      {friends?.map((item) => {
         return <FriendItem {...item} key={item.id} />
       })}
     </div>

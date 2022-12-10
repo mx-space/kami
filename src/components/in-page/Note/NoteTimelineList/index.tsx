@@ -1,11 +1,13 @@
 /**
  * 日记: 左侧时间线
  */
+
 import { clsx } from 'clsx'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC } from 'react'
-import { memo, useCallback, useEffect, useRef, useState } from 'react'
+import { memo, useCallback } from 'react'
+import useSWR from 'swr'
 
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import type { NoteModel } from '@mx-space/api-client'
@@ -17,7 +19,6 @@ import { ImpressionView } from '~/components/biz/ImpressionView'
 import { LeftRightTransitionView } from '~/components/universal/Transition/left-right'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
-import { useIsUnMounted } from '~/hooks/use-is-unmounted'
 import { useStore } from '~/store'
 import { apiClient } from '~/utils/client'
 
@@ -37,34 +38,27 @@ const ObserveredNoteTimelineList: FC<
 
   const { noteStore } = useStore()
   const note = noteStore.get(noteId)
-  const [list, setList] = useState<NotePartial[]>([note as any])
-  const isUnMounted = useIsUnMounted()
-  const requestNoteIdRef = useRef<string>()
-  useEffect(() => {
-    const now = +new Date()
-    requestNoteIdRef.current = noteId
 
-    let timer: any
-    apiClient.note.getMiddleList(noteId, 10).then(({ data }) => {
-      const gapTime = +new Date() - now
-      timer = setTimeout(
-        () => {
-          if (isUnMounted.current) {
-            return
-          }
-
-          if (requestNoteIdRef.current !== noteId) {
-            return
-          }
-
-          setList(data)
-        },
-        gapTime > 500 ? 0 : gapTime,
-      )
-    })
-
-    return () => clearTimeout(timer)
-  }, [noteId])
+  const { data: list } = useSWR(
+    ['note-topic', noteId],
+    ([, noteId]) =>
+      apiClient.note.getMiddleList(noteId, 10).then(({ data }) => {
+        return data
+      }),
+    {
+      keepPreviousData: true,
+      fallbackData: note
+        ? [
+            {
+              created: note.created,
+              id: note.id,
+              nid: note.nid,
+              title: note.title,
+            },
+          ]
+        : [],
+    },
+  )
 
   const { event } = useAnalyze()
 
@@ -90,14 +84,14 @@ const ObserveredNoteTimelineList: FC<
     <div className={clsx(className, styles['container'])} data-hide-print>
       <div className={clsx(styles.list)}>
         <ul ref={animationParent}>
-          {list.map((item) => {
+          {list?.map((item) => {
             const isCurrent = item.id === noteId
             return <MemoedItem key={item.id} item={item} active={isCurrent} />
           })}
         </ul>
         {note?.topic && (
           <>
-            {list.length && <Divider className="!w-3/4" />}
+            {!!list?.length && <Divider className="!w-3/4" />}
             <p className="text-gray-1 flex flex-col min-w-0 overflow-hidden">
               此文章收录于专栏：
               <br />

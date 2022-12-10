@@ -14,7 +14,7 @@
   color: #fff;
   transform: translateY(-0.5em);
 
-  @apply shadow-out-sm;
+  @apply shadow-out-sm relative;
 }
 
 .bangumi-item img {
