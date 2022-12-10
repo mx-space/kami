@@ -1,5 +1,38 @@
 # CHANGELOG
 
+# [4.0.0](https://github.com/mx-space/kami/compare/v3.15.8...v4.0.0) (2022-12-10)
+
+
+### Bug Fixes
+
+* build sciprt ([bb332a8](https://github.com/mx-space/kami/commit/bb332a87b94d1e3e62538bbbb5ce64477f457eea))
+* bundle ([34f732b](https://github.com/mx-space/kami/commit/34f732b56cc37d88d51a2a1ed6d7343285e21a4a))
+* components dts bundle ([449fffb](https://github.com/mx-space/kami/commit/449fffb0d6d0447e52213922e82e2f9c76a4582f))
+* **deps:** update dependency dayjs to v1.11.7 ([95aac56](https://github.com/mx-space/kami/commit/95aac566b91a7223afcc0d6d281ab2cc14f38708))
+* **deps:** update dependency devtools-detector to v2.0.14 ([b4deb07](https://github.com/mx-space/kami/commit/b4deb07b54ea60f0c2497bc79301ceea4ddbab21))
+* **deps:** update dependency react-countup to v6.4.0 ([#1467](https://github.com/mx-space/kami/issues/1467)) ([1fac506](https://github.com/mx-space/kami/commit/1fac50689d4122aa0c05f671d912f0327d71a5cc))
+* dts bundle ([504f8af](https://github.com/mx-space/kami/commit/504f8af612801f63fd2eaeed5327a0adc29a958a))
+* import React UMD ([95b15aa](https://github.com/mx-space/kami/commit/95b15aa86c2e9208654d9f306572f0a5ef63e3fe))
+* **kami-design:** markdown props ([a205777](https://github.com/mx-space/kami/commit/a205777fee07a65d85eb49da953362f5e21b63b1))
+* markdown extract ([565553c](https://github.com/mx-space/kami/commit/565553cb65f7ff49a0cc77f196f87f2dca0cbd19))
+* markdown renderers ([14c15be](https://github.com/mx-space/kami/commit/14c15be74508f97585ed7ca97fc0433a644bc7b3))
+* rollup config ([f4c97e1](https://github.com/mx-space/kami/commit/f4c97e1ee8ebc20868633b613498afdb66707c63))
+* typing entry ([6916191](https://github.com/mx-space/kami/commit/691619181e067a08cab0604f70fc7bb6f76362b2))
+
+
+### Features
+
+* add swr ([#1485](https://github.com/mx-space/kami/issues/1485)) ([1b90133](https://github.com/mx-space/kami/commit/1b90133838ed281b85f442ae5b54be6cc1bd25a1))
+* build types ([60c248b](https://github.com/mx-space/kami/commit/60c248b758281990a54556e37240974bdfde1d1d))
+* bundle components dts and fix windi bundle ([8356be3](https://github.com/mx-space/kami/commit/8356be301f05e4e023fd6dee1823d8aa3ff84a35))
+* bundle every components ([ecd4ad6](https://github.com/mx-space/kami/commit/ecd4ad6a1ce1d9e003e736ffa447180b40cdf289))
+* migrating shared components ([183b327](https://github.com/mx-space/kami/commit/183b327efb0565eca3f95b883a79126388cfc1f2))
+* optimize banner in darkmode ([#1469](https://github.com/mx-space/kami/issues/1469)) ([4348d82](https://github.com/mx-space/kami/commit/4348d82f241aae71d6051e6ad5327f4f4a9811e7))
+* replace new markdown component ([c49fefd](https://github.com/mx-space/kami/commit/c49fefde2c419480cca518385a7de293b4e02a94))
+* rollup config & monorepo ([255336c](https://github.com/mx-space/kami/commit/255336cd6be0a1f8e823a821858843f82e984ef8))
+
+
+
 ## [3.15.8](https://github.com/mx-space/kami/compare/v3.15.7...v3.15.8) (2022-11-25)
 
 
