@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## [4.0.1](https://github.com/mx-space/kami/compare/v4.0.0...v4.0.1) (2022-12-10)
+
+
+### Bug Fixes
+
+* docker build ([1b13cf3](https://github.com/mx-space/kami/commit/1b13cf3566d04b03241b88a8cb23af3a29394b68))
+* markdown wrapper prop passing ([0d40a7a](https://github.com/mx-space/kami/commit/0d40a7a23d0b7672984cf84d93950cf2e3a93d93))
+* module entry field ([b22ed98](https://github.com/mx-space/kami/commit/b22ed985fcaec95f84ab3fb44c904d1d2b636bef))
+* rollup build of react-use ([b07dc7f](https://github.com/mx-space/kami/commit/b07dc7f26d917351e2856f4d1d910e02abd25d5b))
+
+
+
 # [4.0.0](https://github.com/mx-space/kami/compare/v3.15.8...v4.0.0) (2022-12-10)
 
 
