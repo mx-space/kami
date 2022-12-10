@@ -28,8 +28,6 @@ export const Markdown: FC<KamiMarkdownProps & MarkdownToJSX.Options> = memo(
       value,
       renderers,
 
-      wrapperProps = {},
-
       extendsRules,
 
       ...rest
@@ -52,7 +50,6 @@ export const Markdown: FC<KamiMarkdownProps & MarkdownToJSX.Options> = memo(
       <ErrorBoundary fallbackComponent={RenderError}>
         <KamiMarkdown
           tocSlot={props.toc ? MarkdownToc : Noop}
-          {...wrapperProps}
           value={value}
           overrides={{
             footer: MFootNote,
