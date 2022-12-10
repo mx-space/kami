@@ -3,8 +3,8 @@ import { useCallback, useMemo, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 
 import type { LinkModel } from '@mx-space/api-client'
+import { Avatar } from '@mx-space/kami-design/components/Avatar'
 
-import { Avatar } from '~/components/universal/Avatar'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 
 import styles from './section.module.css'

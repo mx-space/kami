@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react'
 import { message } from 'react-message-popup'
 
 import { ImageLazy } from '@mx-space/kami-design/components/Image'
+import { Loading } from '@mx-space/kami-design/components/Loading'
 
-import { Loading } from '~/components/universal/Loading'
 import { useStore } from '~/store'
 import { apiClient } from '~/utils/client'
 

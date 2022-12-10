@@ -2,8 +2,9 @@ import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useRef } from 'react'
 
+import { Avatar } from '@mx-space/kami-design/components/Avatar'
+
 import { ImpressionView } from '~/components/biz/ImpressionView'
-import { Avatar } from '~/components/universal/Avatar'
 import { RelativeTime } from '~/components/universal/RelativeTime'
 import { useInitialData } from '~/hooks/use-initial-data'
 import { store } from '~/store'

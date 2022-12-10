@@ -2,7 +2,8 @@ import { sanitizeUrl } from 'markdown-to-jsx'
 import type { FC } from 'react'
 import { useEffect } from 'react'
 
-import { Loading } from '~/components/universal/Loading'
+import { Loading } from '@mx-space/kami-design/components/Loading'
+
 import { Markdown } from '~/components/universal/Markdown'
 import { SliderImagesPopup } from '~/components/universal/SliderImagesPopup'
 import { useStore } from '~/store'

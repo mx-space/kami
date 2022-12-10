@@ -4,8 +4,7 @@ import type { NextPage } from 'next'
 import { wrapperNextPage as wrapper } from 'next-suspense'
 
 import { RequestError } from '@mx-space/api-client'
-
-import { Loading } from '~/components/universal/Loading'
+import { Loading } from '@mx-space/kami-design/components/Loading'
 
 import { ErrorView } from '../Error'
 

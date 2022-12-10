@@ -45,7 +45,7 @@ const Footer = React.lazy(() =>
   })),
 )
 const LampSwitch = React.lazy(() =>
-  import('../../universal/LampSwitch').then((mo) => ({
+  import('../../biz/LampSwitch').then((mo) => ({
     default: mo.LampSwitch,
   })),
 )

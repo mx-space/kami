@@ -19,6 +19,7 @@ import { useUpdate } from 'react-use'
 
 import type { NoteModel } from '@mx-space/api-client'
 import { RequestError } from '@mx-space/api-client'
+import { Loading } from '@mx-space/kami-design/components/Loading'
 import { ImageSizeMetaContext } from '@mx-space/kami-design/contexts/image-size'
 
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
@@ -27,7 +28,6 @@ import { NoteMarkdownRender } from '~/components/in-page/Note/NoteMarkdownRender
 import { NotePasswordConfrim } from '~/components/in-page/Note/NotePasswordConfirm'
 import { BanCopy } from '~/components/in-page/WarningOverlay/ban-copy'
 import { NoteLayout } from '~/components/layouts/NoteLayout'
-import { Loading } from '~/components/universal/Loading'
 import { SearchFAB } from '~/components/widgets/Search'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'

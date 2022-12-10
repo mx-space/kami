@@ -22,10 +22,10 @@ import {
   JamTrash,
   PhLinkFill,
 } from '@mx-space/kami-design/components/Icons/for-recently'
+import { Input } from '@mx-space/kami-design/components/Input'
+import { Loading } from '@mx-space/kami-design/components/Loading'
 
 import { Seo } from '~/components/biz/Seo'
-import { Input } from '~/components/universal/Input'
-import { Loading } from '~/components/universal/Loading'
 import { Markdown } from '~/components/universal/Markdown'
 import { RelativeTime } from '~/components/universal/RelativeTime'
 import { useStore } from '~/store'

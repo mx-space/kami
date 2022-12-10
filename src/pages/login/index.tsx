@@ -5,8 +5,8 @@ import { message } from 'react-message-popup'
 
 import { PhUser } from '@mx-space/kami-design/components/Icons/for-comment'
 import { CarbonPassword } from '@mx-space/kami-design/components/Icons/for-login'
+import { Input } from '@mx-space/kami-design/components/Input'
 
-import { Input } from '~/components/universal/Input'
 import { apiClient } from '~/utils/client'
 import { releaseDevtool } from '~/utils/console'
 

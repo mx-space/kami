@@ -3,7 +3,7 @@ import { memo, useEffect } from 'react'
 import { useUpdate } from 'react-use'
 import { apiClient } from 'utils/client'
 
-import { TextFade } from '~/components/universal/Animate/text-anim'
+import { TextFade } from '@mx-space/kami-design/components/Animate/text-anim'
 
 let cacheSay = ''
 

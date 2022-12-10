@@ -2,8 +2,9 @@ import { observer } from 'mobx-react-lite'
 import type { NextPage } from 'next'
 import React, { Fragment, memo, useEffect } from 'react'
 
-import type { LoadingProps } from '~/components/universal/Loading'
-import { Loading } from '~/components/universal/Loading'
+import type { LoadingProps } from '@mx-space/kami-design/components/Loading'
+import { Loading } from '@mx-space/kami-design/components/Loading'
+
 import type { Store } from '~/store/helper/base'
 
 export const LoadableView = memo<

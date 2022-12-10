@@ -24,6 +24,7 @@ import {
   PhUser,
   SiGlyphGlobal,
 } from '@mx-space/kami-design/components/Icons/for-comment'
+import { Input } from '@mx-space/kami-design/components/Input'
 
 import { ImpressionView } from '~/components/biz/ImpressionView'
 import { kaomoji } from '~/constants/kaomoji'
@@ -33,7 +34,6 @@ import { apiClient } from '~/utils/client'
 import { isDev } from '~/utils/env'
 
 import { useStore } from '../../../store'
-import { Input } from '../../universal/Input'
 import styles from './index.module.css'
 
 const USER_PREFIX = 'mx-space-comment-author'
