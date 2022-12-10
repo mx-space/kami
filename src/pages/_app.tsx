@@ -1,4 +1,3 @@
-// prettier-ignore-start
 import 'windi.css'
 import 'assets/styles/main.css'
 import '../../third/qp/index.css'
@@ -10,7 +9,6 @@ import type { FC } from 'react'
 import React, { memo, useMemo, useRef } from 'react'
 import type { ToastContainerProps } from 'react-toastify'
 import { ToastContainer } from 'react-toastify'
-// prettier-ignore-end
 import { SWRConfig } from 'swr'
 import type { FullConfiguration } from 'swr/_internal'
 
