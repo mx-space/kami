@@ -17,6 +17,13 @@ const resolveComponentDir = (name) => path.resolve(componentsBase, name)
 
 async function process(withWidi: boolean) {
   const tasks: Promise<any>[] = []
+
+  // build dist root dts
+
+  await $`npx dts-bundle-generator -o ${dir}/index.d.ts ./index.ts --no-check --silent --project ./tsconfig.types.json`.quiet()
+  await $`cp dist/index.d.ts dist/index.windi.d.ts`
+
+  // build components dts
   const componentsDir = fs
     .readdirSync(componentsBase)
     .filter(
@@ -59,6 +66,7 @@ async function process(withWidi: boolean) {
         flag: 'w',
       }).then(async () => {
         await $`npx dts-bundle-generator -o ${dir}/components/${componentName}/index.d.ts ${tempInput} --no-check --silent --project ./tsconfig.types.json`.quiet()
+        await $`cp dist/components/${componentName}/index.d.ts dist/components/${componentName}/index.windi.d.ts`
         await unlink(tempInput).catch(() => {})
       }),
     )

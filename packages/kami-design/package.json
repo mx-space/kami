@@ -62,7 +62,7 @@
     "prebuild": "rm -rf dist types",
     "build": "rollup -c",
     "postbuild": "rm -rf **/*.temp.tsx",
-    "types": "tsx scripts/build-components-dts.ts"
+    "types": "tsx scripts/build-dts.ts"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
