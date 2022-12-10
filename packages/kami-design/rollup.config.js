@@ -12,13 +12,46 @@ import commonjs from '@rollup/plugin-commonjs'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import typescript from '@rollup/plugin-typescript'
 
+const plugins = [
+  ...WindiCSS({}),
+  nodeResolve(),
+  commonjs({ include: 'node_modules/**' }),
+  typescript({
+    tsconfig: './tsconfig.json',
+    declaration: false,
+    sourceMap: false,
+  }),
+  css({}),
+
+  // @ts-ignore
+  peerDepsExternal(),
+
+  esbuild({
+    include: /\.[jt]sx?$/,
+    exclude: /node_modules/,
+    sourceMap: false,
+    minify: process.env.NODE_ENV === 'production',
+    target: 'es2017',
+    jsx: 'transform',
+    jsxFactory: 'React.createElement',
+    jsxFragment: 'React.Fragment',
+
+    tsconfig: 'tsconfig.json',
+
+    loaders: {
+      '.json': 'json',
+
+      '.js': 'jsx',
+    },
+  }),
+]
+
+const envDtsPath = path.resolve(__dirname, 'env.d.ts')
 /**
  *
  * @param {boolean} withWidi
  * @returns {import('rollup').RollupOptions[]}
  */
-
-const envDtsPath = path.resolve(__dirname, 'env.d.ts')
 const buildComponentsConfig = (withWidi) => {
   const componentsBase = './components'
   const resolveComponentDir = (name) => path.resolve(componentsBase, name)
@@ -31,11 +64,7 @@ const buildComponentsConfig = (withWidi) => {
     )
 
   const configs = []
-  const plugins = []
 
-  if (withWidi) {
-    plugins.push(...WindiCSS())
-  }
   for (const componentName of componentsDir) {
     const componentEntryFile = path.resolve(
       componentsBase,
@@ -75,13 +104,11 @@ const buildComponentsConfig = (withWidi) => {
             withWidi ? '.windi' : ''
           }.js`,
           format: 'esm',
-          sourcemap: true,
+          sourcemap: false,
         },
       ],
 
       plugins: [
-        ...plugins,
-
         {
           name: 'temp',
           load: (id) => {
@@ -91,35 +118,7 @@ const buildComponentsConfig = (withWidi) => {
           },
         },
 
-        nodeResolve(),
-        commonjs({ include: 'node_modules/**' }),
-        typescript({
-          tsconfig: './tsconfig.json',
-          declaration: false,
-        }),
-        css({}),
-
-        // @ts-ignore
-        peerDepsExternal(),
-
-        esbuild({
-          include: /\.[jt]sx?$/,
-          exclude: /node_modules/,
-          sourceMap: true,
-          minify: process.env.NODE_ENV === 'production',
-          target: 'es2017',
-          jsx: 'transform',
-          jsxFactory: 'React.createElement',
-          jsxFragment: 'React.Fragment',
-
-          tsconfig: 'tsconfig.json',
-
-          loaders: {
-            '.json': 'json',
-
-            '.js': 'jsx',
-          },
-        }),
+        ...plugins,
       ],
 
       treeshake: true,
@@ -132,12 +131,11 @@ const buildComponentsConfig = (withWidi) => {
 /**
  *
  * @param {string} filename
- * @param {*=} config
  * @returns {import('rollup').RollupOptions}
  */
-const buildEntryFileConfig = (filename, config) => {
+const buildEntryFileConfig = (filename) => {
   const baseFilenameWithoutExt = filename.replace(/\.[jt]sx?$/, '')
-  const { plugins = [] } = config || {}
+
   return {
     input: `./${baseFilenameWithoutExt}.ts`,
     // ignore lib
@@ -153,65 +151,27 @@ const buildEntryFileConfig = (filename, config) => {
       {
         file: `${dir}/${baseFilenameWithoutExt}.cjs`,
         format: 'cjs',
-        sourcemap: true,
+        sourcemap: false,
       },
       {
         file: `${dir}/${baseFilenameWithoutExt}.min.cjs`,
         format: 'cjs',
-        sourcemap: true,
+        sourcemap: false,
         plugins: [terser()],
       },
       {
         file: `${dir}/${baseFilenameWithoutExt}.js`,
         format: 'esm',
-        sourcemap: true,
+        sourcemap: false,
       },
       {
         file: `${dir}/${baseFilenameWithoutExt}.min.js`,
         format: 'esm',
-        sourcemap: true,
+        sourcemap: false,
         plugins: [terser()],
       },
     ],
-    plugins: [
-      ...plugins,
-
-      nodeResolve(),
-      commonjs({ include: 'node_modules/**' }),
-      typescript({
-        tsconfig: './tsconfig.json',
-        declaration: false,
-      }),
-      css({
-        // extract: true,
-      }),
-
-      // @ts-ignore
-      peerDepsExternal(),
-
-      esbuild({
-        // All options are optional
-        include: /\.[jt]sx?$/, // default, inferred from `loaders` option
-        exclude: /node_modules/, // default
-        sourceMap: true, // default
-        minify: process.env.NODE_ENV === 'production',
-        target: 'es2017', // default, or 'es20XX', 'esnext'
-        jsx: 'transform', // default, or 'preserve'
-        jsxFactory: 'React.createElement',
-        jsxFragment: 'React.Fragment',
-        // Like @rollup/plugin-replace
-
-        tsconfig: 'tsconfig.json', // default
-        // Add extra loaders
-        loaders: {
-          // Add .json files support
-          // require @rollup/plugin-commonjs
-          '.json': 'json',
-          // Enable JSX in .js files too
-          '.js': 'jsx',
-        },
-      }),
-    ],
+    plugins: [...plugins],
 
     treeshake: true,
   }
@@ -232,12 +192,7 @@ const dir = 'dist'
 const config = [
   buildEntryFileConfig('index.ts'),
 
-  buildEntryFileConfig('index.windi.ts', {
-    plugins: [
-      // @ts-ignore
-      ...WindiCSS(),
-    ],
-  }),
+  buildEntryFileConfig('index.windi.ts'),
 
   ...buildComponentsConfig(false),
   ...buildComponentsConfig(true),

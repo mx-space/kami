@@ -39,10 +39,6 @@
       ]
     }
   },
-  "exclude": [
-    ".next",
-    "server/**/*.*"
-  ],
   "include": [
     "next-env.d.ts",
     "**/*.ts",

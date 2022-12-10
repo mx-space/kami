@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { unlink, writeFile } from 'fs/promises'
+import { readFile, unlink, writeFile } from 'fs/promises'
 import path from 'path'
 import { $ } from 'zx'
 
@@ -40,7 +40,9 @@ async function process(withWidi: boolean) {
     } else {
       input = path.resolve(componentsBase, componentName, 'index.ts')
     }
-    const content = fs.readFileSync(input, 'utf-8')
+    const content = await readFile(input, {
+      encoding: 'utf-8',
+    })
     const appendLines = [`/// <reference path="${envDtsPath}" />`]
 
     if (withWidi) {
