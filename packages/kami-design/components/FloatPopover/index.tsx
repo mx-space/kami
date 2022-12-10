@@ -8,10 +8,10 @@ import React, {
   useState,
 } from 'react'
 import type { FC } from 'react'
-import useClickAway from 'react-use/lib/useClickAway'
 
 import type { UseFloatingProps } from '@floating-ui/react-dom'
 import { flip, offset, shift, useFloating } from '@floating-ui/react-dom'
+import useClickAway from '@mx-space/kami-design/hooks/use-click-away'
 
 import { NoSSRWrapper } from '~/utils/no-ssr'
 

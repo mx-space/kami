@@ -97,7 +97,6 @@
     "postcss-nested": "6.0.0",
     "postcss-preset-env": "7.8.3",
     "postcss-windicss": "^1.0.0",
-    "react-use": "17.4.0",
     "rollup": "3.7.2",
     "rollup-plugin-esbuild": "5.0.0",
     "rollup-plugin-peer-deps-external": "2.2.4",

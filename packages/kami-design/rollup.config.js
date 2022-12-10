@@ -27,7 +27,9 @@ const external = ['react', 'react-dom', /^lodash/, ...Object.keys(globals)]
 const plugins = [
   ...WindiCSS({}),
   nodeResolve(),
-  commonjs({ include: 'node_modules/**' }),
+  commonjs({
+    include: 'node_modules/**',
+  }),
   typescript({
     tsconfig: './tsconfig.json',
     declaration: false,
