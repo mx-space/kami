@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 
-import { Input } from '~/components/universal/Input'
+import { Input } from '@mx-space/kami-design/components/Input'
 
 export const NotePasswordConfrim: React.FC<{
   onSubmit(password: string): any

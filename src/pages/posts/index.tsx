@@ -5,11 +5,11 @@ import { TransitionGroup } from 'react-transition-group'
 
 import type { Pager, PaginateResult, PostModel } from '@mx-space/api-client'
 import { EmptyIcon } from '@mx-space/kami-design/components/Icons/for-comment'
+import { Loading } from '@mx-space/kami-design/components/Loading'
 
 import { PostBlock } from '~/components/in-page/PostBlock'
 import { TagFAB } from '~/components/in-page/SpecialButton/float-post-tag'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
-import { Loading } from '~/components/universal/Loading'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { SearchFAB } from '~/components/widgets/Search'
 import { apiClient } from '~/utils/client'

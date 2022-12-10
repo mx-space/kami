@@ -12,10 +12,10 @@ import {
   SiGlyphGlobal,
 } from '@mx-space/kami-design/components/Icons/for-comment'
 import { MdiFountainPenTip } from '@mx-space/kami-design/components/Icons/for-note'
+import { Input } from '@mx-space/kami-design/components/Input'
 
 import { apiClient } from '~/utils/client'
 
-import { Input } from '../../universal/Input'
 import styles from './index.module.css'
 
 const initialState = {

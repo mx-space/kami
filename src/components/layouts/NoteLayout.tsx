@@ -19,7 +19,7 @@ import { useStore } from '~/store'
 import { apiClient } from '~/utils/client'
 import { resolveUrl } from '~/utils/utils'
 
-import { ClientOnly } from '../universal/ClientOnly'
+import { ClientOnly } from '../app/ClientOnly'
 import { IconTransition } from '../universal/IconTransition'
 
 const NoteTimelineList = dynamic(() =>

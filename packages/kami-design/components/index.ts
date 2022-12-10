@@ -1,7 +1,12 @@
+export * from './Avatar'
 export * from './Banner'
 export * from './Divider'
+export * from './FlexText'
 export * from './FloatPopover'
+
 export * from './Image'
+export * from './Input'
 export * from './Lazyload'
+export * from './Loading'
 export * from './Markdown'
 export * from './Portal'

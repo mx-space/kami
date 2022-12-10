@@ -1,7 +1,7 @@
 import { clsx } from 'clsx'
 import rc from 'randomcolor'
 import type { DetailedHTMLProps, FC, ImgHTMLAttributes } from 'react'
-import { createElement, memo, useMemo, useRef, useState } from 'react'
+import React, { createElement, memo, useMemo, useRef, useState } from 'react'
 
 import { FlexText } from '../FlexText'
 import styles from './index.module.css'

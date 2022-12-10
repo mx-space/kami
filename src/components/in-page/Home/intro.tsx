@@ -2,10 +2,10 @@ import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 
+import { TextFade } from '@mx-space/kami-design/components/Animate/text-anim'
+import { Avatar } from '@mx-space/kami-design/components/Avatar'
 import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
 
-import { TextFade } from '~/components/universal/Animate/text-anim'
-import { Avatar } from '~/components/universal/Avatar'
 import { FontIcon } from '~/components/universal/FontIcon'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { useThemeConfig } from '~/hooks/use-initial-data'

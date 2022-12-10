@@ -4,10 +4,10 @@ import { memo, useEffect, useState } from 'react'
 
 import type { LinkModel } from '@mx-space/api-client'
 import { LinkState, LinkType } from '@mx-space/api-client'
+import { Avatar } from '@mx-space/kami-design/components/Avatar'
 
 import { apiClient } from '~/utils/client'
 
-import { Avatar } from '../../../universal/Avatar'
 import styles from './index.module.css'
 
 export const FriendItem: FC<LinkModel> = memo((props) => {

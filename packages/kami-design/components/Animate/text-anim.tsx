@@ -1,4 +1,5 @@
 import type { FC } from 'react'
+import React from 'react'
 
 import { useOnceClientEffect } from '~/hooks/use-once-client-effect'
 import { genSpringKeyframes } from '~/utils/spring'

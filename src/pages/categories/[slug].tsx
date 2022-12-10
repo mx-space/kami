@@ -9,7 +9,7 @@ import type {
 } from '@mx-space/api-client'
 
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
-import { TimelineListWrapper } from '~/components/universal/TimelineListWrapper'
+import { TimelineListWrapper } from '~/components/biz/TimelineListWrapper'
 import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { apiClient } from '~/utils/client'
 
