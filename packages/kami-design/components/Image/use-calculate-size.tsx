@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useReducer, useRef } from 'react'
 
-import { calculateDimensions } from '~/utils/images'
+import { calculateDimensions } from '@mx-space/kami-design/components/Image/utils/calc-image'
 
 const initialState = { height: 0, width: 0 }
 type Action = { type: 'set'; height: number; width: number } | { type: 'reset' }

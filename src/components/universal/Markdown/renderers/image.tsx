@@ -6,11 +6,11 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 
 import type { ImageLazyRef } from '@mx-space/kami-design/components/Image'
 import { ImageLazy } from '@mx-space/kami-design/components/Image'
+import { calculateDimensions } from '@mx-space/kami-design/components/Image/utils/calc-image'
 import { ImageSizeMetaContext } from '@mx-space/kami-design/contexts/image-size'
 
 import { useIsClient } from '~/hooks/use-is-client'
 import { useStore } from '~/store'
-import { calculateDimensions } from '~/utils/images'
 
 const getContainerSize = () => {
   const $wrap = document.getElementById('write')

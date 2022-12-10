@@ -26,11 +26,13 @@
       "import": "./dist/components/*",
       "require": "./dist/components/*"
     },
-    "./src": {
-      "import": "./src"
+    "./components": {
+      "import": "./dist/components/*",
+      "require": "./dist/components/*"
     },
-    "./src/*": {
-      "import": "./src/*"
+    "./components/*": {
+      "import": "./dist/components/*",
+      "require": "./dist/components/*"
     }
   },
   "bump": {
@@ -84,25 +86,24 @@
     "remove-markdown": "^0.5.0"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "22.0.2",
-    "@rollup/plugin-node-resolve": "14.0.1",
-    "@rollup/plugin-typescript": "8.5.0",
+    "@rollup/plugin-commonjs": "23.0.4",
+    "@rollup/plugin-node-resolve": "15.0.1",
+    "@rollup/plugin-typescript": "10.0.1",
     "@types/react": "17.0.52",
     "dts-bundle-generator": "^7.1.0",
-    "esbuild": "0.15.17",
+    "esbuild": "0.16.4",
     "postcss": "8.4.19",
-    "postcss-import": "15.0.1",
+    "postcss-import": "15.1.0",
     "postcss-nested": "6.0.0",
     "postcss-preset-env": "7.8.3",
     "postcss-windicss": "^1.0.0",
     "react-use": "17.4.0",
-    "rollup": "2.79.0",
+    "rollup": "3.7.2",
     "rollup-plugin-esbuild": "5.0.0",
     "rollup-plugin-peer-deps-external": "2.2.4",
     "rollup-plugin-postcss": "4.0.2",
-    "rollup-plugin-terser": "7.0.2",
     "rollup-plugin-windicss": "1.8.8",
-    "tsc-alias": "1.7.0",
-    "typescript": "4.9.3"
+    "tsc-alias": "1.8.2",
+    "typescript": "4.9.4"
   }
 }
