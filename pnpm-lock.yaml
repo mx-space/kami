@@ -189,7 +189,7 @@ importers:
       rollup-plugin-esbuild: 5.0.0
       rollup-plugin-peer-deps-external: 2.2.4
       rollup-plugin-postcss: 4.0.2
-      rollup-plugin-windicss: 1.8.8
+      rollup-plugin-windicss: 1.8.9
       tsc-alias: 1.8.2
       typescript: 4.9.4
     dependencies:
@@ -224,7 +224,7 @@ importers:
       rollup-plugin-esbuild: 5.0.0_ediepaqm3dh3x43zpyym4letwe
       rollup-plugin-peer-deps-external: 2.2.4_rollup@3.7.3
       rollup-plugin-postcss: 4.0.2_postcss@8.4.20
-      rollup-plugin-windicss: 1.8.8_rollup@3.7.3
+      rollup-plugin-windicss: 1.8.9_rollup@3.7.3
       tsc-alias: 1.8.2
       typescript: 4.9.4
 
@@ -244,6 +244,10 @@ packages:
 
   /@antfu/utils/0.5.2:
     resolution: {integrity: sha512-CQkeV+oJxUazwjlHD0/3ZD08QWKuGQkhnrKo3e6ly5pd48VUpXbb77q0xMU4+vc2CkJnDS02Eq/M9ugyX20XZA==}
+    dev: true
+
+  /@antfu/utils/0.7.2:
+    resolution: {integrity: sha512-vy9fM3pIxZmX07dL+VX1aZe7ynZ+YyB0jY+jE6r3hOK6GNY2t6W8rzpFC4tgpbXUYABkFQwgJq2XYXlxbXAI0g==}
     dev: true
 
   /@babel/code-frame/7.18.6:
@@ -1693,7 +1697,17 @@ packages:
     resolution: {integrity: sha512-kNas/zMkwsDFMcJPmHoPDJlQi1MHvYwx8BSxo9JKcbCW7Gaj8Rg2CnEImX5YdT+ZcFQqQ+kUn0Vi/ScsAxhGEw==}
     dependencies:
       debug: 4.3.4
-      jiti: 1.14.0
+      jiti: 1.16.0
+      windicss: 3.5.6
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /@windicss/config/1.8.9:
+    resolution: {integrity: sha512-ikvKVrr/CsTO5FEpPWTyCMryoukIDsc0p8KxU8q8Fgt45SIPNZRaYP9yNJvDE1ytrPnwvgOMRXMxuMmxOXtvMQ==}
+    dependencies:
+      debug: 4.3.4
+      jiti: 1.16.0
       windicss: 3.5.6
     transitivePeerDependencies:
       - supports-color
@@ -1721,6 +1735,20 @@ packages:
       debug: 4.3.4
       fast-glob: 3.2.12
       magic-string: 0.26.2
+      micromatch: 4.0.5
+      windicss: 3.5.6
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /@windicss/plugin-utils/1.8.9:
+    resolution: {integrity: sha512-c4n6LX9B8tokBM0PitCY+GPobUMklrfNF+TfwHr2RpN+SIJ37CxEEBCB7Q4QpUVdSyCW99RCGkxb/7ysT2MSkg==}
+    dependencies:
+      '@antfu/utils': 0.7.2
+      '@windicss/config': 1.8.9
+      debug: 4.3.4
+      fast-glob: 3.2.12
+      magic-string: 0.27.0
       micromatch: 4.0.5
       windicss: 3.5.6
     transitivePeerDependencies:
@@ -3625,11 +3653,6 @@ packages:
     resolution: {integrity: sha512-nO6jcEfZWQXDhOiBtG2KvKyEptz7RVbpGP4vTD2hLBdmNQSsCiicO2Ioinv6UI4y9ukqnBpy+XZ9H6uLNgJTlw==}
     dev: true
 
-  /jiti/1.14.0:
-    resolution: {integrity: sha512-4IwstlaKQc9vCTC+qUXLM1hajy2ImiL9KnLvVYiaHOtS/v3wRjhLlGl121AmgDgx/O43uKmxownJghS5XMya2A==}
-    hasBin: true
-    dev: true
-
   /jiti/1.16.0:
     resolution: {integrity: sha512-L3BJStEf5NAqNuzrpfbN71dp43mYIcBUlCRea/vdyv5dW/AYa1d4bpelko4SHdY3I6eN9Wzyasxirj1/vv5kmg==}
     hasBin: true
@@ -3890,6 +3913,13 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       sourcemap-codec: 1.4.8
+    dev: true
+
+  /magic-string/0.27.0:
+    resolution: {integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==}
+    engines: {node: '>=12'}
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
   /map-obj/1.0.1:
@@ -5682,12 +5712,12 @@ packages:
       - ts-node
     dev: true
 
-  /rollup-plugin-windicss/1.8.8_rollup@3.7.3:
-    resolution: {integrity: sha512-xJfhAG0O07b1uauMOr4sxP1YntOGklGnIZO+Nc3D385F6nVrcHudhTf1rbLsmeVXwbEhcjCNDGz1lXkN9UuWqg==}
+  /rollup-plugin-windicss/1.8.9_rollup@3.7.3:
+    resolution: {integrity: sha512-o/i9TRmTp4uONAQ7tedgrPcfafczsXplB9b+B6pVF/0j+TnhaR5vPKia/X5rGWJD24vqxVI1EZfMmoA2PJeCMw==}
     peerDependencies:
       rollup: ^2.0.0
     dependencies:
-      '@windicss/plugin-utils': 1.8.8
+      '@windicss/plugin-utils': 1.8.9
       debug: 4.3.4
       rollup: 3.7.3
       windicss: 3.5.6
