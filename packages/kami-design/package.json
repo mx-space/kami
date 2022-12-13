@@ -92,7 +92,7 @@
     "@rollup/plugin-typescript": "10.0.1",
     "@types/react": "17.0.52",
     "dts-bundle-generator": "^7.1.0",
-    "esbuild": "0.16.4",
+    "esbuild": "0.16.5",
     "postcss": "8.4.20",
     "postcss-import": "15.1.0",
     "postcss-nested": "6.0.0",
