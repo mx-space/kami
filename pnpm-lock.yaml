@@ -189,7 +189,7 @@ importers:
       rollup-plugin-esbuild: 5.0.0
       rollup-plugin-peer-deps-external: 2.2.4
       rollup-plugin-postcss: 4.0.2
-      rollup-plugin-windicss: 1.8.9
+      rollup-plugin-windicss: 1.8.10
       tsc-alias: 1.8.2
       typescript: 4.9.4
     dependencies:
@@ -224,7 +224,7 @@ importers:
       rollup-plugin-esbuild: 5.0.0_2nzoo3aillgtatstxaszxfvvzy
       rollup-plugin-peer-deps-external: 2.2.4_rollup@3.7.4
       rollup-plugin-postcss: 4.0.2_postcss@8.4.20
-      rollup-plugin-windicss: 1.8.9_rollup@3.7.4
+      rollup-plugin-windicss: 1.8.10_rollup@3.7.4
       tsc-alias: 1.8.2
       typescript: 4.9.4
 
@@ -1693,8 +1693,8 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@windicss/config/1.8.8:
-    resolution: {integrity: sha512-kNas/zMkwsDFMcJPmHoPDJlQi1MHvYwx8BSxo9JKcbCW7Gaj8Rg2CnEImX5YdT+ZcFQqQ+kUn0Vi/ScsAxhGEw==}
+  /@windicss/config/1.8.10:
+    resolution: {integrity: sha512-O9SsC110b1Ik3YYa4Ck/0TWuCo7YFfA9KDrwD5sAeqscT5COIGK1HszdCT3oh0MJFej2wNrvpfyW9h6yQaW6PA==}
     dependencies:
       debug: 4.3.4
       jiti: 1.16.0
@@ -1703,8 +1703,8 @@ packages:
       - supports-color
     dev: true
 
-  /@windicss/config/1.8.9:
-    resolution: {integrity: sha512-ikvKVrr/CsTO5FEpPWTyCMryoukIDsc0p8KxU8q8Fgt45SIPNZRaYP9yNJvDE1ytrPnwvgOMRXMxuMmxOXtvMQ==}
+  /@windicss/config/1.8.8:
+    resolution: {integrity: sha512-kNas/zMkwsDFMcJPmHoPDJlQi1MHvYwx8BSxo9JKcbCW7Gaj8Rg2CnEImX5YdT+ZcFQqQ+kUn0Vi/ScsAxhGEw==}
     dependencies:
       debug: 4.3.4
       jiti: 1.16.0
@@ -1727,6 +1727,20 @@ packages:
       - supports-color
     dev: true
 
+  /@windicss/plugin-utils/1.8.10:
+    resolution: {integrity: sha512-Phqk5OW1w+Mv+ry6t7BzAeDq3aMhbI94gR49j9vQCufFfDGCHndhhjtMK0sBv+NPJUsIAIh6qayb1iwBCXUGrw==}
+    dependencies:
+      '@antfu/utils': 0.7.2
+      '@windicss/config': 1.8.10
+      debug: 4.3.4
+      fast-glob: 3.2.12
+      magic-string: 0.27.0
+      micromatch: 4.0.5
+      windicss: 3.5.6
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /@windicss/plugin-utils/1.8.8:
     resolution: {integrity: sha512-a+npbTKmdrAvnMqzVJvyPa29xyNcPaSkt6qQpgWY9m0WyVlYd9BM8V0+cbqt279fTlvlaZpUs9dqmilB1PUH6g==}
     dependencies:
@@ -1735,20 +1749,6 @@ packages:
       debug: 4.3.4
       fast-glob: 3.2.12
       magic-string: 0.26.2
-      micromatch: 4.0.5
-      windicss: 3.5.6
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
-  /@windicss/plugin-utils/1.8.9:
-    resolution: {integrity: sha512-c4n6LX9B8tokBM0PitCY+GPobUMklrfNF+TfwHr2RpN+SIJ37CxEEBCB7Q4QpUVdSyCW99RCGkxb/7ysT2MSkg==}
-    dependencies:
-      '@antfu/utils': 0.7.2
-      '@windicss/config': 1.8.9
-      debug: 4.3.4
-      fast-glob: 3.2.12
-      magic-string: 0.27.0
       micromatch: 4.0.5
       windicss: 3.5.6
     transitivePeerDependencies:
@@ -5712,12 +5712,12 @@ packages:
       - ts-node
     dev: true
 
-  /rollup-plugin-windicss/1.8.9_rollup@3.7.4:
-    resolution: {integrity: sha512-o/i9TRmTp4uONAQ7tedgrPcfafczsXplB9b+B6pVF/0j+TnhaR5vPKia/X5rGWJD24vqxVI1EZfMmoA2PJeCMw==}
+  /rollup-plugin-windicss/1.8.10_rollup@3.7.4:
+    resolution: {integrity: sha512-6YlDzFYLL5HYyzKkFQTLMCf01PssAVXlbQ2vfqTo27z2lx6kTSv4ibjVs5NxMbSstGDn+Z+rBTA89ESCJ8bhtw==}
     peerDependencies:
       rollup: ^2.0.0
     dependencies:
-      '@windicss/plugin-utils': 1.8.9
+      '@windicss/plugin-utils': 1.8.10
       debug: 4.3.4
       rollup: 3.7.4
       windicss: 3.5.6
