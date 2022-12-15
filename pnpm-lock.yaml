@@ -162,7 +162,7 @@ importers:
       '@floating-ui/react-dom': ^1.0.1
       '@formkit/auto-animate': ^1.0.0-beta.5
       '@mx-space/api-client': ^1.0.0-beta.3
-      '@rollup/plugin-commonjs': 23.0.4
+      '@rollup/plugin-commonjs': 23.0.5
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-typescript': 10.0.1
       '@types/react': 17.0.52
@@ -209,7 +209,7 @@ importers:
       react-transition-group: 4.4.5
       remove-markdown: 0.5.0
     devDependencies:
-      '@rollup/plugin-commonjs': 23.0.4_rollup@3.7.4
+      '@rollup/plugin-commonjs': 23.0.5_rollup@3.7.4
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.7.4
       '@rollup/plugin-typescript': 10.0.1_fhibmf72xnv5tve6nwed265eae
       '@types/react': 17.0.52
@@ -1259,8 +1259,8 @@ packages:
       '@rollup/pluginutils': 5.0.2
     dev: false
 
-  /@rollup/plugin-commonjs/23.0.4_rollup@3.7.4:
-    resolution: {integrity: sha512-bOPJeTZg56D2MCm+TT4psP8e8Jmf1Jsi7pFUMl8BN5kOADNzofNHe47+84WVCt7D095xPghC235/YKuNDEhczg==}
+  /@rollup/plugin-commonjs/23.0.5_rollup@3.7.4:
+    resolution: {integrity: sha512-IwI51j5kCmLMYsErEvZAID/pg7Z1qgyVJ+QIPDDIg1AOPbIGbdTCjuHDWIBCtoF1dvMkXfQv7B2eTadjnLRbmA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^2.68.0||^3.0.0
@@ -1748,7 +1748,7 @@ packages:
       '@windicss/config': 1.8.8
       debug: 4.3.4
       fast-glob: 3.2.12
-      magic-string: 0.26.2
+      magic-string: 0.26.7
       micromatch: 4.0.5
       windicss: 3.5.6
     transitivePeerDependencies:
@@ -3897,13 +3897,6 @@ packages:
 
   /magic-string/0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
-    dependencies:
-      sourcemap-codec: 1.4.8
-    dev: true
-
-  /magic-string/0.26.2:
-    resolution: {integrity: sha512-NzzlXpclt5zAbmo6h6jNc8zl2gNRGHvmsZW4IvZhTC4W7k4OlLP+S5YLussa/r3ixNT66KOQfNORlXHSOy/X4A==}
-    engines: {node: '>=12'}
     dependencies:
       sourcemap-codec: 1.4.8
     dev: true
