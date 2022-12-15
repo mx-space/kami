@@ -13,7 +13,7 @@ importers:
       '@innei/eslint-config-react-ts': 0.9.6
       '@innei/prettier': 0.9.6
       '@mx-space/api-client': 1.0.0-beta.3
-      '@next/bundle-analyzer': 13.0.6
+      '@next/bundle-analyzer': 13.0.7
       '@trivago/prettier-plugin-sort-imports': 4.0.0
       '@types/inflection': 1.13.0
       '@types/js-cookie': 3.0.2
@@ -120,7 +120,7 @@ importers:
     devDependencies:
       '@innei/eslint-config-react-ts': 0.9.6_typescript@4.9.4
       '@innei/prettier': 0.9.6
-      '@next/bundle-analyzer': 13.0.6
+      '@next/bundle-analyzer': 13.0.7
       '@trivago/prettier-plugin-sort-imports': 4.0.0_prettier@2.8.1
       '@types/inflection': 1.13.0
       '@types/js-cookie': 3.0.2
@@ -1087,8 +1087,8 @@ packages:
     engines: {pnpm: '>=6'}
     dev: false
 
-  /@next/bundle-analyzer/13.0.6:
-    resolution: {integrity: sha512-DRubgAxddPYog5GlmS3RkNOaRsSNQNNo+icc/i+grzPmJtYvPFsKuy7qCwyt0zSuW9aZfVOZGek1KQJ3c+5R4w==}
+  /@next/bundle-analyzer/13.0.7:
+    resolution: {integrity: sha512-kUvKjdScipM5fjVRoehBS+c1nwIk2HYwI01NfF8GZlpfyTnMIAmfb5cP2trHfD3rZKUTFl2bKR52+CDwo6SBgg==}
     dependencies:
       webpack-bundle-analyzer: 4.7.0
     transitivePeerDependencies:
@@ -1759,23 +1759,17 @@ packages:
     resolution: {integrity: sha512-N8tkAACJx2ww8vFMneJmaAgmjAG1tnVBZJRLRcx061tmsLRZHSEZSLuGWnwPtunsSLvSqXQ2wfp7Mgqg1I+2dQ==}
     dev: false
 
-  /acorn-jsx/5.3.2_acorn@8.8.0:
+  /acorn-jsx/5.3.2_acorn@8.8.1:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
-      acorn: 8.8.0
+      acorn: 8.8.1
     dev: true
 
   /acorn-walk/8.2.0:
     resolution: {integrity: sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==}
     engines: {node: '>=0.4.0'}
-    dev: true
-
-  /acorn/8.8.0:
-    resolution: {integrity: sha512-QOxyigPVrpZ2GXT+PFyZTl6TtOFc5egxHIP9IlQ+RbupQuX4RkT/Bee4/kQuC02Xkzg84JcT7oLYtDIQxp+v7w==}
-    engines: {node: '>=0.4.0'}
-    hasBin: true
     dev: true
 
   /acorn/8.8.1:
@@ -2927,8 +2921,8 @@ packages:
     resolution: {integrity: sha512-DQmnRpLj7f6TgN/NYb0MTzJXL+vJF9h3pHy4JhCIs3zwcgez8xmGg3sXHcEO97BrmO2OSvCwMdfdlyl+E9KjOw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
-      acorn: 8.8.0
-      acorn-jsx: 5.3.2_acorn@8.8.0
+      acorn: 8.8.1
+      acorn-jsx: 5.3.2_acorn@8.8.1
       eslint-visitor-keys: 3.3.0
     dev: true
 
