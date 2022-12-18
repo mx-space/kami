@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [4.0.2](https://github.com/mx-space/kami/compare/v4.0.1...v4.0.2) (2022-12-18)
+
+
+### Bug Fixes
+
+* topic introduce line-height style ([551ed35](https://github.com/mx-space/kami/commit/551ed35a0999e20fc32073e4ed82b9b77e953dbe))
+* update markdown-jsx dep to fix slugify ([b33ff18](https://github.com/mx-space/kami/commit/b33ff1886d24e6a1b0c5bc2623c7a967381dafe8))
+
+
+
 ## [4.0.1](https://github.com/mx-space/kami/compare/v4.0.0...v4.0.1) (2022-12-10)
 
 
