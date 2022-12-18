@@ -50,9 +50,7 @@ const TopicDetailPage: NextPage<TopicModel> = (props) => {
     >
       <SEO title={`专栏 - ${name}`} />
       <div className="topic-info -mt-8">
-        <p>
-          <span>{props.introduce}</span>
-        </p>
+        <p className="leading-6">{props.introduce}</p>
         {props.description && (
           <>
             <Divider />

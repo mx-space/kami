@@ -18,6 +18,7 @@ const mdOptions: MarkdownToJSX.Options = {
     'textEscaped',
   ],
   forceBlock: true,
+  wrapper: ({ children }) => <div className="leading-7">{children}</div>,
 }
 export const NoteTopicMarkdownRender: FC<{ children: string }> = memo(
   (props) => {
