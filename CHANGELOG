@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## [4.0.4](https://github.com/mx-space/kami/compare/v4.0.3...v4.0.4) (2022-12-23)
+
+
+### Bug Fixes
+
+* load more not trigger loading ([3f191e7](https://github.com/mx-space/kami/commit/3f191e70944c9b044e7dd82cd33b693e0ab38811))
+* overlay and improve pref of modal ([8c0e71d](https://github.com/mx-space/kami/commit/8c0e71db3a834fe208551fa3d20ec5b929bf9f2a))
+
+
+### Features
+
+* recently support thumbs up ([85b0409](https://github.com/mx-space/kami/commit/85b0409eef79de4735d632aa641913a0f75db82d))
+
+
+
 ## [4.0.3](https://github.com/mx-space/kami/compare/v4.0.2...v4.0.3) (2022-12-23)
 
 
