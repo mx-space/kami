@@ -11,12 +11,11 @@ import type {
 import React, {
   createContext,
   createElement,
-  useCallback,
   useContext,
-  useMemo,
   useRef,
   useState,
 } from 'react'
+import { useStateToRef } from 'react-shortcut-guide'
 
 import { useIsClient } from '~/hooks/use-is-client'
 import { useStore } from '~/store'
@@ -98,6 +97,8 @@ export const ModalStackProvider: FC<{
 }> = observer((props) => {
   const { children } = props
   const [modalStack, setModalStack] = useState<IModalStackStateType[]>([])
+  const modalStackRef = useStateToRef(modalStack)
+
   const [extraModalPropsMap, setExtraModalPropsMap] = useState<
     Map<
       string,
@@ -115,7 +116,7 @@ export const ModalStackProvider: FC<{
     new WeakMap<FunctionComponentElement<any>, () => any>(),
   )
 
-  const present = useCallback((comp: IModalStackComponent): Disposer => {
+  const present = useRef((comp: IModalStackComponent): Disposer => {
     const {
       component,
       props,
@@ -143,24 +144,6 @@ export const ModalStackProvider: FC<{
       return () => null
     }
 
-    const $modalElement: FunctionComponentElement<any> = createElement(
-      Modal,
-      {
-        ...modalProps,
-        modalId: id,
-        useBottomDrawerInMobile,
-        key: id,
-        ref: (ins) => {
-          modalRefMap.current.set($modalElement, ins!)
-        },
-        disposer: () => {
-          dismissFnMapRef.current.delete($modalElement)
-          setModalStack((prev) => prev.filter((item) => item.id !== id))
-        },
-      },
-      modalChildren,
-    )
-
     const disposer = (immediately = false) => {
       const immediatelyDisposer = () => {
         setModalStack((stack) => {
@@ -178,6 +161,21 @@ export const ModalStackProvider: FC<{
         fn()
       }
     }
+
+    const $modalElement: FunctionComponentElement<any> = createElement(
+      Modal,
+      {
+        ...modalProps,
+        modalId: id,
+        useBottomDrawerInMobile,
+        key: id,
+        ref: (ins) => {
+          modalRefMap.current.set($modalElement, ins!)
+        },
+        disposer,
+      },
+      modalChildren,
+    )
 
     setModalStack((stack) => {
       return [
@@ -198,39 +196,36 @@ export const ModalStackProvider: FC<{
       return new Map(map)
     })
     return disposer
-  }, [])
+  }).current
 
-  const findCurrentByName = useCallback(
-    (name: string) => {
-      return modalStack.find((item) => item.name === name || item.id === name)
-    },
-    [modalStack],
-  )
+  const findCurrentByName = useRef((name: string) => {
+    const modalStack = modalStackRef.current
+    return modalStack.find((item) => item.name === name || item.id === name)
+  }).current
 
-  const getStack = useCallback(() => {
+  const getStack = useRef(() => {
+    const modalStack = modalStackRef.current
     return modalStack.concat()
-  }, [modalStack])
+  }).current
 
-  const disposeAll = useCallback(
-    async (immediately = false) => {
-      const reversedStack = modalStack.concat().reverse()
-      if (immediately) {
-        reversedStack.forEach((current) => current.disposer())
-      } else {
-        for (const current of reversedStack) {
-          const instance = modalRefMap.current.get(current.component)
+  const disposeAll = useRef(async (immediately = false) => {
+    const modalStack = modalStackRef.current
+    const reversedStack = modalStack.concat().reverse()
+    if (immediately) {
+      reversedStack.forEach((current) => current.disposer())
+    } else {
+      for (const current of reversedStack) {
+        const instance = modalRefMap.current.get(current.component)
 
-          if (!instance) {
-            current.disposer()
-            continue
-          }
-          await instance.dismiss()
+        if (!instance) {
           current.disposer()
+          continue
         }
+        await instance.dismiss()
+        current.disposer()
       }
-    },
-    [modalStack],
-  )
+    }
+  }).current
 
   const isClient = useIsClient()
 
@@ -243,10 +238,9 @@ export const ModalStackProvider: FC<{
 
   return (
     <ModalStackContext.Provider
-      value={useMemo(
-        () => ({ present, findCurrentByName, getStack, disposeAll }),
-        [disposeAll, findCurrentByName, getStack, present],
-      )}
+      value={
+        useRef({ present, findCurrentByName, getStack, disposeAll }).current
+      }
     >
       {children}
 

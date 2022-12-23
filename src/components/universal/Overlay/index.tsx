@@ -54,6 +54,12 @@ const OverLay: FC<OverlayProps> = (props) => {
     document.documentElement.style.overflow = show ? 'hidden' : ''
   }, [show])
 
+  useEffect(() => {
+    return () => {
+      document.documentElement.style.overflow = ''
+    }
+  }, [])
+
   if (!isClient) {
     return null
   }
