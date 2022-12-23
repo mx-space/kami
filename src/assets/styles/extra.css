@@ -191,12 +191,12 @@ ph {
   word-wrap: break-word;
   padding-top: 2rem;
 
+  .indent {
+    text-indent: 0 !important;
+  }
+
   > p:first-child {
     margin-bottom: 2rem;
-
-    & > .indent {
-      text-indent: 0 !important;
-    }
   }
 }
 
