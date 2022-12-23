@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## [4.0.3](https://github.com/mx-space/kami/compare/v4.0.2...v4.0.3) (2022-12-23)
+
+
+### Bug Fixes
+
+* **recently:** event handler ([8c7dcce](https://github.com/mx-space/kami/commit/8c7dccec835b3a150474638cae3bf8403bf17b2d))
+* toast close ([40a484f](https://github.com/mx-space/kami/commit/40a484f5ba946ccf0612be288464161f3ded3d90))
+
+
+### Features
+
+* `recently` support comment ([05871ed](https://github.com/mx-space/kami/commit/05871ed0b2930f275e2ae74099ddb54d6ab0a682))
+
+
+
 ## [4.0.2](https://github.com/mx-space/kami/compare/v4.0.1...v4.0.2) (2022-12-18)
 
 
