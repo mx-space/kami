@@ -99,6 +99,7 @@ const RecentlyPage: NextPage = () => {
     () => [...Object.values(slicedData)].flat(1),
     [slicedData],
   )
+  const loading = isLoading && data.length == 0
 
   useEffect(() => {
     if (!fetchedData) {
@@ -127,14 +128,14 @@ const RecentlyPage: NextPage = () => {
       return
     }
 
-    if (isLoading) {
+    if (loading) {
       return
     }
 
     if (inView && hasNext) {
       setFetchBefore(data[data.length - 1].id)
     }
-  }, [data, hasNext, inView, isLoading])
+  }, [data, hasNext, inView, loading])
 
   const handleDelete = async (id: string) => {
     await apiClient.shorthand.proxy(id).delete()
@@ -168,7 +169,7 @@ const RecentlyPage: NextPage = () => {
       {isLogged && <RecentlySendBox />}
       <div className="pb-4" />
 
-      {isLoading ? (
+      {loading ? (
         <Loading />
       ) : (
         <Fragment>
