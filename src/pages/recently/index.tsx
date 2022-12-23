@@ -1,52 +1,36 @@
 import { clsx } from 'clsx'
-import throttle from 'lodash-es/throttle'
 import { observer } from 'mobx-react-lite'
 import type { NextPage } from 'next'
-import Link from 'next/link'
-import type { FC } from 'react'
-import React, {
-  Fragment,
-  memo,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { eventBus } from 'utils/event-emitter'
+import { message } from 'react-message-popup'
+import useSWR from 'swr'
 
 import type { RecentlyModel } from '@mx-space/api-client'
-import { Divider } from '@mx-space/kami-design/components/Divider'
 import {
+  FontistoComments,
   JamTrash,
-  PhLinkFill,
 } from '@mx-space/kami-design/components/Icons/for-recently'
-import { Input } from '@mx-space/kami-design/components/Input'
 import { Loading } from '@mx-space/kami-design/components/Loading'
 
 import { Seo } from '~/components/biz/Seo'
+import { RefPreview } from '~/components/in-page/Recently/RefPreview'
+import { RecentlySendBox } from '~/components/in-page/Recently/SendBox'
 import { Markdown } from '~/components/universal/Markdown'
+import { useModalStack } from '~/components/universal/Modal/stack-context'
 import { RelativeTime } from '~/components/universal/RelativeTime'
+import { CommentLazy } from '~/components/widgets/Comment'
 import { useStore } from '~/store'
 import { EventTypes } from '~/types/events'
 import { apiClient } from '~/utils/client'
+import { eventBus } from '~/utils/event-emitter'
 import { NoSSRWrapper } from '~/utils/no-ssr'
-import { urlBuilder } from '~/utils/url'
 
 import styles from './index.module.css'
 
 const FETCH_SIZE = 10
 
-const RecentlyPage: NextPage = () => {
-  const [loading, setLoading] = useState(true)
-  const [data, setData] = useState<RecentlyModel[]>([])
-  const [hasNext, setHasNext] = useState(true)
-  const {
-    userStore: { isLogged },
-  } = useStore()
-  // bind event
-
+const useDataEventHandler = (data, setData) => {
   useEffect(() => {
     const create = (payload: RecentlyModel) => {
       data.unshift(payload)
@@ -69,48 +53,72 @@ const RecentlyPage: NextPage = () => {
       eventBus.off(EventTypes.RECENTLY_DElETE, del)
     }
   }, [data])
+}
 
-  const fetch = throttle(
-    async ({
-      before,
-      size = FETCH_SIZE,
-    }: {
-      before?: string
-      size?: number
-    }) => {
-      setLoading(true)
+const RecentlyPage: NextPage = () => {
+  const [hasNext, setHasNext] = useState(true)
+  const {
+    userStore: { isLogged },
+  } = useStore()
+
+  const [fetchBefore, setFetchBefore] = useState<undefined | string>()
+  const { data: fetchedData, isLoading } = useSWR(
+    ['recent', fetchBefore],
+    async ([, before]) => {
       const { data } = await apiClient.shorthand.getList(
         before,
         undefined,
-        size,
+        FETCH_SIZE,
       )
 
       if (data.length < FETCH_SIZE) {
         setHasNext(false)
       }
-      setLoading(false)
       return data
     },
-    1000,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      refreshWhenOffline: false,
+      refreshInterval: 0,
+      refreshWhenHidden: false,
+      revalidateOnReconnect: false,
+    },
+  )
+
+  const [data, setData] = useState<(RecentlyModel & { comments?: number })[]>(
+    [],
   )
 
   useEffect(() => {
-    fetch({})?.then((data) => {
-      setData(data)
-    })
-  }, [])
+    if (!fetchedData) {
+      return
+    }
+
+    setData((d) => [...d, ...fetchedData])
+  }, [fetchedData])
+
+  useDataEventHandler(data, setData)
 
   const { ref, inView } = useInView()
 
   useEffect(() => {
-    if (inView && hasNext) {
-      fetch({ before: data[data.length - 1].id })?.then((newData) => {
-        setData((data) => data.concat(newData))
-      })
+    if (!data) {
+      return
     }
-  }, [data, hasNext, inView])
+
+    if (isLoading) {
+      return
+    }
+
+    if (inView && hasNext) {
+      setFetchBefore(data[data.length - 1].id)
+    }
+  }, [data, hasNext, inView, isLoading])
+
   const handleDelete = async (id: string) => {
     await apiClient.shorthand.proxy(id).delete()
+    message.success('删除成功')
   }
 
   const wrapperProps = useRef({
@@ -118,14 +126,29 @@ const RecentlyPage: NextPage = () => {
     className: styles['md'],
   }).current
 
+  const { present } = useModalStack()
+  const handleClickComment = useCallback((id: string) => {
+    present({
+      modalProps: {
+        title: '评论',
+        closeable: true,
+        fixedWidth: true,
+      },
+      component: (
+        <CommentLazy allowComment id={id} warpperClassName={'!mt-0'} />
+      ),
+    })
+  }, [])
+
   return (
     <main className="max-w-[50em] relative">
       <h1>动态</h1>
       <Seo title="动态" />
       <h2 className="text-opacity-80">谢谢你听我诉说</h2>
-      {isLogged && <RecentlyBox />}
+      {isLogged && <RecentlySendBox />}
       <div className="pb-4" />
-      {data.length === 0 && loading ? (
+
+      {isLoading ? (
         <Loading />
       ) : (
         <Fragment>
@@ -150,7 +173,18 @@ const RecentlyPage: NextPage = () => {
                       {d.ref && <RefPreview refModel={d.ref} />}
                     </div>
 
-                    <div className="text-sm float-right mt-1">
+                    <div className="text-sm float-right mt-1 flex items-center">
+                      <button
+                        className="inline-flex items-center"
+                        onClick={() =>
+                          d.allowComment ? handleClickComment(d.id) : void 0
+                        }
+                      >
+                        <FontistoComments className="ml-2 mr-1 opacity-80" />
+                        <span className="mr-2 opacity-80">
+                          {d.comments || 0}
+                        </span>
+                      </button>
                       <RelativeTime date={d.created} />
                     </div>
 
@@ -170,7 +204,7 @@ const RecentlyPage: NextPage = () => {
 
           {hasNext && (
             <div className="h-8" ref={ref}>
-              {loading && <Loading />}
+              {isLoading && <Loading />}
             </div>
           )}
         </Fragment>
@@ -179,75 +213,4 @@ const RecentlyPage: NextPage = () => {
   )
 }
 
-const RefPreview: FC<{ refModel: any }> = (props) => {
-  const title = props.refModel?.title
-
-  const url = useMemo(() => {
-    return urlBuilder.build(props.refModel)
-  }, [props.refModel])
-
-  if (!title) {
-    return null
-  }
-
-  return (
-    <>
-      <Divider className="my-4 bg-current w-12 opacity-50" />
-      <p className="leading-[1.8] flex items-center">
-        发表于： <PhLinkFill className="mr-2" />
-        <Link href={url}>{title}</Link>
-      </p>
-    </>
-  )
-}
-
-const RecentlyBox: FC = memo(() => {
-  const [content, setText] = useState('')
-
-  const taRef = useRef<HTMLTextAreaElement>(null)
-  const handleSubmit = useCallback(() => {
-    apiClient.shorthand.proxy.post({ data: { content } }).then(() => {
-      setText('')
-      taRef.current && (taRef.current.value = '')
-    })
-  }, [content])
-  return (
-    <form
-      action="#"
-      onSubmit={useCallback(
-        (e) => {
-          e.preventDefault()
-          handleSubmit()
-        },
-        [handleSubmit],
-      )}
-    >
-      <Input
-        multi
-        // @ts-ignore
-        ref={taRef}
-        // @ts-ignore
-        rows={4}
-        required
-        onChange={(e) => {
-          setText(e.target.value)
-        }}
-        autoFocus={true}
-        placeholder={'今天遇到了什么烦心事?'}
-      />
-      <div className="mt-3 text-right">
-        <button
-          className="btn yellow"
-          onClick={(e) => {
-            e.preventDefault()
-            handleSubmit()
-          }}
-          disabled={content.trim().length === 0}
-        >
-          发送
-        </button>
-      </div>
-    </form>
-  )
-})
 export default NoSSRWrapper(observer(RecentlyPage))

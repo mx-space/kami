@@ -1,4 +1,4 @@
-import type { AxiosError } from 'axios'
+import type { AxiosError, AxiosInstance } from 'axios'
 import { CanceledError } from 'axios'
 import { message } from 'react-message-popup'
 
@@ -24,7 +24,7 @@ export const apiClient = createClient(axiosAdaptor)(API_URL, {
 
 const uuid = genUUID()
 
-export const $axios = axiosAdaptor.default
+export const $axios = axiosAdaptor.default as AxiosInstance
 
 $axios.defaults.timeout = 10000
 
@@ -57,7 +57,7 @@ $axios.interceptors.response.use(
       error.code === 'ECONNABORTED'
     ) {
       if (isClientSide()) {
-        message.error('请求超时, 请检查一下网络哦!')
+        message.error('请求超时，请检查一下网络哦！')
       } else {
         const msg = '上游服务器请求超时'
         message.error(msg)

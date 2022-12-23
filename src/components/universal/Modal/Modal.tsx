@@ -13,7 +13,7 @@ import { CloseIcon } from '@mx-space/kami-design/components/Icons/layout'
 import { useStore } from '~/store'
 
 import { BottomUpTransitionView } from '../Transition/bottom-up'
-import styles from './index.module.css'
+import styles from './modal.module.css'
 import { ScaleModalTransition } from './scale-transition'
 
 export interface ModalProps {
@@ -24,6 +24,7 @@ export interface ModalProps {
   modalClassName?: string
   contentClassName?: string
   noBlur?: boolean
+  fixedWidth?: boolean
 }
 
 export type ModalRefObject = {
@@ -65,6 +66,7 @@ export const Modal = observer(
       <div
         className={clsx(
           styles['modal'],
+          props.fixedWidth && styles['fixed-width'],
           useDrawerStyle && styles['drawer'],
           props.noBlur && styles['no-blur'],
           props.modalClassName,

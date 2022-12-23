@@ -8,15 +8,9 @@
   ],
   "packageRules": [
     {
-      "updateTypes": [
-        "major"
-      ],
-      "labels": [
-        "UPDATE-MAJOR"
-      ]
+      "updateTypes": ["major"],
+      "labels": ["UPDATE-MAJOR"]
     }
   ],
-  "ignoreDeps": [
-    "next"
-  ]
+  "ignoreDeps": ["next", "axios"]
 }

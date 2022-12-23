@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 
 import { store } from '~/store'
 
-import { ModalStackProvider } from '../universal/Modal/stack.context'
+import { ModalStackProvider } from '../universal/Modal/stack-context'
 
 export const DebugLayout: FC = (props) => {
   useEffect(() => {

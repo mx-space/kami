@@ -9,7 +9,7 @@ import { FluentList16Filled } from '@mx-space/kami-design/components/Icons/share
 import type { TocProps } from '~/components/widgets/Toc'
 import { useStore } from '~/store'
 
-import { useModalStack } from '../Modal/stack.context'
+import { useModalStack } from '../Modal/stack-context'
 
 const Toc = dynamic(
   () => import('~/components/widgets/Toc').then((m) => m.Toc),

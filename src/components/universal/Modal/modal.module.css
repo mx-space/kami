@@ -1,0 +1,65 @@
+.modal {
+  @apply bg-bg-opacity min-h-8 min-w-30 rounded-lg block overflow-hidden shadow-md relative;
+
+  @apply flex flex-col;
+
+  backdrop-filter: blur(20px) saturate(180%);
+
+  &.no-blur {
+    @apply bg-light-bg;
+
+    backdrop-filter: none;
+  }
+
+  @apply max-w-65vw max-h-70vh;
+
+  @screen phone {
+    @apply max-w-95vw max-h-85vh;
+  }
+
+  @screen tablet {
+    @apply max-w-85vw max-h-70vh;
+  }
+
+  &.fixed-width {
+    @apply w-65vw;
+
+    @screen phone {
+      @apply w-95vw;
+    }
+
+    @screen tablet {
+      @apply w-85vw;
+    }
+  }
+}
+
+.modal.drawer {
+  @apply !max-w-screen !w-full !max-h-90vh !w-screen bg-light-bg;
+
+  border-radius: 12px 12px 0 0;
+}
+
+.close-btn {
+  @apply absolute h-16 top-0 right-0 w-16 flex items-center justify-center;
+}
+
+.header {
+  @apply flex-shrink-0 h-16;
+}
+
+.title-wrapper {
+  @apply h-16 px-6 relative box-content flex items-center flex-shrink-0;
+
+  > h4 {
+    @apply font-medium text-lg m-0;
+  }
+}
+
+.content {
+  @apply p-6 overflow-auto flex-grow flex-shrink;
+
+  &.has-title {
+    @apply pt-1;
+  }
+}

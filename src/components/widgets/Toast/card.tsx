@@ -4,8 +4,8 @@ import { useRef } from 'react'
 import { toast } from 'react-toastify'
 
 import { Avatar } from '@mx-space/kami-design/components/Avatar'
+import { CloseIcon } from '@mx-space/kami-design/components/Icons'
 
-import { HumbleiconsTimes } from '~/../packages/kami-design/components/Icons'
 import { ImpressionView } from '~/components/biz/ImpressionView'
 import { RelativeTime } from '~/components/universal/RelativeTime'
 import { useInitialData } from '~/hooks/use-initial-data'
@@ -42,13 +42,13 @@ export const ToastCard: FC<{
         <div
           role={'button'}
           tabIndex={0}
-          className="flex items-center justify-center absolute z-10 top-2 left-2 h-4 w-4 rounded-full overflow-hidden bg-gray-6 bg-opacity-80 dark:bg-dark-100 text-dark-50 dark:text-white"
+          className="flex items-center justify-center absolute z-10 top-2 left-2 h-6 w-6 rounded-full overflow-hidden bg-gray-6 bg-opacity-80 dark:bg-dark-100 text-dark-50 dark:text-white"
           onClick={(e) => {
             e.stopPropagation()
             props.getToastId && toast.dismiss(props.getToastId())
           }}
         >
-          <HumbleiconsTimes />
+          <CloseIcon />
         </div>
         <div className="flex-shrink-0">
           <Avatar

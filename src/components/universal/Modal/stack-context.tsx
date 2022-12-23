@@ -21,10 +21,10 @@ import React, {
 import { useIsClient } from '~/hooks/use-is-client'
 import { useStore } from '~/store'
 
-import type { ModalProps, ModalRefObject } from '.'
-import { Modal } from '.'
 import type { OverlayProps } from '../Overlay'
 import { Overlay } from '../Overlay'
+import type { ModalProps, ModalRefObject } from './Modal'
+import { Modal } from './Modal'
 
 /**
  * @param {boolean} immediately 立即销毁，不会等待动画结束
@@ -65,7 +65,7 @@ export interface IModalStackComponent<T = any> extends UniversalProps {
    */
   component: ReactNode | ReactElement | React.FC<T>
   /**
-   * 传递组件的 props, 可以是一个函数, 如果是函数, 则会在 Modal 出现的时候调用获取 props
+   * 传递组件的 props, 可以是一个函数，如果是函数，则会在 Modal 出现的时候调用获取 props
    */
   props?: T | (() => T)
   /**

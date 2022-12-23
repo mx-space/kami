@@ -1,3 +1,4 @@
+import { clsx } from 'clsx'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { Fragment, useCallback, useEffect, useState } from 'react'
@@ -33,7 +34,7 @@ export const openCommentMessage = async () => {
     },
     error: () => {
       destory()
-      message.error({ content: '失败了, www', duration: 2000 })
+      message.error({ content: '失败了，www', duration: 2000 })
     },
   }
 }
@@ -41,6 +42,7 @@ export const openCommentMessage = async () => {
 interface CommentWrapProps {
   id: string
   allowComment: boolean
+  warpperClassName?: string
 }
 
 const CommentWrap: FC<CommentWrapProps> = observer((props) => {
@@ -135,7 +137,12 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
   }, [id])
 
   return (
-    <div className={styles.wrap} ref={ref} data-hide-print id="comments">
+    <div
+      className={clsx(styles.wrap, props.warpperClassName)}
+      ref={ref}
+      data-hide-print
+      id="comments"
+    >
       {allowComment && (
         <h1 className="headline">
           {comments.length

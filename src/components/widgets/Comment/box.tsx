@@ -133,28 +133,28 @@ export const CommentBox: FC<{
 
     if (!logged) {
       if (author === userStore.name || author === userStore.username) {
-        return message.error('昵称与我主人重名了, 但是你好像并不是我的主人唉')
+        return message.error('昵称与我主人重名了，但是你好像并不是我的主人唉')
       }
       if (!author || !text || !mail) {
-        message.error('小可爱, 能把信息填完整么')
+        message.error('小可爱，能把信息填完整么')
         return
       }
       if (url && !isUrl(url, { require_protocol: true })) {
-        message.error('小可爱, 网址格式不正确哦')
+        message.error('小可爱，网址格式不正确哦')
         return
       }
       if (!isEmail(mail)) {
-        message.error('小可爱, 邮箱格式不正确哦')
+        message.error('小可爱，邮箱格式不正确哦')
         return
       }
       if (author.length > 20) {
-        message.error('昵称太长了了啦, 服务器会坏掉的')
+        message.error('昵称太长了了啦，服务器会坏掉的')
         return
       }
     }
 
     if (text.length > 500) {
-      message.error('内容太长了了啦, 服务器会坏掉的')
+      message.error('内容太长了了啦，服务器会坏掉的')
       return
     }
     const model = {
@@ -280,7 +280,7 @@ export const CommentBox: FC<{
         placeholder={
           !logged
             ? '嘿 ︿(￣︶￣)︿, 留个评论好不好嘛~'
-            : '主人, 说点什么好呢? '
+            : '主人，说点什么好呢？'
         }
       />
 
@@ -289,6 +289,7 @@ export const CommentBox: FC<{
       >
         <div className="flex-shrink-0 flex space-x-2 items-center">
           <FloatPopover
+            popoverWrapperClassNames="z-100 relative"
             triggerComponent={
               useRef(() => (
                 <button
@@ -391,6 +392,8 @@ const CommentBoxOption = observer<{ commentId?: string; refId: string }>(
   },
 )
 
+// TODO root portal to and modal zIndex
+// popoverWrapperClassNames="z-100 relative"
 const KaomojiButton: FC<{ onClickKaomoji: (kaomoji: string) => any }> = memo(
   ({ onClickKaomoji }) => {
     const { event } = useAnalyze()
@@ -403,6 +406,7 @@ const KaomojiButton: FC<{ onClickKaomoji: (kaomoji: string) => any }> = memo(
       <FloatPopover
         trigger="both"
         wrapperClassNames="flex-shrink-0"
+        popoverWrapperClassNames="z-100 relative"
         triggerComponent={memo(() => (
           <button className="btn green mr-[12px] cursor-pointer">
             {randomKaomoji.current}
