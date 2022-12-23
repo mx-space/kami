@@ -13,6 +13,7 @@ import { SWRConfig } from 'swr'
 import type { FullConfiguration } from 'swr/_internal'
 
 import { NoDataErrorView } from '~/components/app/Error/no-data'
+import { ErrorBoundary } from '~/components/app/ErrorBoundary'
 import { BasicLayout } from '~/components/layouts/BasicLayout'
 import { DebugLayout } from '~/components/layouts/DebugLayout'
 import type { InitialDataType } from '~/context/initial-data'
@@ -82,7 +83,9 @@ const Wrapper = memo((props) => {
     <>
       <SWRConfig value={swrConfig.current}>
         <BasicLayout>
-          <Content>{props.children}</Content>
+          <Content>
+            <ErrorBoundary>{props.children}</ErrorBoundary>
+          </Content>
         </BasicLayout>
       </SWRConfig>
 
@@ -112,7 +115,7 @@ App.getInitialProps = async (props: AppContext) => {
         // 这里抛出，和官网直接 await getProps 一样，异常走到 _error 处理
         throw e
       }
-      // 这里捕获， 为了走全局无数据页
+      // 这里捕获，为了走全局无数据页
       if (ctx.res) {
         ctx.res.statusCode = 466
         ctx.res.statusMessage = 'No Data'

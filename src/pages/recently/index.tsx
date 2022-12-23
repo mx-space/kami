@@ -1,7 +1,15 @@
 import { clsx } from 'clsx'
+import { uniqWith } from 'lodash-es'
 import { observer } from 'mobx-react-lite'
 import type { NextPage } from 'next'
-import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
+import {
+  Fragment,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import { useInView } from 'react-intersection-observer'
 import { message } from 'react-message-popup'
 import useSWR from 'swr'
@@ -30,19 +38,18 @@ import styles from './index.module.css'
 
 const FETCH_SIZE = 10
 
-const useDataEventHandler = (data, setData) => {
+const useDataEventHandler = () => {
+  const [newData, setNewData] = useState<
+    (RecentlyModel & { comments: number })[]
+  >([])
+  const [deleteIds, setDeleteIds] = useState<string[]>([])
   useEffect(() => {
     const create = (payload: RecentlyModel) => {
-      data.unshift(payload)
-      setData([...data])
+      setNewData((data) => [{ ...payload, comments: 0 }, ...data])
     }
 
     const del = ({ id }) => {
-      const index = data.findIndex((d) => d.id === id)
-      if (index != -1) {
-        data.splice(index, 1)
-        setData([...data])
-      }
+      setDeleteIds((ids) => [...ids, id])
     }
 
     eventBus.on(EventTypes.RECENTLY_CREATE, create)
@@ -52,7 +59,9 @@ const useDataEventHandler = (data, setData) => {
       eventBus.off(EventTypes.RECENTLY_CREATE, create)
       eventBus.off(EventTypes.RECENTLY_DElETE, del)
     }
-  }, [data])
+  }, [])
+
+  return { newData, deleteIds: new Set(deleteIds) }
 }
 
 const RecentlyPage: NextPage = () => {
@@ -74,31 +83,42 @@ const RecentlyPage: NextPage = () => {
       if (data.length < FETCH_SIZE) {
         setHasNext(false)
       }
-      return data
+      return [before || 'root', data] as const
     },
     {
-      revalidateIfStale: false,
-      revalidateOnFocus: false,
-      refreshWhenOffline: false,
-      refreshInterval: 0,
-      refreshWhenHidden: false,
-      revalidateOnReconnect: false,
+      isPaused() {
+        return !hasNext
+      },
     },
   )
 
-  const [data, setData] = useState<(RecentlyModel & { comments?: number })[]>(
-    [],
+  const [slicedData, setSliceData] = useState<
+    Record<string, (RecentlyModel & { comments?: number })[]>
+  >({})
+  const data = useMemo(
+    () => [...Object.values(slicedData)].flat(1),
+    [slicedData],
   )
 
   useEffect(() => {
     if (!fetchedData) {
       return
     }
+    const [key, data] = fetchedData
 
-    setData((d) => [...d, ...fetchedData])
+    if (!data) {
+      return
+    }
+
+    setSliceData((d) => {
+      return {
+        ...d,
+        [key]: data,
+      }
+    })
   }, [fetchedData])
 
-  useDataEventHandler(data, setData)
+  const { deleteIds, newData } = useDataEventHandler()
 
   const { ref, inView } = useInView()
 
@@ -152,53 +172,63 @@ const RecentlyPage: NextPage = () => {
         <Loading />
       ) : (
         <Fragment>
-          {data.length == 0 ? (
+          {data.length == 0 && newData.length == 0 ? (
             <p className="text-center">这里还没有内容哦</p>
           ) : (
             <div className={styles['bubble-list']}>
-              {data.map((d) => (
-                <Fragment key={d.id}>
-                  <div
-                    className={clsx(
-                      'bubble',
-                      isLogged ? 'from-me' : 'from-them',
-                    )}
-                  >
-                    <div className="overflow-hidden">
-                      <Markdown
-                        forceBlock
-                        value={d.content}
-                        wrapperProps={wrapperProps}
-                      />
-                      {d.ref && <RefPreview refModel={d.ref} />}
-                    </div>
-
-                    <div className="text-sm float-right mt-1 flex items-center">
-                      <button
-                        className="inline-flex items-center"
-                        onClick={() =>
-                          d.allowComment ? handleClickComment(d.id) : void 0
-                        }
+              {uniqWith([...newData, ...data], (a, b) => a.id === b.id).map(
+                (d) => {
+                  if (deleteIds.has(d.id)) {
+                    return null
+                  }
+                  return (
+                    <Fragment key={d.id}>
+                      <div
+                        className={clsx(
+                          'bubble',
+                          isLogged ? 'from-me' : 'from-them',
+                        )}
                       >
-                        <FontistoComments className="ml-2 mr-1 opacity-80" />
-                        <span className="mr-2 opacity-80">
-                          {d.comments || 0}
-                        </span>
-                      </button>
-                      <RelativeTime date={d.created} />
-                    </div>
+                        <div className="overflow-hidden">
+                          <Markdown
+                            forceBlock
+                            value={d.content}
+                            wrapperProps={wrapperProps}
+                          />
+                          {d.ref && <RefPreview refModel={d.ref} />}
+                        </div>
 
-                    {isLogged && (
-                      <div className="del" onClick={() => handleDelete(d.id)}>
-                        <JamTrash className="mr-2" />
-                        删除
+                        <div className="text-sm float-right mt-1 flex items-center">
+                          <button
+                            className="inline-flex items-center"
+                            onClick={() =>
+                              d.allowComment ? handleClickComment(d.id) : void 0
+                            }
+                          >
+                            <FontistoComments className="ml-2 mr-1 opacity-80" />
+                            <span className="mr-2 opacity-80">
+                              {d.comments || 0}
+                            </span>
+                          </button>
+                          <RelativeTime date={d.created} />
+                        </div>
+
+                        {isLogged && (
+                          <div
+                            className="del"
+                            onClick={() => handleDelete(d.id)}
+                          >
+                            <JamTrash className="mr-2" />
+                            删除
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
 
-                  <div className="clear-both" />
-                </Fragment>
-              ))}
+                      <div className="clear-both" />
+                    </Fragment>
+                  )
+                },
+              )}
             </div>
           )}
 
