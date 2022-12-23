@@ -132,14 +132,23 @@ export class Notice {
       action: TrackerAction.Interaction,
       label: '内嵌通知触发',
     })
-    toast(
-      React.createElement(ToastCard, { text, title, description, avatar }),
+
+    const id = toast(
+      React.createElement(ToastCard, {
+        text,
+        title,
+        description,
+        avatar,
+        getToastId: () => id,
+        onClick(e) {
+          onClick?.(e)
+          toast.dismiss(id)
+        },
+      }),
       {
         autoClose: duration,
+        closeOnClick: false,
         position: store.appUIStore.isPadOrMobile ? 'top-center' : 'top-right',
-        onClick(e) {
-          onClick?.(e.nativeEvent)
-        },
       },
     )
   }
