@@ -1,5 +1,5 @@
 import { clsx } from 'clsx'
-import { uniqWith } from 'lodash-es'
+import { sample, uniqWith } from 'lodash-es'
 import { observer } from 'mobx-react-lite'
 import type { NextPage } from 'next'
 import {
@@ -15,6 +15,11 @@ import { message } from 'react-message-popup'
 import useSWR from 'swr'
 
 import type { RecentlyModel } from '@mx-space/api-client'
+import {
+  RecentlyAttitudeEnum,
+  RecentlyAttitudeResultEnum,
+} from '@mx-space/api-client'
+import { IonThumbsup } from '@mx-space/kami-design/components/Icons'
 import {
   FontistoComments,
   JamTrash,
@@ -161,6 +166,30 @@ const RecentlyPage: NextPage = () => {
     })
   }, [])
 
+  const handleUp = (id: string) => {
+    apiClient.recently
+      .attitude(id, RecentlyAttitudeEnum.Up)
+      .then(({ code }) => {
+        if (code === RecentlyAttitudeResultEnum.Inc) {
+          message.success(sample(['(￣▽￣*) ゞ', '(＾▽＾)'])!)
+        } else {
+          message.success('[○･｀Д´･○]')
+        }
+      })
+  }
+
+  const handleDown = (id: string) => {
+    apiClient.recently
+      .attitude(id, RecentlyAttitudeEnum.Down)
+      .then(({ code }) => {
+        if (code === RecentlyAttitudeResultEnum.Inc) {
+          message.success('(╥_╥)')
+        } else {
+          message.success('ヽ (・∀・) ﾉ')
+        }
+      })
+  }
+
   return (
     <main className="max-w-[50em] relative">
       <h1>动态</h1>
@@ -214,15 +243,32 @@ const RecentlyPage: NextPage = () => {
                           <RelativeTime date={d.created} />
                         </div>
 
-                        {isLogged && (
-                          <div
-                            className="del"
-                            onClick={() => handleDelete(d.id)}
+                        <div className="actions">
+                          {isLogged && (
+                            <button
+                              className="flex items-center text-red"
+                              onClick={() => handleDelete(d.id)}
+                            >
+                              <JamTrash className="mr-2" />
+                              删除
+                            </button>
+                          )}
+                          <button
+                            className="flex items-center ml-2 text-red"
+                            onClick={() => handleUp(d.id)}
                           >
-                            <JamTrash className="mr-2" />
-                            删除
-                          </div>
-                        )}
+                            <IonThumbsup />
+                            {isLogged && d.up}
+                          </button>
+
+                          <button
+                            className="flex items-center ml-2 text-shizuku-text"
+                            onClick={() => handleDown(d.id)}
+                          >
+                            <IonThumbsup className="transform rotate-[1.5turn]" />
+                            {isLogged && d.down}
+                          </button>
+                        </div>
                       </div>
 
                       <div className="clear-both" />

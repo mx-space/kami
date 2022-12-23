@@ -26,9 +26,9 @@
       margin-bottom: 0.7em;
       padding: 10px 20px;
 
-      .del {
-        @apply transition cursor-pointer absolute right-[-12px] top-0 bottom-0;
-        @apply flex items-center text-red transform translate-x-[100%] opacity-0 invisible;
+      .actions {
+        @apply absolute right-[-12px] top-0 bottom-0;
+        @apply flex items-center transform translate-x-[100%];
 
         &::after {
           content: '';
@@ -37,9 +37,13 @@
 
           z-index: -1;
         }
+
+        & > * {
+          @apply opacity-0 invisible transition;
+        }
       }
 
-      &:hover .del {
+      &:hover .actions > * {
         @apply opacity-100 visible transition-opacity;
 
         &:hover {
