@@ -76,7 +76,7 @@ interface NoteLayoutProps {
 export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
   forwardRef((props, ref) => {
     const { date, id, title, tips, children } = props
-    const dateFormat = dayjs(date).locale('cn').format('YYYY年M月D日 dddd')
+    const dateFormat = dayjs(date).locale('cn').format('YYYY 年 M 月 D 日 dddd')
     const {
       userStore: { isLogged, url },
       noteStore,

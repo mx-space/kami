@@ -142,8 +142,8 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
       const data: MapType = {
         title: note.title,
         meta: [
-          note.mood ? `这天的心情: ${note.mood}` : undefined,
-          note.weather ? `这天的天气: ${note.weather}` : undefined,
+          note.mood ? `这天的心情：${note.mood}` : undefined,
+          note.weather ? `这天的天气：${note.weather}` : undefined,
           '生活点滴',
         ].filter(Boolean) as string[],
         date,

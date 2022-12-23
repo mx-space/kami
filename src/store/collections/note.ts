@@ -53,7 +53,7 @@ export class NoteStore extends Store<NoteModel> {
     try {
       await apiClient.note.likeIt(id)
       note.count.like = note.count.like + 1
-      message.success('感谢喜欢!')
+      message.success('感谢喜欢！')
     } catch {
       message.error(errorMessage)
     } finally {
@@ -97,7 +97,7 @@ export class NoteStore extends Store<NoteModel> {
 
     runInAction(() => {
       this.add(data.data)
-      // TODO 这边的关系映射的添加 是不是应该覆写 add 方法比较好, 下面也是
+      // TODO 这边的关系映射的添加 是不是应该覆写 add 方法比较好，下面也是
       this.nidToIdMap.set(data.data.nid, data.data.id)
       this.relationMap.set(data.data.id, [data.prev, data.next])
     })

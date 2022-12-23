@@ -5,7 +5,7 @@ export const useCheckOldBrowser = () => {
   const checkBrowser = useCallback(() => {
     const { isOld, msg: errMsg } = checkOldBrowser()
     if (isOld) {
-      const msg = '欧尼酱, 乃的浏览器太老了, 更新一下啦（o´ﾟ□ﾟ`o）'
+      const msg = '欧尼酱，乃的浏览器太老了，更新一下啦（o´ﾟ□ﾟ`o）'
       alert(msg)
       message.warn(msg, Infinity)
       class BrowserTooOldError extends Error {
@@ -34,7 +34,7 @@ function checkOldBrowser() {
   const isOld: boolean = (() => {
     if (isIE) {
       alert(
-        '欧尼酱, 乃真的要使用 IE 浏览器吗, 不如换个 Chrome 好不好嘛（o´ﾟ□ﾟ`o）',
+        '欧尼酱，乃真的要使用 IE 浏览器吗，不如换个 Chrome 好不好嘛（o´ﾟ□ﾟ`o）',
       )
       location.href = 'https://www.google.cn/chrome/'
       return true
@@ -63,7 +63,7 @@ function checkOldBrowser() {
     return false
   })()
   if (isOld) {
-    window.alert('欧尼酱, 乃的浏览器太老了, 更新一下啦（o´ﾟ□ﾟ`o）')
+    window.alert('欧尼酱，乃的浏览器太老了，更新一下啦（o´ﾟ□ﾟ`o）')
     return {
       isOld: true,
       msg: `User browser is too old. UA: ${ua}`,

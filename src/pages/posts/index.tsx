@@ -72,7 +72,7 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
             <div className="flex flex-col">
               <EmptyIcon />
               <p>站长没有写过一篇文章啦</p>
-              <p>稍后来看看吧!</p>
+              <p>稍后来看看吧！</p>
             </div>
           ) : (
             <Loading loadingText="正在加载.." />

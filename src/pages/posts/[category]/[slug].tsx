@@ -139,7 +139,9 @@ export const PostView: PageOnlyProps = observer((props) => {
     springScrollToTop()
   }, [post.id])
 
-  const createTime = dayjs(post.created).locale('cn').format('YYYY年M月D日')
+  const createTime = dayjs(post.created)
+    .locale('cn')
+    .format('YYYY 年 M 月 D 日')
 
   useEffect(() => {
     setAction({
@@ -191,11 +193,11 @@ export const PostView: PageOnlyProps = observer((props) => {
           color: isThumbsUpBefore(post.id) ? '#f1c40f' : undefined,
           callback: () => {
             if (isThumbsUpBefore(post.id)) {
-              return message.error('你已经支持过啦!')
+              return message.error('你已经支持过啦！')
             }
 
             apiClient.post.thumbsUp(post.id).then(() => {
-              message.success('感谢支持!')
+              message.success('感谢支持！')
 
               storeThumbsUpCookie(post.id)
               post.count.like = post.count.like + 1

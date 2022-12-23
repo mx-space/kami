@@ -160,7 +160,7 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
                 setSure(null)
               }}
             >
-              真的需要删除?
+              真的需要删除？
             </span>
           )}
         </Fragment>

@@ -73,7 +73,7 @@ const SayView = () => {
                       {`发布于 ${relativeTimeFromNow(say.created)}`}
                     </div>
                     <div className="flex-shrink-0 flex-grow">
-                      {hasSource && ` 出自 “${say.source}”`}
+                      {hasSource && ` 出自“${say.source}”`}
                       {hasSource && hasAuthor && ', '}
                       {hasAuthor && `作者：${say.author}`}
                       {!hasAuthor && !hasSource && '站长说'}

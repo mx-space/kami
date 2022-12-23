@@ -28,17 +28,17 @@ export const useCheckLogged = () => {
                   .put<{ token: string }>()
                   .then((res) => {
                     master.setToken(res.token)
-                    message.success(`欢迎回来, ${master.name}`, 1500)
+                    message.success(`欢迎回来，${master.name}`, 1500)
                     setToken(res.token)
                   })
               } else {
                 removeToken()
-                message.warn('登录身份过期了, 再登录一下吧!', 2000)
+                message.warn('登录身份过期了，再登录一下吧！', 2000)
               }
             })
             .catch(() => {
               removeToken()
-              message.warn('登录身份过期了, 再登录一下吧!', 2000)
+              message.warn('登录身份过期了，再登录一下吧！', 2000)
             })
         } else {
           if (banDevtoolEnable) {

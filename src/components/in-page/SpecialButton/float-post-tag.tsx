@@ -141,7 +141,7 @@ const _FloatPostTagButton: FC = observer(() => {
                   })
                 ) : (
                   <RightLeftTransitionView timeout={100}>
-                    <span>载入中.</span>
+                    <span>载入中...</span>
                   </RightLeftTransitionView>
                 )}
               </TransitionGroup>
