@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## [4.0.5](https://github.com/mx-space/kami/compare/v4.0.4...v4.0.5) (2022-12-24)
+
+
+### Bug Fixes
+
+* header subtitle overflow ([ac95920](https://github.com/mx-space/kami/commit/ac959201e779ed2697082e35c0a7743f0262175d))
+* modal root portal ([d84cb61](https://github.com/mx-space/kami/commit/d84cb61c15c83d6db60878f9e53deae684cae233))
+* notes styles and crash ([77301f0](https://github.com/mx-space/kami/commit/77301f0d19a8ec9b0b805f1d37910d64262248e7))
+* override windi style of `indent` ([ea36eec](https://github.com/mx-space/kami/commit/ea36eec0609e9c7cc3ac89304b2ed989381ecc3f))
+
+
+### Features
+
+* show what you say when comment ([b1a40c2](https://github.com/mx-space/kami/commit/b1a40c2ad7302f65cbf01ecdf46cc5d546564e4e))
+
+
+
 ## [4.0.4](https://github.com/mx-space/kami/compare/v4.0.3...v4.0.4) (2022-12-23)
 
 
