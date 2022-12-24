@@ -106,12 +106,15 @@ export const Header: FC = observer(() => {
         )}
       >
         <div
-          className={classNames(styles['head-swiper'], 'justify-between')}
+          className={classNames(
+            styles['head-swiper'],
+            'justify-between min-w-0',
+          )}
           ref={appHeaderRef}
         >
           <div
             className={
-              'flex items-center justify-center cursor-pointer select-none'
+              'flex items-center justify-center cursor-pointer select-none min-w-0'
             }
             onClick={clickFunc}
           >

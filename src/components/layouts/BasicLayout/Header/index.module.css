@@ -39,13 +39,13 @@
 }
 
 .header-title-wrapper {
-  @apply flex flex-col ml-4 py-2 box-border justify-center;
+  @apply flex flex-col ml-4 py-2 box-border justify-center min-w-0;
 
   height: 4rem;
 }
 
 .title {
-  @apply relative inline-block text-xl font-medium mt-0 truncate flex-shrink-0;
+  @apply relative inline-block text-xl font-medium mt-0 truncate flex-shrink-0 min-w-0;
 
   &.title-has-sub {
     @apply text-lg;
@@ -53,7 +53,7 @@
 }
 
 .subtitle {
-  @apply text-sm text-gray-2;
+  @apply text-sm text-gray-2 flex-1 min-w-0 truncate;
 
   margin-top: -0.3rem;
 }
