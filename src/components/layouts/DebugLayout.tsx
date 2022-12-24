@@ -14,7 +14,7 @@ export const DebugLayout: FC = (props) => {
     }
   }, [])
   return (
-    <ModalStackProvider>
+    <ModalStackProvider isMobileSize={false}>
       <div
         style={{
           maxWidth: '600px',

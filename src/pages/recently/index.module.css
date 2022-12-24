@@ -62,6 +62,10 @@
         border-radius: 25px;
         float: right;
 
+        :global(blockquote) {
+          background: #3b82df;
+        }
+
         &::after {
           border-color: var(--bg);
           border-radius: 50%;

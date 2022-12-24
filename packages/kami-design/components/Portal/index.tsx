@@ -4,11 +4,16 @@ import { createPortal } from 'react-dom'
 
 import { useIsClient } from '~/hooks/use-is-client'
 
-export const RootPortal: FC = memo((props) => {
+import { useRootPortal } from './provider'
+
+export const RootPortal: FC<{
+  to?: HTMLElement
+}> = memo((props) => {
   const isClient = useIsClient()
+  const to = useRootPortal()
   if (!isClient) {
     return null
   }
 
-  return createPortal(props.children, document.body)
+  return createPortal(props.children, props.to || to || document.body)
 })

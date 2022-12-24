@@ -1,6 +1,5 @@
 import { clsx } from 'clsx'
 import uniqueId from 'lodash-es/uniqueId'
-import { observer } from 'mobx-react-lite'
 import type {
   FC,
   FunctionComponentElement,
@@ -11,6 +10,7 @@ import type {
 import React, {
   createContext,
   createElement,
+  memo,
   useContext,
   useRef,
   useState,
@@ -18,7 +18,6 @@ import React, {
 import { useStateToRef } from 'react-shortcut-guide'
 
 import { useIsClient } from '~/hooks/use-is-client'
-import { useStore } from '~/store'
 
 import type { OverlayProps } from '../Overlay'
 import { Overlay } from '../Overlay'
@@ -93,9 +92,10 @@ interface IModalStackStateType extends UniversalProps {
 }
 
 export const ModalStackProvider: FC<{
+  isMobileSize: boolean
   children?: ReactNode | ReactChildren
-}> = observer((props) => {
-  const { children } = props
+}> = memo((props) => {
+  const { children, isMobileSize } = props
   const [modalStack, setModalStack] = useState<IModalStackStateType[]>([])
   const modalStackRef = useStateToRef(modalStack)
 
@@ -229,13 +229,6 @@ export const ModalStackProvider: FC<{
 
   const isClient = useIsClient()
 
-  // TODO  抽离 不再依赖
-  const {
-    appUIStore: {
-      viewport: { mobile },
-    },
-  } = useStore()
-
   return (
     <ModalStackContext.Provider
       value={
@@ -281,9 +274,11 @@ export const ModalStackProvider: FC<{
           dismissFnMapRef.current.set(Component, onClose)
           return (
             <Overlay
-              center={!mobile && useBottomDrawerInMobile}
+              center={!isMobileSize && useBottomDrawerInMobile}
               standaloneWrapperClassName={clsx(
-                mobile && useBottomDrawerInMobile && 'items-end justify-center',
+                isMobileSize &&
+                  useBottomDrawerInMobile &&
+                  'items-end justify-center',
               )}
               show={extraProps.overlayShow}
               onClose={() => disposer()}

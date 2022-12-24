@@ -22,7 +22,7 @@ import { loadStyleSheet } from '~/utils/load-script'
 import { useStore } from '../../store'
 
 export const Content: FC = observer((props) => {
-  const { userStore: master } = useStore()
+  const { userStore: master, appUIStore } = useStore()
 
   useScreenMedia()
   const { check: checkBrowser } = useCheckOldBrowser()
@@ -56,7 +56,7 @@ export const Content: FC = observer((props) => {
   }, [])
 
   return (
-    <ModalStackProvider>
+    <ModalStackProvider isMobileSize={appUIStore.viewport.mobile}>
       <DynamicHeadMeta />
       <NextSeo
         title={`${initialData.seo.title} · ${initialData.seo.description}`}

@@ -159,6 +159,7 @@ const RecentlyPage: NextPage = () => {
         title: '评论',
         closeable: true,
         fixedWidth: true,
+        useRootPortal: true,
       },
       component: (
         <CommentLazy allowComment id={id} warpperClassName={'!mt-0'} />

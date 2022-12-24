@@ -289,7 +289,6 @@ export const CommentBox: FC<{
       >
         <div className="flex-shrink-0 flex space-x-2 items-center">
           <FloatPopover
-            popoverWrapperClassNames="z-100 relative"
             triggerComponent={
               useRef(() => (
                 <button
@@ -301,15 +300,11 @@ export const CommentBox: FC<{
               )).current
             }
           >
-            {
-              useRef(
-                <div className="leading-7">
-                  <p>评论支持部分 Markdown 语法</p>
-                  <p>评论可能被移入垃圾箱</p>
-                  <p>评论可能需要审核，审核通过后才会显示</p>
-                </div>,
-              ).current
-            }
+            <div className="leading-7">
+              <p>评论支持部分 Markdown 语法</p>
+              <p>评论可能被移入垃圾箱</p>
+              <p>评论可能需要审核，审核通过后才会显示</p>
+            </div>
           </FloatPopover>
           <KaomojiButton onClickKaomoji={handleInsertEmoji} />
         </div>
@@ -392,8 +387,6 @@ const CommentBoxOption = observer<{ commentId?: string; refId: string }>(
   },
 )
 
-// TODO root portal to and modal zIndex
-// popoverWrapperClassNames="z-100 relative"
 const KaomojiButton: FC<{ onClickKaomoji: (kaomoji: string) => any }> = memo(
   ({ onClickKaomoji }) => {
     const { event } = useAnalyze()
@@ -406,7 +399,6 @@ const KaomojiButton: FC<{ onClickKaomoji: (kaomoji: string) => any }> = memo(
       <FloatPopover
         trigger="both"
         wrapperClassNames="flex-shrink-0"
-        popoverWrapperClassNames="z-100 relative"
         triggerComponent={memo(() => (
           <button className="btn green mr-[12px] cursor-pointer">
             {randomKaomoji.current}

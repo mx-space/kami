@@ -9,7 +9,9 @@ import {
 } from 'react'
 
 import { CloseIcon } from '@mx-space/kami-design/components/Icons/layout'
+import { RootPortalProvider } from '@mx-space/kami-design/components/Portal/provider'
 
+import { useIsMountedState } from '~/hooks/use-is-mounted'
 import { useStore } from '~/store'
 
 import { BottomUpTransitionView } from '../Transition/bottom-up'
@@ -18,17 +20,18 @@ import { ScaleModalTransition } from './scale-transition'
 
 export interface ModalProps {
   title?: string
-  // TODO action
   closeable?: boolean
   onClose?: () => any
   modalClassName?: string
   contentClassName?: string
   noBlur?: boolean
   fixedWidth?: boolean
+  useRootPortal?: boolean
 }
 
 export type ModalRefObject = {
   dismiss: () => Promise<void>
+  getElement: () => HTMLElement
 }
 export const Modal = observer(
   forwardRef<
@@ -50,8 +53,13 @@ export const Modal = observer(
       })
     }, [props.disposer])
 
+    const $wrapper = useRef<HTMLDivElement>(null)
+
     useImperativeHandle(ref, () => ({
       dismiss,
+      getElement: () => {
+        return $wrapper.current as HTMLElement
+      },
     }))
 
     const {
@@ -60,10 +68,27 @@ export const Modal = observer(
       },
     } = useStore()
 
-    const { title, closeable } = props
+    const { title, closeable, modalId, useRootPortal } = props
     const useDrawerStyle = mobile && props.useBottomDrawerInMobile
+
+    const isMounted = useIsMountedState()
+
+    const Content = (
+      <div
+        className={clsx(
+          styles['content'],
+          title && styles['has-title'],
+          props.contentClassName,
+        )}
+      >
+        {props.children}
+      </div>
+    )
+
     const Children = (
       <div
+        id={modalId}
+        ref={$wrapper}
         className={clsx(
           styles['modal'],
           props.fixedWidth && styles['fixed-width'],
@@ -86,15 +111,15 @@ export const Modal = observer(
             <CloseIcon />
           </div>
         )}
-        <div
-          className={clsx(
-            styles['content'],
-            title && styles['has-title'],
-            props.contentClassName,
-          )}
-        >
-          {props.children}
-        </div>
+        {useRootPortal ? (
+          isMounted ? (
+            <RootPortalProvider value={{ to: $wrapper.current as HTMLElement }}>
+              {Content}
+            </RootPortalProvider>
+          ) : null
+        ) : (
+          Content
+        )}
       </div>
     )
 
