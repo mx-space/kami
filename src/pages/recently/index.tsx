@@ -153,7 +153,7 @@ const RecentlyPage: NextPage = () => {
   }).current
 
   const { present } = useModalStack()
-  const handleClickComment = useCallback((id: string) => {
+  const handleClickComment = useCallback((model: RecentlyModel) => {
     present({
       modalProps: {
         title: '评论',
@@ -162,7 +162,12 @@ const RecentlyPage: NextPage = () => {
         useRootPortal: true,
       },
       component: (
-        <CommentLazy allowComment id={id} warpperClassName={'!mt-0'} />
+        <>
+          <p className="!mt-4 leading-6 whitespace-pre-line break-all">
+            {model.content}
+          </p>
+          <CommentLazy allowComment id={model.id} />
+        </>
       ),
     })
   }, [])
@@ -233,7 +238,7 @@ const RecentlyPage: NextPage = () => {
                           <button
                             className="inline-flex items-center"
                             onClick={() =>
-                              d.allowComment ? handleClickComment(d.id) : void 0
+                              d.allowComment ? handleClickComment(d) : void 0
                             }
                           >
                             <FontistoComments className="ml-2 mr-1 opacity-80" />
