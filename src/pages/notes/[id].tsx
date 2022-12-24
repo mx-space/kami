@@ -7,18 +7,13 @@ import { observer } from 'mobx-react-lite'
 import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import React, {
-  createElement,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import React, { createElement, useEffect, useMemo, useRef } from 'react'
 import { message } from 'react-message-popup'
 import useUpdate from 'react-use/lib/useUpdate'
 
 import type { NoteModel } from '@mx-space/api-client'
 import { RequestError } from '@mx-space/api-client'
+import { Banner } from '@mx-space/kami-design'
 import { Loading } from '@mx-space/kami-design/components/Loading'
 import { ImageSizeMetaContext } from '@mx-space/kami-design/contexts/image-size'
 
@@ -151,36 +146,23 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
     `生活观察日记${note.topic ? ` / ${note.topic.name}` : ''}`,
   )
   useNoteMusic(note.music)
+  useJumpToSimpleMarkdownRender(note.id)
 
   const { title, id, text } = note
-
-  const [tips, setTips] = useState(``)
-
   const { description, wordCount } = getSummaryFromMd(text, {
     count: true,
     length: 150,
   })
-  useEffect(() => {
-    try {
-      setTips(
-        `创建于 ${parseDate(note.created, 'YYYY-MM-DD dddd')}${
-          note.modified
-            ? `, 修改于 ${parseDate(note.modified, 'YYYY-MM-DD dddd')}`
-            : ''
-        }, 全文字数：${wordCount}, 阅读次数：${note.count.read}, 喜欢次数：${
-          note.count.like
-        }`,
-      )
-      // eslint-disable-next-line no-empty
-    } catch {}
-  }, [
-    text,
-    note.created,
-    note.modified,
-    note.count.read,
-    note.count.like,
-    wordCount,
-  ])
+
+  const tips = useMemo(() => {
+    return `创建于 ${parseDate(note.created, 'YYYY-MM-DD dddd')}${
+      note.modified
+        ? `, 修改于 ${parseDate(note.modified, 'YYYY-MM-DD dddd')}`
+        : ''
+    }, 全文字数：${wordCount}, 阅读次数：${note.count.read}, 喜欢次数：${
+      note.count.like
+    }`
+  }, [note.count.like, note.count.read, note.created, note.modified, wordCount])
 
   const isSecret = note.secret ? dayjs(note.secret).isAfter(new Date()) : false
   const secretDate = useMemo(() => new Date(note.secret!), [note.secret])
@@ -206,7 +188,11 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
     }
   }, [isSecret, secretDate])
 
-  useJumpToSimpleMarkdownRender(note.id)
+  const imageSizeProviderValue = useMemo(
+    () => imagesRecord2Map(note.images || []),
+    [note.images],
+  )
+
   return (
     <>
       {createElement(Seo, {
@@ -231,16 +217,11 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
             这篇文章暂时没有公开呢，将会在 {dateFormat} 解锁，再等等哦
           </p>
         ) : (
-          <ImageSizeMetaContext.Provider
-            value={useMemo(
-              () => imagesRecord2Map(note.images || []),
-              [note.images],
-            )}
-          >
+          <ImageSizeMetaContext.Provider value={imageSizeProviderValue}>
             {isSecret && (
-              <span className={'flex justify-center -mb-3.5'}>
+              <Banner type="info" className="mt-4">
                 这是一篇非公开的文章。(将在 {dateFormat} 解锁)
-              </span>
+              </Banner>
             )}
 
             <BanCopy>

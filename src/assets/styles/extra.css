@@ -263,7 +263,7 @@ ph {
   padding: 1em 5em;
   outline: none !important;
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 599px) {
     margin-left: -1.25em;
     margin-right: -1.25em;
     padding: 1em 3em;

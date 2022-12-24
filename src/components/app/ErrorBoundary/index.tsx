@@ -1,3 +1,4 @@
+import Router from 'next/router'
 import React, { PureComponent, createElement } from 'react'
 
 export class ErrorBoundary extends PureComponent<{
@@ -18,6 +19,20 @@ export class ErrorBoundary extends PureComponent<{
       error,
       errorInfo,
     })
+  }
+  eventsRef: any = () => void 0
+  componentDidMount(): void {
+    this.eventsRef = () => {
+      this.setState({
+        error: null,
+        errorInfo: null,
+      })
+    }
+    Router.events.on('routeChangeStart', this.eventsRef)
+  }
+
+  componentWillUnmount(): void {
+    Router.events.off('routeChangeStart', this.eventsRef)
   }
 
   render() {
