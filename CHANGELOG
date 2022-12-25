@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [4.0.6](https://github.com/mx-space/kami/compare/v4.0.5...v4.0.6) (2022-12-25)
+
+
+### Bug Fixes
+
+* increase go to anchor time ([732eceb](https://github.com/mx-space/kami/commit/732eceb16c952b80868bc29f6c10db62b62e6b49))
+* use master avatar instend of gravatar ([6ac8895](https://github.com/mx-space/kami/commit/6ac8895cb87583e3b0dd2c7a6ca3fe60fd13dc01))
+
+
+
 ## [4.0.5](https://github.com/mx-space/kami/compare/v4.0.4...v4.0.5) (2022-12-24)
 
 
