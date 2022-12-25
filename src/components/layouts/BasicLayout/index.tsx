@@ -108,7 +108,7 @@ export const BasicLayout: FC = observer(({ children }) => {
         const $el = document.getElementById(decodeURIComponent(id))
 
         $el && springScrollToElement($el, 1000, -window.innerHeight / 2 + 100)
-      }, 50)
+      }, 1050)
     }
   }, [])
   const { event } = useAnalyze()
