@@ -68,7 +68,8 @@ const CommentList: FC = observer(() => {
 const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
   const [replyId, setReplyId] = useState('')
   const { userStore } = useStore()
-  const logged = userStore.isLogged
+  const { isLogged: logged, name: masterName, master } = userStore
+  const { avatar: masterAvatar } = master || {}
 
   const { commentStore } = useStore()
   const { commentIdMap, comments } = commentStore
@@ -182,6 +183,7 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
       commentStore.unPinComment(comment.id)
     }
   }, [comment, comments])
+
   return (
     <Comment
       whispers={comment.isWhispers}
@@ -196,7 +198,11 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
           {comment.author}
         </a>
       }
-      avatar={<Avatar src={comment.avatar} />}
+      avatar={
+        <Avatar
+          src={comment.author === masterName ? masterAvatar! : comment.avatar}
+        />
+      }
       content={
         <Markdown
           value={`${
