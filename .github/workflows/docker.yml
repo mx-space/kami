@@ -9,8 +9,7 @@ on:
       - '.github/workflows/docker.yml'
       - 'Dockerfile'
     branches:
-      - master
-      - main
+      - '**'
 
 jobs:
   docker:
