@@ -8,7 +8,7 @@ importers:
 
   .:
     specifiers:
-      '@floating-ui/react-dom': 1.0.1
+      '@floating-ui/react-dom': 1.1.0
       '@formkit/auto-animate': 1.0.0-beta.5
       '@innei/eslint-config-react-ts': 0.9.6
       '@innei/prettier': 0.9.6
@@ -82,7 +82,7 @@ importers:
       windicss-webpack-plugin: 1.7.7
       zx: 7.1.1
     dependencies:
-      '@floating-ui/react-dom': 1.0.1_biqbaboplfbrettd7655fr4n2y
+      '@floating-ui/react-dom': 1.1.0_biqbaboplfbrettd7655fr4n2y
       '@formkit/auto-animate': 1.0.0-beta.5
       '@mx-space/api-client': 1.0.3
       axios: 0.27.2
@@ -901,10 +901,20 @@ packages:
     resolution: {integrity: sha512-Skfy0YS3NJ5nV9us0uuPN0HDk1Q4edljaOhRBJGDWs9EBa7ZVMYBHRFlhLvvmwEoaIM9BlH6QJFn9/uZg0bACg==}
     dev: false
 
+  /@floating-ui/core/1.1.0:
+    resolution: {integrity: sha512-zbsLwtnHo84w1Kc8rScAo5GMk1GdecSlrflIbfnEBJwvTSj1SL6kkOYV+nHraMCPEy+RNZZUaZyL8JosDGCtGQ==}
+    dev: false
+
   /@floating-ui/dom/1.0.5:
     resolution: {integrity: sha512-4X+Gmcq8meuVaU6odG8CQvHaebKKn5iCp5f/CmdKDMUL0AOnRXVA3afhJ2QzTEZUAxklsSeYuV3RrAwtrxAC3Q==}
     dependencies:
       '@floating-ui/core': 1.0.2
+    dev: false
+
+  /@floating-ui/dom/1.1.0:
+    resolution: {integrity: sha512-TSogMPVxbRe77QCj1dt8NmRiJasPvuc+eT5jnJ6YpLqgOD2zXc5UA3S1qwybN+GVCDNdKfpKy1oj8RpzLJvh6A==}
+    dependencies:
+      '@floating-ui/core': 1.1.0
     dev: false
 
   /@floating-ui/react-dom/1.0.1:
@@ -919,8 +929,8 @@ packages:
       '@floating-ui/dom': 1.0.5
     dev: false
 
-  /@floating-ui/react-dom/1.0.1_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-UW0t1Gi8ikbDRr8cQPVcqIDMBwUEENe5V4wlHWdrJ5egFnRQFBV9JirauTBFI6S8sM1qFUC1i+qa3g87E6CLTw==}
+  /@floating-ui/react-dom/1.1.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-xyP9dMqZouuQ7h10DvbEbxZItuUleKHXe7XQFvbpttjXZrfyQMaZVTnWsE/t3hrHakZy18HxEBZRzGNXQHd0GA==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -928,7 +938,7 @@ packages:
       react:
         optional: true
     dependencies:
-      '@floating-ui/dom': 1.0.5
+      '@floating-ui/dom': 1.1.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
