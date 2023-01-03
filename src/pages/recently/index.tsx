@@ -25,12 +25,12 @@ import {
   JamTrash,
 } from '@mx-space/kami-design/components/Icons/for-recently'
 import { Loading } from '@mx-space/kami-design/components/Loading'
+import { useModalStack } from '@mx-space/kami-design/components/Modal/stack-context'
 
 import { Seo } from '~/components/biz/Seo'
 import { RefPreview } from '~/components/in-page/Recently/RefPreview'
 import { RecentlySendBox } from '~/components/in-page/Recently/SendBox'
 import { Markdown } from '~/components/universal/Markdown'
-import { useModalStack } from '~/components/universal/Modal/stack-context'
 import { RelativeTime } from '~/components/universal/RelativeTime'
 import { CommentLazy } from '~/components/widgets/Comment'
 import { useStore } from '~/store'

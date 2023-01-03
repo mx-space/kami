@@ -4,11 +4,11 @@ import type { FC } from 'react'
 import { useEffect, useInsertionEffect } from 'react'
 
 import type { AggregateRoot } from '@mx-space/api-client'
+import { ModalStackProvider } from '@mx-space/kami-design/components/Modal/stack-context'
 
 import { MetaFooter } from '~/components/biz/Meta/footer'
 import { DynamicHeadMeta } from '~/components/biz/Meta/head'
 import Loader from '~/components/universal/Loader'
-import { ModalStackProvider } from '~/components/universal/Modal/stack-context'
 import { useRootTrackerListener } from '~/hooks/use-analyze'
 import { useCheckLogged } from '~/hooks/use-check-logged'
 import { useCheckOldBrowser } from '~/hooks/use-check-old-browser'

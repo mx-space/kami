@@ -4,8 +4,7 @@ import { TransitionGroup } from 'react-transition-group'
 
 import type { LinkModel } from '@mx-space/api-client'
 import { Avatar } from '@mx-space/kami-design/components/Avatar'
-
-import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
+import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
 import styles from './section.module.css'
 

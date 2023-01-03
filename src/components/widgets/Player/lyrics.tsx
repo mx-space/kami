@@ -5,9 +5,9 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 
 import { getTransitionSizes } from '@formkit/auto-animate'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
 import { withDesktopOnly } from '~/components/biz/view-only/desktop'
-import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { store } from '~/store'
 
 import type { LyricsContent } from './lyrics-manager'

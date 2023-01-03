@@ -4,9 +4,9 @@ import type { FC } from 'react'
 import React, { Fragment, memo, useEffect } from 'react'
 
 import { CloseIcon } from '@mx-space/kami-design/components/Icons/layout'
+import { Overlay } from '@mx-space/kami-design/components/Overlay'
 import { RootPortal } from '@mx-space/kami-design/components/Portal'
 
-import { Overlay } from '~/components/universal/Overlay'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { NoSSRWrapper } from '~/utils/no-ssr'

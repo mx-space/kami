@@ -12,10 +12,10 @@ import {
   PhUsersDuotone,
 } from '@mx-space/kami-design/components/Icons/for-home'
 import { IcTwotoneSignpost } from '@mx-space/kami-design/components/Icons/menu-icon'
+import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
 import { LikeButton } from '~/components/universal/LikeButton'
 import { NoticePanel } from '~/components/universal/Notice'
-import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { useRandomImage } from '~/hooks/use-kami'
 import { apiClient } from '~/utils/client'
 import { stopEventDefault } from '~/utils/dom'

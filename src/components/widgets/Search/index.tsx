@@ -9,9 +9,9 @@ import useSWR from 'swr'
 
 import { EmptyIcon } from '@mx-space/kami-design/components/Icons/for-comment'
 import { IonSearch } from '@mx-space/kami-design/components/Icons/layout'
+import type { OverlayProps } from '@mx-space/kami-design/components/Overlay'
+import { Overlay } from '@mx-space/kami-design/components/Overlay'
 
-import type { OverlayProps } from '~/components/universal/Overlay'
-import { Overlay } from '~/components/universal/Overlay'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import useDebounceValue from '~/hooks/use-debounce-value'

@@ -1,9 +1,9 @@
 import type { FC } from 'react'
 import { useEffect } from 'react'
 
-import { store } from '~/store'
+import { ModalStackProvider } from '@mx-space/kami-design/components/Modal'
 
-import { ModalStackProvider } from '../universal/Modal/stack-context'
+import { store } from '~/store'
 
 export const DebugLayout: FC = (props) => {
   useEffect(() => {

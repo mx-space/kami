@@ -11,8 +11,8 @@ import {
   FaSolidHeadphonesAlt,
 } from '@mx-space/kami-design/components/Icons/for-footer'
 import { RootPortal } from '@mx-space/kami-design/components/Portal'
+import { ScaleTransitionView } from '@mx-space/kami-design/components/Transition/scale'
 
-import { ScaleTransitionView } from '~/components/universal/Transition/scale'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useStore } from '~/store'

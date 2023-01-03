@@ -3,9 +3,9 @@ import useSWR from 'swr'
 
 import { CodiconGithubInverted } from '@mx-space/kami-design/components/Icons/menu-icon'
 import { Loading } from '@mx-space/kami-design/components/Loading'
+import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
 import { ProjectList } from '~/components/in-page/Project/list'
-import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useStore } from '~/store'

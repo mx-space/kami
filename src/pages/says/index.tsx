@@ -6,7 +6,8 @@ import { useEffect, useMemo, useRef } from 'react'
 import Masonry from 'react-masonry-css'
 import { TransitionGroup } from 'react-transition-group'
 
-import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
+import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
+
 import { relativeTimeFromNow } from '~/utils/time'
 
 import { SEO } from '../../components/biz/Seo'

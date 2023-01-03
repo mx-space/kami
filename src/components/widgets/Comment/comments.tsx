@@ -18,12 +18,12 @@ import {
   PhPushPin,
   PhPushPinFill,
 } from '@mx-space/kami-design/components/Icons/for-post'
+import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
 import { ImpressionView } from '~/components/biz/ImpressionView'
 import { IconTransition } from '~/components/universal/IconTransition'
 import { ImageTagPreview } from '~/components/universal/ImageTagPreview'
 import { Markdown } from '~/components/universal/Markdown'
-import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { socketClient } from '~/socket'
 import type { Id } from '~/store/helper/structure'
 import { apiClient } from '~/utils/client'

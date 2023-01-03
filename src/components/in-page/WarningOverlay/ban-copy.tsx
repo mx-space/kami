@@ -4,7 +4,8 @@ import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import { useEffect, useRef, useState } from 'react'
 
-import { Overlay } from '~/components/universal/Overlay'
+import { Overlay } from '@mx-space/kami-design/components/Overlay'
+
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useStore } from '~/store'

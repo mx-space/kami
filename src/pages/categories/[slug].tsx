@@ -7,10 +7,10 @@ import type {
   CategoryModel,
   CategoryWithChildrenModel,
 } from '@mx-space/api-client'
+import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { TimelineListWrapper } from '~/components/biz/TimelineListWrapper'
-import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { apiClient } from '~/utils/client'
 
 import { SEO } from '../../components/biz/Seo'

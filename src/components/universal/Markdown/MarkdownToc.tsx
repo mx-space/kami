@@ -5,11 +5,10 @@ import { useEffect } from 'react'
 
 import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
 import { FluentList16Filled } from '@mx-space/kami-design/components/Icons/shared'
+import { useModalStack } from '@mx-space/kami-design/components/Modal'
 
 import type { TocProps } from '~/components/widgets/Toc'
 import { useStore } from '~/store'
-
-import { useModalStack } from '../Modal/stack-context'
 
 const Toc = dynamic(
   () => import('~/components/widgets/Toc').then((m) => m.Toc),

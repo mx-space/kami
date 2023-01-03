@@ -13,8 +13,8 @@ import {
   FluentEyeHide20Regular,
   RegularBookmark,
 } from '@mx-space/kami-design/components/Icons/layout'
+import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
-import { BottomUpTransitionView } from '~/components/universal/Transition/bottom-up'
 import { useStore } from '~/store'
 import { apiClient } from '~/utils/client'
 import { resolveUrl } from '~/utils/utils'
