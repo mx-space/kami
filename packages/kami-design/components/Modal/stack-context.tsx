@@ -1,11 +1,12 @@
 import { clsx } from 'clsx'
 import uniqueId from 'lodash-es/uniqueId'
-import type {
+import {
   FC,
   FunctionComponentElement,
   ReactChildren,
   ReactElement,
   ReactNode,
+  useEffect,
 } from 'react'
 import React, {
   createContext,
@@ -15,7 +16,9 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import { useStateToRef } from 'react-shortcut-guide'
+import { unstable_batchedUpdates } from 'react-dom'
+
+import { useStateToRef } from '@mx-space/kami-design/hooks'
 
 import { useIsClient } from '~/hooks/use-is-client'
 
@@ -92,10 +95,10 @@ interface IModalStackStateType extends UniversalProps {
 }
 
 export const ModalStackProvider: FC<{
-  isMobileSize: boolean
+  isMobileViewport: boolean
   children?: ReactNode | ReactChildren
 }> = memo((props) => {
-  const { children, isMobileSize } = props
+  const { children, isMobileViewport } = props
   const [modalStack, setModalStack] = useState<IModalStackStateType[]>([])
   const modalStackRef = useStateToRef(modalStack)
 
@@ -115,6 +118,16 @@ export const ModalStackProvider: FC<{
   const dismissFnMapRef = useRef(
     new WeakMap<FunctionComponentElement<any>, () => any>(),
   )
+
+  const isMobileViewportRef = useStateToRef(isMobileViewport)
+
+  useEffect(() => {
+    unstable_batchedUpdates(() => {
+      modalStack.forEach((modal) => {
+        modalRefMap.current.get(modal.component)?.forceUpdate()
+      })
+    })
+  }, [isMobileViewport])
 
   const present = useRef((comp: IModalStackComponent): Disposer => {
     const {
@@ -173,6 +186,7 @@ export const ModalStackProvider: FC<{
           modalRefMap.current.set($modalElement, ins!)
         },
         disposer,
+        getIsMobileViewport: () => isMobileViewportRef.current,
       },
       modalChildren,
     )
@@ -274,9 +288,9 @@ export const ModalStackProvider: FC<{
           dismissFnMapRef.current.set(Component, onClose)
           return (
             <Overlay
-              center={!isMobileSize && useBottomDrawerInMobile}
+              center={!isMobileViewport && useBottomDrawerInMobile}
               standaloneWrapperClassName={clsx(
-                isMobileSize &&
+                isMobileViewport &&
                   useBottomDrawerInMobile &&
                   'items-end justify-center',
               )}

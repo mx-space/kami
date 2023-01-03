@@ -56,7 +56,7 @@ export const Content: FC = observer((props) => {
   }, [])
 
   return (
-    <ModalStackProvider isMobileSize={appUIStore.viewport.mobile}>
+    <ModalStackProvider isMobileViewport={appUIStore.viewport.mobile}>
       <DynamicHeadMeta />
       <NextSeo
         title={`${initialData.seo.title} · ${initialData.seo.description}`}
