@@ -70,9 +70,9 @@
     "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },
   "dependencies": {
-    "@floating-ui/react-dom": "^1.0.1",
+    "@floating-ui/react-dom": "^1.1.0",
     "@formkit/auto-animate": "^1.0.0-beta.5",
-    "@mx-space/api-client": "^1.0.0-beta.3",
+    "@mx-space/api-client": "^1.0.3",
     "clsx": "^1.2.1",
     "css-spring": "^4.1.0",
     "lodash-es": "^4.17.0",
@@ -87,7 +87,7 @@
     "remove-markdown": "^0.5.0"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "23.0.7",
+    "@rollup/plugin-commonjs": "24.0.0",
     "@rollup/plugin-node-resolve": "15.0.1",
     "@rollup/plugin-typescript": "10.0.1",
     "@types/react": "17.0.52",
@@ -98,7 +98,7 @@
     "postcss-nested": "6.0.0",
     "postcss-preset-env": "7.8.3",
     "postcss-windicss": "^1.0.0",
-    "rollup": "3.7.5",
+    "rollup": "3.9.1",
     "rollup-plugin-esbuild": "5.0.0",
     "rollup-plugin-peer-deps-external": "2.2.4",
     "rollup-plugin-postcss": "4.0.2",

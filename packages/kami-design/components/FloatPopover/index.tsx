@@ -44,21 +44,24 @@ export const FloatPopover: FC<
       offset: offsetValue,
       popoverWrapperClassNames,
       debug,
-      ...rest
+      ...floatingProps
     } = props
+
     const [mounted, setMounted] = useState(false)
-    const { x, y, reference, floating, strategy, update } = useFloating({
-      middleware: rest.middleware ?? [
-        flip({ padding: padding ?? 20 }),
-        offset(offsetValue ?? 10),
-        shift(),
-      ],
-      strategy: rest.strategy,
-      placement: rest.placement ?? 'bottom-start',
-      whileElementsMounted: rest.whileElementsMounted,
-    })
+
     const [currentStatus, setCurrentStatus] = useState(false)
     const [open, setOpen] = useState(false)
+    const { x, y, reference, floating, strategy, update, isPositioned } =
+      useFloating({
+        middleware: floatingProps.middleware ?? [
+          flip({ padding: padding ?? 20 }),
+          offset(offsetValue ?? 10),
+          shift(),
+        ],
+        strategy: floatingProps.strategy,
+        placement: floatingProps.placement ?? 'bottom-start',
+        whileElementsMounted: floatingProps.whileElementsMounted,
+      })
     const updateOnce = useRef(false)
     const doPopoverShow = useCallback(() => {
       setCurrentStatus(true)
@@ -213,6 +216,8 @@ export const FloatPopover: FC<
                     position: strategy,
                     top: y ?? '',
                     left: x ?? '',
+                    visibility:
+                      isPositioned && x !== null ? 'visible' : 'hidden',
                   }}
                   role="dialog"
                 >
