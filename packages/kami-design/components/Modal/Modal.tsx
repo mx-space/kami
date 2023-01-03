@@ -53,7 +53,7 @@ export const Modal = forwardRef<
   }, [props.disposer])
 
   const $wrapper = useRef<HTMLDivElement>(null)
-  const forceUpdate = useState()[1]
+  const forceUpdate = useState({})[1]
 
   useImperativeHandle(ref, () => ({
     dismiss,
