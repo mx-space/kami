@@ -3,6 +3,8 @@ export * from './Banner'
 export * from './Divider'
 export * from './FlexText'
 export * from './FloatPopover'
+export * from './Modal'
+export * from './Transition'
 
 export * from './Image'
 export * from './Input'
