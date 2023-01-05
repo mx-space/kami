@@ -11,7 +11,7 @@ importers:
       '@floating-ui/react-dom': 1.1.1
       '@formkit/auto-animate': 1.0.0-beta.5
       '@innei/eslint-config-react-ts': 0.9.7
-      '@innei/prettier': 0.9.6
+      '@innei/prettier': 0.9.7
       '@mx-space/api-client': 1.0.3
       '@next/bundle-analyzer': 13.1.1
       '@trivago/prettier-plugin-sort-imports': 4.0.0
@@ -119,7 +119,7 @@ importers:
       validator: 13.7.0
     devDependencies:
       '@innei/eslint-config-react-ts': 0.9.7_typescript@4.9.4
-      '@innei/prettier': 0.9.6
+      '@innei/prettier': 0.9.7
       '@next/bundle-analyzer': 13.1.1
       '@trivago/prettier-plugin-sort-imports': 4.0.0_prettier@2.8.1
       '@types/inflection': 1.13.0
@@ -1035,8 +1035,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@innei/prettier/0.9.6:
-    resolution: {integrity: sha512-hI6/2Gnk5OUkCXWRQLN5RMO9sg2EcfqI6eJ4OIfV2E1iJJ60AO2yjaH0NSJGLakct48c0qXJ7b8gW+vkP7H8hA==}
+  /@innei/prettier/0.9.7:
+    resolution: {integrity: sha512-CxUbNMsm23h3llui28siIPAyuv8WvSwRVrghZo1JYb+UV/+YcqLGlZNyhtsk0KiPKOIRhMcJI4T3CgMX2MSHPQ==}
     dependencies:
       '@trivago/prettier-plugin-sort-imports': /@ianvs/prettier-plugin-sort-imports/3.7.1_prettier@2.8.1
       prettier: 2.8.1
