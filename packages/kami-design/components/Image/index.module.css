@@ -38,6 +38,10 @@
   animation: blur-dark 0.8s forwards ease-in-out;
 }
 
+.lazyload-image[data-animated] {
+  animation: none !important;
+}
+
 .img-alt {
   text-align: center;
   font-size: 14px;

@@ -23,6 +23,8 @@ export const HighLighter: FC<Props> = observer((props) => {
   }, [value])
   const isPrintMode = appUIStore.mediaType === 'print'
 
+  const prevThemeCSS = useRef<ReturnType<typeof loadStyleSheet>>()
+
   useInsertionEffect(() => {
     const css = loadStyleSheet(
       `https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/prism-themes/1.9.0/prism-one-${
@@ -30,9 +32,14 @@ export const HighLighter: FC<Props> = observer((props) => {
       }.css`,
     )
 
-    return () => {
-      css?.remove()
+    if (prevThemeCSS.current) {
+      const $prev = prevThemeCSS.current
+      css.$link.onload = () => {
+        $prev.remove()
+      }
     }
+
+    prevThemeCSS.current = css
   }, [colorMode, isPrintMode])
   useInsertionEffect(() => {
     loadStyleSheet(

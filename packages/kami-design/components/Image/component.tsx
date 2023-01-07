@@ -22,7 +22,7 @@ import { escapeHTMLTag } from '~/utils/utils'
 
 import { LazyLoad } from '../Lazyload'
 import styles from './index.module.css'
-import { useCalculateSize } from './use-calculate-size'
+import { useCalculateNaturalSize } from './use-calculate-size'
 
 interface ImageProps {
   defaultImage?: string
@@ -77,12 +77,19 @@ const Image: FC<
           !loaded && styles['image-hide'],
         )}
         data-status={loaded ? 'loaded' : 'loading'}
+        onAnimationEnd={onImageAnimationEnd}
       >
         <img src={src} alt={alt} ref={imageRef} loading="lazy" />
       </div>
     </>
   )
 })
+
+const onImageAnimationEnd: React.AnimationEventHandler<HTMLDivElement> = (
+  e,
+) => {
+  ;(e.target as HTMLElement).dataset.animated = '1'
+}
 
 export type ImageLazyRef = { status: 'loading' | 'loaded' }
 
@@ -92,6 +99,9 @@ export const ImageLazy = memo(
     ImageProps &
       DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
   >((props, ref) => {
+    useEffect(() => {
+      console.log('update')
+    })
     const {
       defaultImage,
       src,
@@ -114,7 +124,7 @@ export const ImageLazy = memo(
     const placeholderRef = useRef<HTMLDivElement>(null)
 
     const wrapRef = useRef<HTMLDivElement>(null)
-    const [calculatedSize, calculateDimensions] = useCalculateSize()
+    const [calculatedSize, calculateDimensions] = useCalculateNaturalSize()
 
     const [loaded, setLoad] = useState(false)
     const loaderFn = useCallback(() => {

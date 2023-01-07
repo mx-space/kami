@@ -93,7 +93,7 @@ pre > code {
   transition: color 0.5s;
 
   * {
-    background: var(--light-bg);
+    background: transparent !important;
   }
 
   .linenumber {

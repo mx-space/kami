@@ -50,30 +50,39 @@ export function loadScript(url: string) {
   })
 }
 
-const cssSet = new Set()
+const cssMap = new Map<string, HTMLLinkElement>()
 
 export function loadStyleSheet(href: string) {
-  if (cssSet.has(href)) {
-    return
+  if (cssMap.has(href)) {
+    const $link = cssMap.get(href)!
+    return {
+      $link,
+      remove: () => {
+        $link.parentNode && $link.parentNode.removeChild($link)
+        cssMap.delete(href)
+      },
+    }
   }
   const $link = document.createElement('link')
   $link.href = href
   $link.rel = 'stylesheet'
   $link.type = 'text/css'
   $link.crossOrigin = 'anonymous'
-  cssSet.add(href)
+  cssMap.set(href, $link)
 
   $link.onerror = () => {
     $link.onerror = null
-    cssSet.delete(href)
+    cssMap.delete(href)
   }
+
   document.head.appendChild($link)
 
   return {
     remove: () => {
       $link.parentNode && $link.parentNode.removeChild($link)
-      cssSet.delete(href)
+      cssMap.delete(href)
     },
+    $link,
   }
 }
 
