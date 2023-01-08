@@ -161,6 +161,9 @@ const RecentlyPage: NextPage = () => {
         fixedWidth: true,
         useRootPortal: true,
       },
+      overlayProps: {
+        stopPropagation: true,
+      },
       component: (
         <>
           <p className="!mt-4 leading-6 whitespace-pre-line break-all">
