@@ -110,7 +110,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
         }, [])}
       />
       <SectionCard
-        title={`点赞 (${like})`}
+        title={`点赞 (${like ?? 0})`}
         desc={'如果你喜欢的话点个赞呗'}
         src={useMemo(() => getRandomUnRepeatImage(), [])}
         href={'/like_this'}
