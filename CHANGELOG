@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## [4.0.7](https://github.com/mx-space/kami/compare/v4.0.6...v4.0.7) (2023-01-08)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @floating-ui/react-dom to v1.1.1 ([13e599e](https://github.com/mx-space/kami/commit/13e599e9860d6e67cc4315c28778aa111a7f7d86))
+* **deps:** update dependency @floating-ui/react-dom to v1.1.2 ([baadc6d](https://github.com/mx-space/kami/commit/baadc6dc826cc26c91c9f68e94406fed22acaf6c))
+* export Modal in entry file ([f1a6379](https://github.com/mx-space/kami/commit/f1a6379051ef2233f79cce6ad4fa6eb2be8b590d))
+* make ts happy ([e473748](https://github.com/mx-space/kami/commit/e473748f5c64a294acf7f6a38c4505fe08d2002d))
+* transition entry file ([1fa3d60](https://github.com/mx-space/kami/commit/1fa3d6088a052d5c7adaf5a186ec064ef4c9d3e9))
+* ui improve ([f92f28f](https://github.com/mx-space/kami/commit/f92f28f7e6eb28c1b36b1196659d4458159a72b0))
+
+
+### Features
+
+* extract modal component ([9d19bf7](https://github.com/mx-space/kami/commit/9d19bf7d8f69c9c89eda06e74ecf991391eeb1c1))
+
+
+
 ## [4.0.6](https://github.com/mx-space/kami/compare/v4.0.5...v4.0.6) (2022-12-25)
 
 
