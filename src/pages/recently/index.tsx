@@ -138,7 +138,7 @@ const RecentlyPage: NextPage = () => {
     }
 
     if (inView && hasNext) {
-      setFetchBefore(data[data.length - 1].id)
+      setFetchBefore(data[data.length - 1]?.id)
     }
   }, [data, hasNext, inView, loading])
 
@@ -160,6 +160,9 @@ const RecentlyPage: NextPage = () => {
         closeable: true,
         fixedWidth: true,
         useRootPortal: true,
+      },
+      overlayProps: {
+        stopPropagation: true,
       },
       component: (
         <>

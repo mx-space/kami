@@ -18,14 +18,13 @@ interface OverLayProps {
   darkness?: number
   blur?: boolean
   zIndex?: number
+  stopPropagation?: boolean
 }
 
 export type OverlayProps = OverLayProps & {
   show: boolean
   children?: ReactNode
-
   zIndex?: number
-
   standaloneWrapperClassName?: string
 }
 
@@ -35,10 +34,10 @@ const OverLay: FC<OverlayProps> = (props) => {
     show,
     blur,
     center,
-
     darkness,
     standaloneWrapperClassName,
     zIndex,
+    stopPropagation,
   } = props
   const isClient = useIsClient()
 
@@ -108,7 +107,12 @@ const OverLay: FC<OverlayProps> = (props) => {
               : undefined
           }
         >
-          <div onClick={stopEventDefault} tabIndex={-1}>
+          <div
+            onClick={(e) => {
+              stopPropagation ? e.stopPropagation() : stopEventDefault(e)
+            }}
+            tabIndex={-1}
+          >
             {props.children}
           </div>
         </div>
