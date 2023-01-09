@@ -196,8 +196,8 @@ export const ImageLazy = memo(
 
     const imageWrapperStyle = useMemo<CSSProperties>(
       () => ({
-        height: loaded ? undefined : height || calculatedSize.height,
-        width: loaded ? undefined : width || calculatedSize.width,
+        height: loaded ? height || calculatedSize.height : undefined,
+        width: loaded ? width || calculatedSize.width : undefined,
 
         ...(overflowHidden ? { overflow: 'hidden', borderRadius: '3px' } : {}),
       }),
