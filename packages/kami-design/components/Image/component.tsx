@@ -39,14 +39,15 @@ interface ImageProps {
 const Image: FC<
   {
     popup?: boolean
-
+    height?: number | string
+    width?: number | string
     loaderFn: () => void
     loaded: boolean
   } & Pick<
     DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>,
     'src' | 'alt'
   >
-> = memo(({ src, alt, popup = false, loaded, loaderFn }) => {
+> = memo(({ src, alt, height, width, popup = false, loaded, loaderFn }) => {
   const imageRef = useRef<HTMLImageElement>(null)
 
   useEffect(() => {
@@ -79,7 +80,13 @@ const Image: FC<
         data-status={loaded ? 'loaded' : 'loading'}
         onAnimationEnd={onImageAnimationEnd}
       >
-        <img src={src} alt={alt} ref={imageRef} loading="lazy" />
+        <img
+          src={src}
+          alt={alt}
+          ref={imageRef}
+          loading="lazy"
+          style={{ width, height }}
+        />
       </div>
     </>
   )
@@ -228,6 +235,8 @@ export const ImageLazy = memo(
               <Image
                 src={src}
                 alt={alt}
+                height={height || calculatedSize.height}
+                width={width || calculatedSize.width}
                 popup={popup}
                 loaded={loaded}
                 loaderFn={loaderFn}
