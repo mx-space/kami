@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [4.0.8](https://github.com/mx-space/kami/compare/v4.0.7...v4.0.8) (2023-01-11)
+
+
+### Bug Fixes
+
+* data display exceptions during initialization ([#1531](https://github.com/mx-space/kami/issues/1531)) ([5773fc9](https://github.com/mx-space/kami/commit/5773fc966259b91632ecc8dd2177360c0e857e60))
+* **deps:** update dependency @floating-ui/react-dom to v1.2.0 ([#1535](https://github.com/mx-space/kami/issues/1535)) ([03ca8ab](https://github.com/mx-space/kami/commit/03ca8ab670eb750ddd44b8bef91b0b6612a6fc4a))
+* **kami-design:** image size ([#1534](https://github.com/mx-space/kami/issues/1534)) ([a6fe005](https://github.com/mx-space/kami/commit/a6fe00581594c17c28a5a8e6f4ca280eff1bba58))
+
+
+
 ## [4.0.7](https://github.com/mx-space/kami/compare/v4.0.6...v4.0.7) (2023-01-08)
 
 
