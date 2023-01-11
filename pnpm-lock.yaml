@@ -8,7 +8,7 @@ importers:
 
   .:
     specifiers:
-      '@floating-ui/react-dom': 1.1.2
+      '@floating-ui/react-dom': 1.2.0
       '@formkit/auto-animate': 1.0.0-beta.5
       '@innei/eslint-config-react-ts': 0.9.7
       '@innei/prettier': 0.9.7
@@ -82,7 +82,7 @@ importers:
       windicss-webpack-plugin: 1.7.7
       zx: 7.1.1
     dependencies:
-      '@floating-ui/react-dom': 1.1.2_biqbaboplfbrettd7655fr4n2y
+      '@floating-ui/react-dom': 1.2.0_biqbaboplfbrettd7655fr4n2y
       '@formkit/auto-animate': 1.0.0-beta.5
       '@mx-space/api-client': 1.0.3
       axios: 0.27.2
@@ -919,8 +919,8 @@ packages:
       '@floating-ui/dom': 1.1.0
     dev: false
 
-  /@floating-ui/react-dom/1.1.2_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-dtz6NGI9nfWll0TPcL5fZzhUoaWo7UpMSmhHYdABQoBA9V/BUVye4SiRa/affb4IocVZefN6HaX+ihrb3kj/dg==}
+  /@floating-ui/react-dom/1.2.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-o1uQ9gPhgBajY/9T0boFNOw9MoxcuHOnVortmdlGCViM7I/aONbY+G1wejbqydHQ7+9j3p7hIsAUMrr3huV/JQ==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
