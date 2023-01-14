@@ -1,6 +1,6 @@
 {
   "name": "@mx-space/kami-design",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -90,7 +90,7 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "24.0.0",
     "@rollup/plugin-node-resolve": "15.0.1",
-    "@rollup/plugin-typescript": "11.0.0",
+    "@rollup/plugin-typescript": "10.0.1",
     "@types/react": "17.0.52",
     "dts-bundle-generator": "^7.1.0",
     "esbuild": "0.16.17",
