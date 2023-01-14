@@ -1,15 +1,3 @@
-:root {
-  --shizuku-background-color: #fff;
-  --shizuku-text-color: #333;
-  --shizuku-theme-color: var(--green);
-}
-
-html.dark {
-  --shizuku-background-color: #212121;
-  --shizuku-text-color: #b4b4b4;
-  --shizuku-theme-color: #3c946c;
-}
-
 #write {
   font-size: 16px;
   word-wrap: break-word;

@@ -57,7 +57,8 @@
     "readme.md",
     "tsconfig.json",
     "types",
-    "src"
+    "src",
+    "styles"
   ],
   "scripts": {
     "prebuild": "rm -rf dist types",

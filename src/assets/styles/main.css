@@ -1,4 +1,5 @@
-@import './theme.css';
+@import 'kami-design/styles/variables.css';
+@import 'kami-design/styles/theme.css';
 @import './extra.css';
 @import './shizuku.css';
 @import './mono.css';
