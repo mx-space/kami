@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 overrides:
   react-use: 17.4.0
-  '@types/react': 17.0.52
+  '@types/react': 17.0.53
 
 importers:
 
@@ -21,7 +21,7 @@ importers:
       '@types/markdown-escape': 1.1.0
       '@types/node': 17.0.18
       '@types/randomcolor': 0.5.7
-      '@types/react': 17.0.52
+      '@types/react': 17.0.53
       '@types/react-collapse': 5.0.1
       '@types/react-color': 3.0.6
       '@types/react-dom': 18.0.10
@@ -130,7 +130,7 @@ importers:
       '@types/markdown-escape': 1.1.0
       '@types/node': 17.0.18
       '@types/randomcolor': 0.5.7
-      '@types/react': 17.0.52
+      '@types/react': 17.0.53
       '@types/react-collapse': 5.0.1
       '@types/react-color': 3.0.6
       '@types/react-dom': 18.0.10
@@ -167,7 +167,7 @@ importers:
       '@rollup/plugin-commonjs': 24.0.0
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-typescript': 10.0.1
-      '@types/react': 17.0.52
+      '@types/react': 17.0.53
       clsx: ^1.2.1
       css-spring: ^4.1.0
       dts-bundle-generator: ^7.1.0
@@ -214,7 +214,7 @@ importers:
       '@rollup/plugin-commonjs': 24.0.0_rollup@3.9.1
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.9.1
       '@rollup/plugin-typescript': 10.0.1_esmavzhadgk2idmxtiodxm33ma
-      '@types/react': 17.0.52
+      '@types/react': 17.0.53
       dts-bundle-generator: 7.1.0
       esbuild: 0.16.17
       postcss: 8.4.21
@@ -1462,30 +1462,30 @@ packages:
   /@types/react-collapse/5.0.1:
     resolution: {integrity: sha512-Iq3OrqvzCIP0DmAawU4T2VKH6XAplbjo/D7Qk14mcfQ92plU+OrA2SF10r2XrcFg1Wvya/5f8w1vS29RVpdoLQ==}
     dependencies:
-      '@types/react': 17.0.52
+      '@types/react': 17.0.53
     dev: true
 
   /@types/react-color/3.0.6:
     resolution: {integrity: sha512-OzPIO5AyRmLA7PlOyISlgabpYUa3En74LP8mTMa0veCA719SvYQov4WLMsHvCgXP+L+KI9yGhYnqZafVGG0P4w==}
     dependencies:
-      '@types/react': 17.0.52
+      '@types/react': 17.0.53
       '@types/reactcss': 1.2.6
     dev: true
 
   /@types/react-dom/18.0.10:
     resolution: {integrity: sha512-E42GW/JA4Qv15wQdqJq8DL4JhNpB3prJgjgapN3qJT9K2zO5IIAQh4VXvCEDupoqAwnz0cY4RlXeC/ajX5SFHg==}
     dependencies:
-      '@types/react': 17.0.52
+      '@types/react': 17.0.53
     dev: true
 
   /@types/react-transition-group/4.4.5:
     resolution: {integrity: sha512-juKD/eiSM3/xZYzjuzH6ZwpP+/lejltmiS3QEzV/vmb/Q8+HfDmxu+Baga8UEMGBqV88Nbg4l2hY/K2DkyaLLA==}
     dependencies:
-      '@types/react': 17.0.52
+      '@types/react': 17.0.53
     dev: true
 
-  /@types/react/17.0.52:
-    resolution: {integrity: sha512-vwk8QqVODi0VaZZpDXQCmEmiOuyjEFPY7Ttaw5vjM112LOq37yz1CDJGrRJwA1fYEq4Iitd5rnjd1yWAc/bT+A==}
+  /@types/react/17.0.53:
+    resolution: {integrity: sha512-1yIpQR2zdYu1Z/dc1OxC+MA6GR240u3gcnP4l6mvj/PJiVaqHsQPmWttsvHsfnhfPbU2FuGmo0wSITPygjBmsw==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
@@ -1495,7 +1495,7 @@ packages:
   /@types/reactcss/1.2.6:
     resolution: {integrity: sha512-qaIzpCuXNWomGR1Xq8SCFTtF4v8V27Y6f+b9+bzHiv087MylI/nTCqqdChNeWS7tslgROmYB7yeiruWX7WnqNg==}
     dependencies:
-      '@types/react': 17.0.52
+      '@types/react': 17.0.53
     dev: true
 
   /@types/remove-markdown/0.3.1:
