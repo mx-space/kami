@@ -91,7 +91,7 @@
     "@rollup/plugin-commonjs": "24.0.0",
     "@rollup/plugin-node-resolve": "15.0.1",
     "@rollup/plugin-typescript": "10.0.1",
-    "@types/react": "17.0.52",
+    "@types/react": "17.0.53",
     "dts-bundle-generator": "^7.1.0",
     "esbuild": "0.16.17",
     "postcss": "8.4.21",
