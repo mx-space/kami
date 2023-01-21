@@ -164,7 +164,7 @@ importers:
       '@floating-ui/react-dom': ^1.1.0
       '@formkit/auto-animate': ^1.0.0-beta.5
       '@mx-space/api-client': ^1.0.3
-      '@rollup/plugin-commonjs': 24.0.0
+      '@rollup/plugin-commonjs': 24.0.1
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-typescript': 10.0.1
       '@types/react': 17.0.53
@@ -211,7 +211,7 @@ importers:
       react-transition-group: 4.4.5
       remove-markdown: 0.5.0
     devDependencies:
-      '@rollup/plugin-commonjs': 24.0.0_rollup@3.9.1
+      '@rollup/plugin-commonjs': 24.0.1_rollup@3.9.1
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.9.1
       '@rollup/plugin-typescript': 10.0.1_esmavzhadgk2idmxtiodxm33ma
       '@types/react': 17.0.53
@@ -1263,8 +1263,8 @@ packages:
       '@rollup/pluginutils': 5.0.2
     dev: false
 
-  /@rollup/plugin-commonjs/24.0.0_rollup@3.9.1:
-    resolution: {integrity: sha512-0w0wyykzdyRRPHOb0cQt14mIBLujfAv6GgP6g8nvg/iBxEm112t3YPPq+Buqe2+imvElTka+bjNlJ/gB56TD8g==}
+  /@rollup/plugin-commonjs/24.0.1_rollup@3.9.1:
+    resolution: {integrity: sha512-15LsiWRZk4eOGqvrJyu3z3DaBu5BhXIMeWnijSRvd8irrrg9SHpQ1pH+BUK4H6Z9wL9yOxZJMTLU+Au86XHxow==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^2.68.0||^3.0.0
