@@ -4,10 +4,10 @@ import React, {
   Suspense,
   useCallback,
   useEffect,
-  useMemo,
   useRef,
   useState,
 } from 'react'
+import type { ShortcutOptions } from 'react-shortcut-guide'
 import { ShortcutProvider } from 'react-shortcut-guide'
 
 import {
@@ -123,8 +123,8 @@ export const BasicLayout: FC = observer(({ children }) => {
 
       <div className="app-content">{children}</div>
       <ShortcutProvider
-        options={useMemo(
-          () => ({
+        options={
+          useRef<ShortcutOptions>({
             darkMode: 'class',
             darkClassName: 'html.dark',
             onGuidePanelOpen: () => {
@@ -133,9 +133,8 @@ export const BasicLayout: FC = observer(({ children }) => {
                 action: TrackerAction.Interaction,
               })
             },
-          }),
-          [],
-        )}
+          }).current
+        }
       />
       <Suspense fallback={null}>
         <Footer />

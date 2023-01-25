@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC } from 'react'
-import React, { Fragment, useCallback, useMemo } from 'react'
+import React, { Fragment, useCallback } from 'react'
 
 import Package from '~/../package.json'
 import { ImpressionView } from '~/components/biz/ImpressionView'
@@ -26,15 +26,6 @@ const FooterContainer = (props) => {
     </footer>
   )
 }
-
-const _Footer: FC = observer(() => {
-  return (
-    <FooterContainer>
-      <FooterContent />
-      <FooterActions />
-    </FooterContainer>
-  )
-})
 
 export const FooterContent: FC = observer(() => {
   const { gatewayStore } = useStore()
@@ -110,16 +101,19 @@ export const FooterContent: FC = observer(() => {
             )
           })}
         </p>
-        {useMemo(
-          () => (
-            <p className={'mr-12 phone:mr-0'}>
-              {gatewayStore.online || 1} 个小伙伴正在浏览
-            </p>
-          ),
-          [gatewayStore.online],
-        )}
+
+        <p className={'mr-12 phone:mr-0'}>
+          {gatewayStore.online || 1} 个小伙伴正在浏览
+        </p>
       </div>
     </div>
   )
 })
-export const Footer = NoSSRWrapper(_Footer)
+export const Footer = NoSSRWrapper(() => {
+  return (
+    <FooterContainer>
+      <FooterContent />
+      <FooterActions />
+    </FooterContainer>
+  )
+})

@@ -82,11 +82,13 @@ const Wrapper = memo((props) => {
   return (
     <>
       <SWRConfig value={swrConfig.current}>
-        <BasicLayout>
-          <Content>
-            <ErrorBoundary>{props.children}</ErrorBoundary>
-          </Content>
-        </BasicLayout>
+        <ErrorBoundary>
+          <BasicLayout>
+            <Content>
+              <ErrorBoundary>{props.children}</ErrorBoundary>
+            </Content>
+          </BasicLayout>
+        </ErrorBoundary>
       </SWRConfig>
 
       <ToastContainer {...toastOptions.current} />
