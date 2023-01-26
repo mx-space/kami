@@ -60,7 +60,7 @@ importers:
       randomcolor: 0.6.2
       react: 18.2.0
       react-collapse: 5.1.1
-      react-countup: 6.4.0
+      react-countup: 6.4.1
       react-dom: 18.2.0
       react-intersection-observer: 9.4.1
       react-masonry-css: 1.0.16
@@ -105,7 +105,7 @@ importers:
       randomcolor: 0.6.2
       react: 18.2.0
       react-collapse: 5.1.1_react@18.2.0
-      react-countup: 6.4.0_react@18.2.0
+      react-countup: 6.4.1_react@18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-intersection-observer: 9.4.1_react@18.2.0
       react-masonry-css: 1.0.16_react@18.2.0
@@ -2176,8 +2176,8 @@ packages:
       yaml: 1.10.2
     dev: true
 
-  /countup.js/2.3.2:
-    resolution: {integrity: sha512-dQ7F/CmKGjaO6cDfhtEXwsKVlXIpJ89dFs8PvkaZH9jBVJ2Z8GU4iwG/qP7MgY8qwr+1skbwR6qecWWQLUzB8Q==}
+  /countup.js/2.4.1:
+    resolution: {integrity: sha512-NicJ8CZkPwOAAyivQl4oSeb0qoxtekg6JmlYtLQKQt+hbRD5Wz4zVrewWl/ixNOkFPISn4c9Z/GzfUaIVERJQg==}
     dev: false
 
   /cross-env/7.0.3:
@@ -5311,8 +5311,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /react-countup/6.4.0_react@18.2.0:
-    resolution: {integrity: sha512-7vvz0IIcDwWdd1JDzDB3z+9wSWL5Cf7pqwMPUXnIe66M3UXZyMWrvTp1p96wpPgg8/v4Gvf8YLvJoO+34G0GMA==}
+  /react-countup/6.4.1_react@18.2.0:
+    resolution: {integrity: sha512-FxQ7qaNnnbA+Px9RebOZY4Tbawa1bhgpVPlUqRemZb90mh3f3OqyHVgr1SZqnJgaRxR3uEYqgkszgkDgFVCeEw==}
     peerDependencies:
       react: '>= 16.3.0'
     peerDependenciesMeta:
@@ -5320,7 +5320,7 @@ packages:
         optional: true
     dependencies:
       '@rollup/plugin-babel': 6.0.3
-      countup.js: 2.3.2
+      countup.js: 2.4.1
       react: 18.2.0
     transitivePeerDependencies:
       - '@babel/core'
