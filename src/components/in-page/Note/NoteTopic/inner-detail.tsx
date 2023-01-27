@@ -2,7 +2,7 @@ import Link from 'next/link'
 import type { FC } from 'react'
 import useSWR from 'swr'
 
-import type { TopicModel } from '@mx-space/api-client/types/models/topic'
+import type { TopicModel } from '@mx-space/api-client'
 import {
   Divider,
   DividerVertical,

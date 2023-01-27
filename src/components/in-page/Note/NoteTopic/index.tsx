@@ -2,7 +2,7 @@ import Link from 'next/link'
 import type { FC } from 'react'
 import { useCallback, useMemo } from 'react'
 
-import type { TopicModel } from '@mx-space/api-client/types/models/topic'
+import type { TopicModel } from '@mx-space/api-client'
 import { Avatar } from '@mx-space/kami-design/components/Avatar'
 import { Divider } from '@mx-space/kami-design/components/Divider'
 import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'

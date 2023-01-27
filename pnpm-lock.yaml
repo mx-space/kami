@@ -12,7 +12,7 @@ importers:
       '@formkit/auto-animate': 1.0.0-beta.6
       '@innei/eslint-config-react-ts': 0.9.7
       '@innei/prettier': 0.9.7
-      '@mx-space/api-client': 1.0.3
+      '@mx-space/api-client': 1.2.0
       '@next/bundle-analyzer': 13.1.5
       '@trivago/prettier-plugin-sort-imports': 4.0.0
       '@types/inflection': 1.13.0
@@ -85,7 +85,7 @@ importers:
     dependencies:
       '@floating-ui/react-dom': 1.2.1_biqbaboplfbrettd7655fr4n2y
       '@formkit/auto-animate': 1.0.0-beta.6
-      '@mx-space/api-client': 1.0.3
+      '@mx-space/api-client': 1.2.0
       axios: 0.27.2
       clsx: 1.2.1
       css-spring: 4.1.0
@@ -1092,6 +1092,11 @@ packages:
 
   /@mx-space/api-client/1.0.3:
     resolution: {integrity: sha512-WQuyXA8RBHJFB6RDXC1oIMAN4i3/UiJq75Ja9ylMdbOMhKKI1ZcJfGmtrRHBdhY4SScrSlXOBOOIlLnZVMFC/A==}
+    engines: {pnpm: '>=6'}
+    dev: false
+
+  /@mx-space/api-client/1.2.0:
+    resolution: {integrity: sha512-cSD3speKTWM04uXCg6/ynRcAOwLwwKX8E84d6M1HId9dUEBv7S6f0A2Vw2t86sq0nNr0m+53ifjoLVYSGFQQwg==}
     engines: {pnpm: '>=6'}
     dev: false
 

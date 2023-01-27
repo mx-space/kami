@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 
-import type { TopicModel } from '@mx-space/api-client/types/models/topic'
+import type { TopicModel } from '@mx-space/api-client'
 import { RightLeftTransitionView } from '@mx-space/kami-design/components/Transition/right-left'
 
 import { SEO } from '~/components/biz/Seo'

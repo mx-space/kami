@@ -3,8 +3,7 @@ import Link from 'next/link'
 import { useCallback, useEffect, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 
-import type { NoteModel, Pager } from '@mx-space/api-client'
-import type { TopicModel } from '@mx-space/api-client/types/models/topic'
+import type { NoteModel, Pager, TopicModel } from '@mx-space/api-client'
 import { Divider } from '@mx-space/kami-design/components/Divider'
 import { RightLeftTransitionView } from '@mx-space/kami-design/components/Transition/right-left'
 
