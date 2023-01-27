@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## [4.0.9](https://github.com/mx-space/kami/compare/v4.0.8...v4.0.9) (2023-01-27)
+
+
+### Bug Fixes
+
+* cleanup next config ([59478e2](https://github.com/mx-space/kami/commit/59478e2452fb45ae9690b2b1768c726b3ae9a9e0))
+* **deps:** update dependency @floating-ui/react-dom to v1.2.1 ([85aa1fe](https://github.com/mx-space/kami/commit/85aa1fe344c8533f165408b352ad630af4524af1))
+* **deps:** update dependency @formkit/auto-animate to v1.0.0-beta.6 ([9d1baf7](https://github.com/mx-space/kami/commit/9d1baf7fc553a0d42cbe0c5bb58547c70545bb05))
+* **deps:** update dependency react-countup to v6.4.1 ([56e2770](https://github.com/mx-space/kami/commit/56e2770b2da59d96ea4b7d235e90b268fd4df835))
+* **deps:** update dependency swr to v2.0.1 ([327208f](https://github.com/mx-space/kami/commit/327208fc341bc9df56c3d16646b692c75cab1709))
+* **deps:** update dependency swr to v2.0.2 ([9d989d8](https://github.com/mx-space/kami/commit/9d989d8cea4f8798723603ee40f86406ac58fe65))
+* downgrade @rollup/plugin-typescript ([ce2fd30](https://github.com/mx-space/kami/commit/ce2fd30872f0b009b28859a14143a5b201b9366e))
+
+
+
 ## [4.0.8](https://github.com/mx-space/kami/compare/v4.0.7...v4.0.8) (2023-01-11)
 
 
