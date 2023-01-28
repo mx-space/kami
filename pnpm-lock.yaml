@@ -8,7 +8,7 @@ importers:
 
   .:
     specifiers:
-      '@floating-ui/react-dom': 1.2.1
+      '@floating-ui/react-dom': 1.2.2
       '@formkit/auto-animate': 1.0.0-beta.6
       '@innei/eslint-config-react-ts': 0.9.7
       '@innei/prettier': 0.9.7
@@ -83,7 +83,7 @@ importers:
       windicss-webpack-plugin: 1.7.7
       zx: 7.1.1
     dependencies:
-      '@floating-ui/react-dom': 1.2.1_biqbaboplfbrettd7655fr4n2y
+      '@floating-ui/react-dom': 1.2.2_biqbaboplfbrettd7655fr4n2y
       '@formkit/auto-animate': 1.0.0-beta.6
       '@mx-space/api-client': 1.2.0
       axios: 0.27.2
@@ -909,6 +909,12 @@ packages:
       '@floating-ui/core': 1.1.0
     dev: false
 
+  /@floating-ui/dom/1.1.1:
+    resolution: {integrity: sha512-TpIO93+DIujg3g7SykEAGZMDtbJRrmnYRCNYSjJlvIbGhBjRSNTLVbNeDQBrzy9qDgUbiWdc7KA0uZHZ2tJmiw==}
+    dependencies:
+      '@floating-ui/core': 1.1.0
+    dev: false
+
   /@floating-ui/react-dom/1.1.0:
     resolution: {integrity: sha512-xyP9dMqZouuQ7h10DvbEbxZItuUleKHXe7XQFvbpttjXZrfyQMaZVTnWsE/t3hrHakZy18HxEBZRzGNXQHd0GA==}
     peerDependencies:
@@ -921,8 +927,8 @@ packages:
       '@floating-ui/dom': 1.1.0
     dev: false
 
-  /@floating-ui/react-dom/1.2.1_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-YCLlqibZtgUhxUpxkSp1oekvYgH/jI4KdZEJv85E62twlZHN43xdlQNe6JcF4ROD3/Zu6juNHN+aOygN+6yZjg==}
+  /@floating-ui/react-dom/1.2.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-DbmFBLwFrZhtXgCI2ra7wXYT8L2BN4/4AMQKyu05qzsVji51tXOfF36VE2gpMB6nhJGHa85PdEg75FB4+vnLFQ==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -930,7 +936,7 @@ packages:
       react:
         optional: true
     dependencies:
-      '@floating-ui/dom': 1.1.0
+      '@floating-ui/dom': 1.1.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
