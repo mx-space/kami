@@ -155,11 +155,11 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
   })
 
   const tips = useMemo(() => {
-    return `创建于 ${parseDate(note.created, 'YYYY-MM-DD dddd')}${
+    return `创建于 ${parseDate(note.created, 'YYYY 年 M 月 D 日 dddd')}${
       note.modified
-        ? `, 修改于 ${parseDate(note.modified, 'YYYY-MM-DD dddd')}`
+        ? `，修改于 ${parseDate(note.modified, 'YYYY 年 M 月 D 日 dddd')}`
         : ''
-    }, 全文字数：${wordCount}, 阅读次数：${note.count.read}, 喜欢次数：${
+    }，全文字数：${wordCount}，阅读次数：${note.count.read}，喜欢次数：${
       note.count.like
     }`
   }, [note.count.like, note.count.read, note.created, note.modified, wordCount])

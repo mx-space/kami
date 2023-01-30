@@ -4,7 +4,7 @@
 }
 
 html {
-  font: 14px/1.15 var(--sans-font);
+  font: 14px/1.4 var(--sans-font);
   color: var(--black);
   text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
