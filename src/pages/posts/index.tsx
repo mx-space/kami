@@ -56,7 +56,7 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
                 return (
                   <BottomUpTransitionView
                     key={post.id}
-                    timeout={{ enter: 250 * i }}
+                    timeout={{ enter: 66 * i }}
                   >
                     <PostBlock
                       post={post}
