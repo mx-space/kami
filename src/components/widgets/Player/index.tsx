@@ -25,7 +25,7 @@ import { hms } from '~/utils/time'
 import styles from './index.module.css'
 import { Lyrics } from './lyrics'
 
-const METO_ENDPOINT = 'https://api.i-meto.com/meting/api'
+const METO_ENDPOINT = 'https://api.injahow.cn/meting'
 
 type MetingPayloadType = {
   author: string
@@ -74,8 +74,10 @@ export const MusicMiniPlayer = forwardRef<
     if (!id) {
       return
     }
-    const stream = await fetch(`${METO_ENDPOINT}/?server=${type}&id=${id}`)
-    const json = (await stream.json()) as MetingPayloadType[]
+    const response = await fetch(
+      `${METO_ENDPOINT}/?type=song&server=${type}&id=${id}`,
+    )
+    const json = (await response.json()) as MetingPayloadType[]
 
     const [data] = await apiClient.serverless.proxy.kami.song.get<any>({
       params: {
