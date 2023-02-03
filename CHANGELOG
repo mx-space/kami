@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## [4.0.10](https://github.com/mx-space/kami/compare/v4.0.9...v4.0.10) (2023-02-03)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @floating-ui/react-dom to v1.2.2 ([a92361d](https://github.com/mx-space/kami/commit/a92361dc97a799ebd61610692c373e6d23b9b418))
+* **deps:** update dependency swr to v2.0.3 ([3cbd951](https://github.com/mx-space/kami/commit/3cbd951294d7edf7dec1ab57043972033ac1796e))
+* google font api, remove loli ([a9a599f](https://github.com/mx-space/kami/commit/a9a599f6dd0ce31fb2be90a2458b0a3453b838fa))
+* meting endpoint ([55e66ca](https://github.com/mx-space/kami/commit/55e66ca4a9552062456d3d3939fdbac441c18de1))
+* **post-list:** speed up animation ([01d00a8](https://github.com/mx-space/kami/commit/01d00a8a51acdfdfdbe2e452193c537a287cdd2f))
+
+
+
 ## [4.0.9](https://github.com/mx-space/kami/compare/v4.0.8...v4.0.9) (2023-01-27)
 
 
