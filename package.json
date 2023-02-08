@@ -128,7 +128,7 @@
     "postcss-import": "15.1.0",
     "postcss-nested": "6.0.0",
     "postcss-preset-env": "7.8.3",
-    "prettier": "2.8.3",
+    "prettier": "2.8.4",
     "rimraf": "3.0.2",
     "stylelint": "14.16.1",
     "stylelint-config-standard": "29.0.0",
