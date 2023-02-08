@@ -78,7 +78,7 @@ importers:
       swr: 2.0.3
       tilg: 0.1.1
       typescript: 4.9.5
-      validator: 13.7.0
+      validator: 13.9.0
       windicss: 3.5.6
       windicss-webpack-plugin: 1.7.7
       zx: 7.1.1
@@ -118,7 +118,7 @@ importers:
       remove-markdown: 0.5.0
       socket.io-client: 4.5.4
       swr: 2.0.3_react@18.2.0
-      validator: 13.7.0
+      validator: 13.9.0
     devDependencies:
       '@innei/eslint-config-react-ts': 0.9.7_typescript@4.9.5
       '@innei/prettier': 0.9.7
@@ -6408,8 +6408,8 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /validator/13.7.0:
-    resolution: {integrity: sha512-nYXQLCBkpJ8X6ltALua9dRrZDHVYxjJ1wgskNt1lH9fzGjs3tgojGSCBjmEPwkWS1y29+DrizMTW19Pr9uB2nw==}
+  /validator/13.9.0:
+    resolution: {integrity: sha512-B+dGG8U3fdtM0/aNK4/X8CXq/EcxU2WPrPEkJGslb47qyHsxmbggTWK0yEA4qnYVNF+nxNlN88o14hIcPmSIEA==}
     engines: {node: '>= 0.10'}
     dev: false
 
