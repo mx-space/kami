@@ -62,7 +62,7 @@ importers:
       react-collapse: 5.1.1
       react-countup: 6.4.1
       react-dom: 18.2.0
-      react-intersection-observer: 9.4.1
+      react-intersection-observer: 9.4.2
       react-masonry-css: 1.0.16
       react-message-popup: 1.0.0
       react-shortcut-guide: 1.0.0-alpha.0
@@ -107,7 +107,7 @@ importers:
       react-collapse: 5.1.1_react@18.2.0
       react-countup: 6.4.1_react@18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-intersection-observer: 9.4.1_react@18.2.0
+      react-intersection-observer: 9.4.2_react@18.2.0
       react-masonry-css: 1.0.16_react@18.2.0
       react-message-popup: 1.0.0_biqbaboplfbrettd7655fr4n2y
       react-shortcut-guide: 1.0.0-alpha.0
@@ -5361,8 +5361,8 @@ packages:
         optional: true
     dev: false
 
-  /react-intersection-observer/9.4.1_react@18.2.0:
-    resolution: {integrity: sha512-IXpIsPe6BleFOEHKzKh5UjwRUaz/JYS0lT/HPsupWEQou2hDqjhLMStc5zyE3eQVT4Fk3FufM8Fw33qW1uyeiw==}
+  /react-intersection-observer/9.4.2_react@18.2.0:
+    resolution: {integrity: sha512-AdK+ryzZ7U9ZJYttDUZ8q2Am3nqE0exg5Ryl5Y124KeVsix/1hGZPbdu58EqA98TwnzwDNWHxg/kwNawmIiUig==}
     peerDependencies:
       react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
     peerDependenciesMeta:
