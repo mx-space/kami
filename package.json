@@ -118,7 +118,7 @@
     "@types/validator": "13.7.12",
     "cross-env": "7.0.3",
     "dotenv": "16.0.3",
-    "eslint": "8.33.0",
+    "eslint": "8.34.0",
     "husky": "8.0.3",
     "js-yaml": "4.1.0",
     "lint-staged": "13.1.1",
