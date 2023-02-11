@@ -72,7 +72,7 @@ importers:
       react-use: 17.4.0
       remove-markdown: 0.5.0
       rimraf: 3.0.2
-      socket.io-client: 4.5.4
+      socket.io-client: 4.6.0
       stylelint: 15.1.0
       stylelint-config-standard: 30.0.1
       swr: 2.0.3
@@ -116,7 +116,7 @@ importers:
       react-transition-group: 4.4.5_biqbaboplfbrettd7655fr4n2y
       react-use: 17.4.0_biqbaboplfbrettd7655fr4n2y
       remove-markdown: 0.5.0
-      socket.io-client: 4.5.4
+      socket.io-client: 4.6.0
       swr: 2.0.3_react@18.2.0
       validator: 13.9.0
     devDependencies:
@@ -2560,13 +2560,13 @@ packages:
     engines: {node: '>= 4'}
     dev: true
 
-  /engine.io-client/6.2.3:
-    resolution: {integrity: sha512-aXPtgF1JS3RuuKcpSrBtimSjYvrbhKW9froICH4s0F3XQWLxsKNxqzG39nnvQZQnva4CMvUK63T7shevxRyYHw==}
+  /engine.io-client/6.4.0:
+    resolution: {integrity: sha512-GyKPDyoEha+XZ7iEqam49vz6auPnNJ9ZBfy89f+rMMas8AuiMWOZ9PVzu8xb9ZC6rafUqiGHSCfu22ih66E+1g==}
     dependencies:
       '@socket.io/component-emitter': 3.1.0
       debug: 4.3.4
       engine.io-parser: 5.0.4
-      ws: 8.2.3
+      ws: 8.11.0
       xmlhttprequest-ssl: 2.0.0
     transitivePeerDependencies:
       - bufferutil
@@ -5845,13 +5845,13 @@ packages:
       is-fullwidth-code-point: 4.0.0
     dev: true
 
-  /socket.io-client/4.5.4:
-    resolution: {integrity: sha512-ZpKteoA06RzkD32IbqILZ+Cnst4xewU7ZYK12aS1mzHftFFjpoMz69IuhP/nL25pJfao/amoPI527KnuhFm01g==}
+  /socket.io-client/4.6.0:
+    resolution: {integrity: sha512-2XOp18xnGghUICSd5ziUIS4rB0dhr6S8OvAps8y+HhOjFQlqGcf+FIh6fCIsKKZyWFxJeFPrZRNPGsHDTsz1Ug==}
     engines: {node: '>=10.0.0'}
     dependencies:
       '@socket.io/component-emitter': 3.1.0
       debug: 4.3.4
-      engine.io-client: 6.2.3
+      engine.io-client: 6.4.0
       socket.io-parser: 4.2.1
     transitivePeerDependencies:
       - bufferutil
@@ -6551,8 +6551,8 @@ packages:
         optional: true
     dev: true
 
-  /ws/8.2.3:
-    resolution: {integrity: sha512-wBuoj1BDpC6ZQ1B7DWQBYVLphPWkm8i9Y0/3YdHjHKHiohOJ1ws+3OccDWtH+PoC9DZD5WOTrJvNbWvjS6JWaA==}
+  /ws/8.11.0:
+    resolution: {integrity: sha512-HPG3wQd9sNQoT9xHyNCXoDUa+Xw/VevmY9FoHyQ+g+rrMn4j6FB4np7Z0OhdTgjx6MgQLK7jwSy1YecU1+4Asg==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
