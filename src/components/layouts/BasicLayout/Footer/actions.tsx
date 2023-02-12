@@ -9,6 +9,7 @@ import { TransitionGroup } from 'react-transition-group'
 import {
   BxBxsArrowToTop,
   FaSolidHeadphonesAlt,
+  SubscribeOutlined,
 } from '@mx-space/kami-design/components/Icons/for-footer'
 import { RootPortal } from '@mx-space/kami-design/components/Portal'
 import { ScaleTransitionView } from '@mx-space/kami-design/components/Transition/scale'
@@ -57,6 +58,13 @@ export const FooterActions: FC = observer(() => {
     })
   }, [])
 
+  const handleSubscribe = useCallback(() => {
+    event({
+      action: TrackerAction.Click,
+      label: `底部订阅点击`,
+    })
+  }, [])
+
   useShortcut(
     'P',
     [Modifier.Command, Modifier.Shift],
@@ -102,6 +110,9 @@ export const FooterActions: FC = observer(() => {
           })}
         </TransitionGroup>
 
+        <button aria-label="subscribe" onClick={handleSubscribe}>
+          <SubscribeOutlined />
+        </button>
         <button aria-label="open player" onClick={handlePlayMusic}>
           <FaSolidHeadphonesAlt />
         </button>
