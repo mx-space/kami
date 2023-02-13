@@ -23,7 +23,7 @@ import styles from './actions.module.css'
 
 const timeout = { exit: 300 }
 export const FooterActions: FC = observer(() => {
-  const { appStore, actionStore, musicStore } = useStore()
+  const { appStore, actionStore, musicStore, subscribeStore } = useStore()
   const {
     isOverFirstScreenHeight: isOverflow,
     isPadOrMobile,
@@ -62,6 +62,9 @@ export const FooterActions: FC = observer(() => {
     event({
       action: TrackerAction.Click,
       label: `底部订阅点击`,
+    })
+    runInAction(() => {
+      subscribeStore.setHide(!subscribeStore.isHide)
     })
   }, [])
 

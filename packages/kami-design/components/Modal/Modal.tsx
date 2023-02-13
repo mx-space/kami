@@ -49,6 +49,7 @@ export const Modal = forwardRef<
         resolve(null as any)
         props.disposer()
       }, 300)
+      props.onClose && props.onClose()
     })
   }, [props.disposer])
 

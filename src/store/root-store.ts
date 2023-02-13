@@ -8,6 +8,7 @@ import { ProjectStore } from './collections/project'
 import { SayStore } from './collections/say'
 import GatewayStore from './gateway'
 import { MusicStore } from './music'
+import { Subscribestore } from './subscribe'
 import UserStore from './user'
 
 export interface RootStore {
@@ -16,6 +17,8 @@ export interface RootStore {
   appUIStore: AppUIStore
 
   musicStore: MusicStore
+
+  subscribeStore: Subscribestore
 
   actionStore: ActionStore
 
@@ -33,6 +36,7 @@ export class RootStore {
     this.userStore = new UserStore()
     this.appUIStore = new AppUIStore()
     this.musicStore = new MusicStore()
+    this.subscribeStore = new Subscribestore()
     this.actionStore = new ActionStore()
 
     this.commentStore = new CommentStore()

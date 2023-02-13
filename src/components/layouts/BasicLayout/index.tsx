@@ -10,6 +10,7 @@ import React, {
 import type { ShortcutOptions } from 'react-shortcut-guide'
 import { ShortcutProvider } from 'react-shortcut-guide'
 
+import { ModalStackProvider } from '@mx-space/kami-design'
 import {
   BiMoonStarsFill,
   PhSunBold,
@@ -52,6 +53,11 @@ const LampSwitch = React.lazy(() =>
 const MusicMiniPlayerStoreControlled = React.lazy(() =>
   import('~/components/widgets/Player').then((mo) => ({
     default: mo.MusicMiniPlayerStoreControlled,
+  })),
+)
+const SubScribeEmail = React.lazy(() =>
+  import('~/components/widgets/Subscribe').then((mo) => ({
+    default: mo.SubscribeEmail,
   })),
 )
 export const BasicLayout: FC = observer(({ children }) => {
@@ -113,7 +119,7 @@ export const BasicLayout: FC = observer(({ children }) => {
   }, [])
   const { event } = useAnalyze()
   return (
-    <>
+    <ModalStackProvider isMobileViewport={appStore.viewport.mobile}>
       <div className="inset-0 fixed bg-fixed pointer-events-none transition-opacity duration-500 ease transform-gpu">
         <div className="bg absolute inset-0 transform-gpu" />
       </div>
@@ -138,6 +144,7 @@ export const BasicLayout: FC = observer(({ children }) => {
       />
       <Suspense fallback={null}>
         <Footer />
+        <SubScribeEmail />
         <MusicMiniPlayerStoreControlled />
         {!appStore.isNarrowThanLaptop && (
           <LampSwitch onClick={handleChangeColorMode} />
@@ -152,6 +159,6 @@ export const BasicLayout: FC = observer(({ children }) => {
 
         <SearchHotKey />
       </Suspense>
-    </>
+    </ModalStackProvider>
   )
 })
