@@ -31,7 +31,7 @@
     "incremental": true,
     "paths": {
       "@mx-space/kami-design": [
-        "../packages/kami-design"
+        "../packages/kami-design/index.ts"
       ],
       "@mx-space/kami-design/*": [
         "../packages/kami-design/*"

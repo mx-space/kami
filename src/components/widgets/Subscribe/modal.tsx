@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react-lite'
-import type { FC} from 'react';
 import { useReducer } from 'react'
 import { message } from 'react-message-popup'
 
@@ -8,11 +7,13 @@ import { MdiEmailFastOutline } from '@mx-space/kami-design/components/Icons'
 
 import { apiClient } from '~/utils/client'
 
+import { useSubscribeStatus } from './query'
+
 interface SubscribeModalProps {
-  onClose?: () => void
+  onConfirm: () => void
 }
 
-const map: Record<string, string> = {
+const subscibeTextMap: Record<string, string> = {
   post_c: '文章',
   note_c: '笔记',
   say_c: '说说',
@@ -48,43 +49,47 @@ const useFormData = () => {
   return [state, dispatch] as const
 }
 
-export const SubscribeModal: FC<SubscribeModalProps> = observer(
-  ({ onClose }) => {
-    const [state, dispatch] = useFormData()
-    const handleSubList = async () => {
-      if (!state.email) {
-        message.error('请输入邮箱')
-        return
-      }
-      if (Object.values(state.types).every((type) => !type)) {
-        message.error('请选择订阅类型')
-        return
-      }
+export const SubscribeModal = observer<SubscribeModalProps>(({ onConfirm }) => {
+  const [state, dispatch] = useFormData()
 
-      await apiClient.proxy.subscribe.post({
-        data: {
-          email: state.email,
-          types: Object.keys(state.types).filter((name) => state.types[name]),
-        },
-      })
-      message.success('订阅成功')
-      dispatch({ type: 'reset' })
-      onClose && onClose()
+  const query = useSubscribeStatus()
+
+  const handleSubList = async () => {
+    if (!state.email) {
+      message.error('请输入邮箱')
+      return
     }
-    return (
-      <form action="#" onSubmit={handleSubList} className="flex flex-col gap-5">
-        <Input
-          type="text"
-          placeholder="留下你的邮箱哦 *"
-          required
-          prefix={<MdiEmailFastOutline />}
-          value={state.email}
-          onChange={(e) => {
-            dispatch({ type: 'set', data: { email: e.target.value } })
-          }}
-        />
-        <div className="flex gap-10">
-          {Object.keys(state.types).map((name) => (
+    if (Object.values(state.types).every((type) => !type)) {
+      message.error('请选择订阅类型')
+      return
+    }
+    const { email, types } = state
+    await apiClient.subscribe.subscribe(
+      email,
+      Object.keys(types).filter((name) => state.types[name]) as any[],
+    )
+
+    message.success('订阅成功')
+    dispatch({ type: 'reset' })
+    onConfirm()
+  }
+
+  return (
+    <form action="#" onSubmit={handleSubList} className="flex flex-col gap-5">
+      <Input
+        type="text"
+        placeholder="留下你的邮箱哦 *"
+        required
+        prefix={<MdiEmailFastOutline />}
+        value={state.email}
+        onChange={(e) => {
+          dispatch({ type: 'set', data: { email: e.target.value } })
+        }}
+      />
+      <div className="flex gap-10">
+        {Object.keys(state.types)
+          .filter((type) => query.data?.allowTypes.includes(type as any))
+          .map((name) => (
             <fieldset
               className="inline-flex items-center children:cursor-pointer text-lg"
               key={name}
@@ -106,13 +111,12 @@ export const SubscribeModal: FC<SubscribeModalProps> = observer(
                 id={name}
               />
               <label htmlFor={name} className="text-shizuku">
-                {map[name]}
+                {subscibeTextMap[name]}
               </label>
             </fieldset>
           ))}
-        </div>
-        <button className="btn yellow">订阅</button>
-      </form>
-    )
-  },
-)
+      </div>
+      <button className="btn yellow">订阅</button>
+    </form>
+  )
+})
