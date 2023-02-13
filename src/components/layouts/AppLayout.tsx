@@ -4,7 +4,6 @@ import type { FC } from 'react'
 import { useEffect, useInsertionEffect } from 'react'
 
 import type { AggregateRoot } from '@mx-space/api-client'
-import { ModalStackProvider } from '@mx-space/kami-design/components/Modal/stack-context'
 
 import { MetaFooter } from '~/components/biz/Meta/footer'
 import { DynamicHeadMeta } from '~/components/biz/Meta/head'
@@ -22,7 +21,7 @@ import { loadStyleSheet } from '~/utils/load-script'
 import { useStore } from '../../store'
 
 export const Content: FC = observer((props) => {
-  const { userStore: master, appUIStore } = useStore()
+  const { userStore: master } = useStore()
 
   useScreenMedia()
   const { check: checkBrowser } = useCheckOldBrowser()
@@ -56,7 +55,7 @@ export const Content: FC = observer((props) => {
   }, [])
 
   return (
-    <ModalStackProvider isMobileViewport={appUIStore.viewport.mobile}>
+    <>
       <DynamicHeadMeta />
       <NextSeo
         title={`${initialData.seo.title} · ${initialData.seo.description}`}
@@ -66,6 +65,6 @@ export const Content: FC = observer((props) => {
       <div id="next">{props.children}</div>
       <Loader />
       <MetaFooter />
-    </ModalStackProvider>
+    </>
   )
 })

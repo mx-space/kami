@@ -13,6 +13,7 @@ import {
 import { RootPortal } from '@mx-space/kami-design/components/Portal'
 import { ScaleTransitionView } from '@mx-space/kami-design/components/Transition/scale'
 
+import { SubscribeEmail } from '~/components/widgets/Subscribe'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useStore } from '~/store'
@@ -101,7 +102,7 @@ export const FooterActions: FC = observer(() => {
             )
           })}
         </TransitionGroup>
-
+        <SubscribeEmail />
         <button aria-label="open player" onClick={handlePlayMusic}>
           <FaSolidHeadphonesAlt />
         </button>

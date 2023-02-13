@@ -1,18 +1,18 @@
 import { clsx } from 'clsx'
 import uniqueId from 'lodash-es/uniqueId'
-import {
+import type {
   FC,
   FunctionComponentElement,
   ReactChildren,
   ReactElement,
   ReactNode,
-  useEffect,
 } from 'react'
 import React, {
   createContext,
   createElement,
   memo,
   useContext,
+  useEffect,
   useRef,
   useState,
 } from 'react'
@@ -198,6 +198,7 @@ export const ModalStackProvider: FC<{
           component: $modalElement,
           id,
           disposer,
+          useBottomDrawerInMobile,
           ...rest,
         },
       ]
@@ -260,6 +261,7 @@ export const ModalStackProvider: FC<{
             overlayProps,
             useBottomDrawerInMobile = true,
           } = comp
+
           const extraProps = extraModalPropsMap.get(id)!
 
           const onClose = () => {
@@ -288,7 +290,7 @@ export const ModalStackProvider: FC<{
           dismissFnMapRef.current.set(Component, onClose)
           return (
             <Overlay
-              center={!isMobileViewport && useBottomDrawerInMobile}
+              center={!(isMobileViewport && useBottomDrawerInMobile)}
               standaloneWrapperClassName={clsx(
                 isMobileViewport &&
                   useBottomDrawerInMobile &&
