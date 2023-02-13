@@ -49,7 +49,7 @@ export const SubscribeEmail = () => {
     <button
       aria-label="subscribe"
       onClick={handleSubscribe}
-      className="animate-shock"
+      className="animate-bubble animate-duration-600 animate-repeat-3"
     >
       <SubscribeOutlined />
     </button>
