@@ -55,11 +55,6 @@ const MusicMiniPlayerStoreControlled = React.lazy(() =>
     default: mo.MusicMiniPlayerStoreControlled,
   })),
 )
-const SubScribeEmail = React.lazy(() =>
-  import('~/components/widgets/Subscribe').then((mo) => ({
-    default: mo.SubscribeEmail,
-  })),
-)
 export const BasicLayout: FC = observer(({ children }) => {
   const { appStore, actionStore } = useRootStore()
 
@@ -144,7 +139,6 @@ export const BasicLayout: FC = observer(({ children }) => {
       />
       <Suspense fallback={null}>
         <Footer />
-        <SubScribeEmail />
         <MusicMiniPlayerStoreControlled />
         {!appStore.isNarrowThanLaptop && (
           <LampSwitch onClick={handleChangeColorMode} />

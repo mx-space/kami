@@ -9,11 +9,11 @@ import { TransitionGroup } from 'react-transition-group'
 import {
   BxBxsArrowToTop,
   FaSolidHeadphonesAlt,
-  SubscribeOutlined,
 } from '@mx-space/kami-design/components/Icons/for-footer'
 import { RootPortal } from '@mx-space/kami-design/components/Portal'
 import { ScaleTransitionView } from '@mx-space/kami-design/components/Transition/scale'
 
+import { SubscribeEmail } from '~/components/widgets/Subscribe'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useStore } from '~/store'
@@ -23,7 +23,7 @@ import styles from './actions.module.css'
 
 const timeout = { exit: 300 }
 export const FooterActions: FC = observer(() => {
-  const { appStore, actionStore, musicStore, subscribeStore } = useStore()
+  const { appStore, actionStore, musicStore } = useStore()
   const {
     isOverFirstScreenHeight: isOverflow,
     isPadOrMobile,
@@ -55,16 +55,6 @@ export const FooterActions: FC = observer(() => {
     runInAction(() => {
       musicStore.setHide(!musicStore.isHide)
       musicStore.setPlay(!musicStore.isHide)
-    })
-  }, [])
-
-  const handleSubscribe = useCallback(() => {
-    event({
-      action: TrackerAction.Click,
-      label: `底部订阅点击`,
-    })
-    runInAction(() => {
-      subscribeStore.setHide(!subscribeStore.isHide)
     })
   }, [])
 
@@ -112,10 +102,7 @@ export const FooterActions: FC = observer(() => {
             )
           })}
         </TransitionGroup>
-
-        <button aria-label="subscribe" onClick={handleSubscribe}>
-          <SubscribeOutlined />
-        </button>
+        <SubscribeEmail />
         <button aria-label="open player" onClick={handlePlayMusic}>
           <FaSolidHeadphonesAlt />
         </button>
