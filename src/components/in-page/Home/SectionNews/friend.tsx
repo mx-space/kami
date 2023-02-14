@@ -6,10 +6,12 @@ import useSWR from 'swr'
 import type { LinkModel } from '@mx-space/api-client'
 import { LinkState, LinkType } from '@mx-space/api-client'
 import { Avatar } from '@mx-space/kami-design/components/Avatar'
+import { PhUsersDuotone } from '@mx-space/kami-design/components/Icons'
 
 import { apiClient } from '~/utils/client'
 
 import styles from './index.module.css'
+import { SectionWrap } from './section'
 
 export const FriendItem: FC<LinkModel> = memo((props) => {
   return (
@@ -46,11 +48,22 @@ export const FriendsSection: FC = memo(() => {
     mutate()
   }, [])
 
+  if (!friends || !friends.length) {
+    return null
+  }
+
   return (
-    <div className={styles['friends-wrap']}>
-      {friends?.map((item) => {
-        return <FriendItem {...item} key={item.id} />
-      })}
-    </div>
+    <SectionWrap
+      title="朋友们"
+      moreUrl="friends"
+      icon={<PhUsersDuotone />}
+      className={'w-full'}
+    >
+      <div className={styles['friends-wrap']}>
+        {friends?.map((item) => {
+          return <FriendItem {...item} key={item.id} />
+        })}
+      </div>
+    </SectionWrap>
   )
 })
