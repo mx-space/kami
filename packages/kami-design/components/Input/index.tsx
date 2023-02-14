@@ -88,6 +88,12 @@ export const Input = memo(
         }
       }, [inputWrapRef])
 
+      const inputContextProviderValue = useRef({
+        setFocus: (state: boolean) => {
+          setFocus(state)
+        },
+      })
+
       return (
         <span
           {...merge(props.wrapperProps, {
@@ -123,13 +129,7 @@ export const Input = memo(
             </div>
           )}
           {props.children ? (
-            <InputContext.Provider
-              value={{
-                setFocus: (state: boolean) => {
-                  setFocus(state)
-                },
-              }}
-            >
+            <InputContext.Provider value={inputContextProviderValue.current}>
               {props.children}
             </InputContext.Provider>
           ) : multi ? (

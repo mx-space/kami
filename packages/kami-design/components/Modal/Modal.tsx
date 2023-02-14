@@ -1,4 +1,5 @@
 import { clsx } from 'clsx'
+import type { FC } from 'react'
 import React, {
   forwardRef,
   useCallback,
@@ -32,6 +33,26 @@ export type ModalRefObject = {
   getElement: () => HTMLElement
   forceUpdate: () => void
 }
+
+const ModalContent: FC<{
+  title?: string
+  contentClassName?: string
+  children: React.ReactNode
+}> = (props) => {
+  const { children, contentClassName, title } = props
+  return (
+    <div
+      className={clsx(
+        styles['content'],
+        title && styles['has-title'],
+        contentClassName,
+      )}
+    >
+      {children}
+    </div>
+  )
+}
+
 export const Modal = forwardRef<
   ModalRefObject,
   ModalProps & {
@@ -72,17 +93,7 @@ export const Modal = forwardRef<
 
   const isMounted = useIsMountedState()
 
-  const Content = (
-    <div
-      className={clsx(
-        styles['content'],
-        title && styles['has-title'],
-        props.contentClassName,
-      )}
-    >
-      {props.children}
-    </div>
-  )
+  const portalProviderValue = useRef({ to: $wrapper.current as HTMLElement })
 
   const Children = (
     <div
@@ -108,12 +119,12 @@ export const Modal = forwardRef<
       )}
       {useRootPortal ? (
         isMounted ? (
-          <RootPortalProvider value={{ to: $wrapper.current as HTMLElement }}>
-            {Content}
+          <RootPortalProvider value={portalProviderValue.current}>
+            <ModalContent {...props}>{props.children}</ModalContent>
           </RootPortalProvider>
         ) : null
       ) : (
-        Content
+        <ModalContent {...props}>{props.children}</ModalContent>
       )}
     </div>
   )

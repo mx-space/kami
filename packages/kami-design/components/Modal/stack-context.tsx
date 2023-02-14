@@ -243,13 +243,15 @@ export const ModalStackProvider: FC<{
   }).current
 
   const isClient = useIsClient()
+  const modalStackProvideValue = useRef({
+    present,
+    findCurrentByName,
+    getStack,
+    disposeAll,
+  }).current
 
   return (
-    <ModalStackContext.Provider
-      value={
-        useRef({ present, findCurrentByName, getStack, disposeAll }).current
-      }
-    >
+    <ModalStackContext.Provider value={modalStackProvideValue}>
       {children}
 
       {isClient &&
