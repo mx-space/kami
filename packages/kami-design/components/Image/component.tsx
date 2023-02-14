@@ -106,9 +106,6 @@ export const ImageLazy = memo(
     ImageProps &
       DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
   >((props, ref) => {
-    useEffect(() => {
-      console.log('update')
-    })
     const {
       defaultImage,
       src,

@@ -5,9 +5,10 @@ import { message } from 'react-message-popup'
 import { Input } from '@mx-space/kami-design'
 import { MdiEmailFastOutline } from '@mx-space/kami-design/components/Icons'
 
+import { useInitialData } from '~/hooks/use-initial-data'
 import { apiClient } from '~/utils/client'
 
-import { useSubscribeStatus } from './query'
+import { useSubscribeStatus } from './hooks'
 
 interface SubscribeModalProps {
   onConfirm: () => void
@@ -73,9 +74,15 @@ export const SubscribeModal = observer<SubscribeModalProps>(({ onConfirm }) => {
     dispatch({ type: 'reset' })
     onConfirm()
   }
-
+  const {
+    seo: { title },
+  } = useInitialData()
   return (
     <form action="#" onSubmit={handleSubList} className="flex flex-col gap-5">
+      <p className="text-gray-1 text-sm">
+        欢迎订阅「{title}
+        」，我会定期推送最新的内容到你的邮箱。
+      </p>
       <Input
         type="text"
         placeholder="留下你的邮箱哦 *"
@@ -116,7 +123,17 @@ export const SubscribeModal = observer<SubscribeModalProps>(({ onConfirm }) => {
             </fieldset>
           ))}
       </div>
-      <button className="btn yellow">订阅</button>
+
+      <p className="text-gray-1 -mt-2 text-sm">
+        或者你也可以通过{' '}
+        <a href="/feed" className="text-green" target={'_blank'}>
+          /feed
+        </a>{' '}
+        订阅「{title}」的 RSS 流。
+      </p>
+      <button className="btn green" disabled={!state.email}>
+        订阅
+      </button>
     </form>
   )
 })

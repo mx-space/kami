@@ -6,8 +6,8 @@ import { useModalStack } from '@mx-space/kami-design/components/Modal'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 
+import { useSubscribeStatus } from './hooks'
 import { SubscribeModal } from './modal'
-import { useSubscribeStatus } from './query'
 
 export const SubscribeEmail = () => {
   const { event } = useAnalyze()

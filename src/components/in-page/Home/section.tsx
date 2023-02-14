@@ -1,7 +1,7 @@
 import Router from 'next/router'
 import { useIndexViewContext } from 'pages'
 import type { FC } from 'react'
-import React, { useCallback, useMemo, useRef, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import useSWR from 'swr'
 
@@ -9,13 +9,16 @@ import type { AggregateTop } from '@mx-space/api-client'
 import {
   FaSolidKissWinkHeart,
   MdiDrawPen,
-  PhUsersDuotone,
 } from '@mx-space/kami-design/components/Icons/for-home'
 import { IcTwotoneSignpost } from '@mx-space/kami-design/components/Icons/menu-icon'
 import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
 import { LikeButton } from '~/components/universal/LikeButton'
 import { NoticePanel } from '~/components/universal/Notice'
+import {
+  usePresentSubscribeModal,
+  useSubscribeStatus,
+} from '~/components/widgets/Subscribe/hooks'
 import { useRandomImage } from '~/hooks/use-kami'
 import { apiClient } from '~/utils/client'
 import { stopEventDefault } from '~/utils/dom'
@@ -26,6 +29,28 @@ import SectionNews, { SectionCard } from './SectionNews'
 import { FriendsSection } from './SectionNews/friend'
 import { SectionWrap } from './SectionNews/section'
 import styles from './section.module.css'
+
+const SubscribeCard: FC<{
+  bg: string
+}> = ({ bg }) => {
+  const { data } = useSubscribeStatus()
+  const { present } = usePresentSubscribeModal('home')
+
+  return (
+    <SectionCard
+      title="订阅"
+      desc="关注订阅不迷路哦"
+      src={bg}
+      onClick={useCallback(() => {
+        if (data?.enable) {
+          present()
+        } else {
+          window.open('/feed')
+        }
+      }, [data?.enable])}
+    />
+  )
+}
 
 const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
   const randomImages = useRandomImage('all')
@@ -74,15 +99,8 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
   const SectionCompList = [
     <SectionNews {...sections.current.postSection} key="1" />,
     <SectionNews {...sections.current.noteSection} key="2" />,
-    <SectionWrap
-      title="朋友们"
-      moreUrl="friends"
-      icon={<PhUsersDuotone />}
-      key="3"
-      className={'w-full'}
-    >
-      <FriendsSection />
-    </SectionWrap>,
+
+    <FriendsSection key="3" />,
     <SectionWrap
       title="了解更多"
       icon={<FaSolidKissWinkHeart />}
@@ -125,12 +143,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
             })
         }, [])}
       />
-      <SectionCard
-        title="订阅"
-        desc="关注订阅不迷路哦"
-        src={useMemo(() => getRandomUnRepeatImage(), [])}
-        href="/feed"
-      />
+      <SubscribeCard bg={useMemo(() => getRandomUnRepeatImage(), [])} />
 
       <NoticePanel
         in={showLikeThisNotice}
