@@ -1,5 +1,25 @@
 # CHANGELOG
 
+# [4.1.0](https://github.com/mx-space/kami/compare/v4.0.11...v4.1.0) (2023-02-14)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @floating-ui/react-dom to v1.3.0 ([#1583](https://github.com/mx-space/kami/issues/1583)) ([ebf95a2](https://github.com/mx-space/kami/commit/ebf95a221e82fc6d9a6db2fed980ce9971143194))
+* **deps:** update dependency mobx to v6.8.0 ([#1576](https://github.com/mx-space/kami/issues/1576)) ([4d67526](https://github.com/mx-space/kami/commit/4d67526e1e2f13ee02b9f2de7705a2e2be46ca09))
+* **deps:** update dependency react-intersection-observer to v9.4.2 ([#1574](https://github.com/mx-space/kami/issues/1574)) ([23b85cb](https://github.com/mx-space/kami/commit/23b85cb8cd060d2394d8cdda710110ec35ef8960))
+* **deps:** update dependency socket.io-client to v4.6.0 ([#1571](https://github.com/mx-space/kami/issues/1571)) ([db2fefd](https://github.com/mx-space/kami/commit/db2fefd3334f717129838d403ef8db4afd8f85a3))
+* **deps:** update dependency validator to v13.9.0 ([#1566](https://github.com/mx-space/kami/issues/1566)) ([165722d](https://github.com/mx-space/kami/commit/165722d074a7e42111da63b09065e86f7fa7bfb7))
+* **home:** hide friend section if nothing ([0acdcc6](https://github.com/mx-space/kami/commit/0acdcc672113d1b5811b661cd1d9dc0481920cbe))
+
+
+### Features
+
+* **home:** modal of subscribe entry ([d79a256](https://github.com/mx-space/kami/commit/d79a25697d3cb59f35dd08c6fac16fe4ba559e57))
+* subscribe support ([#1582](https://github.com/mx-space/kami/issues/1582)) ([16bf795](https://github.com/mx-space/kami/commit/16bf795e5022be0e8ac663f11b2a1f5fb415d792))
+
+
+
 ## [4.0.11](https://github.com/mx-space/kami/compare/v4.0.10...v4.0.11) (2023-02-03)
 
 
