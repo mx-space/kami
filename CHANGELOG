@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [4.1.1](https://github.com/mx-space/kami/compare/v4.1.0...v4.1.1) (2023-02-15)
+
+
+### Bug Fixes
+
+* dockerfile build ([d1a1f16](https://github.com/mx-space/kami/commit/d1a1f16d649682192c33f7ca7fbf04756b5c99a8))
+
+
+
 # [4.1.0](https://github.com/mx-space/kami/compare/v4.0.11...v4.1.0) (2023-02-14)
 
 
