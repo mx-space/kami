@@ -16,7 +16,7 @@ interface SubscribeModalProps {
 
 const subscibeTextMap: Record<string, string> = {
   post_c: '文章',
-  note_c: '笔记',
+  note_c: '生活点滴',
   say_c: '说说',
   recently_c: '速记',
 }
