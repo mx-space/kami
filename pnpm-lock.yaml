@@ -41,7 +41,7 @@ importers:
       js-cookie: 3.0.1
       js-yaml: 4.1.0
       kami-design: workspace:@mx-space/kami-design@*
-      lint-staged: 13.1.1
+      lint-staged: 13.1.2
       lodash-es: 4.17.21
       markdown-escape: 2.0.0
       markdown-to-jsx: npm:@innei/markdown-to-jsx@7.1.3-beta.2
@@ -143,7 +143,7 @@ importers:
       eslint: 8.34.0
       husky: 8.0.3
       js-yaml: 4.1.0
-      lint-staged: 13.1.1
+      lint-staged: 13.1.2
       next-compose-plugins: 2.2.1
       postcss: 8.4.21
       postcss-import: 15.1.0_postcss@8.4.21
@@ -3887,8 +3887,8 @@ packages:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
 
-  /lint-staged/13.1.1:
-    resolution: {integrity: sha512-LLJLO0Kdbcv2a+CvSF4p1M7jBZOajKSMpBUvyR8+bXccsqPER0/NxTFQSpNHjqwV9kM3tkHczYerTB5wI+bksQ==}
+  /lint-staged/13.1.2:
+    resolution: {integrity: sha512-K9b4FPbWkpnupvK3WXZLbgu9pchUJ6N7TtVZjbaPsoizkqFUDkUReUL25xdrCljJs7uLUF3tZ7nVPeo/6lp+6w==}
     engines: {node: ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -3901,7 +3901,7 @@ packages:
       listr2: 5.0.6
       micromatch: 4.0.5
       normalize-path: 3.0.0
-      object-inspect: 1.12.2
+      object-inspect: 1.12.3
       pidtree: 0.6.0
       string-argv: 0.3.1
       yaml: 2.1.3
@@ -4381,10 +4381,6 @@ packages:
   /object-assign/4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
-
-  /object-inspect/1.12.2:
-    resolution: {integrity: sha512-z+cPxW0QGUp0mcqcsgQyLVRDoXFQbXOwBaqyF7VIgI4TWNQsDHrBpUQslRmIfAoYWdYzs6UlKJtB2XJpTaNSpQ==}
-    dev: true
 
   /object-inspect/1.12.3:
     resolution: {integrity: sha512-geUvdk7c+eizMNUDkRpW1wJwgfOiOeHbxBR/hLXK1aT6zmVSO0jsQcs7fj6MGw89jC/cjGfLcNOrtMYtGqm81g==}
