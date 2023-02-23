@@ -30,6 +30,7 @@ import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { Markdown } from '~/components/universal/Markdown'
 import type { ActionProps } from '~/components/widgets/ArticleAction'
 import { SearchFAB } from '~/components/widgets/Search'
+import { SubscribeBell } from '~/components/widgets/SubscribeBell'
 import { useHeaderMeta, useHeaderShare } from '~/hooks/use-header-meta'
 import { useInitialData, useThemeConfig } from '~/hooks/use-initial-data'
 import { useIsClient } from '~/hooks/use-is-client'
@@ -276,6 +277,7 @@ export const PostView: PageOnlyProps = observer((props) => {
               </ImageSizeMetaContext.Provider>
 
               <PostRelated id={post.id} />
+              <SubscribeBell defaultType={'post_c'} />
               {post.copyright && isClientSide ? (
                 <Copyright
                   date={post.modified}
