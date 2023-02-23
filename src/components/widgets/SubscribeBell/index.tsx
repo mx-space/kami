@@ -19,6 +19,7 @@ export const SubscribeBell: FC<SubscribeBellProps> = (props) => {
     'post-end',
     [].concat(defaultType as any),
   )
+
   if (!canSubscribe) {
     return null
   }
@@ -33,7 +34,7 @@ export const SubscribeBell: FC<SubscribeBellProps> = (props) => {
           站点已开启邮件订阅，点亮小铃铛，订阅最新文章哦~
         </p>
 
-        <TablerBellRinging className="text-3xl transform scale-150 text-yellow mt-4 opacity-50 hover:opacity-100 transition-opacity hover:animate-shake-x hover:animate-loop" />
+        <TablerBellRinging className="text-3xl transform scale-150 text-yellow mt-4 opacity-50 hover:opacity-100 transition-opacity" />
       </button>
     </div>
   )
