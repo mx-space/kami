@@ -19,7 +19,7 @@ importers:
       '@types/js-cookie': 3.0.2
       '@types/lodash-es': 4.17.6
       '@types/markdown-escape': 1.1.0
-      '@types/node': 17.0.18
+      '@types/node': 18.14.1
       '@types/randomcolor': 0.5.7
       '@types/react': 17.0.53
       '@types/react-collapse': 5.0.1
@@ -128,7 +128,7 @@ importers:
       '@types/js-cookie': 3.0.2
       '@types/lodash-es': 4.17.6
       '@types/markdown-escape': 1.1.0
-      '@types/node': 17.0.18
+      '@types/node': 18.14.1
       '@types/randomcolor': 0.5.7
       '@types/react': 17.0.53
       '@types/react-collapse': 5.0.1
@@ -1472,7 +1472,7 @@ packages:
   /@types/fs-extra/9.0.13:
     resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
     dependencies:
-      '@types/node': 18.11.0
+      '@types/node': 18.14.1
     dev: true
 
   /@types/inflection/1.13.0:
@@ -1513,12 +1513,8 @@ packages:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
 
-  /@types/node/17.0.18:
-    resolution: {integrity: sha512-eKj4f/BsN/qcculZiRSujogjvp5O/k4lOW5m35NopjZM/QwLOR075a8pJW5hD+Rtdm2DaCVPENS6KtSQnUD6BA==}
-    dev: true
-
-  /@types/node/18.11.0:
-    resolution: {integrity: sha512-IOXCvVRToe7e0ny7HpT/X9Rb2RYtElG1a+VshjwT00HxrM2dWBApHQoqsI6WiY7Q03vdf2bCrIGzVrkF/5t10w==}
+  /@types/node/18.14.1:
+    resolution: {integrity: sha512-QH+37Qds3E0eDlReeboBxfHbX9omAcBCXEzswCu6jySP642jiM3cYSIkU/REqwhCUqXdonHFuBfJDiAJxMNhaQ==}
     dev: true
 
   /@types/normalize-package-data/2.4.1:
@@ -6790,7 +6786,7 @@ packages:
     dependencies:
       '@types/fs-extra': 9.0.13
       '@types/minimist': 1.2.2
-      '@types/node': 18.11.0
+      '@types/node': 18.14.1
       '@types/ps-tree': 1.1.2
       '@types/which': 2.0.1
       chalk: 5.1.2
