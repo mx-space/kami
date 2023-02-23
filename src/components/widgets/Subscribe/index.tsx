@@ -1,12 +1,10 @@
-import { useEffect, useState } from 'react'
-
 import { SubscribeOutlined } from '@mx-space/kami-design/components/Icons'
 import { useModalStack } from '@mx-space/kami-design/components/Modal'
 
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 
-import { useSubscribeStatus } from './hooks'
+import { useIsEnableSubscribe } from './hooks'
 import { SubscribeModal } from './modal'
 
 export const SubscribeEmail = () => {
@@ -33,15 +31,7 @@ export const SubscribeEmail = () => {
     })
   }
 
-  const [canSubscribe, setCanSubscribe] = useState(false)
-
-  const query = useSubscribeStatus()
-
-  useEffect(() => {
-    const status = query.data?.enable
-    if (typeof status !== 'boolean') return
-    setCanSubscribe(status)
-  }, [query.data])
+  const canSubscribe = useIsEnableSubscribe()
 
   if (!canSubscribe) return null
 

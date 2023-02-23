@@ -16,8 +16,8 @@ import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transit
 import { LikeButton } from '~/components/universal/LikeButton'
 import { NoticePanel } from '~/components/universal/Notice'
 import {
+  useIsEnableSubscribe,
   usePresentSubscribeModal,
-  useSubscribeStatus,
 } from '~/components/widgets/Subscribe/hooks'
 import { useRandomImage } from '~/hooks/use-kami'
 import { apiClient } from '~/utils/client'
@@ -33,7 +33,7 @@ import styles from './section.module.css'
 const SubscribeCard: FC<{
   bg: string
 }> = ({ bg }) => {
-  const { data } = useSubscribeStatus()
+  const canSubscribe = useIsEnableSubscribe()
   const { present } = usePresentSubscribeModal('home')
 
   return (
@@ -42,12 +42,12 @@ const SubscribeCard: FC<{
       desc="关注订阅不迷路哦"
       src={bg}
       onClick={useCallback(() => {
-        if (data?.enable) {
+        if (canSubscribe) {
           present()
         } else {
           window.open('/feed')
         }
-      }, [data?.enable])}
+      }, [canSubscribe])}
     />
   )
 }

@@ -1,5 +1,6 @@
 import useSWR from 'swr'
 
+import { SubscribeTypeToBitMap } from '@mx-space/api-client'
 import { useModalStack } from '@mx-space/kami-design'
 
 import { TrackerAction } from '~/constants/tracker'
@@ -14,7 +15,12 @@ export const useSubscribeStatus = () => {
   return useSWR(SWR_CHECK_SUBSCRIBE_KEY, apiClient.subscribe.check)
 }
 
-export const usePresentSubscribeModal = (source: string) => {
+export const useIsEnableSubscribe = () => useSubscribeStatus().data?.enable
+
+export const usePresentSubscribeModal = (
+  source: string,
+  defaultTypes?: (keyof typeof SubscribeTypeToBitMap)[],
+) => {
   const { event } = useAnalyze()
   const { present } = useModalStack()
 
@@ -30,7 +36,9 @@ export const usePresentSubscribeModal = (source: string) => {
           stopPropagation: true,
           darkness: 0.5,
         },
-        component: () => <SubscribeModal onConfirm={dispose} />,
+        component: () => (
+          <SubscribeModal onConfirm={dispose} defaultTypes={defaultTypes} />
+        ),
         useBottomDrawerInMobile: false,
       })
 

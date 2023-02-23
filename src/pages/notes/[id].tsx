@@ -13,7 +13,7 @@ import useUpdate from 'react-use/lib/useUpdate'
 
 import type { NoteModel } from '@mx-space/api-client'
 import { RequestError } from '@mx-space/api-client'
-import { Banner } from '@mx-space/kami-design'
+import { Banner } from '@mx-space/kami-design/components/Banner'
 import { Loading } from '@mx-space/kami-design/components/Loading'
 import { ImageSizeMetaContext } from '@mx-space/kami-design/contexts/image-size'
 
@@ -24,6 +24,7 @@ import { NotePasswordConfrim } from '~/components/in-page/Note/NotePasswordConfi
 import { BanCopy } from '~/components/in-page/WarningOverlay/ban-copy'
 import { NoteLayout } from '~/components/layouts/NoteLayout'
 import { SearchFAB } from '~/components/widgets/Search'
+import { SubscribeBell } from '~/components/widgets/SubscribeBell'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useHeaderMeta, useHeaderShare } from '~/hooks/use-header-meta'
@@ -236,6 +237,9 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
         {note.topic && <NoteTopic noteId={props.id} topic={note.topic} />}
         <NoteFooterNavigationBarForMobile id={props.id} />
         <div className="pb-4" />
+
+        <SubscribeBell defaultType={'note_c'} />
+
         <NoteFooterActionBar id={props.id} />
       </NoteLayout>
       {!isSecret && (
