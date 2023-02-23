@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [4.1.2](https://github.com/mx-space/kami/compare/v4.1.1...v4.1.2) (2023-02-23)
+
+
+### Features
+
+* add subscribe bell on post footer ([#1594](https://github.com/mx-space/kami/issues/1594) ([372d789](https://github.com/mx-space/kami/commit/372d789d06967740c58b7e760426757cd206decc))
+
+
+
 ## [4.1.1](https://github.com/mx-space/kami/compare/v4.1.0...v4.1.1) (2023-02-15)
 
 
