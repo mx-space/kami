@@ -73,7 +73,7 @@ importers:
       remove-markdown: 0.5.0
       rimraf: 3.0.2
       socket.io-client: 4.6.1
-      swr: 2.0.3
+      swr: 2.0.4
       tilg: 0.1.1
       typescript: 4.9.5
       validator: 13.9.0
@@ -115,7 +115,7 @@ importers:
       react-use: 17.4.0_biqbaboplfbrettd7655fr4n2y
       remove-markdown: 0.5.0
       socket.io-client: 4.6.1
-      swr: 2.0.3_react@18.2.0
+      swr: 2.0.4_react@18.2.0
       validator: 13.9.0
     devDependencies:
       '@innei/eslint-config-react-ts': 0.9.7_typescript@4.9.5
@@ -6416,8 +6416,8 @@ packages:
       stable: 0.1.8
     dev: true
 
-  /swr/2.0.3_react@18.2.0:
-    resolution: {integrity: sha512-sGvQDok/AHEWTPfhUWXEHBVEXmgGnuahyhmRQbjl9XBYxT/MSlAzvXEKQpyM++bMPaI52vcWS2HiKNaW7+9OFw==}
+  /swr/2.0.4_react@18.2.0:
+    resolution: {integrity: sha512-4GUiTjknRUVuw4MWUHR7mzJ9G/DWL+yZz/TgWDfiA0OZ9tL6qyrTkN2wPeboBpL3OJTkej3pexh3mWCnv8cFkQ==}
     engines: {pnpm: '7'}
     peerDependencies:
       react: ^16.11.0 || ^17.0.0 || ^18.0.0
