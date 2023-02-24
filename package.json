@@ -107,7 +107,7 @@
     "@types/markdown-escape": "1.1.0",
     "@types/node": "18.14.1",
     "@types/randomcolor": "0.5.7",
-    "@types/react": "17.0.53",
+    "@types/react": "18.0.28",
     "@types/react-collapse": "5.0.1",
     "@types/react-color": "3.0.6",
     "@types/react-dom": "18.0.11",
@@ -137,7 +137,7 @@
   },
   "resolutions": {
     "react-use": "17.4.0",
-    "@types/react": "17.0.53"
+    "@types/react": "18.0.28"
   },
   "nextBundleAnalysis": {
     "budget": 358400,
