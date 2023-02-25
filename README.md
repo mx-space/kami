@@ -110,6 +110,24 @@ git lfs pull
 :::
 ```
 
+或者：支持 `info` `warning` `error` `success` `warn` `danger`
+
+```mark
+::: warning
+警告
+:::
+
+::: success
+成功
+:::
+
+::: info
+提示
+:::
+
+
+```
+
 ### 支持的 React Component
 
 1. LinkCard

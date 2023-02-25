@@ -31,6 +31,25 @@ export const ContainerRule: MarkdownToJSX.Rule = {
           <Gallery key={state?.key} images={pickImagesFromMarkdown(content)} />
         )
       }
+      case 'warn':
+      case 'error':
+      case 'danger':
+      case 'info':
+      case 'success':
+      case 'warning': {
+        const transformMap = {
+          warning: 'warn',
+          danger: 'error',
+        }
+        return (
+          <Banner
+            type={name || transformMap[name]}
+            className="my-4"
+            message={content}
+            key={state?.key}
+          />
+        )
+      }
       case 'banner': {
         if (!params) {
           break
