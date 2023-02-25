@@ -99,7 +99,7 @@
   "devDependencies": {
     "@innei/eslint-config-react-ts": "0.9.7",
     "@innei/prettier": "0.9.7",
-    "@next/bundle-analyzer": "13.1.6",
+    "@next/bundle-analyzer": "13.2.1",
     "@trivago/prettier-plugin-sort-imports": "4.1.0",
     "@types/inflection": "1.13.0",
     "@types/js-cookie": "3.0.3",

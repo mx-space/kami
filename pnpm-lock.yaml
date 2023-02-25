@@ -13,7 +13,7 @@ importers:
       '@innei/eslint-config-react-ts': 0.9.7
       '@innei/prettier': 0.9.7
       '@mx-space/api-client': 1.3.4
-      '@next/bundle-analyzer': 13.1.6
+      '@next/bundle-analyzer': 13.2.1
       '@trivago/prettier-plugin-sort-imports': 4.1.0
       '@types/inflection': 1.13.0
       '@types/js-cookie': 3.0.3
@@ -120,7 +120,7 @@ importers:
     devDependencies:
       '@innei/eslint-config-react-ts': 0.9.7_typescript@4.9.5
       '@innei/prettier': 0.9.7
-      '@next/bundle-analyzer': 13.1.6
+      '@next/bundle-analyzer': 13.2.1
       '@trivago/prettier-plugin-sort-imports': 4.1.0_prettier@2.8.4
       '@types/inflection': 1.13.0
       '@types/js-cookie': 3.0.3
@@ -1320,8 +1320,8 @@ packages:
     engines: {pnpm: '>=6'}
     dev: false
 
-  /@next/bundle-analyzer/13.1.6:
-    resolution: {integrity: sha512-rJS9CtLoGT58mL+v2ISKANosFFWP/0YKYByHQ3vTaZrbQP8b1rYRxd2QVMJmnSXaFkiP9URt1XJ6OdGyVq5b6g==}
+  /@next/bundle-analyzer/13.2.1:
+    resolution: {integrity: sha512-ex5CyyqWfBaDE0eguyhWlWZAsg2n9zN1c/YK4FNui7C/cKnjib5FcZeVNeKU9PfSYXDDT9onIhWkhsMNQwIGVg==}
     dependencies:
       webpack-bundle-analyzer: 4.7.0
     transitivePeerDependencies:
