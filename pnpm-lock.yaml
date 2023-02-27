@@ -6315,7 +6315,7 @@ packages:
     dev: true
 
   github.com/Innei/react-smooth-number-counter/6be776817e507970a7e3177b8c3277b0b9d3e779:
-    resolution: {tarball: https://codeload.github.com/Innei/react-smooth-number-counter/tar.gz/6be776817e507970a7e3177b8c3277b0b9d3e779}
+    resolution: {commit: 6be776817e507970a7e3177b8c3277b0b9d3e779, repo: git+ssh://git@github.com/Innei/react-smooth-number-counter.git, type: git}
     name: react-smooth-number-counter
     version: 0.0.5
     dev: false
