@@ -1,6 +1,6 @@
 import useSWR from 'swr'
 
-import { SubscribeTypeToBitMap } from '@mx-space/api-client'
+import type { SubscribeTypeToBitMap } from '@mx-space/api-client'
 import { useModalStack } from '@mx-space/kami-design'
 
 import { TrackerAction } from '~/constants/tracker'
@@ -12,7 +12,9 @@ import { SubscribeModal } from './modal'
 const SWR_CHECK_SUBSCRIBE_KEY = 'subscribe-status'
 
 export const useSubscribeStatus = () => {
-  return useSWR(SWR_CHECK_SUBSCRIBE_KEY, apiClient.subscribe.check)
+  return useSWR(SWR_CHECK_SUBSCRIBE_KEY, apiClient.subscribe.check, {
+    refreshInterval: 10e8,
+  })
 }
 
 export const useIsEnableSubscribe = () => useSubscribeStatus().data?.enable

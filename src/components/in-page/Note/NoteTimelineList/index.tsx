@@ -6,8 +6,7 @@ import { clsx } from 'clsx'
 import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC } from 'react'
-import { memo, useCallback } from 'react'
-import useSWR from 'swr'
+import { memo, useEffect, useMemo, useState } from 'react'
 
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import type { NoteModel } from '@mx-space/api-client'
@@ -19,14 +18,36 @@ import { LeftRightTransitionView } from '@mx-space/kami-design/components/Transi
 import { ImpressionView } from '~/components/biz/ImpressionView'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
+import { useIsUnMounted } from '~/hooks/use-is-unmounted'
 import { useStore } from '~/store'
 import { apiClient } from '~/utils/client'
+import { springScrollToTop } from '~/utils/spring'
 
 import { InnerTopicDetail } from '../NoteTopic/inner-detail'
 import styles from './index.module.css'
 
 interface NoteTimelineListProps {
   noteId: string
+}
+
+const TopicComp: FC<{
+  note: NoteModel
+}> = ({ note }) => {
+  const { event } = useAnalyze()
+
+  return (
+    <Link
+      href={`/notes/topics/${note?.topic?.slug}`}
+      onClick={() =>
+        event({
+          action: TrackerAction.Click,
+          label: `左侧时间线点击去话题页 - ${note?.topic?.name}`,
+        })
+      }
+    >
+      <span className="flex-grow truncate">{note?.topic?.name}</span>
+    </Link>
+  )
 }
 
 type NotePartial = Pick<NoteModel, 'id' | 'nid' | 'created' | 'title'>
@@ -39,49 +60,50 @@ const ObserveredNoteTimelineList: FC<
   const { noteStore } = useStore()
   const note = noteStore.get(noteId)
 
-  const { data: list } = useSWR(
-    ['note-topic', noteId],
-    ([, noteId]) =>
-      apiClient.note.getMiddleList(noteId, 10).then(({ data }) => {
-        return data
-      }),
-    {
-      keepPreviousData: true,
-      fallbackData: note
-        ? [
-            {
-              created: note.created,
-              id: note.id,
-              nid: note.nid,
-              title: note.title,
-            },
-          ]
-        : [],
-    },
-  )
+  const [list, setList] = useState(() => {
+    if (!note) return []
+    return [
+      {
+        created: note.created,
+        id: note.id,
+        nid: note.nid,
+        title: note.title,
+      },
+    ]
+  })
 
-  const { event } = useAnalyze()
+  const isUnmount = useIsUnMounted()
+  useEffect(() => {
+    async function fetchList() {
+      const scrollTop = document.documentElement.scrollTop
 
-  const TopicComp = useCallback(
-    () => (
-      <Link
-        href={`/notes/topics/${note?.topic?.slug}`}
-        onClick={() =>
-          event({
-            action: TrackerAction.Click,
-            label: `左侧时间线点击去话题页 - ${note?.topic?.name}`,
-          })
-        }
-      >
-        <span className="flex-grow truncate">{note?.topic?.name}</span>
-      </Link>
-    ),
-    [note?.topic?.name, note?.topic?.slug],
+      if (scrollTop > 0)
+        // waiting scroll to top
+        await new Promise((resolve) => setTimeout(resolve, 350))
+
+      if (isUnmount.current) return
+      const data = await apiClient.note
+        .getMiddleList(noteId, 10)
+        .then(({ data }) => {
+          return data
+        })
+      if (isUnmount.current) return
+
+      setList(data)
+    }
+    fetchList()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [noteId])
+
+  const triggerComponent = useMemo(
+    () => () => <TopicComp note={note!} />,
+    [note],
   )
 
   const [animationParent] = useAutoAnimate<HTMLUListElement>()
+
   return (
-    <div className={clsx(className, styles['container'])} data-hide-print>
+    <div className={clsx(styles['container'], className)} data-hide-print>
       <div className={clsx(styles.list)}>
         <ul ref={animationParent}>
           {list?.map((item) => {
@@ -99,7 +121,7 @@ const ObserveredNoteTimelineList: FC<
                 placement="right"
                 strategy="fixed"
                 wrapperClassNames="flex flex-grow flex-shrink min-w-0"
-                triggerComponent={TopicComp}
+                triggerComponent={triggerComponent}
               >
                 <ImpressionView
                   trackerMessage={`曝光 - 左侧时间线话题内页展开 - ${note?.topic?.name}`}
@@ -115,7 +137,9 @@ const ObserveredNoteTimelineList: FC<
     </div>
   )
 })
-
+const scrollToTop = () => {
+  springScrollToTop(250)
+}
 export const MemoedItem = memo<{
   active: boolean
   item: NotePartial
@@ -132,6 +156,8 @@ export const MemoedItem = memo<{
           className={clsx(active ? styles['active'] : null, styles.item)}
           href={`/notes/${item.nid}`}
           key={item.id}
+          scroll={false}
+          onClick={scrollToTop}
         >
           {item.title}
         </Link>

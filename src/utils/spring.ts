@@ -42,7 +42,8 @@ export const genSpringKeyframes = (
 
   return [name, css, keyframes] as const
 }
-export const springScrollToTop = () => springScrollTo(0)
+export const springScrollToTop = (duration?: number) =>
+  springScrollTo(0, duration)
 export const springScrollTo = (
   to: number,
   duration = 1000,
