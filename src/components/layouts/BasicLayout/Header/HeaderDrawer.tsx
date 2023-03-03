@@ -7,8 +7,10 @@ import { CloseIcon } from '@mx-space/kami-design/components/Icons/layout'
 import { Overlay } from '@mx-space/kami-design/components/Overlay'
 import { RootPortal } from '@mx-space/kami-design/components/Portal'
 
+import { IF } from '~/components/app/If'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
+import { useDetectPadOrMobile } from '~/hooks/use-viewport'
 import { NoSSRWrapper } from '~/utils/no-ssr'
 
 import styles from './index.module.css'
@@ -38,6 +40,7 @@ const _HeaderDrawer: FC<{ show: boolean; onExit: () => void }> = memo(
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [router])
+
     return (
       <RootPortal>
         <Fragment>
@@ -61,4 +64,6 @@ const _HeaderDrawer: FC<{ show: boolean; onExit: () => void }> = memo(
     )
   },
 )
-export const HeaderDrawer = NoSSRWrapper(_HeaderDrawer)
+export const HeaderDrawer = IF(NoSSRWrapper(_HeaderDrawer), () =>
+  useDetectPadOrMobile(),
+)

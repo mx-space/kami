@@ -2,12 +2,14 @@ import 'windi.css'
 import 'assets/styles/main.css'
 import '../../third/qp/index.css'
 
+import { Provider } from 'jotai'
 import type { AppContext } from 'next/app'
 import NextApp from 'next/app'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import { useMemo } from 'react'
 
+import { jotaiStore } from '~/atoms/store'
 import { ProviderComposer } from '~/components/app/Composer'
 import { NoDataErrorView } from '~/components/app/Error/no-data'
 import { ErrorBoundary } from '~/components/app/ErrorBoundary'
@@ -36,6 +38,7 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
     () => [
       <SWRProvider key="SWRProvider" />,
       <ErrorBoundary key="ErrorBoundary1" />,
+      <Provider store={jotaiStore} key="jotaiStore" />,
       <BasicLayout key="BasicLayout" />,
       <AppLayout key="appLayout" />,
       <ErrorBoundary key="ErrorBoundary2" />,

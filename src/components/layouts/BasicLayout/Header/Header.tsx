@@ -6,6 +6,7 @@ import { memo, useEffect, useMemo, useRef, useState } from 'react'
 
 import { IcBaselineMenuOpen } from '@mx-space/kami-design/components/Icons/layout'
 
+import { useJotaiStore } from '~/atoms/store'
 import { CustomLogo as Logo } from '~/components/universal/Logo'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
@@ -20,6 +21,15 @@ import { HeaderDrawerNavigation } from './HeaderDrawerNavigation'
 import { MenuList } from './HeaderMenuList'
 import styles from './index.module.css'
 
+export const useHeaderOpacity = () => {
+  const appStore = useJotaiStore('app')
+  const { position } = appStore
+  const threshold = 50
+  return position >= threshold
+    ? 1
+    : Math.floor((position / threshold) * 100) / 100
+}
+
 export const Header: FC = observer(() => {
   const {
     seo: { title, description },
@@ -32,7 +42,7 @@ export const Header: FC = observer(() => {
     userStore: { isLogged, url },
   } = useStore()
 
-  const { isPadOrMobile, headerNav } = appStore
+  const { headerNav } = appStore
 
   const router = useRouter()
   const { event } = useAnalyze()
@@ -77,6 +87,7 @@ export const Header: FC = observer(() => {
   const isClient = useIsClient()
 
   const headerSubTitle = subtitle || description || ''
+  const headerOpacity = useHeaderOpacity()
   // const headerSubTitle = ''
   if (!isClient) {
     return null
@@ -94,7 +105,7 @@ export const Header: FC = observer(() => {
       )}
       style={
         {
-          '--opacity': appStore.headerOpacity,
+          '--opacity': headerOpacity,
         } as any
       }
     >
@@ -148,16 +159,15 @@ export const Header: FC = observer(() => {
         </div>
         <HeaderMetaTitle title={headerNav.title} meta={headerNav.meta} />
       </nav>
-      {isPadOrMobile && (
-        <HeaderDrawer
-          show={drawerOpen}
-          onExit={() => {
-            setDrawerOpen(false)
-          }}
-        >
-          <HeaderDrawerNavigation />
-        </HeaderDrawer>
-      )}
+
+      <HeaderDrawer
+        show={drawerOpen}
+        onExit={() => {
+          setDrawerOpen(false)
+        }}
+      >
+        <HeaderDrawerNavigation />
+      </HeaderDrawer>
     </header>
   )
 })

@@ -2,11 +2,14 @@ import debounce from 'lodash-es/debounce'
 import throttle from 'lodash-es/throttle'
 import { useEffect, useRef } from 'react'
 
+import { useJotaiStore } from '~/atoms/store'
 import { useStore } from '~/store'
 
 export const useResizeScrollEvent = () => {
   const _currentY = useRef(0)
   const { appStore: app } = useStore()
+
+  const appStore = useJotaiStore('app')
 
   useEffect(() => {
     const handleScroll = throttle(
@@ -18,9 +21,12 @@ export const useResizeScrollEvent = () => {
         if (shouldUpdateDirection) {
           const direction = _currentY.current > currentY ? 'up' : 'down'
           app.updatePosition(direction, currentY)
+          appStore.updatePosition(direction, currentY)
+
           _currentY.current = currentY
         } else {
           app.updatePosition(app.scrollDirection, currentY)
+          appStore.updatePosition(appStore.scrollDirection, currentY)
         }
       },
       16,
@@ -30,12 +36,14 @@ export const useResizeScrollEvent = () => {
     const resizeHandler = debounce(
       () => {
         app.updateViewport()
+        appStore.updateViewport()
       },
       500,
       { leading: true },
     )
     window.onresize = resizeHandler
     app.updateViewport()
+    appStore.updateViewport()
 
     if (typeof document !== 'undefined') {
       document.addEventListener('scroll', handleScroll)
