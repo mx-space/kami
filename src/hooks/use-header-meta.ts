@@ -1,54 +1,67 @@
-import { runInAction } from 'mobx'
+import { atom, useAtomValue, useSetAtom } from 'jotai'
 import { useEffect } from 'react'
 
-import { useStore } from '~/store'
-
+const headerMetaAtom = atom({
+  title: '',
+  meta: '',
+  show: false,
+})
 /**
  * 设置头部 信息 (标题) 分享等操作
  */
-export const useHeaderMeta = (title: string, description: string) => {
-  const { appStore } = useStore()
-
+export const useSetHeaderMeta = (title: string, description: string) => {
+  const setter = useSetAtom(headerMetaAtom)
   useEffect(() => {
-    runInAction(() => {
-      appStore.headerNav = {
-        title,
-        meta: description,
-        show: true,
-      }
+    setter({
+      title,
+      meta: description,
+      show: true,
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [description, title])
 
   useEffect(() => {
     return () => {
-      runInAction(() => {
-        appStore.headerNav.show = false
-      })
+      setter((v) => ({
+        ...v,
+        show: false,
+      }))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 }
+export const useGetHeaderMeta = () => {
+  return useAtomValue(headerMetaAtom)
+}
 
-export const useHeaderShare = (title: string, text?: string) => {
-  const { appStore } = useStore()
+const shareDataAtom = atom({
+  title: '',
+  text: '' as string | undefined,
+  url: '',
+})
+
+export const useSetHeaderShare = (title: string, text?: string) => {
+  const setter = useSetAtom(shareDataAtom)
 
   useEffect(() => {
-    runInAction(() => {
-      appStore.shareData = {
-        text,
-        title,
-        url: location.href,
-      }
+    setter({
+      text,
+      title,
+      url: location.href,
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [title, text])
 
   useEffect(() => {
     return () => {
-      runInAction(() => {
-        appStore.shareData = null
-      })
+      setter((v) => ({
+        ...v,
+        show: false,
+      }))
     }
   }, [])
+}
+
+export const useGetHeaderShare = () => {
+  return useAtomValue(shareDataAtom)
 }

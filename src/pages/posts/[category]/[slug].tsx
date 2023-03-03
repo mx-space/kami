@@ -31,7 +31,7 @@ import { Markdown } from '~/components/universal/Markdown'
 import type { ActionProps } from '~/components/widgets/ArticleAction'
 import { SearchFAB } from '~/components/widgets/Search'
 import { SubscribeBell } from '~/components/widgets/SubscribeBell'
-import { useHeaderMeta, useHeaderShare } from '~/hooks/use-header-meta'
+import { useSetHeaderMeta, useSetHeaderShare } from '~/hooks/use-header-meta'
 import { useInitialData, useThemeConfig } from '~/hooks/use-initial-data'
 import { useIsClient } from '~/hooks/use-is-client'
 import { useJumpToSimpleMarkdownRender } from '~/hooks/use-jump-to-render'
@@ -223,12 +223,12 @@ export const PostView: PageOnlyProps = observer((props) => {
   ])
 
   // header meta
-  useHeaderMeta(post.title, post.category.name)
-  useHeaderShare(post.title)
+  useSetHeaderMeta(post.title, post.category.name)
+  useSetHeaderShare(post.title)
   useUpdatePost(post.id)
   useBackgroundOpacity(0.2)
   useJumpToSimpleMarkdownRender(post.id)
-  useHeaderShare(post.title)
+  useSetHeaderShare(post.title)
 
   const isClientSide = useIsClient()
 

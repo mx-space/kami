@@ -10,25 +10,19 @@ import { useJotaiStore } from '~/atoms/store'
 import { CustomLogo as Logo } from '~/components/universal/Logo'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
+import { useGetHeaderMeta } from '~/hooks/use-header-meta'
 import { useInitialData, useKamiConfig } from '~/hooks/use-initial-data'
 import { useIsClient } from '~/hooks/use-is-client'
 import { useSingleAndDoubleClick } from '~/hooks/use-single-double-click'
+import { useIsOverPostTitleHeight } from '~/hooks/use-viewport'
 import { useStore } from '~/store'
 
 import { HeaderActionBasedOnRouterPath } from './HeaderActionBasedOnRouterPath'
+import { HeaderBase } from './HeaderBase'
 import { HeaderDrawer } from './HeaderDrawer'
 import { HeaderDrawerNavigation } from './HeaderDrawerNavigation'
 import { MenuList } from './HeaderMenuList'
 import styles from './index.module.css'
-
-export const useHeaderOpacity = () => {
-  const appStore = useJotaiStore('app')
-  const { position } = appStore
-  const threshold = 50
-  return position >= threshold
-    ? 1
-    : Math.floor((position / threshold) * 100) / 100
-}
 
 export const Header: FC = observer(() => {
   const {
@@ -38,11 +32,10 @@ export const Header: FC = observer(() => {
     site: { subtitle },
   } = useKamiConfig()
   const {
-    appStore,
     userStore: { isLogged, url },
   } = useStore()
 
-  const { headerNav } = appStore
+  const headerNav = useGetHeaderMeta()
 
   const router = useRouter()
   const { event } = useAnalyze()
@@ -65,14 +58,16 @@ export const Header: FC = observer(() => {
   )
 
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const appStore = useJotaiStore('app')
+  const isOverPostTitleHeight = useIsOverPostTitleHeight(appStore)
   const showPageHeader = useMemo(
     () =>
       headerNav.show &&
       (appStore.scrollDirection == 'down' || appStore.viewport.mobile) &&
-      appStore.isOverPostTitleHeight,
+      isOverPostTitleHeight,
     [
       headerNav.show,
-      appStore.isOverPostTitleHeight,
+      isOverPostTitleHeight,
       appStore.scrollDirection,
       appStore.viewport.mobile,
     ],
@@ -87,28 +82,14 @@ export const Header: FC = observer(() => {
   const isClient = useIsClient()
 
   const headerSubTitle = subtitle || description || ''
-  const headerOpacity = useHeaderOpacity()
+
   // const headerSubTitle = ''
   if (!isClient) {
     return null
   }
 
   return (
-    <header
-      className={classNames(
-        styles['header'],
-        !appStore.headerNav.show &&
-          appStore.isOverFirstScreenHeight &&
-          appStore.viewport.mobile
-          ? styles['hide']
-          : null,
-      )}
-      style={
-        {
-          '--opacity': headerOpacity,
-        } as any
-      }
-    >
+    <HeaderBase>
       <nav
         className={classNames(
           styles['nav-container'],
@@ -168,7 +149,7 @@ export const Header: FC = observer(() => {
       >
         <HeaderDrawerNavigation />
       </HeaderDrawer>
-    </header>
+    </HeaderBase>
   )
 })
 

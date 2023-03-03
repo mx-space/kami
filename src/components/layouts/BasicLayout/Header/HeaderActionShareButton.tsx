@@ -1,26 +1,25 @@
-import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import React, { memo } from 'react'
+import { memo } from 'react'
 
 import { MdiShare } from '@mx-space/kami-design/components/Icons/layout'
 
-import { useStore } from '~/store'
+import { useGetHeaderShare } from '~/hooks/use-header-meta'
 
 import {
   HeaderActionButton,
   HeaderActionButtonsContainer,
 } from './HeaderActionButton'
 
-export const HeaderActionShareButton: FC = observer(() => {
-  const { appUIStore } = useStore()
+export const HeaderActionShareButton: FC = () => {
   const hasShare = 'share' in navigator
-  return hasShare && appUIStore.shareData ? (
+  const shareData = useGetHeaderShare()
+  return hasShare && shareData ? (
     <HeaderActionButtonsContainer>
       <HeaderActionButton>
         <HeaderActionButtonWithIcon
           onClick={() => {
             navigator
-              .share(appUIStore.shareData!)
+              .share(shareData!)
               // eslint-disable-next-line @typescript-eslint/no-empty-function
               .then(() => {})
               // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -32,7 +31,7 @@ export const HeaderActionShareButton: FC = observer(() => {
       </HeaderActionButton>
     </HeaderActionButtonsContainer>
   ) : null
-})
+}
 
 export const HeaderActionButtonWithIcon: FC<{
   icon: JSX.Element

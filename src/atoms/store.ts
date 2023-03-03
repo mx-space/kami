@@ -3,6 +3,8 @@ import { createStore } from 'jotai'
 import { useEffect, useRef, useState } from 'react'
 import { unstable_batchedUpdates } from 'react-dom'
 
+import { useIsUnMounted } from '~/hooks/use-is-unmounted'
+
 import { AppStore } from './app'
 
 export const jotaiStore = createStore()
@@ -23,6 +25,7 @@ export const useJotaiStore = <
   const subs = useRef([] as (() => void)[])
   const deps = useRef(new Set<string>())
   const [_, forceUpdate] = useState({})
+  const isUnmount = useIsUnMounted()
 
   useEffect(() => {
     const current = subs.current
@@ -43,7 +46,9 @@ export const useJotaiStore = <
 
           subs.current.push(
             jotaiStore.sub(atom, () =>
-              unstable_batchedUpdates(() => forceUpdate({})),
+              unstable_batchedUpdates(() =>
+                isUnmount.current ? void 0 : forceUpdate({}),
+              ),
             ),
           )
           deps.current.add(atomkey)
@@ -83,12 +88,17 @@ export const useJotaiStore = <
     }),
   ).current
 
-  return proxy as {
-    [K in E]: (typeof jotaiStores)[T]['default'][K]
-  } & {
-    // @ts-ignore
-    [K in `set${Capitalize<E>}`]: (
-      val: (typeof jotaiStores)[T]['default'][E],
-    ) => void
-  } & typeof classStore
+  return proxy as StoreType<typeof classStore, T, E>
 }
+export type StoreType<
+  C,
+  T extends JotaiStoreKey = JotaiStoreKey,
+  E extends keyof (typeof jotaiStores)[T]['default'] = keyof (typeof jotaiStores)[T]['default'],
+> = {
+  [K in E]: (typeof jotaiStores)[T]['default'][K]
+} & {
+  // @ts-ignore
+  [K in `set${Capitalize<E>}`]: (
+    val: (typeof jotaiStores)[T]['default'][E],
+  ) => void
+} & C

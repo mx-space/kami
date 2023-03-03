@@ -67,7 +67,6 @@
     "css-spring": "4.1.0",
     "dayjs": "1.11.7",
     "devtools-detector": "2.0.14",
-    "i": "0.3.7",
     "jotai": "2.0.3",
     "js-cookie": "3.0.1",
     "kami-design": "workspace:@mx-space/kami-design@*",

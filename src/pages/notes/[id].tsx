@@ -27,7 +27,7 @@ import { SearchFAB } from '~/components/widgets/Search'
 import { SubscribeBell } from '~/components/widgets/SubscribeBell'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
-import { useHeaderMeta, useHeaderShare } from '~/hooks/use-header-meta'
+import { useSetHeaderMeta, useSetHeaderShare } from '~/hooks/use-header-meta'
 import { useJumpToSimpleMarkdownRender } from '~/hooks/use-jump-to-render'
 import { useLoadSerifFont } from '~/hooks/use-load-serif-font'
 import { useNoteMusic } from '~/hooks/use-music'
@@ -139,10 +139,10 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
     }
   }, [note.nid])
 
-  useHeaderShare(note.title)
+  useSetHeaderShare(note.title)
   useUpdateNote(note.id)
   useLoadSerifFont()
-  useHeaderMeta(
+  useSetHeaderMeta(
     note.title,
     `生活观察日记${note.topic ? ` / ${note.topic.name}` : ''}`,
   )

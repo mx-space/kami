@@ -7,6 +7,7 @@ import { CloseIcon } from '@mx-space/kami-design/components/Icons/layout'
 import { Overlay } from '@mx-space/kami-design/components/Overlay'
 import { RootPortal } from '@mx-space/kami-design/components/Portal'
 
+import { useJotaiStore } from '~/atoms/store'
 import { IF } from '~/components/app/If'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
@@ -65,5 +66,5 @@ const _HeaderDrawer: FC<{ show: boolean; onExit: () => void }> = memo(
   },
 )
 export const HeaderDrawer = IF(NoSSRWrapper(_HeaderDrawer), () =>
-  useDetectPadOrMobile(),
+  useDetectPadOrMobile(useJotaiStore('app')),
 )

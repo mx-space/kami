@@ -10,7 +10,7 @@ import { ImageSizeMetaContext } from '@mx-space/kami-design/contexts/image-size'
 import { buildStoreDataLoadableView } from '~/components/app/LoadableView'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { Markdown } from '~/components/universal/Markdown'
-import { useHeaderMeta, useHeaderShare } from '~/hooks/use-header-meta'
+import { useSetHeaderMeta, useSetHeaderShare } from '~/hooks/use-header-meta'
 import { useInitialData } from '~/hooks/use-initial-data'
 import { useJumpToSimpleMarkdownRender } from '~/hooks/use-jump-to-render'
 import { store, useStore } from '~/store'
@@ -41,8 +41,8 @@ const PageView: PageOnlyProps = observer((props) => {
     }
   }, [page.meta?.style])
 
-  useHeaderMeta(page.title, page.subtitle || '')
-  useHeaderShare(page.title)
+  useSetHeaderMeta(page.title, page.subtitle || '')
+  useSetHeaderShare(page.title)
   useJumpToSimpleMarkdownRender(page.id)
 
   useEffect(() => {
