@@ -10,7 +10,7 @@ import { TokenKey } from '~/utils/cookie'
 import { isClientSide, isServerSide } from '~/utils/env'
 
 import PKG from '../../package.json'
-import type { InitialDataType } from '../context'
+import type { InitialDataType } from '../provider'
 
 export const attachRequestProxy = (request?: IncomingMessage) => {
   if (!request) {

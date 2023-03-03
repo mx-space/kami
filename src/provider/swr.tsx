@@ -1,4 +1,18 @@
-import { isClientSide } from './env'
+import type { FC } from 'react'
+import { SWRConfig } from 'swr'
+import type { FullConfiguration, ProviderConfiguration } from 'swr/_internal'
+
+import { isClientSide } from '~/utils/env'
+
+const swrConfig = {
+  refreshInterval: 30_000,
+  // @ts-ignore
+  provider: localStorageProvider,
+} satisfies FullConfiguration & ProviderConfiguration
+
+export const SWRProvider: FC<{ children?: JSX.Element }> = ({ children }) => {
+  return <SWRConfig value={swrConfig}>{children}</SWRConfig>
+}
 
 export function localStorageProvider() {
   if (!isClientSide()) {

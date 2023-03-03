@@ -17,10 +17,10 @@ import {
 } from '@mx-space/kami-design/components/Icons/layout'
 
 import { TrackerAction } from '~/constants/tracker'
-import { useRootStore } from '~/context'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useThemeBackground } from '~/hooks/use-kami'
 import { useMediaToggle } from '~/hooks/use-media-toggle'
+import { useRootStore } from '~/provider'
 import { springScrollToElement } from '~/utils/spring'
 
 const Header = React.lazy(() =>

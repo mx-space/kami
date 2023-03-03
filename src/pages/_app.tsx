@@ -2,27 +2,24 @@ import 'windi.css'
 import 'assets/styles/main.css'
 import '../../third/qp/index.css'
 
-import NextApp from 'next/app'
 import type { AppContext } from 'next/app'
+import NextApp from 'next/app'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
-import React, { memo, useMemo, useRef } from 'react'
-import type { ToastContainerProps } from 'react-toastify'
-import { ToastContainer } from 'react-toastify'
-import { SWRConfig } from 'swr'
-import type { FullConfiguration } from 'swr/_internal'
+import { useMemo } from 'react'
 
+import { ProviderComposer } from '~/components/app/Composer'
 import { NoDataErrorView } from '~/components/app/Error/no-data'
 import { ErrorBoundary } from '~/components/app/ErrorBoundary'
 import { BasicLayout } from '~/components/layouts/BasicLayout'
 import { DebugLayout } from '~/components/layouts/DebugLayout'
-import type { InitialDataType } from '~/context/initial-data'
-import { InitialContextProvider } from '~/context/initial-data'
-import { RootStoreProvider } from '~/context/root-store'
+import type { InitialDataType } from '~/provider/initial-data'
+import { InitialContextProvider } from '~/provider/initial-data'
+import { RootStoreProvider } from '~/provider/root-store'
+import { SWRProvider } from '~/provider/swr'
 import { isDev } from '~/utils/env'
-import { localStorageProvider } from '~/utils/swr'
 
-import { Content } from '../components/layouts/AppLayout'
+import { AppLayout } from '../components/layouts/AppLayout'
 import { attachRequestProxy, fetchInitialData } from '../utils/app'
 
 interface DataModel {
@@ -35,12 +32,31 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
 
   const router = useRouter()
 
+  const PageProviders = useMemo(
+    () => [
+      <SWRProvider key="SWRProvider" />,
+      <ErrorBoundary key="ErrorBoundary1" />,
+      <BasicLayout key="BasicLayout" />,
+      <AppLayout key="appLayout" />,
+      <ErrorBoundary key="ErrorBoundary2" />,
+    ],
+    [],
+  )
+
+  const AppProviders = useMemo(
+    () => [
+      <RootStoreProvider key="RootStoreProvider" />,
+      <InitialContextProvider value={initData} key="InitialContextProvider" />,
+    ],
+    [initData],
+  )
+
   const Inner = useMemo(() => {
     // 兜底页
     return initData.aggregateData ? (
-      <Wrapper>
+      <ProviderComposer contexts={PageProviders}>
         <Component {...pageProps} />
-      </Wrapper>
+      </ProviderComposer>
     ) : (
       <NoDataErrorView />
     )
@@ -54,47 +70,8 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
       </RootStoreProvider>
     )
   }
-  return (
-    <RootStoreProvider>
-      <InitialContextProvider value={initData}>{Inner}</InitialContextProvider>
-    </RootStoreProvider>
-  )
+  return <ProviderComposer contexts={AppProviders}>{Inner}</ProviderComposer>
 }
-const Wrapper = memo((props) => {
-  const toastOptions = useRef<ToastContainerProps>({
-    autoClose: 3000,
-    pauseOnHover: true,
-    hideProgressBar: true,
-    newestOnTop: true,
-    closeOnClick: true,
-    closeButton: false,
-    toastClassName: () => '',
-    bodyClassName: () => '',
-  })
-  const swrConfig = useRef<
-    Partial<FullConfiguration> & {
-      provider?: any
-    }
-  >({
-    refreshInterval: 30_000,
-    provider: localStorageProvider,
-  })
-  return (
-    <>
-      <SWRConfig value={swrConfig.current}>
-        <ErrorBoundary>
-          <BasicLayout>
-            <Content>
-              <ErrorBoundary>{props.children}</ErrorBoundary>
-            </Content>
-          </BasicLayout>
-        </ErrorBoundary>
-      </SWRConfig>
-
-      <ToastContainer {...toastOptions.current} />
-    </>
-  )
-})
 // @ts-ignore
 App.getInitialProps = async (props: AppContext) => {
   const ctx = props.ctx
@@ -109,6 +86,7 @@ App.getInitialProps = async (props: AppContext) => {
       return await NextApp.getInitialProps(props)
     } catch (e) {
       // TODO next rfc Layout, 出了就重构这里
+      // 2023 tmd next rfc 全是大饼，根本没法用
       // 只有无数据 也就是 服务端不跑起来 或者接口不对的时候 捕获异常
       // 这是为什么呢 说来说去还是 nextjs 太辣鸡了 只能各种 hack
       // 只能这样了

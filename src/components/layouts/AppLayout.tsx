@@ -20,7 +20,7 @@ import { loadStyleSheet } from '~/utils/load-script'
 
 import { useStore } from '../../store'
 
-export const Content: FC = observer((props) => {
+export const AppLayout: FC = observer((props) => {
   const { userStore: master } = useStore()
 
   useScreenMedia()

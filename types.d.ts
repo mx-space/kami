@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import type { InitialDataType } from '~/context/initial-data'
+import type { InitialDataType } from '~/provider/initial-data'
 
 import 'react-dom/next'
 

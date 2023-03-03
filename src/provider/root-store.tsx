@@ -26,7 +26,7 @@ export function useRootStore() {
   return context
 }
 export const store = initializeStore()
-export function RootStoreProvider({ children }: { children: ReactNode }) {
+export function RootStoreProvider({ children }: { children?: ReactNode }) {
   if (isDev && isClientSide() && !window.store) {
     Object.defineProperty(window, 'store', {
       get() {

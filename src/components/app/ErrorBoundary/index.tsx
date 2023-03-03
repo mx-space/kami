@@ -2,7 +2,7 @@ import Router from 'next/router'
 import React, { PureComponent, createElement } from 'react'
 
 export class ErrorBoundary extends PureComponent<{
-  children: React.ReactNode
+  children?: React.ReactNode
   fallbackComponent?: React.ComponentType<any>
   [k: string]: any
 }> {

@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 
-import { InitialContext } from '~/context/initial-data'
+import { InitialContext } from '~/provider/initial-data'
 
 export const useInitialData = () => {
   return useContext(InitialContext).aggregateData
