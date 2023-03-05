@@ -1,7 +1,5 @@
 import { makeAutoObservable } from 'mobx'
 
-import { isClientSide } from '~/utils/env'
-
 import type { ViewportRecord } from './types'
 
 export default class AppUIStore {
@@ -16,43 +14,6 @@ export default class AppUIStore {
 
   colorMode: 'light' | 'dark' = 'light'
   mediaType: 'screen' | 'print' = 'screen'
-
-  headerNav = {
-    title: '',
-    meta: '',
-    show: false,
-  }
-
-  shareData: { title: string; text?: string; url: string } | null = null
-
-  updatePosition(direction: 'up' | 'down' | null, y: number) {
-    if (typeof document !== 'undefined') {
-      this.position = y
-      this.scrollDirection = direction
-    }
-  }
-
-  get headerOpacity() {
-    const threshold = 50
-    return this.position >= threshold
-      ? 1
-      : Math.floor((this.position / threshold) * 100) / 100
-  }
-
-  get isOverFirstScreenHeight() {
-    if (!isClientSide()) {
-      return
-    }
-    return this.position > window.innerHeight || this.position > screen.height
-  }
-
-  get isOverPostTitleHeight() {
-    if (!isClientSide()) {
-      return
-    }
-
-    return this.position > 126 || this.position > screen.height / 3
-  }
 
   updateViewport() {
     const innerHeight = window.innerHeight

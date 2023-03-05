@@ -20,12 +20,10 @@ export const useResizeScrollEvent = () => {
 
         if (shouldUpdateDirection) {
           const direction = _currentY.current > currentY ? 'up' : 'down'
-          app.updatePosition(direction, currentY)
           appStore.updatePosition(direction, currentY)
 
           _currentY.current = currentY
         } else {
-          app.updatePosition(app.scrollDirection, currentY)
           appStore.updatePosition(appStore.scrollDirection, currentY)
         }
       },

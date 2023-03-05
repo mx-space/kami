@@ -39,7 +39,6 @@ export class AppStore extends BaseStore<AppAtom> {
   updateViewport() {
     const innerHeight = window.innerHeight
     const width = document.documentElement.getBoundingClientRect().width
-    console.log('0---')
 
     this.setAtomValue('viewport', (viewport) => {
       const { hpad, pad, mobile } = viewport
