@@ -17,7 +17,6 @@ type TypedReduceCallback<V, K, U> = (
 ) => U
 
 export class KeyValueCollection<K extends Id, V extends object> {
-  // for mobx
   data: Map<K, V> = new Map()
 
   forEach(callbackfn: VoidCallback<V, K>, thisArg?: any): void {

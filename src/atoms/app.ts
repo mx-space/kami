@@ -1,8 +1,8 @@
+import { create } from 'zustand'
+
 import type { ViewportRecord } from '~/store/types'
 
-import { BaseStore } from './base'
-
-interface AppAtom {
+interface AppState {
   viewport: ViewportRecord
   position: number
   scrollDirection: 'up' | 'down' | null
@@ -10,7 +10,13 @@ interface AppAtom {
   mediaType: 'screen' | 'print'
 }
 
-const appDefault: AppAtom = {
+interface AppAction {
+  updatePosition(direction: 'up' | 'down' | null, y: number): void
+  updateViewport(): void
+  setColorMode(colorMode: 'light' | 'dark'): void
+}
+
+const appDefault: AppState = {
   colorMode: 'light',
   mediaType: 'screen',
   position: 0,
@@ -18,29 +24,21 @@ const appDefault: AppAtom = {
   viewport: {} as any,
 }
 
-export class AppStore extends BaseStore<AppAtom> {
-  default = Object.freeze(appDefault)
+export const useAppStore = create<AppState & AppAction>((set, get) => {
+  return {
+    ...appDefault,
 
-  constructor() {
-    super(appDefault)
+    setColorMode(colorMode) {
+      set({ colorMode })
+    },
+    updatePosition(direction, y) {
+      set({ position: y, scrollDirection: direction })
+    },
+    updateViewport() {
+      const innerHeight = window.innerHeight
+      const width = document.documentElement.getBoundingClientRect().width
+      const viewport = get().viewport
 
-    this.updatePosition = this.updatePosition.bind(this)
-    this.setColorMode = this.setColorMode.bind(this)
-    this.updateViewport = this.updateViewport.bind(this)
-  }
-
-  updatePosition(direction: 'up' | 'down' | null, y: number) {
-    if (typeof document !== 'undefined') {
-      this.setAtomValue('position', y)
-      this.setAtomValue('scrollDirection', direction)
-    }
-  }
-
-  updateViewport() {
-    const innerHeight = window.innerHeight
-    const width = document.documentElement.getBoundingClientRect().width
-
-    this.setAtomValue('viewport', (viewport) => {
       const { hpad, pad, mobile } = viewport
 
       // 忽略移动端浏览器 上下滚动 导致的视图大小变化
@@ -51,21 +49,21 @@ export class AppStore extends BaseStore<AppAtom> {
         width === viewport.w &&
         (hpad || pad || mobile)
       ) {
-        return viewport
+        set({ viewport })
+        return
       }
-      return {
-        w: width,
-        h: innerHeight,
-        mobile: window.screen.width <= 568 || window.innerWidth <= 568,
-        pad: window.innerWidth <= 768 && window.innerWidth > 568,
-        hpad: window.innerWidth <= 1100 && window.innerWidth > 768,
-        wider: window.innerWidth > 1100 && window.innerWidth < 1920,
-        widest: window.innerWidth >= 1920,
-      }
-    })
-  }
 
-  setColorMode(colorMode: 'light' | 'dark') {
-    this.setAtomValue('colorMode', colorMode)
+      set({
+        viewport: {
+          w: width,
+          h: innerHeight,
+          mobile: window.screen.width <= 568 || window.innerWidth <= 568,
+          pad: window.innerWidth <= 768 && window.innerWidth > 568,
+          hpad: window.innerWidth <= 1100 && window.innerWidth > 768,
+          wider: window.innerWidth > 1100 && window.innerWidth < 1920,
+          widest: window.innerWidth >= 1920,
+        },
+      })
+    },
   }
-}
+})
