@@ -16,14 +16,7 @@ type TypedReduceCallback<V, K, U> = (
   map: Map<K, V>,
 ) => U
 
-export class KeyValueCollection<K extends Id, V extends object> extends Map<
-  K,
-  V
-> {
-  constructor() {
-    super()
-  }
-
+export class KeyValueCollection<K extends Id, V extends object> {
   // for mobx
   data: Map<K, V> = new Map()
 
