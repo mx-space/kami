@@ -1,18 +1,19 @@
 import { enableMapSet, immerable, produce } from 'immer'
 import { create } from 'zustand'
-import { persist, subscribeWithSelector } from 'zustand/middleware'
+import { subscribeWithSelector } from 'zustand/middleware'
 
 import type { Id } from './structure'
 import { KeyValueCollection } from './structure'
 
 enableMapSet()
 
-interface BaseStore<T extends object> {
+interface BaseStore<T extends object, K = string, V = T> {
   data: KeyValueCollection<Id, T>
   add(id: string, data: T | T[]): void
   add(data: T | T[]): void
   addAndPatch(data: T | T[]): void
   remove(id: Id): void
+  softDelete(key: string): boolean
 }
 
 // TODO ssr hydrate
@@ -30,14 +31,29 @@ export const createCollection = <T extends { id: Id }, A extends object>(
         get: () => BaseStore<T> & A,
       ) => A),
 ) => {
-  const data = new KeyValueCollection<Id, T>()
-
+  const data = new Map<Id, T>()
   data[immerable] = true
+
   return create(
     // @ts-ignore
     subscribeWithSelector<BaseStore<T> & A>((set, get) => ({
       data,
       ...(typeof actions === 'function' ? actions(set, get) : actions),
+
+      softDelete(key) {
+        const data = get().data.get(key)
+        if (!data) {
+          return false
+        }
+
+        set(
+          produce((state) => {
+            state.data.get(key).isDeleted = true
+          }),
+        )
+
+        return true
+      },
       add(...args: any[]) {
         const addFn = get().add
 
