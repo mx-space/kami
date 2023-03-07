@@ -3,10 +3,11 @@ import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import { memo, useEffect, useMemo, useRef, useState } from 'react'
+import { shallow } from 'zustand/shallow'
 
 import { IcBaselineMenuOpen } from '@mx-space/kami-design/components/Icons/layout'
 
-import { useJotaiStore } from '~/atoms/store'
+import { useAppStore } from '~/atoms/app'
 import { CustomLogo as Logo } from '~/components/universal/Logo'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
@@ -58,8 +59,14 @@ export const Header: FC = observer(() => {
   )
 
   const [drawerOpen, setDrawerOpen] = useState(false)
-  const appStore = useJotaiStore('app')
-  const isOverPostTitleHeight = useIsOverPostTitleHeight(appStore)
+  const appStore = useAppStore(
+    (state) => ({
+      scrollDirection: state.scrollDirection,
+      viewport: state.viewport,
+    }),
+    shallow,
+  )
+  const isOverPostTitleHeight = useIsOverPostTitleHeight()
   const showPageHeader = useMemo(
     () =>
       headerNav.show &&

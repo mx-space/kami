@@ -4,20 +4,16 @@ import { useEffect } from 'react'
 
 import { ModalStackProvider } from '@mx-space/kami-design/components/Modal'
 
-import { useJotaiStore } from '~/atoms/store'
-import { useStore } from '~/store'
+import { useAppStore } from '~/atoms/app'
+
+// import { useJotaiStore } from '~/atoms/store'
 
 export const DebugLayout: FC = observer((props) => {
-  const appStore = useJotaiStore('app')
   useEffect(() => {
-    appStore.updateViewport()
-
-    window.onresize = () => {
-      appStore.updateViewport()
-    }
+    useAppStore.getState().updateViewport()
   }, [])
 
-  const { mobile } = useStore().appUIStore.viewport
+  const { mobile } = useAppStore((state) => state.viewport)
 
   return (
     <ModalStackProvider isMobileViewport={mobile}>

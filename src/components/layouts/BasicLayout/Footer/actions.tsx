@@ -5,6 +5,7 @@ import type { FC } from 'react'
 import React, { useCallback, useMemo } from 'react'
 import { Modifier, useShortcut } from 'react-shortcut-guide'
 import { TransitionGroup } from 'react-transition-group'
+import { shallow } from 'zustand/shallow'
 
 import {
   BxBxsArrowToTop,
@@ -13,7 +14,7 @@ import {
 import { RootPortal } from '@mx-space/kami-design/components/Portal'
 import { ScaleTransitionView } from '@mx-space/kami-design/components/Transition/scale'
 
-import { useJotaiStore } from '~/atoms/store'
+import { useAppStore } from '~/atoms/app'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import {
@@ -30,11 +31,15 @@ const timeout = { exit: 300 }
 const FooterActionsBase: FC<{
   children?: React.ReactNode
 }> = (props) => {
-  const appStore = useJotaiStore('app')
-  const isOverFirstScreenHeight = useIsOverFirstScreenHeight(appStore)
+  const isOverFirstScreenHeight = useIsOverFirstScreenHeight()
 
-  const isPadOrMobile = useDetectPadOrMobile(appStore)
-  const { scrollDirection } = appStore
+  const isPadOrMobile = useDetectPadOrMobile()
+  const { scrollDirection } = useAppStore(
+    (state) => ({
+      scrollDirection: state.scrollDirection,
+    }),
+    shallow,
+  )
 
   const shouldHideActionButtons = useMemo(() => {
     if (!isPadOrMobile) {

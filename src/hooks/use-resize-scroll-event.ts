@@ -1,15 +1,15 @@
 import debounce from 'lodash-es/debounce'
 import throttle from 'lodash-es/throttle'
-import { useEffect, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 
-import { useJotaiStore } from '~/atoms/store'
+import { useAppStore } from '~/atoms/app'
 import { useStore } from '~/store'
 
 export const useResizeScrollEvent = () => {
   const _currentY = useRef(0)
   const { appStore: app } = useStore()
 
-  const appStore = useJotaiStore('app')
+  const appStore = useMemo(() => useAppStore.getState(), [])
 
   useEffect(() => {
     const handleScroll = throttle(

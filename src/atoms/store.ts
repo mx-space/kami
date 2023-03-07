@@ -5,15 +5,11 @@ import { unstable_batchedUpdates } from 'react-dom'
 
 import { useIsUnMounted } from '~/hooks/use-is-unmounted'
 
-import { AppStore } from './app'
-
 export const jotaiStore = createStore()
 
-const jotaiStores = {
-  app: new AppStore(),
-}
+const jotaiStores = {}
 export type JotaiStoreKey = keyof typeof jotaiStores
-export const useJotaiStore = <
+const useJotaiStore = <
   T extends JotaiStoreKey,
   E extends keyof (typeof jotaiStores)[T]['default'],
 >(

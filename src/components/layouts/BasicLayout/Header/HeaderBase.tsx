@@ -1,16 +1,16 @@
 import { clsx } from 'clsx'
 import type { FC } from 'react'
 import React from 'react'
+import { shallow } from 'zustand/shallow'
 
-import type { AppStore } from '~/atoms/app'
-import type { StoreType } from '~/atoms/store'
-import { useJotaiStore } from '~/atoms/store'
+import { useAppStore } from '~/atoms/app'
 import { useIsOverFirstScreenHeight } from '~/hooks/use-viewport'
 
 import styles from './index.module.css'
 
-export const useHeaderOpacity = (appStore: StoreType<AppStore>) => {
-  const { position } = appStore
+export const useHeaderOpacity = () => {
+  const position = useAppStore((state) => state.position)
+
   const threshold = 50
   return position >= threshold
     ? 1
@@ -18,10 +18,14 @@ export const useHeaderOpacity = (appStore: StoreType<AppStore>) => {
 }
 
 export const HeaderBase: FC<{ children?: React.ReactNode }> = (props) => {
-  const appStore = useJotaiStore('app')
-  const headerOpacity = useHeaderOpacity(appStore)
-  const isOverFirstScreenHeight = useIsOverFirstScreenHeight(appStore)
-
+  const headerOpacity = useHeaderOpacity()
+  const isOverFirstScreenHeight = useIsOverFirstScreenHeight()
+  const appStore = useAppStore(
+    (state) => ({
+      viewport: state.viewport,
+    }),
+    shallow,
+  )
   return (
     <header
       className={clsx(
