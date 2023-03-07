@@ -17,6 +17,7 @@ import { Banner } from '@mx-space/kami-design/components/Banner'
 import { Loading } from '@mx-space/kami-design/components/Loading'
 import { ImageSizeMetaContext } from '@mx-space/kami-design/contexts/image-size'
 
+import { noteCollection, useNoteCollection } from '~/atoms/collections/note'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { NoteFooterNavigationBarForMobile } from '~/components/in-page/Note/NoteFooterNavigation'
 import { NoteMarkdownRender } from '~/components/in-page/Note/NoteMarkdownRender'
@@ -118,8 +119,10 @@ const useUpdateNote = (id: string) => {
 }
 
 const NoteView: React.FC<{ id: string }> = observer((props) => {
-  const { userStore, noteStore } = useStore()
-  const note = noteStore.get(props.id) || (noop as NoteModel)
+  const { userStore } = useStore()
+  const note = useNoteCollection(
+    (state) => state.get(props.id) || (noop as NoteModel),
+  )
 
   const router = useRouter()
 
@@ -134,8 +137,8 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
 
   useEffect(() => {
     // FIXME: SSR 之后的 hydrate 没有同步数据
-    if (!noteStore.relationMap.has(props.id)) {
-      noteStore.fetchById(note.nid, undefined, { force: true })
+    if (!noteCollection.relationMap.has(props.id)) {
+      noteCollection.fetchById(note.nid, undefined, { force: true })
     }
   }, [note.nid])
 
@@ -263,8 +266,8 @@ const NoteView: React.FC<{ id: string }> = observer((props) => {
 const PP: NextPage<NoteModel | { needPassword: true; id: string }> = observer(
   (props) => {
     const router = useRouter()
-    const { noteStore } = useStore()
-    const note = noteStore.get((props as NoteModel)?.id)
+
+    const note = useNoteCollection((state) => state.get(props.id))
 
     const update = useUpdate()
     useEffect(() => {
@@ -277,7 +280,7 @@ const PP: NextPage<NoteModel | { needPassword: true; id: string }> = observer(
       if (!note) {
         const fetchData = (password: string) => {
           const id = router.query.id as string
-          noteStore
+          noteCollection
             .fetchById(isNaN(+id) ? id : +id, password)
             .catch((err) => {
               message.error('密码错误')
@@ -293,7 +296,7 @@ const PP: NextPage<NoteModel | { needPassword: true; id: string }> = observer(
     }
 
     if (!note) {
-      noteStore.add(props)
+      noteCollection.add(props)
 
       return <Loading />
     }
@@ -306,14 +309,15 @@ PP.getInitialProps = async (ctx) => {
   const id = ctx.query.id as string
   const password = ctx.query.password as string
   if (id == 'latest') {
-    return await store.noteStore.fetchLatest()
+    return await noteCollection.fetchLatest()
   }
   try {
-    const res = await store.noteStore.fetchById(
+    const res = await noteCollection.fetchById(
       isNaN(+id) ? id : +id,
       password ? String(password) : undefined,
       { force: true },
     )
+
     return res as any
   } catch (err: any) {
     if (err instanceof RequestError) {

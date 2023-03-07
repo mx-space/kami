@@ -15,6 +15,7 @@ import {
 } from '@mx-space/kami-design/components/Icons/layout'
 import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
+import { useNoteCollection } from '~/atoms/collections/note'
 import { useStore } from '~/store'
 import { apiClient } from '~/utils/client'
 import { resolveUrl } from '~/utils/utils'
@@ -81,9 +82,8 @@ export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
     // autocorrect: true
     const {
       userStore: { isLogged, url },
-      noteStore,
     } = useStore()
-    const note = noteStore.get(id)
+    const note = useNoteCollection((state) => state.get(id))
     const bookmark = note?.hasMemory
     const banner = useNoteMetaBanner(note)
     const onMarkToggle = useCallback(async () => {

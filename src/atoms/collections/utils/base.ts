@@ -1,6 +1,6 @@
 import { enableMapSet, immerable, produce } from 'immer'
 import { create } from 'zustand'
-import { subscribeWithSelector } from 'zustand/middleware'
+import { persist, subscribeWithSelector } from 'zustand/middleware'
 
 import type { Id } from './structure'
 import { KeyValueCollection } from './structure'
@@ -15,8 +15,20 @@ interface BaseStore<T extends object> {
   remove(id: Id): void
 }
 
+// TODO ssr hydrate
 export const createCollection = <T extends { id: Id }, A extends object>(
-  actions?: A,
+  name: string,
+  actions?:
+    | A
+    | ((
+        set: (
+          partial:
+            | Partial<BaseStore<T> & A>
+            | ((state: BaseStore<T> & A) => Partial<BaseStore<T> & A>),
+          replace?: boolean,
+        ) => any,
+        get: () => BaseStore<T> & A,
+      ) => A),
 ) => {
   const data = new KeyValueCollection<Id, T>()
 
@@ -25,7 +37,7 @@ export const createCollection = <T extends { id: Id }, A extends object>(
     // @ts-ignore
     subscribeWithSelector<BaseStore<T> & A>((set, get) => ({
       data,
-      ...actions,
+      ...(typeof actions === 'function' ? actions(set, get) : actions),
       add(...args: any[]) {
         const addFn = get().add
 
