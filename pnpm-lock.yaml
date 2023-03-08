@@ -188,7 +188,7 @@ importers:
       rollup-plugin-peer-deps-external: 2.2.4
       rollup-plugin-postcss: 4.0.2
       rollup-plugin-windicss: 1.8.10
-      tsc-alias: 1.8.2
+      tsc-alias: 1.8.3
       typescript: 4.9.5
     dependencies:
       '@floating-ui/react-dom': 1.1.0
@@ -223,7 +223,7 @@ importers:
       rollup-plugin-peer-deps-external: 2.2.4_rollup@3.18.0
       rollup-plugin-postcss: 4.0.2_postcss@8.4.21
       rollup-plugin-windicss: 1.8.10_rollup@3.18.0
-      tsc-alias: 1.8.2
+      tsc-alias: 1.8.3
       typescript: 4.9.5
 
 packages:
@@ -6003,8 +6003,8 @@ packages:
     resolution: {integrity: sha512-Z86EW+fFFh/IFB1fqQ3/+7Zpf9t2ebOAxNI/V6Wo7r5gqiqtxmgTlQ1qbqQcjLKYeSHPTsEmvlJUDg/EuL0uHQ==}
     dev: false
 
-  /tsc-alias/1.8.2:
-    resolution: {integrity: sha512-ukBkcNekOgwtnSWYLD5QsMX3yQWg7JviAs8zg3qJGgu4LGtY3tsV4G6vnqvOXIDkbC+XL9vbhObWSpRA5/6wbg==}
+  /tsc-alias/1.8.3:
+    resolution: {integrity: sha512-/9JARcmXBrEqSuLjdSOqxY7/xI/AnvmBi4CU9/Ba2oX6Oq8vnd0OGSQTk+PIwqWJ5ZxskV0X/x15yzxCNTHU+g==}
     hasBin: true
     dependencies:
       chokidar: 3.5.3
