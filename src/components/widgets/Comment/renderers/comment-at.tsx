@@ -2,17 +2,17 @@ import { observer } from 'mobx-react-lite'
 import type { FC, MouseEventHandler } from 'react'
 import { useCallback } from 'react'
 
-import { useStore } from '~/store'
+import { useCommentCollection } from '~/atoms/collections/comment'
 import { springScrollToElement } from '~/utils/spring'
 
 export const CommentAtRender: FC<{ id: string }> = observer(({ id: value }) => {
-  const { commentStore } = useStore()
-  const { commentIdMap } = commentStore
+  const commentIdMap = useCommentCollection((state) => state.data)
+
   const comment = typeof value === 'string' ? commentIdMap.get(value) : value
 
   const onMouseOver: MouseEventHandler<HTMLAnchorElement> = useCallback(() => {
     if (comment?.id) {
-      commentStore.setHighlightCommnet(comment.id)
+      useCommentCollection.getState().setHighlightCommnet(comment.id)
     }
   }, [comment?.id])
 
@@ -25,7 +25,7 @@ export const CommentAtRender: FC<{ id: string }> = observer(({ id: value }) => {
   }
   const onLeave: MouseEventHandler<HTMLAnchorElement> = useCallback(() => {
     if (comment?.id) {
-      commentStore.setHighlightCommnet(comment.id, false)
+      useCommentCollection.getState().setHighlightCommnet(comment.id, false)
     }
   }, [comment?.id])
 

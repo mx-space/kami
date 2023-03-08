@@ -3,11 +3,9 @@ import throttle from 'lodash-es/throttle'
 import { useEffect, useMemo, useRef } from 'react'
 
 import { useAppStore } from '~/atoms/app'
-import { useStore } from '~/store'
 
 export const useResizeScrollEvent = () => {
   const _currentY = useRef(0)
-  const { appStore: app } = useStore()
 
   const appStore = useMemo(() => useAppStore.getState(), [])
 
@@ -33,14 +31,13 @@ export const useResizeScrollEvent = () => {
 
     const resizeHandler = debounce(
       () => {
-        app.updateViewport()
         appStore.updateViewport()
       },
       500,
       { leading: true },
     )
     window.onresize = resizeHandler
-    app.updateViewport()
+
     appStore.updateViewport()
 
     if (typeof document !== 'undefined') {

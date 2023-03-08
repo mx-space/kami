@@ -1,6 +1,7 @@
 import { runInAction } from 'mobx'
 import { message } from 'react-message-popup'
 
+import { useCommentCollection } from '~/atoms/collections/comment'
 import { EventTypes } from '~/types/events'
 import { isDev } from '~/utils/env'
 
@@ -87,7 +88,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
       break
     }
     case EventTypes.COMMENT_CREATE: {
-      store.commentStore.addComment(data)
+      useCommentCollection.getState().addComment(data)
       break
     }
     case EventTypes.DANMAKU_CREATE: {

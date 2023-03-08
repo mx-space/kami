@@ -2,13 +2,12 @@ import { enableMapSet, immerable, produce } from 'immer'
 import { create } from 'zustand'
 import { subscribeWithSelector } from 'zustand/middleware'
 
-import type { Id } from './structure'
-import { KeyValueCollection } from './structure'
+type Id = string
 
 enableMapSet()
 
-interface BaseStore<T extends object, K = string, V = T> {
-  data: KeyValueCollection<Id, T>
+interface BaseStore<T extends object, TT = T & { deleted?: boolean }> {
+  data: Map<Id, TT>
   add(id: string, data: T | T[]): void
   add(data: T | T[]): void
   addAndPatch(data: T | T[]): void

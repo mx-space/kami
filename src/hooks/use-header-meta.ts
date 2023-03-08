@@ -1,18 +1,25 @@
-import { atom, useAtomValue, useSetAtom } from 'jotai'
 import { useEffect } from 'react'
+import { create } from 'zustand'
 
-const headerMetaAtom = atom({
+const useHeaderMetaStore = create<{
+  title: string
+  meta: string
+  show: boolean
+  setState: (v: any) => void
+}>((setState) => ({
   title: '',
   meta: '',
   show: false,
-})
+
+  setState,
+}))
 /**
  * 设置头部 信息 (标题) 分享等操作
  */
 export const useSetHeaderMeta = (title: string, description: string) => {
-  const setter = useSetAtom(headerMetaAtom)
+  const store = useHeaderMetaStore()
   useEffect(() => {
-    setter({
+    store.setState({
       title,
       meta: description,
       show: true,
@@ -22,7 +29,7 @@ export const useSetHeaderMeta = (title: string, description: string) => {
 
   useEffect(() => {
     return () => {
-      setter((v) => ({
+      store.setState((v) => ({
         ...v,
         show: false,
       }))
@@ -31,20 +38,26 @@ export const useSetHeaderMeta = (title: string, description: string) => {
   }, [])
 }
 export const useGetHeaderMeta = () => {
-  return useAtomValue(headerMetaAtom)
+  return useHeaderMetaStore()
 }
 
-const shareDataAtom = atom({
+const useShareDataStore = create<{
+  title: string
+  text?: string
+  url: string
+  setState: (v: any) => void
+}>((setState) => ({
   title: '',
   text: '' as string | undefined,
   url: '',
-})
+  setState,
+}))
 
 export const useSetHeaderShare = (title: string, text?: string) => {
-  const setter = useSetAtom(shareDataAtom)
+  const store = useShareDataStore()
 
   useEffect(() => {
-    setter({
+    store.setState({
       text,
       title,
       url: location.href,
@@ -54,7 +67,7 @@ export const useSetHeaderShare = (title: string, text?: string) => {
 
   useEffect(() => {
     return () => {
-      setter((v) => ({
+      store.setState((v) => ({
         ...v,
         show: false,
       }))
@@ -63,5 +76,5 @@ export const useSetHeaderShare = (title: string, text?: string) => {
 }
 
 export const useGetHeaderShare = () => {
-  return useAtomValue(shareDataAtom)
+  return useShareDataStore()
 }

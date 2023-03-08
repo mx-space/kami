@@ -79,6 +79,7 @@ export const Header: FC = observer(() => {
       appStore.viewport.mobile,
     ],
   )
+
   // NOTE: fix `tab` focus element lead to header dislocation
   const appHeaderRef = useRef<HTMLDivElement>(null)
 

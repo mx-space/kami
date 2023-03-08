@@ -8,6 +8,7 @@ import { useHash } from 'react-use'
 
 import type { Pager } from '@mx-space/api-client'
 
+import { useCommentCollection } from '~/atoms/collections/comment'
 import { useKamiConfig } from '~/hooks/use-initial-data'
 import { useIsClient } from '~/hooks/use-is-client'
 import { apiClient } from '~/utils/client'
@@ -49,20 +50,20 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
   const { id, allowComment } = props
 
   const [pagination, setPagination] = useState({} as Pager)
-  const { userStore, commentStore } = useStore()
+  const { userStore } = useStore()
   const logged = userStore.isLogged
-
-  const comments = commentStore.comments
+  const comments = useCommentCollection((state) => state.comments)
 
   useEffect(() => {
     return () => {
-      commentStore.reset()
+      useCommentCollection.getState().reset()
     }
   }, [])
 
   const fetchComments = useCallback(
     async (page = 1, size = 10) => {
-      return commentStore
+      return useCommentCollection
+        .getState()
         .fetchComment(id, page, size)
         .then(({ data, pagination }) => {
           setPagination(pagination)

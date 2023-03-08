@@ -2,7 +2,7 @@ import { clsx } from 'clsx'
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import { sanitizeUrl } from 'markdown-to-jsx'
 import { observer } from 'mobx-react-lite'
-import type { FC } from 'react'
+import { FC, memo } from 'react'
 import {
   Fragment,
   createElement,
@@ -12,6 +12,7 @@ import {
   useState,
 } from 'react'
 import { message } from 'react-message-popup'
+import { shallow } from 'zustand/shallow'
 
 import type { CommentModel } from '@mx-space/api-client'
 import {
@@ -20,6 +21,7 @@ import {
 } from '@mx-space/kami-design/components/Icons/for-post'
 import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
+import { useCommentCollection } from '~/atoms/collections/comment'
 import { ImpressionView } from '~/components/biz/ImpressionView'
 import { IconTransition } from '~/components/universal/IconTransition'
 import { ImageTagPreview } from '~/components/universal/ImageTagPreview'
@@ -37,9 +39,8 @@ import { Empty } from './empty'
 import styles from './index.module.css'
 import { CommentAtRender } from './renderers/comment-at'
 
-export const Comments: FC = observer(() => {
-  const { commentStore } = useStore()
-  const { comments } = commentStore
+export const Comments: FC = memo(() => {
+  const comments = useCommentCollection((state) => state.comments)
   if (comments.length === 0) {
     return <Empty />
   }
@@ -47,9 +48,8 @@ export const Comments: FC = observer(() => {
   return createElement(CommentList)
 })
 
-const CommentList: FC = observer(() => {
-  const { commentStore } = useStore()
-  const { comments } = commentStore
+const CommentList: FC = memo(() => {
+  const comments = useCommentCollection((state) => state.comments)
 
   return (
     <BottomUpTransitionView
@@ -71,8 +71,17 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
   const { isLogged: logged, name: masterName, master } = userStore
   const { avatar: masterAvatar } = master || {}
 
-  const { commentStore } = useStore()
-  const { commentIdMap, comments } = commentStore
+  const commentStore = useCommentCollection<{
+    commentIdMap: Map<Id, CommentModel>
+    comments: CommentModel[]
+  }>(
+    (state) => ({
+      commentIdMap: state.data,
+      comments,
+    }),
+    shallow,
+  )
+  const { data: commentIdMap, comments } = commentStore
 
   const comment = commentIdMap.get(id)!
 
@@ -187,7 +196,6 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
   return (
     <Comment
       whispers={comment.isWhispers}
-      // @ts-expect-error
       location={comment.location}
       key={comment.id}
       data-comment-id={comment.id}
@@ -306,9 +314,8 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
     </Comment>
   )
 })
-const InnerCommentList = observer<{ id: string }>(({ id }) => {
-  const { commentStore } = useStore()
-  const { commentIdMap } = commentStore
+const InnerCommentList = memo<{ id: string }>(({ id }) => {
+  const commentIdMap = useCommentCollection((state) => state.data)
 
   const comment = commentIdMap.get(id)
 

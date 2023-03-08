@@ -32,7 +32,7 @@ export const useAppStore = create<AppState & AppAction>((set, get) => {
       set({ colorMode })
     },
     updatePosition(direction, y) {
-      set({ position: y, scrollDirection: direction })
+      set({ position: y, scrollDirection: direction ?? get().scrollDirection })
     },
     updateViewport() {
       const innerHeight = window.innerHeight
