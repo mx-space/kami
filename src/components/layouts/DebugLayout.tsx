@@ -6,8 +6,6 @@ import { ModalStackProvider } from '@mx-space/kami-design/components/Modal'
 
 import { useAppStore } from '~/atoms/app'
 
-// import { useJotaiStore } from '~/atoms/store'
-
 export const DebugLayout: FC = observer((props) => {
   useEffect(() => {
     useAppStore.getState().updateViewport()
