@@ -2,10 +2,11 @@ import { clsx } from 'clsx'
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import { sanitizeUrl } from 'markdown-to-jsx'
 import { observer } from 'mobx-react-lite'
-import { FC, memo } from 'react'
+import type { FC } from 'react'
 import {
   Fragment,
   createElement,
+  memo,
   useCallback,
   useMemo,
   useRef,
@@ -21,6 +22,7 @@ import {
 } from '@mx-space/kami-design/components/Icons/for-post'
 import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
+import type { CommentModelWithHighlight } from '~/atoms/collections/comment'
 import { useCommentCollection } from '~/atoms/collections/comment'
 import { ImpressionView } from '~/components/biz/ImpressionView'
 import { IconTransition } from '~/components/universal/IconTransition'
@@ -71,19 +73,20 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
   const { isLogged: logged, name: masterName, master } = userStore
   const { avatar: masterAvatar } = master || {}
 
-  const commentStore = useCommentCollection<{
+  const { commentIdMap, comments } = useCommentCollection<{
     commentIdMap: Map<Id, CommentModel>
     comments: CommentModel[]
   }>(
     (state) => ({
       commentIdMap: state.data,
-      comments,
+      comments: state.comments,
     }),
     shallow,
   )
-  const { data: commentIdMap, comments } = commentStore
 
-  const comment = commentIdMap.get(id)!
+  const commentCollection = useCommentCollection.getState()
+
+  const comment: CommentModelWithHighlight = commentIdMap.get(id)!
 
   const [sure, setSure] = useState<null | Id>(null)
 
@@ -102,7 +105,7 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
         success()
 
         if (!socketClient.socket.connected) {
-          commentStore.addComment(data)
+          commentCollection.addComment(data)
         }
         setReplyId('')
       } catch (err) {
@@ -118,7 +121,7 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
       await apiClient.comment.proxy(id).delete()
 
       message.success('删除成功~')
-      commentStore.deleteComment(id)
+      commentCollection.deleteComment(id)
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
@@ -187,15 +190,16 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
     })
 
     if (nextPinStatus) {
-      commentStore.pinComment(comment.id)
+      commentCollection.pinComment(comment.id)
     } else {
-      commentStore.unPinComment(comment.id)
+      commentCollection.unPinComment(comment.id)
     }
   }, [comment, comments])
 
   return (
     <Comment
       whispers={comment.isWhispers}
+      // @ts-ignore
       location={comment.location}
       key={comment.id}
       data-comment-id={comment.id}

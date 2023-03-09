@@ -53,8 +53,6 @@ export const useNoteCollection = createCollection<NoteModel, NoteCollection>(
       nidToIdMap,
       likeIdList,
       get(id: string | number) {
-        console.log(getState(), 'colec')
-
         if (typeof id === 'string') {
           return getCollection().get(id)
         } else {

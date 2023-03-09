@@ -36,7 +36,10 @@ const createState = () => {
   }
   return commentInitialState
 }
-
+export type CommentModelWithHighlight = CommentModel & {
+  highlight?: boolean
+  isDeleted?: boolean
+}
 export const useCommentCollection = createCollection<
   CommentModel & { highlight?: boolean },
   CommentCollection
@@ -71,7 +74,7 @@ export const useCommentCollection = createCollection<
           state.comments = [...data.data]
           state.data.clear()
 
-          const flatAllComments = walkComments(this.comments)
+          const flatAllComments = walkComments(state.comments)
           flatAllComments.forEach((comment) => {
             state.data.set(comment.id, comment)
           })
@@ -107,7 +110,7 @@ export const useCommentCollection = createCollection<
 
       const refId =
         typeof comment.ref === 'string' ? comment.ref : (comment.ref as any).id
-      if (refId !== this.currentRefId) {
+      if (refId !== getState().currentRefId) {
         return
       }
 
@@ -169,7 +172,8 @@ export const useCommentCollection = createCollection<
           comment.pin = false
 
           requestAnimationFrame(() => {
-            this.fetchComment(this.currentRefId)
+            const state = getState()
+            state.fetchComment(state.currentRefId)
           })
         }),
       )
