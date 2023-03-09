@@ -97,7 +97,7 @@
     "validator": "13.9.0"
   },
   "devDependencies": {
-    "@innei/eslint-config-react-ts": "0.9.7",
+    "@innei/eslint-config-react-ts": "0.9.8",
     "@innei/prettier": "0.9.7",
     "@next/bundle-analyzer": "13.2.1",
     "@trivago/prettier-plugin-sort-imports": "4.1.1",
