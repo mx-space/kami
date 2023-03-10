@@ -27,13 +27,13 @@ import {
 import { Loading } from '@mx-space/kami-design/components/Loading'
 import { useModalStack } from '@mx-space/kami-design/components/Modal/stack-context'
 
+import { useIsLogged } from '~/atoms/user'
 import { Seo } from '~/components/biz/Seo'
 import { RefPreview } from '~/components/in-page/Recently/RefPreview'
 import { RecentlySendBox } from '~/components/in-page/Recently/SendBox'
 import { Markdown } from '~/components/universal/Markdown'
 import { RelativeTime } from '~/components/universal/RelativeTime'
 import { CommentLazy } from '~/components/widgets/Comment'
-import { useStore } from '~/store'
 import { EventTypes } from '~/types/events'
 import { apiClient } from '~/utils/client'
 import { eventBus } from '~/utils/event-emitter'
@@ -71,9 +71,7 @@ const useDataEventHandler = () => {
 
 const RecentlyPage: NextPage = () => {
   const [hasNext, setHasNext] = useState(true)
-  const {
-    userStore: { isLogged },
-  } = useStore()
+  const isLogged = useIsLogged()
 
   const [fetchBefore, setFetchBefore] = useState<undefined | string>()
   const { data: fetchedData, isLoading } = useSWR(

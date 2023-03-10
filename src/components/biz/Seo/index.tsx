@@ -8,8 +8,6 @@ import type { FC } from 'react'
 import { useInitialData } from '~/hooks/use-initial-data'
 import { useRandomImage } from '~/hooks/use-kami'
 
-import { useStore } from '../../../store'
-
 type SEOProps = {
   title: string
   description?: string
@@ -18,7 +16,7 @@ type SEOProps = {
 
 export const SEO: FC<SEOProps> = observer((props) => {
   const { title, description, openGraph, ...rest } = props
-  const { userStore } = useStore()
+
   const {
     url: { webUrl },
     seo,
@@ -41,10 +39,9 @@ export const SEO: FC<SEOProps> = observer((props) => {
             type: 'article',
             locale: 'zh-cn',
             site_name: seo.title || '',
-            description:
-              description || seo.description || userStore.introduce || '',
+            description: description || seo.description || user.introduce || '',
             article: {
-              authors: [user.name || (userStore.name as string)],
+              authors: [user.name],
             },
             title: Title,
             images: [
@@ -56,12 +53,7 @@ export const SEO: FC<SEOProps> = observer((props) => {
           } as OpenGraph,
           openGraph,
         ),
-        description:
-          description ||
-          seo.description ||
-          user.introduce ||
-          userStore.introduce ||
-          '',
+        description: description || seo.description || user.introduce || '',
         twitter: {
           cardType: 'summary',
           site: webUrl,

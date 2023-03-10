@@ -8,6 +8,7 @@ import { shallow } from 'zustand/shallow'
 import { IcBaselineMenuOpen } from '@mx-space/kami-design/components/Icons/layout'
 
 import { useAppStore } from '~/atoms/app'
+import { useIsLogged } from '~/atoms/user'
 import { CustomLogo as Logo } from '~/components/universal/Logo'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
@@ -16,7 +17,6 @@ import { useInitialData, useKamiConfig } from '~/hooks/use-initial-data'
 import { useIsClient } from '~/hooks/use-is-client'
 import { useSingleAndDoubleClick } from '~/hooks/use-single-double-click'
 import { useIsOverPostTitleHeight } from '~/hooks/use-viewport'
-import { useStore } from '~/store'
 
 import { HeaderActionBasedOnRouterPath } from './HeaderActionBasedOnRouterPath'
 import { HeaderBase } from './HeaderBase'
@@ -32,9 +32,7 @@ export const Header: FC = observer(() => {
   const {
     site: { subtitle },
   } = useKamiConfig()
-  const {
-    userStore: { isLogged, url },
-  } = useStore()
+  const isLogged = useIsLogged()
 
   const headerNav = useGetHeaderMeta()
 
@@ -50,6 +48,7 @@ export const Header: FC = observer(() => {
       })
     },
     () => {
+      const url = useAppStore.getState().appUrl
       if (isLogged && url?.adminUrl) {
         location.href = url.adminUrl
       } else {

@@ -1,6 +1,6 @@
 import { message } from 'react-message-popup'
 
-import { useStore } from '~/store'
+import { useUserStore } from '~/atoms/user'
 import { apiClient } from '~/utils/client'
 import { devtoolForbidden } from '~/utils/console'
 import { getToken, removeToken, setToken } from '~/utils/cookie'
@@ -8,7 +8,9 @@ import { getToken, removeToken, setToken } from '~/utils/cookie'
 import { useThemeConfig } from './use-initial-data'
 
 export const useCheckLogged = () => {
-  const { userStore: master } = useStore()
+  const userStore = useUserStore.getState()
+
+  const master = userStore.master
   const {
     function: {
       banDevtool: { enable: banDevtoolEnable },
@@ -27,8 +29,8 @@ export const useCheckLogged = () => {
                 apiClient.user.proxy.login
                   .put<{ token: string }>()
                   .then((res) => {
-                    master.setToken(res.token)
-                    message.success(`欢迎回来，${master.name}`, 1500)
+                    userStore.setToken(res.token)
+                    message.success(`欢迎回来，${master!.name}`, 1500)
                     setToken(res.token)
                   })
               } else {

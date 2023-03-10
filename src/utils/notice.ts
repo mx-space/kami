@@ -1,6 +1,7 @@
 import React from 'react'
 import { toast } from 'react-toastify'
 
+import { useUserStore } from '~/atoms/user'
 import { ToastCard } from '~/components/widgets/Toast/card'
 import { TrackerAction } from '~/constants/tracker'
 import { emitTrackerEvent } from '~/hooks/use-analyze'
@@ -93,7 +94,7 @@ export class Notice {
           const notification = new Notification(title, {
             body: text,
             image:
-              store.userStore.master?.avatar ||
+              useUserStore.getState().master?.avatar ||
               `${location.origin}/manifest-icon-192.png`,
 
             ...options,

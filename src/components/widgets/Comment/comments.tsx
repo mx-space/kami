@@ -1,7 +1,6 @@
 import { clsx } from 'clsx'
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import { sanitizeUrl } from 'markdown-to-jsx'
-import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import {
   Fragment,
@@ -24,6 +23,7 @@ import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transit
 
 import type { CommentModelWithHighlight } from '~/atoms/collections/comment'
 import { useCommentCollection } from '~/atoms/collections/comment'
+import { useUserStore } from '~/atoms/user'
 import { ImpressionView } from '~/components/biz/ImpressionView'
 import { IconTransition } from '~/components/universal/IconTransition'
 import { ImageTagPreview } from '~/components/universal/ImageTagPreview'
@@ -33,7 +33,6 @@ import type { Id } from '~/store/helper/structure'
 import { apiClient } from '~/utils/client'
 
 import { openCommentMessage } from '.'
-import { useStore } from '../../../store'
 import { Avatar } from './avatar'
 import { CommentBox } from './box'
 import { Comment } from './comment'
@@ -67,11 +66,24 @@ const CommentList: FC = memo(() => {
   )
 })
 
-const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
+const SingleComment: FC<{ id: string }> = ({ id, children }) => {
   const [replyId, setReplyId] = useState('')
-  const { userStore } = useStore()
-  const { isLogged: logged, name: masterName, master } = userStore
-  const { avatar: masterAvatar } = master || {}
+  const {
+    avatar: masterAvatar,
+    name: masterName,
+    logged,
+  } = useUserStore<{
+    avatar: string
+    name: string
+    logged: boolean
+  }>(
+    (state) => ({
+      avatar: state.master?.avatar || '',
+      name: state.master?.name || '',
+      logged: state.isLogged,
+    }),
+    shallow,
+  )
 
   const { commentIdMap, comments } = useCommentCollection<{
     commentIdMap: Map<Id, CommentModel>
@@ -317,7 +329,7 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
       {children}
     </Comment>
   )
-})
+}
 const InnerCommentList = memo<{ id: string }>(({ id }) => {
   const commentIdMap = useCommentCollection((state) => state.data)
 

@@ -6,10 +6,11 @@ import { toast } from 'react-toastify'
 import { Avatar } from '@mx-space/kami-design/components/Avatar'
 import { CloseIcon } from '@mx-space/kami-design/components/Icons'
 
+import { useUserStore } from '~/atoms/user'
 import { ImpressionView } from '~/components/biz/ImpressionView'
 import { RelativeTime } from '~/components/universal/RelativeTime'
 import { useInitialData } from '~/hooks/use-initial-data'
-import { store } from '~/store'
+import { useDetectPadOrMobile } from '~/hooks/use-viewport'
 
 const wrapperProps = { className: '!border-none !shadow-none' }
 export const ToastCard: FC<{
@@ -20,11 +21,11 @@ export const ToastCard: FC<{
   onClick?: (e: MouseEvent) => void
   getToastId?: () => string
 }> = observer((props) => {
-  const { userStore, appStore } = store
-  const isPadOrMobile = appStore.isPadOrMobile
+  const isPadOrMobile = useDetectPadOrMobile()
   const { seo } = useInitialData()
   const { description, text, title = seo.title } = props
   const date = useRef(new Date())
+  const avatar = useUserStore((state) => state.master?.avatar)
   return (
     <ImpressionView
       trackerMessage={`Toast 曝光 - ${title} · ${description} · ${text}`}
@@ -53,7 +54,7 @@ export const ToastCard: FC<{
         <div className="flex-shrink-0">
           <Avatar
             useRandomColor={false}
-            imageUrl={props.avatar || userStore.master?.avatar || ''}
+            imageUrl={props.avatar || avatar || ''}
             size={40}
             wrapperProps={wrapperProps}
           />

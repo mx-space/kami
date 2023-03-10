@@ -7,7 +7,7 @@ import useSWR from 'swr'
 import { ImageLazy } from '@mx-space/kami-design/components/Image'
 import { Loading } from '@mx-space/kami-design/components/Loading'
 
-import { useStore } from '~/store'
+import { useUserStore } from '~/atoms/user'
 import { apiClient } from '~/utils/client'
 
 import { Seo } from '../../components/biz/Seo'
@@ -23,8 +23,7 @@ interface FavoriteBangumiType {
 }
 
 const BangumiView: NextPage = () => {
-  const { userStore } = useStore()
-  const master = userStore.master
+  const master = useUserStore((state) => !!state.master)
 
   const { data, isLoading } = useSWR(
     'bangumi',

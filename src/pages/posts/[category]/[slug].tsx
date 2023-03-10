@@ -2,6 +2,7 @@ import dayjs from 'dayjs'
 import isEqual from 'lodash-es/isEqual'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react-lite'
+import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -9,6 +10,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { message } from 'react-message-popup'
 
 import type { PostModel } from '@mx-space/api-client'
+import { Loading } from '@mx-space/kami-design'
 import { Banner } from '@mx-space/kami-design/components/Banner'
 import {
   GgCoffee,
@@ -21,7 +23,8 @@ import {
 } from '@mx-space/kami-design/components/Icons/for-post'
 import { ImageSizeMetaContext } from '@mx-space/kami-design/contexts/image-size'
 
-import { buildStoreDataLoadableView } from '~/components/app/LoadableView'
+import { usePostCollection } from '~/atoms/collections/post'
+import type { ModelWithDeleted } from '~/atoms/collections/utils/base'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import Outdate from '~/components/biz/Outdate'
 import { Seo } from '~/components/biz/Seo'
@@ -36,7 +39,6 @@ import { useInitialData, useThemeConfig } from '~/hooks/use-initial-data'
 import { useIsClient } from '~/hooks/use-is-client'
 import { useJumpToSimpleMarkdownRender } from '~/hooks/use-jump-to-render'
 import { useBackgroundOpacity } from '~/hooks/use-kami'
-import { store, useStore } from '~/store'
 import { apiClient } from '~/utils/client'
 import { isLikedBefore, setLikeId } from '~/utils/cookie'
 import { imagesRecord2Map } from '~/utils/images'
@@ -68,8 +70,7 @@ const storeThumbsUpCookie = setLikeId
 
 const isThumbsUpBefore = isLikedBefore
 
-const useUpdatePost = (id: string) => {
-  const post = store.postStore.get(id)
+const useUpdatePost = (post: ModelWithDeleted<PostModel>) => {
   const beforeModel = useRef<PostModel>()
   const router = useRouter()
 
@@ -123,8 +124,8 @@ const useUpdatePost = (id: string) => {
 }
 
 export const PostView: PageOnlyProps = observer((props) => {
-  const { postStore } = useStore()
-  const post: PostModel = postStore.get(props.id) || noop
+  const collection = usePostCollection((state) => state.data)
+  const post: PostModel = collection.get(props.id) || noop
 
   const [actions, setAction] = useState({} as ActionProps)
 
@@ -225,7 +226,7 @@ export const PostView: PageOnlyProps = observer((props) => {
   // header meta
   useSetHeaderMeta(post.title, post.category.name)
   useSetHeaderShare(post.title)
-  useUpdatePost(post.id)
+  useUpdatePost(post)
   useBackgroundOpacity(0.2)
   useJumpToSimpleMarkdownRender(post.id)
   useSetHeaderShare(post.title)
@@ -317,14 +318,23 @@ export const PostView: PageOnlyProps = observer((props) => {
   )
 })
 
-const PP = buildStoreDataLoadableView(store.postStore, PostView)
+const NextPostView: NextPage = (props) => {
+  const { id } = props as any
+  const post = usePostCollection((state) => state.data.get(id))
 
-PP.getInitialProps = async (ctx) => {
+  if (!post) {
+    return <Loading />
+  }
+
+  return <PostView id={id} />
+}
+
+NextPostView.getInitialProps = async (ctx) => {
   const { query } = ctx
   const { category, slug } = query as any
-  const data = await store.postStore.fetchBySlug(category, slug)
+  const data = await usePostCollection.getState().fetchBySlug(category, slug)
 
   return data
 }
 
-export default wrapperNextPage(PP)
+export default wrapperNextPage(NextPostView)

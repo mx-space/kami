@@ -2,8 +2,9 @@ import { observer } from 'mobx-react-lite'
 
 import { TextFade } from '@mx-space/kami-design/components/Animate/text-anim'
 
+import { useAppStore } from '~/atoms/app'
+import { useIsLogged } from '~/atoms/user'
 import { useIsClient } from '~/hooks/use-is-client'
-import { useStore } from '~/store'
 import { resolveUrl } from '~/utils/utils'
 
 import { useArticleLayoutProps } from './hooks'
@@ -11,7 +12,6 @@ import styles from './index.module.css'
 
 export const ArticleLayoutTitle = observer<{ animate?: boolean }>(
   ({ animate = true }) => {
-    const { userStore } = useStore()
     const {
       title,
       type,
@@ -19,7 +19,8 @@ export const ArticleLayoutTitle = observer<{ animate?: boolean }>(
       subtitle,
       subtitleAnimation = true,
     } = useArticleLayoutProps()
-    const { isLogged, url } = userStore
+    const isLogged = useIsLogged()
+    const url = useAppStore((state) => state.appUrl)
     const isClientSide = useIsClient()
     if (!title) {
       return null

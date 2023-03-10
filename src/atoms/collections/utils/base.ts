@@ -6,7 +6,7 @@ type Id = string
 
 enableMapSet()
 
-interface BaseStore<T extends object, TT = T & { deleted?: boolean }> {
+interface BaseStore<T extends object, TT = ModelWithDeleted<T>> {
   data: Map<Id, TT>
   add(id: string, data: T | T[]): void
   add(data: T | T[]): void
@@ -14,6 +14,8 @@ interface BaseStore<T extends object, TT = T & { deleted?: boolean }> {
   remove(id: Id): void
   softDelete(key: string): boolean
 }
+
+export type ModelWithDeleted<T> = { isDeleted?: boolean } & T
 
 // TODO ssr hydrate
 export const createCollection = <T extends { id: Id }, A extends object>(

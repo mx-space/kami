@@ -1,5 +1,4 @@
 import { clsx } from 'clsx'
-import { observer } from 'mobx-react-lite'
 import Router from 'next/router'
 import type { FC } from 'react'
 import React, { useCallback, useMemo, useState } from 'react'
@@ -11,9 +10,10 @@ import {
   PhPushPinFill,
 } from '@mx-space/kami-design/components/Icons/for-post'
 
+import { useAppStore } from '~/atoms/app'
+import { useIsLogged } from '~/atoms/user'
 import { IconTransition } from '~/components/universal/IconTransition'
 import { useInitialData } from '~/hooks/use-initial-data'
-import { useStore } from '~/store'
 import { apiClient } from '~/utils/client'
 import { springScrollToTop } from '~/utils/spring'
 import { parseDate } from '~/utils/time'
@@ -25,11 +25,9 @@ interface PostBlockProps {
   onPinChange: () => any
 }
 
-export const PostBlock: FC<PostBlockProps> = observer((props) => {
-  const {
-    appStore: { viewport },
-    userStore: { isLogged },
-  } = useStore()
+export const PostBlock: FC<PostBlockProps> = (props) => {
+  const viewport = useAppStore((state) => state.viewport)
+  const isLogged = useIsLogged()
 
   const post = props.post
 
@@ -152,4 +150,4 @@ export const PostBlock: FC<PostBlockProps> = observer((props) => {
       <div className="pb-8 mb-4" />
     </>
   )
-})
+}

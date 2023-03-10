@@ -1,5 +1,4 @@
 import { clsx } from 'clsx'
-import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { Fragment, useCallback, useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
@@ -9,13 +8,13 @@ import { useHash } from 'react-use'
 import type { Pager } from '@mx-space/api-client'
 
 import { useCommentCollection } from '~/atoms/collections/comment'
+import { useIsLogged } from '~/atoms/user'
 import { useKamiConfig } from '~/hooks/use-initial-data'
 import { useIsClient } from '~/hooks/use-is-client'
 import { apiClient } from '~/utils/client'
 import { NoSSRWrapper } from '~/utils/no-ssr'
 import { springScrollToElement } from '~/utils/spring'
 
-import { useStore } from '../../../store'
 import { Pagination } from '../../universal/Pagination'
 import { CommentBox } from './box'
 import { Comments } from './comments'
@@ -46,12 +45,11 @@ interface CommentWrapProps {
   warpperClassName?: string
 }
 
-const CommentWrap: FC<CommentWrapProps> = observer((props) => {
+const CommentWrap: FC<CommentWrapProps> = (props) => {
   const { id, allowComment } = props
 
   const [pagination, setPagination] = useState({} as Pager)
-  const { userStore } = useStore()
-  const logged = userStore.isLogged
+  const logged = useIsLogged()
   const comments = useCommentCollection((state) => state.comments)
 
   useEffect(() => {
@@ -187,7 +185,7 @@ const CommentWrap: FC<CommentWrapProps> = observer((props) => {
       )}
     </div>
   )
-})
+}
 
 const Comment: typeof CommentWrap = (props) => {
   const {

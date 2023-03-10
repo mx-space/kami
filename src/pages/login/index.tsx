@@ -7,17 +7,17 @@ import { PhUser } from '@mx-space/kami-design/components/Icons/for-comment'
 import { CarbonPassword } from '@mx-space/kami-design/components/Icons/for-login'
 import { Input } from '@mx-space/kami-design/components/Input'
 
+import { useUserStore } from '~/atoms/user'
 import { apiClient } from '~/utils/client'
 import { releaseDevtool } from '~/utils/console'
 
-import { useStore } from '../../store'
 import { setToken } from '../../utils/cookie'
 import styles from './index.module.css'
 
 const LoginView: NextPage = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const { userStore } = useStore()
+
   const handleLogin = async () => {
     const data = await apiClient.user.login(username, password)
 
@@ -28,7 +28,7 @@ const LoginView: NextPage = () => {
       Router.push('/')
     }
     message.success('登录成功')
-    userStore.setToken(data.token)
+    useUserStore.getState().setToken(data.token)
     releaseDevtool()
   }
 

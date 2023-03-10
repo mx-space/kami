@@ -1,18 +1,15 @@
 import { clsx } from 'clsx'
-import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import { useEffect, useRef, useState } from 'react'
 
 import { Overlay } from '@mx-space/kami-design/components/Overlay'
 
+import { useUserStore } from '~/atoms/user'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
-import { useStore } from '~/store'
 
-export const BanCopy: FC = observer((props) => {
-  const { userStore } = useStore()
-  const isLogged = userStore.isLogged
+export const BanCopy: FC = (props) => {
   const [showCopyWarn, setShowCopyWarn] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const { event } = useAnalyze()
@@ -23,6 +20,7 @@ export const BanCopy: FC = observer((props) => {
     }
     const $el = ref.current
     $el.oncopy = (e) => {
+      const isLogged = useUserStore.getState().isLogged
       if (isLogged) {
         return
       }
@@ -37,7 +35,7 @@ export const BanCopy: FC = observer((props) => {
     return () => {
       $el.oncopy = null
     }
-  }, [event, isLogged, router.asPath])
+  }, [event, router.asPath])
   return (
     <>
       <div ref={ref}>{props.children}</div>
@@ -64,4 +62,4 @@ export const BanCopy: FC = observer((props) => {
       </Overlay>
     </>
   )
-})
+}

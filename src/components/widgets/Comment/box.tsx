@@ -1,7 +1,6 @@
 import omit from 'lodash-es/omit'
 import sample from 'lodash-es/sample'
 import markdownEscape from 'markdown-escape'
-import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import React, {
   createContext,
@@ -26,6 +25,7 @@ import {
 } from '@mx-space/kami-design/components/Icons/for-comment'
 import { Input } from '@mx-space/kami-design/components/Input'
 
+import { useIsLogged, useUserStore } from '~/atoms/user'
 import { ImpressionView } from '~/components/biz/ImpressionView'
 import { kaomoji } from '~/constants/kaomoji'
 import { TrackerAction } from '~/constants/tracker'
@@ -33,7 +33,6 @@ import { useAnalyze } from '~/hooks/use-analyze'
 import { apiClient } from '~/utils/client'
 import { isDev } from '~/utils/env'
 
-import { useStore } from '../../../store'
 import styles from './index.module.css'
 
 const USER_PREFIX = 'mx-space-comment-author'
@@ -88,8 +87,6 @@ export const CommentBox: FC<{
     }
   }, [])
 
-  const { userStore } = useStore()
-  const logged = userStore.isLogged
   const reset = () => {
     if (taRef.current) {
       taRef.current.value = ''
@@ -130,9 +127,11 @@ export const CommentBox: FC<{
       return
     }
     const text = taRef.current.value
-
+    const { username: ownerUserName, name: ownerName } =
+      useUserStore.getState().master || {}
+    const logged = useUserStore.getState().isLogged
     if (!logged) {
-      if (author === userStore.name || author === userStore.username) {
+      if (author === ownerName || author === ownerUserName) {
         return message.error('昵称与我主人重名了，但是你好像并不是我的主人唉')
       }
       if (!author || !text || !mail) {
@@ -223,14 +222,17 @@ export const CommentBox: FC<{
   const noticeOnce = useRef(false)
 
   const handleCommentBoxClick = useCallback(() => {
-    if (userStore.isLogged) {
+    const isLogged = useUserStore.getState().isLogged
+    if (isLogged) {
       return
     }
     if (!noticeOnce.current) {
       message.warn('欧尼酱，文明发言哦，否则评论会被移入垃圾箱哦')
       noticeOnce.current = true
     }
-  }, [userStore.isLogged])
+  }, [])
+
+  const logged = useIsLogged()
   return (
     <div className="my-4">
       {!logged && (
@@ -341,51 +343,48 @@ export const CommentBox: FC<{
   )
 })
 
-const CommentBoxOption = observer<{ commentId?: string; refId: string }>(
-  (props) => {
-    const { userStore } = useStore()
-    const { isLogged } = userStore
-    const { syncToRecently, isWhispers, setConfig } = useContext(
-      CommentSendingContext,
-    )
-    const isReply = !!props.commentId
+const CommentBoxOption: FC<{ commentId?: string; refId: string }> = (props) => {
+  const isLogged = useIsLogged()
+  const { syncToRecently, isWhispers, setConfig } = useContext(
+    CommentSendingContext,
+  )
+  const isReply = !!props.commentId
 
-    return (
-      <>
-        {isLogged && !isReply && (
-          <fieldset className="inline-flex items-center children:cursor-pointer">
-            <input
-              type="checkbox"
-              id="comment-box-sync"
-              checked={syncToRecently}
-              onChange={(e) => {
-                setConfig({ syncToRecently: e.target.checked })
-              }}
-            />
-            <label htmlFor="comment-box-sync" className="text-shizuku">
-              同步到速记
-            </label>
-          </fieldset>
-        )}
-        {!isLogged && !isReply && (
-          <fieldset className="inline-flex items-center children:cursor-pointer">
-            <input
-              type="checkbox"
-              id="comment-box-whispers"
-              checked={isWhispers}
-              onChange={(e) => {
-                setConfig({ isWhispers: e.target.checked })
-              }}
-            />
-            <label htmlFor="comment-box-whispers" className="text-shizuku">
-              悄悄话
-            </label>
-          </fieldset>
-        )}
-      </>
-    )
-  },
-)
+  return (
+    <>
+      {isLogged && !isReply && (
+        <fieldset className="inline-flex items-center children:cursor-pointer">
+          <input
+            type="checkbox"
+            id="comment-box-sync"
+            checked={syncToRecently}
+            onChange={(e) => {
+              setConfig({ syncToRecently: e.target.checked })
+            }}
+          />
+          <label htmlFor="comment-box-sync" className="text-shizuku">
+            同步到速记
+          </label>
+        </fieldset>
+      )}
+      {!isLogged && !isReply && (
+        <fieldset className="inline-flex items-center children:cursor-pointer">
+          <input
+            type="checkbox"
+            id="comment-box-whispers"
+            checked={isWhispers}
+            onChange={(e) => {
+              setConfig({ isWhispers: e.target.checked })
+            }}
+          />
+          <label htmlFor="comment-box-whispers" className="text-shizuku">
+            悄悄话
+          </label>
+        </fieldset>
+      )}
+    </>
+  )
+}
 
 const KaomojiButton: FC<{ onClickKaomoji: (kaomoji: string) => any }> = memo(
   ({ onClickKaomoji }) => {

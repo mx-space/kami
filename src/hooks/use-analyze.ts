@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react'
 
+import { useUserStore } from '~/atoms/user'
 import type { TrackerAction } from '~/constants/tracker'
-import { useStore } from '~/store'
 import { CustomEventTypes } from '~/types/events'
 import { isDev } from '~/utils/env'
 import { eventBus } from '~/utils/event-emitter'
@@ -46,7 +46,7 @@ export const emitTrackerEvent = (options: TrackerOptions) => {
 
 export const useAnalyze = () => {
   const config = useThemeConfig()
-  const { userStore } = useStore()
+
   const GA_TRACKING_ID = config.function.analyze.ga
 
   const isEnableGA = config.function.analyze.enable
@@ -70,7 +70,7 @@ export const useAnalyze = () => {
   const event = useCallback(
     (options: TrackerOptions) => {
       const { action, label, category = label, value } = options
-      if (isDev || userStore.isLogged) {
+      if (isDev || useUserStore.getState().isLogged) {
         console.log('event', options)
         return
       }
@@ -90,7 +90,7 @@ export const useAnalyze = () => {
         console.log(err)
       }
     },
-    [GA_TRACKING_ID, isEnableGA, userStore.isLogged],
+    [GA_TRACKING_ID, isEnableGA],
   )
 
   return {
