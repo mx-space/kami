@@ -15,11 +15,12 @@ import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
 import { MaterialSymbolsArrowCircleRightOutlineRounded } from '@mx-space/kami-design/components/Icons/for-note'
 import { LeftRightTransitionView } from '@mx-space/kami-design/components/Transition/left-right'
 
+import { useNoteCollection } from '~/atoms/collections/note'
 import { ImpressionView } from '~/components/biz/ImpressionView'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useIsUnMounted } from '~/hooks/use-is-unmounted'
-import { useStore } from '~/store'
+import { useDetectIsNarrowThanLaptop } from '~/hooks/use-viewport'
 import { apiClient } from '~/utils/client'
 import { springScrollToTop } from '~/utils/spring'
 
@@ -54,11 +55,10 @@ type NotePartial = Pick<NoteModel, 'id' | 'nid' | 'created' | 'title'>
 
 const ObserveredNoteTimelineList: FC<
   NoteTimelineListProps & JSX.IntrinsicElements['div']
-> = observer((props) => {
+> = (props) => {
   const { className, noteId } = props
 
-  const { noteStore } = useStore()
-  const note = noteStore.get(noteId)
+  const note = useNoteCollection((state) => state.get(noteId))
 
   const [list, setList] = useState(() => {
     if (!note) return []
@@ -136,7 +136,7 @@ const ObserveredNoteTimelineList: FC<
       </div>
     </div>
   )
-})
+}
 const scrollToTop = () => {
   springScrollToTop(250)
 }
@@ -177,9 +177,7 @@ export const MemoedItem = memo<{
 export const NoteTimelineList: FC<
   NoteTimelineListProps & JSX.IntrinsicElements['div']
 > = observer((props) => {
-  const {
-    appUIStore: { isNarrowThanLaptop: isWiderThanLaptop },
-  } = useStore()
+  const isWiderThanLaptop = useDetectIsNarrowThanLaptop()
   if (isWiderThanLaptop) {
     return null
   }

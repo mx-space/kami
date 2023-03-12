@@ -1,11 +1,11 @@
-import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import React, { useCallback, useInsertionEffect, useRef } from 'react'
 import { message } from 'react-message-popup'
+import { shallow } from 'zustand/shallow'
 
+import { useAppStore } from '~/atoms/app'
 import { loadScript, loadStyleSheet } from '~/utils/load-script'
 
-import { useStore } from '../../../store'
 import styles from './index.module.css'
 
 interface Props {
@@ -13,15 +13,23 @@ interface Props {
   content: string
 }
 
-export const HighLighter: FC<Props> = observer((props) => {
+export const HighLighter: FC<Props> = (props) => {
   const { lang: language, content: value } = props
-  const { appUIStore } = useStore()
-  const { colorMode } = appUIStore
+
+  const { colorMode, isPrintMode } = useAppStore<{
+    colorMode: string
+    isPrintMode: boolean
+  }>(
+    (state) => ({
+      colorMode: state.colorMode,
+      isPrintMode: state.mediaType === 'print',
+    }),
+    shallow,
+  )
   const handleCopy = useCallback(() => {
     navigator.clipboard.writeText(value)
     message.success('COPIED!')
   }, [value])
-  const isPrintMode = appUIStore.mediaType === 'print'
 
   const prevThemeCSS = useRef<ReturnType<typeof loadStyleSheet>>()
 
@@ -101,4 +109,4 @@ export const HighLighter: FC<Props> = observer((props) => {
       </div>
     </div>
   )
-})
+}

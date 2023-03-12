@@ -11,14 +11,34 @@ import { Overlay } from '@mx-space/kami-design/components/Overlay'
 import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 import { RightLeftTransitionView } from '@mx-space/kami-design/components/Transition/right-left'
 
+import { useAppStore } from '~/atoms/app'
 import { BigTag } from '~/components/universal/Tag'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { store } from '~/store'
 import { NoSSRWrapper } from '~/utils/no-ssr'
 
+const TagsContainer: FC<{ children?: JSX.Element[]; onClick: () => any }> = ({
+  onClick,
+  children,
+}) => {
+  const viewport = useAppStore((state) => state.viewport)
+
+  return (
+    <div
+      style={{
+        maxWidth: viewport.w > 800 ? '50vw' : 'calc(100vw - 100px)',
+      }}
+      className="m-auto h-screen w-screen absolute inset-0"
+      onClick={onClick}
+    >
+      {children}
+    </div>
+  )
+}
+
 const _FloatPostTagButton: FC = observer(() => {
-  const { actionStore, appUIStore } = store
+  const { actionStore } = store
   const [showTags, setShowTags] = useState(false)
   const [postWithTag, setTagPost] = useState<
     Pick<PostModel, 'id' | 'title' | 'slug' | 'created' | 'category'>[]
@@ -65,6 +85,10 @@ const _FloatPostTagButton: FC = observer(() => {
       actionStore.removeActionById(actionId.current)
     }
   }, [tags.length])
+  const onTagContainerClick = useCallback(() => {
+    setShowTags(false)
+    setTagPost([])
+  }, [])
 
   return (
     <Overlay
@@ -77,17 +101,7 @@ const _FloatPostTagButton: FC = observer(() => {
         setTagPost([])
       }}
     >
-      <div
-        style={{
-          maxWidth:
-            appUIStore.viewport.w > 800 ? '50vw' : 'calc(100vw - 100px)',
-        }}
-        className="m-auto h-screen w-screen absolute inset-0"
-        onClick={() => {
-          setShowTags(false)
-          setTagPost([])
-        }}
-      >
+      <TagsContainer onClick={onTagContainerClick}>
         <div className="absolute z-[3] bottom-[50vh] top-[100px]">
           <TransitionGroup className="flex items-end flex-wrap">
             {tags.map(({ name }, i) => {
@@ -148,7 +162,7 @@ const _FloatPostTagButton: FC = observer(() => {
             </ul>
           </article>
         </div>
-      </div>
+      </TagsContainer>
     </Overlay>
   )
 })

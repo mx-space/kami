@@ -1,6 +1,5 @@
 import { clsx } from 'clsx'
 import throttle from 'lodash-es/throttle'
-import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC, KeyboardEventHandler } from 'react'
 import { memo, useCallback, useEffect, useRef, useState } from 'react'
@@ -12,6 +11,7 @@ import { IonSearch } from '@mx-space/kami-design/components/Icons/layout'
 import type { OverlayProps } from '@mx-space/kami-design/components/Overlay'
 import { Overlay } from '@mx-space/kami-design/components/Overlay'
 
+import { useAppStore } from '~/atoms/app'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import useDebounceValue from '~/hooks/use-debounce-value'
@@ -240,14 +240,11 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
     </div>
   )
 })
-export const SearchOverlay: FC<OverlayProps> = observer((props) => {
+export const SearchOverlay: FC<OverlayProps> = memo((props) => {
   const { ...rest } = props
 
-  const {
-    appUIStore: {
-      viewport: { mobile },
-    },
-  } = useStore()
+  const mobile = useAppStore((state) => state.viewport.mobile)
+
   useShortcut(
     'Escape',
     [Modifier.None],

@@ -13,7 +13,7 @@ import { MdiClockTimeThreeOutline } from '@mx-space/kami-design/components/Icons
 import { noteCollection, useNoteCollection } from '~/atoms/collections/note'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
-import { useStore } from '~/store'
+import { useDetectIsNarrowThanLaptop } from '~/hooks/use-viewport'
 import { springScrollToTop } from '~/utils/spring'
 import { noop } from '~/utils/utils'
 
@@ -92,14 +92,13 @@ export const NoteFooterNavigation: FC<{ id: string }> = observer(({ id }) => {
   )
 })
 
-export const NoteFooterNavigationBarForMobile: typeof NoteFooterNavigation =
-  observer((props) => {
-    const {
-      appUIStore: { isNarrowThanLaptop: isWiderThanLaptop },
-    } = useStore()
+export const NoteFooterNavigationBarForMobile: typeof NoteFooterNavigation = (
+  props,
+) => {
+  const isWiderThanLaptop = useDetectIsNarrowThanLaptop()
 
-    if (isWiderThanLaptop) {
-      return <NoteFooterNavigation {...props} />
-    }
-    return null
-  })
+  if (isWiderThanLaptop) {
+    return <NoteFooterNavigation {...props} />
+  }
+  return null
+}

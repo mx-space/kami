@@ -1,5 +1,4 @@
 import dayjs from 'dayjs'
-import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useRef } from 'react'
 
@@ -9,6 +8,7 @@ import {
   PhBookOpen,
 } from '@mx-space/kami-design/components/Icons/for-note'
 
+import { useNoteCollection } from '~/atoms/collections/note'
 import { LikeButton } from '~/components/universal/LikeButton'
 import { NumberTransition } from '~/components/universal/NumberRecorder'
 import { RelativeTime } from '~/components/universal/RelativeTime'
@@ -19,23 +19,22 @@ import { mood2icon, weather2icon } from '~/constants/meta-icon'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useThemeConfig } from '~/hooks/use-initial-data'
-import { useStore } from '~/store'
 
-export const NoteFooterActionBar: FC<{ id: string }> = observer(({ id }) => {
-  const { noteStore } = useStore()
-  const note = noteStore.get(id)
-
+export const NoteFooterActionBar: FC<{ id: string }> = ({ id }) => {
+  const note = useNoteCollection((state) => state.get(id))
+  const isLiked =
+    // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+    useNoteCollection((state) => state.isLiked(note?.nid!)) || false
   const trackerLikeOnce = useRef(false)
   const { event } = useAnalyze()
+  const themeConfig = useThemeConfig()
   if (!note) {
     return null
   }
   const nid = note.nid
   const { mood, weather } = note
   const isSecret = note.secret ? dayjs(note.secret).isAfter(new Date()) : false
-  const isLiked = noteStore.isLiked(nid)
 
-  const themeConfig = useThemeConfig()
   const donateConfig = themeConfig.function.donate
 
   const actions: ActionProps = {
@@ -70,7 +69,7 @@ export const NoteFooterActionBar: FC<{ id: string }> = observer(({ id }) => {
         color: isLiked ? '#e74c3c' : undefined,
 
         callback: () => {
-          noteStore.like(nid)
+          useNoteCollection.getState().like(nid)
 
           if (!trackerLikeOnce.current) {
             event({
@@ -119,4 +118,4 @@ export const NoteFooterActionBar: FC<{ id: string }> = observer(({ id }) => {
   }
 
   return <>{!isSecret && <ArticleFooterAction {...actions} />}</>
-})
+}

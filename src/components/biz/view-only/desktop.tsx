@@ -1,17 +1,15 @@
-import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 
-import { useStore } from '~/store'
+import { useDetectPadOrMobile } from '~/hooks/use-viewport'
 
-export const withDesktopOnly = <P extends {}>(Component: FC<P>): FC<P> =>
-  observer(({ children, ...props }) => {
-    const { appUIStore } = useStore()
-
-    const isDesktop = !appUIStore.isPadOrMobile
+export const withDesktopOnly =
+  <P extends {}>(Component: FC<P>): FC<P> =>
+  ({ children, ...props }) => {
+    const isDesktop = !useDetectPadOrMobile()
 
     if (!isDesktop) {
       return null
     }
     // @ts-ignore
     return <Component {...props}>{children}</Component>
-  })
+  }

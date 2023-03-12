@@ -51,7 +51,7 @@ importers:
       next: 13.1.6
       next-compose-plugins: 2.2.1
       next-seo: 5.15.0
-      next-suspense: 0.2.0
+      next-suspense: 0.2.3
       postcss: 8.4.21
       postcss-import: 15.1.0
       postcss-nested: 6.0.1
@@ -101,7 +101,7 @@ importers:
       mobx-react-lite: 3.4.0_woojb62cqeyk443mbl7msrwu2e
       next: 13.1.6_biqbaboplfbrettd7655fr4n2y
       next-seo: 5.15.0_3vryta7zmbcsw4rrqf4axjqggm
-      next-suspense: 0.2.0_next@13.1.6
+      next-suspense: 0.2.3_next@13.1.6
       randomcolor: 0.6.2
       react: 18.2.0
       react-collapse: 5.1.1_react@18.2.0
@@ -5467,10 +5467,10 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /next-suspense/0.2.0_next@13.1.6:
+  /next-suspense/0.2.3_next@13.1.6:
     resolution:
       {
-        integrity: sha512-5wWWMnNWTg1JYTh15xqC+9fyiS8Uc5IXgPZT6iaGFhKpiS34uiDSG03e6fUDWp1tTkAWyWaPorerznIhLr1wfg==,
+        integrity: sha512-NeCkE3E+rLN3mNqJhvh/kc2SfX4VmUkL8XUV3bc/6RYMVbWDw/oYIEHW9opiEVp+9Q6yYRqW/6XTmhDxwuX0xQ==,
       }
     engines: { pnpm: '>=7' }
     peerDependencies:
