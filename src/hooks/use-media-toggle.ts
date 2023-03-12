@@ -1,7 +1,6 @@
-import { runInAction } from 'mobx'
 import { useEffect, useState } from 'react'
 
-import { useStore } from '~/store'
+import { useAppStore } from '~/atoms/app'
 import { isServerSide } from '~/utils/env'
 
 interface DarkModeConfig {
@@ -116,7 +115,6 @@ const mockElement = {
 }
 const darkModeKey = 'darkMode'
 export const useMediaToggle = () => {
-  const { appStore: app } = useStore()
   const { toggle, value } = useDarkMode(undefined, {
     classNameDark: 'dark',
     classNameLight: 'light',
@@ -125,10 +123,8 @@ export const useMediaToggle = () => {
   })
 
   useEffect(() => {
-    runInAction(() => {
-      app.colorMode = value ? 'dark' : 'light'
-    })
-  }, [app, value])
+    useAppStore.getState().setColorMode(value ? 'dark' : 'light')
+  }, [value])
 
   useEffect(() => {
     const handler = () => {

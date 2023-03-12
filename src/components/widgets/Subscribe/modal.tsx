@@ -1,8 +1,7 @@
-import { observer } from 'mobx-react-lite'
-import { useEffect, useReducer } from 'react'
+import { memo, useEffect, useReducer } from 'react'
 import { message } from 'react-message-popup'
 
-import { SubscribeTypeToBitMap } from '@mx-space/api-client'
+import type { SubscribeTypeToBitMap } from '@mx-space/api-client'
 import { Input, useStateToRef } from '@mx-space/kami-design'
 import { MdiEmailFastOutline } from '@mx-space/kami-design/components/Icons'
 
@@ -52,7 +51,7 @@ const useFormData = () => {
   return [state, dispatch] as const
 }
 
-export const SubscribeModal = observer<SubscribeModalProps>(
+export const SubscribeModal = memo<SubscribeModalProps>(
   ({ onConfirm, defaultTypes }) => {
     const [state, dispatch] = useFormData()
 

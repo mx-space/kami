@@ -1,5 +1,4 @@
 import classNames from 'clsx'
-import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import { memo, useEffect, useMemo, useRef, useState } from 'react'
@@ -25,7 +24,7 @@ import { HeaderDrawerNavigation } from './HeaderDrawerNavigation'
 import { MenuList } from './HeaderMenuList'
 import styles from './index.module.css'
 
-export const Header: FC = observer(() => {
+export const Header: FC = () => {
   const {
     seo: { title, description },
   } = useInitialData()
@@ -158,7 +157,7 @@ export const Header: FC = observer(() => {
       </HeaderDrawer>
     </HeaderBase>
   )
-})
+}
 
 const HeaderMetaTitle: FC<{
   title: string

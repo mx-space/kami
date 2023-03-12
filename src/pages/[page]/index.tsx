@@ -9,6 +9,7 @@ import { ImageSizeMetaContext } from '@mx-space/kami-design/contexts/image-size'
 
 import { usePageCollection } from '~/atoms/collections/page'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
+import { Seo } from '~/components/biz/Seo'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { Markdown } from '~/components/universal/Markdown'
 import { useSetHeaderMeta, useSetHeaderShare } from '~/hooks/use-header-meta'
@@ -18,7 +19,6 @@ import { imagesRecord2Map } from '~/utils/images'
 import { appendStyle } from '~/utils/load-script'
 import { springScrollToTop } from '~/utils/spring'
 
-import { Seo } from '../../components/biz/Seo'
 import styles from './index.module.css'
 
 const CommentLazy = dynamic(() =>

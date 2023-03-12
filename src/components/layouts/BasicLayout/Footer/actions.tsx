@@ -1,6 +1,4 @@
 import { clsx } from 'clsx'
-import { runInAction } from 'mobx'
-import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import React, { useCallback, useMemo } from 'react'
 import { Modifier, useShortcut } from 'react-shortcut-guide'
@@ -14,14 +12,15 @@ import {
 import { RootPortal } from '@mx-space/kami-design/components/Portal'
 import { ScaleTransitionView } from '@mx-space/kami-design/components/Transition/scale'
 
+import { useActionStore } from '~/atoms/action'
 import { useAppStore } from '~/atoms/app'
+import { useMusicStore } from '~/atoms/music'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import {
   useDetectPadOrMobile,
   useIsOverFirstScreenHeight,
 } from '~/hooks/use-viewport'
-import { useStore } from '~/store'
 import { springScrollToTop } from '~/utils/spring'
 
 import styles from './actions.module.css'
@@ -82,9 +81,7 @@ const FooterActionsBase: FC<{
   )
 }
 
-export const FooterActions: FC = observer(() => {
-  const { actionStore, musicStore } = useStore()
-
+export const FooterActions: FC = () => {
   const { event } = useAnalyze()
 
   const handlePlayMusic = useCallback(() => {
@@ -92,10 +89,9 @@ export const FooterActions: FC = observer(() => {
       action: TrackerAction.Click,
       label: `底部播放器点击`,
     })
-    runInAction(() => {
-      musicStore.setHide(!musicStore.isHide)
-      musicStore.setPlay(!musicStore.isHide)
-    })
+    const musicStore = useMusicStore.getState()
+    musicStore.setHide(!musicStore.isHide)
+    musicStore.setPlay(!musicStore.isHide)
   }, [])
 
   useShortcut(
@@ -105,11 +101,13 @@ export const FooterActions: FC = observer(() => {
     '播放音乐',
   )
 
+  const actions = useActionStore((state) => state.actions)
+
   return (
     <RootPortal>
       <FooterActionsBase>
         <TransitionGroup>
-          {actionStore.actions.map((action) => {
+          {actions.map((action) => {
             const El = action.element ?? (
               <button
                 aria-label="footer action button"
@@ -136,4 +134,4 @@ export const FooterActions: FC = observer(() => {
       </FooterActionsBase>
     </RootPortal>
   )
-})
+}

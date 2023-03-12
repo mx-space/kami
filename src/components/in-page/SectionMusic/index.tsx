@@ -1,18 +1,17 @@
 import { clsx } from 'clsx'
-import { runInAction } from 'mobx'
-import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import { memo, useDeferredValue, useEffect, useMemo } from 'react'
+import { memo, useDeferredValue, useEffect } from 'react'
+import { shallow } from 'zustand/shallow'
 
 import {
   MusicIcon,
   PauseIcon,
 } from '@mx-space/kami-design/components/Icons/for-fav'
 
+import { useMusicStore, usePlayProgress } from '~/atoms/music'
 import { Seo } from '~/components/biz/Seo'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
-import { useStore } from '~/store'
 
 import styles from './index.module.css'
 
@@ -32,20 +31,18 @@ interface SectionMusicProps {
 }
 
 export const SectionMusic: FC<SectionMusicProps> = memo((props) => {
-  const { musicStore } = useStore()
   const { event } = useAnalyze()
   const loadList = (id: number[]) => {
-    runInAction(() => {
-      event({
-        action: TrackerAction.Interaction,
-        label: `加载音乐播放列表，ID：${id.join(',')}`,
-      })
-      musicStore.setPlaylist(id)
-      musicStore.isHide = false
-      setTimeout(() => {
-        musicStore.isPlay = true
-      }, 1000)
+    event({
+      action: TrackerAction.Interaction,
+      label: `加载音乐播放列表，ID：${id.join(',')}`,
     })
+    const musicStore = useMusicStore.getState()
+    musicStore.setPlaylist(id)
+    musicStore.setHide(false)
+    setTimeout(() => {
+      musicStore.setPlay(true)
+    }, 1000)
   }
   return (
     <section className={styles['kami-music']}>
@@ -93,10 +90,9 @@ type SongItemProps = {
   onClick: (index: number) => void
 }
 
-const SongItem: FC<SongItemProps> = observer((props) => {
+const SongItem: FC<SongItemProps> = memo((props) => {
   const { index, name, time } = props
-  const { musicStore } = useStore()
-  const { playId } = musicStore
+  const playId = useMusicStore((state) => state.playId)
 
   if (playId === props.id) {
     return <PlayingSongItem {...props} />
@@ -114,12 +110,36 @@ const SongItem: FC<SongItemProps> = observer((props) => {
   )
 })
 
-const PlayingSongItem: FC<SongItemProps> = observer((props) => {
+const PlayIcon = () => {
+  const isPlay = useMusicStore((state) => state.isPlay)
+  return (
+    <span className={styles['num']}>
+      {isPlay ? (
+        <MusicIcon className="inline" />
+      ) : (
+        <PauseIcon className="inline" />
+      )}
+    </span>
+  )
+}
+
+const PlayingSongItem: FC<SongItemProps> = memo((props) => {
   const { index, name, time } = props
-  const { musicStore } = useStore()
-  const { playId, duration: totalTime, time: currentTime } = musicStore
+
+  const {
+    playId,
+    duration: totalTime,
+    time: currentTime,
+  } = useMusicStore(
+    (state) => ({
+      playId: state.playId,
+      duration: state.duration,
+      time: state.time,
+    }),
+    shallow,
+  )
   const { event } = useAnalyze()
-  const playProgress = useDeferredValue(musicStore.playProgress)
+  const playProgress = useDeferredValue(usePlayProgress())
   useEffect(() => {
     if (playId === 0) {
       // if playId eq 0 is init state
@@ -147,18 +167,7 @@ const PlayingSongItem: FC<SongItemProps> = observer((props) => {
       }}
     >
       <Seo title={`${props.name} · 歌单`} />
-      {useMemo(
-        () => (
-          <span className={styles['num']}>
-            {musicStore.isPlay ? (
-              <MusicIcon className="inline" />
-            ) : (
-              <PauseIcon className="inline" />
-            )}
-          </span>
-        ),
-        [musicStore.isPlay],
-      )}
+      <PlayIcon />
       <span className="flex-grow truncate">{name}</span>
       <time className="font-mono flex-shrink-0">{time}</time>
     </li>

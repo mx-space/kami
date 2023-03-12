@@ -1,6 +1,5 @@
 import { clsx } from 'clsx'
 import { sample, uniqWith } from 'lodash-es'
-import { observer } from 'mobx-react-lite'
 import type { NextPage } from 'next'
 import {
   Fragment,
@@ -297,4 +296,4 @@ const RecentlyPage: NextPage = () => {
   )
 }
 
-export default NoSSRWrapper(observer(RecentlyPage))
+export default NoSSRWrapper(RecentlyPage)

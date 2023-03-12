@@ -1,9 +1,9 @@
 import merge from 'lodash-es/merge'
-import { observer } from 'mobx-react-lite'
 import type { NextSeoProps } from 'next-seo'
 import { NextSeo } from 'next-seo'
 import type { OpenGraph } from 'next-seo/lib/types'
 import type { FC } from 'react'
+import { memo } from 'react'
 
 import { useInitialData } from '~/hooks/use-initial-data'
 import { useRandomImage } from '~/hooks/use-kami'
@@ -14,7 +14,7 @@ type SEOProps = {
   openGraph?: { type?: 'website' | 'article' } & OpenGraph
 } & NextSeoProps
 
-export const SEO: FC<SEOProps> = observer((props) => {
+export const SEO: FC<SEOProps> = memo((props) => {
   const { title, description, openGraph, ...rest } = props
 
   const {

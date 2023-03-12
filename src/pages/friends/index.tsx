@@ -8,20 +8,19 @@ import type { LinkModel } from '@mx-space/api-client'
 import { LinkState, LinkType } from '@mx-space/api-client'
 
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
+import { SEO } from '~/components/biz/Seo'
+import { ApplyForLink } from '~/components/in-page/ApplyLink'
 import {
   BannedSection,
   FavoriteSection,
   FriendSection,
   OutdateSection,
 } from '~/components/in-page/Friend/section'
+import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { Markdown } from '~/components/universal/Markdown'
 import { useInitialData } from '~/hooks/use-initial-data'
 import { apiClient } from '~/utils/client'
 import { NoSSRWrapper } from '~/utils/no-ssr'
-
-import { SEO } from '../../components/biz/Seo'
-import { ApplyForLink } from '../../components/in-page/ApplyLink'
-import { ArticleLayout } from '../../components/layouts/ArticleLayout'
 
 const renderTitle = (text: string) => {
   return <h1 className="!text-xl headline !mt-12">{text}</h1>

@@ -3,7 +3,6 @@
  */
 
 import { clsx } from 'clsx'
-import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC } from 'react'
 import { memo, useEffect, useMemo, useState } from 'react'
@@ -176,7 +175,7 @@ export const MemoedItem = memo<{
 
 export const NoteTimelineList: FC<
   NoteTimelineListProps & JSX.IntrinsicElements['div']
-> = observer((props) => {
+> = memo((props) => {
   const isWiderThanLaptop = useDetectIsNarrowThanLaptop()
   if (isWiderThanLaptop) {
     return null

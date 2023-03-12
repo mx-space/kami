@@ -1,22 +1,21 @@
 import clsx from 'clsx'
-import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { memo, useEffect, useMemo, useRef, useState } from 'react'
 
 import { getTransitionSizes } from '@formkit/auto-animate'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
+import { useMusicStore } from '~/atoms/music'
 import { withDesktopOnly } from '~/components/biz/view-only/desktop'
-import { store } from '~/store'
 
 import type { LyricsContent } from './lyrics-manager'
 import { LyricsManager } from './lyrics-manager'
 import { useFetchLyrics } from './use-fetch'
 
 export const Lyrics: FC = withDesktopOnly(
-  observer(() => {
-    const playId = store.musicStore.playId
+  memo(() => {
+    const playId = useMusicStore((state) => state.playId)
 
     const lyrics = useFetchLyrics(playId)
 
@@ -24,10 +23,10 @@ export const Lyrics: FC = withDesktopOnly(
   }),
 )
 
-const LyricsRender: FC<{ lyrics: string }> = observer(({ lyrics }) => {
+const LyricsRender: FC<{ lyrics: string }> = memo(({ lyrics }) => {
   const lyricsInstance = useMemo(() => new LyricsManager(lyrics), [lyrics])
 
-  const currentTime = store.musicStore.time * 1000
+  const currentTime = useMusicStore((state) => state.time * 1000)
 
   const [list, setList] = useState([] as LyricsContent[])
 

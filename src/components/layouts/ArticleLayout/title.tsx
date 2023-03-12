@@ -1,4 +1,4 @@
-import { observer } from 'mobx-react-lite'
+import { memo } from 'react'
 
 import { TextFade } from '@mx-space/kami-design/components/Animate/text-anim'
 
@@ -10,7 +10,7 @@ import { resolveUrl } from '~/utils/utils'
 import { useArticleLayoutProps } from './hooks'
 import styles from './index.module.css'
 
-export const ArticleLayoutTitle = observer<{ animate?: boolean }>(
+export const ArticleLayoutTitle = memo<{ animate?: boolean }>(
   ({ animate = true }) => {
     const {
       title,

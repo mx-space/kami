@@ -3,8 +3,7 @@ import { message } from 'react-message-popup'
 
 import type { ModelWithLiked, NoteModel } from '@mx-space/api-client'
 
-import type { Id } from '~/store/helper/structure'
-import type { FetchOption } from '~/store/types/options'
+import type { FetchOption } from '~/atoms/types'
 import { apiClient } from '~/utils/client'
 import { isLikedBefore, setLikeId } from '~/utils/cookie'
 
@@ -12,10 +11,10 @@ import { createCollection } from './utils/base'
 
 interface NoteCollection {
   relationMap: Map<
-    Id,
+    string,
     [Partial<NoteModel> | undefined, Partial<NoteModel> | undefined]
   >
-  nidToIdMap: Map<number, Id>
+  nidToIdMap: Map<number, string>
   likeIdList: Set<string>
   get(id: string | number): NoteModel | undefined
   like(id: number): Promise<boolean | undefined>
@@ -36,10 +35,10 @@ export const useNoteCollection = createCollection<NoteModel, NoteCollection>(
   'note',
   (setState, getState) => {
     const relationMap = new Map<
-      Id,
+      string,
       [Partial<NoteModel> | undefined, Partial<NoteModel> | undefined]
     >()
-    const nidToIdMap = new Map<number, Id>()
+    const nidToIdMap = new Map<number, string>()
     const likeIdList = new Set<string>()
 
     relationMap[immerable] = true

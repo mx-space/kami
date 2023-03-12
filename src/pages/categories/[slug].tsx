@@ -10,11 +10,10 @@ import type {
 import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
+import { SEO } from '~/components/biz/Seo'
 import { TimelineListWrapper } from '~/components/biz/TimelineListWrapper'
+import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { apiClient } from '~/utils/client'
-
-import { SEO } from '../../components/biz/Seo'
-import { ArticleLayout } from '../../components/layouts/ArticleLayout'
 
 interface CategoryListViewProps {
   category: CategoryModel

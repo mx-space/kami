@@ -29,7 +29,6 @@ import { IconTransition } from '~/components/universal/IconTransition'
 import { ImageTagPreview } from '~/components/universal/ImageTagPreview'
 import { Markdown } from '~/components/universal/Markdown'
 import { socketClient } from '~/socket'
-import type { Id } from '~/store/helper/structure'
 import { apiClient } from '~/utils/client'
 
 import { openCommentMessage } from '.'
@@ -40,6 +39,7 @@ import { Empty } from './empty'
 import styles from './index.module.css'
 import { CommentAtRender } from './renderers/comment-at'
 
+type Id = string
 export const Comments: FC = memo(() => {
   const comments = useCommentCollection((state) => state.comments)
   if (comments.length === 0) {

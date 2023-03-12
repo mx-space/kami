@@ -1,4 +1,3 @@
-import { observer } from 'mobx-react-lite'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { message } from 'react-message-popup'
@@ -8,9 +7,9 @@ import { ImageLazy } from '@mx-space/kami-design/components/Image'
 import { Loading } from '@mx-space/kami-design/components/Loading'
 
 import { useUserStore } from '~/atoms/user'
+import { Seo } from '~/components/biz/Seo'
 import { apiClient } from '~/utils/client'
 
-import { Seo } from '../../components/biz/Seo'
 import styles from './bangumi.module.css'
 
 interface FavoriteBangumiType {
@@ -91,4 +90,4 @@ const BangumiView: NextPage = () => {
   )
 }
 
-export default observer(BangumiView)
+export default BangumiView

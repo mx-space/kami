@@ -1,7 +1,7 @@
-import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import React, {
   Suspense,
+  memo,
   useCallback,
   useEffect,
   useRef,
@@ -16,13 +16,13 @@ import {
   PhSunBold,
 } from '@mx-space/kami-design/components/Icons/layout'
 
+import { useActionStore } from '~/atoms/action'
 import { useAppStore } from '~/atoms/app'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useThemeBackground } from '~/hooks/use-kami'
 import { useMediaToggle } from '~/hooks/use-media-toggle'
 import { useDetectIsNarrowThanLaptop } from '~/hooks/use-viewport'
-import { useRootStore } from '~/provider'
 import { springScrollToElement } from '~/utils/spring'
 
 const Header = React.lazy(() =>
@@ -57,9 +57,7 @@ const MusicMiniPlayerStoreControlled = React.lazy(() =>
     default: mo.MusicMiniPlayerStoreControlled,
   })),
 )
-export const BasicLayout: FC = observer(({ children }) => {
-  const { actionStore } = useRootStore()
-
+export const BasicLayout: FC = memo(({ children }) => {
   const { toggle, value: isDark } = useMediaToggle()
 
   useThemeBackground()
@@ -86,6 +84,7 @@ export const BasicLayout: FC = observer(({ children }) => {
   }, [isDark, toggle])
   const actionId = useRef('basic')
   useEffect(() => {
+    const actionStore = useActionStore.getState()
     actionStore.removeActionById(actionId.current)
     if (isNarrowThanLaptop) {
       const action = {
@@ -100,7 +99,7 @@ export const BasicLayout: FC = observer(({ children }) => {
         actionStore.removeActionById(actionId.current)
       }
     }
-  }, [actionStore, colorMode, isNarrowThanLaptop, handleChangeColorMode])
+  }, [colorMode, isNarrowThanLaptop, handleChangeColorMode])
 
   useEffect(() => {
     if (location.hash) {

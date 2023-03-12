@@ -1,6 +1,6 @@
 import type { PageModel } from '@mx-space/api-client'
 
-import type { FetchOption } from '~/store/types/options'
+import type { FetchOption } from '~/atoms/types'
 import { apiClient } from '~/utils/client'
 
 import type { ModelWithDeleted } from './utils/base'

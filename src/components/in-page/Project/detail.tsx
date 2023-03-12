@@ -4,20 +4,21 @@ import { useEffect } from 'react'
 
 import { Loading } from '@mx-space/kami-design/components/Loading'
 
+import { useProjectCollection } from '~/atoms/collections/project'
 import { Markdown } from '~/components/universal/Markdown'
 import { SliderImagesPopup } from '~/components/universal/SliderImagesPopup'
-import { useStore } from '~/store'
 
 import styles from './detail.module.css'
 import { ProjectIcon } from './project-icon'
 
 export const ProjectDetail: FC<{ id: string }> = (props) => {
   const { id } = props
-  const { projectStore } = useStore()
-  const project = projectStore.get(id)
+  const project = useProjectCollection((state) => state.data.get(id))
+
   useEffect(() => {
-    projectStore.fetchById(id)
+    useProjectCollection.getState().fetchById(id)
   }, [id])
+
   if (!project) {
     return <Loading />
   }

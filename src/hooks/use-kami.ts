@@ -1,7 +1,7 @@
 import { shuffle } from 'lodash-es'
 import { useEffect, useRef } from 'react'
 
-import { useStore } from '~/store'
+import { useAppStore } from '~/atoms/app'
 import { getRandomImage } from '~/utils/images'
 
 import { useKamiConfig } from './use-initial-data'
@@ -17,46 +17,37 @@ const loadStyle = (css: string) => {
 }
 export const useThemeBackground = () => {
   const {
-    appStore: { colorMode },
-  } = useStore()
-  const {
     site: { background },
   } = useKamiConfig()
+  const colorMode = useAppStore((state) => state.colorMode)
   useEffect(() => {
-    const remove = loadStyle(
+    return loadStyle(
       `body .bg-fixed > .bg { background: url(${
         background.src[colorMode] || background.src.light || background.src.dark
       }) ${background.position}; background-color: var(--light-bg);  };`,
     )
-
-    return remove
   }, [background.position, background.src, colorMode])
 }
 
 export const useBackgroundOpacity = (opacity: number) => {
   useEffect(() => {
-    const remove = loadStyle(`body .bg-fixed { opacity: ${opacity}; }`)
-    return remove
+    return loadStyle(`body .bg-fixed { opacity: ${opacity}; }`)
   }, [opacity])
 }
 
 export const useFooterBackground = (footerClassName: string) => {
   const {
-    appStore: { colorMode },
-  } = useStore()
-  const {
     site: {
       footer: { background },
     },
   } = useKamiConfig()
+  const colorMode = useAppStore((state) => state.colorMode)
   useEffect(() => {
-    const remove = loadStyle(
+    return loadStyle(
       `.${footerClassName}::before { background: url(${
         background.src[colorMode] || background.src.light || background.src.dark
       }) ${background.position};  }`,
     )
-
-    return remove
   }, [background.position, background.src, colorMode, footerClassName])
 }
 

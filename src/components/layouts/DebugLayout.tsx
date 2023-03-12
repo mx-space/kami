@@ -1,12 +1,11 @@
-import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import { useEffect } from 'react'
+import { memo, useEffect } from 'react'
 
 import { ModalStackProvider } from '@mx-space/kami-design/components/Modal'
 
 import { useAppStore } from '~/atoms/app'
 
-export const DebugLayout: FC = observer((props) => {
+export const DebugLayout: FC = memo((props) => {
   useEffect(() => {
     useAppStore.getState().updateViewport()
   }, [])

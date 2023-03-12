@@ -1,10 +1,18 @@
 import { create } from 'zustand'
 
-import type { ViewportRecord } from '~/store/types'
 import { apiClient } from '~/utils/client'
 
 import { useUserStore } from './user'
 
+export interface ViewportRecord {
+  w: number
+  h: number
+  mobile: boolean
+  pad: boolean
+  hpad: boolean
+  wider: boolean
+  widest: boolean
+}
 interface AppState {
   viewport: ViewportRecord
   position: number
@@ -22,6 +30,7 @@ interface AppAction {
   updateViewport(): void
   setColorMode(colorMode: 'light' | 'dark'): void
 
+  setMedia(type: 'screen' | 'print'): void
   fetchUrl(): Promise<void>
 }
 
@@ -88,6 +97,9 @@ export const useAppStore = create<AppState & AppAction>(
             widest: window.innerWidth >= 1920,
           },
         })
+      },
+      setMedia(type) {
+        setState({ mediaType: type })
       },
       async fetchUrl() {
         const isLogged = useUserStore.getState().isLogged

@@ -2,7 +2,6 @@ import type { AxiosError } from 'axios'
 import dayjs from 'dayjs'
 import isEqual from 'lodash-es/isEqual'
 import omit from 'lodash-es/omit'
-import { toJS } from 'mobx'
 import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
@@ -75,11 +74,11 @@ const useUpdateNote = (note: ModelWithDeleted<NoteModel>) => {
     const before = beforeModel.current
 
     if (!before && note) {
-      beforeModel.current = toJS(note)
+      beforeModel.current = { ...note }
       return
     }
 
-    if (!before || !note || isEqual(before, toJS(note))) {
+    if (!before || !note || isEqual(before, { ...note })) {
       return
     }
 
@@ -104,7 +103,7 @@ const useUpdateNote = (note: ModelWithDeleted<NoteModel>) => {
         )
       }
     }
-    beforeModel.current = toJS(note)
+    beforeModel.current = { ...note }
     // TODO password etc.
   }, [
     note?.title,

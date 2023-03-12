@@ -46,8 +46,6 @@ importers:
       markdown-escape: 2.0.0
       markdown-to-jsx: npm:@innei/markdown-to-jsx@7.1.3-beta.2
       medium-zoom: 1.0.8
-      mobx: 6.8.0
-      mobx-react-lite: 3.4.0
       next: 13.1.6
       next-compose-plugins: 2.2.1
       next-seo: 5.15.0
@@ -97,8 +95,6 @@ importers:
       markdown-escape: 2.0.0
       markdown-to-jsx: /@innei/markdown-to-jsx/7.1.3-beta.2_react@18.2.0
       medium-zoom: 1.0.8
-      mobx: 6.8.0
-      mobx-react-lite: 3.4.0_woojb62cqeyk443mbl7msrwu2e
       next: 13.1.6_biqbaboplfbrettd7655fr4n2y
       next-seo: 5.15.0_3vryta7zmbcsw4rrqf4axjqggm
       next-suspense: 0.2.3_next@13.1.6
@@ -5334,36 +5330,6 @@ packages:
         integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==,
       }
     dev: true
-
-  /mobx-react-lite/3.4.0_woojb62cqeyk443mbl7msrwu2e:
-    resolution:
-      {
-        integrity: sha512-bRuZp3C0itgLKHu/VNxi66DN/XVkQG7xtoBVWxpvC5FhAqbOCP21+nPhULjnzEqd7xBMybp6KwytdUpZKEgpIQ==,
-      }
-    peerDependencies:
-      mobx: ^6.1.0
-      react: ^16.8.0 || ^17 || ^18
-      react-dom: '*'
-      react-native: '*'
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
-      react-native:
-        optional: true
-    dependencies:
-      mobx: 6.8.0
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-    dev: false
-
-  /mobx/6.8.0:
-    resolution:
-      {
-        integrity: sha512-+o/DrHa4zykFMSKfS8Z+CPSEg5LW9tSNGTuN8o6MF1GKxlfkSHSeJn5UtgxvPkGgaouplnrLXCF+duAsmm6FHQ==,
-      }
-    dev: false
 
   /mrmime/1.0.1:
     resolution:

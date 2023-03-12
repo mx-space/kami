@@ -1,6 +1,5 @@
-import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import { useRef } from 'react'
+import { memo, useRef } from 'react'
 import { toast } from 'react-toastify'
 
 import { Avatar } from '@mx-space/kami-design/components/Avatar'
@@ -20,7 +19,7 @@ export const ToastCard: FC<{
   avatar?: string
   onClick?: (e: MouseEvent) => void
   getToastId?: () => string
-}> = observer((props) => {
+}> = memo((props) => {
   const isPadOrMobile = useDetectPadOrMobile()
   const { seo } = useInitialData()
   const { description, text, title = seo.title } = props

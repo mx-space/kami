@@ -11,11 +11,11 @@ import { IonSearch } from '@mx-space/kami-design/components/Icons/layout'
 import type { OverlayProps } from '@mx-space/kami-design/components/Overlay'
 import { Overlay } from '@mx-space/kami-design/components/Overlay'
 
+import { useActionStore } from '~/atoms/action'
 import { useAppStore } from '~/atoms/app'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import useDebounceValue from '~/hooks/use-debounce-value'
-import { useStore } from '~/store'
 import { $axios, apiClient } from '~/utils/client'
 
 import styles from './index.module.css'
@@ -287,7 +287,6 @@ export const SearchHotKey: FC = memo(() => {
 
 export const SearchFAB = memo(() => {
   const [show, setShow] = useState(false)
-  const { actionStore } = useStore()
   const actionId = useRef('search-fab')
   const { event } = useAnalyze()
   useEffect(() => {
@@ -299,6 +298,7 @@ export const SearchFAB = memo(() => {
     }
   }, [show])
   useEffect(() => {
+    const actionStore = useActionStore.getState()
     actionStore.removeActionById(actionId.current)
     const action = {
       icon: <IonSearch />,

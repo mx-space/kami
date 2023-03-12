@@ -6,13 +6,12 @@ import { useCommentCollection } from '~/atoms/collections/comment'
 import { useNoteCollection } from '~/atoms/collections/note'
 import { usePageCollection } from '~/atoms/collections/page'
 import { usePostCollection } from '~/atoms/collections/post'
+import { useSayCollection } from '~/atoms/collections/say'
 import { useUserStore } from '~/atoms/user'
 import { EventTypes } from '~/types/events'
+import { createDangmaku } from '~/utils/danmaku'
 import { isDev } from '~/utils/env'
-
-import { store } from '../store'
-import { createDangmaku } from '../utils/danmaku'
-import { Notice } from '../utils/notice'
+import { Notice } from '~/utils/notice'
 
 export const notice = Notice.shared
 
@@ -73,7 +72,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
       break
     }
     case EventTypes.SAY_CREATE: {
-      store.sayStore.add(data)
+      useSayCollection.getState().add(data)
       const message = noticeHead('说说')
       notice.notice({
         title,
@@ -88,7 +87,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
     }
     case EventTypes.SAY_DELETE: {
       const id = data
-      store.sayStore.remove(id)
+      useSayCollection.getState().remove(id)
       break
     }
     case EventTypes.COMMENT_CREATE: {

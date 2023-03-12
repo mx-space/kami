@@ -1,11 +1,10 @@
-import { observer } from 'mobx-react-lite'
 import type { FC, MouseEventHandler } from 'react'
-import { useCallback } from 'react'
+import { memo, useCallback } from 'react'
 
 import { useCommentCollection } from '~/atoms/collections/comment'
 import { springScrollToElement } from '~/utils/spring'
 
-export const CommentAtRender: FC<{ id: string }> = observer(({ id: value }) => {
+export const CommentAtRender: FC<{ id: string }> = memo(({ id: value }) => {
   const commentIdMap = useCommentCollection((state) => state.data)
 
   const comment = typeof value === 'string' ? commentIdMap.get(value) : value

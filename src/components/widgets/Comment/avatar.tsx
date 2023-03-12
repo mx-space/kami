@@ -1,11 +1,10 @@
-import { observer } from 'mobx-react-lite'
 import rc from 'randomcolor'
 import type { FC } from 'react'
-import { useEffect, useMemo, useState } from 'react'
+import { memo, useEffect, useMemo, useState } from 'react'
 
 import { LazyLoad } from '@mx-space/kami-design/components/Lazyload'
 
-import { useStore } from '~/store'
+import { useAppStore } from '~/atoms/app'
 
 import styles from './index.module.css'
 
@@ -19,7 +18,7 @@ type AvatarProps = {
   src: string
 }
 
-export const Avatar: FC<AvatarProps> = observer(({ src }) => {
+export const Avatar: FC<AvatarProps> = memo(({ src }) => {
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
@@ -33,14 +32,15 @@ export const Avatar: FC<AvatarProps> = observer(({ src }) => {
     }
     image.onerror = () => {}
   }, [src])
-  const { appStore } = useStore()
+
+  const colorMode = useAppStore((state) => state.colorMode)
   const randomColor = useMemo(() => {
-    if (appStore.colorMode === 'dark') {
+    if (colorMode === 'dark') {
       return generateColorFromMode('dark', src)
     } else {
       return generateColorFromMode('light', src)
     }
-  }, [appStore.colorMode, src])
+  }, [colorMode, src])
 
   return (
     <div

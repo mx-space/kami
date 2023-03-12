@@ -1,7 +1,6 @@
-import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC } from 'react'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import { apiClient } from 'utils/client'
 
@@ -11,11 +10,11 @@ import { Overlay } from '@mx-space/kami-design/components/Overlay'
 import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 import { RightLeftTransitionView } from '@mx-space/kami-design/components/Transition/right-left'
 
+import { useActionStore } from '~/atoms/action'
 import { useAppStore } from '~/atoms/app'
 import { BigTag } from '~/components/universal/Tag'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
-import { store } from '~/store'
 import { NoSSRWrapper } from '~/utils/no-ssr'
 
 const TagsContainer: FC<{ children?: JSX.Element[]; onClick: () => any }> = ({
@@ -37,8 +36,7 @@ const TagsContainer: FC<{ children?: JSX.Element[]; onClick: () => any }> = ({
   )
 }
 
-const _FloatPostTagButton: FC = observer(() => {
-  const { actionStore } = store
+const _FloatPostTagButton: FC = memo(() => {
   const [showTags, setShowTags] = useState(false)
   const [postWithTag, setTagPost] = useState<
     Pick<PostModel, 'id' | 'title' | 'slug' | 'created' | 'category'>[]
@@ -60,6 +58,7 @@ const _FloatPostTagButton: FC = observer(() => {
   const actionId = useRef('tag')
   const { event } = useAnalyze()
   useEffect(() => {
+    const actionStore = useActionStore.getState()
     actionStore.removeActionById(actionId.current)
     const action = {
       icon: <JamTags />,

@@ -6,13 +6,12 @@ import useSWR from 'swr'
 import { RiNeteaseCloudMusicFill } from '@mx-space/kami-design/components/Icons/for-fav'
 import { Loading } from '@mx-space/kami-design/components/Loading'
 
+import { Seo } from '~/components/biz/Seo'
 import type { PlayListType } from '~/components/in-page/SectionMusic'
 import { SectionMusic } from '~/components/in-page/SectionMusic'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { apiClient } from '~/utils/client'
-
-import { Seo } from '../../components/biz/Seo'
 
 interface PersonalPlayListType {
   id: number

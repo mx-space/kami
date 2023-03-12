@@ -1,12 +1,11 @@
-import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import randomColor from 'randomcolor'
 import type { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react'
-import { forwardRef } from 'react'
+import { forwardRef, memo } from 'react'
 
 import { IcBaselineArrowForwardIos } from '@mx-space/kami-design/components/Icons/for-home'
 
-import { useStore } from '../../../../store'
+import { useAppStore } from '~/atoms/app'
 
 export interface SectionNewsProps {
   title: string
@@ -18,7 +17,7 @@ export interface SectionNewsProps {
   showMoreIcon?: boolean
 }
 
-export const SectionWrap = observer(
+export const SectionWrap = memo(
   forwardRef<
     HTMLDivElement,
     SectionNewsProps &
@@ -34,8 +33,7 @@ export const SectionWrap = observer(
       showMoreIcon = true,
       ...rest
     } = props
-    const { appStore } = useStore()
-    const mode = appStore.colorMode
+    const colorMode = useAppStore((state) => state.colorMode)
     return (
       <>
         <div className="news-item" ref={ref}>
@@ -44,7 +42,7 @@ export const SectionWrap = observer(
               className="title"
               style={{
                 backgroundColor: color,
-                filter: mode === 'dark' ? 'brightness(0.8)' : undefined,
+                filter: colorMode === 'dark' ? 'brightness(0.8)' : undefined,
               }}
               suppressHydrationWarning
             >
@@ -59,7 +57,7 @@ export const SectionWrap = observer(
                 className="more"
                 style={{
                   backgroundColor: color,
-                  filter: mode === 'dark' ? 'brightness(0.8)' : undefined,
+                  filter: colorMode === 'dark' ? 'brightness(0.8)' : undefined,
                 }}
               >
                 <Link href={moreUrl}>

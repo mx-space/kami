@@ -1,7 +1,5 @@
 import dayjs from 'dayjs'
 import isEqual from 'lodash-es/isEqual'
-import { toJS } from 'mobx'
-import { observer } from 'mobx-react-lite'
 import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
@@ -78,7 +76,7 @@ const useUpdatePost = (post: ModelWithDeleted<PostModel>) => {
     const before = beforeModel.current
 
     if (!before && post) {
-      beforeModel.current = toJS(post)
+      beforeModel.current = { ...post }
       return
     }
     if (!before || !post) {
@@ -109,7 +107,7 @@ const useUpdatePost = (post: ModelWithDeleted<PostModel>) => {
       message.info('文章已更新')
     }
 
-    beforeModel.current = toJS(post)
+    beforeModel.current = { ...post }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     post?.id,
@@ -123,7 +121,7 @@ const useUpdatePost = (post: ModelWithDeleted<PostModel>) => {
   ])
 }
 
-export const PostView: PageOnlyProps = observer((props) => {
+export const PostView: PageOnlyProps = (props) => {
   const collection = usePostCollection((state) => state.data)
   const post: PostModel = collection.get(props.id) || noop
 
@@ -316,7 +314,7 @@ export const PostView: PageOnlyProps = observer((props) => {
       </ArticleLayout>
     </>
   )
-})
+}
 
 const NextPostView: NextPage = (props) => {
   const { id } = props as any

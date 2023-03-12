@@ -1,6 +1,6 @@
-import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
+import { memo } from 'react'
 
 import type { NoteModel } from '@mx-space/api-client'
 import { Divider } from '@mx-space/kami-design/components/Divider'
@@ -17,7 +17,7 @@ import { useDetectIsNarrowThanLaptop } from '~/hooks/use-viewport'
 import { springScrollToTop } from '~/utils/spring'
 import { noop } from '~/utils/utils'
 
-export const NoteFooterNavigation: FC<{ id: string }> = observer(({ id }) => {
+export const NoteFooterNavigation: FC<{ id: string }> = memo(({ id }) => {
   const relationMap = useNoteCollection((state) => state.relationMap)
   const [prev, next] =
     relationMap.get(id) ||
