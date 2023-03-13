@@ -19,7 +19,7 @@ importers:
       '@types/js-cookie': 3.0.3
       '@types/lodash-es': 4.17.6
       '@types/markdown-escape': 1.1.0
-      '@types/node': 18.14.1
+      '@types/node': 18.14.6
       '@types/randomcolor': 0.5.7
       '@types/react': 17.0.53
       '@types/react-collapse': 5.0.1
@@ -126,7 +126,7 @@ importers:
       '@types/js-cookie': 3.0.3
       '@types/lodash-es': 4.17.6
       '@types/markdown-escape': 1.1.0
-      '@types/node': 18.14.1
+      '@types/node': 18.14.6
       '@types/randomcolor': 0.5.7
       '@types/react': 17.0.53
       '@types/react-collapse': 5.0.1
@@ -1470,7 +1470,7 @@ packages:
     resolution: {integrity: sha512-MxObHvNl4A69ofaTRU8DFqvgzzv8s9yRtaPPm5gud9HDNvpB3GPQFvNuTWAI59B9huVGV5jXYJwbCsmBsOGYWA==}
     dependencies:
       '@types/jsonfile': 6.1.1
-      '@types/node': 18.14.1
+      '@types/node': 18.14.6
     dev: true
 
   /@types/inflection/1.13.0:
@@ -1496,7 +1496,7 @@ packages:
   /@types/jsonfile/6.1.1:
     resolution: {integrity: sha512-GSgiRCVeapDN+3pqA35IkQwasaCh/0YFH5dEF6S88iDvEn901DjOeH3/QPY+XYP1DFzDZPvIvfeEgk+7br5png==}
     dependencies:
-      '@types/node': 18.14.1
+      '@types/node': 18.14.6
     dev: true
 
   /@types/lodash-es/4.17.6:
@@ -1517,12 +1517,8 @@ packages:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
 
-  /@types/node/18.14.1:
-    resolution: {integrity: sha512-QH+37Qds3E0eDlReeboBxfHbX9omAcBCXEzswCu6jySP642jiM3cYSIkU/REqwhCUqXdonHFuBfJDiAJxMNhaQ==}
-    dev: true
-
-  /@types/node/18.14.2:
-    resolution: {integrity: sha512-1uEQxww3DaghA0RxqHx0O0ppVlo43pJhepY51OxuQIKHpjbnYLA7vcdwioNPzIqmC2u3I/dmylcqjlh0e7AyUA==}
+  /@types/node/18.14.6:
+    resolution: {integrity: sha512-93+VvleD3mXwlLI/xASjw0FzKcwzl3OdTCzm1LaRfqgS21gfFtK3zDXM5Op9TeeMsJVOaJ2VRDpT9q4Y3d0AvA==}
     dev: true
 
   /@types/parse-author/2.0.1:
@@ -6336,7 +6332,7 @@ packages:
     dependencies:
       '@types/fs-extra': 11.0.1
       '@types/minimist': 1.2.2
-      '@types/node': 18.14.2
+      '@types/node': 18.14.6
       '@types/ps-tree': 1.1.2
       '@types/which': 2.0.2
       chalk: 5.2.0
