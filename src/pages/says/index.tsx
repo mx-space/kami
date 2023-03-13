@@ -22,7 +22,8 @@ const SayView = () => {
   })
 
   const sayList = useSayCollection((state) => state.data)
-  const says = Object.values(sayList).sort(
+
+  const says = Array.from(sayList.values()).sort(
     (b, a) => +new Date(a.created) - +new Date(b.created),
   )
 
