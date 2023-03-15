@@ -12,10 +12,10 @@ import { RightLeftTransitionView } from '@mx-space/kami-design/components/Transi
 
 import { useActionStore } from '~/atoms/action'
 import { useAppStore } from '~/atoms/app'
+import { withNoSSR } from '~/components/biz/HoC/no-ssr'
 import { BigTag } from '~/components/universal/Tag'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
-import { NoSSRWrapper } from '~/utils/no-ssr'
 
 const TagsContainer: FC<{ children?: JSX.Element[]; onClick: () => any }> = ({
   onClick,
@@ -94,7 +94,7 @@ const _FloatPostTagButton: FC = memo(() => {
       center={false}
       show={showTags}
       blur
-      darkness={0.02}
+      darkness={0.5}
       onClose={() => {
         setShowTags(false)
         setTagPost([])
@@ -166,4 +166,4 @@ const _FloatPostTagButton: FC = memo(() => {
   )
 })
 
-export const TagFAB = NoSSRWrapper(_FloatPostTagButton)
+export const TagFAB = withNoSSR(_FloatPostTagButton)

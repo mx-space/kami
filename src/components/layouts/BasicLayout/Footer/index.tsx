@@ -4,12 +4,12 @@ import React, { Fragment, useCallback } from 'react'
 
 import Package from '~/../package.json'
 import { useAppStore } from '~/atoms/app'
+import { withNoSSR } from '~/components/biz/HoC/no-ssr'
 import { ImpressionView } from '~/components/biz/ImpressionView'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useInitialData, useThemeConfig } from '~/hooks/use-initial-data'
 import { useFooterBackground } from '~/hooks/use-kami'
-import { NoSSRWrapper } from '~/utils/no-ssr'
 
 import { FooterActions } from './actions'
 import styles from './index.module.css'
@@ -112,7 +112,7 @@ const GatewayCount = () => {
   const gatewayCount = useAppStore((state) => state.gatewayOnline)
   return <>{gatewayCount || 1}</>
 }
-export const Footer = NoSSRWrapper(() => {
+export const Footer = withNoSSR(() => {
   return (
     <FooterContainer>
       <FooterContent />

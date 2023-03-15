@@ -8,10 +8,10 @@ import { Overlay } from '@mx-space/kami-design/components/Overlay'
 import { RootPortal } from '@mx-space/kami-design/components/Portal'
 
 import { IF } from '~/components/app/If'
+import { withNoSSR } from '~/components/biz/HoC/no-ssr'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useDetectPadOrMobile } from '~/hooks/use-viewport'
-import { NoSSRWrapper } from '~/utils/no-ssr'
 
 import styles from './index.module.css'
 
@@ -64,6 +64,6 @@ const _HeaderDrawer: FC<{ show: boolean; onExit: () => void }> = memo(
     )
   },
 )
-export const HeaderDrawer = IF(NoSSRWrapper(_HeaderDrawer), () =>
+export const HeaderDrawer = IF(withNoSSR(_HeaderDrawer), () =>
   useDetectPadOrMobile(),
 )

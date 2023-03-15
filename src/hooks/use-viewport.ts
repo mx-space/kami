@@ -15,18 +15,21 @@ export const useDetectIsNarrowThanLaptop = () => {
 }
 
 export const useIsOverFirstScreenHeight = () => {
-  const position = useAppStore(
-    ({ position }) => position > window.innerHeight || position > screen.height,
+  const position = useAppStore(({ position }) =>
+    !isClientSide()
+      ? false
+      : position > window.innerHeight || position > window.screen.height,
   )
-  if (!isClientSide()) return false
+
   return position
 }
 
 export const useIsOverPostTitleHeight = () => {
-  const position = useAppStore(
-    ({ position }) => position > 126 || position > screen.height / 3,
+  const position = useAppStore(({ position }) =>
+    !isClientSide()
+      ? false
+      : position > 126 || position > window.screen.height / 3,
   )
-  if (!isClientSide()) return false
 
   return position
 }

@@ -7,10 +7,10 @@ import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
 import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
 import { useUserStore } from '~/atoms/user'
+import { withNoSSR } from '~/components/biz/HoC/no-ssr'
 import { FontIcon } from '~/components/universal/FontIcon'
 import { useThemeConfig } from '~/hooks/use-initial-data'
 import { useIndexViewContext } from '~/pages'
-import { NoSSRWrapper } from '~/utils/no-ssr'
 
 import styles from './intro.module.css'
 
@@ -47,7 +47,7 @@ export const HomeIntro: FC = () => {
   )
 }
 // 首页 社交 图标栏
-const Social: FC = NoSSRWrapper(() => {
+const Social: FC = withNoSSR(() => {
   const config = useThemeConfig()
   const { doAnimation } = useIndexViewContext()
   const { social } = config.site

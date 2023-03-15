@@ -27,6 +27,7 @@ import { Loading } from '@mx-space/kami-design/components/Loading'
 import { useModalStack } from '@mx-space/kami-design/components/Modal/stack-context'
 
 import { useIsLogged } from '~/atoms/user'
+import { withNoSSR } from '~/components/biz/HoC/no-ssr'
 import { Seo } from '~/components/biz/Seo'
 import { RefPreview } from '~/components/in-page/Recently/RefPreview'
 import { RecentlySendBox } from '~/components/in-page/Recently/SendBox'
@@ -36,7 +37,6 @@ import { CommentLazy } from '~/components/widgets/Comment'
 import { EventTypes } from '~/types/events'
 import { apiClient } from '~/utils/client'
 import { eventBus } from '~/utils/event-emitter'
-import { NoSSRWrapper } from '~/utils/no-ssr'
 
 import styles from './index.module.css'
 
@@ -296,4 +296,4 @@ const RecentlyPage: NextPage = () => {
   )
 }
 
-export default NoSSRWrapper(RecentlyPage)
+export default withNoSSR(RecentlyPage)

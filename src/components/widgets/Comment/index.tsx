@@ -9,10 +9,10 @@ import type { Pager } from '@mx-space/api-client'
 
 import { useCommentCollection } from '~/atoms/collections/comment'
 import { useIsLogged } from '~/atoms/user'
+import { withNoSSR } from '~/components/biz/HoC/no-ssr'
 import { useKamiConfig } from '~/hooks/use-initial-data'
 import { useIsClient } from '~/hooks/use-is-client'
 import { apiClient } from '~/utils/client'
-import { NoSSRWrapper } from '~/utils/no-ssr'
 import { springScrollToElement } from '~/utils/spring'
 
 import { Pagination } from '../../universal/Pagination'
@@ -203,4 +203,4 @@ const Comment: typeof CommentWrap = (props) => {
   }
   return <CommentWrap {...props} />
 }
-export const CommentLazy = NoSSRWrapper(Comment)
+export const CommentLazy = withNoSSR(Comment)

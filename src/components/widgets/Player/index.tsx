@@ -17,10 +17,10 @@ import { shallow } from 'zustand/shallow'
 import { RootPortal } from '@mx-space/kami-design/components/Portal'
 
 import { useMusicStore, usePlayProgress } from '~/atoms/music'
+import { withNoSSR } from '~/components/biz/HoC/no-ssr'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { apiClient } from '~/utils/client'
-import { NoSSRWrapper } from '~/utils/no-ssr'
 import { hms } from '~/utils/time'
 
 import styles from './index.module.css'
@@ -363,6 +363,6 @@ export const _MusicMiniPlayerStoreControlled = memo(() => {
   )
 })
 
-export const MusicMiniPlayerStoreControlled = NoSSRWrapper(
+export const MusicMiniPlayerStoreControlled = withNoSSR(
   _MusicMiniPlayerStoreControlled,
 )

@@ -1,10 +1,10 @@
 import type { DetailedHTMLProps, HTMLAttributes } from 'react'
 import { memo, useRef } from 'react'
 
+import { withNoSSR } from '~/components/biz/HoC/no-ssr'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useOnceClientEffect } from '~/hooks/use-once-client-effect'
-import { NoSSRWrapper } from '~/utils/no-ssr'
 import { genSpringKeyframes } from '~/utils/spring'
 
 import styles from './index.module.css'
@@ -12,7 +12,7 @@ import styles from './index.module.css'
 const sakuraSpringNameUp = 'sakura-up'
 const sakuraSpringNameDown = 'sakura-down'
 
-export const LampSwitch = NoSSRWrapper(
+export const LampSwitch = withNoSSR(
   memo<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>>(
     (props = {}) => {
       const containerRef = useRef<HTMLDivElement>(null)
