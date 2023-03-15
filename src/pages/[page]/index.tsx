@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import React, { Fragment, useEffect, useMemo, useRef } from 'react'
 import RemoveMarkdown from 'remove-markdown'
+import { shallow } from 'zustand/shallow'
 
 import { Loading } from '@mx-space/kami-design'
 import { ImageSizeMetaContext } from '@mx-space/kami-design/contexts/image-size'
@@ -26,7 +27,7 @@ const CommentLazy = dynamic(() =>
 )
 
 const PageView: PageOnlyProps = (props) => {
-  const page = usePageCollection((state) => state.data.get(props.id))!
+  const page = usePageCollection((state) => state.data.get(props.id), shallow)!
   const { title, subtitle, text } = page
 
   useEffect(() => {
@@ -120,7 +121,7 @@ const PageView: PageOnlyProps = (props) => {
 
 const NextPageView: NextPage = (props) => {
   const { id } = props as any
-  const page = usePageCollection((state) => state.data.get(id))
+  const page = usePageCollection((state) => state.data.get(id), shallow)
 
   if (!page) {
     return <Loading />

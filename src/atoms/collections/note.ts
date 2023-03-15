@@ -1,4 +1,4 @@
-import { immerable, produce } from 'immer'
+import { immerable } from 'immer'
 import { message } from 'react-message-popup'
 
 import type { ModelWithLiked, NoteModel } from '@mx-space/api-client'
@@ -62,9 +62,11 @@ export const useNoteCollection = createCollection<NoteModel, NoteCollection>(
       async like(id: number) {
         const state = getState()
         const note = state.get(id)
+
         if (!note) {
           return false
         }
+
         const errorMessage = '你已经喜欢过啦'
 
         if (state.isLiked(id)) {
@@ -82,18 +84,21 @@ export const useNoteCollection = createCollection<NoteModel, NoteCollection>(
             likeSuccess = false
           })
 
-        setState(
-          produce((state: ReturnType<typeof getState>) => {
-            if (!likeSuccess) {
-              note.count.like = note.count.like + 1
-              message.success('感谢喜欢！')
-              state.likeIdList.add(id.toString())
-              setLikeId(`note-${note.nid.toString()}`)
-            } else {
-              message.error(errorMessage)
+        setState((state) => {
+          const note = state.get(id)
+
+          if (!note) return
+          const nextNote = { ...note }
+          if (likeSuccess) {
+            nextNote.count = {
+              ...note.count,
+              like: note.count.like + 1,
             }
-          }),
-        )
+            message.success('感谢喜欢！')
+            state.likeIdList.add(id.toString())
+            setLikeId(`note-${note.nid.toString()}`)
+          }
+        })
         return true
       },
       isLiked(id: number) {
@@ -102,11 +107,9 @@ export const useNoteCollection = createCollection<NoteModel, NoteCollection>(
 
         const inCookie = isLikedBefore(`note-${id.toString()}`)
         if (!storeLiked && inCookie) {
-          setState(
-            produce((state: ReturnType<typeof getState>) => {
-              state.likeIdList.add(id.toString())
-            }),
-          )
+          setState((state) => {
+            state.likeIdList.add(id.toString())
+          })
         }
 
         return storeLiked || inCookie
@@ -134,24 +137,20 @@ export const useNoteCollection = createCollection<NoteModel, NoteCollection>(
           password as string,
         )
         state.add(data.data)
-        setState(
-          produce((state: ReturnType<typeof getState>) => {
-            state.nidToIdMap.set(data.data.nid, data.data.id)
-            state.relationMap.set(data.data.id, [data.prev, data.next])
-          }),
-        )
+        setState((state) => {
+          state.nidToIdMap.set(data.data.nid, data.data.id)
+          state.relationMap.set(data.data.id, [data.prev, data.next])
+        })
 
         return data.data
       },
       async fetchLatest() {
         const data = await apiClient.note.getLatest()
         getState().add(data.data)
-        setState(
-          produce((state: ReturnType<typeof getState>) => {
-            state.nidToIdMap.set(data.data.nid, data.data.id)
-            state.relationMap.set(data.data.id, [data.prev, data.next])
-          }),
-        )
+        setState((state) => {
+          state.nidToIdMap.set(data.data.nid, data.data.id)
+          state.relationMap.set(data.data.id, [data.prev, data.next])
+        })
 
         return data.data
       },

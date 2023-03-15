@@ -44,16 +44,16 @@ const _Image: FC<{ src: string; alt?: string }> = ({ src, alt }) => {
   }, [])
   const images = useContext(ImageSizeMetaContext)
 
-  const isPrintMode = useAppStore((state) => state.mediaType)
+  const isPrintMode = useAppStore((state) => state.mediaType === 'print')
 
   const [maxWidth, setMaxWidth] = useState(getContainerSize())
 
   // 因为有动画开始不能获取到大小 , 直到获取到 container 的大小
   useEffect(() => {
-    let raf = requestAnimationFrame(function a() {
+    let raf = requestAnimationFrame(function $() {
       const size = getContainerSize()
       if (!size) {
-        requestAnimationFrame(a)
+        requestAnimationFrame($)
       } else {
         setMaxWidth(size)
       }

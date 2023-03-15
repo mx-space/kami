@@ -93,7 +93,6 @@ export const Header: FC = () => {
   if (!isClient) {
     return null
   }
-
   return (
     <HeaderBase>
       <nav

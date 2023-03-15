@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import type { ReactNode } from 'react'
 import { forwardRef, useCallback } from 'react'
 import { Collapse } from 'react-collapse'
+import { shallow } from 'zustand/shallow'
 
 import type { NoteModel } from '@mx-space/api-client'
 import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
@@ -41,7 +42,7 @@ const useNoteMetaBanner = (note?: NoteModel) => {
     return
   }
   const meta = note?.meta
-  const banner = meta?.banner as {
+  const banner = { ...meta?.banner } as {
     type: string
     message: string
     className: string
@@ -84,7 +85,7 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
 
     const url = useAppStore((state) => state.appUrl)
 
-    const note = useNoteCollection((state) => state.get(id))
+    const note = useNoteCollection((state) => state.get(id), shallow)
     const bookmark = note?.hasMemory
     const banner = useNoteMetaBanner(note)
     const onMarkToggle = useCallback(async () => {

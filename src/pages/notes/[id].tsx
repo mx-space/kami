@@ -8,6 +8,7 @@ import { useRouter } from 'next/router'
 import React, { createElement, memo, useEffect, useMemo, useRef } from 'react'
 import { message } from 'react-message-popup'
 import useUpdate from 'react-use/lib/useUpdate'
+import { shallow } from 'zustand/shallow'
 
 import type { NoteModel } from '@mx-space/api-client'
 import { RequestError } from '@mx-space/api-client'
@@ -266,7 +267,7 @@ const PP: NextPage<NoteModel | { needPassword: true; id: string }> = (
 ) => {
   const router = useRouter()
 
-  const note = useNoteCollection((state) => state.get(props.id))
+  const note = useNoteCollection((state) => state.get(props.id), shallow)
 
   const update = useUpdate()
   useEffect(() => {

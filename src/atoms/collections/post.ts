@@ -1,5 +1,3 @@
-import { produce } from 'immer'
-
 import type { ModelWithLiked, PostModel } from '@mx-space/api-client'
 
 import { apiClient } from '~/utils/client'
@@ -14,18 +12,16 @@ interface IPostCollection {
 }
 export const usePostCollection = createCollection<PostModel, IPostCollection>(
   'post',
-  (setState, getState) => {
+  (setState) => {
     return {
       async fetchBySlug(category, slug) {
         const data = await apiClient.post.getPost(
           category,
           encodeURIComponent(slug),
         )
-        setState(
-          produce((state: ReturnType<typeof getState>) => {
-            state.data.set(data.id, data)
-          }),
-        )
+        setState((state) => {
+          state.data.set(data.id, data)
+        })
         return data
       },
     }

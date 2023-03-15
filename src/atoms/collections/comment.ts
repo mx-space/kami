@@ -1,4 +1,4 @@
-import { immerable, produce } from 'immer'
+import { immerable } from 'immer'
 
 import type { CommentModel, PaginateResult } from '@mx-space/api-client'
 
@@ -15,7 +15,7 @@ interface CommentCollection {
     page?: number,
     size?: number,
   ): Promise<PaginateResult<CommentModel>>
-  currentFetchPage: number
+  currentFetchPage: number | undefined
   updateComment(comment: CommentModel): void
   addComment(comment: CommentModel): void
   unPinComment(id: string): void
@@ -47,15 +47,13 @@ export const useCommentCollection = createCollection<
   return {
     ...createState(),
     setHighlightCommnet(id: string, highlight = true) {
-      setState(
-        produce((state) => {
-          const comment = state.data.get(id)
-          if (!comment) {
-            return
-          }
-          comment.highlight = highlight
-        }),
-      )
+      setState((state) => {
+        const comment = state.data.get(id)
+        if (!comment) {
+          return
+        }
+        comment.highlight = highlight
+      })
     },
     async fetchComment(refId, page, size) {
       const state = getState()
@@ -67,19 +65,17 @@ export const useCommentCollection = createCollection<
         size,
       })
 
-      setState(
-        produce((state) => {
-          state.currentRefId = refId
-          state.currentFetchPage = page
-          state.comments = [...data.data]
-          state.data.clear()
+      setState((state) => {
+        state.currentRefId = refId
+        state.currentFetchPage = page
+        state.comments = [...data.data]
+        state.data.clear()
 
-          const flatAllComments = walkComments(state.comments)
-          flatAllComments.forEach((comment) => {
-            state.data.set(comment.id, comment)
-          })
-        }),
-      )
+        const flatAllComments = walkComments(state.comments)
+        flatAllComments.forEach((comment) => {
+          state.data.set(comment.id, comment)
+        })
+      })
 
       return data
     },
@@ -94,13 +90,11 @@ export const useCommentCollection = createCollection<
         return
       }
 
-      setState(
-        produce((state) => {
-          walkComments(comment.children).forEach((comment) => {
-            state.data.set(comment.id, comment)
-          })
-        }),
-      )
+      setState((state) => {
+        walkComments(comment.children).forEach((comment) => {
+          state.data.set(comment.id, comment)
+        })
+      })
 
       return Object.assign({}, oldComment, comment)
     },
@@ -133,88 +127,76 @@ export const useCommentCollection = createCollection<
           state.updateComment(parentComment)
         }
       } else {
-        setState(
-          produce((state) => {
-            const hasPinComment = state.comments.findIndex(
-              (comment) => comment.pin,
-            )
-            let nextComments: CommentModel[] = state.comments
-            if (-~hasPinComment) {
-              nextComments = [
-                nextComments[0],
-                comment,
-                ...nextComments.slice(1),
-              ]
-            } else {
-              nextComments = [comment, ...nextComments]
-            }
+        setState((state) => {
+          const hasPinComment = state.comments.findIndex(
+            (comment) => comment.pin,
+          )
+          let nextComments: CommentModel[] = state.comments
+          if (-~hasPinComment) {
+            nextComments = [nextComments[0], comment, ...nextComments.slice(1)]
+          } else {
+            nextComments = [comment, ...nextComments]
+          }
 
-            state.comments = nextComments.concat()
+          state.comments = nextComments.concat()
 
-            state.data.set(comment.id, comment)
-            walkComments(comment.children).forEach((child) => {
-              state.data.set(child.id, child)
-            })
-          }),
-        )
+          state.data.set(comment.id, comment)
+          walkComments(comment.children).forEach((child) => {
+            state.data.set(child.id, child)
+          })
+        })
       }
 
       return comment
     },
 
     unPinComment(id) {
-      setState(
-        produce((state) => {
-          const comment = state.data.get(id)
-          if (!comment) {
-            return
-          }
-          comment.pin = false
+      setState((state) => {
+        const comment = state.data.get(id)
+        if (!comment) {
+          return
+        }
+        comment.pin = false
 
-          requestAnimationFrame(() => {
-            const state = getState()
-            state.fetchComment(state.currentRefId)
-          })
-        }),
-      )
+        requestAnimationFrame(() => {
+          const state = getState()
+          state.fetchComment(state.currentRefId)
+        })
+      })
     },
 
     pinComment(id) {
-      setState(
-        produce((state: ReturnType<typeof getState>) => {
-          const comment = state.data.get(id)
+      setState((state: ReturnType<typeof getState>) => {
+        const comment = state.data.get(id)
 
-          if (!comment) {
-            return
-          }
-          const commentPinStatus = comment.pin
+        if (!comment) {
+          return
+        }
+        const commentPinStatus = comment.pin
 
-          for (const currentComment of state.comments) {
-            currentComment.pin = false
-          }
-          comment.pin = !commentPinStatus
+        for (const currentComment of state.comments) {
+          currentComment.pin = false
+        }
+        comment.pin = !commentPinStatus
 
-          const pinCommentIndex = state.comments.findIndex(
-            (comment) => comment.pin,
-          )
-          if (-~pinCommentIndex) {
-            const pinComment = state.comments.splice(pinCommentIndex, 1)[0]
-            state.comments = [pinComment, ...state.comments]
-          }
-        }),
-      )
+        const pinCommentIndex = state.comments.findIndex(
+          (comment) => comment.pin,
+        )
+        if (-~pinCommentIndex) {
+          const pinComment = state.comments.splice(pinCommentIndex, 1)[0]
+          state.comments = [pinComment, ...state.comments]
+        }
+      })
     },
     deleteComment(id) {
-      setState(
-        produce((state: ReturnType<typeof getState>) => {
-          const comment = state.data.get(id)
-          if (!comment) {
-            return
-          }
+      setState((state: ReturnType<typeof getState>) => {
+        const comment = state.data.get(id)
+        if (!comment) {
+          return
+        }
 
-          state.data.delete(id)
-        }),
-      )
+        state.data.delete(id)
+      })
     },
     reset() {
       setState(createState())

@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
 import type { FC } from 'react'
 import { useRef } from 'react'
+import { shallow } from 'zustand/shallow'
 
 import {
   GgCoffee,
@@ -21,10 +22,10 @@ import { useAnalyze } from '~/hooks/use-analyze'
 import { useThemeConfig } from '~/hooks/use-initial-data'
 
 export const NoteFooterActionBar: FC<{ id: string }> = ({ id }) => {
-  const note = useNoteCollection((state) => state.get(id))
+  const note = useNoteCollection((state) => state.get(id), shallow)
   const isLiked =
     // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
-    useNoteCollection((state) => state.isLiked(note?.nid!)) || false
+    useNoteCollection((state) => state.isLiked(note?.nid!) || false)
   const trackerLikeOnce = useRef(false)
   const { event } = useAnalyze()
   const themeConfig = useThemeConfig()

@@ -10,7 +10,7 @@ export const DebugLayout: FC = memo((props) => {
     useAppStore.getState().updateViewport()
   }, [])
 
-  const { mobile } = useAppStore((state) => state.viewport)
+  const mobile = useAppStore((state) => state.viewport.mobile)
 
   return (
     <ModalStackProvider isMobileViewport={mobile}>

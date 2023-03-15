@@ -21,12 +21,12 @@ const TagsContainer: FC<{ children?: JSX.Element[]; onClick: () => any }> = ({
   onClick,
   children,
 }) => {
-  const viewport = useAppStore((state) => state.viewport)
+  const w = useAppStore((state) => state.viewport.w)
 
   return (
     <div
       style={{
-        maxWidth: viewport.w > 800 ? '50vw' : 'calc(100vw - 100px)',
+        maxWidth: w > 800 ? '50vw' : 'calc(100vw - 100px)',
       }}
       className="m-auto h-screen w-screen absolute inset-0"
       onClick={onClick}

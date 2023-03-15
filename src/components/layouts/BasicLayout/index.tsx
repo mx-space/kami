@@ -62,7 +62,7 @@ export const BasicLayout: FC = memo(({ children }) => {
 
   useThemeBackground()
   const isNarrowThanLaptop = useDetectIsNarrowThanLaptop()
-  const viewport = useAppStore((state) => state.viewport)
+  const isMobile = useAppStore((state) => state.viewport.mobile)
   const colorMode = useAppStore((state) => state.colorMode)
 
   const [showNotice, setNotice] = useState(false)
@@ -113,7 +113,7 @@ export const BasicLayout: FC = memo(({ children }) => {
   }, [])
   const { event } = useAnalyze()
   return (
-    <ModalStackProvider isMobileViewport={viewport.mobile}>
+    <ModalStackProvider isMobileViewport={isMobile}>
       <div className="inset-0 fixed bg-fixed pointer-events-none transition-opacity duration-500 ease transform-gpu">
         <div className="bg absolute inset-0 transform-gpu" />
       </div>

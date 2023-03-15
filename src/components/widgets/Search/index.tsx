@@ -243,7 +243,7 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
 export const SearchOverlay: FC<OverlayProps> = memo((props) => {
   const { ...rest } = props
 
-  const mobile = useAppStore((state) => state.viewport.mobile)
+  const isMobile = useAppStore((state) => state.viewport.mobile)
 
   useShortcut(
     'Escape',
@@ -256,8 +256,10 @@ export const SearchOverlay: FC<OverlayProps> = memo((props) => {
   )
   return (
     <Overlay
-      center={!mobile}
-      standaloneWrapperClassName={clsx(mobile && 'items-start justify-center')}
+      center={!isMobile}
+      standaloneWrapperClassName={clsx(
+        isMobile && 'items-start justify-center',
+      )}
       {...rest}
     >
       <div

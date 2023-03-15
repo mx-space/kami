@@ -26,14 +26,14 @@ interface PostBlockProps {
 }
 
 export const PostBlock: FC<PostBlockProps> = (props) => {
-  const viewport = useAppStore((state) => state.viewport)
+  const isMobile = useAppStore((state) => state.viewport.mobile)
   const isLogged = useIsLogged()
 
   const post = props.post
 
   const { created: date, title, slug, pin, text, id } = post
 
-  const parsedTime = viewport?.mobile
+  const parsedTime = isMobile
     ? parseDate(date, 'MM-DD ddd')
     : parseDate(date, 'YYYY-MM-DD ddd')
   const [d, week] = parsedTime.split(' ')
@@ -98,27 +98,25 @@ export const PostBlock: FC<PostBlockProps> = (props) => {
   )
   return (
     <>
-      <h1 className={clsx(styles.head, 'headline', viewport.mobile && '!mb-0')}>
+      <h1 className={clsx(styles.head, 'headline', isMobile && '!mb-0')}>
         <div
           className={clsx(
             'inline w-[calc(100%-1rem)]',
-            !viewport.mobile && 'relative',
+            !isMobile && 'relative',
           )}
         >
           {d}
           <small className="text-gray-2">（{week}）</small>
-          {viewport.mobile && pinEl}
+          {isMobile && pinEl}
         </div>
-        {!viewport?.mobile && (
+        {!isMobile && (
           <>
             {tilteEl} {pinEl}
           </>
         )}
       </h1>
       <div className={styles.text}>
-        {viewport?.mobile && (
-          <div className="text-lg my-2 font-medium">{tilteEl}</div>
-        )}
+        {isMobile && <div className="text-lg my-2 font-medium">{tilteEl}</div>}
         {post.summary && <p className="mb-2">摘要：{post.summary}</p>}
         <article
           className={clsx(

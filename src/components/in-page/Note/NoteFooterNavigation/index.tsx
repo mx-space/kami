@@ -18,10 +18,12 @@ import { springScrollToTop } from '~/utils/spring'
 import { noop } from '~/utils/utils'
 
 export const NoteFooterNavigation: FC<{ id: string }> = memo(({ id }) => {
-  const relationMap = useNoteCollection((state) => state.relationMap)
-  const [prev, next] =
-    relationMap.get(id) ||
-    ([noop, noop] as [Partial<NoteModel>, Partial<NoteModel>])
+  const [prev, next] = useNoteCollection(
+    (state) =>
+      state.relationMap.get(id) ||
+      ([noop, noop] as [Partial<NoteModel>, Partial<NoteModel>]),
+  )
+
   const router = useRouter()
   const { event } = useAnalyze()
   return (

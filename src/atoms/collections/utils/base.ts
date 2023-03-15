@@ -1,6 +1,7 @@
-import { enableMapSet, immerable, produce } from 'immer'
+import { enableMapSet, immerable } from 'immer'
 import { create } from 'zustand'
 import { subscribeWithSelector } from 'zustand/middleware'
+import { immer } from 'zustand/middleware/immer'
 
 type Id = string
 
@@ -17,82 +18,82 @@ interface BaseStore<T extends object, TT = ModelWithDeleted<T>> {
 
 export type ModelWithDeleted<T> = { isDeleted?: boolean } & T
 
+type Setter<
+  T extends {
+    id: Id
+  },
+  A extends object,
+> = (
+  partial:
+    | Partial<BaseStore<T> & A>
+    | ((state: BaseStore<T> & A) => Partial<BaseStore<T> & A> | void),
+  replace?: boolean,
+) => any
+
 // TODO ssr hydrate
 export const createCollection = <T extends { id: Id }, A extends object>(
   name: string,
-  actions?:
-    | A
-    | ((
-        set: (
-          partial:
-            | Partial<BaseStore<T> & A>
-            | ((state: BaseStore<T> & A) => Partial<BaseStore<T> & A>),
-          replace?: boolean,
-        ) => any,
-        get: () => BaseStore<T> & A,
-      ) => A),
+  actions?: A | ((set: Setter<T, A>, get: () => BaseStore<T> & A) => A),
 ) => {
   const data = new Map<Id, T>()
   data[immerable] = true
 
   return create(
-    // @ts-ignore
-    subscribeWithSelector<BaseStore<T> & A>((set, get) => ({
-      data,
-      ...(typeof actions === 'function' ? actions(set, get) : actions),
+    immer(
+      // @ts-ignore
+      subscribeWithSelector<BaseStore<T> & A>((set: Setter<T, A>, get) => ({
+        data,
 
-      softDelete(key) {
-        const data = get().data.get(key)
-        if (!data) {
-          return false
-        }
+        ...(typeof actions === 'function' ? actions(set, get) : actions),
 
-        set(
-          produce((state) => {
-            state.data.get(key).isDeleted = true
-          }),
-        )
-
-        return true
-      },
-      add(...args: any[]) {
-        const addFn = get().add
-
-        const add = (id: string, data: T | T[]) => {
-          if (Array.isArray(data)) {
-            data.forEach((d) => {
-              addFn(d)
-            })
-
-            return
+        softDelete(key) {
+          const data = get().data.get(key)
+          if (!data) {
+            return false
           }
 
-          set(
-            produce((state) => {
-              state.data.set(id, { ...data })
-            }),
-          )
-        }
-
-        if (typeof args[0] === 'string') {
-          const id = args[0]
-          const data = args[1]
-          add(id, data)
-        } else {
-          const data = args[0]
-          add(data.id, data)
-        }
-      },
-      addAndPatch(data: T | T[]) {
-        if (Array.isArray(data)) {
-          const patch = get().addAndPatch
-          data.forEach((d) => {
-            patch(d)
+          set((state) => {
+            const data = state.data.get(key)
+            if (data) data.isDeleted = true
           })
-          return
-        }
-        set(
-          produce((state) => {
+
+          return true
+        },
+        add(...args: any[]) {
+          const addFn = get().add
+
+          const add = (id: string, data: T | T[]) => {
+            if (Array.isArray(data)) {
+              data.forEach((d) => {
+                addFn(d)
+              })
+
+              return
+            }
+
+            set((state) => {
+              state.data.set(id, { ...data })
+            })
+          }
+
+          if (typeof args[0] === 'string') {
+            const id = args[0]
+            const data = args[1]
+            add(id, data)
+          } else {
+            const data = args[0]
+            add(data.id, data)
+          }
+        },
+        addAndPatch(data: T | T[]) {
+          if (Array.isArray(data)) {
+            const patch = get().addAndPatch
+            data.forEach((d) => {
+              patch(d)
+            })
+            return
+          }
+          set((state) => {
             const collection = state.data
             if (collection.has(data.id)) {
               const exist = collection.get(data.id)
@@ -101,16 +102,14 @@ export const createCollection = <T extends { id: Id }, A extends object>(
             } else {
               collection.set(data.id, data)
             }
-          }),
-        )
-      },
-      remove(id: Id) {
-        set(
-          produce((state) => {
+          })
+        },
+        remove(id: Id) {
+          set((state) => {
             state.data.delete(id)
-          }),
-        )
-      },
-    })),
+          })
+        },
+      })),
+    ),
   )
 }

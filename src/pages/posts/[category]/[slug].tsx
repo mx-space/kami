@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { message } from 'react-message-popup'
+import { shallow } from 'zustand/shallow'
 
 import type { PostModel } from '@mx-space/api-client'
 import { Loading } from '@mx-space/kami-design'
@@ -122,8 +123,10 @@ const useUpdatePost = (post: ModelWithDeleted<PostModel>) => {
 }
 
 export const PostView: PageOnlyProps = (props) => {
-  const collection = usePostCollection((state) => state.data)
-  const post: PostModel = collection.get(props.id) || noop
+  const post = usePostCollection(
+    (state) => state.data.get(props.id) || (noop as PostModel),
+    shallow,
+  )
 
   const [actions, setAction] = useState({} as ActionProps)
 
@@ -318,7 +321,7 @@ export const PostView: PageOnlyProps = (props) => {
 
 const NextPostView: NextPage = (props) => {
   const { id } = props as any
-  const post = usePostCollection((state) => state.data.get(id))
+  const post = usePostCollection((state) => state.data.get(id), shallow)
 
   if (!post) {
     return <Loading />

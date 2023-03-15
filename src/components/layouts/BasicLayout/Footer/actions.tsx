@@ -1,6 +1,6 @@
 import { clsx } from 'clsx'
 import type { FC } from 'react'
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback, useDeferredValue, useMemo } from 'react'
 import { Modifier, useShortcut } from 'react-shortcut-guide'
 import { TransitionGroup } from 'react-transition-group'
 import { shallow } from 'zustand/shallow'
@@ -90,8 +90,9 @@ export const FooterActions: FC = () => {
       label: `底部播放器点击`,
     })
     const musicStore = useMusicStore.getState()
-    musicStore.setHide(!musicStore.isHide)
-    musicStore.setPlay(!musicStore.isHide)
+    const nextStatus = !musicStore.isHide
+    musicStore.setHide(nextStatus)
+    musicStore.setPlay(!nextStatus)
   }, [])
 
   useShortcut(
@@ -101,7 +102,7 @@ export const FooterActions: FC = () => {
     '播放音乐',
   )
 
-  const actions = useActionStore((state) => state.actions)
+  const actions = useDeferredValue(useActionStore((state) => state.actions))
 
   return (
     <RootPortal>
