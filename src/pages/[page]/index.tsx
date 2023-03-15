@@ -5,6 +5,7 @@ import React, { Fragment, useEffect, useMemo, useRef } from 'react'
 import RemoveMarkdown from 'remove-markdown'
 import { shallow } from 'zustand/shallow'
 
+import type { PageModel } from '@mx-space/api-client'
 import { Loading } from '@mx-space/kami-design'
 import { ImageSizeMetaContext } from '@mx-space/kami-design/contexts/image-size'
 
@@ -119,11 +120,12 @@ const PageView: PageOnlyProps = (props) => {
   )
 }
 
-const NextPageView: NextPage = (props) => {
+const NextPageView: NextPage<PageModel> = (props) => {
   const { id } = props as any
   const page = usePageCollection((state) => state.data.get(id), shallow)
 
   if (!page) {
+    usePageCollection.getState().add(props)
     return <Loading />
   }
 

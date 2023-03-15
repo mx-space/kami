@@ -319,11 +319,12 @@ export const PostView: PageOnlyProps = (props) => {
   )
 }
 
-const NextPostView: NextPage = (props) => {
-  const { id } = props as any
+const NextPostView: NextPage<PostModel> = (props) => {
+  const { id } = props
   const post = usePostCollection((state) => state.data.get(id), shallow)
 
   if (!post) {
+    usePostCollection.getState().add(props)
     return <Loading />
   }
 
