@@ -115,7 +115,7 @@ const LyricsRender: FC<{ lyrics: string }> = memo(({ lyrics }) => {
           {list.map((item, index) => {
             return (
               <li
-                key={item.hms}
+                key={item.content}
                 data-hms={item.hms}
                 className={clsx(
                   'my-2 transform origin-left transition-all opacity-100 scale-100 !duration-500 ease-in-out',
