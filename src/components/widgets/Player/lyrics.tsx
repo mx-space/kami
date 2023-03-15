@@ -7,21 +7,18 @@ import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
 import { useMusicStore } from '~/atoms/music'
-import { withDesktopOnly } from '~/components/biz/view-only/desktop'
+import { withDesktopOnly } from '~/components/biz/HoC/viewport'
 
 import type { LyricsContent } from './lyrics-manager'
 import { LyricsManager } from './lyrics-manager'
 import { useFetchLyrics } from './use-fetch'
 
-export const Lyrics: FC = withDesktopOnly(
-  memo(() => {
-    const playId = useMusicStore((state) => state.playId)
+export const Lyrics: FC = withDesktopOnly(() => {
+  const playId = useMusicStore((state) => state.playId)
+  const lyrics = useFetchLyrics(playId)
 
-    const lyrics = useFetchLyrics(playId)
-
-    return lyrics ? <LyricsRender lyrics={lyrics} /> : null
-  }),
-)
+  return lyrics ? <LyricsRender lyrics={lyrics} /> : null
+})
 
 const LyricsRender: FC<{ lyrics: string }> = memo(({ lyrics }) => {
   const lyricsInstance = useMemo(() => new LyricsManager(lyrics), [lyrics])

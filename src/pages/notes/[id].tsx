@@ -235,7 +235,7 @@ const NoteView: React.FC<{ id: string }> = memo((props) => {
             </BanCopy>
           </ImageSizeMetaContext.Provider>
         )}
-        <div className="pb-4 phone:pb-8" />
+        <div className="pb-8" />
         {note.topic && <NoteTopic noteId={props.id} topic={note.topic} />}
         <NoteFooterNavigationBarForMobile id={props.id} />
         <div className="pb-4" />

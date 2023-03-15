@@ -42,7 +42,7 @@ const useNoteMetaBanner = (note?: NoteModel) => {
     return
   }
   const meta = note?.meta
-  const banner = { ...meta?.banner } as {
+  let banner = meta?.banner as {
     type: string
     message: string
     className: string
@@ -52,7 +52,7 @@ const useNoteMetaBanner = (note?: NoteModel) => {
   if (!banner) {
     return
   }
-
+  banner = { ...banner }
   if (typeof banner === 'string') {
     return {
       type: 'info',
