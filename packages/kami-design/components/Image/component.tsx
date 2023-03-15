@@ -1,5 +1,4 @@
 import { clsx } from 'clsx'
-import mediumZoom from 'medium-zoom'
 import React, {
   forwardRef,
   memo,
@@ -22,6 +21,7 @@ import { escapeHTMLTag } from '~/utils/utils'
 
 import { LazyLoad } from '../Lazyload'
 import styles from './index.module.css'
+import { ImageZoom } from './popup'
 import { useCalculateNaturalSize } from './use-calculate-size'
 
 interface ImageProps {
@@ -48,24 +48,6 @@ const Image: FC<
     'src' | 'alt'
   >
 > = memo(({ src, alt, height, width, popup = false, loaded, loaderFn }) => {
-  const imageRef = useRef<HTMLImageElement>(null)
-
-  useEffect(() => {
-    if (!popup) {
-      return
-    }
-    const $image = imageRef.current
-    if ($image) {
-      const zoom = mediumZoom($image, {
-        background: 'var(--light-bg)',
-      })
-
-      return () => {
-        zoom.detach(zoom.getImages())
-      }
-    }
-  }, [popup])
-
   useEffect(() => {
     loaderFn()
   }, [loaderFn])
@@ -80,10 +62,9 @@ const Image: FC<
         data-status={loaded ? 'loaded' : 'loading'}
         onAnimationEnd={onImageAnimationEnd}
       >
-        <img
+        <ImageZoom
           src={src}
           alt={alt}
-          ref={imageRef}
           loading="lazy"
           style={{ width, height }}
         />
