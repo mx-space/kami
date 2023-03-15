@@ -1,11 +1,10 @@
-import { observer } from 'mobx-react-lite'
 import rc from 'randomcolor'
 import type { FC, MouseEventHandler } from 'react'
-import { useMemo } from 'react'
+import { memo, useMemo } from 'react'
 
 import { MdiTagHeartOutline } from '@mx-space/kami-design/components/Icons/for-note'
 
-import { useStore } from '~/store'
+import { useAppStore } from '~/atoms/app'
 
 import styles from './index.module.css'
 
@@ -13,16 +12,16 @@ interface BigTagProps {
   tagName: string
   onClick?: MouseEventHandler<HTMLAnchorElement> | undefined
 }
-export const BigTag: FC<BigTagProps> = observer(({ tagName, onClick }) => {
-  const { appStore } = useStore()
+export const BigTag: FC<BigTagProps> = memo(({ tagName, onClick }) => {
+  const colorMode = useAppStore((state) => state.colorMode)
   const bgColor = useMemo(
     () =>
       rc({
         format: 'hex',
-        luminosity: appStore.colorMode == 'dark' ? 'dark' : 'light',
+        luminosity: colorMode == 'dark' ? 'dark' : 'light',
         seed: tagName,
       }),
-    [appStore.colorMode, tagName],
+    [colorMode, tagName],
   )
   return (
     <a

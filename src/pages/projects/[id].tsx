@@ -2,18 +2,19 @@ import type { NextPage } from 'next'
 
 import type { ProjectModel } from '@mx-space/api-client'
 
+import { useProjectCollection } from '~/atoms/collections/project'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
+import { SEO } from '~/components/biz/Seo'
 import { ProjectDetail } from '~/components/in-page/Project/detail'
-import { useStore } from '~/store'
+import { useSyncEffectOnce } from '~/hooks/use-sync-effect'
 import { apiClient } from '~/utils/client'
-
-import { SEO } from '../../components/biz/Seo'
 
 type ProjectViewProps = ProjectModel
 
 const ProjectView: NextPage<ProjectViewProps> = (props) => {
-  const store = useStore()
-  store.projectStore.add(props)
+  useSyncEffectOnce(() => {
+    useProjectCollection.getState().add(props)
+  })
 
   return (
     <main>
@@ -32,8 +33,7 @@ const ProjectView: NextPage<ProjectViewProps> = (props) => {
 ProjectView.getInitialProps = async (ctx) => {
   const { query } = ctx
   const id = query.id as string
-  const data = await apiClient.project.getById(id)
-  return data
+  return await apiClient.project.getById(id)
 }
 
 export default wrapperNextPage(ProjectView)

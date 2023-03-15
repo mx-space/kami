@@ -1,10 +1,10 @@
 import clsx from 'clsx'
 import dayjs from 'dayjs'
-import { observer } from 'mobx-react-lite'
 import dynamic from 'next/dynamic'
 import type { ReactNode } from 'react'
 import { forwardRef, useCallback } from 'react'
 import { Collapse } from 'react-collapse'
+import { shallow } from 'zustand/shallow'
 
 import type { NoteModel } from '@mx-space/api-client'
 import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
@@ -15,7 +15,9 @@ import {
 } from '@mx-space/kami-design/components/Icons/layout'
 import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
-import { useStore } from '~/store'
+import { useAppStore } from '~/atoms/app'
+import { useNoteCollection } from '~/atoms/collections/note'
+import { useIsLogged } from '~/atoms/user'
 import { apiClient } from '~/utils/client'
 import { resolveUrl } from '~/utils/utils'
 
@@ -40,7 +42,7 @@ const useNoteMetaBanner = (note?: NoteModel) => {
     return
   }
   const meta = note?.meta
-  const banner = meta?.banner as {
+  let banner = meta?.banner as {
     type: string
     message: string
     className: string
@@ -50,7 +52,7 @@ const useNoteMetaBanner = (note?: NoteModel) => {
   if (!banner) {
     return
   }
-
+  banner = { ...banner }
   if (typeof banner === 'string') {
     return {
       type: 'info',
@@ -73,17 +75,17 @@ interface NoteLayoutProps {
   children?: ReactNode
 }
 
-export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
-  forwardRef((props, ref) => {
+export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
+  (props, ref) => {
     const { date, id, title, tips, children } = props
     // autocorrect: false
     const dateFormat = dayjs(date).locale('cn').format('YYYY年M月D日 dddd')
     // autocorrect: true
-    const {
-      userStore: { isLogged, url },
-      noteStore,
-    } = useStore()
-    const note = noteStore.get(id)
+    const isLogged = useIsLogged()
+
+    const url = useAppStore((state) => state.appUrl)
+
+    const note = useNoteCollection((state) => state.get(id), shallow)
     const bookmark = note?.hasMemory
     const banner = useNoteMetaBanner(note)
     const onMarkToggle = useCallback(async () => {
@@ -175,5 +177,5 @@ export const NoteLayout = observer<NoteLayoutProps, HTMLElement>(
         <NoteTimelineList noteId={id} />
       </main>
     )
-  }),
+  },
 )

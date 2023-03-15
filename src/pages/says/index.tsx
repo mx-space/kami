@@ -1,50 +1,57 @@
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import Markdown from 'markdown-to-jsx'
-import { observer } from 'mobx-react-lite'
 import randomColor from 'randomcolor'
-import { useEffect, useMemo, useRef } from 'react'
+import { useMemo, useRef } from 'react'
 import Masonry from 'react-masonry-css'
 import { TransitionGroup } from 'react-transition-group'
 
 import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
+import { useAppStore } from '~/atoms/app'
+import { useSayCollection } from '~/atoms/collections/say'
+import { SEO } from '~/components/biz/Seo'
+import { useSyncEffectOnce } from '~/hooks/use-sync-effect'
+import { hexToRGB } from '~/utils/color'
 import { relativeTimeFromNow } from '~/utils/time'
 
-import { SEO } from '../../components/biz/Seo'
-import { useStore } from '../../store'
-import { hexToRGB } from '../../utils/color'
 import styles from './index.module.css'
 
 const SayView = () => {
-  const { sayStore, appStore } = useStore()
-  useEffect(() => {
-    sayStore.fetchAll()
-  }, [])
+  useSyncEffectOnce(() => {
+    useSayCollection.getState().fetchAll()
+  })
 
-  const says = sayStore.list.sort(
+  const sayList = useSayCollection((state) => state.data)
+
+  const says = Array.from(sayList.values()).sort(
     (b, a) => +new Date(a.created) - +new Date(b.created),
   )
+
+  const colorMode = useAppStore((state) => state.colorMode)
   const colorsMap = useMemo(() => {
     return new Map(
       says.map((say) => [
         say.id,
         randomColor({
-          luminosity: appStore.colorMode === 'light' ? 'bright' : 'dark',
+          luminosity: colorMode === 'light' ? 'bright' : 'dark',
           seed: say.id,
         }),
       ]),
     )
-  }, [appStore.colorMode, says])
+  }, [colorMode, says])
   const options = useRef<MarkdownToJSX.Options>({
     disableParsingRawHTML: true,
     forceBlock: true,
   }).current
+
+  const isMobile = useAppStore((state) => state.viewport.mobile)
+
   return (
     <main>
       <SEO title={'说说'} />
       <TransitionGroup>
         <Masonry
-          breakpointCols={appStore.viewport.mobile ? 1 : 2}
+          breakpointCols={isMobile ? 1 : 2}
           className={styles['kami-say']}
         >
           {says.map((say, i) => {
@@ -90,4 +97,4 @@ const SayView = () => {
   )
 }
 
-export default observer(SayView)
+export default SayView

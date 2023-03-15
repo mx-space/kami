@@ -1,15 +1,14 @@
 import { useEffect } from 'react'
 
-import { useStore } from '~/store'
+import { useAppStore } from '~/atoms/app'
 
 export const useScreenMedia = () => {
-  const { appStore: app } = useStore()
-
   // initMediaListener
   useEffect(() => {
     const getMediaType = <T extends { matches: boolean }>(e: T) => {
-      app.mediaType = e.matches ? 'screen' : 'print'
-      return app.mediaType
+      const mediaType = e.matches ? 'screen' : 'print'
+      useAppStore.getState().setMedia(mediaType)
+      return mediaType
     }
 
     getMediaType(window.matchMedia('screen'))

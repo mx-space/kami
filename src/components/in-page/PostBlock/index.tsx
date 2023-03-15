@@ -1,5 +1,4 @@
 import { clsx } from 'clsx'
-import { observer } from 'mobx-react-lite'
 import Router from 'next/router'
 import type { FC } from 'react'
 import React, { useCallback, useMemo, useState } from 'react'
@@ -11,9 +10,10 @@ import {
   PhPushPinFill,
 } from '@mx-space/kami-design/components/Icons/for-post'
 
+import { useAppStore } from '~/atoms/app'
+import { useIsLogged } from '~/atoms/user'
 import { IconTransition } from '~/components/universal/IconTransition'
 import { useInitialData } from '~/hooks/use-initial-data'
-import { useStore } from '~/store'
 import { apiClient } from '~/utils/client'
 import { springScrollToTop } from '~/utils/spring'
 import { parseDate } from '~/utils/time'
@@ -25,17 +25,15 @@ interface PostBlockProps {
   onPinChange: () => any
 }
 
-export const PostBlock: FC<PostBlockProps> = observer((props) => {
-  const {
-    appStore: { viewport },
-    userStore: { isLogged },
-  } = useStore()
+export const PostBlock: FC<PostBlockProps> = (props) => {
+  const isMobile = useAppStore((state) => state.viewport.mobile)
+  const isLogged = useIsLogged()
 
   const post = props.post
 
   const { created: date, title, slug, pin, text, id } = post
 
-  const parsedTime = viewport?.mobile
+  const parsedTime = isMobile
     ? parseDate(date, 'MM-DD ddd')
     : parseDate(date, 'YYYY-MM-DD ddd')
   const [d, week] = parsedTime.split(' ')
@@ -100,27 +98,25 @@ export const PostBlock: FC<PostBlockProps> = observer((props) => {
   )
   return (
     <>
-      <h1 className={clsx(styles.head, 'headline', viewport.mobile && '!mb-0')}>
+      <h1 className={clsx(styles.head, 'headline', isMobile && '!mb-0')}>
         <div
           className={clsx(
             'inline w-[calc(100%-1rem)]',
-            !viewport.mobile && 'relative',
+            !isMobile && 'relative',
           )}
         >
           {d}
           <small className="text-gray-2">（{week}）</small>
-          {viewport.mobile && pinEl}
+          {isMobile && pinEl}
         </div>
-        {!viewport?.mobile && (
+        {!isMobile && (
           <>
             {tilteEl} {pinEl}
           </>
         )}
       </h1>
       <div className={styles.text}>
-        {viewport?.mobile && (
-          <div className="text-lg my-2 font-medium">{tilteEl}</div>
-        )}
+        {isMobile && <div className="text-lg my-2 font-medium">{tilteEl}</div>}
         {post.summary && <p className="mb-2">摘要：{post.summary}</p>}
         <article
           className={clsx(
@@ -152,4 +148,4 @@ export const PostBlock: FC<PostBlockProps> = observer((props) => {
       <div className="pb-8 mb-4" />
     </>
   )
-})
+}

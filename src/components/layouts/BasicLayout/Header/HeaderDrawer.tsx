@@ -1,15 +1,17 @@
 import classNames from 'clsx'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
-import React, { Fragment, memo, useEffect } from 'react'
+import { Fragment, memo, useEffect } from 'react'
 
 import { CloseIcon } from '@mx-space/kami-design/components/Icons/layout'
 import { Overlay } from '@mx-space/kami-design/components/Overlay'
 import { RootPortal } from '@mx-space/kami-design/components/Portal'
 
+import { IF } from '~/components/app/If'
+import { withNoSSR } from '~/components/biz/HoC/no-ssr'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
-import { NoSSRWrapper } from '~/utils/no-ssr'
+import { useDetectPadOrMobile } from '~/hooks/use-viewport'
 
 import styles from './index.module.css'
 
@@ -38,6 +40,7 @@ const _HeaderDrawer: FC<{ show: boolean; onExit: () => void }> = memo(
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [router])
+
     return (
       <RootPortal>
         <Fragment>
@@ -61,4 +64,6 @@ const _HeaderDrawer: FC<{ show: boolean; onExit: () => void }> = memo(
     )
   },
 )
-export const HeaderDrawer = NoSSRWrapper(_HeaderDrawer)
+export const HeaderDrawer = IF(withNoSSR(_HeaderDrawer), () =>
+  useDetectPadOrMobile(),
+)

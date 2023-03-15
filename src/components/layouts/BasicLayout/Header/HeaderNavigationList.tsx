@@ -1,8 +1,7 @@
 import { clsx } from 'clsx'
-import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC } from 'react'
-import React, { useCallback, useContext, useEffect } from 'react'
+import React, { memo, useCallback, useContext, useEffect } from 'react'
 import { Modifier, ShortcutContext } from 'react-shortcut-guide'
 
 import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
@@ -96,7 +95,7 @@ const MenuLink: FC<{ menu: Menu; isPublicUrl: boolean; index: number }> = (
   )
 }
 
-export const HeaderNavigationList: FC = observer(() => {
+export const HeaderNavigationList: FC = memo(() => {
   const { mergedMenu } = useHeaderNavList()
   return (
     <>

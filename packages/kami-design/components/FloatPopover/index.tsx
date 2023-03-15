@@ -13,7 +13,7 @@ import type { UseFloatingProps } from '@floating-ui/react-dom'
 import { flip, offset, shift, useFloating } from '@floating-ui/react-dom'
 import useClickAway from '@mx-space/kami-design/hooks/use-click-away'
 
-import { NoSSRWrapper } from '~/utils/no-ssr'
+import { withNoSSR } from '~/components/biz/HoC/no-ssr'
 
 import { RootPortal } from '../Portal'
 import styles from './index.module.css'
@@ -33,7 +33,7 @@ export const FloatPopover: FC<
      */
     debug?: boolean
   } & UseFloatingProps
-> = NoSSRWrapper(
+> = withNoSSR(
   memo((props) => {
     const {
       headless = false,

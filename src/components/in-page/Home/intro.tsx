@@ -1,4 +1,3 @@
-import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 
@@ -7,19 +6,18 @@ import { Avatar } from '@mx-space/kami-design/components/Avatar'
 import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
 import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
+import { useUserStore } from '~/atoms/user'
+import { withNoSSR } from '~/components/biz/HoC/no-ssr'
 import { FontIcon } from '~/components/universal/FontIcon'
 import { useThemeConfig } from '~/hooks/use-initial-data'
 import { useIndexViewContext } from '~/pages'
-import { useStore } from '~/store'
-import { NoSSRWrapper } from '~/utils/no-ssr'
 
 import styles from './intro.module.css'
 
 const wrapperProps = { className: '!w-full !h-full !border-none !shadow-none' }
-export const HomeIntro: FC = observer(() => {
+export const HomeIntro: FC = () => {
   const { doAnimation } = useIndexViewContext()
-  const { userStore } = useStore()
-  const { master: user } = userStore
+  const user = useUserStore((state) => state.master)
 
   if (!user) {
     return null
@@ -47,9 +45,9 @@ export const HomeIntro: FC = observer(() => {
       </div>
     </section>
   )
-})
+}
 // 首页 社交 图标栏
-const Social: FC = NoSSRWrapper(() => {
+const Social: FC = withNoSSR(() => {
   const config = useThemeConfig()
   const { doAnimation } = useIndexViewContext()
   const { social } = config.site

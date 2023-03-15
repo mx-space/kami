@@ -1,6 +1,5 @@
 import { clsx } from 'clsx'
 import { sample, uniqWith } from 'lodash-es'
-import { observer } from 'mobx-react-lite'
 import type { NextPage } from 'next'
 import {
   Fragment,
@@ -19,7 +18,7 @@ import {
   RecentlyAttitudeEnum,
   RecentlyAttitudeResultEnum,
 } from '@mx-space/api-client'
-import { IonThumbsup } from '@mx-space/kami-design/components/Icons'
+import { IonThumbsup } from '@mx-space/kami-design/components/Icons/for-post'
 import {
   FontistoComments,
   JamTrash,
@@ -27,17 +26,17 @@ import {
 import { Loading } from '@mx-space/kami-design/components/Loading'
 import { useModalStack } from '@mx-space/kami-design/components/Modal/stack-context'
 
+import { useIsLogged } from '~/atoms/user'
+import { withNoSSR } from '~/components/biz/HoC/no-ssr'
 import { Seo } from '~/components/biz/Seo'
 import { RefPreview } from '~/components/in-page/Recently/RefPreview'
 import { RecentlySendBox } from '~/components/in-page/Recently/SendBox'
 import { Markdown } from '~/components/universal/Markdown'
 import { RelativeTime } from '~/components/universal/RelativeTime'
 import { CommentLazy } from '~/components/widgets/Comment'
-import { useStore } from '~/store'
 import { EventTypes } from '~/types/events'
 import { apiClient } from '~/utils/client'
 import { eventBus } from '~/utils/event-emitter'
-import { NoSSRWrapper } from '~/utils/no-ssr'
 
 import styles from './index.module.css'
 
@@ -71,9 +70,7 @@ const useDataEventHandler = () => {
 
 const RecentlyPage: NextPage = () => {
   const [hasNext, setHasNext] = useState(true)
-  const {
-    userStore: { isLogged },
-  } = useStore()
+  const isLogged = useIsLogged()
 
   const [fetchBefore, setFetchBefore] = useState<undefined | string>()
   const { data: fetchedData, isLoading } = useSWR(
@@ -299,4 +296,4 @@ const RecentlyPage: NextPage = () => {
   )
 }
 
-export default NoSSRWrapper(observer(RecentlyPage))
+export default withNoSSR(RecentlyPage)

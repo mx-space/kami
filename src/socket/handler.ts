@@ -1,12 +1,17 @@
-import { runInAction } from 'mobx'
+import { produce } from 'immer'
 import { message } from 'react-message-popup'
 
+import { useAppStore } from '~/atoms/app'
+import { useCommentCollection } from '~/atoms/collections/comment'
+import { useNoteCollection } from '~/atoms/collections/note'
+import { usePageCollection } from '~/atoms/collections/page'
+import { usePostCollection } from '~/atoms/collections/post'
+import { useSayCollection } from '~/atoms/collections/say'
+import { useUserStore } from '~/atoms/user'
 import { EventTypes } from '~/types/events'
+import { createDangmaku } from '~/utils/danmaku'
 import { isDev } from '~/utils/env'
-
-import { store } from '../store'
-import { createDangmaku } from '../utils/danmaku'
-import { Notice } from '../utils/notice'
+import { Notice } from '~/utils/notice'
 
 export const notice = Notice.shared
 
@@ -17,13 +22,12 @@ export const eventHandler = (type: EventTypes, data: any) => {
     globalThis?.location.host ||
     ''
 
-  const { gatewayStore, noteStore, postStore, userStore, pageStore } = store
   switch (type) {
     case EventTypes.VISITOR_ONLINE:
     case EventTypes.VISITOR_OFFLINE: {
       const { online } = data
-      runInAction(() => {
-        gatewayStore.online = online
+      useAppStore.setState({
+        gatewayOnline: online,
       })
       break
     }
@@ -68,7 +72,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
       break
     }
     case EventTypes.SAY_CREATE: {
-      store.sayStore.add(data)
+      useSayCollection.getState().add(data)
       const message = noticeHead('说说')
       notice.notice({
         title,
@@ -83,11 +87,11 @@ export const eventHandler = (type: EventTypes, data: any) => {
     }
     case EventTypes.SAY_DELETE: {
       const id = data
-      store.sayStore.remove(id)
+      useSayCollection.getState().remove(id)
       break
     }
     case EventTypes.COMMENT_CREATE: {
-      store.commentStore.addComment(data)
+      useCommentCollection.getState().addComment(data)
       break
     }
     case EventTypes.DANMAKU_CREATE: {
@@ -96,12 +100,15 @@ export const eventHandler = (type: EventTypes, data: any) => {
         color: data.color,
       })
 
+      const userStore = useUserStore.getState()
+
       if (
-        (data.author == userStore.name || data.author == userStore.username) &&
+        (data.author == userStore.master?.name ||
+          data.author == userStore.master?.username) &&
         !userStore.isLogged
       ) {
         notice.notice({
-          title: `${userStore.name} 敲了你一下`,
+          title: `${userStore.master?.name} 敲了你一下`,
           text: data.text,
           options: { image: userStore.master?.avatar },
         })
@@ -111,43 +118,52 @@ export const eventHandler = (type: EventTypes, data: any) => {
     }
     // handle update event
     case EventTypes.POST_UPDATE: {
-      postStore.addAndPatch(data)
+      usePostCollection.getState().addAndPatch(data)
       break
     }
     case EventTypes.POST_DELETE: {
       const id = data
-      postStore.softDelete(id)
+      usePostCollection.getState().softDelete(id)
       break
     }
     case EventTypes.NOTE_UPDATE: {
-      runInAction(() => {
-        noteStore.addAndPatch(data)
-        const note = noteStore.get(data.id)
-        if (note) {
-          if (note.hide && !store.userStore.isLogged) {
-            note.title = '已隐藏'
-            note.text = '该笔记已被隐藏'
+      const noteCollection = useNoteCollection.getState()
+      noteCollection.addAndPatch(data)
+      useNoteCollection.setState(
+        produce((state: ReturnType<typeof useNoteCollection.getState>) => {
+          const note = state.get(data.id)
+          if (note) {
+            if (note.hide && !useUserStore.getState().isLogged) {
+              note.title = '已隐藏'
+              note.text = '该笔记已被隐藏'
+            }
           }
-        }
-      })
+        }),
+      )
+
       break
     }
     case EventTypes.NOTE_DELETE: {
       const id = data
-      runInAction(() => {
-        noteStore.softDelete(id)
-        const note = noteStore.get(id)
-        if (note) {
-          note.title = '已删除'
-          note.text = '该笔记已被删除'
-        }
-      })
+
+      useNoteCollection.getState().softDelete(id)
+
+      useNoteCollection.setState(
+        produce((state: ReturnType<typeof useNoteCollection.getState>) => {
+          const note = state.get(id)
+          if (note) {
+            note.title = '已删除'
+            note.text = '该笔记已被删除'
+          }
+        }),
+      )
+
       break
     }
 
     case EventTypes.PAGE_UPDATED: {
       message.info('页面内容已更新')
-      pageStore.addAndPatch(data)
+      usePageCollection.getState().addAndPatch(data)
       break
     }
 
@@ -159,7 +175,9 @@ export const eventHandler = (type: EventTypes, data: any) => {
   }
 }
 function noticeHead(type: string, title?: string) {
-  return `${store.userStore.name}发布了新的${type}${title ? `: ${title}` : ''}`
+  return `${useUserStore.getState().master?.name}发布了新的${type}${
+    title ? `: ${title}` : ''
+  }`
 }
 function getDescription(text: string) {
   return text.length > 20 ? `${text.slice(0, 20)}...` : text

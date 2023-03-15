@@ -1,8 +1,8 @@
 import { default as classNames, default as clsx } from 'clsx'
 import throttle from 'lodash-es/throttle'
-import { observer } from 'mobx-react-lite'
 import {
   forwardRef,
+  memo,
   useCallback,
   useDeferredValue,
   useEffect,
@@ -12,14 +12,15 @@ import {
   useState,
 } from 'react'
 import { useAudio } from 'react-use'
+import { shallow } from 'zustand/shallow'
 
 import { RootPortal } from '@mx-space/kami-design/components/Portal'
 
+import { useMusicStore, usePlayProgress } from '~/atoms/music'
+import { withNoSSR } from '~/components/biz/HoC/no-ssr'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
-import { store, useStore } from '~/store'
 import { apiClient } from '~/utils/client'
-import { NoSSRWrapper } from '~/utils/no-ssr'
 import { hms } from '~/utils/time'
 
 import styles from './index.module.css'
@@ -266,10 +267,8 @@ export const MusicMiniPlayer = forwardRef<
   )
 })
 
-const BottomProgressBar = observer(() => {
-  const {
-    musicStore: { playProgress },
-  } = useStore()
+const BottomProgressBar = memo(() => {
+  const playProgress = usePlayProgress()
 
   const progress = useDeferredValue(playProgress)
 
@@ -295,50 +294,59 @@ const BottomProgressBar = observer(() => {
 
 const changeOfPlayerHandler = throttle(
   (id, time, totalTime) => {
-    store.musicStore.setPlayingInfo(id, time, totalTime)
+    useMusicStore.getState().setPlayInfo(id, time, totalTime)
   },
   1000,
   {
     trailing: false,
   },
 )
-export const _MusicMiniPlayerStoreControlled = observer(() => {
+export const _MusicMiniPlayerStoreControlled = memo(() => {
   const ref = useRef<MusicPlayerRef>(null)
-  const { musicStore } = useStore()
+  const { isPlay, isHide, playlist } = useMusicStore<{
+    isPlay: boolean
+    isHide: boolean
+    playlist: number[]
+  }>(
+    (state) => ({
+      isPlay: state.isPlay,
+      isHide: state.isHide,
+      playlist: state.list,
+    }),
+    shallow,
+  )
   const { event } = useAnalyze()
   useEffect(() => {
     if (!ref.current) {
       console.log('player not ready')
       return
     }
-    if (musicStore.isPlay) {
+    if (isPlay) {
       requestAnimationFrame(() => {
         event({
           action: TrackerAction.Interaction,
-          label: `音乐播放状态：${musicStore.isPlay ? '播放' : '暂停'}`,
+          label: `音乐播放状态：${isPlay ? '播放' : '暂停'}`,
         })
         ref.current?.play()
       })
     } else {
       ref.current.pause()
     }
-  }, [musicStore.isPlay])
+  }, [isPlay])
 
   useEffect(() => {
-    if (!musicStore.isHide) {
+    if (!isHide) {
       // auto play disable
       // ref.current?.play()
     } else {
       ref.current?.pause()
     }
-  }, [musicStore.isHide])
+  }, [isHide])
 
   const handleChangePlayState = useCallback((state: 'play' | 'pause') => {
-    if (state === 'play') {
-      musicStore.isPlay = true
-    } else {
-      musicStore.isPlay = false
-    }
+    useMusicStore.setState({
+      isPlay: state === 'play',
+    })
   }, [])
 
   return (
@@ -346,8 +354,8 @@ export const _MusicMiniPlayerStoreControlled = observer(() => {
       <MusicMiniPlayer
         ref={ref}
         onPlayStateChange={handleChangePlayState}
-        playlist={musicStore.list}
-        hide={musicStore.isHide}
+        playlist={playlist}
+        hide={isHide}
         onChange={changeOfPlayerHandler}
       />
       <BottomProgressBar />
@@ -355,6 +363,6 @@ export const _MusicMiniPlayerStoreControlled = observer(() => {
   )
 })
 
-export const MusicMiniPlayerStoreControlled = NoSSRWrapper(
+export const MusicMiniPlayerStoreControlled = withNoSSR(
   _MusicMiniPlayerStoreControlled,
 )

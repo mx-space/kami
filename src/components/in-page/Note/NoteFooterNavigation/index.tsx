@@ -1,6 +1,6 @@
-import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
+import { memo } from 'react'
 
 import type { NoteModel } from '@mx-space/api-client'
 import { Divider } from '@mx-space/kami-design/components/Divider'
@@ -10,17 +10,20 @@ import {
 } from '@mx-space/kami-design/components/Icons/arrow'
 import { MdiClockTimeThreeOutline } from '@mx-space/kami-design/components/Icons/for-note'
 
+import { noteCollection, useNoteCollection } from '~/atoms/collections/note'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
-import { useStore } from '~/store'
+import { useDetectIsNarrowThanLaptop } from '~/hooks/use-viewport'
 import { springScrollToTop } from '~/utils/spring'
 import { noop } from '~/utils/utils'
 
-export const NoteFooterNavigation: FC<{ id: string }> = observer(({ id }) => {
-  const { noteStore } = useStore()
-  const [prev, next] =
-    noteStore.relationMap.get(id) ||
-    ([noop, noop] as [Partial<NoteModel>, Partial<NoteModel>])
+export const NoteFooterNavigation: FC<{ id: string }> = memo(({ id }) => {
+  const [prev, next] = useNoteCollection(
+    (state) =>
+      state.relationMap.get(id) ||
+      ([noop, noop] as [Partial<NoteModel>, Partial<NoteModel>]),
+  )
+
   const router = useRouter()
   const { event } = useAnalyze()
   return (
@@ -70,7 +73,7 @@ export const NoteFooterNavigation: FC<{ id: string }> = observer(({ id }) => {
               role={'button'}
               className="opacity-80 text-pink hover:text-primary absolute left-1/2 top-0 bottom-0 flex items-center -translate-x-1/2 transform space-x-2"
               onClick={() => {
-                const note = noteStore.get(id)
+                const note = noteCollection.get(id)
 
                 event({
                   action: TrackerAction.Click,
@@ -91,14 +94,13 @@ export const NoteFooterNavigation: FC<{ id: string }> = observer(({ id }) => {
   )
 })
 
-export const NoteFooterNavigationBarForMobile: typeof NoteFooterNavigation =
-  observer((props) => {
-    const {
-      appUIStore: { isNarrowThanLaptop: isWiderThanLaptop },
-    } = useStore()
+export const NoteFooterNavigationBarForMobile: typeof NoteFooterNavigation = (
+  props,
+) => {
+  const isWiderThanLaptop = useDetectIsNarrowThanLaptop()
 
-    if (isWiderThanLaptop) {
-      return <NoteFooterNavigation {...props} />
-    }
-    return null
-  })
+  if (isWiderThanLaptop) {
+    return <NoteFooterNavigation {...props} />
+  }
+  return null
+}

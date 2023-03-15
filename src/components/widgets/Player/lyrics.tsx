@@ -1,33 +1,29 @@
 import clsx from 'clsx'
-import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { memo, useEffect, useMemo, useRef, useState } from 'react'
 
 import { getTransitionSizes } from '@formkit/auto-animate'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
-import { withDesktopOnly } from '~/components/biz/view-only/desktop'
-import { store } from '~/store'
+import { useMusicStore } from '~/atoms/music'
+import { withDesktopOnly } from '~/components/biz/HoC/viewport'
 
 import type { LyricsContent } from './lyrics-manager'
 import { LyricsManager } from './lyrics-manager'
 import { useFetchLyrics } from './use-fetch'
 
-export const Lyrics: FC = withDesktopOnly(
-  observer(() => {
-    const playId = store.musicStore.playId
+export const Lyrics: FC = withDesktopOnly(() => {
+  const playId = useMusicStore((state) => state.playId)
+  const lyrics = useFetchLyrics(playId)
 
-    const lyrics = useFetchLyrics(playId)
+  return lyrics ? <LyricsRender lyrics={lyrics} /> : null
+})
 
-    return lyrics ? <LyricsRender lyrics={lyrics} /> : null
-  }),
-)
-
-const LyricsRender: FC<{ lyrics: string }> = observer(({ lyrics }) => {
+const LyricsRender: FC<{ lyrics: string }> = memo(({ lyrics }) => {
   const lyricsInstance = useMemo(() => new LyricsManager(lyrics), [lyrics])
 
-  const currentTime = store.musicStore.time * 1000
+  const currentTime = useMusicStore((state) => state.time * 1000)
 
   const [list, setList] = useState([] as LyricsContent[])
 
@@ -119,7 +115,7 @@ const LyricsRender: FC<{ lyrics: string }> = observer(({ lyrics }) => {
           {list.map((item, index) => {
             return (
               <li
-                key={item.hms}
+                key={item.content}
                 data-hms={item.hms}
                 className={clsx(
                   'my-2 transform origin-left transition-all opacity-100 scale-100 !duration-500 ease-in-out',

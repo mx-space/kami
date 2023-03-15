@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 
 import type { SubscribeTypeToBitMap } from '@mx-space/api-client'
-import { TablerBellRinging } from '@mx-space/kami-design/components/Icons'
+import { TablerBellRinging } from '@mx-space/kami-design/components/Icons/shared'
 
 import {
   useIsEnableSubscribe,

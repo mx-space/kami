@@ -1,17 +1,18 @@
 import { clsx } from 'clsx'
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import { sanitizeUrl } from 'markdown-to-jsx'
-import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import {
   Fragment,
   createElement,
+  memo,
   useCallback,
   useMemo,
   useRef,
   useState,
 } from 'react'
 import { message } from 'react-message-popup'
+import { shallow } from 'zustand/shallow'
 
 import type { CommentModel } from '@mx-space/api-client'
 import {
@@ -20,16 +21,17 @@ import {
 } from '@mx-space/kami-design/components/Icons/for-post'
 import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
+import type { CommentModelWithHighlight } from '~/atoms/collections/comment'
+import { useCommentCollection } from '~/atoms/collections/comment'
+import { useUserStore } from '~/atoms/user'
 import { ImpressionView } from '~/components/biz/ImpressionView'
 import { IconTransition } from '~/components/universal/IconTransition'
 import { ImageTagPreview } from '~/components/universal/ImageTagPreview'
 import { Markdown } from '~/components/universal/Markdown'
 import { socketClient } from '~/socket'
-import type { Id } from '~/store/helper/structure'
 import { apiClient } from '~/utils/client'
 
 import { openCommentMessage } from '.'
-import { useStore } from '../../../store'
 import { Avatar } from './avatar'
 import { CommentBox } from './box'
 import { Comment } from './comment'
@@ -37,9 +39,9 @@ import { Empty } from './empty'
 import styles from './index.module.css'
 import { CommentAtRender } from './renderers/comment-at'
 
-export const Comments: FC = observer(() => {
-  const { commentStore } = useStore()
-  const { comments } = commentStore
+type Id = string
+export const Comments: FC = memo(() => {
+  const comments = useCommentCollection((state) => state.comments)
   if (comments.length === 0) {
     return <Empty />
   }
@@ -47,9 +49,8 @@ export const Comments: FC = observer(() => {
   return createElement(CommentList)
 })
 
-const CommentList: FC = observer(() => {
-  const { commentStore } = useStore()
-  const { comments } = commentStore
+const CommentList: FC = memo(() => {
+  const comments = useCommentCollection((state) => state.comments)
 
   return (
     <BottomUpTransitionView
@@ -65,16 +66,39 @@ const CommentList: FC = observer(() => {
   )
 })
 
-const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
+const SingleComment: FC<{ id: string }> = ({ id, children }) => {
   const [replyId, setReplyId] = useState('')
-  const { userStore } = useStore()
-  const { isLogged: logged, name: masterName, master } = userStore
-  const { avatar: masterAvatar } = master || {}
+  const {
+    avatar: masterAvatar,
+    name: masterName,
+    logged,
+  } = useUserStore<{
+    avatar: string
+    name: string
+    logged: boolean
+  }>(
+    (state) => ({
+      avatar: state.master?.avatar || '',
+      name: state.master?.name || '',
+      logged: state.isLogged,
+    }),
+    shallow,
+  )
 
-  const { commentStore } = useStore()
-  const { commentIdMap, comments } = commentStore
+  const { commentIdMap, comments } = useCommentCollection<{
+    commentIdMap: Map<Id, CommentModel>
+    comments: CommentModel[]
+  }>(
+    (state) => ({
+      commentIdMap: state.data,
+      comments: state.comments,
+    }),
+    shallow,
+  )
 
-  const comment = commentIdMap.get(id)!
+  const commentCollection = useCommentCollection.getState()
+
+  const comment: CommentModelWithHighlight = commentIdMap.get(id)!
 
   const [sure, setSure] = useState<null | Id>(null)
 
@@ -93,7 +117,7 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
         success()
 
         if (!socketClient.socket.connected) {
-          commentStore.addComment(data)
+          commentCollection.addComment(data)
         }
         setReplyId('')
       } catch (err) {
@@ -109,7 +133,7 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
       await apiClient.comment.proxy(id).delete()
 
       message.success('删除成功~')
-      commentStore.deleteComment(id)
+      commentCollection.deleteComment(id)
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
@@ -178,16 +202,16 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
     })
 
     if (nextPinStatus) {
-      commentStore.pinComment(comment.id)
+      commentCollection.pinComment(comment.id)
     } else {
-      commentStore.unPinComment(comment.id)
+      commentCollection.unPinComment(comment.id)
     }
   }, [comment, comments])
 
   return (
     <Comment
       whispers={comment.isWhispers}
-      // @ts-expect-error
+      // @ts-ignore
       location={comment.location}
       key={comment.id}
       data-comment-id={comment.id}
@@ -305,10 +329,9 @@ const SingleComment: FC<{ id: string }> = observer(({ id, children }) => {
       {children}
     </Comment>
   )
-})
-const InnerCommentList = observer<{ id: string }>(({ id }) => {
-  const { commentStore } = useStore()
-  const { commentIdMap } = commentStore
+}
+const InnerCommentList = memo<{ id: string }>(({ id }) => {
+  const commentIdMap = useCommentCollection((state) => state.data)
 
   const comment = commentIdMap.get(id)
 

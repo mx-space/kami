@@ -1,13 +1,13 @@
-import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
+import { memo } from 'react'
+import { shallow } from 'zustand/shallow'
 
 import { Divider } from '@mx-space/kami-design/components/Divider'
 
-import { store } from '~/store'
+import { usePostCollection } from '~/atoms/collections/post'
 
-export const PostRelated = observer<{ id: string }>((props) => {
-  const posts = store.postStore
-  const post = posts.get(props.id)
+export const PostRelated = memo<{ id: string }>((props) => {
+  const post = usePostCollection((state) => state.data.get(props.id), shallow)
   if (!post) {
     return null
   }

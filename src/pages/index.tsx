@@ -1,5 +1,4 @@
 import omit from 'lodash-es/omit'
-import { observer } from 'mobx-react-lite'
 import type { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import React, { createContext, useContext, useEffect, useMemo } from 'react'
@@ -78,4 +77,4 @@ IndexView.getInitialProps = async () => {
   return omit(aggregateData, ['says']) as any
 }
 
-export default observer(IndexView)
+export default IndexView

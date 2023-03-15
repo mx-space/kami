@@ -50,7 +50,9 @@ export class ErrorBoundary extends PureComponent<{
         ) : (
           <div className="text-center mt-6">
             <div className="leading-6">渲染报错</div>
-            <pre>{JSON.stringify(errorInfo, null, 2)}</pre>
+            <pre className="max-w-80vw break-all">
+              {JSON.stringify(errorInfo, null, 2)}
+            </pre>
           </div>
         )
       )

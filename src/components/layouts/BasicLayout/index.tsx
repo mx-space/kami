@@ -1,7 +1,7 @@
-import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import React, {
   Suspense,
+  memo,
   useCallback,
   useEffect,
   useRef,
@@ -16,11 +16,13 @@ import {
   PhSunBold,
 } from '@mx-space/kami-design/components/Icons/layout'
 
+import { useActionStore } from '~/atoms/action'
+import { useAppStore } from '~/atoms/app'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useThemeBackground } from '~/hooks/use-kami'
 import { useMediaToggle } from '~/hooks/use-media-toggle'
-import { useRootStore } from '~/provider'
+import { useDetectIsNarrowThanLaptop } from '~/hooks/use-viewport'
 import { springScrollToElement } from '~/utils/spring'
 
 const Header = React.lazy(() =>
@@ -55,18 +57,20 @@ const MusicMiniPlayerStoreControlled = React.lazy(() =>
     default: mo.MusicMiniPlayerStoreControlled,
   })),
 )
-export const BasicLayout: FC = observer(({ children }) => {
-  const { appStore, actionStore } = useRootStore()
-
+export const BasicLayout: FC = memo(({ children }) => {
   const { toggle, value: isDark } = useMediaToggle()
 
   useThemeBackground()
+  const isNarrowThanLaptop = useDetectIsNarrowThanLaptop()
+  const isMobile = useAppStore((state) => state.viewport.mobile)
+  const colorMode = useAppStore((state) => state.colorMode)
 
   const [showNotice, setNotice] = useState(false)
   const [tip, setTip] = useState({
     text: '白天模式',
     icon: <PhSunBold />,
   })
+
   const handleChangeColorMode = useCallback(() => {
     toggle()
 
@@ -80,12 +84,12 @@ export const BasicLayout: FC = observer(({ children }) => {
   }, [isDark, toggle])
   const actionId = useRef('basic')
   useEffect(() => {
+    const actionStore = useActionStore.getState()
     actionStore.removeActionById(actionId.current)
-    if (appStore.isNarrowThanLaptop) {
+    if (isNarrowThanLaptop) {
       const action = {
         id: actionId.current,
-        icon:
-          appStore.colorMode === 'dark' ? <PhSunBold /> : <BiMoonStarsFill />,
+        icon: colorMode === 'dark' ? <PhSunBold /> : <BiMoonStarsFill />,
         onClick: handleChangeColorMode,
       }
       actionStore.appendActions(action)
@@ -95,12 +99,7 @@ export const BasicLayout: FC = observer(({ children }) => {
         actionStore.removeActionById(actionId.current)
       }
     }
-  }, [
-    actionStore,
-    appStore.colorMode,
-    appStore.isNarrowThanLaptop,
-    handleChangeColorMode,
-  ])
+  }, [colorMode, isNarrowThanLaptop, handleChangeColorMode])
 
   useEffect(() => {
     if (location.hash) {
@@ -114,7 +113,7 @@ export const BasicLayout: FC = observer(({ children }) => {
   }, [])
   const { event } = useAnalyze()
   return (
-    <ModalStackProvider isMobileViewport={appStore.viewport.mobile}>
+    <ModalStackProvider isMobileViewport={isMobile}>
       <div className="inset-0 fixed bg-fixed pointer-events-none transition-opacity duration-500 ease transform-gpu">
         <div className="bg absolute inset-0 transform-gpu" />
       </div>
@@ -123,6 +122,7 @@ export const BasicLayout: FC = observer(({ children }) => {
       </Suspense>
 
       <div className="app-content">{children}</div>
+
       <ShortcutProvider
         options={
           useRef<ShortcutOptions>({
@@ -140,9 +140,8 @@ export const BasicLayout: FC = observer(({ children }) => {
       <Suspense fallback={null}>
         <Footer />
         <MusicMiniPlayerStoreControlled />
-        {!appStore.isNarrowThanLaptop && (
-          <LampSwitch onClick={handleChangeColorMode} />
-        )}
+
+        {!isNarrowThanLaptop && <LampSwitch onClick={handleChangeColorMode} />}
 
         <ColorModeNoticePanel
           {...tip}

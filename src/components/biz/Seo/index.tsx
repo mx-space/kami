@@ -1,14 +1,12 @@
 import merge from 'lodash-es/merge'
-import { observer } from 'mobx-react-lite'
 import type { NextSeoProps } from 'next-seo'
 import { NextSeo } from 'next-seo'
 import type { OpenGraph } from 'next-seo/lib/types'
 import type { FC } from 'react'
+import { memo } from 'react'
 
 import { useInitialData } from '~/hooks/use-initial-data'
 import { useRandomImage } from '~/hooks/use-kami'
-
-import { useStore } from '../../../store'
 
 type SEOProps = {
   title: string
@@ -16,9 +14,9 @@ type SEOProps = {
   openGraph?: { type?: 'website' | 'article' } & OpenGraph
 } & NextSeoProps
 
-export const SEO: FC<SEOProps> = observer((props) => {
+export const SEO: FC<SEOProps> = memo((props) => {
   const { title, description, openGraph, ...rest } = props
-  const { userStore } = useStore()
+
   const {
     url: { webUrl },
     seo,
@@ -41,10 +39,9 @@ export const SEO: FC<SEOProps> = observer((props) => {
             type: 'article',
             locale: 'zh-cn',
             site_name: seo.title || '',
-            description:
-              description || seo.description || userStore.introduce || '',
+            description: description || seo.description || user.introduce || '',
             article: {
-              authors: [user.name || (userStore.name as string)],
+              authors: [user.name],
             },
             title: Title,
             images: [
@@ -56,12 +53,7 @@ export const SEO: FC<SEOProps> = observer((props) => {
           } as OpenGraph,
           openGraph,
         ),
-        description:
-          description ||
-          seo.description ||
-          user.introduce ||
-          userStore.introduce ||
-          '',
+        description: description || seo.description || user.introduce || '',
         twitter: {
           cardType: 'summary',
           site: webUrl,

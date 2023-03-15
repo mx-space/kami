@@ -1,6 +1,5 @@
 import { clsx } from 'clsx'
 import throttle from 'lodash-es/throttle'
-import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC, KeyboardEventHandler } from 'react'
 import { memo, useCallback, useEffect, useRef, useState } from 'react'
@@ -12,10 +11,11 @@ import { IonSearch } from '@mx-space/kami-design/components/Icons/layout'
 import type { OverlayProps } from '@mx-space/kami-design/components/Overlay'
 import { Overlay } from '@mx-space/kami-design/components/Overlay'
 
+import { useActionStore } from '~/atoms/action'
+import { useAppStore } from '~/atoms/app'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import useDebounceValue from '~/hooks/use-debounce-value'
-import { useStore } from '~/store'
 import { $axios, apiClient } from '~/utils/client'
 
 import styles from './index.module.css'
@@ -240,14 +240,11 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
     </div>
   )
 })
-export const SearchOverlay: FC<OverlayProps> = observer((props) => {
+export const SearchOverlay: FC<OverlayProps> = memo((props) => {
   const { ...rest } = props
 
-  const {
-    appUIStore: {
-      viewport: { mobile },
-    },
-  } = useStore()
+  const isMobile = useAppStore((state) => state.viewport.mobile)
+
   useShortcut(
     'Escape',
     [Modifier.None],
@@ -259,8 +256,10 @@ export const SearchOverlay: FC<OverlayProps> = observer((props) => {
   )
   return (
     <Overlay
-      center={!mobile}
-      standaloneWrapperClassName={clsx(mobile && 'items-start justify-center')}
+      center={!isMobile}
+      standaloneWrapperClassName={clsx(
+        isMobile && 'items-start justify-center',
+      )}
       {...rest}
     >
       <div
@@ -290,7 +289,6 @@ export const SearchHotKey: FC = memo(() => {
 
 export const SearchFAB = memo(() => {
   const [show, setShow] = useState(false)
-  const { actionStore } = useStore()
   const actionId = useRef('search-fab')
   const { event } = useAnalyze()
   useEffect(() => {
@@ -302,6 +300,7 @@ export const SearchFAB = memo(() => {
     }
   }, [show])
   useEffect(() => {
+    const actionStore = useActionStore.getState()
     actionStore.removeActionById(actionId.current)
     const action = {
       icon: <IonSearch />,

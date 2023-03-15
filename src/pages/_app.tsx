@@ -11,16 +11,14 @@ import { useMemo } from 'react'
 import { ProviderComposer } from '~/components/app/Composer'
 import { NoDataErrorView } from '~/components/app/Error/no-data'
 import { ErrorBoundary } from '~/components/app/ErrorBoundary'
+import { AppLayout } from '~/components/layouts/AppLayout'
 import { BasicLayout } from '~/components/layouts/BasicLayout'
 import { DebugLayout } from '~/components/layouts/DebugLayout'
 import type { InitialDataType } from '~/provider/initial-data'
 import { InitialContextProvider } from '~/provider/initial-data'
-import { RootStoreProvider } from '~/provider/root-store'
 import { SWRProvider } from '~/provider/swr'
+import { attachRequestProxy, fetchInitialData } from '~/utils/app'
 import { isDev } from '~/utils/env'
-
-import { AppLayout } from '../components/layouts/AppLayout'
-import { attachRequestProxy, fetchInitialData } from '../utils/app'
 
 interface DataModel {
   initData: InitialDataType
@@ -45,7 +43,6 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
 
   const AppProviders = useMemo(
     () => [
-      <RootStoreProvider key="RootStoreProvider" />,
       <InitialContextProvider value={initData} key="InitialContextProvider" />,
     ],
     [initData],
@@ -63,11 +60,9 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
   }, [Component, initData.aggregateData, pageProps])
   if (router.route.startsWith('/dev') && isDev) {
     return (
-      <RootStoreProvider>
-        <DebugLayout>
-          <Component {...pageProps} />
-        </DebugLayout>
-      </RootStoreProvider>
+      <DebugLayout>
+        <Component {...pageProps} />
+      </DebugLayout>
     )
   }
   return <ProviderComposer contexts={AppProviders}>{Inner}</ProviderComposer>

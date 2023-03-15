@@ -1,6 +1,4 @@
 import { sanitizeUrl } from 'markdown-to-jsx'
-import { reaction } from 'mobx'
-import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 
@@ -9,8 +7,8 @@ import { ImageLazy } from '@mx-space/kami-design/components/Image'
 import { calculateDimensions } from '@mx-space/kami-design/components/Image/utils/calc-image'
 import { ImageSizeMetaContext } from '@mx-space/kami-design/contexts/image-size'
 
+import { useAppStore } from '~/atoms/app'
 import { useIsClient } from '~/hooks/use-is-client'
-import { useStore } from '~/store'
 
 const getContainerSize = () => {
   const $wrap = document.getElementById('write')
@@ -24,38 +22,38 @@ const getContainerSize = () => {
 /**
  * This Component only can render in browser.
  */
-const _Image: FC<{ src: string; alt?: string }> = observer(({ src, alt }) => {
-  const { appUIStore } = useStore()
+const _Image: FC<{ src: string; alt?: string }> = ({ src, alt }) => {
   const imageRef = useRef<ImageLazyRef>(null)
   useEffect(() => {
-    const disposer = reaction(
-      () => appUIStore.viewport.w | appUIStore.viewport.h,
-      () => {
-        if (imageRef.current?.status === 'loaded') {
-          disposer()
+    let prevViewport = {} as any
 
-          return
-        }
-        setMaxWidth(getContainerSize())
-      },
-    )
+    const disposer = useAppStore.subscribe((state) => {
+      const { viewport } = state
+      if (prevViewport.w === viewport.w && prevViewport.h === viewport.h) {
+        return
+      }
+      prevViewport = viewport
+      if (imageRef.current?.status === 'loaded') {
+        disposer()
+        return
+      }
+      setMaxWidth(getContainerSize())
+    })
 
-    return () => {
-      disposer()
-    }
+    return disposer
   }, [])
   const images = useContext(ImageSizeMetaContext)
 
-  const isPrintMode = appUIStore.mediaType === 'print'
+  const isPrintMode = useAppStore((state) => state.mediaType === 'print')
 
   const [maxWidth, setMaxWidth] = useState(getContainerSize())
 
   // 因为有动画开始不能获取到大小 , 直到获取到 container 的大小
   useEffect(() => {
-    let raf = requestAnimationFrame(function a() {
+    let raf = requestAnimationFrame(function $() {
       const size = getContainerSize()
       if (!size) {
-        requestAnimationFrame(a)
+        requestAnimationFrame($)
       } else {
         setMaxWidth(size)
       }
@@ -99,7 +97,7 @@ const _Image: FC<{ src: string; alt?: string }> = observer(({ src, alt }) => {
       overflowHidden
     />
   )
-})
+}
 const style = { padding: '1rem 0' }
 export const MImage: FC<
   React.DetailedHTMLProps<

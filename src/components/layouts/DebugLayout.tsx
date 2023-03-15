@@ -1,21 +1,16 @@
-import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import { useEffect } from 'react'
+import { memo, useEffect } from 'react'
 
 import { ModalStackProvider } from '@mx-space/kami-design/components/Modal'
 
-import { store, useStore } from '~/store'
+import { useAppStore } from '~/atoms/app'
 
-export const DebugLayout: FC = observer((props) => {
+export const DebugLayout: FC = memo((props) => {
   useEffect(() => {
-    store.appUIStore.updateViewport()
-
-    window.onresize = () => {
-      store.appUIStore.updateViewport()
-    }
+    useAppStore.getState().updateViewport()
   }, [])
 
-  const { mobile } = useStore().appUIStore.viewport
+  const mobile = useAppStore((state) => state.viewport.mobile)
 
   return (
     <ModalStackProvider isMobileViewport={mobile}>

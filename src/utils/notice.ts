@@ -1,10 +1,11 @@
 import React from 'react'
 import { toast } from 'react-toastify'
 
+import { useAppStore } from '~/atoms/app'
+import { useUserStore } from '~/atoms/user'
 import { ToastCard } from '~/components/widgets/Toast/card'
 import { TrackerAction } from '~/constants/tracker'
 import { emitTrackerEvent } from '~/hooks/use-analyze'
-import { store } from '~/store'
 
 import { isDev, isServerSide } from './env'
 
@@ -93,7 +94,7 @@ export class Notice {
           const notification = new Notification(title, {
             body: text,
             image:
-              store.userStore.master?.avatar ||
+              useUserStore.getState().master?.avatar ||
               `${location.origin}/manifest-icon-192.png`,
 
             ...options,
@@ -133,6 +134,8 @@ export class Notice {
       label: '内嵌通知触发',
     })
 
+    const viewport = useAppStore.getState().viewport
+    const isPadOrMobile = viewport.pad || viewport.mobile
     const id = toast(
       React.createElement(ToastCard, {
         text,
@@ -148,7 +151,7 @@ export class Notice {
       {
         autoClose: duration,
         closeOnClick: false,
-        position: store.appUIStore.isPadOrMobile ? 'top-center' : 'top-right',
+        position: isPadOrMobile ? 'top-center' : 'top-right',
       },
     )
   }

@@ -1,10 +1,10 @@
-import { observer } from 'mobx-react-lite'
 import { NextSeo } from 'next-seo'
 import type { FC } from 'react'
 import { useEffect, useInsertionEffect } from 'react'
 
 import type { AggregateRoot } from '@mx-space/api-client'
 
+import { useUserStore } from '~/atoms/user'
 import { MetaFooter } from '~/components/biz/Meta/footer'
 import { DynamicHeadMeta } from '~/components/biz/Meta/head'
 import Loader from '~/components/universal/Loader'
@@ -18,11 +18,7 @@ import { useScreenMedia } from '~/hooks/use-screen-media'
 import { printToConsole } from '~/utils/console'
 import { loadStyleSheet } from '~/utils/load-script'
 
-import { useStore } from '../../store'
-
-export const AppLayout: FC = observer((props) => {
-  const { userStore: master } = useStore()
-
+export const AppLayout: FC = (props) => {
   useScreenMedia()
   const { check: checkBrowser } = useCheckOldBrowser()
   const { check: checkLogin } = useCheckLogged()
@@ -42,7 +38,7 @@ export const AppLayout: FC = observer((props) => {
       const { user } = initialData
       checkLogin()
       // set user
-      master.setUser(user)
+      useUserStore.getState().setUser(user)
       import('../../socket/index').then(({ socketClient }) => {
         socketClient.initIO()
       })
@@ -67,4 +63,4 @@ export const AppLayout: FC = observer((props) => {
       <MetaFooter />
     </>
   )
-})
+}

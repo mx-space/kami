@@ -13,6 +13,7 @@ import {
 import { IcTwotoneSignpost } from '@mx-space/kami-design/components/Icons/menu-icon'
 import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
+import { withNoSSR } from '~/components/biz/HoC/no-ssr'
 import { LikeButton } from '~/components/universal/LikeButton'
 import { NoticePanel } from '~/components/universal/Notice'
 import {
@@ -22,7 +23,6 @@ import {
 import { useRandomImage } from '~/hooks/use-kami'
 import { apiClient } from '~/utils/client'
 import { stopEventDefault } from '~/utils/dom'
-import { NoSSRWrapper } from '~/utils/no-ssr'
 
 import type { SectionNewsProps } from './SectionNews'
 import SectionNews, { SectionCard } from './SectionNews'
@@ -175,7 +175,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
   )
 }
 
-export const HomeSections = NoSSRWrapper(_Sections)
+export const HomeSections = withNoSSR(_Sections)
 
 function buildRoute<T extends { id: string } & { nid?: number }>(
   type: keyof typeof ContentType,

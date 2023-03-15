@@ -1,34 +1,33 @@
-import { observer } from 'mobx-react-lite'
+import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import React, { Fragment, useEffect, useMemo, useRef } from 'react'
 import RemoveMarkdown from 'remove-markdown'
+import { shallow } from 'zustand/shallow'
 
-import type { PageModel } from '@mx-space/api-client'
+import { Loading } from '@mx-space/kami-design'
 import { ImageSizeMetaContext } from '@mx-space/kami-design/contexts/image-size'
 
-import { buildStoreDataLoadableView } from '~/components/app/LoadableView'
+import { usePageCollection } from '~/atoms/collections/page'
+import { wrapperNextPage } from '~/components/app/WrapperNextPage'
+import { Seo } from '~/components/biz/Seo'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { Markdown } from '~/components/universal/Markdown'
-import { useHeaderMeta, useHeaderShare } from '~/hooks/use-header-meta'
+import { useSetHeaderMeta, useSetHeaderShare } from '~/hooks/use-header-meta'
 import { useInitialData } from '~/hooks/use-initial-data'
 import { useJumpToSimpleMarkdownRender } from '~/hooks/use-jump-to-render'
-import { store, useStore } from '~/store'
 import { imagesRecord2Map } from '~/utils/images'
 import { appendStyle } from '~/utils/load-script'
 import { springScrollToTop } from '~/utils/spring'
-import { noop } from '~/utils/utils'
 
-import { Seo } from '../../components/biz/Seo'
 import styles from './index.module.css'
 
 const CommentLazy = dynamic(() =>
   import('~/components/widgets/Comment').then((mo) => mo.CommentLazy),
 )
 
-const PageView: PageOnlyProps = observer((props) => {
-  const { pageStore } = useStore()
-  const page = pageStore.get(props.id) || (noop as PageModel)
+const PageView: PageOnlyProps = (props) => {
+  const page = usePageCollection((state) => state.data.get(props.id), shallow)!
   const { title, subtitle, text } = page
 
   useEffect(() => {
@@ -41,8 +40,8 @@ const PageView: PageOnlyProps = observer((props) => {
     }
   }, [page.meta?.style])
 
-  useHeaderMeta(page.title, page.subtitle || '')
-  useHeaderShare(page.title)
+  useSetHeaderMeta(page.title, page.subtitle || '')
+  useSetHeaderShare(page.title)
   useJumpToSimpleMarkdownRender(page.id)
 
   useEffect(() => {
@@ -118,12 +117,23 @@ const PageView: PageOnlyProps = observer((props) => {
       />
     </ArticleLayout>
   )
-})
-const PP = buildStoreDataLoadableView(store.pageStore, PageView)
-PP.getInitialProps = async (ctx) => {
+}
+
+const NextPageView: NextPage = (props) => {
+  const { id } = props as any
+  const page = usePageCollection((state) => state.data.get(id), shallow)
+
+  if (!page) {
+    return <Loading />
+  }
+
+  return <PageView id={id} />
+}
+
+NextPageView.getInitialProps = async (ctx) => {
   const { page: slug } = ctx.query
-  const data = await store.pageStore.fetchBySlug(slug as string)
+  const data = await usePageCollection.getState().fetchBySlug(slug as string)
   return data
 }
 
-export default PP
+export default wrapperNextPage(NextPageView)

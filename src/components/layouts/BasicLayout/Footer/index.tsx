@@ -1,17 +1,16 @@
-import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import type { FC } from 'react'
 import React, { Fragment, useCallback } from 'react'
 
 import Package from '~/../package.json'
+import { useAppStore } from '~/atoms/app'
+import { withNoSSR } from '~/components/biz/HoC/no-ssr'
 import { ImpressionView } from '~/components/biz/ImpressionView'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useInitialData, useThemeConfig } from '~/hooks/use-initial-data'
 import { useFooterBackground } from '~/hooks/use-kami'
-import { NoSSRWrapper } from '~/utils/no-ssr'
 
-import { useStore } from '../../../../store'
 import { FooterActions } from './actions'
 import styles from './index.module.css'
 
@@ -27,8 +26,7 @@ const FooterContainer = (props) => {
   )
 }
 
-export const FooterContent: FC = observer(() => {
-  const { gatewayStore } = useStore()
+export const FooterContent: FC = () => {
   const thisYear = new Date().getFullYear()
   const initialData = useInitialData()
   const name = initialData.user.name
@@ -103,13 +101,18 @@ export const FooterContent: FC = observer(() => {
         </p>
 
         <p className={'mr-12 phone:mr-0'}>
-          {gatewayStore.online || 1} 个小伙伴正在浏览
+          <GatewayCount /> 个小伙伴正在浏览
         </p>
       </div>
     </div>
   )
-})
-export const Footer = NoSSRWrapper(() => {
+}
+
+const GatewayCount = () => {
+  const gatewayCount = useAppStore((state) => state.gatewayOnline)
+  return <>{gatewayCount || 1}</>
+}
+export const Footer = withNoSSR(() => {
   return (
     <FooterContainer>
       <FooterContent />

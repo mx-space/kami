@@ -1,14 +1,15 @@
 import dayjs from 'dayjs'
 import isEqual from 'lodash-es/isEqual'
-import { toJS } from 'mobx'
-import { observer } from 'mobx-react-lite'
+import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { message } from 'react-message-popup'
+import { shallow } from 'zustand/shallow'
 
 import type { PostModel } from '@mx-space/api-client'
+import { Loading } from '@mx-space/kami-design'
 import { Banner } from '@mx-space/kami-design/components/Banner'
 import {
   GgCoffee,
@@ -21,7 +22,8 @@ import {
 } from '@mx-space/kami-design/components/Icons/for-post'
 import { ImageSizeMetaContext } from '@mx-space/kami-design/contexts/image-size'
 
-import { buildStoreDataLoadableView } from '~/components/app/LoadableView'
+import { usePostCollection } from '~/atoms/collections/post'
+import type { ModelWithDeleted } from '~/atoms/collections/utils/base'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import Outdate from '~/components/biz/Outdate'
 import { Seo } from '~/components/biz/Seo'
@@ -31,12 +33,11 @@ import { Markdown } from '~/components/universal/Markdown'
 import type { ActionProps } from '~/components/widgets/ArticleAction'
 import { SearchFAB } from '~/components/widgets/Search'
 import { SubscribeBell } from '~/components/widgets/SubscribeBell'
-import { useHeaderMeta, useHeaderShare } from '~/hooks/use-header-meta'
+import { useSetHeaderMeta, useSetHeaderShare } from '~/hooks/use-header-meta'
 import { useInitialData, useThemeConfig } from '~/hooks/use-initial-data'
 import { useIsClient } from '~/hooks/use-is-client'
 import { useJumpToSimpleMarkdownRender } from '~/hooks/use-jump-to-render'
 import { useBackgroundOpacity } from '~/hooks/use-kami'
-import { store, useStore } from '~/store'
 import { apiClient } from '~/utils/client'
 import { isLikedBefore, setLikeId } from '~/utils/cookie'
 import { imagesRecord2Map } from '~/utils/images'
@@ -68,8 +69,7 @@ const storeThumbsUpCookie = setLikeId
 
 const isThumbsUpBefore = isLikedBefore
 
-const useUpdatePost = (id: string) => {
-  const post = store.postStore.get(id)
+const useUpdatePost = (post: ModelWithDeleted<PostModel>) => {
   const beforeModel = useRef<PostModel>()
   const router = useRouter()
 
@@ -77,7 +77,7 @@ const useUpdatePost = (id: string) => {
     const before = beforeModel.current
 
     if (!before && post) {
-      beforeModel.current = toJS(post)
+      beforeModel.current = { ...post }
       return
     }
     if (!before || !post) {
@@ -108,7 +108,7 @@ const useUpdatePost = (id: string) => {
       message.info('文章已更新')
     }
 
-    beforeModel.current = toJS(post)
+    beforeModel.current = { ...post }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     post?.id,
@@ -122,9 +122,11 @@ const useUpdatePost = (id: string) => {
   ])
 }
 
-export const PostView: PageOnlyProps = observer((props) => {
-  const { postStore } = useStore()
-  const post: PostModel = postStore.get(props.id) || noop
+export const PostView: PageOnlyProps = (props) => {
+  const post = usePostCollection(
+    (state) => state.data.get(props.id) || (noop as PostModel),
+    shallow,
+  )
 
   const [actions, setAction] = useState({} as ActionProps)
 
@@ -201,7 +203,7 @@ export const PostView: PageOnlyProps = observer((props) => {
               message.success('感谢支持！')
 
               storeThumbsUpCookie(post.id)
-              post.count.like = post.count.like + 1
+              usePostCollection.getState().up(post.id)
             })
           },
         },
@@ -223,12 +225,12 @@ export const PostView: PageOnlyProps = observer((props) => {
   ])
 
   // header meta
-  useHeaderMeta(post.title, post.category.name)
-  useHeaderShare(post.title)
-  useUpdatePost(post.id)
+  useSetHeaderMeta(post.title, post.category.name)
+  useSetHeaderShare(post.title)
+  useUpdatePost(post)
   useBackgroundOpacity(0.2)
   useJumpToSimpleMarkdownRender(post.id)
-  useHeaderShare(post.title)
+  useSetHeaderShare(post.title)
 
   const isClientSide = useIsClient()
 
@@ -315,16 +317,25 @@ export const PostView: PageOnlyProps = observer((props) => {
       </ArticleLayout>
     </>
   )
-})
+}
 
-const PP = buildStoreDataLoadableView(store.postStore, PostView)
+const NextPostView: NextPage = (props) => {
+  const { id } = props as any
+  const post = usePostCollection((state) => state.data.get(id), shallow)
 
-PP.getInitialProps = async (ctx) => {
+  if (!post) {
+    return <Loading />
+  }
+
+  return <PostView id={id} />
+}
+
+NextPostView.getInitialProps = async (ctx) => {
   const { query } = ctx
   const { category, slug } = query as any
-  const data = await store.postStore.fetchBySlug(category, slug)
+  const data = await usePostCollection.getState().fetchBySlug(category, slug)
 
   return data
 }
 
-export default wrapperNextPage(PP)
+export default wrapperNextPage(NextPostView)

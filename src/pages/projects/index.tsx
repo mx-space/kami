@@ -5,10 +5,10 @@ import { CodiconGithubInverted } from '@mx-space/kami-design/components/Icons/me
 import { Loading } from '@mx-space/kami-design/components/Loading'
 import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
+import { useUserStore } from '~/atoms/user'
 import { ProjectList } from '~/components/in-page/Project/list'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
-import { useStore } from '~/store'
 import { apiClient } from '~/utils/client'
 
 import { SEO } from '../../components/biz/Seo'
@@ -20,9 +20,10 @@ const ProjectView = () => {
     }),
   )
 
-  const { userStore } = useStore()
   const { event } = useAnalyze()
-  const githubUsername = userStore.master?.socialIds?.github
+  const githubUsername = useUserStore(
+    (state) => state.master?.socialIds?.github,
+  )
   const trackerClick = useCallback(() => {
     event({
       action: TrackerAction.Click,

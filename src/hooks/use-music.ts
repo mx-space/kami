@@ -2,14 +2,14 @@ import { useEffect, useMemo } from 'react'
 
 import type { NoteMusicRecord } from '@mx-space/api-client'
 
-import { useStore } from '~/store'
+import { useMusicStore } from '~/atoms/music'
 
 export const useMusic = (musicList: number[] | null) => {
-  const { musicStore } = useStore()
   useEffect(() => {
     if (!musicList) {
       return
     }
+    const musicStore = useMusicStore.getState()
     if (musicList.length === 0) {
       musicStore.empty()
       return

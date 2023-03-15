@@ -1,14 +1,15 @@
-import { observer } from 'mobx-react-lite'
 import dynamic from 'next/dynamic'
 import type { FC } from 'react'
-import { useEffect } from 'react'
+import { memo, useEffect } from 'react'
 
 import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
 import { FluentList16Filled } from '@mx-space/kami-design/components/Icons/shared'
 import { useModalStack } from '@mx-space/kami-design/components/Modal'
 
+import { useActionStore } from '~/atoms/action'
+import { useAppStore } from '~/atoms/app'
 import type { TocProps } from '~/components/widgets/Toc'
-import { useStore } from '~/store'
+import { useDetectIsNarrowThanLaptop } from '~/hooks/use-viewport'
 
 const Toc = dynamic(
   () => import('~/components/widgets/Toc').then((m) => m.Toc),
@@ -17,23 +18,19 @@ const Toc = dynamic(
   },
 )
 
-export const MarkdownToc: FC<TocProps> = observer((props) => {
-  const { appStore, actionStore } = useStore()
-  const {
-    isNarrowThanLaptop,
-    viewport: { mobile },
-  } = appStore
+export const MarkdownToc: FC<TocProps> = memo((props) => {
   const { present } = useModalStack()
-
+  const isNarrowThanLaptop = useDetectIsNarrowThanLaptop()
+  const isMobile = useAppStore((state) => state.viewport.mobile)
   useEffect(() => {
     if (!isNarrowThanLaptop || props.headings.length == 0) {
       return
     }
-
+    const actionStore = useActionStore.getState()
     const InnerToc = () => <Toc {...props} useAsWeight />
     const id = 'toc'
     actionStore.appendActions({
-      element: !mobile ? (
+      element: !isMobile ? (
         <FloatPopover
           placement="left-end"
           strategy="fixed"
@@ -49,7 +46,7 @@ export const MarkdownToc: FC<TocProps> = observer((props) => {
           <InnerToc />
         </FloatPopover>
       ) : undefined,
-      icon: mobile ? <FluentList16Filled /> : null,
+      icon: isMobile ? <FluentList16Filled /> : null,
       id,
       onClick() {
         present({
@@ -65,6 +62,6 @@ export const MarkdownToc: FC<TocProps> = observer((props) => {
     return () => {
       actionStore.removeActionById(id)
     }
-  }, [actionStore, isNarrowThanLaptop, mobile, present, props])
+  }, [isNarrowThanLaptop, isMobile, present, props])
   return !isNarrowThanLaptop ? <Toc {...props} /> : null
 })

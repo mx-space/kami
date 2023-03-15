@@ -1,38 +1,39 @@
 import classNames from 'clsx'
-import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import { memo, useEffect, useMemo, useRef, useState } from 'react'
+import { shallow } from 'zustand/shallow'
 
 import { IcBaselineMenuOpen } from '@mx-space/kami-design/components/Icons/layout'
 
+import { useAppStore } from '~/atoms/app'
+import { useIsLogged } from '~/atoms/user'
 import { CustomLogo as Logo } from '~/components/universal/Logo'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
+import { useGetHeaderMeta } from '~/hooks/use-header-meta'
 import { useInitialData, useKamiConfig } from '~/hooks/use-initial-data'
 import { useIsClient } from '~/hooks/use-is-client'
 import { useSingleAndDoubleClick } from '~/hooks/use-single-double-click'
-import { useStore } from '~/store'
+import { useIsOverPostTitleHeight } from '~/hooks/use-viewport'
 
 import { HeaderActionBasedOnRouterPath } from './HeaderActionBasedOnRouterPath'
+import { HeaderBase } from './HeaderBase'
 import { HeaderDrawer } from './HeaderDrawer'
 import { HeaderDrawerNavigation } from './HeaderDrawerNavigation'
 import { MenuList } from './HeaderMenuList'
 import styles from './index.module.css'
 
-export const Header: FC = observer(() => {
+export const Header: FC = () => {
   const {
     seo: { title, description },
   } = useInitialData()
   const {
     site: { subtitle },
   } = useKamiConfig()
-  const {
-    appStore,
-    userStore: { isLogged, url },
-  } = useStore()
+  const isLogged = useIsLogged()
 
-  const { isPadOrMobile, headerNav } = appStore
+  const headerNav = useGetHeaderMeta()
 
   const router = useRouter()
   const { event } = useAnalyze()
@@ -46,6 +47,7 @@ export const Header: FC = observer(() => {
       })
     },
     () => {
+      const url = useAppStore.getState().appUrl
       if (isLogged && url?.adminUrl) {
         location.href = url.adminUrl
       } else {
@@ -55,18 +57,27 @@ export const Header: FC = observer(() => {
   )
 
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const appStore = useAppStore(
+    (state) => ({
+      scrollDirection: state.scrollDirection,
+      viewport: state.viewport,
+    }),
+    shallow,
+  )
+  const isOverPostTitleHeight = useIsOverPostTitleHeight()
   const showPageHeader = useMemo(
     () =>
       headerNav.show &&
       (appStore.scrollDirection == 'down' || appStore.viewport.mobile) &&
-      appStore.isOverPostTitleHeight,
+      isOverPostTitleHeight,
     [
       headerNav.show,
-      appStore.isOverPostTitleHeight,
+      isOverPostTitleHeight,
       appStore.scrollDirection,
       appStore.viewport.mobile,
     ],
   )
+
   // NOTE: fix `tab` focus element lead to header dislocation
   const appHeaderRef = useRef<HTMLDivElement>(null)
 
@@ -77,27 +88,13 @@ export const Header: FC = observer(() => {
   const isClient = useIsClient()
 
   const headerSubTitle = subtitle || description || ''
+
   // const headerSubTitle = ''
   if (!isClient) {
     return null
   }
-
   return (
-    <header
-      className={classNames(
-        styles['header'],
-        !appStore.headerNav.show &&
-          appStore.isOverFirstScreenHeight &&
-          appStore.viewport.mobile
-          ? styles['hide']
-          : null,
-      )}
-      style={
-        {
-          '--opacity': appStore.headerOpacity,
-        } as any
-      }
-    >
+    <HeaderBase>
       <nav
         className={classNames(
           styles['nav-container'],
@@ -148,19 +145,18 @@ export const Header: FC = observer(() => {
         </div>
         <HeaderMetaTitle title={headerNav.title} meta={headerNav.meta} />
       </nav>
-      {isPadOrMobile && (
-        <HeaderDrawer
-          show={drawerOpen}
-          onExit={() => {
-            setDrawerOpen(false)
-          }}
-        >
-          <HeaderDrawerNavigation />
-        </HeaderDrawer>
-      )}
-    </header>
+
+      <HeaderDrawer
+        show={drawerOpen}
+        onExit={() => {
+          setDrawerOpen(false)
+        }}
+      >
+        <HeaderDrawerNavigation />
+      </HeaderDrawer>
+    </HeaderBase>
   )
-})
+}
 
 const HeaderMetaTitle: FC<{
   title: string

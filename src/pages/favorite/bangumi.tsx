@@ -1,4 +1,3 @@
-import { observer } from 'mobx-react-lite'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { message } from 'react-message-popup'
@@ -7,10 +6,10 @@ import useSWR from 'swr'
 import { ImageLazy } from '@mx-space/kami-design/components/Image'
 import { Loading } from '@mx-space/kami-design/components/Loading'
 
-import { useStore } from '~/store'
+import { useUserStore } from '~/atoms/user'
+import { Seo } from '~/components/biz/Seo'
 import { apiClient } from '~/utils/client'
 
-import { Seo } from '../../components/biz/Seo'
 import styles from './bangumi.module.css'
 
 interface FavoriteBangumiType {
@@ -23,8 +22,7 @@ interface FavoriteBangumiType {
 }
 
 const BangumiView: NextPage = () => {
-  const { userStore } = useStore()
-  const master = userStore.master
+  const master = useUserStore((state) => !!state.master)
 
   const { data, isLoading } = useSWR(
     'bangumi',
@@ -92,4 +90,4 @@ const BangumiView: NextPage = () => {
   )
 }
 
-export default observer(BangumiView)
+export default BangumiView

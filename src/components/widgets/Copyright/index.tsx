@@ -1,10 +1,9 @@
 import dayjs from 'dayjs'
-import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 
 import { Divider } from '@mx-space/kami-design/components/Divider'
 
-import { useStore } from '~/store'
+import { useMasterName } from '~/atoms/user'
 
 import styles from './index.module.css'
 
@@ -14,11 +13,9 @@ export interface CopyrightProps {
   date?: string | null
 }
 
-export const Copyright: FC<CopyrightProps> = observer((props) => {
+export const Copyright: FC<CopyrightProps> = (props) => {
   const { title, link, date } = props
-  const {
-    userStore: { name },
-  } = useStore()
+  const name = useMasterName()
   return (
     <section className={styles['copyright-session']} id="copyright">
       <p>文章标题：{title}</p>
@@ -52,4 +49,4 @@ export const Copyright: FC<CopyrightProps> = observer((props) => {
       </div>
     </section>
   )
-})
+}
