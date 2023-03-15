@@ -203,7 +203,7 @@ export const PostView: PageOnlyProps = (props) => {
               message.success('感谢支持！')
 
               storeThumbsUpCookie(post.id)
-              post.count.like = post.count.like + 1
+              usePostCollection.getState().up(post.id)
             })
           },
         },
