@@ -3,7 +3,7 @@ import { message } from 'react-message-popup'
 
 import type { SubscribeTypeToBitMap } from '@mx-space/api-client'
 import { Input, useStateToRef } from '@mx-space/kami-design'
-import { MdiEmailFastOutline } from '@mx-space/kami-design/components/Icons'
+import { MdiEmailFastOutline } from '@mx-space/kami-design/components/Icons/for-comment'
 
 import { useInitialData } from '~/hooks/use-initial-data'
 import { apiClient } from '~/utils/client'

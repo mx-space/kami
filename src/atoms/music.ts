@@ -36,7 +36,6 @@ const getPlaylistId = () => {
 }
 
 export const useMusicStore = create<MusicState>((setState, getState) => {
-  const actions = getState()
   return {
     list: getPlaylistId(),
     isHide: true,
@@ -62,6 +61,7 @@ export const useMusicStore = create<MusicState>((setState, getState) => {
       })
     },
     reset() {
+      const actions = getState()
       setState({
         isHide: true,
         isPlay: false,
@@ -70,6 +70,7 @@ export const useMusicStore = create<MusicState>((setState, getState) => {
     },
 
     resetList() {
+      const actions = getState()
       actions.resetPlayingSongState()
 
       setState({
@@ -77,6 +78,7 @@ export const useMusicStore = create<MusicState>((setState, getState) => {
       })
     },
     empty() {
+      const actions = getState()
       actions.resetPlayingSongState()
       setState({
         list: [],
@@ -84,6 +86,7 @@ export const useMusicStore = create<MusicState>((setState, getState) => {
       })
     },
     setPlay(play: boolean) {
+      const actions = getState()
       if (getState().list.length === 0) {
         actions.resetList()
       }
@@ -103,6 +106,7 @@ export const useMusicStore = create<MusicState>((setState, getState) => {
       }
     },
     setPlaylist(list: number[]) {
+      const actions = getState()
       setState({
         list: [...list],
       })
@@ -110,8 +114,9 @@ export const useMusicStore = create<MusicState>((setState, getState) => {
       return getState().list
     },
     play() {
-      if (getState().list.length == 0) {
-        actions.reset()
+      const state = getState()
+      if (state.list.length == 0) {
+        state.reset()
       }
 
       setState({

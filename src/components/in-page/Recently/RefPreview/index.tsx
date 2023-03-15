@@ -3,7 +3,7 @@ import type { FC } from 'react'
 import { useMemo } from 'react'
 
 import { Divider } from '@mx-space/kami-design/components/Divider'
-import { PhLinkFill } from '@mx-space/kami-design/components/Icons'
+import { PhLinkFill } from '@mx-space/kami-design/components/Icons/for-recently'
 
 import { urlBuilder } from '~/utils/url'
 

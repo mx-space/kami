@@ -6,7 +6,7 @@ import useSWR from 'swr'
 import type { LinkModel } from '@mx-space/api-client'
 import { LinkState, LinkType } from '@mx-space/api-client'
 import { Avatar } from '@mx-space/kami-design/components/Avatar'
-import { PhUsersDuotone } from '@mx-space/kami-design/components/Icons'
+import { PhUsersDuotone } from '@mx-space/kami-design/components/Icons/for-home'
 
 import { apiClient } from '~/utils/client'
 

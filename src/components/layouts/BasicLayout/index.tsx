@@ -122,6 +122,7 @@ export const BasicLayout: FC = memo(({ children }) => {
       </Suspense>
 
       <div className="app-content">{children}</div>
+
       <ShortcutProvider
         options={
           useRef<ShortcutOptions>({

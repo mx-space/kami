@@ -18,7 +18,7 @@ import {
   RecentlyAttitudeEnum,
   RecentlyAttitudeResultEnum,
 } from '@mx-space/api-client'
-import { IonThumbsup } from '@mx-space/kami-design/components/Icons'
+import { IonThumbsup } from '@mx-space/kami-design/components/Icons/for-post'
 import {
   FontistoComments,
   JamTrash,

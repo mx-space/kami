@@ -3,7 +3,7 @@ import { memo, useRef } from 'react'
 import { toast } from 'react-toastify'
 
 import { Avatar } from '@mx-space/kami-design/components/Avatar'
-import { CloseIcon } from '@mx-space/kami-design/components/Icons'
+import { CloseIcon } from '@mx-space/kami-design/components/Icons/layout'
 
 import { useUserStore } from '~/atoms/user'
 import { ImpressionView } from '~/components/biz/ImpressionView'
