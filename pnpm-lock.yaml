@@ -28,7 +28,7 @@ importers:
       '@types/react-transition-group': 4.4.5
       '@types/remove-markdown': 0.3.1
       '@types/ua-parser-js': 0.7.36
-      '@types/validator': 13.7.13
+      '@types/validator': 13.7.14
       axios: 0.27.2
       clsx: 1.2.1
       cross-env: 7.0.3
@@ -135,7 +135,7 @@ importers:
       '@types/react-transition-group': 4.4.5
       '@types/remove-markdown': 0.3.1
       '@types/ua-parser-js': 0.7.36
-      '@types/validator': 13.7.13
+      '@types/validator': 13.7.14
       cross-env: 7.0.3
       dotenv: 16.0.3
       eslint: 8.36.0
@@ -1615,8 +1615,8 @@ packages:
     resolution: {integrity: sha512-N1rW+njavs70y2cApeIw1vLMYXRwfBy+7trgavGuuTfOd7j1Yh7QTRc/yqsPl6ncokt72ZXuxEU0PiCp9bSwNQ==}
     dev: true
 
-  /@types/validator/13.7.13:
-    resolution: {integrity: sha512-EMfHccxNKXaSxTK6DN0En9WsXa7uR4w3LQtx31f6Z2JjG5hJQeVX5zUYMZoatjZgnoQmRcT94WnNWwi0BzQW6Q==}
+  /@types/validator/13.7.14:
+    resolution: {integrity: sha512-J6OAed6rhN6zyqL9Of6ZMamhlsOEU/poBVvbHr/dKOYKTeuYYMlDkMv+b6UUV0o2i0tw73cgyv/97WTWaUl0/g==}
     dev: true
 
   /@types/which/2.0.2:
