@@ -103,7 +103,7 @@
     "@trivago/prettier-plugin-sort-imports": "4.1.1",
     "@types/inflection": "1.13.0",
     "@types/js-cookie": "3.0.3",
-    "@types/lodash-es": "4.17.6",
+    "@types/lodash-es": "4.17.7",
     "@types/markdown-escape": "1.1.0",
     "@types/node": "18.14.6",
     "@types/randomcolor": "0.5.7",
