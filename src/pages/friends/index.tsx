@@ -1,4 +1,3 @@
-import shuffle from 'lodash-es/shuffle'
 import type { NextPage } from 'next'
 import type { FC } from 'react'
 import { createElement } from 'react'
@@ -20,6 +19,7 @@ import {
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { Markdown } from '~/components/universal/Markdown'
 import { useInitialData } from '~/hooks/use-initial-data'
+import { shuffle } from '~/utils/_'
 import { apiClient } from '~/utils/client'
 
 const renderTitle = (text: string) => {
@@ -67,7 +67,7 @@ const FriendsView: NextPage<
   )
 }
 
-const _Footer: FC = () => {
+const Footer$: FC = () => {
   const {
     seo,
     user: { avatar, name },
@@ -127,7 +127,7 @@ const _Footer: FC = () => {
   )
 }
 
-const Footer = withNoSSR(_Footer)
+const Footer = withNoSSR(Footer$)
 FriendsView.getInitialProps = async () => {
   const { data } = await apiClient.link.getAll()
 

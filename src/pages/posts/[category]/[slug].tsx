@@ -1,5 +1,4 @@
 import dayjs from 'dayjs'
-import isEqual from 'lodash-es/isEqual'
 import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
@@ -38,6 +37,7 @@ import { useInitialData, useThemeConfig } from '~/hooks/use-initial-data'
 import { useIsClient } from '~/hooks/use-is-client'
 import { useJumpToSimpleMarkdownRender } from '~/hooks/use-jump-to-render'
 import { useBackgroundOpacity } from '~/hooks/use-kami'
+import { isEqualObject } from '~/utils/_'
 import { apiClient } from '~/utils/client'
 import { isLikedBefore, setLikeId } from '~/utils/cookie'
 import { imagesRecord2Map } from '~/utils/images'
@@ -84,7 +84,7 @@ const useUpdatePost = (post: ModelWithDeleted<PostModel>) => {
       return
     }
     if (before.id === post.id) {
-      if (isEqual(before, post)) {
+      if (isEqualObject(before, post)) {
         return
       }
 

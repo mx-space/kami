@@ -1,5 +1,4 @@
 import classNames from 'clsx'
-import merge from 'lodash-es/merge'
 import type {
   DetailedHTMLProps,
   ForwardedRef,
@@ -96,17 +95,14 @@ export const Input = memo(
 
       return (
         <span
-          {...merge(props.wrapperProps, {
+          {...{
+            ...props.wrapperProps,
             className: classNames(
               styles['input-wrap'],
 
               wrapperProps?.className,
             ),
-          })}
-          // className={classNames(
-          //   styles['input-wrap'],
-          //   focused ? styles['focus'] : undefined,
-          // )}
+          }}
           ref={inputWrapRef}
         >
           {prefix && <div className={styles['prefix-wrap']}>{prefix}</div>}

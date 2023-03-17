@@ -1,4 +1,3 @@
-import cloneDeep from 'lodash-es/cloneDeep'
 import mergeWith from 'lodash-es/mergeWith'
 import type { FC } from 'react'
 import { createContext, memo, useEffect, useMemo } from 'react'
@@ -7,6 +6,7 @@ import type { AggregateRoot } from '@mx-space/api-client'
 
 import { defaultConfigs } from '~/configs.default'
 import type { KamiConfig } from '~/types/config'
+import { cloneDeep } from '~/utils/_'
 
 export type InitialDataType = {
   aggregateData: AggregateRoot

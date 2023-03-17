@@ -1,4 +1,3 @@
-import omit from 'lodash-es/omit'
 import type { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import React, { createContext, useContext, useEffect, useMemo } from 'react'
@@ -9,6 +8,7 @@ import { HomeIntro } from '~/components/in-page/Home/intro'
 import { HomeRandomSay } from '~/components/in-page/Home/random-say'
 import { HomeSections } from '~/components/in-page/Home/section'
 import { useInitialData, useKamiConfig } from '~/hooks/use-initial-data'
+import { omit } from '~/utils/_'
 import { apiClient } from '~/utils/client'
 import { Notice } from '~/utils/notice'
 
@@ -74,7 +74,7 @@ const IndexView: NextPage<AggregateTop> = (props) => {
 IndexView.getInitialProps = async () => {
   const aggregateData = await apiClient.aggregate.getTop()
 
-  return omit(aggregateData, ['says']) as any
+  return omit({ ...aggregateData }, ['says']) as any
 }
 
 export default IndexView

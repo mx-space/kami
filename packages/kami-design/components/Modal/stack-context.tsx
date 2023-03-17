@@ -1,5 +1,4 @@
 import { clsx } from 'clsx'
-import uniqueId from 'lodash-es/uniqueId'
 import type {
   FC,
   FunctionComponentElement,
@@ -21,6 +20,7 @@ import { unstable_batchedUpdates } from 'react-dom'
 import { useStateToRef } from '@mx-space/kami-design/hooks'
 
 import { useIsClient } from '~/hooks/use-is-client'
+import { uniqueId } from '~/utils/_'
 
 import type { OverlayProps } from '../Overlay'
 import { Overlay } from '../Overlay'

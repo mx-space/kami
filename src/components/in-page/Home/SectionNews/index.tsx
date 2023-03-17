@@ -1,7 +1,8 @@
-import pick from 'lodash-es/pick'
 import Link from 'next/link'
 import type { FC, MouseEvent, ReactNode } from 'react'
 import { forwardRef, memo, useEffect, useState } from 'react'
+
+import { pick } from '~/utils/_'
 
 import styles from './index.module.css'
 import { SectionWrap } from './section'

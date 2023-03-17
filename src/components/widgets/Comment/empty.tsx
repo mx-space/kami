@@ -1,9 +1,10 @@
 import { clsx } from 'clsx'
-import sample from 'lodash-es/sample'
 import type { FC } from 'react'
 import { memo } from 'react'
 
 import { EmptyIcon } from '@mx-space/kami-design/components/Icons/for-comment'
+
+import { sample } from '~/utils/_'
 
 import styles from './index.module.css'
 
