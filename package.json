@@ -85,7 +85,7 @@
     "react-intersection-observer": "9.4.3",
     "react-masonry-css": "1.0.16",
     "react-message-popup": "1.0.0",
-    "react-shortcut-guide": "1.0.0-alpha.0",
+    "react-shortcut-guide": "1.0.0",
     "react-smooth-number-counter": "git+https://github.com/Innei/react-smooth-number-counter.git",
     "react-toastify": "9.1.1",
     "react-transition-group": "4.4.5",
