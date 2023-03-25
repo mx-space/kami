@@ -11,7 +11,7 @@ interface BaseStore<T extends object, TT = ModelWithDeleted<T>> {
   data: Map<Id, TT>
   add(id: string, data: T | T[]): void
   add(data: T | T[]): void
-  addAndPatch(data: T | T[]): void
+  addOrPatch(data: T | T[]): void
   remove(id: Id): void
   softDelete(key: string): boolean
 }
@@ -86,9 +86,9 @@ export const createCollection = <T extends { id: Id }, A extends object>(
             add(data.id, data)
           }
         },
-        addAndPatch(data: T | T[]) {
+        addOrPatch(data: T | T[]) {
           if (Array.isArray(data)) {
-            const patch = get().addAndPatch
+            const patch = get().addOrPatch
             data.forEach((d) => {
               patch(d)
             })
