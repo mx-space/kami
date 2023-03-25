@@ -1,7 +1,6 @@
-import { isNaN } from 'lodash-es'
-import shuffle from 'lodash-es/shuffle'
 import { create } from 'zustand'
 
+import { shuffle } from '~/utils/_'
 import { isClientSide } from '~/utils/env'
 
 interface MusicState {

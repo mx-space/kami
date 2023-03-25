@@ -1,7 +1,7 @@
-import { shuffle } from 'lodash-es'
 import { useEffect, useRef } from 'react'
 
 import { useAppStore } from '~/atoms/app'
+import { shuffle } from '~/utils/_'
 import { getRandomImage } from '~/utils/images'
 
 import { useKamiConfig } from './use-initial-data'

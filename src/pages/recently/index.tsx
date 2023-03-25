@@ -1,5 +1,4 @@
 import { clsx } from 'clsx'
-import { sample, uniqWith } from 'lodash-es'
 import type { NextPage } from 'next'
 import {
   Fragment,
@@ -35,6 +34,8 @@ import { Markdown } from '~/components/universal/Markdown'
 import { RelativeTime } from '~/components/universal/RelativeTime'
 import { CommentLazy } from '~/components/widgets/Comment'
 import { EventTypes } from '~/types/events'
+import { uniqWith } from '~/utils/_'
+import { sample } from '~/utils/_'
 import { apiClient } from '~/utils/client'
 import { eventBus } from '~/utils/event-emitter'
 

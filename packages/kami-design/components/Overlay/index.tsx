@@ -1,5 +1,4 @@
 import { clsx } from 'clsx'
-import isUndefined from 'lodash-es/isUndefined'
 import merge from 'lodash-es/merge'
 import type { CSSProperties, FC, ReactNode } from 'react'
 import React, { memo, useEffect, useState } from 'react'
@@ -7,6 +6,7 @@ import React, { memo, useEffect, useState } from 'react'
 import { RootPortal } from '@mx-space/kami-design/components/Portal'
 
 import { useIsClient } from '~/hooks/use-is-client'
+import { isUndefined } from '~/utils/_'
 import { stopEventDefault } from '~/utils/dom'
 
 import { FadeInOutTransitionView } from '../Transition/fade-in-out'

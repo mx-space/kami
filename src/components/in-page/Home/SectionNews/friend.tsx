@@ -1,4 +1,3 @@
-import shuffle from 'lodash-es/shuffle'
 import type { FC } from 'react'
 import { memo, useEffect } from 'react'
 import useSWR from 'swr'
@@ -8,6 +7,7 @@ import { LinkState, LinkType } from '@mx-space/api-client'
 import { Avatar } from '@mx-space/kami-design/components/Avatar'
 import { PhUsersDuotone } from '@mx-space/kami-design/components/Icons/for-home'
 
+import { shuffle } from '~/utils/_'
 import { apiClient } from '~/utils/client'
 
 import styles from './index.module.css'

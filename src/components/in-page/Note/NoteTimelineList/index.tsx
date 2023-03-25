@@ -27,6 +27,8 @@ import { springScrollToTop } from '~/utils/spring'
 import { InnerTopicDetail } from '../NoteTopic/inner-detail'
 import styles from './index.module.css'
 
+const WAITING_SCROLL_TIME = 1000
+
 interface NoteTimelineListProps {
   noteId: string
 }
@@ -79,7 +81,7 @@ const ObserveredNoteTimelineList: FC<
 
       if (scrollTop > 0)
         // waiting scroll to top
-        await new Promise((resolve) => setTimeout(resolve, 350))
+        await new Promise((resolve) => setTimeout(resolve, WAITING_SCROLL_TIME))
 
       if (isUnmount.current) return
       const data = await apiClient.note
@@ -137,8 +139,9 @@ const ObserveredNoteTimelineList: FC<
     </div>
   )
 }
+
 const scrollToTop = () => {
-  springScrollToTop(250)
+  springScrollToTop(WAITING_SCROLL_TIME)
 }
 export const MemoedItem = memo<{
   active: boolean

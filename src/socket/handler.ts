@@ -118,7 +118,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
     }
     // handle update event
     case EventTypes.POST_UPDATE: {
-      usePostCollection.getState().addAndPatch(data)
+      usePostCollection.getState().addOrPatch(data)
       break
     }
     case EventTypes.POST_DELETE: {
@@ -128,7 +128,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
     }
     case EventTypes.NOTE_UPDATE: {
       const noteCollection = useNoteCollection.getState()
-      noteCollection.addAndPatch(data)
+      noteCollection.addOrPatch(data)
       useNoteCollection.setState(
         produce((state: ReturnType<typeof useNoteCollection.getState>) => {
           const note = state.get(data.id)
@@ -163,7 +163,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
 
     case EventTypes.PAGE_UPDATED: {
       message.info('页面内容已更新')
-      usePageCollection.getState().addAndPatch(data)
+      usePageCollection.getState().addOrPatch(data)
       break
     }
 

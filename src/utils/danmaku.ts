@@ -1,14 +1,3 @@
-/*
- * @Author: Innei
- * @Date: 2020-05-28 12:24:14
- * @LastEditTime: 2020-06-07 16:22:18
- * @LastEditors: Innei
- * @FilePath: /mx-web/utils/danmaku.ts
- * @Copyright
- */
-import range from 'lodash-es/range'
-import sample from 'lodash-es/sample'
-
 const createDanmakuWrap = () => {
   const $root = document.body
   const $wrap = document.getElementById('dangmaku')
@@ -47,7 +36,7 @@ export const createDangmaku = ({ color, duration, text }: DanmakuProps) => {
       color: color ?? '',
       position: 'absolute',
       fontSize: '16px',
-      top: `${sample(range(0, wrapHeight >> 8) as any) * 14}px`,
+      top: `${Math.floor(Math.random() * (wrapHeight >> 8)) * 14}px`,
     },
   )
 

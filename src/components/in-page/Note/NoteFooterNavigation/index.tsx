@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import { memo } from 'react'
+import { shallow } from 'zustand/shallow'
 
-import type { NoteModel } from '@mx-space/api-client'
 import { Divider } from '@mx-space/kami-design/components/Divider'
 import {
   IcRoundKeyboardDoubleArrowLeft,
@@ -15,20 +15,26 @@ import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useDetectIsNarrowThanLaptop } from '~/hooks/use-viewport'
 import { springScrollToTop } from '~/utils/spring'
-import { noop } from '~/utils/utils'
 
 export const NoteFooterNavigation: FC<{ id: string }> = memo(({ id }) => {
-  const [prev, next] = useNoteCollection(
-    (state) =>
-      state.relationMap.get(id) ||
-      ([noop, noop] as [Partial<NoteModel>, Partial<NoteModel>]),
-  )
+  const [prevNid, nextNid] = useNoteCollection<
+    [number | undefined, number | undefined]
+  >((state) => {
+    const [prev, next] = state.relationMap.get(id) || []
+    return [prev?.nid, next?.nid] as [number | undefined, number | undefined]
+  }, shallow)
 
   const router = useRouter()
   const { event } = useAnalyze()
+
+  const goNext = (nid: number) => {
+    router.push('/notes/[id]', `/notes/${nid}`, { scroll: false })
+    springScrollToTop()
+  }
   return (
     <>
-      {(!!next || !!prev) && (
+      {/* // 没有 0 的情况 */}
+      {(!!prevNid || !!nextNid) && (
         <>
           <Divider className="!w-15 m-auto" />
           <section
@@ -36,14 +42,14 @@ export const NoteFooterNavigation: FC<{ id: string }> = memo(({ id }) => {
             data-hide-print
           >
             <div className="flex justify-between items-center children:inline-flex children:items-center children:space-x-2 children:px-2 children:py-2">
-              {!!next && (
+              {!!nextNid && (
                 <>
                   <div
                     tabIndex={1}
                     role={'button'}
                     className="hover:text-primary"
                     onClick={() => {
-                      router.push('/notes/[id]', `/notes/${next.nid}`)
+                      goNext(nextNid)
                     }}
                   >
                     <IcRoundKeyboardDoubleArrowLeft />
@@ -52,14 +58,14 @@ export const NoteFooterNavigation: FC<{ id: string }> = memo(({ id }) => {
                 </>
               )}
 
-              {!!prev && (
+              {!!prevNid && (
                 <>
                   <div
                     tabIndex={1}
                     role={'button'}
                     className="hover:text-primary"
                     onClick={() => {
-                      router.push('/notes/[id]', `/notes/${prev.nid}`)
+                      goNext(prevNid)
                     }}
                   >
                     <span>后一篇</span>

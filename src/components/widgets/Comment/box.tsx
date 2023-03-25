@@ -1,5 +1,3 @@
-import omit from 'lodash-es/omit'
-import sample from 'lodash-es/sample'
 import markdownEscape from 'markdown-escape'
 import type { FC } from 'react'
 import React, {
@@ -30,6 +28,8 @@ import { ImpressionView } from '~/components/biz/ImpressionView'
 import { kaomoji } from '~/constants/kaomoji'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
+import { sample } from '~/utils/_'
+import { omit } from '~/utils/_'
 import { apiClient } from '~/utils/client'
 import { isDev } from '~/utils/env'
 

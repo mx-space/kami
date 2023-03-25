@@ -1,7 +1,5 @@
 import type { AxiosError } from 'axios'
 import dayjs from 'dayjs'
-import isEqual from 'lodash-es/isEqual'
-import omit from 'lodash-es/omit'
 import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
@@ -33,6 +31,7 @@ import { useSetHeaderMeta, useSetHeaderShare } from '~/hooks/use-header-meta'
 import { useJumpToSimpleMarkdownRender } from '~/hooks/use-jump-to-render'
 import { useLoadSerifFont } from '~/hooks/use-load-serif-font'
 import { useNoteMusic } from '~/hooks/use-music'
+import { isEqualObject, omit } from '~/utils/_'
 import { imagesRecord2Map } from '~/utils/images'
 import { getSummaryFromMd } from '~/utils/markdown'
 import { parseDate } from '~/utils/time'
@@ -79,7 +78,7 @@ const useUpdateNote = (note: ModelWithDeleted<NoteModel>) => {
       return
     }
 
-    if (!before || !note || isEqual(before, { ...note })) {
+    if (!before || !note || isEqualObject(before, { ...note })) {
       return
     }
 
@@ -128,7 +127,7 @@ const NoteView: React.FC<{ id: string }> = memo((props) => {
     if (router.query.id === 'latest') {
       router.replace({
         pathname: `/notes/${note.nid}`,
-        query: { ...omit(router.query, 'id') },
+        query: { ...omit(router.query, 'id' as any) },
       })
     }
   }, [note.nid])

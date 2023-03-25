@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { clsx } from 'clsx'
-import range from 'lodash-es/range'
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import { compiler } from 'markdown-to-jsx'
 import type { FC } from 'react'
@@ -12,6 +11,8 @@ import React, {
   useRef,
   useState,
 } from 'react'
+
+import { range } from '~/utils/_'
 
 import styles from './index.module.css'
 import { CommentAtRule } from './parsers/comment-at'

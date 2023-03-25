@@ -1,5 +1,6 @@
-import uniqBy from 'lodash-es/uniqBy'
 import { useMemo } from 'react'
+
+import { uniqBy } from '~/utils/_'
 
 import { useInitialData, useKamiConfig } from './use-initial-data'
 
@@ -29,7 +30,7 @@ export const useHeaderNavList = () => {
     })
 
     const old = homeMenu.subMenu
-    homeMenu.subMenu = uniqBy([...old, ...models], 'id') as any
+    homeMenu.subMenu = uniqBy([...old, ...models], 'id' as any) as any
 
     // 2. merge categories
     {
@@ -48,7 +49,7 @@ export const useHeaderNavList = () => {
         }
       })
       const old = postMenu.subMenu
-      postMenu.subMenu = uniqBy([...models, ...old!], 'id') as any
+      postMenu.subMenu = uniqBy([...models, ...old!], 'id' as any) as any
     }
     return merged
   }, [categories, menu, pageMeta])

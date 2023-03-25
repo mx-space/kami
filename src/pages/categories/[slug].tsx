@@ -1,4 +1,3 @@
-import omit from 'lodash-es/omit'
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import { TransitionGroup } from 'react-transition-group'
@@ -13,6 +12,7 @@ import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { SEO } from '~/components/biz/Seo'
 import { TimelineListWrapper } from '~/components/biz/TimelineListWrapper'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
+import { omit } from '~/utils/_'
 import { apiClient } from '~/utils/client'
 
 interface CategoryListViewProps {
@@ -75,7 +75,7 @@ CategoryListView.getInitialProps = async (ctx) => {
   const data = await apiClient.category.getCategoryByIdOrSlug(slug)
 
   return {
-    category: omit(data, ['children']),
+    category: omit({ ...data }, ['children']),
     children: data.children || [],
   }
 }
