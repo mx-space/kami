@@ -257,61 +257,41 @@ export const PostView: PageOnlyProps = (props) => {
         type="post"
         titleAnimate={false}
       >
-        {useMemo(
-          () => (
-            <>
-              {post.summary && (
-                <Banner
-                  type="info"
-                  placement="left"
-                  showIcon={false}
-                  className="mb-8"
-                >
-                  <p>摘要： {post.summary}</p>
-                </Banner>
-              )}
-              <Outdate time={post.modified || post.created} />
-              <ImageSizeMetaContext.Provider value={imagesMap}>
-                <article>
-                  <h1 className="sr-only">{post.title}</h1>
-                  <Markdown codeBlockFully value={post.text} toc />
-                </article>
-              </ImageSizeMetaContext.Provider>
-
-              <PostRelated id={post.id} />
-              <SubscribeBell defaultType={'post_c'} />
-              {post.copyright && isClientSide ? (
-                <Copyright
-                  date={post.modified}
-                  link={new URL(location.pathname, webUrl).toString()}
-                  title={post.title}
-                />
-              ) : null}
-
-              <ArticleFooterAction {...actions} />
-
-              <CommentLazy
-                key={post.id}
-                id={post.id}
-                allowComment={post.allowComment ?? true}
-              />
-            </>
-          ),
-          [
-            post.summary,
-            post.modified,
-            post.created,
-            post.images,
-            post.title,
-            post.text,
-            post.id,
-            post.copyright,
-            post.allowComment,
-            isClientSide,
-            webUrl,
-            actions,
-          ],
+        {post.summary && (
+          <Banner
+            type="info"
+            placement="left"
+            showIcon={false}
+            className="mb-8"
+          >
+            <p className="leading-[1.7]">摘要： {post.summary}</p>
+          </Banner>
         )}
+        <Outdate time={post.modified || post.created} />
+        <ImageSizeMetaContext.Provider value={imagesMap}>
+          <article>
+            <h1 className="sr-only">{post.title}</h1>
+            <Markdown codeBlockFully value={post.text} toc />
+          </article>
+        </ImageSizeMetaContext.Provider>
+
+        <PostRelated id={post.id} />
+        <SubscribeBell defaultType={'post_c'} />
+        {post.copyright && isClientSide ? (
+          <Copyright
+            date={post.modified}
+            link={new URL(location.pathname, webUrl).toString()}
+            title={post.title}
+          />
+        ) : null}
+
+        <ArticleFooterAction {...actions} />
+
+        <CommentLazy
+          key={post.id}
+          id={post.id}
+          allowComment={post.allowComment ?? true}
+        />
 
         <SearchFAB />
       </ArticleLayout>

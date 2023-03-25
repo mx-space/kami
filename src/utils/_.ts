@@ -17,9 +17,10 @@ export const uniqueId = (prefix = ''): string =>
 
 export const omit = <T extends Record<string, unknown>, K extends keyof T>(
   obj: T,
-  keys: K[],
+  keys: K[] | K,
 ): Omit<T, K> => {
   const newObj = { ...obj }
+  keys = Array.isArray(keys) ? keys : [keys]
   keys.forEach((key) => {
     delete newObj[key]
   })

@@ -95,14 +95,8 @@ export const Input = memo(
 
       return (
         <span
-          {...{
-            ...props.wrapperProps,
-            className: classNames(
-              styles['input-wrap'],
-
-              wrapperProps?.className,
-            ),
-          }}
+          {...props.wrapperProps}
+          className={classNames(styles['input-wrap'], wrapperProps?.className)}
           ref={inputWrapRef}
         >
           {prefix && <div className={styles['prefix-wrap']}>{prefix}</div>}
