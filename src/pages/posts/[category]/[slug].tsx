@@ -1,9 +1,11 @@
 import dayjs from 'dayjs'
+import { pick } from 'lodash-es'
 import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import type { FC } from 'react'
+import React, { memo, useEffect, useMemo, useRef, useState } from 'react'
 import { message } from 'react-message-popup'
 import { shallow } from 'zustand/shallow'
 
@@ -65,10 +67,6 @@ const NumberTransition = dynamic(() =>
   ),
 )
 
-const storeThumbsUpCookie = setLikeId
-
-const isThumbsUpBefore = isLikedBefore
-
 const useUpdatePost = (post: ModelWithDeleted<PostModel>) => {
   const beforeModel = useRef<PostModel>()
   const router = useRouter()
@@ -122,32 +120,52 @@ const useUpdatePost = (post: ModelWithDeleted<PostModel>) => {
   ])
 }
 
-export const PostView: PageOnlyProps = (props) => {
-  const post = usePostCollection(
-    (state) => state.data.get(props.id) || (noop as PostModel),
-    shallow,
+const Seo$: FC<{ id: string }> = ({ id }) => {
+  const { title, summary, category, created, modified, tags, text } =
+    usePostCollection((state) =>
+      pick(state.data.get(id)!, [
+        'title',
+        'summary',
+        'created',
+        'modified',
+        'category',
+        'tags',
+        'text',
+      ]),
+    )
+  const description = summary ?? getSummaryFromMd(text).slice(0, 150)
+  return (
+    <Seo
+      title={title}
+      description={description}
+      openGraph={{
+        type: 'article',
+        article: {
+          publishedTime: created,
+          modifiedTime: modified || undefined,
+          section: category.name,
+          tags: tags ?? [],
+        },
+      }}
+    />
   )
+}
 
-  const [actions, setAction] = useState({} as ActionProps)
+const FooterActionBar: FC<{ id: string }> = ({ id }) => {
+  const [actions, setActions] = useState<ActionProps>({})
 
-  const description = post.summary ?? getSummaryFromMd(post.text).slice(0, 150)
+  const post = usePostCollection(
+    (state) => state.data.get(id) || (noop as PostModel),
+  )
 
   const themeConfig = useThemeConfig()
   const donateConfig = themeConfig.function.donate
-  const {
-    url: { webUrl },
-  } = useInitialData()
-
-  useEffect(() => {
-    springScrollToTop()
-  }, [post.id])
-
   const createTime = dayjs(post.created)
     .locale('cn')
     .format('YYYY 年 M 月 D 日')
 
   useEffect(() => {
-    setAction({
+    setActions({
       informs: [
         {
           icon: <MdiCalendar />,
@@ -193,16 +211,16 @@ export const PostView: PageOnlyProps = (props) => {
               <NumberTransition number={post.count?.like || 0} />
             </span>
           ),
-          color: isThumbsUpBefore(post.id) ? '#f1c40f' : undefined,
+          color: isLikedBefore(post.id) ? '#f1c40f' : undefined,
           callback: () => {
-            if (isThumbsUpBefore(post.id)) {
+            if (isLikedBefore(post.id)) {
               return message.error('你已经支持过啦！')
             }
 
             apiClient.post.thumbsUp(post.id).then(() => {
               message.success('感谢支持！')
 
-              storeThumbsUpCookie(post.id)
+              setLikeId(post.id)
               usePostCollection.getState().up(post.id)
             })
           },
@@ -224,10 +242,45 @@ export const PostView: PageOnlyProps = (props) => {
     post.category.slug,
   ])
 
+  return <ArticleFooterAction {...actions} />
+}
+
+const PostUpdateObserver: FC<{ id: string }> = memo(({ id }) => {
+  const post = usePostCollection((state) => state.data.get(id))
+  useUpdatePost(post!)
+  return null
+})
+
+export const PostView: PageOnlyProps = (props) => {
+  const post = usePostCollection(
+    (state) =>
+      pick(state.data.get(props.id)!, [
+        'title',
+        'category',
+        'id',
+        'images',
+        'summary',
+        'created',
+        'modified',
+        'text',
+        'copyright',
+        'allowComment',
+      ]),
+    shallow,
+  )
+
+  const {
+    url: { webUrl },
+  } = useInitialData()
+
+  useEffect(() => {
+    springScrollToTop()
+  }, [props.id])
+
   // header meta
   useSetHeaderMeta(post.title, post.category.name)
   useSetHeaderShare(post.title)
-  useUpdatePost(post)
+
   useBackgroundOpacity(0.2)
   useJumpToSimpleMarkdownRender(post.id)
   useSetHeaderShare(post.title)
@@ -238,19 +291,7 @@ export const PostView: PageOnlyProps = (props) => {
 
   return (
     <>
-      <Seo
-        title={post.title}
-        description={description}
-        openGraph={{
-          type: 'article',
-          article: {
-            publishedTime: post.created,
-            modifiedTime: post.modified || undefined,
-            section: post.category.name,
-            tags: post.tags ?? [],
-          },
-        }}
-      />
+      <Seo$ id={post.id} />
       <ArticleLayout
         title={post.title}
         id={post.id}
@@ -285,7 +326,7 @@ export const PostView: PageOnlyProps = (props) => {
           />
         ) : null}
 
-        <ArticleFooterAction {...actions} />
+        <FooterActionBar id={post.id} />
 
         <CommentLazy
           key={post.id}
@@ -295,15 +336,17 @@ export const PostView: PageOnlyProps = (props) => {
 
         <SearchFAB />
       </ArticleLayout>
+
+      <PostUpdateObserver id={post.id} />
     </>
   )
 }
 
 const NextPostView: NextPage<PostModel> = (props) => {
   const { id } = props
-  const post = usePostCollection((state) => state.data.get(id), shallow)
+  const postId = usePostCollection((state) => state.data.get(id)?.id)
 
-  if (!post) {
+  if (!postId) {
     usePostCollection.getState().add(props)
     return <Loading />
   }

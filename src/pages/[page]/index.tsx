@@ -48,6 +48,7 @@ const PageView: PageOnlyProps = (props) => {
   useEffect(() => {
     springScrollToTop()
   }, [props.id])
+
   const { pageMeta } = useInitialData()
   const pages = useMemo(() => pageMeta || [], [pageMeta])
   const indexInPages = pages.findIndex((i) => i.title == page.title)
@@ -76,41 +77,34 @@ const PageView: PageOnlyProps = (props) => {
           <Markdown value={text} toc />
         </article>
       </ImageSizeMetaContext.Provider>
-      {useMemo(
-        () => (
-          <div className={styles['pagination']}>
-            <div>
-              {hasPrev && (
-                <Fragment>
-                  <Link
-                    href={`/${pages[indexInPages - 1].slug}`}
-                    className="flex flex-col justify-end"
-                  >
-                    <h2 className="text-indigo-400">回顾一下：</h2>
-                    <p className="text-left">{pages[indexInPages - 1].title}</p>
-                  </Link>
-                </Fragment>
-              )}
-            </div>
-            <div>
-              {hasNext && (
-                <Fragment>
-                  <Link
-                    href={`/${pages[indexInPages + 1].slug}`}
-                    className="flex flex-col justify-end"
-                  >
-                    <h2 className="text-indigo-400">继续了解：</h2>
-                    <p className="text-right">
-                      {pages[indexInPages + 1].title}
-                    </p>
-                  </Link>
-                </Fragment>
-              )}
-            </div>
-          </div>
-        ),
-        [hasNext, hasPrev, indexInPages, pages],
-      )}
+      <div className={styles['pagination']}>
+        <div>
+          {hasPrev && (
+            <Fragment>
+              <Link
+                href={`/${pages[indexInPages - 1].slug}`}
+                className="flex flex-col justify-end"
+              >
+                <h2 className="text-indigo-400">回顾一下：</h2>
+                <p className="text-left">{pages[indexInPages - 1].title}</p>
+              </Link>
+            </Fragment>
+          )}
+        </div>
+        <div>
+          {hasNext && (
+            <Fragment>
+              <Link
+                href={`/${pages[indexInPages + 1].slug}`}
+                className="flex flex-col justify-end"
+              >
+                <h2 className="text-indigo-400">继续了解：</h2>
+                <p className="text-right">{pages[indexInPages + 1].title}</p>
+              </Link>
+            </Fragment>
+          )}
+        </div>
+      </div>
       <CommentLazy
         key={page.id}
         id={page.id}
@@ -122,9 +116,9 @@ const PageView: PageOnlyProps = (props) => {
 
 const NextPageView: NextPage<PageModel> = (props) => {
   const { id } = props as any
-  const page = usePageCollection((state) => state.data.get(id), shallow)
+  const pageId = usePageCollection((state) => state.data.get(id)?.id)
 
-  if (!page) {
+  if (!pageId) {
     usePageCollection.getState().add(props)
     return <Loading />
   }

@@ -6,7 +6,6 @@ import { useRouter } from 'next/router'
 import React, { createElement, memo, useEffect, useMemo, useRef } from 'react'
 import { message } from 'react-message-popup'
 import useUpdate from 'react-use/lib/useUpdate'
-import { shallow } from 'zustand/shallow'
 
 import type { NoteModel } from '@mx-space/api-client'
 import { RequestError } from '@mx-space/api-client'
@@ -266,17 +265,17 @@ const PP: NextPage<NoteModel | { needPassword: true; id: string }> = (
 ) => {
   const router = useRouter()
 
-  const note = useNoteCollection((state) => state.get(props.id), shallow)
+  const noteId = useNoteCollection((state) => state.get(props.id)?.id)
 
   const update = useUpdate()
   useEffect(() => {
-    if (!note) {
+    if (!noteId) {
       update()
     }
-  }, [note])
+  }, [noteId])
 
   if ('needPassword' in props) {
-    if (!note) {
+    if (!noteId) {
       const fetchData = (password: string) => {
         const id = router.query.id as string
         noteCollection
@@ -290,11 +289,11 @@ const PP: NextPage<NoteModel | { needPassword: true; id: string }> = (
       }
       return <NotePasswordConfrim onSubmit={fetchData} />
     } else {
-      return <NoteView id={note.id} />
+      return <NoteView id={noteId} />
     }
   }
 
-  if (!note) {
+  if (!noteId) {
     noteCollection.add(props)
 
     return <Loading />
