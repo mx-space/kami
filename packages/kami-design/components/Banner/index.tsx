@@ -17,10 +17,10 @@ const IconMap = {
 }
 
 const bgColorMap = {
-  warning: 'bg-amber-50',
-  info: 'bg-default-blue-50',
-  success: 'bg-default-green-50',
-  error: 'bg-default-red-50',
+  warning: 'bg-amber-50 dark:bg-amber-300',
+  info: 'bg-default-blue-50 dark:bg-default-blue-300',
+  success: 'bg-default-green-50 dark:bg-default-green-300',
+  error: 'bg-default-red-50 dark:bg-default-red-300',
 }
 
 const borderColorMap = {
@@ -51,7 +51,7 @@ export const Banner: FC<{
   return (
     <div
       className={clsx(
-        'phone:block p-6 flex items-center space-x-4 rounded-md border text-dark-100 dark:text-[#c4c4c4] dark:bg-transparent ' +
+        'phone:block p-6 flex items-center space-x-4 rounded-md border text-dark-100 dark:text-[#c4c4c4] dark:bg-opacity-10 ' +
           `${bgColorMap[props.type] || bgColorMap.info} ${
             borderColorMap[props.type] || borderColorMap.info
           }`,

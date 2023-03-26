@@ -1,10 +1,8 @@
 import markdownEscape from 'markdown-escape'
 import type { FC } from 'react'
 import React, {
-  createContext,
   memo,
   useCallback,
-  useContext,
   useEffect,
   useMemo,
   useRef,
@@ -13,6 +11,7 @@ import React, {
 import { message } from 'react-message-popup'
 import isEmail from 'validator/lib/isEmail'
 import isUrl from 'validator/lib/isURL'
+import { create } from 'zustand'
 
 import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
 import {
@@ -28,26 +27,77 @@ import { ImpressionView } from '~/components/biz/ImpressionView'
 import { kaomoji } from '~/constants/kaomoji'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
-import { sample } from '~/utils/_'
-import { omit } from '~/utils/_'
+import { omit, pick, sample } from '~/utils/_'
 import { apiClient } from '~/utils/client'
-import { isDev } from '~/utils/env'
+import { isClientSide, isDev } from '~/utils/env'
 
 import styles from './index.module.css'
 
 const USER_PREFIX = 'mx-space-comment-author'
 const USER_DRAFT = 'mx-space-comment-draft'
 
-const initialState = {
+const initialConfig = {
   syncToRecently: false,
   isWhispers: false,
 }
 
-const CommentSendingContext = createContext({
+const initialState = {
+  author: '',
+  mail: '',
+  url: '',
+  text: '',
+
+  ...initialConfig,
+}
+
+const useCommentStore = create<
+  typeof initialState & {
+    setConfig(config: Partial<typeof initialConfig>): void
+  }
+>((setState) => ({
   ...initialState,
-  // eslint-disable-next-line unused-imports/no-unused-vars
-  setConfig(config: Partial<typeof initialState>) {},
-})
+  setConfig(config: Partial<typeof initialConfig>) {
+    setState(config)
+  },
+}))
+
+const FormInputCopyMap = {
+  author: '昵称 *',
+  mail: '邮箱 *',
+  url: '网址',
+}
+const FormInputIconMap = {
+  author: <PhUser />,
+  mail: <MdiEmailFastOutline />,
+  url: <SiGlyphGlobal />,
+}
+const FormInput: FC<{
+  fieldKey: 'author' | 'mail' | 'url'
+}> = (props) => {
+  const { fieldKey } = props
+  const value = useCommentStore((state) => state[fieldKey])
+  const onChange = useCallback((e) => {
+    useCommentStore.setState({ [fieldKey]: e.target.value })
+  }, [])
+  return (
+    <Input
+      placeholder={FormInputCopyMap[fieldKey]}
+      required
+      name={fieldKey}
+      prefix={FormInputIconMap[fieldKey]}
+      value={value}
+      onChange={onChange}
+    />
+  )
+}
+
+if (isDev && isClientSide()) {
+  useCommentStore.setState({
+    author: '测试昵称',
+    mail: 'test@innei.ren',
+    url: 'https://test.innei.ren',
+  })
+}
 
 export const CommentBox: FC<{
   onSubmit: ({ text, author, mail, url, isWhispers }) => any
@@ -57,17 +107,12 @@ export const CommentBox: FC<{
   refId: string
   commentId?: string
 }> = memo(({ onSubmit, onCancel, autoFocus = false, refId, commentId }) => {
-  const [author, setAuthor] = useState(isDev ? '测试昵称' : '')
-  const [mail, setMail] = useState(isDev ? 'test@innei.ren' : '')
-  const [url, setUrl] = useState(isDev ? 'https://test.innei.ren' : '')
-  const [text, setText] = useState('')
   const taRef = useRef<HTMLTextAreaElement>(null)
-
-  const [config, setConfig] = useState(initialState)
 
   useEffect(() => {
     const $ref = taRef.current
     if ($ref && isDev) {
+      const setText = (text: string) => useCommentStore.setState({ text })
       if (isDev) {
         const testText =
           '幻なんかじゃない 人生は夢じゃない 僕達ははっきりと生きてるんだ'
@@ -90,7 +135,10 @@ export const CommentBox: FC<{
   const reset = () => {
     if (taRef.current) {
       taRef.current.value = ''
-      setText('')
+
+      useCommentStore.setState({
+        text: '',
+      })
     }
   }
 
@@ -107,7 +155,8 @@ export const CommentBox: FC<{
       0,
       start,
     )} ${emoji} ${$ta.value.substring(end, $ta.value.length)}`
-    setText($ta.value) // force update react state.
+
+    useCommentStore.setState({ text: $ta.value })
     requestAnimationFrame(() => {
       const shouldMoveToPos = start + emoji.length + 2
       $ta.selectionStart = shouldMoveToPos
@@ -130,6 +179,8 @@ export const CommentBox: FC<{
     const { username: ownerUserName, name: ownerName } =
       useUserStore.getState().master || {}
     const logged = useUserStore.getState().isLogged
+    const { author, mail, url, isWhispers, syncToRecently } =
+      useCommentStore.getState()
     if (!logged) {
       if (author === ownerName || author === ownerUserName) {
         return message.error('昵称与我主人重名了，但是你好像并不是我的主人唉')
@@ -156,16 +207,17 @@ export const CommentBox: FC<{
       message.error('内容太长了了啦，服务器会坏掉的')
       return
     }
+
     const model = {
       author,
       text,
       mail,
       url: url || undefined,
-      isWhispers: config.isWhispers,
+      isWhispers,
     }
     localStorage.setItem(USER_PREFIX, JSON.stringify(omit(model, ['text'])))
     onSubmit(model).then(() => {
-      if (config.syncToRecently) {
+      if (syncToRecently) {
         apiClient.recently.proxy.post({
           data: {
             content: text,
@@ -186,38 +238,21 @@ export const CommentBox: FC<{
           mail: string
           url: string
         }
-        setMail(model.mail || '')
-        setAuthor(model.author || '')
-        setUrl(model.url || '')
-        // eslint-disable-next-line no-empty
+        for (const key in model) {
+          if (model[key] === 'undefined') {
+            model[key] = ''
+          }
+        }
+        useCommentStore.setState(model)
       } catch {}
     }
   }, [])
 
-  const setWrapper = useCallback((fn: any) => {
+  const setWrapper = useCallback((fn: (value: string) => void) => {
     return (e: any) => {
       fn(e.target.value)
     }
   }, [])
-
-  const setter = useMemo(
-    () => ({
-      author: setWrapper(setAuthor),
-      mail: setWrapper(setMail),
-      url: setWrapper(setUrl),
-      text: setWrapper(setText),
-    }),
-    [],
-  )
-
-  const prefixIcon = useMemo(
-    () => ({
-      author: <PhUser />,
-      mail: <MdiEmailFastOutline />,
-      url: <SiGlyphGlobal />,
-    }),
-    [],
-  )
 
   const noticeOnce = useRef(false)
 
@@ -233,33 +268,27 @@ export const CommentBox: FC<{
   }, [])
 
   const logged = useIsLogged()
+
+  const setter = useRef(
+    // @ts-ignore
+    ['author', 'mail', 'url'].reduce((acc, key) => {
+      acc[key] = setWrapper((e) => {
+        useCommentStore.setState({ [key]: e })
+      })
+      return acc
+    }, {}),
+  ).current
+
+  const isWhispers = useCommentStore((state) => state.isWhispers)
+  const text = useCommentStore((state) => state.text)
+
   return (
     <div className="my-4">
       {!logged && (
         <div className={styles['comment-box-head']}>
-          <Input
-            placeholder={'昵称 *'}
-            required
-            name={'author'}
-            prefix={prefixIcon['author']}
-            value={author}
-            onChange={setter['author']}
-          />
-          <Input
-            placeholder={'邮箱 *'}
-            name={'mail'}
-            required
-            prefix={prefixIcon['mail']}
-            value={mail}
-            onChange={setter['mail']}
-          />
-          <Input
-            placeholder={'网站 https?://'}
-            name={'website'}
-            prefix={prefixIcon['url']}
-            value={url}
-            onChange={setter['url']}
-          />
+          <FormInput fieldKey="author" />
+          <FormInput fieldKey="mail" />
+          <FormInput fieldKey="url" />
         </div>
       )}
       <Input
@@ -275,9 +304,9 @@ export const CommentBox: FC<{
         onClick={handleCommentBoxClick}
         wrapperProps={useMemo(
           () => ({
-            className: config.isWhispers ? styles['whispers-input'] : '',
+            className: isWhispers ? styles['whispers-input'] : '',
           }),
-          [config.isWhispers],
+          [isWhispers],
         )}
         placeholder={
           !logged
@@ -290,41 +319,13 @@ export const CommentBox: FC<{
         className={'relative flex justify-between mt-2 flex-wrap items-center'}
       >
         <div className="flex-shrink-0 flex space-x-2 items-center">
-          <FloatPopover
-            triggerComponent={
-              useRef(() => (
-                <button
-                  aria-label="support markdown"
-                  className="btn blue text-lg flex-shrink-0 mr-2 cursor-default pointer-events-none !p-2 rounded-full"
-                >
-                  <GridiconsNoticeOutline />
-                </button>
-              )).current
-            }
-          >
-            <div className="leading-7">
-              <p>评论支持部分 Markdown 语法</p>
-              <p>评论可能被移入垃圾箱</p>
-              <p>评论可能需要审核，审核通过后才会显示</p>
-            </div>
-          </FloatPopover>
+          <MarkdownSupport />
           <KaomojiButton onClickKaomoji={handleInsertEmoji} />
         </div>
 
         <div className={'whitespace-nowrap flex-shrink-0 flex items-center'}>
-          <CommentSendingContext.Provider
-            value={useMemo(
-              () => ({
-                setConfig(patch) {
-                  setConfig({ ...config, ...patch })
-                },
-                ...config,
-              }),
-              [config],
-            )}
-          >
-            <CommentBoxOption refId={refId} commentId={commentId} />
-          </CommentSendingContext.Provider>
+          <CommentBoxOption refId={refId} commentId={commentId} />
+
           {onCancel && (
             <button className="btn red" onClick={handleCancel}>
               取消回复
@@ -345,9 +346,10 @@ export const CommentBox: FC<{
 
 const CommentBoxOption: FC<{ commentId?: string; refId: string }> = (props) => {
   const isLogged = useIsLogged()
-  const { syncToRecently, isWhispers, setConfig } = useContext(
-    CommentSendingContext,
+  const { syncToRecently, isWhispers } = useCommentStore((state) =>
+    pick(state, ['syncToRecently', 'isWhispers']),
   )
+  const setConfig = useCommentStore.getState().setConfig
   const isReply = !!props.commentId
 
   return (
@@ -385,7 +387,28 @@ const CommentBoxOption: FC<{ commentId?: string; refId: string }> = (props) => {
     </>
   )
 }
-
+const MarkdownSupport = () => {
+  return (
+    <FloatPopover
+      triggerComponent={
+        useRef(() => (
+          <button
+            aria-label="support markdown"
+            className="btn blue text-lg flex-shrink-0 mr-2 cursor-default pointer-events-none !p-2 rounded-full"
+          >
+            <GridiconsNoticeOutline />
+          </button>
+        )).current
+      }
+    >
+      <div className="leading-7">
+        <p>评论支持部分 Markdown 语法</p>
+        <p>评论可能被移入垃圾箱</p>
+        <p>评论可能需要审核，审核通过后才会显示</p>
+      </div>
+    </FloatPopover>
+  )
+}
 const KaomojiButton: FC<{ onClickKaomoji: (kaomoji: string) => any }> = memo(
   ({ onClickKaomoji }) => {
     const { event } = useAnalyze()
