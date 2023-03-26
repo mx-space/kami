@@ -1,5 +1,22 @@
 # CHANGELOG
 
+# [4.2.0](https://github.com/mx-space/kami/compare/v4.1.3...v4.2.0) (2023-03-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-countup to v6.4.2 ([#1618](https://github.com/mx-space/kami/issues/1618)) ([74c6434](https://github.com/mx-space/kami/commit/74c643443b43b1dbaa08d9c0bc0fd3e55c412904))
+* **deps:** update dependency react-message-popup to v1.1.1 ([#1631](https://github.com/mx-space/kami/issues/1631)) ([a97fb80](https://github.com/mx-space/kami/commit/a97fb8029965a441acfcf41adf8c2580c6fb63e1))
+* **deps:** update dependency react-shortcut-guide to v1.0.0 ([#1625](https://github.com/mx-space/kami/issues/1625)) ([57d2ded](https://github.com/mx-space/kami/commit/57d2ded9eecd7e9665ac9c31092629c70949c469))
+* **deps:** update dependency react-toastify to v9.1.2 ([#1634](https://github.com/mx-space/kami/issues/1634)) ([50f3b53](https://github.com/mx-space/kami/commit/50f3b53f7666c5bff05a8e1d200ddca6115cecdb))
+* **deps:** update dependency swr to v2.1.0 ([#1611](https://github.com/mx-space/kami/issues/1611)) ([c0ca8b9](https://github.com/mx-space/kami/commit/c0ca8b910bb0fb12aa55d3853bb258d6f7b0c7e1))
+* **deps:** update dependency swr to v2.1.1 ([#1635](https://github.com/mx-space/kami/issues/1635)) ([4da3bf9](https://github.com/mx-space/kami/commit/4da3bf9d027f089f769fcc3a8ad3b406a8013c0b))
+* hydration data ([6e175c0](https://github.com/mx-space/kami/commit/6e175c072dfec60061591daee42e1da0f23818b7))
+* raf ([b0dd6d4](https://github.com/mx-space/kami/commit/b0dd6d463216fecfd0d058d15ac7d87e8020606a))
+* remove persist ([fd56422](https://github.com/mx-space/kami/commit/fd564224b99bc37a1d92daa7b24c878916e12b50))
+
+
+
 ## [4.1.3](https://github.com/mx-space/kami/compare/v4.1.2...v4.1.3) (2023-02-27)
 
 
