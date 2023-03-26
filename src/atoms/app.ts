@@ -4,7 +4,7 @@ import { apiClient } from '~/utils/client'
 
 import { useUserStore } from './user'
 
-// import './dev'
+import './dev'
 
 export interface ViewportRecord {
   w: number

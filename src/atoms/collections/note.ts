@@ -94,8 +94,12 @@ export const useNoteCollection = createCollection<NoteModel, NoteCollection>(
               ...note.count,
               like: note.count.like + 1,
             }
+
             message.success('感谢喜欢！')
             state.likeIdList.add(id.toString())
+            requestAnimationFrame(() => {
+              getState().addOrPatch(nextNote)
+            })
             setLikeId(`note-${note.nid.toString()}`)
           }
         })
