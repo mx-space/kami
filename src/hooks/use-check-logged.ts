@@ -10,7 +10,6 @@ import { useThemeConfig } from './use-initial-data'
 export const useCheckLogged = () => {
   const userStore = useUserStore.getState()
 
-  const master = userStore.master
   const {
     function: {
       banDevtool: { enable: banDevtoolEnable },
@@ -30,7 +29,10 @@ export const useCheckLogged = () => {
                   .put<{ token: string }>()
                   .then((res) => {
                     userStore.setToken(res.token)
-                    message.success(`欢迎回来，${master!.name}`, 1500)
+                    message.success(
+                      `欢迎回来，${useUserStore.getState().master!.name}`,
+                      1500,
+                    )
                     setToken(res.token)
                   })
               } else {

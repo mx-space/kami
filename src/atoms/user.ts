@@ -31,9 +31,11 @@ export const useUserStore = create<UserState & UserAction>(
           setState({ token: null })
           return
         }
-        setState({ token })
+        setState({ token, isLogged: true })
 
-        useAppStore.getState().fetchUrl()
+        requestAnimationFrame(() => {
+          useAppStore.getState().fetchUrl()
+        })
       },
       setUser(model) {
         setState({ master: model })

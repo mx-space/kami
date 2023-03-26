@@ -28,6 +28,7 @@ const LoginView: NextPage = () => {
       Router.push('/')
     }
     message.success('登录成功')
+
     useUserStore.getState().setToken(data.token)
     releaseDevtool()
   }
