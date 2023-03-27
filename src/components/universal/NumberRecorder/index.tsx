@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 import { memo } from 'react'
-import NumberCounter from 'react-smooth-number-counter'
+import { NumberCounter } from 'react-smooth-number-counter'
 
 import { ClientOnly } from '../../app/ClientOnly'
 
