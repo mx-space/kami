@@ -84,7 +84,7 @@
     "react-dom": "18.2.0",
     "react-intersection-observer": "9.4.3",
     "react-masonry-css": "1.0.16",
-    "react-message-popup": "1.1.1",
+    "react-message-popup": "1.1.3",
     "react-shortcut-guide": "1.0.0",
     "react-smooth-number-counter": "npm:@reactify-components/smooth-number-counter",
     "react-toastify": "9.1.2",

@@ -22,19 +22,17 @@ import styles from './index.module.css'
 import { CommentLoading } from './loading'
 
 export const openCommentMessage = async () => {
-  const { destory } = await message.loading({
+  const { next } = await message.loading({
     content: '发送中',
-    duration: 20000,
+    duration: 3000,
   })
 
   return {
     success: () => {
-      destory()
-      message.success({ content: '成功啦', duration: 2000 })
+      next('成功啦', 'success')
     },
     error: () => {
-      destory()
-      message.error({ content: '失败了，www', duration: 2000 })
+      next('失败了，www', 'error')
     },
   }
 }
