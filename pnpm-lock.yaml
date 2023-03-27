@@ -179,7 +179,6 @@ importers:
       randomcolor: ^0.6.2
       react-collapse: ^5.1.1
       react-intersection-observer: ^9.4.1
-      react-smooth-number-counter: https://github.com/Innei/react-smooth-number-counter.git
       react-transition-group: ^4.4.5
       remove-markdown: ^0.5.0
       rollup: 3.18.0
@@ -202,7 +201,6 @@ importers:
       randomcolor: 0.6.2
       react-collapse: 5.1.1
       react-intersection-observer: 9.4.1
-      react-smooth-number-counter: github.com/Innei/react-smooth-number-counter/1fb187369bd1b299dd9917187f4b1296f371f0cf
       react-transition-group: 4.4.5
       remove-markdown: 0.5.0
     devDependencies:
@@ -6324,14 +6322,3 @@ packages:
       which: 3.0.0
       yaml: 2.2.1
     dev: true
-
-  github.com/Innei/react-smooth-number-counter/1fb187369bd1b299dd9917187f4b1296f371f0cf:
-    resolution: {tarball: https://codeload.github.com/Innei/react-smooth-number-counter/tar.gz/1fb187369bd1b299dd9917187f4b1296f371f0cf}
-    name: '@reactify-components/smooth-number-counter'
-    version: 0.0.2
-    peerDependencies:
-      react: '>=17 || >=18 || >=16'
-    peerDependenciesMeta:
-      react:
-        optional: true
-    dev: false

@@ -83,7 +83,6 @@
     "randomcolor": "^0.6.2",
     "react-collapse": "^5.1.1",
     "react-intersection-observer": "^9.4.1",
-    "react-smooth-number-counter": "https://github.com/Innei/react-smooth-number-counter.git",
     "react-transition-group": "^4.4.5",
     "remove-markdown": "^0.5.0"
   },
