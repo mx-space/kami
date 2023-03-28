@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## [4.2.2](https://github.com/mx-space/kami/compare/v4.2.1...v4.2.2) (2023-03-28)
+
+
+### Bug Fixes
+
+* comment reply not show ([68dd5da](https://github.com/mx-space/kami/commit/68dd5da298ab7b59c33c7c285ef0b759ed582e12))
+* **comment:** can not reply ([821a7db](https://github.com/mx-space/kami/commit/821a7db90edb60c25e49d33230ee144a8219cb79))
+* deps ([27d5152](https://github.com/mx-space/kami/commit/27d5152d855ea3cd4d6464117867e0359d966931))
+
+
+### Features
+
+* **comment:** message popup style ([9f48681](https://github.com/mx-space/kami/commit/9f486811adb2904362778f85ac29e8d5ad5827f5))
+
+
+
 ## [4.2.1](https://github.com/mx-space/kami/compare/v4.2.0...v4.2.1) (2023-03-27)
 
 
