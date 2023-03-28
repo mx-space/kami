@@ -4,6 +4,7 @@ import React, {
   memo,
   useCallback,
   useEffect,
+  useId,
   useMemo,
   useRef,
   useState,
@@ -27,6 +28,7 @@ import { ImpressionView } from '~/components/biz/ImpressionView'
 import { kaomoji } from '~/constants/kaomoji'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
+import { useSyncEffectOnce } from '~/hooks/use-sync-effect'
 import { omit, pick, sample } from '~/utils/_'
 import { apiClient } from '~/utils/client'
 import { isClientSide, isDev } from '~/utils/env'
@@ -50,16 +52,22 @@ const initialState = {
   ...initialConfig,
 }
 
-const useCommentStore = create<
-  typeof initialState & {
-    setConfig(config: Partial<typeof initialConfig>): void
-  }
->((setState) => ({
-  ...initialState,
-  setConfig(config: Partial<typeof initialConfig>) {
-    setState(config)
-  },
-}))
+const createCommentState = () =>
+  create<
+    typeof initialState & {
+      setConfig(config: Partial<typeof initialConfig>): void
+    }
+  >((setState) => ({
+    ...initialState,
+    setConfig(config: Partial<typeof initialConfig>) {
+      setState(config)
+    },
+  }))
+
+const commentStoreMap = {} as Record<
+  string,
+  ReturnType<typeof createCommentState>
+>
 
 const FormInputCopyMap = {
   author: '昵称 *',
@@ -73,8 +81,10 @@ const FormInputIconMap = {
 }
 const FormInput: FC<{
   fieldKey: 'author' | 'mail' | 'url'
+  instanceId: string
 }> = (props) => {
-  const { fieldKey } = props
+  const { fieldKey, instanceId: key } = props
+  const useCommentStore = commentStoreMap[key]
   const value = useCommentStore((state) => state[fieldKey])
   const onChange = useCallback((e) => {
     useCommentStore.setState({ [fieldKey]: e.target.value })
@@ -91,14 +101,6 @@ const FormInput: FC<{
   )
 }
 
-if (isDev && isClientSide()) {
-  useCommentStore.setState({
-    author: '测试昵称',
-    mail: 'test@innei.ren',
-    url: 'https://test.innei.ren',
-  })
-}
-
 export const CommentBox: FC<{
   onSubmit: ({ text, author, mail, url, isWhispers }) => any
   onCancel?: () => any
@@ -108,6 +110,29 @@ export const CommentBox: FC<{
   commentId?: string
 }> = memo(({ onSubmit, onCancel, autoFocus = false, refId, commentId }) => {
   const taRef = useRef<HTMLTextAreaElement>(null)
+  const currentId = useId()
+  let useCommentStore = commentStoreMap[currentId]
+
+  useSyncEffectOnce(() => {
+    if (!useCommentStore) {
+      commentStoreMap[currentId] = createCommentState()
+      useCommentStore = commentStoreMap[currentId]
+    }
+
+    if (isDev && isClientSide()) {
+      useCommentStore.setState({
+        author: '测试昵称',
+        mail: 'test@innei.ren',
+        url: 'https://test.innei.ren',
+      })
+    }
+  })
+
+  useEffect(() => {
+    return () => {
+      delete commentStoreMap[currentId]
+    }
+  }, [])
 
   useEffect(() => {
     const $ref = taRef.current
@@ -271,7 +296,7 @@ export const CommentBox: FC<{
 
   const setter = useRef(
     // @ts-ignore
-    ['author', 'mail', 'url'].reduce((acc, key) => {
+    ['author', 'mail', 'url', 'text'].reduce((acc, key) => {
       acc[key] = setWrapper((e) => {
         useCommentStore.setState({ [key]: e })
       })
@@ -286,9 +311,9 @@ export const CommentBox: FC<{
     <div className="my-4">
       {!logged && (
         <div className={styles['comment-box-head']}>
-          <FormInput fieldKey="author" />
-          <FormInput fieldKey="mail" />
-          <FormInput fieldKey="url" />
+          <FormInput fieldKey="author" instanceId={currentId} />
+          <FormInput fieldKey="mail" instanceId={currentId} />
+          <FormInput fieldKey="url" instanceId={currentId} />
         </div>
       )}
       <Input
@@ -324,7 +349,11 @@ export const CommentBox: FC<{
         </div>
 
         <div className={'whitespace-nowrap flex-shrink-0 flex items-center'}>
-          <CommentBoxOption refId={refId} commentId={commentId} />
+          <CommentBoxOption
+            refId={refId}
+            commentId={commentId}
+            instanceId={currentId}
+          />
 
           {onCancel && (
             <button className="btn red" onClick={handleCancel}>
@@ -344,8 +373,13 @@ export const CommentBox: FC<{
   )
 })
 
-const CommentBoxOption: FC<{ commentId?: string; refId: string }> = (props) => {
+const CommentBoxOption: FC<{
+  commentId?: string
+  refId: string
+  instanceId: string
+}> = (props) => {
   const isLogged = useIsLogged()
+  const useCommentStore = commentStoreMap[props.instanceId]
   const { syncToRecently, isWhispers } = useCommentStore((state) =>
     pick(state, ['syncToRecently', 'isWhispers']),
   )
