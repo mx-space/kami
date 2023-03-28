@@ -104,6 +104,7 @@ export const useCommentCollection = createCollection<
 
       const refId =
         typeof comment.ref === 'string' ? comment.ref : (comment.ref as any).id
+
       if (refId !== getState().currentRefId) {
         return
       }
@@ -116,30 +117,35 @@ export const useCommentCollection = createCollection<
           state.data.has(comment.parent)) ||
           state.data.has((comment.parent as CommentModel)?.id))
       if (isSubComment) {
-        const parentComment = state.data.get(
-          typeof comment.parent === 'string'
-            ? comment.parent
-            : comment.parent?.id || '',
-        )
+        setState((state) => {
+          state.data.set(comment.id, comment)
+          const parentComment = state.data.get(
+            typeof comment.parent === 'string'
+              ? comment.parent
+              : comment.parent?.id || '',
+          )
 
-        if (parentComment) {
-          parentComment.children.push(comment)
-          state.updateComment(parentComment)
-        }
+          state.data = new Map(state.data)
+
+          if (parentComment) {
+            parentComment.children.push(comment)
+
+            state.updateComment(parentComment)
+          }
+        })
       } else {
         setState((state) => {
           const hasPinComment = state.comments.findIndex(
             (comment) => comment.pin,
           )
-          let nextComments: CommentModel[] = state.comments
+          let nextComments: CommentModel[] = state.comments.concat()
           if (-~hasPinComment) {
             nextComments = [nextComments[0], comment, ...nextComments.slice(1)]
           } else {
             nextComments = [comment, ...nextComments]
           }
 
-          state.comments = nextComments.concat()
-
+          state.comments = nextComments
           state.data.set(comment.id, comment)
           walkComments(comment.children).forEach((child) => {
             state.data.set(child.id, child)

@@ -331,24 +331,19 @@ const SingleComment: FC<{ id: string }> = ({ id, children }) => {
   )
 }
 const InnerCommentList = memo<{ id: string }>(({ id }) => {
-  const commentIdMap = useCommentCollection((state) => state.data)
-
-  const comment = commentIdMap.get(id)
+  const comment = useCommentCollection((state) => state.data.get(id))
 
   if (!comment) {
     return null
   }
   if (comment.children.length > 0) {
     const children = comment.children
+
     const childComments = children.map((child: CommentModel) => {
       return <InnerCommentList id={child.id} key={child.id} />
     })
 
-    return (
-      <SingleComment key={comment.id} id={comment.id}>
-        {childComments}
-      </SingleComment>
-    )
+    return <SingleComment id={comment.id}>{childComments}</SingleComment>
   }
-  return <SingleComment id={comment.id} key={comment.id} />
+  return <SingleComment id={comment.id} />
 })
