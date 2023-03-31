@@ -41,7 +41,7 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
       - uses: pnpm/action-setup@v2.2.4
         with:
-          version: 7.x.x
+          version: 8.x.x
           run_install: true
 
       - name: Restore next build
