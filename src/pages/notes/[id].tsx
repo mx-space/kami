@@ -24,6 +24,7 @@ import { BanCopy } from '~/components/in-page/WarningOverlay/ban-copy'
 import { NoteLayout } from '~/components/layouts/NoteLayout'
 import { SearchFAB } from '~/components/widgets/Search'
 import { SubscribeBell } from '~/components/widgets/SubscribeBell'
+import { XLogInfoForNote } from '~/components/widgets/xLogInfo'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useSetHeaderMeta, useSetHeaderShare } from '~/hooks/use-header-meta'
@@ -239,7 +240,7 @@ const NoteView: React.FC<{ id: string }> = memo((props) => {
         <div className="pb-4" />
 
         <SubscribeBell defaultType={'note_c'} />
-
+        <XLogInfoForNote id={props.id} />
         <NoteFooterActionBar id={props.id} />
       </NoteLayout>
       {!isSecret && (

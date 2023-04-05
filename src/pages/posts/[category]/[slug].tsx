@@ -34,6 +34,7 @@ import { Markdown } from '~/components/universal/Markdown'
 import type { ActionProps } from '~/components/widgets/ArticleAction'
 import { SearchFAB } from '~/components/widgets/Search'
 import { SubscribeBell } from '~/components/widgets/SubscribeBell'
+import { XLogInfoForPost } from '~/components/widgets/xLogInfo'
 import { useSetHeaderMeta, useSetHeaderShare } from '~/hooks/use-header-meta'
 import { useInitialData, useThemeConfig } from '~/hooks/use-initial-data'
 import { useIsClient } from '~/hooks/use-is-client'
@@ -326,6 +327,7 @@ export const PostView: PageOnlyProps = (props) => {
           />
         ) : null}
 
+        <XLogInfoForPost id={post.id} />
         <FooterActionBar id={post.id} />
 
         <CommentLazy

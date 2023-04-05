@@ -1,0 +1,13 @@
+.root {
+  :global(.ReactCollapse--collapse) {
+    transition: height 200ms;
+  }
+
+  & section {
+    @apply font-medium my-2;
+  }
+
+  & a {
+    @apply text-current;
+  }
+}
