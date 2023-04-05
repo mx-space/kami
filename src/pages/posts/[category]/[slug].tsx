@@ -35,6 +35,7 @@ import type { ActionProps } from '~/components/widgets/ArticleAction'
 import { SearchFAB } from '~/components/widgets/Search'
 import { SubscribeBell } from '~/components/widgets/SubscribeBell'
 import { XLogInfoForPost } from '~/components/widgets/xLogInfo'
+import { XLogSummaryForPost } from '~/components/widgets/xLogSummary'
 import { useSetHeaderMeta, useSetHeaderShare } from '~/hooks/use-header-meta'
 import { useInitialData, useThemeConfig } from '~/hooks/use-initial-data'
 import { useIsClient } from '~/hooks/use-is-client'
@@ -299,7 +300,7 @@ export const PostView: PageOnlyProps = (props) => {
         type="post"
         titleAnimate={false}
       >
-        {post.summary && (
+        {post.summary ? (
           <Banner
             type="info"
             placement="left"
@@ -308,6 +309,8 @@ export const PostView: PageOnlyProps = (props) => {
           >
             <p className="leading-[1.7]">摘要： {post.summary}</p>
           </Banner>
+        ) : (
+          <XLogSummaryForPost id={post.id} />
         )}
         <Outdate time={post.modified || post.created} />
         <ImageSizeMetaContext.Provider value={imagesMap}>

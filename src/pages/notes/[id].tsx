@@ -25,6 +25,7 @@ import { NoteLayout } from '~/components/layouts/NoteLayout'
 import { SearchFAB } from '~/components/widgets/Search'
 import { SubscribeBell } from '~/components/widgets/SubscribeBell'
 import { XLogInfoForNote } from '~/components/widgets/xLogInfo'
+import { XLogSummaryForNote } from '~/components/widgets/xLogSummary'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { useSetHeaderMeta, useSetHeaderShare } from '~/hooks/use-header-meta'
@@ -225,6 +226,7 @@ const NoteView: React.FC<{ id: string }> = memo((props) => {
                 这是一篇非公开的文章。(将在 {dateFormat} 解锁)
               </Banner>
             )}
+            <XLogSummaryForNote id={props.id} />
 
             <BanCopy>
               <article>
