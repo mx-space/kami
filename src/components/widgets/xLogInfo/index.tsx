@@ -1,5 +1,5 @@
 import { clsx } from 'clsx'
-import type { FC } from 'react'
+import type { FC, SVGProps } from 'react'
 import { useState } from 'react'
 import { Collapse } from 'react-collapse'
 
@@ -32,7 +32,7 @@ export const XLogInfoForNote: FC<{
 export const XLogInfoBase: FC<{
   meta?: XLogMeta
 }> = ({ meta }) => {
-  const [collapse, setCollapse] = useState(true)
+  const [collapse, setCollapse] = useState(false)
 
   if (!meta) return null
 
@@ -96,14 +96,22 @@ export const XLogInfoBase: FC<{
       <div
         role="button"
         tabIndex={0}
-        className="flex w-full justify-between items-center rounded-lg p-2 text-left text-gray-900 hover:bg-zinc-100 transition-colors duration-300 transition md:rounded-xl"
+        className="flex w-[100%+0.5rem] justify-between items-center rounded-lg -mx-2 p-2 text-left text-gray-900 hover:bg-zinc-100 dark:hover:bg-dark-200 transition-colors duration-300 transition md:rounded-xl"
         onClick={() => {
           setCollapse((c) => !c)
         }}
       >
-        <div className="flex items-center space-x-2">
-          <SafeIcon />
-          <span>此文章已经由它的创作者签名并安全地存储在区块链上。</span>
+        <div className="flex items-center justify-between w-full">
+          <span className="flex-grow flex space-x-2">
+            <SafeIcon />
+            <span>此文章已经由它的创作者签名并安全地存储在区块链上。</span>
+          </span>
+          <IcRoundKeyboardArrowDown
+            className={clsx(
+              !collapse ? '' : 'rotate-180',
+              'transition-transform transform ease-linear duration-200 text-lg',
+            )}
+          />
         </div>
       </div>
       <Collapse isOpened={collapse}>
@@ -128,3 +136,20 @@ const SafeIcon = () => (
     />
   </svg>
 )
+
+const IcRoundKeyboardArrowDown = (props: SVGProps<SVGSVGElement>) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0z"
+      />
+    </svg>
+  )
+}

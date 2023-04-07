@@ -13,7 +13,7 @@ const SWR_CHECK_SUBSCRIBE_KEY = 'subscribe-status'
 
 export const useSubscribeStatus = () => {
   return useSWR(SWR_CHECK_SUBSCRIBE_KEY, apiClient.subscribe.check, {
-    refreshInterval: 10e8,
+    refreshInterval: 60_000 * 10,
   })
 }
 

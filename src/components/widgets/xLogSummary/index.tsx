@@ -23,11 +23,10 @@ export const XLogSummary: FC<{
       })
     },
     {
-      revalidateOnReconnect: false,
       revalidateOnFocus: false,
       errorRetryCount: 3,
       errorRetryInterval: 1000,
-      dedupingInterval: 0,
+      refreshInterval: 0,
     },
   )
 

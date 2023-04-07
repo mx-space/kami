@@ -213,7 +213,6 @@ const NoteView: React.FC<{ id: string }> = memo((props) => {
           },
         },
       })}
-
       <NoteLayout title={title} date={note.created} tips={tips} id={note.id}>
         {isSecret && !isLogged ? (
           <p className="text-center my-8">
@@ -238,9 +237,9 @@ const NoteView: React.FC<{ id: string }> = memo((props) => {
         )}
         <div className="pb-8" />
         {note.topic && <NoteTopic noteId={props.id} topic={note.topic} />}
+
         <NoteFooterNavigationBarForMobile id={props.id} />
         <div className="pb-4" />
-
         <SubscribeBell defaultType={'note_c'} />
         <XLogInfoForNote id={props.id} />
         <NoteFooterActionBar id={props.id} />

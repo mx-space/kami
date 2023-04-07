@@ -138,7 +138,6 @@ ph {
       width: 3em;
       height: 3em;
       right: 0;
-      bottom: 0;
       content: '';
     }
 
@@ -155,6 +154,7 @@ ph {
         transparent 50%,
         var(--gray-6) 0
       );
+      transform: translateY(-12px);
       border-left: 1px solid var(--gray-5);
       border-top: 1px solid var(--gray-5);
       border-top-left-radius: 3px;
