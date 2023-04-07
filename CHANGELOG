@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## [4.3.1](https://github.com/mx-space/kami/compare/v4.3.0...v4.3.1) (2023-04-07)
+
+
+### Bug Fixes
+
+* chrome scroll behavior ([2d87e2d](https://github.com/mx-space/kami/commit/2d87e2db492829e8b42a18feb7f9ba05b9b86b37))
+* openai icon fill color ([44b5f7a](https://github.com/mx-space/kami/commit/44b5f7aacce15365ed5bdca44c3351502c75579b))
+
+
+### Features
+
+* adjust ai summary style ([2991f20](https://github.com/mx-space/kami/commit/2991f20898e722e3df3eb39e099784f5a586215a))
+
+
+
 # [4.3.0](https://github.com/mx-space/kami/compare/v4.2.2...v4.3.0) (2023-04-05)
 
 
