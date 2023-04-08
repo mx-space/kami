@@ -4,6 +4,7 @@ import React, {
   memo,
   useCallback,
   useEffect,
+  useId,
   useRef,
   useState,
 } from 'react'
@@ -23,6 +24,7 @@ import { useAnalyze } from '~/hooks/use-analyze'
 import { useThemeBackground } from '~/hooks/use-kami'
 import { useMediaToggle } from '~/hooks/use-media-toggle'
 import { useDetectIsNarrowThanLaptop } from '~/hooks/use-viewport'
+import { appendStyle } from '~/utils/load-script'
 import { springScrollToElement } from '~/utils/spring'
 
 const Header = React.lazy(() =>
@@ -57,6 +59,22 @@ const MusicMiniPlayerStoreControlled = React.lazy(() =>
     default: mo.MusicMiniPlayerStoreControlled,
   })),
 )
+
+const useColorModeTransition = (isDark: boolean) => {
+  useEffect(() => {
+    const { remove } = appendStyle(`:root * { transition: none!important; }`)
+    let timer = null as any
+    timer = setTimeout(() => {
+      remove()
+    }, 100)
+
+    return () => {
+      remove()
+      timer && clearTimeout(timer)
+    }
+  }, [isDark])
+}
+
 export const BasicLayout: FC = memo(({ children }) => {
   const { toggle, value: isDark } = useMediaToggle()
 
@@ -82,13 +100,13 @@ export const BasicLayout: FC = memo(({ children }) => {
 
     setNotice(true)
   }, [isDark, toggle])
-  const actionId = useRef('basic')
+  const actionId = useId()
   useEffect(() => {
     const actionStore = useActionStore.getState()
-    actionStore.removeActionById(actionId.current)
+    actionStore.removeActionById(actionId)
     if (isNarrowThanLaptop) {
       const action = {
-        id: actionId.current,
+        id: actionId,
         icon: colorMode === 'dark' ? <PhSunBold /> : <BiMoonStarsFill />,
         onClick: handleChangeColorMode,
       }
@@ -96,10 +114,12 @@ export const BasicLayout: FC = memo(({ children }) => {
 
       return () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        actionStore.removeActionById(actionId.current)
+        actionStore.removeActionById(actionId)
       }
     }
-  }, [colorMode, isNarrowThanLaptop, handleChangeColorMode])
+  }, [colorMode, isNarrowThanLaptop, handleChangeColorMode, actionId])
+
+  useColorModeTransition(isDark!)
 
   useEffect(() => {
     if (location.hash) {

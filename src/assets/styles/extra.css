@@ -132,20 +132,12 @@ ph {
   @media (min-width: 599px) {
     border: 1px solid rgb(187 187 187 / 20%);
 
-    &::before,
     &::after {
       position: absolute;
       width: 3em;
       height: 3em;
       right: 0;
       content: '';
-    }
-
-    &::before {
-      height: 58.8px;
-      transform: rotate(45deg) translateX(27px) translateY(6px);
-      border-left: 1px solid var(--gray-5);
-      z-index: 1;
     }
 
     &::after {

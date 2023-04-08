@@ -87,12 +87,15 @@ export function loadStyleSheet(href: string) {
 }
 
 export function appendStyle(style: string) {
-  const $style = document.createElement('style')
+  let $style: HTMLStyleElement | null = document.createElement('style')
   $style.innerHTML = style
   document.head.appendChild($style)
   return {
     remove: () => {
+      if (!$style) return
       $style.parentNode && $style.parentNode.removeChild($style)
+      $style.remove()
+      $style = null
     },
   }
 }
