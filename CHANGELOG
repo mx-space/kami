@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [4.3.2](https://github.com/mx-space/kami/compare/v4.3.1...v4.3.2) (2023-04-08)
+
+
+### Features
+
+* remove toggle dark mode transition ([062ca64](https://github.com/mx-space/kami/commit/062ca641fe7f2ff7e85b14e363671750562a5f71))
+
+
+
 ## [4.3.1](https://github.com/mx-space/kami/compare/v4.3.0...v4.3.1) (2023-04-07)
 
 
