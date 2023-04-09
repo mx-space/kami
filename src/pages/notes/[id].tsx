@@ -179,12 +179,24 @@ const NoteView: React.FC<{ id: string }> = memo((props) => {
       }).format(secretDate)
     : ''
   useEffect(() => {
+    console.log(
+      'sc',
+      +secretDate,
+      +new Date(),
+      secretDate,
+      +secretDate - +new Date(),
+    )
+
     let timer: any
-    if (isSecret) {
+    const timeout = +secretDate - +new Date()
+    // https://stackoverflow.com/questions/3468607/why-does-settimeout-break-for-large-millisecond-delay-values
+    const MAX_TIMEOUT = (2 ^ 31) - 1
+    if (isSecret && timeout && timeout < MAX_TIMEOUT) {
       timer = setTimeout(() => {
         message.info('刷新以查看解锁的文章', 10e3)
-      }, +secretDate - +new Date())
+      }, timeout)
     }
+
     return () => {
       clearTimeout(timer)
     }
@@ -215,9 +227,9 @@ const NoteView: React.FC<{ id: string }> = memo((props) => {
       })}
       <NoteLayout title={title} date={note.created} tips={tips} id={note.id}>
         {isSecret && !isLogged ? (
-          <p className="text-center my-8">
+          <Banner type="warning" className="mt-4">
             这篇文章暂时没有公开呢，将会在 {dateFormat} 解锁，再等等哦
-          </p>
+          </Banner>
         ) : (
           <ImageSizeMetaContext.Provider value={imageSizeProviderValue}>
             {isSecret && (
