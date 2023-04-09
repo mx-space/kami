@@ -128,7 +128,7 @@
     "postcss-nested": "6.0.1",
     "postcss-preset-env": "8.0.1",
     "prettier": "2.8.7",
-    "rimraf": "3.0.2",
+    "rimraf": "4.4.1",
     "tilg": "0.1.1",
     "typescript": "5.0.2",
     "windicss": "3.5.6",
