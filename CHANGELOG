@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## [4.3.3](https://github.com/mx-space/kami/compare/v4.3.2...v4.3.3) (2023-04-12)
+
+
+### Bug Fixes
+
+* **comments:** hide empty placeholder if can't comment ([eca5a8a](https://github.com/mx-space/kami/commit/eca5a8ac767602c6ddd825aeff549a7f3fa7d8cd))
+* **note:** banner value is string ([751ae05](https://github.com/mx-space/kami/commit/751ae0542dc81c2a2651c50f78f671fd8f3a9692))
+
+
+### Features
+
+* adjust notice banner ([182db7c](https://github.com/mx-space/kami/commit/182db7ccfcc63c56b785ed4ab143b650ae06d7ed))
+
+
+
 ## [4.3.2](https://github.com/mx-space/kami/compare/v4.3.1...v4.3.2) (2023-04-08)
 
 
