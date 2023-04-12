@@ -40,14 +40,17 @@ import styles from './index.module.css'
 import { CommentAtRender } from './renderers/comment-at'
 
 type Id = string
-export const Comments: FC = memo(() => {
-  const comments = useCommentCollection((state) => state.comments)
-  if (comments.length === 0) {
-    return <Empty />
-  }
+export const Comments: FC<{ allowComment: boolean }> = memo(
+  ({ allowComment }) => {
+    const comments = useCommentCollection((state) => state.comments)
 
-  return createElement(CommentList)
-})
+    if (comments.length === 0) {
+      return allowComment ? <Empty /> : null
+    }
+
+    return createElement(CommentList)
+  },
+)
 
 const CommentList: FC = memo(() => {
   const comments = useCommentCollection((state) => state.comments)

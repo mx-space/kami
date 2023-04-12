@@ -156,7 +156,7 @@ const CommentWrap: FC<CommentWrapProps> = (props) => {
       <span id="comment-anchor" />
       {commentShow ? (
         <Fragment>
-          <Comments />
+          <Comments allowComment={allowComment} />
           <div className="text-center">
             {pagination &&
               pagination.totalPage !== 0 &&
