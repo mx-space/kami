@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [4.3.4](https://github.com/mx-space/kami/compare/v4.3.3...v4.3.4) (2023-04-13)
+
+
+### Features
+
+* display complete text when hovering over the TOC item ([cbb9b31](https://github.com/mx-space/kami/commit/cbb9b31dff40d358b8d66d5598bf3c915508f2a4))
+
+
+
 ## [4.3.3](https://github.com/mx-space/kami/compare/v4.3.2...v4.3.3) (2023-04-12)
 
 
