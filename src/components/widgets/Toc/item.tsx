@@ -79,6 +79,7 @@ export const TocItem: FC<{
         },
         [index, title, onClick],
       )}
+      title={title}
     >
       <span className={styles['a-pointer']}>{title}</span>
     </a>
