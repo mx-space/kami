@@ -54,7 +54,7 @@ export const MarkdownToc: FC<TocProps> = memo((props) => {
 
           modalProps: {
             title: 'Table of Content',
-            noBlur: true,
+            blur: false,
           },
         })
       },

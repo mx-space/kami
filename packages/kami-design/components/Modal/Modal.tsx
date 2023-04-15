@@ -23,7 +23,7 @@ export interface ModalProps {
   onClose?: () => any
   modalClassName?: string
   contentClassName?: string
-  noBlur?: boolean
+  blur?: boolean
   fixedWidth?: boolean
   useRootPortal?: boolean
 }
@@ -87,8 +87,14 @@ export const Modal = forwardRef<
     },
   }))
 
-  const { title, closeable, modalId, useRootPortal, getIsMobileViewport } =
-    props
+  const {
+    title,
+    closeable,
+    modalId,
+    useRootPortal,
+    getIsMobileViewport,
+    blur = true,
+  } = props
   const useDrawerStyle = getIsMobileViewport() && props.useBottomDrawerInMobile
 
   const isMounted = useIsMountedState()
@@ -103,7 +109,7 @@ export const Modal = forwardRef<
         styles['modal'],
         props.fixedWidth && styles['fixed-width'],
         useDrawerStyle && styles['drawer'],
-        props.noBlur && styles['no-blur'],
+        !blur && styles['no-blur'],
         props.modalClassName,
       )}
     >

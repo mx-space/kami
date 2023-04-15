@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import React, { memo, useState } from 'react'
+import React, { useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 import styles from './index.module.css'
@@ -8,7 +8,7 @@ export type LoadingProps = {
   loadingText?: string
 }
 
-export const Loading: FC<LoadingProps> = memo(({ loadingText }) => {
+export const Loading: FC<LoadingProps> = ({ loadingText }) => {
   const [pause, setPause] = useState(true)
   const { ref } = useInView({
     threshold: 0.5,
@@ -49,4 +49,4 @@ export const Loading: FC<LoadingProps> = memo(({ loadingText }) => {
       <span>{loadingText}</span>
     </div>
   )
-})
+}

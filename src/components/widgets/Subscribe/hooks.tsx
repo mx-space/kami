@@ -11,13 +11,13 @@ import { SubscribeModal } from './modal'
 
 const SWR_CHECK_SUBSCRIBE_KEY = 'subscribe-status'
 
-export const useSubscribeStatus = () => {
+export const useSubscribeStatusQuery = () => {
   return useSWR(SWR_CHECK_SUBSCRIBE_KEY, apiClient.subscribe.check, {
     refreshInterval: 60_000 * 10,
   })
 }
 
-export const useIsEnableSubscribe = () => useSubscribeStatus().data?.enable
+export const useIsEnableSubscribe = () => useSubscribeStatusQuery().data?.enable
 
 export const usePresentSubscribeModal = (
   source: string,
@@ -33,7 +33,9 @@ export const usePresentSubscribeModal = (
           title: '邮件订阅',
           closeable: true,
           useRootPortal: true,
+          blur: false,
         },
+
         overlayProps: {
           stopPropagation: true,
           darkness: 0.5,
