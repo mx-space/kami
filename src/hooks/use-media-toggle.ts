@@ -4,9 +4,9 @@ import { useAppStore } from '~/atoms/app'
 import { isServerSide } from '~/utils/env'
 
 interface DarkModeConfig {
-  classNameDark?: string // A className to set "dark mode". Default = "dark-mode".
-  classNameLight?: string // A className to set "light mode". Default = "light-mode".
-  element?: HTMLElement | undefined | null // The element to apply the className. Default = `document.body`
+  classNameDark?: string // A className to set "dark mode". Default = "dark".
+  classNameLight?: string // A className to set "light mode". Default = "light".
+  element?: HTMLElement | undefined | null // The element to apply the className. Default = `document.body`.
   storageKey?: string // Specify the `localStorage` key. Default = "darkMode". Sewt to `null` to disable persistent storage.
 }
 
@@ -49,20 +49,22 @@ const useDarkMode = (
       }
     }
 
-    const focusHandler = () => {
+    const storageHandler = () => {
       const storageValue = localStorage.getItem(storageKey || 'darkMode')
       if (storageValue === null) {
         setDarkMode(window.matchMedia('(prefers-color-scheme: dark)').matches)
+      } else {
+        setDarkMode(storageValue === 'true')
       }
     }
 
-    window.addEventListener('focus', focusHandler)
+    window.addEventListener('storage', storageHandler)
     window
       .matchMedia('(prefers-color-scheme: dark)')
       .addEventListener('change', handler)
 
     return () => {
-      window.removeEventListener('focus', focusHandler)
+      window.removeEventListener('storage', storageHandler)
       window
         .matchMedia('(prefers-color-scheme: dark)')
         .removeEventListener('change', handler)
@@ -70,7 +72,7 @@ const useDarkMode = (
   }, [storageKey])
 
   useEffect(() => {
-    if (isServerSide()) {
+    if (isServerSide() || typeof darkMode === 'undefined') {
       return
     }
 
