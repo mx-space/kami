@@ -103,6 +103,6 @@
     "rollup-plugin-postcss": "4.0.2",
     "rollup-plugin-windicss": "1.8.10",
     "tsc-alias": "1.8.4",
-    "typescript": "5.0.2"
+    "typescript": "5.0.4"
   }
 }
