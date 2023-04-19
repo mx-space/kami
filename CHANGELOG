@@ -1,5 +1,20 @@
 # CHANGELOG
 
+# [4.4.0](https://github.com/mx-space/kami/compare/v4.3.4...v4.4.0) (2023-04-19)
+
+
+### Bug Fixes
+
+* dark mode ([#1646](https://github.com/mx-space/kami/issues/1646)) ([d86ae32](https://github.com/mx-space/kami/commit/d86ae32e8d140bee9d9b8e3572318ee459d20874))
+
+
+### Features
+
+* customize home page section ([e67617e](https://github.com/mx-space/kami/commit/e67617e1d3f1530463ea825fcd278db6217049be))
+* customize home section order ([8d98402](https://github.com/mx-space/kami/commit/8d9840221d2d62a66ce81bf0b67964e6eef1a276))
+
+
+
 ## [4.3.4](https://github.com/mx-space/kami/compare/v4.3.3...v4.3.4) (2023-04-13)
 
 
