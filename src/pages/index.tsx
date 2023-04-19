@@ -1,9 +1,10 @@
 import type { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
-import React, { createContext, useContext, useEffect, useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 
 import type { AggregateTop } from '@mx-space/api-client'
 
+import { HomePageViewProvider } from '~/components/in-page/Home/context'
 import { HomeIntro } from '~/components/in-page/Home/intro'
 import { HomeRandomSay } from '~/components/in-page/Home/random-say'
 import { HomeSections } from '~/components/in-page/Home/section'
@@ -11,10 +12,6 @@ import { useInitialData, useKamiConfig } from '~/hooks/use-initial-data'
 import { omit } from '~/utils/_'
 import { apiClient } from '~/utils/client'
 import { Notice } from '~/utils/notice'
-
-const IndexViewContext = createContext({ doAnimation: true })
-
-export const useIndexViewContext = () => useContext(IndexViewContext)
 
 const IndexView: NextPage<AggregateTop> = (props) => {
   const initData = useInitialData()
@@ -55,18 +52,18 @@ const IndexView: NextPage<AggregateTop> = (props) => {
 
   return (
     <main>
-      <IndexViewContext.Provider
+      <NextSeo
+        title={`${initData.seo.title} · ${initData.seo.description}`}
+        description={initData.seo.description}
+      />
+      <HomePageViewProvider
         value={useMemo(() => ({ doAnimation }), [doAnimation])}
       >
-        <NextSeo
-          title={`${initData.seo.title} · ${initData.seo.description}`}
-          description={initData.seo.description}
-        />
         <HomeIntro />
 
         <HomeRandomSay />
         <HomeSections {...props} />
-      </IndexViewContext.Provider>
+      </HomePageViewProvider>
     </main>
   )
 }

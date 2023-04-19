@@ -2,6 +2,7 @@ export interface KamiConfig {
   name: string
   site: Site
   function: Function
+  page: Page
 }
 
 interface Function {
@@ -116,4 +117,16 @@ interface Social {
   title: string
   icon: string
   color: string
+}
+
+export interface Page {
+  home: HomePage
+}
+
+export type HomePageSectionName = 'post' | 'note' | 'friend' | 'more'
+export interface HomePage {
+  sections: HomePageSectionName[]
+  titleMapping: {
+    [key in HomePageSectionName]?: string
+  }
 }

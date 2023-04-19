@@ -22,7 +22,9 @@ export const FriendItem: FC<LinkModel> = memo((props) => {
   )
 })
 
-export const FriendsSection: FC = memo(() => {
+export const FriendsSection: FC<{
+  title: string
+}> = memo(({ title }) => {
   const { data: friends, mutate } = useSWR(
     'home-friends',
     async () => {
@@ -54,7 +56,7 @@ export const FriendsSection: FC = memo(() => {
 
   return (
     <SectionWrap
-      title="朋友们"
+      title={title}
       moreUrl="friends"
       icon={<PhUsersDuotone />}
       className={'w-full'}

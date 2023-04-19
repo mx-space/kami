@@ -1,163 +1,101 @@
-import Router from 'next/router'
-import { useIndexViewContext } from 'pages'
 import type { FC } from 'react'
-import { useCallback, useMemo, useRef, useState } from 'react'
+import { useCallback, useMemo, useRef } from 'react'
 import { TransitionGroup } from 'react-transition-group'
-import useSWR from 'swr'
 
 import type { AggregateTop } from '@mx-space/api-client'
-import {
-  FaSolidKissWinkHeart,
-  MdiDrawPen,
-} from '@mx-space/kami-design/components/Icons/for-home'
+import { useStateToRef } from '@mx-space/kami-design'
+import { MdiDrawPen } from '@mx-space/kami-design/components/Icons/for-home'
 import { IcTwotoneSignpost } from '@mx-space/kami-design/components/Icons/menu-icon'
 import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
 import { withNoSSR } from '~/components/biz/HoC/no-ssr'
-import { LikeButton } from '~/components/universal/LikeButton'
-import { NoticePanel } from '~/components/universal/Notice'
-import {
-  useIsEnableSubscribe,
-  usePresentSubscribeModal,
-} from '~/components/widgets/Subscribe/hooks'
+import { useKamiConfig } from '~/hooks/use-initial-data'
 import { useRandomImage } from '~/hooks/use-kami'
-import { apiClient } from '~/utils/client'
-import { stopEventDefault } from '~/utils/dom'
 
 import type { SectionNewsProps } from './SectionNews'
-import SectionNews, { SectionCard } from './SectionNews'
-import { FriendsSection } from './SectionNews/friend'
-import { SectionWrap } from './SectionNews/section'
+import SectionNews from './SectionNews'
+import { FriendsSection } from './SectionNews/friend-section'
+import { MoreSection } from './SectionNews/more-section'
+import { useHomePageViewContext } from './context'
 import styles from './section.module.css'
 
-const SubscribeCard: FC<{
-  bg: string
-}> = ({ bg }) => {
-  const canSubscribe = useIsEnableSubscribe()
-  const { present } = usePresentSubscribeModal('home')
+const SectionsInternal: FC<AggregateTop> = ({ notes, posts }) => {
+  const notesRef = useStateToRef(notes)
+  const postsRef = useStateToRef(posts)
 
-  return (
-    <SectionCard
-      title="订阅"
-      desc="关注订阅不迷路哦"
-      src={bg}
-      onClick={useCallback(() => {
-        if (canSubscribe) {
-          present()
-        } else {
-          window.open('/feed')
-        }
-      }, [canSubscribe])}
-    />
-  )
-}
-
-const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
   const randomImages = useRandomImage('all')
-
   const currentImageIndex = useRef(0)
-
-  const getRandomUnRepeatImage = () =>
-    randomImages[currentImageIndex.current++ % randomImages.length]
-  const sections = useRef({
-    postSection: {
-      title: '近期技术输出',
-      icon: <IcTwotoneSignpost />,
-      moreUrl: 'posts',
-      content: posts.slice(0, 4).map((p) => {
-        return {
-          title: p.title,
-          background: getRandomUnRepeatImage(),
-          id: p.id,
-          ...buildRoute('Post', p),
-        }
-      }),
-    } as SectionNewsProps,
-    noteSection: {
-      title: '用文字记录生活',
-      icon: <MdiDrawPen />,
-      moreUrl: 'notes',
-      content: notes.slice(0, 4).map((n) => {
-        return {
-          title: n.title,
-          background: getRandomUnRepeatImage(),
-          id: n.id,
-          ...buildRoute('Note', n),
-        }
-      }),
-    } as SectionNewsProps,
-  })
-
-  const { data: like, mutate } = useSWR('like', () =>
-    apiClient.proxy('like_this').get<number>(),
+  const getRandomUnRepeatImage = useCallback(
+    () => randomImages[currentImageIndex.current++ % randomImages.length],
+    [randomImages],
   )
 
-  const { doAnimation } = useIndexViewContext()
+  const {
+    page: { home: homePageConfig },
+  } = useKamiConfig()
+  const { sections: sectionShouldUsedList, titleMapping } = homePageConfig
+  const sectionSet = useMemo(
+    () => new Set(sectionShouldUsedList),
+    [sectionShouldUsedList],
+  )
 
-  const [showLikeThisNotice, setShowLikeThisNotice] = useState(false)
+  const sections = useMemo(() => {
+    const result = {} as Record<'postSection' | 'noteSection', SectionNewsProps>
+    if (sectionSet.has('post')) {
+      const posts = postsRef.current
+      result.postSection = {
+        title: titleMapping.post || '文章',
+        icon: <IcTwotoneSignpost />,
+        moreUrl: 'posts',
+        content: posts.slice(0, 4).map((p) => {
+          return {
+            title: p.title,
+            background: getRandomUnRepeatImage(),
+            id: p.id,
+            ...buildRoute('Post', p),
+          }
+        }),
+      }
+    }
+    if (sectionSet.has('note')) {
+      const notes = notesRef.current
+      result.noteSection = {
+        title: titleMapping.note || '日记',
+        icon: <MdiDrawPen />,
+        moreUrl: 'notes',
+        content: notes.slice(0, 4).map((n) => {
+          return {
+            title: n.title,
+            background: getRandomUnRepeatImage(),
+            id: n.id,
+            ...buildRoute('Note', n),
+          }
+        }),
+      }
+    }
 
-  const SectionCompList = [
-    <SectionNews {...sections.current.postSection} key="1" />,
-    <SectionNews {...sections.current.noteSection} key="2" />,
+    return result
+  }, [sectionSet, titleMapping.note, titleMapping.post])
 
-    <FriendsSection key="3" />,
-    <SectionWrap
-      title="了解更多"
-      icon={<FaSolidKissWinkHeart />}
-      showMoreIcon={false}
-      key="4"
-    >
-      <SectionCard
-        title="留言"
-        desc="你的话对我很重要"
-        src={useMemo(() => getRandomUnRepeatImage(), [])}
-        href="/message"
-        onClick={useCallback((e) => {
-          stopEventDefault(e)
-          Router.push('/[page]', '/message')
-        }, [])}
-      />
-      <SectionCard
-        title="关于"
-        desc="这里有我的小秘密"
-        src={useMemo(() => getRandomUnRepeatImage(), [])}
-        href="/about"
-        onClick={useCallback((e) => {
-          stopEventDefault(e)
-          Router.push('/[page]', '/about')
-        }, [])}
-      />
-      <SectionCard
-        title={`点赞 (${like ?? 0})`}
-        desc={'如果你喜欢的话点个赞呗'}
-        src={useMemo(() => getRandomUnRepeatImage(), [])}
-        href={'/like_this'}
-        onClick={useCallback((e) => {
-          stopEventDefault(e)
-          apiClient
-            .proxy('like_this')
-            .post({ params: { ts: Date.now() } })
-            .then(() => {
-              setShowLikeThisNotice(true)
-              mutate()
-            })
-        }, [])}
-      />
-      <SubscribeCard bg={useMemo(() => getRandomUnRepeatImage(), [])} />
+  const { doAnimation } = useHomePageViewContext()
 
-      <NoticePanel
-        in={showLikeThisNotice}
-        onExited={useCallback(() => {
-          setShowLikeThisNotice(false)
-        }, [])}
-        text="感谢喜欢！"
-        icon={
-          <div className="flex items-center">
-            <LikeButton checked width={'120px'} />
-          </div>
-        }
+  const SectionCompList: (JSX.Element | null)[] = [
+    sections.postSection ? (
+      <SectionNews {...sections.postSection} key="1" />
+    ) : null,
+    sections.noteSection ? (
+      <SectionNews {...sections.noteSection} key="2" />
+    ) : null,
+
+    sectionSet.has('friend') ? (
+      <FriendsSection key="3" title={titleMapping.friend || '朋友们'} />
+    ) : null,
+    sectionSet.has('more') ? (
+      <MoreSection
+        getRandomUnRepeatImage={getRandomUnRepeatImage}
+        title={titleMapping.more || '了解更多'}
       />
-    </SectionWrap>,
+    ) : null,
   ]
 
   return (
@@ -175,7 +113,7 @@ const _Sections: FC<AggregateTop> = ({ notes, posts }) => {
   )
 }
 
-export const HomeSections = withNoSSR(_Sections)
+export const HomeSections = withNoSSR(SectionsInternal)
 
 function buildRoute<T extends { id: string } & { nid?: number }>(
   type: keyof typeof ContentType,

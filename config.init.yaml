@@ -2,7 +2,7 @@ name: kami
 
 site:
   favicon: /favicon.svg
-  # 开屏图 svg 标签, 注意 XSS
+  # 开屏图 svg 标签，注意 XSS
   logo_svg: null
   # 随机图片
   figure: null
@@ -107,6 +107,19 @@ site:
     style: ''
     js: []
     css: []
+
+page:
+  home:
+    sections:
+      - post
+      - note
+      - friend
+      - more
+    title_mapping:
+      post: ''
+      note: ''
+      friend: ''
+      more: ''
 
 function:
   comment:

@@ -170,3 +170,16 @@ function:
       message: 听我说，一起润
       icon: https://xiaorunshu.com/android-chrome-192x192.png
       to-link: //xiaorunshu.com
+
+page:
+  home:
+    sections:
+      - post
+      - note
+      - friend
+      - more
+    title_mapping:
+      post: '最近的技术输出'
+      note: '用文字记录生活'
+      friend: '朋友们'
+      more: '了解更多'

@@ -153,6 +153,17 @@ export const defaultConfigs = {
       css: [],
     },
   },
+  page: {
+    home: {
+      sections: ['post', 'note', 'friend', 'more'],
+      titleMapping: {
+        post: '',
+        note: '',
+        friend: '',
+        more: '',
+      },
+    },
+  },
   function: {
     comment: {
       disable: false,
