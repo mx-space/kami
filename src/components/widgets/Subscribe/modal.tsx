@@ -157,7 +157,7 @@ export const SubscribeModal: FC<SubscribeModalProps> = ({
         </a>{' '}
         订阅「{title}」的 RSS 流。
       </p>
-      <button className="btn green" disabled={!state.email}>
+      <button className="btn" disabled={!state.email}>
         订阅
       </button>
     </form>

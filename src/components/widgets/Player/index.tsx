@@ -281,7 +281,7 @@ const BottomProgressBar = memo(() => {
       <div
         className={
           'fixed bottom-0 left-0 origin-left transform-gpu ease-linear transition-transform right-0' +
-          ' transform scale-y-50 pt-[2px] bg-yellow duration-1000 z-99'
+          ' transform scale-y-50 pt-[2px] bg-secondary duration-1000 z-99'
           // +' hover:pt-[8px] hover:cursor-pointer'
         }
         style={{

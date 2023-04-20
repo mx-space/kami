@@ -2,7 +2,7 @@
   @apply z-1 transform-gpu;
 
   a:hover {
-    color: var(--yellow);
+    color: var(--secondary);
   }
 
   p {

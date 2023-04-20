@@ -19,7 +19,7 @@
     transform: translateY(0px);
 
     &:hover {
-      border: 1px solid var(--yellow);
+      border: 1px solid var(--secondary);
     }
   }
 }
@@ -38,7 +38,7 @@
   color: var(--black);
 
   &:hover {
-    background: var(--yellow);
+    background: var(--secondary);
     color: var(--white);
   }
 }

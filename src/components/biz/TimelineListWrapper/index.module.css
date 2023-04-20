@@ -6,7 +6,7 @@
     position: absolute;
     left: -1.05rem;
     bottom: 0;
-    border-left: 1px solid var(--yellow);
+    border-left: 1px solid var(--secondary);
   }
 
   & > li:first-child:last-child::before {
@@ -29,7 +29,7 @@
   li {
     position: relative;
     list-style-type: none;
-    color: var(--yellow);
+    color: var(--secondary);
   }
 
   li::after {
@@ -41,6 +41,6 @@
     width: 0.5rem;
     border-radius: 50%;
     position: absolute;
-    background-color: var(--yellow);
+    background-color: var(--secondary);
   }
 }

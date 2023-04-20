@@ -361,7 +361,7 @@ export const CommentBox: FC<{
             </button>
           )}
           <button
-            className="btn yellow ml-[12px]"
+            className="btn ml-[12px]"
             onClick={handleSubmit}
             disabled={text.trim().length === 0}
           >

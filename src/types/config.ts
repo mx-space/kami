@@ -54,8 +54,14 @@ export interface ThemeColor {
   lightHover?: string
   darkHover?: string
 }
+
+export interface SecondaryColor {
+  light: string
+  dark: string
+}
 interface Site {
   themeColor?: ThemeColor | string
+  secondaryColor?: SecondaryColor | string
   favicon: string
   subtitle?: string | null
   logoSvg?: string

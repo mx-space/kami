@@ -10,6 +10,7 @@ import { loadScript } from '~/utils/load-script'
 
 const useCustomThemeColor = (
   themeColorConfig: string | ThemeColor | undefined,
+  cssVarKay = 'primary',
 ) => {
   if (!themeColorConfig) return [null, null] as const
 
@@ -37,7 +38,7 @@ const useCustomThemeColor = (
     <style
       id="theme-style"
       dangerouslySetInnerHTML={{
-        __html: `html {--primary: ${light}!important;--primary-hover: ${lightHover}!important};html.dark {--primary: ${dark}!important;--primary-hover: ${darkHover}!important};`,
+        __html: `html {--${cssVarKay}: ${light}!important;--${cssVarKay}-hover: ${lightHover}!important};html.dark {--${cssVarKay}: ${dark}!important;--${cssVarKay}-hover: ${darkHover}!important};`,
       }}
     />,
     nextThemeColorConfig,
@@ -54,9 +55,14 @@ export const DynamicHeadMeta: FC = memo(() => {
   const { dark: darkFooter, light: lightFooter } =
     themeConfig.site.footer.background.src
   const { css, js, script, style } = themeConfig.site.custom
-  const themeColor = themeConfig.site.themeColor
+  const { themeColor, secondaryColor } = themeConfig.site
   const [themeColorMetaElement, themeColorConfig] =
     useCustomThemeColor(themeColor)
+  const [secondaryColorElement] = useCustomThemeColor(
+    secondaryColor,
+    'secondary',
+  )
+
   const { light: lightColor } = themeColorConfig || {}
 
   useInsertionEffect(() => {
@@ -112,6 +118,7 @@ export const DynamicHeadMeta: FC = memo(() => {
       <link rel="preload" href={lightFooter} as="image" />
 
       {themeColorMetaElement}
+      {secondaryColorElement}
     </Head>
   )
 })

@@ -49,7 +49,7 @@
 
     circle {
       shape-rendering: crispEdges;
-      stroke: var(--yellow);
+      stroke: var(--secondary);
       stroke-width: 3px;
       fill: transparent;
       stroke-dashoffset: 0;

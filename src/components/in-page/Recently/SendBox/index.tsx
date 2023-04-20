@@ -41,7 +41,7 @@ export const RecentlySendBox: FC = memo(() => {
       />
       <div className="mt-3 text-right">
         <button
-          className="btn yellow"
+          className="btn !bg-primary !text-white"
           onClick={(e) => {
             e.preventDefault()
             handleSubmit()

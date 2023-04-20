@@ -42,25 +42,8 @@
   outline: 0;
   color: #fff;
   border-radius: 4rem;
-  background-color: rgb(230 126 34 / 100%);
+  background-color: var(--primary);
   line-height: 1.15;
-  animation: gradual-change infinite 3s ease both;
-  animation-play-state: paused;
-
-  &:hover {
-    animation-play-state: running;
-  }
-}
-
-@keyframes gradual-change {
-  0%,
-  100% {
-    background: rgb(230 126 34 / 100%);
-  }
-
-  50% {
-    background: rgb(241 196 15 / 80%);
-  }
 }
 
 .navigator {

@@ -118,8 +118,8 @@ a,
 
 .btn {
   cursor: pointer;
-  background: var(--light-bg);
-  color: var(--shizuku-text-color);
+  background: var(--primary);
+  color: #fff;
   padding: 0.5em 1em;
   display: inline-block;
   border: 1px solid transparent;
@@ -380,6 +380,6 @@ h1.headline,
   &::before {
     content: '';
     padding-left: 0.75em;
-    border-left: 2px solid var(--yellow);
+    border-left: 2px solid var(--secondary);
   }
 }

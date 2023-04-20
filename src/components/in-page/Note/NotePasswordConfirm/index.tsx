@@ -29,7 +29,10 @@ export const NotePasswordConfrim: React.FC<{
             }
           }}
         />
-        <button className="btn yellow flex-shrink-0" onClick={handleSubmit}>
+        <button
+          className="btn !bg-primary !text-white flex-shrink-0"
+          onClick={handleSubmit}
+        >
           提交
         </button>
       </div>

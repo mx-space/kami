@@ -150,7 +150,11 @@ export const ApplyForLink: FC = () => {
         >
           重置
         </button>
-        <button type="submit" className="btn yellow" onClick={handleSubmit}>
+        <button
+          type="submit"
+          className="btn !bg-primary !text-white"
+          onClick={handleSubmit}
+        >
           发送
         </button>
       </div>

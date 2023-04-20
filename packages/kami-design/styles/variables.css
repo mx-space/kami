@@ -11,7 +11,7 @@
   --light-font: #fff;
   --shallow: #eee;
   --pink: #eb445a;
-  --primary: var(--green);
+
   --white: var(--light-font);
 
   --code-bg: transparent;
@@ -27,6 +27,9 @@
   --gray-4: rgb(209, 209, 214);
   --gray-5: rgb(229, 229, 234);
   --gray-6: rgb(242, 242, 247);
+
+  --primary: var(--green);
+  --secondary: var(--yellow);
 
   --serif-font: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC',
     'Source Han Serif', source-han-serif-sc, SongTi SC, SimSum,

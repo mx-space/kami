@@ -178,6 +178,6 @@
   }
 
   to {
-    background-color: #d2edee66;
+    background-color: var(--primary-hover);
   }
 }

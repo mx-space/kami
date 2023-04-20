@@ -194,7 +194,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
           target.animate(
             [
               {
-                backgroundColor: 'var(--yellow)',
+                backgroundColor: 'var(--secondary)',
               },
               {
                 backgroundColor: 'transparent',

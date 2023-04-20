@@ -180,7 +180,7 @@
 
   &:hover .anchor-ball {
     opacity: 1;
-    background-color: var(--yellow);
+    background-color: var(--secondary);
     border-radius: 3px;
     width: 3rem;
     height: 2px;

@@ -98,7 +98,7 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
           )}
           {pagination.hasNextPage && (
             <button
-              className="btn brown"
+              className="btn !bg-secondary !text-white"
               style={
                 pagination.hasNextPage && pagination.hasPrevPage
                   ? { marginLeft: '6px' }
