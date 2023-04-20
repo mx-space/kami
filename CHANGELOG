@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [4.4.1](https://github.com/mx-space/kami/compare/v4.4.0...v4.4.1) (2023-04-20)
+
+
+### Features
+
+* add prop for seo ([c7c589d](https://github.com/mx-space/kami/commit/c7c589d7174d5a751149c5794c732a6c41f69a1c))
+* support customize theme color ([2642498](https://github.com/mx-space/kami/commit/26424987bc7b676703cc2a72af3d7d7ee74644b1))
+
+
+
 # [4.4.0](https://github.com/mx-space/kami/compare/v4.3.4...v4.4.0) (2023-04-19)
 
 
