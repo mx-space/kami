@@ -8,7 +8,7 @@ import { LinkState, LinkType } from '@mx-space/api-client'
 
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { withNoSSR } from '~/components/biz/HoC/no-ssr'
-import { SEO } from '~/components/biz/Seo'
+import { Seo } from '~/components/biz/Seo'
 import { ApplyForLink } from '~/components/in-page/ApplyLink'
 import {
   BannedSection,
@@ -33,7 +33,7 @@ const FriendsView: NextPage<
 
   return (
     <ArticleLayout title={'朋友们'} subtitle={'海内存知己, 天涯若比邻'}>
-      <SEO title={'朋友们'} />
+      <Seo title={'朋友们'} />
       <article className="article-list">
         {friends.length > 0 && (
           <>

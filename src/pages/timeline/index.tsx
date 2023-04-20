@@ -18,7 +18,7 @@ import { apiClient } from '~/utils/client'
 import { springScrollToElement } from '~/utils/spring'
 import { dayOfYear, daysOfYear, secondOfDay, secondOfDays } from '~/utils/time'
 
-import { SEO } from '../../components/biz/Seo'
+import { Seo } from '../../components/biz/Seo'
 import { ArticleLayout } from '../../components/layouts/ArticleLayout'
 import styles from './index.module.css'
 
@@ -230,7 +230,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
           <p>活在当下，珍惜眼下</p>
         </div>
       )}
-      <SEO title={'时间线'} />
+      <Seo title={'时间线'} />
       {arr.reverse().map(([year, value]) => {
         return (
           <article className="article-list" key={year}>

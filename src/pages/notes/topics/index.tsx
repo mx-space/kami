@@ -6,7 +6,7 @@ import { TransitionGroup } from 'react-transition-group'
 import type { TopicModel } from '@mx-space/api-client'
 import { RightLeftTransitionView } from '@mx-space/kami-design/components/Transition/right-left'
 
-import { SEO } from '~/components/biz/Seo'
+import { Seo } from '~/components/biz/Seo'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { apiClient } from '~/utils/client'
 
@@ -20,7 +20,7 @@ const TopicPage: NextPage = () => {
   }, [])
   return (
     <ArticleLayout title="专栏">
-      <SEO title="专栏" />
+      <Seo title="专栏" />
       <div className="article-list">
         <ul>
           <TransitionGroup>

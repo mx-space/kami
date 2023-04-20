@@ -8,7 +8,7 @@ import { Divider } from '@mx-space/kami-design/components/Divider'
 import { RightLeftTransitionView } from '@mx-space/kami-design/components/Transition/right-left'
 
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
-import { SEO } from '~/components/biz/Seo'
+import { Seo } from '~/components/biz/Seo'
 import { TimelineListWrapper } from '~/components/biz/TimelineListWrapper'
 import { NoteTopicMarkdownRender } from '~/components/in-page/Note/NoteTopic/markdown-render'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
@@ -47,7 +47,7 @@ const TopicDetailPage: NextPage<TopicModel> = (props) => {
           : ''
       }
     >
-      <SEO title={`专栏 - ${name}`} />
+      <Seo title={`专栏 - ${name}`} />
       <div className="topic-info -mt-8">
         <p className="leading-6">{props.introduce}</p>
         {props.description && (

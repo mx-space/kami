@@ -11,7 +11,7 @@ import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
 import { apiClient } from '~/utils/client'
 
-import { SEO } from '../../components/biz/Seo'
+import { Seo } from '../../components/biz/Seo'
 
 const ProjectView = () => {
   const { data: projects, isLoading: loading } = useSWR(`project`, () =>
@@ -32,7 +32,7 @@ const ProjectView = () => {
   }, [])
   return (
     <main>
-      <SEO title={'项目'} />
+      <Seo title={'项目'} />
 
       {loading ? (
         <Loading />

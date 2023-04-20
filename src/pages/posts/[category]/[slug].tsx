@@ -123,7 +123,7 @@ const useUpdatePost = (post: ModelWithDeleted<PostModel>) => {
 }
 
 const Seo$: FC<{ id: string }> = ({ id }) => {
-  const { title, summary, category, created, modified, tags, text } =
+  const { title, summary, category, created, modified, tags, text, images } =
     usePostCollection((state) =>
       pick(state.data.get(id)!, [
         'title',
@@ -133,6 +133,7 @@ const Seo$: FC<{ id: string }> = ({ id }) => {
         'category',
         'tags',
         'text',
+        'images',
       ]),
     )
   const description = summary ?? getSummaryFromMd(text).slice(0, 150)
@@ -140,6 +141,8 @@ const Seo$: FC<{ id: string }> = ({ id }) => {
     <Seo
       title={title}
       description={description}
+      canUseRandomImage={false}
+      image={images?.[0]?.src}
       openGraph={{
         type: 'article',
         article: {

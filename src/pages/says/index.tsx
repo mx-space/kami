@@ -9,7 +9,7 @@ import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transit
 
 import { useAppStore } from '~/atoms/app'
 import { useSayCollection } from '~/atoms/collections/say'
-import { SEO } from '~/components/biz/Seo'
+import { Seo } from '~/components/biz/Seo'
 import { useSyncEffectOnce } from '~/hooks/use-sync-effect'
 import { hexToRGB } from '~/utils/color'
 import { relativeTimeFromNow } from '~/utils/time'
@@ -48,7 +48,7 @@ const SayView = () => {
 
   return (
     <main>
-      <SEO title={'说说'} />
+      <Seo title={'说说'} />
       <TransitionGroup>
         <Masonry
           breakpointCols={isMobile ? 1 : 2}

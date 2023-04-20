@@ -15,7 +15,7 @@ import { SearchFAB } from '~/components/widgets/Search'
 import { apiClient } from '~/utils/client'
 import { springScrollToTop } from '~/utils/spring'
 
-import { SEO } from '../../components/biz/Seo'
+import { Seo } from '../../components/biz/Seo'
 
 const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
   const [pagination, setPagination] = useState<Pager | null>(null)
@@ -46,7 +46,7 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
 
   return (
     <ArticleLayout>
-      <SEO title={'博文'} />
+      <Seo title={'博文'} />
 
       <TransitionGroup>
         <article key={'note'}>

@@ -9,7 +9,7 @@ import type {
 import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
-import { SEO } from '~/components/biz/Seo'
+import { Seo } from '~/components/biz/Seo'
 import { TimelineListWrapper } from '~/components/biz/TimelineListWrapper'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { omit } from '~/utils/_'
@@ -32,7 +32,7 @@ const CategoryListView: NextPage<CategoryListViewProps> = (props) => {
           : `这里还有没有内容呢，再接再厉！`
       }
     >
-      <SEO title={`分类: ${category.name}`} />
+      <Seo title={`分类: ${category.name}`} />
       <article className="article-list">
         <TransitionGroup
           key={category.id}
