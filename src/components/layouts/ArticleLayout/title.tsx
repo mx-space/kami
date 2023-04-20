@@ -39,7 +39,7 @@ export const ArticleLayoutTitle = memo<{ animate?: boolean }>(
           {type && id && isLogged && url ? (
             <a
               data-hide-print
-              className="edit-link float-right text-green"
+              className="edit-link float-right"
               target="_blank"
               href={
                 resolveUrl(

@@ -376,7 +376,7 @@ a.edit-link {
   font-size: 0.8rem;
   margin-left: 0.5rem;
   opacity: 0.8;
-  color: var(--green);
+  color: var(--primary);
   user-select: none;
 }
 
