@@ -48,7 +48,14 @@ interface NotificationType {
   icon?: string
 }
 
+export interface ThemeColor {
+  light: string
+  dark: string
+  lightHover?: string
+  darkHover?: string
+}
 interface Site {
+  themeColor?: ThemeColor | string
   favicon: string
   subtitle?: string | null
   logoSvg?: string

@@ -4,9 +4,45 @@ import React, { memo, useInsertionEffect } from 'react'
 
 import { API_URL } from '~/constants/env'
 import { useInitialData, useKamiConfig } from '~/hooks/use-initial-data'
+import type { ThemeColor } from '~/types/config'
 import { isDev } from '~/utils/env'
 import { loadScript } from '~/utils/load-script'
 
+const useCustomThemeColor = (
+  themeColorConfig: string | ThemeColor | undefined,
+) => {
+  if (!themeColorConfig) return [null, null] as const
+
+  let nextThemeColorConfig = themeColorConfig
+  if (typeof themeColorConfig === 'string') {
+    nextThemeColorConfig = {
+      dark: themeColorConfig,
+      light: themeColorConfig,
+      darkHover: themeColorConfig,
+      lightHover: themeColorConfig,
+    }
+  } else {
+    nextThemeColorConfig = {
+      dark: themeColorConfig.dark || themeColorConfig.light,
+      light: themeColorConfig.light || themeColorConfig.dark,
+      darkHover: themeColorConfig.darkHover || themeColorConfig.dark,
+      lightHover: themeColorConfig.lightHover || themeColorConfig.light,
+    }
+  }
+
+  const { dark, light, darkHover, lightHover } = nextThemeColorConfig
+
+  return [
+    // eslint-disable-next-line react/jsx-key
+    <style
+      id="theme-style"
+      dangerouslySetInnerHTML={{
+        __html: `html {--primary: ${light}!important;--primary-hover: ${lightHover}!important};html.dark {--primary: ${dark}!important;--primary-hover: ${darkHover}!important};`,
+      }}
+    />,
+    nextThemeColorConfig,
+  ] as const
+}
 export const DynamicHeadMeta: FC = memo(() => {
   const initialData = useInitialData()
   const title = initialData.seo.title
@@ -18,6 +54,10 @@ export const DynamicHeadMeta: FC = memo(() => {
   const { dark: darkFooter, light: lightFooter } =
     themeConfig.site.footer.background.src
   const { css, js, script, style } = themeConfig.site.custom
+  const themeColor = themeConfig.site.themeColor
+  const [themeColorMetaElement, themeColorConfig] =
+    useCustomThemeColor(themeColor)
+  const { light: lightColor } = themeColorConfig || {}
 
   useInsertionEffect(() => {
     js && js.length && js.forEach((src) => loadScript(src))
@@ -35,7 +75,10 @@ export const DynamicHeadMeta: FC = memo(() => {
         name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
       />
+      <meta name="theme-color" content={lightColor || '#39C5BB'} />
+
       {!isDev ? (
+        // force https
         <meta
           httpEquiv="Content-Security-Policy"
           content="upgrade-insecure-requests"
@@ -53,6 +96,10 @@ export const DynamicHeadMeta: FC = memo(() => {
       <meta name="application-name" content={title} />
       <meta name="apple-mobile-web-app-title" content={title} />
       <meta name="msapplication-tooltip" content={title} />
+      <meta
+        name="msapplication-navbutton-color"
+        content={lightColor || '#39C5BB'}
+      />
 
       {/* for favicon */}
       <link rel="shortcut icon" href={favicon} />
@@ -63,6 +110,8 @@ export const DynamicHeadMeta: FC = memo(() => {
       <link rel="preload" href={lightBg} as="image" />
       <link rel="preload" href={darkFooter} as="image" />
       <link rel="preload" href={lightFooter} as="image" />
+
+      {themeColorMetaElement}
     </Head>
   )
 })
