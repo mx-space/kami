@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## [4.4.3](https://github.com/mx-space/kami/compare/v4.4.2...v4.4.3) (2023-04-22)
+
+
+### Bug Fixes
+
+* **deps:** update dependency js-cookie to v3.0.4 ([#1655](https://github.com/mx-space/kami/issues/1655)) ([8403f7f](https://github.com/mx-space/kami/commit/8403f7ff1a1223693982eae7ccab5bd4f2570999))
+* edit link color ([64906d7](https://github.com/mx-space/kami/commit/64906d7efbe09380e51a48ba3cc08bd330f59d97))
+* preview title ([53e139e](https://github.com/mx-space/kami/commit/53e139eaa96b5c81a4aaa5507e2be47a67bd268f))
+
+
+### Features
+
+* preview mode ([ccc02ea](https://github.com/mx-space/kami/commit/ccc02eafe926346cdeb8c07f7cc5dd69aacf274d))
+
+
+
 ## [4.4.2](https://github.com/mx-space/kami/compare/v4.4.1...v4.4.2) (2023-04-20)
 
 
