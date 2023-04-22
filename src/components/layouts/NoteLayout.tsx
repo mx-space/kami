@@ -7,6 +7,7 @@ import { Collapse } from 'react-collapse'
 import { shallow } from 'zustand/shallow'
 
 import type { NoteModel } from '@mx-space/api-client'
+import { Banner } from '@mx-space/kami-design'
 import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
 import { SolidBookmark } from '@mx-space/kami-design/components/Icons/for-note'
 import {
@@ -73,11 +74,13 @@ interface NoteLayoutProps {
 
   id: string
   children?: ReactNode
+
+  isPreview?: boolean
 }
 
 export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
   (props, ref) => {
-    const { date, id, title, tips, children } = props
+    const { date, id, title, tips, children, isPreview = false } = props
     // autocorrect: false
     const dateFormat = dayjs(date).locale('cn').format('YYYY年M月D日 dddd')
     // autocorrect: true
@@ -107,35 +110,42 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
               <div className="title-headline text-light-brown dark:text-shizuku-text">
                 <span className="inline-flex items-center">
                   <time className="font-medium">{dateFormat}</time>
-                  <div className="ml-4 inline-flex space-x-2 items-center">
-                    {isLogged ? (
-                      <IconTransition
-                        currentState={bookmark ? 'solid' : 'regular'}
-                        regularIcon={
-                          <RegularBookmark
-                            className="cursor-pointer"
-                            onClick={onMarkToggle}
-                          />
-                        }
-                        solidIcon={
-                          <SolidBookmark
-                            className="text-red cursor-pointer"
-                            onClick={onMarkToggle}
-                          />
-                        }
-                      />
-                    ) : bookmark ? (
-                      <SolidBookmark className="text-red" />
-                    ) : null}
-                    {note?.hide && (
-                      <FluentEyeHide20Regular
-                        className={!isLogged ? 'text-red' : ''}
-                      />
-                    )}
-                  </div>
+                  {!isPreview && (
+                    <div className="ml-4 inline-flex space-x-2 items-center">
+                      {isLogged ? (
+                        <IconTransition
+                          currentState={bookmark ? 'solid' : 'regular'}
+                          regularIcon={
+                            <RegularBookmark
+                              className="cursor-pointer"
+                              onClick={onMarkToggle}
+                            />
+                          }
+                          solidIcon={
+                            <SolidBookmark
+                              className="text-red cursor-pointer"
+                              onClick={onMarkToggle}
+                            />
+                          }
+                        />
+                      ) : bookmark ? (
+                        <SolidBookmark className="text-red" />
+                      ) : null}
+                      {note?.hide && (
+                        <FluentEyeHide20Regular
+                          className={!isLogged ? 'text-red' : ''}
+                        />
+                      )}
+                    </div>
+                  )}
                 </span>
               </div>
             </ClientOnly>
+            {isPreview && (
+              <Banner className="mt-8" type="info">
+                正在处于预览模式
+              </Banner>
+            )}
             <Collapse isOpened={!!banner}>
               {banner && (
                 <div
@@ -149,6 +159,7 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
                 </div>
               )}
             </Collapse>
+
             <div>
               <h1 className="text-center !mt-8 !before:hidden headline text-brown dark:text-shizuku-text">
                 <FloatPopover
@@ -157,7 +168,7 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
                 >
                   {tips}
                 </FloatPopover>
-                {isLogged && url ? (
+                {isLogged && url && !isPreview ? (
                   <a
                     data-hide-print
                     className="edit-link"
@@ -174,7 +185,7 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
           </div>
         </BottomUpTransitionView>
 
-        <NoteTimelineList noteId={id} />
+        {!isPreview && <NoteTimelineList noteId={id} />}
       </main>
     )
   },

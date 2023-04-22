@@ -288,7 +288,6 @@ export const PostView: PageOnlyProps = (props) => {
 
   useBackgroundOpacity(0.2)
   useJumpToSimpleMarkdownRender(post.id)
-  useSetHeaderShare(post.title)
 
   const isClientSide = useIsClient()
 
