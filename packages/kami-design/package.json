@@ -91,7 +91,7 @@
     "@rollup/plugin-node-resolve": "15.0.2",
     "@rollup/plugin-typescript": "^10",
     "dts-bundle-generator": "^8.0.1",
-    "esbuild": "0.17.17",
+    "esbuild": "0.17.18",
     "postcss": "8.4.23",
     "postcss-import": "15.1.0",
     "postcss-nested": "6.0.1",
