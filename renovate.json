@@ -12,5 +12,5 @@
       "labels": ["UPDATE-MAJOR"]
     }
   ],
-  "ignoreDeps": ["next", "axios"]
+  "// ignoreDeps": ["axios"]
 }
