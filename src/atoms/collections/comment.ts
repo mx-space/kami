@@ -68,10 +68,12 @@ export const useCommentCollection = createCollection<
       setState((state) => {
         state.currentRefId = refId
         state.currentFetchPage = page
-        state.comments = [...data.data]
         state.data.clear()
+        state.comments = [...data.data]
 
         const flatAllComments = walkComments(state.comments)
+
+        console.log('flatAllComments', flatAllComments)
         flatAllComments.forEach((comment) => {
           state.data.set(comment.id, comment)
         })
@@ -215,18 +217,24 @@ function walkComments(comments: CommentModel[]): CommentModel[] {
 
   const walkChild = (comment: CommentModel): CommentModel[] => {
     const allComments = [] as CommentModel[]
+    if (!comment.id) return []
     if (comment.children.length) {
       // @ts-ignore
-      return comment.children.reduce(
-        (arr: CommentModel[], child) => [...arr, child, ...walkChild(child)],
-        allComments,
-      ) as CommentModel[]
+      return comment.children.reduce((arr: CommentModel[], child) => {
+        if (!child.id) return arr
+        return [...arr, child, ...walkChild(child)]
+      }, allComments) as CommentModel[]
     }
 
     return allComments
   }
 
   return comments.reduce((acc, comment) => {
-    return [...acc, comment, ...walkChild(comment)]
+    const nextResult = acc.concat()
+    // 脏数据
+    if (!comment.id) {
+      return nextResult
+    }
+    return nextResult.concat(comment, ...walkChild(comment))
   }, allComments)
 }

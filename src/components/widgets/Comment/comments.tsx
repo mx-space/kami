@@ -71,6 +71,7 @@ const CommentList: FC = memo(() => {
 
 const SingleComment: FC<{ id: string }> = ({ id, children }) => {
   const [replyId, setReplyId] = useState('')
+
   const {
     avatar: masterAvatar,
     name: masterName,
@@ -339,7 +340,7 @@ const InnerCommentList = memo<{ id: string }>(({ id }) => {
   if (!comment) {
     return null
   }
-  if (comment.children.length > 0) {
+  if (comment.children?.length > 0) {
     const children = comment.children
 
     const childComments = children.map((child: CommentModel) => {
