@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## [4.4.4](https://github.com/mx-space/kami/compare/v4.4.3...v4.4.4) (2023-04-25)
+
+
+### Bug Fixes
+
+* **comment:** dirty data pocket ([76c6a30](https://github.com/mx-space/kami/commit/76c6a3030ef5e2a959bc2e3384250c06a51aa87c))
+* **deps:** update dependency swr to v2.1.4 ([#1661](https://github.com/mx-space/kami/issues/1661)) ([e401d92](https://github.com/mx-space/kami/commit/e401d92935f1a9d0588515eae9b138ba2ec13b57))
+
+
+### Features
+
+* adjust article list style ([f47971d](https://github.com/mx-space/kami/commit/f47971d7a534e83d611c9ee040735d36426c5d3f))
+
+
+
 ## [4.4.3](https://github.com/mx-space/kami/compare/v4.4.2...v4.4.3) (2023-04-22)
 
 
