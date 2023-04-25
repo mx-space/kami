@@ -1,5 +1,6 @@
 .timeline {
   position: relative;
+  @apply justify-between flex-1 min-w-0;
 
   & > li::before {
     content: '';

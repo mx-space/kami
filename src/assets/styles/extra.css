@@ -303,6 +303,7 @@ ph {
     opacity: 0.88;
     color: var(--shizuku-text-color);
     font-size: 80%;
+    flex-shrink: 0;
   }
 }
 

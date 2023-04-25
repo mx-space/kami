@@ -227,6 +227,7 @@ export const ImageLazy = memo(
             style={imageWrapperStyle}
             ref={wrapRef}
             data-info={JSON.stringify({ height, width, calculatedSize })}
+            data-src={src}
           >
             <LazyLoad offset={100} placeholder={memoPlaceholderImage}>
               <Image

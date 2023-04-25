@@ -14,6 +14,7 @@ import { TimelineListWrapper } from '~/components/biz/TimelineListWrapper'
 import { NumberTransition } from '~/components/universal/NumberRecorder'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/use-analyze'
+import { useDetectPadOrMobile } from '~/hooks/use-viewport'
 import { apiClient } from '~/utils/client'
 import { springScrollToElement } from '~/utils/spring'
 import { dayOfYear, daysOfYear, secondOfDay, secondOfDays } from '~/utils/time'
@@ -142,8 +143,8 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
       const data: MapType = {
         title: note.title,
         meta: [
-          note.mood ? `这天的心情：${note.mood}` : undefined,
-          note.weather ? `这天的天气：${note.weather}` : undefined,
+          note.mood ? `心情：${note.mood}` : undefined,
+          note.weather ? `天气：${note.weather}` : undefined,
           '生活点滴',
         ].filter(Boolean) as string[],
         date,
@@ -212,6 +213,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
       // wait for user focus
     }, 100)
   }, [])
+  const isMobile = useDetectPadOrMobile()
 
   return (
     <ArticleLayout
@@ -234,7 +236,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
       {arr.reverse().map(([year, value]) => {
         return (
           <article className="article-list" key={year}>
-            <h1 key={1}>
+            <h1 key={1} className="!-ml-3">
               {year}
               <small className={styles['count']}>({value.length})</small>
             </h1>
@@ -243,39 +245,46 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
                 return (
                   <li
                     key={item.id}
-                    className="flex items-center flex-wrap"
+                    className="flex items-center justify-between"
                     data-id={item.id}
                   >
-                    <span
-                      className={
-                        'text-shizuku-text mr-2 tabular-nums w-12 inline-block'
-                      }
-                    >
-                      {Intl.DateTimeFormat('en-us', {
-                        month: '2-digit',
-                        day: '2-digit',
-                      }).format(item.date)}
+                    <span className="flex flex-shrink min-w-0 items-center">
+                      <span
+                        className={
+                          'text-shizuku-text mr-2 tabular-nums w-12 inline-block'
+                        }
+                      >
+                        {Intl.DateTimeFormat('en-us', {
+                          month: '2-digit',
+                          day: '2-digit',
+                        }).format(item.date)}
+                      </span>
+                      <Link
+                        target="_blank"
+                        href={item.href}
+                        as={item.as}
+                        className="leading-6 min-w-0 truncate"
+                      >
+                        <span
+                          className={'kami-timeline__title min-w-0 truncate'}
+                        >
+                          {item.title}
+                        </span>
+                      </Link>
+                      {item.important && (
+                        <SolidBookmark
+                          className="text-red mr-4 cursor-pointer"
+                          onClick={() => {
+                            router.push({ query: { memory: true } })
+                          }}
+                        />
+                      )}
                     </span>
-                    <Link
-                      target="_blank"
-                      href={item.href}
-                      as={item.as}
-                      className="leading-6"
-                    >
-                      <span className={'title'}>{item.title}</span>
-                    </Link>
-                    {item.important && (
-                      <SolidBookmark
-                        className="text-red mr-4 cursor-pointer"
-                        onClick={() => {
-                          router.push({ query: { memory: true } })
-                        }}
-                      />
+                    {!isMobile && (
+                      <span className="kami-timeline__meta meta">
+                        {item.meta.map((m, i) => (i === 0 ? m : `/${m}`))}
+                      </span>
                     )}
-
-                    <span className={'meta'}>
-                      {item.meta.map((m, i) => (i === 0 ? m : `/${m}`))}
-                    </span>
                   </li>
                 )
               })}

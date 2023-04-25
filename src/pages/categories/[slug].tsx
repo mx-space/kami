@@ -47,10 +47,12 @@ const CategoryListView: NextPage<CategoryListViewProps> = (props) => {
                 key={child.id}
                 timeout={{ enter: 700 + 50 * i }}
                 component="li"
+                className="justify-between flex items-center min-w-0"
               >
                 <Link
                   target="_blank"
                   href={`/posts/${category.slug}/${child.slug}`}
+                  className="min-w-0 truncate"
                 >
                   {child.title}
                 </Link>

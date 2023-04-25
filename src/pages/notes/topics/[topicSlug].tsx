@@ -65,8 +65,16 @@ const TopicDetailPage: NextPage<TopicModel> = (props) => {
             notes.map((note) => {
               const date = new Date(note.created)
               return (
-                <RightLeftTransitionView key={note.id} component={'li'}>
-                  <Link href={`/notes/${note.nid}`} target="_blank">
+                <RightLeftTransitionView
+                  key={note.id}
+                  component={'li'}
+                  className="min-w-0 flex items-center justify-between"
+                >
+                  <Link
+                    href={`/notes/${note.nid}`}
+                    target="_blank"
+                    className="truncate"
+                  >
                     {note.title}
                   </Link>
                   <span className={'meta'}>
