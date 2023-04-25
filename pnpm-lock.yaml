@@ -111,8 +111,8 @@ importers:
         specifier: 4.6.1
         version: 4.6.1
       swr:
-        specifier: 2.1.3
-        version: 2.1.3(react@18.2.0)
+        specifier: 2.1.4
+        version: 2.1.4(react@18.2.0)
       validator:
         specifier: 13.9.0
         version: 13.9.0
@@ -6450,8 +6450,8 @@ packages:
       stable: 0.1.8
     dev: true
 
-  /swr@2.1.3(react@18.2.0):
-    resolution: {integrity: sha512-g3ApxIM4Fjbd6vvEAlW60hJlKcYxHb+wtehogTygrh6Jsw7wNagv9m4Oj5Gq6zvvZw0tcyhVGL9L0oISvl3sUw==}
+  /swr@2.1.4(react@18.2.0):
+    resolution: {integrity: sha512-NG+eu3s3YT7aCnL0BRzsYIh8U0HhzA4II1bNMTUtO5D+N+4+YJpcfLiagFdrt0IbTGCbOiVyzAIMvqOCsk9cQA==}
     peerDependencies:
       react: ^16.11.0 || ^17.0.0 || ^18.0.0
     peerDependenciesMeta:
