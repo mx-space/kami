@@ -10,7 +10,7 @@
   background-color: transparent;
 
   &:hover {
-    border-color: var(--yellow);
+    border-color: theme('colors.primary');
     border-right-width: 1px !important;
     transition: 0.3s;
   }
@@ -27,7 +27,7 @@
   .rect {
     transition: 0.5s;
     shape-rendering: crispEdges;
-    stroke: var(--yellow);
+    stroke: theme('colors.primary');
     stroke-width: 1.5px;
     fill: transparent;
     stroke-dashoffset: 0;
