@@ -160,8 +160,8 @@ importers:
         specifier: 3.0.6
         version: 3.0.6
       '@types/react-dom':
-        specifier: 18.0.11
-        version: 18.0.11
+        specifier: 18.2.1
+        version: 18.2.1
       '@types/react-transition-group':
         specifier: 4.4.5
         version: 4.4.5
@@ -1652,8 +1652,8 @@ packages:
       '@types/reactcss': 1.2.6
     dev: true
 
-  /@types/react-dom@18.0.11:
-    resolution: {integrity: sha512-O38bPbI2CWtgw/OoQoY+BRelw7uysmXbWvw3nLWO21H1HSh+GOlqPuXshJfjmpNlKiiSDG9cc1JZAaMmVdcTlw==}
+  /@types/react-dom@18.2.1:
+    resolution: {integrity: sha512-8QZEV9+Kwy7tXFmjJrp3XUKQSs9LTnE0KnoUb0YCguWBiNW0Yfb2iBMYZ08WPg35IR6P3Z0s00B15SwZnO26+w==}
     dependencies:
       '@types/react': 17.0.53
     dev: true
