@@ -4,6 +4,8 @@ import type { InitialDataType } from '~/provider/initial-data'
 
 import 'react-dom/next'
 
+import type { XLogMeta } from '~/types/xlog'
+
 declare global {
   export interface History {
     backPath: string[]
@@ -44,6 +46,7 @@ declare module '@mx-space/api-client' {
     style?: string
     cover?: string
     banner?: string | { type: string; message: string }
+    xLog?: XLogMeta
   }
   interface TextBaseModel extends BaseCommentIndexModel {
     meta?: PostMeta
