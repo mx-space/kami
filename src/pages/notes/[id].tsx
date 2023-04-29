@@ -213,7 +213,7 @@ const NoteView: React.FC<{ id: string }> = memo((props) => {
       {createElement(Seo, {
         title,
         description,
-        image: note.images?.[0]?.src,
+        image: note.meta?.cover || note.images?.[0]?.src,
         canUseRandomImage: false,
 
         openGraph: {

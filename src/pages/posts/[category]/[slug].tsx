@@ -123,26 +123,36 @@ const useUpdatePost = (post: ModelWithDeleted<PostModel>) => {
 }
 
 const Seo$: FC<{ id: string }> = ({ id }) => {
-  const { title, summary, category, created, modified, tags, text, images } =
-    usePostCollection((state) =>
-      pick(state.data.get(id)!, [
-        'title',
-        'summary',
-        'created',
-        'modified',
-        'category',
-        'tags',
-        'text',
-        'images',
-      ]),
-    )
+  const {
+    title,
+    summary,
+    category,
+    created,
+    modified,
+    tags,
+    text,
+    images,
+    meta,
+  } = usePostCollection((state) =>
+    pick(state.data.get(id)!, [
+      'title',
+      'summary',
+      'created',
+      'modified',
+      'category',
+      'tags',
+      'text',
+      'images',
+      'meta',
+    ]),
+  )
   const description = summary ?? getSummaryFromMd(text).slice(0, 150)
   return (
     <Seo
       title={title}
       description={description}
       canUseRandomImage={false}
-      image={images?.[0]?.src}
+      image={meta?.cover || images?.[0]?.src}
       openGraph={{
         type: 'article',
         article: {

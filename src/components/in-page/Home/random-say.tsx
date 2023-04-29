@@ -18,6 +18,7 @@ export const HomeRandomSay: FC = memo(() => {
         return `${data.text}  ——${data.author ?? data.source ?? '站长说'}`
       }),
     {
+      fallbackData: '',
       refreshInterval: 60_000,
       revalidateOnFocus: false,
       revalidateOnMount: !isLoaded,
