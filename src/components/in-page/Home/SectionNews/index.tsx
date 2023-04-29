@@ -41,7 +41,10 @@ const Card: FC<CardProps> = (props) => {
     <div className={styles['card-container']}>
       <div className={styles['card-cover-wrap']}>
         {isMounted && (
-          <img src={cover} className="dark:brightness-50 dark:filter" />
+          <img
+            src={cover}
+            className="h-full w-full object-cover dark:brightness-50 dark:filter"
+          />
         )}
       </div>
       <div className={styles['card-header']} />

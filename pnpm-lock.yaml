@@ -15,8 +15,8 @@ importers:
         specifier: 1.0.0-beta.6
         version: 1.0.0-beta.6
       '@mx-space/api-client':
-        specifier: 1.3.5
-        version: 1.3.5
+        specifier: 1.4.0
+        version: 1.4.0
       axios:
         specifier: 1.4.0
         version: 1.4.0
@@ -1299,6 +1299,11 @@ packages:
 
   /@mx-space/api-client@1.3.5:
     resolution: {integrity: sha512-esr48hhuHGUy1yleNUm2pPQ6GqlslLpqng1s3LYFGNCpz6/p9uF0eb9wBQA8jL064Fa/fOU8dwPlZke8aQRmFg==}
+    engines: {pnpm: '>=6'}
+    dev: false
+
+  /@mx-space/api-client@1.4.0:
+    resolution: {integrity: sha512-F8JYd0XQbOTL5jEcOqvwIl9raRkhxRVKQDUM4eN1tE5KzW4DpKqQxfXktniFECg8vrMTcL8if1zsr3kEX9HDEA==}
     engines: {pnpm: '>=6'}
     dev: false
 

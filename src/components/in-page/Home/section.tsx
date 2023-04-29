@@ -11,7 +11,7 @@ import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transit
 import { withNoSSR } from '~/components/biz/HoC/no-ssr'
 import { useKamiConfig } from '~/hooks/use-initial-data'
 import { useRandomImage } from '~/hooks/use-kami'
-import { HomePageSectionName } from '~/types/config'
+import type { HomePageSectionName } from '~/types/config'
 
 import type { SectionNewsProps } from './SectionNews'
 import SectionNews from './SectionNews'
@@ -48,12 +48,14 @@ const SectionsInternal: FC<AggregateTop> = ({ notes, posts }) => {
         title: titleMapping.post || '文章',
         icon: <IcTwotoneSignpost />,
         moreUrl: 'posts',
-        content: posts.slice(0, 4).map((p) => {
+
+        content: posts.slice(0, 4).map(($) => {
           return {
-            title: p.title,
-            background: getRandomUnRepeatImage(),
-            id: p.id,
-            ...buildRoute('Post', p),
+            title: $.title,
+            background:
+              $.meta?.cover ?? $.images?.[0]?.src ?? getRandomUnRepeatImage(),
+            id: $.id,
+            ...buildRoute('Post', $),
           }
         }),
       }
@@ -64,12 +66,13 @@ const SectionsInternal: FC<AggregateTop> = ({ notes, posts }) => {
         title: titleMapping.note || '日记',
         icon: <MdiDrawPen />,
         moreUrl: 'notes',
-        content: notes.slice(0, 4).map((n) => {
+        content: notes.slice(0, 4).map(($) => {
           return {
-            title: n.title,
-            background: getRandomUnRepeatImage(),
-            id: n.id,
-            ...buildRoute('Note', n),
+            title: $.title,
+            background:
+              $.meta?.cover ?? $.images?.[0]?.src ?? getRandomUnRepeatImage(),
+            id: $.id,
+            ...buildRoute('Note', $),
           }
         }),
       }
@@ -107,10 +110,10 @@ const SectionsInternal: FC<AggregateTop> = ({ notes, posts }) => {
   return (
     <section className={styles['root']}>
       <TransitionGroup appear={doAnimation}>
-        {SectionElementList.map((s, i) => {
+        {SectionElementList.map((El, i) => {
           return (
             <BottomUpTransitionView timeout={{ enter: 1200 + 200 * i }} key={i}>
-              {s}
+              {El}
             </BottomUpTransitionView>
           )
         })}
