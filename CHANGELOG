@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## [4.4.5](https://github.com/mx-space/kami/compare/v4.4.4...v4.4.5) (2023-04-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency axios to v1.3.6 ([#1662](https://github.com/mx-space/kami/issues/1662)) ([6603563](https://github.com/mx-space/kami/commit/66035638243ed0f3bda3572d8b3ca717b7d6e696))
+* **deps:** update dependency axios to v1.4.0 ([#1670](https://github.com/mx-space/kami/issues/1670)) ([b141a5e](https://github.com/mx-space/kami/commit/b141a5e77e398b887f92838a66e73afa790e6bb3))
+* **deps:** update dependency js-cookie to v3.0.5 ([#1663](https://github.com/mx-space/kami/issues/1663)) ([62244db](https://github.com/mx-space/kami/commit/62244db1a6e31839d94cfd6c3424b29a7e790022))
+* **deps:** update dependency next to v13.3.1 ([#1664](https://github.com/mx-space/kami/issues/1664)) ([ed6c213](https://github.com/mx-space/kami/commit/ed6c21338550cf3bd95d472839d2c7714f7092b1))
+* **deps:** update dependency swr to v2.1.5 ([#1665](https://github.com/mx-space/kami/issues/1665)) ([dd42ada](https://github.com/mx-space/kami/commit/dd42adabce8f922cbd15db7b53c01ad0a0dfd1a3))
+* input color use primary ([74d16ad](https://github.com/mx-space/kami/commit/74d16ad8cbeaad9917051bc89851e73f9efd6eed))
+
+
+### Features
+
+* home section priority use image cover ([cd5e7e2](https://github.com/mx-space/kami/commit/cd5e7e2c78f50d2206f52bef2321e2ec9cce37bf))
+
+
+
 ## [4.4.4](https://github.com/mx-space/kami/compare/v4.4.3...v4.4.4) (2023-04-25)
 
 
