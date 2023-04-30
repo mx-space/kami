@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## [4.4.7](https://github.com/mx-space/kami/compare/v4.4.6...v4.4.7) (2023-04-30)
+
+
+### Bug Fixes
+
+* seo of `og:image` ([cfaff36](https://github.com/mx-space/kami/commit/cfaff36a7968920d136bff87c6996872c539434f))
+
+
+### Features
+
+* update table style ([f736dfd](https://github.com/mx-space/kami/commit/f736dfd2b539b40b0e67048486a57edf5ca683a3))
+
+
+
 ## [4.4.6](https://github.com/mx-space/kami/compare/v4.4.5...v4.4.6) (2023-04-29)
 
 
