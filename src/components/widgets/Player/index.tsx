@@ -91,11 +91,12 @@ export const MusicMiniPlayer = forwardRef<
   }
 
   useEffect(() => {
+    if (hide) return
     if (cursor >= len) {
       return
     }
     fetchData(playlist[cursor])
-  }, [cursor, len, playlist])
+  }, [cursor, hide, len, playlist])
 
   useEffect(() => {
     setCur(null)
