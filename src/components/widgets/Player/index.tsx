@@ -1,4 +1,4 @@
-import { default as classNames, default as clsx } from 'clsx'
+import { clsx } from 'clsx'
 import throttle from 'lodash-es/throttle'
 import {
   forwardRef,
@@ -207,7 +207,7 @@ export const MusicMiniPlayer = forwardRef<
   return (
     <div
       data-hide-print
-      className={classNames(
+      className={clsx(
         styles['player'],
         !state.paused && styles['play'],
         hide && styles['hide'],
