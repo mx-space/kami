@@ -1,16 +1,25 @@
 {
   "extends": [
     "config:base",
+    "group:allNonMajor",
     ":automergePatch",
     ":automergeTesters",
     ":automergeLinters",
     ":rebaseStalePrs"
   ],
+  "labels": ["dependencies"],
+  "pin": false,
+  "rangeStrategy": "bump",
+  "node": false,
   "packageRules": [
+    {
+      "depTypeList": ["peerDependencies"],
+      "enabled": false
+    },
     {
       "updateTypes": ["major"],
       "labels": ["UPDATE-MAJOR"]
     }
   ],
-  "ignoreDeps": []
+  "ignoreDeps": ["node"]
 }
