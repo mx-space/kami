@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [4.4.8](https://github.com/mx-space/kami/compare/v4.4.7...v4.4.8) (2023-05-01)
+
+
+### Features
+
+* support dynamic config for home more section ([b1f2d7d](https://github.com/mx-space/kami/commit/b1f2d7d04afccc886b242da53e8ec692d845b84d))
+
+
+
 ## [4.4.7](https://github.com/mx-space/kami/compare/v4.4.6...v4.4.7) (2023-04-30)
 
 
