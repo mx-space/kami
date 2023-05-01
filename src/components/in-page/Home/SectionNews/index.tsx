@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import type { FC, MouseEvent, ReactNode } from 'react'
-import { forwardRef, memo, useEffect, useState } from 'react'
+import { forwardRef, memo, useMemo } from 'react'
+
+import { ImageLazy } from '@mx-space/kami-design/components/Image'
 
 import { pick } from '~/utils/_'
 
@@ -32,20 +34,13 @@ interface CardProps {
 const Card: FC<CardProps> = (props) => {
   const { cover, shade = true, title, children } = props
 
-  const [isMounted, setIsMounted] = useState(false)
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
   return (
     <div className={styles['card-container']}>
       <div className={styles['card-cover-wrap']}>
-        {isMounted && (
-          <img
-            src={cover}
-            className="h-full w-full object-cover dark:brightness-50 dark:filter"
-          />
-        )}
+        <ImageLazy
+          src={cover}
+          className="h-full w-full object-cover dark:brightness-80 dark:filter"
+        />
       </div>
       <div className={styles['card-header']} />
       {title && (
@@ -89,19 +84,21 @@ const SectionNews: FC<SectionNewsProps> = memo(
 interface SectionCardProps {
   title: string
   desc: string
-  src: string
+  src?: string
   href?: string
   onClick?: (
     event: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>,
   ) => void
+  getRandomUnRepeatImage: () => string
 }
 
 export const SectionCard = memo<SectionCardProps>(
-  ({ title, desc, src, onClick, href }) => {
+  ({ title, desc, src, onClick, href, getRandomUnRepeatImage }) => {
+    const cover = useMemo(() => src || getRandomUnRepeatImage(), [src])
     return (
-      <div className={`col-6 col-m-3`} style={{ marginTop: '2rem' }}>
+      <div className="col-6 col-m-3">
         <a className={styles['news-article']} href={href} onClick={onClick}>
-          <Card cover={src} title={title}>
+          <Card cover={cover} title={title}>
             <span>{desc}</span>
           </Card>
         </a>

@@ -162,6 +162,18 @@ export const defaultConfigs = {
         friend: '',
         more: '',
       },
+      more: [
+        {
+          name: '点赞',
+          type: 'like',
+          cover: null,
+        },
+        {
+          name: '订阅',
+          type: 'subscribe',
+          cover: null,
+        },
+      ],
     },
   },
   function: {

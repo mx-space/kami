@@ -137,9 +137,17 @@ export interface Page {
 }
 
 export type HomePageSectionName = 'post' | 'note' | 'friend' | 'more'
+// page.home
 export interface HomePage {
   sections: HomePageSectionName[]
   titleMapping: {
     [key in HomePageSectionName]?: string
   }
+  more: IHomePageMoreSection[]
+}
+
+export interface IHomePageMoreSection extends Navigation {
+  desc: string
+  type?: 'like' | 'subscribe'
+  cover?: string
 }

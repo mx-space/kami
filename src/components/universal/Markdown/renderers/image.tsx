@@ -84,6 +84,7 @@ const _Image: FC<{ src: string; alt?: string }> = ({ src, alt }) => {
 
   return (
     <ImageLazy
+      showErrorMessage
       popup
       ref={imageRef}
       src={src}

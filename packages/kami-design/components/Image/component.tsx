@@ -34,6 +34,7 @@ interface ImageProps {
   popup?: boolean
   overflowHidden?: boolean
   getParentElWidth?: ((parentElementWidth: number) => number) | number
+  showErrorMessage?: boolean
 }
 
 const Image: FC<
@@ -117,6 +118,7 @@ export const ImageLazy = memo(
       style,
       overflowHidden = false,
       getParentElWidth = (w) => w,
+      showErrorMessage,
       ...rest
     } = props
     useImperativeHandle(ref, () => {
@@ -164,18 +166,20 @@ export const ImageLazy = memo(
           // eslint-disable-next-line no-empty
         } catch {}
       }
-      image.onerror = () => {
-        try {
-          if (placeholderRef && placeholderRef.current) {
-            placeholderRef.current.innerHTML = `<p style="color:${
-              isDarkColorHex(backgroundColor) ? '#eee' : '#333'
-            };z-index:2"><span>图片加载失败!</span><br/>
+      if (showErrorMessage) {
+        image.onerror = () => {
+          try {
+            if (placeholderRef && placeholderRef.current) {
+              placeholderRef.current.innerHTML = `<p style="color:${
+                isDarkColorHex(backgroundColor) ? '#eee' : '#333'
+              };z-index:2"><span>图片加载失败!</span><br/>
           <a style="margin: 0 12px;word-break:break-all;white-space:pre-wrap;display:inline-block;" href="${escapeHTMLTag(
             image.src,
           )}" target="_blank">${escapeHTMLTag(image.src)}</a></p>`
-          }
-          // eslint-disable-next-line no-empty
-        } catch {}
+            }
+            // eslint-disable-next-line no-empty
+          } catch {}
+        }
       }
     }, [
       src,
@@ -185,6 +189,7 @@ export const ImageLazy = memo(
       calculateDimensions,
       getParentElWidth,
       backgroundColor,
+      showErrorMessage,
     ])
     const memoPlaceholderImage = useMemo(
       () => (

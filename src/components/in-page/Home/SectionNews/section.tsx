@@ -1,3 +1,4 @@
+import { clsx } from 'clsx'
 import Link from 'next/link'
 import randomColor from 'randomcolor'
 import type { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react'
@@ -31,6 +32,7 @@ export const SectionWrap = memo(
         luminosity: 'dark',
       }),
       showMoreIcon = true,
+      className,
       ...rest
     } = props
     const colorMode = useAppStore((state) => state.colorMode)
@@ -67,7 +69,13 @@ export const SectionWrap = memo(
             )}
           </div>
           <div className="news-body">
-            <div className="grid sm:grid-cols-4 grid-cols-2 gap-4" {...rest}>
+            <div
+              className={clsx(
+                'grid sm:grid-cols-4 grid-cols-2 gap-4',
+                className,
+              )}
+              {...rest}
+            >
               {props.children}
             </div>
           </div>

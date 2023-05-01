@@ -120,6 +120,13 @@ page:
       note: ''
       friend: ''
       more: ''
+    more:
+      - name: 点赞
+        type: 'like'
+        cover:
+      - name: 订阅
+        type: 'subscribe'
+        cover:
 
 function:
   comment:

@@ -59,7 +59,7 @@ export const FriendsSection: FC<{
       title={title}
       moreUrl="friends"
       icon={<PhUsersDuotone />}
-      className={'w-full'}
+      className="w-full !block !gap-0"
     >
       <div className={styles['friends-wrap']}>
         {friends?.map((item) => {

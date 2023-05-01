@@ -4,7 +4,6 @@
   color: #666;
   display: inline-block;
   width: 80px;
-  height: 150px;
   user-select: none;
 }
 
@@ -18,8 +17,8 @@
 }
 
 .friends-wrap {
-  margin-top: 2rem;
-  min-height: 11.1rem;
+  margin: 2rem 0;
+  min-height: 10rem;
   width: 100%;
   overflow: auto;
   white-space: nowrap;
@@ -110,7 +109,6 @@
   border-radius: 10px;
   background-color: var(--light-bg);
   cursor: pointer;
-  margin-bottom: 30px;
   mask-image: none;
   transition: all 0.2s ease-out;
   z-index: 0;
