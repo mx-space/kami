@@ -32,7 +32,7 @@ const ProjectView = () => {
   }, [])
   return (
     <main>
-      <Seo title={'项目'} />
+      <Seo title="项目" />
 
       {loading ? (
         <Loading />

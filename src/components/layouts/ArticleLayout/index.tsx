@@ -50,7 +50,7 @@ export const ArticleLayout = memo(
             className={clsx(styles['is-article'], className)}
             ref={ref}
             {...rest}
-            id={'article-wrap'}
+            id="article-wrap"
             data-type={type}
           >
             <ArticleLayoutTitle animate={titleAnimate} />

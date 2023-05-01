@@ -76,7 +76,7 @@ export const PostBlock: FC<PostBlockProps> = (props) => {
         !isLogged && pinState && 'pointer-events-none',
         pinState && 'text-red !inline-flex',
       )}
-      role={'button'}
+      role="button"
       onClick={handlePin}
     >
       <i className="absolute h-full w-full">

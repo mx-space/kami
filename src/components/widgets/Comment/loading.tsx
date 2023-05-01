@@ -6,7 +6,7 @@ export const CommentLoading = memo(() => {
   return (
     <>
       <div className="pt-[150px]" />
-      <Loading loadingText={'正在加载评论区...'} />
+      <Loading loadingText="正在加载评论区..." />
     </>
   )
 })

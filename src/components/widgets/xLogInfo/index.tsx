@@ -42,7 +42,7 @@ export const XLogInfoBase: FC<{
 
   if (pageId) {
     sections.push(
-      <section key={'pageId'}>
+      <section key="pageId">
         <p>Note ID</p>
         <a href={`https://crossbell.io/notes/${pageId}`}>{pageId}</a>
       </section>,
@@ -51,7 +51,7 @@ export const XLogInfoBase: FC<{
 
   if (metadata?.owner) {
     sections.push(
-      <section key={'owner'}>
+      <section key="owner">
         <p>Owner</p>
         <a href={`https://scan.crossbell.io/address/${metadata.owner}`}>
           {metadata.owner}
@@ -62,7 +62,7 @@ export const XLogInfoBase: FC<{
 
   if (metadata?.transactions?.length) {
     sections.push(
-      <section key={'transactions'}>
+      <section key="transactions">
         <p>Transaction Hash Creation</p>
         <a href={`https://scan.crossbell.io/tx/${metadata.transactions[0]}`}>
           {metadata.transactions[0]}
@@ -73,7 +73,7 @@ export const XLogInfoBase: FC<{
 
   if (metadata?.network) {
     sections.push(
-      <section key={'network'}>
+      <section key="network">
         <p>Network</p>
         <p>{metadata.network}</p>
       </section>,
@@ -82,7 +82,7 @@ export const XLogInfoBase: FC<{
 
   if (ipfs || cid) {
     sections.push(
-      <section key={'ipfs'}>
+      <section key="ipfs">
         <p>IPFS Address</p>
         <a href={`https://ipfs.4everland.xyz/ipfs/${ipfs || cid}`}>
           ipfs://{ipfs || cid}

@@ -56,7 +56,7 @@ const MusicView: NextPage = () => {
 
   return (
     <main>
-      <Seo title={`歌单`} />
+      <Seo title="歌单" />
 
       {data.detail && (
         <div className="flex my-2 justify-end phone:justify-center">
@@ -67,7 +67,7 @@ const MusicView: NextPage = () => {
             className="flex items-center justify-center phone:flex-col phone:space-y-4 phone:mb-4"
             onClick={trackerClick}
           >
-            <RiNeteaseCloudMusicFill height={'3rem'} width={'3rem'} />
+            <RiNeteaseCloudMusicFill height="3rem" width="3rem" />
 
             <span className="ml-2">{data.detail.nickname}</span>
           </a>

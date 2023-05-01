@@ -121,7 +121,7 @@ export const Markdown: FC<KamiMarkdownProps & MarkdownToJSX.Options> = memo(
                     >
                       <sup key={state?.key}>^{content}</sup>
                     </a>
-                    {linkCardId && <LinkCard id={linkCardId} source={'self'} />}
+                    {linkCardId && <LinkCard id={linkCardId} source="self" />}
                   </Fragment>
                 )
               },

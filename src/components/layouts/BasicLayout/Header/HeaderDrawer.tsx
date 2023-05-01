@@ -52,7 +52,7 @@ const _HeaderDrawer: FC<{ show: boolean; onExit: () => void }> = memo(
             )}
           >
             <div className="pb-4 text-right">
-              <span className={'p-4 inline-block -mr-5 -mt-4'} onClick={onExit}>
+              <span className="p-4 inline-block -mr-5 -mt-4" onClick={onExit}>
                 <CloseIcon />
               </span>
             </div>

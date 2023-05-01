@@ -92,7 +92,7 @@ const Link: FC<{ href: string }> = (props) => {
   return (
     <a
       href={props.href}
-      target={'_blank'}
+      target="_blank"
       rel="noreferrer"
       className="border-b border-b-default-yellow-100 border-opacity-20 pb-1"
     >

@@ -46,7 +46,7 @@ export const NoteFooterNavigation: FC<{ id: string }> = memo(({ id }) => {
                 <>
                   <div
                     tabIndex={1}
-                    role={'button'}
+                    role="button"
                     className="hover:text-primary"
                     onClick={() => {
                       goNext(nextNid)
@@ -62,7 +62,7 @@ export const NoteFooterNavigation: FC<{ id: string }> = memo(({ id }) => {
                 <>
                   <div
                     tabIndex={1}
-                    role={'button'}
+                    role="button"
                     className="hover:text-primary"
                     onClick={() => {
                       goNext(prevNid)
@@ -76,7 +76,7 @@ export const NoteFooterNavigation: FC<{ id: string }> = memo(({ id }) => {
             </div>
             <div
               tabIndex={1}
-              role={'button'}
+              role="button"
               className="opacity-80 text-pink hover:text-primary absolute left-1/2 top-0 bottom-0 flex items-center -translate-x-1/2 transform space-x-2"
               onClick={() => {
                 const note = noteCollection.get(id)

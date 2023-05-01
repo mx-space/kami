@@ -32,8 +32,8 @@ const FriendsView: NextPage<
   const { banned, collections, friends, outdated } = props
 
   return (
-    <ArticleLayout title={'朋友们'} subtitle={'海内存知己, 天涯若比邻'}>
-      <Seo title={'朋友们'} />
+    <ArticleLayout title="朋友们" subtitle="海内存知己, 天涯若比邻">
+      <Seo title="朋友们" />
       <article className="article-list">
         {friends.length > 0 && (
           <>
@@ -87,7 +87,7 @@ const Footer$: FC = () => {
   }
   return (
     <>
-      <ApplyForLink key={'link'} />
+      <ApplyForLink key="link" />
 
       <Markdown
         key="md"

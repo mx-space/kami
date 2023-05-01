@@ -87,7 +87,7 @@ export const ApplyForLink: FC = () => {
       <h1>我想和你交朋友！</h1>
       <form action="#" onSubmit={handleSubmit}>
         <Input
-          placeholder={'昵称 *'}
+          placeholder="昵称 *"
           required
           prefix={<PhUser />}
           value={state.author}
@@ -96,7 +96,7 @@ export const ApplyForLink: FC = () => {
           }}
         />
         <Input
-          placeholder={'站点标题 *'}
+          placeholder="站点标题 *"
           required
           prefix={<MdiFountainPenTip />}
           value={state.name}
@@ -105,7 +105,7 @@ export const ApplyForLink: FC = () => {
           }}
         />
         <Input
-          placeholder={'网站 * https://'}
+          placeholder="网站 * https://"
           required
           prefix={<SiGlyphGlobal />}
           value={state.url}
@@ -114,7 +114,7 @@ export const ApplyForLink: FC = () => {
           }}
         />
         <Input
-          placeholder={'头像链接 * https://'}
+          placeholder="头像链接 * https://"
           required
           prefix={<RadixIconsAvatar />}
           value={state.avatar}
@@ -123,7 +123,7 @@ export const ApplyForLink: FC = () => {
           }}
         />
         <Input
-          placeholder={'留下你的邮箱哦 *'}
+          placeholder="留下你的邮箱哦 *"
           required
           prefix={<MdiEmailFastOutline />}
           value={state.email}
@@ -134,7 +134,7 @@ export const ApplyForLink: FC = () => {
         <Input
           multi
           maxLength={50}
-          placeholder={'描述 *'}
+          placeholder="描述 *"
           required
           value={state.description}
           onChange={(e) => {
@@ -142,7 +142,7 @@ export const ApplyForLink: FC = () => {
           }}
         />
       </form>
-      <div className={'text-right mt-[5px]'}>
+      <div className="text-right mt-[5px]">
         <button
           className="btn red mr-[12px]"
           onClick={handleReset}

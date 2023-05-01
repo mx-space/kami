@@ -227,12 +227,12 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
       key={props.memory ? 'memory' : 'timeline'}
     >
       {!props.memory && (
-        <div className={'-mt-12 mb-12 text-shizuku-text'}>
+        <div className="-mt-12 mb-12 text-shizuku-text">
           <Progress />
           <p>活在当下，珍惜眼下</p>
         </div>
       )}
-      <Seo title={'时间线'} />
+      <Seo title="时间线" />
       {arr.reverse().map(([year, value]) => {
         return (
           <article className="article-list" key={year}>
@@ -249,11 +249,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
                     data-id={item.id}
                   >
                     <span className="flex flex-shrink min-w-0 items-center">
-                      <span
-                        className={
-                          'text-shizuku-text mr-2 tabular-nums w-12 inline-block'
-                        }
-                      >
+                      <span className="text-shizuku-text mr-2 tabular-nums w-12 inline-block">
                         {Intl.DateTimeFormat('en-us', {
                           month: '2-digit',
                           day: '2-digit',
@@ -265,9 +261,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
                         as={item.as}
                         className="leading-6 min-w-0 truncate"
                       >
-                        <span
-                          className={'kami-timeline__title min-w-0 truncate'}
-                        >
+                        <span className="kami-timeline__title min-w-0 truncate">
                           {item.title}
                         </span>
                       </Link>

@@ -26,7 +26,7 @@ export const HeaderActionShareButton: FC = () => {
               .catch(() => {})
           }}
           icon={<MdiShare />}
-          title={'分享'}
+          title="分享"
         />
       </HeaderActionButton>
     </HeaderActionButtonsContainer>

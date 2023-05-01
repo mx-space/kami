@@ -54,7 +54,7 @@ export const BanCopy: FC = (props) => {
             !showCopyWarn && 'opacity-0',
           )}
         >
-          <h1 className={'mt-0 text-red pointer-events-none'}>注意：</h1>
+          <h1 className="mt-0 text-red pointer-events-none">注意：</h1>
           <div className="my-3 text-white text-opacity-80 pointer-events-none">
             <p>本文章为站长原创，保留版权所有，禁止复制。</p>
           </div>

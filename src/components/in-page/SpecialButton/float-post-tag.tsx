@@ -140,12 +140,12 @@ const _FloatPostTagButton: FC = memo(() => {
                       >
                         <li>
                           <Link
-                            href={'/posts/[category]/[slug]'}
+                            href="/posts/[category]/[slug]"
                             as={`/posts/${child.category.slug}/${child.slug}`}
                           >
                             {child.title}
                           </Link>
-                          <span className={'meta'}>
+                          <span className="meta">
                             {Intl.DateTimeFormat('en-US').format(date)}
                           </span>
                         </li>

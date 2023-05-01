@@ -21,7 +21,7 @@ import Document, { Head, Html, Main, NextScript } from 'next/document'
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang={'zh-cn'}>
+      <Html lang="zh-cn">
         <Head>
           <meta charSet="UTF-8" />
 
@@ -40,7 +40,7 @@ export default class MyDocument extends Document {
           />
         </Head>
 
-        <body id={'app'} className="loading">
+        <body id="app" className="loading">
           <Main />
           <NextScript />
         </body>

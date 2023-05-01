@@ -17,7 +17,7 @@ export const FavoriteSection: FC<FriendSectionProps> = ({ data }) => {
       {data.map((link) => {
         return (
           <li key={link.id}>
-            <a href={link.url} target={'_blank'}>
+            <a href={link.url} target="_blank">
               {link.name}
             </a>
             <span className="meta">{link.description || ''}</span>
@@ -82,7 +82,7 @@ const Card: FC<{ link: LinkModel }> = ({ link }) => {
   return (
     <a
       href={link.url}
-      target={'_blank'}
+      target="_blank"
       className={styles['card']}
       onMouseEnter={useCallback(() => {
         setFocus(true)

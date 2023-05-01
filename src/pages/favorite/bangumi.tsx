@@ -66,8 +66,8 @@ const BangumiView: NextPage = () => {
                 >
                   <ImageLazy
                     className="absolute inset-0 z-0"
-                    height={'100%'}
-                    width={'100%'}
+                    height="100%"
+                    width="100%"
                     src={`https://i0.wp.com/${bangumi.cover.replace(
                       /^https?:\/\//,
                       '',

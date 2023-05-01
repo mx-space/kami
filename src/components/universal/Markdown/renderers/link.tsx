@@ -24,7 +24,7 @@ export const MLink: FC<{
         viewBox="0 0 100 100"
         width="15"
         height="15"
-        className={'inline align-middle leading-normal'}
+        className="inline align-middle leading-normal"
       >
         <path
           fill="var(--shizuku-text-color)"
@@ -83,7 +83,7 @@ export const MLink: FC<{
           <>
             <a
               href={props.href}
-              target={'_blank'}
+              target="_blank"
               onClick={handleRedirect}
               title={props.title}
             >

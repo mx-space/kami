@@ -49,11 +49,11 @@ const MenuLink: FC<{ menu: Menu; isPublicUrl: boolean; index: number }> = (
 
   return (
     <FloatPopover
-      strategy={'fixed'}
+      strategy="fixed"
       headless
       placement="bottom"
       offset={0}
-      popoverWrapperClassNames={'z-19 relative'}
+      popoverWrapperClassNames="z-19 relative"
       triggerComponent={() => (
         <Link
           href={menu.path}

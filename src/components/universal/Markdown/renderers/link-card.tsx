@@ -152,7 +152,7 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
   return (
     <a
       href={fullUrl}
-      target={'_blank'}
+      target="_blank"
       ref={ref}
       className={clsx(
         (cardInfo || loading) && styles['card-grid'],

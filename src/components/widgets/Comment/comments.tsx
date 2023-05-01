@@ -60,7 +60,7 @@ const CommentList: FC = memo(() => {
       appear
       timeout={useRef({ appear: 300, enter: 500 }).current}
     >
-      <div id={'comments-wrap'}>
+      <div id="comments-wrap">
         {comments.map((comment) => {
           return <InnerCommentList id={comment.id} key={comment.id} />
         })}
@@ -222,7 +222,7 @@ const SingleComment: FC<{ id: string }> = ({ id, children }) => {
       id={`comments-${comment.id}`}
       highlight={comment.highlight}
       author={
-        <a href={url} rel={'nofollow'} target="_blank">
+        <a href={url} rel="nofollow" target="_blank">
           {comment.author}
         </a>
       }
@@ -298,7 +298,7 @@ const SingleComment: FC<{ id: string }> = ({ id, children }) => {
           commentId={comment.id}
           refId={comment.ref}
           autoFocus
-          key={'box'}
+          key="box"
           onSubmit={handleReply}
           onCancel={() => setReplyId('')}
         />
@@ -311,7 +311,7 @@ const SingleComment: FC<{ id: string }> = ({ id, children }) => {
 
             comment.pin && 'text-red !opacity-100',
           )}
-          role={'button'}
+          role="button"
           onClick={handlePinComment}
         >
           <IconTransition
@@ -323,7 +323,7 @@ const SingleComment: FC<{ id: string }> = ({ id, children }) => {
       )}
 
       {!logged && comment.pin && (
-        <ImpressionView trackerMessage={`置顶评论曝光`}>
+        <ImpressionView trackerMessage="置顶评论曝光">
           <div className="absolute right-3 top-5 text-red">
             <PhPushPin />
           </div>

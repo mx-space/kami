@@ -67,7 +67,7 @@ const TopicDetailPage: NextPage<TopicModel> = (props) => {
               return (
                 <RightLeftTransitionView
                   key={note.id}
-                  component={'li'}
+                  component="li"
                   className="min-w-0 flex items-center justify-between"
                 >
                   <Link
@@ -77,7 +77,7 @@ const TopicDetailPage: NextPage<TopicModel> = (props) => {
                   >
                     {note.title}
                   </Link>
-                  <span className={'meta'}>
+                  <span className="meta">
                     {(date.getMonth() + 1).toString().padStart(2, '0')}/
                     {date.getDate().toString().padStart(2, '0')}/
                     {date.getFullYear()}

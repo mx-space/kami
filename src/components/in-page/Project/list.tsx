@@ -14,7 +14,7 @@ export const ProjectList: FC<{ projects: Project[] }> = (props) => {
   const projects = props.projects
 
   return (
-    <section className={styles['root']} key={'list'}>
+    <section className={styles['root']} key="list">
       <div className="grid grid-cols-3 <sm:grid-cols-1 <md:grid-cols-2 gap-12 xl:grid-cols-4">
         {projects.map((project) => {
           return (

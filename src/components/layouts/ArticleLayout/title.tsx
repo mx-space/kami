@@ -64,7 +64,7 @@ export const ArticleLayoutTitle = memo<{ animate?: boolean }>(
                 subtitle.map((str, index) => (
                   <TextFade
                     appear={animate}
-                    className={'mb-2'}
+                    className="mb-2"
                     delay={index}
                     key={subtitle[index]}
                   >

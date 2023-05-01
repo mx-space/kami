@@ -333,7 +333,7 @@ export const PostView: PageOnlyProps = (props) => {
         </ImageSizeMetaContext.Provider>
 
         <PostRelated id={post.id} />
-        <SubscribeBell defaultType={'post_c'} />
+        <SubscribeBell defaultType="post_c" />
         {post.copyright && isClientSide ? (
           <Copyright
             date={post.modified}

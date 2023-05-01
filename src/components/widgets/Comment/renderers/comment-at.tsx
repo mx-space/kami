@@ -33,8 +33,8 @@ export const CommentAtRender: FC<{ id: string }> = memo(({ id: value }) => {
   }
   return (
     <a
-      href={'javascript:;'}
-      className={'mr-[12px] text-primary'}
+      href="javascript:;"
+      className="mr-[12px] text-primary"
       onMouseOver={onMouseOver}
       onMouseLeave={onLeave}
       onClick={onClick}

@@ -254,7 +254,7 @@ const NoteView: React.FC<{ id: string }> = memo((props) => {
 
         <NoteFooterNavigationBarForMobile id={props.id} />
         <div className="pb-4" />
-        <SubscribeBell defaultType={'note_c'} />
+        <SubscribeBell defaultType="note_c" />
         <XLogInfoForNote id={props.id} />
         <NoteFooterActionBar id={props.id} />
       </NoteLayout>

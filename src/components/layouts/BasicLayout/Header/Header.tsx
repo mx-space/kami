@@ -110,9 +110,7 @@ export const Header: FC = () => {
           ref={appHeaderRef}
         >
           <div
-            className={
-              'flex items-center justify-center cursor-pointer select-none min-w-0'
-            }
+            className="flex items-center justify-center cursor-pointer select-none min-w-0"
             onClick={clickFunc}
           >
             <div className={styles['header-logo']}>

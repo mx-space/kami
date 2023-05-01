@@ -46,10 +46,10 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
 
   return (
     <ArticleLayout>
-      <Seo title={'博文'} />
+      <Seo title="博文" />
 
       <TransitionGroup>
-        <article key={'note'}>
+        <article key="note">
           {posts.length > 0 ? (
             <Fragment>
               {posts.map((post, i) => {

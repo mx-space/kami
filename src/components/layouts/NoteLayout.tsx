@@ -105,7 +105,7 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
           unmountOnExit
           timeout={0}
         >
-          <div className={'note-article relative'}>
+          <div className="note-article relative">
             <ClientOnly>
               <div className="title-headline text-light-brown dark:text-shizuku-text">
                 <span className="inline-flex items-center">

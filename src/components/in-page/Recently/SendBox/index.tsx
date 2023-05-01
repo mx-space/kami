@@ -37,7 +37,7 @@ export const RecentlySendBox: FC = memo(() => {
           setText(e.target.value)
         }}
         autoFocus={true}
-        placeholder={'今天遇到了什么烦心事？'}
+        placeholder="今天遇到了什么烦心事？"
       />
       <div className="mt-3 text-right">
         <button

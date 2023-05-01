@@ -48,7 +48,7 @@ const SayView = () => {
 
   return (
     <main>
-      <Seo title={'说说'} />
+      <Seo title="说说" />
       <TransitionGroup>
         <Masonry
           breakpointCols={isMobile ? 1 : 2}

@@ -42,7 +42,7 @@ export const NoteFooterActionBar: FC<{ id: string }> = ({ id }) => {
     informs: [],
     actions: [
       donateConfig.enable && {
-        icon: <GgCoffee fontSize={'1.2em'} />,
+        icon: <GgCoffee fontSize="1.2em" />,
         name: '',
         wrapperComponent: DonatePopover,
         callback: () => {
@@ -55,16 +55,11 @@ export const NoteFooterActionBar: FC<{ id: string }> = ({ id }) => {
             <div className="h-[1rem] w-[1rem] relative mr-2">
               <LikeButton
                 checked={isLiked}
-                width={'2rem'}
-                className={
-                  'absolute inset-0 -translate-y-1/2 -translate-x-1/2 transform '
-                }
+                width="2rem"
+                className="absolute inset-0 -translate-y-1/2 -translate-x-1/2 transform "
               />
             </div>
-            <NumberTransition
-              number={note.count?.like || 0}
-              className={'ml-4'}
-            />
+            <NumberTransition number={note.count?.like || 0} className="ml-4" />
           </div>
         ),
         color: isLiked ? '#e74c3c' : undefined,

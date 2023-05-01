@@ -62,7 +62,7 @@ export const FooterContent: FC = () => {
           <p className="justify-center flex space-x-2 children:flex-shrink-0 flex-wrap">
             <span>Powered by </span>
             <a href="https://github.com/mx-space" onClick={trackerToGithub}>
-              {'mx-space'}
+              mx-space
             </a>
             .
             <a
@@ -70,12 +70,12 @@ export const FooterContent: FC = () => {
               onClick={trackerToGithub}
               title={version}
             >
-              {'Kami'}
+              Kami
             </a>
-            {'.'}
+            .
             {icp.enable && !!icp.label && !!icp.link && (
               <div className="text-center inline-block">
-                <a href={icp.link} target={'_blank'} rel={'noreferrer'}>
+                <a href={icp.link} target="_blank" rel="noreferrer">
                   {icp.label}
                 </a>
               </div>
@@ -84,7 +84,7 @@ export const FooterContent: FC = () => {
         </ImpressionView>
       </div>
       <div className="right to-center">
-        <p className={'phone:mr-0 mr-12'}>
+        <p className="phone:mr-0 mr-12">
           {navigation.map((nav, i) => {
             return (
               <Fragment key={nav.name}>
@@ -100,7 +100,7 @@ export const FooterContent: FC = () => {
           })}
         </p>
 
-        <p className={'mr-12 phone:mr-0'}>
+        <p className="mr-12 phone:mr-0">
           <GatewayCount /> 个小伙伴正在浏览
         </p>
       </div>

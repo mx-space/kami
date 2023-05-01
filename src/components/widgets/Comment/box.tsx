@@ -340,15 +340,13 @@ export const CommentBox: FC<{
         }
       />
 
-      <div
-        className={'relative flex justify-between mt-2 flex-wrap items-center'}
-      >
+      <div className="relative flex justify-between mt-2 flex-wrap items-center">
         <div className="flex-shrink-0 flex space-x-2 items-center">
           <MarkdownSupport />
           <KaomojiButton onClickKaomoji={handleInsertEmoji} />
         </div>
 
-        <div className={'whitespace-nowrap flex-shrink-0 flex items-center'}>
+        <div className="whitespace-nowrap flex-shrink-0 flex items-center">
           <CommentBoxOption
             refId={refId}
             commentId={commentId}

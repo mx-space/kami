@@ -58,12 +58,12 @@ export const ErrorView: NextPage<{
       {(showBackButton || showBackButton) && (
         <div className="mt-5">
           {showBackButton && (
-            <button className={'btn red mr-3'} onClick={() => router.push('/')}>
+            <button className="btn red mr-3" onClick={() => router.push('/')}>
               回到首页
             </button>
           )}
           {showRefreshButton && (
-            <button className={'btn yellow'} onClick={() => router.reload()}>
+            <button className="btn yellow" onClick={() => router.reload()}>
               刷新
             </button>
           )}
