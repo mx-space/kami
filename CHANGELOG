@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [4.4.9](https://github.com/mx-space/kami/compare/v4.4.8...v4.4.9) (2023-05-01)
+
+
+### Bug Fixes
+
+* home section margin ([4696b1c](https://github.com/mx-space/kami/commit/4696b1c476b8b884d7a27c9eca15707ae1af24ec))
+* update some style ([c831009](https://github.com/mx-space/kami/commit/c8310098d1fe8cdb53a1595e849670ff7c52e036))
+
+
+
 ## [4.4.8](https://github.com/mx-space/kami/compare/v4.4.7...v4.4.8) (2023-05-01)
 
 
