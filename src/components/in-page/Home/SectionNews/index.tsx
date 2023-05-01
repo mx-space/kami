@@ -86,22 +86,25 @@ interface SectionCardProps {
   desc: string
   src?: string
   href?: string
-  onClick?: (
-    event: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>,
-  ) => void
+  onClick?: (event: MouseEvent) => void
   getRandomUnRepeatImage: () => string
 }
 
 export const SectionCard = memo<SectionCardProps>(
   ({ title, desc, src, onClick, href, getRandomUnRepeatImage }) => {
     const cover = useMemo(() => src || getRandomUnRepeatImage(), [src])
+    const LinkComponent = href ? Link : 'button'
     return (
       <div className="col-6 col-m-3">
-        <a className={styles['news-article']} href={href} onClick={onClick}>
+        <LinkComponent
+          className={styles['news-article']}
+          href={href!}
+          onClick={onClick}
+        >
           <Card cover={cover} title={title}>
             <span>{desc}</span>
           </Card>
-        </a>
+        </LinkComponent>
       </div>
     )
   },

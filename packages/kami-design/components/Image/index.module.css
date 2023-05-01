@@ -56,7 +56,7 @@
 
   &::after {
     content: '';
-    bottom: -6px;
+    bottom: -1rem;
     position: absolute;
     width: 3rem;
     left: 50%;

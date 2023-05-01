@@ -112,6 +112,7 @@
   mask-image: none;
   transition: all 0.2s ease-out;
   z-index: 0;
+  text-align: left;
 }
 
 .text-mask {
