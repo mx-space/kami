@@ -17,6 +17,10 @@ Live Demo:
 ![](https://user-images.githubusercontent.com/41265413/169677737-9b407450-ec95-4d30-b5ca-818cf1d18bdb.png)
 ![](https://github.com/mx-space/docs-images/blob/master/images/bg.jpg?raw=true)
 
+点击下面按钮，立即部署到 Vercel！
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmx-space%2Fkami&env=NEXT_PUBLIC_API_URL,NEXT_PUBLIC_GATEWAY_URL&envDescription=API%20%E5%9C%B0%E5%9D%80%E5%92%8C%E7%BD%91%E5%85%B3%E5%9C%B0%E5%9D%80&project-name=kami-web)
+
 ## Feature
 
 内容：
