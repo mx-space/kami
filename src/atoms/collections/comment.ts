@@ -73,7 +73,6 @@ export const useCommentCollection = createCollection<
 
         const flatAllComments = walkComments(state.comments)
 
-        console.log('flatAllComments', flatAllComments)
         flatAllComments.forEach((comment) => {
           state.data.set(comment.id, comment)
         })
