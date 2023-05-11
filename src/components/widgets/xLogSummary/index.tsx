@@ -9,6 +9,8 @@ export const XLogSummary: FC<{
   cid: string
   className?: string
 }> = (props) => {
+  // TODO xlog not public summary api any more.
+  return null
   const { cid } = props
   const { data, isLoading, error } = SWR(
     [`getSummary`, cid],
@@ -36,16 +38,16 @@ export const XLogSummary: FC<{
 
   return (
     <div
-      className={`border-gray-6 border rounded-xl mt-4 p-4 space-y-2 ${
+      className={`border-gray-6 mt-4 space-y-2 rounded-xl border p-4 ${
         props.className || ''
       }`}
     >
-      <div className="font-light flex items-center">
+      <div className="flex items-center font-light">
         <OpenAIIcon className="mr-2 text-lg" />
         AI 生成的摘要
       </div>
 
-      <p className="text-gray-1 leading-loose text-sm">
+      <p className="text-gray-1 text-sm leading-loose">
         {isLoading ? '生成中...' : error ? '请求错误' : data?.data}
       </p>
     </div>
