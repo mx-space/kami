@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [4.4.10](https://github.com/mx-space/kami/compare/v4.4.9...v4.4.10) (2023-05-11)
+
+
+### Bug Fixes
+
+* markdown style ([cb90e3c](https://github.com/mx-space/kami/commit/cb90e3c2e0058f902c1a209f9cdb50677398da78))
+* remove git-lfs ([f7d9cca](https://github.com/mx-space/kami/commit/f7d9cca5cf1f94533d0bb6848aa94e36bf59cea1))
+* type error ([1cebbe6](https://github.com/mx-space/kami/commit/1cebbe60a3ff5acfafc2b30b9335e699d1e1fcec))
+
+
+
 ## [4.4.9](https://github.com/mx-space/kami/compare/v4.4.8...v4.4.9) (2023-05-01)
 
 
