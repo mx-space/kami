@@ -23,7 +23,10 @@ interface CommentProps {
 
 export const Comment: FC<
   CommentProps &
-    DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+    Omit<
+      DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+      'content'
+    >
 > = memo((props) => {
   const {
     actions,
@@ -69,7 +72,7 @@ export const Comment: FC<
             <span className={styles['datetime']}>
               <RelativeTime date={datetime} />{' '}
               <span
-                className="truncate break-all cursor-pointer"
+                className="cursor-pointer truncate break-all"
                 onClick={handleJump}
               >
                 {key}
