@@ -44,4 +44,12 @@
       @apply hidden;
     }
   }
+
+  li > p {
+    display: inline;
+  }
+
+  li {
+    margin: 0.5em 0;
+  }
 }
