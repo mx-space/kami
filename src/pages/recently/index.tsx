@@ -17,20 +17,17 @@ import {
   RecentlyAttitudeEnum,
   RecentlyAttitudeResultEnum,
 } from '@mx-space/api-client'
-import { IonThumbsup } from '@mx-space/kami-design/components/Icons/for-post'
-import {
-  FontistoComments,
-  JamTrash,
-} from '@mx-space/kami-design/components/Icons/for-recently'
-import { Loading } from '@mx-space/kami-design/components/Loading'
-import { useModalStack } from '@mx-space/kami-design/components/Modal/stack-context'
 
 import { useIsLogged } from '~/atoms/user'
-import { withNoSSR } from '~/components/biz/HoC/no-ssr'
-import { Seo } from '~/components/biz/Seo'
+import { withNoSSR } from '~/components/common/HoC/no-ssr'
+import { Seo } from '~/components/common/Seo'
 import { RefPreview } from '~/components/in-page/Recently/RefPreview'
 import { RecentlySendBox } from '~/components/in-page/Recently/SendBox'
-import { Markdown } from '~/components/universal/Markdown'
+import { IonThumbsup } from '~/components/ui/Icons/for-post'
+import { FontistoComments, JamTrash } from '~/components/ui/Icons/for-recently'
+import { Loading } from '~/components/ui/Loading'
+import { useModalStack } from '~/components/ui/Modal/stack-context'
+import { KamiMarkdown } from '~/components/universal/Markdown'
 import { RelativeTime } from '~/components/universal/RelativeTime'
 import { CommentLazy } from '~/components/widgets/Comment'
 import { EventTypes } from '~/types/events'
@@ -163,7 +160,7 @@ const RecentlyPage: NextPage = () => {
       },
       component: (
         <>
-          <p className="!mt-4 leading-6 whitespace-pre-line break-all">
+          <p className="!mt-4 whitespace-pre-line break-all leading-6">
             {model.content}
           </p>
           <CommentLazy allowComment id={model.id} />
@@ -197,7 +194,7 @@ const RecentlyPage: NextPage = () => {
   }
 
   return (
-    <main className="max-w-[50em] relative">
+    <main className="relative max-w-[50em]">
       <h1>动态</h1>
       <Seo title="动态" />
       <h2 className="text-opacity-80">谢谢你听我诉说</h2>
@@ -226,7 +223,7 @@ const RecentlyPage: NextPage = () => {
                         )}
                       >
                         <div className="overflow-hidden">
-                          <Markdown
+                          <KamiMarkdown
                             forceBlock
                             value={d.content}
                             wrapperProps={wrapperProps}
@@ -234,7 +231,7 @@ const RecentlyPage: NextPage = () => {
                           {d.ref && <RefPreview refModel={d.ref} />}
                         </div>
 
-                        <div className="text-sm float-right mt-1 flex items-center">
+                        <div className="float-right mt-1 flex items-center text-sm">
                           <button
                             className="inline-flex items-center"
                             onClick={() =>
@@ -252,7 +249,7 @@ const RecentlyPage: NextPage = () => {
                         <div className="actions">
                           {isLogged && (
                             <button
-                              className="flex items-center text-red"
+                              className="text-red flex items-center"
                               onClick={() => handleDelete(d.id)}
                             >
                               <JamTrash className="mr-2" />
@@ -260,7 +257,7 @@ const RecentlyPage: NextPage = () => {
                             </button>
                           )}
                           <button
-                            className="flex items-center ml-2 text-red"
+                            className="text-red ml-2 flex items-center"
                             onClick={() => handleUp(d.id)}
                           >
                             <IonThumbsup />
@@ -268,10 +265,10 @@ const RecentlyPage: NextPage = () => {
                           </button>
 
                           <button
-                            className="flex items-center ml-2 text-shizuku-text"
+                            className="text-shizuku-text ml-2 flex items-center"
                             onClick={() => handleDown(d.id)}
                           >
-                            <IonThumbsup className="transform rotate-[1.5turn]" />
+                            <IonThumbsup className="rotate-[1.5turn] transform" />
                             {isLogged && d.down}
                           </button>
                         </div>

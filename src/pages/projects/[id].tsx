@@ -4,9 +4,9 @@ import type { ProjectModel } from '@mx-space/api-client'
 
 import { useProjectCollection } from '~/atoms/collections/project'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
-import { Seo } from '~/components/biz/Seo'
+import { Seo } from '~/components/common/Seo'
 import { ProjectDetail } from '~/components/in-page/Project/detail'
-import { useSyncEffectOnce } from '~/hooks/use-sync-effect'
+import { useSyncEffectOnce } from '~/hooks/common/use-sync-effect'
 import { apiClient } from '~/utils/client'
 
 type ProjectViewProps = ProjectModel

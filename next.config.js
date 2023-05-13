@@ -15,15 +15,6 @@ const configs = {
     newNextLinkBehavior: true,
   },
   webpack: (config, options) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      // your aliases
-      '@mx-space/kami-design': path.resolve(
-        __dirname,
-        './packages/kami-design',
-      ),
-    }
-
     config.plugins.push(new WindiCSSWebpackPlugin())
 
     return config

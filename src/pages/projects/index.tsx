@@ -1,17 +1,16 @@
 import { useCallback } from 'react'
 import useSWR from 'swr'
 
-import { CodiconGithubInverted } from '@mx-space/kami-design/components/Icons/menu-icon'
-import { Loading } from '@mx-space/kami-design/components/Loading'
-import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
-
 import { useUserStore } from '~/atoms/user'
 import { ProjectList } from '~/components/in-page/Project/list'
+import { CodiconGithubInverted } from '~/components/ui/Icons/menu-icon'
+import { Loading } from '~/components/ui/Loading'
+import { BottomUpTransitionView } from '~/components/ui/Transition/bottom-up'
 import { TrackerAction } from '~/constants/tracker'
-import { useAnalyze } from '~/hooks/use-analyze'
+import { useAnalyze } from '~/hooks/app/use-analyze'
 import { apiClient } from '~/utils/client'
 
-import { Seo } from '../../components/biz/Seo'
+import { Seo } from '../../components/common/Seo'
 
 const ProjectView = () => {
   const { data: projects, isLoading: loading } = useSWR(`project`, () =>
@@ -38,12 +37,12 @@ const ProjectView = () => {
         <Loading />
       ) : (
         <>
-          <div className="font-medium text-3xl my-12 inline-flex items-center">
+          <div className="my-12 inline-flex items-center text-3xl font-medium">
             项目{' '}
             {githubUsername && (
               <a
                 href={`https://github.com/${githubUsername}`}
-                className="!text-inherit inline-flex ml-2"
+                className="ml-2 inline-flex !text-inherit"
                 target="_blank"
                 aria-label="view on GitHub"
                 onClick={trackerClick}

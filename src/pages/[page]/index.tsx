@@ -6,17 +6,20 @@ import RemoveMarkdown from 'remove-markdown'
 import { shallow } from 'zustand/shallow'
 
 import type { PageModel } from '@mx-space/api-client'
-import { Loading } from '@mx-space/kami-design'
-import { ImageSizeMetaContext } from '@mx-space/kami-design/contexts/image-size'
 
 import { usePageCollection } from '~/atoms/collections/page'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
-import { Seo } from '~/components/biz/Seo'
+import { Seo } from '~/components/common/Seo'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
-import { Markdown } from '~/components/universal/Markdown'
-import { useSetHeaderMeta, useSetHeaderShare } from '~/hooks/use-header-meta'
-import { useInitialData } from '~/hooks/use-initial-data'
-import { useJumpToSimpleMarkdownRender } from '~/hooks/use-jump-to-render'
+import { ImageSizeMetaContext } from '~/components/ui/Image/context'
+import { Loading } from '~/components/ui/Loading'
+import { KamiMarkdown } from '~/components/universal/Markdown'
+import {
+  useSetHeaderMeta,
+  useSetHeaderShare,
+} from '~/hooks/app/use-header-meta'
+import { useInitialData } from '~/hooks/app/use-initial-data'
+import { useJumpToSimpleMarkdownRender } from '~/hooks/app/use-jump-to-render'
 import { imagesRecord2Map } from '~/utils/images'
 import { appendStyle } from '~/utils/load-script'
 import { springScrollToTop } from '~/utils/spring'
@@ -74,7 +77,7 @@ const PageView: PageOnlyProps = (props) => {
       >
         <article>
           <h1 className="sr-only">{title}</h1>
-          <Markdown value={text} toc />
+          <KamiMarkdown value={text} toc />
         </article>
       </ImageSizeMetaContext.Provider>
       <div className={styles['pagination']}>

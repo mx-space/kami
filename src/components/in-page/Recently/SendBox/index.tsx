@@ -1,8 +1,7 @@
 import type { FC } from 'react'
 import { memo, useCallback, useRef, useState } from 'react'
 
-import { Input } from '@mx-space/kami-design/components/Input'
-
+import { Input } from '~/components/ui/Input'
 import { apiClient } from '~/utils/client'
 
 export const RecentlySendBox: FC = memo(() => {

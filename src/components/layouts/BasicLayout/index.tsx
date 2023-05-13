@@ -11,19 +11,15 @@ import React, {
 import type { ShortcutOptions } from 'react-shortcut-guide'
 import { ShortcutProvider } from 'react-shortcut-guide'
 
-import { ModalStackProvider } from '@mx-space/kami-design'
-import {
-  BiMoonStarsFill,
-  PhSunBold,
-} from '@mx-space/kami-design/components/Icons/layout'
-
 import { useActionStore } from '~/atoms/action'
 import { useAppStore } from '~/atoms/app'
+import { BiMoonStarsFill, PhSunBold } from '~/components/ui/Icons/layout'
+import { ModalStackProvider } from '~/components/ui/Modal'
 import { TrackerAction } from '~/constants/tracker'
-import { useAnalyze } from '~/hooks/use-analyze'
-import { useThemeBackground } from '~/hooks/use-kami'
-import { useMediaToggle } from '~/hooks/use-media-toggle'
-import { useDetectIsNarrowThanLaptop } from '~/hooks/use-viewport'
+import { useAnalyze } from '~/hooks/app/use-analyze'
+import { useThemeBackground } from '~/hooks/app/use-kami-theme'
+import { useDarkModeDetector } from '~/hooks/ui/use-dark-mode-detector'
+import { useDetectIsNarrowThanLaptop } from '~/hooks/ui/use-viewport'
 import { appendStyle } from '~/utils/load-script'
 import { springScrollToElement } from '~/utils/spring'
 
@@ -50,7 +46,7 @@ const Footer = React.lazy(() =>
   })),
 )
 const LampSwitch = React.lazy(() =>
-  import('../../biz/LampSwitch').then((mo) => ({
+  import('../../widgets/LampSwitch').then((mo) => ({
     default: mo.LampSwitch,
   })),
 )
@@ -76,7 +72,7 @@ const useColorModeTransition = (isDark: boolean) => {
 }
 
 export const BasicLayout: FC = memo(({ children }) => {
-  const { toggle, value: isDark } = useMediaToggle()
+  const { toggle, value: isDark } = useDarkModeDetector()
 
   useThemeBackground()
   const isNarrowThanLaptop = useDetectIsNarrowThanLaptop()
@@ -134,7 +130,7 @@ export const BasicLayout: FC = memo(({ children }) => {
   const { event } = useAnalyze()
   return (
     <ModalStackProvider isMobileViewport={isMobile}>
-      <div className="inset-0 fixed bg-fixed pointer-events-none transition-opacity duration-500 ease transform-gpu">
+      <div className="ease pointer-events-none fixed inset-0 transform-gpu bg-fixed transition-opacity duration-500">
         <div className="bg absolute inset-0 transform-gpu" />
       </div>
       <Suspense fallback={null}>

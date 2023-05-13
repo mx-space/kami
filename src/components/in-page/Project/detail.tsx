@@ -2,10 +2,9 @@ import { sanitizeUrl } from 'markdown-to-jsx'
 import type { FC } from 'react'
 import { useEffect } from 'react'
 
-import { Loading } from '@mx-space/kami-design/components/Loading'
-
 import { useProjectCollection } from '~/atoms/collections/project'
-import { Markdown } from '~/components/universal/Markdown'
+import { Loading } from '~/components/ui/Loading'
+import { KamiMarkdown } from '~/components/universal/Markdown'
 import { SliderImagesPopup } from '~/components/universal/SliderImagesPopup'
 
 import styles from './detail.module.css'
@@ -35,7 +34,7 @@ export const ProjectDetail: FC<{ id: string }> = (props) => {
     <>
       <section className={styles['head']}>
         <ProjectIcon avatar={project.avatar} name={project.name} />
-        <div className="flex flex-col project-detail">
+        <div className="project-detail flex flex-col">
           <h1>{name}</h1>
           <p>{description}</p>
           <p className="space-x-4">
@@ -52,7 +51,7 @@ export const ProjectDetail: FC<{ id: string }> = (props) => {
             {docUrl && (
               <a
                 href={docUrl}
-                className="btn bg-transparent text-shizuku-text"
+                className="btn text-shizuku-text bg-transparent"
                 target="_blank"
               >
                 项目文档
@@ -68,7 +67,7 @@ export const ProjectDetail: FC<{ id: string }> = (props) => {
       ) : null}
 
       <article className="mt-12">
-        <Markdown
+        <KamiMarkdown
           value={text}
           codeBlockFully
           renderers={{
@@ -94,7 +93,7 @@ const Link: FC<{ href: string }> = (props) => {
       href={props.href}
       target="_blank"
       rel="noreferrer"
-      className="border-b border-b-default-yellow-100 border-opacity-20 pb-1"
+      className="border-b-always-yellow-100 border-b border-opacity-20 pb-1"
     >
       {props.children}
     </a>

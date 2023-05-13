@@ -3,8 +3,8 @@ import type { NextPage } from 'next'
 import { wrapperNextPage as wrapper } from 'next-suspense'
 
 import { RequestError } from '@mx-space/api-client'
-import { Loading } from '@mx-space/kami-design/components/Loading'
 
+import { Loading } from '~/components/ui/Loading'
 import { isNumber } from '~/utils/_'
 
 import { ErrorView } from '../Error'

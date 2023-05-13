@@ -2,9 +2,8 @@ import rc from 'randomcolor'
 import type { FC, MouseEventHandler } from 'react'
 import { memo, useMemo } from 'react'
 
-import { MdiTagHeartOutline } from '@mx-space/kami-design/components/Icons/for-note'
-
 import { useAppStore } from '~/atoms/app'
+import { MdiTagHeartOutline } from '~/components/ui/Icons/for-note'
 
 import styles from './index.module.css'
 
@@ -29,7 +28,7 @@ export const BigTag: FC<BigTagProps> = memo(({ tagName, onClick }) => {
       style={{ background: bgColor }}
       onClick={onClick}
     >
-      <MdiTagHeartOutline className="inline-block mr-2 text-lg" />
+      <MdiTagHeartOutline className="mr-2 inline-block text-lg" />
       {tagName}
     </a>
   )

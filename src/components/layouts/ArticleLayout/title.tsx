@@ -1,10 +1,9 @@
 import { memo } from 'react'
 
-import { TextFade } from '@mx-space/kami-design/components/Animate/text-anim'
-
 import { useAppStore } from '~/atoms/app'
 import { useIsLogged } from '~/atoms/user'
-import { useIsClient } from '~/hooks/use-is-client'
+import { TextFade } from '~/components/ui/Animate/text-anim'
+import { useIsClient } from '~/hooks/common/use-is-client'
 import { resolveUrl } from '~/utils/utils'
 
 import { useArticleLayoutProps } from './hooks'

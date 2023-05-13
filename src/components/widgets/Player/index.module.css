@@ -3,7 +3,7 @@
 }
 
 .player {
-  @apply fixed z-10 bottom-[2px] left-0;
+  @apply fixed bottom-[2px] left-0 z-10;
 
   bottom: calc(2px + env(safe-area-inset-bottom));
   transform: translateX(0);
@@ -18,15 +18,15 @@
   height: 66px;
   width: 66px;
 
-  @apply relative bg-gray bg-opacity-80;
+  @apply bg-gray-4 relative bg-opacity-80;
 
   & .anime-frame {
-    @apply absolute rounded-r-lg rounded-b-lg inset-0 select-none pointer-events-none;
+    @apply pointer-events-none absolute inset-0 select-none rounded-b-lg rounded-r-lg;
   }
 
   & .pic,
   & {
-    @apply rounded-r-lg rounded-b-lg;
+    @apply rounded-b-lg rounded-r-lg;
   }
 }
 /* 
@@ -98,13 +98,13 @@
 } */
 
 .control-btn {
-  @apply absolute top-0 left-0 right-0 bottom-0 z-10 text-white;
-  @apply shadow-lg cursor-pointer transition-all;
+  @apply absolute bottom-0 left-0 right-0 top-0 z-10 text-white;
+  @apply cursor-pointer shadow-lg transition-all;
 
   font-size: 35px;
 
   & > svg {
-    @apply shadow-2xl absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-500;
+    @apply absolute -translate-x-1/2 -translate-y-1/2 transform shadow-2xl transition-all duration-500;
 
     top: 50%;
     left: 50%;
@@ -115,7 +115,7 @@
 .player.play .control-btn {
   font-size: 24px;
 
-  @apply justify-end items-end;
+  @apply items-end justify-end;
 
   & > svg {
     top: calc(80%);
@@ -125,13 +125,13 @@
 
 .cover:hover + .tip,
 .tip:hover {
-  @apply opacity-100 visible;
+  @apply visible opacity-100;
 }
 
 .tip {
-  @apply absolute top-0 bottom-0 whitespace-nowrap truncate;
-  @apply flex flex-col justify-around py-3 cursor-pointer;
-  @apply transition-all opacity-0 duration-300 invisible;
+  @apply absolute bottom-0 top-0 truncate whitespace-nowrap;
+  @apply flex cursor-pointer flex-col justify-around py-3;
+  @apply invisible opacity-0 transition-all duration-300;
 
   margin-left: 66px;
   padding-left: 1.5em;

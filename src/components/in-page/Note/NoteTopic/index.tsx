@@ -3,13 +3,13 @@ import type { FC } from 'react'
 import { useCallback, useMemo } from 'react'
 
 import type { TopicModel } from '@mx-space/api-client'
-import { Avatar } from '@mx-space/kami-design/components/Avatar'
-import { Divider } from '@mx-space/kami-design/components/Divider'
-import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
 
-import { ImpressionView } from '~/components/biz/ImpressionView'
+import { ImpressionView } from '~/components/common/ImpressionView'
+import { Avatar } from '~/components/ui/Avatar'
+import { Divider } from '~/components/ui/Divider'
+import { FloatPopover } from '~/components/ui/FloatPopover'
 import { TrackerAction } from '~/constants/tracker'
-import { useAnalyze } from '~/hooks/use-analyze'
+import { useAnalyze } from '~/hooks/app/use-analyze'
 import { textToBigCharOrWord } from '~/utils/word'
 
 import { InnerTopicDetail } from './inner-detail'
@@ -50,8 +50,8 @@ export const NoteTopic: FC<{ noteId: string; topic: TopicModel }> = (props) => {
               [],
             )}
           />
-          <div className="flex-grow flex flex-col self-start">
-            <span className="text-md font-medium mb-2">
+          <div className="flex flex-grow flex-col self-start">
+            <span className="text-md mb-2 font-medium">
               <FloatPopover
                 strategy="absolute"
                 triggerComponent={() => (
@@ -72,7 +72,7 @@ export const NoteTopic: FC<{ noteId: string; topic: TopicModel }> = (props) => {
               </FloatPopover>
             </span>
 
-            <p className="opacity-80 text-shizuku-text text-sm line-clamp-2">
+            <p className="text-shizuku-text line-clamp-2 text-sm opacity-80">
               <NoteTopicMarkdownRender>{introduce}</NoteTopicMarkdownRender>
             </p>
           </div>

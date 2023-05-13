@@ -2,7 +2,7 @@ import { clsx } from 'clsx'
 import type { DetailedHTMLProps, HTMLAttributes } from 'react'
 import { forwardRef, memo, useMemo } from 'react'
 
-import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
+import { BottomUpTransitionView } from '~/components/ui/Transition/bottom-up'
 
 import { ArticleLayoutContextProvider } from './hooks'
 import styles from './index.module.css'

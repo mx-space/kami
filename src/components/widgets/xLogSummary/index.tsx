@@ -9,8 +9,6 @@ export const XLogSummary: FC<{
   cid: string
   className?: string
 }> = (props) => {
-  // TODO xlog not public summary api any more.
-  return null
   const { cid } = props
   const { data, isLoading, error } = SWR(
     [`getSummary`, cid],

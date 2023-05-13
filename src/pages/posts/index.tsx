@@ -4,18 +4,18 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 
 import type { Pager, PaginateResult, PostModel } from '@mx-space/api-client'
-import { EmptyIcon } from '@mx-space/kami-design/components/Icons/for-comment'
-import { Loading } from '@mx-space/kami-design/components/Loading'
-import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
-import { PostBlock } from '~/components/in-page/PostBlock'
-import { TagFAB } from '~/components/in-page/SpecialButton/float-post-tag'
+import { PostBlock } from '~/components/in-page/Post/PostBlock'
+import { TagFAB } from '~/components/in-page/Post/TagFAB'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
+import { EmptyIcon } from '~/components/ui/Icons/for-comment'
+import { Loading } from '~/components/ui/Loading'
+import { BottomUpTransitionView } from '~/components/ui/Transition/bottom-up'
 import { SearchFAB } from '~/components/widgets/Search'
 import { apiClient } from '~/utils/client'
 import { springScrollToTop } from '~/utils/spring'
 
-import { Seo } from '../../components/biz/Seo'
+import { Seo } from '../../components/common/Seo'
 
 const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
   const [pagination, setPagination] = useState<Pager | null>(null)

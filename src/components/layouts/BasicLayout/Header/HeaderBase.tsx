@@ -3,7 +3,7 @@ import type { FC } from 'react'
 import React, { useDeferredValue } from 'react'
 
 import { useAppStore } from '~/atoms/app'
-import { useIsOverFirstScreenHeight } from '~/hooks/use-viewport'
+import { useIsOverFirstScreenHeight } from '~/hooks/ui/use-viewport'
 
 import styles from './index.module.css'
 

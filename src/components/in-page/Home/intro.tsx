@@ -1,15 +1,14 @@
 import type { FC } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 
-import { TextFade } from '@mx-space/kami-design/components/Animate/text-anim'
-import { Avatar } from '@mx-space/kami-design/components/Avatar'
-import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
-import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
-
 import { useUserStore } from '~/atoms/user'
-import { withNoSSR } from '~/components/biz/HoC/no-ssr'
+import { withNoSSR } from '~/components/common/HoC/no-ssr'
+import { TextFade } from '~/components/ui/Animate/text-anim'
+import { Avatar } from '~/components/ui/Avatar'
+import { FloatPopover } from '~/components/ui/FloatPopover'
+import { BottomUpTransitionView } from '~/components/ui/Transition/bottom-up'
 import { FontIcon } from '~/components/universal/FontIcon'
-import { useThemeConfig } from '~/hooks/use-initial-data'
+import { useThemeConfig } from '~/hooks/app/use-initial-data'
 
 import { useHomePageViewContext } from './context'
 import styles from './intro.module.css'
@@ -76,7 +75,7 @@ const Social: FC = withNoSSR(() => {
               )}
               headless
             >
-              <div className="bg-light-bg px-3 py-2 border border-dark-100 border-opacity-10 rounded-full shadow-out-sm">
+              <div className="bg-light-bg border-dark-100 shadow-out-sm rounded-full border border-opacity-10 px-3 py-2">
                 {item.title}
               </div>
             </FloatPopover>

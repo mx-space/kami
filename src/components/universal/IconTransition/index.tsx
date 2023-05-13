@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import { SwitchTransition } from 'react-transition-group'
 
-import { FadeInOutTransitionView } from '@mx-space/kami-design/components/Transition/fade-in-out'
+import { FadeInOutTransitionView } from '~/components/ui/Transition/fade-in-out'
 
 interface IconTransitionProps {
   solidIcon: JSX.Element

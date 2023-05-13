@@ -1,0 +1,95 @@
+/* for kami theme */
+:root {
+  --red: rgb(255, 59, 48);
+  --yellow: #ffc107;
+  --blue: #6495ed;
+  --green: #39c5bb;
+  --brown: #795548;
+  --light-brown: #67492e;
+  --purple: #8a2be2;
+  --light-bg: #fff;
+  --light-font: #fff;
+  --shallow: #eee;
+  --pink: #eb445a;
+
+  --white: var(--light-font);
+
+  --code-bg: transparent;
+  --black: #353535;
+  --bg-opacity: rgba(255, 255, 255, 0.72);
+
+  --gray: var(--gray-4);
+  --deep-gray: var(--gray-1);
+
+  --gray-1: #8e8e93;
+  --gray-2: #aeaeb2;
+  --gray-3: rgb(199, 199, 204);
+  --gray-4: rgb(209, 209, 214);
+  --gray-5: rgb(229, 229, 234);
+  --gray-6: rgb(242, 242, 247);
+
+  --primary: var(--green);
+  --secondary: var(--yellow);
+  --accent: var(--primary);
+
+  --serif-font: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC',
+    'Source Han Serif', source-han-serif-sc, SongTi SC, SimSum,
+    'Hiragino Sans GB', system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+    'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+  --sans-font: system-ui, -apple-system, PingFang SC, 'Microsoft YaHei',
+    Segoe UI, Roboto, Helvetica, noto sans sc, hiragino sans gb, 'sans-serif',
+    Apple Color Emoji, Segoe UI Emoji, Not Color Emoji;
+  --monospace-font: OperatorMonoSSmLig Nerd Font, JetBrains Mono, Operator Mono,
+    Monaco, Consolas, 'Courier New', Courier, monospace;
+  --mono-font: var(--monospace-font);
+}
+
+html.dark {
+  color-scheme: dark;
+
+  --red: rgb(255, 69, 58) !important;
+  --green: #1f8f93 !important;
+  --yellow: #ffc107 !important;
+  --brown: #c6aa9f !important;
+  --light-brown: #bc9c8f !important;
+  --purple: #b260ea !important;
+  --light-bg: #111 !important;
+  --light-font: #ddd !important;
+  --shallow: #333 !important;
+  --pink: #eb4b63 !important;
+
+  --black: #ddd;
+  --bg-opacity: rgba(29, 29, 31, 0.72);
+
+  --gary-1: rgb(142, 142, 147);
+  --gray-2: rgb(99, 99, 102);
+  --gray-3: rgb(72, 72, 74);
+  --gray-4: rgb(58, 58, 60);
+  --gray-5: rgb(44, 44, 46);
+  --gray-6: rgb(28, 28, 30);
+
+  @supports not (backdrop-filter: blur(1px)) {
+    & {
+      --bg-opacity: rgba(29, 29, 31, 0.98);
+    }
+  }
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  :root {
+    --bg-opacity: #fff;
+  }
+}
+
+/* for shizuku theme */
+:root {
+  --shizuku-background-color: #fff;
+  --shizuku-text-color: #333;
+  --shizuku-theme-color: var(--green);
+}
+
+html.dark {
+  --shizuku-background-color: #212121;
+  --shizuku-text-color: #b4b4b4;
+  --shizuku-theme-color: #3c946c;
+}

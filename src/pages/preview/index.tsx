@@ -7,7 +7,6 @@ import { shallow } from 'zustand/shallow'
 
 import type { NoteModel, PageModel, PostModel } from '@mx-space/api-client'
 import { simpleCamelcaseKeys } from '@mx-space/api-client'
-import { Banner, ImageSizeMetaContext } from '@mx-space/kami-design'
 
 import { useNoteCollection } from '~/atoms/collections/note'
 import { usePageCollection } from '~/atoms/collections/page'
@@ -15,7 +14,9 @@ import { usePostCollection } from '~/atoms/collections/post'
 import { NoteMarkdownRender } from '~/components/in-page/Note/NoteMarkdownRender'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { NoteLayout } from '~/components/layouts/NoteLayout'
-import { Markdown } from '~/components/universal/Markdown'
+import { Banner } from '~/components/ui/Banner'
+import { ImageSizeMetaContext } from '~/components/ui/Image/context'
+import { KamiMarkdown } from '~/components/universal/Markdown'
 import { isServerSide } from '~/utils/env'
 
 const noopMap = new Map()
@@ -77,7 +78,7 @@ const PostPreviewPage: FC<{ data: PostModel }> = ({ data }) => {
         <h1 className="sr-only">{post.title}</h1>
 
         <ImageSizeMetaContext.Provider value={noopMap}>
-          <Markdown codeBlockFully value={post.text} toc />
+          <KamiMarkdown codeBlockFully value={post.text} toc />
         </ImageSizeMetaContext.Provider>
       </article>
     </ArticleLayout>
@@ -106,7 +107,7 @@ const PagePreviewPage: FC<{ data: PageModel }> = ({ data }) => {
       <ImageSizeMetaContext.Provider value={noopMap}>
         <article>
           <h1 className="sr-only">{title}</h1>
-          <Markdown value={page.text} toc />
+          <KamiMarkdown value={page.text} toc />
         </article>
       </ImageSizeMetaContext.Provider>
     </ArticleLayout>

@@ -1,10 +1,9 @@
 import type { FC } from 'react'
 import { memo, useEffect, useId, useState } from 'react'
 
-import { ImageLazy } from '@mx-space/kami-design/components/Image'
-
 import { useAppStore } from '~/atoms/app'
-import { useIsUnMounted } from '~/hooks/use-is-unmounted'
+import { ImageLazy } from '~/components/ui/Image'
+import { useIsUnMounted } from '~/hooks/common/use-is-unmounted'
 
 export const Mermaid: FC<{
   content: string
@@ -69,7 +68,7 @@ export const Mermaid: FC<{
   }, [id, props.content])
 
   return loading ? (
-    <div className="min-h-[50px] rounded-lg flex items-center justify-center bg-[#ECECFD] dark:bg-[#1F2020] text-sm">
+    <div className="flex min-h-[50px] items-center justify-center rounded-lg bg-[#ECECFD] text-sm dark:bg-[#1F2020]">
       Mermaid Loading...
     </div>
   ) : svg ? (
@@ -82,7 +81,7 @@ export const Mermaid: FC<{
       />
     </div>
   ) : (
-    <div className="min-h-[50px] rounded-lg flex items-center justify-center bg-red-100 text-sm">
+    <div className="flex min-h-[50px] items-center justify-center rounded-lg bg-red-100 text-sm">
       {error || 'Error'}
     </div>
   )

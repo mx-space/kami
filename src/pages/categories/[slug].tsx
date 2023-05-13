@@ -6,12 +6,12 @@ import type {
   CategoryModel,
   CategoryWithChildrenModel,
 } from '@mx-space/api-client'
-import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
-import { Seo } from '~/components/biz/Seo'
-import { TimelineListWrapper } from '~/components/biz/TimelineListWrapper'
+import { Seo } from '~/components/common/Seo'
+import { TimelineListWrapper } from '~/components/in-page/Timeline/TimelineListWrapper'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
+import { BottomUpTransitionView } from '~/components/ui/Transition/bottom-up'
 import { omit } from '~/utils/_'
 import { apiClient } from '~/utils/client'
 
@@ -47,7 +47,7 @@ const CategoryListView: NextPage<CategoryListViewProps> = (props) => {
                 key={child.id}
                 timeout={{ enter: 700 + 50 * i }}
                 component="li"
-                className="justify-between flex items-center min-w-0"
+                className="flex min-w-0 items-center justify-between"
               >
                 <Link
                   target="_blank"

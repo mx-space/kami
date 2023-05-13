@@ -2,8 +2,7 @@ import type { FC } from 'react'
 import { memo } from 'react'
 import useSWR from 'swr'
 
-import { TextFade } from '@mx-space/kami-design/components/Animate/text-anim'
-
+import { TextFade } from '~/components/ui/Animate/text-anim'
 import { apiClient } from '~/utils/client'
 
 let isLoaded = false
@@ -29,7 +28,7 @@ export const HomeRandomSay: FC = memo(() => {
   )
 
   return (
-    <div className="overflow-hidden leading-6 text-[#aaa] my-[2rem]">
+    <div className="my-[2rem] overflow-hidden leading-6 text-[#aaa]">
       <TextFade text={data || ''} key={data} />
     </div>
   )

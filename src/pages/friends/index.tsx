@@ -7,23 +7,23 @@ import type { LinkModel } from '@mx-space/api-client'
 import { LinkState, LinkType } from '@mx-space/api-client'
 
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
-import { withNoSSR } from '~/components/biz/HoC/no-ssr'
-import { Seo } from '~/components/biz/Seo'
-import { ApplyForLink } from '~/components/in-page/ApplyLink'
+import { withNoSSR } from '~/components/common/HoC/no-ssr'
+import { Seo } from '~/components/common/Seo'
+import { ApplyForLink } from '~/components/in-page/Friend/ApplyLink'
 import {
   BannedSection,
   FavoriteSection,
   FriendSection,
   OutdateSection,
-} from '~/components/in-page/Friend/section'
+} from '~/components/in-page/Friend/FriendSection'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
-import { Markdown } from '~/components/universal/Markdown'
-import { useInitialData } from '~/hooks/use-initial-data'
+import { KamiMarkdown } from '~/components/universal/Markdown'
+import { useInitialData } from '~/hooks/app/use-initial-data'
 import { shuffle } from '~/utils/_'
 import { apiClient } from '~/utils/client'
 
 const renderTitle = (text: string) => {
-  return <h1 className="!text-xl headline !mt-12">{text}</h1>
+  return <h1 className="headline !mt-12 !text-xl">{text}</h1>
 }
 
 const FriendsView: NextPage<
@@ -89,7 +89,7 @@ const Footer$: FC = () => {
     <>
       <ApplyForLink key="link" />
 
-      <Markdown
+      <KamiMarkdown
         key="md"
         wrapperProps={{ id: undefined, style: { whiteSpace: 'pre-line' } }}
         renderers={{

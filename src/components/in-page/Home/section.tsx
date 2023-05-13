@@ -1,16 +1,16 @@
 import type { FC } from 'react'
 import { useCallback, useMemo, useRef } from 'react'
+import { useStateToRef } from 'react-shortcut-guide'
 import { TransitionGroup } from 'react-transition-group'
 
 import type { AggregateTop } from '@mx-space/api-client'
-import { useStateToRef } from '@mx-space/kami-design'
-import { MdiDrawPen } from '@mx-space/kami-design/components/Icons/for-home'
-import { IcTwotoneSignpost } from '@mx-space/kami-design/components/Icons/menu-icon'
-import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
-import { withNoSSR } from '~/components/biz/HoC/no-ssr'
-import { useKamiConfig } from '~/hooks/use-initial-data'
-import { useRandomImage } from '~/hooks/use-kami'
+import { withNoSSR } from '~/components/common/HoC/no-ssr'
+import { MdiDrawPen } from '~/components/ui/Icons/for-home'
+import { IcTwotoneSignpost } from '~/components/ui/Icons/menu-icon'
+import { BottomUpTransitionView } from '~/components/ui/Transition/bottom-up'
+import { useKamiConfig } from '~/hooks/app/use-initial-data'
+import { useRandomImage } from '~/hooks/app/use-kami-theme'
 import type { HomePageSectionName } from '~/types/config'
 
 import type { SectionNewsProps } from './SectionNews'

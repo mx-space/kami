@@ -4,10 +4,9 @@ import { sanitizeUrl } from 'markdown-to-jsx'
 import type { FC } from 'react'
 import React, { Fragment, memo, useCallback, useMemo } from 'react'
 
-import type { MdProps } from '@mx-space/kami-design/components/Markdown'
-import { Markdown as KamiMarkdown } from '@mx-space/kami-design/components/Markdown'
-
 import { ErrorBoundary } from '~/components/app/ErrorBoundary'
+import type { MdProps } from '~/components/ui/Markdown'
+import { Markdown } from '~/components/ui/Markdown'
 import { isDev } from '~/utils/env'
 import { springScrollToElement } from '~/utils/spring'
 
@@ -22,7 +21,7 @@ const Noop = () => null
 export interface KamiMarkdownProps extends MdProps {
   toc?: boolean
 }
-export const Markdown: FC<KamiMarkdownProps & MarkdownToJSX.Options> = memo(
+export const KamiMarkdown: FC<KamiMarkdownProps & MarkdownToJSX.Options> = memo(
   (props) => {
     const {
       value,
@@ -48,7 +47,7 @@ export const Markdown: FC<KamiMarkdownProps & MarkdownToJSX.Options> = memo(
 
     return (
       <ErrorBoundary fallbackComponent={RenderError}>
-        <KamiMarkdown
+        <Markdown
           tocSlot={props.toc ? MarkdownToc : Noop}
           value={value}
           overrides={{
@@ -143,7 +142,7 @@ export const Markdown: FC<KamiMarkdownProps & MarkdownToJSX.Options> = memo(
           {...rest}
         >
           {props.children}
-        </KamiMarkdown>
+        </Markdown>
       </ErrorBoundary>
     )
   },

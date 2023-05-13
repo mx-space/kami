@@ -50,8 +50,7 @@
     "prod:stop": "pm2 stop ecosystem.config.js",
     "prod:reload": "pm2 reload ecosystem.config.js",
     "gen-config": "node scripts/generate-default-configs.js",
-    "gen-jsonschema": "npx ts-json-schema-generator --path 'src/types/config.ts' --type 'KamiConfig' > json-schema.json",
-    "bump:components": "bump -f ./packages/kami-design"
+    "gen-jsonschema": "npx ts-json-schema-generator --path 'src/types/config.ts' --type 'KamiConfig' > json-schema.json"
   },
   "browserslist": [
     "chrome >=94",
@@ -69,7 +68,6 @@
     "devtools-detector": "2.0.14",
     "immer": "^10.0.2",
     "js-cookie": "3.0.5",
-    "kami-design": "workspace:@mx-space/kami-design@*",
     "lodash-es": "4.17.21",
     "markdown-escape": "2.0.0",
     "markdown-to-jsx": "npm:@innei/markdown-to-jsx@7.1.3-beta.2",

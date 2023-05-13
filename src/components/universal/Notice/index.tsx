@@ -1,10 +1,9 @@
 import type { FC } from 'react'
 import { useCallback, useEffect, useRef } from 'react'
 
-import { RootPortal } from '@mx-space/kami-design/components/Portal'
-import { FadeInOutTransitionView } from '@mx-space/kami-design/components/Transition/fade-in-out'
-
-import { useIsClient } from '~/hooks/use-is-client'
+import { RootPortal } from '~/components/ui/Portal'
+import { FadeInOutTransitionView } from '~/components/ui/Transition/fade-in-out'
+import { useIsClient } from '~/hooks/common/use-is-client'
 
 import styles from './index.module.css'
 

@@ -3,15 +3,14 @@ import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import { Fragment, memo, useEffect } from 'react'
 
-import { CloseIcon } from '@mx-space/kami-design/components/Icons/layout'
-import { Overlay } from '@mx-space/kami-design/components/Overlay'
-import { RootPortal } from '@mx-space/kami-design/components/Portal'
-
 import { IF } from '~/components/app/If'
-import { withNoSSR } from '~/components/biz/HoC/no-ssr'
+import { withNoSSR } from '~/components/common/HoC/no-ssr'
+import { CloseIcon } from '~/components/ui/Icons/layout'
+import { Overlay } from '~/components/ui/Overlay'
+import { RootPortal } from '~/components/ui/Portal'
 import { TrackerAction } from '~/constants/tracker'
-import { useAnalyze } from '~/hooks/use-analyze'
-import { useDetectPadOrMobile } from '~/hooks/use-viewport'
+import { useAnalyze } from '~/hooks/app/use-analyze'
+import { useDetectPadOrMobile } from '~/hooks/ui/use-viewport'
 
 import styles from './index.module.css'
 
@@ -52,7 +51,7 @@ const _HeaderDrawer: FC<{ show: boolean; onExit: () => void }> = memo(
             )}
           >
             <div className="pb-4 text-right">
-              <span className="p-4 inline-block -mr-5 -mt-4" onClick={onExit}>
+              <span className="-mr-5 -mt-4 inline-block p-4" onClick={onExit}>
                 <CloseIcon />
               </span>
             </div>

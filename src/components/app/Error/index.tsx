@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 
-import { Seo } from '~/components/biz/Seo'
+import { Seo } from '~/components/common/Seo'
 import { isNumber } from '~/utils/_'
 import { isServerSide } from '~/utils/env'
 

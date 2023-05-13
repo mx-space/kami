@@ -1,7 +1,7 @@
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import { memo } from 'react'
 
-import { Markdown } from '~/components/universal/Markdown'
+import { KamiMarkdown } from '~/components/universal/Markdown'
 
 const Markdownrenderers: { [name: string]: Partial<MarkdownToJSX.Rule> } = {
   text: {
@@ -16,5 +16,5 @@ const Markdownrenderers: { [name: string]: Partial<MarkdownToJSX.Rule> } = {
 }
 
 export const NoteMarkdownRender = memo((props: { text: string }) => {
-  return <Markdown value={props.text} renderers={Markdownrenderers} toc />
+  return <KamiMarkdown value={props.text} renderers={Markdownrenderers} toc />
 })

@@ -4,8 +4,7 @@ import type { FC } from 'react'
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 
-import { RightLeftTransitionView } from '@mx-space/kami-design/components/Transition/right-left'
-
+import { RightLeftTransitionView } from '~/components/ui/Transition/right-left'
 import { CustomEventTypes } from '~/types/events'
 import { eventBus } from '~/utils/event-emitter'
 

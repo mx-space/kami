@@ -5,12 +5,11 @@ import { useMemo, useRef } from 'react'
 import Masonry from 'react-masonry-css'
 import { TransitionGroup } from 'react-transition-group'
 
-import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
-
 import { useAppStore } from '~/atoms/app'
 import { useSayCollection } from '~/atoms/collections/say'
-import { Seo } from '~/components/biz/Seo'
-import { useSyncEffectOnce } from '~/hooks/use-sync-effect'
+import { Seo } from '~/components/common/Seo'
+import { BottomUpTransitionView } from '~/components/ui/Transition/bottom-up'
+import { useSyncEffectOnce } from '~/hooks/common/use-sync-effect'
 import { hexToRGB } from '~/utils/color'
 import { relativeTimeFromNow } from '~/utils/time'
 

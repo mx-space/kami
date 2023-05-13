@@ -5,7 +5,7 @@ import { useAppStore } from '~/atoms/app'
 import { useUserStore } from '~/atoms/user'
 import { ToastCard } from '~/components/widgets/Toast/card'
 import { TrackerAction } from '~/constants/tracker'
-import { emitTrackerEvent } from '~/hooks/use-analyze'
+import { emitTrackerEvent } from '~/hooks/app/use-analyze'
 
 import { isDev, isServerSide } from './env'
 

@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 
 import type { TopicModel } from '@mx-space/api-client'
-import { RightLeftTransitionView } from '@mx-space/kami-design/components/Transition/right-left'
 
-import { Seo } from '~/components/biz/Seo'
+import { Seo } from '~/components/common/Seo'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
+import { RightLeftTransitionView } from '~/components/ui/Transition/right-left'
 import { apiClient } from '~/utils/client'
 
 // TODO

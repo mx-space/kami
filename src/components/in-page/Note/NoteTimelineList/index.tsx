@@ -1,7 +1,6 @@
 /**
  * 日记：左侧时间线
  */
-
 import { clsx } from 'clsx'
 import Link from 'next/link'
 import type { FC } from 'react'
@@ -10,17 +9,17 @@ import { shallow } from 'zustand/shallow'
 
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import type { NoteModel } from '@mx-space/api-client'
-import { Divider } from '@mx-space/kami-design/components/Divider'
-import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
-import { MaterialSymbolsArrowCircleRightOutlineRounded } from '@mx-space/kami-design/components/Icons/for-note'
-import { LeftRightTransitionView } from '@mx-space/kami-design/components/Transition/left-right'
 
 import { useNoteCollection } from '~/atoms/collections/note'
-import { ImpressionView } from '~/components/biz/ImpressionView'
+import { ImpressionView } from '~/components/common/ImpressionView'
+import { Divider } from '~/components/ui/Divider'
+import { FloatPopover } from '~/components/ui/FloatPopover'
+import { MaterialSymbolsArrowCircleRightOutlineRounded } from '~/components/ui/Icons/for-note'
+import { LeftRightTransitionView } from '~/components/ui/Transition/left-right'
 import { TrackerAction } from '~/constants/tracker'
-import { useAnalyze } from '~/hooks/use-analyze'
-import { useIsUnMounted } from '~/hooks/use-is-unmounted'
-import { useDetectIsNarrowThanLaptop } from '~/hooks/use-viewport'
+import { useAnalyze } from '~/hooks/app/use-analyze'
+import { useIsUnMounted } from '~/hooks/common/use-is-unmounted'
+import { useDetectIsNarrowThanLaptop } from '~/hooks/ui/use-viewport'
 import { apiClient } from '~/utils/client'
 import { springScrollToTop } from '~/utils/spring'
 
@@ -116,7 +115,7 @@ const ObserveredNoteTimelineList: FC<
         {note?.topic && (
           <>
             {!!list?.length && <Divider className="!w-3/4" />}
-            <p className="text-gray-1 flex flex-col min-w-0 overflow-hidden">
+            <p className="text-gray-1 flex min-w-0 flex-col overflow-hidden">
               此文章收录于专栏：
               <br />
               <FloatPopover

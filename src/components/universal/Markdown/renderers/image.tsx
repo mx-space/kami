@@ -2,13 +2,12 @@ import { sanitizeUrl } from 'markdown-to-jsx'
 import type { FC } from 'react'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 
-import type { ImageLazyRef } from '@mx-space/kami-design/components/Image'
-import { ImageLazy } from '@mx-space/kami-design/components/Image'
-import { calculateDimensions } from '@mx-space/kami-design/components/Image/utils/calc-image'
-import { ImageSizeMetaContext } from '@mx-space/kami-design/contexts/image-size'
-
 import { useAppStore } from '~/atoms/app'
-import { useIsClient } from '~/hooks/use-is-client'
+import type { ImageLazyRef } from '~/components/ui/Image'
+import { ImageLazy } from '~/components/ui/Image'
+import { ImageSizeMetaContext } from '~/components/ui/Image/context'
+import { calculateDimensions } from '~/components/ui/Image/utils/calc-image'
+import { useIsClient } from '~/hooks/common/use-is-client'
 
 const getContainerSize = () => {
   const $wrap = document.getElementById('write')

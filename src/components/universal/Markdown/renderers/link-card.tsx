@@ -7,9 +7,9 @@ import RemoveMarkdown from 'remove-markdown'
 
 import { simpleCamelcaseKeys as camelcaseKeys } from '@mx-space/api-client'
 
-import { useIsUnMounted } from '~/hooks/use-is-unmounted'
-import { useRandomImage } from '~/hooks/use-kami'
-import { useSafeSetState } from '~/hooks/use-safe-setState'
+import { useRandomImage } from '~/hooks/app/use-kami-theme'
+import { useIsUnMounted } from '~/hooks/common/use-is-unmounted'
+import { useSafeSetState } from '~/hooks/common/use-safe-setState'
 import { apiClient } from '~/utils/client'
 import { getRandomImage } from '~/utils/images'
 

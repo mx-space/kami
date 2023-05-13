@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import React, { Fragment, memo } from 'react'
 
-import { useInitialData } from '~/hooks/use-initial-data'
+import { useInitialData } from '~/hooks/app/use-initial-data'
 
 import {
   HeaderActionButton,
@@ -34,7 +34,7 @@ export const HeaderActionBasedOnRouterPath: FC = memo(() => {
                   <HeaderActionLikeButtonForNote id={id} />
                 </HeaderActionButton>
               </HeaderActionButtonsContainer>
-              <div className="flex flex-col flex-shrink-0">
+              <div className="flex flex-shrink-0 flex-col">
                 <span>{id}</span>
                 {titleComp}
               </div>
@@ -48,7 +48,7 @@ export const HeaderActionBasedOnRouterPath: FC = memo(() => {
         return (
           <Fragment>
             <HeaderActionShareButton />
-            <div className="flex flex-col flex-shrink-0">
+            <div className="flex flex-shrink-0 flex-col">
               <span>/{router.query.page}</span>
               {titleComp}
             </div>

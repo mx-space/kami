@@ -1,35 +1,35 @@
 .root {
-  @apply w-[800px] max-w-[80vw] max-h-[60vh] h-[600px] phone:max-w-[100vw] phone:max-h-[80vh] phone:rounded-none phone:h-screen;
-  @apply bg-bg-opacity shadow-lg min-h-50 rounded-xl flex flex-col overflow-hidden text-[--black];
+  @apply phone:max-w-[100vw] phone:max-h-[80vh] phone:rounded-none phone:h-screen h-[600px] max-h-[60vh] w-[800px] max-w-[80vw];
+  @apply bg-bg-opacity min-h-50 flex flex-col overflow-hidden rounded-xl text-[--black] shadow-lg;
 
   backdrop-filter: blur(20px) saturate(180%);
 }
 
 .item {
-  @apply flex py-4 !text-[inherit] overflow-hidden;
+  @apply flex overflow-hidden py-4 !text-[inherit];
   @apply w-full justify-between;
-  @apply px-2 relative z-1;
+  @apply z-1 relative px-2;
 
   &::before {
     content: '';
     position: absolute;
 
-    @apply inset-0 rounded-md -z-1 bg-transparent transition transition-colors opacity-30;
+    @apply -z-1 inset-0 rounded-md bg-transparent opacity-30 transition transition-colors;
   }
 
   &:hover,
   &.active {
     &::before {
-      @apply bg-gray;
+      @apply bg-gray-4;
     }
   }
 }
 
 .status-bar {
-  @apply w-full h-[1px] bg-gray transform scale-y-80 relative z-1 flex-shrink-0;
+  @apply bg-gray-4 scale-y-80 z-1 relative h-[1px] w-full flex-shrink-0 transform;
 
   &.loading::before {
-    @apply top-0 bottom-0 left-0 w-[500px] transform scale-y-80 absolute z-1;
+    @apply scale-y-80 z-1 absolute bottom-0 left-0 top-0 w-[500px] transform;
     @apply bg-repeat;
 
     content: '';

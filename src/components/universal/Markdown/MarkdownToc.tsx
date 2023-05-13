@@ -2,14 +2,13 @@ import dynamic from 'next/dynamic'
 import type { FC } from 'react'
 import { memo, useEffect } from 'react'
 
-import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
-import { FluentList16Filled } from '@mx-space/kami-design/components/Icons/shared'
-import { useModalStack } from '@mx-space/kami-design/components/Modal'
-
 import { useActionStore } from '~/atoms/action'
 import { useAppStore } from '~/atoms/app'
+import { FloatPopover } from '~/components/ui/FloatPopover'
+import { FluentList16Filled } from '~/components/ui/Icons/shared'
+import { useModalStack } from '~/components/ui/Modal'
 import type { TocProps } from '~/components/widgets/Toc'
-import { useDetectIsNarrowThanLaptop } from '~/hooks/use-viewport'
+import { useDetectIsNarrowThanLaptop } from '~/hooks/ui/use-viewport'
 
 const Toc = dynamic(
   () => import('~/components/widgets/Toc').then((m) => m.Toc),

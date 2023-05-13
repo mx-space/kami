@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 import { RequestError } from '@mx-space/api-client'
 
 import { ErrorView, errorToText } from '~/components/app/Error'
-import { useIsClient } from '~/hooks/use-is-client'
+import { useIsClient } from '~/hooks/common/use-is-client'
 import { isNumber } from '~/utils/_'
 
 const ErrorPage: NextPage<{ statusCode: number; err: any }> = ({

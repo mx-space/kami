@@ -4,12 +4,12 @@ import React, { Fragment, useCallback } from 'react'
 
 import Package from '~/../package.json'
 import { useAppStore } from '~/atoms/app'
-import { withNoSSR } from '~/components/biz/HoC/no-ssr'
-import { ImpressionView } from '~/components/biz/ImpressionView'
+import { withNoSSR } from '~/components/common/HoC/no-ssr'
+import { ImpressionView } from '~/components/common/ImpressionView'
 import { TrackerAction } from '~/constants/tracker'
-import { useAnalyze } from '~/hooks/use-analyze'
-import { useInitialData, useThemeConfig } from '~/hooks/use-initial-data'
-import { useFooterBackground } from '~/hooks/use-kami'
+import { useAnalyze } from '~/hooks/app/use-analyze'
+import { useInitialData, useThemeConfig } from '~/hooks/app/use-initial-data'
+import { useFooterBackground } from '~/hooks/app/use-kami-theme'
 
 import { FooterActions } from './actions'
 import styles from './index.module.css'
@@ -59,7 +59,7 @@ export const FooterContent: FC = () => {
           </span>
         </p>
         <ImpressionView trackerMessage="底部曝光">
-          <p className="justify-center flex space-x-2 children:flex-shrink-0 flex-wrap">
+          <p className="children:flex-shrink-0 flex flex-wrap justify-center space-x-2">
             <span>Powered by </span>
             <a href="https://github.com/mx-space" onClick={trackerToGithub}>
               mx-space
@@ -74,7 +74,7 @@ export const FooterContent: FC = () => {
             </a>
             .
             {icp.enable && !!icp.label && !!icp.link && (
-              <div className="text-center inline-block">
+              <div className="inline-block text-center">
                 <a href={icp.link} target="_blank" rel="noreferrer">
                   {icp.label}
                 </a>
@@ -100,7 +100,7 @@ export const FooterContent: FC = () => {
           })}
         </p>
 
-        <p className="mr-12 phone:mr-0">
+        <p className="phone:mr-0 mr-12">
           <GatewayCount /> 个小伙伴正在浏览
         </p>
       </div>

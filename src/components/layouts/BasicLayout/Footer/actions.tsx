@@ -5,22 +5,21 @@ import { Modifier, useShortcut } from 'react-shortcut-guide'
 import { TransitionGroup } from 'react-transition-group'
 import { shallow } from 'zustand/shallow'
 
-import {
-  BxBxsArrowToTop,
-  FaSolidHeadphonesAlt,
-} from '@mx-space/kami-design/components/Icons/for-footer'
-import { RootPortal } from '@mx-space/kami-design/components/Portal'
-import { ScaleTransitionView } from '@mx-space/kami-design/components/Transition/scale'
-
 import { useActionStore } from '~/atoms/action'
 import { useAppStore } from '~/atoms/app'
 import { useMusicStore } from '~/atoms/music'
+import {
+  BxBxsArrowToTop,
+  FaSolidHeadphonesAlt,
+} from '~/components/ui/Icons/for-footer'
+import { RootPortal } from '~/components/ui/Portal'
+import { ScaleTransitionView } from '~/components/ui/Transition/scale'
 import { TrackerAction } from '~/constants/tracker'
-import { useAnalyze } from '~/hooks/use-analyze'
+import { useAnalyze } from '~/hooks/app/use-analyze'
 import {
   useDetectPadOrMobile,
   useIsOverFirstScreenHeight,
-} from '~/hooks/use-viewport'
+} from '~/hooks/ui/use-viewport'
 import { springScrollToTop } from '~/utils/spring'
 
 import styles from './actions.module.css'

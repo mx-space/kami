@@ -30,12 +30,6 @@
     "isolatedModules": true,
     "incremental": true,
     "paths": {
-      "@mx-space/kami-design": [
-        "../packages/kami-design/index.ts"
-      ],
-      "@mx-space/kami-design/*": [
-        "../packages/kami-design/*"
-      ],
       "~/*": [
         "./*"
       ],
@@ -47,7 +41,6 @@
   "exclude": [
     ".next",
     "server/**/*.*",
-    "packages/kami-design/dist/**/*.*"
   ],
   "include": [
     "next-env.d.ts",
