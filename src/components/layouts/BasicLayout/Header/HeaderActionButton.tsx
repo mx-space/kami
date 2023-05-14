@@ -3,9 +3,9 @@ import type { FC } from 'react'
 import { memo, useCallback, useRef } from 'react'
 
 import { useNoteCollection } from '~/atoms/collections/note'
-import { LikeButton } from '~/components/universal/LikeButton'
+import { LikeButton } from '~/components/ui/LikeButton'
 import { TrackerAction } from '~/constants/tracker'
-import { useAnalyze } from '~/hooks/use-analyze'
+import { useAnalyze } from '~/hooks/app/use-analyze'
 
 import styles from './index.module.css'
 
@@ -16,7 +16,7 @@ export const HeaderActionButton: FC<JSX.IntrinsicElements['button']> = (
   return (
     <button
       className={clsx(
-        'flex items-center justify-center rounded-full px-3 bg-shallow cursor-pointer h-10',
+        'bg-shallow flex h-10 cursor-pointer items-center justify-center rounded-full px-3',
         className,
       )}
       {...rest}

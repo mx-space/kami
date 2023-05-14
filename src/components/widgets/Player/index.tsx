@@ -14,12 +14,11 @@ import {
 import { useAudio } from 'react-use'
 import { shallow } from 'zustand/shallow'
 
-import { RootPortal } from '@mx-space/kami-design/components/Portal'
-
 import { useMusicStore, usePlayProgress } from '~/atoms/music'
-import { withNoSSR } from '~/components/biz/HoC/no-ssr'
+import { withNoSSR } from '~/components/app/HoC/no-ssr'
+import { RootPortal } from '~/components/ui/Portal'
 import { TrackerAction } from '~/constants/tracker'
-import { useAnalyze } from '~/hooks/use-analyze'
+import { useAnalyze } from '~/hooks/app/use-analyze'
 import { apiClient } from '~/utils/client'
 import { hms } from '~/utils/time'
 
@@ -196,7 +195,7 @@ export const MusicMiniPlayer = forwardRef<
         <div
           className={clsx(
             styles['pic'],
-            'bg-cover bg-center bg-no-repeat h-full w-full',
+            'h-full w-full bg-cover bg-center bg-no-repeat',
           )}
           style={{ backgroundImage: `url(${cur.pic})` }}
         />
@@ -257,7 +256,7 @@ export const MusicMiniPlayer = forwardRef<
             }}
           >
             <p>{cur.title}</p>
-            <p className="text-sm text-gray-2">{cur.author}</p>
+            <p className="text-gray-2 text-sm">{cur.author}</p>
             <p className="text-xs text-opacity-80">
               {hms(state.time | 0)}/{hms(state.duration | 0)}
             </p>
@@ -281,8 +280,8 @@ const BottomProgressBar = memo(() => {
     <RootPortal>
       <div
         className={
-          'fixed bottom-0 left-0 origin-left transform-gpu ease-linear transition-transform right-0' +
-          ' transform scale-y-50 pt-[2px] bg-secondary duration-1000 z-99'
+          'fixed bottom-0 left-0 right-0 origin-left transform-gpu transition-transform ease-linear' +
+          ' bg-secondary z-99 scale-y-50 transform pt-[2px] duration-1000'
           // +' hover:pt-[8px] hover:cursor-pointer'
         }
         style={{

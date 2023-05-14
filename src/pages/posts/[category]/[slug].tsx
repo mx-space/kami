@@ -10,37 +10,37 @@ import { message } from 'react-message-popup'
 import { shallow } from 'zustand/shallow'
 
 import type { PostModel } from '@mx-space/api-client'
-import { Loading } from '@mx-space/kami-design'
-import { Banner } from '@mx-space/kami-design/components/Banner'
-import {
-  GgCoffee,
-  PhBookOpen,
-} from '@mx-space/kami-design/components/Icons/for-note'
+
+import { usePostCollection } from '~/atoms/collections/post'
+import type { ModelWithDeleted } from '~/atoms/collections/utils/base'
+import { Seo } from '~/components/app/Seo'
+import { wrapperNextPage } from '~/components/app/WrapperNextPage'
+import { KamiMarkdown } from '~/components/common/KamiMarkdown'
+import Outdate from '~/components/in-page/Post/Outdate'
+import { PostRelated } from '~/components/in-page/Post/PostRelated'
+import { ArticleLayout } from '~/components/layouts/ArticleLayout'
+import { Banner } from '~/components/ui/Banner'
+import { GgCoffee, PhBookOpen } from '~/components/ui/Icons/for-note'
 import {
   FeHash,
   IonThumbsup,
   MdiCalendar,
-} from '@mx-space/kami-design/components/Icons/for-post'
-import { ImageSizeMetaContext } from '@mx-space/kami-design/contexts/image-size'
-
-import { usePostCollection } from '~/atoms/collections/post'
-import type { ModelWithDeleted } from '~/atoms/collections/utils/base'
-import { wrapperNextPage } from '~/components/app/WrapperNextPage'
-import Outdate from '~/components/biz/Outdate'
-import { Seo } from '~/components/biz/Seo'
-import { PostRelated } from '~/components/in-page/Post/post-related'
-import { ArticleLayout } from '~/components/layouts/ArticleLayout'
-import { Markdown } from '~/components/universal/Markdown'
+} from '~/components/ui/Icons/for-post'
+import { ImageSizeMetaContext } from '~/components/ui/Image/context'
+import { Loading } from '~/components/ui/Loading'
 import type { ActionProps } from '~/components/widgets/ArticleAction'
 import { SearchFAB } from '~/components/widgets/Search'
 import { SubscribeBell } from '~/components/widgets/SubscribeBell'
 import { XLogInfoForPost } from '~/components/widgets/xLogInfo'
 import { XLogSummaryForPost } from '~/components/widgets/xLogSummary'
-import { useSetHeaderMeta, useSetHeaderShare } from '~/hooks/use-header-meta'
-import { useInitialData, useThemeConfig } from '~/hooks/use-initial-data'
-import { useIsClient } from '~/hooks/use-is-client'
-import { useJumpToSimpleMarkdownRender } from '~/hooks/use-jump-to-render'
-import { useBackgroundOpacity } from '~/hooks/use-kami'
+import {
+  useSetHeaderMeta,
+  useSetHeaderShare,
+} from '~/hooks/app/use-header-meta'
+import { useInitialData, useThemeConfig } from '~/hooks/app/use-initial-data'
+import { useJumpToSimpleMarkdownRender } from '~/hooks/app/use-jump-to-render'
+import { useBackgroundOpacity } from '~/hooks/app/use-kami-theme'
+import { useIsClient } from '~/hooks/common/use-is-client'
 import { isEqualObject } from '~/utils/_'
 import { apiClient } from '~/utils/client'
 import { isLikedBefore, setLikeId } from '~/utils/cookie'
@@ -64,9 +64,7 @@ const CommentLazy = dynamic(() =>
 )
 
 const NumberTransition = dynamic(() =>
-  import('~/components/universal/NumberRecorder').then(
-    (mo) => mo.NumberTransition,
-  ),
+  import('~/components/ui/NumberRecorder').then((mo) => mo.NumberTransition),
 )
 
 const useUpdatePost = (post: ModelWithDeleted<PostModel>) => {
@@ -222,7 +220,7 @@ const FooterActionBar: FC<{ id: string }> = ({ id }) => {
         {
           icon: <IonThumbsup />,
           name: (
-            <span className="leading-[1.1] inline-flex items-center">
+            <span className="inline-flex items-center leading-[1.1]">
               <NumberTransition number={post.count?.like || 0} />
             </span>
           ),
@@ -328,7 +326,7 @@ export const PostView: PageOnlyProps = (props) => {
         <ImageSizeMetaContext.Provider value={imagesMap}>
           <article>
             <h1 className="sr-only">{post.title}</h1>
-            <Markdown codeBlockFully value={post.text} toc />
+            <KamiMarkdown codeBlockFully value={post.text} toc />
           </article>
         </ImageSizeMetaContext.Provider>
 

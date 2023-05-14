@@ -1,9 +1,8 @@
 import Link from 'next/link'
 import type { FC, MouseEvent, ReactNode } from 'react'
-import { forwardRef, memo, useMemo } from 'react'
+import { memo, useMemo } from 'react'
 
-import { ImageLazy } from '@mx-space/kami-design/components/Image'
-
+import { ImageLazy } from '~/components/ui/Image/component'
 import { pick } from '~/utils/_'
 
 import styles from './index.module.css'
@@ -39,7 +38,7 @@ const Card: FC<CardProps> = (props) => {
       <div className={styles['card-cover-wrap']}>
         <ImageLazy
           src={cover}
-          className="h-full w-full object-cover dark:brightness-80 dark:filter"
+          className="dark:brightness-80 h-full w-full object-cover dark:filter"
         />
       </div>
       <div className={styles['card-header']} />
@@ -54,32 +53,30 @@ const Card: FC<CardProps> = (props) => {
   )
 }
 
-const SectionNews: FC<SectionNewsProps> = memo(
-  forwardRef((props, ref: any) => {
-    const { content, ...rest } = props
+export const SectionNews: FC<SectionNewsProps> = memo((props) => {
+  const { content, ...rest } = props
 
-    return (
-      <SectionWrap {...rest} ref={ref}>
-        {content.map((item, i) => {
-          return (
-            <div key={i}>
-              <Link
-                {...pick(item, ['href', 'as'])}
-                className={styles['news-article']}
-              >
-                <Card cover={item.background}>
-                  <div className={styles['text-mask']}>
-                    <span>{item.title}</span>
-                  </div>
-                </Card>
-              </Link>
-            </div>
-          )
-        })}
-      </SectionWrap>
-    )
-  }),
-)
+  return (
+    <SectionWrap {...rest}>
+      {content.map((item, i) => {
+        return (
+          <div key={i}>
+            <Link
+              {...pick(item, ['href', 'as'])}
+              className={styles['news-article']}
+            >
+              <Card cover={item.background}>
+                <div className={styles['text-mask']}>
+                  <span>{item.title}</span>
+                </div>
+              </Card>
+            </Link>
+          </div>
+        )
+      })}
+    </SectionWrap>
+  )
+})
 
 interface SectionCardProps {
   title: string
@@ -109,5 +106,3 @@ export const SectionCard = memo<SectionCardProps>(
     )
   },
 )
-
-export default SectionNews

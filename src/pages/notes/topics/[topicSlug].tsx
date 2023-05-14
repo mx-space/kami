@@ -1,18 +1,17 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import { useCallback, useEffect, useState } from 'react'
-import { TransitionGroup } from 'react-transition-group'
 
 import type { NoteModel, Pager, TopicModel } from '@mx-space/api-client'
-import { Divider } from '@mx-space/kami-design/components/Divider'
-import { RightLeftTransitionView } from '@mx-space/kami-design/components/Transition/right-left'
 
+import { Seo } from '~/components/app/Seo'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
-import { Seo } from '~/components/biz/Seo'
-import { TimelineListWrapper } from '~/components/biz/TimelineListWrapper'
 import { NoteTopicMarkdownRender } from '~/components/in-page/Note/NoteTopic/markdown-render'
+import { TimelineListWrapper } from '~/components/in-page/Timeline/TimelineListWrapper'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
-import { Pagination } from '~/components/universal/Pagination'
+import { Divider } from '~/components/ui/Divider'
+import { Pagination } from '~/components/ui/Pagination'
+import { RightToLeftTransitionView } from '~/components/ui/Transition/right-left'
 import { apiClient } from '~/utils/client'
 
 const TopicDetailPage: NextPage<TopicModel> = (props) => {
@@ -60,15 +59,15 @@ const TopicDetailPage: NextPage<TopicModel> = (props) => {
         )}
       </div>
       <div className="article-list mt-16">
-        <TransitionGroup component={TimelineListWrapper}>
+        <TimelineListWrapper>
           {notes &&
             notes.map((note) => {
               const date = new Date(note.created)
               return (
-                <RightLeftTransitionView
+                <RightToLeftTransitionView
                   key={note.id}
-                  component="li"
-                  className="min-w-0 flex items-center justify-between"
+                  as="li"
+                  className="flex min-w-0 items-center justify-between"
                 >
                   <Link
                     href={`/notes/${note.nid}`}
@@ -82,10 +81,10 @@ const TopicDetailPage: NextPage<TopicModel> = (props) => {
                     {date.getDate().toString().padStart(2, '0')}/
                     {date.getFullYear()}
                   </span>
-                </RightLeftTransitionView>
+                </RightToLeftTransitionView>
               )
             })}
-        </TransitionGroup>
+        </TimelineListWrapper>
 
         {pager && (
           <Pagination

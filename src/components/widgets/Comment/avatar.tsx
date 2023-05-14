@@ -2,9 +2,8 @@ import rc from 'randomcolor'
 import type { FC } from 'react'
 import { memo, useEffect, useMemo, useState } from 'react'
 
-import { LazyLoad } from '@mx-space/kami-design/components/Lazyload'
-
 import { useAppStore } from '~/atoms/app'
+import { LazyLoad } from '~/components/ui/Lazyload'
 
 import styles from './index.module.css'
 

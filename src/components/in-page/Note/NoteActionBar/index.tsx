@@ -3,23 +3,22 @@ import type { FC } from 'react'
 import { useRef } from 'react'
 import { shallow } from 'zustand/shallow'
 
+import { useNoteCollection } from '~/atoms/collections/note'
+import { RelativeTime } from '~/components/common/RelativeTime'
 import {
   GgCoffee,
   MdiClockTimeThreeOutline,
   PhBookOpen,
-} from '@mx-space/kami-design/components/Icons/for-note'
-
-import { useNoteCollection } from '~/atoms/collections/note'
-import { LikeButton } from '~/components/universal/LikeButton'
-import { NumberTransition } from '~/components/universal/NumberRecorder'
-import { RelativeTime } from '~/components/universal/RelativeTime'
+} from '~/components/ui/Icons/for-note'
+import { LikeButton } from '~/components/ui/LikeButton'
+import { NumberTransition } from '~/components/ui/NumberRecorder'
 import type { ActionProps } from '~/components/widgets/ArticleAction'
 import { ArticleFooterAction } from '~/components/widgets/ArticleAction'
 import { DonatePopover } from '~/components/widgets/Donate'
 import { mood2icon, weather2icon } from '~/constants/meta-icon'
 import { TrackerAction } from '~/constants/tracker'
-import { useAnalyze } from '~/hooks/use-analyze'
-import { useThemeConfig } from '~/hooks/use-initial-data'
+import { useAnalyze } from '~/hooks/app/use-analyze'
+import { useThemeConfig } from '~/hooks/app/use-initial-data'
 
 export const NoteFooterActionBar: FC<{ id: string }> = ({ id }) => {
   const note = useNoteCollection((state) => state.get(id), shallow)
@@ -52,11 +51,11 @@ export const NoteFooterActionBar: FC<{ id: string }> = ({ id }) => {
       {
         name: (
           <div className="inline-flex items-center leading-[1]">
-            <div className="h-[1rem] w-[1rem] relative mr-2">
+            <div className="relative mr-2 h-[1rem] w-[1rem]">
               <LikeButton
                 checked={isLiked}
                 width="2rem"
-                className="absolute inset-0 -translate-y-1/2 -translate-x-1/2 transform "
+                className="absolute inset-0 -translate-x-1/2 -translate-y-1/2 transform "
               />
             </div>
             <NumberTransition number={note.count?.like || 0} className="ml-4" />

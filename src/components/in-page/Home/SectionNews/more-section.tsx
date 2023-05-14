@@ -2,15 +2,14 @@ import type { FC } from 'react'
 import { memo, useCallback, useMemo, useState } from 'react'
 import useSWR from 'swr'
 
-import { FaSolidKissWinkHeart } from '@mx-space/kami-design/components/Icons'
-
-import { LikeButton } from '~/components/universal/LikeButton'
-import { NoticePanel } from '~/components/universal/Notice'
+import { FaSolidKissWinkHeart } from '~/components/ui/Icons/for-home'
+import { LikeButton } from '~/components/ui/LikeButton'
+import { NoticePanel } from '~/components/ui/Notice'
 import {
   useIsEnableSubscribe,
   usePresentSubscribeModal,
 } from '~/components/widgets/Subscribe/hooks'
-import { useKamiConfig } from '~/hooks/use-initial-data'
+import { useKamiConfig } from '~/hooks/app/use-initial-data'
 import { apiClient } from '~/utils/client'
 import { stopEventDefault } from '~/utils/dom'
 

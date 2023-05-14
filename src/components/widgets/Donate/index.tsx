@@ -2,11 +2,11 @@ import type { FC, ReactNode } from 'react'
 import React, { useMemo } from 'react'
 
 import { autoPlacement, offset, shift } from '@floating-ui/react-dom'
-import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
 
-import { withNoSSR } from '~/components/biz/HoC/no-ssr'
-import { ImpressionView } from '~/components/biz/ImpressionView'
-import { useThemeConfig } from '~/hooks/use-initial-data'
+import { withNoSSR } from '~/components/app/HoC/no-ssr'
+import { ImpressionView } from '~/components/common/ImpressionView'
+import { FloatPopover } from '~/components/ui/FloatPopover'
+import { useThemeConfig } from '~/hooks/app/use-initial-data'
 
 export const DonatePopover: FC<{ children: ReactNode }> = withNoSSR((props) => {
   const {

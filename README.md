@@ -59,7 +59,6 @@ Live Demo:
 - React
 - NextJS
 - Socket.IO
-- [Kami Design](./packages/kami-design/readme.md)
 
 ## How to usage
 

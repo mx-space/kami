@@ -4,9 +4,9 @@ import useSWR from 'swr'
 
 import type { LinkModel } from '@mx-space/api-client'
 import { LinkState, LinkType } from '@mx-space/api-client'
-import { Avatar } from '@mx-space/kami-design/components/Avatar'
-import { PhUsersDuotone } from '@mx-space/kami-design/components/Icons/for-home'
 
+import { Avatar } from '~/components/ui/Avatar'
+import { PhUsersDuotone } from '~/components/ui/Icons/for-home'
 import { shuffle } from '~/utils/_'
 import { apiClient } from '~/utils/client'
 
@@ -59,7 +59,7 @@ export const FriendsSection: FC<{
       title={title}
       moreUrl="friends"
       icon={<PhUsersDuotone />}
-      className="w-full !block !gap-0"
+      className="!block w-full !gap-0"
     >
       <div className={styles['friends-wrap']}>
         {friends?.map((item) => {

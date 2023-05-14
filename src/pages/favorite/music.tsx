@@ -3,14 +3,13 @@ import { useCallback } from 'react'
 import { message } from 'react-message-popup'
 import useSWR from 'swr'
 
-import { RiNeteaseCloudMusicFill } from '@mx-space/kami-design/components/Icons/for-fav'
-import { Loading } from '@mx-space/kami-design/components/Loading'
-
-import { Seo } from '~/components/biz/Seo'
+import { Seo } from '~/components/app/Seo'
 import type { PlayListType } from '~/components/in-page/SectionMusic'
 import { SectionMusic } from '~/components/in-page/SectionMusic'
+import { RiNeteaseCloudMusicFill } from '~/components/ui/Icons/for-fav'
+import { Loading } from '~/components/ui/Loading'
 import { TrackerAction } from '~/constants/tracker'
-import { useAnalyze } from '~/hooks/use-analyze'
+import { useAnalyze } from '~/hooks/app/use-analyze'
 import { apiClient } from '~/utils/client'
 
 interface PersonalPlayListType {
@@ -59,12 +58,12 @@ const MusicView: NextPage = () => {
       <Seo title="歌单" />
 
       {data.detail && (
-        <div className="flex my-2 justify-end phone:justify-center">
+        <div className="phone:justify-center my-2 flex justify-end">
           <a
             href={`https://music.163.com/#/user/home?id=${data.detail.userId}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center phone:flex-col phone:space-y-4 phone:mb-4"
+            className="phone:flex-col phone:space-y-4 phone:mb-4 flex items-center justify-center"
             onClick={trackerClick}
           >
             <RiNeteaseCloudMusicFill height="3rem" width="3rem" />

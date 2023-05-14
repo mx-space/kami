@@ -1,7 +1,8 @@
 import type { FC } from 'react'
 
 import type { SubscribeTypeToBitMap } from '@mx-space/api-client'
-import { TablerBellRinging } from '@mx-space/kami-design/components/Icons/shared'
+
+import { TablerBellRinging } from '~/components/ui/Icons/shared'
 
 import {
   useIsEnableSubscribe,
@@ -25,16 +26,16 @@ export const SubscribeBell: FC<SubscribeBellProps> = (props) => {
   }
 
   return (
-    <div className="flex justify-center mb-6">
+    <div className="mb-6 flex justify-center">
       <button
-        className="p-4 flex flex-col items-center justify-center"
+        className="flex flex-col items-center justify-center p-4"
         onClick={present}
       >
-        <p className="leading-8 text-gray-1 opacity-80">
+        <p className="text-gray-1 leading-8 opacity-80">
           站点已开启邮件订阅，点亮小铃铛，订阅最新文章哦~
         </p>
 
-        <TablerBellRinging className="text-3xl transform scale-150 text-secondary mt-4 opacity-50 hover:opacity-100 transition-opacity" />
+        <TablerBellRinging className="text-accent mt-4 scale-150 transform text-3xl opacity-50 transition-opacity hover:opacity-100" />
       </button>
     </div>
   )

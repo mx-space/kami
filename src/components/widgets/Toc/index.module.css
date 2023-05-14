@@ -7,7 +7,6 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    color: var(--light-brown);
     opacity: 0.8;
   }
 }
@@ -22,7 +21,7 @@
   line-height: 1.15;
 
   &.weight {
-    @apply relative transform-none right-0;
+    @apply relative right-0 transform-none;
 
     a {
       @apply !opacity-80;

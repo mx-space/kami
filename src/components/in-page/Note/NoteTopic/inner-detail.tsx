@@ -3,16 +3,13 @@ import type { FC } from 'react'
 import useSWR from 'swr'
 
 import type { TopicModel } from '@mx-space/api-client'
-import {
-  Divider,
-  DividerVertical,
-} from '@mx-space/kami-design/components/Divider'
+
+import { RelativeTime } from '~/components/common/RelativeTime'
+import { Divider, DividerVertical } from '~/components/ui/Divider'
 import {
   MdiClockOutline,
   MdiFountainPenTip,
-} from '@mx-space/kami-design/components/Icons/for-note'
-
-import { RelativeTime } from '~/components/universal/RelativeTime'
+} from '~/components/ui/Icons/for-note'
 import { apiClient } from '~/utils/client'
 
 import { NoteTopicMarkdownRender } from './markdown-render'
@@ -29,12 +26,12 @@ export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
   )
 
   return (
-    <div className="flex flex-col w-[400px]">
+    <div className="flex w-[400px] flex-col">
       <Link href={`/notes/topics/${topic.slug}`}>
-        <h1 className="text-lg font-medium !m-0 py-2">{topic.name}</h1>
+        <h1 className="!m-0 py-2 text-lg font-medium">{topic.name}</h1>
       </Link>
 
-      <p className="break-all line-clamp-2 text-gray-2">
+      <p className="text-gray-2 line-clamp-2 break-all">
         <NoteTopicMarkdownRender>{topic.introduce}</NoteTopicMarkdownRender>
       </p>
       {topic.description && (
@@ -58,7 +55,7 @@ export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
             <DividerVertical />
             <span className="flex-shrink-0">最近更新</span>
             <DividerVertical />
-            <span className="flex-shrink inline-flex min-w-0">
+            <span className="inline-flex min-w-0 flex-shrink">
               <Link
                 href={`/data?.data/${data?.data[0].nid}`}
                 className="truncate"

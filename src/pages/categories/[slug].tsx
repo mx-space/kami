@@ -1,17 +1,16 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
-import { TransitionGroup } from 'react-transition-group'
 
 import type {
   CategoryModel,
   CategoryWithChildrenModel,
 } from '@mx-space/api-client'
-import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
+import { Seo } from '~/components/app/Seo'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
-import { Seo } from '~/components/biz/Seo'
-import { TimelineListWrapper } from '~/components/biz/TimelineListWrapper'
+import { TimelineListWrapper } from '~/components/in-page/Timeline/TimelineListWrapper'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
+import { BottomToUpTransitionView } from '~/components/ui/Transition/bottom-up'
 import { omit } from '~/utils/_'
 import { apiClient } from '~/utils/client'
 
@@ -34,20 +33,16 @@ const CategoryListView: NextPage<CategoryListViewProps> = (props) => {
     >
       <Seo title={`分类: ${category.name}`} />
       <article className="article-list">
-        <TransitionGroup
-          key={category.id}
-          appear
-          component={TimelineListWrapper}
-        >
+        <TimelineListWrapper>
           {children.map((child, i) => {
             const date = new Date(child.created)
 
             return (
-              <BottomUpTransitionView
+              <BottomToUpTransitionView
                 key={child.id}
                 timeout={{ enter: 700 + 50 * i }}
-                component="li"
-                className="justify-between flex items-center min-w-0"
+                as="li"
+                className="flex min-w-0 items-center justify-between"
               >
                 <Link
                   target="_blank"
@@ -61,10 +56,10 @@ const CategoryListView: NextPage<CategoryListViewProps> = (props) => {
                   {date.getDate().toString().padStart(2, '0')}/
                   {date.getFullYear()}
                 </span>
-              </BottomUpTransitionView>
+              </BottomToUpTransitionView>
             )
           })}
-        </TransitionGroup>
+        </TimelineListWrapper>
       </article>
     </ArticleLayout>
   )

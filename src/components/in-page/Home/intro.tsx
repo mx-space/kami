@@ -1,15 +1,14 @@
 import type { FC } from 'react'
-import { TransitionGroup } from 'react-transition-group'
-
-import { TextFade } from '@mx-space/kami-design/components/Animate/text-anim'
-import { Avatar } from '@mx-space/kami-design/components/Avatar'
-import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
-import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
 import { useUserStore } from '~/atoms/user'
-import { withNoSSR } from '~/components/biz/HoC/no-ssr'
-import { FontIcon } from '~/components/universal/FontIcon'
-import { useThemeConfig } from '~/hooks/use-initial-data'
+import { withNoSSR } from '~/components/app/HoC/no-ssr'
+import { Avatar } from '~/components/ui/Avatar'
+import { FloatPopover } from '~/components/ui/FloatPopover'
+import { FontIcon } from '~/components/ui/FontIcon'
+import { BottomToUpTransitionView } from '~/components/ui/Transition/bottom-up'
+import { TextUpTransitionView } from '~/components/ui/Transition/text-up'
+import { reboundPreset } from '~/constants/spring'
+import { useThemeConfig } from '~/hooks/app/use-initial-data'
 
 import { useHomePageViewContext } from './context'
 import styles from './intro.module.css'
@@ -34,13 +33,16 @@ export const HomeIntro: FC = () => {
       </div>
       <div className="intro-info">
         <h1>
-          <TextFade>{user.name || ''}</TextFade>
+          <TextUpTransitionView>{user.name || ''}</TextUpTransitionView>
         </h1>
-        <div className="paragraph">
-          <TextFade duration={10} appear={doAnimation}>
-            {user.introduce || ''}
-          </TextFade>
-        </div>
+
+        <TextUpTransitionView
+          appear={doAnimation}
+          className="text-theme-gray-1 mt-2 leading-7"
+        >
+          {user.introduce || ''}
+        </TextUpTransitionView>
+
         <Social />
       </div>
     </section>
@@ -53,12 +55,17 @@ const Social: FC = withNoSSR(() => {
   const { social } = config.site
 
   return (
-    <TransitionGroup appear={doAnimation} className="social-icons space-x-4">
+    <div className="social-icons space-x-4">
       {social.map((item, i) => {
         return (
-          <BottomUpTransitionView
+          <BottomToUpTransitionView
             appear={doAnimation}
             timeout={{ enter: 500 + 50 * i }}
+            animation={{
+              enter: {
+                ...reboundPreset,
+              },
+            }}
             key={item.title}
           >
             <FloatPopover
@@ -76,13 +83,13 @@ const Social: FC = withNoSSR(() => {
               )}
               headless
             >
-              <div className="bg-light-bg px-3 py-2 border border-dark-100 border-opacity-10 rounded-full shadow-out-sm">
+              <div className="bg-light-bg border-dark-100 shadow-out-sm rounded-full border border-opacity-10 px-3 py-2">
                 {item.title}
               </div>
             </FloatPopover>
-          </BottomUpTransitionView>
+          </BottomToUpTransitionView>
         )
       })}
-    </TransitionGroup>
+    </div>
   )
 })

@@ -1,9 +1,8 @@
 import type { FC } from 'react'
 import { memo, useEffect } from 'react'
 
-import { ModalStackProvider } from '@mx-space/kami-design/components/Modal'
-
 import { useAppStore } from '~/atoms/app'
+import { ModalStackProvider } from '~/components/ui/Modal'
 
 export const DebugLayout: FC = memo((props) => {
   useEffect(() => {

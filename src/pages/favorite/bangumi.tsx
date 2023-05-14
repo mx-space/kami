@@ -3,11 +3,10 @@ import Head from 'next/head'
 import { message } from 'react-message-popup'
 import useSWR from 'swr'
 
-import { ImageLazy } from '@mx-space/kami-design/components/Image'
-import { Loading } from '@mx-space/kami-design/components/Loading'
-
 import { useUserStore } from '~/atoms/user'
-import { Seo } from '~/components/biz/Seo'
+import { Seo } from '~/components/app/Seo'
+import { ImageLazy } from '~/components/ui/Image'
+import { Loading } from '~/components/ui/Loading'
 import { apiClient } from '~/utils/client'
 
 import styles from './bangumi.module.css'
@@ -53,7 +52,7 @@ const BangumiView: NextPage = () => {
       </Head>
       <Seo title="追番" description="追番" />
       <section>
-        <div className="grid grid-cols-4 <md:grid-cols-2 gap-8">
+        <div className="<md:grid-cols-2 grid grid-cols-4 gap-8">
           {data?.map((bangumi) => {
             return (
               <div key={bangumi.id}>

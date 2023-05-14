@@ -4,10 +4,10 @@ import { memo, useEffect, useMemo, useRef, useState } from 'react'
 
 import { getTransitionSizes } from '@formkit/auto-animate'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
-import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
 import { useMusicStore } from '~/atoms/music'
-import { withDesktopOnly } from '~/components/biz/HoC/viewport'
+import { withDesktopOnly } from '~/components/app/HoC/viewport'
+import { BottomToUpTransitionView } from '~/components/ui/Transition/bottom-up'
 
 import type { LyricsContent } from './lyrics-manager'
 import { LyricsManager } from './lyrics-manager'
@@ -106,11 +106,11 @@ const LyricsRender: FC<{ lyrics: string }> = memo(({ lyrics }) => {
   ]).current
 
   return (
-    <div className="absolute top-0 left-0 tablet:hidden">
+    <div className="tablet:hidden absolute left-0 top-0">
       <div className="absolute bottom-2">
         <ul
           ref={animationParent}
-          className="max-w-[250px] text-gray-1 pl-2 !hover:children:text-shizuku-text !hover:children:filter-none"
+          className="text-gray-1 !hover:children:text-shizuku-text !hover:children:filter-none max-w-[250px] pl-2"
         >
           {list.map((item, index) => {
             return (
@@ -118,16 +118,19 @@ const LyricsRender: FC<{ lyrics: string }> = memo(({ lyrics }) => {
                 key={item.content}
                 data-hms={item.hms}
                 className={clsx(
-                  'my-2 transform origin-left transition-all opacity-100 scale-100 !duration-500 ease-in-out',
+                  'my-2 origin-left scale-100 transform opacity-100 transition-all !duration-500 ease-in-out',
                   classNameMap[index],
                 )}
               >
-                <BottomUpTransitionView key={item.hms} timeout={{ enter: 300 }}>
+                <BottomToUpTransitionView
+                  key={item.hms}
+                  timeout={{ enter: 300 }}
+                >
                   <p className="truncate">
                     {item.content}
-                    <span className="select-none invisible">.</span>
+                    <span className="invisible select-none">.</span>
                   </p>
-                </BottomUpTransitionView>
+                </BottomToUpTransitionView>
               </li>
             )
           })}

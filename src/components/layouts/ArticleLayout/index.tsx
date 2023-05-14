@@ -2,7 +2,7 @@ import { clsx } from 'clsx'
 import type { DetailedHTMLProps, HTMLAttributes } from 'react'
 import { forwardRef, memo, useMemo } from 'react'
 
-import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
+import { BottomToUpTransitionView } from '~/components/ui/Transition/bottom-up'
 
 import { ArticleLayoutContextProvider } from './hooks'
 import styles from './index.module.css'
@@ -54,13 +54,13 @@ export const ArticleLayout = memo(
             data-type={type}
           >
             <ArticleLayoutTitle animate={titleAnimate} />
-            <BottomUpTransitionView
+            <BottomToUpTransitionView
               in
               timeout={useMemo(() => ({ enter: delay ?? 300 }), [delay])}
               key={id}
             >
               {children}
-            </BottomUpTransitionView>
+            </BottomToUpTransitionView>
           </main>
         </ArticleLayoutContextProvider>
       )

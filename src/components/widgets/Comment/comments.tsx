@@ -15,19 +15,16 @@ import { message } from 'react-message-popup'
 import { shallow } from 'zustand/shallow'
 
 import type { CommentModel } from '@mx-space/api-client'
-import {
-  PhPushPin,
-  PhPushPinFill,
-} from '@mx-space/kami-design/components/Icons/for-post'
-import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
 import type { CommentModelWithHighlight } from '~/atoms/collections/comment'
 import { useCommentCollection } from '~/atoms/collections/comment'
 import { useUserStore } from '~/atoms/user'
-import { ImpressionView } from '~/components/biz/ImpressionView'
-import { IconTransition } from '~/components/universal/IconTransition'
-import { ImageTagPreview } from '~/components/universal/ImageTagPreview'
-import { Markdown } from '~/components/universal/Markdown'
+import { IconTransition } from '~/components/common/IconTransition'
+import { ImpressionView } from '~/components/common/ImpressionView'
+import { KamiMarkdown } from '~/components/common/KamiMarkdown'
+import { PhPushPin, PhPushPinFill } from '~/components/ui/Icons/for-post'
+import { ImageTagPreview } from '~/components/ui/ImageTagPreview'
+import { BottomToUpTransitionView } from '~/components/ui/Transition/bottom-up'
 import { socketClient } from '~/socket'
 import { apiClient } from '~/utils/client'
 
@@ -56,7 +53,7 @@ const CommentList: FC = memo(() => {
   const comments = useCommentCollection((state) => state.comments)
 
   return (
-    <BottomUpTransitionView
+    <BottomToUpTransitionView
       appear
       timeout={useRef({ appear: 300, enter: 500 }).current}
     >
@@ -65,7 +62,7 @@ const CommentList: FC = memo(() => {
           return <InnerCommentList id={comment.id} key={comment.id} />
         })}
       </div>
-    </BottomUpTransitionView>
+    </BottomToUpTransitionView>
   )
 })
 
@@ -232,7 +229,7 @@ const SingleComment: FC<{ id: string }> = ({ id, children }) => {
         />
       }
       content={
-        <Markdown
+        <KamiMarkdown
           value={`${
             comment.parent
               ? `@${
@@ -307,7 +304,7 @@ const SingleComment: FC<{ id: string }> = ({ id, children }) => {
       {logged && !comment.parent && (
         <div
           className={clsx(
-            'absolute right-3 top-5 hover:opacity-100 opacity-30 transition-opacity duration-300',
+            'absolute right-3 top-5 opacity-30 transition-opacity duration-300 hover:opacity-100',
 
             comment.pin && 'text-red !opacity-100',
           )}
@@ -324,7 +321,7 @@ const SingleComment: FC<{ id: string }> = ({ id, children }) => {
 
       {!logged && comment.pin && (
         <ImpressionView trackerMessage="置顶评论曝光">
-          <div className="absolute right-3 top-5 text-red">
+          <div className="text-red absolute right-3 top-5">
             <PhPushPin />
           </div>
         </ImpressionView>

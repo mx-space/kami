@@ -1,0 +1,61 @@
+.select-container {
+  width: 30px;
+  height: 80vh;
+  position: fixed;
+  top: -10vh;
+  right: 30px;
+  z-index: 3;
+}
+
+.select-line {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .line {
+    width: 3px;
+    height: 100%;
+    background-image: linear-gradient(
+      45deg,
+      hsl(0deg 0% 100% / 60%) 25%,
+      transparent 0,
+      transparent 50%,
+      hsl(0deg 0% 100% / 60%) 0,
+      hsl(0deg 0% 100% / 60%) 75%,
+      transparent 0,
+      transparent
+    );
+    background-color: theme(colors.accent);
+    background-size: 100% 60px;
+    border-radius: 12px;
+    background-repeat: repeat;
+  }
+}
+
+.lamp-wrap {
+  animation: rotating 2s infinite steps(60);
+
+  @apply absolute left-0 right-0 flex cursor-pointer justify-center;
+
+  bottom: -10px;
+  display: flex;
+}
+
+.lamp-handle {
+  background-image: linear-gradient(
+    45deg,
+    hsl(0deg 0% 100% / 60%) 25%,
+    transparent 0,
+    transparent 50%,
+    hsl(0deg 0% 100% / 60%) 0,
+    hsl(0deg 0% 100% / 60%) 75%,
+    transparent 0,
+    transparent
+  );
+  height: 30px;
+  width: 6px;
+  border-radius: 2px;
+  background-color: theme(colors.secondary);
+}

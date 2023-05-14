@@ -1,9 +1,8 @@
 import dayjs from 'dayjs'
 import type { FC } from 'react'
 
-import { Divider } from '@mx-space/kami-design/components/Divider'
-
 import { useMasterName } from '~/atoms/user'
+import { Divider } from '~/components/ui/Divider'
 
 import styles from './index.module.css'
 

@@ -1,20 +1,19 @@
 import type { FC } from 'react'
 import { useCallback, useMemo, useRef } from 'react'
-import { TransitionGroup } from 'react-transition-group'
+import { useStateToRef } from 'react-shortcut-guide'
 
 import type { AggregateTop } from '@mx-space/api-client'
-import { useStateToRef } from '@mx-space/kami-design'
-import { MdiDrawPen } from '@mx-space/kami-design/components/Icons/for-home'
-import { IcTwotoneSignpost } from '@mx-space/kami-design/components/Icons/menu-icon'
-import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
-import { withNoSSR } from '~/components/biz/HoC/no-ssr'
-import { useKamiConfig } from '~/hooks/use-initial-data'
-import { useRandomImage } from '~/hooks/use-kami'
+import { withNoSSR } from '~/components/app/HoC/no-ssr'
+import { MdiDrawPen } from '~/components/ui/Icons/for-home'
+import { IcTwotoneSignpost } from '~/components/ui/Icons/menu-icon'
+import { BottomToUpTransitionView } from '~/components/ui/Transition/bottom-up'
+import { useKamiConfig } from '~/hooks/app/use-initial-data'
+import { useRandomImage } from '~/hooks/app/use-kami-theme'
 import type { HomePageSectionName } from '~/types/config'
 
 import type { SectionNewsProps } from './SectionNews'
-import SectionNews from './SectionNews'
+import { SectionNews } from './SectionNews'
 import { FriendsSection } from './SectionNews/friend-section'
 import { MoreSection } from './SectionNews/more-section'
 import { useHomePageViewContext } from './context'
@@ -109,15 +108,17 @@ const SectionsInternal: FC<AggregateTop> = ({ notes, posts }) => {
 
   return (
     <section className={styles['root']}>
-      <TransitionGroup appear={doAnimation}>
-        {SectionElementList.map((El, i) => {
-          return (
-            <BottomUpTransitionView timeout={{ enter: 1200 + 200 * i }} key={i}>
-              {El}
-            </BottomUpTransitionView>
-          )
-        })}
-      </TransitionGroup>
+      {SectionElementList.map((El, i) => {
+        return (
+          <BottomToUpTransitionView
+            timeout={{ enter: 1200 + 200 * i }}
+            key={i}
+            appear={doAnimation}
+          >
+            {El}
+          </BottomToUpTransitionView>
+        )
+      })}
     </section>
   )
 }

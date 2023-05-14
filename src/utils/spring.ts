@@ -1,107 +1,36 @@
-import spring, { toString } from 'css-spring'
+'use client'
 
-import { isClientSide } from './env'
+import { animateValue } from 'framer-motion'
 
-const cache = new Map<string, string>()
-export type SpringOption = {
-  precision?: number
-  preset?: 'stiff' | 'gentle' | 'wobbly' | 'noWobble'
-  stiffness?: number
-  damping?: number
-}
+import { microdampingPreset } from '~/constants/spring'
 
-export const genSpringKeyframes = (
-  name: string,
-  from: any,
-  to: any,
-  options: SpringOption = { preset: 'gentle' },
-) => {
-  if (!isClientSide() || cache.has(name)) {
-    return [name, null, null] as const
-  }
-
-  const transformProperty = [
-    'translateX',
-    'translateY',
-    'translateZ',
-    'scale',
-    'rotate',
-  ]
-  const keyframes = toString(spring(from, to, options), (property, value) =>
-    transformProperty.includes(property)
-      ? `transform: ${property}(${value});`
-      : `${property}:${value};`,
-  )
-
-  const css = document.createElement('style')
-  css.innerHTML = `
-  @keyframes ${name} {${keyframes}}`
-  document.head.appendChild(css)
-
-  cache.set(name, keyframes)
-
-  return [name, css, keyframes] as const
-}
-export const springScrollToTop = (duration?: number) =>
-  springScrollTo(0, duration)
-export const springScrollTo = (
-  to: number,
-  duration = 1000,
-  container?: HTMLElement,
-) => {
-  if (!isClientSide()) {
-    return
-  }
-  const scrollContainer = container || document.documentElement
-  const res = spring(
-    { top: scrollContainer.scrollTop },
-    { top: to },
-    { stiffness: 300, damping: 55 },
-  )
-
-  let raf: any
-  const cancelScroll = () => {
-    raf = cancelAnimationFrame(raf)
-
-    scrollContainer.removeEventListener('wheel', cancelScroll)
-    scrollContainer.removeEventListener('touchstart', cancelScroll)
-  }
-  scrollContainer.addEventListener('wheel', cancelScroll)
-  scrollContainer.addEventListener('touchstart', cancelScroll, {
-    passive: true,
+export const springScrollTo = (y: number) => {
+  const scrollTop =
+    document.documentElement.scrollTop || document.body.scrollTop
+  const animation = animateValue({
+    keyframes: [scrollTop, y],
+    autoplay: true,
+    ...microdampingPreset,
+    onUpdate(latest) {
+      if (latest <= 0) {
+        animation.stop()
+      }
+      window.scrollTo(0, latest)
+    },
   })
-
-  setTimeout(() => {
-    cancelScroll()
-  }, duration + 50)
-  const ts = +new Date()
-  raf = requestAnimationFrame(function an() {
-    const current = +new Date()
-    const percent = Math.floor(((current - ts) / duration) * 100)
-
-    if (percent > 100) {
-      scrollContainer.scrollTop = res[`${100}%`].top
-      return
-    }
-    raf = requestAnimationFrame(an)
-    if (res[`${percent}%`]?.top) {
-      scrollContainer.scrollTop = res[`${percent}%`].top
-    }
-  })
+}
+export const springScrollToTop = () => {
+  springScrollTo(0)
 }
 
 export const springScrollToElement = (
-  el: HTMLElement,
-  duration = 1000,
-  offset = 0,
-  container?: HTMLElement,
-) => {
-  if (!isClientSide()) {
-    return
-  }
-  const height = calculateElementTop(el) + offset
+  element: HTMLElement,
 
-  return springScrollTo(height, duration, container)
+  delta = 40,
+) => {
+  const y = calculateElementTop(element)
+  const to = y + delta
+  springScrollTo(to)
 }
 
 const calculateElementTop = (el: HTMLElement) => {

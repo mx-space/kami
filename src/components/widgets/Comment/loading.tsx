@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 
-import { Loading } from '@mx-space/kami-design/components/Loading'
+import { Loading } from '~/components/ui/Loading'
 
 export const CommentLoading = memo(() => {
   return (

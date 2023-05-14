@@ -1,31 +1,30 @@
 import { clsx } from 'clsx'
+import { AnimatePresence, Reorder } from 'framer-motion'
 import type { FC } from 'react'
 import React, { useCallback, useDeferredValue, useMemo } from 'react'
 import { Modifier, useShortcut } from 'react-shortcut-guide'
-import { TransitionGroup } from 'react-transition-group'
 import { shallow } from 'zustand/shallow'
-
-import {
-  BxBxsArrowToTop,
-  FaSolidHeadphonesAlt,
-} from '@mx-space/kami-design/components/Icons/for-footer'
-import { RootPortal } from '@mx-space/kami-design/components/Portal'
-import { ScaleTransitionView } from '@mx-space/kami-design/components/Transition/scale'
 
 import { useActionStore } from '~/atoms/action'
 import { useAppStore } from '~/atoms/app'
 import { useMusicStore } from '~/atoms/music'
+import {
+  BxBxsArrowToTop,
+  FaSolidHeadphonesAlt,
+} from '~/components/ui/Icons/for-footer'
+import { RootPortal } from '~/components/ui/Portal'
+import { ScaleTransitionView } from '~/components/ui/Transition/scale'
 import { TrackerAction } from '~/constants/tracker'
-import { useAnalyze } from '~/hooks/use-analyze'
+import { useAnalyze } from '~/hooks/app/use-analyze'
 import {
   useDetectPadOrMobile,
   useIsOverFirstScreenHeight,
-} from '~/hooks/use-viewport'
+} from '~/hooks/ui/use-viewport'
 import { springScrollToTop } from '~/utils/spring'
 
 import styles from './actions.module.css'
 
-const timeout = { exit: 300 }
+const noop = () => void 0
 
 const FooterActionsBase: FC<{
   children?: React.ReactNode
@@ -107,28 +106,27 @@ export const FooterActions: FC = () => {
   return (
     <RootPortal>
       <FooterActionsBase>
-        <TransitionGroup>
-          {actions.map((action) => {
-            const El = action.element ?? (
-              <button
-                aria-label="footer action button"
-                onClick={action.onClick}
-              >
-                {action.icon}
-              </button>
-            )
+        <Reorder.Group values={actions} onReorder={noop}>
+          <AnimatePresence>
+            {actions.map((action) => {
+              const El = action.element ?? (
+                <button
+                  aria-label="footer action button"
+                  onClick={action.onClick}
+                >
+                  {action.icon}
+                </button>
+              )
 
-            return (
-              <ScaleTransitionView
-                key={action.id}
-                unmountOnExit
-                timeout={timeout}
-              >
-                {El}
-              </ScaleTransitionView>
-            )
-          })}
-        </TransitionGroup>
+              return (
+                <Reorder.Item layout value={action} key={action.id}>
+                  <ScaleTransitionView duration={0.3}>{El}</ScaleTransitionView>
+                </Reorder.Item>
+              )
+            })}
+          </AnimatePresence>
+        </Reorder.Group>
+
         <button aria-label="open player" onClick={handlePlayMusic}>
           <FaSolidHeadphonesAlt />
         </button>

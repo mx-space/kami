@@ -1,4 +1,4 @@
-import colors from 'windicss/colors'
+import defaultColors from 'windicss/colors'
 import { defineConfig } from 'windicss/helpers'
 import plugin from 'windicss/plugin'
 
@@ -39,6 +39,10 @@ export default defineConfig({
   ],
   theme: {
     extend: {
+      cursor: {
+        'zoom-in': 'zoom-in',
+        'zoom-out': 'zoom-out',
+      },
       screens: {
         'light-mode': { raw: '(prefers-color-scheme: light)' },
         'dark-mode': { raw: '(prefers-color-scheme: dark)' },
@@ -58,6 +62,7 @@ export default defineConfig({
       colors: {
         primary: 'var(--primary)',
         secondary: 'var(--secondary)',
+        accent: 'var(--accent)',
 
         red: 'var(--red)',
         yellow: 'var(--yellow)',
@@ -69,16 +74,18 @@ export default defineConfig({
         'light-bg': 'var(--light-bg)',
         'light-font': 'var(--light-font)',
         'bg-opacity': 'var(--bg-opacity)',
-        gray: 'var(--gray)',
+
         deepgray: 'var(--deep-gray)',
         shallow: 'var(--shallow)',
         pink: 'var(--pink)',
-        'gray-1': 'var(--gray-1)',
-        'gray-2': 'var(--gray-2)',
-        'gray-3': 'var(--gray-3)',
-        'gray-4': 'var(--gray-4)',
-        'gray-5': 'var(--gray-5)',
-        'gray-6': 'var(--gray-6)',
+        gray: {
+          '1': 'var(--gray-1)',
+          '2': 'var(--gray-2)',
+          '3': 'var(--gray-3)',
+          '4': 'var(--gray-4)',
+          '5': 'var(--gray-5)',
+          '6': 'var(--gray-6)',
+        },
 
         shizuku: {
           text: 'var(--shizuku-text-color)',
@@ -86,9 +93,7 @@ export default defineConfig({
           bg: 'var(--shizuku-background-color)',
         },
 
-        default: {
-          ...colors,
-        },
+        always: { ...defaultColors },
       },
     },
   },

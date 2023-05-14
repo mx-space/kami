@@ -3,17 +3,16 @@ import type { FC } from 'react'
 import { memo } from 'react'
 import { shallow } from 'zustand/shallow'
 
-import { Divider } from '@mx-space/kami-design/components/Divider'
+import { noteCollection, useNoteCollection } from '~/atoms/collections/note'
+import { Divider } from '~/components/ui/Divider'
 import {
   IcRoundKeyboardDoubleArrowLeft,
   IcRoundKeyboardDoubleArrowRight,
-} from '@mx-space/kami-design/components/Icons/arrow'
-import { MdiClockTimeThreeOutline } from '@mx-space/kami-design/components/Icons/for-note'
-
-import { noteCollection, useNoteCollection } from '~/atoms/collections/note'
+} from '~/components/ui/Icons/arrow'
+import { MdiClockTimeThreeOutline } from '~/components/ui/Icons/for-note'
 import { TrackerAction } from '~/constants/tracker'
-import { useAnalyze } from '~/hooks/use-analyze'
-import { useDetectIsNarrowThanLaptop } from '~/hooks/use-viewport'
+import { useAnalyze } from '~/hooks/app/use-analyze'
+import { useDetectIsNarrowThanLaptop } from '~/hooks/ui/use-viewport'
 import { springScrollToTop } from '~/utils/spring'
 
 export const NoteFooterNavigation: FC<{ id: string }> = memo(({ id }) => {
@@ -38,10 +37,10 @@ export const NoteFooterNavigation: FC<{ id: string }> = memo(({ id }) => {
         <>
           <Divider className="!w-15 m-auto" />
           <section
-            className="mt-4 text-center relative text-gray-1 py-2"
+            className="text-gray-1 relative mt-4 py-2 text-center"
             data-hide-print
           >
-            <div className="flex justify-between items-center children:inline-flex children:items-center children:space-x-2 children:px-2 children:py-2">
+            <div className="children:inline-flex children:items-center children:space-x-2 children:px-2 children:py-2 flex items-center justify-between">
               {!!nextNid && (
                 <>
                   <div
@@ -77,7 +76,7 @@ export const NoteFooterNavigation: FC<{ id: string }> = memo(({ id }) => {
             <div
               tabIndex={1}
               role="button"
-              className="opacity-80 text-pink hover:text-primary absolute left-1/2 top-0 bottom-0 flex items-center -translate-x-1/2 transform space-x-2"
+              className="text-pink hover:text-primary absolute bottom-0 left-1/2 top-0 flex -translate-x-1/2 transform items-center space-x-2 opacity-80"
               onClick={() => {
                 const note = noteCollection.get(id)
 

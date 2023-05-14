@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import React, { memo, useCallback } from 'react'
 
-import { FontIcon } from '~/components/universal/FontIcon'
+import { FontIcon } from '~/components/ui/FontIcon'
 import { TrackerAction } from '~/constants/tracker'
-import { useAnalyze } from '~/hooks/use-analyze'
-import { useHeaderNavList } from '~/hooks/use-header-nav-list'
+import { useAnalyze } from '~/hooks/app/use-analyze'
+import { useHeaderNavList } from '~/hooks/app/use-header-nav-list'
 
 import styles from './index.module.css'
 

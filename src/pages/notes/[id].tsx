@@ -9,9 +9,6 @@ import useUpdate from 'react-use/lib/useUpdate'
 
 import type { NoteModel } from '@mx-space/api-client'
 import { RequestError } from '@mx-space/api-client'
-import { Banner } from '@mx-space/kami-design/components/Banner'
-import { Loading } from '@mx-space/kami-design/components/Loading'
-import { ImageSizeMetaContext } from '@mx-space/kami-design/contexts/image-size'
 
 import { noteCollection, useNoteCollection } from '~/atoms/collections/note'
 import type { ModelWithDeleted } from '~/atoms/collections/utils/base'
@@ -20,25 +17,31 @@ import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { NoteFooterNavigationBarForMobile } from '~/components/in-page/Note/NoteFooterNavigation'
 import { NoteMarkdownRender } from '~/components/in-page/Note/NoteMarkdownRender'
 import { NotePasswordConfrim } from '~/components/in-page/Note/NotePasswordConfirm'
-import { BanCopy } from '~/components/in-page/WarningOverlay/ban-copy'
+import { BanCopy } from '~/components/in-page/Note/WarningOverlay/ban-copy'
 import { NoteLayout } from '~/components/layouts/NoteLayout'
+import { Banner } from '~/components/ui/Banner'
+import { ImageSizeMetaContext } from '~/components/ui/Image/context'
+import { Loading } from '~/components/ui/Loading'
 import { SearchFAB } from '~/components/widgets/Search'
 import { SubscribeBell } from '~/components/widgets/SubscribeBell'
 import { XLogInfoForNote } from '~/components/widgets/xLogInfo'
 import { XLogSummaryForNote } from '~/components/widgets/xLogSummary'
 import { TrackerAction } from '~/constants/tracker'
-import { useAnalyze } from '~/hooks/use-analyze'
-import { useSetHeaderMeta, useSetHeaderShare } from '~/hooks/use-header-meta'
-import { useJumpToSimpleMarkdownRender } from '~/hooks/use-jump-to-render'
-import { useLoadSerifFont } from '~/hooks/use-load-serif-font'
-import { useNoteMusic } from '~/hooks/use-music'
+import { useAnalyze } from '~/hooks/app/use-analyze'
+import {
+  useSetHeaderMeta,
+  useSetHeaderShare,
+} from '~/hooks/app/use-header-meta'
+import { useJumpToSimpleMarkdownRender } from '~/hooks/app/use-jump-to-render'
+import { useNoteMusic } from '~/hooks/app/use-music'
+import { useLoadSerifFont } from '~/hooks/ui/use-load-serif-font'
 import { isEqualObject, omit } from '~/utils/_'
 import { imagesRecord2Map } from '~/utils/images'
 import { getSummaryFromMd } from '~/utils/markdown'
 import { parseDate } from '~/utils/time'
 import { noop } from '~/utils/utils'
 
-import { Seo } from '../../components/biz/Seo'
+import { Seo } from '../../components/app/Seo'
 import { isDev } from '../../utils/env'
 
 const NoteTopic = dynamic(() =>
@@ -260,7 +263,7 @@ const NoteView: React.FC<{ id: string }> = memo((props) => {
       </NoteLayout>
       {!isSecret && (
         <ArticleLayout
-          className="!pt-0 !min-h-[unset]"
+          className="!min-h-[unset] !pt-0"
           key={`comments-${props.id}`}
         >
           <CommentLazy

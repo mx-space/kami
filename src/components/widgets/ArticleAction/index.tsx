@@ -2,8 +2,8 @@ import { clsx } from 'clsx'
 import type { DetailedHTMLProps, FC, HTMLAttributes, ReactNode } from 'react'
 import { Fragment, createElement, memo } from 'react'
 
-import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
-import { EntypoCreativeCommons } from '@mx-space/kami-design/components/Icons/for-post'
+import { FloatPopover } from '~/components/ui/FloatPopover'
+import { EntypoCreativeCommons } from '~/components/ui/Icons/for-post'
 
 import styles from './index.module.css'
 
@@ -39,7 +39,7 @@ export const ArticleFooterAction: FC<ActionProps> = memo((props) => {
             <span className="inline-flex items-center space-x-2">
               {inform.icon && (
                 <span
-                  className="flex items-center mr-2"
+                  className="mr-2 flex items-center"
                   style={{ color: inform.color }}
                 >
                   {inform.icon}
@@ -68,7 +68,7 @@ export const ArticleFooterAction: FC<ActionProps> = memo((props) => {
           <a
             href="https://creativecommons.org/licenses/by-nc-nd/4.0/"
             target="_blank"
-            className="inline-flex items-center text-current cursor-pointer"
+            className="inline-flex cursor-pointer items-center text-current"
           >
             <span
               title="创作共用保留署名-非商业-禁止演绎4.0国际许可证"

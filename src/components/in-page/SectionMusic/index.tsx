@@ -3,15 +3,11 @@ import type { FC } from 'react'
 import { memo, useDeferredValue, useEffect } from 'react'
 import { shallow } from 'zustand/shallow'
 
-import {
-  MusicIcon,
-  PauseIcon,
-} from '@mx-space/kami-design/components/Icons/for-fav'
-
 import { useMusicStore, usePlayProgress } from '~/atoms/music'
-import { Seo } from '~/components/biz/Seo'
+import { Seo } from '~/components/app/Seo'
+import { MusicIcon, PauseIcon } from '~/components/ui/Icons/for-fav'
 import { TrackerAction } from '~/constants/tracker'
-import { useAnalyze } from '~/hooks/use-analyze'
+import { useAnalyze } from '~/hooks/app/use-analyze'
 
 import styles from './index.module.css'
 
@@ -105,7 +101,7 @@ const SongItem: FC<SongItemProps> = memo((props) => {
     >
       <span className={styles['num']}>{index + 1}</span>
       <span className="flex-grow truncate">{name}</span>
-      <time className="font-mono flex-shrink-0">{time}</time>
+      <time className="flex-shrink-0 font-mono">{time}</time>
     </li>
   )
 })
@@ -169,7 +165,7 @@ const PlayingSongItem: FC<SongItemProps> = memo((props) => {
       <Seo title={`${props.name} · 歌单`} />
       <PlayIcon />
       <span className="flex-grow truncate">{name}</span>
-      <time className="font-mono flex-shrink-0">{time}</time>
+      <time className="flex-shrink-0 font-mono">{time}</time>
     </li>
   )
 })

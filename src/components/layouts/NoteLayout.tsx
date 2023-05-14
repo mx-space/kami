@@ -7,23 +7,23 @@ import { Collapse } from 'react-collapse'
 import { shallow } from 'zustand/shallow'
 
 import type { NoteModel } from '@mx-space/api-client'
-import { Banner } from '@mx-space/kami-design'
-import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
-import { SolidBookmark } from '@mx-space/kami-design/components/Icons/for-note'
-import {
-  FluentEyeHide20Regular,
-  RegularBookmark,
-} from '@mx-space/kami-design/components/Icons/layout'
-import { BottomUpTransitionView } from '@mx-space/kami-design/components/Transition/bottom-up'
 
 import { useAppStore } from '~/atoms/app'
 import { useNoteCollection } from '~/atoms/collections/note'
 import { useIsLogged } from '~/atoms/user'
+import { FloatPopover } from '~/components/ui/FloatPopover'
+import { SolidBookmark } from '~/components/ui/Icons/for-note'
+import {
+  FluentEyeHide20Regular,
+  RegularBookmark,
+} from '~/components/ui/Icons/layout'
+import { BottomToUpTransitionView } from '~/components/ui/Transition/bottom-up'
 import { apiClient } from '~/utils/client'
 import { resolveUrl } from '~/utils/utils'
 
 import { ClientOnly } from '../app/ClientOnly'
-import { IconTransition } from '../universal/IconTransition'
+import { IconTransition } from '../common/IconTransition'
+import { Banner } from '../ui/Banner'
 
 const NoteTimelineList = dynamic(() =>
   import('~/components/in-page/Note/NoteTimelineList').then(
@@ -32,7 +32,7 @@ const NoteTimelineList = dynamic(() =>
 )
 
 const bannerClassNames = {
-  info: `bg-light-blue-50 dark:bg-light-blue-800 dark:text-white`,
+  info: `bg-sky-50 dark:bg-sky-800 dark:text-white`,
   warning: `bg-orange-100 dark:bg-orange-800 dark:text-white`,
   error: `bg-rose-100 dark:bg-rose-800 dark:text-white`,
   success: `bg-emerald-100 dark:bg-emerald-800 dark:text-white`,
@@ -96,22 +96,19 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
     }, [bookmark, id])
     const noAppear = globalThis.location ? location.hash : false
     return (
-      <main className="max-w-[50em] relative is-note" ref={ref}>
-        <BottomUpTransitionView
-          id={id}
-          in={true}
+      <main className="is-note relative max-w-[50em]" ref={ref}>
+        <BottomToUpTransitionView
+          key={id}
           appear={!noAppear}
-          mountOnEnter
-          unmountOnExit
-          timeout={0}
+          exit={{ opacity: 0 }}
         >
           <div className="note-article relative">
             <ClientOnly>
-              <div className="title-headline text-light-brown dark:text-shizuku-text">
+              <div className="title-headline dark:text-shizuku-text">
                 <span className="inline-flex items-center">
                   <time className="font-medium">{dateFormat}</time>
                   {!isPreview && (
-                    <div className="ml-4 inline-flex space-x-2 items-center">
+                    <div className="ml-4 inline-flex items-center space-x-2">
                       {isLogged ? (
                         <IconTransition
                           currentState={bookmark ? 'solid' : 'regular'}
@@ -150,7 +147,7 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
               {banner && (
                 <div
                   className={clsx(
-                    'mt-8 p-4 flex justify-center ml-[calc(-3em)] mr-[calc(-3em)] w900:ml-[-1.25em] w900:mr-[-1.25em] w900:text-sm leading-8',
+                    'w900:ml-[-1.25em] w900:mr-[-1.25em] w900:text-sm ml-[calc(-3em)] mr-[calc(-3em)] mt-8 flex justify-center p-4 leading-8',
                     banner.className,
                   )}
                   style={banner.style}
@@ -161,7 +158,7 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
             </Collapse>
 
             <div>
-              <h1 className="text-center !mt-8 !before:hidden headline text-brown dark:text-shizuku-text">
+              <h1 className="!before:hidden headline dark:text-shizuku-text !mt-8 text-center">
                 <FloatPopover
                   triggerComponent={() => <>{title}</>}
                   placement="bottom"
@@ -183,7 +180,7 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
               {children}
             </div>
           </div>
-        </BottomUpTransitionView>
+        </BottomToUpTransitionView>
 
         {!isPreview && <NoteTimelineList noteId={id} />}
       </main>

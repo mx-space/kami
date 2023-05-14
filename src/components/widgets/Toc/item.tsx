@@ -74,7 +74,7 @@ export const TocItem: FC<{
           onClick(index)
           const $el = document.getElementById(title)
           if ($el) {
-            springScrollToElement($el, undefined, -100)
+            springScrollToElement($el, -100)
           }
         },
         [index, title, onClick],

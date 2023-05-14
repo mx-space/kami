@@ -7,19 +7,19 @@ import CountUp from 'react-countup'
 import { usePrevious } from 'react-use'
 
 import type { TimelineData } from '@mx-space/api-client'
-import { SolidBookmark } from '@mx-space/kami-design/components/Icons/for-note'
 
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
-import { TimelineListWrapper } from '~/components/biz/TimelineListWrapper'
-import { NumberTransition } from '~/components/universal/NumberRecorder'
+import { TimelineListWrapper } from '~/components/in-page/Timeline/TimelineListWrapper'
+import { SolidBookmark } from '~/components/ui/Icons/for-note'
+import { NumberTransition } from '~/components/ui/NumberRecorder'
 import { TrackerAction } from '~/constants/tracker'
-import { useAnalyze } from '~/hooks/use-analyze'
-import { useDetectPadOrMobile } from '~/hooks/use-viewport'
+import { useAnalyze } from '~/hooks/app/use-analyze'
+import { useDetectPadOrMobile } from '~/hooks/ui/use-viewport'
 import { apiClient } from '~/utils/client'
 import { springScrollToElement } from '~/utils/spring'
 import { dayOfYear, daysOfYear, secondOfDay, secondOfDays } from '~/utils/time'
 
-import { Seo } from '../../components/biz/Seo'
+import { Seo } from '../../components/app/Seo'
 import { ArticleLayout } from '../../components/layouts/ArticleLayout'
 import styles from './index.module.css'
 
@@ -191,7 +191,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
         ) as HTMLElement
 
         if (target) {
-          springScrollToElement(target, undefined, -500)
+          springScrollToElement(target, -500)
           target.animate(
             [
               {
@@ -227,7 +227,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
       key={props.memory ? 'memory' : 'timeline'}
     >
       {!props.memory && (
-        <div className="-mt-12 mb-12 text-shizuku-text">
+        <div className="text-shizuku-text -mt-12 mb-12">
           <Progress />
           <p>活在当下，珍惜眼下</p>
         </div>
@@ -248,8 +248,8 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
                     className="flex items-center justify-between"
                     data-id={item.id}
                   >
-                    <span className="flex flex-shrink min-w-0 items-center">
-                      <span className="text-shizuku-text mr-2 tabular-nums w-12 inline-block">
+                    <span className="flex min-w-0 flex-shrink items-center">
+                      <span className="text-shizuku-text mr-2 inline-block w-12 tabular-nums">
                         {Intl.DateTimeFormat('en-us', {
                           month: '2-digit',
                           day: '2-digit',
@@ -259,7 +259,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
                         target="_blank"
                         href={item.href}
                         as={item.as}
-                        className="leading-6 min-w-0 truncate"
+                        className="min-w-0 truncate leading-6"
                       >
                         <span className="kami-timeline__title min-w-0 truncate">
                           {item.title}

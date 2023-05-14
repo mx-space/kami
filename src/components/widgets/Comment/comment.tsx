@@ -2,9 +2,8 @@ import { clsx } from 'clsx'
 import type { DetailedHTMLProps, FC, HTMLAttributes } from 'react'
 import { memo, useCallback, useMemo } from 'react'
 
-import { LaUserSecret } from '@mx-space/kami-design/components/Icons/for-comment'
-
-import { RelativeTime } from '~/components/universal/RelativeTime'
+import { RelativeTime } from '~/components/common/RelativeTime'
+import { LaUserSecret } from '~/components/ui/Icons/for-comment'
 import { springScrollToElement } from '~/utils/spring'
 
 import styles from './index.module.css'
@@ -60,7 +59,7 @@ export const Comment: FC<
     }
     const $el = document.getElementById(id)
 
-    $el && springScrollToElement($el, 1000, -window.innerHeight / 2 + 50)
+    $el && springScrollToElement($el, -window.innerHeight / 2 + 50)
   }, [id])
   return (
     <div className={clsx(styles['comment'], className)} id={id} {...htmlProps}>

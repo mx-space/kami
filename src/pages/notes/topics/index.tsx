@@ -1,13 +1,13 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { TransitionGroup } from 'react-transition-group'
 
 import type { TopicModel } from '@mx-space/api-client'
-import { RightLeftTransitionView } from '@mx-space/kami-design/components/Transition/right-left'
 
-import { Seo } from '~/components/biz/Seo'
+import { Seo } from '~/components/app/Seo'
+import { TimelineListWrapper } from '~/components/in-page/Timeline/TimelineListWrapper'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
+import { RightToLeftTransitionView } from '~/components/ui/Transition/right-left'
 import { apiClient } from '~/utils/client'
 
 // TODO
@@ -22,15 +22,13 @@ const TopicPage: NextPage = () => {
     <ArticleLayout title="专栏">
       <Seo title="专栏" />
       <div className="article-list">
-        <ul>
-          <TransitionGroup>
-            {topics.map((topic) => (
-              <RightLeftTransitionView key={topic.id} component="li">
-                <Link href={`/notes/topics/${topic.slug}`}>{topic.name}</Link>
-              </RightLeftTransitionView>
-            ))}
-          </TransitionGroup>
-        </ul>
+        <TimelineListWrapper>
+          {topics.map((topic) => (
+            <RightToLeftTransitionView key={topic.id} as="li">
+              <Link href={`/notes/topics/${topic.slug}`}>{topic.name}</Link>
+            </RightToLeftTransitionView>
+          ))}
+        </TimelineListWrapper>
       </div>
     </ArticleLayout>
   )

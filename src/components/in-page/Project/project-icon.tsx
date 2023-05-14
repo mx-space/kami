@@ -2,16 +2,16 @@ import { clsx } from 'clsx'
 import type { FC } from 'react'
 import { memo } from 'react'
 
-import { FlexText } from '@mx-space/kami-design/components/FlexText'
-import { ImageLazy } from '@mx-space/kami-design/components/Image'
+import { FlexText } from '~/components/ui/FlexText'
+import { ImageLazy } from '~/components/ui/Image'
 
 export const ProjectIcon: FC<{ avatar?: string; name?: string }> = memo(
   (props) => {
     return (
       <div
         className={clsx(
-          'project-icon flex-shrink-0 flex-grow flex items-center justify-center bg-light-bg',
-          props.avatar ? '' : 'bg-gray text-white',
+          'project-icon bg-light-bg flex flex-shrink-0 flex-grow items-center justify-center',
+          props.avatar ? '' : 'bg-gray-4 text-white',
         )}
       >
         {props.avatar ? (

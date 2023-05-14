@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import React, { memo, useEffect, useMemo, useRef, useState } from 'react'
 
-import { useKamiConfig } from '~/hooks/use-initial-data'
+import { useKamiConfig } from '~/hooks/app/use-initial-data'
 
 import { HeaderNavigationList } from './HeaderNavigationList'
 import styles from './index.module.css'

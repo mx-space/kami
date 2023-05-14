@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 
-import { Input } from '@mx-space/kami-design/components/Input'
+import { Input } from '~/components/ui/Input'
 
 export const NotePasswordConfrim: React.FC<{
   onSubmit(password: string): any
@@ -15,11 +15,11 @@ export const NotePasswordConfrim: React.FC<{
   }
 
   return (
-    <div className="flex h-full w-full absolute items-center justify-center flex-col">
+    <div className="absolute flex h-full w-full flex-col items-center justify-center">
       <p>
-        <strong className="font-medium text-2xl">此文章需要密码</strong>
+        <strong className="text-2xl font-medium">此文章需要密码</strong>
       </p>
-      <div className="space-x-3 text-center space-y-3 mt-4">
+      <div className="mt-4 space-x-3 space-y-3 text-center">
         <Input
           ref={ref}
           type="password"
@@ -30,7 +30,7 @@ export const NotePasswordConfrim: React.FC<{
           }}
         />
         <button
-          className="btn !bg-primary !text-white flex-shrink-0"
+          className="btn !bg-primary flex-shrink-0 !text-white"
           onClick={handleSubmit}
         >
           提交

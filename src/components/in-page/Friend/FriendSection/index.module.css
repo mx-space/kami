@@ -1,0 +1,60 @@
+.card {
+  @apply relative !m-0  flex space-x-4 p-2;
+  @apply !border-0;
+
+  &:hover {
+    @apply before:bg-gray-4;
+  }
+
+  &::before {
+    @apply -z-1 absolute inset-0 rounded-xl bg-transparent opacity-50 transition-all;
+
+    content: '';
+  }
+
+  &:hover {
+    :global {
+      .avatar {
+        @apply ease transform duration-500;
+
+        transform: scale(1.02);
+      }
+    }
+  }
+
+  :global {
+    .avatar {
+      @apply transition-transform;
+    }
+  }
+}
+
+.border {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  pointer-events: none;
+
+  :global {
+    svg {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      vertical-align: unset;
+      overflow: visible;
+    }
+
+    circle {
+      shape-rendering: crispEdges;
+      stroke: var(--secondary);
+      stroke-width: 3px;
+      fill: transparent;
+      stroke-dashoffset: 0;
+      transition-property: stroke-dashoffset;
+      transition-duration: 0.5s;
+    }
+  }
+}

@@ -4,18 +4,17 @@ import type { FC } from 'react'
 import { memo, useEffect, useMemo, useRef, useState } from 'react'
 import { shallow } from 'zustand/shallow'
 
-import { IcBaselineMenuOpen } from '@mx-space/kami-design/components/Icons/layout'
-
 import { useAppStore } from '~/atoms/app'
 import { useIsLogged } from '~/atoms/user'
-import { CustomLogo as Logo } from '~/components/universal/Logo'
+import { CustomLogo as Logo } from '~/components/common/Logo'
+import { IcBaselineMenuOpen } from '~/components/ui/Icons/layout'
 import { TrackerAction } from '~/constants/tracker'
-import { useAnalyze } from '~/hooks/use-analyze'
-import { useGetHeaderMeta } from '~/hooks/use-header-meta'
-import { useInitialData, useKamiConfig } from '~/hooks/use-initial-data'
-import { useIsClient } from '~/hooks/use-is-client'
-import { useSingleAndDoubleClick } from '~/hooks/use-single-double-click'
-import { useIsOverPostTitleHeight } from '~/hooks/use-viewport'
+import { useAnalyze } from '~/hooks/app/use-analyze'
+import { useGetHeaderMeta } from '~/hooks/app/use-header-meta'
+import { useInitialData, useKamiConfig } from '~/hooks/app/use-initial-data'
+import { useIsClient } from '~/hooks/common/use-is-client'
+import { useSingleAndDoubleClick } from '~/hooks/common/use-single-double-click'
+import { useIsOverPostTitleHeight } from '~/hooks/ui/use-viewport'
 
 import { HeaderActionBasedOnRouterPath } from './HeaderActionBasedOnRouterPath'
 import { HeaderBase } from './HeaderBase'
@@ -105,12 +104,12 @@ export const Header: FC = () => {
         <div
           className={classNames(
             styles['head-swiper'],
-            'justify-between min-w-0',
+            'min-w-0 justify-between',
           )}
           ref={appHeaderRef}
         >
           <div
-            className="flex items-center justify-center cursor-pointer select-none min-w-0"
+            className="flex min-w-0 cursor-pointer select-none items-center justify-center"
             onClick={clickFunc}
           >
             <div className={styles['header-logo']}>

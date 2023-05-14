@@ -3,11 +3,10 @@ import Router from 'next/router'
 import { useState } from 'react'
 import { message } from 'react-message-popup'
 
-import { PhUser } from '@mx-space/kami-design/components/Icons/for-comment'
-import { CarbonPassword } from '@mx-space/kami-design/components/Icons/for-login'
-import { Input } from '@mx-space/kami-design/components/Input'
-
 import { useUserStore } from '~/atoms/user'
+import { PhUser } from '~/components/ui/Icons/for-comment'
+import { CarbonPassword } from '~/components/ui/Icons/for-login'
+import { Input } from '~/components/ui/Input'
 import { apiClient } from '~/utils/client'
 import { releaseDevtool } from '~/utils/console'
 

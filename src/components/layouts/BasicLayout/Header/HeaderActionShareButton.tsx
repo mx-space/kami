@@ -1,9 +1,8 @@
 import type { FC } from 'react'
 import { memo } from 'react'
 
-import { MdiShare } from '@mx-space/kami-design/components/Icons/layout'
-
-import { useGetHeaderShare } from '~/hooks/use-header-meta'
+import { MdiShare } from '~/components/ui/Icons/layout'
+import { useGetHeaderShare } from '~/hooks/app/use-header-meta'
 
 import {
   HeaderActionButton,
@@ -40,7 +39,7 @@ export const HeaderActionButtonWithIcon: FC<{
 }> = memo(({ icon, title, onClick }) => {
   return (
     <div onClick={onClick} className="flex items-center justify-center">
-      <span className="inline-flex items-center mr-2">{icon}</span>
+      <span className="mr-2 inline-flex items-center">{icon}</span>
 
       <span className="flex-shrink-0">{title}</span>
     </div>

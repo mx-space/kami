@@ -4,12 +4,11 @@ import type { FC } from 'react'
 import React, { memo, useCallback, useContext, useEffect } from 'react'
 import { Modifier, ShortcutContext } from 'react-shortcut-guide'
 
-import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
-
-import { FontIcon } from '~/components/universal/FontIcon'
+import { FloatPopover } from '~/components/ui/FloatPopover'
+import { FontIcon } from '~/components/ui/FontIcon'
 import { TrackerAction } from '~/constants/tracker'
-import { useAnalyze } from '~/hooks/use-analyze'
-import { useHeaderNavList } from '~/hooks/use-header-nav-list'
+import { useAnalyze } from '~/hooks/app/use-analyze'
+import { useHeaderNavList } from '~/hooks/app/use-header-nav-list'
 import type { Menu } from '~/types/config'
 
 import styles from './index.module.css'

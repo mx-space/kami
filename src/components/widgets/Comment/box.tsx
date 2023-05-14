@@ -14,21 +14,21 @@ import isEmail from 'validator/lib/isEmail'
 import isUrl from 'validator/lib/isURL'
 import { create } from 'zustand'
 
-import { FloatPopover } from '@mx-space/kami-design/components/FloatPopover'
+import { useIsLogged, useUserStore } from '~/atoms/user'
+import { ImpressionView } from '~/components/common/ImpressionView'
+import { Button } from '~/components/ui/Button'
+import { FloatPopover } from '~/components/ui/FloatPopover'
 import {
   GridiconsNoticeOutline,
   MdiEmailFastOutline,
   PhUser,
   SiGlyphGlobal,
-} from '@mx-space/kami-design/components/Icons/for-comment'
-import { Input } from '@mx-space/kami-design/components/Input'
-
-import { useIsLogged, useUserStore } from '~/atoms/user'
-import { ImpressionView } from '~/components/biz/ImpressionView'
+} from '~/components/ui/Icons/for-comment'
+import { Input } from '~/components/ui/Input'
 import { kaomoji } from '~/constants/kaomoji'
 import { TrackerAction } from '~/constants/tracker'
-import { useAnalyze } from '~/hooks/use-analyze'
-import { useSyncEffectOnce } from '~/hooks/use-sync-effect'
+import { useAnalyze } from '~/hooks/app/use-analyze'
+import { useSyncEffectOnce } from '~/hooks/common/use-sync-effect'
 import { omit, pick, sample } from '~/utils/_'
 import { apiClient } from '~/utils/client'
 import { isClientSide, isDev } from '~/utils/env'
@@ -340,13 +340,13 @@ export const CommentBox: FC<{
         }
       />
 
-      <div className="relative flex justify-between mt-2 flex-wrap items-center">
-        <div className="flex-shrink-0 flex space-x-2 items-center">
+      <div className="relative mt-2 flex flex-wrap items-center justify-between">
+        <div className="flex flex-shrink-0 items-center space-x-2">
           <MarkdownSupport />
           <KaomojiButton onClickKaomoji={handleInsertEmoji} />
         </div>
 
-        <div className="whitespace-nowrap flex-shrink-0 flex items-center">
+        <div className="flex flex-shrink-0 items-center whitespace-nowrap">
           <CommentBoxOption
             refId={refId}
             commentId={commentId}
@@ -354,17 +354,20 @@ export const CommentBox: FC<{
           />
 
           {onCancel && (
-            <button className="btn red" onClick={handleCancel}>
+            <Button
+              className="btn !border-red !text-red !bg-transparent"
+              onClick={handleCancel}
+            >
               取消回复
-            </button>
+            </Button>
           )}
-          <button
+          <Button
             className="btn ml-[12px]"
             onClick={handleSubmit}
             disabled={text.trim().length === 0}
           >
             发送
-          </button>
+          </Button>
         </div>
       </div>
     </div>
@@ -387,7 +390,7 @@ const CommentBoxOption: FC<{
   return (
     <>
       {isLogged && !isReply && (
-        <fieldset className="inline-flex items-center children:cursor-pointer">
+        <fieldset className="children:cursor-pointer inline-flex items-center">
           <input
             type="checkbox"
             id="comment-box-sync"
@@ -402,7 +405,7 @@ const CommentBoxOption: FC<{
         </fieldset>
       )}
       {!isLogged && !isReply && (
-        <fieldset className="inline-flex items-center children:cursor-pointer">
+        <fieldset className="children:cursor-pointer inline-flex items-center">
           <input
             type="checkbox"
             id="comment-box-whispers"
@@ -424,12 +427,12 @@ const MarkdownSupport = () => {
     <FloatPopover
       triggerComponent={
         useRef(() => (
-          <button
+          <Button
             aria-label="support markdown"
-            className="btn blue text-lg flex-shrink-0 mr-2 cursor-default pointer-events-none !p-2 rounded-full"
+            className="btn !text-secondary pointer-events-none mr-2 flex-shrink-0 cursor-not-allowed rounded-full border-[2px] !border-current !bg-transparent !p-2 text-lg"
           >
             <GridiconsNoticeOutline />
-          </button>
+          </Button>
         )).current
       }
     >
@@ -454,9 +457,9 @@ const KaomojiButton: FC<{ onClickKaomoji: (kaomoji: string) => any }> = memo(
         trigger="both"
         wrapperClassNames="flex-shrink-0"
         triggerComponent={memo(() => (
-          <button className="btn green mr-[12px] cursor-pointer">
+          <Button className="btn !bg-secondary mr-[12px] cursor-pointer">
             {randomKaomoji.current}
-          </button>
+          </Button>
         ))}
       >
         <ImpressionView
@@ -464,11 +467,11 @@ const KaomojiButton: FC<{ onClickKaomoji: (kaomoji: string) => any }> = memo(
           trackerMessage="曝光 Kaomoji 面板"
           onTrack={handleTrack}
         >
-          <div className="w-[300px] overflow-auto max-w-[80vw] h-[300px] max-h-[50vh]">
+          <div className="h-[300px] max-h-[50vh] w-[300px] max-w-[80vw] overflow-auto">
             {kaomoji.map((emoji, i) => (
-              <button
+              <Button
                 aria-label="kaomoji panel"
-                className="text-blue p-2"
+                className="!text-secondary !bg-transparent p-2"
                 key={i}
                 onClick={() => {
                   event({
@@ -479,7 +482,7 @@ const KaomojiButton: FC<{ onClickKaomoji: (kaomoji: string) => any }> = memo(
                 }}
               >
                 {emoji}
-              </button>
+              </Button>
             ))}
           </div>
         </ImpressionView>
