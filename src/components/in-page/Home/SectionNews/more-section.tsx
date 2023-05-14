@@ -3,8 +3,8 @@ import { memo, useCallback, useMemo, useState } from 'react'
 import useSWR from 'swr'
 
 import { FaSolidKissWinkHeart } from '~/components/ui/Icons/for-home'
-import { LikeButton } from '~/components/universal/LikeButton'
-import { NoticePanel } from '~/components/universal/Notice'
+import { LikeButton } from '~/components/ui/LikeButton'
+import { NoticePanel } from '~/components/ui/Notice'
 import {
   useIsEnableSubscribe,
   usePresentSubscribeModal,

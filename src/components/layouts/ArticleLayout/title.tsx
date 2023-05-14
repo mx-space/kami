@@ -2,8 +2,7 @@ import { memo } from 'react'
 
 import { useAppStore } from '~/atoms/app'
 import { useIsLogged } from '~/atoms/user'
-import { TextFade } from '~/components/ui/Animate/text-anim'
-import { useIsClient } from '~/hooks/common/use-is-client'
+import { TextUpTransitionView } from '~/components/ui/Transition/text-up'
 import { resolveUrl } from '~/utils/utils'
 
 import { useArticleLayoutProps } from './hooks'
@@ -20,20 +19,16 @@ export const ArticleLayoutTitle = memo<{ animate?: boolean }>(
     } = useArticleLayoutProps()
     const isLogged = useIsLogged()
     const url = useAppStore((state) => state.appUrl)
-    const isClientSide = useIsClient()
+
     if (!title) {
       return null
     }
     return (
       <section className={styles['post-title']}>
         <h1 className={styles['h1']} suppressHydrationWarning>
-          {isClientSide ? (
-            <TextFade appear={animate} key={title}>
-              {title}
-            </TextFade>
-          ) : (
-            title
-          )}
+          <TextUpTransitionView appear={animate} key={title}>
+            {title}
+          </TextUpTransitionView>
 
           {type && id && isLogged && url ? (
             <a
@@ -54,21 +49,21 @@ export const ArticleLayoutTitle = memo<{ animate?: boolean }>(
 
         {subtitle && (
           <h2 suppressHydrationWarning>
-            {isClientSide && subtitleAnimation ? (
+            {subtitleAnimation ? (
               typeof subtitle === 'string' ? (
-                <TextFade appear={animate} key={subtitle}>
+                <TextUpTransitionView appear={animate} key={subtitle}>
                   {subtitle}
-                </TextFade>
+                </TextUpTransitionView>
               ) : (
                 subtitle.map((str, index) => (
-                  <TextFade
+                  <TextUpTransitionView
                     appear={animate}
                     className="mb-2"
-                    delay={index}
+                    initialDelay={index}
                     key={subtitle[index]}
                   >
                     {str}
-                  </TextFade>
+                  </TextUpTransitionView>
                 ))
               )
             ) : (

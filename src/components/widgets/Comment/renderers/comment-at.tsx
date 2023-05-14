@@ -20,7 +20,7 @@ export const CommentAtRender: FC<{ id: string }> = memo(({ id: value }) => {
 
     const $el = document.getElementById(`comments-${comment?.id}`)
 
-    $el && springScrollToElement($el, 1000, -120)
+    $el && springScrollToElement($el, -120)
   }
   const onLeave: MouseEventHandler<HTMLAnchorElement> = useCallback(() => {
     if (comment?.id) {
@@ -34,7 +34,7 @@ export const CommentAtRender: FC<{ id: string }> = memo(({ id: value }) => {
   return (
     <a
       href="javascript:;"
-      className="mr-[12px] text-primary"
+      className="text-primary mr-[12px]"
       onMouseOver={onMouseOver}
       onMouseLeave={onLeave}
       onClick={onClick}

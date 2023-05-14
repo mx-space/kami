@@ -13,8 +13,9 @@ import type { PostModel } from '@mx-space/api-client'
 
 import { usePostCollection } from '~/atoms/collections/post'
 import type { ModelWithDeleted } from '~/atoms/collections/utils/base'
+import { Seo } from '~/components/app/Seo'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
-import { Seo } from '~/components/common/Seo'
+import { KamiMarkdown } from '~/components/common/KamiMarkdown'
 import Outdate from '~/components/in-page/Post/Outdate'
 import { PostRelated } from '~/components/in-page/Post/PostRelated'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
@@ -27,7 +28,6 @@ import {
 } from '~/components/ui/Icons/for-post'
 import { ImageSizeMetaContext } from '~/components/ui/Image/context'
 import { Loading } from '~/components/ui/Loading'
-import { KamiMarkdown } from '~/components/universal/Markdown'
 import type { ActionProps } from '~/components/widgets/ArticleAction'
 import { SearchFAB } from '~/components/widgets/Search'
 import { SubscribeBell } from '~/components/widgets/SubscribeBell'
@@ -64,9 +64,7 @@ const CommentLazy = dynamic(() =>
 )
 
 const NumberTransition = dynamic(() =>
-  import('~/components/universal/NumberRecorder').then(
-    (mo) => mo.NumberTransition,
-  ),
+  import('~/components/ui/NumberRecorder').then((mo) => mo.NumberTransition),
 )
 
 const useUpdatePost = (post: ModelWithDeleted<PostModel>) => {

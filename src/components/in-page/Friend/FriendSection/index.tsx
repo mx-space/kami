@@ -1,11 +1,10 @@
 import type { FC } from 'react'
 import { useCallback, useMemo, useState } from 'react'
-import { TransitionGroup } from 'react-transition-group'
 
 import type { LinkModel } from '@mx-space/api-client'
 
 import { Avatar } from '~/components/ui/Avatar'
-import { BottomUpTransitionView } from '~/components/ui/Transition/bottom-up'
+import { BottomToUpTransitionView } from '~/components/ui/Transition/bottom-up'
 
 import styles from './index.module.css'
 
@@ -63,17 +62,15 @@ const friendAvatarWrapperProps = {
 }
 export const FriendSection: FC<FriendSectionProps> = ({ data }) => {
   return (
-    <TransitionGroup>
-      <div className="<sm:grid-cols-1 grid grid-cols-2 gap-6">
-        {data.map((link, i) => {
-          return (
-            <BottomUpTransitionView key={link.id} timeout={{ enter: 100 * i }}>
-              <Card link={link} />
-            </BottomUpTransitionView>
-          )
-        })}
-      </div>
-    </TransitionGroup>
+    <div className="<sm:grid-cols-1 grid grid-cols-2 gap-6">
+      {data.map((link, i) => {
+        return (
+          <BottomToUpTransitionView key={link.id} timeout={{ enter: 50 * i }}>
+            <Card link={link} />
+          </BottomToUpTransitionView>
+        )
+      })}
+    </div>
   )
 }
 

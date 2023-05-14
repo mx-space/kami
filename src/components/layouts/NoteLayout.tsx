@@ -17,13 +17,13 @@ import {
   FluentEyeHide20Regular,
   RegularBookmark,
 } from '~/components/ui/Icons/layout'
-import { BottomUpTransitionView } from '~/components/ui/Transition/bottom-up'
+import { BottomToUpTransitionView } from '~/components/ui/Transition/bottom-up'
 import { apiClient } from '~/utils/client'
 import { resolveUrl } from '~/utils/utils'
 
 import { ClientOnly } from '../app/ClientOnly'
+import { IconTransition } from '../common/IconTransition'
 import { Banner } from '../ui/Banner'
-import { IconTransition } from '../universal/IconTransition'
 
 const NoteTimelineList = dynamic(() =>
   import('~/components/in-page/Note/NoteTimelineList').then(
@@ -97,17 +97,14 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
     const noAppear = globalThis.location ? location.hash : false
     return (
       <main className="is-note relative max-w-[50em]" ref={ref}>
-        <BottomUpTransitionView
-          id={id}
-          in={true}
+        <BottomToUpTransitionView
+          key={id}
           appear={!noAppear}
-          mountOnEnter
-          unmountOnExit
-          timeout={0}
+          exit={{ opacity: 0 }}
         >
           <div className="note-article relative">
             <ClientOnly>
-              <div className="title-headline text-light-brown dark:text-shizuku-text">
+              <div className="title-headline dark:text-shizuku-text">
                 <span className="inline-flex items-center">
                   <time className="font-medium">{dateFormat}</time>
                   {!isPreview && (
@@ -161,7 +158,7 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
             </Collapse>
 
             <div>
-              <h1 className="!before:hidden headline text-brown dark:text-shizuku-text !mt-8 text-center">
+              <h1 className="!before:hidden headline dark:text-shizuku-text !mt-8 text-center">
                 <FloatPopover
                   triggerComponent={() => <>{title}</>}
                   placement="bottom"
@@ -183,7 +180,7 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
               {children}
             </div>
           </div>
-        </BottomUpTransitionView>
+        </BottomToUpTransitionView>
 
         {!isPreview && <NoteTimelineList noteId={id} />}
       </main>

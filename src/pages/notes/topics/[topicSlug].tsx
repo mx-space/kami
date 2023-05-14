@@ -1,18 +1,17 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import { useCallback, useEffect, useState } from 'react'
-import { TransitionGroup } from 'react-transition-group'
 
 import type { NoteModel, Pager, TopicModel } from '@mx-space/api-client'
 
+import { Seo } from '~/components/app/Seo'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
-import { Seo } from '~/components/common/Seo'
 import { NoteTopicMarkdownRender } from '~/components/in-page/Note/NoteTopic/markdown-render'
 import { TimelineListWrapper } from '~/components/in-page/Timeline/TimelineListWrapper'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { Divider } from '~/components/ui/Divider'
-import { RightLeftTransitionView } from '~/components/ui/Transition/right-left'
-import { Pagination } from '~/components/universal/Pagination'
+import { Pagination } from '~/components/ui/Pagination'
+import { RightToLeftTransitionView } from '~/components/ui/Transition/right-left'
 import { apiClient } from '~/utils/client'
 
 const TopicDetailPage: NextPage<TopicModel> = (props) => {
@@ -60,14 +59,14 @@ const TopicDetailPage: NextPage<TopicModel> = (props) => {
         )}
       </div>
       <div className="article-list mt-16">
-        <TransitionGroup component={TimelineListWrapper}>
+        <TimelineListWrapper>
           {notes &&
             notes.map((note) => {
               const date = new Date(note.created)
               return (
-                <RightLeftTransitionView
+                <RightToLeftTransitionView
                   key={note.id}
-                  component="li"
+                  as="li"
                   className="flex min-w-0 items-center justify-between"
                 >
                   <Link
@@ -82,10 +81,10 @@ const TopicDetailPage: NextPage<TopicModel> = (props) => {
                     {date.getDate().toString().padStart(2, '0')}/
                     {date.getFullYear()}
                   </span>
-                </RightLeftTransitionView>
+                </RightToLeftTransitionView>
               )
             })}
-        </TransitionGroup>
+        </TimelineListWrapper>
 
         {pager && (
           <Pagination

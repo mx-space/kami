@@ -1,18 +1,19 @@
+'use client'
+
 import Link from 'next/link'
 import type { FC } from 'react'
 import { memo, useCallback, useEffect, useRef, useState } from 'react'
-import { TransitionGroup } from 'react-transition-group'
 
 import type { PostModel, TagModel } from '@mx-space/api-client'
 
 import { useActionStore } from '~/atoms/action'
 import { useAppStore } from '~/atoms/app'
-import { withNoSSR } from '~/components/common/HoC/no-ssr'
+import { withNoSSR } from '~/components/app/HoC/no-ssr'
 import { JamTags } from '~/components/ui/Icons/layout'
 import { Overlay } from '~/components/ui/Overlay'
-import { BottomUpTransitionView } from '~/components/ui/Transition/bottom-up'
-import { RightLeftTransitionView } from '~/components/ui/Transition/right-left'
-import { BigTag } from '~/components/universal/Tag'
+import { BigTag } from '~/components/ui/Tag'
+import { BottomToUpTransitionView } from '~/components/ui/Transition/bottom-up'
+import { RightToLeftTransitionView } from '~/components/ui/Transition/right-left'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/app/use-analyze'
 import { apiClient } from '~/utils/client'
@@ -36,7 +37,7 @@ const TagsContainer: FC<{ children?: JSX.Element[]; onClick: () => any }> = ({
   )
 }
 
-const _FloatPostTagButton: FC = memo(() => {
+const _TagFAB: FC = memo(() => {
   const [showTags, setShowTags] = useState(false)
   const [postWithTag, setTagPost] = useState<
     Pick<PostModel, 'id' | 'title' | 'slug' | 'created' | 'category'>[]
@@ -101,15 +102,14 @@ const _FloatPostTagButton: FC = memo(() => {
       }}
     >
       <TagsContainer onClick={onTagContainerClick}>
-        <div className="absolute bottom-[50vh] top-[100px] z-[3]">
-          <TransitionGroup className="flex flex-wrap items-end">
+        <div className="z-3 absolute bottom-[50vh] top-[100px] overflow-auto">
+          <div className="flex flex-wrap items-end">
             {tags.map(({ name }, i) => {
               return (
-                <BottomUpTransitionView
+                <BottomToUpTransitionView
                   appear
-                  unmountOnExit
                   key={name}
-                  className="pr-4"
+                  className="mb-4 pr-4"
                   timeout={{ enter: 50 * i }}
                 >
                   <BigTag
@@ -119,45 +119,44 @@ const _FloatPostTagButton: FC = memo(() => {
                       fetchPostsWithTag(name)
                     }}
                   />
-                </BottomUpTransitionView>
+                </BottomToUpTransitionView>
               )
             })}
-          </TransitionGroup>
+          </div>
         </div>
 
         <div className="absolute top-[50vh]">
           <article className="article-list text-shizuku-text">
-            <ul>
-              <TransitionGroup>
-                {postWithTag ? (
-                  postWithTag.map((child, i) => {
-                    const date = new Date(child.created)
+            <ul className="">
+              {postWithTag ? (
+                postWithTag.map((child, i) => {
+                  const date = new Date(child.created)
 
-                    return (
-                      <RightLeftTransitionView
-                        key={child.id}
-                        timeout={{ enter: 50 * i }}
+                  return (
+                    <RightToLeftTransitionView
+                      key={child.id}
+                      timeout={{ enter: 50 * i }}
+                      useAnimatePresence={false}
+                      as="li"
+                      className="!children:text-always-white"
+                    >
+                      <Link
+                        className="!hover:border-b-always-white"
+                        href={`/posts/${child.category.slug}/${child.slug}`}
                       >
-                        <li>
-                          <Link
-                            href="/posts/[category]/[slug]"
-                            as={`/posts/${child.category.slug}/${child.slug}`}
-                          >
-                            {child.title}
-                          </Link>
-                          <span className="meta">
-                            {Intl.DateTimeFormat('en-US').format(date)}
-                          </span>
-                        </li>
-                      </RightLeftTransitionView>
-                    )
-                  })
-                ) : (
-                  <RightLeftTransitionView timeout={100}>
-                    <span>载入中...</span>
-                  </RightLeftTransitionView>
-                )}
-              </TransitionGroup>
+                        {child.title}
+                      </Link>
+                      <span className="meta">
+                        {Intl.DateTimeFormat('en-US').format(date)}
+                      </span>
+                    </RightToLeftTransitionView>
+                  )
+                })
+              ) : (
+                <RightToLeftTransitionView>
+                  <span>载入中...</span>
+                </RightToLeftTransitionView>
+              )}
             </ul>
           </article>
         </div>
@@ -166,4 +165,4 @@ const _FloatPostTagButton: FC = memo(() => {
   )
 })
 
-export const TagFAB = withNoSSR(_FloatPostTagButton)
+export const TagFAB = withNoSSR(_TagFAB)

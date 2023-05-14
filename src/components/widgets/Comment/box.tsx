@@ -16,6 +16,7 @@ import { create } from 'zustand'
 
 import { useIsLogged, useUserStore } from '~/atoms/user'
 import { ImpressionView } from '~/components/common/ImpressionView'
+import { Button } from '~/components/ui/Button'
 import { FloatPopover } from '~/components/ui/FloatPopover'
 import {
   GridiconsNoticeOutline,
@@ -353,17 +354,20 @@ export const CommentBox: FC<{
           />
 
           {onCancel && (
-            <button className="btn red" onClick={handleCancel}>
+            <Button
+              className="btn !border-red !text-red !bg-transparent"
+              onClick={handleCancel}
+            >
               取消回复
-            </button>
+            </Button>
           )}
-          <button
+          <Button
             className="btn ml-[12px]"
             onClick={handleSubmit}
             disabled={text.trim().length === 0}
           >
             发送
-          </button>
+          </Button>
         </div>
       </div>
     </div>
@@ -423,12 +427,12 @@ const MarkdownSupport = () => {
     <FloatPopover
       triggerComponent={
         useRef(() => (
-          <button
+          <Button
             aria-label="support markdown"
-            className="btn blue pointer-events-none mr-2 flex-shrink-0 cursor-default rounded-full !p-2 text-lg"
+            className="btn !text-secondary pointer-events-none mr-2 flex-shrink-0 cursor-not-allowed rounded-full border-[2px] !border-current !bg-transparent !p-2 text-lg"
           >
             <GridiconsNoticeOutline />
-          </button>
+          </Button>
         )).current
       }
     >
@@ -453,9 +457,9 @@ const KaomojiButton: FC<{ onClickKaomoji: (kaomoji: string) => any }> = memo(
         trigger="both"
         wrapperClassNames="flex-shrink-0"
         triggerComponent={memo(() => (
-          <button className="btn green mr-[12px] cursor-pointer">
+          <Button className="btn !bg-secondary mr-[12px] cursor-pointer">
             {randomKaomoji.current}
-          </button>
+          </Button>
         ))}
       >
         <ImpressionView
@@ -465,9 +469,9 @@ const KaomojiButton: FC<{ onClickKaomoji: (kaomoji: string) => any }> = memo(
         >
           <div className="h-[300px] max-h-[50vh] w-[300px] max-w-[80vw] overflow-auto">
             {kaomoji.map((emoji, i) => (
-              <button
+              <Button
                 aria-label="kaomoji panel"
-                className="text-blue p-2"
+                className="!text-secondary !bg-transparent p-2"
                 key={i}
                 onClick={() => {
                   event({
@@ -478,7 +482,7 @@ const KaomojiButton: FC<{ onClickKaomoji: (kaomoji: string) => any }> = memo(
                 }}
               >
                 {emoji}
-              </button>
+              </Button>
             ))}
           </div>
         </ImpressionView>

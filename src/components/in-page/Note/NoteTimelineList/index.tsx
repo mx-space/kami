@@ -15,7 +15,7 @@ import { ImpressionView } from '~/components/common/ImpressionView'
 import { Divider } from '~/components/ui/Divider'
 import { FloatPopover } from '~/components/ui/FloatPopover'
 import { MaterialSymbolsArrowCircleRightOutlineRounded } from '~/components/ui/Icons/for-note'
-import { LeftRightTransitionView } from '~/components/ui/Transition/left-right'
+import { LeftToRightTransitionView } from '~/components/ui/Transition/left-right'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/app/use-analyze'
 import { useIsUnMounted } from '~/hooks/common/use-is-unmounted'
@@ -139,42 +139,29 @@ const ObserveredNoteTimelineList: FC<
   )
 }
 
-const scrollToTop = () => {
-  springScrollToTop(WAITING_SCROLL_TIME)
-}
 export const MemoedItem = memo<{
   active: boolean
   item: NotePartial
-}>(
-  (props) => {
-    const { active, item } = props
+}>((props) => {
+  const { active, item } = props
 
-    return (
-      <li className="flex items-center">
-        <LeftRightTransitionView in={active}>
-          <MaterialSymbolsArrowCircleRightOutlineRounded className="text-pink" />
-        </LeftRightTransitionView>
-        <Link
-          className={clsx(active ? styles['active'] : null, styles.item)}
-          href={`/notes/${item.nid}`}
-          key={item.id}
-          scroll={false}
-          onClick={scrollToTop}
-        >
-          {item.title}
-        </Link>
-      </li>
-    )
-  },
-  (prevProps, nextProps) => {
-    return (
-      prevProps.active === nextProps.active &&
-      prevProps.item.id === nextProps.item.id &&
-      prevProps.item.title === nextProps.item.title &&
-      prevProps.item.nid === nextProps.item.nid
-    )
-  },
-)
+  return (
+    <li className="flex items-center">
+      <LeftToRightTransitionView in={active} as="span">
+        <MaterialSymbolsArrowCircleRightOutlineRounded className="text-secondary" />
+      </LeftToRightTransitionView>
+      <Link
+        className={clsx(active ? styles['active'] : null, styles.item)}
+        href={`/notes/${item.nid}`}
+        key={item.id}
+        scroll={false}
+        onClick={springScrollToTop}
+      >
+        {item.title}
+      </Link>
+    </li>
+  )
+})
 
 export const NoteTimelineList: FC<
   NoteTimelineListProps & JSX.IntrinsicElements['div']

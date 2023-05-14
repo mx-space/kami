@@ -1,20 +1,17 @@
-import { BaseTransitionView } from './base'
+'use client'
 
-const duration = 300
+import type { FC, PropsWithChildren } from 'react'
 
-const defaultStyle = {
-  transition: `opacity ${duration}ms ease-out`,
-  opacity: 0,
-}
+import { createTransitionView } from './factor'
+import type { BaseTransitionProps } from './typings'
 
-const transitionStyles = {
-  entering: { opacity: 0 },
-  entered: { opacity: 1 },
-  exiting: { opacity: 0 },
-  exited: { opacity: 0 },
-}
-
-export const FadeInOutTransitionView = BaseTransitionView(
-  defaultStyle,
-  transitionStyles,
-)
+export const FadeInOutTransitionView: FC<
+  PropsWithChildren<BaseTransitionProps>
+> = createTransitionView({
+  from: {
+    opacity: 0,
+  },
+  to: {
+    opacity: 1,
+  },
+})

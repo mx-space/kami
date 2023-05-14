@@ -4,7 +4,7 @@ import React, { Fragment, useCallback } from 'react'
 
 import Package from '~/../package.json'
 import { useAppStore } from '~/atoms/app'
-import { withNoSSR } from '~/components/common/HoC/no-ssr'
+import { withNoSSR } from '~/components/app/HoC/no-ssr'
 import { ImpressionView } from '~/components/common/ImpressionView'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/app/use-analyze'

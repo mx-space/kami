@@ -11,12 +11,12 @@ import { simpleCamelcaseKeys } from '@mx-space/api-client'
 import { useNoteCollection } from '~/atoms/collections/note'
 import { usePageCollection } from '~/atoms/collections/page'
 import { usePostCollection } from '~/atoms/collections/post'
+import { KamiMarkdown } from '~/components/common/KamiMarkdown'
 import { NoteMarkdownRender } from '~/components/in-page/Note/NoteMarkdownRender'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { NoteLayout } from '~/components/layouts/NoteLayout'
 import { Banner } from '~/components/ui/Banner'
 import { ImageSizeMetaContext } from '~/components/ui/Image/context'
-import { KamiMarkdown } from '~/components/universal/Markdown'
 import { isServerSide } from '~/utils/env'
 
 const noopMap = new Map()

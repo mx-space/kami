@@ -41,7 +41,7 @@ import { getSummaryFromMd } from '~/utils/markdown'
 import { parseDate } from '~/utils/time'
 import { noop } from '~/utils/utils'
 
-import { Seo } from '../../components/common/Seo'
+import { Seo } from '../../components/app/Seo'
 import { isDev } from '../../utils/env'
 
 const NoteTopic = dynamic(() =>

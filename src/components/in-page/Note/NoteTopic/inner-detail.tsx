@@ -4,12 +4,12 @@ import useSWR from 'swr'
 
 import type { TopicModel } from '@mx-space/api-client'
 
+import { RelativeTime } from '~/components/common/RelativeTime'
 import { Divider, DividerVertical } from '~/components/ui/Divider'
 import {
   MdiClockOutline,
   MdiFountainPenTip,
 } from '~/components/ui/Icons/for-note'
-import { RelativeTime } from '~/components/universal/RelativeTime'
 import { apiClient } from '~/utils/client'
 
 import { NoteTopicMarkdownRender } from './markdown-render'

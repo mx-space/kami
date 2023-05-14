@@ -5,12 +5,12 @@ import { useUserStore } from '~/atoms/user'
 import { ProjectList } from '~/components/in-page/Project/list'
 import { CodiconGithubInverted } from '~/components/ui/Icons/menu-icon'
 import { Loading } from '~/components/ui/Loading'
-import { BottomUpTransitionView } from '~/components/ui/Transition/bottom-up'
+import { BottomToUpTransitionView } from '~/components/ui/Transition/bottom-up'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/app/use-analyze'
 import { apiClient } from '~/utils/client'
 
-import { Seo } from '../../components/common/Seo'
+import { Seo } from '../../components/app/Seo'
 
 const ProjectView = () => {
   const { data: projects, isLoading: loading } = useSWR(`project`, () =>
@@ -51,9 +51,9 @@ const ProjectView = () => {
               </a>
             )}
           </div>
-          <BottomUpTransitionView>
+          <BottomToUpTransitionView>
             <ProjectList projects={projects || []} />
-          </BottomUpTransitionView>
+          </BottomToUpTransitionView>
         </>
       )}
     </main>

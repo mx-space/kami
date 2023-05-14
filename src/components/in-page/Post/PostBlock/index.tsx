@@ -1,4 +1,5 @@
 import { clsx } from 'clsx'
+import Link from 'next/link'
 import Router from 'next/router'
 import type { FC } from 'react'
 import React, { useCallback, useMemo, useState } from 'react'
@@ -8,8 +9,9 @@ import type { PostModel } from '@mx-space/api-client'
 
 import { useAppStore } from '~/atoms/app'
 import { useIsLogged } from '~/atoms/user'
+import { IconTransition } from '~/components/common/IconTransition'
+import { IcRoundKeyboardDoubleArrowRight } from '~/components/ui/Icons/arrow'
 import { PhPushPin, PhPushPinFill } from '~/components/ui/Icons/for-post'
-import { IconTransition } from '~/components/universal/IconTransition'
 import { useInitialData } from '~/hooks/app/use-initial-data'
 import { apiClient } from '~/utils/client'
 import { springScrollToTop } from '~/utils/spring'
@@ -46,9 +48,14 @@ export const PostBlock: FC<PostBlockProps> = (props) => {
     return map
   }, [initialData.categories])
 
+  const postLink = useMemo(() => {
+    const categorySlug = post.category?.slug ?? categoryMap.get(post.categoryId)
+    return `/posts/${categorySlug}/${slug}`
+  }, [])
+
   const goToPost = useCallback(() => {
     const categorySlug = post.category?.slug ?? categoryMap.get(post.categoryId)
-    Router.push('/posts/[category]/[slug]', `/posts/${categorySlug}/${slug}`)
+    Router.push(`/posts/${categorySlug}/${slug}`)
     springScrollToTop()
   }, [categoryMap, post.category?.slug, post.categoryId, slug])
   const hasImage = post.images?.length > 0 && post.images[0].src
@@ -136,11 +143,20 @@ export const PostBlock: FC<PostBlockProps> = (props) => {
           </p>
           <div className="mb-10" />
         </article>
-        <section className={styles.navigator}>
-          <button className={styles.btn} onClick={goToPost}>
-            查看原文
-          </button>
-        </section>
+        <div className="mt-3 flex justify-end">
+          <Link
+            href={postLink}
+            className="text-accent hover:text-accent children:hover:ml-2 inline-flex items-center"
+            onClick={(e) => {
+              e.preventDefault()
+
+              goToPost()
+            }}
+          >
+            阅读全文{' '}
+            <IcRoundKeyboardDoubleArrowRight className="text-lg transition transition-all" />
+          </Link>
+        </div>
       </div>
       <div className="mb-4 pb-8" />
     </>

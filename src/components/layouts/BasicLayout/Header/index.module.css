@@ -1,5 +1,5 @@
 .header {
-  @apply fixed top-0 left-0 right-0 overflow-hidden;
+  @apply fixed left-0 right-0 top-0 overflow-hidden;
 
   height: 56px;
   z-index: 5;
@@ -39,13 +39,13 @@
 }
 
 .header-title-wrapper {
-  @apply flex flex-col ml-4 py-2 box-border justify-center min-w-0;
+  @apply ml-4 box-border flex min-w-0 flex-col justify-center py-2;
 
   height: 4rem;
 }
 
 .title {
-  @apply relative inline-block text-xl font-medium mt-0 truncate flex-shrink-0 min-w-0;
+  @apply relative mt-0 inline-block min-w-0 flex-shrink-0 truncate text-xl font-medium;
 
   &.title-has-sub {
     @apply text-lg;
@@ -53,7 +53,7 @@
 }
 
 .subtitle {
-  @apply text-sm text-gray-2 flex-1 min-w-0 truncate;
+  @apply text-gray-2 min-w-0 flex-1 truncate text-sm;
 
   margin-top: -0.3rem;
 }
@@ -64,7 +64,7 @@
 
 @screen phone {
   .more-button {
-    @apply absolute right-0 visible block cursor-pointer py-4 pl-4;
+    @apply visible absolute right-0 block cursor-pointer py-4 pl-4;
   }
 }
 
@@ -101,7 +101,7 @@
 }
 
 .link-item {
-  @apply inline-flex items-center px-4 cursor-pointer;
+  @apply inline-flex cursor-pointer items-center px-4;
 
   height: 4rem;
 }
@@ -111,8 +111,8 @@
 }
 
 .drawer {
-  @apply fixed z-90 top-0 bottom-0 right-0 bg-light-bg overflow-auto;
-  @apply transition-transform duration-300 p-6 text-light-brown;
+  @apply z-90 bg-light-bg fixed bottom-0 right-0 top-0 overflow-auto;
+  @apply p-6 transition-transform duration-300;
 
   width: 300px;
   max-width: 80vw;
@@ -129,7 +129,7 @@
 
   & .parent,
   & .children {
-    @apply py-2  flex items-center;
+    @apply flex  items-center py-2;
   }
 
   & .parent {
@@ -180,7 +180,7 @@
 
   &:hover .anchor-ball {
     opacity: 1;
-    background-color: var(--secondary);
+    background-color: var(--accent);
     border-radius: 3px;
     width: 3rem;
     height: 2px;
@@ -191,7 +191,7 @@
 .nav-container {
   height: 8rem;
 
-  @apply mx-20 relative;
+  @apply relative mx-20;
 
   @screen tablet {
     @apply mx-8;
@@ -278,7 +278,7 @@
   border-radius: 0.5em;
 
   & li {
-    @apply list-none py-3 px-2 justify-around flex items-center;
+    @apply flex list-none items-center justify-around px-2 py-3;
 
     white-space: nowrap;
   }

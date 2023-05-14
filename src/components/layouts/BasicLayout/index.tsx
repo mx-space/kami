@@ -30,7 +30,7 @@ const Header = React.lazy(() =>
 )
 
 const ColorModeNoticePanel = React.lazy(() =>
-  import('../../universal/Notice').then((mo) => ({
+  import('../../ui/Notice').then((mo) => ({
     default: mo.NoticePanel,
   })),
 )
@@ -123,7 +123,7 @@ export const BasicLayout: FC = memo(({ children }) => {
       setTimeout(() => {
         const $el = document.getElementById(decodeURIComponent(id))
 
-        $el && springScrollToElement($el, 1000, -window.innerHeight / 2 + 100)
+        $el && springScrollToElement($el, -window.innerHeight / 2 + 100)
       }, 1050)
     }
   }, [])

@@ -35,7 +35,7 @@ export const SubscribeBell: FC<SubscribeBellProps> = (props) => {
           站点已开启邮件订阅，点亮小铃铛，订阅最新文章哦~
         </p>
 
-        <TablerBellRinging className="text-secondary mt-4 scale-150 transform text-3xl opacity-50 transition-opacity hover:opacity-100" />
+        <TablerBellRinging className="text-accent mt-4 scale-150 transform text-3xl opacity-50 transition-opacity hover:opacity-100" />
       </button>
     </div>
   )

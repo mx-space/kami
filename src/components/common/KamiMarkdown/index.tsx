@@ -113,7 +113,7 @@ export const KamiMarkdown: FC<KamiMarkdownProps & MarkdownToJSX.Options> = memo(
 
                         springScrollToElement(
                           document.getElementById(content)!,
-                          undefined,
+
                           -window.innerHeight / 2,
                         )
                       }}

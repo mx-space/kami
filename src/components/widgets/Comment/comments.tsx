@@ -19,12 +19,12 @@ import type { CommentModel } from '@mx-space/api-client'
 import type { CommentModelWithHighlight } from '~/atoms/collections/comment'
 import { useCommentCollection } from '~/atoms/collections/comment'
 import { useUserStore } from '~/atoms/user'
+import { IconTransition } from '~/components/common/IconTransition'
 import { ImpressionView } from '~/components/common/ImpressionView'
+import { KamiMarkdown } from '~/components/common/KamiMarkdown'
 import { PhPushPin, PhPushPinFill } from '~/components/ui/Icons/for-post'
-import { BottomUpTransitionView } from '~/components/ui/Transition/bottom-up'
-import { IconTransition } from '~/components/universal/IconTransition'
-import { ImageTagPreview } from '~/components/universal/ImageTagPreview'
-import { KamiMarkdown } from '~/components/universal/Markdown'
+import { ImageTagPreview } from '~/components/ui/ImageTagPreview'
+import { BottomToUpTransitionView } from '~/components/ui/Transition/bottom-up'
 import { socketClient } from '~/socket'
 import { apiClient } from '~/utils/client'
 
@@ -53,7 +53,7 @@ const CommentList: FC = memo(() => {
   const comments = useCommentCollection((state) => state.comments)
 
   return (
-    <BottomUpTransitionView
+    <BottomToUpTransitionView
       appear
       timeout={useRef({ appear: 300, enter: 500 }).current}
     >
@@ -62,7 +62,7 @@ const CommentList: FC = memo(() => {
           return <InnerCommentList id={comment.id} key={comment.id} />
         })}
       </div>
-    </BottomUpTransitionView>
+    </BottomToUpTransitionView>
   )
 })
 

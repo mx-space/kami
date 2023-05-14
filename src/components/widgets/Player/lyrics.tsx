@@ -6,8 +6,8 @@ import { getTransitionSizes } from '@formkit/auto-animate'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 import { useMusicStore } from '~/atoms/music'
-import { withDesktopOnly } from '~/components/common/HoC/viewport'
-import { BottomUpTransitionView } from '~/components/ui/Transition/bottom-up'
+import { withDesktopOnly } from '~/components/app/HoC/viewport'
+import { BottomToUpTransitionView } from '~/components/ui/Transition/bottom-up'
 
 import type { LyricsContent } from './lyrics-manager'
 import { LyricsManager } from './lyrics-manager'
@@ -122,12 +122,15 @@ const LyricsRender: FC<{ lyrics: string }> = memo(({ lyrics }) => {
                   classNameMap[index],
                 )}
               >
-                <BottomUpTransitionView key={item.hms} timeout={{ enter: 300 }}>
+                <BottomToUpTransitionView
+                  key={item.hms}
+                  timeout={{ enter: 300 }}
+                >
                   <p className="truncate">
                     {item.content}
                     <span className="invisible select-none">.</span>
                   </p>
-                </BottomUpTransitionView>
+                </BottomToUpTransitionView>
               </li>
             )
           })}

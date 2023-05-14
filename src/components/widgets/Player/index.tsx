@@ -15,7 +15,7 @@ import { useAudio } from 'react-use'
 import { shallow } from 'zustand/shallow'
 
 import { useMusicStore, usePlayProgress } from '~/atoms/music'
-import { withNoSSR } from '~/components/common/HoC/no-ssr'
+import { withNoSSR } from '~/components/app/HoC/no-ssr'
 import { RootPortal } from '~/components/ui/Portal'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/app/use-analyze'

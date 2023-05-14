@@ -33,7 +33,7 @@
 .action button {
   width: 2.25em;
   height: 2.25em;
-  color: var(--brown);
+  color: theme(colors.accent);
   margin-top: 0.5em;
   background: var(--light-bg);
   border-radius: 66%;

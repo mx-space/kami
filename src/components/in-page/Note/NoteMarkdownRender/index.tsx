@@ -1,7 +1,7 @@
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import { memo } from 'react'
 
-import { KamiMarkdown } from '~/components/universal/Markdown'
+import { KamiMarkdown } from '~/components/common/KamiMarkdown'
 
 const Markdownrenderers: { [name: string]: Partial<MarkdownToJSX.Rule> } = {
   text: {

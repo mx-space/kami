@@ -6,9 +6,10 @@ import useSWR from 'swr'
 import type { LinkModel } from '@mx-space/api-client'
 import { LinkState, LinkType } from '@mx-space/api-client'
 
+import { withNoSSR } from '~/components/app/HoC/no-ssr'
+import { Seo } from '~/components/app/Seo'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
-import { withNoSSR } from '~/components/common/HoC/no-ssr'
-import { Seo } from '~/components/common/Seo'
+import { KamiMarkdown } from '~/components/common/KamiMarkdown'
 import { ApplyForLink } from '~/components/in-page/Friend/ApplyLink'
 import {
   BannedSection,
@@ -17,7 +18,6 @@ import {
   OutdateSection,
 } from '~/components/in-page/Friend/FriendSection'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
-import { KamiMarkdown } from '~/components/universal/Markdown'
 import { useInitialData } from '~/hooks/app/use-initial-data'
 import { shuffle } from '~/utils/_'
 import { apiClient } from '~/utils/client'
@@ -32,7 +32,7 @@ const FriendsView: NextPage<
   const { banned, collections, friends, outdated } = props
 
   return (
-    <ArticleLayout title="朋友们" subtitle="海内存知己, 天涯若比邻">
+    <ArticleLayout title="朋友们" subtitle="海内存知己，天涯若比邻">
       <Seo title="朋友们" />
       <article className="article-list">
         {friends.length > 0 && (

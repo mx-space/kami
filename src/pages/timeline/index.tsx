@@ -11,7 +11,7 @@ import type { TimelineData } from '@mx-space/api-client'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { TimelineListWrapper } from '~/components/in-page/Timeline/TimelineListWrapper'
 import { SolidBookmark } from '~/components/ui/Icons/for-note'
-import { NumberTransition } from '~/components/universal/NumberRecorder'
+import { NumberTransition } from '~/components/ui/NumberRecorder'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/app/use-analyze'
 import { useDetectPadOrMobile } from '~/hooks/ui/use-viewport'
@@ -19,7 +19,7 @@ import { apiClient } from '~/utils/client'
 import { springScrollToElement } from '~/utils/spring'
 import { dayOfYear, daysOfYear, secondOfDay, secondOfDays } from '~/utils/time'
 
-import { Seo } from '../../components/common/Seo'
+import { Seo } from '../../components/app/Seo'
 import { ArticleLayout } from '../../components/layouts/ArticleLayout'
 import styles from './index.module.css'
 
@@ -191,7 +191,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
         ) as HTMLElement
 
         if (target) {
-          springScrollToElement(target, undefined, -500)
+          springScrollToElement(target, -500)
           target.animate(
             [
               {

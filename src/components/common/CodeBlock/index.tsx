@@ -1,4 +1,4 @@
-import { Mermaid } from '~/components/universal/Mermaid'
+import { Mermaid } from '~/components/common/Mermaid'
 import { HighLighter } from '~/components/widgets/CodeHighlighter'
 
 export const CodeBlock = (props: {

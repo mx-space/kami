@@ -65,7 +65,7 @@ export const NoticePanel: FC<
         in={props.in}
         timeout={{ exit: 500 }}
         appear
-        unmountOnExit
+        useAnimatePresence
         onEntered={handleWantoDisappear}
       >
         <Notice {...props} />

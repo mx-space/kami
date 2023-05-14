@@ -22,7 +22,7 @@ export const useJumpToSimpleMarkdownRender = (id: string) => {
 
     event({
       action: TrackerAction.Interaction,
-      label: '跳转 Markdown 渲染',
+      label: '跳转 KamiMarkdown 渲染',
     })
   }
 

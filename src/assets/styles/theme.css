@@ -117,17 +117,13 @@ a,
 }
 
 .btn {
-  cursor: pointer;
-  background: var(--primary);
+  border-radius: 9999px;
   color: #fff;
+  cursor: pointer;
+  background-color: var(--accent);
   padding: 0.5em 1em;
   display: inline-block;
   border: 1px solid transparent;
-  border-radius: 1em;
-}
-
-.btn:hover {
-  color: inherit;
 }
 
 /* -- 禁用的按钮 */
@@ -340,10 +336,6 @@ article dl {
   line-height: 1.8;
 }
 
-article {
-  color: var(--light-brown);
-}
-
 article > h1 {
   margin-top: 5em;
 }
@@ -382,6 +374,6 @@ h1.headline,
   &::before {
     content: '';
     padding-left: 0.75em;
-    border-left: 2px solid var(--secondary);
+    border-left: 2px solid var(--accent);
   }
 }

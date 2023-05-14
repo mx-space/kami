@@ -3,7 +3,7 @@ import React, { useMemo } from 'react'
 
 import { autoPlacement, offset, shift } from '@floating-ui/react-dom'
 
-import { withNoSSR } from '~/components/common/HoC/no-ssr'
+import { withNoSSR } from '~/components/app/HoC/no-ssr'
 import { ImpressionView } from '~/components/common/ImpressionView'
 import { FloatPopover } from '~/components/ui/FloatPopover'
 import { useThemeConfig } from '~/hooks/app/use-initial-data'

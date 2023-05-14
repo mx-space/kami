@@ -4,14 +4,14 @@ import { useRef } from 'react'
 import { shallow } from 'zustand/shallow'
 
 import { useNoteCollection } from '~/atoms/collections/note'
+import { RelativeTime } from '~/components/common/RelativeTime'
 import {
   GgCoffee,
   MdiClockTimeThreeOutline,
   PhBookOpen,
 } from '~/components/ui/Icons/for-note'
-import { LikeButton } from '~/components/universal/LikeButton'
-import { NumberTransition } from '~/components/universal/NumberRecorder'
-import { RelativeTime } from '~/components/universal/RelativeTime'
+import { LikeButton } from '~/components/ui/LikeButton'
+import { NumberTransition } from '~/components/ui/NumberRecorder'
 import type { ActionProps } from '~/components/widgets/ArticleAction'
 import { ArticleFooterAction } from '~/components/widgets/ArticleAction'
 import { DonatePopover } from '~/components/widgets/Donate'

@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import { memo, useRef } from 'react'
 
-import { CustomLogo } from '~/components/universal/Logo'
+import { CustomLogo } from '~/components/common/Logo'
 
 const Loader: FC = memo(() => {
   const ref = useRef<HTMLDivElement>(null)

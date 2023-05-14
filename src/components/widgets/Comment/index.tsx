@@ -9,13 +9,13 @@ import type { Pager } from '@mx-space/api-client'
 
 import { useCommentCollection } from '~/atoms/collections/comment'
 import { useIsLogged } from '~/atoms/user'
-import { withNoSSR } from '~/components/common/HoC/no-ssr'
+import { withNoSSR } from '~/components/app/HoC/no-ssr'
 import { useKamiConfig } from '~/hooks/app/use-initial-data'
 import { useIsClient } from '~/hooks/common/use-is-client'
 import { apiClient } from '~/utils/client'
 import { springScrollToElement } from '~/utils/spring'
 
-import { Pagination } from '../../universal/Pagination'
+import { Pagination } from '../../ui/Pagination'
 import { CommentBox } from './box'
 import { Comments } from './comments'
 import styles from './index.module.css'
@@ -168,7 +168,7 @@ const CommentWrap: FC<CommentWrapProps> = (props) => {
                     requestAnimationFrame(() => {
                       springScrollToElement(
                         document.getElementById('comment-anchor')!,
-                        1000,
+
                         -100,
                       )
                     })
@@ -194,7 +194,7 @@ const Comment: typeof CommentWrap = (props) => {
 
   if (disable) {
     return (
-      <h1 className="headline text-light-brown dark:text-shizuku-text !mt-6 text-lg font-semibold">
+      <h1 className="headline dark:text-shizuku-text !mt-6 text-lg font-semibold">
         全站评论功能未开放
       </h1>
     )

@@ -8,12 +8,12 @@ import { shallow } from 'zustand/shallow'
 import type { PageModel } from '@mx-space/api-client'
 
 import { usePageCollection } from '~/atoms/collections/page'
+import { Seo } from '~/components/app/Seo'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
-import { Seo } from '~/components/common/Seo'
+import { KamiMarkdown } from '~/components/common/KamiMarkdown'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { ImageSizeMetaContext } from '~/components/ui/Image/context'
 import { Loading } from '~/components/ui/Loading'
-import { KamiMarkdown } from '~/components/universal/Markdown'
 import {
   useSetHeaderMeta,
   useSetHeaderShare,

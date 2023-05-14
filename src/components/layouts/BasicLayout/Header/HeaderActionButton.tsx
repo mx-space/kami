@@ -3,7 +3,7 @@ import type { FC } from 'react'
 import { memo, useCallback, useRef } from 'react'
 
 import { useNoteCollection } from '~/atoms/collections/note'
-import { LikeButton } from '~/components/universal/LikeButton'
+import { LikeButton } from '~/components/ui/LikeButton'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/app/use-analyze'
 

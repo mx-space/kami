@@ -71,8 +71,8 @@ const OverLay: FC<OverlayProps> = (props) => {
         >
           <FadeInOutTransitionView
             in={show}
+            useAnimatePresence
             onExited={() => setIsExitAnimationEnd(true)}
-            unmountOnExit
             timeout={{ exit: 500 }}
           >
             <div

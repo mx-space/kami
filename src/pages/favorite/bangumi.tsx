@@ -4,7 +4,7 @@ import { message } from 'react-message-popup'
 import useSWR from 'swr'
 
 import { useUserStore } from '~/atoms/user'
-import { Seo } from '~/components/common/Seo'
+import { Seo } from '~/components/app/Seo'
 import { ImageLazy } from '~/components/ui/Image'
 import { Loading } from '~/components/ui/Loading'
 import { apiClient } from '~/utils/client'

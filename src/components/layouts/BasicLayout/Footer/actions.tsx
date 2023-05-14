@@ -1,8 +1,8 @@
 import { clsx } from 'clsx'
+import { AnimatePresence, Reorder } from 'framer-motion'
 import type { FC } from 'react'
 import React, { useCallback, useDeferredValue, useMemo } from 'react'
 import { Modifier, useShortcut } from 'react-shortcut-guide'
-import { TransitionGroup } from 'react-transition-group'
 import { shallow } from 'zustand/shallow'
 
 import { useActionStore } from '~/atoms/action'
@@ -24,7 +24,7 @@ import { springScrollToTop } from '~/utils/spring'
 
 import styles from './actions.module.css'
 
-const timeout = { exit: 300 }
+const noop = () => void 0
 
 const FooterActionsBase: FC<{
   children?: React.ReactNode
@@ -106,28 +106,27 @@ export const FooterActions: FC = () => {
   return (
     <RootPortal>
       <FooterActionsBase>
-        <TransitionGroup>
-          {actions.map((action) => {
-            const El = action.element ?? (
-              <button
-                aria-label="footer action button"
-                onClick={action.onClick}
-              >
-                {action.icon}
-              </button>
-            )
+        <Reorder.Group values={actions} onReorder={noop}>
+          <AnimatePresence>
+            {actions.map((action) => {
+              const El = action.element ?? (
+                <button
+                  aria-label="footer action button"
+                  onClick={action.onClick}
+                >
+                  {action.icon}
+                </button>
+              )
 
-            return (
-              <ScaleTransitionView
-                key={action.id}
-                unmountOnExit
-                timeout={timeout}
-              >
-                {El}
-              </ScaleTransitionView>
-            )
-          })}
-        </TransitionGroup>
+              return (
+                <Reorder.Item layout value={action} key={action.id}>
+                  <ScaleTransitionView duration={0.3}>{El}</ScaleTransitionView>
+                </Reorder.Item>
+              )
+            })}
+          </AnimatePresence>
+        </Reorder.Group>
+
         <button aria-label="open player" onClick={handlePlayMusic}>
           <FaSolidHeadphonesAlt />
         </button>

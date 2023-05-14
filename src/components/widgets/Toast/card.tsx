@@ -4,9 +4,9 @@ import { toast } from 'react-toastify'
 
 import { useUserStore } from '~/atoms/user'
 import { ImpressionView } from '~/components/common/ImpressionView'
+import { RelativeTime } from '~/components/common/RelativeTime'
 import { Avatar } from '~/components/ui/Avatar'
 import { CloseIcon } from '~/components/ui/Icons/layout'
-import { RelativeTime } from '~/components/universal/RelativeTime'
 import { useInitialData } from '~/hooks/app/use-initial-data'
 import { useDetectPadOrMobile } from '~/hooks/ui/use-viewport'
 

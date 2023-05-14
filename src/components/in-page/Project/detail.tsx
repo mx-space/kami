@@ -3,9 +3,9 @@ import type { FC } from 'react'
 import { useEffect } from 'react'
 
 import { useProjectCollection } from '~/atoms/collections/project'
+import { KamiMarkdown } from '~/components/common/KamiMarkdown'
 import { Loading } from '~/components/ui/Loading'
-import { KamiMarkdown } from '~/components/universal/Markdown'
-import { SliderImagesPopup } from '~/components/universal/SliderImagesPopup'
+import { SliderImagesPopup } from '~/components/ui/SliderImagesPopup'
 
 import styles from './detail.module.css'
 import { ProjectIcon } from './project-icon'

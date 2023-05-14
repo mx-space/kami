@@ -3,7 +3,7 @@ import { useCallback } from 'react'
 import { message } from 'react-message-popup'
 import useSWR from 'swr'
 
-import { Seo } from '~/components/common/Seo'
+import { Seo } from '~/components/app/Seo'
 import type { PlayListType } from '~/components/in-page/SectionMusic'
 import { SectionMusic } from '~/components/in-page/SectionMusic'
 import { RiNeteaseCloudMusicFill } from '~/components/ui/Icons/for-fav'

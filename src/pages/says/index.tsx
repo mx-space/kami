@@ -3,12 +3,11 @@ import Markdown from 'markdown-to-jsx'
 import randomColor from 'randomcolor'
 import { useMemo, useRef } from 'react'
 import Masonry from 'react-masonry-css'
-import { TransitionGroup } from 'react-transition-group'
 
 import { useAppStore } from '~/atoms/app'
 import { useSayCollection } from '~/atoms/collections/say'
-import { Seo } from '~/components/common/Seo'
-import { BottomUpTransitionView } from '~/components/ui/Transition/bottom-up'
+import { Seo } from '~/components/app/Seo'
+import { BottomToUpTransitionView } from '~/components/ui/Transition/bottom-up'
 import { useSyncEffectOnce } from '~/hooks/common/use-sync-effect'
 import { hexToRGB } from '~/utils/color'
 import { relativeTimeFromNow } from '~/utils/time'
@@ -48,50 +47,45 @@ const SayView = () => {
   return (
     <main>
       <Seo title="说说" />
-      <TransitionGroup>
-        <Masonry
-          breakpointCols={isMobile ? 1 : 2}
-          className={styles['kami-say']}
-        >
-          {says.map((say, i) => {
-            const hasSource = !!say.source
-            const hasAuthor = !!say.author
-            const color = colorsMap.get(say.id)
-            return (
-              <BottomUpTransitionView
-                timeout={{ enter: i * 50 }}
-                in
+      <Masonry breakpointCols={isMobile ? 1 : 2} className={styles['kami-say']}>
+        {says.map((say, i) => {
+          const hasSource = !!say.source
+          const hasAuthor = !!say.author
+          const color = colorsMap.get(say.id)
+          return (
+            <BottomToUpTransitionView
+              timeout={{ enter: i * 50 }}
+              in
+              key={say.id}
+            >
+              <blockquote
                 key={say.id}
+                className="transition-all duration-500"
+                style={{
+                  borderLeftColor: hexToRGB(color || '', 0.7),
+                  backgroundColor: hexToRGB(color || '', 0.05),
+                }}
               >
-                <blockquote
-                  key={say.id}
-                  className="transition-all duration-500"
-                  style={{
-                    borderLeftColor: hexToRGB(color || '', 0.7),
-                    backgroundColor: hexToRGB(color || '', 0.05),
-                  }}
-                >
-                  <Markdown
-                    className="mb-2"
-                    options={options}
-                  >{`${say.text}`}</Markdown>
-                  <p className={styles['author']}>
-                    <div className="flex-shrink-0">
-                      {`发布于 ${relativeTimeFromNow(say.created)}`}
-                    </div>
-                    <div className="flex-shrink-0 flex-grow">
-                      {hasSource && ` 出自“${say.source}”`}
-                      {hasSource && hasAuthor && ', '}
-                      {hasAuthor && `作者：${say.author}`}
-                      {!hasAuthor && !hasSource && '站长说'}
-                    </div>
-                  </p>
-                </blockquote>
-              </BottomUpTransitionView>
-            )
-          })}
-        </Masonry>
-      </TransitionGroup>
+                <Markdown
+                  className="mb-2"
+                  options={options}
+                >{`${say.text}`}</Markdown>
+                <p className={styles['author']}>
+                  <div className="flex-shrink-0">
+                    {`发布于 ${relativeTimeFromNow(say.created)}`}
+                  </div>
+                  <div className="flex-shrink-0 flex-grow">
+                    {hasSource && ` 出自“${say.source}”`}
+                    {hasSource && hasAuthor && ', '}
+                    {hasAuthor && `作者：${say.author}`}
+                    {!hasAuthor && !hasSource && '站长说'}
+                  </div>
+                </p>
+              </blockquote>
+            </BottomToUpTransitionView>
+          )
+        })}
+      </Masonry>
     </main>
   )
 }

@@ -5,7 +5,7 @@ import React, { memo, useCallback, useContext, useEffect } from 'react'
 import { Modifier, ShortcutContext } from 'react-shortcut-guide'
 
 import { FloatPopover } from '~/components/ui/FloatPopover'
-import { FontIcon } from '~/components/universal/FontIcon'
+import { FontIcon } from '~/components/ui/FontIcon'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/app/use-analyze'
 import { useHeaderNavList } from '~/hooks/app/use-header-nav-list'

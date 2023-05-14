@@ -4,7 +4,7 @@ import { memo, useDeferredValue, useEffect } from 'react'
 import { shallow } from 'zustand/shallow'
 
 import { useMusicStore, usePlayProgress } from '~/atoms/music'
-import { Seo } from '~/components/common/Seo'
+import { Seo } from '~/components/app/Seo'
 import { MusicIcon, PauseIcon } from '~/components/ui/Icons/for-fav'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/app/use-analyze'

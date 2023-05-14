@@ -1,7 +1,7 @@
+import { motion } from 'framer-motion'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React, { Fragment, useEffect, useState } from 'react'
-import { TransitionGroup } from 'react-transition-group'
 
 import type { Pager, PaginateResult, PostModel } from '@mx-space/api-client'
 
@@ -10,12 +10,12 @@ import { TagFAB } from '~/components/in-page/Post/TagFAB'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { EmptyIcon } from '~/components/ui/Icons/for-comment'
 import { Loading } from '~/components/ui/Loading'
-import { BottomUpTransitionView } from '~/components/ui/Transition/bottom-up'
+import { BottomToUpTransitionView } from '~/components/ui/Transition/bottom-up'
 import { SearchFAB } from '~/components/widgets/Search'
 import { apiClient } from '~/utils/client'
 import { springScrollToTop } from '~/utils/spring'
 
-import { Seo } from '../../components/common/Seo'
+import { Seo } from '../../components/app/Seo'
 
 const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
   const [pagination, setPagination] = useState<Pager | null>(null)
@@ -48,78 +48,76 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
     <ArticleLayout>
       <Seo title="博文" />
 
-      <TransitionGroup>
-        <article key="note">
-          {posts.length > 0 ? (
-            <Fragment>
-              {posts.map((post, i) => {
-                return (
-                  <BottomUpTransitionView
-                    key={post.id}
-                    timeout={{ enter: 66 * i }}
-                  >
-                    <PostBlock
-                      post={post}
-                      onPinChange={() => {
-                        fetch()
-                      }}
-                    />
-                  </BottomUpTransitionView>
-                )
-              })}
-            </Fragment>
-          ) : pagination ? (
-            <div className="flex flex-col">
-              <EmptyIcon />
-              <p>站长没有写过一篇文章啦</p>
-              <p>稍后来看看吧！</p>
-            </div>
-          ) : (
-            <Loading loadingText="正在加载.." />
-          )}
-        </article>
-      </TransitionGroup>
+      <article key="note">
+        {posts.length > 0 ? (
+          <Fragment>
+            {posts.map((post, i) => {
+              return (
+                <BottomToUpTransitionView
+                  key={post.id}
+                  timeout={{ enter: 66 * i }}
+                >
+                  <PostBlock
+                    post={post}
+                    onPinChange={() => {
+                      fetch()
+                    }}
+                  />
+                </BottomToUpTransitionView>
+              )
+            })}
+          </Fragment>
+        ) : pagination ? (
+          <div className="flex flex-col">
+            <EmptyIcon />
+            <p>站长没有写过一篇文章啦</p>
+            <p>稍后来看看吧！</p>
+          </div>
+        ) : (
+          <Loading loadingText="正在加载.." />
+        )}
+      </article>
 
       {pagination && (
-        <section className="mt-4 text-center">
-          {pagination.hasPrevPage && (
-            <button
-              className="btn brown"
+        <section className="mt-4 flex justify-between">
+          {pagination.hasPrevPage ? (
+            <PaginationButton
               onClick={() => {
-                router.push(
-                  `/posts?page=${pagination.currentPage - 1}`,
-                  undefined,
-                  { shallow: true },
-                )
+                router.push(`/posts?page=${pagination.currentPage - 1}`)
               }}
             >
               上一页
-            </button>
+            </PaginationButton>
+          ) : (
+            <div />
           )}
           {pagination.hasNextPage && (
-            <button
-              className="btn !bg-secondary !text-white"
-              style={
-                pagination.hasNextPage && pagination.hasPrevPage
-                  ? { marginLeft: '6px' }
-                  : undefined
-              }
+            <PaginationButton
               onClick={() => {
-                router.push(
-                  `/posts?page=${pagination.currentPage + 1}`,
-                  undefined,
-                  { shallow: true },
-                )
+                router.push(`/posts?page=${pagination.currentPage + 1}`)
               }}
             >
               下一页
-            </button>
+            </PaginationButton>
           )}
         </section>
       )}
       <TagFAB />
       <SearchFAB />
     </ArticleLayout>
+  )
+}
+
+const PaginationButton = (props: { onClick: () => void; children: string }) => {
+  const { onClick, children: text } = props
+  return (
+    <motion.button
+      whileTap={{ scale: 0.9 }}
+      className="btn !border-accent !text-accent !rounded-md !border-[2px] !bg-transparent"
+      onClick={onClick}
+    >
+      {text}
+    </motion.button>
   )
 }
 

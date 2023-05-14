@@ -1,13 +1,13 @@
 import type { FC } from 'react'
-import { TransitionGroup } from 'react-transition-group'
 
 import { useUserStore } from '~/atoms/user'
-import { withNoSSR } from '~/components/common/HoC/no-ssr'
-import { TextFade } from '~/components/ui/Animate/text-anim'
+import { withNoSSR } from '~/components/app/HoC/no-ssr'
 import { Avatar } from '~/components/ui/Avatar'
 import { FloatPopover } from '~/components/ui/FloatPopover'
-import { BottomUpTransitionView } from '~/components/ui/Transition/bottom-up'
-import { FontIcon } from '~/components/universal/FontIcon'
+import { FontIcon } from '~/components/ui/FontIcon'
+import { BottomToUpTransitionView } from '~/components/ui/Transition/bottom-up'
+import { TextUpTransitionView } from '~/components/ui/Transition/text-up'
+import { reboundPreset } from '~/constants/spring'
 import { useThemeConfig } from '~/hooks/app/use-initial-data'
 
 import { useHomePageViewContext } from './context'
@@ -33,13 +33,16 @@ export const HomeIntro: FC = () => {
       </div>
       <div className="intro-info">
         <h1>
-          <TextFade>{user.name || ''}</TextFade>
+          <TextUpTransitionView>{user.name || ''}</TextUpTransitionView>
         </h1>
-        <div className="paragraph">
-          <TextFade duration={10} appear={doAnimation}>
-            {user.introduce || ''}
-          </TextFade>
-        </div>
+
+        <TextUpTransitionView
+          appear={doAnimation}
+          className="text-theme-gray-1 mt-2 leading-7"
+        >
+          {user.introduce || ''}
+        </TextUpTransitionView>
+
         <Social />
       </div>
     </section>
@@ -52,12 +55,17 @@ const Social: FC = withNoSSR(() => {
   const { social } = config.site
 
   return (
-    <TransitionGroup appear={doAnimation} className="social-icons space-x-4">
+    <div className="social-icons space-x-4">
       {social.map((item, i) => {
         return (
-          <BottomUpTransitionView
+          <BottomToUpTransitionView
             appear={doAnimation}
             timeout={{ enter: 500 + 50 * i }}
+            animation={{
+              enter: {
+                ...reboundPreset,
+              },
+            }}
             key={item.title}
           >
             <FloatPopover
@@ -79,9 +87,9 @@ const Social: FC = withNoSSR(() => {
                 {item.title}
               </div>
             </FloatPopover>
-          </BottomUpTransitionView>
+          </BottomToUpTransitionView>
         )
       })}
-    </TransitionGroup>
+    </div>
   )
 })

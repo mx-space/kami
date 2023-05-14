@@ -2,9 +2,8 @@ import classNames from 'clsx'
 import throttle from 'lodash-es/throttle'
 import type { FC } from 'react'
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { TransitionGroup } from 'react-transition-group'
 
-import { RightLeftTransitionView } from '~/components/ui/Transition/right-left'
+import { RightToLeftTransitionView } from '~/components/ui/Transition/right-left'
 import { CustomEventTypes } from '~/types/events'
 import { eventBus } from '~/utils/event-emitter'
 
@@ -100,7 +99,7 @@ export const Toc: FC<TocProps> = memo(
           className={classNames('container', styles['container'])}
           ref={containerRef}
         >
-          <TransitionGroup
+          <div
             className={styles['anime-wrapper']}
             key={`${headings.map((i) => i.title).join('')}`}
           >
@@ -117,7 +116,7 @@ export const Toc: FC<TocProps> = memo(
                   />
                 )
               })}
-          </TransitionGroup>
+          </div>
         </div>
       </section>
     )
@@ -134,7 +133,7 @@ const MemoedItem = memo<{
     const { heading, isActive, onClick, rootDepth, containerRef } = props
 
     return (
-      <RightLeftTransitionView
+      <RightToLeftTransitionView
         timeout={
           useRef({
             exit: 50,
@@ -153,7 +152,7 @@ const MemoedItem = memo<{
           key={heading.title}
           rootDepth={rootDepth}
         />
-      </RightLeftTransitionView>
+      </RightToLeftTransitionView>
     )
   },
   (a, b) => {

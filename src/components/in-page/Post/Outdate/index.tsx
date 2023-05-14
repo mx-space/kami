@@ -1,8 +1,8 @@
 import dayjs from 'dayjs'
 import React from 'react'
 
+import { RelativeTime } from '~/components/common/RelativeTime'
 import { Banner } from '~/components/ui/Banner'
-import { RelativeTime } from '~/components/universal/RelativeTime'
 
 export default (function OutdateNotice({ time }: { time: string | Date }) {
   return dayjs().diff(dayjs(time), 'day') > 60 ? (

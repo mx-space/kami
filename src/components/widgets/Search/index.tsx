@@ -1,4 +1,5 @@
-import { clsx } from 'clsx'
+import clsx from 'clsx'
+import { motion } from 'framer-motion'
 import throttle from 'lodash-es/throttle'
 import Link from 'next/link'
 import type { FC, KeyboardEventHandler } from 'react'
@@ -30,7 +31,7 @@ type SearchListType = {
   id: string
 }
 
-export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
+export const SearchPanel: FC<SearchPanelProps> = (props) => {
   const { defaultKeyword } = props
   const [keyword, setKeyword] = useState(defaultKeyword || '')
   const debouncedKeyword = useDebounceValue(keyword, 360)
@@ -155,7 +156,22 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
   )
 
   return (
-    <div className={styles['root']} onKeyDown={handleKeyDown} role="dialog">
+    <motion.div
+      className={styles['root']}
+      onKeyDown={handleKeyDown}
+      role="dialog"
+      initial={{
+        translateY: 20,
+      }}
+      animate={{
+        translateY: 0,
+        transition: {
+          type: 'spring',
+          stiffness: 260,
+          damping: 10,
+        },
+      }}
+    >
       <input
         autoFocus
         className="w-full bg-transparent p-4 px-5 text-[16px] leading-4"
@@ -208,7 +224,7 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
                     <span className="block flex-1 flex-shrink-0 truncate">
                       {item.title}
                     </span>
-                    <span className="text-gray-2 text-deepgray block flex-shrink-0 flex-grow-0">
+                    <span className="text-deepgray text-theme-gray-2 block flex-shrink-0 flex-grow-0">
                       {item.subtitle}
                     </span>
                   </Link>
@@ -236,10 +252,10 @@ export const SearchPanel: FC<SearchPanelProps> = memo((props) => {
           </svg>
         </a>
       </div>
-    </div>
+    </motion.div>
   )
-})
-export const SearchOverlay: FC<OverlayProps> = memo((props) => {
+}
+export const SearchOverlay: FC<OverlayProps> = (props) => {
   const { ...rest } = props
 
   const isMobile = useAppStore((state) => state.viewport.mobile)
@@ -263,7 +279,7 @@ export const SearchOverlay: FC<OverlayProps> = memo((props) => {
     >
       <div
         className={clsx(
-          'transition transition-opacity duration-200',
+          'transition-opacity duration-200',
           !props.show && 'opacity-0',
         )}
       >
@@ -271,7 +287,7 @@ export const SearchOverlay: FC<OverlayProps> = memo((props) => {
       </div>
     </Overlay>
   )
-})
+}
 export const SearchHotKey: FC = memo(() => {
   const { event } = useAnalyze()
   const [show, setShow] = useState(false)
@@ -285,8 +301,7 @@ export const SearchHotKey: FC = memo(() => {
 
   return <SearchOverlay show={show} onClose={() => setShow(false)} />
 })
-
-export const SearchFAB = memo(() => {
+export const SearchFAB = () => {
   const [show, setShow] = useState(false)
   const actionId = useRef('search-fab')
   const { event } = useAnalyze()
@@ -320,4 +335,4 @@ export const SearchFAB = memo(() => {
   }, [])
 
   return <SearchOverlay show={show} onClose={() => setShow(false)} />
-})
+}

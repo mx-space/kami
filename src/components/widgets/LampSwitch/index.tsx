@@ -1,80 +1,49 @@
-import type { DetailedHTMLProps, HTMLAttributes } from 'react'
+'use client'
+
+import { motion } from 'framer-motion'
 import { memo, useRef } from 'react'
 
-import { withNoSSR } from '~/components/common/HoC/no-ssr'
+import { withNoSSR } from '~/components/app/HoC/no-ssr'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/app/use-analyze'
-import { useOnceClientEffect } from '~/hooks/common/use-once-client-effect'
-import { genSpringKeyframes } from '~/utils/spring'
 
 import styles from './index.module.css'
 
-const sakuraSpringNameUp = 'sakura-up'
-const sakuraSpringNameDown = 'sakura-down'
-
 export const LampSwitch = withNoSSR(
-  memo<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>>(
-    (props = {}) => {
-      const containerRef = useRef<HTMLDivElement>(null)
+  memo<{ onClick: () => void }>((props) => {
+    const containerRef = useRef<HTMLDivElement>(null)
 
-      useOnceClientEffect(() => {
-        genSpringKeyframes(
-          sakuraSpringNameDown,
-          {
-            translateY: '0vh',
-          },
-          {
-            translateY: '10vh',
-          },
-        )
+    const { event } = useAnalyze()
 
-        genSpringKeyframes(
-          sakuraSpringNameUp,
-          {
-            translateY: '10vh',
+    return (
+      <motion.div
+        className={styles['select-container']}
+        ref={containerRef}
+        data-hide-print
+        whileTap={{
+          transition: {
+            type: 'spring',
+            velocity: 0.5,
+            damping: 5,
           },
-          {
-            translateY: '0',
-          },
-        )
-      })
+          y: window.innerHeight / 10,
+        }}
+        onTap={() => {
+          event({
+            action: TrackerAction.Interaction,
+            label: `颜色切换`,
+          })
 
-      const { event } = useAnalyze()
-      return (
-        <div
-          className={styles['select-container']}
-          ref={containerRef}
-          data-hide-print
-        >
-          <div className={styles['select-line']}>
-            <div className={styles['line']} />
-          </div>
-          <div className={styles['sakura-wrap']} {...props}>
-            <div
-              className={styles['sakura-img']}
-              onClick={() => {
-                event({
-                  action: TrackerAction.Interaction,
-                  label: `颜色切换`,
-                })
-                if (containerRef.current) {
-                  // containerRef.current.style.top = '0'
-                  containerRef.current.style.animation = `${sakuraSpringNameDown} .5s steps(60) both`
-                  containerRef.current.onanimationend = () => {
-                    if (containerRef.current) {
-                      containerRef.current.style.animation = `${sakuraSpringNameUp} .5s steps(60) both`
-
-                      containerRef.current.onanimationend = () => {
-                        containerRef.current!.style.animation = ''
-                      }
-                    }
-                  }
-                }
-              }}
-            />
-          </div>
+          props.onClick()
+        }}
+      >
+        <div className={styles['select-line']}>
+          <div className={styles['line']} />
         </div>
-      )
-    },
-  ),
+        <div className={styles['lamp-wrap']} {...props}>
+          <div className={styles['lamp-handle']} />
+        </div>
+      </motion.div>
+    )
+  }),
 )
