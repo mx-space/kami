@@ -1,5 +1,20 @@
 # CHANGELOG
 
+# [4.5.0](https://github.com/mx-space/kami/compare/v4.4.10...v4.5.0) (2023-05-17)
+
+
+### Bug Fixes
+
+* markdown link style and remove xlog summary ([b6ab02f](https://github.com/mx-space/kami/commit/b6ab02fb6d829e4334c79d405060b3d0ead95614))
+
+
+### Features
+
+* add header submenu focus ui fallback ([fd7ea9f](https://github.com/mx-space/kami/commit/fd7ea9ff5bef349c4fec49642db0a357915bf69a))
+* refactor structure and add framer motion  ([#1679](https://github.com/mx-space/kami/issues/1679)) ([2d51acc](https://github.com/mx-space/kami/commit/2d51accf9264f5449c0b33f3f15821d74b5b3110))
+
+
+
 ## [4.4.10](https://github.com/mx-space/kami/compare/v4.4.9...v4.4.10) (2023-05-11)
 
 
