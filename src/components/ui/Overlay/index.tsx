@@ -32,7 +32,7 @@ const OverLay: FC<OverlayProps> = (props) => {
     onClose,
     show,
     blur,
-    center,
+    center = true,
     darkness,
     standaloneWrapperClassName,
     zIndex,
@@ -120,7 +120,4 @@ const OverLay: FC<OverlayProps> = (props) => {
   )
 }
 
-OverLay.defaultProps = {
-  center: true,
-}
 export const Overlay = memo(OverLay)

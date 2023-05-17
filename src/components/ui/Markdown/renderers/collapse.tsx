@@ -1,8 +1,8 @@
 import clsx from 'clsx'
 import type { FC, ReactNode } from 'react'
 import React, { useState } from 'react'
-import { Collapse } from 'react-collapse'
 
+import { Collapse } from '../../Collapse'
 import { IcRoundKeyboardDoubleArrowRight } from '../../Icons/arrow'
 import styles from './collapse.module.css'
 

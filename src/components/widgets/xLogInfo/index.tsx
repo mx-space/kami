@@ -1,10 +1,10 @@
 import { clsx } from 'clsx'
 import type { FC, SVGProps } from 'react'
 import { useState } from 'react'
-import { Collapse } from 'react-collapse'
 
 import { useNoteCollection } from '~/atoms/collections/note'
 import { usePostCollection } from '~/atoms/collections/post'
+import { Collapse } from '~/components/ui/Collapse'
 import type { XLogMeta } from '~/types/xlog'
 
 import styles from './index.module.css'
@@ -96,26 +96,26 @@ export const XLogInfoBase: FC<{
       <div
         role="button"
         tabIndex={0}
-        className="flex w-[100%+0.5rem] justify-between items-center rounded-lg -mx-2 p-2 text-left text-gray-900 hover:bg-zinc-100 dark:hover:bg-dark-200 transition-colors duration-300 transition md:rounded-xl"
+        className="dark:hover:bg-dark-200 -mx-2 flex w-[100%+0.5rem] items-center justify-between rounded-lg p-2 text-left text-gray-900 transition transition-colors duration-300 hover:bg-zinc-100 md:rounded-xl"
         onClick={() => {
           setCollapse((c) => !c)
         }}
       >
-        <div className="flex items-center justify-between w-full">
-          <span className="flex-grow flex space-x-2">
+        <div className="flex w-full items-center justify-between">
+          <span className="flex flex-grow space-x-2">
             <SafeIcon />
             <span>此文章已经由它的创作者签名并安全地存储在区块链上。</span>
           </span>
           <IcRoundKeyboardArrowDown
             className={clsx(
               !collapse ? '' : 'rotate-180',
-              'transition-transform transform ease-linear duration-200 text-lg',
+              'transform text-lg transition-transform duration-200 ease-linear',
             )}
           />
         </div>
       </div>
       <Collapse isOpened={collapse}>
-        <div className="py-2 text-sm text-gray-2 w-full overflow-hidden">
+        <div className="text-gray-2 w-full overflow-hidden py-2 text-sm">
           {sections}
         </div>
       </Collapse>

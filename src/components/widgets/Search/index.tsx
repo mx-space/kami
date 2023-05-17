@@ -163,6 +163,9 @@ export const SearchPanel: FC<SearchPanelProps> = (props) => {
       initial={{
         translateY: 20,
       }}
+      exit={{
+        translateY: 20,
+      }}
       animate={{
         translateY: 0,
         transition: {

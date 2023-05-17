@@ -1,6 +1,6 @@
 import { clsx } from 'clsx'
-import { AnimatePresence, Reorder } from 'framer-motion'
-import type { FC } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import type { FC, PropsWithChildren } from 'react'
 import React, { useCallback, useDeferredValue, useMemo } from 'react'
 import { Modifier, useShortcut } from 'react-shortcut-guide'
 import { shallow } from 'zustand/shallow'
@@ -23,8 +23,6 @@ import {
 import { springScrollToTop } from '~/utils/spring'
 
 import styles from './actions.module.css'
-
-const noop = () => void 0
 
 const FooterActionsBase: FC<{
   children?: React.ReactNode
@@ -80,6 +78,25 @@ const FooterActionsBase: FC<{
   )
 }
 
+const FooterActionButton: FC<
+  PropsWithChildren<{ onClick?: () => any; label?: string }>
+> = ({ children, onClick, label }) => {
+  return (
+    <motion.button
+      aria-label={label}
+      onClick={onClick}
+      whileTap={{
+        scale: 0.9,
+      }}
+      whileHover={{
+        scale: 1.05,
+      }}
+    >
+      {children}
+    </motion.button>
+  )
+}
+
 export const FooterActions: FC = () => {
   const { event } = useAnalyze()
 
@@ -106,30 +123,33 @@ export const FooterActions: FC = () => {
   return (
     <RootPortal>
       <FooterActionsBase>
-        <Reorder.Group values={actions} onReorder={noop}>
-          <AnimatePresence>
-            {actions.map((action) => {
-              const El = action.element ?? (
-                <button
-                  aria-label="footer action button"
-                  onClick={action.onClick}
-                >
-                  {action.icon}
-                </button>
-              )
+        <AnimatePresence>
+          {actions.map((action) => {
+            const El = action.element ?? (
+              <FooterActionButton
+                aria-label="footer action button"
+                onClick={action.onClick}
+              >
+                {action.icon}
+              </FooterActionButton>
+            )
 
-              return (
-                <Reorder.Item layout value={action} key={action.id}>
-                  <ScaleTransitionView duration={0.3}>{El}</ScaleTransitionView>
-                </Reorder.Item>
-              )
-            })}
-          </AnimatePresence>
-        </Reorder.Group>
+            return (
+              <ScaleTransitionView
+                layoutId={action.id}
+                layout
+                duration={0.3}
+                key={action.id}
+              >
+                {El}
+              </ScaleTransitionView>
+            )
+          })}
+        </AnimatePresence>
 
-        <button aria-label="open player" onClick={handlePlayMusic}>
+        <FooterActionButton aria-label="open player" onClick={handlePlayMusic}>
           <FaSolidHeadphonesAlt />
-        </button>
+        </FooterActionButton>
       </FooterActionsBase>
     </RootPortal>
   )

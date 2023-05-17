@@ -3,7 +3,6 @@ import dayjs from 'dayjs'
 import dynamic from 'next/dynamic'
 import type { ReactNode } from 'react'
 import { forwardRef, useCallback } from 'react'
-import { Collapse } from 'react-collapse'
 import { shallow } from 'zustand/shallow'
 
 import type { NoteModel } from '@mx-space/api-client'
@@ -24,6 +23,7 @@ import { resolveUrl } from '~/utils/utils'
 import { ClientOnly } from '../app/ClientOnly'
 import { IconTransition } from '../common/IconTransition'
 import { Banner } from '../ui/Banner'
+import { Collapse } from '../ui/Collapse'
 
 const NoteTimelineList = dynamic(() =>
   import('~/components/in-page/Note/NoteTimelineList').then(

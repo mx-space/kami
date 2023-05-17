@@ -68,9 +68,6 @@ importers:
       react:
         specifier: 18.2.0
         version: 18.2.0
-      react-collapse:
-        specifier: 5.1.1
-        version: 5.1.1(react@18.2.0)
       react-countup:
         specifier: 6.4.2
         version: 6.4.2(@babel/core@7.21.8)(react@18.2.0)
@@ -147,9 +144,6 @@ importers:
       '@types/react':
         specifier: 17.0.59
         version: 17.0.59
-      '@types/react-collapse':
-        specifier: 5.0.1
-        version: 5.0.1
       '@types/react-color':
         specifier: 3.0.6
         version: 3.0.6
@@ -1320,12 +1314,6 @@ packages:
 
   /@types/randomcolor@0.5.7:
     resolution: {integrity: sha512-LPcG96dGYRCsXlk1fslUNIg6ebEi+bKNyn84uBL/pu2cRSf5i/djD3ArJZOyzszVMVV/DB87va6pMZP+tRSl/w==}
-    dev: true
-
-  /@types/react-collapse@5.0.1:
-    resolution: {integrity: sha512-Iq3OrqvzCIP0DmAawU4T2VKH6XAplbjo/D7Qk14mcfQ92plU+OrA2SF10r2XrcFg1Wvya/5f8w1vS29RVpdoLQ==}
-    dependencies:
-      '@types/react': 17.0.59
     dev: true
 
   /@types/react-color@3.0.6:
@@ -4606,17 +4594,6 @@ packages:
 
   /randomcolor@0.6.2:
     resolution: {integrity: sha512-Mn6TbyYpFgwFuQ8KJKqf3bqqY9O1y37/0jgSK/61PUxV4QfIMv0+K2ioq8DfOjkBslcjwSzRfIDEXfzA9aCx7A==}
-    dev: false
-
-  /react-collapse@5.1.1(react@18.2.0):
-    resolution: {integrity: sha512-k6cd7csF1o9LBhQ4AGBIdxB60SUEUMQDAnL2z1YvYNr9KoKr+nDkhN6FK7uGaBd/rYrYfrMpzpmJEIeHRYogBw==}
-    peerDependencies:
-      react: '>=16.3.0'
-    peerDependenciesMeta:
-      react:
-        optional: true
-    dependencies:
-      react: 18.2.0
     dev: false
 
   /react-countup@6.4.2(@babel/core@7.21.8)(react@18.2.0):
