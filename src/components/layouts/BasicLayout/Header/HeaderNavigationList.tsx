@@ -1,7 +1,14 @@
 import { clsx } from 'clsx'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import type { FC } from 'react'
-import React, { memo, useCallback, useContext, useEffect } from 'react'
+import React, {
+  memo,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 import { Modifier, ShortcutContext } from 'react-shortcut-guide'
 
 import { FloatPopover } from '~/components/ui/FloatPopover'
@@ -73,26 +80,63 @@ const MenuLink: FC<{ menu: Menu; isPublicUrl: boolean; index: number }> = (
       {menu.subMenu?.length ? (
         <ul className={clsx(styles['sub-dropdown'])}>
           {menu.subMenu?.map((m, i) => {
-            return (
-              <Link
-                href={m.path}
-                key={m.path}
-                tabIndex={i + 10}
-                role="button"
-                onClick={() => tracker(`二级导航点击 - ${m.title}`)}
-              >
-                <li key={m.title}>
-                  <FontIcon icon={m.icon} />
-                  <span>{m.title}</span>
-                </li>
-              </Link>
-            )
+            return <Item m={m} i={i} key={m.path} />
           })}
         </ul>
       ) : null}
     </FloatPopover>
   )
 }
+
+const Item: FC<{ m: Menu; i: number }> = memo(({ m: menu, i }) => {
+  const { event } = useAnalyze()
+  const tracker = useCallback((message) => {
+    event({
+      action: TrackerAction.Click,
+      label: message,
+    })
+  }, [])
+
+  const [isHover, setIsHover] = useState(false)
+
+  return (
+    <>
+      <Link
+        href={menu.path}
+        tabIndex={i + 10}
+        role="button"
+        onClick={() => tracker(`二级导航点击 - ${menu.title}`)}
+        onFocus={() => {
+          setIsHover(true)
+        }}
+        onBlur={() => {
+          setIsHover(false)
+        }}
+      >
+        <li
+          key={menu.title}
+          className="relative"
+          onMouseEnter={() => {
+            setIsHover(true)
+          }}
+          onMouseLeave={() => {
+            setIsHover(false)
+          }}
+        >
+          <FontIcon icon={menu.icon} />
+          <span>{menu.title}</span>
+          {isHover && (
+            <motion.span
+              className="bg-dark-50/10 dark:bg-light-50/10 absolute inset-0 z-0 rounded-lg"
+              layoutId="menuItem"
+              layout
+            />
+          )}
+        </li>
+      </Link>
+    </>
+  )
+})
 
 export const HeaderNavigationList: FC = memo(() => {
   const { mergedMenu } = useHeaderNavList()
