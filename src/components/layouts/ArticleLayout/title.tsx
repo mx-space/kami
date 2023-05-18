@@ -2,7 +2,7 @@ import { memo } from 'react'
 
 import { useAppStore } from '~/atoms/app'
 import { useIsLogged } from '~/atoms/user'
-import { TextUpTransitionView } from '~/components/ui/Transition/text-up'
+import { TextUpTransitionView } from '~/components/ui/Transition/TextUpTransitionView'
 import { resolveUrl } from '~/utils/utils'
 
 import { useArticleLayoutProps } from './hooks'

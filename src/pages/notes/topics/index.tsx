@@ -7,7 +7,7 @@ import type { TopicModel } from '@mx-space/api-client'
 import { Seo } from '~/components/app/Seo'
 import { TimelineListWrapper } from '~/components/in-page/Timeline/TimelineListWrapper'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
-import { RightToLeftTransitionView } from '~/components/ui/Transition/right-left'
+import { RightToLeftTransitionView } from '~/components/ui/Transition/RightToLeftTransitionView'
 import { apiClient } from '~/utils/client'
 
 // TODO

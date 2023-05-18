@@ -8,7 +8,7 @@ import { useIsClient } from '~/hooks/common/use-is-client'
 import { isUndefined } from '~/utils/_'
 import { stopEventDefault } from '~/utils/dom'
 
-import { FadeInOutTransitionView } from '../Transition/fade-in-out'
+import { FadeInOutTransitionView } from '../Transition/FadeInOutTransitionView'
 import styles from './index.module.css'
 
 interface OverLayProps {

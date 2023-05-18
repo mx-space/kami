@@ -17,10 +17,10 @@ export const ImpressionView: FC<{ shouldTrack?: boolean } & ImpressionProps> = (
   if (!shouldTrack) {
     return <>{props.children}</>
   }
-  return <_ImpressionView {...rest} />
+  return <ImpressionView$ {...rest} />
 }
 
-const _ImpressionView: FC<ImpressionProps> = memo((props) => {
+const ImpressionView$: FC<ImpressionProps> = memo((props) => {
   const [impression, setImpression] = useState(false)
   const { event } = useAnalyze()
   const { ref } = useInView({

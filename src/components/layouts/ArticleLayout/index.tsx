@@ -2,7 +2,7 @@ import { clsx } from 'clsx'
 import type { DetailedHTMLProps, HTMLAttributes } from 'react'
 import { forwardRef, memo, useMemo } from 'react'
 
-import { BottomToUpTransitionView } from '~/components/ui/Transition/bottom-up'
+import { BottomToUpTransitionView } from '~/components/ui/Transition/BottomToUpTransitionView'
 
 import { ArticleLayoutContextProvider } from './hooks'
 import styles from './index.module.css'

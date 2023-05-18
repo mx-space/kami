@@ -24,7 +24,7 @@ import { ImpressionView } from '~/components/common/ImpressionView'
 import { KamiMarkdown } from '~/components/common/KamiMarkdown'
 import { PhPushPin, PhPushPinFill } from '~/components/ui/Icons/for-post'
 import { ImageTagPreview } from '~/components/ui/ImageTagPreview'
-import { BottomToUpTransitionView } from '~/components/ui/Transition/bottom-up'
+import { BottomToUpTransitionView } from '~/components/ui/Transition/BottomToUpTransitionView'
 import { socketClient } from '~/socket'
 import { apiClient } from '~/utils/client'
 

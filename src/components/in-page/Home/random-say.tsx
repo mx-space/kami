@@ -1,14 +1,15 @@
-import { motion } from 'framer-motion'
 import type { FC } from 'react'
 import { memo } from 'react'
 import useSWR from 'swr'
 
-import { TextUpTransitionView } from '~/components/ui/Transition/text-up'
+import { AnimateChangeInHeight } from '~/components/ui/AnimateChangeInHeight'
+import { TextUpTransitionView } from '~/components/ui/Transition/TextUpTransitionView'
+import { useIsClient } from '~/hooks/common/use-is-client'
 import { apiClient } from '~/utils/client'
 
 let isLoaded = false
 export const HomeRandomSay: FC = memo(() => {
-  const { data } = useSWR(
+  const { data, mutate } = useSWR(
     'home-say',
     () =>
       apiClient.say.getRandom().then(({ data }) => {
@@ -19,7 +20,7 @@ export const HomeRandomSay: FC = memo(() => {
       }),
     {
       fallbackData: '',
-      refreshInterval: 60_000,
+      refreshInterval: 10_000,
       revalidateOnFocus: false,
       revalidateOnMount: !isLoaded,
       onSuccess() {
@@ -28,12 +29,17 @@ export const HomeRandomSay: FC = memo(() => {
     },
   )
 
+  const isClient = useIsClient()
+  if (!isClient) return null
+
   return (
-    <motion.div
-      layout
-      className="my-[2rem] overflow-hidden leading-6 text-[#aaa]"
-    >
-      <TextUpTransitionView text={data || ''} key={data} />
-    </motion.div>
+    <AnimateChangeInHeight className="my-[2rem]">
+      <TextUpTransitionView
+        onClick={() => mutate()}
+        text={data || ''}
+        key={data}
+        className="overflow-hidden leading-6 text-[#aaa]"
+      />
+    </AnimateChangeInHeight>
   )
 })

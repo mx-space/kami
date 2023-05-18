@@ -3,7 +3,7 @@ import throttle from 'lodash-es/throttle'
 import type { FC } from 'react'
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
-import { RightToLeftTransitionView } from '~/components/ui/Transition/right-left'
+import { RightToLeftTransitionView } from '~/components/ui/Transition/RightToLeftTransitionView'
 import { CustomEventTypes } from '~/types/events'
 import { eventBus } from '~/utils/event-emitter'
 

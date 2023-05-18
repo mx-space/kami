@@ -7,7 +7,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 import { useMusicStore } from '~/atoms/music'
 import { withDesktopOnly } from '~/components/app/HoC/viewport'
-import { BottomToUpTransitionView } from '~/components/ui/Transition/bottom-up'
+import { BottomToUpTransitionView } from '~/components/ui/Transition/BottomToUpTransitionView'
 
 import type { LyricsContent } from './lyrics-manager'
 import { LyricsManager } from './lyrics-manager'

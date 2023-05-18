@@ -2,7 +2,7 @@ import type { FC } from 'react'
 import { useCallback, useEffect, useRef } from 'react'
 
 import { RootPortal } from '~/components/ui/Portal'
-import { FadeInOutTransitionView } from '~/components/ui/Transition/fade-in-out'
+import { FadeInOutTransitionView } from '~/components/ui/Transition/FadeInOutTransitionView'
 import { useIsClient } from '~/hooks/common/use-is-client'
 
 import styles from './index.module.css'

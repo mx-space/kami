@@ -55,16 +55,10 @@ export const MLink: FC<{
         const headPath = pathArr[0]
 
         switch (headPath) {
-          case 'posts': {
-            Router.push('/posts/[category]/[slug]', toUrlParser.pathname)
-            break
-          }
-          case 'notes': {
-            Router.push('/notes/[id]', toUrlParser.pathname)
-            break
-          }
+          case 'posts':
+          case 'notes':
           case 'category': {
-            Router.push('/categories/[slug]', toUrlParser.pathname)
+            Router.push(toUrlParser.pathname)
             break
           }
           default: {
@@ -97,6 +91,11 @@ export const MLink: FC<{
       )}
     >
       <span>{props.href}</span>
+      <iframe
+        src={props.href}
+        className="mt-2 h-64 w-full overflow-auto border-none outline-none"
+        sandbox="allow-scripts"
+      />
     </FloatPopover>
   )
 })

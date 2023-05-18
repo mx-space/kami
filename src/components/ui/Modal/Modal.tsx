@@ -13,7 +13,7 @@ import { RootPortalProvider } from '~/components/ui/Portal/provider'
 import { microReboundPreset } from '~/constants/spring'
 import { useIsMountedState } from '~/hooks/common/use-is-mounted'
 
-import { BottomToUpTransitionView } from '../Transition/bottom-up'
+import { BottomToUpTransitionView } from '../Transition/BottomToUpTransitionView'
 import styles from './modal.module.css'
 import { ScaleModalTransition } from './scale-transition'
 

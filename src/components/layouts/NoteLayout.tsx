@@ -16,7 +16,7 @@ import {
   FluentEyeHide20Regular,
   RegularBookmark,
 } from '~/components/ui/Icons/layout'
-import { BottomToUpTransitionView } from '~/components/ui/Transition/bottom-up'
+import { BottomToUpTransitionView } from '~/components/ui/Transition/BottomToUpTransitionView'
 import { apiClient } from '~/utils/client'
 import { resolveUrl } from '~/utils/utils'
 

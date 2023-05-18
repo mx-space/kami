@@ -11,7 +11,7 @@ import { TimelineListWrapper } from '~/components/in-page/Timeline/TimelineListW
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { Divider } from '~/components/ui/Divider'
 import { Pagination } from '~/components/ui/Pagination'
-import { RightToLeftTransitionView } from '~/components/ui/Transition/right-left'
+import { RightToLeftTransitionView } from '~/components/ui/Transition/RightToLeftTransitionView'
 import { apiClient } from '~/utils/client'
 
 const TopicDetailPage: NextPage<TopicModel> = (props) => {

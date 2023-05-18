@@ -4,7 +4,7 @@ import { useCallback, useMemo, useState } from 'react'
 import type { LinkModel } from '@mx-space/api-client'
 
 import { Avatar } from '~/components/ui/Avatar'
-import { BottomToUpTransitionView } from '~/components/ui/Transition/bottom-up'
+import { BottomToUpTransitionView } from '~/components/ui/Transition/BottomToUpTransitionView'
 
 import styles from './index.module.css'
 

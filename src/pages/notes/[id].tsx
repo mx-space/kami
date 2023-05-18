@@ -182,14 +182,6 @@ const NoteView: React.FC<{ id: string }> = memo((props) => {
       }).format(secretDate)
     : ''
   useEffect(() => {
-    console.log(
-      'sc',
-      +secretDate,
-      +new Date(),
-      secretDate,
-      +secretDate - +new Date(),
-    )
-
     let timer: any
     const timeout = +secretDate - +new Date()
     // https://stackoverflow.com/questions/3468607/why-does-settimeout-break-for-large-millisecond-delay-values

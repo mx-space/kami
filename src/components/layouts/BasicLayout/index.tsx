@@ -1,6 +1,5 @@
 import type { FC } from 'react'
 import React, {
-  Suspense,
   memo,
   useCallback,
   useEffect,
@@ -133,9 +132,8 @@ export const BasicLayout: FC = memo(({ children }) => {
       <div className="ease pointer-events-none fixed inset-0 transform-gpu bg-fixed transition-opacity duration-500">
         <div className="bg absolute inset-0 transform-gpu" />
       </div>
-      <Suspense fallback={null}>
-        <Header />
-      </Suspense>
+
+      <Header />
 
       <div className="app-content">{children}</div>
 
@@ -153,21 +151,20 @@ export const BasicLayout: FC = memo(({ children }) => {
           }).current
         }
       />
-      <Suspense fallback={null}>
-        <Footer />
-        <MusicMiniPlayerStoreControlled />
 
-        {!isNarrowThanLaptop && <LampSwitch onClick={handleChangeColorMode} />}
+      <Footer />
+      <MusicMiniPlayerStoreControlled />
 
-        <ColorModeNoticePanel
-          {...tip}
-          onExited={() => setNotice(false)}
-          in={showNotice}
-          key="panel"
-        />
+      {!isNarrowThanLaptop && <LampSwitch onClick={handleChangeColorMode} />}
 
-        <SearchHotKey />
-      </Suspense>
+      <ColorModeNoticePanel
+        {...tip}
+        onExited={() => setNotice(false)}
+        in={showNotice}
+        key="panel"
+      />
+
+      <SearchHotKey />
     </ModalStackProvider>
   )
 })

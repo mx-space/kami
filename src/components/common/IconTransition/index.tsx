@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import type { FC } from 'react'
 import { useId } from 'react'
 
-import { FadeInOutTransitionView } from '~/components/ui/Transition/fade-in-out'
+import { FadeInOutTransitionView } from '~/components/ui/Transition/FadeInOutTransitionView'
 
 interface IconTransitionProps {
   solidIcon: JSX.Element

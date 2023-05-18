@@ -13,7 +13,7 @@ import {
   FaSolidHeadphonesAlt,
 } from '~/components/ui/Icons/for-footer'
 import { RootPortal } from '~/components/ui/Portal'
-import { ScaleTransitionView } from '~/components/ui/Transition/scale'
+import { ScaleTransitionView } from '~/components/ui/Transition/ScaleTransitionView'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/app/use-analyze'
 import {
