@@ -96,7 +96,7 @@ export const XLogInfoBase: FC<{
       <div
         role="button"
         tabIndex={0}
-        className="dark:hover:bg-dark-200 -mx-2 flex w-[100%+0.5rem] items-center justify-between rounded-lg p-2 text-left text-gray-900 transition transition-colors duration-300 hover:bg-zinc-100 md:rounded-xl"
+        className="dark:hover:bg-dark-200 -mx-2 flex w-[100%+0.5rem] items-center justify-between rounded-lg p-2 text-left text-shizuku-text transition transition-colors duration-300 hover:bg-zinc-100 md:rounded-xl"
         onClick={() => {
           setCollapse((c) => !c)
         }}
