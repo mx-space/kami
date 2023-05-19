@@ -1,8 +1,8 @@
 'use client'
 
-import { AnimatePresence, motion } from 'framer-motion'
+import { useAnimationControls } from 'framer-motion'
 import type { FC } from 'react'
-import { useId } from 'react'
+import { useEffect, useState } from 'react'
 
 import { FadeInOutTransitionView } from '~/components/ui/Transition/FadeInOutTransitionView'
 
@@ -13,20 +13,31 @@ interface IconTransitionProps {
 }
 export const IconTransition: FC<IconTransitionProps> = (props) => {
   const { currentState, regularIcon, solidIcon } = props
-  const id = useId()
+  console.log(currentState)
+  const map = {
+    solid: solidIcon,
+    regular: regularIcon,
+  }
+  const [currentIcon, setCurrentIcon] = useState(map[currentState])
+  const controls = useAnimationControls()
+
+  useEffect(() => {
+    controls.start({ opacity: 0 }).then(() => {
+      setCurrentIcon(map[currentState])
+      requestAnimationFrame(() => {
+        controls.start({ opacity: 1 })
+      })
+    })
+  }, [currentState])
+
   return (
-    <FadeInOutTransitionView key={currentState}>
-      <AnimatePresence>
-        {currentState === 'solid' ? (
-          <motion.div layout layoutId={id}>
-            {solidIcon}
-          </motion.div>
-        ) : (
-          <motion.div layout layoutId={id}>
-            {regularIcon}
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <FadeInOutTransitionView
+      initial
+      animate={controls}
+      transition={{ duration: 0.2 }}
+      key={currentState}
+    >
+      {currentIcon}
     </FadeInOutTransitionView>
   )
 }

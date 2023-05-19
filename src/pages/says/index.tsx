@@ -47,6 +47,7 @@ const SayView = () => {
   return (
     <main>
       <Seo title="说说" />
+      {/* TODO  new feature https://developer.mozilla.org/en-US/docs/Web/CSS/masonry-auto-flow */}
       <Masonry breakpointCols={isMobile ? 1 : 2} className={styles['kami-say']}>
         {says.map((say, i) => {
           const hasSource = !!say.source

@@ -91,11 +91,11 @@ export const MLink: FC<{
       )}
     >
       <span>{props.href}</span>
-      <iframe
+      {/* <iframe
         src={props.href}
         className="mt-2 h-64 w-full overflow-auto border-none outline-none"
-        sandbox="allow-scripts"
-      />
+        sandbox="allow-scripts allow-same-origin"
+      /> */}
     </FloatPopover>
   )
 })

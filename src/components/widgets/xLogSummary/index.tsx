@@ -3,6 +3,7 @@ import SWR from 'swr'
 
 import { useNoteCollection } from '~/atoms/collections/note'
 import { usePostCollection } from '~/atoms/collections/post'
+import { AnimateChangeInHeight } from '~/components/ui/AnimateChangeInHeight'
 import { apiClient } from '~/utils/client'
 
 export const XLogSummary: FC<{
@@ -45,9 +46,11 @@ export const XLogSummary: FC<{
         AI 生成的摘要
       </div>
 
-      <p className="text-gray-1 text-sm leading-loose">
-        {isLoading ? '生成中...' : error ? '请求错误' : data?.data}
-      </p>
+      <AnimateChangeInHeight duration={0.3}>
+        <p className="text-gray-1 text-sm leading-loose">
+          {isLoading ? '生成中...' : error ? '请求错误' : data?.data}
+        </p>
+      </AnimateChangeInHeight>
     </div>
   )
 }

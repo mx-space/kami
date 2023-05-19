@@ -1,11 +1,10 @@
 import clsx from 'clsx'
 import dayjs from 'dayjs'
+import { motion, useAnimationControls } from 'framer-motion'
 import dynamic from 'next/dynamic'
 import type { ReactNode } from 'react'
-import { forwardRef, useCallback } from 'react'
+import { forwardRef, useCallback, useEffect } from 'react'
 import { shallow } from 'zustand/shallow'
-
-import type { NoteModel } from '@mx-space/api-client'
 
 import { useAppStore } from '~/atoms/app'
 import { useNoteCollection } from '~/atoms/collections/note'
@@ -16,14 +15,13 @@ import {
   FluentEyeHide20Regular,
   RegularBookmark,
 } from '~/components/ui/Icons/layout'
-import { BottomToUpTransitionView } from '~/components/ui/Transition/BottomToUpTransitionView'
-import { apiClient } from '~/utils/client'
+import { microReboundPreset } from '~/constants/spring'
+import { springScrollToElement } from '~/utils/spring'
 import { resolveUrl } from '~/utils/utils'
 
-import { ClientOnly } from '../app/ClientOnly'
 import { IconTransition } from '../common/IconTransition'
+import { AnimateChangeInHeight } from '../ui/AnimateChangeInHeight'
 import { Banner } from '../ui/Banner'
-import { Collapse } from '../ui/Collapse'
 
 const NoteTimelineList = dynamic(() =>
   import('~/components/in-page/Note/NoteTimelineList').then(
@@ -38,10 +36,11 @@ const bannerClassNames = {
   success: `bg-emerald-100 dark:bg-emerald-800 dark:text-white`,
   secondary: `bg-sky-100 dark:bg-sky-800 dark:text-white`,
 }
-const useNoteMetaBanner = (note?: NoteModel) => {
-  if (!note) {
-    return
-  }
+const useNoteMetaBanner = (id: string) => {
+  const note = useNoteCollection((state) => {
+    const note = state.get(id)!
+    return { meta: note.meta }
+  }, shallow)
   const meta = note?.meta
   let banner = meta?.banner as {
     type: string
@@ -88,66 +87,101 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
 
     const url = useAppStore((state) => state.appUrl)
 
-    const note = useNoteCollection((state) => state.get(id), shallow)
-    const bookmark = note?.hasMemory
-    const banner = useNoteMetaBanner(note)
+    const bookmark = useNoteCollection((state) => state.get(id)?.hasMemory)
+    const isHide = useNoteCollection((state) => state.get(id)?.hide)
+    const banner = useNoteMetaBanner(id)
     const onMarkToggle = useCallback(async () => {
-      await apiClient.note.proxy(id).patch({ data: { hasMemory: !bookmark } })
-    }, [bookmark, id])
-    const noAppear = globalThis.location ? location.hash : false
+      await useNoteCollection.getState().bookmark(id)
+    }, [id])
+
+    const controller = useAnimationControls()
+
+    useEffect(() => {
+      controller.set('from')
+
+      controller.start('to')
+    }, [id])
+
+    useEffect(() => {
+      setTimeout(() => {
+        const hash = location.hash
+        if (hash) {
+          const el = document.querySelector(
+            decodeURIComponent(hash),
+          ) as HTMLElement
+
+          if (el) {
+            springScrollToElement(el)
+          }
+        }
+      }, 1000)
+    }, [])
+
     return (
       <main className="is-note relative max-w-[50em]" ref={ref}>
-        <BottomToUpTransitionView
-          key={id}
-          appear={!noAppear}
-          exit={{ opacity: 0 }}
+        <motion.div
+          initial={true}
+          animate={controller}
+          transition={microReboundPreset}
+          variants={{
+            from: {
+              translateY: '-3rem',
+              opacity: 0,
+            },
+            to: {
+              translateY: 0,
+              opacity: 1,
+            },
+          }}
         >
           <div className="note-article relative">
-            <ClientOnly>
-              <div className="title-headline dark:text-shizuku-text">
-                <span className="inline-flex items-center">
-                  <time className="font-medium">{dateFormat}</time>
-                  {!isPreview && (
-                    <div className="ml-4 inline-flex items-center space-x-2">
-                      {isLogged ? (
-                        <IconTransition
-                          currentState={bookmark ? 'solid' : 'regular'}
-                          regularIcon={
-                            <RegularBookmark
-                              className="cursor-pointer"
-                              onClick={onMarkToggle}
-                            />
-                          }
-                          solidIcon={
-                            <SolidBookmark
-                              className="text-red cursor-pointer"
-                              onClick={onMarkToggle}
-                            />
-                          }
-                        />
-                      ) : bookmark ? (
-                        <SolidBookmark className="text-red" />
-                      ) : null}
-                      {note?.hide && (
-                        <FluentEyeHide20Regular
-                          className={!isLogged ? 'text-red' : ''}
-                        />
-                      )}
-                    </div>
-                  )}
-                </span>
-              </div>
-            </ClientOnly>
+            <div className="title-headline dark:text-shizuku-text">
+              <span className="inline-flex items-center">
+                <time className="font-medium">{dateFormat}</time>
+                {!isPreview && (
+                  <div className="ml-4 inline-flex items-center space-x-2">
+                    {isLogged ? (
+                      <IconTransition
+                        currentState={bookmark ? 'solid' : 'regular'}
+                        regularIcon={
+                          <RegularBookmark
+                            className="cursor-pointer"
+                            onClick={onMarkToggle}
+                          />
+                        }
+                        solidIcon={
+                          <SolidBookmark
+                            className="text-red cursor-pointer"
+                            onClick={onMarkToggle}
+                          />
+                        }
+                      />
+                    ) : bookmark ? (
+                      <SolidBookmark className="text-red" />
+                    ) : null}
+                    {isHide && (
+                      <FluentEyeHide20Regular
+                        className={!isLogged ? 'text-red' : ''}
+                      />
+                    )}
+                  </div>
+                )}
+              </span>
+            </div>
+
             {isPreview && (
               <Banner className="mt-8" type="info">
                 正在处于预览模式
               </Banner>
             )}
-            <Collapse isOpened={!!banner}>
+            <AnimateChangeInHeight
+              className="w900:ml-[-1.25em] w900:mr-[-1.25em] w900:text-sm ml-[calc(-3em)] mr-[calc(-3em)] mt-8"
+              duration={0.3}
+            >
               {banner && (
                 <div
                   className={clsx(
-                    'w900:ml-[-1.25em] w900:mr-[-1.25em] w900:text-sm ml-[calc(-3em)] mr-[calc(-3em)] mt-8 flex justify-center p-4 leading-8',
+                    'flex justify-center p-4 leading-8',
                     banner.className,
                   )}
                   style={banner.style}
@@ -155,7 +189,7 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
                   {banner.message}
                 </div>
               )}
-            </Collapse>
+            </AnimateChangeInHeight>
 
             <div>
               <h1 className="!before:hidden headline dark:text-shizuku-text !mt-8 text-center">
@@ -180,7 +214,7 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
               {children}
             </div>
           </div>
-        </BottomToUpTransitionView>
+        </motion.div>
 
         {!isPreview && <NoteTimelineList noteId={id} />}
       </main>

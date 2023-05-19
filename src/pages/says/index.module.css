@@ -1,9 +1,9 @@
 .author {
-  @apply flex flex-wrap relative justify-between;
+  @apply relative flex flex-wrap justify-between;
 }
 
 .kami-say {
-  @apply flex w-full w-auto;
+  @apply flex w-auto w-full;
 
   > div {
     @apply ml-4;

@@ -52,8 +52,6 @@ const TopicComp: FC<{
   )
 }
 
-type NotePartial = Pick<NoteModel, 'id' | 'nid' | 'created' | 'title'>
-
 const ObserveredNoteTimelineList: FC<
   NoteTimelineListProps & JSX.IntrinsicElements['div']
 > = (props) => {
@@ -109,7 +107,14 @@ const ObserveredNoteTimelineList: FC<
         <ul ref={animationParent}>
           {list?.map((item) => {
             const isCurrent = item.id === noteId
-            return <MemoedItem key={item.id} item={item} active={isCurrent} />
+            return (
+              <MemoedItem
+                key={item.id}
+                active={isCurrent}
+                title={item.title}
+                nid={item.nid}
+              />
+            )
           })}
         </ul>
         {note?.topic && (
@@ -141,9 +146,10 @@ const ObserveredNoteTimelineList: FC<
 
 export const MemoedItem = memo<{
   active: boolean
-  item: NotePartial
+  title: string
+  nid: number
 }>((props) => {
-  const { active, item } = props
+  const { active, nid, title } = props
 
   return (
     <li className="flex items-center">
@@ -152,12 +158,12 @@ export const MemoedItem = memo<{
       </LeftToRightTransitionView>
       <Link
         className={clsx(active ? styles['active'] : null, styles.item)}
-        href={`/notes/${item.nid}`}
-        key={item.id}
+        href={`/notes/${nid}`}
+        key={nid}
         scroll={false}
         onClick={springScrollToTop}
       >
-        {item.title}
+        {title}
       </Link>
     </li>
   )

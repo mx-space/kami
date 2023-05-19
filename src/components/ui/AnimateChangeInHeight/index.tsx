@@ -5,11 +5,13 @@ import React, { useEffect, useRef, useState } from 'react'
 interface AnimateChangeInHeightProps {
   children: React.ReactNode
   className?: string
+  duration?: number
 }
 
 export const AnimateChangeInHeight: React.FC<AnimateChangeInHeightProps> = ({
   children,
   className,
+  duration = 0.6,
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [height, setHeight] = useState<number | 'auto'>('auto')
@@ -36,7 +38,7 @@ export const AnimateChangeInHeight: React.FC<AnimateChangeInHeightProps> = ({
       className={clsx(className, 'overflow-hidden')}
       style={{ height }}
       animate={{ height }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration }}
     >
       <div ref={containerRef}>{children}</div>
     </motion.div>

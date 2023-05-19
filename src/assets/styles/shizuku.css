@@ -209,7 +209,7 @@
   background-color: unset !important;
   border: none !important;
   position: relative;
-  color: var(--pink);
+  color: var(--accent);
   font-family: var(--serif-font);
   padding-bottom: 24px;
 

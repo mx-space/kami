@@ -29,6 +29,7 @@ interface NoteCollection {
     }
   >
   fetchLatest(): Promise<ModelWithLiked<NoteModel>>
+  bookmark(id: string): Promise<void>
 }
 
 export const useNoteCollection = createCollection<NoteModel, NoteCollection>(
@@ -157,6 +158,21 @@ export const useNoteCollection = createCollection<NoteModel, NoteCollection>(
         })
 
         return data.data
+      },
+      async bookmark(id: string) {
+        const note = getState().get(id)
+        const bookmark = note?.hasMemory
+        await apiClient.note.proxy(id).patch({ data: { hasMemory: !bookmark } })
+        setState((state) => {
+          const note = state.get(id)
+          if (note) {
+            const nextNote = { ...note }
+            nextNote.hasMemory = !bookmark
+            requestAnimationFrame(() => {
+              getState().addOrPatch(nextNote)
+            })
+          }
+        })
       },
     }
   },
