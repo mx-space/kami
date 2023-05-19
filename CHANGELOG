@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [4.5.1](https://github.com/mx-space/kami/compare/v4.5.0...v4.5.1) (2023-05-19)
+
+
+### Bug Fixes
+
+* note layout transition ([fa83fed](https://github.com/mx-space/kami/commit/fa83fed4462d272d4c0c6b06594a19feaabbd35b))
+* rename some file ([56f1900](https://github.com/mx-space/kami/commit/56f1900488998e97f1a0ef7a7d9a69cc3c1b52a0))
+* update ci find comment ([31872af](https://github.com/mx-space/kami/commit/31872af9bc8549bbb793724b597e13f4c50a8aa1))
+
+
+
 # [4.5.0](https://github.com/mx-space/kami/compare/v4.4.10...v4.5.0) (2023-05-17)
 
 
