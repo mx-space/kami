@@ -1,15 +1,12 @@
 import type { FC } from 'react'
 import { memo, useEffect } from 'react'
 import useSWR from 'swr'
-
 import type { LinkModel } from '@mx-space/api-client'
 import { LinkState, LinkType } from '@mx-space/api-client'
-
 import { Avatar } from '~/components/ui/Avatar'
 import { PhUsersDuotone } from '~/components/ui/Icons/for-home'
 import { shuffle } from '~/utils/_'
 import { apiClient } from '~/utils/client'
-
 import styles from './index.module.css'
 import { SectionWrap } from './section'
 

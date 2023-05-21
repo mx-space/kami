@@ -1,5 +1,6 @@
 import axios from 'axios'
 import clsx from 'clsx'
+import Link from 'next/link'
 import type { FC } from 'react'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
@@ -147,10 +148,12 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
     return null
   }
 
+  const LinkComponent = source === 'self' ? Link : 'a'
+
   return (
-    <a
+    <LinkComponent
       href={fullUrl}
-      target="_blank"
+      target={source !== 'self' ? '_blank' : '_self'}
       ref={ref}
       className={clsx(
         styles['card-grid'],
@@ -174,6 +177,6 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
           }}
         />
       )}
-    </a>
+    </LinkComponent>
   )
 }

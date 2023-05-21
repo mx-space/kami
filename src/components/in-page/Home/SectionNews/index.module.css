@@ -42,7 +42,7 @@
   }
 
   &:hover {
-    color: #ffc670;
+    color: theme(colors.accent);
 
     .card-cover-wrap {
       > * {
