@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [4.5.2](https://github.com/mx-space/kami/compare/v4.5.1...v4.5.2) (2023-05-21)
+
+
+### Bug Fixes
+
+* link card error style ([1a0bb80](https://github.com/mx-space/kami/commit/1a0bb802b3c6186e2ff4cbb2a336bc0d6a8284e1))
+
+
+
 ## [4.5.1](https://github.com/mx-space/kami/compare/v4.5.0...v4.5.1) (2023-05-19)
 
 
