@@ -4,15 +4,12 @@ import type { FC } from 'react'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import RemoveMarkdown from 'remove-markdown'
-
 import { simpleCamelcaseKeys as camelcaseKeys } from '@mx-space/api-client'
-
 import { useRandomImage } from '~/hooks/app/use-kami-theme'
 import { useIsUnMounted } from '~/hooks/common/use-is-unmounted'
 import { useSafeSetState } from '~/hooks/common/use-safe-setState'
 import { apiClient } from '~/utils/client'
 import { getRandomImage } from '~/utils/images'
-
 import styles from './link-card.module.css'
 
 export type LinkCardSource = 'gh' | 'self'
@@ -84,7 +81,7 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
                   title,
                   desc: summary ?? `${RemoveMarkdown(text).slice(0, 50)}...`,
                   // TODO
-                  image: images?.[0].src || getRandomImage(1)[0],
+                  image: images?.[0]?.src || getRandomImage(1)[0],
                 })
               })
             }
@@ -128,7 +125,8 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
     }
     setLoading(true)
 
-    await fetchFnRef.current().catch(() => {
+    await fetchFnRef.current().catch((err) => {
+      console.log('fetch card info error: ', err)
       setIsError(true)
     })
     setLoading(false)
@@ -155,7 +153,7 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
       target="_blank"
       ref={ref}
       className={clsx(
-        (cardInfo || loading) && styles['card-grid'],
+        styles['card-grid'],
         (loading || isError) && styles['skeleton'],
         isError && styles['error'],
         className,

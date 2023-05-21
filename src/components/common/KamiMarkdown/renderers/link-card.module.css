@@ -58,7 +58,7 @@
 }
 
 .image {
-  @apply aspect-square flex-shrink-0 bg-cover bg-no-repeat bg-center;
+  @apply aspect-square flex-shrink-0 bg-cover bg-center bg-no-repeat;
   @apply bg-gray-6;
 
   height: 60px;
@@ -96,7 +96,7 @@
   }
 
   &.error {
-    background-color: #e1534a50 !important;
+    background-color: #e1534a20 !important;
 
     & .title,
     & .desc,

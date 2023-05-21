@@ -5,7 +5,6 @@ import dynamic from 'next/dynamic'
 import type { ReactNode } from 'react'
 import { forwardRef, useCallback, useEffect } from 'react'
 import { shallow } from 'zustand/shallow'
-
 import { useAppStore } from '~/atoms/app'
 import { useNoteCollection } from '~/atoms/collections/note'
 import { useIsLogged } from '~/atoms/user'
@@ -18,7 +17,6 @@ import {
 import { microReboundPreset } from '~/constants/spring'
 import { springScrollToElement } from '~/utils/spring'
 import { resolveUrl } from '~/utils/utils'
-
 import { IconTransition } from '../common/IconTransition'
 import { AnimateChangeInHeight } from '../ui/AnimateChangeInHeight'
 import { Banner } from '../ui/Banner'
@@ -38,7 +36,8 @@ const bannerClassNames = {
 }
 const useNoteMetaBanner = (id: string) => {
   const note = useNoteCollection((state) => {
-    const note = state.get(id)!
+    const note = state.get(id)
+    if (!note) return null
     return { meta: note.meta }
   }, shallow)
   const meta = note?.meta
