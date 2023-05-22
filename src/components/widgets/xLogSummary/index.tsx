@@ -1,6 +1,5 @@
 import type { FC, SVGProps } from 'react'
 import SWR from 'swr'
-
 import { useNoteCollection } from '~/atoms/collections/note'
 import { usePostCollection } from '~/atoms/collections/post'
 import { AnimateChangeInHeight } from '~/components/ui/AnimateChangeInHeight'
@@ -48,8 +47,17 @@ export const XLogSummary: FC<{
 
       <AnimateChangeInHeight duration={0.3}>
         <p className="text-gray-1 text-sm leading-loose">
-          {isLoading ? '生成中...' : error ? '请求错误' : data?.data}
+          {isLoading ? '加载中...' : error ? '请求错误' : data?.data}
         </p>
+        {isLoading && (
+          <p className="text-gray-2 text-right text-sm">
+            (此服务由{' '}
+            <a href="https://xlog.app" target="_blank">
+              xLog
+            </a>{' '}
+            驱动)
+          </p>
+        )}
       </AnimateChangeInHeight>
     </div>
   )
