@@ -73,7 +73,7 @@
     "markdown-to-jsx": "npm:@innei/markdown-to-jsx@7.1.3-beta.2",
     "medium-zoom": "1.0.8",
     "mermaid": "10.2.0",
-    "next": "13.4.3",
+    "next": "13.4.4",
     "next-seo": "6.0.0",
     "next-suspense": "0.2.3",
     "randomcolor": "0.6.2",
@@ -96,15 +96,15 @@
   "devDependencies": {
     "@innei/eslint-config-react-ts": "0.10.0",
     "@innei/prettier": "0.10.0",
-    "@next/bundle-analyzer": "13.4.3",
+    "@next/bundle-analyzer": "13.4.4",
     "@trivago/prettier-plugin-sort-imports": "4.1.1",
     "@types/inflection": "1.13.0",
     "@types/js-cookie": "3.0.3",
     "@types/lodash-es": "4.17.7",
     "@types/markdown-escape": "1.1.0",
-    "@types/node": "18.16.14",
+    "@types/node": "18.16.15",
     "@types/randomcolor": "0.5.7",
-    "@types/react": "17.0.59",
+    "@types/react": "17.0.60",
     "@types/react-color": "3.0.6",
     "@types/react-dom": "18.2.4",
     "@types/remove-markdown": "0.3.1",
@@ -132,7 +132,7 @@
   },
   "resolutions": {
     "react-use": "17.4.0",
-    "@types/react": "17.0.59"
+    "@types/react": "17.0.60"
   },
   "nextBundleAnalysis": {
     "budget": 358400,
