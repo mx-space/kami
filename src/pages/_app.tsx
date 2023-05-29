@@ -1,5 +1,4 @@
 import 'windi.css'
-
 import 'assets/styles/main.css'
 import type { AppContext } from 'next/app'
 import NextApp from 'next/app'
@@ -20,28 +19,6 @@ import { attachRequestProxy, fetchInitialData } from '~/utils/app'
 import { isDev } from '~/utils/env'
 
 import '../../third/qp/index.css'
-
-// const createElement = React.createElement
-// // @ts-ignore
-// React.createElement = (...rest: any[]) => {
-//   try {
-//     if (
-//       rest[1] &&
-//       typeof rest[1] === 'object' &&
-//       typeof rest[0] === 'string' &&
-//       !rest[1].suppressHydrationWarning &&
-//       Object.getOwnPropertyDescriptor(rest[1], 'suppressHydrationWarning') ===
-//         undefined
-//     ) {
-//       // rest[1].suppressHydrationWarning = true
-//     }
-//   } catch (err) {
-//     console.log(err)
-//   }
-//   // @ts-ignore
-//   // eslint-disable-next-line prefer-spread
-//   return createElement.apply(null, rest)
-// }
 
 interface DataModel {
   initData: InitialDataType
