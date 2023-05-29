@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [4.5.5](https://github.com/mx-space/kami/compare/v4.5.4...v4.5.5) (2023-05-29)
+
+
+### Bug Fixes
+
+* sentry webpack plguin ([06b9b31](https://github.com/mx-space/kami/commit/06b9b31b21b6fe6f686905dacea65ca7f0aa76f8))
+
+
+
 ## [4.5.4](https://github.com/mx-space/kami/compare/v4.5.3...v4.5.4) (2023-05-29)
 
 
