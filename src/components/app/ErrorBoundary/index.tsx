@@ -1,5 +1,6 @@
 import Router from 'next/router'
-import React, { PureComponent, createElement } from 'react'
+import React, { createElement, PureComponent } from 'react'
+import { captureException } from '@sentry/nextjs'
 
 export class ErrorBoundary extends PureComponent<{
   children?: React.ReactNode
@@ -12,8 +13,10 @@ export class ErrorBoundary extends PureComponent<{
   }
 
   componentDidCatch(error, errorInfo) {
-    console.error(error, 'render error')
+    console.error(error)
     console.error(errorInfo)
+
+    captureException(error)
 
     this.setState({
       error,
@@ -42,19 +45,18 @@ export class ErrorBoundary extends PureComponent<{
     if (errorInfo) {
       return (
         // @ts-ignore
-        this.props.fallbackComponent ? (
-          createElement(this.props.fallbackComponent, {
-            error: errorInfo.error,
-            errorInfo,
-          })
-        ) : (
-          <div className="text-center mt-6">
-            <div className="leading-6">渲染报错</div>
-            <pre className="max-w-80vw break-all">
-              {JSON.stringify(errorInfo, null, 2)}
-            </pre>
-          </div>
-        )
+        this.props.fallbackComponent
+          ? createElement(this.props.fallbackComponent, {
+              error: errorInfo.error,
+              errorInfo,
+            })
+          : // <div className="text-center mt-6">
+            //   <div className="leading-6">渲染报错</div>
+            //   <pre className="max-w-80vw break-all">
+            //     {JSON.stringify(errorInfo, null, 2)}
+            //   </pre>
+            // </div>
+            null
       )
     }
 

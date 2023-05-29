@@ -1,11 +1,10 @@
 import type { AxiosError } from 'axios'
-import type { NextPage } from 'next'
+import type { NextPage, NextPageContext } from 'next'
 import { NextSeo } from 'next-seo'
 import { useEffect } from 'react'
-
 import { RequestError } from '@mx-space/api-client'
-
-import { ErrorView, errorToText } from '~/components/app/Error'
+import { captureUnderscoreErrorException } from '@sentry/nextjs'
+import { errorToText, ErrorView } from '~/components/app/Error'
 import { useIsClient } from '~/hooks/common/use-is-client'
 import { isNumber } from '~/utils/_'
 
@@ -60,8 +59,10 @@ const getCode = (err, res): number => {
   }
   return 500
 }
+ErrorPage.getInitialProps = async (ctx: NextPageContext) => {
+  const { res, err } = ctx
+  await captureUnderscoreErrorException(ctx)
 
-ErrorPage.getInitialProps = async ({ res, err }: any) => {
   const statusCode = +getCode(err, res) || 500
 
   res && (res.statusCode = statusCode)
@@ -79,8 +80,8 @@ ErrorPage.getInitialProps = async ({ res, err }: any) => {
   })()
   serializeErr['_message'] =
     (err as any)?.raw?.response?.data?.message ||
-    err.message ||
-    err.response?.data?.message
+    err?.message ||
+    (err as any)?.response?.data?.message
 
   return { statusCode, err: serializeErr } as {
     statusCode: number
