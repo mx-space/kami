@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## [4.5.4](https://github.com/mx-space/kami/compare/v4.5.3...v4.5.4) (2023-05-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency framer-motion to v10.12.16 ([#1684](https://github.com/mx-space/kami/issues/1684)) ([2a2ba80](https://github.com/mx-space/kami/commit/2a2ba80d28391a4f066a9dbfe5ad0cbc4e2b7568))
+* **deps:** update dependency mermaid to v10.2.0 ([#1685](https://github.com/mx-space/kami/issues/1685)) ([6f8194e](https://github.com/mx-space/kami/commit/6f8194e213e04d4d9dcf6524ff58c823ed64dabf))
+* framer motion ([9969eb8](https://github.com/mx-space/kami/commit/9969eb88b3608e926abde99e1b46d0c02fd37ea2))
+
+
+### Features
+
+* add sentry again ([#1688](https://github.com/mx-space/kami/issues/1688)) ([be5cd52](https://github.com/mx-space/kami/commit/be5cd52088d6e7f34d1660afedf9d398958fcaaf))
+
+
+
 ## [4.5.3](https://github.com/mx-space/kami/compare/v4.5.2...v4.5.3) (2023-05-22)
 
 
