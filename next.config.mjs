@@ -1,7 +1,9 @@
 import { config } from 'dotenv'
 import WindiCSSWebpackPlugin from 'windicss-webpack-plugin'
+
 import NextBundleAnalyzer from '@next/bundle-analyzer'
 import { withSentryConfig } from '@sentry/nextjs'
+import { sentryWebpackPlugin } from '@sentry/webpack-plugin'
 
 process.title = 'Kami (NextJS)'
 
@@ -19,6 +21,16 @@ let configs = {
   },
   webpack: (config, options) => {
     config.plugins.push(new WindiCSSWebpackPlugin())
+
+    if (process.env.SENTRY === 'true' && process.env.NEXT_PUBLIC_SENTRY_DSN) {
+      config.plugins.push(
+        new sentryWebpackPlugin({
+          include: '.next',
+          ignore: ['node_modules', 'cypress', 'test'],
+          urlPrefix: '~/_next',
+        }),
+      )
+    }
 
     return config
   },
