@@ -35,3 +35,6 @@ json-schema.json
 packages/kami-design/types
 
 packages/kami-design/components/**/*.temp.tsx
+
+# Sentry Auth Token
+.sentryclirc

@@ -61,6 +61,7 @@
     "@floating-ui/react-dom": "2.0.0",
     "@formkit/auto-animate": "1.0.0-beta.6",
     "@mx-space/api-client": "1.4.0",
+    "@sentry/nextjs": "7.53.1",
     "axios": "1.4.0",
     "clsx": "1.2.1",
     "dayjs": "1.11.7",
