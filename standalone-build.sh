@@ -5,7 +5,7 @@ npm run build
 cd .next
 pwd
 rm -rf cache
-cp ../next.config.js ./standalone/next.config.js
+cp ../next.config.mjs ./standalone/next.config.mjs
 cp -r ../public ./standalone/public
 
 cd ./standalone
@@ -13,8 +13,8 @@ echo ';process.title = "Kami (NextJS)"' >>server.js
 mv ../static/ ./.next/static
 
 # move workbox
-cp ../sw.js ./public/sw.js
-cp ../workbox-*.js ./public
+# cp ../sw.js ./public/sw.js
+# cp ../workbox-*.js ./public
 
 cp $CWD/ecosystem.standalone.config.js ./ecosystem.config.js
 
