@@ -1,4 +1,5 @@
 #!env bash
+set -e
 CWD=$(pwd)
 npm run build
 cd .next

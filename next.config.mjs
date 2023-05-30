@@ -5,6 +5,8 @@ import NextBundleAnalyzer from '@next/bundle-analyzer'
 import { withSentryConfig } from '@sentry/nextjs'
 import { sentryWebpackPlugin } from '@sentry/webpack-plugin'
 
+// import { sentryWebpackPlugin } from '@sentry/webpack-plugin'
+
 process.title = 'Kami (NextJS)'
 
 const env = config().parsed || {}
@@ -24,10 +26,16 @@ let configs = {
 
     if (process.env.SENTRY === 'true' && process.env.NEXT_PUBLIC_SENTRY_DSN) {
       config.plugins.push(
-        new sentryWebpackPlugin({
+        sentryWebpackPlugin({
           include: '.next',
           ignore: ['node_modules', 'cypress', 'test'],
           urlPrefix: '~/_next',
+
+          org: 'inneis-site',
+          headers: {
+            Authorization: `DSN ${process.env.NEXT_PUBLIC_SENTRY_DSN}`,
+          },
+          project: 'kami',
         }),
       )
     }
