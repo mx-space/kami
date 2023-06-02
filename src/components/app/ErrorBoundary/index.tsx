@@ -23,7 +23,7 @@ function FallbackRender({ error, resetErrorBoundary }) {
 }
 
 export const ErrorBoundary: FC<{
-  FallbackComponent: FC<FallbackProps>
+  FallbackComponent?: FC<FallbackProps>
 }> = ({ FallbackComponent, children }) => {
   return (
     <ErrorBoundary$
