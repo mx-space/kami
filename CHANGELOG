@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [4.5.7](https://github.com/mx-space/kami/compare/v4.5.6...v4.5.7) (2023-06-02)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies (patch) ([#1690](https://github.com/mx-space/kami/issues/1690)) ([6f8c699](https://github.com/mx-space/kami/commit/6f8c6992e87395da6da61c35a1053e2997773993))
+
+
+
 ## [4.5.6](https://github.com/mx-space/kami/compare/v4.5.5...v4.5.6) (2023-05-30)
 
 
