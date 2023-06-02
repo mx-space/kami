@@ -2,7 +2,7 @@
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import { sanitizeUrl } from 'markdown-to-jsx'
 import type { FC } from 'react'
-import React, { Fragment, memo, useCallback, useMemo } from 'react'
+import React, { Fragment, memo, useMemo } from 'react'
 
 import { ErrorBoundary } from '~/components/app/ErrorBoundary'
 import type { MdProps } from '~/components/ui/Markdown'
@@ -36,17 +36,13 @@ export const KamiMarkdown: FC<KamiMarkdownProps & MarkdownToJSX.Options> = memo(
       return MHeading()
     }, [value, props.children])
 
-    const RenderError = useCallback(
-      () => (
-        <div>
-          Markdown RenderError, Raw: <br /> {value || props.children}
-        </div>
-      ),
-      [props.children, value],
-    )
-
     return (
-      <ErrorBoundary fallbackComponent={RenderError}>
+      <ErrorBoundary
+        FallbackComponent={useMemo(
+          () => () => <ErrorFallback value={value || ''} />,
+          [value],
+        )}
+      >
         <Markdown
           tocSlot={props.toc ? MarkdownToc : Noop}
           value={value}
@@ -147,3 +143,16 @@ export const KamiMarkdown: FC<KamiMarkdownProps & MarkdownToJSX.Options> = memo(
     )
   },
 )
+
+const ErrorFallback = (props: { value: string }) => {
+  const { value } = props
+  return (
+    <>
+      <div className="bg-always-red-200 w-full px-4 py-2">
+        Markdown 渲染出错
+      </div>
+
+      <div className="mt-4 px-4 leading-7">{value}</div>
+    </>
+  )
+}

@@ -24,7 +24,11 @@ let configs = {
   webpack: (config, options) => {
     config.plugins.push(new WindiCSSWebpackPlugin())
 
-    if (process.env.SENTRY === 'true' && process.env.NEXT_PUBLIC_SENTRY_DSN) {
+    if (
+      process.env.SENTRY === 'true' &&
+      process.env.NEXT_PUBLIC_SENTRY_DSN &&
+      isProd
+    ) {
       config.plugins.push(
         sentryWebpackPlugin({
           include: '.next',
@@ -62,7 +66,7 @@ if (process.env.ANALYZE === 'true') {
   })(configs)
 }
 
-if (process.env.SENTRY === 'true') {
+if (process.env.SENTRY === 'true' && isProd) {
   configs = withSentryConfig(
     configs,
     {

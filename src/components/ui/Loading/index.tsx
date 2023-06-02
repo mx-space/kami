@@ -2,6 +2,8 @@ import type { FC } from 'react'
 import React, { useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 
+import { useIsClient } from '~/hooks/common/use-is-client'
+
 import styles from './index.module.css'
 
 export type LoadingProps = {
@@ -20,6 +22,9 @@ export const Loading: FC<LoadingProps> = ({ loadingText }) => {
       }
     },
   })
+
+  const isClient = useIsClient()
+  if (!isClient) return null
 
   return (
     <div className={styles['loading']} ref={ref}>

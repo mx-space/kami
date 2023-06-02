@@ -1,0 +1,5 @@
+{
+  "model": "text-davinci-003",
+  "temperature": 0.5,
+  "maxTokens": 500
+}

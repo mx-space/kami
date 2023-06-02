@@ -13,7 +13,7 @@ interface IconTransitionProps {
 }
 export const IconTransition: FC<IconTransitionProps> = (props) => {
   const { currentState, regularIcon, solidIcon } = props
-  console.log(currentState)
+
   const map = {
     solid: solidIcon,
     regular: regularIcon,

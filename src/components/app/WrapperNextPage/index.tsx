@@ -9,9 +9,10 @@ import { isNumber } from '~/utils/_'
 
 import { ErrorView } from '../Error'
 
+const LoadingComponent = () => <Loading />
 export function wrapperNextPage<T extends {}>(Page: NextPage<T>) {
   return wrapper(Page, {
-    LoadingComponent: () => <Loading />,
+    LoadingComponent,
     ErrorComponent: ({ error }) => {
       let code: any
       if (error instanceof RequestError) {
