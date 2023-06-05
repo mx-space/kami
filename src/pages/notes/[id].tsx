@@ -70,7 +70,7 @@ const useUpdateNote = (note: ModelWithDeleted<NoteModel>) => {
   const beforeModel = useRef<NoteModel>()
   const { event } = useAnalyze()
   useEffect(() => {
-    const hideMessage = '此生活记录已被作者删除或隐藏'
+    const hideMessage = '此手记已被作者删除或隐藏'
     if (note?.isDeleted) {
       message.error(hideMessage)
       return
@@ -91,11 +91,11 @@ const useUpdateNote = (note: ModelWithDeleted<NoteModel>) => {
         message.error(hideMessage)
         return
       }
-      message.info('生活记录已更新')
+      message.info('手记已更新')
 
       event({
         action: TrackerAction.Interaction,
-        label: `实时更新生活记录触发 - ${note.title}`,
+        label: `实时更新手记触发 - ${note.title}`,
       })
 
       if (isDev) {
@@ -148,7 +148,7 @@ const NoteView: React.FC<{ id: string }> = memo((props) => {
   useLoadSerifFont()
   useSetHeaderMeta(
     note.title,
-    `生活观察日记${note.topic ? ` / ${note.topic.name}` : ''}`,
+    `手记${note.topic ? ` / ${note.topic.name}` : ''}`,
   )
   useNoteMusic(note.music)
   useJumpToSimpleMarkdownRender(note.id)

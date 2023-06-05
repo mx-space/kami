@@ -81,7 +81,7 @@ export const SearchPanel: FC<SearchPanelProps> = (props) => {
         case 'note':
           return {
             title: item.title,
-            subtitle: '生活记录',
+            subtitle: '手记',
             id: item.id,
             url: `/notes/${item.nid}`,
           }

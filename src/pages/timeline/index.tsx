@@ -145,7 +145,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
         meta: [
           note.mood ? `心情：${note.mood}` : undefined,
           note.weather ? `天气：${note.weather}` : undefined,
-          '生活点滴',
+          '手记',
         ].filter(Boolean) as string[],
         date,
         as: `/notes/${note.nid}`,
