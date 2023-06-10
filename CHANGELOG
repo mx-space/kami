@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [4.5.10](https://github.com/mx-space/kami/compare/v4.5.9...v4.5.10) (2023-06-10)
+
+
+### Bug Fixes
+
+* suspense ([7142d2f](https://github.com/mx-space/kami/commit/7142d2ffb030228fc92c6323f5822d22b34b56d2))
+
+
+
 ## [4.5.9](https://github.com/mx-space/kami/compare/v4.5.8...v4.5.9) (2023-06-10)
 
 
