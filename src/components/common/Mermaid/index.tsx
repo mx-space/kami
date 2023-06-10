@@ -3,7 +3,6 @@ import { memo, useEffect, useId, useState } from 'react'
 
 import { useAppStore } from '~/atoms/app'
 import { ImageLazy } from '~/components/ui/Image'
-import { useIsUnMounted } from '~/hooks/common/use-is-unmounted'
 
 export const Mermaid: FC<{
   content: string
@@ -13,7 +12,6 @@ export const Mermaid: FC<{
   const [svg, setSvg] = useState('')
   const [width, setWidth] = useState<number>()
   const [height, setHeight] = useState<number>()
-  const isUnmounted = useIsUnMounted()
 
   const isDark = useAppStore((state) => state.colorMode === 'dark')
 
@@ -35,6 +33,8 @@ export const Mermaid: FC<{
     setError('')
     setLoading(true)
 
+    let isCanceled = false
+
     import('mermaid').then(async (mo) => {
       const mermaid = mo.default
 
@@ -51,7 +51,7 @@ export const Mermaid: FC<{
         setHeight(undefined)
       }
 
-      if (isUnmounted.current) return
+      if (isCanceled) return
 
       if (result) {
         setSvg(result.svg)
@@ -64,6 +64,9 @@ export const Mermaid: FC<{
         setError('')
       }
       setLoading(false)
+      return () => {
+        isCanceled = true
+      }
     })
   }, [id, props.content])
 

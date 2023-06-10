@@ -18,7 +18,6 @@ import { MaterialSymbolsArrowCircleRightOutlineRounded } from '~/components/ui/I
 import { LeftToRightTransitionView } from '~/components/ui/Transition/LeftToRightTransitionView'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/app/use-analyze'
-import { useIsUnMounted } from '~/hooks/common/use-is-unmounted'
 import { useDetectIsNarrowThanLaptop } from '~/hooks/ui/use-viewport'
 import { apiClient } from '~/utils/client'
 import { springScrollToTop } from '~/utils/spring'
@@ -71,8 +70,8 @@ const ObserveredNoteTimelineList: FC<
     ]
   })
 
-  const isUnmount = useIsUnMounted()
   useEffect(() => {
+    let isCanceled = false
     async function fetchList() {
       const scrollTop = document.documentElement.scrollTop
 
@@ -80,18 +79,21 @@ const ObserveredNoteTimelineList: FC<
         // waiting scroll to top
         await new Promise((resolve) => setTimeout(resolve, WAITING_SCROLL_TIME))
 
-      if (isUnmount.current) return
+      if (isCanceled) return
       const data = await apiClient.note
         .getMiddleList(noteId, 10)
         .then(({ data }) => {
           return data
         })
-      if (isUnmount.current) return
+      if (isCanceled) return
 
       setList(data)
     }
     fetchList()
     // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => {
+      isCanceled = true
+    }
   }, [noteId])
 
   const triggerComponent = useMemo(
