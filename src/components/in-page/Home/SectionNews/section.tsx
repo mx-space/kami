@@ -44,7 +44,6 @@ export const SectionWrap = memo(
               backgroundColor: color,
               filter: colorMode === 'dark' ? 'brightness(0.8)' : undefined,
             }}
-            suppressHydrationWarning
           >
             <div className="z-1 scale-120 absolute left-4 transform">
               {icon}

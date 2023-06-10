@@ -25,7 +25,7 @@ export const ArticleLayoutTitle = memo<{ animate?: boolean }>(
     }
     return (
       <section className={styles['post-title']}>
-        <h1 className={styles['h1']} suppressHydrationWarning>
+        <h1 className={styles['h1']}>
           <TextUpTransitionView appear={animate} key={title}>
             {title}
           </TextUpTransitionView>
@@ -48,7 +48,7 @@ export const ArticleLayoutTitle = memo<{ animate?: boolean }>(
         </h1>
 
         {subtitle && (
-          <h2 suppressHydrationWarning>
+          <h2>
             {subtitleAnimation ? (
               typeof subtitle === 'string' ? (
                 <TextUpTransitionView appear={animate} key={subtitle}>

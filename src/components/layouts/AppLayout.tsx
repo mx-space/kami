@@ -36,9 +36,7 @@ export const AppLayout: FC = (props) => {
         description={initialData.seo.description}
       />
 
-      <div id="next" suppressHydrationWarning>
-        {props.children}
-      </div>
+      <div id="next">{props.children}</div>
       <Loader />
       <MetaFooter />
     </>
