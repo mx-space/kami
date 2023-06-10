@@ -1,17 +1,17 @@
 import 'windi.css'
 import 'assets/styles/main.css'
+
 import type { AppContext } from 'next/app'
 import NextApp from 'next/app'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 
 import { ProviderComposer } from '~/components/app/Composer'
 import { NoDataErrorView } from '~/components/app/Error/no-data'
-import { ErrorBoundary } from '~/components/app/ErrorBoundary'
 import { AppLayout } from '~/components/layouts/AppLayout'
-import { BasicLayout } from '~/components/layouts/BasicLayout'
 import { DebugLayout } from '~/components/layouts/DebugLayout'
+import { SiteLayout } from '~/components/layouts/SiteLayout'
 import type { InitialDataType } from '~/provider/initial-data'
 import { InitialContextProvider } from '~/provider/initial-data'
 import { SWRProvider } from '~/provider/swr'
@@ -20,8 +20,47 @@ import { isDev } from '~/utils/env'
 
 import '../../third/qp/index.css'
 
+import type { AggregateRoot } from '@mx-space/api-client'
+
+import { useUserStore } from '~/atoms/user'
+import { useCheckLogged } from '~/hooks/app/use-check-logged'
+import { useCheckOldBrowser } from '~/hooks/app/use-check-old-browser'
+import { useInitialData } from '~/hooks/app/use-initial-data'
+import { printToConsole } from '~/utils/console'
+
 interface DataModel {
   initData: InitialDataType
+}
+
+const PageProviders = [
+  <SWRProvider key="SWRProvider" />,
+
+  <AppLayout key="appLayout" />,
+  <SiteLayout key="BasicLayout" />,
+]
+
+const Prepare = () => {
+  const { check: checkBrowser } = useCheckOldBrowser()
+  const { check: checkLogin } = useCheckLogged()
+  const initialData: AggregateRoot | null = useInitialData()
+
+  useEffect(() => {
+    try {
+      const { user } = initialData
+      checkLogin()
+      // set user
+      useUserStore.getState().setUser(user)
+      import('../socket').then(({ socketClient }) => {
+        socketClient.initIO()
+      })
+    } finally {
+      document.body.classList.remove('loading')
+    }
+
+    checkBrowser()
+    printToConsole()
+  }, [])
+  return null
 }
 const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
   props,
@@ -29,17 +68,6 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
   const { initData, Component, pageProps } = props
 
   const router = useRouter()
-
-  const PageProviders = useMemo(
-    () => [
-      <SWRProvider key="SWRProvider" />,
-      <ErrorBoundary key="ErrorBoundary1" />,
-      <BasicLayout key="BasicLayout" />,
-      <AppLayout key="appLayout" />,
-      <ErrorBoundary key="ErrorBoundary2" />,
-    ],
-    [],
-  )
 
   const AppProviders = useMemo(
     () => [
@@ -65,7 +93,12 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
       </DebugLayout>
     )
   }
-  return <ProviderComposer contexts={AppProviders}>{Inner}</ProviderComposer>
+  return (
+    <ProviderComposer contexts={AppProviders}>
+      <Prepare />
+      {Inner}
+    </ProviderComposer>
+  )
 }
 // @ts-ignore
 App.getInitialProps = async (props: AppContext) => {

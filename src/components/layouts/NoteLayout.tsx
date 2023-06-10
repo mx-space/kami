@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import type { ReactNode } from 'react'
 import { forwardRef, useCallback, useEffect } from 'react'
 import { shallow } from 'zustand/shallow'
+
 import { useAppStore } from '~/atoms/app'
 import { useNoteCollection } from '~/atoms/collections/note'
 import { useIsLogged } from '~/atoms/user'
@@ -17,6 +18,7 @@ import {
 import { microReboundPreset } from '~/constants/spring'
 import { springScrollToElement } from '~/utils/spring'
 import { resolveUrl } from '~/utils/utils'
+
 import { IconTransition } from '../common/IconTransition'
 import { AnimateChangeInHeight } from '../ui/AnimateChangeInHeight'
 import { Banner } from '../ui/Banner'
@@ -106,7 +108,7 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
         const hash = location.hash
         if (hash) {
           const el = document.querySelector(
-            decodeURIComponent(hash),
+            escapeSelector(decodeURIComponent(hash)),
           ) as HTMLElement
 
           if (el) {
@@ -117,7 +119,11 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
     }, [])
 
     return (
-      <main className="is-note relative max-w-[50em]" ref={ref}>
+      <main
+        className="is-note relative max-w-[50em]"
+        ref={ref}
+        suppressHydrationWarning
+      >
         <motion.div
           initial={true}
           animate={controller}
@@ -220,3 +226,7 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
     )
   },
 )
+
+function escapeSelector(selector) {
+  return selector.replace(/[!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~]/g, '\\$&')
+}

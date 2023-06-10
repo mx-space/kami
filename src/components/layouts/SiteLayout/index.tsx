@@ -70,7 +70,7 @@ const useColorModeTransition = (isDark: boolean) => {
   }, [isDark])
 }
 
-export const BasicLayout: FC = memo(({ children }) => {
+export const SiteLayout: FC = memo(({ children }) => {
   const { toggle, value: isDark } = useDarkModeDetector()
 
   useThemeBackground()
