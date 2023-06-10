@@ -60,7 +60,7 @@
   "dependencies": {
     "@floating-ui/react-dom": "2.0.0",
     "@formkit/auto-animate": "1.0.0-beta.6",
-    "@mx-space/api-client": "1.4.0",
+    "@mx-space/api-client": "1.4.1",
     "@sentry/nextjs": "7.53.1",
     "axios": "1.4.0",
     "clsx": "1.2.1",
@@ -74,7 +74,7 @@
     "markdown-to-jsx": "npm:@innei/markdown-to-jsx@7.1.3-beta.2",
     "medium-zoom": "1.0.8",
     "mermaid": "10.2.3",
-    "next": "13.4.4",
+    "next": "13.4.5",
     "next-seo": "6.0.0",
     "next-suspense": "0.2.3",
     "randomcolor": "0.6.2",
@@ -82,7 +82,7 @@
     "react-countup": "6.4.2",
     "react-dom": "18.2.0",
     "react-intersection-observer": "9.4.4",
-    "react-error-boundary": "4.0.9",
+    "react-error-boundary": "4.0.10",
     "react-masonry-css": "1.0.16",
     "react-message-popup": "1.1.3",
     "react-shortcut-guide": "1.0.0",
@@ -98,16 +98,16 @@
   "devDependencies": {
     "@innei/eslint-config-react-ts": "0.10.1",
     "@innei/prettier": "0.10.1",
-    "@next/bundle-analyzer": "13.4.4",
+    "@next/bundle-analyzer": "13.4.5",
     "@sentry/webpack-plugin": "2.2.1",
     "@trivago/prettier-plugin-sort-imports": "4.1.1",
     "@types/inflection": "1.13.0",
     "@types/js-cookie": "3.0.3",
     "@types/lodash-es": "4.17.7",
     "@types/markdown-escape": "1.1.0",
-    "@types/node": "18.16.16",
+    "@types/node": "18.16.17",
     "@types/randomcolor": "0.5.7",
-    "@types/react": "17.0.60",
+    "@types/react": "17.0.61",
     "@types/react-color": "3.0.6",
     "@types/react-dom": "18.2.4",
     "@types/remove-markdown": "0.3.1",
@@ -135,7 +135,7 @@
   },
   "resolutions": {
     "react-use": "17.4.0",
-    "@types/react": "17.0.60"
+    "@types/react": "17.0.61"
   },
   "nextBundleAnalysis": {
     "budget": 358400,
