@@ -1,6 +1,7 @@
 import type { FC } from 'react'
 import React, {
   memo,
+  Suspense,
   useCallback,
   useEffect,
   useId,
@@ -133,7 +134,9 @@ export const SiteLayout: FC = memo(({ children }) => {
         <div className="bg absolute inset-0 transform-gpu" />
       </div>
 
-      <Header />
+      <Suspense fallback={null}>
+        <Header />
+      </Suspense>
 
       <div className="app-content">{children}</div>
 
@@ -152,19 +155,30 @@ export const SiteLayout: FC = memo(({ children }) => {
         }
       />
 
-      <Footer />
-      <MusicMiniPlayerStoreControlled />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
 
-      {!isNarrowThanLaptop && <LampSwitch onClick={handleChangeColorMode} />}
+      <Suspense fallback={null}>
+        <MusicMiniPlayerStoreControlled />
+      </Suspense>
 
-      <ColorModeNoticePanel
-        {...tip}
-        onExited={() => setNotice(false)}
-        in={showNotice}
-        key="panel"
-      />
+      <Suspense fallback={null}>
+        {!isNarrowThanLaptop && <LampSwitch onClick={handleChangeColorMode} />}
+      </Suspense>
 
-      <SearchHotKey />
+      <Suspense fallback={null}>
+        <ColorModeNoticePanel
+          {...tip}
+          onExited={() => setNotice(false)}
+          in={showNotice}
+          key="panel"
+        />
+      </Suspense>
+
+      <Suspense fallback={null}>
+        <SearchHotKey />
+      </Suspense>
     </ModalStackProvider>
   )
 })
