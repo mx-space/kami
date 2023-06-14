@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [4.5.11](https://github.com/mx-space/kami/compare/v4.5.10...v4.5.11) (2023-06-14)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#1694](https://github.com/mx-space/kami/issues/1694)) ([3cfb010](https://github.com/mx-space/kami/commit/3cfb010591701b6db9ab813ded57a19c045b2ed3))
+* page always loading ([a61bdc9](https://github.com/mx-space/kami/commit/a61bdc9caaf860d83ae79c0578f644b31c0d989a))
+* set isCancel flag to cancel async task in effect ([fb3e95e](https://github.com/mx-space/kami/commit/fb3e95ed7cb9f51cfae0833fe109aabeb6fe6393))
+
+
+
 ## [4.5.10](https://github.com/mx-space/kami/compare/v4.5.9...v4.5.10) (2023-06-10)
 
 
