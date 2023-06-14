@@ -1,20 +1,19 @@
-import dynamic from 'next/dynamic'
 import type { FC } from 'react'
-import { memo, useEffect } from 'react'
+import { lazy, memo, useEffect } from 'react'
 
 import { useActionStore } from '~/atoms/action'
 import { useAppStore } from '~/atoms/app'
+import { Suspense } from '~/components/app/Suspense'
 import { FloatPopover } from '~/components/ui/FloatPopover'
 import { FluentList16Filled } from '~/components/ui/Icons/shared'
 import { useModalStack } from '~/components/ui/Modal'
 import type { TocProps } from '~/components/widgets/Toc'
 import { useDetectIsNarrowThanLaptop } from '~/hooks/ui/use-viewport'
 
-const Toc = dynamic(
-  () => import('~/components/widgets/Toc').then((m) => m.Toc),
-  {
-    ssr: false,
-  },
+const Toc = lazy(() =>
+  import('~/components/widgets/Toc').then((m) => ({
+    default: m.Toc,
+  })),
 )
 
 export const MarkdownToc: FC<TocProps> = memo((props) => {
@@ -62,5 +61,9 @@ export const MarkdownToc: FC<TocProps> = memo((props) => {
       actionStore.removeActionById(id)
     }
   }, [isNarrowThanLaptop, isMobile, present, props])
-  return !isNarrowThanLaptop ? <Toc {...props} /> : null
+  return !isNarrowThanLaptop ? (
+    <Suspense>
+      <Toc {...props} />
+    </Suspense>
+  ) : null
 })

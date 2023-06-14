@@ -1,7 +1,13 @@
 import type { NextPage } from 'next'
-import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import React, { Fragment, useEffect, useMemo, useRef } from 'react'
+import React, {
+  Fragment,
+  lazy,
+  Suspense,
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react'
 import RemoveMarkdown from 'remove-markdown'
 import { shallow } from 'zustand/shallow'
 
@@ -26,8 +32,10 @@ import { springScrollToTop } from '~/utils/spring'
 
 import styles from './index.module.css'
 
-const CommentLazy = dynamic(() =>
-  import('~/components/widgets/Comment').then((mo) => mo.CommentLazy),
+const CommentLazy = lazy(() =>
+  import('~/components/widgets/Comment').then((mo) => ({
+    default: mo.CommentLazy,
+  })),
 )
 
 const PageView: PageOnlyProps = (props) => {
@@ -108,11 +116,13 @@ const PageView: PageOnlyProps = (props) => {
           )}
         </div>
       </div>
-      <CommentLazy
-        key={page.id}
-        id={page.id}
-        allowComment={page.allowComment ?? true}
-      />
+      <Suspense fallback={null}>
+        <CommentLazy
+          key={page.id}
+          id={page.id}
+          allowComment={page.allowComment ?? true}
+        />
+      </Suspense>
     </ArticleLayout>
   )
 }

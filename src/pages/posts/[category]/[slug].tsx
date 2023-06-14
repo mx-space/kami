@@ -1,11 +1,10 @@
 import dayjs from 'dayjs'
 import { pick } from 'lodash-es'
 import type { NextPage } from 'next'
-import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
-import React, { memo, useEffect, useMemo, useRef, useState } from 'react'
+import React, { lazy, memo, useEffect, useMemo, useRef, useState } from 'react'
 import { message } from 'react-message-popup'
 import { shallow } from 'zustand/shallow'
 
@@ -14,6 +13,7 @@ import type { PostModel } from '@mx-space/api-client'
 import { usePostCollection } from '~/atoms/collections/post'
 import type { ModelWithDeleted } from '~/atoms/collections/utils/base'
 import { Seo } from '~/components/app/Seo'
+import { Suspense } from '~/components/app/Suspense'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { KamiMarkdown } from '~/components/common/KamiMarkdown'
 import Outdate from '~/components/in-page/Post/Outdate'
@@ -28,7 +28,10 @@ import {
 } from '~/components/ui/Icons/for-post'
 import { ImageSizeMetaContext } from '~/components/ui/Image/context'
 import { Loading } from '~/components/ui/Loading'
+import { NumberTransition } from '~/components/ui/NumberRecorder'
 import type { ActionProps } from '~/components/widgets/ArticleAction'
+import { ArticleFooterAction } from '~/components/widgets/ArticleAction'
+import { DonatePopover } from '~/components/widgets/Donate'
 import { SearchFAB } from '~/components/widgets/Search'
 import { SubscribeBell } from '~/components/widgets/SubscribeBell'
 import { XLogInfoForPost } from '~/components/widgets/xLogInfo'
@@ -51,20 +54,10 @@ import { noop } from '~/utils/utils'
 
 import { Copyright } from '../../../components/widgets/Copyright'
 
-const ArticleFooterAction = dynamic(() =>
-  import('~/components/widgets/ArticleAction').then(
-    (mo) => mo.ArticleFooterAction,
-  ),
-)
-const DonatePopover = dynamic(() =>
-  import('~/components/widgets/Donate').then((mo) => mo.DonatePopover),
-)
-const CommentLazy = dynamic(() =>
-  import('~/components/widgets/Comment').then((mo) => mo.CommentLazy),
-)
-
-const NumberTransition = dynamic(() =>
-  import('~/components/ui/NumberRecorder').then((mo) => mo.NumberTransition),
+const CommentLazy = lazy(() =>
+  import('~/components/widgets/Comment').then((mo) => ({
+    default: mo.CommentLazy,
+  })),
 )
 
 const useUpdatePost = (post: ModelWithDeleted<PostModel>) => {
@@ -255,7 +248,11 @@ const FooterActionBar: FC<{ id: string }> = ({ id }) => {
     post.category.slug,
   ])
 
-  return <ArticleFooterAction {...actions} />
+  return (
+    <Suspense>
+      <ArticleFooterAction {...actions} />
+    </Suspense>
+  )
 }
 
 const PostUpdateObserver: FC<{ id: string }> = memo(({ id }) => {
@@ -342,12 +339,13 @@ export const PostView: PageOnlyProps = (props) => {
 
         <XLogInfoForPost id={post.id} />
         <FooterActionBar id={post.id} />
-
-        <CommentLazy
-          key={post.id}
-          id={post.id}
-          allowComment={post.allowComment ?? true}
-        />
+        <Suspense>
+          <CommentLazy
+            key={post.id}
+            id={post.id}
+            allowComment={post.allowComment ?? true}
+          />
+        </Suspense>
 
         <SearchFAB />
       </ArticleLayout>

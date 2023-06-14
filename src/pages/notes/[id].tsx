@@ -1,9 +1,15 @@
 import type { AxiosError } from 'axios'
 import dayjs from 'dayjs'
 import type { NextPage } from 'next'
-import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import React, { createElement, memo, useEffect, useMemo, useRef } from 'react'
+import React, {
+  createElement,
+  lazy,
+  memo,
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react'
 import { message } from 'react-message-popup'
 import useUpdate from 'react-use/lib/useUpdate'
 
@@ -13,6 +19,7 @@ import { RequestError } from '@mx-space/api-client'
 import { noteCollection, useNoteCollection } from '~/atoms/collections/note'
 import type { ModelWithDeleted } from '~/atoms/collections/utils/base'
 import { useIsLogged, useUserStore } from '~/atoms/user'
+import { Suspense } from '~/components/app/Suspense'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { NoteFooterNavigationBarForMobile } from '~/components/in-page/Note/NoteFooterNavigation'
 import { NoteMarkdownRender } from '~/components/in-page/Note/NoteMarkdownRender'
@@ -44,26 +51,28 @@ import { noop } from '~/utils/utils'
 import { Seo } from '../../components/app/Seo'
 import { isDev } from '../../utils/env'
 
-const NoteTopic = dynamic(() =>
-  import('~/components/in-page/Note/NoteTopic').then((mo) => mo.NoteTopic),
+const NoteTopic = lazy(() =>
+  import('~/components/in-page/Note/NoteTopic').then((mo) => ({
+    default: mo.NoteTopic,
+  })),
 )
 
-const CommentLazy = dynamic(() =>
-  import('~/components/widgets/Comment').then((mo) => mo.CommentLazy),
+const CommentLazy = lazy(() =>
+  import('~/components/widgets/Comment').then((mo) => ({
+    default: mo.CommentLazy,
+  })),
 )
 
-const ArticleLayout = dynamic(() =>
-  import('~/components/layouts/ArticleLayout').then((mo) => mo.ArticleLayout),
+const ArticleLayout = lazy(() =>
+  import('~/components/layouts/ArticleLayout').then((mo) => ({
+    default: mo.ArticleLayout,
+  })),
 )
 
-const NoteFooterActionBar = dynamic(
-  () =>
-    import('~/components/in-page/Note/NoteActionBar').then(
-      (mo) => mo.NoteFooterActionBar,
-    ),
-  {
-    ssr: false,
-  },
+const NoteFooterActionBar = lazy(() =>
+  import('~/components/in-page/Note/NoteActionBar').then((mo) => ({
+    default: mo.NoteFooterActionBar,
+  })),
 )
 
 const useUpdateNote = (note: ModelWithDeleted<NoteModel>) => {
@@ -245,25 +254,36 @@ const NoteView: React.FC<{ id: string }> = memo((props) => {
           </ImageSizeMetaContext.Provider>
         )}
         <div className="pb-8" />
-        {note.topic && <NoteTopic noteId={props.id} topic={note.topic} />}
+        {note.topic && (
+          <Suspense>
+            <NoteTopic noteId={props.id} topic={note.topic} />
+          </Suspense>
+        )}
 
         <NoteFooterNavigationBarForMobile id={props.id} />
         <div className="pb-4" />
         <SubscribeBell defaultType="note_c" />
         <XLogInfoForNote id={props.id} />
-        <NoteFooterActionBar id={props.id} />
+        <Suspense>
+          <NoteFooterActionBar id={props.id} />
+        </Suspense>
       </NoteLayout>
+
       {!isSecret && (
-        <ArticleLayout
-          className="!min-h-[unset] !pt-0"
-          key={`comments-${props.id}`}
-        >
-          <CommentLazy
-            id={id}
-            key={id}
-            allowComment={note.allowComment ?? true}
-          />
-        </ArticleLayout>
+        <Suspense>
+          <ArticleLayout
+            className="!min-h-[unset] !pt-0"
+            key={`comments-${props.id}`}
+          >
+            <Suspense>
+              <CommentLazy
+                id={id}
+                key={id}
+                allowComment={note.allowComment ?? true}
+              />
+            </Suspense>
+          </ArticleLayout>
+        </Suspense>
       )}
 
       <SearchFAB />

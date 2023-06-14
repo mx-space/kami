@@ -1,9 +1,8 @@
 import clsx from 'clsx'
 import dayjs from 'dayjs'
 import { motion, useAnimationControls } from 'framer-motion'
-import dynamic from 'next/dynamic'
 import type { ReactNode } from 'react'
-import { forwardRef, useCallback, useEffect } from 'react'
+import { forwardRef, lazy, useCallback, useEffect } from 'react'
 import { shallow } from 'zustand/shallow'
 
 import { useAppStore } from '~/atoms/app'
@@ -19,14 +18,15 @@ import { microReboundPreset } from '~/constants/spring'
 import { springScrollToElement } from '~/utils/spring'
 import { resolveUrl } from '~/utils/utils'
 
+import { Suspense } from '../app/Suspense'
 import { IconTransition } from '../common/IconTransition'
 import { AnimateChangeInHeight } from '../ui/AnimateChangeInHeight'
 import { Banner } from '../ui/Banner'
 
-const NoteTimelineList = dynamic(() =>
-  import('~/components/in-page/Note/NoteTimelineList').then(
-    (mo) => mo.NoteTimelineList,
-  ),
+const NoteTimelineList = lazy(() =>
+  import('~/components/in-page/Note/NoteTimelineList').then((mo) => ({
+    default: mo.NoteTimelineList,
+  })),
 )
 
 const bannerClassNames = {
@@ -221,7 +221,11 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
           </div>
         </motion.div>
 
-        {!isPreview && <NoteTimelineList noteId={id} />}
+        {!isPreview && (
+          <Suspense>
+            <NoteTimelineList noteId={id} />
+          </Suspense>
+        )}
       </main>
     )
   },

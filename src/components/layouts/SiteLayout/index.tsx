@@ -1,7 +1,6 @@
 import type { FC } from 'react'
 import React, {
   memo,
-  Suspense,
   useCallback,
   useEffect,
   useId,
@@ -13,6 +12,7 @@ import { ShortcutProvider } from 'react-shortcut-guide'
 
 import { useActionStore } from '~/atoms/action'
 import { useAppStore } from '~/atoms/app'
+import { Suspense } from '~/components/app/Suspense'
 import { BiMoonStarsFill, PhSunBold } from '~/components/ui/Icons/layout'
 import { ModalStackProvider } from '~/components/ui/Modal'
 import { TrackerAction } from '~/constants/tracker'
@@ -134,7 +134,7 @@ export const SiteLayout: FC = memo(({ children }) => {
         <div className="bg absolute inset-0 transform-gpu" />
       </div>
 
-      <Suspense fallback={null}>
+      <Suspense>
         <Header />
       </Suspense>
 
@@ -155,19 +155,19 @@ export const SiteLayout: FC = memo(({ children }) => {
         }
       />
 
-      <Suspense fallback={null}>
+      <Suspense>
         <Footer />
       </Suspense>
 
-      <Suspense fallback={null}>
+      <Suspense>
         <MusicMiniPlayerStoreControlled />
       </Suspense>
 
-      <Suspense fallback={null}>
+      <Suspense>
         {!isNarrowThanLaptop && <LampSwitch onClick={handleChangeColorMode} />}
       </Suspense>
 
-      <Suspense fallback={null}>
+      <Suspense>
         <ColorModeNoticePanel
           {...tip}
           onExited={() => setNotice(false)}
@@ -176,7 +176,7 @@ export const SiteLayout: FC = memo(({ children }) => {
         />
       </Suspense>
 
-      <Suspense fallback={null}>
+      <Suspense>
         <SearchHotKey />
       </Suspense>
     </ModalStackProvider>
