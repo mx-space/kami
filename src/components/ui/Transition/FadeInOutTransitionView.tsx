@@ -9,7 +9,7 @@ export const FadeInOutTransitionView: FC<
   PropsWithChildren<BaseTransitionProps>
 > = createTransitionView({
   from: {
-    opacity: 0,
+    opacity: 0.0001,
   },
   to: {
     opacity: 1,
