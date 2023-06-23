@@ -72,8 +72,13 @@ export const DynamicHeadMeta: FC = memo(() => {
       />
 
       {/* for favicon */}
-      <link rel="shortcut icon" href={favicon} />
-      <link rel="icon" href={favicon} />
+      <link
+        rel="shortcut icon"
+        href={favicon}
+        sizes="any"
+        type="image/svg+xml"
+      />
+      <link rel="icon" href={favicon} sizes="any" type="image/svg+xml" />
       <link rel="apple-touch-icon" href={favicon} />
 
       <link rel="preload" href={darkBg} as="image" />
