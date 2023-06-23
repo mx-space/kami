@@ -9,9 +9,9 @@ import {
 } from '../../Icons/menu-icon'
 
 const prefixToIconMap = {
-  GH: <CodiconGithubInverted />,
-  TW: <MdiTwitter />,
-  TG: <IcBaselineTelegram />,
+  GH: <CodiconGithubInverted className="text-[#1D2127] dark:text-[#FFFFFF]" />,
+  TW: <MdiTwitter className="text-[#1DA1F2]" />,
+  TG: <IcBaselineTelegram className="text-[#2AABEE]" />,
 }
 
 const prefixToUrlMap = {
@@ -20,10 +20,10 @@ const prefixToUrlMap = {
   TG: 'https://t.me/',
 }
 
-// {GH@Innei} {TW@Innei} {TG@Innei}
+// [...]{GH@Innei} {TW@Innei} {TG@Innei}
 export const MentionRule: MarkdownToJSX.Rule = {
   match: simpleInlineRegex(
-    /^\{((?<prefix>(GH)|(TW)|(TG))@(?<name>\w+\b))\}\s?(?!\[.*?\])/,
+    /^(\[(?<displayName>.*?)\])?\{((?<prefix>(GH)|(TW)|(TG))@(?<name>\w+\b))\}\s?(?!\[.*?\])/,
   ),
   order: Priority.MIN,
   parse(capture) {
@@ -33,7 +33,7 @@ export const MentionRule: MarkdownToJSX.Rule = {
       return {}
     }
     return {
-      content: { prefix: groups.prefix, name: groups.name },
+      content: { ...groups },
       type: 'mention',
     }
   },
@@ -43,17 +43,19 @@ export const MentionRule: MarkdownToJSX.Rule = {
       return null as any
     }
 
-    const { prefix, name } = content
+    const { prefix, name, displayName } = content
     if (!name) {
       return null as any
     }
 
+    // @ts-ignore
     const Icon = prefixToIconMap[prefix]
+    // @ts-ignore
     const urlPrefix = prefixToUrlMap[prefix]
 
     return (
-      <div
-        className="mr-2 inline-flex items-center space-x-2 align-bottom"
+      <span
+        className="mx-1 inline-flex items-center space-x-1 align-bottom"
         key={state?.key}
       >
         {Icon}
@@ -61,10 +63,11 @@ export const MentionRule: MarkdownToJSX.Rule = {
           target="_blank"
           rel="noreferrer nofollow"
           href={`${urlPrefix}${name}`}
+          className="no-underline"
         >
-          {name}
+          {displayName || name}
         </a>
-      </div>
+      </span>
     )
   },
 }
