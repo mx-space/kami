@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [4.5.12](https://github.com/mx-space/kami/compare/v4.5.11...v4.5.12) (2023-06-23)
+
+
+### Bug Fixes
+
+* add `size` and `type` for favicon ([57f90b6](https://github.com/mx-space/kami/commit/57f90b66ae23d5604c465df29e7859a3670611e5))
+* lcp ([c004a7d](https://github.com/mx-space/kami/commit/c004a7d5032c7423e51b57962f5298eeafca81b6))
+
+
+
 ## [4.5.11](https://github.com/mx-space/kami/compare/v4.5.10...v4.5.11) (2023-06-14)
 
 
