@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [4.5.13](https://github.com/mx-space/kami/compare/v4.5.12...v4.5.13) (2023-06-24)
+
+
+### Features
+
+* new mention token ([b742d61](https://github.com/mx-space/kami/commit/b742d6175127a9d62eb1d0d1e173d4a400f19031))
+
+
+
 ## [4.5.12](https://github.com/mx-space/kami/compare/v4.5.11...v4.5.12) (2023-06-23)
 
 
