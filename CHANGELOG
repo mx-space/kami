@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [4.5.16](https://github.com/mx-space/kami/compare/v4.5.15...v4.5.16) (2023-06-27)
+
+
+### Bug Fixes
+
+* downgrade next ([8a57791](https://github.com/mx-space/kami/commit/8a57791bd84115066464c26dff226c6af02ca8b4))
+
+
+
 ## [4.5.15](https://github.com/mx-space/kami/compare/v4.5.14...v4.5.15) (2023-06-27)
 
 
