@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [4.5.17](https://github.com/mx-space/kami/compare/v4.5.16...v4.5.17) (2023-07-01)
+
+
+### Bug Fixes
+
+* add toast container back ([0e51407](https://github.com/mx-space/kami/commit/0e51407f4f4a87015847e79befc575e20b8af31d))
+
+
+
 ## [4.5.16](https://github.com/mx-space/kami/compare/v4.5.15...v4.5.16) (2023-06-27)
 
 
