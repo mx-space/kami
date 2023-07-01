@@ -11,6 +11,7 @@ import styles from './index.module.css'
 export type FriendSectionProps = {
   data: LinkModel[]
 }
+
 export const FavoriteSection: FC<FriendSectionProps> = ({ data }) => {
   return (
     <ul>

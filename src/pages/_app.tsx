@@ -26,6 +26,7 @@ import { useUserStore } from '~/atoms/user'
 import { useCheckLogged } from '~/hooks/app/use-check-logged'
 import { useCheckOldBrowser } from '~/hooks/app/use-check-old-browser'
 import { useInitialData } from '~/hooks/app/use-initial-data'
+import { ToastContainer } from '~/provider/toastify'
 import { printToConsole } from '~/utils/console'
 
 interface DataModel {
@@ -81,6 +82,7 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
     return initData.aggregateData ? (
       <ProviderComposer contexts={PageProviders}>
         <Component {...pageProps} />
+        <ToastContainer key="ToastContainer" />
       </ProviderComposer>
     ) : (
       <NoDataErrorView />

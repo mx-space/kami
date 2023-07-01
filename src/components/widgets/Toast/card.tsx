@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import type { FC } from 'react'
 import { memo, useRef } from 'react'
 import { toast } from 'react-toastify'
@@ -30,7 +31,7 @@ export const ToastCard: FC<{
     >
       <div
         onClick={(e) => props.onClick?.(e.nativeEvent)}
-        className="bg-bg-opacity border-shallow relative mb-4 ml-auto mr-4 box-border flex w-full
+        className="bg-bg-opacity border-shallow group relative mb-4 ml-auto mr-4 box-border flex w-full
     cursor-pointer select-none items-center space-x-4
     overflow-hidden rounded-xl border border-opacity-50 p-4 text-[12px]
   text-inherit backdrop-blur-md backdrop-brightness-110 backdrop-brightness-150 backdrop-saturate-150 backdrop-filter"
@@ -41,7 +42,11 @@ export const ToastCard: FC<{
         <div
           role="button"
           tabIndex={0}
-          className="bg-gray-6 dark:bg-dark-100 text-dark-50 absolute left-2 top-2 z-10 flex h-6 w-6 items-center justify-center overflow-hidden rounded-full bg-opacity-80 dark:text-white"
+          className={clsx(
+            'bg-gray-6 dark:bg-dark-100 text-dark-50 absolute left-2 top-2 z-10 flex h-6 w-6 items-center justify-center',
+            'overflow-hidden rounded-full bg-opacity-80 dark:text-white',
+            'opacity-0 transition-opacity group-hover:opacity-100',
+          )}
           onClick={(e) => {
             e.stopPropagation()
             props.getToastId && toast.dismiss(props.getToastId())
