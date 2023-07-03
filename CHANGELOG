@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# [4.6.0](https://github.com/mx-space/kami/compare/v4.5.17...v4.6.0) (2023-07-03)
+
+
+### Features
+
+* support banner markdown ([63e6685](https://github.com/mx-space/kami/commit/63e6685f2b1964b34a7abbf4d813b5cac5e2a7be))
+
+
+
 ## [4.5.17](https://github.com/mx-space/kami/compare/v4.5.16...v4.5.17) (2023-07-01)
 
 
