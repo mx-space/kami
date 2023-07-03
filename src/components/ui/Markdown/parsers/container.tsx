@@ -1,12 +1,25 @@
 import type { MarkdownToJSX } from 'markdown-to-jsx'
-import { Priority, blockRegex } from 'markdown-to-jsx'
+import { blockRegex, Priority } from 'markdown-to-jsx'
 import React from 'react'
+
+import { KamiMarkdown } from '~/components/common/KamiMarkdown'
 
 import { Banner } from '../../Banner'
 import { Gallery } from '../components/gallery'
 import { pickImagesFromMarkdown } from '../utils/image'
 
-const shouldCatchContainerName = ['gallery', 'banner', 'carousel'].join('|')
+const shouldCatchContainerName = [
+  'gallery',
+  'banner',
+  'carousel',
+
+  'warn',
+  'error',
+  'danger',
+  'info',
+  'success',
+  'warning',
+].join('|')
 export const ContainerRule: MarkdownToJSX.Rule = {
   match: blockRegex(
     new RegExp(
@@ -43,11 +56,12 @@ export const ContainerRule: MarkdownToJSX.Rule = {
         }
         return (
           <Banner
-            type={name || transformMap[name]}
+            type={name || (transformMap as any)[name] || 'info'}
             className="my-4"
-            message={content}
             key={state?.key}
-          />
+          >
+            <KamiMarkdown>{content}</KamiMarkdown>
+          </Banner>
         )
       }
       case 'banner': {
@@ -56,12 +70,9 @@ export const ContainerRule: MarkdownToJSX.Rule = {
         }
 
         return (
-          <Banner
-            type={params}
-            className="my-4"
-            message={content}
-            key={state?.key}
-          />
+          <Banner type={params} className="my-4" key={state?.key}>
+            <KamiMarkdown>{content}</KamiMarkdown>
+          </Banner>
         )
       }
     }
