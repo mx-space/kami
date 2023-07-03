@@ -2,6 +2,8 @@
 
 [![wakatime](https://wakatime.com/badge/github/mx-space/kami.svg)](https://wakatime.com/badge/github/mx-space/kami)
 
+**Kami is Sunsetting**, check here to read [more](#kami-is-sunsetting).
+
 小小空间，大大梦想。
 
 Small space, big dream.
@@ -170,3 +172,18 @@ QQ 群：[615052447](https://jq.qq.com/?_wv=1027&k=5t9N0mw)
 ---
 
 风格参考于 [保罗的小窝](https://paul.ren)
+
+
+## Kami is Sunsetting
+
+Kami 原本是我用于学习前端时建立的渐进式个人网站项目，随着代码越来越难以维护和 UI 风格越来越混杂，在 2023.6 我决定进行重写此项目。
+
+下一个代替项目将会是 Shiro，当它完成之时，我便不再投入任何精力到 Kami 中。迎接未来总需要舍弃一些东西，非常感谢大家三年来使用 Kami，不管你是谁，都需要对你说声谢谢。
+
+---
+
+Kami was originally a progressive personal website project that I built while learning the front end, but as the code became more difficult to maintain and the UI style became more mixed, I decided to rewrite the project in 2023.6.
+
+The next replacement project will be [Shiro](https://github.com/Innei/Shiro), and when it's done, I won't put any more effort into Kami. There are always things to let go of when embracing the future, so thank you very much for using Kami for three years, and thank you to whoever you are.
+
+2020 - 2023.
