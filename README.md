@@ -14,7 +14,10 @@ Kami 是一个为 Mix Space 打造的主站前端。完美覆盖全部功能。
 
 Live Demo:
 
-- <https://innei.ren>
+- <https://dev.innei.ren>
+- <https://www.timochan.cn/>
+- <https://www.suemor.com/>
+- <https://www.miaoer.xyz/>
 
 点击下面按钮，立即部署到 Vercel！
 
