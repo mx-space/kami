@@ -76,8 +76,12 @@ export const useNoteCollection = createCollection<NoteModel, NoteCollection>(
         }
 
         let likeSuccess = false
-        await apiClient.note
-          .likeIt(id)
+        const objectId = getState().get(id)?.id
+        if (!objectId) {
+          return
+        }
+        await apiClient.activity
+          .likeIt('Note', objectId)
           .then(() => {
             likeSuccess = true
           })

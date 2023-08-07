@@ -223,7 +223,7 @@ const FooterActionBar: FC<{ id: string }> = ({ id }) => {
               return message.error('你已经支持过啦！')
             }
 
-            apiClient.post.thumbsUp(post.id).then(() => {
+            apiClient.activity.likeIt('Post', post.id).then(() => {
               message.success('感谢支持！')
 
               setLikeId(post.id)
@@ -260,6 +260,8 @@ const PostUpdateObserver: FC<{ id: string }> = memo(({ id }) => {
   useUpdatePost(post!)
   return null
 })
+
+PostUpdateObserver.displayName = 'PostUpdateObserver'
 
 export const PostView: PageOnlyProps = (props) => {
   const post = usePostCollection(
