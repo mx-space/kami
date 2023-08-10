@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [4.6.1](https://github.com/mx-space/kami/compare/v4.6.0...v4.6.1) (2023-08-10)
+
+
+### Bug Fixes
+
+* activity ([bae122d](https://github.com/mx-space/kami/commit/bae122de7eda478aa7d7c007ae4195b166734087))
+* renovate ([d3bcb07](https://github.com/mx-space/kami/commit/d3bcb07080c845ca7969b45e2015694ae4e9315f))
+
+
+
 # [4.6.0](https://github.com/mx-space/kami/compare/v4.5.17...v4.6.0) (2023-07-03)
 
 
