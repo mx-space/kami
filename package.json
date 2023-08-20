@@ -93,6 +93,7 @@
     "socket.io-client": "4.7.2",
     "swr": "2.2.0",
     "validator": "13.11.0",
+    "xss": "1.0.14",
     "zustand": "^4.4.1"
   },
   "devDependencies": {
