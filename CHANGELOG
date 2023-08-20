@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [4.6.2](https://github.com/mx-space/kami/compare/v4.6.1...v4.6.2) (2023-08-20)
+
+
+### Features
+
+* feed api ([e84354b](https://github.com/mx-space/kami/commit/e84354b5816f2ecdc55a0e68a79cf10eca6be7aa))
+
+
+
 ## [4.6.1](https://github.com/mx-space/kami/compare/v4.6.0...v4.6.1) (2023-08-10)
 
 
