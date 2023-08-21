@@ -119,7 +119,7 @@
     "eslint": "8.46.0",
     "husky": "8.0.3",
     "js-yaml": "4.1.0",
-    "lint-staged": "13.2.2",
+    "lint-staged": "14.0.1",
     "markdown-to-jsx": "npm:@innei/markdown-to-jsx@7.1.3-beta.2",
     "next-compose-plugins": "2.2.1",
     "postcss": "8.4.27",
