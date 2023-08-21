@@ -53,6 +53,7 @@ let configs = {
   },
   async rewrites() {
     return {
+      beforeFiles: [{ source: '/feed', destination: '/api/feed' }],
       fallback: [
         { source: '/:page*/:slug*', destination: '/posts/:page*/:slug*' },
       ],
