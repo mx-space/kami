@@ -31,7 +31,7 @@ export const createTransitionView = (
   params: TransitionViewParams,
 ): FC<PropsWithChildren<BaseTransitionProps>> => {
   const { from, to, initial } = params
-  return (props) => {
+  return function Transition(props) {
     const {
       timeout = {},
       duration = 0.5,
@@ -70,6 +70,7 @@ export const createTransitionView = (
                   props.onEntered?.()
                 },
               }}
+              // @ts-ignore
               exit={{
                 ...from,
                 transition: {

@@ -186,8 +186,8 @@ export const FloatPopover: FC<
   ])
 
   const TriggerWrapper = (
+    // @ts-expect-error
     <As
-      // @ts-ignore
       role={trigger === 'both' || trigger === 'click' ? 'button' : 'note'}
       tabIndex={0}
       className={clsx('inline-block', wrapperClassNames)}
@@ -242,3 +242,5 @@ export const FloatPopover: FC<
     </>
   )
 })
+
+FloatPopover.displayName = 'FloatPopover'
