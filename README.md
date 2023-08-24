@@ -4,6 +4,9 @@
 
 **Kami is Sunsetting**, check here to read [more](#kami-is-sunsetting).
 
+> [!IMPORTANT]  
+> Next.js 13 低版本中存在内存泄露问题，在 [issue](https://github.com/vercel/next.js/issues/49929) 中，该 issue 表示已修复，但是由于 Node.js < 18.17.0 中可能存在漏内存问题，你也需要升级 Node.js 来解决这个问题。
+
 小小空间，大大梦想。
 
 Small space, big dream.
@@ -171,7 +174,6 @@ interface LinkCardProps {
 ---
 
 风格参考于 [保罗的小窝](https://paul.ren)
-
 
 ## Kami is Sunsetting
 
