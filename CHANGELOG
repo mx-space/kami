@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [4.6.3](https://github.com/mx-space/kami/compare/v4.6.2...v4.6.3) (2023-08-24)
+
+
+### Bug Fixes
+
+* rewrite for `/feed` path ([db79b97](https://github.com/mx-space/kami/commit/db79b977ce8dc2b14760d0ffa2bd332ea154eadd))
+
+
+
 ## [4.6.2](https://github.com/mx-space/kami/compare/v4.6.1...v4.6.2) (2023-08-20)
 
 
