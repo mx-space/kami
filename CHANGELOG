@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## [4.6.4](https://github.com/mx-space/kami/compare/v4.6.3...v4.6.4) (2023-09-22)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#1691](https://github.com/mx-space/kami/issues/1691)) ([3696db7](https://github.com/mx-space/kami/commit/3696db72b24ba939db92577c1cc766671fbfc796))
+* **deps:** update all non-major dependencies ([#1710](https://github.com/mx-space/kami/issues/1710)) ([ab8891d](https://github.com/mx-space/kami/commit/ab8891dfbda219473e24d9b3d9fe34d72969fc3a))
+* **deps:** update dependency @sentry/nextjs to v7.68.0 ([#1709](https://github.com/mx-space/kami/issues/1709)) ([7ddea27](https://github.com/mx-space/kami/commit/7ddea279a65adcd9e30ab2d85c528b7de9bd7a48))
+* **deps:** update dependency clsx to v2 ([#1706](https://github.com/mx-space/kami/issues/1706)) ([f5cc4c6](https://github.com/mx-space/kami/commit/f5cc4c6124c6580d70c9bfb55d9538a420493c29))
+* ignore ts error ([225f95d](https://github.com/mx-space/kami/commit/225f95d181828deb09edadd83269d27e12263d73))
+
+
+### Features
+
+* support sitemap reverse proxy ([8ba9f33](https://github.com/mx-space/kami/commit/8ba9f33ea81775dcd3667b33fd4611940afb01ab))
+
+
+
 ## [4.6.3](https://github.com/mx-space/kami/compare/v4.6.2...v4.6.3) (2023-08-24)
 
 
