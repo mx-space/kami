@@ -1,7 +1,6 @@
 {
   "extends": [
     "config:base",
-    "group:allNonMajor",
     ":automergePatch",
     ":automergeTesters",
     ":automergeLinters",
