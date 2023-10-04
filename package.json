@@ -67,7 +67,7 @@
     "dayjs": "1.11.10",
     "devtools-detector": "2.0.14",
     "framer-motion": "10.16.4",
-    "immer": "^10.0.2",
+    "immer": "^10.0.3",
     "js-cookie": "3.0.5",
     "lodash-es": "4.17.21",
     "markdown-escape": "2.0.0",
