@@ -147,8 +147,8 @@ devDependencies:
     specifier: 4.17.9
     version: 4.17.9
   '@types/markdown-escape':
-    specifier: 1.1.0
-    version: 1.1.0
+    specifier: 1.1.1
+    version: 1.1.1
   '@types/node':
     specifier: 20.7.0
     version: 20.7.0
@@ -1795,8 +1795,8 @@ packages:
     resolution: {integrity: sha512-Vrjz5N5Ia4SEzWWgIVwnHNEnb1UE1XMkvY5DGXrAeOGE9imk0hgTHh5GyDjLDJi9OTCn9oo9dXH1uToK1VRfrg==}
     dev: true
 
-  /@types/markdown-escape@1.1.0:
-    resolution: {integrity: sha512-bJZh73L6fSt8MmTON/btR8hiKRipoIoPfLO41lxr6l65QXdG1rwUjR8Hu5xU7XYHBwKHiJZ+sTQ8L2TKkQrBpw==}
+  /@types/markdown-escape@1.1.1:
+    resolution: {integrity: sha512-1oXSGM6wHBZvOesW8PrhvSKBNafLDPTU70nNmpj71a/ql4O2j/D4FMaro8I82S15gZ5J/iPokf6jQLAbRmmekw==}
     dev: true
 
   /@types/mdast@3.0.12:
