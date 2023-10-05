@@ -118,8 +118,8 @@ dependencies:
     specifier: 1.0.14
     version: 1.0.14
   zustand:
-    specifier: ^4.4.1
-    version: 4.4.1(@types/react@17.0.61)(immer@10.0.3)(react@18.2.0)
+    specifier: ^4.4.3
+    version: 4.4.3(@types/react@17.0.61)(immer@10.0.3)(react@18.2.0)
 
 devDependencies:
   '@innei/eslint-config-react-ts':
@@ -6933,8 +6933,8 @@ packages:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: false
 
-  /zustand@4.4.1(@types/react@17.0.61)(immer@10.0.3)(react@18.2.0):
-    resolution: {integrity: sha512-QCPfstAS4EBiTQzlaGP1gmorkh/UL1Leaj2tdj+zZCZ/9bm0WS7sI2wnfD5lpOszFqWJ1DcPnGoY8RDL61uokw==}
+  /zustand@4.4.3(@types/react@17.0.61)(immer@10.0.3)(react@18.2.0):
+    resolution: {integrity: sha512-oRy+X3ZazZvLfmv6viIaQmtLOMeij1noakIsK/Y47PWYhT8glfXzQ4j0YcP5i0P0qI1A4rIB//SGROGyZhx91A==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
       '@types/react': 17.0.61
