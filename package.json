@@ -94,7 +94,7 @@
     "swr": "2.2.4",
     "validator": "13.11.0",
     "xss": "1.0.14",
-    "zustand": "^4.4.1"
+    "zustand": "^4.4.3"
   },
   "devDependencies": {
     "@innei/eslint-config-react-ts": "0.11.1",
