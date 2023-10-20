@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## [4.6.5](https://github.com/mx-space/kami/compare/v4.6.4...v4.6.5) (2023-10-20)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @sentry/nextjs to v7.73.0 ([#1728](https://github.com/mx-space/kami/issues/1728)) ([27a644e](https://github.com/mx-space/kami/commit/27a644ecb1df265e3731e0e6b7b13e8bf3a2be04))
+* **deps:** update dependency @sentry/nextjs to v7.74.0 ([#1736](https://github.com/mx-space/kami/issues/1736)) ([79cba5c](https://github.com/mx-space/kami/commit/79cba5c716796a06d17510994bfa5000c7eb1b24))
+* **deps:** update dependency @sentry/nextjs to v7.74.1 ([#1739](https://github.com/mx-space/kami/issues/1739)) ([f482771](https://github.com/mx-space/kami/commit/f482771fcb47e7118a5ddf7178fa7ff3b393b255))
+* **deps:** update dependency immer to ^10.0.3 ([#1725](https://github.com/mx-space/kami/issues/1725)) ([62eab65](https://github.com/mx-space/kami/commit/62eab654cb59307ec9307f3f0e3298d331ed7b9c))
+* **deps:** update dependency mermaid to v10.5.0 ([#1729](https://github.com/mx-space/kami/issues/1729)) ([dd815d9](https://github.com/mx-space/kami/commit/dd815d94314b40d7ba689abcc3fa28b71082f36c))
+* **deps:** update dependency zustand to ^4.4.3 ([#1727](https://github.com/mx-space/kami/issues/1727)) ([b58005c](https://github.com/mx-space/kami/commit/b58005c48c90843a2eed918172f9fd23383598c6))
+* song data destruction ([2c32e71](https://github.com/mx-space/kami/commit/2c32e71cbdbcaff153e023a3bf8da6031ba993e1))
+
+
+
 ## [4.6.4](https://github.com/mx-space/kami/compare/v4.6.3...v4.6.4) (2023-09-22)
 
 
