@@ -159,8 +159,8 @@ devDependencies:
     specifier: 17.0.68
     version: 17.0.68
   '@types/react-color':
-    specifier: 3.0.7
-    version: 3.0.7
+    specifier: 3.0.9
+    version: 3.0.9
   '@types/react-dom':
     specifier: 18.2.13
     version: 18.2.13
@@ -1890,8 +1890,8 @@ packages:
     resolution: {integrity: sha512-LPcG96dGYRCsXlk1fslUNIg6ebEi+bKNyn84uBL/pu2cRSf5i/djD3ArJZOyzszVMVV/DB87va6pMZP+tRSl/w==}
     dev: true
 
-  /@types/react-color@3.0.7:
-    resolution: {integrity: sha512-IGZA7e8Oia0+Sb3/1KP0qTThGelZ9DRspfeLrFWQWv5vXHiYlJJQMC2kgQr75CtP4uL8/kvT8qBgrOVlxVoNTw==}
+  /@types/react-color@3.0.9:
+    resolution: {integrity: sha512-Ojyc6jySSKvM6UYQrZxaYe0JZXtgHHXwR2q9H4MhcNCswFdeZH1owYZCvPtdHtMOfh7t8h1fY0Gd0nvU1JGDkQ==}
     dependencies:
       '@types/react': 17.0.68
       '@types/reactcss': 1.2.6
@@ -3408,7 +3408,7 @@ packages:
     dependencies:
       debug: 3.2.7
       is-core-module: 2.13.0
-      resolve: 1.22.6
+      resolve: 1.22.8
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -6008,15 +6008,6 @@ packages:
       supports-preserve-symlinks-flag: 1.0.0
     dev: true
 
-  /resolve@1.22.6:
-    resolution: {integrity: sha512-njhxM7mV12JfufShqGy3Rz8j11RPdLy4xi15UurGJeoHLfJpVXKdh3ueuOqbYUcDZnffr6X739JBo5LzyahEsw==}
-    hasBin: true
-    dependencies:
-      is-core-module: 2.13.0
-      path-parse: 1.0.7
-      supports-preserve-symlinks-flag: 1.0.0
-    dev: true
-
   /resolve@1.22.8:
     resolution: {integrity: sha512-oKWePCxqpd6FlLvGV1VU0x7bkPmmCNolxzjMf4NczoDnQcIWrAF+cPtZn5i6n+RfD2d9i0tzpKnG6Yk168yIyw==}
     hasBin: true
@@ -6024,7 +6015,6 @@ packages:
       is-core-module: 2.13.0
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
-    dev: false
 
   /resolve@2.0.0-next.4:
     resolution: {integrity: sha512-iMDbmAWtfU+MHpxt/I5iWI7cY6YVEZUQ3MBgPQ++XD1PELuJHIl82xBmObyP2KyQmkNB2dsqF7seoQQiAn5yDQ==}

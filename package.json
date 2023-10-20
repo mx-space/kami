@@ -109,7 +109,7 @@
     "@types/node": "20.8.6",
     "@types/randomcolor": "0.5.7",
     "@types/react": "17.0.68",
-    "@types/react-color": "3.0.7",
+    "@types/react-color": "3.0.9",
     "@types/react-dom": "18.2.13",
     "@types/remove-markdown": "0.3.2",
     "@types/ua-parser-js": "0.7.37",
