@@ -18,8 +18,6 @@ let configs = {
   swcMinify: true,
   experimental: {
     scrollRestoration: true,
-    legacyBrowsers: false,
-    newNextLinkBehavior: true,
   },
   webpack: (config, options) => {
     config.plugins.push(new WindiCSSWebpackPlugin())
