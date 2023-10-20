@@ -79,11 +79,13 @@ export const MusicMiniPlayer = forwardRef<
     )
     const json = (await response.json()) as MetingPayloadType[]
 
-    const [data] = await apiClient.serverless.proxy.kami.song.get<any>({
+    let data = await apiClient.serverless.proxy.kami.song.get<any>({
       params: {
         id,
       },
     })
+
+    data = data[0]
 
     const songUrl = data.url?.replace('http://', 'https://')
     setCur({ ...data, ...json[0], id, url: songUrl })
@@ -266,6 +268,7 @@ export const MusicMiniPlayer = forwardRef<
     </div>
   )
 })
+MusicMiniPlayer.displayName = 'MusicMiniPlayer'
 
 const BottomProgressBar = memo(() => {
   const playProgress = usePlayProgress()
@@ -292,6 +295,7 @@ const BottomProgressBar = memo(() => {
   )
 })
 
+BottomProgressBar.displayName = 'BottomProgressBar'
 const changeOfPlayerHandler = throttle(
   (id, time, totalTime) => {
     useMusicStore.getState().setPlayInfo(id, time, totalTime)
@@ -362,6 +366,8 @@ export const _MusicMiniPlayerStoreControlled = memo(() => {
     </>
   )
 })
+
+_MusicMiniPlayerStoreControlled.displayName = 'MusicMiniPlayerStoreControlled'
 
 export const MusicMiniPlayerStoreControlled = withNoSSR(
   _MusicMiniPlayerStoreControlled,
