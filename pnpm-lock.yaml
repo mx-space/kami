@@ -153,8 +153,8 @@ devDependencies:
     specifier: 20.8.6
     version: 20.8.6
   '@types/randomcolor':
-    specifier: 0.5.7
-    version: 0.5.7
+    specifier: 0.5.8
+    version: 0.5.8
   '@types/react':
     specifier: 17.0.68
     version: 17.0.68
@@ -1793,8 +1793,8 @@ packages:
     resolution: {integrity: sha512-ZREFYlpUmPQJ0esjxoG1fMvB2HNaD3z+mjqdSosZvd3RalncI9NEur73P8ZJz4YQdL64CmV1w0RuqoRUlhQRBw==}
     dev: true
 
-  /@types/randomcolor@0.5.7:
-    resolution: {integrity: sha512-LPcG96dGYRCsXlk1fslUNIg6ebEi+bKNyn84uBL/pu2cRSf5i/djD3ArJZOyzszVMVV/DB87va6pMZP+tRSl/w==}
+  /@types/randomcolor@0.5.8:
+    resolution: {integrity: sha512-hCajbxWpZsGKf6gHiJyEJPCQ6jJaYYcryqtrXNGFnGjreXyws8xCvVln/Gg6ms/AqNntoFHxa2754E7WhpBTEg==}
     dev: true
 
   /@types/react-color@3.0.9:
