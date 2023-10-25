@@ -165,8 +165,8 @@ devDependencies:
     specifier: 18.2.13
     version: 18.2.13
   '@types/remove-markdown':
-    specifier: 0.3.2
-    version: 0.3.2
+    specifier: 0.3.3
+    version: 0.3.3
   '@types/ua-parser-js':
     specifier: 0.7.37
     version: 0.7.37
@@ -1823,8 +1823,8 @@ packages:
       '@types/react': 17.0.68
     dev: true
 
-  /@types/remove-markdown@0.3.2:
-    resolution: {integrity: sha512-XlpidYPjaOU6Te0Sfw8xfMudk3k8i8MQsTBw9JZ9MPuTRpqP4mYc2PWibr5T5VAdxEVbd++qXkCGuNVtNype8g==}
+  /@types/remove-markdown@0.3.3:
+    resolution: {integrity: sha512-Ga6BahW66yyp6QyxDOrHdsSLVTwyM1or4rfeTt/2DpC20R8aClQcflvVWR0Z9FU3cv5tUykc9GZ3Tns7Khlgvg==}
     dev: true
 
   /@types/scheduler@0.16.2:
