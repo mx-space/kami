@@ -1,5 +1,9 @@
 # Kami.
 
+
+> [!WARNING]  
+> Next.js 14 已发布，Kami 即日起停止维护，请使用 [Shiro](https://github.com/Innei/Shiro) 以获得更好的体验。
+
 [![wakatime](https://wakatime.com/badge/github/mx-space/kami.svg)](https://wakatime.com/badge/github/mx-space/kami)
 
 **Kami is Sunsetting**, check here to read [more](#kami-is-sunsetting).
