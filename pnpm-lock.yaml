@@ -138,8 +138,8 @@ devDependencies:
     specifier: 4.2.1
     version: 4.2.1(prettier@3.0.3)
   '@types/inflection':
-    specifier: 1.13.0
-    version: 1.13.0
+    specifier: 1.13.1
+    version: 1.13.1
   '@types/js-cookie':
     specifier: 3.0.5
     version: 3.0.5
@@ -305,7 +305,7 @@ packages:
       '@babel/helpers': 7.23.1
       '@babel/parser': 7.23.0
       '@babel/template': 7.22.15
-      '@babel/traverse': 7.23.0
+      '@babel/traverse': 7.23.2
       '@babel/types': 7.23.0
       convert-source-map: 2.0.0
       debug: 4.3.4
@@ -471,7 +471,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/template': 7.22.15
-      '@babel/traverse': 7.23.0
+      '@babel/traverse': 7.23.2
       '@babel/types': 7.23.0
     transitivePeerDependencies:
       - supports-color
@@ -539,6 +539,7 @@ packages:
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/traverse@7.23.2:
     resolution: {integrity: sha512-azpe59SQ48qG6nu2CzcMLbxUudtN+dOM9kDbUqGq3HXUJRlo7i8fvPoxQUzYgLZ4cMVmuZgm8vvBpNeRhd6XSw==}
@@ -556,7 +557,6 @@ packages:
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /@babel/types@7.17.0:
     resolution: {integrity: sha512-TmKSNO4D5rzhL5bjWFcVHHLETzfQ/AmbKpKPOSjlP0WoHZ6L911fgoOKY4Alp/emzG4cHJdyN49zpgkbXFEHHw==}
@@ -1716,8 +1716,8 @@ packages:
       '@types/node': 20.8.6
     dev: true
 
-  /@types/inflection@1.13.0:
-    resolution: {integrity: sha512-kZSETqAVS74XC/K3mPX/tbMEi/Zy1KP0Wc59dB1i5P72AHz4eSW+UIpzWxmQnDxipoKSX5eRgUXy+wUr+bY73g==}
+  /@types/inflection@1.13.1:
+    resolution: {integrity: sha512-iTQQWQk4oJ1BygX0ggBKOudHJHL4DmF+4vRZMU3ddHc6Cl/Mk6oo7HXnx4pn8wSY96DZolRMOvNUBuhAAwm18A==}
     dev: true
 
   /@types/js-cookie@2.2.7:
