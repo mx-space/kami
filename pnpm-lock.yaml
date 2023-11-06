@@ -6,7 +6,7 @@ settings:
 
 overrides:
   react-use: 17.4.0
-  '@types/react': 17.0.68
+  '@types/react': 18.2.33
 
 dependencies:
   '@floating-ui/react-dom':
@@ -119,7 +119,7 @@ dependencies:
     version: 1.0.14
   zustand:
     specifier: ^4.4.3
-    version: 4.4.3(@types/react@17.0.68)(immer@10.0.3)(react@18.2.0)
+    version: 4.4.3(@types/react@18.2.33)(immer@10.0.3)(react@18.2.0)
 
 devDependencies:
   '@innei/eslint-config-react-ts':
@@ -156,8 +156,8 @@ devDependencies:
     specifier: 0.5.8
     version: 0.5.8
   '@types/react':
-    specifier: 17.0.68
-    version: 17.0.68
+    specifier: 18.2.33
+    version: 18.2.33
   '@types/react-color':
     specifier: 3.0.9
     version: 3.0.9
@@ -305,7 +305,7 @@ packages:
       '@babel/helpers': 7.23.1
       '@babel/parser': 7.23.0
       '@babel/template': 7.22.15
-      '@babel/traverse': 7.23.0
+      '@babel/traverse': 7.23.2
       '@babel/types': 7.23.0
       convert-source-map: 2.0.0
       debug: 4.3.4
@@ -471,7 +471,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/template': 7.22.15
-      '@babel/traverse': 7.23.0
+      '@babel/traverse': 7.23.2
       '@babel/types': 7.23.0
     transitivePeerDependencies:
       - supports-color
@@ -539,6 +539,7 @@ packages:
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/traverse@7.23.2:
     resolution: {integrity: sha512-azpe59SQ48qG6nu2CzcMLbxUudtN+dOM9kDbUqGq3HXUJRlo7i8fvPoxQUzYgLZ4cMVmuZgm8vvBpNeRhd6XSw==}
@@ -556,7 +557,6 @@ packages:
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /@babel/types@7.17.0:
     resolution: {integrity: sha512-TmKSNO4D5rzhL5bjWFcVHHLETzfQ/AmbKpKPOSjlP0WoHZ6L911fgoOKY4Alp/emzG4cHJdyN49zpgkbXFEHHw==}
@@ -1800,18 +1800,18 @@ packages:
   /@types/react-color@3.0.9:
     resolution: {integrity: sha512-Ojyc6jySSKvM6UYQrZxaYe0JZXtgHHXwR2q9H4MhcNCswFdeZH1owYZCvPtdHtMOfh7t8h1fY0Gd0nvU1JGDkQ==}
     dependencies:
-      '@types/react': 17.0.68
+      '@types/react': 18.2.33
       '@types/reactcss': 1.2.6
     dev: true
 
   /@types/react-dom@18.2.13:
     resolution: {integrity: sha512-eJIUv7rPP+EC45uNYp/ThhSpE16k22VJUknt5OLoH9tbXoi8bMhwLf5xRuWMywamNbWzhrSmU7IBJfPup1+3fw==}
     dependencies:
-      '@types/react': 17.0.68
+      '@types/react': 18.2.33
     dev: true
 
-  /@types/react@17.0.68:
-    resolution: {integrity: sha512-y8heXejd/Gi43S28GOqIFmr6BzhLa3anMlPojRu4rHh3MtRrrpB+BtLEcqP3XPO1urXByzBdkOLU7sodYWnpkA==}
+  /@types/react@18.2.33:
+    resolution: {integrity: sha512-v+I7S+hu3PIBoVkKGpSYYpiBT1ijqEzWpzQD62/jm4K74hPpSP7FF9BnKG6+fg2+62weJYkkBWDJlZt5JO/9hg==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
@@ -1820,7 +1820,7 @@ packages:
   /@types/reactcss@1.2.6:
     resolution: {integrity: sha512-qaIzpCuXNWomGR1Xq8SCFTtF4v8V27Y6f+b9+bzHiv087MylI/nTCqqdChNeWS7tslgROmYB7yeiruWX7WnqNg==}
     dependencies:
-      '@types/react': 17.0.68
+      '@types/react': 18.2.33
     dev: true
 
   /@types/remove-markdown@0.3.3:
@@ -6911,11 +6911,11 @@ packages:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: false
 
-  /zustand@4.4.3(@types/react@17.0.68)(immer@10.0.3)(react@18.2.0):
+  /zustand@4.4.3(@types/react@18.2.33)(immer@10.0.3)(react@18.2.0):
     resolution: {integrity: sha512-oRy+X3ZazZvLfmv6viIaQmtLOMeij1noakIsK/Y47PWYhT8glfXzQ4j0YcP5i0P0qI1A4rIB//SGROGyZhx91A==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
-      '@types/react': 17.0.68
+      '@types/react': 18.2.33
       immer: '>=9.0'
       react: '>=16.8'
     peerDependenciesMeta:
@@ -6926,7 +6926,7 @@ packages:
       react:
         optional: true
     dependencies:
-      '@types/react': 17.0.68
+      '@types/react': 18.2.33
       immer: 10.0.3
       react: 18.2.0
       use-sync-external-store: 1.2.0(react@18.2.0)
