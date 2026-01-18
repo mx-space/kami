@@ -71,7 +71,7 @@ const SayView = () => {
                   className="mb-2"
                   options={options}
                 >{`${say.text}`}</Markdown>
-                <p className={styles['author']}>
+                <div className={styles['author']}>
                   <div className="flex-shrink-0">
                     {`发布于 ${relativeTimeFromNow(say.created)}`}
                   </div>
@@ -81,7 +81,7 @@ const SayView = () => {
                     {hasAuthor && `作者：${say.author}`}
                     {!hasAuthor && !hasSource && '站长说'}
                   </div>
-                </p>
+                </div>
               </blockquote>
             </BottomToUpTransitionView>
           )

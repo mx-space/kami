@@ -5,7 +5,6 @@ import React, { Fragment, memo } from 'react'
 import { useInitialData } from '~/hooks/app/use-initial-data'
 
 import {
-  HeaderActionButton,
   HeaderActionButtonsContainer,
   HeaderActionLikeButtonForNote,
 } from './HeaderActionButton'
@@ -30,9 +29,11 @@ export const HeaderActionBasedOnRouterPath: FC = memo(() => {
             <>
               <HeaderActionButtonsContainer>
                 <HeaderActionShareButton />
-                <HeaderActionButton className="h-10 w-20" tabIndex={-1}>
-                  <HeaderActionLikeButtonForNote id={id} />
-                </HeaderActionButton>
+                <HeaderActionLikeButtonForNote
+                  id={id}
+                  className="h-10 w-20"
+                  tabIndex={-1}
+                />
               </HeaderActionButtonsContainer>
               <div className="flex flex-shrink-0 flex-col">
                 <span>{id}</span>

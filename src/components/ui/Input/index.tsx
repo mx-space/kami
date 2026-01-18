@@ -38,9 +38,11 @@ type IInputProps = Omit<
     'prefix'
   >
 
-export const InputContext = createContext({
-   
-  setFocus(state: boolean) {},
+type InputContextValue = {
+  setFocus: (state: boolean) => void
+}
+export const InputContext = createContext<InputContextValue>({
+  setFocus: () => {},
 })
 export const Input = memo(
   forwardRef<HTMLInputElement | HTMLTextAreaElement, IInputProps>(

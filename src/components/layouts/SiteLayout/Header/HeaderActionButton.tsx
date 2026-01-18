@@ -27,8 +27,10 @@ export const HeaderActionButtonsContainer = memo((props: { children?: React.Reac
   return <div className="mr-3 flex items-center">{props.children}</div>
 })
 
-export const HeaderActionLikeButtonForNote: FC<{ id: number }> = (props) => {
-  const { id } = props
+export const HeaderActionLikeButtonForNote: FC<
+  { id: number } & Omit<JSX.IntrinsicElements['button'], 'onClick' | 'id'>
+> = (props) => {
+  const { id, ...buttonProps } = props
   const liked = useNoteCollection((state) => state.isLiked(id))
 
   const onLike = () => {
@@ -49,7 +51,7 @@ export const HeaderActionLikeButtonForNote: FC<{ id: number }> = (props) => {
     }
   }, [])
   return (
-    <HeaderActionButton onClick={onLike}>
+    <HeaderActionButton onClick={onLike} {...buttonProps}>
       <div className="flex items-center justify-center">
         <div className={styles['like-button']}>
           <LikeButton checked={liked} />
