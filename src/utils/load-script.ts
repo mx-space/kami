@@ -1,9 +1,12 @@
 import { isDev } from './env'
 
 const isLoadScriptMap: Record<string, 'loading' | 'loaded'> = {}
-const loadingQueueMap: Record<string, [Function, Function][]> = {}
+const loadingQueueMap: Record<
+  string,
+  Array<[(value: null) => void, (reason: unknown) => void]>
+> = {}
 export function loadScript(url: string) {
-  return new Promise((resolve, reject) => {
+  return new Promise<null>((resolve, reject) => {
     const status = isLoadScriptMap[url]
     if (status === 'loaded') {
       return resolve(null)
@@ -23,8 +26,8 @@ export function loadScript(url: string) {
       isLoadScriptMap[url] = 'loaded'
       resolve(null)
       if (loadingQueueMap[url]) {
-        loadingQueueMap[url].forEach(([resolve, reject]) => {
-          resolve(null)
+        loadingQueueMap[url].forEach(([queuedResolve]) => {
+          queuedResolve(null)
         })
         delete loadingQueueMap[url]
       }
@@ -39,8 +42,8 @@ export function loadScript(url: string) {
       // because even IE9 works not like others
       this.onerror = this.onload = null
       delete isLoadScriptMap[url]
-      loadingQueueMap[url].forEach(([resolve, reject]) => {
-        reject(e)
+      loadingQueueMap[url].forEach(([, queuedReject]) => {
+        queuedReject(e)
       })
       delete loadingQueueMap[url]
       reject(e)
@@ -58,7 +61,9 @@ export function loadStyleSheet(href: string) {
     return {
       $link,
       remove: () => {
-        $link.parentNode && $link.parentNode.removeChild($link)
+        if ($link.parentNode) {
+          $link.parentNode.removeChild($link)
+        }
         cssMap.delete(href)
       },
     }
@@ -79,7 +84,9 @@ export function loadStyleSheet(href: string) {
 
   return {
     remove: () => {
-      $link.parentNode && $link.parentNode.removeChild($link)
+      if ($link.parentNode) {
+        $link.parentNode.removeChild($link)
+      }
       cssMap.delete(href)
     },
     $link,
@@ -93,7 +100,9 @@ export function appendStyle(style: string) {
   return {
     remove: () => {
       if (!$style) return
-      $style.parentNode && $style.parentNode.removeChild($style)
+      if ($style.parentNode) {
+        $style.parentNode.removeChild($style)
+      }
       $style.remove()
       $style = null
     },

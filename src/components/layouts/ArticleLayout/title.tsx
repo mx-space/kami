@@ -40,7 +40,7 @@ export const ArticleLayoutTitle = memo<{ animate?: boolean }>(
                   `#/${type === 'page' ? 'pages' : 'posts'}/edit?id=${id}`,
                   url.adminUrl,
                 )!
-              }
+              } rel="noreferrer"
             >
               编辑
             </a>

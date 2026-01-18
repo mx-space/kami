@@ -8,7 +8,7 @@ import { Overlay } from '~/components/ui/Overlay'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/app/use-analyze'
 
-export const BanCopy: FC = (props) => {
+export const BanCopy: FC<{ children?: React.ReactNode }> = (props) => {
   const [showCopyWarn, setShowCopyWarn] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const { event } = useAnalyze()

@@ -77,16 +77,19 @@ const LikeCard = (props: UniversalProps) => {
         desc={desc || '如果你喜欢的话点个赞呗'}
         src={cover}
         href="/like_this"
-        onClick={useCallback((e) => {
-          stopEventDefault(e)
-          apiClient
-            .proxy('like_this')
-            .post({ params: { ts: Date.now() } })
-            .then(() => {
+        onClick={useCallback(
+          async (e) => {
+            stopEventDefault(e)
+            try {
+              await apiClient.proxy('like_this').post({ params: { ts: Date.now() } })
               setShowLikeThisNotice(true)
               mutate()
-            })
-        }, [])}
+            } catch {
+              return
+            }
+          },
+          [mutate],
+        )}
       />
     </>
   )

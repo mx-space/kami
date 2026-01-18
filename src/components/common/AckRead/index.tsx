@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from "react";
 import { useAckReadCount } from "~/hooks/app/use-ack-read-count";
 
 export const AckRead: FC<{

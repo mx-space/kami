@@ -3,6 +3,7 @@ import { useCallback } from 'react'
 import { message } from 'react-message-popup'
 import useSWR from 'swr'
 
+import { ErrorView } from '~/components/app/Error'
 import { Seo } from '~/components/app/Seo'
 import type { PlayListType } from '~/components/in-page/SectionMusic'
 import { SectionMusic } from '~/components/in-page/SectionMusic'
@@ -30,16 +31,15 @@ interface MusicData {
 }
 
 const MusicView: NextPage = () => {
-  const { data, isLoading } = useSWR('kami-music', () =>
-    apiClient.serverless.proxy.kami.netease
-      .get<any>()
-      .then((res) => {
-        return res as MusicData
-      })
-      .catch((err) => {
-        message.error(err.message)
-      }),
-  )
+  const { data, isLoading, error } = useSWR<MusicData>('kami-music', async () => {
+    try {
+      const res = await apiClient.serverless.proxy.kami.netease.get<any>()
+      return res as MusicData
+    } catch (err: any) {
+      message.error(err?.message || '请求失败')
+      throw err
+    }
+  })
 
   const { event } = useAnalyze()
   const trackerClick = useCallback(() => {
@@ -49,8 +49,19 @@ const MusicView: NextPage = () => {
     })
   }, [])
 
-  if (!data || isLoading) {
+  if (isLoading) {
     return <Loading />
+  }
+
+  if (error || !data) {
+    return (
+      <ErrorView
+        statusCode={404}
+        description="音乐功能依赖后端 serverless 代理（proxy/kami/*），当前未配置或接口不可用"
+        showBackButton
+        showRefreshButton
+      />
+    )
   }
 
   return (

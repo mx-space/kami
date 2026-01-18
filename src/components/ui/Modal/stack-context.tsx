@@ -95,7 +95,7 @@ interface IModalStackStateType extends UniversalProps {
 
 export const ModalStackProvider: FC<{
   isMobileViewport: boolean
-  children?: ReactNode | ReactChildren
+  children?: ReactNode
 }> = memo((props) => {
   const { children, isMobileViewport } = props
   const [modalStack, setModalStack] = useState<IModalStackStateType[]>([])

@@ -69,7 +69,7 @@ export class Notice {
     text: string
     onclick?: ((ev: Event) => any) | null
     description?: string
-    options?: Omit<NotificationOptions, 'body'>
+    options?: Omit<NotificationOptions, 'body'> & { image?: string }
   }): Promise<Notification | undefined> {
     if (!this.isInit) {
       this.isInit = await this.initNotice()
@@ -91,13 +91,16 @@ export class Notice {
             action: TrackerAction.Interaction,
             label: '外部通知触发',
           })
+
+          const { image, ...restOptions } = options
+          const defaultIcon =
+            useUserStore.getState().master?.avatar ||
+            `${location.origin}/manifest-icon-192.png`
+
           const notification = new Notification(title, {
             body: text,
-            image:
-              useUserStore.getState().master?.avatar ||
-              `${location.origin}/manifest-icon-192.png`,
-
-            ...options,
+            icon: image ?? defaultIcon,
+            ...restOptions,
           })
           notification.onclick = (e) => {
             onclick?.(e)

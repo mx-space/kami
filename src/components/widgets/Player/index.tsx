@@ -244,7 +244,7 @@ export const MusicMiniPlayer = forwardRef<
             )}
           </div>
 
-          {cur && audioEl}
+          {audioEl}
         </div>
 
         {/* end cover */}

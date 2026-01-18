@@ -4,12 +4,11 @@ import React, { createElement, useEffect } from 'react'
 import type { FallbackProps } from 'react-error-boundary'
 import { ErrorBoundary as ErrorBoundary$ } from 'react-error-boundary'
 
-import { captureException } from '@sentry/nextjs'
+import { reportError } from '~/utils/logger'
 
 function FallbackRender({ error, resetErrorBoundary }) {
   useEffect(() => {
-    console.log('capture', error)
-    captureException(error)
+    reportError(error, { source: 'react-error-boundary' })
 
     const handler = () => {
       resetErrorBoundary()
@@ -24,6 +23,7 @@ function FallbackRender({ error, resetErrorBoundary }) {
 
 export const ErrorBoundary: FC<{
   FallbackComponent?: FC<FallbackProps>
+  children?: React.ReactNode
 }> = ({ FallbackComponent, children }) => {
   return (
     <ErrorBoundary$

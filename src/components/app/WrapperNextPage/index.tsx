@@ -10,7 +10,9 @@ import { isNumber } from '~/utils/_'
 import { ErrorView } from '../Error'
 
 const LoadingComponent = () => <Loading />
-export function wrapperNextPage<T extends {}>(Page: NextPage<T>) {
+export function wrapperNextPage<
+  T extends object = object,
+>(Page: NextPage<T>) {
   return wrapper(Page, {
     LoadingComponent,
     ErrorComponent: ({ error }) => {

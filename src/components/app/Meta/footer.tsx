@@ -2,7 +2,7 @@ import { memo, useMemo } from 'react'
 
 import { useThemeConfig } from '~/hooks/app/use-initial-data'
 
-export const MetaFooter = memo(() => {
+const MetaFooterInner = memo(() => {
   const themeConfig = useThemeConfig()
   const analyze = themeConfig.function.analyze
   const AnalyzeScripts = useMemo(
@@ -61,3 +61,6 @@ export const MetaFooter = memo(() => {
 
   return <>{AnalyzeScripts}</>
 })
+
+MetaFooterInner.displayName = 'MetaFooter'
+export const MetaFooter = MetaFooterInner

@@ -2,27 +2,25 @@
 import type { RefObject } from 'react'
 import { useEffect, useRef } from 'react'
 
-function on<T extends Window | Document | HTMLElement | EventTarget>(
-  obj: T | null,
-  ...args: Parameters<T['addEventListener']> | [string, Function | null, ...any]
+function on(
+  obj: EventTarget | null,
+  type: string,
+  listener: EventListenerOrEventListenerObject,
+  options?: boolean | AddEventListenerOptions,
 ): void {
-  if (obj && obj.addEventListener) {
-    obj.addEventListener(
-      ...(args as Parameters<HTMLElement['addEventListener']>),
-    )
+  if (obj) {
+    obj.addEventListener(type, listener, options)
   }
 }
 
-function off<T extends Window | Document | HTMLElement | EventTarget>(
-  obj: T | null,
-  ...args:
-    | Parameters<T['removeEventListener']>
-    | [string, Function | null, ...any]
+function off(
+  obj: EventTarget | null,
+  type: string,
+  listener: EventListenerOrEventListenerObject,
+  options?: boolean | EventListenerOptions,
 ): void {
-  if (obj && obj.removeEventListener) {
-    obj.removeEventListener(
-      ...(args as Parameters<HTMLElement['removeEventListener']>),
-    )
+  if (obj) {
+    obj.removeEventListener(type, listener, options)
   }
 }
 
@@ -38,9 +36,12 @@ const useClickAway = <E extends Event = Event>(
     savedCallback.current = onClickAway
   }, [onClickAway])
   useEffect(() => {
-    const handler = (event) => {
+    const handler = (event: Event) => {
       const { current: el } = ref
-      el && !el.contains(event.target) && savedCallback.current(event)
+      const target = event.target
+      if (el && target && !el.contains(target as Node)) {
+        savedCallback.current(event as E)
+      }
     }
     for (const eventName of events) {
       on(document, eventName, handler)

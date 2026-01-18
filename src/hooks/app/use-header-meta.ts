@@ -24,7 +24,7 @@ export const useSetHeaderMeta = (title: string, description: string) => {
       meta: description,
       show: true,
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [description, title])
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export const useSetHeaderMeta = (title: string, description: string) => {
         show: false,
       }))
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [])
 }
 export const useGetHeaderMeta = () => {
@@ -62,7 +62,7 @@ export const useSetHeaderShare = (title: string, text?: string) => {
       title,
       url: location.href,
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [title, text])
 
   useEffect(() => {

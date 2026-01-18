@@ -52,7 +52,7 @@ export const XLogSummary: FC<{
         {isLoading && (
           <p className="text-gray-2 text-right text-sm">
             (此服务由{' '}
-            <a href="https://xlog.app" target="_blank">
+            <a href="https://xlog.app" target="_blank" rel="noreferrer">
               xLog
             </a>{' '}
             驱动)

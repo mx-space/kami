@@ -90,7 +90,7 @@ const ObserveredNoteTimelineList: FC<
       setList(data)
     }
     fetchList()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
     return () => {
       isCanceled = true
     }

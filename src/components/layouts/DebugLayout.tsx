@@ -4,7 +4,7 @@ import { memo, useEffect } from 'react'
 import { useAppStore } from '~/atoms/app'
 import { ModalStackProvider } from '~/components/ui/Modal'
 
-export const DebugLayout: FC = memo((props) => {
+export const DebugLayout: FC<{ children?: React.ReactNode }> = memo((props) => {
   useEffect(() => {
     useAppStore.getState().updateViewport()
   }, [])

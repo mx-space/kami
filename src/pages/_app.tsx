@@ -5,9 +5,11 @@ import type { AppContext } from 'next/app'
 import NextApp from 'next/app'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
-import React, { useEffect, useMemo } from 'react'
+import React, { startTransition, useEffect, useMemo } from 'react'
 
 import { ProviderComposer } from '~/components/app/Composer'
+import { ErrorView } from '~/components/app/Error'
+import { ErrorBoundary } from '~/components/app/ErrorBoundary'
 import { NoDataErrorView } from '~/components/app/Error/no-data'
 import { AppLayout } from '~/components/layouts/AppLayout'
 import { DebugLayout } from '~/components/layouts/DebugLayout'
@@ -28,6 +30,9 @@ import { useCheckOldBrowser } from '~/hooks/app/use-check-old-browser'
 import { useInitialData } from '~/hooks/app/use-initial-data'
 import { ToastContainer } from '~/provider/toastify'
 import { printToConsole } from '~/utils/console'
+import { NetworkLoadingBridge } from '~/components/app/NetworkLoadingBridge'
+import { initGlobalErrorHandlers } from '~/utils/logger'
+import type { FallbackProps } from 'react-error-boundary'
 
 interface DataModel {
   initData: InitialDataType
@@ -40,6 +45,17 @@ const PageProviders = [
   <SiteLayout key="BasicLayout" />,
 ]
 
+const AppErrorFallback: FC<FallbackProps> = ({ error }) => {
+  return (
+    <ErrorView
+      statusCode="Error"
+      description={error?.message || '页面渲染出错了'}
+      showBackButton
+      showRefreshButton
+    />
+  )
+}
+
 const Prepare = () => {
   const { check: checkBrowser } = useCheckOldBrowser()
   const { check: checkLogin } = useCheckLogged()
@@ -47,19 +63,26 @@ const Prepare = () => {
 
   useEffect(() => {
     try {
-      const { user } = initialData
-      checkLogin()
-      // set user
-      useUserStore.getState().setUser(user)
-      import('../socket').then(({ socketClient }) => {
-        socketClient.initIO()
-      })
+      if (initialData) {
+        startTransition(() => {
+          const { user } = initialData
+          checkLogin()
+          useUserStore.getState().setUser(user)
+          import('../socket').then(({ socketClient }) => {
+            socketClient.initIO()
+          })
+        })
+      }
     } finally {
       document.body.classList.remove('loading')
     }
 
     checkBrowser()
     printToConsole()
+    const dispose = initGlobalErrorHandlers()
+    return () => {
+      dispose()
+    }
   }, [])
   return null
 }
@@ -98,7 +121,8 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
   return (
     <ProviderComposer contexts={AppProviders}>
       <Prepare />
-      {Inner}
+      <NetworkLoadingBridge />
+      <ErrorBoundary FallbackComponent={AppErrorFallback}>{Inner}</ErrorBoundary>
     </ProviderComposer>
   )
 }
@@ -127,8 +151,8 @@ App.getInitialProps = async (props: AppContext) => {
       }
       // 这里捕获，为了走全局无数据页
       if (ctx.res) {
-        ctx.res.statusCode = 466
-        ctx.res.statusMessage = 'No Data'
+        ctx.res.statusCode = 503
+        ctx.res.statusMessage = 'Service Unavailable'
       }
       return null
     }

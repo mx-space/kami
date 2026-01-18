@@ -8,6 +8,7 @@ import type { KamiConfig } from '~/types/config'
 import { $axios, apiClient } from '~/utils/client'
 import { TokenKey } from '~/utils/cookie'
 import { isClientSide, isServerSide } from '~/utils/env'
+import { log, reportError } from '~/utils/logger'
 
 import PKG from '../../package.json'
 import type { InitialDataType } from '../provider'
@@ -31,7 +32,9 @@ export const attachRequestProxy = (request?: IncomingMessage) => {
   if (ip && ip.split(',').length > 0) {
     ip = ip.split(',')[0]
   }
-  ip && ($axios.defaults.headers.common['x-forwarded-for'] = ip as string)
+  if (ip) {
+    $axios.defaults.headers.common['x-forwarded-for'] = ip as string
+  }
 
   $axios.defaults.headers.common[
     'User-Agent'
@@ -49,7 +52,7 @@ export const attachRequestProxy = (request?: IncomingMessage) => {
       })
       ?.split('=')[1]
     if (token) {
-      $axios.defaults.headers['Authorization'] = `bearer ${token.replace(
+      $axios.defaults.headers['Authorization'] = `Bearer ${token.replace(
         /^Bearer\s/i,
         '',
       )}`
@@ -78,7 +81,8 @@ export async function fetchInitialData(): Promise<InitialDataType> {
   } else {
     //  TODO 请求异常处理
     reason = aggregateDataState?.reason
-    console.error(`Fetch aggregate data error: ${aggregateDataState.reason}`)
+    log('error', 'Fetch aggregate data error:', aggregateDataState.reason)
+    reportError(aggregateDataState.reason, { source: 'fetchInitialData.aggregate' })
   }
 
   if (configSnippetState.status === 'fulfilled') {

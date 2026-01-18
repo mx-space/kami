@@ -14,7 +14,7 @@ import { useDetectPadOrMobile } from '~/hooks/ui/use-viewport'
 
 import styles from './index.module.css'
 
-const _HeaderDrawer: FC<{ show: boolean; onExit: () => void }> = memo(
+const _HeaderDrawer: FC<{ show: boolean; onExit: () => void; children?: React.ReactNode }> = memo(
   ({ children, onExit, show }) => {
     const router = useRouter()
     const { event } = useAnalyze()
@@ -37,7 +37,7 @@ const _HeaderDrawer: FC<{ show: boolean; onExit: () => void }> = memo(
       return () => {
         router.events.off('routeChangeStart', handler)
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+       
     }, [router])
 
     return (

@@ -6,6 +6,8 @@ import React, { createElement, memo, useMemo, useRef, useState } from 'react'
 import { FlexText } from '../FlexText'
 import styles from './index.module.css'
 
+const loadedImageCache = new Set<string>()
+
 interface AvatarProps {
   url?: string
   imageUrl?: string
@@ -33,7 +35,12 @@ export const Avatar: FC<
         : 'var(--gray)',
     [props.src, useRandomColor],
   )
-  const [loaded, setLoaded] = useState(!lazy)
+  const [loaded, setLoaded] = useState(() => {
+    if (!lazy) return true
+    const url = props.imageUrl
+    if (url && loadedImageCache.has(url)) return true
+    return false
+  })
 
   const { wrapperProps = {} } = props
   const { className, ...restProps } = wrapperProps
@@ -73,7 +80,10 @@ export const Avatar: FC<
               src={props.imageUrl}
               height={props.size}
               width={props.size}
-              onLoad={() => setLoaded(true)}
+              onLoad={() => {
+                loadedImageCache.add(props.imageUrl!)
+                setLoaded(true)
+              }}
               loading={lazy ? 'lazy' : 'eager'}
               className="aspect-square"
             />

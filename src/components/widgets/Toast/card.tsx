@@ -49,7 +49,9 @@ export const ToastCard: FC<{
           )}
           onClick={(e) => {
             e.stopPropagation()
-            props.getToastId && toast.dismiss(props.getToastId())
+            if (props.getToastId) {
+              toast.dismiss(props.getToastId())
+            }
           }}
         >
           <CloseIcon />

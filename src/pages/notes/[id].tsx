@@ -294,9 +294,11 @@ const NoteView: React.FC<{ id: string }> = memo((props) => {
   )
 })
 
-const PP: NextPage<NoteModel | { needPassword: true; id: string }> = (
-  props,
-) => {
+const PP: NextPage<
+  | NoteModel
+  | { needPassword: true; id: string }
+  | { noLatest: true; id: string }
+> = (props) => {
   const router = useRouter()
 
   const noteId = useNoteCollection((state) => state.get(props.id)?.id)
@@ -307,6 +309,33 @@ const PP: NextPage<NoteModel | { needPassword: true; id: string }> = (
       update()
     }
   }, [noteId])
+
+  if ('noLatest' in props) {
+    return (
+      <Suspense>
+        <ArticleLayout title="暂无手记" subtitle="请先在后台创建一篇手记">
+          <div className="mt-8 flex gap-2">
+            <button
+              className="btn"
+              onClick={() => {
+                router.push('/')
+              }}
+            >
+              回到首页
+            </button>
+            <button
+              className="btn"
+              onClick={() => {
+                router.push('/notes/topics')
+              }}
+            >
+              浏览手记
+            </button>
+          </div>
+        </ArticleLayout>
+      </Suspense>
+    )
+  }
 
   if ('needPassword' in props) {
     if (!noteId) {
@@ -340,7 +369,14 @@ PP.getInitialProps = async (ctx) => {
   const id = ctx.query.id as string
   const password = ctx.query.password as string
   if (id == 'latest') {
-    return await noteCollection.fetchLatest()
+    try {
+      return await noteCollection.fetchLatest()
+    } catch {
+      if (ctx.res) {
+        ctx.res.statusCode = 404
+      }
+      return { noLatest: true, id: 'latest' }
+    }
   }
   try {
     const res = await noteCollection.fetchById(

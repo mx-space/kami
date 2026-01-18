@@ -209,7 +209,7 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
                     data-hide-print
                     className="edit-link"
                     target="_blank"
-                    href={resolveUrl(`#/notes/edit?id=${id}`, url.adminUrl)!}
+                    href={resolveUrl(`#/notes/edit?id=${id}`, url.adminUrl)!} rel="noreferrer"
                   >
                     编辑
                   </a>

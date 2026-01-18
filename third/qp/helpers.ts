@@ -96,7 +96,7 @@ export const css = (function () {
   }
 
   return function (element: HTMLElement, properties: any): void {
-    // eslint-disable-next-line prefer-rest-params
+     
     const args: IArguments = arguments
     let prop: any
     let value: string
@@ -104,7 +104,7 @@ export const css = (function () {
     if (args.length === 2) {
       for (prop in properties) {
         value = properties[prop]
-        // eslint-disable-next-line no-prototype-builtins
+         
         if (properties.hasOwnProperty(prop)) applyCss(element, prop, value)
       }
     } else {
@@ -121,13 +121,13 @@ export const queue = (function () {
   const pending: any[] = []
 
   function next() {
-    const fn: Function = pending.shift()
+    const fn: undefined | ((next: () => void) => void) = pending.shift()
     if (fn) {
       fn(next)
     }
   }
 
-  return function (fn: Function) {
+  return function (fn: (next: () => void) => void) {
     pending.push(fn)
     if (pending.length === 1) next()
   }
@@ -205,7 +205,9 @@ export function remove(parent: string | HTMLElement): void {
     removeClass(parent as HTMLElement, 'qprogress-custom-parent')
   }
   const progress: HTMLElement = document.getElementById('qprogress')!
-  progress && removeElement(progress)
+  if (progress) {
+    removeElement(progress)
+  }
 }
 
 /**
@@ -230,5 +232,7 @@ function removeClass(element: HTMLElement, name: string): void {
  */
 
 function removeElement(element: HTMLElement): void {
-  element && element.parentNode && element.parentNode.removeChild(element)
+  if (element.parentNode) {
+    element.parentNode.removeChild(element)
+  }
 }

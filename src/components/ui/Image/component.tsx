@@ -163,7 +163,7 @@ export const ImageLazy = memo(
             placeholderRef.current.classList.add('hide')
           }
 
-          // eslint-disable-next-line no-empty
+           
         } catch {}
       }
       if (showErrorMessage) {
@@ -177,7 +177,7 @@ export const ImageLazy = memo(
             image.src,
           )}" target="_blank">${escapeHTMLTag(image.src)}</a></p>`
             }
-            // eslint-disable-next-line no-empty
+             
           } catch {}
         }
       }

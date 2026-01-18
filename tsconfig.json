@@ -6,7 +6,7 @@
     "strict": true,
     "target": "esnext",
     "module": "esnext",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
@@ -35,17 +35,17 @@
       ],
       "~": [
         "."
-      ],
+      ]
     }
   },
   "exclude": [
     ".next",
-    "server/**/*.*",
+    "server/**/*.*"
   ],
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "./package.json",
+    "./package.json"
   ]
 }

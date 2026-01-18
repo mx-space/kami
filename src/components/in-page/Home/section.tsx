@@ -126,7 +126,7 @@ const SectionsInternal: FC<AggregateTop> = ({ notes, posts }) => {
 export const HomeSections = withNoSSR(SectionsInternal)
 
 function buildRoute<T extends { id: string } & { nid?: number }>(
-  type: keyof typeof ContentType,
+  type: 'Note' | 'Post' | 'Say',
   obj: T,
 ): { as: string; href: string } {
   switch (type) {
@@ -152,11 +152,4 @@ function buildRoute<T extends { id: string } & { nid?: number }>(
     //   return { as: `/projects/${id}`, href: `/projects/[id]` }
     // }
   }
-}
-
-enum ContentType {
-  Note,
-  Post,
-  Say,
-  // Project,
 }

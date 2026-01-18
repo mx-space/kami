@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 
 export function useSingleAndDoubleClick(
-  actionSimpleClick: Function,
-  actionDoubleClick: Function,
+  actionSimpleClick: () => void,
+  actionDoubleClick: () => void,
   delay = 250,
 ) {
   const [click, setClick] = useState(0)
@@ -10,7 +10,7 @@ export function useSingleAndDoubleClick(
   useEffect(() => {
     const timer = setTimeout(() => {
       // simple click
-      if (click === 1) actionSimpleClick()
+    if (click === 1) actionSimpleClick()
       setClick(0)
     }, delay)
 
@@ -19,7 +19,7 @@ export function useSingleAndDoubleClick(
     if (click === 2) actionDoubleClick()
 
     return () => clearTimeout(timer)
-  }, [click])
+  }, [actionDoubleClick, actionSimpleClick, click, delay])
 
   return () => setClick((prev) => prev + 1)
 }

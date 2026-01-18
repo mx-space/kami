@@ -3,11 +3,11 @@ import type { CustomEventTypes } from '~/types/events'
 import type { EventTypes } from '../types/events'
 
 export class EventEmitter {
-  private observers: Record<string, Function[]> = {}
+  private observers: Record<string, Array<(payload?: any) => void>> = {}
 
   on(event: EventTypes, handler: any): void
   on(event: CustomEventTypes, handler: any): void
-  on(event: string, handler: (...rest: any) => void) {
+  on(event: string, handler: (payload?: any) => void) {
     const queue = this.observers[event]
     if (!queue) {
       this.observers[event] = [handler]
