@@ -80,11 +80,11 @@ const Progress: FC = memo(() => {
   }, [])
   return (
     <Fragment>
-      <p className="mt-4 inline-flex items-center">
+      <div className="mt-4 inline-flex items-center">
         <span className="flex-shrink-0">今天是 {currentYear} 年的第</span>
         <NumberTransition number={currentDay} className="mx-1" />
         <span className="flex-shrink-0">天</span>
-      </p>
+      </div>
       <p className="my-4">
         今年已过{' '}
         <CountUp

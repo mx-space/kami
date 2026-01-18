@@ -1,5 +1,6 @@
 import dayjs from 'dayjs'
 import { pick } from 'lodash-es'
+import type { AxiosError } from 'axios'
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -9,9 +10,11 @@ import { message } from 'react-message-popup'
 import { shallow } from 'zustand/shallow'
 
 import type { PostModel } from '@mx-space/api-client'
+import { RequestError } from '@mx-space/api-client'
 
 import { usePostCollection } from '~/atoms/collections/post'
 import type { ModelWithDeleted } from '~/atoms/collections/utils/base'
+import { ErrorView } from '~/components/app/Error'
 import { Seo } from '~/components/app/Seo'
 import { Suspense } from '~/components/app/Suspense'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
@@ -359,7 +362,12 @@ export const PostView: PageOnlyProps = (props) => {
   )
 }
 
-const NextPostView: NextPage<PostModel> = (props) => {
+type NextPostViewProps = PostModel | { __notFound: true }
+const NextPostView: NextPage<NextPostViewProps> = (props) => {
+  if ('__notFound' in props) {
+    return <ErrorView statusCode={404} showRefreshButton showBackButton />
+  }
+
   const { id } = props
   const postId = usePostCollection((state) => state.data.get(id)?.id)
 
@@ -374,9 +382,24 @@ const NextPostView: NextPage<PostModel> = (props) => {
 NextPostView.getInitialProps = async (ctx) => {
   const { query } = ctx
   const { category, slug } = query as any
-  const data = await usePostCollection.getState().fetchBySlug(category, slug)
+  try {
+    const data = await usePostCollection.getState().fetchBySlug(category, slug)
+    return data
+  } catch (error) {
+    if (error instanceof RequestError) {
+      const axiosError = error.raw as AxiosError
+      const status = axiosError.response?.status
 
-  return data
+      if (status === 404) {
+        if (ctx.res) {
+          ctx.res.statusCode = 404
+        }
+        return { __notFound: true } as any
+      }
+    }
+
+    throw error
+  }
 }
 
 export default wrapperNextPage(NextPostView)
