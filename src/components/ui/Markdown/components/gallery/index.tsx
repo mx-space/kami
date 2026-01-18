@@ -70,7 +70,7 @@ export const Gallery: FC<GalleryProps> = (props) => {
 
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   const handleOnScroll: UIEventHandler<HTMLDivElement> = useCallback(
     throttle<UIEventHandler<HTMLDivElement>>((e) => {
       const $ = e.target as HTMLDivElement

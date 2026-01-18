@@ -7,13 +7,14 @@ import { captureUnderscoreErrorException } from '@sentry/nextjs'
 import { errorToText, ErrorView } from '~/components/app/Error'
 import { useIsClient } from '~/hooks/common/use-is-client'
 import { isNumber } from '~/utils/_'
+import { log } from '~/utils/logger'
 
 const ErrorPage: NextPage<{ statusCode: number; err: any }> = ({
   statusCode = 500,
   err,
 }) => {
   useEffect(() => {
-    console.log('[ErrorPage]: ', statusCode, err)
+    log('warn', '[ErrorPage]: ', statusCode, err)
     // if (err) {
     //   const errMessage = err._message || err.message
 
@@ -64,8 +65,9 @@ ErrorPage.getInitialProps = async (ctx: NextPageContext) => {
   await captureUnderscoreErrorException(ctx)
 
   const statusCode = +getCode(err, res) || 500
-
-  res && (res.statusCode = statusCode)
+  if (res) {
+    res.statusCode = statusCode
+  }
   if (statusCode === 404) {
     return { statusCode: 404, err }
   }
@@ -73,7 +75,7 @@ ErrorPage.getInitialProps = async (ctx: NextPageContext) => {
     try {
       return JSON.parse(JSON.stringify(err))
     } catch (e: any) {
-      console.log(e.message)
+      log('warn', e.message)
 
       return err
     }

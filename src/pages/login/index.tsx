@@ -18,18 +18,27 @@ const LoginView: NextPage = () => {
   const [password, setPassword] = useState('')
 
   const handleLogin = async () => {
-    const data = await apiClient.user.login(username, password)
-
-    setToken(data.token)
-    if (history.backPath && history.backPath.length) {
-      Router.push(history.backPath.pop()!)
-    } else {
-      Router.push('/')
+    if (!username || !password) {
+      message.error('请输入用户名与密码')
+      return
     }
-    message.success('登录成功')
 
-    useUserStore.getState().setToken(data.token)
-    releaseDevtool()
+    try {
+      const data = await apiClient.user.login(username, password)
+
+      setToken(data.token)
+      if (history.backPath && history.backPath.length) {
+        Router.push(history.backPath.pop()!)
+      } else {
+        Router.push('/')
+      }
+      message.success('登录成功')
+
+      useUserStore.getState().setToken(data.token)
+      releaseDevtool()
+    } catch {
+      return
+    }
   }
 
   return (
@@ -53,9 +62,17 @@ const LoginView: NextPage = () => {
           />
         </div>
 
-        <button className="btn blue" onClick={() => handleLogin()}>
-          登录
-        </button>
+        <div className={styles['actions']}>
+          <span 
+            className={styles['link']} 
+            onClick={() => Router.push('/register')}
+          >
+            注册账号
+          </span>
+          <button className="btn blue" onClick={() => handleLogin()}>
+            登录
+          </button>
+        </div>
       </div>
     </main>
   )

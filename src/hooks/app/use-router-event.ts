@@ -1,5 +1,5 @@
 import { Router } from 'next/router'
-import { startTransition, useEffect } from 'react'
+import { useEffect } from 'react'
 
 import QProgress from '../../../third/qp'
 import { useAnalyze } from './use-analyze'
@@ -7,29 +7,70 @@ import { useAnalyze } from './use-analyze'
 export const useRouterEvent = () => {
   const { pageview } = useAnalyze()
   useEffect(() => {
-    startTransition(() => {
-      const Progress = new QProgress({
-        colorful: false,
-        color: 'var(--primary)',
-      })
-
-      Router.events.on('routeChangeStart', () => {
-        Progress.start()
-        history.backPath = history.backPath
-          ? [...history.backPath, history.state.as]
-          : [history.state.as]
-      })
-
-      Router.events.on('routeChangeComplete', () => {
-        Progress.finish()
-      })
-
-      Router.events.on('routeChangeError', () => {
-        history.backPath?.pop()
-        Progress.finish()
-      })
-
-      Router.events.on('routeChangeComplete', (url) => pageview(url))
+    const Progress = new QProgress({
+      colorful: false,
+      color: 'var(--primary)',
     })
-  }, [])
+
+    const startDelayMs = 150
+    const minVisibleMs = 250
+
+    let startTimer: ReturnType<typeof setTimeout> | null = null
+    let startedAt = 0
+    let started = false
+
+    const clearStartTimer = () => {
+      if (startTimer) {
+        clearTimeout(startTimer)
+        startTimer = null
+      }
+    }
+
+    const scheduleStart = () => {
+      clearStartTimer()
+      startTimer = setTimeout(() => {
+        started = true
+        startedAt = Date.now()
+        Progress.start()
+      }, startDelayMs)
+    }
+
+    const finishIfStarted = () => {
+      clearStartTimer()
+      if (!started) return
+      const elapsed = Date.now() - startedAt
+      const remaining = Math.max(0, minVisibleMs - elapsed)
+      setTimeout(() => {
+        Progress.finish()
+      }, remaining)
+      started = false
+    }
+
+    const onStart = () => {
+      scheduleStart()
+      const current = history.state?.as
+      history.backPath = history.backPath ? [...history.backPath, current] : [current]
+    }
+
+    const onComplete = (url: string) => {
+      finishIfStarted()
+      pageview(url)
+    }
+
+    const onError = () => {
+      history.backPath?.pop()
+      finishIfStarted()
+    }
+
+    Router.events.on('routeChangeStart', onStart)
+    Router.events.on('routeChangeComplete', onComplete)
+    Router.events.on('routeChangeError', onError)
+
+    return () => {
+      clearStartTimer()
+      Router.events.off('routeChangeStart', onStart)
+      Router.events.off('routeChangeComplete', onComplete)
+      Router.events.off('routeChangeError', onError)
+    }
+  }, [pageview])
 }

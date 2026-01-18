@@ -8,6 +8,7 @@ import { useRootPortal } from './provider'
 
 export const RootPortal: FC<{
   to?: HTMLElement
+  children?: React.ReactNode
 }> = memo((props) => {
   const isClient = useIsClient()
   const to = useRootPortal()

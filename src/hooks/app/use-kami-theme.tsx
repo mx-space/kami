@@ -91,7 +91,7 @@ export const useCustomThemeColor = (
   const { dark, light, darkHover, lightHover } = nextThemeColorConfig
 
   return [
-    // eslint-disable-next-line react/jsx-key
+     
     <style
       id="theme-style"
       dangerouslySetInnerHTML={{

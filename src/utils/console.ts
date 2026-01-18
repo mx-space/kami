@@ -96,6 +96,6 @@ export function printToConsole() {
       'margin: 1em 0; padding: 5px 0; background: #efefef;',
     )
 
-    // eslint-disable-next-line no-empty
+     
   } catch {}
 }

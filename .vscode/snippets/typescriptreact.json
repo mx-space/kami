@@ -1,6 +1,0 @@
-{
-  "getInit": {
-    "prefix": "getInit",
-    "body": "static async getInitialProps(ctx: NextPageContext) { ${1} }"
-  }
-}

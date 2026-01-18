@@ -18,6 +18,7 @@ import { ModalStackProvider } from '~/components/ui/Modal'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/app/use-analyze'
 import { useThemeBackground } from '~/hooks/app/use-kami-theme'
+import { useIsClient } from '~/hooks/common/use-is-client'
 import { useDarkModeDetector } from '~/hooks/ui/use-dark-mode-detector'
 import { useDetectIsNarrowThanLaptop } from '~/hooks/ui/use-viewport'
 import { appendStyle } from '~/utils/load-script'
@@ -66,12 +67,22 @@ const useColorModeTransition = (isDark: boolean) => {
 
     return () => {
       remove()
-      timer && clearTimeout(timer)
+      if (timer) {
+        clearTimeout(timer)
+      }
     }
   }, [isDark])
 }
 
-export const SiteLayout: FC = memo(({ children }) => {
+export const SiteLayout: FC<{ children?: React.ReactNode }> = memo(({ children }) => {
+  const isClient = useIsClient()
+  const [deferClientRender, setDeferClientRender] = useState(false)
+  useEffect(() => {
+    if (!isClient) return
+    const timer = setTimeout(() => setDeferClientRender(true), 0)
+    return () => clearTimeout(timer)
+  }, [isClient])
+
   const { toggle, value: isDark } = useDarkModeDetector()
 
   useThemeBackground()
@@ -109,7 +120,7 @@ export const SiteLayout: FC = memo(({ children }) => {
       actionStore.appendActions(action)
 
       return () => {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+         
         actionStore.removeActionById(actionId)
       }
     }
@@ -122,8 +133,9 @@ export const SiteLayout: FC = memo(({ children }) => {
       const id = location.hash.replace(/^#/, '')
       setTimeout(() => {
         const $el = document.getElementById(decodeURIComponent(id))
-
-        $el && springScrollToElement($el, -window.innerHeight / 2 + 100)
+        if ($el) {
+          springScrollToElement($el, -window.innerHeight / 2 + 100)
+        }
       }, 1050)
     }
   }, [])
@@ -134,9 +146,11 @@ export const SiteLayout: FC = memo(({ children }) => {
         <div className="bg absolute inset-0 transform-gpu" />
       </div>
 
-      <Suspense>
-        <Header />
-      </Suspense>
+      {deferClientRender && (
+        <Suspense>
+          <Header />
+        </Suspense>
+      )}
 
       <div className="app-content">{children}</div>
 
@@ -155,30 +169,40 @@ export const SiteLayout: FC = memo(({ children }) => {
         }
       />
 
-      <Suspense>
-        <Footer />
-      </Suspense>
+      {deferClientRender && (
+        <Suspense>
+          <Footer />
+        </Suspense>
+      )}
 
-      <Suspense>
-        <MusicMiniPlayerStoreControlled />
-      </Suspense>
+      {deferClientRender && (
+        <Suspense>
+          <MusicMiniPlayerStoreControlled />
+        </Suspense>
+      )}
 
-      <Suspense>
-        {!isNarrowThanLaptop && <LampSwitch onClick={handleChangeColorMode} />}
-      </Suspense>
+      {deferClientRender && (
+        <Suspense>
+          {!isNarrowThanLaptop && <LampSwitch onClick={handleChangeColorMode} />}
+        </Suspense>
+      )}
 
-      <Suspense>
-        <ColorModeNoticePanel
-          {...tip}
-          onExited={() => setNotice(false)}
-          in={showNotice}
-          key="panel"
-        />
-      </Suspense>
+      {deferClientRender && (
+        <Suspense>
+          <ColorModeNoticePanel
+            {...tip}
+            onExited={() => setNotice(false)}
+            in={showNotice}
+            key="panel"
+          />
+        </Suspense>
+      )}
 
-      <Suspense>
-        <SearchHotKey />
-      </Suspense>
+      {deferClientRender && (
+        <Suspense>
+          <SearchHotKey />
+        </Suspense>
+      )}
     </ModalStackProvider>
   )
 })

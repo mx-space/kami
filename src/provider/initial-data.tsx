@@ -14,7 +14,7 @@ export type InitialDataType = {
 }
 export const InitialContext = createContext({} as InitialDataType)
 
-export const InitialContextProvider: FC<{ value: InitialDataType }> = memo(
+export const InitialContextProvider: FC<{ value: InitialDataType; children?: React.ReactNode }> = memo(
   (props) => {
     const mergeThemeConfig = useMemo(() => {
       return mergeWith(

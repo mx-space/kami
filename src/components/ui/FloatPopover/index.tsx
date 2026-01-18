@@ -162,20 +162,22 @@ export const FloatPopover: FC<
         return {
           ...baseListener,
           onClick: doPopoverShow,
-        }
+        } as typeof baseListener & { onClick: () => void }
       case 'hover':
         return {
           ...baseListener,
           onMouseOver: doPopoverShow,
           onMouseOut: doPopoverDisappear,
-        }
+        } as typeof baseListener & { onMouseOver: () => void; onMouseOut: () => void }
       case 'both':
         return {
           ...baseListener,
           onClick: handleClickTrigger,
           onMouseOver: doPopoverShow,
           onMouseOut: handleMouseOut,
-        }
+        } as typeof baseListener & { onClick: () => void; onMouseOver: () => void; onMouseOut: () => void }
+      default:
+        return baseListener
     }
   }, [
     doPopoverDisappear,
@@ -185,17 +187,18 @@ export const FloatPopover: FC<
     trigger,
   ])
 
-  const TriggerWrapper = (
-    // @ts-expect-error
-    <As
-      role={trigger === 'both' || trigger === 'click' ? 'button' : 'note'}
-      tabIndex={0}
-      className={clsx('inline-block', wrapperClassNames)}
-      ref={refs.setReference}
-      {...listener}
-    >
-      <TriggerComponent />
-    </As>
+  const roleValue = (trigger === 'both' || trigger === 'click') ? 'button' : 'note'
+
+  const TriggerWrapper = React.createElement(
+    As,
+    {
+      role: roleValue,
+      tabIndex: 0,
+      className: clsx('inline-block', wrapperClassNames),
+      ref: refs.setReference,
+      ...listener,
+    },
+    <TriggerComponent />
   )
 
   if (!props.children) {

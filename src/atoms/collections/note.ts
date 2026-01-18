@@ -155,6 +155,9 @@ export const useNoteCollection = createCollection<NoteModel, NoteCollection>(
       },
       async fetchLatest() {
         const data = await apiClient.note.getLatest()
+        if (!data?.data) {
+          throw new Error('no_latest_note')
+        }
         getState().add(data.data)
         setState((state) => {
           state.nidToIdMap.set(data.data.nid, data.data.id)

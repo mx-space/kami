@@ -50,7 +50,7 @@ export const FooterContent: FC = () => {
         <p>
           © {thisYear !== 2020 && '2020-'}
           {thisYear}{' '}
-          <a href={kamiConfig.site.footer.homePage ?? '#'} target="_blank">
+          <a href={kamiConfig.site.footer.homePage ?? '#'} target="_blank" rel="noreferrer">
             {name}
           </a>
           .{' '}

@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/rules-of-hooks */
+ 
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import { sanitizeUrl } from 'markdown-to-jsx'
 import type { FC } from 'react'
@@ -15,26 +15,33 @@ import { MarkdownToc } from './MarkdownToc'
 import { MHeading, MImage, MLink } from './renderers'
 import { MFootNote } from './renderers/footnotes'
 import { LinkCard } from './renderers/link-card'
+import { SpoilderRule } from '~/components/ui/Markdown/parsers/spoiler'
+import { MentionRule } from '~/components/ui/Markdown/parsers/mention'
+import { CommentAtRule } from '~/components/ui/Markdown/parsers/comment-at'
+import { MarkRule } from '~/components/ui/Markdown/parsers/mark'
+import { InsertRule } from '~/components/ui/Markdown/parsers/ins'
+import { KateXRule } from '~/components/ui/Markdown/parsers/katex'
+import { ContainerRule } from '~/components/ui/Markdown/parsers/container'
 
 const Noop = () => null
 
 export interface KamiMarkdownProps extends MdProps {
   toc?: boolean
+  additionalParserRules?: { [key: string]: Partial<MarkdownToJSX.Rule> }
 }
 export const KamiMarkdown: FC<KamiMarkdownProps & MarkdownToJSX.Options> = memo(
   (props) => {
     const {
       value,
       renderers,
-
       extendsRules,
-
+      additionalParserRules,
       ...rest
     } = props
 
     const Heading = useMemo(() => {
       return MHeading()
-    }, [value, props.children])
+    }, [value])
 
     return (
       <ErrorBoundary
@@ -46,6 +53,16 @@ export const KamiMarkdown: FC<KamiMarkdownProps & MarkdownToJSX.Options> = memo(
         <Markdown
           tocSlot={props.toc ? MarkdownToc : Noop}
           value={value}
+          additionalParserRules={{
+            spoilder: SpoilderRule,
+            mention: MentionRule,
+            commentAt: CommentAtRule,
+            mark: MarkRule,
+            ins: InsertRule,
+            kateX: KateXRule,
+            container: ContainerRule,
+            ...additionalParserRules,
+          }}
           overrides={{
             footer: MFootNote,
 
@@ -77,7 +94,6 @@ export const KamiMarkdown: FC<KamiMarkdownProps & MarkdownToJSX.Options> = memo(
                 )
               },
             },
-
             footnoteReference: {
               react(node, output, state) {
                 const { footnoteMap, target, content } = node
@@ -106,10 +122,8 @@ export const KamiMarkdown: FC<KamiMarkdownProps & MarkdownToJSX.Options> = memo(
                       href={sanitizeUrl(target)!}
                       onClick={(e) => {
                         e.preventDefault()
-
                         springScrollToElement(
                           document.getElementById(content)!,
-
                           -window.innerHeight / 2,
                         )
                       }}
@@ -136,9 +150,7 @@ export const KamiMarkdown: FC<KamiMarkdownProps & MarkdownToJSX.Options> = memo(
             ...renderers,
           }}
           {...rest}
-        >
-          {props.children}
-        </Markdown>
+        />
       </ErrorBoundary>
     )
   },

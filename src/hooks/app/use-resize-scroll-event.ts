@@ -1,6 +1,6 @@
 import debounce from 'lodash-es/debounce'
 import throttle from 'lodash-es/throttle'
-import { useEffect, useMemo, useRef } from 'react'
+import { startTransition, useEffect, useMemo, useRef } from 'react'
 
 import { useAppStore } from '~/atoms/app'
 
@@ -37,8 +37,11 @@ export const useResizeScrollEvent = () => {
       { leading: true },
     )
     window.onresize = resizeHandler
-
-    appStore.updateViewport()
+    setTimeout(() => {
+      startTransition(() => {
+        appStore.updateViewport()
+      })
+    }, 0)
 
     if (typeof document !== 'undefined') {
       document.addEventListener('scroll', handleScroll)

@@ -1,6 +1,22 @@
 import defaultColors from 'windicss/colors'
 import { defineConfig } from 'windicss/helpers'
 import plugin from 'windicss/plugin'
+import aspectRatio from 'windicss/plugin/aspect-ratio'
+import lineClamp from 'windicss/plugin/line-clamp'
+
+const deprecatedColors = [
+  'lightBlue',
+  'warmGray',
+  'trueGray',
+  'coolGray',
+  'blueGray',
+]
+const colors = Object.keys(defaultColors).reduce((acc, key) => {
+  if (!deprecatedColors.includes(key)) {
+    acc[key] = defaultColors[key]
+  }
+  return acc
+}, {} as typeof defaultColors)
 
 export default defineConfig({
   extract: {
@@ -9,8 +25,8 @@ export default defineConfig({
   },
   darkMode: 'class',
   plugins: [
-    require('windicss/plugin/line-clamp'),
-    require('windicss/plugin/aspect-ratio'),
+    lineClamp,
+    aspectRatio,
     plugin(({ addComponents, addDynamic, variants }) => {
       const styles = {
         '.content-auto': {
@@ -93,7 +109,7 @@ export default defineConfig({
           bg: 'var(--shizuku-background-color)',
         },
 
-        always: { ...defaultColors },
+        always: { ...colors },
       },
     },
   },

@@ -1,6 +1,7 @@
 import { clsx } from 'clsx'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import React, {
   memo,
@@ -25,6 +26,7 @@ const MenuLink: FC<{ menu: Menu; isPublicUrl: boolean; index: number }> = (
 ) => {
   const { menu, isPublicUrl, index } = props
 
+  const router = useRouter()
   const { event } = useAnalyze()
   const tracker = useCallback((message) => {
     event({
@@ -32,6 +34,16 @@ const MenuLink: FC<{ menu: Menu; isPublicUrl: boolean; index: number }> = (
       label: message,
     })
   }, [])
+
+  const prefetch = useCallback(() => {
+    if (isPublicUrl) return
+    void router.prefetch(menu.path)
+    menu.subMenu?.forEach((m) => {
+      if (!m.path.startsWith('http')) {
+        void router.prefetch(m.path)
+      }
+    })
+  }, [isPublicUrl, menu.path, menu.subMenu, router])
   const { registerShortcut } = useContext(ShortcutContext)
   const id = `header-menu-${index}`
   useEffect(() => {
@@ -66,6 +78,8 @@ const MenuLink: FC<{ menu: Menu; isPublicUrl: boolean; index: number }> = (
           id={id}
           tabIndex={-1}
           onClick={() => tracker(`一级导航点击 - ${menu.title}`)}
+          onMouseEnter={prefetch}
+          onFocus={prefetch}
           rel={isPublicUrl ? 'noopener noreferrer' : undefined}
           target={isPublicUrl ? '_blank' : undefined}
         >

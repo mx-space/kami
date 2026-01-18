@@ -101,7 +101,7 @@ const useUpdatePost = (post: ModelWithDeleted<PostModel>) => {
     }
 
     beforeModel.current = { ...post }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [
     post?.id,
     post?.slug,

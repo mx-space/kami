@@ -9,6 +9,7 @@ type ImpressionProps = {
   trackerMessage?: string
   action?: TrackerAction
   onTrack?: () => any
+  children?: React.ReactNode
 }
 export const ImpressionView: FC<{ shouldTrack?: boolean } & ImpressionProps> = (
   props,

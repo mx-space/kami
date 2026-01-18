@@ -26,6 +26,7 @@ export interface ModalProps {
   blur?: boolean
   fixedWidth?: boolean
   useRootPortal?: boolean
+  children?: React.ReactNode
 }
 
 export type ModalRefObject = {
@@ -63,16 +64,19 @@ export const Modal = forwardRef<
   }
 >((props, ref) => {
   const [modalIn, setIn] = useState(true)
+  const { disposer, onClose } = props
   const dismiss = useCallback(() => {
     return new Promise<void>((resolve) => {
       setIn(false)
       setTimeout(() => {
         resolve(null as any)
-        props.disposer()
+        disposer()
       }, 300)
-      props.onClose && props.onClose()
+      if (onClose) {
+        onClose()
+      }
     })
-  }, [props.disposer])
+  }, [disposer, onClose])
 
   const $wrapper = useRef<HTMLDivElement>(null)
   const forceUpdate = useState({})[1]

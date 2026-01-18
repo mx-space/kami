@@ -14,7 +14,7 @@ import { useRouterEvent } from '~/hooks/app/use-router-event'
 import { useScreenMedia } from '~/hooks/ui/use-screen-media'
 import { loadStyleSheet } from '~/utils/load-script'
 
-export const AppLayout: FC = (props) => {
+export const AppLayout: FC<{ children?: React.ReactNode }> = (props) => {
   useScreenMedia()
 
   useRouterEvent()

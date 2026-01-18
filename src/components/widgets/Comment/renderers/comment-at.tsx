@@ -19,8 +19,9 @@ export const CommentAtRender: FC<{ id: string }> = memo(({ id: value }) => {
     e.preventDefault()
 
     const $el = document.getElementById(`comments-${comment?.id}`)
-
-    $el && springScrollToElement($el, -120)
+    if ($el) {
+      springScrollToElement($el, -120)
+    }
   }
   const onLeave: MouseEventHandler<HTMLAnchorElement> = useCallback(() => {
     if (comment?.id) {

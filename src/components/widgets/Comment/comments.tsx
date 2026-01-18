@@ -66,7 +66,7 @@ const CommentList: FC = memo(() => {
   )
 })
 
-const SingleComment: FC<{ id: string }> = ({ id, children }) => {
+const SingleComment: FC<{ id: string; children?: React.ReactNode }> = ({ id, children }) => {
   const [replyId, setReplyId] = useState('')
 
   const {
@@ -126,7 +126,7 @@ const SingleComment: FC<{ id: string }> = ({ id, children }) => {
         console.error(err)
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
     [comment.id, logged],
   )
   const handleDelete = useCallback(
@@ -136,7 +136,7 @@ const SingleComment: FC<{ id: string }> = ({ id, children }) => {
       message.success('删除成功~')
       commentCollection.deleteComment(id)
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
     [],
   )
 
@@ -170,7 +170,7 @@ const SingleComment: FC<{ id: string }> = ({ id, children }) => {
                 setTimeout(() => {
                   try {
                     setSure(null)
-                    // eslint-disable-next-line no-empty
+                     
                   } catch {}
                 }, 8000)
               }}
@@ -219,7 +219,7 @@ const SingleComment: FC<{ id: string }> = ({ id, children }) => {
       id={`comments-${comment.id}`}
       highlight={comment.highlight}
       author={
-        <a href={url} rel="nofollow" target="_blank">
+        <a href={url} rel="nofollow noreferrer" target="_blank">
           {comment.author}
         </a>
       }

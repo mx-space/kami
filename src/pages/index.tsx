@@ -10,7 +10,7 @@ import { HomeRandomSay } from '~/components/in-page/Home/random-say'
 import { HomeSections } from '~/components/in-page/Home/section'
 import { useInitialData, useKamiConfig } from '~/hooks/app/use-initial-data'
 import { omit } from '~/utils/_'
-import { apiClient } from '~/utils/client'
+import { $axios, apiClient } from '~/utils/client'
 import { Notice } from '~/utils/notice'
 
 const IndexView: NextPage<AggregateTop> = (props) => {
@@ -69,9 +69,31 @@ const IndexView: NextPage<AggregateTop> = (props) => {
 }
 
 IndexView.getInitialProps = async () => {
-  const aggregateData = await apiClient.aggregate.getTop()
+  try {
+    const aggregateData = await apiClient.aggregate.getTop()
+    return omit({ ...aggregateData }, ['says']) as any
+  } catch {
+    const [posts, notes] = await Promise.all([
+      apiClient.post
+        .getList(1, 5)
+        .then((data) => data.data)
+        .catch(() => []),
+      $axios
+        .get('/notes', { params: { page: 1, size: 5 } })
+        .then((res) => res.data.data)
+        .catch(() =>
+          $axios
+            .get('/notes/latest')
+            .then((res) => [res.data.data])
+            .catch(() => []),
+        ),
+    ])
 
-  return omit({ ...aggregateData }, ['says']) as any
+    return {
+      posts,
+      notes,
+    } as any
+  }
 }
 
 export default IndexView

@@ -19,9 +19,9 @@ export const HeaderActionShareButton: FC = () => {
           onClick={() => {
             navigator
               .share(shareData!)
-              // eslint-disable-next-line @typescript-eslint/no-empty-function
+               
               .then(() => {})
-              // eslint-disable-next-line @typescript-eslint/no-empty-function
+               
               .catch(() => {})
           }}
           icon={<MdiShare />}

@@ -8,5 +8,7 @@ export function IF<K>(FC: FC<K>, condition: () => boolean): FC<K> {
     return truthy ? <FC {...props} /> : (null as any)
   }
 
-  return (props) => <FC$ {...props} />
+  const Wrapped: FC<K> = (props) => <FC$ {...props} />
+  Wrapped.displayName = `IF(${FC.displayName || FC.name || 'Component'})`
+  return Wrapped
 }

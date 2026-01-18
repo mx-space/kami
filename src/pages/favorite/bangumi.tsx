@@ -60,7 +60,7 @@ const BangumiView: NextPage = () => {
                   className={styles['bangumi-item']}
                   href={`https://www.bilibili.com/bangumi/media/md${bangumi.id}`}
                   target="_blank"
-                  rel="nofollow"
+                  rel="nofollow noreferrer"
                   data-total={bangumi.count}
                 >
                   <ImageLazy

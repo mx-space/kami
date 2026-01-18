@@ -23,7 +23,7 @@ export const HeaderActionButton: FC<JSX.IntrinsicElements['button']> = (
     />
   )
 }
-export const HeaderActionButtonsContainer = memo((props) => {
+export const HeaderActionButtonsContainer = memo((props: { children?: React.ReactNode }) => {
   return <div className="mr-3 flex items-center">{props.children}</div>
 })
 

@@ -112,12 +112,14 @@ const CommentWrap: FC<CommentWrapProps> = (props) => {
       fetchComments().then(() => {
         setTimeout(() => {
           const $el = document.getElementById(location.hash.slice(1))
-
-          $el && springScrollToElement($el, -250)
+            if ($el) {
+              springScrollToElement($el, -250)
+            }
         }, 1000)
       })
     }
   }, [fetchComments, shouldPreloadComment])
+
 
   const { ref } = useInView({
     threshold: 0.5,

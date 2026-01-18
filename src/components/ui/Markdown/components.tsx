@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/rules-of-hooks */
+ 
 import { clsx } from 'clsx'
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import { compiler } from 'markdown-to-jsx'
@@ -28,6 +28,7 @@ import { MFootNote } from './renderers/footnotes'
 
 export interface MdProps {
   value?: string
+  children?: string
 
   style?: React.CSSProperties
   readonly renderers?: { [key: string]: Partial<MarkdownToJSX.Rule> }
@@ -37,7 +38,8 @@ export interface MdProps {
   >
   codeBlockFully?: boolean
   className?: string
-  tocSlot?: (props: { headings: HTMLElement[] }) => JSX.Element | null
+  tocSlot?: (props: { headings: HTMLElement[] }) => React.ReactNode
+  additionalParserRules?: { [key: string]: Partial<MarkdownToJSX.Rule> }
 }
 
 export const Markdown: FC<MdProps & MarkdownToJSX.Options> = memo((props) => {
