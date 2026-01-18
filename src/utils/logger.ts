@@ -1,5 +1,3 @@
-import { captureException } from '@sentry/nextjs'
-
 import { isDev } from '~/utils/env'
 
 type LogLevel = 'info' | 'warn' | 'error'
@@ -24,7 +22,8 @@ export const log = (level: LogLevel, ...args: unknown[]) => {
 export const reportError = (error: unknown, extra?: Record<string, unknown>) => {
   const err =
     error instanceof Error ? error : new Error(typeof error === 'string' ? error : safeStringify(error))
-  captureException(err, extra ? { extra } : undefined)
+  const payload = extra ? { extra } : undefined
+  console.error(err, payload)
 }
 
 export const initGlobalErrorHandlers = () => {
@@ -53,4 +52,3 @@ export const initGlobalErrorHandlers = () => {
     window.removeEventListener('unhandledrejection', onUnhandledRejection)
   }
 }
-

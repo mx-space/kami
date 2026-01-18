@@ -3,7 +3,6 @@ import type { NextPage, NextPageContext } from 'next'
 import { NextSeo } from 'next-seo'
 import { useEffect } from 'react'
 import { RequestError } from '@mx-space/api-client'
-import { captureUnderscoreErrorException } from '@sentry/nextjs'
 import { errorToText, ErrorView } from '~/components/app/Error'
 import { useIsClient } from '~/hooks/common/use-is-client'
 import { isNumber } from '~/utils/_'
@@ -62,7 +61,6 @@ const getCode = (err, res): number => {
 }
 ErrorPage.getInitialProps = async (ctx: NextPageContext) => {
   const { res, err } = ctx
-  await captureUnderscoreErrorException(ctx)
 
   const statusCode = +getCode(err, res) || 500
   if (res) {
