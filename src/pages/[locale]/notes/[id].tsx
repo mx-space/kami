@@ -77,9 +77,21 @@ const NoteFooterActionBar = lazy(() =>
   })),
 )
 
+function getNoteContentSnapshot(note: NoteModel) {
+  return {
+    title: note.title,
+    text: note.text,
+    modified: note.modified,
+    weather: note.weather,
+    topicId: note.topicId,
+    publicAt: note.publicAt,
+  }
+}
+
 const useUpdateNote = (note: ModelWithDeleted<NoteModel>) => {
   const t = useTranslations('note')
-  const beforeModel = useRef<NoteModel>()
+  const beforeContentRef = useRef<ReturnType<typeof getNoteContentSnapshot> | null>(null)
+  const beforeIdRef = useRef<string | number | null>(null)
   const { event } = useAnalyze()
   const noteHide = (note as NoteModel & { hide?: boolean })?.hide
   useEffect(() => {
@@ -88,41 +100,48 @@ const useUpdateNote = (note: ModelWithDeleted<NoteModel>) => {
       message.error(hideMessage)
       return
     }
-    const before = beforeModel.current
+    const before = beforeContentRef.current
+    const beforeId = beforeIdRef.current
+    const noteContent = getNoteContentSnapshot(note)
 
     if (!before && note) {
-      beforeModel.current = { ...note }
+      beforeContentRef.current = noteContent
+      beforeIdRef.current = note.id
       return
     }
 
-    if (!before || !note || isEqualObject(before, { ...note })) {
+    if (!before || !note || beforeId !== note.id) {
+      beforeContentRef.current = noteContent
+      beforeIdRef.current = note.id
       return
     }
 
-    if (before.id === note.id) {
-      if (noteHide && !useUserStore.getState().isLogged) {
-        message.error(hideMessage)
-        return
-      }
-      message.info(t('updated'))
-
-      event({
-        action: TrackerAction.Interaction,
-        label: `实时更新手记触发 - ${note.title}`,
-      })
-
-      if (isDev) {
-        console.log(
-          'note-change: ',
-          JSON.stringify(note),
-          'before: ',
-          JSON.stringify(before),
-        )
-      }
+    if (isEqualObject(before, noteContent)) {
+      return
     }
-    beforeModel.current = { ...note }
-    // TODO password etc.
-  }, [note.title, note.text, note.modified, note.weather, noteHide, note?.isDeleted, note.topicId, note, event, t])
+
+    if (noteHide && !useUserStore.getState().isLogged) {
+      message.error(hideMessage)
+      beforeContentRef.current = noteContent
+      return
+    }
+    message.info(t('updated'))
+
+    event({
+      action: TrackerAction.Interaction,
+      label: `实时更新手记触发 - ${note.title}`,
+    })
+
+    if (isDev) {
+      console.log(
+        'note-change: ',
+        JSON.stringify(noteContent),
+        'before: ',
+        JSON.stringify(before),
+      )
+    }
+    beforeContentRef.current = noteContent
+  }, [note.title, note.text, note.modified, note.weather, noteHide, note?.isDeleted, note.topicId, note.id, note.publicAt, event, t])
 }
 
 const NoteView: React.FC<{ id: string }> = memo((props) => {
@@ -145,7 +164,6 @@ const NoteView: React.FC<{ id: string }> = memo((props) => {
   }, [note.nid, router])
 
   useEffect(() => {
-    // FIXME: SSR 之后的 hydrate 没有同步数据
     if (!noteCollection.relationMap.has(props.id)) {
       noteCollection.fetchById(note.nid, undefined, { force: true })
     }
