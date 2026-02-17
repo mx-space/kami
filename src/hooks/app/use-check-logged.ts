@@ -20,14 +20,14 @@ export const useCheckLogged = () => {
       return requestAnimationFrame(() => {
         const token = getToken()
         if (token) {
-          apiClient.user
+          ;(apiClient as any).user
             .checkTokenValid(token)
             .then(({ ok }) => {
               if (ok) {
                 // refresh token
-                apiClient.user.proxy.login
-                  .put<{ token: string }>()
-                  .then((res) => {
+                ;(apiClient as any).user.proxy.login
+                  .put()
+                  .then((res: { token: string }) => {
                     userStore.setToken(res.token)
                     message.success(
                       `欢迎回来，${useUserStore.getState().master!.name}`,

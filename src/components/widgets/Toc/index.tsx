@@ -1,4 +1,4 @@
-import classNames from 'clsx'
+import { clsx as classNames } from 'clsx'
 import throttle from 'lodash-es/throttle'
 import type { FC } from 'react'
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'

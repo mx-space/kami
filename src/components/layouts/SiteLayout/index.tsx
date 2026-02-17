@@ -67,7 +67,7 @@ const useColorModeTransition = (isDark: boolean) => {
 
     return () => {
       remove()
-      timer && clearTimeout(timer)
+      if (timer) clearTimeout(timer)
     }
   }, [isDark])
 }
@@ -125,7 +125,7 @@ export const SiteLayout: FC = memo(({ children }) => {
       setTimeout(() => {
         const $el = document.getElementById(decodeURIComponent(id))
 
-        $el && springScrollToElement($el, -window.innerHeight / 2 + 100)
+        if ($el) springScrollToElement($el, -window.innerHeight / 2 + 100)
       }, 1050)
     }
   }, [])

@@ -30,7 +30,7 @@ export const DynamicHeadMeta: FC = memo(() => {
   const { light: lightColor } = themeColorConfig || {}
 
   useInsertionEffect(() => {
-    js && js.length && js.forEach((src) => loadScript(src))
+    if (js?.length) js.forEach((src) => loadScript(src))
 
     if (script) {
       eval(script)
@@ -91,3 +91,4 @@ export const DynamicHeadMeta: FC = memo(() => {
     </Head>
   )
 })
+DynamicHeadMeta.displayName = 'DynamicHeadMeta'

@@ -9,7 +9,9 @@ export default defineConfig({
   },
   darkMode: 'class',
   plugins: [
+    // eslint-disable-next-line @typescript-eslint/no-require-imports -- windicss plugins
     require('windicss/plugin/line-clamp'),
+    // eslint-disable-next-line @typescript-eslint/no-require-imports -- windicss plugins
     require('windicss/plugin/aspect-ratio'),
     plugin(({ addComponents, addDynamic, variants }) => {
       const styles = {

@@ -72,3 +72,4 @@ export const Seo: FC<SEOProps> = memo((props) => {
     ...rest,
   })
 })
+Seo.displayName = 'Seo'

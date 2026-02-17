@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { motion } from 'framer-motion'
 import throttle from 'lodash-es/throttle'
 import { Link } from '~/i18n/navigation'

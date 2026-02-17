@@ -3,7 +3,7 @@ import type { CustomEventTypes } from '~/types/events'
 import type { EventTypes } from '../types/events'
 
 export class EventEmitter {
-  private observers: Record<string, Function[]> = {}
+  private observers: Record<string, ((...args: any[]) => void)[]> = {}
 
   on(event: EventTypes, handler: any): void
   on(event: CustomEventTypes, handler: any): void

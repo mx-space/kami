@@ -1,15 +1,19 @@
 import type { FC } from 'react'
+import React from 'react'
 
 import { useDetectPadOrMobile } from '~/hooks/ui/use-viewport'
 
 export const withDesktopOnly =
-  <P extends {}>(Component: FC<P>): FC<P> =>
-  ({ children, ...props }) => {
-    const isDesktop = !useDetectPadOrMobile()
+  <P extends object>(Component: FC<P>): FC<P> => {
+    const WithDesktopOnlyInner = ({ children, ...props }: P & { children?: React.ReactNode }) => {
+      const isDesktop = !useDetectPadOrMobile()
 
-    if (!isDesktop) {
-      return null
+      if (!isDesktop) {
+        return null
+      }
+      // @ts-ignore
+      return <Component {...(props as P)}>{children}</Component>
     }
-    // @ts-ignore
-    return <Component {...props}>{children}</Component>
+    WithDesktopOnlyInner.displayName = 'WithDesktopOnly'
+    return WithDesktopOnlyInner
   }

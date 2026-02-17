@@ -8,14 +8,15 @@ import React from 'react'
 import { useTranslations } from 'next-intl'
 
 const SpoilerWithTitle: React.FC<{
-  node: { content: unknown[] }
-  output: MarkdownToJSX.Output
-  state?: MarkdownToJSX.RuleState
+  node: unknown
+  output: (content: unknown[], state: any) => React.ReactNode
+  state?: any
 }> = ({ node, output, state }) => {
   const t = useTranslations('common')
+  const content = (node as { content?: unknown[] }).content ?? []
   return (
     <del className="spoiler" title={t('spoilerHint')}>
-      {output(node.content, state!)}
+      {output(content, state!)}
     </del>
   )
 }

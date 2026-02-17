@@ -61,3 +61,4 @@ export const MetaFooter = memo(() => {
 
   return <>{AnalyzeScripts}</>
 })
+MetaFooter.displayName = 'MetaFooter'

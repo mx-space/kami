@@ -113,7 +113,7 @@ const CommentWrap: FC<CommentWrapProps> = (props) => {
         setTimeout(() => {
           const $el = document.getElementById(location.hash.slice(1))
 
-          $el && springScrollToElement($el, -250)
+          if ($el) springScrollToElement($el, -250)
         }, 1000)
       })
     }

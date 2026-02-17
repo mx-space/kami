@@ -8,6 +8,8 @@ export function withNoSSR<K>(FC: FC<K>): FC<K> {
     const isClient = useIsClient()
     return isClient ? <FC {...props} /> : (null as any)
   }
+  const Wrapped = memo((props) => <FC$ {...props} />)
+  Wrapped.displayName = 'WithNoSSR'
   // @ts-ignore
-  return memo((props) => <FC$ {...props} />)
+  return Wrapped
 }

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { motion } from 'framer-motion'
 import React, { useEffect, useRef, useState } from 'react'
 

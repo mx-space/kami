@@ -8,5 +8,7 @@ export function IF<K>(FC: FC<K>, condition: () => boolean): FC<K> {
     return truthy ? <FC {...props} /> : (null as any)
   }
 
-  return (props) => <FC$ {...props} />
+  const IFWrapper = (props: any) => <FC$ {...props} />
+  IFWrapper.displayName = 'IF'
+  return IFWrapper
 }

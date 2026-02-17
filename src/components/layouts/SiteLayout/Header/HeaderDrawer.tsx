@@ -1,4 +1,4 @@
-import classNames from 'clsx'
+import { clsx as classNames } from 'clsx'
 import { useRouter } from '~/i18n/navigation'
 import type { FC } from 'react'
 import { Fragment, memo, useEffect } from 'react'

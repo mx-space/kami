@@ -54,7 +54,7 @@ export const XLogSummary: FC<{
         {isLoading && (
           <p className="text-gray-2 text-right text-sm">
             ({t('poweredBy')}{' '}
-            <a href="https://xlog.app" target="_blank">
+            <a href="https://xlog.app" target="_blank" rel="noreferrer">
               xLog
             </a>{' '}
             {t('driven')})

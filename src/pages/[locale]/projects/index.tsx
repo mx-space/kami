@@ -44,7 +44,7 @@ const ProjectView = () => {
                 className="ml-2 inline-flex !text-inherit"
                 target="_blank"
                 aria-label="view on GitHub"
-                onClick={trackerClick}
+                onClick={trackerClick} rel="noreferrer"
               >
                 <CodiconGithubInverted />
               </a>

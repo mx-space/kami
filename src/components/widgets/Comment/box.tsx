@@ -273,7 +273,9 @@ export const CommentBox: FC<{
           }
         }
         useCommentStore.setState(model)
-      } catch {}
+      } catch {
+        // ignore invalid stored data
+      }
     }
   }, [])
 

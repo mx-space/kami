@@ -221,7 +221,7 @@ const SingleComment: FC<{ id: string }> = ({ id, children }) => {
       id={`comments-${comment.id}`}
       highlight={comment.highlight}
       author={
-        <a href={url} rel="nofollow" target="_blank">
+        <a href={url} rel="nofollow noreferrer" target="_blank">
           {comment.author}
         </a>
       }

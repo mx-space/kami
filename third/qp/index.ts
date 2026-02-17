@@ -72,7 +72,7 @@ class QProgress {
 
     void progress.offsetWidth /* Compulsory repainting */
 
-    queue((next: Function) => {
+    queue((next: () => void) => {
       // Set positionUsing if it hasn't already been set
       if (positionUsing === '') positionUsing = getPositioningCSS()
 
@@ -239,7 +239,7 @@ class QProgress {
         boxShadow: `0 0 10px ${color}, 0 0 5px ${color}`,
       })
     } else {
-      bar && addClass(bar, 'colorful-bar')
+      if (bar) addClass(bar, 'colorful-bar')
     }
 
     if (parent !== document.body) {

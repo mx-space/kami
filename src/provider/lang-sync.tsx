@@ -10,7 +10,7 @@ import { setRequestLocale } from '~/utils/client'
  * Syncs current locale to API client so requests include x-lang header.
  * Backend can return localized content (e.g. Shiroi / mx-space).
  */
-export const LangSyncProvider: FC<PropsWithChildren> = ({ children }) => {
+export const LangSyncProvider: FC<PropsWithChildren<object>> = ({ children }) => {
   const locale = useLocale()
 
   useEffect(() => {

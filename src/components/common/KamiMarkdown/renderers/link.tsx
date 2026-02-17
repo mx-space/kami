@@ -70,7 +70,7 @@ export const MLink: FC<{
             href={props.href}
             target="_blank"
             onClick={handleRedirect}
-            title={props.title}
+            title={props.title} rel="noreferrer"
           >
             {props.children}
           </a>

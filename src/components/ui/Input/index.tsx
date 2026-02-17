@@ -1,4 +1,4 @@
-import classNames from 'clsx'
+import { clsx as classNames } from 'clsx'
 import type {
   DetailedHTMLProps,
   ForwardedRef,
@@ -40,7 +40,7 @@ type IInputProps = Omit<
 
 export const InputContext = createContext({
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setFocus(state: boolean) {},
+  setFocus(_state: boolean) {},
 })
 export const Input = memo(
   forwardRef<HTMLInputElement | HTMLTextAreaElement, IInputProps>(

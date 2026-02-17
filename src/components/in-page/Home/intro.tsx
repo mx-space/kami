@@ -76,7 +76,7 @@ const Social: FC = withNoSSR(() => {
                   target="_blank"
                   style={
                     item.color ? { backgroundColor: item.color } : undefined
-                  }
+                  } rel="noreferrer"
                 >
                   <FontIcon icon={item.icon} />
                 </a>

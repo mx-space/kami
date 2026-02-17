@@ -18,7 +18,7 @@ export const FavoriteSection: FC<FriendSectionProps> = ({ data }) => {
       {data.map((link) => {
         return (
           <li key={link.id}>
-            <a href={link.url} target="_blank">
+            <a href={link.url} target="_blank" rel="noreferrer">
               {link.name}
             </a>
             <span className="meta">{link.description || ''}</span>
@@ -88,7 +88,7 @@ const Card: FC<{ link: LinkModel }> = ({ link }) => {
       }, [])}
       onMouseLeave={useCallback(() => {
         setFocus(false)
-      }, [])}
+      }, [])} rel="noreferrer"
     >
       <CircleAvatar focus={focused} size={80} src={link.avatar} />
       <span className="flex h-full flex-col justify-start space-y-2 py-3">

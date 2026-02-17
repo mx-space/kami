@@ -39,12 +39,12 @@ export const ProjectDetail: FC<{ id: string }> = (props) => {
           <p>{description}</p>
           <p className="space-x-4">
             {previewUrl && (
-              <a href={previewUrl} className="btn blue" target="_blank">
+              <a href={previewUrl} className="btn blue" target="_blank" rel="noreferrer">
                 预览站点
               </a>
             )}
             {projectUrl && (
-              <a href={projectUrl} className="btn green" target="_blank">
+              <a href={projectUrl} className="btn green" target="_blank" rel="noreferrer">
                 获取项目
               </a>
             )}
@@ -52,7 +52,7 @@ export const ProjectDetail: FC<{ id: string }> = (props) => {
               <a
                 href={docUrl}
                 className="btn text-shizuku-text bg-transparent"
-                target="_blank"
+                target="_blank" rel="noreferrer"
               >
                 项目文档
               </a>

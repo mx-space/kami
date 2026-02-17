@@ -51,7 +51,7 @@ const PageView: PageOnlyProps = (props) => {
       const $style = appendStyle(page.meta.style)
 
       return () => {
-        $style && $style.remove()
+        if ($style) $style.remove()
       }
     }
   }, [page.meta?.style])

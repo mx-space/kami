@@ -59,7 +59,7 @@ export const Comment: FC<
     }
     const $el = document.getElementById(id)
 
-    $el && springScrollToElement($el, -window.innerHeight / 2 + 50)
+    if ($el) springScrollToElement($el, -window.innerHeight / 2 + 50)
   }, [id])
   return (
     <div className={clsx(styles['comment'], className)} id={id} {...htmlProps}>

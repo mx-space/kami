@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import type { FC } from 'react'
 import { memo, useEffect, useMemo, useRef, useState } from 'react'
 

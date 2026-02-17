@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import throttle from 'lodash-es/throttle'
 import type { FC, UIEventHandler } from 'react'
 import React, {

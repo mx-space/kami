@@ -31,7 +31,7 @@ export const attachRequestProxy = (request?: IncomingMessage) => {
   if (ip && ip.split(',').length > 0) {
     ip = ip.split(',')[0]
   }
-  ip && ($axios.defaults.headers.common['x-forwarded-for'] = ip as string)
+  if (ip) $axios.defaults.headers.common['x-forwarded-for'] = ip as string
 
   $axios.defaults.headers.common[
     'User-Agent'

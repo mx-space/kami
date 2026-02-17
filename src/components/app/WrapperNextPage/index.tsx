@@ -12,8 +12,18 @@ import { ErrorView } from '../Error'
 
 const LoadingComponent = () => <Loading />
 
-function WrapperErrorComponent({ error }: { error: Error }) {
+function WrapperErrorComponent(props: { error?: unknown }) {
+  const { error } = props
   const t = useTranslations('error')
+  if (!error || !(error instanceof Error)) {
+    return (
+      <ErrorView
+        statusCode="Error"
+        description={t('requestFailed')}
+        showRefreshButton
+      />
+    )
+  }
   let code: any
   if (error instanceof RequestError) {
     const axiosError = error.raw as AxiosError
@@ -30,7 +40,7 @@ function WrapperErrorComponent({ error }: { error: Error }) {
   )
 }
 
-export function wrapperNextPage<T extends {}>(Page: NextPage<T>) {
+export function wrapperNextPage<T extends object>(Page: NextPage<T>) {
   return wrapper(Page, {
     LoadingComponent,
     ErrorComponent: WrapperErrorComponent,

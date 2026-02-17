@@ -11,7 +11,7 @@ export const RecentlySendBox: FC = memo(() => {
   const handleSubmit = useCallback(() => {
     apiClient.shorthand.proxy.post({ data: { content } }).then(() => {
       setText('')
-      taRef.current && (taRef.current.value = '')
+      if (taRef.current) taRef.current.value = ''
     })
   }, [content])
   return (

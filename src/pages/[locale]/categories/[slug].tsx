@@ -8,14 +8,13 @@ import type {
 } from '@mx-space/api-client'
 
 import { getLocaleFromContext, Link, useLocale } from '~/i18n/navigation'
-import { setRequestLocale } from '~/utils/client'
+import { setRequestLocale , apiClient } from '~/utils/client'
 import { Seo } from '~/components/app/Seo'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { TimelineListWrapper } from '~/components/in-page/Timeline/TimelineListWrapper'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { BottomToUpTransitionView } from '~/components/ui/Transition/BottomToUpTransitionView'
 import { omit } from '~/utils/_'
-import { apiClient } from '~/utils/client'
 
 interface CategoryListViewProps {
   category: CategoryModel

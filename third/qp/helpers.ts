@@ -121,13 +121,13 @@ export const queue = (function () {
   const pending: any[] = []
 
   function next() {
-    const fn: Function = pending.shift()
+    const fn = pending.shift() as ((n: () => void) => void) | undefined
     if (fn) {
       fn(next)
     }
   }
 
-  return function (fn: Function) {
+  return function (fn: (n: () => void) => void) {
     pending.push(fn)
     if (pending.length === 1) next()
   }
@@ -205,7 +205,7 @@ export function remove(parent: string | HTMLElement): void {
     removeClass(parent as HTMLElement, 'qprogress-custom-parent')
   }
   const progress: HTMLElement = document.getElementById('qprogress')!
-  progress && removeElement(progress)
+  if (progress) removeElement(progress)
 }
 
 /**
@@ -230,5 +230,5 @@ function removeClass(element: HTMLElement, name: string): void {
  */
 
 function removeElement(element: HTMLElement): void {
-  element && element.parentNode && element.parentNode.removeChild(element)
+  if (element.parentNode) element.parentNode.removeChild(element)
 }

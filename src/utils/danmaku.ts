@@ -42,7 +42,7 @@ export const createDangmaku = ({ color, duration, text }: DanmakuProps) => {
 
   Object.assign(dangmaku, {
     textContent: text,
-    onanimationend: (e) => {
+    onanimationend: (_e) => {
       dangmaku.remove()
     },
   })

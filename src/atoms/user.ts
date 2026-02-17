@@ -22,7 +22,7 @@ const userDefault: UserState = {
 }
 
 export const useUserStore = create<UserState & UserAction>(
-  (setState, getState) => {
+  (setState, _getState) => {
     return {
       ...userDefault,
 

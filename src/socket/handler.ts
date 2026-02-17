@@ -133,9 +133,10 @@ export const eventHandler = (type: EventTypes, data: any) => {
         produce((state: ReturnType<typeof useNoteCollection.getState>) => {
           const note = state.get(data.id)
           if (note) {
-            if (note.hide && !useUserStore.getState().isLogged) {
-              note.title = '已隐藏'
-              note.text = '该笔记已被隐藏'
+            const noteWithHide = note as typeof note & { hide?: boolean }
+            if (noteWithHide.hide && !useUserStore.getState().isLogged) {
+              noteWithHide.title = '已隐藏'
+              noteWithHide.text = '该笔记已被隐藏'
             }
           }
         }),

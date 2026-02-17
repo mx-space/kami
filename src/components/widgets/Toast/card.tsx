@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import type { FC } from 'react'
 import { memo, useRef } from 'react'
 import { toast } from 'react-toastify'
@@ -49,7 +49,7 @@ export const ToastCard: FC<{
           )}
           onClick={(e) => {
             e.stopPropagation()
-            props.getToastId && toast.dismiss(props.getToastId())
+            if (props.getToastId) toast.dismiss(props.getToastId())
           }}
         >
           <CloseIcon />

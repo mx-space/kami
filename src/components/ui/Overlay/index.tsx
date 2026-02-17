@@ -108,7 +108,8 @@ const OverLay: FC<OverlayProps> = (props) => {
         >
           <div
             onClick={(e) => {
-              stopPropagation ? e.stopPropagation() : stopEventDefault(e)
+              if (stopPropagation) e.stopPropagation()
+              else stopEventDefault(e)
             }}
             tabIndex={-1}
           >

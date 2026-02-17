@@ -29,6 +29,8 @@ function getErrorKey(statusCode: number): keyof typeof ERROR_KEYS {
   }
 }
 
+// Used in keyof typeof ERROR_KEYS type
+// eslint-disable-next-line unused-imports/no-unused-vars -- type-only use
 const ERROR_KEYS = {
   '404': '404',
   '403': '403',
@@ -68,20 +70,20 @@ export const ErrorView: NextPage<{
           {description ?? <h2>{message}</h2>}
         </div>
       </div>
-      {(showBackButton || showRefreshButton) && (
+      {showBackButton || showRefreshButton ? (
         <div className="mt-5">
-          {showBackButton && (
+          {showBackButton ? (
             <button className="btn red mr-3" onClick={() => router.push('/')}>
               {t('backToHome')}
             </button>
-          )}
-          {showRefreshButton && (
+          ) : null}
+          {showRefreshButton ? (
             <button className="btn yellow" onClick={() => router.reload()}>
               {t('refresh')}
             </button>
-          )}
+          ) : null}
         </div>
-      )}
+      ) : null}
     </div>
   )
 }

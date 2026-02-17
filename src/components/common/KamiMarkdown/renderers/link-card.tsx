@@ -1,5 +1,5 @@
 import axios from 'axios'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { Link } from '~/i18n/navigation'
 import type { FC } from 'react'
 import { useCallback, useMemo, useRef, useState } from 'react'

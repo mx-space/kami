@@ -68,7 +68,7 @@ export const ArticleFooterAction: FC<ActionProps> = memo((props) => {
           <a
             href="https://creativecommons.org/licenses/by-nc-nd/4.0/"
             target="_blank"
-            className="inline-flex cursor-pointer items-center text-current"
+            className="inline-flex cursor-pointer items-center text-current" rel="noreferrer"
           >
             <span
               title="创作共用保留署名-非商业-禁止演绎4.0国际许可证"

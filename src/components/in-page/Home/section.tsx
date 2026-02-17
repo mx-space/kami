@@ -156,6 +156,7 @@ function buildRoute<T extends { id: string } & { nid?: number }>(
   }
 }
 
+// eslint-disable-next-line unused-imports/no-unused-vars -- used in keyof typeof ContentType
 enum ContentType {
   Note,
   Post,

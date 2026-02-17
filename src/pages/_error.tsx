@@ -67,7 +67,7 @@ ErrorPage.getInitialProps = async (ctx: NextPageContext) => {
 
   const statusCode = +getCode(err, res) || 500
 
-  res && (res.statusCode = statusCode)
+  if (res) res.statusCode = statusCode
   if (statusCode === 404) {
     return { statusCode: 404, err }
   }
