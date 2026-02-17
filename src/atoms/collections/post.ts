@@ -8,6 +8,7 @@ interface IPostCollection {
   fetchBySlug(
     category: string,
     slug: string,
+    lang?: string,
   ): Promise<ModelWithLiked<PostModel>>
   up(id: string): void
 }
@@ -15,10 +16,11 @@ export const usePostCollection = createCollection<PostModel, IPostCollection>(
   'post',
   (setState) => {
     return {
-      async fetchBySlug(category, slug) {
+      async fetchBySlug(category, slug, lang) {
         const data = await apiClient.post.getPost(
           category,
           encodeURIComponent(slug),
+          { lang: lang === 'original' ? undefined : lang },
         )
         setState((state) => {
           state.data.set(data.id, data)

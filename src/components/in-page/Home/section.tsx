@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 import { useCallback, useMemo, useRef } from 'react'
+import { useTranslations } from 'next-intl'
 import { useStateToRef } from 'react-shortcut-guide'
 
 import type { AggregateTop } from '@mx-space/api-client'
@@ -20,6 +21,7 @@ import { useHomePageViewContext } from './context'
 import styles from './section.module.css'
 
 const SectionsInternal: FC<AggregateTop> = ({ notes, posts }) => {
+  const t = useTranslations('home')
   const notesRef = useStateToRef(notes)
   const postsRef = useStateToRef(posts)
 
@@ -44,7 +46,7 @@ const SectionsInternal: FC<AggregateTop> = ({ notes, posts }) => {
     if (sectionSet.has('post')) {
       const posts = postsRef.current
       result.postSection = {
-        title: titleMapping.post || '文章',
+        title: titleMapping.post || t('post'),
         icon: <IcTwotoneSignpost />,
         moreUrl: 'posts',
 
@@ -62,7 +64,7 @@ const SectionsInternal: FC<AggregateTop> = ({ notes, posts }) => {
     if (sectionSet.has('note')) {
       const notes = notesRef.current
       result.noteSection = {
-        title: titleMapping.note || '日记',
+        title: titleMapping.note || t('note'),
         icon: <MdiDrawPen />,
         moreUrl: 'notes',
         content: notes.slice(0, 4).map(($) => {
@@ -78,7 +80,7 @@ const SectionsInternal: FC<AggregateTop> = ({ notes, posts }) => {
     }
 
     return result
-  }, [sectionSet, titleMapping.note, titleMapping.post])
+  }, [sectionSet, titleMapping.note, titleMapping.post, t])
 
   const { doAnimation } = useHomePageViewContext()
 
@@ -90,12 +92,12 @@ const SectionsInternal: FC<AggregateTop> = ({ notes, posts }) => {
       <SectionNews {...sections.noteSection} key="2" />
     ) : null,
     friend: sectionSet.has('friend') ? (
-      <FriendsSection key="3" title={titleMapping.friend || '朋友们'} />
+      <FriendsSection key="3" title={titleMapping.friend || t('friend')} />
     ) : null,
     more: sectionSet.has('more') ? (
       <MoreSection
         getRandomUnRepeatImage={getRandomUnRepeatImage}
-        title={titleMapping.more || '了解更多'}
+        title={titleMapping.more || t('more')}
         key="4"
       />
     ) : null,

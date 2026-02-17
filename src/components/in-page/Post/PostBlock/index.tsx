@@ -1,14 +1,14 @@
 import { clsx } from 'clsx'
-import Link from 'next/link'
-import Router from 'next/router'
 import type { FC } from 'react'
 import React, { useCallback, useMemo, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import removeMd from 'remove-markdown'
 
 import type { PostModel } from '@mx-space/api-client'
 
 import { useAppStore } from '~/atoms/app'
 import { useIsLogged } from '~/atoms/user'
+import { Link, useRouter } from '~/i18n/navigation'
 import { IconTransition } from '~/components/common/IconTransition'
 import { IcRoundKeyboardDoubleArrowRight } from '~/components/ui/Icons/arrow'
 import { PhPushPin, PhPushPinFill } from '~/components/ui/Icons/for-post'
@@ -25,6 +25,7 @@ interface PostBlockProps {
 }
 
 export const PostBlock: FC<PostBlockProps> = (props) => {
+  const t = useTranslations('post')
   const isMobile = useAppStore((state) => state.viewport.mobile)
   const isLogged = useIsLogged()
 
@@ -53,11 +54,12 @@ export const PostBlock: FC<PostBlockProps> = (props) => {
     return `/posts/${categorySlug}/${slug}`
   }, [])
 
+  const router = useRouter()
   const goToPost = useCallback(() => {
     const categorySlug = post.category?.slug ?? categoryMap.get(post.categoryId)
-    Router.push(`/posts/${categorySlug}/${slug}`)
+    router.push(`/posts/${categorySlug}/${slug}`)
     springScrollToTop()
-  }, [categoryMap, post.category?.slug, post.categoryId, slug])
+  }, [categoryMap, post.category?.slug, post.categoryId, router, slug])
   const hasImage = post.images?.length > 0 && post.images[0].src
 
   const [pinState, setPinState] = useState(!!pin)
@@ -121,7 +123,7 @@ export const PostBlock: FC<PostBlockProps> = (props) => {
       </h1>
       <div className={styles.text}>
         {isMobile && <div className="my-2 text-lg font-medium">{tilteEl}</div>}
-        {post.summary && <p className="mb-2">摘要：{post.summary}</p>}
+        {post.summary && <p className="mb-2">{t('summaryLabel')}{post.summary}</p>}
         <article
           className={clsx(
             styles['content'],
@@ -153,7 +155,7 @@ export const PostBlock: FC<PostBlockProps> = (props) => {
               goToPost()
             }}
           >
-            阅读全文{' '}
+            {t('readMore')}{' '}
             <IcRoundKeyboardDoubleArrowRight className="text-lg transition transition-all" />
           </Link>
         </div>

@@ -1,6 +1,7 @@
 import { clsx } from 'clsx'
 import type { FC } from 'react'
 import { memo, useCallback, useRef } from 'react'
+import { useTranslations } from 'next-intl'
 
 import { useNoteCollection } from '~/atoms/collections/note'
 import { LikeButton } from '~/components/ui/LikeButton'
@@ -29,10 +30,15 @@ export const HeaderActionButtonsContainer = memo((props) => {
 
 export const HeaderActionLikeButtonForNote: FC<{ id: number }> = (props) => {
   const { id } = props
+  const t = useTranslations('note')
+  const tCommon = useTranslations('common')
   const liked = useNoteCollection((state) => state.isLiked(id))
 
   const onLike = () => {
-    useNoteCollection.getState().like(id)
+    useNoteCollection.getState().like(id, {
+      alreadyLiked: t('alreadyLiked'),
+      thanksLike: t('thanksLike'),
+    })
     trackerLike()
   }
   const { event } = useAnalyze()
@@ -42,12 +48,12 @@ export const HeaderActionLikeButtonForNote: FC<{ id: number }> = (props) => {
     if (!trackerLikeOnce.current) {
       event({
         action: TrackerAction.Interaction,
-        label: '顶部喜欢触发',
+        label: tCommon('trackHeaderLike'),
       })
 
       trackerLikeOnce.current = true
     }
-  }, [])
+  }, [event, tCommon])
   return (
     <HeaderActionButton onClick={onLike}>
       <div className="flex items-center justify-center">

@@ -1,5 +1,5 @@
 import { clsx } from 'clsx'
-import Link from 'next/link'
+import { Link } from '~/i18n/navigation'
 import randomColor from 'randomcolor'
 import type { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react'
 import { forwardRef, memo } from 'react'

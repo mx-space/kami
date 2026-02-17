@@ -1,6 +1,7 @@
-import Link from 'next/link'
+import { Link } from '~/i18n/navigation'
 import type { FC } from 'react'
 import React, { Fragment, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 
 import Package from '~/../package.json'
 import { useAppStore } from '~/atoms/app'
@@ -27,6 +28,7 @@ const FooterContainer = (props) => {
 }
 
 export const FooterContent: FC = () => {
+  const t = useTranslations('common')
   const thisYear = new Date().getFullYear()
   const initialData = useInitialData()
   const name = initialData.user.name
@@ -58,7 +60,7 @@ export const FooterContent: FC = () => {
             {motto.content}
           </span>
         </p>
-        <ImpressionView trackerMessage="底部曝光">
+        <ImpressionView trackerMessage={t('trackFooterExposure')}>
           <p className="children:flex-shrink-0 flex flex-wrap justify-center space-x-2">
             <span>Powered by </span>
             <a href="https://github.com/mx-space" onClick={trackerToGithub}>

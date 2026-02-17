@@ -1,7 +1,9 @@
 import { clsx } from 'clsx'
-import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import { useEffect, useRef, useState } from 'react'
+import { useTranslations } from 'next-intl'
+
+import { useRouter } from '~/i18n/navigation'
 
 import { useUserStore } from '~/atoms/user'
 import { Overlay } from '~/components/ui/Overlay'
@@ -9,6 +11,7 @@ import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/app/use-analyze'
 
 export const BanCopy: FC = (props) => {
+  const t = useTranslations('note')
   const [showCopyWarn, setShowCopyWarn] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const { event } = useAnalyze()
@@ -53,9 +56,9 @@ export const BanCopy: FC = (props) => {
             !showCopyWarn && 'opacity-0',
           )}
         >
-          <h1 className="text-red pointer-events-none mt-0">注意：</h1>
+          <h1 className="text-red pointer-events-none mt-0">{t('attention')}</h1>
           <div className="pointer-events-none my-3 text-white text-opacity-80">
-            <p>本文章为站长原创，保留版权所有，禁止复制。</p>
+            <p>{t('copyrightBan')}</p>
           </div>
         </div>
       </Overlay>

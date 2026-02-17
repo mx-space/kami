@@ -9,6 +9,7 @@ import React, {
   useRef,
   useState,
 } from 'react'
+import { useTranslations } from 'next-intl'
 import { message } from 'react-message-popup'
 import isEmail from 'validator/lib/isEmail'
 import isUrl from 'validator/lib/isURL'
@@ -69,11 +70,6 @@ const commentStoreMap = {} as Record<
   ReturnType<typeof createCommentState>
 >
 
-const FormInputCopyMap = {
-  author: '昵称 *',
-  mail: '邮箱 *',
-  url: '网址',
-}
 const FormInputIconMap = {
   author: <PhUser />,
   mail: <MdiEmailFastOutline />,
@@ -84,6 +80,13 @@ const FormInput: FC<{
   instanceId: string
 }> = (props) => {
   const { fieldKey, instanceId: key } = props
+  const t = useTranslations('comment')
+  const placeholder =
+    fieldKey === 'author'
+      ? t('authorPlaceholder')
+      : fieldKey === 'mail'
+        ? t('mailPlaceholder')
+        : t('urlPlaceholder')
   const useCommentStore = commentStoreMap[key]
   const value = useCommentStore((state) => state[fieldKey])
   const onChange = useCallback((e) => {
@@ -91,7 +94,7 @@ const FormInput: FC<{
   }, [])
   return (
     <Input
-      placeholder={FormInputCopyMap[fieldKey]}
+      placeholder={placeholder}
       required
       name={fieldKey}
       prefix={FormInputIconMap[fieldKey]}
@@ -109,6 +112,7 @@ export const CommentBox: FC<{
   refId: string
   commentId?: string
 }> = memo(({ onSubmit, onCancel, autoFocus = false, refId, commentId }) => {
+  const t = useTranslations('comment')
   const taRef = useRef<HTMLTextAreaElement>(null)
   const currentId = useId()
   let useCommentStore = commentStoreMap[currentId]
@@ -208,28 +212,28 @@ export const CommentBox: FC<{
       useCommentStore.getState()
     if (!logged) {
       if (author === ownerName || author === ownerUserName) {
-        return message.error('昵称与我主人重名了，但是你好像并不是我的主人唉')
+        return message.error(t('sameNameError'))
       }
       if (!author || !text || !mail) {
-        message.error('小可爱，能把信息填完整么')
+        message.error(t('fillRequired'))
         return
       }
       if (url && !isUrl(url, { require_protocol: true })) {
-        message.error('小可爱，网址格式不正确哦')
+        message.error(t('invalidUrl'))
         return
       }
       if (!isEmail(mail)) {
-        message.error('小可爱，邮箱格式不正确哦')
+        message.error(t('invalidMail'))
         return
       }
       if (author.length > 20) {
-        message.error('昵称太长了了啦，服务器会坏掉的')
+        message.error(t('authorTooLong'))
         return
       }
     }
 
     if (text.length > 500) {
-      message.error('内容太长了了啦，服务器会坏掉的')
+      message.error(t('contentTooLong'))
       return
     }
 
@@ -287,10 +291,10 @@ export const CommentBox: FC<{
       return
     }
     if (!noticeOnce.current) {
-      message.warn('欧尼酱，文明发言哦，否则评论会被移入垃圾箱哦')
+      message.warn(t('beCivil'))
       noticeOnce.current = true
     }
-  }, [])
+  }, [t])
 
   const logged = useIsLogged()
 

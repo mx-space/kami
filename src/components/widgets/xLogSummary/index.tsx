@@ -1,5 +1,6 @@
 import type { FC, SVGProps } from 'react'
 import SWR from 'swr'
+import { useTranslations } from 'next-intl'
 import { useNoteCollection } from '~/atoms/collections/note'
 import { usePostCollection } from '~/atoms/collections/post'
 import { AnimateChangeInHeight } from '~/components/ui/AnimateChangeInHeight'
@@ -9,6 +10,7 @@ export const XLogSummary: FC<{
   cid: string
   className?: string
 }> = (props) => {
+  const t = useTranslations('xLog')
   const { cid } = props
   const { data, isLoading, error } = SWR(
     [`getSummary`, cid],
@@ -42,20 +44,20 @@ export const XLogSummary: FC<{
     >
       <div className="flex items-center font-light">
         <OpenAIIcon className="mr-2 text-lg" />
-        AI 生成的摘要
+        {t('summaryTitle')}
       </div>
 
       <AnimateChangeInHeight duration={0.3}>
         <p className="text-gray-1 text-sm leading-loose">
-          {isLoading ? '加载中...' : error ? '请求错误' : data?.summary}
+          {isLoading ? t('loading') : error ? t('requestError') : data?.summary}
         </p>
         {isLoading && (
           <p className="text-gray-2 text-right text-sm">
-            (此服务由{' '}
+            ({t('poweredBy')}{' '}
             <a href="https://xlog.app" target="_blank">
               xLog
             </a>{' '}
-            驱动)
+            {t('driven')})
           </p>
         )}
       </AnimateChangeInHeight>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { startTransition, useEffect, useState } from 'react'
 
 import { useAppStore } from '~/atoms/app'
 import { isServerSide } from '~/utils/env'
@@ -30,15 +30,17 @@ const useDarkMode = (
         : localStorage.getItem(storageKey)
       : null
 
-    if (presentedDarkMode !== null) {
-      if (presentedDarkMode === 'true') {
-        setDarkMode(true)
-      } else if (presentedDarkMode === 'false') {
-        setDarkMode(false)
+    startTransition(() => {
+      if (presentedDarkMode !== null) {
+        if (presentedDarkMode === 'true') {
+          setDarkMode(true)
+        } else if (presentedDarkMode === 'false') {
+          setDarkMode(false)
+        }
+      } else if (typeof initialState === 'undefined') {
+        setDarkMode(window.matchMedia('(prefers-color-scheme: dark)').matches)
       }
-    } else if (typeof initialState === 'undefined') {
-      setDarkMode(window.matchMedia('(prefers-color-scheme: dark)').matches)
-    }
+    })
   }, [storageKey])
 
   useEffect(() => {
@@ -125,7 +127,9 @@ export const useDarkModeDetector = () => {
   })
 
   useEffect(() => {
-    useAppStore.getState().setColorMode(value ? 'dark' : 'light')
+    startTransition(() => {
+      useAppStore.getState().setColorMode(value ? 'dark' : 'light')
+    })
   }, [value])
 
   useEffect(() => {

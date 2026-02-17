@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 import React, { useCallback, useInsertionEffect, useRef } from 'react'
+import { useTranslations } from 'next-intl'
 import { message } from 'react-message-popup'
 import { shallow } from 'zustand/shallow'
 
@@ -15,6 +16,7 @@ interface Props {
 
 export const HighLighter: FC<Props> = (props) => {
   const { lang: language, content: value } = props
+  const t = useTranslations('common')
 
   const { colorMode, isPrintMode } = useAppStore<{
     colorMode: string
@@ -28,8 +30,8 @@ export const HighLighter: FC<Props> = (props) => {
   )
   const handleCopy = useCallback(() => {
     navigator.clipboard.writeText(value)
-    message.success('COPIED!')
-  }, [value])
+    message.success(t('copied'))
+  }, [value, t])
 
   const prevThemeCSS = useRef<ReturnType<typeof loadStyleSheet>>()
 

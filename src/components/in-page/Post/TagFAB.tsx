@@ -1,8 +1,9 @@
 'use client'
 
-import Link from 'next/link'
+import { Link } from '~/i18n/navigation'
 import type { FC } from 'react'
 import { memo, useCallback, useEffect, useRef, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 import type { PostModel, TagModel } from '@mx-space/api-client'
 
@@ -38,6 +39,7 @@ const TagsContainer: FC<{ children?: JSX.Element[]; onClick: () => any }> = ({
 }
 
 const _TagFAB: FC = memo(() => {
+  const t = useTranslations('common')
   const [showTags, setShowTags] = useState(false)
   const [postWithTag, setTagPost] = useState<
     Pick<PostModel, 'id' | 'title' | 'slug' | 'created' | 'category'>[]
@@ -154,7 +156,7 @@ const _TagFAB: FC = memo(() => {
                 })
               ) : (
                 <RightToLeftTransitionView>
-                  <span>载入中...</span>
+                  <span>{t('loading')}</span>
                 </RightToLeftTransitionView>
               )}
             </ul>

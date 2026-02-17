@@ -1,6 +1,6 @@
 import { clsx } from 'clsx'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
+import { Link } from '~/i18n/navigation'
 import type { FC } from 'react'
 import React, {
   memo,

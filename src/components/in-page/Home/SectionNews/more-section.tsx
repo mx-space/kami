@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 import { memo, useCallback, useMemo, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import useSWR from 'swr'
 
 import { FaSolidKissWinkHeart } from '~/components/ui/Icons/for-home'
@@ -29,6 +30,7 @@ const SubscribeCard: FC<UniversalProps> = ({
   desc,
   src,
 }) => {
+  const t = useTranslations('home')
   const bg = useMemo(() => src || getRandomUnRepeatImage(), [src])
   const canSubscribe = useIsEnableSubscribe()
   const { present } = usePresentSubscribeModal('home')
@@ -36,8 +38,8 @@ const SubscribeCard: FC<UniversalProps> = ({
   return (
     <SectionCard
       getRandomUnRepeatImage={getRandomUnRepeatImage}
-      title={title || '订阅'}
-      desc={desc || '关注订阅不迷路哦'}
+      title={title || t('subscribe')}
+      desc={desc || t('subscribeDesc')}
       src={bg}
       onClick={useCallback(() => {
         if (canSubscribe) {
@@ -52,6 +54,7 @@ const SubscribeCard: FC<UniversalProps> = ({
 
 const LikeCard = (props: UniversalProps) => {
   const { getRandomUnRepeatImage, desc, title, src } = props
+  const t = useTranslations('home')
   const { data: like, mutate } = useSWR('like', () =>
     apiClient.proxy('like_this').get<number>(),
   )
@@ -64,7 +67,7 @@ const LikeCard = (props: UniversalProps) => {
         onExited={useCallback(() => {
           setShowLikeThisNotice(false)
         }, [])}
-        text="感谢喜欢！"
+        text={t('thanksLike')}
         icon={
           <div className="flex items-center">
             <LikeButton checked width="120px" />
@@ -73,8 +76,8 @@ const LikeCard = (props: UniversalProps) => {
       />
       <SectionCard
         getRandomUnRepeatImage={getRandomUnRepeatImage}
-        title={`${title || '点赞'} (${like ?? 0})`}
-        desc={desc || '如果你喜欢的话点个赞呗'}
+        title={`${title || t('like')} (${like ?? 0})`}
+        desc={desc || t('likeDesc')}
         src={cover}
         href="/like_this"
         onClick={useCallback((e) => {

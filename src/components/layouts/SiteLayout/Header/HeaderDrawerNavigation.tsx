@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from '~/i18n/navigation'
 import React, { memo, useCallback } from 'react'
 
 import { FontIcon } from '~/components/ui/FontIcon'

@@ -18,3 +18,15 @@ export function FaSolidHeadphonesAlt(props: SVGProps<SVGSVGElement>) {
     </svg>
   )
 }
+
+/** Language / locale switcher (fa-solid fa-language from Font Awesome). */
+export function FaSolidLanguage(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg width="1em" height="1em" viewBox="0 0 640 512" {...props}>
+      <path
+        fill="currentColor"
+        d="M0 128C0 92.7 28.7 64 64 64H256h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H256v64H384V288H192c-35.3 0-64 28.7-64 64v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H256 64 0 0 1-64-64C192 28.7 220.7 0 256 0H576c35.3 0 64 28.7 64 64V288c0 35.3-28.7 64-64 64H320v64H448c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z"
+      />
+    </svg>
+  )
+}

@@ -17,7 +17,10 @@ interface NoteCollection {
   nidToIdMap: Map<number, string>
   likeIdList: Set<string>
   get(id: string | number): NoteModel | undefined
-  like(id: number): Promise<boolean | undefined>
+  like(
+    id: number,
+    messages?: { alreadyLiked: string; thanksLike: string },
+  ): Promise<boolean | undefined>
   isLiked(id: number): boolean
   fetchById(
     id: string | number,
@@ -60,7 +63,10 @@ export const useNoteCollection = createCollection<NoteModel, NoteCollection>(
           return realId ? getCollection().get(realId) : undefined
         }
       },
-      async like(id: number) {
+      async like(
+        id: number,
+        messages?: { alreadyLiked: string; thanksLike: string },
+      ) {
         const state = getState()
         const note = state.get(id)
 
@@ -68,10 +74,11 @@ export const useNoteCollection = createCollection<NoteModel, NoteCollection>(
           return false
         }
 
-        const errorMessage = '你已经喜欢过啦'
+        const msgAlreadyLiked = messages?.alreadyLiked ?? '你已经喜欢过啦'
+        const msgThanks = messages?.thanksLike ?? '感谢喜欢！'
 
         if (state.isLiked(id)) {
-          message.error(errorMessage)
+          message.error(msgAlreadyLiked)
           return
         }
 
@@ -100,7 +107,7 @@ export const useNoteCollection = createCollection<NoteModel, NoteCollection>(
               like: note.count.like + 1,
             }
 
-            message.success('感谢喜欢！')
+            message.success(msgThanks)
             state.likeIdList.add(id.toString())
             requestAnimationFrame(() => {
               getState().addOrPatch(nextNote)
@@ -141,17 +148,24 @@ export const useNoteCollection = createCollection<NoteModel, NoteCollection>(
             }
           }
         }
-        const data = await apiClient.note.getNoteById(
-          id as number,
-          password as string,
-        )
-        state.add(data.data)
+        const data =
+          typeof id === 'number' && options.lang != null
+            ? await apiClient.note.getNoteByNid(id, {
+                password,
+                lang: options.lang,
+              })
+            : await apiClient.note.getNoteById(
+                id as number,
+                password as string,
+              )
+        const noteData = data.data
+        state.add(noteData)
         setState((state) => {
-          state.nidToIdMap.set(data.data.nid, data.data.id)
-          state.relationMap.set(data.data.id, [data.prev, data.next])
+          state.nidToIdMap.set(noteData.nid, noteData.id)
+          state.relationMap.set(noteData.id, [data.prev, data.next])
         })
 
-        return data.data
+        return noteData
       },
       async fetchLatest() {
         const data = await apiClient.note.getLatest()

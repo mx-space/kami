@@ -1,10 +1,13 @@
 import { useRef } from 'react'
+import { useTranslations } from 'next-intl'
 
 import { Input } from '~/components/ui/Input'
 
 export const NotePasswordConfrim: React.FC<{
   onSubmit(password: string): any
 }> = (props) => {
+  const tNote = useTranslations('note')
+  const tCommon = useTranslations('common')
   const ref = useRef<HTMLInputElement>(null)
 
   const handleSubmit = () => {
@@ -17,7 +20,7 @@ export const NotePasswordConfrim: React.FC<{
   return (
     <div className="absolute flex h-full w-full flex-col items-center justify-center">
       <p>
-        <strong className="text-2xl font-medium">此文章需要密码</strong>
+        <strong className="text-2xl font-medium">{tNote('passwordRequired')}</strong>
       </p>
       <div className="mt-4 space-x-3 space-y-3 text-center">
         <Input
@@ -33,7 +36,7 @@ export const NotePasswordConfrim: React.FC<{
           className="btn !bg-primary flex-shrink-0 !text-white"
           onClick={handleSubmit}
         >
-          提交
+          {tCommon('submit')}
         </button>
       </div>
     </div>

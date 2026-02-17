@@ -1,10 +1,11 @@
-import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import { memo } from 'react'
+import { useTranslations } from 'next-intl'
 import { shallow } from 'zustand/shallow'
 
 import { noteCollection, useNoteCollection } from '~/atoms/collections/note'
 import { Divider } from '~/components/ui/Divider'
+import { useRouter } from '~/i18n/navigation'
 import {
   IcRoundKeyboardDoubleArrowLeft,
   IcRoundKeyboardDoubleArrowRight,
@@ -16,6 +17,7 @@ import { useDetectIsNarrowThanLaptop } from '~/hooks/ui/use-viewport'
 import { springScrollToTop } from '~/utils/spring'
 
 export const NoteFooterNavigation: FC<{ id: string }> = memo(({ id }) => {
+  const t = useTranslations('note')
   const [prevNid, nextNid] = useNoteCollection<
     [number | undefined, number | undefined]
   >((state) => {
@@ -27,7 +29,7 @@ export const NoteFooterNavigation: FC<{ id: string }> = memo(({ id }) => {
   const { event } = useAnalyze()
 
   const goNext = (nid: number) => {
-    router.push('/notes/[id]', `/notes/${nid}`, { scroll: false })
+    router.push(`/notes/${nid}`, { scroll: false })
     springScrollToTop()
   }
   return (
@@ -52,7 +54,7 @@ export const NoteFooterNavigation: FC<{ id: string }> = memo(({ id }) => {
                     }}
                   >
                     <IcRoundKeyboardDoubleArrowLeft />
-                    <span>前一篇</span>
+                    <span>{t('prev')}</span>
                   </div>
                 </>
               )}
@@ -67,7 +69,7 @@ export const NoteFooterNavigation: FC<{ id: string }> = memo(({ id }) => {
                       goNext(prevNid)
                     }}
                   >
-                    <span>后一篇</span>
+                    <span>{t('next')}</span>
                     <IcRoundKeyboardDoubleArrowRight />
                   </div>
                 </>
@@ -86,10 +88,10 @@ export const NoteFooterNavigation: FC<{ id: string }> = memo(({ id }) => {
                 })
 
                 springScrollToTop()
-                router.push(`/timeline?type=note&id=${id}`)
+                router.push(`/timeline?type=note&id=${id}`, { scroll: false })
               }}
             >
-              <span>时间线</span>
+              <span>{t('timeline')}</span>
               <MdiClockTimeThreeOutline />
             </div>
           </section>

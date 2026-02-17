@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { motion } from 'framer-motion'
 import throttle from 'lodash-es/throttle'
-import Link from 'next/link'
+import { Link } from '~/i18n/navigation'
 import type { FC, KeyboardEventHandler } from 'react'
 import { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { Modifier, useShortcut } from 'react-shortcut-guide'

@@ -3,6 +3,7 @@
  */
 import type { FC } from 'react'
 import { useCallback, useReducer } from 'react'
+import { useTranslations } from 'next-intl'
 import { message } from 'react-message-popup'
 
 import {
@@ -45,51 +46,52 @@ const useFormData = () => {
   return [state, dispatch] as const
 }
 export const ApplyForLink: FC = () => {
+  const t = useTranslations('friend')
   const [state, dispatch] = useFormData()
   const handleSubmit = useCallback(() => {
     const { author, avatar, description: desc, email, url, name } = state
     if (!author) {
-      message.error('请填写昵称')
+      message.error(t('authorRequired'))
       return
     }
     if (!avatar) {
-      message.error('请填写头像')
+      message.error(t('avatarRequired'))
       return
     }
     if (!desc) {
-      message.error('请填写简介')
+      message.error(t('descRequired'))
       return
     }
     if (!email) {
-      message.error('请填写邮箱')
+      message.error(t('emailRequired'))
       return
     }
     if (!url) {
-      message.error('请填写网址')
+      message.error(t('urlRequired'))
       return
     }
     if (!name) {
-      message.error('请填写网站名称')
+      message.error(t('nameRequired'))
       return
     }
 
     apiClient.link.applyLink({ ...state }).then(() => {
       dispatch({ type: 'reset' })
     })
-  }, [state])
+  }, [state, t])
 
   const handleReset = useCallback(() => {
     dispatch({ type: 'reset' })
   }, [])
   return (
     <article className={styles.wrap}>
-      <h1>我想和你交朋友！</h1>
+      <h1>{t('title')}</h1>
       <form
         action="src/components/in-page/Friend/ApplyLink#"
         onSubmit={handleSubmit}
       >
         <Input
-          placeholder="昵称 *"
+          placeholder={t('authorPlaceholder')}
           required
           prefix={<PhUser />}
           value={state.author}
@@ -98,7 +100,7 @@ export const ApplyForLink: FC = () => {
           }}
         />
         <Input
-          placeholder="站点标题 *"
+          placeholder={t('namePlaceholder')}
           required
           prefix={<MdiFountainPenTip />}
           value={state.name}
@@ -107,7 +109,7 @@ export const ApplyForLink: FC = () => {
           }}
         />
         <Input
-          placeholder="网站 * https://"
+          placeholder={t('urlPlaceholder')}
           required
           prefix={<SiGlyphGlobal />}
           value={state.url}
@@ -116,7 +118,7 @@ export const ApplyForLink: FC = () => {
           }}
         />
         <Input
-          placeholder="头像链接 * https://"
+          placeholder={t('avatarPlaceholder')}
           required
           prefix={<RadixIconsAvatar />}
           value={state.avatar}
@@ -125,7 +127,7 @@ export const ApplyForLink: FC = () => {
           }}
         />
         <Input
-          placeholder="留下你的邮箱哦 *"
+          placeholder={t('emailPlaceholder')}
           required
           prefix={<MdiEmailFastOutline />}
           value={state.email}
@@ -136,7 +138,7 @@ export const ApplyForLink: FC = () => {
         <Input
           multi
           maxLength={50}
-          placeholder="描述 *"
+          placeholder={t('descPlaceholder')}
           required
           value={state.description}
           onChange={(e) => {
@@ -150,14 +152,14 @@ export const ApplyForLink: FC = () => {
           onClick={handleReset}
           type="reset"
         >
-          重置
+          {t('reset')}
         </button>
         <button
           type="submit"
           className="btn !bg-primary !text-white"
           onClick={handleSubmit}
         >
-          发送
+          {t('send')}
         </button>
       </div>
     </article>

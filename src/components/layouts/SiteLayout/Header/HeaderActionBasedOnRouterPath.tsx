@@ -1,5 +1,6 @@
-import { useRouter } from 'next/router'
 import type { FC } from 'react'
+
+import { useRouter } from '~/i18n/navigation'
 import React, { Fragment, memo } from 'react'
 
 import { useInitialData } from '~/hooks/app/use-initial-data'
@@ -22,6 +23,7 @@ export const HeaderActionBasedOnRouterPath: FC = memo(() => {
   const Comp = (() => {
     const titleComp = <div className={styles['site-info']}>{title}</div>
     switch (pathname) {
+      case '/[locale]/notes/[id]':
       case '/notes/[id]': {
         const id = parseInt(router.query.id as any)
 
@@ -44,6 +46,7 @@ export const HeaderActionBasedOnRouterPath: FC = memo(() => {
         return null
       }
 
+      case '/[locale]/[page]':
       case '/[page]': {
         return (
           <Fragment>

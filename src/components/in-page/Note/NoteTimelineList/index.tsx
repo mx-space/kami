@@ -2,9 +2,10 @@
  * 日记：左侧时间线
  */
 import { clsx } from 'clsx'
-import Link from 'next/link'
+import { Link } from '~/i18n/navigation'
 import type { FC } from 'react'
 import { memo, useEffect, useMemo, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { shallow } from 'zustand/shallow'
 
 import { useAutoAnimate } from '@formkit/auto-animate/react'
@@ -55,6 +56,7 @@ const ObserveredNoteTimelineList: FC<
   NoteTimelineListProps & JSX.IntrinsicElements['div']
 > = (props) => {
   const { className, noteId } = props
+  const t = useTranslations('topic')
 
   const note = useNoteCollection((state) => state.get(noteId), shallow)
 
@@ -123,7 +125,7 @@ const ObserveredNoteTimelineList: FC<
           <>
             {!!list?.length && <Divider className="!w-3/4" />}
             <p className="text-gray-1 flex min-w-0 flex-col overflow-hidden">
-              此文章收录于专栏：
+              {t('articleInColumnNote')}
               <br />
               <FloatPopover
                 placement="right"

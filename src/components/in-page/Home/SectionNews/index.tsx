@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from '~/i18n/navigation'
 import type { FC, MouseEvent, ReactNode } from 'react'
 import { memo, useMemo } from 'react'
 

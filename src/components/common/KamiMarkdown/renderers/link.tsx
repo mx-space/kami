@@ -1,7 +1,7 @@
-import Router from 'next/router'
 import type { FC } from 'react'
 import { memo, useCallback, useMemo } from 'react'
 
+import { getPathnameWithoutLocale, useRouter } from '~/i18n/navigation'
 import { FloatPopover } from '~/components/ui/FloatPopover'
 
 import styles from './link.module.css'
@@ -38,6 +38,7 @@ export const MLink: FC<{
     ),
     [],
   )
+  const router = useRouter()
   const handleRedirect = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
       const href = props.href
@@ -51,23 +52,11 @@ export const MLink: FC<{
           toUrlParser.host === 'innei.ren')
       ) {
         e.preventDefault()
-        const pathArr = toUrlParser.pathname.split('/').filter(Boolean)
-        const headPath = pathArr[0]
-
-        switch (headPath) {
-          case 'posts':
-          case 'notes':
-          case 'category': {
-            Router.push(toUrlParser.pathname)
-            break
-          }
-          default: {
-            window.open(toUrlParser.pathname)
-          }
-        }
+        const pathname = getPathnameWithoutLocale(toUrlParser.pathname)
+        router.push(pathname + (toUrlParser.search || ''))
       }
     },
-    [props.href],
+    [props.href, router],
   )
 
   return (

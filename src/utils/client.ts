@@ -28,6 +28,17 @@ export const $axios = axiosAdaptor.default as AxiosInstance
 
 $axios.defaults.timeout = 10000
 
+/** Current locale for API requests (set by LangSyncProvider). Backend can use x-lang for localized content. */
+let requestLocale: string | null = null
+
+export function setRequestLocale(locale: string | null) {
+  requestLocale = locale
+}
+
+export function getRequestLocale() {
+  return requestLocale
+}
+
 $axios.interceptors.request.use((config) => {
   const token = getToken()
   if (config.headers) {
@@ -35,6 +46,9 @@ $axios.interceptors.request.use((config) => {
       config.headers['Authorization'] = token
     }
     config.headers['x-uuid'] = uuid
+    if (requestLocale) {
+      config.headers['x-lang'] = requestLocale
+    }
   }
 
   return config

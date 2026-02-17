@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from '~/i18n/navigation'
 import type { FC } from 'react'
 import { useMemo } from 'react'
 

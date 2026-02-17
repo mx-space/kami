@@ -1,5 +1,6 @@
-import { useRouter } from 'next/router'
 import type { FC } from 'react'
+
+import { useRouter } from '~/i18n/navigation'
 import React, { memo, useEffect, useMemo, useRef, useState } from 'react'
 
 import { useKamiConfig } from '~/hooks/app/use-initial-data'

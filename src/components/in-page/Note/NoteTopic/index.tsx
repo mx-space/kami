@@ -1,6 +1,7 @@
-import Link from 'next/link'
+import { Link } from '~/i18n/navigation'
 import type { FC } from 'react'
 import { useCallback, useMemo } from 'react'
+import { useTranslations } from 'next-intl'
 
 import type { TopicModel } from '@mx-space/api-client'
 
@@ -17,15 +18,16 @@ import { NoteTopicMarkdownRender } from './markdown-render'
 
 export const NoteTopic: FC<{ noteId: string; topic: TopicModel }> = (props) => {
   const { topic } = props
+  const t = useTranslations('topic')
   const { icon, name, introduce } = topic
 
   const { event } = useAnalyze()
   const handleTrackerClick = useCallback(() => {
     event({
       action: TrackerAction.Click,
-      label: `话题点击 进入详情 / ${name}`,
+      label: t('goToTopic', { name }),
     })
-  }, [name])
+  }, [name, t])
 
   return (
     <ImpressionView
@@ -34,7 +36,7 @@ export const NoteTopic: FC<{ noteId: string; topic: TopicModel }> = (props) => {
     >
       <div data-hide-print>
         <div className="text-md">
-          <strong>文章被专栏收录：</strong>
+          <strong>{t('articleInColumn')}</strong>
         </div>
         <Divider />
         <div className="flex items-center gap-4">

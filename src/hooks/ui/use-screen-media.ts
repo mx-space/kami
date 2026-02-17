@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { startTransition, useEffect } from 'react'
 
 import { useAppStore } from '~/atoms/app'
 
@@ -7,11 +7,15 @@ export const useScreenMedia = () => {
   useEffect(() => {
     const getMediaType = <T extends { matches: boolean }>(e: T) => {
       const mediaType = e.matches ? 'screen' : 'print'
-      useAppStore.getState().setMedia(mediaType)
+      startTransition(() => {
+        useAppStore.getState().setMedia(mediaType)
+      })
       return mediaType
     }
 
-    getMediaType(window.matchMedia('screen'))
+    startTransition(() => {
+      getMediaType(window.matchMedia('screen'))
+    })
 
     const callback = (e: MediaQueryListEvent): void => {
       getMediaType(e)

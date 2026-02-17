@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
 import type { FC } from 'react'
 import { useRef } from 'react'
+import { useTranslations } from 'next-intl'
 import { shallow } from 'zustand/shallow'
 
 import { useNoteCollection } from '~/atoms/collections/note'
@@ -21,6 +22,8 @@ import { useAnalyze } from '~/hooks/app/use-analyze'
 import { useThemeConfig } from '~/hooks/app/use-initial-data'
 
 export const NoteFooterActionBar: FC<{ id: string }> = ({ id }) => {
+  const t = useTranslations('note')
+  const tCommon = useTranslations('common')
   const note = useNoteCollection((state) => state.get(id), shallow)
   const isLiked =
     // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
@@ -64,12 +67,15 @@ export const NoteFooterActionBar: FC<{ id: string }> = ({ id }) => {
         color: isLiked ? '#e74c3c' : undefined,
 
         callback: () => {
-          useNoteCollection.getState().like(nid)
+          useNoteCollection.getState().like(nid, {
+            alreadyLiked: t('alreadyLiked'),
+            thanksLike: t('thanksLike'),
+          })
 
           if (!trackerLikeOnce.current) {
             event({
               action: TrackerAction.Interaction,
-              label: '日记底部喜欢触发',
+              label: tCommon('trackNoteLike'),
             })
 
             trackerLikeOnce.current = true
@@ -98,9 +104,9 @@ export const NoteFooterActionBar: FC<{ id: string }> = ({ id }) => {
         icon: <MdiClockTimeThreeOutline />,
         tip: () => (
           <p className="leading-7">
-            创建时间：{new Date(note.created).toLocaleDateString()}
+            {t('createdAt')}{new Date(note.created).toLocaleDateString()}
             <br />
-            修改于：
+            {t('modifiedAt')}{' '}
             {note.modified ? new Date(note.modified).toLocaleTimeString() : '-'}
           </p>
         ),

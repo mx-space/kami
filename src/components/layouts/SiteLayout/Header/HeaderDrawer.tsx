@@ -1,7 +1,8 @@
 import classNames from 'clsx'
-import { useRouter } from 'next/router'
+import { useRouter } from '~/i18n/navigation'
 import type { FC } from 'react'
 import { Fragment, memo, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 
 import { withNoSSR } from '~/components/app/HoC/no-ssr'
 import { IF } from '~/components/app/If'
@@ -16,6 +17,7 @@ import styles from './index.module.css'
 
 const _HeaderDrawer: FC<{ show: boolean; onExit: () => void }> = memo(
   ({ children, onExit, show }) => {
+    const t = useTranslations('common')
     const router = useRouter()
     const { event } = useAnalyze()
 
@@ -23,10 +25,10 @@ const _HeaderDrawer: FC<{ show: boolean; onExit: () => void }> = memo(
       if (show) {
         event({
           action: TrackerAction.Interaction,
-          label: '顶部导航被打开了',
+          label: t('trackDrawerOpen'),
         })
       }
-    }, [show])
+    }, [show, event, t])
 
     useEffect(() => {
       const handler = () => {

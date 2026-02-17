@@ -28,13 +28,25 @@
   position: fixed;
   font-size: 1.2em;
   transition: bottom 0.3s, transform 0.5s;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.action > * {
+  width: 2.25em;
+  min-height: 2.25em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .action button {
   width: 2.25em;
   height: 2.25em;
   color: theme(colors.accent);
-  margin-top: 0.5em;
   background: var(--light-bg);
   border-radius: 66%;
   transition: transform 0.3s;
@@ -56,4 +68,12 @@
 
 .action.hidden {
   transform: translateX(200%);
+}
+
+.actionItem {
+  width: 2.25em;
+  height: 2.25em;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
 }

@@ -1,6 +1,7 @@
 import classNames from 'clsx'
-import { useRouter } from 'next/router'
 import type { FC } from 'react'
+
+import { useRouter } from '~/i18n/navigation'
 import { memo, useEffect, useMemo, useRef, useState } from 'react'
 import { shallow } from 'zustand/shallow'
 

@@ -11,6 +11,7 @@ import {
   useRef,
   useState,
 } from 'react'
+import { useTranslations } from 'next-intl'
 import { message } from 'react-message-popup'
 import { shallow } from 'zustand/shallow'
 
@@ -67,6 +68,8 @@ const CommentList: FC = memo(() => {
 })
 
 const SingleComment: FC<{ id: string }> = ({ id, children }) => {
+  const t = useTranslations('comment')
+  const tCommon = useTranslations('common')
   const [replyId, setReplyId] = useState('')
 
   const {
@@ -133,11 +136,10 @@ const SingleComment: FC<{ id: string }> = ({ id, children }) => {
     (id: string) => async () => {
       await apiClient.comment.proxy(id).delete()
 
-      message.success('删除成功~')
+      message.success(t('deleteSuccess'))
       commentCollection.deleteComment(id)
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
+    [t],
   )
 
   const url = useMemo(() => {
@@ -158,7 +160,7 @@ const SingleComment: FC<{ id: string }> = ({ id, children }) => {
           else setReplyId('')
         }}
       >
-        {replyId !== comment.id ? '回复' : '取消回复'}
+        {replyId !== comment.id ? t('reply') : t('cancelReply')}
       </span>,
       logged ? (
         <Fragment>
@@ -175,7 +177,7 @@ const SingleComment: FC<{ id: string }> = ({ id, children }) => {
                 }, 8000)
               }}
             >
-              删除
+              {t('delete')}
             </span>
           )}
           {sure === comment.id && (
@@ -186,13 +188,13 @@ const SingleComment: FC<{ id: string }> = ({ id, children }) => {
                 setSure(null)
               }}
             >
-              真的需要删除？
+              {t('confirmDelete')}
             </span>
           )}
         </Fragment>
       ) : null,
     ],
-    [comment.id, handleDelete, logged, replyId, sure],
+    [comment.id, handleDelete, logged, replyId, sure, t],
   )
   const handlePinComment = useCallback(async () => {
     const nextPinStatus = !comment.pin
@@ -320,7 +322,7 @@ const SingleComment: FC<{ id: string }> = ({ id, children }) => {
       )}
 
       {!logged && comment.pin && (
-        <ImpressionView trackerMessage="置顶评论曝光">
+        <ImpressionView trackerMessage={tCommon('trackPinnedComment')}>
           <div className="text-red absolute right-3 top-5">
             <PhPushPin />
           </div>

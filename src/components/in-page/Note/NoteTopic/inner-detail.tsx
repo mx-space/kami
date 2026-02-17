@@ -1,5 +1,6 @@
-import Link from 'next/link'
+import { Link } from '~/i18n/navigation'
 import type { FC } from 'react'
+import { useTranslations } from 'next-intl'
 import useSWR from 'swr'
 
 import type { TopicModel } from '@mx-space/api-client'
@@ -16,6 +17,7 @@ import { NoteTopicMarkdownRender } from './markdown-render'
 
 export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
   const { topic } = props
+  const t = useTranslations('topic')
   const { id: topicId } = topic
 
   const { data, isLoading } = useSWR(`topic-${topicId}`, () =>
@@ -47,13 +49,13 @@ export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
 
       <Divider />
       {isLoading ? (
-        <p>获取中...</p>
+        <p>{t('fetching')}</p>
       ) : (
         data?.data[0] && (
           <p className="flex items-center">
             <MdiClockOutline />
             <DividerVertical />
-            <span className="flex-shrink-0">最近更新</span>
+            <span className="flex-shrink-0">{t('recentUpdate')}</span>
             <DividerVertical />
             <span className="inline-flex min-w-0 flex-shrink">
               <Link
@@ -81,8 +83,8 @@ export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
           <p className="flex items-center">
             <MdiFountainPenTip />
             <DividerVertical />
-            共有文章：
-            {data?.pagination?.total} 篇
+            {t('totalCount')}
+            {data?.pagination?.total} {t('articlesUnit')}
           </p>
         </>
       )}

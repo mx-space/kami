@@ -1,6 +1,7 @@
 import { clsx } from 'clsx'
 import type { FC, SVGProps } from 'react'
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 import { useNoteCollection } from '~/atoms/collections/note'
 import { usePostCollection } from '~/atoms/collections/post'
@@ -32,6 +33,7 @@ export const XLogInfoForNote: FC<{
 export const XLogInfoBase: FC<{
   meta?: XLogMeta
 }> = ({ meta }) => {
+  const t = useTranslations('xLog')
   const [collapse, setCollapse] = useState(false)
 
   if (!meta) return null
@@ -104,7 +106,7 @@ export const XLogInfoBase: FC<{
         <div className="flex w-full items-center justify-between">
           <span className="flex flex-grow space-x-2">
             <SafeIcon />
-            <span>此文章已经由它的创作者签名并安全地存储在区块链上。</span>
+            <span>{t('signedOnChain')}</span>
           </span>
           <IcRoundKeyboardArrowDown
             className={clsx(

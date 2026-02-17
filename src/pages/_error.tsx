@@ -2,6 +2,7 @@ import type { AxiosError } from 'axios'
 import type { NextPage, NextPageContext } from 'next'
 import { NextSeo } from 'next-seo'
 import { useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 import { RequestError } from '@mx-space/api-client'
 import { captureUnderscoreErrorException } from '@sentry/nextjs'
 import { errorToText, ErrorView } from '~/components/app/Error'
@@ -12,6 +13,7 @@ const ErrorPage: NextPage<{ statusCode: number; err: any }> = ({
   statusCode = 500,
   err,
 }) => {
+  const t = useTranslations('error')
   useEffect(() => {
     console.log('[ErrorPage]: ', statusCode, err)
     // if (err) {
@@ -34,7 +36,7 @@ const ErrorPage: NextPage<{ statusCode: number; err: any }> = ({
       statusCode={isValidStatusCode ? parseCodeInTitle : statusCode}
     />
   ) : (
-    <NextSeo title={`${statusCode.toString()} - ${errorToText(statusCode)}`} />
+    <NextSeo title={`${statusCode.toString()} - ${t(errorToText(statusCode))}`} />
   )
 }
 

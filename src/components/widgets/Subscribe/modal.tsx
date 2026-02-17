@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 import { useEffect, useReducer } from 'react'
+import { useTranslations } from 'next-intl'
 import { message } from 'react-message-popup'
 import { useStateToRef } from 'react-shortcut-guide'
 
@@ -17,12 +18,6 @@ interface SubscribeModalProps {
   defaultTypes?: (keyof typeof SubscribeTypeToBitMap)[]
 }
 
-const subscibeTextMap: Record<string, string> = {
-  post_c: '文章',
-  note_c: '手记',
-  say_c: '说说',
-  recently_c: '速记',
-}
 
 const initialState = {
   email: '',
@@ -57,6 +52,7 @@ export const SubscribeModal: FC<SubscribeModalProps> = ({
   onConfirm,
   defaultTypes,
 }) => {
+  const t = useTranslations('subscribe')
   const [state, dispatch] = useFormData()
 
   const stateRef = useStateToRef(state)
@@ -84,11 +80,11 @@ export const SubscribeModal: FC<SubscribeModalProps> = ({
 
   const handleSubList = async () => {
     if (!state.email) {
-      message.error('请输入邮箱')
+      message.error(t('emailRequired'))
       return
     }
     if (Object.values(state.types).every((type) => !type)) {
-      message.error('请选择订阅类型')
+      message.error(t('typeRequired'))
       return
     }
     const { email, types } = state
@@ -97,22 +93,32 @@ export const SubscribeModal: FC<SubscribeModalProps> = ({
       Object.keys(types).filter((name) => state.types[name]) as any[],
     )
 
-    message.success('订阅成功')
+    message.success(t('success'))
     dispatch({ type: 'reset' })
     onConfirm()
   }
   const {
     seo: { title },
   } = useInitialData()
+  const subscibeTextMap: Record<string, string> = {
+    post_c: t('post'),
+    note_c: t('note'),
+    say_c: t('say'),
+    recently_c: t('recently'),
+  }
   return (
-    <form action="#" onSubmit={handleSubList} className="flex flex-col gap-5">
-      <p className="text-gray-1 text-sm">
-        欢迎订阅「{title}
-        」，我会定期推送最新的内容到你的邮箱。
-      </p>
+    <form
+      action="#"
+      onSubmit={(e) => {
+        e.preventDefault()
+        handleSubList()
+      }}
+      className="flex flex-col gap-5"
+    >
+      <p className="text-gray-1 text-sm">{t('welcome', { title })}</p>
       <Input
         type="text"
-        placeholder="留下你的邮箱哦 *"
+        placeholder={t('emailPlaceholder')}
         required
         prefix={<MdiEmailFastOutline />}
         value={state.email}
@@ -152,14 +158,14 @@ export const SubscribeModal: FC<SubscribeModalProps> = ({
       </div>
 
       <p className="text-gray-1 -mt-2 text-sm">
-        或者你也可以通过{' '}
+        {t('orRss')}{' '}
         <a href="/feed" className="text-green" target="_blank">
           /feed
         </a>{' '}
-        订阅「{title}」的 RSS 流。
+        {t('rssSubscribe', { title })}
       </p>
       <button className="btn" disabled={!state.email}>
-        订阅
+        {t('subscribe')}
       </button>
     </form>
   )
