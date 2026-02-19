@@ -137,7 +137,7 @@ const LocaleSwitcherFAB: FC = () => {
           typeof location !== 'undefined' && location.protocol === 'https:'
         document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000; SameSite=Lax${secure ? '; Secure' : ''}`
       }
-      router.push(pathname, { locale: newLocale, shallow: true })
+      router.push(pathname, { locale: newLocale, scroll: true })
     },
     [locale, pathname, router],
   )
