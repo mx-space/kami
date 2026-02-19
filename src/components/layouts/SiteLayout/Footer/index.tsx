@@ -89,10 +89,11 @@ export const FooterContent: FC = () => {
       <div className="right to-center">
         <p className="phone:mr-0 mr-12">
           {navigation.map((nav, i) => {
+            const href = nav.path === '/notes' ? '/notes/latest' : nav.path
             return (
               <Fragment key={nav.name}>
                 <Link
-                  href={nav.path}
+                  href={href}
                   target={nav.newtab ? '_blank' : undefined}
                 >
                   {nav.name}

@@ -66,7 +66,7 @@ const SectionsInternal: FC<AggregateTop> = ({ notes, posts }) => {
       result.noteSection = {
         title: titleMapping.note || t('note'),
         icon: <MdiDrawPen />,
-        moreUrl: 'notes',
+        moreUrl: '/notes/latest',
         content: notes.slice(0, 4).map(($) => {
           return {
             title: $.title,

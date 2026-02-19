@@ -26,12 +26,24 @@ function resolveLocaleFromQueryOrPath(
   return defaultLocale
 }
 
+const NEXT_LOCALE_COOKIE = 'NEXT_LOCALE'
+
+function getLocaleFromCookie(cookieHeader: string | undefined): Locale | null {
+  if (!cookieHeader || !cookieHeader.trim()) return null
+  const match = cookieHeader
+    .split(';')
+    .map((s) => s.trim().split('='))
+    .find(([key]) => key === NEXT_LOCALE_COOKIE)
+  const value = match?.[1]?.trim()
+  return value && localeSet.has(value) ? (value as Locale) : null
+}
+
 export type LocaleContext = {
   pathname?: string
   asPath?: string
   query?: Record<string, string | string[] | undefined>
   /** On the server, req.url is the actual request path (e.g. /en). Use it so x-lang matches the requested locale. */
-  req?: { url?: string } | null
+  req?: { url?: string; headers?: { cookie?: string } } | null
 }
 
 /**
@@ -50,7 +62,13 @@ export function getLocaleFromContext(ctx: LocaleContext): Locale {
 
   const pathname = ctx.pathname ?? ''
   const asPath = ctx.asPath ?? pathname
-  return resolveLocaleFromQueryOrPath(queryLocale, pathname, asPath)
+  const fromPath = resolveLocaleFromQueryOrPath(queryLocale, pathname, asPath)
+  if (fromPath !== defaultLocale) return fromPath
+
+  const fromCookie = getLocaleFromCookie(ctx.req?.headers?.cookie)
+  if (fromCookie) return fromCookie
+
+  return defaultLocale
 }
 
 /**

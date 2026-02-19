@@ -121,10 +121,11 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
   useEffect(() => {
     if (prevLocale.current === locale) return
     prevLocale.current = locale
+    setRequestLocale(locale)
     const { type, year, memory } = router.query as any
     const TypeMap = { post: 0, note: 1 }
     const Type = TypeMap[type as keyof typeof TypeMap] as number | undefined
-    apiClient.aggregate.getTimeline({ type: Type, year }).then((payload: any) => {
+    apiClient.aggregate.getTimeline({ type: Type, year, lang: locale }).then((payload: any) => {
       setTimelineData({
         ...payload.data,
         memory: !!memory,
@@ -322,6 +323,7 @@ TimeLineView.getInitialProps = async (ctx) => {
   const payload = await apiClient.aggregate.getTimeline({
     type: Type,
     year,
+    lang: getLocaleFromContext(ctx),
   })
   return {
     ...payload.data,

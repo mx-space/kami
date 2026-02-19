@@ -81,21 +81,28 @@ function getNoteContentSnapshot(note: NoteModel) {
   return {
     title: note.title,
     text: note.text,
-    modified: note.modified,
+    modified: note.modified
+      ? new Date(note.modified).getTime()
+      : (note.modified as unknown),
     weather: note.weather,
     topicId: note.topicId,
-    publicAt: note.publicAt,
+    publicAt: note.publicAt
+      ? new Date(note.publicAt).getTime()
+      : (note.publicAt as unknown),
   }
 }
 
 const useUpdateNote = (note: ModelWithDeleted<NoteModel>) => {
   const t = useTranslations('note')
+  const tRef = useRef(t)
+  tRef.current = t
   const beforeContentRef = useRef<ReturnType<typeof getNoteContentSnapshot> | null>(null)
   const beforeIdRef = useRef<string | number | null>(null)
+  const hasStabilizedRef = useRef(false)
   const { event } = useAnalyze()
   const noteHide = (note as NoteModel & { hide?: boolean })?.hide
   useEffect(() => {
-    const hideMessage = t('hiddenMessage')
+    const hideMessage = tRef.current('hiddenMessage')
     if (note?.isDeleted) {
       message.error(hideMessage)
       return
@@ -107,16 +114,24 @@ const useUpdateNote = (note: ModelWithDeleted<NoteModel>) => {
     if (!before && note) {
       beforeContentRef.current = noteContent
       beforeIdRef.current = note.id
+      hasStabilizedRef.current = false
       return
     }
 
     if (!before || !note || beforeId !== note.id) {
       beforeContentRef.current = noteContent
       beforeIdRef.current = note.id
+      hasStabilizedRef.current = false
       return
     }
 
     if (isEqualObject(before, noteContent)) {
+      hasStabilizedRef.current = true
+      return
+    }
+
+    if (!hasStabilizedRef.current) {
+      beforeContentRef.current = noteContent
       return
     }
 
@@ -125,7 +140,7 @@ const useUpdateNote = (note: ModelWithDeleted<NoteModel>) => {
       beforeContentRef.current = noteContent
       return
     }
-    message.info(t('updated'))
+    message.info(tRef.current('updated'))
 
     event({
       action: TrackerAction.Interaction,
@@ -141,7 +156,7 @@ const useUpdateNote = (note: ModelWithDeleted<NoteModel>) => {
       )
     }
     beforeContentRef.current = noteContent
-  }, [note.title, note.text, note.modified, note.weather, noteHide, note?.isDeleted, note.topicId, note.id, note.publicAt, event, t])
+  }, [note.title, note.text, note.modified, note.weather, noteHide, note?.isDeleted, note.topicId, note.id, note.publicAt, event])
 }
 
 const NoteView: React.FC<{ id: string }> = memo((props) => {

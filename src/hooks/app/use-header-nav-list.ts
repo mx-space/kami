@@ -12,12 +12,16 @@ export const useHeaderNavList = () => {
   } = useKamiConfig()
   const { pageMeta, categories } = useInitialData()
   const mergedMenu = useMemo(() => {
-    const merged = [...menu]
-    const homeMenuIndex = merged.findIndex((menu) => menu.type === 'Home')
+    const merged = menu.map((item) =>
+      item.type === 'Note' && item.path === '/notes'
+        ? { ...item, path: '/notes/latest' }
+        : item,
+    )
+    const homeMenuIndex = merged.findIndex((m) => m.type === 'Home')
     // 1. merge pages
     const homeMenu = merged[homeMenuIndex]
     if (!homeMenu || !homeMenu.subMenu || !pageMeta) {
-      return menu
+      return merged
     }
     const models = pageMeta.map((page) => {
       const { title, id, slug } = page
