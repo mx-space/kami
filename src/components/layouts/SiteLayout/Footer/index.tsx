@@ -34,6 +34,7 @@ export const FooterContent: FC = () => {
   const name = initialData.user.name
   const kamiConfig = useThemeConfig()
   const motto = kamiConfig.site.footer.motto
+  const gatewayOnline = useAppStore((state) => state.gatewayOnline)
 
   const icp = kamiConfig.site.footer.icp
   const navigation = kamiConfig.site.footer.navigation
@@ -42,9 +43,9 @@ export const FooterContent: FC = () => {
   const trackerToGithub = useCallback(() => {
     event({
       action: TrackerAction.Click,
-      label: '底部点击去 Github',
+      label: t('trackGithubClick'),
     })
-  }, [])
+  }, [event, t])
 
   return (
     <div className={styles.wrap}>
@@ -103,17 +104,13 @@ export const FooterContent: FC = () => {
         </p>
 
         <p className="phone:mr-0 mr-12">
-          <GatewayCount /> 个小伙伴正在浏览
+          {t('browsingCount', { count: gatewayOnline ?? 1 })}
         </p>
       </div>
     </div>
   )
 }
 
-const GatewayCount = () => {
-  const gatewayCount = useAppStore((state) => state.gatewayOnline)
-  return <>{gatewayCount || 1}</>
-}
 export const Footer = withNoSSR(() => {
   return (
     <FooterContainer>

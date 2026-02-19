@@ -1,13 +1,19 @@
 import dayjs from 'dayjs'
+import 'dayjs/locale/ja'
+import 'dayjs/locale/zh-cn'
 import type { FC } from 'react'
 import { useEffect, useState } from 'react'
 
-import { parseDate, relativeTimeFromNow } from '~/utils/time'
+import { useLocale } from '~/i18n/navigation'
+import { relativeTimeFromNow } from '~/utils/time'
+
+const dayjsLocaleMap = { zh: 'zh-cn', en: 'en', ja: 'ja' } as const
 
 export const RelativeTime: FC<{
   date: string | Date
   displayAbsoluteTimeAfterDay?: number
 }> = (props) => {
+  const locale = useLocale()
   const [relative, setRelative] = useState<string>(
     relativeTimeFromNow(props.date),
   )
@@ -25,13 +31,13 @@ export const RelativeTime: FC<{
       displayAbsoluteTimeAfterDay
     ) {
       timer = clearInterval(timer)
-      // @ts-expect-error
-      setRelative(parseDate(props.date, 'YY 年 M 月 D 日'))
+      const dayjsLocale = dayjsLocaleMap[locale] ?? 'en'
+      setRelative(dayjs(props.date).locale(dayjsLocale).format('LL'))
     }
     return () => {
       timer = clearInterval(timer)
     }
-  }, [props.date, displayAbsoluteTimeAfterDay])
+  }, [props.date, displayAbsoluteTimeAfterDay, locale])
 
   return <>{relative}</>
 }

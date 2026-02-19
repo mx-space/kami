@@ -16,6 +16,8 @@
     "trackDrawerOpen": "顶部导航被打开了",
     "trackPinnedComment": "置顶评论曝光",
     "trackFooterExposure": "底部曝光",
+    "trackGithubClick": "底部点击去 Github",
+    "browsingCount": "{count} 个小伙伴正在浏览",
     "submit": "提交",
     "delete": "删除",
     "reply": "回复",
@@ -276,6 +278,7 @@
     "lastModified": "最后修改时间:",
     "noModified": "暂没有修改过",
     "license": "商业转载请联系站长获得授权，非商业转载请注明本文出处及文章链接，未经站长允许不得对文章文字内容进行修改演绎。",
+    "licenseIntro": "本文采用",
     "licenseName": "创作共用保留署名 - 非商业 - 禁止演绎 4.0 国际许可证"
   },
   "subscribe": {

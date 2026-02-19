@@ -1,10 +1,16 @@
 import dayjs from 'dayjs'
+import 'dayjs/locale/ja'
+import 'dayjs/locale/zh-cn'
 import type { FC } from 'react'
+import { useTranslations } from 'next-intl'
 
+import { useLocale } from '~/i18n/navigation'
 import { useMasterName } from '~/atoms/user'
 import { Divider } from '~/components/ui/Divider'
 
 import styles from './index.module.css'
+
+const dayjsLocaleMap = { zh: 'zh-cn', en: 'en', ja: 'ja' } as const
 
 export interface CopyrightProps {
   title: string
@@ -14,13 +20,20 @@ export interface CopyrightProps {
 
 export const Copyright: FC<CopyrightProps> = (props) => {
   const { title, link, date } = props
+  const t = useTranslations('copyright')
+  const locale = useLocale()
   const name = useMasterName()
+  const dateLocale = dayjsLocaleMap[locale] ?? 'en'
+  const formattedDate = date
+    ? dayjs(date).locale(dateLocale).format('LLL')
+    : t('noModified')
   return (
     <section className={styles['copyright-session']} id="copyright">
-      <p>文章标题：{title}</p>
-      <p>文章作者：{name}</p>
+      <p>{t('title', { title })}</p>
+      <p>{t('author', { name })}</p>
       <p>
-        文章链接：<span>{link}</span>{' '}
+        {t('link')}
+        <span>{link}</span>{' '}
         <a
           onClick={() => {
             navigator.clipboard.writeText(link)
@@ -28,21 +41,20 @@ export const Copyright: FC<CopyrightProps> = (props) => {
           data-hide-print
           className="select-none"
         >
-          [复制]
+          {t('copy')}
         </a>
       </p>
       <p>
-        最后修改时间:{' '}
-        {date ? dayjs(date).format('YYYY 年 MM 月 DD 日 H:mm') : '暂没有修改过'}
+        {t('lastModified')} {formattedDate}
       </p>
       <Divider />
       <div>
         <p>
-          商业转载请联系站长获得授权，非商业转载请注明本文出处及文章链接，未经站长允许不得对文章文字内容进行修改演绎。
+          {t('license')}
           <br />
-          本文采用
+          {t('licenseIntro')}
           <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
-            创作共用保留署名 - 非商业 - 禁止演绎 4.0 国际许可证
+            {t('licenseName')}
           </a>
         </p>
       </div>

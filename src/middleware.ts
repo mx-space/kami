@@ -62,23 +62,34 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
+  const varyHeader = 'Accept-Language'
+
+  // Default locale (zh) must not appear in URL: redirect /zh and /zh/... to / and /...
+  if (pathname === '/zh' || pathname.startsWith('/zh/')) {
+    const pathWithoutZh = pathname === '/zh' ? '/' : pathname.slice(4)
+    const redirectUrl = request.nextUrl.clone()
+    redirectUrl.pathname = pathWithoutZh
+    const res = NextResponse.redirect(redirectUrl)
+    res.headers.set('Vary', varyHeader)
+    return res
+  }
+
+  // Already has /en or /ja prefix: pass through
   if (localePrefixRegex.test(pathname)) {
     return NextResponse.next()
   }
 
+  // No locale prefix: zh → rewrite (URL stays / or /posts), en/ja → redirect (URL becomes /en, /ja/...)
   const locale = getPreferredLocale(request)
   const newUrl = request.nextUrl.clone()
   newUrl.pathname = `/${locale}${pathname === '/' ? '' : pathname}`
 
-  const varyHeader = 'Accept-Language'
-  const fromCookie = request.cookies.get(LOCALE_COOKIE)?.value
-  const hasExplicitPreference = fromCookie && localeSet.has(fromCookie)
-  if (hasExplicitPreference) {
-    const res = NextResponse.redirect(newUrl)
+  if (locale === defaultLocale) {
+    const res = NextResponse.rewrite(newUrl)
     res.headers.set('Vary', varyHeader)
     return res
   }
-  const res = NextResponse.rewrite(newUrl)
+  const res = NextResponse.redirect(newUrl)
   res.headers.set('Vary', varyHeader)
   return res
 }

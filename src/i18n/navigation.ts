@@ -117,7 +117,14 @@ export function Link({
       : href && typeof href === 'object' && 'pathname' in href
         ? (href as { pathname: string }).pathname
         : ''
-  const resolvedHref = pathname ? buildLocalizedHref(pathname, currentLocale) : href
+  const isAbsoluteUrl =
+    typeof pathname === 'string' &&
+    (pathname.startsWith('http://') || pathname.startsWith('https://'))
+  const resolvedHref = pathname
+    ? isAbsoluteUrl
+      ? pathname
+      : buildLocalizedHref(pathname, currentLocale)
+    : href
   return React.createElement(NextLink, { href: resolvedHref, ...rest })
 }
 

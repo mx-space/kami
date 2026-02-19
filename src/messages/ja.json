@@ -16,6 +16,8 @@
     "trackDrawerOpen": "ドロワー開いた",
     "trackPinnedComment": "ピンコメント曝光",
     "trackFooterExposure": "フッター曝光",
+    "trackGithubClick": "フッターから GitHub へ",
+    "browsingCount": "{count} 人が閲覧中",
     "submit": "送信",
     "delete": "削除",
     "reply": "返信",
@@ -276,6 +278,7 @@
     "lastModified": "最終更新：",
     "noModified": "未更新",
     "license": "商用は許可が必要。非商用は出典・リンクを明記。無断改変禁止。",
+    "licenseIntro": "本記事は次のライセンスです：",
     "licenseName": "CC BY-NC-ND 4.0"
   },
   "subscribe": {

@@ -16,6 +16,8 @@
     "trackDrawerOpen": "Drawer opened",
     "trackPinnedComment": "Pinned comment exposure",
     "trackFooterExposure": "Footer exposure",
+    "trackGithubClick": "Footer click to Github",
+    "browsingCount": "{count} friends are browsing",
     "submit": "Submit",
     "delete": "Delete",
     "reply": "Reply",
@@ -276,6 +278,7 @@
     "lastModified": "Last modified: ",
     "noModified": "Not modified",
     "license": "Commercial use requires permission. Non-commercial use: attribute source and link. Do not modify without permission.",
+    "licenseIntro": "This work is licensed under ",
     "licenseName": "CC BY-NC-ND 4.0"
   },
   "subscribe": {
