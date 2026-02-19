@@ -10,7 +10,7 @@ import React, {
 import type { FC, PropsWithChildren } from 'react'
 
 import type { UseFloatingOptions } from '@floating-ui/react-dom'
-import { flip, offset, shift, useFloating } from '@floating-ui/react-dom'
+import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/react-dom'
 
 import useClickAway from '~/hooks/common/use-click-away'
 
@@ -35,6 +35,9 @@ export const FloatPopover: FC<
     animate?: boolean
 
     as?: keyof HTMLElementTagNameMap
+
+    /** When set, overrides default z-index (99) so popover can sit above other layers (e.g. Toast, Modal). */
+    popoverZIndex?: number
   }> &
     UseFloatingOptions
 > = memo((props) => {
@@ -49,6 +52,7 @@ export const FloatPopover: FC<
     debug,
     animate = true,
     as: As = 'div',
+    popoverZIndex,
     ...floatingProps
   } = props
 
@@ -64,7 +68,8 @@ export const FloatPopover: FC<
     ],
     strategy: floatingProps.strategy,
     placement: floatingProps.placement ?? 'bottom-start',
-    whileElementsMounted: floatingProps.whileElementsMounted,
+    whileElementsMounted:
+      floatingProps.whileElementsMounted ?? autoUpdate,
   })
   const updateOnce = useRef(false)
   const doPopoverShow = useCallback(() => {
@@ -211,9 +216,11 @@ export const FloatPopover: FC<
           <div
             className={clsx(
               'float-popover',
-              'relative z-[99]',
+              'relative',
+              popoverZIndex == null && 'z-[99]',
               popoverWrapperClassNames,
             )}
+            style={popoverZIndex != null ? { zIndex: popoverZIndex } : undefined}
             {...(trigger === 'hover' || trigger === 'both' ? listener : {})}
             ref={containerRef}
           >

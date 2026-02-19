@@ -153,6 +153,7 @@ const LocaleSwitcherFAB: FC = () => {
       trigger="click"
       placement="top-start"
       headless
+      popoverZIndex={10000}
       middleware={[
         flip({ padding: 20 }),
         offset({ mainAxis: 10, crossAxis: -32 }),
