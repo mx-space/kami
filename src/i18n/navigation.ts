@@ -30,16 +30,26 @@ export type LocaleContext = {
   pathname?: string
   asPath?: string
   query?: Record<string, string | string[] | undefined>
+  /** On the server, req.url is the actual request path (e.g. /en). Use it so x-lang matches the requested locale. */
+  req?: { url?: string } | null
 }
 
 /**
  * Resolve current locale from Next.js page context (pathname, asPath, query).
- * Use at the start of getInitialProps so API requests use the correct x-lang.
+ * On the server, prefers req.url so API requests (e.g. aggregate getTop) get the correct x-lang.
  */
 export function getLocaleFromContext(ctx: LocaleContext): Locale {
+  const queryLocale = ctx.query?.locale
+  if (isLocale(queryLocale)) return queryLocale
+
+  if (ctx.req?.url) {
+    const pathFromReq = ctx.req.url.split('?')[0].trim()
+    const first = pathFromReq.split('/').filter(Boolean)[0]
+    if (isLocale(first)) return first
+  }
+
   const pathname = ctx.pathname ?? ''
   const asPath = ctx.asPath ?? pathname
-  const queryLocale = ctx.query?.locale
   return resolveLocaleFromQueryOrPath(queryLocale, pathname, asPath)
 }
 
