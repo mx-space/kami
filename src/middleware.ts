@@ -7,8 +7,6 @@ const localePrefixRegex = new RegExp(
   `^/(${(locales as readonly string[]).join('|')})(/|$)`,
 )
 
-const LOCALE_COOKIE = 'NEXT_LOCALE'
-
 const localeSet = new Set<string>(locales)
 
 /** Map Accept-Language primary tag to our locale (zh-CN/zh-TW -> zh, en-US -> en, ja -> ja). */
@@ -40,10 +38,6 @@ function getLocaleFromAcceptLanguage(acceptLanguage: string | null): Locale | nu
 }
 
 function getPreferredLocale(request: NextRequest): Locale {
-  const cookie = request.cookies.get(LOCALE_COOKIE)?.value
-  if (cookie && localeSet.has(cookie)) {
-    return cookie as Locale
-  }
   const fromHeader = getLocaleFromAcceptLanguage(
     request.headers.get('Accept-Language'),
   )

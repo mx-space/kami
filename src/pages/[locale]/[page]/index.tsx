@@ -8,14 +8,13 @@ import React, {
   useRef,
 } from 'react'
 import RemoveMarkdown from 'remove-markdown'
-import { useRouter } from 'next/router'
 import { useTranslations } from 'next-intl'
 import { shallow } from 'zustand/shallow'
 
 import type { PageModel } from '@mx-space/api-client'
 
 import { usePageCollection } from '~/atoms/collections/page'
-import { getLocaleFromContext, Link, useLocale } from '~/i18n/navigation'
+import { getLocaleFromContext, Link, useLocale, useRouter } from '~/i18n/navigation'
 import { setRequestLocale } from '~/utils/client'
 import { Seo } from '~/components/app/Seo'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'

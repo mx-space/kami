@@ -26,24 +26,12 @@ function resolveLocaleFromQueryOrPath(
   return defaultLocale
 }
 
-const NEXT_LOCALE_COOKIE = 'NEXT_LOCALE'
-
-function getLocaleFromCookie(cookieHeader: string | undefined): Locale | null {
-  if (!cookieHeader || !cookieHeader.trim()) return null
-  const match = cookieHeader
-    .split(';')
-    .map((s) => s.trim().split('='))
-    .find(([key]) => key === NEXT_LOCALE_COOKIE)
-  const value = match?.[1]?.trim()
-  return value && localeSet.has(value) ? (value as Locale) : null
-}
-
 export type LocaleContext = {
   pathname?: string
   asPath?: string
   query?: Record<string, string | string[] | undefined>
   /** On the server, req.url is the actual request path (e.g. /en). Use it so x-lang matches the requested locale. */
-  req?: { url?: string; headers?: { cookie?: string } } | null
+  req?: { url?: string } | null
 }
 
 /**
@@ -64,9 +52,6 @@ export function getLocaleFromContext(ctx: LocaleContext): Locale {
   const asPath = ctx.asPath ?? pathname
   const fromPath = resolveLocaleFromQueryOrPath(queryLocale, pathname, asPath)
   if (fromPath !== defaultLocale) return fromPath
-
-  const fromCookie = getLocaleFromCookie(ctx.req?.headers?.cookie)
-  if (fromCookie) return fromCookie
 
   return defaultLocale
 }
@@ -139,20 +124,23 @@ export function Link({
       pathnameForLocale,
       asPathForLocale,
     )
-  const pathname =
-    typeof href === 'string'
+  let resolvedHref: ComponentProps<typeof NextLink>['href'] = href
+  if (typeof href === 'string') {
+    const isAbsoluteUrl =
+      href.startsWith('http://') || href.startsWith('https://')
+    resolvedHref = isAbsoluteUrl ? href : buildLocalizedHref(href, currentLocale)
+  } else if (
+    href &&
+    typeof href === 'object' &&
+    'pathname' in href &&
+    typeof href.pathname === 'string'
+  ) {
+    const isAbsoluteUrl =
+      href.pathname.startsWith('http://') || href.pathname.startsWith('https://')
+    resolvedHref = isAbsoluteUrl
       ? href
-      : href && typeof href === 'object' && 'pathname' in href
-        ? (href as { pathname: string }).pathname
-        : ''
-  const isAbsoluteUrl =
-    typeof pathname === 'string' &&
-    (pathname.startsWith('http://') || pathname.startsWith('https://'))
-  const resolvedHref = pathname
-    ? isAbsoluteUrl
-      ? pathname
-      : buildLocalizedHref(pathname, currentLocale)
-    : href
+      : { ...href, pathname: buildLocalizedHref(href.pathname, currentLocale) }
+  }
   return React.createElement(NextLink, { href: resolvedHref, ...rest })
 }
 

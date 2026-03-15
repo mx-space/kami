@@ -131,12 +131,10 @@ const LocaleSwitcherFAB: FC = () => {
 
   const handleLocaleChange = useCallback(
     (newLocale: string) => {
-      if (newLocale === locale) return
-      if (typeof document !== 'undefined') {
-        const secure =
-          typeof location !== 'undefined' && location.protocol === 'https:'
-        document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000; SameSite=Lax${secure ? '; Secure' : ''}`
+      if (newLocale === locale) {
+        return
       }
+
       router.push(pathname, { locale: newLocale, scroll: true })
     },
     [locale, pathname, router],
