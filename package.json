@@ -113,7 +113,7 @@
     "@types/react-dom": "18.2.13",
     "@types/remove-markdown": "0.3.3",
     "@types/ua-parser-js": "0.7.37",
-    "@types/validator": "13.11.3",
+    "@types/validator": "13.11.10",
     "cross-env": "7.0.3",
     "dotenv": "16.3.1",
     "eslint": "8.51.0",
