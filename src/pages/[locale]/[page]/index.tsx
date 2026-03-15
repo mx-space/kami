@@ -14,8 +14,8 @@ import { shallow } from 'zustand/shallow'
 import type { PageModel } from '@mx-space/api-client'
 
 import { usePageCollection } from '~/atoms/collections/page'
-import { getLocaleFromContext, Link, useLocale, useRouter } from '~/i18n/navigation'
-import { setRequestLocale } from '~/utils/client'
+import { Link, useRouter } from '~/i18n/navigation'
+import { useLocaleFromContext } from '~/provider/locale-context'
 import { Seo } from '~/components/app/Seo'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { KamiMarkdown } from '~/components/common/KamiMarkdown'
@@ -133,7 +133,7 @@ const PageView: PageOnlyProps = (props) => {
 const NextPageView: NextPage<PageModel> = (props) => {
   const { id } = props as any
   const router = useRouter()
-  const locale = useLocale()
+  const locale = useLocaleFromContext()
   const pageId = usePageCollection((state) => state.data.get(id)?.id)
 
   useEffect(() => {
@@ -152,7 +152,6 @@ const NextPageView: NextPage<PageModel> = (props) => {
 }
 
 NextPageView.getInitialProps = async (ctx) => {
-  setRequestLocale(getLocaleFromContext(ctx))
   const { page: slug } = ctx.query
   const data = await usePageCollection.getState().fetchBySlug(slug as string)
   return data

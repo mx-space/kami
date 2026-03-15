@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl'
 import { useNoteCollection } from '~/atoms/collections/note'
 import { usePostCollection } from '~/atoms/collections/post'
 import { AnimateChangeInHeight } from '~/components/ui/AnimateChangeInHeight'
-import { useLocale } from '~/i18n/navigation'
+import { useLocaleFromContext } from '~/provider/locale-context'
 import { apiClient } from '~/utils/client'
 
 export const XLogSummary: FC<{
@@ -12,7 +12,7 @@ export const XLogSummary: FC<{
   className?: string
 }> = (props) => {
   const t = useTranslations('xLog')
-  const locale = useLocale()
+  const locale = useLocaleFromContext()
   const { cid } = props
   const { data, isLoading, error } = SWR(
     cid ? [`getSummary`, cid, locale] : null,
@@ -71,9 +71,13 @@ export const AISummary: FC<{
   articleId: string
   className?: string
   fallback?: ReactNode
-}> = ({ articleId, className, fallback }) => {
+  /** Pass when parent has locale (e.g. page) to avoid timing/hydration mismatch with backend x-lang. */
+  locale?: string
+}> = ({ articleId, className, fallback, locale: localeProp }) => {
   const t = useTranslations('xLog')
-  const locale = useLocale()
+  const localeFromContext = useLocaleFromContext()
+  const locale = localeProp ?? localeFromContext
+  // Key must include locale so cache is per-language and refetches when locale changes.
   const { data, isLoading } = SWR(
     articleId ? [`getAiSummary`, articleId, locale] : null,
     async ([, currentArticleId]) =>
@@ -132,23 +136,30 @@ export const AISummary: FC<{
 
 export const XLogSummaryForPost: FC<{
   id: string
-}> = ({ id }) => {
+  locale?: string
+}> = ({ id, locale }) => {
   const cid = usePostCollection((state) => state.data.get(id)?.meta?.xLog?.cid)
   return (
     <AISummary
       articleId={id}
       className="mb-4"
       fallback={cid ? <XLogSummary cid={cid} className="mb-4" /> : null}
+      locale={locale}
     />
   )
 }
 
 export const XLogSummaryForNote: FC<{
   id: string
-}> = ({ id }) => {
+  locale?: string
+}> = ({ id, locale }) => {
   const cid = useNoteCollection((state) => state.data.get(id)?.meta?.xLog?.cid)
   return (
-    <AISummary articleId={id} fallback={cid ? <XLogSummary cid={cid} /> : null} />
+    <AISummary
+      articleId={id}
+      fallback={cid ? <XLogSummary cid={cid} /> : null}
+      locale={locale}
+    />
   )
 }
 

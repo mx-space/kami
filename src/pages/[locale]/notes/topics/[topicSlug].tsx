@@ -4,8 +4,9 @@ import { useTranslations } from 'next-intl'
 
 import type { NoteModel, Pager, TopicModel } from '@mx-space/api-client'
 
-import { getLocaleFromContext, Link, useLocale } from '~/i18n/navigation'
-import { setRequestLocale , apiClient } from '~/utils/client'
+import { Link } from '~/i18n/navigation'
+import { useLocaleFromContext } from '~/provider/locale-context'
+import { apiClient } from '~/utils/client'
 import { Seo } from '~/components/app/Seo'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { NoteTopicMarkdownRender } from '~/components/in-page/Note/NoteTopic/markdown-render'
@@ -18,7 +19,7 @@ import { RightToLeftTransitionView } from '~/components/ui/Transition/RightToLef
 const TopicDetailPage: NextPage<TopicModel> = (props) => {
   const { name } = props
   const t = useTranslations('topic')
-  const locale = useLocale()
+  const locale = useLocaleFromContext()
   const [notes, setNotes] = useState<NoteModel[]>()
   const [pager, setPager] = useState<Pager>()
 
@@ -108,7 +109,6 @@ const TopicDetailPage: NextPage<TopicModel> = (props) => {
   )
 }
 TopicDetailPage.getInitialProps = async (ctx) => {
-  setRequestLocale(getLocaleFromContext(ctx))
   const { topicSlug } = ctx.query
   return await apiClient.topic.getTopicBySlug(topicSlug as string)
 }

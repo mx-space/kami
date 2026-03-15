@@ -3,7 +3,8 @@ import type { NextPage } from 'next'
 import React, { Fragment, useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
-import { useLocale, useRouter } from '~/i18n/navigation'
+import { useRouter } from '~/i18n/navigation'
+import { useLocaleFromContext } from '~/provider/locale-context'
 
 import type { Pager, PaginateResult, PostModel } from '@mx-space/api-client'
 
@@ -24,7 +25,7 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
   const [posts, setPosts] = useState<PostModel[]>([])
 
   const router = useRouter()
-  const locale = useLocale()
+  const locale = useLocaleFromContext()
 
   const {
     query: { page: currentPage },

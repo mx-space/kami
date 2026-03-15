@@ -20,9 +20,8 @@ import {
 } from '~/components/in-page/Friend/FriendSection'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { useInitialData } from '~/hooks/app/use-initial-data'
-import { getLocaleFromContext } from '~/i18n/navigation'
 import { shuffle } from '~/utils/_'
-import { apiClient, setRequestLocale } from '~/utils/client'
+import { apiClient } from '~/utils/client'
 
 const renderTitle = (text: string) => {
   return <h1 className="headline !mt-12 !text-xl">{text}</h1>
@@ -131,8 +130,7 @@ const Footer$: FC = () => {
 }
 
 const Footer = withNoSSR(Footer$)
-FriendsView.getInitialProps = async (ctx) => {
-  setRequestLocale(getLocaleFromContext(ctx))
+FriendsView.getInitialProps = async () => {
   const { data } = await apiClient.link.getAll()
 
   const friends: LinkModel[] = []

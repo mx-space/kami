@@ -1,3 +1,7 @@
+/**
+ * Navigation and locale from URL. Locale write contract: use this module's Link (localizes href + as)
+ * and useRouter().push(pathname, { locale }) so all navigation preserves current language.
+ */
 import NextLink from 'next/link'
 import { useRouter as useNextRouter } from 'next/router'
 import React, { type ComponentProps } from 'react'
@@ -106,11 +110,13 @@ export function usePathname(): string {
 }
 
 /**
- * Link that prefixes href with current locale.
+ * Link that prefixes href and as with current locale.
  * Pass pathname without locale prefix (e.g. /posts/cat/slug).
+ * Both href and as are localized so navigation preserves the current language.
  */
 export function Link({
   href,
+  as,
   locale: localeProp,
   ...rest
 }: ComponentProps<typeof NextLink> & { locale?: string }) {
@@ -141,7 +147,30 @@ export function Link({
       ? href
       : { ...href, pathname: buildLocalizedHref(href.pathname, currentLocale) }
   }
-  return React.createElement(NextLink, { href: resolvedHref, ...rest })
+
+  let resolvedAs: ComponentProps<typeof NextLink>['as'] = as
+  if (typeof as === 'string') {
+    const isAbsoluteUrl =
+      as.startsWith('http://') || as.startsWith('https://')
+    resolvedAs = isAbsoluteUrl ? as : buildLocalizedHref(as, currentLocale)
+  } else if (
+    as &&
+    typeof as === 'object' &&
+    'pathname' in as &&
+    typeof as.pathname === 'string'
+  ) {
+    const isAbsoluteUrl =
+      as.pathname.startsWith('http://') || as.pathname.startsWith('https://')
+    resolvedAs = isAbsoluteUrl
+      ? as
+      : { ...as, pathname: buildLocalizedHref(as.pathname, currentLocale) }
+  }
+
+  return React.createElement(NextLink, {
+    href: resolvedHref,
+    as: resolvedAs,
+    ...rest,
+  })
 }
 
 /** Alias for Link (Shiroi uses Link; Kami may use LocaleLink elsewhere). */

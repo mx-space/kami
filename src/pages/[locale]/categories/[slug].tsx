@@ -7,8 +7,9 @@ import type {
   CategoryWithChildrenModel,
 } from '@mx-space/api-client'
 
-import { getLocaleFromContext, Link, useLocale } from '~/i18n/navigation'
-import { setRequestLocale , apiClient } from '~/utils/client'
+import { Link } from '~/i18n/navigation'
+import { useLocaleFromContext } from '~/provider/locale-context'
+import { apiClient } from '~/utils/client'
 import { Seo } from '~/components/app/Seo'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { TimelineListWrapper } from '~/components/in-page/Timeline/TimelineListWrapper'
@@ -23,7 +24,7 @@ interface CategoryListViewProps {
 
 const CategoryListView: NextPage<CategoryListViewProps> = (props) => {
   const t = useTranslations('category')
-  const locale = useLocale()
+  const locale = useLocaleFromContext()
   const [category, setCategory] = useState(props.category)
   const [children, setChildren] = useState(props.children)
   const slug = props.category.slug
@@ -84,7 +85,6 @@ const CategoryListView: NextPage<CategoryListViewProps> = (props) => {
 }
 
 CategoryListView.getInitialProps = async (ctx) => {
-  setRequestLocale(getLocaleFromContext(ctx))
   const { query } = ctx
   const { slug } = query as any
   const data = await apiClient.category.getCategoryByIdOrSlug(slug)

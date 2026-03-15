@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import type { AggregateTop } from '@mx-space/api-client'
 
@@ -9,14 +9,20 @@ import { HomeIntro } from '~/components/in-page/Home/intro'
 import { HomeRandomSay } from '~/components/in-page/Home/random-say'
 import { HomeSections } from '~/components/in-page/Home/section'
 import { useInitialData, useKamiConfig } from '~/hooks/app/use-initial-data'
-import { getLocaleFromContext, useLocale } from '~/i18n/navigation'
+import { getLocaleFromContext, useRouter } from '~/i18n/navigation'
 import { omit } from '~/utils/_'
 import { apiClient, setRequestLocale } from '~/utils/client'
 import { Notice } from '~/utils/notice'
 
 const IndexView: NextPage<AggregateTop> = (props) => {
-  const locale = useLocale()
+  const router = useRouter()
   const [aggregateTop, setAggregateTop] = useState<AggregateTop>(props)
+
+  // Sync props into state when getInitialProps returns fresh data on client-side navigation
+  useEffect(() => {
+    setAggregateTop(props)
+  }, [props])
+
   const initData = useInitialData()
 
   const { function: fn } = useKamiConfig()
@@ -53,14 +59,17 @@ const IndexView: NextPage<AggregateTop> = (props) => {
     }
   }, [notification?.welcome])
 
-  const prevLocale = useRef(locale)
   useEffect(() => {
-    if (prevLocale.current === locale) return
-    prevLocale.current = locale
+    const effectiveLocale = getLocaleFromContext({
+      pathname: router.pathname ?? '',
+      asPath: router.asPath ?? '',
+      query: router.query,
+    })
+    setRequestLocale(effectiveLocale)
     apiClient.aggregate.getTop().then((res) => {
       setAggregateTop(omit({ ...res }, ['says']) as unknown as AggregateTop)
     })
-  }, [locale])
+  }, [router.pathname, router.asPath, router.query])
 
   return (
     <main>
@@ -80,8 +89,7 @@ const IndexView: NextPage<AggregateTop> = (props) => {
   )
 }
 
-IndexView.getInitialProps = async (ctx) => {
-  setRequestLocale(getLocaleFromContext(ctx))
+IndexView.getInitialProps = async () => {
   const aggregateData = await apiClient.aggregate.getTop()
 
   return omit({ ...aggregateData }, ['says']) as any

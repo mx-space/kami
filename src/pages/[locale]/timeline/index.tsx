@@ -8,7 +8,6 @@ import { usePrevious } from 'react-use'
 import type { TimelineData } from '@mx-space/api-client'
 
 import { Seo } from '~/components/app/Seo'
-import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { TimelineListWrapper } from '~/components/in-page/Timeline/TimelineListWrapper'
 import { SolidBookmark } from '~/components/ui/Icons/for-note'
@@ -16,7 +15,7 @@ import { NumberTransition } from '~/components/ui/NumberRecorder'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/app/use-analyze'
 import { useDetectPadOrMobile } from '~/hooks/ui/use-viewport'
-import { getLocaleFromContext, Link, useLocale, useRouter } from '~/i18n/navigation'
+import { getLocaleFromContext, Link, useRouter } from '~/i18n/navigation'
 import { apiClient, setRequestLocale } from '~/utils/client'
 import { springScrollToElement } from '~/utils/spring'
 import { dayOfYear, daysOfYear, secondOfDay, secondOfDays } from '~/utils/time'
@@ -114,24 +113,37 @@ const Progress: FC = memo(() => {
 const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
   const t = useTranslations('timeline')
   const router = useRouter()
-  const locale = useLocale()
-  const prevLocale = useRef(locale)
   const [timelineData, setTimelineData] = useState<TimeLineViewProps>(props)
+  const currentLocaleRef = useRef<string>(getLocaleFromContext({
+    pathname: router.pathname ?? '',
+    asPath: router.asPath ?? '',
+    query: router.query,
+  }))
+
+  // Sync props into state when getInitialProps returns new data (e.g. client-side navigation)
+  useEffect(() => {
+    setTimelineData(props)
+  }, [props])
 
   useEffect(() => {
-    if (prevLocale.current === locale) return
-    prevLocale.current = locale
-    setRequestLocale(locale)
+    const fetchingLocale = getLocaleFromContext({
+      pathname: router.pathname ?? '',
+      asPath: router.asPath ?? '',
+      query: router.query,
+    })
+    currentLocaleRef.current = fetchingLocale
+    setRequestLocale(fetchingLocale)
     const { type, year, memory } = router.query as any
     const TypeMap = { post: 0, note: 1 }
     const Type = TypeMap[type as keyof typeof TypeMap] as number | undefined
     apiClient.aggregate.getTimeline({ type: Type, year }).then((payload: any) => {
+      if (currentLocaleRef.current !== fetchingLocale) return
       setTimelineData({
         ...payload.data,
         memory: !!memory,
       } as TimeLineViewProps)
     })
-  }, [locale, router.query])
+  }, [router.pathname, router.asPath, router.query])
 
   const sortedMap = new Map<number, MapType[]>()
   const { posts = [], notes = [] } = timelineData
@@ -313,7 +325,6 @@ enum TimelineType {
   Note,
 }
 TimeLineView.getInitialProps = async (ctx) => {
-  setRequestLocale(getLocaleFromContext(ctx))
   const query = ctx.query
   const { type, year, memory } = query as any
   const Type = {
@@ -329,4 +340,4 @@ TimeLineView.getInitialProps = async (ctx) => {
     memory: !!memory,
   } as TimeLineViewProps
 }
-export default wrapperNextPage(TimeLineView)
+export default TimeLineView

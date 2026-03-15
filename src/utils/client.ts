@@ -45,15 +45,14 @@ export function getRequestLocale() {
 }
 
 $axios.interceptors.request.use((config) => {
+  config.headers = config.headers ?? {}
   const token = getToken()
-  if (config.headers) {
-    if (token) {
-      config.headers['Authorization'] = token
-    }
-    config.headers['x-uuid'] = uuid
-    if (requestLocale) {
-      config.headers['x-lang'] = requestLocale
-    }
+  if (token) {
+    config.headers['Authorization'] = token
+  }
+  config.headers['x-uuid'] = uuid
+  if (requestLocale) {
+    config.headers['x-lang'] = requestLocale
   }
 
   return config

@@ -18,9 +18,7 @@ import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { NoteLayout } from '~/components/layouts/NoteLayout'
 import { Banner } from '~/components/ui/Banner'
 import { ImageSizeMetaContext } from '~/components/ui/Image/context'
-import { getLocaleFromContext } from '~/i18n/navigation'
 import { isServerSide } from '~/utils/env'
-import { setRequestLocale } from '~/utils/client'
 
 const noopMap = new Map()
 const NotePreviewPage: FC<{ data: NoteModel }> = ({ data }) => {
@@ -145,7 +143,6 @@ const PreviewPage: NextPage<{ storageKey: string }> = ({ storageKey }) => {
 }
 
 PreviewPage.getInitialProps = (ctx: any) => {
-  setRequestLocale(getLocaleFromContext(ctx))
   return {
     storageKey: ctx.query.storageKey as string,
   }

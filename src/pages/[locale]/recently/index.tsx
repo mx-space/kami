@@ -14,7 +14,7 @@ import useSWR from 'swr'
 
 import type { RecentlyModel } from '@mx-space/api-client'
 
-import { useLocale } from '~/i18n/navigation'
+import { useLocaleFromContext } from '~/provider/locale-context'
 import { useTranslations } from 'next-intl'
 import {
   RecentlyAttitudeEnum,
@@ -72,7 +72,7 @@ const RecentlyPage: NextPage = () => {
   const t = useTranslations('recently')
   const [hasNext, setHasNext] = useState(true)
   const isLogged = useIsLogged()
-  const locale = useLocale()
+  const locale = useLocaleFromContext()
 
   const [fetchBefore, setFetchBefore] = useState<undefined | string>()
   const { data: fetchedData, isLoading } = useSWR(

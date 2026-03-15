@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import React, { startTransition, useEffect, useMemo } from 'react'
 
-import { defaultLocale } from '~/i18n/config'
+import { defaultLocale, type Locale } from '~/i18n/config'
 import { getLocaleFromContext } from '~/i18n/navigation'
 
 import { ProviderComposer } from '~/components/app/Composer'
@@ -19,6 +19,7 @@ import { SiteLayout } from '~/components/layouts/SiteLayout'
 import type { InitialDataType } from '~/provider/initial-data'
 import { InitialContextProvider } from '~/provider/initial-data'
 import { LangSyncProvider } from '~/provider/lang-sync'
+import { LocaleProvider } from '~/provider/locale-context'
 import { SWRProvider } from '~/provider/swr'
 import { setRequestLocale } from '~/utils/client'
 import { attachRequestProxy, fetchInitialData } from '~/utils/app'
@@ -37,7 +38,7 @@ import { printToConsole } from '~/utils/console'
 
 interface DataModel {
   initData: InitialDataType
-  locale?: string
+  locale?: Locale
   messages?: Record<string, unknown>
 }
 
@@ -105,10 +106,12 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
   }
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <ProviderComposer contexts={AppProviders}>
-        <Prepare />
-        {Inner}
-      </ProviderComposer>
+      <LocaleProvider initialLocale={locale}>
+        <ProviderComposer contexts={AppProviders}>
+          <Prepare />
+          {Inner}
+        </ProviderComposer>
+      </LocaleProvider>
     </NextIntlClientProvider>
   )
 }

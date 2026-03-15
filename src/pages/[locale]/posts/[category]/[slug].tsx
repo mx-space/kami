@@ -45,8 +45,9 @@ import { useInitialData, useThemeConfig } from '~/hooks/app/use-initial-data'
 import { useJumpToSimpleMarkdownRender } from '~/hooks/app/use-jump-to-render'
 import { useBackgroundOpacity } from '~/hooks/app/use-kami-theme'
 import { useIsClient } from '~/hooks/common/use-is-client'
-import { getLocaleFromContext, Link, useLocale, useRouter } from '~/i18n/navigation'
-import { setRequestLocale , apiClient } from '~/utils/client'
+import { getLocaleFromContext, Link, useRouter } from '~/i18n/navigation'
+import { useLocaleFromContext } from '~/provider/locale-context'
+import { apiClient } from '~/utils/client'
 import { isEqualObject } from '~/utils/_'
 import { isLikedBefore, setLikeId } from '~/utils/cookie'
 import { imagesRecord2Map } from '~/utils/images'
@@ -265,7 +266,7 @@ const PostUpdateObserver: FC<{ id: string }> = memo(({ id }) => {
 
 PostUpdateObserver.displayName = 'PostUpdateObserver'
 
-export const PostView: PageOnlyProps = (props) => {
+export const PostView: FC<IdProps & { locale?: string }> = (props) => {
   const post = usePostCollection(
     (state) =>
       pick(state.data.get(props.id)!, [
@@ -322,7 +323,7 @@ export const PostView: PageOnlyProps = (props) => {
             <p className="leading-[1.7]">摘要： {post.summary}</p>
           </Banner>
         ) : (
-          <XLogSummaryForPost id={post.id} />
+          <XLogSummaryForPost id={post.id} locale={(props as { locale?: string }).locale} />
         )}
         <Outdate time={post.modified || post.created} />
         <ImageSizeMetaContext.Provider value={imagesMap}>
@@ -363,7 +364,7 @@ export const PostView: PageOnlyProps = (props) => {
 const NextPostView: NextPage<PostModel> = (props) => {
   const { id } = props
   const router = useRouter()
-  const locale = useLocale()
+  const locale = useLocaleFromContext()
   const prevLocale = useRef(locale)
   const postId = usePostCollection((state) => state.data.get(id)?.id)
 
@@ -382,11 +383,10 @@ const NextPostView: NextPage<PostModel> = (props) => {
     return <Loading />
   }
 
-  return <PostView id={id} />
+  return <PostView id={id} locale={locale} />
 }
 
 NextPostView.getInitialProps = async (ctx) => {
-  setRequestLocale(getLocaleFromContext(ctx))
   const { query } = ctx
   const { category, slug } = query as any
   const locale = getLocaleFromContext(ctx)

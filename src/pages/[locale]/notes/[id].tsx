@@ -44,8 +44,8 @@ import {
 import { useJumpToSimpleMarkdownRender } from '~/hooks/app/use-jump-to-render'
 import { useNoteMusic } from '~/hooks/app/use-music'
 import { useLoadSerifFont } from '~/hooks/ui/use-load-serif-font'
-import { getLocaleFromContext, useLocale, useRouter } from '~/i18n/navigation'
-import { setRequestLocale } from '~/utils/client'
+import { getLocaleFromContext, useRouter } from '~/i18n/navigation'
+import { useLocaleFromContext } from '~/provider/locale-context'
 import { isEqualObject, omit } from '~/utils/_'
 import { imagesRecord2Map } from '~/utils/images'
 import { getSummaryFromMd } from '~/utils/markdown'
@@ -159,7 +159,7 @@ const useUpdateNote = (note: ModelWithDeleted<NoteModel>) => {
   }, [note.title, note.text, note.modified, note.weather, noteHide, note?.isDeleted, note.topicId, note.id, note.publicAt, event])
 }
 
-const NoteView: React.FC<{ id: string }> = memo((props) => {
+const NoteView: React.FC<{ id: string; locale?: string }> = memo((props) => {
   const t = useTranslations('note')
   const note = useNoteCollection(
     (state) => state.get(props.id) || (noop as NoteModel),
@@ -277,7 +277,7 @@ const NoteView: React.FC<{ id: string }> = memo((props) => {
                 这是一篇非公开的文章。(将在 {dateFormat} 解锁)
               </Banner>
             )}
-            <XLogSummaryForNote id={props.id} />
+            <XLogSummaryForNote id={props.id} locale={props.locale} />
 
             <BanCopy>
               <article>
@@ -329,7 +329,7 @@ NoteView.displayName = 'NoteView'
 const PP: NextPage<NoteModel | { needPassword: true; id: number }> = (props) => {
   const t = useTranslations('note')
   const router = useRouter()
-  const locale = useLocale()
+  const locale = useLocaleFromContext()
   const prevLocale = useRef(locale)
   const noteId = useNoteCollection((state) => state.get(props.id)?.id)
 
@@ -370,7 +370,7 @@ const PP: NextPage<NoteModel | { needPassword: true; id: number }> = (props) => 
       }
       return <NotePasswordConfrim onSubmit={fetchData} />
     } else {
-      return <NoteView id={noteId} />
+      return <NoteView id={noteId} locale={locale} />
     }
   }
 
@@ -380,11 +380,10 @@ const PP: NextPage<NoteModel | { needPassword: true; id: number }> = (props) => 
     return <Loading />
   }
 
-  return <NoteView id={props.id} />
+  return <NoteView id={props.id} locale={locale} />
 }
 
 PP.getInitialProps = async (ctx) => {
-  setRequestLocale(getLocaleFromContext(ctx))
   const id = ctx.query.id as string
   const password = ctx.query.password as string
   const locale = getLocaleFromContext(ctx)

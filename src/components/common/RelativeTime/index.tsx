@@ -4,7 +4,7 @@ import 'dayjs/locale/zh-cn'
 import type { FC } from 'react'
 import { useEffect, useState } from 'react'
 
-import { useLocale } from '~/i18n/navigation'
+import { useLocaleFromContext } from '~/provider/locale-context'
 import { relativeTimeFromNow } from '~/utils/time'
 
 const dayjsLocaleMap = { zh: 'zh-cn', en: 'en', ja: 'ja' } as const
@@ -13,7 +13,7 @@ export const RelativeTime: FC<{
   date: string | Date
   displayAbsoluteTimeAfterDay?: number
 }> = (props) => {
-  const locale = useLocale()
+  const locale = useLocaleFromContext()
   const [relative, setRelative] = useState<string>(
     relativeTimeFromNow(props.date),
   )

@@ -4,7 +4,7 @@ import 'dayjs/locale/zh-cn'
 import type { FC } from 'react'
 import { useTranslations } from 'next-intl'
 
-import { useLocale } from '~/i18n/navigation'
+import { useLocaleFromContext } from '~/provider/locale-context'
 import { useMasterName } from '~/atoms/user'
 import { Divider } from '~/components/ui/Divider'
 
@@ -21,7 +21,7 @@ export interface CopyrightProps {
 export const Copyright: FC<CopyrightProps> = (props) => {
   const { title, link, date } = props
   const t = useTranslations('copyright')
-  const locale = useLocale()
+  const locale = useLocaleFromContext()
   const name = useMasterName()
   const dateLocale = dayjsLocaleMap[locale] ?? 'en'
   const formattedDate = date

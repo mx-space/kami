@@ -2,7 +2,6 @@ import type { NextPage } from 'next'
 import { useEffect } from 'react'
 
 import { getLocaleFromContext, useRouter } from '~/i18n/navigation'
-import { setRequestLocale } from '~/utils/client'
 
 const RedirectView: NextPage = () => {
   const router = useRouter()
@@ -14,7 +13,6 @@ const RedirectView: NextPage = () => {
 }
 
 RedirectView.getInitialProps = async (ctx) => {
-  setRequestLocale(getLocaleFromContext(ctx))
   const { res } = ctx
   if (!res) {
     return {}
