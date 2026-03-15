@@ -32,7 +32,7 @@ Live Demo:
 - <https://dev.innei.ren>
 - <https://www.timochan.cn/>
 - <https://www.suemor.com/>
-- <https://www.miaoer.xyz/>
+- <https://www.miaoer.net/>
 
 点击下面按钮，立即部署到 Vercel！
 
