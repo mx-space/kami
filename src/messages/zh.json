@@ -205,7 +205,8 @@
   },
   "login": {
     "title": "登录",
-    "success": "登录成功"
+    "success": "登录成功",
+    "fail": "登录失败，请重试"
   },
   "preview": {
     "mode": "正在处于预览模式",

@@ -20,21 +20,27 @@ export const useCheckLogged = () => {
       return requestAnimationFrame(() => {
         const token = getToken()
         if (token) {
-          ;(apiClient as any).user
+          const showWelcomeBack = () => {
+            const name = useUserStore.getState().master?.name
+            if (name) {
+              message.success(`欢迎回来，${name}`, 1500)
+            }
+          }
+          apiClient.owner
             .checkTokenValid(token)
             .then(({ ok }) => {
               if (ok) {
-                // refresh token
-                ;(apiClient as any).user.proxy.login
-                  .put()
-                  .then((res: { token: string }) => {
-                    userStore.setToken(res.token)
-                    message.success(
-                      `欢迎回来，${useUserStore.getState().master!.name}`,
-                      1500,
-                    )
-                    setToken(res.token)
+                apiClient.owner
+                  .getSession()
+                  .then((session) => {
+                    const newToken = session?.session?.token
+                    if (newToken) {
+                      userStore.setToken(newToken)
+                      setToken(newToken)
+                    }
+                    showWelcomeBack()
                   })
+                  .catch(showWelcomeBack)
               } else {
                 removeToken()
                 message.warn('登录身份过期了，再登录一下吧！', 2000)

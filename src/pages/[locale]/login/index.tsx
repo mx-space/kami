@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import type { UserModel } from '@mx-space/api-client'
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { message } from 'react-message-popup'
@@ -14,6 +15,14 @@ import { setToken } from '~/utils/cookie'
 
 import styles from './index.module.css'
 
+/** v2 sign-in returns `{ token, user }`; some gateways may nest under `data`. */
+function tokenFromSignIn(res: { token?: string; data?: { token?: string } }) {
+  if (res?.token) return res.token
+  const inner = res?.data
+  if (inner && typeof inner.token === 'string') return inner.token
+  return undefined
+}
+
 const LoginView: NextPage = () => {
   const t = useTranslations('login')
   const [username, setUsername] = useState('')
@@ -21,9 +30,16 @@ const LoginView: NextPage = () => {
   const router = useRouter()
 
   const handleLogin = async () => {
-    const data = await (apiClient as any).user.login(username, password)
+    const res = await apiClient.owner.login(username, password, {
+      rememberMe: true,
+    })
+    const token = tokenFromSignIn(res as { token?: string; data?: { token?: string } })
+    if (!token) {
+      message.error(t('fail'))
+      return
+    }
 
-    setToken(data.token)
+    setToken(token)
     if (history.backPath && history.backPath.length) {
       router.push(history.backPath.pop()!)
     } else {
@@ -31,7 +47,13 @@ const LoginView: NextPage = () => {
     }
     message.success(t('success'))
 
-    useUserStore.getState().setToken(data.token)
+    useUserStore.getState().setToken(token)
+    try {
+      const owner = await apiClient.owner.getOwnerInfo()
+      useUserStore.getState().setUser(owner as UserModel)
+    } catch {
+      /* profile fetch is best-effort */
+    }
     releaseDevtool()
   }
 
