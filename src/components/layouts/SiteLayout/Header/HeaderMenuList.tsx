@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import { useRouter } from '~/i18n/navigation'
+import { getPathnameWithoutLocale, useRouter } from '~/i18n/navigation'
 import React, { memo, useEffect, useMemo, useRef, useState } from 'react'
 
 import { useKamiConfig } from '~/hooks/app/use-initial-data'
@@ -13,21 +13,25 @@ export const MenuList: FC = memo(() => {
   const router = useRouter()
   const kamiConfig = useKamiConfig()
   const ballIndex = useMemo(() => {
-    const asPath = router.asPath
+    const pathForMatch = getPathnameWithoutLocale(
+      router.asPath.split('?')[0] ?? '/',
+    )
     const menu = kamiConfig.site.header.menu
 
-    if (asPath === '' || asPath === '/') {
+    if (pathForMatch === '' || pathForMatch === '/') {
       const idx = menu.findIndex((item) => item.type == 'Home')
 
       return ~idx ? idx : -1
     }
-    const firstPath = asPath.split('/')[1]
+    const firstPath = pathForMatch.split('/').filter(Boolean)[0]
 
     const inMenuIndex = menu.findIndex(
       (item) =>
         item.path != '/' &&
-        (asPath.startsWith(item.path) ||
-          item.subMenu?.find((subItem) => asPath.startsWith(subItem.path))),
+        (pathForMatch.startsWith(item.path) ||
+          item.subMenu?.find((subItem) =>
+            pathForMatch.startsWith(subItem.path),
+          )),
     )
 
     if (inMenuIndex > -1) {

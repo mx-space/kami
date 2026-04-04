@@ -1,11 +1,18 @@
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
-import { defaultLocale, locales } from '~/i18n/config'
+import {
+  allLocalesSet,
+  defaultLocale,
+  enabledLocaleSet,
+  enabledLocales,
+} from '~/i18n/config'
 
-const localePrefixRegex = new RegExp(
-  `^/(${(locales as readonly string[]).join('|')})(/|$)`,
-)
+const prefixedLocales = enabledLocales.filter((l) => l !== defaultLocale)
+const localePrefixRegex =
+  prefixedLocales.length > 0
+    ? new RegExp(`^/(${prefixedLocales.join('|')})(/|$)`)
+    : /$^/
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
@@ -20,6 +27,21 @@ export function middleware(request: NextRequest) {
 
   const varyHeader = 'Accept-Language'
 
+  const segments = pathname.split('/').filter(Boolean)
+  const first = segments[0]
+  if (
+    first &&
+    allLocalesSet.has(first) &&
+    !enabledLocaleSet.has(first)
+  ) {
+    const rest = segments.slice(1).join('/')
+    const redirectUrl = request.nextUrl.clone()
+    redirectUrl.pathname = rest ? `/${rest}` : '/'
+    const res = NextResponse.redirect(redirectUrl)
+    res.headers.set('Vary', varyHeader)
+    return res
+  }
+
   // Default locale (zh) must not appear in URL: redirect /zh and /zh/... to / and /...
   if (pathname === '/zh' || pathname.startsWith('/zh/')) {
     const pathWithoutZh = pathname === '/zh' ? '/' : pathname.slice(4)
@@ -30,7 +52,7 @@ export function middleware(request: NextRequest) {
     return res
   }
 
-  // Already has /en or /ja prefix: pass through
+  // Already has enabled non-default locale prefix: pass through
   if (localePrefixRegex.test(pathname)) {
     return NextResponse.next()
   }

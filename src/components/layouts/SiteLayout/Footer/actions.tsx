@@ -24,8 +24,8 @@ import {
   useDetectPadOrMobile,
   useIsOverFirstScreenHeight,
 } from '~/hooks/ui/use-viewport'
-import { locales } from '~/i18n/config'
 import type { Locale } from '~/i18n/config'
+import { enabledLocales } from '~/i18n/config'
 import { useLocale, usePathname, useRouter } from '~/i18n/navigation'
 import { springScrollToTop } from '~/utils/spring'
 
@@ -122,7 +122,7 @@ const LocaleSwitcherFAB: FC = () => {
 
   const languages = useMemo(
     () =>
-      locales.map((l) => ({
+      enabledLocales.map((l) => ({
         code: l,
         label: localeLabels[l],
       })),
