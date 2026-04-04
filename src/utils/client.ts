@@ -7,7 +7,7 @@ import { getToken } from './cookie'
 import { isClientSide } from './env'
 import { API_URL } from '~/constants/env'
 
-// Importing this way as subpath has no type declarations
+// Importing this way as subpath has no type declarations under current moduleResolution.
 // @ts-expect-error: no type declarations for this subpath
 import * as axiosAdaptorImport from '@mx-space/api-client/dist/adaptors/axios'
 const axiosAdaptor = axiosAdaptorImport.axiosAdaptor as typeof axiosAdaptorImport.axiosAdaptor & {

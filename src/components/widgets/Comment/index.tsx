@@ -84,7 +84,7 @@ const CommentWrap: FC<CommentWrapProps> = (props) => {
             data: { ...model },
           })
         } else {
-          await apiClient.comment.comment(id, model)
+          await apiClient.comment.guestComment(id, model)
         }
         requestAnimationFrame(() => {
           success()

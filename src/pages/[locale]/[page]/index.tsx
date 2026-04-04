@@ -78,7 +78,7 @@ const PageView: PageOnlyProps = (props) => {
             type: 'article'
           }>({ type: 'article' }).current
         }
-        description={RemoveMarkdown(text).slice(0, 100).replace('\n', '')}
+        description={RemoveMarkdown(text || '').slice(0, 100).replace('\n', '')}
       />
       <ImageSizeMetaContext.Provider
         value={useMemo(

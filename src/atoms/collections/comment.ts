@@ -1,6 +1,6 @@
 import { immerable } from 'immer'
 
-import type { CommentModel, PaginateResult } from '@mx-space/api-client'
+import type { CommentModel, CommentThreadItem, PaginateResult } from '@mx-space/api-client'
 
 import { apiClient } from '~/utils/client'
 
@@ -8,15 +8,15 @@ import { createCollection } from './utils/base'
 
 interface CommentCollection {
   currentRefId: string
-  comments: CommentModel[]
+  comments: CommentModelWithHighlight[]
   setHighlightCommnet(id: string, highlight?: boolean): void
   fetchComment(
     refId: string,
     page?: number,
     size?: number,
-  ): Promise<PaginateResult<CommentModel>>
+  ): Promise<Awaited<ReturnType<typeof apiClient.comment.getByRefId>>>
   currentFetchPage: number | undefined
-  updateComment(comment: CommentModel): void
+  updateComment(comment: CommentModelWithHighlight): void
   addComment(comment: CommentModel): void
   unPinComment(id: string): void
   pinComment(id: string): void
@@ -25,23 +25,24 @@ interface CommentCollection {
 }
 
 const createState = () => {
-  const data = new Map<string, CommentModel>()
+  const data = new Map<string, CommentModelWithHighlight>()
   data[immerable] = true
 
   const commentInitialState = {
     data,
     currentRefId: '',
-    comments: [],
+    comments: [] as CommentModelWithHighlight[],
     currentFetchPage: 1,
   }
   return commentInitialState
 }
 export type CommentModelWithHighlight = CommentModel & {
+  children: CommentModelWithHighlight[]
   highlight?: boolean
   isDeleted?: boolean
 }
 export const useCommentCollection = createCollection<
-  CommentModel & { highlight?: boolean },
+  CommentModelWithHighlight,
   CommentCollection
 >('comment', (setState, getState) => {
   return {
@@ -69,7 +70,7 @@ export const useCommentCollection = createCollection<
         state.currentRefId = refId
         state.currentFetchPage = page
         state.data.clear()
-        state.comments = [...data.data]
+        state.comments = data.data.map((item) => normalizeThreadComment(item))
 
         const flatAllComments = walkComments(state.comments)
 
@@ -102,34 +103,34 @@ export const useCommentCollection = createCollection<
 
     addComment(comment) {
       if (!comment) return
+      const normalizedComment: CommentModelWithHighlight = {
+        ...comment,
+        children: [],
+      }
 
       const refId =
-        typeof comment.ref === 'string' ? comment.ref : (comment.ref as any).id
+        typeof normalizedComment.ref === 'string'
+          ? normalizedComment.ref
+          : (normalizedComment.ref as any).id
 
       if (refId !== getState().currentRefId) {
         return
       }
 
       const state = getState()
+      const parentCommentId = normalizedComment.parentCommentId
 
       const isSubComment =
-        comment.parent &&
-        ((typeof comment.parent === 'string' &&
-          state.data.has(comment.parent)) ||
-          state.data.has((comment.parent as CommentModel)?.id))
+        !!parentCommentId && state.data.has(parentCommentId)
       if (isSubComment) {
         setState((state) => {
-          state.data.set(comment.id, comment)
-          const parentComment = state.data.get(
-            typeof comment.parent === 'string'
-              ? comment.parent
-              : comment.parent?.id || '',
-          )
+          state.data.set(normalizedComment.id, normalizedComment)
+          const parentComment = state.data.get(parentCommentId!)
 
           state.data = new Map(state.data)
 
           if (parentComment) {
-            parentComment.children.push(comment)
+            parentComment.children.push(normalizedComment)
 
             state.updateComment(parentComment)
           }
@@ -139,22 +140,26 @@ export const useCommentCollection = createCollection<
           const hasPinComment = state.comments.findIndex(
             (comment) => comment.pin,
           )
-          let nextComments: CommentModel[] = state.comments.concat()
+          let nextComments: CommentModelWithHighlight[] = state.comments.concat()
           if (-~hasPinComment) {
-            nextComments = [nextComments[0], comment, ...nextComments.slice(1)]
+            nextComments = [
+              nextComments[0],
+              normalizedComment,
+              ...nextComments.slice(1),
+            ]
           } else {
-            nextComments = [comment, ...nextComments]
+            nextComments = [normalizedComment, ...nextComments]
           }
 
           state.comments = nextComments
-          state.data.set(comment.id, comment)
-          walkComments(comment.children).forEach((child) => {
+          state.data.set(normalizedComment.id, normalizedComment)
+          walkComments(normalizedComment.children).forEach((child) => {
             state.data.set(child.id, child)
           })
         })
       }
 
-      return comment
+      return normalizedComment
     },
 
     unPinComment(id) {
@@ -211,18 +216,29 @@ export const useCommentCollection = createCollection<
   }
 })
 
-function walkComments(comments: CommentModel[]): CommentModel[] {
-  const allComments = [] as CommentModel[]
+function normalizeThreadComment(item: CommentThreadItem): CommentModelWithHighlight {
+  return {
+    ...item,
+    children: (item.replies || []).map((reply) => ({
+      ...reply,
+      children: [],
+      parentCommentId: reply.parentCommentId ?? item.id,
+    })),
+  }
+}
 
-  const walkChild = (comment: CommentModel): CommentModel[] => {
-    const allComments = [] as CommentModel[]
+function walkComments(comments: CommentModelWithHighlight[]): CommentModelWithHighlight[] {
+  const allComments = [] as CommentModelWithHighlight[]
+
+  const walkChild = (comment: CommentModelWithHighlight): CommentModelWithHighlight[] => {
+    const allComments = [] as CommentModelWithHighlight[]
     if (!comment.id) return []
-    if (comment.children.length) {
+    if (comment.children?.length) {
       // @ts-ignore
-      return comment.children.reduce((arr: CommentModel[], child) => {
+      return comment.children.reduce((arr: CommentModelWithHighlight[], child) => {
         if (!child.id) return arr
         return [...arr, child, ...walkChild(child)]
-      }, allComments) as CommentModel[]
+      }, allComments) as CommentModelWithHighlight[]
     }
 
     return allComments

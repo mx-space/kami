@@ -46,14 +46,11 @@ export const SearchPanel: FC<SearchPanelProps> = (props) => {
         return
       }
       return $axios
-        .get<Awaited<ReturnType<typeof apiClient.search.searchByAlgolia>>>(
-          apiClient.search.proxy('algolia').toString(true),
-          {
-            params: {
-              keyword,
-            },
+        .get(apiClient.search.proxy('algolia').toString(true), {
+          params: {
+            keyword,
           },
-        )
+        })
         .then((data) => data.data)
     },
     {

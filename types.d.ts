@@ -49,16 +49,17 @@ declare module '@mx-space/api-client' {
     xLog?: XLogMeta
     music?: string
   }
-  interface TextBaseModel extends BaseCommentIndexModel {
-    meta?: PostMeta
-  }
-
   interface AggregateTopNote {
     meta?: PostMeta
   }
 
   interface AggregateTopPost {
     meta?: PostMeta
+  }
+
+  interface AggregateRoot {
+    categories: CategoryModel[]
+    pageMeta: PageModel[]
   }
 }
 

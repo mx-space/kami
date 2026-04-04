@@ -139,7 +139,7 @@ export const PostBlock: FC<PostBlockProps> = (props) => {
 
           <p>
             {useMemo(() => {
-              const r = removeMd(text)
+              const r = removeMd(text || '')
               return r.length >= 250 ? `${r.slice(0, 250)}..` : r
             }, [text])}
           </p>

@@ -192,10 +192,11 @@ const NoteView: React.FC<{ id: string; locale?: string }> = memo((props) => {
     `手记${note.topic ? ` / ${note.topic.name}` : ''}`,
   )
   // Music is deprecated. Use custom meta instead.
-  useNoteMusic(note.meta?.music)
+  useNoteMusic((note as any).meta?.music)
   useJumpToSimpleMarkdownRender(note.id)
 
-  const { title, id, text } = note
+  const { title, id } = note
+  const text = note.text || ''
   const { description, wordCount } = getSummaryFromMd(text, {
     count: true,
     length: 150,
@@ -251,7 +252,7 @@ const NoteView: React.FC<{ id: string; locale?: string }> = memo((props) => {
       {createElement(Seo, {
         title,
         description,
-        image: note.meta?.cover || note.images?.[0]?.src,
+        image: (note as any).meta?.cover || note.images?.[0]?.src,
         canUseRandomImage: false,
 
         openGraph: {

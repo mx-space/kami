@@ -58,7 +58,7 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
                 const { title, images, text } = res.data
                 setCardInfo({
                   title,
-                  desc: `${RemoveMarkdown(text).slice(0, 50)}...`,
+                  desc: `${RemoveMarkdown(text || '').slice(0, 50)}...`,
                   // TODO
                   image: images?.[0]?.src || randomImage,
                 })
@@ -80,7 +80,7 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
                 const { title, images, text, summary } = res
                 setCardInfo({
                   title,
-                  desc: summary ?? `${RemoveMarkdown(text).slice(0, 50)}...`,
+                  desc: summary ?? `${RemoveMarkdown(text || '').slice(0, 50)}...`,
                   // TODO
                   image: images?.[0]?.src || getRandomImage(1)[0],
                 })

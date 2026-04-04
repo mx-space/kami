@@ -138,7 +138,7 @@ const Seo$: FC<{ id: string }> = ({ id }) => {
       'meta',
     ]),
   )
-  const description = summary ?? getSummaryFromMd(text).slice(0, 150)
+  const description = summary ?? getSummaryFromMd(text || '').slice(0, 150)
   return (
     <Seo
       title={title}
@@ -329,7 +329,7 @@ export const PostView: FC<IdProps & { locale?: string }> = (props) => {
         <ImageSizeMetaContext.Provider value={imagesMap}>
           <article>
             <h1 className="sr-only">{post.title}</h1>
-            <KamiMarkdown codeBlockFully value={post.text} toc />
+            <KamiMarkdown codeBlockFully value={post.text || ''} toc />
           </article>
         </ImageSizeMetaContext.Provider>
 
