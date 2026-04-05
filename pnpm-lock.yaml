@@ -118,8 +118,8 @@ importers:
         specifier: 2.2.4
         version: 2.2.4(react@18.2.0)
       validator:
-        specifier: 13.11.0
-        version: 13.11.0
+        specifier: 13.15.22
+        version: 13.15.22
       xss:
         specifier: 1.0.14
         version: 1.0.14
@@ -4408,8 +4408,8 @@ packages:
     engines: {node: '>=8'}
     hasBin: true
 
-  validator@13.11.0:
-    resolution: {integrity: sha512-Ii+sehpSfZy+At5nPdnyMhx78fEoPDkR2XW/zimHEL3MyGJQOCQ7WeP20jPYRz7ZCpcKLB21NxuXHF3bxjStBQ==}
+  validator@13.15.22:
+    resolution: {integrity: sha512-uT/YQjiyLJP7HSrv/dPZqK9L28xf8hsNca01HSz1dfmI0DgMfjopp1rO/z13NeGF1tVystF0Ejx3y4rUKPw+bQ==}
     engines: {node: '>= 0.10'}
 
   watchpack@2.4.0:
@@ -9396,7 +9396,7 @@ snapshots:
       kleur: 4.1.5
       sade: 1.8.1
 
-  validator@13.11.0: {}
+  validator@13.15.22: {}
 
   watchpack@2.4.0:
     dependencies:
