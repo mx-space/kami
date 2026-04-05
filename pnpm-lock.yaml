@@ -134,8 +134,8 @@ importers:
         specifier: 0.11.1
         version: 0.11.1(@trivago/prettier-plugin-sort-imports@4.2.1(prettier@3.0.3))
       '@next/bundle-analyzer':
-        specifier: 13.5.3
-        version: 13.5.3
+        specifier: 13.5.11
+        version: 13.5.11
       '@sentry/webpack-plugin':
         specifier: 2.8.0
         version: 2.8.0(webpack@5.88.2)
@@ -744,8 +744,8 @@ packages:
     resolution: {integrity: sha512-TfqM3UIAdxts8oGQXYcNNF9l4KpRUeEUARCidheYRCOU1FfJcJUwCuco9X1Ii1Dha3F3oJXMSKx0J/bZ5Aicag==}
     engines: {node: '>=22'}
 
-  '@next/bundle-analyzer@13.5.3':
-    resolution: {integrity: sha512-AUHl9hu/0SNo2TCu9awOGY5hJdQHTPThYbjKk3rmjL04GfYAotn5i5pFQGqe209mbCxtu+QnvMEHLXU4GdFi1Q==}
+  '@next/bundle-analyzer@13.5.11':
+    resolution: {integrity: sha512-LKlKp0JmANAsfaKHRfjbDmuVMNXAiC81f43TdUzEBEFob52yvdKcWcX/3nFAawtHYDL9sqwpbwwH6U/ztnzPKA==}
 
   '@next/env@13.5.3':
     resolution: {integrity: sha512-X4te86vsbjsB7iO4usY9jLPtZ827Mbx+WcwNBGUOIuswuTAKQtzsuoxc/6KLxCMvogKG795MhrR1LDhYgDvasg==}
@@ -5218,7 +5218,7 @@ snapshots:
 
   '@mx-space/api-client@2.0.0': {}
 
-  '@next/bundle-analyzer@13.5.3':
+  '@next/bundle-analyzer@13.5.11':
     dependencies:
       webpack-bundle-analyzer: 4.7.0
     transitivePeerDependencies:
@@ -9416,7 +9416,7 @@ snapshots:
 
   webpack-bundle-analyzer@4.7.0:
     dependencies:
-      acorn: 8.10.0
+      acorn: 8.15.0
       acorn-walk: 8.2.0
       chalk: 4.1.2
       commander: 7.2.0
