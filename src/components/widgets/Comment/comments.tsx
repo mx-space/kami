@@ -116,7 +116,7 @@ const SingleComment: FC<{ id: string }> = ({ id, children }) => {
             .reply(comment.id)
             .post({ data: model })
         } else {
-          data = await apiClient.comment.guestReply(comment.id, model)
+          data = await apiClient.comment.reply(comment.id, model)
         }
         success()
 
@@ -232,14 +232,14 @@ const SingleComment: FC<{ id: string }> = ({ id, children }) => {
       }
       content={
         <KamiMarkdown
-          value={`${
-            comment.parentCommentId
-              ? `@${
-                  commentIdMap.get(comment.parentCommentId)?.id ??
-                  ''
-                } `
+          value={`${(() => {
+            const parentRaw = comment.parent
+            const parentId =
+              typeof parentRaw === 'string' ? parentRaw : parentRaw?.id
+            return parentId
+              ? `@${commentIdMap.get(parentId)?.author ?? ''} `
               : ''
-          }${comment.text}`}
+          })()}${comment.text}`}
           forceBlock
           className={styles['comment']}
           disableParsingRawHTML
@@ -302,7 +302,7 @@ const SingleComment: FC<{ id: string }> = ({ id, children }) => {
         />
       )}
 
-      {logged && !comment.parentCommentId && (
+      {logged && !comment.parent && (
         <div
           className={clsx(
             'absolute right-3 top-5 opacity-30 transition-opacity duration-300 hover:opacity-100',

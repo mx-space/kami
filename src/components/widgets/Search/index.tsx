@@ -1,6 +1,5 @@
 import { clsx } from 'clsx'
 import { motion } from 'framer-motion'
-import throttle from 'lodash-es/throttle'
 import { Link } from '~/i18n/navigation'
 import type { FC, KeyboardEventHandler } from 'react'
 import { memo, useCallback, useEffect, useRef, useState } from 'react'
@@ -210,9 +209,7 @@ export const SearchPanel: FC<SearchPanelProps> = (props) => {
               return (
                 <li
                   key={item.id}
-                  onMouseOver={throttle(() => {
-                    setCurrentSelect(index)
-                  }, 40)}
+                  onMouseOver={() => setCurrentSelect(index)}
                 >
                   <Link
                     href={item.url}

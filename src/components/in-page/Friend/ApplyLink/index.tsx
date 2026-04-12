@@ -48,7 +48,7 @@ const useFormData = () => {
 export const ApplyForLink: FC = () => {
   const t = useTranslations('friend')
   const [state, dispatch] = useFormData()
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = useCallback(async () => {
     const { author, avatar, description: desc, email, url, name } = state
     if (!author) {
       message.error(t('authorRequired'))
@@ -75,9 +75,25 @@ export const ApplyForLink: FC = () => {
       return
     }
 
-    apiClient.link.applyLink({ ...state }).then(() => {
+    try {
+      await apiClient.link.applyLink({ ...state })
+      message.success(t('submitSuccess'))
       dispatch({ type: 'reset' })
-    })
+    } catch (error) {
+      const maybeAxiosError = error as {
+        response?: { data?: { message?: unknown } }
+        code?: string
+        name?: string
+      }
+      const hasHandledMessage =
+        !!maybeAxiosError.response?.data?.message ||
+        maybeAxiosError.code === 'ECONNABORTED' ||
+        maybeAxiosError.name === 'CanceledError'
+
+      if (!hasHandledMessage) {
+        message.error(t('submitFailed'))
+      }
+    }
   }, [state, t])
 
   const handleReset = useCallback(() => {
@@ -88,7 +104,10 @@ export const ApplyForLink: FC = () => {
       <h1>{t('title')}</h1>
       <form
         action="src/components/in-page/Friend/ApplyLink#"
-        onSubmit={handleSubmit}
+        onSubmit={(e) => {
+          e.preventDefault()
+          void handleSubmit()
+        }}
       >
         <Input
           placeholder={t('authorPlaceholder')}
@@ -157,7 +176,9 @@ export const ApplyForLink: FC = () => {
         <button
           type="submit"
           className="btn !bg-primary !text-white"
-          onClick={handleSubmit}
+          onClick={() => {
+            void handleSubmit()
+          }}
         >
           {t('send')}
         </button>

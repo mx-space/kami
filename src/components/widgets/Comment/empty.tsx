@@ -1,4 +1,5 @@
 import { clsx } from 'clsx'
+import { useTranslations } from 'next-intl'
 import type { FC } from 'react'
 import { memo } from 'react'
 
@@ -8,14 +9,15 @@ import { sample } from '~/utils/_'
 import styles from './index.module.css'
 
 export const Empty: FC = memo(() => {
+  const t = useTranslations('comment')
+  const emptyPhrases = t('emptyPhrases')
+    .split('|')
+    .map((s) => s.trim())
+    .filter(Boolean)
   return (
     <div className={clsx(styles['empty'], 'min-h-[400px]')}>
       <EmptyIcon />
-      {sample([
-        '这里空空如也...不如，说点什么？',
-        '看官，有什么想说的吗？',
-        '嘿，小可爱，说点什么呢？',
-      ])}
+      {sample(emptyPhrases) ?? t('emptyHint')}
     </div>
   )
 })

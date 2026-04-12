@@ -1,4 +1,5 @@
 import { clsx } from 'clsx'
+import { useTranslations } from 'next-intl'
 import type { DetailedHTMLProps, FC, HTMLAttributes } from 'react'
 import { memo, useCallback, useMemo } from 'react'
 
@@ -27,6 +28,7 @@ export const Comment: FC<
       'content'
     >
 > = memo((props) => {
+  const t = useTranslations('comment')
   const {
     actions,
     author,
@@ -77,7 +79,12 @@ export const Comment: FC<
                 {key}
               </span>
             </span>
-            {location && <span>来自：{location}</span>}
+            {location && (
+              <span>
+                {t('from')}
+                {location}
+              </span>
+            )}
             {whispers && <LaUserSecret />}
           </div>
           <div className="text-shizuku-text">{content}</div>
