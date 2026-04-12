@@ -20,7 +20,7 @@ importers:
         version: 2.0.2(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       '@formkit/auto-animate':
         specifier: 1.0.0-pre-alpha.3
-        version: 1.0.0-pre-alpha.3(react@18.2.0)
+        version: 1.0.0-pre-alpha.3(react@19.2.5)
       '@mx-space/api-client':
         specifier: 3.1.0
         version: 3.1.0
@@ -179,8 +179,8 @@ importers:
         specifier: 0.7.37
         version: 0.7.37
       '@types/validator':
-        specifier: 13.11.3
-        version: 13.11.3
+        specifier: 13.11.10
+        version: 13.11.10
       cross-env:
         specifier: 7.0.3
         version: 7.0.3
@@ -1873,8 +1873,8 @@ packages:
   '@types/ua-parser-js@0.7.37':
     resolution: {integrity: sha512-4sOxS3ZWXC0uHJLYcWAaLMxTvjRX3hT96eF4YWUh1ovTaenvibaZOE5uXtIp4mksKMLRwo7YDiCBCw6vBiUPVg==}
 
-  '@types/validator@13.11.3':
-    resolution: {integrity: sha512-jxjhh33aTYDHnrV1vZ3AvWQHfrGx2f5UxKjaP13l5q04fG+/hCKKm0MfodIoCqxevhbcfBb6ZjynyHuQ/jueGQ==}
+  '@types/validator@13.11.10':
+    resolution: {integrity: sha512-e2PNXoXLr6Z+dbfx5zSh9TRlXJrELycxiaXznp4S5+D2M3b9bqJEitNHA5923jhnB2zzFiZHa2f0SI1HoIahpg==}
 
   '@typescript-eslint/eslint-plugin@8.58.1':
     resolution: {integrity: sha512-eSkwoemjo76bdXl2MYqtxg51HNwUSkWfODUOQ3PaTLZGh9uIWWFZIjyjaJnex7wXDu+TRx+ATsnSxdN9YWfRTQ==}
@@ -5520,9 +5520,9 @@ snapshots:
     dependencies:
       '@formatjs/fast-memoize': 3.1.1
 
-  '@formkit/auto-animate@1.0.0-pre-alpha.3(react@18.2.0)':
+  '@formkit/auto-animate@1.0.0-pre-alpha.3(react@19.2.5)':
     optionalDependencies:
-      react: 18.2.0
+      react: 19.2.5
 
   '@humanfs/core@0.19.1': {}
 
@@ -6724,7 +6724,7 @@ snapshots:
 
   '@types/ua-parser-js@0.7.37': {}
 
-  '@types/validator@13.11.3': {}
+  '@types/validator@13.11.10': {}
 
   '@typescript-eslint/eslint-plugin@8.58.1(@typescript-eslint/parser@8.58.1(eslint@8.57.1)(typescript@5.2.2))(eslint@8.57.1)(typescript@5.2.2)':
     dependencies:
