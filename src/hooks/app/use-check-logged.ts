@@ -1,3 +1,4 @@
+import type { AxiosError } from 'axios'
 import { message } from 'react-message-popup'
 
 import { useUserStore } from '~/atoms/user'
@@ -20,36 +21,51 @@ export const useCheckLogged = () => {
       return requestAnimationFrame(() => {
         const token = getToken()
         if (token) {
+          const clearLoginState = () => {
+            removeToken()
+            userStore.setToken()
+            message.warn('登录身份过期了，再登录一下吧！', 2000)
+          }
+
           const showWelcomeBack = () => {
             const name = useUserStore.getState().master?.name
             if (name) {
               message.success(`欢迎回来，${name}`, 1500)
             }
           }
-          apiClient.owner
-            .checkTokenValid(token)
-            .then(({ ok }) => {
-              if (ok) {
+
+          const applySession = (session: Awaited<ReturnType<typeof apiClient.owner.getSession>>) => {
+            const newToken = session?.session?.token
+            if (newToken) {
+              userStore.setToken(newToken)
+              setToken(newToken)
+              showWelcomeBack()
+            } else {
+              clearLoginState()
+            }
+          }
+
+          const handleSessionError = (error: unknown, retried = false) => {
+            const status = (error as AxiosError | undefined)?.response?.status
+            if (status === 401 || status === 403) {
+              clearLoginState()
+              return
+            }
+
+            if (!retried) {
+              window.setTimeout(() => {
                 apiClient.owner
                   .getSession()
-                  .then((session) => {
-                    const newToken = session?.session?.token
-                    if (newToken) {
-                      userStore.setToken(newToken)
-                      setToken(newToken)
-                    }
-                    showWelcomeBack()
-                  })
-                  .catch(showWelcomeBack)
-              } else {
-                removeToken()
-                message.warn('登录身份过期了，再登录一下吧！', 2000)
-              }
-            })
-            .catch(() => {
-              removeToken()
-              message.warn('登录身份过期了，再登录一下吧！', 2000)
-            })
+                  .then(applySession)
+                  .catch((retryError) => handleSessionError(retryError, true))
+              }, 600)
+              return
+            }
+
+            console.warn('Session check skipped due to temporary error:', error)
+          }
+
+          apiClient.owner.getSession().then(applySession).catch(handleSessionError)
         } else {
           if (banDevtoolEnable) {
             devtoolForbidden()

@@ -1,10 +1,10 @@
+import type { AxiosError } from 'axios'
 import { create } from 'zustand'
 
 import { apiClient } from '~/utils/client'
+import { removeToken } from '~/utils/cookie'
 
 import { useUserStore } from './user'
-
-// import './dev'
 
 export interface ViewportRecord {
   w: number
@@ -108,11 +108,22 @@ export const useAppStore = create<AppState & AppAction>(
         if (!isLogged) {
           return
         }
-        const { data } = await apiClient.proxy.options.url.get<{
-          data: UrlConfig
-        }>()
+        try {
+          const { data } = await apiClient.proxy.options.url.get<{
+            data: UrlConfig
+          }>()
+          setState({ appUrl: data })
+        } catch (error) {
+          const status = (error as AxiosError | undefined)?.response?.status
+          if (status === 401 || status === 403) {
+            removeToken()
+            useUserStore.getState().setToken()
+            setState({ appUrl: null })
+            return
+          }
 
-        setState({ appUrl: data })
+          console.error('Fetch app url config failed:', error)
+        }
       },
     }
   },

@@ -71,7 +71,6 @@ export const useAnalyze = () => {
     (options: TrackerOptions) => {
       const { action, label, category = label, value } = options
       if (isDev || useUserStore.getState().isLogged) {
-        console.log('event', options)
         return
       }
       if (!GA_TRACKING_ID || !isEnableGA) {
@@ -87,7 +86,7 @@ export const useAnalyze = () => {
 
         window._hmt?.push(['_trackEvent', category || 'event', action, label])
       } catch (err) {
-        console.log(err)
+        if (isDev) console.error(err)
       }
     },
     [GA_TRACKING_ID, isEnableGA],

@@ -4,19 +4,22 @@ import { message } from 'react-message-popup'
 import type { ModelWithLiked, NoteModel } from '@mx-space/api-client'
 
 import type { FetchOption } from '~/atoms/types'
+import type { WithMeta } from '~/types/api-client'
 import { apiClient } from '~/utils/client'
 import { isLikedBefore, setLikeId } from '~/utils/cookie'
 
 import { createCollection } from './utils/base'
 
+type NoteModelWithId = WithMeta<NoteModel> & { id: string; [key: string]: any }
+
 interface NoteCollection {
   relationMap: Map<
     string,
-    [Partial<NoteModel> | undefined, Partial<NoteModel> | undefined]
+    [Partial<NoteModelWithId> | undefined, Partial<NoteModelWithId> | undefined]
   >
   nidToIdMap: Map<number, string>
   likeIdList: Set<string>
-  get(id: string | number): NoteModel | undefined
+  get(id: string | number): NoteModelWithId | undefined
   like(
     id: number,
     messages?: { alreadyLiked: string; thanksLike: string },
@@ -27,20 +30,20 @@ interface NoteCollection {
     password?: string,
     options?: FetchOption,
   ): Promise<
-    NoteModel & {
+    NoteModelWithId & {
       isDeleted?: boolean | undefined
     }
   >
-  fetchLatest(): Promise<ModelWithLiked<NoteModel>>
+  fetchLatest(): Promise<ModelWithLiked<NoteModelWithId>>
   bookmark(id: string): Promise<void>
 }
 
-export const useNoteCollection = createCollection<NoteModel, NoteCollection>(
+export const useNoteCollection = createCollection<NoteModelWithId, NoteCollection>(
   'note',
   (setState, getState) => {
     const relationMap = new Map<
       string,
-      [Partial<NoteModel> | undefined, Partial<NoteModel> | undefined]
+      [Partial<NoteModelWithId> | undefined, Partial<NoteModelWithId> | undefined]
     >()
     const nidToIdMap = new Map<number, string>()
     const likeIdList = new Set<string>()
@@ -158,7 +161,7 @@ export const useNoteCollection = createCollection<NoteModel, NoteCollection>(
                 id as number,
                 password as string,
               )
-        const noteData = data.data
+        const noteData = data.data as NoteModelWithId
         state.add(noteData)
         setState((state) => {
           state.nidToIdMap.set(noteData.nid, noteData.id)
@@ -169,13 +172,14 @@ export const useNoteCollection = createCollection<NoteModel, NoteCollection>(
       },
       async fetchLatest() {
         const data = await apiClient.note.getLatest()
-        getState().add(data.data)
+        const noteData = data.data as ModelWithLiked<NoteModelWithId>
+        getState().add(noteData)
         setState((state) => {
-          state.nidToIdMap.set(data.data.nid, data.data.id)
-          state.relationMap.set(data.data.id, [data.prev, data.next])
+          state.nidToIdMap.set(noteData.nid, noteData.id)
+          state.relationMap.set(noteData.id, [data.prev, data.next])
         })
 
-        return data.data
+        return noteData
       },
       async bookmark(id: string) {
         const note = getState().get(id)

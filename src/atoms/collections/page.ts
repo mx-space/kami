@@ -1,19 +1,22 @@
 import type { PageModel } from '@mx-space/api-client'
 
 import type { FetchOption } from '~/atoms/types'
+import type { WithMeta } from '~/types/api-client'
 import { apiClient } from '~/utils/client'
 
 import type { ModelWithDeleted } from './utils/base'
 import { createCollection } from './utils/base'
+
+type PageModelWithMeta = WithMeta<PageModel>
 
 interface IPageCollection {
   slugToIdMap: Map<string, string>
   fetchBySlug(
     slug: string,
     options?: FetchOption,
-  ): Promise<ModelWithDeleted<PageModel>>
+  ): Promise<ModelWithDeleted<PageModelWithMeta>>
 }
-export const usePageCollection = createCollection<PageModel, IPageCollection>(
+export const usePageCollection = createCollection<PageModelWithMeta, IPageCollection>(
   'page',
   (setState, getState) => {
     return {

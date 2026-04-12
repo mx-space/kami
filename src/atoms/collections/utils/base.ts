@@ -19,9 +19,7 @@ interface BaseStore<T extends object, TT = ModelWithDeleted<T>> {
 export type ModelWithDeleted<T> = { isDeleted?: boolean } & T
 
 type Setter<
-  T extends {
-    id: Id
-  },
+  T extends object,
   A extends object,
 > = (
   partial:
@@ -31,7 +29,7 @@ type Setter<
 ) => any
 
 // TODO ssr hydrate
-export const createCollection = <T extends { id: Id }, A extends object>(
+export const createCollection = <T extends object, A extends object>(
   name: string,
   actions?: A | ((set: Setter<T, A>, get: () => BaseStore<T> & A) => A),
 ) => {
@@ -39,7 +37,6 @@ export const createCollection = <T extends { id: Id }, A extends object>(
   data[immerable] = true
 
   return create(
-    // persist(
     immer(
       // @ts-ignore
       subscribeWithSelector<BaseStore<T> & A>((set: Setter<T, A>, get) => ({
@@ -83,7 +80,7 @@ export const createCollection = <T extends { id: Id }, A extends object>(
             add(id, data)
           } else {
             const data = args[0]
-            add(data.id, data)
+            add((data as any).id, data)
           }
         },
         addOrPatch(data: T | T[]) {
@@ -96,12 +93,13 @@ export const createCollection = <T extends { id: Id }, A extends object>(
           }
           set((state) => {
             const collection = state.data
-            if (collection.has(data.id)) {
-              const exist = collection.get(data.id)
+            const itemId = (data as any).id
+            if (collection.has(itemId)) {
+              const exist = collection.get(itemId)
 
-              collection.set(data.id, { ...exist, ...data })
+              collection.set(itemId, { ...exist, ...data })
             } else {
-              collection.set(data.id, data)
+              collection.set(itemId, data)
             }
           })
         },
@@ -112,26 +110,5 @@ export const createCollection = <T extends { id: Id }, A extends object>(
         },
       })),
     ),
-    // {
-    //   name,
-    // storage: {}
-    // serialize: (data) => {
-    //   return JSON.stringify({
-    //     ...data,
-    //     state: {
-    //       ...data.state,
-    //       data: Array.from(data.state.data as Set<unknown>),
-    //     },
-    //   })
-    // },
-    // deserialize: (value) => {
-    //   const data = JSON.parse(value)
-
-    //   data.state.data = new Map(Object.entries(data.state.data))
-
-    //   return data
-    // },
-    // },
-    // ),
   )
 }

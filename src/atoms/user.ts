@@ -28,7 +28,7 @@ export const useUserStore = create<UserState & UserAction>(
 
       setToken(token) {
         if (!token) {
-          setState({ token: null })
+          setState({ token: null, isLogged: false })
           return
         }
         setState({ token, isLogged: true })

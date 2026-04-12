@@ -1,6 +1,6 @@
 import { immerable } from 'immer'
 
-import type { CommentModel, CommentThreadItem, PaginateResult } from '@mx-space/api-client'
+import type { CommentModel } from '@mx-space/api-client'
 
 import { apiClient } from '~/utils/client'
 
@@ -40,6 +40,11 @@ export type CommentModelWithHighlight = CommentModel & {
   children: CommentModelWithHighlight[]
   highlight?: boolean
   isDeleted?: boolean
+}
+
+type CommentModelWithReplies = CommentModel & {
+  children?: CommentModel[]
+  replies?: CommentModel[]
 }
 export const useCommentCollection = createCollection<
   CommentModelWithHighlight,
@@ -103,10 +108,7 @@ export const useCommentCollection = createCollection<
 
     addComment(comment) {
       if (!comment) return
-      const normalizedComment: CommentModelWithHighlight = {
-        ...comment,
-        children: [],
-      }
+      const normalizedComment = normalizeThreadComment(comment)
 
       const refId =
         typeof normalizedComment.ref === 'string'
@@ -118,14 +120,15 @@ export const useCommentCollection = createCollection<
       }
 
       const state = getState()
-      const parentCommentId = normalizedComment.parentCommentId
+      const parentRaw = (normalizedComment as any).parent
+      const parentId =
+        typeof parentRaw === 'string' ? parentRaw : parentRaw?.id
 
-      const isSubComment =
-        !!parentCommentId && state.data.has(parentCommentId)
+      const isSubComment = !!parentId && state.data.has(parentId)
       if (isSubComment) {
         setState((state) => {
           state.data.set(normalizedComment.id, normalizedComment)
-          const parentComment = state.data.get(parentCommentId!)
+          const parentComment = state.data.get(parentId!)
 
           state.data = new Map(state.data)
 
@@ -216,15 +219,17 @@ export const useCommentCollection = createCollection<
   }
 })
 
-function normalizeThreadComment(item: CommentThreadItem): CommentModelWithHighlight {
+function normalizeThreadComment(item: CommentModel): CommentModelWithHighlight {
+  const threadChildren = getThreadChildren(item)
   return {
     ...item,
-    children: (item.replies || []).map((reply) => ({
-      ...reply,
-      children: [],
-      parentCommentId: reply.parentCommentId ?? item.id,
-    })),
+    children: threadChildren.map((reply) => normalizeThreadComment(reply)),
   }
+}
+
+function getThreadChildren(item: CommentModel): CommentModel[] {
+  const comment = item as CommentModelWithReplies
+  return comment.children ?? comment.replies ?? []
 }
 
 function walkComments(comments: CommentModelWithHighlight[]): CommentModelWithHighlight[] {
