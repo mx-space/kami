@@ -19,8 +19,8 @@ importers:
         specifier: 2.0.2
         version: 2.0.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@formkit/auto-animate':
-        specifier: 1.0.0-beta.6
-        version: 1.0.0-beta.6
+        specifier: 1.0.0-pre-alpha.3
+        version: 1.0.0-pre-alpha.3(react@18.2.0)
       '@mx-space/api-client':
         specifier: 3.1.0
         version: 3.1.0
@@ -684,8 +684,16 @@ packages:
   '@formatjs/intl-localematcher@0.8.2':
     resolution: {integrity: sha512-q05KMYGJLyqFNFtIb8NhWLF5X3aK/k0wYt7dnRFuy6aLQL+vUwQ1cg5cO4qawEiINybeCPXAWlprY2mSBjSXAQ==}
 
-  '@formkit/auto-animate@1.0.0-beta.6':
-    resolution: {integrity: sha512-PVDhLAlr+B4Xb7e+1wozBUWmXa6BFU8xUPR/W/E+TsQhPS1qkAdAsJ25keEnFrcePSnXHrOsh3tiFbEToOzV9w==}
+  '@formkit/auto-animate@1.0.0-pre-alpha.3':
+    resolution: {integrity: sha512-lMVZ3LFUIu0RIxCEwmV8nUUJQ46M2bv2NDU3hrhZivViuR1EheC8Mj5sx/ACqK5QLK8XB8z7GDIZBUGdU/9OZQ==}
+    peerDependencies:
+      react: ^16.8.0
+      vue: ^3.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      vue:
+        optional: true
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -5513,7 +5521,9 @@ snapshots:
     dependencies:
       '@formatjs/fast-memoize': 3.1.1
 
-  '@formkit/auto-animate@1.0.0-beta.6': {}
+  '@formkit/auto-animate@1.0.0-pre-alpha.3(react@18.2.0)':
+    optionalDependencies:
+      react: 18.2.0
 
   '@humanfs/core@0.19.1': {}
 
