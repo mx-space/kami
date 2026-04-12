@@ -18,4 +18,12 @@ module.exports = {
       { props: 'never', children: 'never' },
     ],
   },
+  overrides: [
+    {
+      files: ['next-env.d.ts'],
+      rules: {
+        '@typescript-eslint/triple-slash-reference': 'off',
+      },
+    },
+  ],
 }
