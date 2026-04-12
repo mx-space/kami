@@ -40,7 +40,11 @@ interface DataModel {
   initData: InitialDataType
   locale?: Locale
   messages?: Record<string, unknown>
+  timeZone?: string
+  now?: number
 }
+
+const FALLBACK_TIME_ZONE = 'Asia/Shanghai'
 
 const PageProviders = [
   <SWRProvider key="SWRProvider" />,
@@ -75,9 +79,18 @@ const Prepare = () => {
 const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
   props,
 ) => {
-  const { initData, Component, pageProps, locale = defaultLocale, messages = {} } = props
+  const {
+    initData,
+    Component,
+    pageProps,
+    locale = defaultLocale,
+    messages = {},
+    timeZone = FALLBACK_TIME_ZONE,
+    now = Date.now(),
+  } = props
 
   const router = useRouter()
+  const intlNow = useMemo(() => new Date(now), [now])
 
   const AppProviders = useMemo(
     () => [
@@ -105,7 +118,12 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
     )
   }
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
+    <NextIntlClientProvider
+      locale={locale}
+      messages={messages}
+      timeZone={timeZone}
+      now={intlNow}
+    >
       <LocaleProvider initialLocale={locale}>
         <ProviderComposer contexts={AppProviders}>
           <Prepare />
@@ -124,40 +142,48 @@ App.getInitialProps = async (props: AppContext) => {
 
   const locale = getLocaleFromContext(ctx)
   setRequestLocale(locale)
-  const data: InitialDataType & { reason?: any } = await fetchInitialData()
+  try {
+    const data: InitialDataType & { reason?: any } = await fetchInitialData()
 
-  const messages = (
-    await import(`../messages/${locale}.json`)
-  ).default as Record<string, unknown>
+    const messages = (
+      await import(`../messages/${locale}.json`)
+    ).default as Record<string, unknown>
 
-  const appProps = await (async () => {
-    try {
-      // Next 会从小组件向上渲染整个页面，有可能在此报错。兜底
-      return await NextApp.getInitialProps(props)
-    } catch (e) {
-      // TODO next rfc Layout, 出了就重构这里
-      // 2023 tmd next rfc 全是大饼，根本没法用
-      // 只有无数据 也就是 服务端不跑起来 或者接口不对的时候 捕获异常
-      // 这是为什么呢 说来说去还是 nextjs 太辣鸡了 只能各种 hack
-      // 只能这样了
+    const appProps = await (async () => {
+      try {
+        // Next 会从小组件向上渲染整个页面，有可能在此报错。兜底
+        return await NextApp.getInitialProps(props)
+      } catch (e) {
+        // TODO next rfc Layout, 出了就重构这里
+        // 2023 tmd next rfc 全是大饼，根本没法用
+        // 只有无数据 也就是 服务端不跑起来 或者接口不对的时候 捕获异常
+        // 这是为什么呢 说来说去还是 nextjs 太辣鸡了 只能各种 hack
+        // 只能这样了
 
-      if (!data.reason) {
-        // 这里抛出，和官网直接 await getProps 一样，异常走到 _error 处理
-        throw e
+        if (!data.reason) {
+          // 这里抛出，和官网直接 await getProps 一样，异常走到 _error 处理
+          throw e
+        }
+        // 这里捕获，为了走全局无数据页
+        if (ctx.res) {
+          ctx.res.statusCode = 466
+          ctx.res.statusMessage = 'No Data'
+        }
+        return null
       }
-      // 这里捕获，为了走全局无数据页
-      if (ctx.res) {
-        ctx.res.statusCode = 466
-        ctx.res.statusMessage = 'No Data'
-      }
-      return null
+    })()
+    return {
+      ...appProps,
+      initData: data,
+      locale,
+      messages,
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone || FALLBACK_TIME_ZONE,
+      now: Date.now(),
     }
-  })()
-  return {
-    ...appProps,
-    initData: data,
-    locale,
-    messages,
+  } finally {
+    if (request) {
+      setRequestLocale(null)
+    }
   }
 }
 

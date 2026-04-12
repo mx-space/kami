@@ -278,7 +278,7 @@
   border-radius: 0.5em;
 
   & li {
-    @apply flex list-none items-center justify-center gap-4 px-2 py-3;
+    @apply flex list-none items-center justify-start gap-4 px-2 py-3;
 
     white-space: nowrap;
   }

@@ -155,6 +155,8 @@
     "avatarPlaceholder": "Avatar URL * https://",
     "emailPlaceholder": "Your email *",
     "descPlaceholder": "Description *",
+    "submitSuccess": "Submitted successfully. Please wait for review.",
+    "submitFailed": "Submission failed. Please try again later.",
     "reset": "Reset",
     "send": "Send"
   },
@@ -244,6 +246,7 @@
     "cancelReply": "Cancel reply",
     "delete": "Delete",
     "confirmDelete": "Delete this?",
+    "send": "Send",
     "sending": "Sending...",
     "success": "Sent!",
     "failed": "Failed",
@@ -268,6 +271,7 @@
     "markdownHint": "Comments support Markdown.",
     "spamHint": "Comments may be moved to spam.",
     "moderateHint": "Comments may need approval before showing.",
+    "trackKaomojiPanel": "Kaomoji panel exposure",
     "emptyPhrases": "Nothing here yet... Say something?|Any thoughts?|Leave a message?",
     "from": "From: "
   },

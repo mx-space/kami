@@ -66,9 +66,6 @@ const IndexView: NextPage<AggregateTop> = (props) => {
       query: router.query,
     })
     setRequestLocale(effectiveLocale)
-    apiClient.aggregate.getTop().then((res) => {
-      setAggregateTop(omit({ ...res }, ['says']) as unknown as AggregateTop)
-    })
   }, [router.pathname, router.asPath, router.query])
 
   return (

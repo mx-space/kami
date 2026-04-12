@@ -155,6 +155,8 @@
     "avatarPlaceholder": "アバターURL * https://",
     "emailPlaceholder": "メール *",
     "descPlaceholder": "説明 *",
+    "submitSuccess": "送信しました。審査完了をお待ちください。",
+    "submitFailed": "送信に失敗しました。しばらくしてからお試しください。",
     "reset": "リセット",
     "send": "送信"
   },
@@ -244,6 +246,7 @@
     "cancelReply": "返信をキャンセル",
     "delete": "削除",
     "confirmDelete": "削除しますか？",
+    "send": "送信",
     "sending": "送信中...",
     "success": "送信しました",
     "failed": "失敗しました",
@@ -268,6 +271,7 @@
     "markdownHint": "コメントはMarkdownに対応しています。",
     "spamHint": "コメントはスパムに移動される場合があります。",
     "moderateHint": "コメントは承認後に表示されます。",
+    "trackKaomojiPanel": "Kaomoji パネル露出",
     "emptyPhrases": "まだ何もありません…何か書く？|コメントする？|メッセージをどうぞ",
     "from": "投稿元："
   },

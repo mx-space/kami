@@ -1,7 +1,7 @@
 'use client'
 
 import type { FC, PropsWithChildren } from 'react'
-import { useLayoutEffect } from 'react'
+import { useEffect, useLayoutEffect } from 'react'
 
 import { useLocaleFromContext } from '~/provider/locale-context'
 import { setRequestLocale } from '~/utils/client'
@@ -14,8 +14,10 @@ import { setRequestLocale } from '~/utils/client'
  */
 export const LangSyncProvider: FC<PropsWithChildren<object>> = ({ children }) => {
   const locale = useLocaleFromContext()
+  const useIsomorphicLayoutEffect =
+    typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     setRequestLocale(locale)
     return () => setRequestLocale(null)
   }, [locale])

@@ -18,7 +18,7 @@ export const DynamicHeadMeta: FC = memo(() => {
   const { dark: darkBg, light: lightBg } = themeConfig.site.background.src
   const { dark: darkFooter, light: lightFooter } =
     themeConfig.site.footer.background.src
-  const { css, js, script, style } = themeConfig.site.custom
+  const { js, script, style } = themeConfig.site.custom
   const { themeColor, secondaryColor } = themeConfig.site
   const [themeColorMetaElement, themeColorConfig] =
     useCustomThemeColor(themeColor)
@@ -56,9 +56,6 @@ export const DynamicHeadMeta: FC = memo(() => {
       ) : null}
 
       {style ? <style dangerouslySetInnerHTML={{ __html: style }} /> : null}
-      {css && css.length
-        ? css.map((href, i) => <link rel="stylesheet" href={href} key={i} />)
-        : null}
       {initialData.seo.keywords && (
         <meta name="keywords" content={initialData.seo.keywords.join(',')} />
       )}
