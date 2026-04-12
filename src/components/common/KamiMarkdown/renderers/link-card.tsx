@@ -9,6 +9,7 @@ import { simpleCamelcaseKeys as camelcaseKeys } from '@mx-space/api-client'
 import { useRandomImage } from '~/hooks/app/use-kami-theme'
 import { useIsUnMounted } from '~/hooks/common/use-is-unmounted'
 import { useSafeSetState } from '~/hooks/common/use-safe-setState'
+import { useLocaleFromContext } from '~/provider/locale-context'
 import { apiClient } from '~/utils/client'
 import { getRandomImage } from '~/utils/images'
 import styles from './link-card.module.css'
@@ -22,6 +23,7 @@ export interface LinkCardProps {
 export const LinkCard: FC<LinkCardProps> = (props) => {
   const { id, source = 'self', className } = props
   const isUnMounted = useIsUnMounted()
+  const locale = useLocaleFromContext()
 
   const [loading, setLoading] = useState(true)
   const [isError, setIsError] = useState(false)
@@ -54,7 +56,9 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
               return false
             }
             fetchFnRef.current = async () => {
-              return apiClient.note.getNoteById(+params).then((res) => {
+              return apiClient.note
+                .getNoteByNid(+params, { lang: locale })
+                .then((res) => {
                 const { title, images, text } = res.data
                 setCardInfo({
                   title,
@@ -76,7 +80,7 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
             }
 
             fetchFnRef.current = async () => {
-              return apiClient.post.getPost(params, slug).then((res) => {
+              return apiClient.post.getPost(params, slug, { lang: locale }).then((res) => {
                 const { title, images, text, summary } = res
                 setCardInfo({
                   title,
@@ -119,7 +123,7 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
         return !rest.length
       }
     }
-  }, [source, id])
+  }, [source, id, locale, randomImage])
   const fetchInfo = useCallback(async () => {
     if (!fetchFnRef.current) {
       return

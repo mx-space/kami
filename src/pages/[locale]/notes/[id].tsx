@@ -1,5 +1,7 @@
 import type { AxiosError } from 'axios'
 import dayjs from 'dayjs'
+import 'dayjs/locale/ja'
+import 'dayjs/locale/zh-cn'
 import type { NextPage } from 'next'
 import React, {
   createElement,
@@ -46,10 +48,10 @@ import { useNoteMusic } from '~/hooks/app/use-music'
 import { useLoadSerifFont } from '~/hooks/ui/use-load-serif-font'
 import { getLocaleFromContext, useRouter } from '~/i18n/navigation'
 import { useLocaleFromContext } from '~/provider/locale-context'
+import type { WithMeta } from '~/types/api-client'
 import { isEqualObject, omit } from '~/utils/_'
 import { imagesRecord2Map } from '~/utils/images'
 import { getSummaryFromMd } from '~/utils/markdown'
-import { parseDate } from '~/utils/time'
 import { noop } from '~/utils/utils'
 import { isDev } from '~/utils/env'
 
@@ -77,7 +79,12 @@ const NoteFooterActionBar = lazy(() =>
   })),
 )
 
-function getNoteContentSnapshot(note: NoteModel) {
+const dayjsLocaleMap = { zh: 'zh-cn', en: 'en', ja: 'ja' } as const
+const intlLocaleMap = { zh: 'zh-CN', en: 'en-US', ja: 'ja-JP' } as const
+
+type NoteModelWithMeta = WithMeta<NoteModel>
+
+function getNoteContentSnapshot(note: NoteModelWithMeta) {
   return {
     title: note.title,
     text: note.text,
@@ -92,7 +99,7 @@ function getNoteContentSnapshot(note: NoteModel) {
   }
 }
 
-const useUpdateNote = (note: ModelWithDeleted<NoteModel>) => {
+const useUpdateNote = (note: ModelWithDeleted<NoteModelWithMeta>) => {
   const t = useTranslations('note')
   const tRef = useRef(t)
   tRef.current = t
@@ -100,7 +107,7 @@ const useUpdateNote = (note: ModelWithDeleted<NoteModel>) => {
   const beforeIdRef = useRef<string | number | null>(null)
   const hasStabilizedRef = useRef(false)
   const { event } = useAnalyze()
-  const noteHide = (note as NoteModel & { hide?: boolean })?.hide
+  const noteHide = (note as NoteModelWithMeta & { hide?: boolean })?.hide
   useEffect(() => {
     const hideMessage = tRef.current('hiddenMessage')
     if (note?.isDeleted) {
@@ -161,8 +168,12 @@ const useUpdateNote = (note: ModelWithDeleted<NoteModel>) => {
 
 const NoteView: React.FC<{ id: string; locale?: string }> = memo((props) => {
   const t = useTranslations('note')
+  const tDetail = useTranslations('notesDetail')
+  const locale = useLocaleFromContext()
+  const dayjsLocale = dayjsLocaleMap[locale] ?? 'en'
+  const intlLocale = intlLocaleMap[locale] ?? 'en-US'
   const note = useNoteCollection(
-    (state) => state.get(props.id) || (noop as NoteModel),
+    (state) => state.get(props.id) || (noop as NoteModelWithMeta),
   )
 
   const router = useRouter()
@@ -201,21 +212,34 @@ const NoteView: React.FC<{ id: string; locale?: string }> = memo((props) => {
     count: true,
     length: 150,
   })
+  const createdDate = dayjs(note.created).locale(dayjsLocale).format('LL dddd')
+  const modifiedDate = note.modified
+    ? dayjs(note.modified).locale(dayjsLocale).format('LL dddd')
+    : null
 
   const tips = useMemo(() => {
-    return `创建于 ${parseDate(note.created, 'YYYY 年 M 月 D 日 dddd')}${
-      note.modified
-        ? `，修改于 ${parseDate(note.modified, 'YYYY 年 M 月 D 日 dddd')}`
-        : ''
-    }，全文字数：${wordCount}，阅读次数：${note.count.read}，喜欢次数：${
-      note.count.like
-    }`
-  }, [note.count.like, note.count.read, note.created, note.modified, wordCount])
+    const created = tDetail('createdAt', { created: createdDate })
+    const modified = modifiedDate
+      ? tDetail('modifiedAt', { modified: modifiedDate })
+      : ''
+    const word = tDetail('wordCount', { count: wordCount })
+    const read = tDetail('readCount', { read: note.count.read })
+    const like = tDetail('likeCount', { like: note.count.like })
+
+    return `${created}${modified} · ${word} · ${read} · ${like}`
+  }, [
+    createdDate,
+    modifiedDate,
+    note.count.like,
+    note.count.read,
+    tDetail,
+    wordCount,
+  ])
 
   const isSecret = note.publicAt ? dayjs(note.publicAt).isAfter(new Date()) : false
   const secretDate = useMemo(() => new Date(note.publicAt!), [note.publicAt])
   const dateFormat = note.publicAt
-    ? Intl.DateTimeFormat('zh-cn', {
+    ? Intl.DateTimeFormat(intlLocale, {
         hour12: false,
         hour: 'numeric',
         minute: 'numeric',
@@ -228,7 +252,7 @@ const NoteView: React.FC<{ id: string; locale?: string }> = memo((props) => {
     let timer: any
     const timeout = +secretDate - +new Date()
     // https://stackoverflow.com/questions/3468607/why-does-settimeout-break-for-large-millisecond-delay-values
-    const MAX_TIMEOUT = (2 ^ 31) - 1
+    const MAX_TIMEOUT = 2 ** 31 - 1
     if (isSecret && timeout && timeout < MAX_TIMEOUT) {
       timer = setTimeout(() => {
         message.info(t('unlockHint'), 10e3)
@@ -269,13 +293,13 @@ const NoteView: React.FC<{ id: string; locale?: string }> = memo((props) => {
       <NoteLayout title={title} date={note.created} tips={tips} id={note.id}>
         {isSecret && !isLogged ? (
           <Banner type="warning" className="mt-4">
-            这篇文章暂时没有公开呢，将会在 {dateFormat} 解锁，再等等哦
+            {t('notPublicYet', { date: dateFormat })}
           </Banner>
         ) : (
           <ImageSizeMetaContext.Provider value={imageSizeProviderValue}>
             {isSecret && (
               <Banner type="info" className="mt-4">
-                这是一篇非公开的文章。(将在 {dateFormat} 解锁)
+                {t('notPublic', { date: dateFormat })}
               </Banner>
             )}
             <XLogSummaryForNote id={props.id} locale={props.locale} />
@@ -327,7 +351,7 @@ const NoteView: React.FC<{ id: string; locale?: string }> = memo((props) => {
 })
 NoteView.displayName = 'NoteView'
 
-const PP: NextPage<NoteModel | { needPassword: true; id: number }> = (props) => {
+const PP: NextPage<NoteModelWithMeta | { needPassword: true; id: number }> = (props) => {
   const t = useTranslations('note')
   const router = useRouter()
   const locale = useLocaleFromContext()
@@ -351,7 +375,7 @@ const PP: NextPage<NoteModel | { needPassword: true; id: number }> = (props) => 
       })
       return
     }
-    const nid = (props as NoteModel).nid
+    const nid = (props as NoteModelWithMeta).nid
     if (nid != null)
       noteCollection.fetchById(nid, undefined, { force: true, lang: locale })
   }, [locale, props])

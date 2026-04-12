@@ -27,22 +27,41 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
   const router = useRouter()
   const locale = useLocaleFromContext()
 
-  const {
-    query: { page: currentPage },
-  } = router
+  const getAsPathQueryValue = (key: string) => {
+    const search = router.asPath.split('?')[1]
+    if (!search) return undefined
+    return new URLSearchParams(search).get(key) ?? undefined
+  }
+
+  const getQueryValue = (key: string) => {
+    const value = router.query[key]
+    if (Array.isArray(value)) return value[0]
+    return value ?? getAsPathQueryValue(key)
+  }
+
+  const getPositiveInt = (value: string | undefined, fallback?: number) => {
+    const parsed = Number(value)
+    if (!Number.isFinite(parsed) || parsed <= 0) return fallback
+    return Math.floor(parsed)
+  }
+
+  const currentPage = getPositiveInt(getQueryValue('page'))
 
   useEffect(() => {
     springScrollToTop()
   }, [currentPage])
   useEffect(() => {
-    fetch()
+    if (!router.isReady) return
+    fetchPosts()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.query.page, router.query.year, locale])
+  }, [router.isReady, router.query.page, router.query.year, router.query.size, router.asPath, locale])
 
-  const fetch = async () => {
-    const { page, year, size = 10 } = router.query as any
+  const fetchPosts = async () => {
+    const page = getPositiveInt(getQueryValue('page'), 1) as number
+    const size = getPositiveInt(getQueryValue('size'), 10) as number
+    const year = getPositiveInt(getQueryValue('year'))
     const payload = await apiClient.post.getList(page, size, {
-      year: +year || undefined,
+      year,
       lang: locale,
     })
     setPagination(payload.pagination)
@@ -65,7 +84,7 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
                   <PostBlock
                     post={post}
                     onPinChange={() => {
-                      fetch()
+                      fetchPosts()
                     }}
                   />
                 </BottomToUpTransitionView>
@@ -89,7 +108,10 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
             <PaginationButton
               onClick={() => {
                 router.push(
-                  `/posts?page=${pagination.currentPage - 1}`,
+                  {
+                    pathname: '/posts',
+                    query: { page: String(pagination.currentPage - 1) },
+                  },
                   { scroll: true },
                 )
               }}
@@ -103,7 +125,10 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
             <PaginationButton
               onClick={() => {
                 router.push(
-                  `/posts?page=${pagination.currentPage + 1}`,
+                  {
+                    pathname: '/posts',
+                    query: { page: String(pagination.currentPage + 1) },
+                  },
                   { scroll: true },
                 )
               }}

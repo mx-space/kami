@@ -1,5 +1,7 @@
 import { clsx } from 'clsx'
 import dayjs from 'dayjs'
+import 'dayjs/locale/ja'
+import 'dayjs/locale/zh-cn'
 import { motion, useAnimationControls } from 'framer-motion'
 import type { ReactNode } from 'react'
 import { forwardRef, lazy, useCallback, useEffect } from 'react'
@@ -15,6 +17,7 @@ import {
   RegularBookmark,
 } from '~/components/ui/Icons/layout'
 import { microReboundPreset } from '~/constants/spring'
+import { useLocaleFromContext } from '~/provider/locale-context'
 import { springScrollToElement } from '~/utils/spring'
 import { resolveUrl } from '~/utils/utils'
 
@@ -36,6 +39,9 @@ const bannerClassNames = {
   success: `bg-emerald-100 dark:bg-emerald-800 dark:text-white`,
   secondary: `bg-sky-100 dark:bg-sky-800 dark:text-white`,
 }
+
+const dayjsLocaleMap = { zh: 'zh-cn', en: 'en', ja: 'ja' } as const
+
 const useNoteMetaBanner = (id: string) => {
   const note = useNoteCollection((state) => {
     const note = state.get(id)
@@ -81,8 +87,10 @@ interface NoteLayoutProps {
 export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
   (props, ref) => {
     const { date, id, title, tips, children, isPreview = false } = props
+    const locale = useLocaleFromContext()
+    const dateLocale = dayjsLocaleMap[locale] ?? 'en'
     // autocorrect: false
-    const dateFormat = dayjs(date).locale('cn').format('YYYY年M月D日 dddd')
+    const dateFormat = dayjs(date).locale(dateLocale).format('LL dddd')
     // autocorrect: true
     const isLogged = useIsLogged()
 

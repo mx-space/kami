@@ -11,6 +11,7 @@ import {
   MdiClockOutline,
   MdiFountainPenTip,
 } from '~/components/ui/Icons/for-note'
+import { useLocaleFromContext } from '~/provider/locale-context'
 import { apiClient } from '~/utils/client'
 
 import { NoteTopicMarkdownRender } from './markdown-render'
@@ -19,12 +20,16 @@ export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
   const { topic } = props
   const t = useTranslations('topic')
   const { id: topicId } = topic
+  const locale = useLocaleFromContext()
 
-  const { data, isLoading } = useSWR(`topic-${topicId}`, () =>
-    apiClient.note.getNoteByTopicId(topicId, 1, 1, {
-      sortBy: 'created',
-      sortOrder: -1,
-    }),
+  const { data, isLoading } = useSWR(
+    ['topic', topicId, locale],
+    () =>
+      apiClient.note.getNoteByTopicId(topicId, 1, 1, {
+        sortBy: 'created',
+        sortOrder: -1,
+        lang: locale,
+      }),
   )
 
   return (
