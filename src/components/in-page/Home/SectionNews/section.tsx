@@ -45,7 +45,7 @@ export const SectionWrap = memo(
               filter: colorMode === 'dark' ? 'brightness(0.8)' : undefined,
             }}
           >
-            <div className="z-1 scale-120 absolute left-4 transform">
+            <div className="z-1 scale-120 absolute left-4">
               {icon}
             </div>
 

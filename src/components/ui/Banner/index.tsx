@@ -61,7 +61,7 @@ export const Banner: FC<{
     >
       {showIcon && (
         <Icon
-          className={`flex-shrink-0 self-start text-3xl ${
+          className={`shrink-0 self-start text-3xl ${
             iconColorMap[props.type] || iconColorMap.info
           } phone:float-left phone:-mr-2 mr-2`}
         />

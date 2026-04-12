@@ -36,7 +36,7 @@ export const HeaderActionBasedOnRouterPath: FC = memo(() => {
                   <HeaderActionLikeButtonForNote id={id} />
                 </HeaderActionButton>
               </HeaderActionButtonsContainer>
-              <div className="flex flex-shrink-0 flex-col">
+              <div className="flex shrink-0 flex-col">
                 <span>{id}</span>
                 {titleComp}
               </div>
@@ -51,7 +51,7 @@ export const HeaderActionBasedOnRouterPath: FC = memo(() => {
         return (
           <Fragment>
             <HeaderActionShareButton />
-            <div className="flex flex-shrink-0 flex-col">
+            <div className="flex shrink-0 flex-col">
               <span>/{router.query.page}</span>
               {titleComp}
             </div>

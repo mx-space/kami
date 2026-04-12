@@ -273,7 +273,7 @@ const RecentlyPage: NextPage = () => {
                             className="text-shizuku-text ml-2 flex items-center"
                             onClick={() => handleDown(d.id)}
                           >
-                            <IonThumbsup className="rotate-[1.5turn] transform" />
+                            <IonThumbsup className="rotate-[1.5turn]" />
                             {isLogged && d.down}
                           </button>
                         </div>

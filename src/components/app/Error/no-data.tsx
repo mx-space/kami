@@ -23,7 +23,7 @@ export const NoDataErrorView: FC = () => {
       />
 
       <div
-        className="absolute opacity-20 blur-15 filter inset-0 bg-center bg-cover"
+        className="blur-15 absolute inset-0 bg-cover bg-center opacity-20"
         style={{
           backgroundImage: `url("https://fastly.jsdelivr.net/gh/mx-space/docs-images@master/images/chichi-1.jpeg")`,
         }}

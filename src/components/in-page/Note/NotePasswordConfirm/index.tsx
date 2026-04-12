@@ -18,7 +18,7 @@ export const NotePasswordConfrim: React.FC<{
   }
 
   return (
-    <div className="absolute flex h-full w-full flex-col items-center justify-center">
+    <div className="absolute flex size-full flex-col items-center justify-center">
       <p>
         <strong className="text-2xl font-medium">{tNote('passwordRequired')}</strong>
       </p>
@@ -33,7 +33,7 @@ export const NotePasswordConfrim: React.FC<{
           }}
         />
         <button
-          className="btn !bg-primary flex-shrink-0 !text-white"
+          className="btn !bg-primary shrink-0 !text-white"
           onClick={handleSubmit}
         >
           {tCommon('submit')}

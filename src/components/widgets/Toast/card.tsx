@@ -31,10 +31,10 @@ export const ToastCard: FC<{
     >
       <div
         onClick={(e) => props.onClick?.(e.nativeEvent)}
-        className="bg-bg-opacity border-shallow group relative mb-4 ml-auto mr-4 box-border flex w-full
+        className="bg-bg-opacity border-shallow/50 group relative mb-4 ml-auto mr-4 box-border flex w-full
     cursor-pointer select-none items-center space-x-4
-    overflow-hidden rounded-xl border border-opacity-50 p-4 text-[12px]
-  text-inherit backdrop-blur-md backdrop-brightness-110 backdrop-brightness-150 backdrop-saturate-150 backdrop-filter"
+    overflow-hidden rounded-xl border p-4 text-[12px]
+  text-inherit backdrop-blur-md backdrop-brightness-150 backdrop-saturate-150"
         style={{
           width: isPadOrMobile ? 'calc(100% - 16px - 16px)' : '350px',
         }}
@@ -43,8 +43,8 @@ export const ToastCard: FC<{
           role="button"
           tabIndex={0}
           className={clsx(
-            'bg-gray-6 dark:bg-dark-100 text-dark-50 absolute left-2 top-2 z-10 flex h-6 w-6 items-center justify-center',
-            'overflow-hidden rounded-full bg-opacity-80 dark:text-white',
+            'bg-gray-6/80 dark:bg-dark-100/80 text-dark-50 absolute left-2 top-2 z-10 flex size-6 items-center justify-center',
+            'overflow-hidden rounded-full dark:text-white',
             'opacity-0 transition-opacity group-hover:opacity-100',
           )}
           onClick={(e) => {
@@ -54,7 +54,7 @@ export const ToastCard: FC<{
         >
           <CloseIcon />
         </div>
-        <div className="flex-shrink-0">
+        <div className="shrink-0">
           <Avatar
             useRandomColor={false}
             imageUrl={props.avatar || avatar || ''}
@@ -62,7 +62,7 @@ export const ToastCard: FC<{
             wrapperProps={wrapperProps}
           />
         </div>
-        <div className="relative min-w-0 flex-shrink flex-grow break-all pr-10 leading-[1.5]">
+        <div className="relative min-w-0 shrink grow break-all pr-10 leading-normal">
           <p className="mb-1 truncate text-[1.05em] font-medium leading-none">
             {title}
           </p>

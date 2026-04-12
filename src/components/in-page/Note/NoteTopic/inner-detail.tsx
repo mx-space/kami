@@ -60,16 +60,16 @@ export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
           <p className="flex items-center">
             <MdiClockOutline />
             <DividerVertical />
-            <span className="flex-shrink-0">{t('recentUpdate')}</span>
+            <span className="shrink-0">{t('recentUpdate')}</span>
             <DividerVertical />
-            <span className="inline-flex min-w-0 flex-shrink">
+            <span className="inline-flex min-w-0 shrink">
               <Link
                 href={`/data?.data/${data?.data[0].nid}`}
                 className="truncate"
               >
                 {data?.data[0]?.title}
               </Link>
-              <span className="flex-shrink-0">
+              <span className="shrink-0">
                 （
                 <RelativeTime
                   date={data?.data[0].modified || data?.data[0].created}

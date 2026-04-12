@@ -345,12 +345,12 @@ export const CommentBox: FC<{
       />
 
       <div className="relative mt-2 flex flex-wrap items-center justify-between">
-        <div className="flex flex-shrink-0 items-center space-x-2">
+        <div className="flex shrink-0 items-center space-x-2">
           <MarkdownSupport />
           <KaomojiButton onClickKaomoji={handleInsertEmoji} />
         </div>
 
-        <div className="flex flex-shrink-0 items-center whitespace-nowrap">
+        <div className="flex shrink-0 items-center whitespace-nowrap">
           <CommentBoxOption
             refId={refId}
             commentId={commentId}
@@ -435,7 +435,7 @@ const MarkdownSupport = () => {
         useRef(() => (
           <Button
             aria-label="support markdown"
-            className="btn !text-secondary pointer-events-none mr-2 flex-shrink-0 cursor-not-allowed rounded-full border-[2px] !border-current !bg-transparent !p-2 text-lg"
+            className="btn !text-secondary pointer-events-none mr-2 shrink-0 cursor-not-allowed rounded-full border-2 !border-current !bg-transparent !p-2 text-lg"
           >
             <GridiconsNoticeOutline />
           </Button>
@@ -474,7 +474,7 @@ const KaomojiButton: FC<{ onClickKaomoji: (kaomoji: string) => any }> = memo(
           trackerMessage={t('trackKaomojiPanel')}
           onTrack={handleTrack}
         >
-          <div className="h-[300px] max-h-[50vh] w-[300px] max-w-[80vw] overflow-auto">
+          <div className="size-[300px] max-h-[50vh] max-w-[80vw] overflow-auto">
             {kaomoji.map((emoji, i) => (
               <Button
                 aria-label="kaomoji panel"

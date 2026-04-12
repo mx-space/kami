@@ -190,7 +190,7 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
               </Banner>
             )}
             <AnimateChangeInHeight
-              className="w900:ml-[-1.25em] w900:mr-[-1.25em] w900:text-sm ml-[calc(-3em)] mr-[calc(-3em)] mt-8"
+              className="w900:mx-[-1.25em] w900:text-sm mx-[calc(-3em)] mt-8"
               duration={0.3}
             >
               {banner && (

@@ -81,9 +81,9 @@ const Progress: FC = memo(() => {
   return (
     <Fragment>
       <p className="mt-4 inline-flex items-center">
-        <span className="flex-shrink-0">{t('dayOfYear', { year: currentYear })}</span>
+        <span className="shrink-0">{t('dayOfYear', { year: currentYear })}</span>
         <NumberTransition number={currentDay} className="mx-1" />
-        <span className="flex-shrink-0">{t('day', { year: currentYear })}</span>
+        <span className="shrink-0">{t('day', { year: currentYear })}</span>
       </p>
       <p className="my-4">
         {t('yearProgress')}{' '}
@@ -279,7 +279,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
                     className="flex items-center justify-between"
                     data-id={item.id}
                   >
-                    <span className="flex min-w-0 flex-shrink items-center">
+                    <span className="flex min-w-0 shrink items-center">
                       <span className="text-shizuku-text mr-2 inline-block w-12 tabular-nums">
                         {Intl.DateTimeFormat('en-us', {
                           month: '2-digit',

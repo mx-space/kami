@@ -38,7 +38,7 @@ const Card: FC<CardProps> = (props) => {
       <div className={styles['card-cover-wrap']}>
         <ImageLazy
           src={cover}
-          className="dark:brightness-80 h-full w-full object-cover dark:filter"
+          className="dark:brightness-80 size-full object-cover"
         />
       </div>
       <div className={styles['card-header']} />

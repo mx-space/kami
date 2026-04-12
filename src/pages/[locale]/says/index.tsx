@@ -72,10 +72,10 @@ const SayView = () => {
                   options={options}
                 >{`${say.text}`}</Markdown>
                 <p className={styles['author']}>
-                  <div className="flex-shrink-0">
+                  <div className="shrink-0">
                     {`发布于 ${relativeTimeFromNow(say.created)}`}
                   </div>
-                  <div className="flex-shrink-0 flex-grow">
+                  <div className="shrink-0 grow">
                     {hasSource && ` 出自"${say.source}"`}
                     {hasSource && hasAuthor && ', '}
                     {hasAuthor && `作者：${say.author}`}

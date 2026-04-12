@@ -35,7 +35,7 @@ export const SubscribeBell: FC<SubscribeBellProps> = (props) => {
       >
         <p className="text-gray-1 leading-8 opacity-80">{t('bellHint')}</p>
 
-        <TablerBellRinging className="text-accent mt-4 scale-150 transform text-3xl opacity-50 transition-opacity hover:opacity-100" />
+        <TablerBellRinging className="text-accent mt-4 scale-150 text-3xl opacity-50 transition-opacity hover:opacity-100" />
       </button>
     </div>
   )

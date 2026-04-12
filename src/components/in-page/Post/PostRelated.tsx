@@ -18,7 +18,7 @@ export const PostRelated = memo<{ id: string }>((props) => {
   }
   return (
     <div data-hide-print>
-      <Divider className="w-46 ml-auto mr-auto" />
+      <Divider className="w-46 mx-auto" />
       <h3 className="text-lg font-medium">
         <span>{t('related')}</span>
       </h3>

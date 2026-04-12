@@ -62,7 +62,7 @@ export const FooterContent: FC = () => {
           </span>
         </p>
         <ImpressionView trackerMessage={t('trackFooterExposure')}>
-          <p className="children:flex-shrink-0 flex flex-wrap justify-center space-x-2">
+          <p className="children:shrink-0 flex flex-wrap justify-center space-x-2">
             <span>Powered by </span>
             <a href="https://github.com/mx-space" onClick={trackerToGithub}>
               mx-space

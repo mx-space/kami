@@ -226,7 +226,7 @@ export const ImageLazy = memo(
         ) : (
           <div
             className={clsx(
-              'relative m-auto inline-block min-h-[1px] max-w-full transition-none',
+              'relative m-auto inline-block min-h-px max-w-full transition-none',
               rest.className,
             )}
             style={imageWrapperStyle}

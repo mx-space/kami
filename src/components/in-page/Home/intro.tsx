@@ -83,7 +83,7 @@ const Social: FC = withNoSSR(() => {
               )}
               headless
             >
-              <div className="bg-light-bg border-dark-100 shadow-out-sm rounded-full border border-opacity-10 px-3 py-2">
+              <div className="bg-light-bg border-dark-100/10 shadow-out-sm rounded-full border px-3 py-2">
                 {item.title}
               </div>
             </FloatPopover>

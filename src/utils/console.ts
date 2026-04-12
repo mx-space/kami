@@ -4,7 +4,7 @@ import Package from '~/../package.json'
 
 import { isDev, isServerSide } from './env'
 
-const version = `v${Package.version}` || ''
+const version = `v${Package.version}`
 
 const isSpiderBot = () => {
   if (isServerSide()) {

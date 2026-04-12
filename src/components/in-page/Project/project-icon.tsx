@@ -10,7 +10,7 @@ export const ProjectIcon: FC<{ avatar?: string; name?: string }> = memo(
     return (
       <div
         className={clsx(
-          'project-icon bg-light-bg flex flex-shrink-0 flex-grow items-center justify-center',
+          'project-icon bg-light-bg flex shrink-0 grow items-center justify-center',
           props.avatar ? '' : 'bg-gray-4 text-white',
         )}
       >

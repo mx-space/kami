@@ -47,7 +47,7 @@ const TopicComp: FC<{
         })
       }
     >
-      <span className="flex-grow truncate">{note?.topic?.name}</span>
+      <span className="grow truncate">{note?.topic?.name}</span>
     </Link>
   )
 }

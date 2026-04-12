@@ -68,7 +68,7 @@ export const Pagination: FC<PaginationProps> = (props) => {
             }
           }}
         />
-        <span className="flex-shrink-0">
+        <span className="shrink-0">
           / <span className="ml-4">{total}</span>
         </span>
       </div>

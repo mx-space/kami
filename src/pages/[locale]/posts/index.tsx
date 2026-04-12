@@ -149,7 +149,7 @@ const PaginationButton = (props: { onClick: () => void; children: string }) => {
   return (
     <motion.button
       whileTap={{ scale: 0.9 }}
-      className="btn !border-accent !text-accent !rounded-md !border-[2px] !bg-transparent"
+      className="btn !border-accent !text-accent !rounded-md !border-2 !bg-transparent"
       onClick={onClick}
     >
       {text}

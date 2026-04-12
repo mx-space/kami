@@ -61,7 +61,7 @@ export const HeaderActionLikeButtonForNote: FC<{ id: number }> = (props) => {
           <LikeButton checked={liked} />
         </div>
 
-        <span className="flex-shrink-0">喜欢</span>
+        <span className="shrink-0">喜欢</span>
       </div>
     </HeaderActionButton>
   )

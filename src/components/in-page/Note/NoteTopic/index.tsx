@@ -44,7 +44,7 @@ export const NoteTopic: FC<{ noteId: string; topic: TopicModel }> = (props) => {
             size={60}
             imageUrl={icon}
             text={textToBigCharOrWord(name)}
-            className="flex-shrink-0"
+            className="shrink-0"
             useRandomColor={false}
             shadow={false}
             wrapperProps={useMemo(
@@ -52,7 +52,7 @@ export const NoteTopic: FC<{ noteId: string; topic: TopicModel }> = (props) => {
               [],
             )}
           />
-          <div className="flex flex-grow flex-col self-start">
+          <div className="flex grow flex-col self-start">
             <span className="text-md mb-2 font-medium">
               <FloatPopover
                 strategy="absolute"

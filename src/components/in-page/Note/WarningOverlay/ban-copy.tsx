@@ -52,7 +52,7 @@ export const BanCopy: FC = (props) => {
       >
         <div
           className={clsx(
-            'transition transition-opacity duration-200',
+            'transition-opacity duration-200',
             !showCopyWarn && 'opacity-0',
           )}
         >

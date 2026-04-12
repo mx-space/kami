@@ -42,7 +42,7 @@ export const NoteFooterNavigation: FC<{ id: string }> = memo(({ id }) => {
             className="text-gray-1 relative mt-4 py-2 text-center"
             data-hide-print
           >
-            <div className="children:inline-flex children:items-center children:space-x-2 children:px-2 children:py-2 flex items-center justify-between">
+            <div className="children:inline-flex children:items-center children:space-x-2 children:p-2 flex items-center justify-between">
               {!!nextNid && (
                 <>
                   <div
@@ -78,7 +78,7 @@ export const NoteFooterNavigation: FC<{ id: string }> = memo(({ id }) => {
             <div
               tabIndex={1}
               role="button"
-              className="text-pink hover:text-primary absolute bottom-0 left-1/2 top-0 flex -translate-x-1/2 transform items-center space-x-2 opacity-80"
+              className="text-pink hover:text-primary absolute inset-y-0 left-1/2 flex -translate-x-1/2 items-center space-x-2 opacity-80"
               onClick={() => {
                 const note = noteCollection.get(id)
 

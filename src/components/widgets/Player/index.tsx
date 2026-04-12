@@ -197,7 +197,7 @@ export const MusicMiniPlayer = forwardRef<
         <div
           className={clsx(
             styles['pic'],
-            'h-full w-full bg-cover bg-center bg-no-repeat',
+            'size-full bg-cover bg-center bg-no-repeat',
           )}
           style={{ backgroundImage: `url(${cur.pic})` }}
         />

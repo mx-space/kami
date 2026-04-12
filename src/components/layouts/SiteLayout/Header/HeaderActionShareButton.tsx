@@ -41,7 +41,7 @@ export const HeaderActionButtonWithIcon: FC<{
     <div onClick={onClick} className="flex items-center justify-center">
       <span className="mr-2 inline-flex items-center">{icon}</span>
 
-      <span className="flex-shrink-0">{title}</span>
+      <span className="shrink-0">{title}</span>
     </div>
   )
 })

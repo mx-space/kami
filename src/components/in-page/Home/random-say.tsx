@@ -39,7 +39,7 @@ export const HomeRandomSay: FC = memo(() => {
   if (!isClient) return null
 
   return (
-    <AnimateChangeInHeight className="my-[2rem]">
+    <AnimateChangeInHeight className="my-8">
       <TextUpTransitionView
         onClick={() => mutate()}
         text={displayText || ''}

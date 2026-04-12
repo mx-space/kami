@@ -73,7 +73,7 @@ export function getPathnameWithoutLocale(pathname: string): string {
     first &&
     (routing.locales as readonly string[]).includes(first)
   ) {
-    return `/${segments.slice(1).join('/')}` || '/'
+    return `/${segments.slice(1).join('/')}`
   }
   return pathname.startsWith('/') ? pathname : `/${pathname}`
 }

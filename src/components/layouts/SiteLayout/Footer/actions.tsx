@@ -171,7 +171,7 @@ const LocaleSwitcherFAB: FC = () => {
       popoverWrapperClassNames="min-w-[10rem]"
     >
       <ul
-        className="list-none rounded-lg bg-light-bg p-2 shadow-out-sm"
+        className="bg-light-bg shadow-out-sm list-none rounded-lg p-2"
         role="listbox"
         aria-label={selectLanguageLabel}
       >

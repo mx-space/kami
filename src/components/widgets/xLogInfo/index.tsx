@@ -98,20 +98,20 @@ export const XLogInfoBase: FC<{
       <div
         role="button"
         tabIndex={0}
-        className="dark:hover:bg-dark-200 -mx-2 flex w-[100%+0.5rem] items-center justify-between rounded-lg p-2 text-left text-shizuku-text transition transition-colors duration-300 hover:bg-zinc-100 md:rounded-xl"
+        className="dark:hover:bg-dark-200 text-shizuku-text -mx-2 flex w-[100%+0.5rem] items-center justify-between rounded-lg p-2 text-left transition-colors duration-300 hover:bg-zinc-100 md:rounded-xl"
         onClick={() => {
           setCollapse((c) => !c)
         }}
       >
         <div className="flex w-full items-center justify-between">
-          <span className="flex flex-grow space-x-2">
+          <span className="flex grow space-x-2">
             <SafeIcon />
             <span>{t('signedOnChain')}</span>
           </span>
           <IcRoundKeyboardArrowDown
             className={clsx(
               !collapse ? '' : 'rotate-180',
-              'transform text-lg transition-transform duration-200 ease-linear',
+              'text-lg transition-transform duration-200 ease-linear',
             )}
           />
         </div>

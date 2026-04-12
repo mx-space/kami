@@ -45,7 +45,7 @@ export const SectionMusic: FC<SectionMusicProps> = memo((props) => {
       <div className={styles['music-cover']}>
         <div className={clsx(styles['fixed-cover'], styles['sticky-cover'])}>
           <img src={props.src} />
-          <h3 className="leading-[1.5]">{props.name}</h3>
+          <h3 className="leading-normal">{props.name}</h3>
         </div>
       </div>
 
@@ -100,8 +100,8 @@ const SongItem: FC<SongItemProps> = memo((props) => {
       className={clsx(styles['song-item'])}
     >
       <span className={styles['num']}>{index + 1}</span>
-      <span className="flex-grow truncate">{name}</span>
-      <time className="flex-shrink-0 font-mono">{time}</time>
+      <span className="grow truncate">{name}</span>
+      <time className="shrink-0 font-mono">{time}</time>
     </li>
   )
 })
@@ -164,8 +164,8 @@ const PlayingSongItem: FC<SongItemProps> = memo((props) => {
     >
       <Seo title={`${props.name} · 歌单`} />
       <PlayIcon />
-      <span className="flex-grow truncate">{name}</span>
-      <time className="flex-shrink-0 font-mono">{time}</time>
+      <span className="grow truncate">{name}</span>
+      <time className="shrink-0 font-mono">{time}</time>
     </li>
   )
 })
