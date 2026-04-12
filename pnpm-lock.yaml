@@ -146,8 +146,8 @@ importers:
         specifier: 4.2.1
         version: 4.2.1(prettier@3.0.3)
       '@types/inflection':
-        specifier: 1.13.0
-        version: 1.13.0
+        specifier: 1.13.2
+        version: 1.13.2
       '@types/js-cookie':
         specifier: 3.0.6
         version: 3.0.6
@@ -1797,8 +1797,8 @@ packages:
   '@types/geojson@7946.0.16':
     resolution: {integrity: sha512-6C8nqWur3j98U6+lXDfTUWIfgvZU+EumvpHKcYjujKH7woYyLj2sUmff0tRhrqM7BohUw7Pz3ZB1jj2gW9Fvmg==}
 
-  '@types/inflection@1.13.0':
-    resolution: {integrity: sha512-kZSETqAVS74XC/K3mPX/tbMEi/Zy1KP0Wc59dB1i5P72AHz4eSW+UIpzWxmQnDxipoKSX5eRgUXy+wUr+bY73g==}
+  '@types/inflection@1.13.2':
+    resolution: {integrity: sha512-VxXY8dNLrxn7nDvsud77K60uD3a9RSmKfa0k/N/zvP2G55R5/8DSO5Ferz3mQdlAo8jPnpQLilCx9rABdPHSVg==}
 
   '@types/js-cookie@2.2.7':
     resolution: {integrity: sha512-aLkWa0C0vO5b4Sr798E26QgOkss68Un0bLjs7u9qxzPT5CG+8DuNTffWES58YzJs3hrVAOs1wonycqEBqNJubA==}
@@ -5705,7 +5705,7 @@ snapshots:
       prettier-package-json: 2.8.0
       prettier-plugin-autocorrect: 0.4.3(prettier@3.8.2)
       prettier-plugin-sh: 0.18.0(prettier@3.8.2)
-      prettier-plugin-tailwindcss: 0.6.14(@ianvs/prettier-plugin-sort-imports@4.4.2(prettier@3.0.3))(@trivago/prettier-plugin-sort-imports@4.2.1(prettier@3.0.3))(prettier@3.8.2)
+      prettier-plugin-tailwindcss: 0.6.14(@ianvs/prettier-plugin-sort-imports@4.4.2(prettier@3.8.2))(@trivago/prettier-plugin-sort-imports@4.2.1(prettier@3.0.3))(prettier@3.8.2)
     transitivePeerDependencies:
       - '@prettier/plugin-hermes'
       - '@prettier/plugin-oxc'
@@ -6651,7 +6651,7 @@ snapshots:
 
   '@types/geojson@7946.0.16': {}
 
-  '@types/inflection@1.13.0': {}
+  '@types/inflection@1.13.2': {}
 
   '@types/js-cookie@2.2.7': {}
 
@@ -7804,7 +7804,7 @@ snapshots:
     dependencies:
       debug: 3.2.7
     optionalDependencies:
-      '@typescript-eslint/parser': 8.58.1(eslint@8.57.1)(typescript@5.2.2)
+      '@typescript-eslint/parser': 8.58.1(eslint@9.39.4(jiti@1.21.7))(typescript@5.2.2)
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.10
     transitivePeerDependencies:
@@ -7833,7 +7833,7 @@ snapshots:
       string.prototype.trimend: 1.0.9
       tsconfig-paths: 3.15.0
     optionalDependencies:
-      '@typescript-eslint/parser': 8.58.1(eslint@8.57.1)(typescript@5.2.2)
+      '@typescript-eslint/parser': 8.58.1(eslint@9.39.4(jiti@1.21.7))(typescript@5.2.2)
     transitivePeerDependencies:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
@@ -7875,7 +7875,7 @@ snapshots:
     dependencies:
       eslint: 8.57.1
     optionalDependencies:
-      '@typescript-eslint/eslint-plugin': 8.58.1(@typescript-eslint/parser@8.58.1(eslint@8.57.1)(typescript@5.2.2))(eslint@8.57.1)(typescript@5.2.2)
+      '@typescript-eslint/eslint-plugin': 8.58.1(@typescript-eslint/parser@8.58.1(eslint@8.57.1)(typescript@5.2.2))(eslint@9.39.4(jiti@1.21.7))(typescript@5.2.2)
 
   eslint-scope@5.1.1:
     dependencies:
@@ -9301,7 +9301,7 @@ snapshots:
       prettier: 3.8.2
       sh-syntax: 0.5.8
 
-  prettier-plugin-tailwindcss@0.6.14(@ianvs/prettier-plugin-sort-imports@4.4.2(prettier@3.0.3))(@trivago/prettier-plugin-sort-imports@4.2.1(prettier@3.0.3))(prettier@3.8.2):
+  prettier-plugin-tailwindcss@0.6.14(@ianvs/prettier-plugin-sort-imports@4.4.2(prettier@3.8.2))(@trivago/prettier-plugin-sort-imports@4.2.1(prettier@3.0.3))(prettier@3.8.2):
     dependencies:
       prettier: 3.8.2
     optionalDependencies:
