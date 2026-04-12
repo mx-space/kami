@@ -15,16 +15,9 @@
       ]
     },
     "overrides": {
-      "@babel/runtime": "^7.26.10",
-      "@sentry/webpack-plugin@5.2.0>webpack": "^5.104.1",
-      "@sentry/webpack-plugin@5.2.0>terser-webpack-plugin": "^5.3.14",
-      "@sentry/webpack-plugin>webpack": "^5.104.1",
-      "engine.io-client>ws": "^8.17.1",
-      "nanoid": "^3.3.8",
-      "socket.io-client>socket.io-parser": "^4.2.6",
-      "terser-webpack-plugin": "^5.3.14",
-      "terser-webpack-plugin>webpack": "^5.104.1",
-      "webpack": "^5.104.1"
+      "@typescript-eslint/eslint-plugin": "^8.58.1",
+      "@typescript-eslint/parser": "^8.58.1",
+      "eslint-plugin-unused-imports": "^4.4.1"
     }
   },
   "bump": {
@@ -41,7 +34,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint --cache --fix",
+      "cross-env ESLINT_USE_FLAT_CONFIG=false eslint --cache --fix",
       "prettier --ignore-path ./.gitignore --write "
     ],
     "config.init.yaml": [
@@ -56,7 +49,7 @@
     "analyze": "cross-env NODE_ENV=production ANALYZE=true BUNDLE_ANALYZE=browser next build",
     "build": "cross-env NODE_ENV=production next build",
     "build:ci": "cross-env NODE_ENV=production CI=true next build",
-    "lint": "eslint --ext .ts,.tsx --ignore-path .gitignore . --fix",
+    "lint": "cross-env ESLINT_USE_FLAT_CONFIG=false eslint --ext .ts,.tsx --ignore-path .gitignore . --fix",
     "prod:pm2": "cross-env NODE_ENV=production pm2 restart ecosystem.config.js",
     "prod:pm2-alone": "cross-env NODE_ENV=production pm2 restart ecosystem.standalone.config.js",
     "prod:stop": "pm2 stop ecosystem.config.js",
@@ -110,8 +103,8 @@
     "zustand": "^4.4.3"
   },
   "devDependencies": {
-    "@innei/eslint-config-react-ts": "0.11.1",
-    "@innei/prettier": "0.11.1",
+    "@innei/eslint-config-react-ts": "0.15.0",
+    "@innei/prettier": "1.0.0",
     "@next/bundle-analyzer": "15.5.15",
     "@sentry/webpack-plugin": "5.2.0",
     "@trivago/prettier-plugin-sort-imports": "4.2.1",
@@ -129,7 +122,7 @@
     "@types/validator": "13.11.3",
     "cross-env": "7.0.3",
     "dotenv": "16.3.1",
-    "eslint": "8.51.0",
+    "eslint": "9.39.4",
     "husky": "8.0.3",
     "js-yaml": "4.1.0",
     "lint-staged": "15.0.2",
@@ -144,6 +137,7 @@
     "rimraf": "5.0.5",
     "tilg": "0.1.1",
     "typescript": "5.2.2",
+    "webpack": "^5.104.1",
     "windicss": "3.5.6",
     "windicss-webpack-plugin": "1.8.0",
     "zx": "7.2.3"
