@@ -167,8 +167,8 @@ importers:
         specifier: 18.2.79
         version: 18.2.79
       '@types/react-color':
-        specifier: 3.0.9
-        version: 3.0.9
+        specifier: 3.0.13
+        version: 3.0.13(@types/react@18.2.79)
       '@types/react-dom':
         specifier: 19.2.3
         version: 19.2.3(@types/react@18.2.79)
@@ -1845,8 +1845,10 @@ packages:
   '@types/randomcolor@0.5.8':
     resolution: {integrity: sha512-hCajbxWpZsGKf6gHiJyEJPCQ6jJaYYcryqtrXNGFnGjreXyws8xCvVln/Gg6ms/AqNntoFHxa2754E7WhpBTEg==}
 
-  '@types/react-color@3.0.9':
-    resolution: {integrity: sha512-Ojyc6jySSKvM6UYQrZxaYe0JZXtgHHXwR2q9H4MhcNCswFdeZH1owYZCvPtdHtMOfh7t8h1fY0Gd0nvU1JGDkQ==}
+  '@types/react-color@3.0.13':
+    resolution: {integrity: sha512-2c/9FZ4ixC5T3JzN0LP5Cke2Mf0MKOP2Eh0NPDPWmuVH3NjPyhEjqNMQpN1Phr5m74egAy+p2lYNAFrX1z9Yrg==}
+    peerDependencies:
+      '@types/react': 18.2.79
 
   '@types/react-dom@19.2.3':
     resolution: {integrity: sha512-jp2L/eY6fn+KgVVQAOqYItbF0VY/YApe5Mz2F0aykSO8gx31bYCZyvSeYxCHKvzHG5eZjc+zyaS5BrBWya2+kQ==}
@@ -6695,7 +6697,7 @@ snapshots:
 
   '@types/randomcolor@0.5.8': {}
 
-  '@types/react-color@3.0.9':
+  '@types/react-color@3.0.13(@types/react@18.2.79)':
     dependencies:
       '@types/react': 18.2.79
       '@types/reactcss': 1.2.13(@types/react@18.2.79)
@@ -7804,7 +7806,7 @@ snapshots:
     dependencies:
       debug: 3.2.7
     optionalDependencies:
-      '@typescript-eslint/parser': 8.58.1(eslint@8.57.1)(typescript@5.2.2)
+      '@typescript-eslint/parser': 8.58.1(eslint@9.39.4(jiti@1.21.7))(typescript@5.2.2)
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.10
     transitivePeerDependencies:
@@ -7833,7 +7835,7 @@ snapshots:
       string.prototype.trimend: 1.0.9
       tsconfig-paths: 3.15.0
     optionalDependencies:
-      '@typescript-eslint/parser': 8.58.1(eslint@8.57.1)(typescript@5.2.2)
+      '@typescript-eslint/parser': 8.58.1(eslint@9.39.4(jiti@1.21.7))(typescript@5.2.2)
     transitivePeerDependencies:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
@@ -7875,7 +7877,7 @@ snapshots:
     dependencies:
       eslint: 8.57.1
     optionalDependencies:
-      '@typescript-eslint/eslint-plugin': 8.58.1(@typescript-eslint/parser@8.58.1(eslint@8.57.1)(typescript@5.2.2))(eslint@8.57.1)(typescript@5.2.2)
+      '@typescript-eslint/eslint-plugin': 8.58.1(@typescript-eslint/parser@8.58.1(eslint@8.57.1)(typescript@5.2.2))(eslint@9.39.4(jiti@1.21.7))(typescript@5.2.2)
 
   eslint-scope@5.1.1:
     dependencies:
