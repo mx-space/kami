@@ -38,6 +38,7 @@ const createState = () => {
 }
 export type CommentModelWithHighlight = CommentModel & {
   children: CommentModelWithHighlight[]
+  parent?: string | { id?: string }
   highlight?: boolean
   isDeleted?: boolean
 }

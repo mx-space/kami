@@ -11,17 +11,8 @@ import { CarbonPassword } from '~/components/ui/Icons/for-login'
 import { Input } from '~/components/ui/Input'
 import { apiClient } from '~/utils/client'
 import { releaseDevtool } from '~/utils/console'
-import { setToken } from '~/utils/cookie'
 
 import styles from './index.module.css'
-
-/** v2 sign-in returns `{ token, user }`; some gateways may nest under `data`. */
-function tokenFromSignIn(res: { token?: string; data?: { token?: string } }) {
-  if (res?.token) return res.token
-  const inner = res?.data
-  if (inner && typeof inner.token === 'string') return inner.token
-  return undefined
-}
 
 const LoginView: NextPage = () => {
   const t = useTranslations('login')
@@ -30,16 +21,17 @@ const LoginView: NextPage = () => {
   const router = useRouter()
 
   const handleLogin = async () => {
-    const res = await apiClient.owner.login(username, password, {
+    await apiClient.owner.login(username, password, {
       rememberMe: true,
     })
-    const token = tokenFromSignIn(res as { token?: string; data?: { token?: string } })
-    if (!token) {
+    const session = await apiClient.owner.getSession()
+    const sessionToken = session?.session?.token
+    if (!sessionToken) {
       message.error(t('fail'))
       return
     }
 
-    setToken(token)
+    useUserStore.getState().setToken(sessionToken)
     if (history.backPath && history.backPath.length) {
       router.push(history.backPath.pop()!)
     } else {
@@ -47,7 +39,6 @@ const LoginView: NextPage = () => {
     }
     message.success(t('success'))
 
-    useUserStore.getState().setToken(token)
     try {
       const owner = await apiClient.owner.getOwnerInfo()
       useUserStore.getState().setUser(owner as UserModel)

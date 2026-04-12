@@ -3,7 +3,6 @@ import { Modifier, useShortcut } from 'react-shortcut-guide'
 
 import { TrackerAction } from '~/constants/tracker'
 import { apiClient } from '~/utils/client'
-import { getToken } from '~/utils/cookie'
 
 import { useAnalyze } from './use-analyze'
 
@@ -15,10 +14,7 @@ export const useJumpToSimpleMarkdownRender = (id: string) => {
   handlerRef.current = () => {
     const endpoint = apiClient.endpoint
     const url = new URL(endpoint)
-    const token = getToken()
-    location.href = `${url.protocol}//${url.host}/render/markdown/${id}${
-      token ? `?token=${token}` : ''
-    }`
+    location.href = `${url.protocol}//${url.host}/render/markdown/${id}`
 
     event({
       action: TrackerAction.Interaction,

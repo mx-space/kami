@@ -1,5 +1,5 @@
 import { enableMapSet, immerable } from 'immer'
-import { create } from 'zustand'
+import { createWithEqualityFn } from 'zustand/traditional'
 import { subscribeWithSelector } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 
@@ -36,7 +36,7 @@ export const createCollection = <T extends object, A extends object>(
   const data = new Map<Id, T>()
   data[immerable] = true
 
-  return create(
+  return createWithEqualityFn(
     immer(
       // @ts-ignore
       subscribeWithSelector<BaseStore<T> & A>((set: Setter<T, A>, get) => ({

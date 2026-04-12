@@ -13,7 +13,7 @@ import { useTranslations } from 'next-intl'
 import { message } from 'react-message-popup'
 import isEmail from 'validator/lib/isEmail'
 import isUrl from 'validator/lib/isURL'
-import { create } from 'zustand'
+import { createWithEqualityFn } from 'zustand/traditional'
 
 import { useIsLogged, useUserStore } from '~/atoms/user'
 import { ImpressionView } from '~/components/common/ImpressionView'
@@ -54,7 +54,7 @@ const initialState = {
 }
 
 const createCommentState = () =>
-  create<
+  createWithEqualityFn<
     typeof initialState & {
       setConfig(config: Partial<typeof initialConfig>): void
     }

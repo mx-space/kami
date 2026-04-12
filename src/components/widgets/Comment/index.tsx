@@ -89,14 +89,16 @@ const CommentWrap: FC<CommentWrapProps> = (props) => {
       })
       try {
         if (logged) {
-          await apiClient.comment.proxy.master.comment(id).post({
+          await apiClient.comment.proxy.reader(id).post({
             params: {
               ts: Date.now(),
             },
             data: { ...model },
           })
         } else {
-          await apiClient.comment.comment(id, model)
+          await apiClient.comment.proxy.guest(id).post({
+            data: { ...model },
+          })
         }
         requestAnimationFrame(() => {
           success()
@@ -198,6 +200,7 @@ const CommentWrap: FC<CommentWrapProps> = (props) => {
 }
 
 const Comment: typeof CommentWrap = (props) => {
+  const t = useTranslations('comment')
   const {
     function: {
       comment: { disable },

@@ -1,4 +1,4 @@
-import { create } from 'zustand'
+import { createWithEqualityFn } from 'zustand/traditional'
 
 import { shuffle } from '~/utils/_'
 import { isClientSide } from '~/utils/env'
@@ -34,7 +34,7 @@ const getPlaylistId = () => {
   )
 }
 
-export const useMusicStore = create<MusicState>((setState, getState) => {
+export const useMusicStore = createWithEqualityFn<MusicState>((setState, getState) => {
   return {
     list: getPlaylistId(),
     isHide: true,

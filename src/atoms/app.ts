@@ -1,8 +1,7 @@
 import type { AxiosError } from 'axios'
-import { create } from 'zustand'
+import { createWithEqualityFn } from 'zustand/traditional'
 
 import { apiClient } from '~/utils/client'
-import { removeToken } from '~/utils/cookie'
 
 import { useUserStore } from './user'
 
@@ -55,7 +54,7 @@ const appDefault: AppState = {
   appUrl: null,
 }
 
-export const useAppStore = create<AppState & AppAction>(
+export const useAppStore = createWithEqualityFn<AppState & AppAction>(
   (setState, getState) => {
     return {
       ...appDefault,
@@ -116,7 +115,6 @@ export const useAppStore = create<AppState & AppAction>(
         } catch (error) {
           const status = (error as AxiosError | undefined)?.response?.status
           if (status === 401 || status === 403) {
-            removeToken()
             useUserStore.getState().setToken()
             setState({ appUrl: null })
             return

@@ -108,15 +108,21 @@ const SingleComment: FC<{ id: string }> = ({ id, children }) => {
 
   const handleReply = useCallback(
     async (model) => {
-      const { success, error } = await openCommentMessage()
+      const { success, error } = await openCommentMessage({
+        sending: t('sending'),
+        success: t('success'),
+        failed: t('failed'),
+      })
       try {
         let data: CommentModel
         if (logged) {
-          data = await apiClient.comment.proxy.master
-            .reply(comment.id)
-            .post({ data: model })
+          data = await apiClient.comment.proxy.reader.reply(comment.id).post({
+            data: model,
+          })
         } else {
-          data = await apiClient.comment.reply(comment.id, model)
+          data = await apiClient.comment.proxy.guest.reply(comment.id).post({
+            data: model,
+          })
         }
         success()
 

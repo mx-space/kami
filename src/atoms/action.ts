@@ -1,4 +1,4 @@
-import { create } from 'zustand'
+import { createWithEqualityFn } from 'zustand/traditional'
 
 export type FootAction = {
   id: string
@@ -15,7 +15,7 @@ interface ActionState {
   removeActionById(id: string): void
 }
 
-export const useActionStore = create<ActionState>((setState, getState) => {
+export const useActionStore = createWithEqualityFn<ActionState>((setState, getState) => {
   return {
     actions: [] as FootAction[],
     appendActions(actions: FootAction[] | FootAction) {
