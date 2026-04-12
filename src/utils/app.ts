@@ -6,7 +6,7 @@ import type { AggregateRoot } from '@mx-space/api-client'
 import { defaultConfigs } from '~/configs.default'
 import type { KamiConfig } from '~/types/config'
 import { $axios, apiClient } from '~/utils/client'
-import { TokenKey } from '~/utils/cookie'
+import { TokenKey, normalizeToken } from '~/utils/cookie'
 import { isClientSide, isServerSide } from '~/utils/env'
 
 import PKG from '../../package.json'
@@ -42,17 +42,21 @@ export const attachRequestProxy = (request?: IncomingMessage) => {
   if (cookie) {
     const token = cookie
       .split(';')
-      .find((str) => {
-        const [key] = str.split('=')
-
-        return key === TokenKey
-      })
-      ?.split('=')[1]
+      .map((str) => str.trim())
+      .find((str) => str.startsWith(`${TokenKey}=`))
+      ?.slice(TokenKey.length + 1)
     if (token) {
-      $axios.defaults.headers['Authorization'] = `bearer ${token.replace(
-        /^Bearer\s/i,
-        '',
-      )}`
+      const decodedToken = (() => {
+        try {
+          return decodeURIComponent(token)
+        } catch {
+          return token
+        }
+      })()
+      const normalizedToken = normalizeToken(decodedToken)
+      if (normalizedToken) {
+        $axios.defaults.headers['Authorization'] = `Bearer ${normalizedToken}`
+      }
     }
   }
 }
