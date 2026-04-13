@@ -1,5 +1,5 @@
 # Rebuild the source code only when needed
-FROM node:20-alpine AS builder
+FROM node:24-alpine AS builder
 
 RUN apk add --no-cache libc6-compat git
 RUN npm i -g pnpm
@@ -13,7 +13,7 @@ RUN npm run build
 # RUN npm run build
 
 # Production image, copy all the files and run next
-FROM node:20-alpine AS runner
+FROM node:24-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
@@ -21,6 +21,7 @@ ARG BASE_URL
 ENV BASE_URL=${BASE_URL}
 ENV NEXT_PUBLIC_API_URL=${BASE_URL}/api/v2
 ENV NEXT_PUBLIC_GATEWAY_URL=${BASE_URL}
+ENV NEXT_PUBLIC_KAMI_LOCALES=zh,en
 RUN node -e "console.log(process.env)"
 # Uncomment the following line in case you want to disable telemetry during runtime.
 # ENV NEXT_TELEMETRY_DISABLED 1
