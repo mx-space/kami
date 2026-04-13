@@ -157,17 +157,23 @@ git lfs pull
 
 ```js
 <LinkCard id="notes/111" source="self" />
+<LinkCard id="https://openai.com" source="external" url="https://openai.com" />
 ```
 
 ```ts
-type LinkCardSource = 'gh' | 'self'
+type LinkCardSource = 'gh' | 'self' | 'external'
 
 interface LinkCardProps {
   id: string
   source: LinkCardSource
   className?: string
+  url?: string
 }
 ```
+
+`[^1]: URL` 脚注引用在正文中会尝试渲染 LinkCard：
+- 同站 `notes/{id}`、`posts/{category}/{slug}` 走 `self`
+- 其他 `http/https` 链接走 `external`（通过 `/api/link-preview` 拉取 metadata）
 
 ## Migration to Kami v3
 

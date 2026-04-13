@@ -80,7 +80,7 @@ const Progress: FC = memo(() => {
   }, [])
   return (
     <Fragment>
-      <p className="mt-4 inline-flex items-center">
+      <p className="mt-4 inline-flex items-center whitespace-nowrap">
         <span className="shrink-0">{t('dayOfYear', { year: currentYear })}</span>
         <NumberTransition number={currentDay} className="mx-1" />
         <span className="shrink-0">{t('day', { year: currentYear })}</span>

@@ -7,7 +7,6 @@ import React, { Fragment, memo, useMemo } from 'react'
 import { ErrorBoundary } from '~/components/app/ErrorBoundary'
 import type { MdProps } from '~/components/ui/Markdown'
 import { Markdown } from '~/components/ui/Markdown'
-import { isDev } from '~/utils/env'
 import { springScrollToElement } from '~/utils/spring'
 
 import { CodeBlock } from '../CodeBlock'
@@ -17,6 +16,12 @@ import { MFootNote } from './renderers/footnotes'
 import { LinkCard } from './renderers/link-card'
 
 const Noop = () => null
+const normalizeHostname = (hostname: string) =>
+  hostname.toLowerCase().replace(/^www\./, '')
+const stripFootnotePrefix = (value?: string) => value?.replace(/^:\s*/, '').trim()
+const isSelfCardPath = (pathname: string) => {
+  return /^notes\/\d+$/.test(pathname) || /^posts\/[^/]+\/[^/]+$/.test(pathname)
+}
 
 export interface KamiMarkdownProps extends MdProps {
   toc?: boolean
@@ -82,21 +87,30 @@ export const KamiMarkdown: FC<KamiMarkdownProps & MarkdownToJSX.Options> = memo(
               react(node, output, state) {
                 const { footnoteMap, target, content } = node
                 const footnote = footnoteMap.get(content)
-                const linkCardId = (() => {
+                const linkCardInfo = (() => {
                   try {
-                    const thisUrl = new URL(
-                      footnote?.footnote?.replace(': ', ''),
-                    )
-                    const isCurrentHost =
-                      thisUrl.hostname === window.location.hostname
-
-                    if (!isCurrentHost && !isDev) {
-                      return undefined
+                    const text = stripFootnotePrefix(footnote?.footnote)
+                    if (!text) {
+                      return {}
                     }
-                    const pathname = thisUrl.pathname
-                    return pathname.slice(1)
+
+                    const thisUrl = new URL(text)
+                    const isCurrentHost =
+                      normalizeHostname(thisUrl.hostname) ===
+                      normalizeHostname(window.location.hostname)
+
+                    const pathname = thisUrl.pathname.replace(/^\/+/, '')
+                    if (isCurrentHost && isSelfCardPath(pathname)) {
+                      return { source: 'self' as const, id: pathname }
+                    }
+
+                    if (thisUrl.protocol === 'http:' || thisUrl.protocol === 'https:') {
+                      return { source: 'external' as const, url: thisUrl.toString() }
+                    }
+
+                    return {}
                   } catch {
-                    return undefined
+                    return {}
                   }
                 })()
 
@@ -116,7 +130,12 @@ export const KamiMarkdown: FC<KamiMarkdownProps & MarkdownToJSX.Options> = memo(
                     >
                       <sup key={state?.key}>^{content}</sup>
                     </a>
-                    {linkCardId && <LinkCard id={linkCardId} source="self" />}
+                    {linkCardInfo.source === 'self' && linkCardInfo.id && (
+                      <LinkCard id={linkCardInfo.id} source="self" />
+                    )}
+                    {linkCardInfo.source === 'external' && linkCardInfo.url && (
+                      <LinkCard id={linkCardInfo.url} source="external" url={linkCardInfo.url} />
+                    )}
                   </Fragment>
                 )
               },

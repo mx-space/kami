@@ -42,7 +42,7 @@ export const useHeaderNavList = () => {
       if (!postMenu || !postMenu.subMenu) {
         return merged
       }
-      const models = categories.map((category) => {
+      const models = (categories ?? []).map((category) => {
         const { id, slug, name } = category
         return {
           title: name,

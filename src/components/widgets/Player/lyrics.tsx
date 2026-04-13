@@ -1,5 +1,5 @@
 import { clsx } from 'clsx'
-import type { FC, RefObject } from 'react'
+import type { FC } from 'react'
 import { memo, useEffect, useMemo, useRef, useState } from 'react'
 
 import { getTransitionSizes } from '@formkit/auto-animate'
@@ -39,7 +39,7 @@ const LyricsRender: FC<{ lyrics: string }> = memo(({ lyrics }) => {
     })
   }, [currentTime])
 
-  const animationParent = useAutoAnimate(
+  const [animationParent] = useAutoAnimate(
     (el, action, oldCoords, newCoords) => {
       let keyframes: Keyframe[] = []
       // supply a different set of keyframes for each action
@@ -109,7 +109,7 @@ const LyricsRender: FC<{ lyrics: string }> = memo(({ lyrics }) => {
     <div className="tablet:hidden absolute left-0 top-0">
       <div className="absolute bottom-2">
         <ul
-          ref={animationParent as RefObject<HTMLUListElement>}
+          ref={animationParent}
           className="text-gray-1 !hover:children:text-shizuku-text !hover:children:filter-none max-w-[250px] pl-2"
         >
           {list.map((item, index) => {

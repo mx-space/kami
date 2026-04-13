@@ -39,11 +39,11 @@ export const PostBlock: FC<PostBlockProps> = (props) => {
   const [d, week] = parsedTime.split(' ')
   const initialData = useInitialData()
   const categoryMap = useMemo(() => {
-    const categories = initialData.categories
+    const categories = initialData.categories ?? []
 
-    const map = new Map()
+    const map = new Map<string, string>()
 
-    categories.map((category) => {
+    categories.forEach((category) => {
       map.set(category.id, category.slug)
     })
     return map
