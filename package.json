@@ -112,7 +112,7 @@
     "@types/js-cookie": "3.0.6",
     "@types/lodash-es": "4.17.9",
     "@types/markdown-escape": "1.1.2",
-    "@types/node": "20.8.6",
+    "@types/node": "20.8.10",
     "@types/randomcolor": "0.5.8",
     "@types/react": "18.2.79",
     "@types/react-color": "3.0.9",

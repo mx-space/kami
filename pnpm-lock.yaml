@@ -158,8 +158,8 @@ importers:
         specifier: 1.1.2
         version: 1.1.2
       '@types/node':
-        specifier: 20.8.6
-        version: 20.8.6
+        specifier: 20.8.10
+        version: 20.8.10
       '@types/randomcolor':
         specifier: 0.5.8
         version: 0.5.8
@@ -1824,8 +1824,8 @@ packages:
   '@types/mysql@2.15.27':
     resolution: {integrity: sha512-YfWiV16IY0OeBfBCk8+hXKmdTKrKlwKN1MNKAPBu5JYxLwBEZl7QzeEpGnlZb3VMGJrrGmB84gXiH+ofs/TezA==}
 
-  '@types/node@20.8.6':
-    resolution: {integrity: sha512-eWO4K2Ji70QzKUqRy6oyJWUeB7+g2cRagT3T/nxYibYcT4y2BDL8lqolRXjTHmkZCdJfIPaY73KbJAZmcryxTQ==}
+  '@types/node@20.8.10':
+    resolution: {integrity: sha512-TlgT8JntpcbmKUFzjhsyhGfP2fsiz1Mv56im6enJ905xG1DAYesxJaeSbGqQmAw8OWPdhyJGhGSQGKRNJ45u9w==}
 
   '@types/parse-author@2.0.3':
     resolution: {integrity: sha512-pgRW2K/GVQoogylrGJXDl7PBLW9A6T4OOc9Hy9MLT5f7vgufK2GQ8FcfAbjFHR5HjcN9ByzuCczAORk49REqoA==}
@@ -4788,8 +4788,8 @@ packages:
     resolution: {integrity: sha512-nWJ91DjeOkej/TA8pXQ3myruKpKEYgqvpw9lz4OPHj/NWFNluYrjbz9j01CJ8yKQd2g4jFoOkINCTW2I5LEEyw==}
     engines: {node: '>= 0.4'}
 
-  undici-types@5.25.3:
-    resolution: {integrity: sha512-Ga1jfYwRn7+cP9v8auvEXN1rX3sWqlayd4HP7OKk4mZWylEmu3KzXDUGrQUN6Ol7qo1gPvB2e5gX6udnyEPgdA==}
+  undici-types@5.26.5:
+    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
 
   universalify@2.0.1:
     resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
@@ -5705,7 +5705,7 @@ snapshots:
       prettier-package-json: 2.8.0
       prettier-plugin-autocorrect: 0.4.3(prettier@3.8.2)
       prettier-plugin-sh: 0.18.0(prettier@3.8.2)
-      prettier-plugin-tailwindcss: 0.6.14(@ianvs/prettier-plugin-sort-imports@4.4.2(prettier@3.0.3))(@trivago/prettier-plugin-sort-imports@4.2.1(prettier@3.0.3))(prettier@3.8.2)
+      prettier-plugin-tailwindcss: 0.6.14(@ianvs/prettier-plugin-sort-imports@4.4.2(prettier@3.8.2))(@trivago/prettier-plugin-sort-imports@4.2.1(prettier@3.0.3))(prettier@3.8.2)
     transitivePeerDependencies:
       - '@prettier/plugin-hermes'
       - '@prettier/plugin-oxc'
@@ -6518,7 +6518,7 @@ snapshots:
 
   '@types/connect@3.4.38':
     dependencies:
-      '@types/node': 20.8.6
+      '@types/node': 20.8.10
 
   '@types/d3-array@3.2.2': {}
 
@@ -6671,11 +6671,11 @@ snapshots:
 
   '@types/mysql@2.15.27':
     dependencies:
-      '@types/node': 20.8.6
+      '@types/node': 20.8.10
 
-  '@types/node@20.8.6':
+  '@types/node@20.8.10':
     dependencies:
-      undici-types: 5.25.3
+      undici-types: 5.26.5
 
   '@types/parse-author@2.0.3': {}
 
@@ -6687,7 +6687,7 @@ snapshots:
 
   '@types/pg@8.15.6':
     dependencies:
-      '@types/node': 20.8.6
+      '@types/node': 20.8.10
       pg-protocol: 1.13.0
       pg-types: 2.2.0
 
@@ -6717,7 +6717,7 @@ snapshots:
 
   '@types/tedious@4.0.14':
     dependencies:
-      '@types/node': 20.8.6
+      '@types/node': 20.8.10
 
   '@types/trusted-types@2.0.7':
     optional: true
@@ -7804,7 +7804,7 @@ snapshots:
     dependencies:
       debug: 3.2.7
     optionalDependencies:
-      '@typescript-eslint/parser': 8.58.1(eslint@8.57.1)(typescript@5.2.2)
+      '@typescript-eslint/parser': 8.58.1(eslint@9.39.4(jiti@1.21.7))(typescript@5.2.2)
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.10
     transitivePeerDependencies:
@@ -7833,7 +7833,7 @@ snapshots:
       string.prototype.trimend: 1.0.9
       tsconfig-paths: 3.15.0
     optionalDependencies:
-      '@typescript-eslint/parser': 8.58.1(eslint@8.57.1)(typescript@5.2.2)
+      '@typescript-eslint/parser': 8.58.1(eslint@9.39.4(jiti@1.21.7))(typescript@5.2.2)
     transitivePeerDependencies:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
@@ -7875,7 +7875,7 @@ snapshots:
     dependencies:
       eslint: 8.57.1
     optionalDependencies:
-      '@typescript-eslint/eslint-plugin': 8.58.1(@typescript-eslint/parser@8.58.1(eslint@8.57.1)(typescript@5.2.2))(eslint@8.57.1)(typescript@5.2.2)
+      '@typescript-eslint/eslint-plugin': 8.58.1(@typescript-eslint/parser@8.58.1(eslint@8.57.1)(typescript@5.2.2))(eslint@9.39.4(jiti@1.21.7))(typescript@5.2.2)
 
   eslint-scope@5.1.1:
     dependencies:
@@ -8487,7 +8487,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 20.8.6
+      '@types/node': 20.8.10
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -9301,7 +9301,7 @@ snapshots:
       prettier: 3.8.2
       sh-syntax: 0.5.8
 
-  prettier-plugin-tailwindcss@0.6.14(@ianvs/prettier-plugin-sort-imports@4.4.2(prettier@3.0.3))(@trivago/prettier-plugin-sort-imports@4.2.1(prettier@3.0.3))(prettier@3.8.2):
+  prettier-plugin-tailwindcss@0.6.14(@ianvs/prettier-plugin-sort-imports@4.4.2(prettier@3.8.2))(@trivago/prettier-plugin-sort-imports@4.2.1(prettier@3.0.3))(prettier@3.8.2):
     dependencies:
       prettier: 3.8.2
     optionalDependencies:
@@ -10059,7 +10059,7 @@ snapshots:
       has-symbols: 1.1.0
       which-boxed-primitive: 1.1.1
 
-  undici-types@5.25.3: {}
+  undici-types@5.26.5: {}
 
   universalify@2.0.1: {}
 
