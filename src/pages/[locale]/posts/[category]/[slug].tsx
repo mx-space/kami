@@ -16,7 +16,7 @@ import { Seo } from '~/components/app/Seo'
 import { Suspense } from '~/components/app/Suspense'
 import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { KamiMarkdown } from '~/components/common/KamiMarkdown'
-import Outdate from '~/components/in-page/Post/Outdate'
+import { OutdateNotice } from '~/components/in-page/Post/Outdate'
 import { PostRelated } from '~/components/in-page/Post/PostRelated'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { Banner } from '~/components/ui/Banner'
@@ -104,7 +104,7 @@ const useUpdatePost = (post: ModelWithDeleted<PostModelWithMeta>) => {
     }
 
     beforeModel.current = { ...post }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [
     post?.id,
     post?.slug,
@@ -328,7 +328,7 @@ export const PostView: FC<IdProps & { locale?: string }> = (props) => {
         ) : (
           <XLogSummaryForPost id={post.id} locale={(props as { locale?: string }).locale} />
         )}
-        <Outdate time={post.modified || post.created} />
+        <OutdateNotice time={post.modified || post.created} />
         <ImageSizeMetaContext.Provider value={imagesMap}>
           <article>
             <h1 className="sr-only">{post.title}</h1>

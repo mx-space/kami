@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/rules-of-hooks */
+ 
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import { sanitizeUrl } from 'markdown-to-jsx'
 import type { FC } from 'react'

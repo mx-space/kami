@@ -14,7 +14,7 @@ import type { OverlayProps } from '~/components/ui/Overlay'
 import { Overlay } from '~/components/ui/Overlay'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/app/use-analyze'
-import useDebounceValue from '~/hooks/common/use-debounce-value'
+import { useDebounceValue } from '~/hooks/common/use-debounce-value'
 import { $axios, apiClient } from '~/utils/client'
 
 import styles from './index.module.css'
@@ -325,10 +325,10 @@ export const SearchFAB = () => {
     })
 
     return () => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+       
       actionStore.removeActionById(actionId.current)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [])
 
   return <SearchOverlay show={show} onClose={() => setShow(false)} />

@@ -251,4 +251,4 @@ class QProgress {
   }
 }
 
-export default QProgress
+export { QProgress }

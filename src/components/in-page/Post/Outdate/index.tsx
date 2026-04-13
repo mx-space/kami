@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl'
 import { RelativeTime } from '~/components/common/RelativeTime'
 import { Banner } from '~/components/ui/Banner'
 
-export default (function OutdateNotice({ time }: { time: string | Date }) {
+export function OutdateNotice({ time }: { time: string | Date }) {
   const t = useTranslations('post')
   return dayjs().diff(dayjs(time), 'day') > 60 ? (
     <Banner type="warning" className="mb-10">
@@ -16,4 +16,4 @@ export default (function OutdateNotice({ time }: { time: string | Date }) {
       </span>
     </Banner>
   ) : null
-})
+}

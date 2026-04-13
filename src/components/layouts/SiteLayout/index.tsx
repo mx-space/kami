@@ -111,7 +111,7 @@ export const SiteLayout: FC = memo(({ children }) => {
       actionStore.appendActions(action)
 
       return () => {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+         
         actionStore.removeActionById(actionId)
       }
     }

@@ -138,7 +138,7 @@ const SingleComment: FC<PropsWithChildren<{ id: string }>> = ({
         console.error(err)
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
     [comment.id, logged],
   )
   const handleDelete = useCallback(

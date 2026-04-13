@@ -15,13 +15,12 @@ export const escapeHTMLTag = (html: string) => {
     .replace(ic, '&#34;')
 }
 
-const _noop = /* @__PURE__ */ {}
-export const noop = /* @__PURE__ */ new Proxy(_noop, {
+const _noop = /* @__PURE__ */ () => undefined
+export const noop: any = /* @__PURE__ */ new Proxy(_noop, {
   get() {
     return noop
   },
   apply() {
-    // eslint-disable-next-line prefer-rest-params
-    return Reflect.apply(noop, this, arguments)
+    return undefined
   },
 })

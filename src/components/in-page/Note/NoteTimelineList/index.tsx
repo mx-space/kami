@@ -3,7 +3,7 @@
  */
 import { clsx } from 'clsx'
 import { Link } from '~/i18n/navigation'
-import type { FC } from 'react'
+import type { FC, RefObject } from 'react'
 import { memo, useEffect, useMemo, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { shallow } from 'zustand/shallow'
@@ -92,7 +92,7 @@ const ObserveredNoteTimelineList: FC<
       setList(data)
     }
     fetchList()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
     return () => {
       isCanceled = true
     }
@@ -103,12 +103,12 @@ const ObserveredNoteTimelineList: FC<
     [note],
   )
 
-  const [animationParent] = useAutoAnimate<HTMLUListElement>()
+  const animationParent = useAutoAnimate({})
 
   return (
     <div className={clsx(styles['container'], className)} data-hide-print>
       <div className={clsx(styles.list)}>
-        <ul ref={animationParent}>
+        <ul ref={animationParent as RefObject<HTMLUListElement>}>
           {list?.map((item) => {
             const isCurrent = item.id === noteId
             return (

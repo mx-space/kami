@@ -1,4 +1,4 @@
-import type { FC } from 'react'
+import type { FC, JSX } from 'react'
 import { memo } from 'react'
 
 import { MdiShare } from '~/components/ui/Icons/layout'
@@ -19,9 +19,9 @@ export const HeaderActionShareButton: FC = () => {
           onClick={() => {
             navigator
               .share(shareData!)
-              // eslint-disable-next-line @typescript-eslint/no-empty-function
+               
               .then(() => {})
-              // eslint-disable-next-line @typescript-eslint/no-empty-function
+               
               .catch(() => {})
           }}
           icon={<MdiShare />}

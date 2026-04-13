@@ -53,7 +53,7 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
   useEffect(() => {
     if (!router.isReady) return
     fetchPosts()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [router.isReady, router.query.page, router.query.year, router.query.size, router.asPath, locale])
 
   const fetchPosts = async () => {

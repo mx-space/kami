@@ -39,7 +39,7 @@ type IInputProps = Omit<
   >
 
 export const InputContext = createContext({
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+   
   setFocus(_state: boolean) {},
 })
 export const Input = memo(

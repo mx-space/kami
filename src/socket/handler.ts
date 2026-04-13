@@ -110,7 +110,7 @@ export const eventHandler = (type: EventTypes, data: any) => {
         notice.notice({
           title: `${userStore.master?.name} 敲了你一下`,
           text: data.text,
-          options: { image: userStore.master?.avatar },
+          options: { icon: userStore.master?.avatar },
         })
       }
 

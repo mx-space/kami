@@ -21,7 +21,7 @@ const getContainerSize = () => {
 /**
  * This Component only can render in browser.
  */
-const _Image: FC<{ src: string; alt?: string }> = ({ src, alt }) => {
+const MarkdownImage: FC<{ src: string; alt?: string }> = ({ src, alt }) => {
   const imageRef = useRef<ImageLazyRef>(null)
   useEffect(() => {
     let prevViewport = {} as any
@@ -116,6 +116,6 @@ export const MImage: FC<
   return !isClient ? (
     <img src={sanitizedUrl!} alt={imageCaption} title={title} />
   ) : (
-    <_Image src={sanitizedUrl!} alt={imageCaption} />
+    <MarkdownImage src={sanitizedUrl!} alt={imageCaption} />
   )
 }

@@ -39,7 +39,7 @@ const _HeaderDrawer: FC<{ show: boolean; onExit: () => void }> = memo(
       return () => {
         router.events.off('routeChangeStart', handler)
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+       
     }, [router])
 
     return (

@@ -30,7 +30,7 @@ function off<T extends Window | Document | HTMLElement | EventTarget>(
 
 const defaultEvents = ['mousedown', 'touchstart']
 
-const useClickAway = <E extends Event = Event>(
+export const useClickAway = <E extends Event = Event>(
   ref: RefObject<HTMLElement | null>,
   onClickAway: (event: E) => void,
   events: string[] = defaultEvents,
@@ -54,5 +54,3 @@ const useClickAway = <E extends Event = Event>(
     }
   }, [events, ref])
 }
-
-export default useClickAway

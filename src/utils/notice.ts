@@ -93,7 +93,7 @@ export class Notice {
           })
           const notification = new Notification(title, {
             body: text,
-            image:
+            icon:
               useUserStore.getState().master?.avatar ||
               `${location.origin}/manifest-icon-192.png`,
 

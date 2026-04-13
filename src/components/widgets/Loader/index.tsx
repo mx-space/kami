@@ -3,7 +3,7 @@ import { memo, useRef } from 'react'
 
 import { CustomLogo } from '~/components/common/Logo'
 
-const Loader: FC = memo(() => {
+export const Loader: FC = memo(() => {
   const ref = useRef<HTMLDivElement>(null)
   return (
     <>
@@ -21,5 +21,3 @@ const Loader: FC = memo(() => {
     </>
   )
 })
-
-export default Loader

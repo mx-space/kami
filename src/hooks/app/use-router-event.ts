@@ -1,7 +1,7 @@
 import { Router } from 'next/router'
 import { startTransition, useEffect } from 'react'
 
-import QProgress from '../../../third/qp'
+import { QProgress } from '../../../third/qp'
 import { useAnalyze } from './use-analyze'
 
 export const useRouterEvent = () => {

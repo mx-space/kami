@@ -12,10 +12,15 @@ import type { FC, PropsWithChildren } from 'react'
 import type { UseFloatingOptions } from '@floating-ui/react-dom'
 import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/react-dom'
 
-import useClickAway from '~/hooks/common/use-click-away'
+import { useClickAway } from '~/hooks/common/use-click-away'
 
 import { RootPortal } from '../Portal'
 import styles from './index.module.css'
+
+type TriggerEventHandlers = Pick<
+  React.HTMLAttributes<HTMLElement>,
+  'onFocus' | 'onBlur' | 'onClick' | 'onMouseOver' | 'onMouseOut'
+>
 
 export const FloatPopover: FC<
   PropsWithChildren<{
@@ -157,7 +162,7 @@ export const FloatPopover: FC<
     doPopoverShow()
   }, [])
 
-  const listener = useMemo(() => {
+  const listener = useMemo<TriggerEventHandlers>(() => {
     const baseListener = {
       onFocus: doPopoverShow,
       onBlur: doPopoverDisappear,
@@ -181,6 +186,8 @@ export const FloatPopover: FC<
           onMouseOver: doPopoverShow,
           onMouseOut: handleMouseOut,
         }
+      default:
+        return baseListener
     }
   }, [
     doPopoverDisappear,
@@ -190,18 +197,21 @@ export const FloatPopover: FC<
     trigger,
   ])
 
-  const TriggerWrapper = (
-    // @ts-expect-error
-    <As
-      role={trigger === 'both' || trigger === 'click' ? 'button' : 'note'}
-      tabIndex={0}
-      className={clsx('inline-block', wrapperClassNames)}
-      ref={refs.setReference}
-      {...listener}
-    >
-      <TriggerComponent />
-    </As>
+  const TriggerWrapper = React.createElement(
+    As,
+    {
+      role: trigger === 'both' || trigger === 'click' ? 'button' : 'note',
+      tabIndex: 0,
+      className: clsx('inline-block', wrapperClassNames),
+      ref: refs.setReference as React.Ref<HTMLElement>,
+      ...listener,
+    },
+    <TriggerComponent />,
   )
+
+  const RootPortalWithChildren = RootPortal as FC<
+    PropsWithChildren<{ to?: HTMLElement }>
+  >
 
   if (!props.children) {
     return TriggerWrapper
@@ -212,7 +222,7 @@ export const FloatPopover: FC<
       {TriggerWrapper}
 
       {mounted && (
-        <RootPortal>
+        <RootPortalWithChildren>
           <div
             className={clsx(
               'float-popover',
@@ -221,7 +231,9 @@ export const FloatPopover: FC<
               popoverWrapperClassNames,
             )}
             style={popoverZIndex != null ? { zIndex: popoverZIndex } : undefined}
-            {...(trigger === 'hover' || trigger === 'both' ? listener : {})}
+            {...((trigger === 'hover' || trigger === 'both'
+              ? listener
+              : {}) as React.HTMLAttributes<HTMLDivElement>)}
             ref={containerRef}
           >
             <div ref={setContainerAnchorRef} />
@@ -244,7 +256,7 @@ export const FloatPopover: FC<
               </div>
             )}
           </div>
-        </RootPortal>
+        </RootPortalWithChildren>
       )}
     </>
   )

@@ -6,7 +6,7 @@ import type { AggregateRoot } from '@mx-space/api-client'
 
 import { MetaFooter } from '~/components/app/Meta/footer'
 import { DynamicHeadMeta } from '~/components/app/Meta/head'
-import Loader from '~/components/widgets/Loader'
+import { Loader } from '~/components/widgets/Loader'
 import { useRootTrackerListener } from '~/hooks/app/use-analyze'
 import { useInitialData } from '~/hooks/app/use-initial-data'
 import { useResizeScrollEvent } from '~/hooks/app/use-resize-scroll-event'
