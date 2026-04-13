@@ -1,5 +1,17 @@
 module.exports = {
-  ...require('@innei/prettier'),
+  tabWidth: 2,
+  printWidth: 80,
+  semi: false,
+  singleQuote: true,
+  trailingComma: 'all',
+  arrowParens: 'always',
+  endOfLine: 'lf',
+  plugins: [
+    '@ianvs/prettier-plugin-sort-imports',
+    'prettier-plugin-autocorrect',
+    'prettier-plugin-sh',
+    'prettier-plugin-tailwindcss',
+  ],
   importOrder: [
     'windi.css',
     '',
