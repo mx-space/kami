@@ -215,8 +215,8 @@ importers:
         specifier: 2.2.1
         version: 2.2.1
       npm-check-updates:
-        specifier: ^20.0.1
-        version: 20.0.1
+        specifier: ^20.0.2
+        version: 20.0.2
       postcss:
         specifier: 8.5.9
         version: 8.5.9
@@ -3577,8 +3577,8 @@ packages:
   node-releases@2.0.37:
     resolution: {integrity: sha512-1h5gKZCF+pO/o3Iqt5Jp7wc9rH3eJJ0+nh/CIoiRwjRxde/hAHyLPXYN4V3CqKAbiZPSeJFSWHmJsbkicta0Eg==}
 
-  npm-check-updates@20.0.1:
-    resolution: {integrity: sha512-YuzpyL1Od5dJzpeETVh2H5o1I8tpi0zkf6v7k7rXwUDfiDliBX9dgVIb7FlEfp8Lu2RtECAv63ZHm/rqpIhYsw==}
+  npm-check-updates@20.0.2:
+    resolution: {integrity: sha512-nvbcXiprjMOoSX0FCHC41kjpZhNFURV53KMU0MMa0U10RPHeoHpiilMg2P8g9NLSQoo0umSH77tUqHWTOH3w7A==}
     engines: {node: '>=20.0.0', npm: '>=8.12.1'}
     hasBin: true
 
@@ -8215,7 +8215,7 @@ snapshots:
 
   node-releases@2.0.37: {}
 
-  npm-check-updates@20.0.1: {}
+  npm-check-updates@20.0.2: {}
 
   npm-run-path@5.1.0:
     dependencies:

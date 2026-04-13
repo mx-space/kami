@@ -128,7 +128,7 @@
     "lint-staged": "15.5.2",
     "markdown-to-jsx": "npm:@innei/markdown-to-jsx@7.4.5-fork.4",
     "next-compose-plugins": "2.2.1",
-    "npm-check-updates": "^20.0.1",
+    "npm-check-updates": "^20.0.2",
     "postcss": "8.5.9",
     "postcss-import": "15.1.0",
     "postcss-nested": "6.2.0",
