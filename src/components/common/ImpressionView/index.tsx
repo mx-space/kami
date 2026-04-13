@@ -1,18 +1,22 @@
-import type { FC } from 'react'
+import type { ReactNode } from 'react'
 import { memo, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/app/use-analyze'
 
-type ImpressionProps = {
+type ImpressionBaseProps = {
   trackerMessage?: string
   action?: TrackerAction
   onTrack?: () => any
+  children?: ReactNode
 }
-export const ImpressionView: FC<{ shouldTrack?: boolean } & ImpressionProps> = (
-  props,
-) => {
+
+type ImpressionProps = ImpressionBaseProps & {
+  shouldTrack?: boolean
+}
+
+export const ImpressionView = (props: ImpressionProps) => {
   const { shouldTrack, ...rest } = props
   if (!shouldTrack) {
     return <>{props.children}</>
@@ -20,7 +24,7 @@ export const ImpressionView: FC<{ shouldTrack?: boolean } & ImpressionProps> = (
   return <ImpressionView$ {...rest} />
 }
 
-const ImpressionView$: FC<ImpressionProps> = memo((props) => {
+const ImpressionView$ = memo((props: ImpressionBaseProps) => {
   const [impression, setImpression] = useState(false)
   const { event } = useAnalyze()
   const { ref } = useInView({

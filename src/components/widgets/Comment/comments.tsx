@@ -1,7 +1,7 @@
 import { clsx } from 'clsx'
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import { sanitizeUrl } from 'markdown-to-jsx'
-import type { FC } from 'react'
+import type { FC, PropsWithChildren } from 'react'
 import {
   Fragment,
   createElement,
@@ -67,7 +67,10 @@ const CommentList: FC = memo(() => {
   )
 })
 
-const SingleComment: FC<{ id: string }> = ({ id, children }) => {
+const SingleComment: FC<PropsWithChildren<{ id: string }>> = ({
+  id,
+  children,
+}) => {
   const t = useTranslations('comment')
   const tCommon = useTranslations('common')
   const [replyId, setReplyId] = useState('')

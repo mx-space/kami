@@ -2,6 +2,7 @@ import type { AxiosError } from 'axios'
 import { message } from 'react-message-popup'
 
 import { useUserStore } from '~/atoms/user'
+import { hasActiveSession } from '~/utils/auth'
 import { apiClient } from '~/utils/client'
 import { devtoolForbidden } from '~/utils/console'
 
@@ -20,7 +21,7 @@ export const useCheckLogged = () => {
       return requestAnimationFrame(() => {
         const clearLoginState = (notify = false) => {
           const wasLogged = useUserStore.getState().isLogged
-          userStore.setToken()
+          userStore.setLoggedIn(false)
           if (notify && wasLogged) {
             message.warn('登录身份过期了，再登录一下吧！', 2000)
           }
@@ -36,9 +37,8 @@ export const useCheckLogged = () => {
         const applySession = (
           session: Awaited<ReturnType<typeof apiClient.owner.getSession>>,
         ) => {
-          const sessionToken = session?.session?.token
-          if (sessionToken) {
-            userStore.setToken(sessionToken)
+          if (hasActiveSession(session)) {
+            userStore.setLoggedIn(true)
             showWelcomeBack()
             return
           }

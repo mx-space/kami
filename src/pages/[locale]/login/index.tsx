@@ -9,6 +9,7 @@ import { useRouter } from '~/i18n/navigation'
 import { PhUser } from '~/components/ui/Icons/for-comment'
 import { CarbonPassword } from '~/components/ui/Icons/for-login'
 import { Input } from '~/components/ui/Input'
+import { hasActiveSession } from '~/utils/auth'
 import { apiClient } from '~/utils/client'
 import { releaseDevtool } from '~/utils/console'
 
@@ -25,13 +26,12 @@ const LoginView: NextPage = () => {
       rememberMe: true,
     })
     const session = await apiClient.owner.getSession()
-    const sessionToken = session?.session?.token
-    if (!sessionToken) {
+    if (!hasActiveSession(session)) {
       message.error(t('fail'))
       return
     }
 
-    useUserStore.getState().setToken(sessionToken)
+    useUserStore.getState().setLoggedIn(true)
     if (history.backPath && history.backPath.length) {
       router.push(history.backPath.pop()!)
     } else {

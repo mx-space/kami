@@ -84,10 +84,7 @@ $axios.interceptors.response.use(
     const response = error.response
     if (response) {
       const data = response.data
-
-      // eslint-disable-next-line no-empty
-      if (response.status == 401) {
-      } else if (data && data.message) {
+      if (response.status !== 401 && data && data.message) {
         message.error(
           typeof data.message == 'string'
             ? data.message

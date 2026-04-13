@@ -115,7 +115,7 @@ export const useAppStore = createWithEqualityFn<AppState & AppAction>(
         } catch (error) {
           const status = (error as AxiosError | undefined)?.response?.status
           if (status === 401 || status === 403) {
-            useUserStore.getState().setToken()
+            useUserStore.getState().setLoggedIn(false)
             setState({ appUrl: null })
             return
           }

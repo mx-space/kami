@@ -11,7 +11,7 @@ interface UserState {
 
 interface UserAction {
   setUser(model: UserModel): void
-  setToken(token?: string): void
+  setLoggedIn(isLogged: boolean): void
 }
 
 const userDefault: UserState = {
@@ -20,12 +20,12 @@ const userDefault: UserState = {
 }
 
 export const useUserStore = createWithEqualityFn<UserState & UserAction>(
-  (setState, _getState) => {
+  (setState) => {
     return {
       ...userDefault,
 
-      setToken(token) {
-        if (!token) {
+      setLoggedIn(isLogged) {
+        if (!isLogged) {
           setState({ isLogged: false })
           return
         }
