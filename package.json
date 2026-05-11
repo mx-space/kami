@@ -73,7 +73,7 @@
     "markdown-escape": "2.0.0",
     "markdown-to-jsx": "npm:@innei/markdown-to-jsx@7.4.5-fork.4",
     "medium-zoom": "1.1.0",
-    "mermaid": "11.14.0",
+    "mermaid": "11.15.0",
     "next": "15.5.18",
     "next-intl": "^4.11.1",
     "next-seo": "6.8.0",
