@@ -54,7 +54,7 @@ const PostListPage: NextPage<PaginateResult<PostModel>> = () => {
     if (!router.isReady) return
     fetchPosts()
      
-  }, [router.isReady, router.query.page, router.query.year, router.query.size, router.asPath, locale])
+  }, [router.isReady, router.query.currentPage, router.query.year, router.query.size, router.asPath, locale])
 
   const fetchPosts = async () => {
     const page = getPositiveInt(getQueryValue('page'), 1) as number

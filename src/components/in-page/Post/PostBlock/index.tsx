@@ -31,7 +31,7 @@ export const PostBlock: FC<PostBlockProps> = (props) => {
 
   const post = props.post
 
-  const { created: date, title, slug, pin, text, id } = post
+  const { createdAt: date, title, slug, pinAt, text, id } = post
 
   const parsedTime = isMobile
     ? parseDate(date, 'MM-DD ddd')
@@ -60,9 +60,9 @@ export const PostBlock: FC<PostBlockProps> = (props) => {
     router.push(`/posts/${categorySlug}/${slug}`)
     springScrollToTop()
   }, [categoryMap, post.category?.slug, post.categoryId, router, slug])
-  const hasImage = post.images?.length > 0 && post.images[0].src
+  const hasImage = post.images?.[0]?.src
 
-  const [pinState, setPinState] = useState(!!pin)
+  const [pinState, setPinState] = useState(!!pinAt)
 
   const handlePin = async () => {
     await apiClient.post.proxy(id).patch({

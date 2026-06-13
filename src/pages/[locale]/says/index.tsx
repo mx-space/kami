@@ -22,7 +22,7 @@ const SayView = () => {
   const sayList = useSayCollection((state) => state.data)
 
   const says = Array.from(sayList.values()).sort(
-    (b, a) => +new Date(a.created) - +new Date(b.created),
+    (b, a) => +new Date(a.createdAt) - +new Date(b.createdAt),
   )
 
   const colorMode = useAppStore((state) => state.colorMode)
@@ -73,7 +73,7 @@ const SayView = () => {
                 >{`${say.text}`}</Markdown>
                 <p className={styles['author']}>
                   <div className="shrink-0">
-                    {`发布于 ${relativeTimeFromNow(say.created)}`}
+                    {`发布于 ${relativeTimeFromNow(say.createdAt)}`}
                   </div>
                   <div className="shrink-0 grow">
                     {hasSource && ` 出自"${say.source}"`}

@@ -70,7 +70,7 @@ const PageView: PageOnlyProps = (props) => {
   const hasNext = indexInPages + 1 < n
   const hasPrev = indexInPages - 1 >= 0
   return (
-    <ArticleLayout title={title} subtitle={subtitle} id={props.id} type="page">
+    <ArticleLayout title={title} subtitle={subtitle ?? undefined} id={props.id} type="page">
       <Seo
         title={title}
         openGraph={
@@ -123,7 +123,7 @@ const PageView: PageOnlyProps = (props) => {
         <CommentLazy
           key={page.id}
           id={page.id}
-          allowComment={page.allowComment ?? true}
+          allowComment
         />
       </Suspense>
     </ArticleLayout>

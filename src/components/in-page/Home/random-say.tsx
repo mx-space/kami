@@ -20,7 +20,7 @@ export const HomeRandomSay: FC = memo(() => {
       }),
     {
       fallbackData: undefined as
-        | { text: string; author: string | undefined; source: string | undefined }
+        | { text: string; author: string | null; source: string | null }
         | undefined,
       refreshInterval: 10_000,
       revalidateOnFocus: false,

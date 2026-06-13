@@ -90,7 +90,7 @@ const Card: FC<{ link: LinkModel }> = ({ link }) => {
         setFocus(false)
       }, [])} rel="noreferrer"
     >
-      <CircleAvatar focus={focused} size={80} src={link.avatar} />
+      <CircleAvatar focus={focused} size={80} src={link.avatar ?? ''} />
       <span className="flex h-full flex-col justify-start space-y-2 py-3">
         <span className="text-lg">{link.name}</span>
         <span className="text-deepgray line-clamp-2 break-all text-sm">

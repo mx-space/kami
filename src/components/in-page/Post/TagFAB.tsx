@@ -42,7 +42,7 @@ const _TagFAB: FC = memo(() => {
   const t = useTranslations('common')
   const [showTags, setShowTags] = useState(false)
   const [postWithTag, setTagPost] = useState<
-    Pick<PostModel, 'id' | 'title' | 'slug' | 'created' | 'category'>[]
+    Pick<PostModel, 'id' | 'title' | 'slug' | 'createdAt' | 'category'>[]
   >([])
   const fetchPostsWithTag = useCallback(async (tagName: string) => {
     setTagPost(null!)
@@ -132,7 +132,8 @@ const _TagFAB: FC = memo(() => {
             <ul className="">
               {postWithTag ? (
                 postWithTag.map((child, i) => {
-                  const date = new Date(child.created)
+                  const date = new Date(child.createdAt)
+                  if (!child.category) return null
 
                   return (
                     <RightToLeftTransitionView

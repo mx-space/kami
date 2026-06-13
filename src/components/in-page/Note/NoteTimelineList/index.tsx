@@ -64,7 +64,7 @@ const ObserveredNoteTimelineList: FC<
     if (!note) return []
     return [
       {
-        created: note.created,
+        createdAt: note.createdAt,
         id: note.id,
         nid: note.nid,
         title: note.title,

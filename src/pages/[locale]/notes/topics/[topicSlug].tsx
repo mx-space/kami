@@ -73,7 +73,7 @@ const TopicDetailPage: NextPage<TopicModel> = (props) => {
         <TimelineListWrapper>
           {notes &&
             notes.map((note) => {
-              const date = new Date(note.created)
+              const date = new Date(note.createdAt)
               return (
                 <RightToLeftTransitionView
                   key={note.id}

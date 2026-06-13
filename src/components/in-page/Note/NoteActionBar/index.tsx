@@ -61,7 +61,7 @@ export const NoteFooterActionBar: FC<{ id: string }> = ({ id }) => {
                 className="leading-none"
               />
             </div>
-            <NumberTransition number={note.count?.like || 0} className="ml-1" />
+            <NumberTransition number={note.likeCount || 0} className="ml-1" />
           </div>
         ),
         color: isLiked ? '#e74c3c' : undefined,
@@ -100,19 +100,19 @@ export const NoteFooterActionBar: FC<{ id: string }> = ({ id }) => {
 
     actions.informs!.push(
       {
-        name: <RelativeTime date={note.created} />,
+        name: <RelativeTime date={note.createdAt} />,
         icon: <MdiClockTimeThreeOutline />,
         tip: () => (
           <p className="leading-7">
-            {t('createdAt')}{new Date(note.created).toLocaleDateString()}
+            {t('createdAt')}{new Date(note.createdAt).toLocaleDateString()}
             <br />
             {t('modifiedAt')}{' '}
-            {note.modified ? new Date(note.modified).toLocaleTimeString() : '-'}
+            {note.modifiedAt ? new Date(note.modifiedAt).toLocaleTimeString() : '-'}
           </p>
         ),
       },
       {
-        name: note.count.read.toString(),
+        name: note.readCount.toString(),
         icon: <PhBookOpen />,
       },
     )

@@ -6,9 +6,9 @@ import { ProjectIcon } from './project-icon'
 
 export type Project = {
   id: string
-  avatar?: string
+  avatar?: string | null
   name: string
-  description?: string
+  description?: string | null
 }
 export const ProjectList: FC<{ projects: Project[] }> = (props) => {
   const projects = props.projects
@@ -23,7 +23,7 @@ export const ProjectList: FC<{ projects: Project[] }> = (props) => {
               key={project.id}
               className="grid grid-cols-[1fr_2fr] gap-4"
             >
-              <ProjectIcon avatar={project.avatar} name={project.name} />
+              <ProjectIcon avatar={project.avatar ?? undefined} name={project.name} />
               <span className="flex shrink-0 grow flex-col gap-2 text-left">
                 <h4 className="font-2xl m-0 p-0 font-medium">{project.name}</h4>
                 <span className="<sm:line-clamp-5 <md:line-clamp-4 line-clamp-2 text-sm">

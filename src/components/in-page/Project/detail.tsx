@@ -33,7 +33,7 @@ export const ProjectDetail: FC<{ id: string }> = (props) => {
   return (
     <>
       <section className={styles['head']}>
-        <ProjectIcon avatar={project.avatar} name={project.name} />
+        <ProjectIcon avatar={project.avatar ?? undefined} name={project.name} />
         <div className="project-detail flex flex-col">
           <h1>{name}</h1>
           <p>{description}</p>
@@ -68,7 +68,7 @@ export const ProjectDetail: FC<{ id: string }> = (props) => {
 
       <article className="mt-12">
         <KamiMarkdown
-          value={text}
+          value={text ?? ''}
           codeBlockFully
           renderers={{
             link: {

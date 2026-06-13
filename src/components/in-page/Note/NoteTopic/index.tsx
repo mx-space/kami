@@ -42,7 +42,7 @@ export const NoteTopic: FC<{ noteId: string; topic: TopicModel }> = (props) => {
         <div className="flex items-center gap-4">
           <Avatar
             size={60}
-            imageUrl={icon}
+            imageUrl={icon ?? undefined}
             text={textToBigCharOrWord(name)}
             className="shrink-0"
             useRandomColor={false}
@@ -75,7 +75,7 @@ export const NoteTopic: FC<{ noteId: string; topic: TopicModel }> = (props) => {
             </span>
 
             <p className="text-shizuku-text line-clamp-2 text-sm opacity-80">
-              <NoteTopicMarkdownRender>{introduce}</NoteTopicMarkdownRender>
+              <NoteTopicMarkdownRender>{introduce ?? ''}</NoteTopicMarkdownRender>
             </p>
           </div>
         </div>

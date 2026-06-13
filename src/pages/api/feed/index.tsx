@@ -49,8 +49,8 @@ export default async function handler(_, res: NextApiResponse) {
             <title>${escapeXml(item.title)}</title>
             <link href='${xss(item.link)}'/>
             <id>${xss(item.link)}</id>
-            <published>${item.created}</published>
-            <updated>${item.modified}</updated>
+            <published>${item.createdAt}</published>
+            <updated>${item.modifiedAt}</updated>
             <content type='html'><![CDATA[
               ${`<blockquote>该渲染由 Kami API 生成，可能存在排版问题，最佳体验请前往：<a href='${xss(
                 item.link,

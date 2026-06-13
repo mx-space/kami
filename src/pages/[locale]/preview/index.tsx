@@ -25,7 +25,7 @@ const NotePreviewPage: FC<{ data: NoteModel }> = ({ data }) => {
   const id = data.id
 
   const note = useNoteCollection(
-    (state) => pick(state.data.get(id), ['id', 'text', 'created', 'title']),
+    (state) => pick(state.data.get(id), ['id', 'text', 'createdAt', 'title']),
     shallow,
   )
 
@@ -33,10 +33,10 @@ const NotePreviewPage: FC<{ data: NoteModel }> = ({ data }) => {
     useNoteCollection.getState().add(data)
   }, [])
   if (!note) return null
-  const { text, created, title } = note
+  const { text, createdAt, title } = note
 
   return (
-    <NoteLayout title={title!} date={created!} id={data.id} isPreview>
+    <NoteLayout title={title!} date={createdAt!} id={data.id} isPreview>
       <article>
         <h1 className="sr-only">{title}</h1>
         <ImageSizeMetaContext.Provider value={noopMap}>
@@ -99,7 +99,7 @@ const PagePreviewPage: FC<{ data: PageModel }> = ({ data }) => {
   return (
     <ArticleLayout
       title={title}
-      subtitle={page.subtitle}
+      subtitle={page.subtitle ?? undefined}
       id={data.id}
       type="page"
     >

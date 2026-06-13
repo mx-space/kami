@@ -26,7 +26,7 @@ export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
     ['topic', topicId, locale],
     () =>
       apiClient.note.getNoteByTopicId(topicId, 1, 1, {
-        sortBy: 'created',
+        sortBy: 'createdAt',
         sortOrder: -1,
         lang: locale,
       }),
@@ -39,14 +39,14 @@ export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
       </Link>
 
       <p className="text-gray-2 line-clamp-2 break-all">
-        <NoteTopicMarkdownRender>{topic.introduce}</NoteTopicMarkdownRender>
+        <NoteTopicMarkdownRender>{topic.introduce ?? ''}</NoteTopicMarkdownRender>
       </p>
       {topic.description && (
         <>
           <Divider />
           <p className="text-gray-1 leading-8">
             <NoteTopicMarkdownRender>
-              {topic.description}
+              {topic.description ?? ''}
             </NoteTopicMarkdownRender>
           </p>
         </>
@@ -72,7 +72,7 @@ export const InnerTopicDetail: FC<{ topic: TopicModel }> = (props) => {
               <span className="shrink-0">
                 （
                 <RelativeTime
-                  date={data?.data[0].modified || data?.data[0].created}
+                  date={data?.data[0].modifiedAt || data?.data[0].createdAt}
                   displayAbsoluteTimeAfterDay={Infinity}
                 />
                 ）

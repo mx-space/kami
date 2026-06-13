@@ -34,7 +34,7 @@ export const usePostCollection = createCollection<PostModelWithMeta, IPostCollec
         setState((state) => {
           const post = state.data.get(id)
           if (post) {
-            post.count.like += 1
+            post.likeCount += 1
           }
         })
       },

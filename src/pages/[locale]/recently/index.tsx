@@ -248,7 +248,7 @@ const RecentlyPage: NextPage = () => {
                               {d.comments || 0}
                             </span>
                           </button>
-                          <RelativeTime date={d.created} />
+                          <RelativeTime date={d.createdAt} />
                         </div>
 
                         <div className="actions">
