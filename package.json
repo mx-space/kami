@@ -90,7 +90,7 @@
     "react-smooth-number-counter": "npm:@reactify-components/smooth-number-counter",
     "react-toastify": "9.1.3",
     "react-use": "17.6.0",
-    "remove-markdown": "0.6.3",
+    "remove-markdown": "0.6.4",
     "socket.io-client": "4.8.3",
     "swr": "2.4.1",
     "validator": "13.15.35",
