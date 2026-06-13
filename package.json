@@ -64,7 +64,7 @@
     "@sentry/nextjs": "10.52.0",
     "axios": "1.16.1",
     "clsx": "2.1.1",
-    "dayjs": "1.11.20",
+    "dayjs": "1.11.21",
     "devtools-detector": "2.0.25",
     "framer-motion": "10.18.0",
     "immer": "^10.2.0",
