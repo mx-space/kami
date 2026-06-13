@@ -105,10 +105,7 @@ export const useNoteCollection = createCollection<NoteModelWithId, NoteCollectio
           if (!note) return
           const nextNote = { ...note }
           if (likeSuccess) {
-            nextNote.count = {
-              ...note.count,
-              like: note.count.like + 1,
-            }
+            nextNote.likeCount = note.likeCount + 1
 
             message.success(msgThanks)
             state.likeIdList.add(id.toString())

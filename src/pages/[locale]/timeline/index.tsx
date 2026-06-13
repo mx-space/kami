@@ -150,7 +150,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
 
   if (!timelineData.memory) {
     posts.forEach((post) => {
-      const date = new Date(post.created)
+      const date = new Date(post.createdAt)
       const year = date.getFullYear()
       const data: MapType = {
         title: post.title,
@@ -171,7 +171,7 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
   notes
     .filter((n) => (timelineData.memory ? n.bookmark : true))
     .forEach((note) => {
-      const date = new Date(note.created)
+      const date = new Date(note.createdAt)
       const year = date.getFullYear()
       const data: MapType = {
         title: note.title,

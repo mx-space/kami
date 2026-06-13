@@ -60,7 +60,7 @@
   "dependencies": {
     "@floating-ui/react-dom": "2.1.8",
     "@formkit/auto-animate": "0.9.0",
-    "@mx-space/api-client": "3.8.0",
+    "@mx-space/api-client": "4.0.0",
     "@sentry/nextjs": "10.52.0",
     "axios": "1.16.1",
     "clsx": "2.1.1",

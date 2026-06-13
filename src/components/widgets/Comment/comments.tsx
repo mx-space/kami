@@ -56,7 +56,7 @@ const CommentList: FC = memo(() => {
   const rootOrdinalById = useMemo(() => {
     const sorted = [...comments].sort(
       (a, b) =>
-        new Date(a.created).getTime() - new Date(b.created).getTime(),
+        new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
     )
     const m = new Map<string, number>()
     sorted.forEach((c, i) => {
@@ -253,7 +253,7 @@ const SingleComment: FC<PropsWithChildren<{ id: string; threadKey: string }>> =
       }
       avatar={
         <Avatar
-          src={comment.author === masterName ? masterAvatar! : comment.avatar}
+          src={comment.author === masterName ? masterAvatar! : (comment.avatar ?? '')}
         />
       }
       content={
@@ -313,14 +313,14 @@ const SingleComment: FC<PropsWithChildren<{ id: string; threadKey: string }>> =
           )}
         />
       }
-      datetime={comment.created}
+      datetime={comment.createdAt}
       commentKey={threadKey}
       actions={actionsEl}
     >
       {replyId === comment.id && (
         <CommentBox
           commentId={comment.id}
-          refId={comment.ref}
+          refId={comment.refId}
           autoFocus
           key="box"
           onSubmit={handleReply}

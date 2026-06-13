@@ -122,8 +122,8 @@ const Seo$: FC<{ id: string }> = ({ id }) => {
     title,
     summary,
     category,
-    created,
-    modified,
+    createdAt,
+    modifiedAt,
     tags,
     text,
     images,
@@ -132,8 +132,8 @@ const Seo$: FC<{ id: string }> = ({ id }) => {
     pick(state.data.get(id)!, [
       'title',
       'summary',
-      'created',
-      'modified',
+      'createdAt',
+      'modifiedAt',
       'category',
       'tags',
       'text',
@@ -151,9 +151,9 @@ const Seo$: FC<{ id: string }> = ({ id }) => {
       openGraph={{
         type: 'article',
         article: {
-          publishedTime: created,
-          modifiedTime: modified || undefined,
-          section: category.name,
+          publishedTime: createdAt,
+          modifiedTime: modifiedAt || undefined,
+          section: category?.name,
           tags: tags ?? [],
         },
       }}
@@ -171,7 +171,7 @@ const FooterActionBar: FC<{ id: string }> = ({ id }) => {
 
   const themeConfig = useThemeConfig()
   const donateConfig = themeConfig.function.donate
-  const createTime = dayjs(post.created)
+  const createTime = dayjs(post.createdAt)
     .locale('cn')
     .format('YYYY 年 M 月 D 日')
 
@@ -202,7 +202,7 @@ const FooterActionBar: FC<{ id: string }> = ({ id }) => {
         },
         {
           icon: <PhBookOpen />,
-          name: post.count.read ?? 0,
+          name: post.readCount ?? 0,
         },
       ],
 
@@ -219,7 +219,7 @@ const FooterActionBar: FC<{ id: string }> = ({ id }) => {
           icon: <IonThumbsup />,
           name: (
             <span className="inline-flex items-center leading-[1.1]">
-              <NumberTransition number={post.count?.like || 0} />
+              <NumberTransition number={post.likeCount || 0} />
             </span>
           ),
           color: isLikedBefore(post.id) ? '#f1c40f' : undefined,
@@ -244,12 +244,11 @@ const FooterActionBar: FC<{ id: string }> = ({ id }) => {
     post.id,
     post.category.name,
     post.copyright,
-    post.count.read,
+    post.readCount,
     post.tags,
     donateConfig.enable,
     donateConfig.link,
-    post.count.like,
-    post.count,
+    post.likeCount,
     createTime,
     post.category.slug,
   ])
@@ -271,19 +270,7 @@ PostUpdateObserver.displayName = 'PostUpdateObserver'
 
 export const PostView: FC<IdProps & { locale?: string }> = (props) => {
   const post = usePostCollection(
-    (state) =>
-      pick(state.data.get(props.id)!, [
-        'title',
-        'category',
-        'id',
-        'images',
-        'summary',
-        'created',
-        'modified',
-        'text',
-        'copyright',
-        'allowComment',
-      ]),
+    (state) => state.data.get(props.id)!,
     shallow,
   )
 
@@ -304,7 +291,7 @@ export const PostView: FC<IdProps & { locale?: string }> = (props) => {
 
   const isClientSide = useIsClient()
 
-  const imagesMap = useMemo(() => imagesRecord2Map(post.images), [post.images])
+  const imagesMap = useMemo(() => imagesRecord2Map(post.images || []), [post.images])
 
   return (
     <>
@@ -328,7 +315,7 @@ export const PostView: FC<IdProps & { locale?: string }> = (props) => {
         ) : (
           <XLogSummaryForPost id={post.id} locale={(props as { locale?: string }).locale} />
         )}
-        <OutdateNotice time={post.modified || post.created} />
+        <OutdateNotice time={post.modifiedAt || post.createdAt} />
         <ImageSizeMetaContext.Provider value={imagesMap}>
           <article>
             <h1 className="sr-only">{post.title}</h1>
@@ -340,7 +327,7 @@ export const PostView: FC<IdProps & { locale?: string }> = (props) => {
         <SubscribeBell defaultType="post_c" />
         {post.copyright && isClientSide ? (
           <Copyright
-            date={post.modified}
+            date={post.modifiedAt}
             link={new URL(location.pathname, webUrl).toString()}
             title={post.title}
           />
@@ -352,7 +339,7 @@ export const PostView: FC<IdProps & { locale?: string }> = (props) => {
           <CommentLazy
             key={post.id}
             id={post.id}
-            allowComment={post.allowComment ?? true}
+            allowComment
           />
         </Suspense>
 

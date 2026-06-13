@@ -13,7 +13,7 @@ import { SectionWrap } from './section'
 export const FriendItem: FC<LinkModel> = memo((props) => {
   return (
     <div className={styles['avatar-item']}>
-      <Avatar imageUrl={props.avatar} alt={props.name} url={props.url} />
+      <Avatar imageUrl={props.avatar ?? undefined} alt={props.name} url={props.url} />
       <span className={styles['avatar-name']}>{props.name}</span>
     </div>
   )

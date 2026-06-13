@@ -88,9 +88,9 @@ function getNoteContentSnapshot(note: NoteModelWithMeta) {
   return {
     title: note.title,
     text: note.text,
-    modified: note.modified
-      ? new Date(note.modified).getTime()
-      : (note.modified as unknown),
+    modified: note.modifiedAt
+      ? new Date(note.modifiedAt).getTime()
+      : (note.modifiedAt as unknown),
     weather: note.weather,
     topicId: note.topicId,
     publicAt: note.publicAt
@@ -163,7 +163,7 @@ const useUpdateNote = (note: ModelWithDeleted<NoteModelWithMeta>) => {
       )
     }
     beforeContentRef.current = noteContent
-  }, [note.title, note.text, note.modified, note.weather, noteHide, note?.isDeleted, note.topicId, note.id, note.publicAt, event])
+  }, [note.title, note.text, note.modifiedAt, note.weather, noteHide, note?.isDeleted, note.topicId, note.id, note.publicAt, event])
 }
 
 const NoteView: React.FC<{ id: string; locale?: string }> = memo((props) => {
@@ -212,9 +212,9 @@ const NoteView: React.FC<{ id: string; locale?: string }> = memo((props) => {
     count: true,
     length: 150,
   })
-  const createdDate = dayjs(note.created).locale(dayjsLocale).format('LL dddd')
-  const modifiedDate = note.modified
-    ? dayjs(note.modified).locale(dayjsLocale).format('LL dddd')
+  const createdDate = dayjs(note.createdAt).locale(dayjsLocale).format('LL dddd')
+  const modifiedDate = note.modifiedAt
+    ? dayjs(note.modifiedAt).locale(dayjsLocale).format('LL dddd')
     : null
 
   const tips = useMemo(() => {
@@ -223,15 +223,15 @@ const NoteView: React.FC<{ id: string; locale?: string }> = memo((props) => {
       ? tDetail('modifiedAt', { modified: modifiedDate })
       : ''
     const word = tDetail('wordCount', { count: wordCount })
-    const read = tDetail('readCount', { read: note.count.read })
-    const like = tDetail('likeCount', { like: note.count.like })
+    const read = tDetail('readCount', { read: note.readCount })
+    const like = tDetail('likeCount', { like: note.likeCount })
 
     return `${created}${modified} · ${word} · ${read} · ${like}`
   }, [
     createdDate,
     modifiedDate,
-    note.count.like,
-    note.count.read,
+    note.likeCount,
+    note.readCount,
     tDetail,
     wordCount,
   ])
@@ -284,13 +284,13 @@ const NoteView: React.FC<{ id: string; locale?: string }> = memo((props) => {
           type: 'article',
           description,
           article: {
-            publishedTime: note.created,
-            modifiedTime: note.modified || undefined,
+            publishedTime: note.createdAt,
+            modifiedTime: note.modifiedAt || undefined,
             tags: note.topic ? [note.topic.name] : [],
           },
         },
       })}
-      <NoteLayout title={title} date={note.created} tips={tips} id={note.id}>
+      <NoteLayout title={title} date={note.createdAt} tips={tips} id={note.id}>
         {isSecret && !isLogged ? (
           <Banner type="warning" className="mt-4">
             {t('notPublicYet', { date: dateFormat })}
@@ -338,7 +338,7 @@ const NoteView: React.FC<{ id: string; locale?: string }> = memo((props) => {
               <CommentLazy
                 id={id}
                 key={id}
-                allowComment={note.allowComment ?? true}
+                allowComment
               />
             </Suspense>
           </ArticleLayout>

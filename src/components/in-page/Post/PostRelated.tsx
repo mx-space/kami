@@ -24,6 +24,8 @@ export const PostRelated = memo<{ id: string }>((props) => {
       </h3>
       <ul>
         {post.related.map((post) => {
+          if (!post.category) return null
+
           return (
             <li key={post.id}>
               <Link

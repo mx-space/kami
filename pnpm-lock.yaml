@@ -19,8 +19,8 @@ importers:
         specifier: 0.9.0
         version: 0.9.0
       '@mx-space/api-client':
-        specifier: 3.8.0
-        version: 3.8.0
+        specifier: 4.0.0
+        version: 4.0.0
       '@sentry/nextjs':
         specifier: 10.52.0
         version: 10.52.0(@opentelemetry/core@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.6.1(@opentelemetry/api@1.9.1))(next@15.5.18(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack@5.106.2)
@@ -928,8 +928,8 @@ packages:
   '@mermaid-js/parser@1.1.1':
     resolution: {integrity: sha512-VuHdsYMK1bT6X2JbcAaWAhugTRvRBRyuZgd+c22swUeI9g/ntaxF7CY7dYarhZovofCbUNO0G7JesfmNtjYOCw==}
 
-  '@mx-space/api-client@3.8.0':
-    resolution: {integrity: sha512-EIn4cNLlXmVeghFnDhrYGk1+X1zkQeB8a6dl8YIfESHcOvlWbewmytjJCXgUCQhOErhaFNpRT9tRvVCJtI52VQ==}
+  '@mx-space/api-client@4.0.0':
+    resolution: {integrity: sha512-eN5C4dpj5J6o6jWHaLijwe4oSIef0sWioP0xboEBZuwDc+VognSIUxl9KtEq62162n8NZbEIgGwMZcF3/0z3Og==}
     engines: {node: '>=22'}
 
   '@next/bundle-analyzer@15.5.18':
@@ -3590,6 +3590,9 @@ packages:
     resolution: {integrity: sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==}
     hasBin: true
 
+  optimist@0.3.7:
+    resolution: {integrity: sha512-TCx0dXQzVtSCg2OgY/bO9hjM9cV4XYx09TVK+s3+FhkjT6LovsLe+pPMzpWf+6yXK/hUizs2gUoTw3jHM0VaTQ==}
+
   optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
     engines: {node: '>= 0.8.0'}
@@ -4028,6 +4031,11 @@ packages:
 
   read-cache@1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
+
+  rebuild@0.1.2:
+    resolution: {integrity: sha512-EtDZ5IapND57htCrOOcfH7MzXCQKivzSZUIZIuc8H0xDHfmi9HDBZIyjT7Neh5GcUoxQ6hfsXluC+UrYLgGbZg==}
+    engines: {node: '>=0.8.8'}
+    hasBin: true
 
   reflect.getprototypeof@1.0.10:
     resolution: {integrity: sha512-00o4I+DVrefhv+nX0ulyi3biSHCPDe+yLv5o/p6d/UVlirijB8E16FtfwSAi4g3tcqrQ4lRAqQSoFEZJehYEcw==}
@@ -4545,6 +4553,10 @@ packages:
   word-wrap@1.2.5:
     resolution: {integrity: sha512-BN22B5eaMMI9UMtjrGd5g5eCYPpCPDUy0FJXbYsaT5zYxjFOckS53SQDE3pWkVoWpHXVb3BrYcEN4Twa55B5cA==}
     engines: {node: '>=0.10.0'}
+
+  wordwrap@0.0.3:
+    resolution: {integrity: sha512-1tMA907+V4QmxV7dbRvb4/8MaRALK6q9Abid3ndMYnbyo8piisCmeONVqVSXqQA3KaP4SLt5b7ud6E2sqP8TFw==}
+    engines: {node: '>=0.4.0'}
 
   wrap-ansi@9.0.2:
     resolution: {integrity: sha512-42AtmgqjV+X1VpdOfyTGOYRi0/zsoLqtXQckTmqTeybT+BDIbM/Guxo7x3pE2vtpr1ok6xRqM9OpBe+Jyoqyww==}
@@ -5305,7 +5317,9 @@ snapshots:
     dependencies:
       '@chevrotain/types': 11.1.2
 
-  '@mx-space/api-client@3.8.0': {}
+  '@mx-space/api-client@4.0.0':
+    dependencies:
+      rebuild: 0.1.2
 
   '@next/bundle-analyzer@15.5.18':
     dependencies:
@@ -8156,6 +8170,10 @@ snapshots:
 
   opener@1.5.2: {}
 
+  optimist@0.3.7:
+    dependencies:
+      wordwrap: 0.0.3
+
   optionator@0.9.4:
     dependencies:
       deep-is: 0.1.4
@@ -8666,6 +8684,10 @@ snapshots:
   read-cache@1.0.0:
     dependencies:
       pify: 2.3.0
+
+  rebuild@0.1.2:
+    dependencies:
+      optimist: 0.3.7
 
   reflect.getprototypeof@1.0.10:
     dependencies:
@@ -9354,6 +9376,8 @@ snapshots:
       babel-walk: 3.0.0-canary-5
 
   word-wrap@1.2.5: {}
+
+  wordwrap@0.0.3: {}
 
   wrap-ansi@9.0.2:
     dependencies:

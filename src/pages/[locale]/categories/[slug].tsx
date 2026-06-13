@@ -54,7 +54,7 @@ const CategoryListView: NextPage<CategoryListViewProps> = (props) => {
       <article className="article-list">
         <TimelineListWrapper>
           {children.map((child, i) => {
-            const date = new Date(child.created)
+            const date = new Date(child.createdAt)
 
             return (
               <BottomToUpTransitionView
