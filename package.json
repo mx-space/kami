@@ -2,7 +2,7 @@
   "name": "kami",
   "license": "GPL-3.0",
   "private": false,
-  "version": "6.1.0",
+  "version": "6.1.1",
   "engines": {
     "node": ">=v14.21.3"
   },
