@@ -2,7 +2,7 @@
 FROM node:24-alpine AS builder
 
 RUN apk add --no-cache libc6-compat git
-RUN npm i -g pnpm
+RUN npm i -g pnpm@10.34.5
 WORKDIR /app
 COPY . .
 
