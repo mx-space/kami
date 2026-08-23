@@ -43,6 +43,10 @@
   }
 }
 
+.highlight {
+  @apply rounded bg-gray-4 px-[2px] text-[inherit];
+}
+
 @keyframes move {
   from {
     transform: translateX(-200px);

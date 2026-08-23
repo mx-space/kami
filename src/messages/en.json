@@ -238,7 +238,13 @@
     "page": "Page",
     "noResults": "No results",
     "close": "Close search",
-    "placeholder": "Search"
+    "open": "Open search",
+    "placeholder": "Search",
+    "inputLabel": "Search content",
+    "loading": "Searching…",
+    "failed": "Search failed. Please try again.",
+    "retry": "Retry",
+    "fallback": "From source data"
   },
   "comment": {
     "deleteSuccess": "Deleted",
