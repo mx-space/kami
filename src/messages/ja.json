@@ -236,7 +236,13 @@
     "page": "ページ",
     "noResults": "結果なし",
     "close": "検索を閉じる",
-    "placeholder": "検索"
+    "open": "検索を開く",
+    "placeholder": "検索",
+    "inputLabel": "検索内容",
+    "loading": "検索中…",
+    "failed": "検索に失敗しました。もう一度お試しください。",
+    "retry": "再試行",
+    "fallback": "ソースデータから"
   },
   "comment": {
     "deleteSuccess": "削除しました",

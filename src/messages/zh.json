@@ -236,7 +236,13 @@
     "page": "页面",
     "noResults": "无内容",
     "close": "关闭搜索框",
-    "placeholder": "搜索"
+    "open": "打开搜索",
+    "placeholder": "搜索",
+    "inputLabel": "搜索内容",
+    "loading": "正在搜索…",
+    "failed": "搜索失败，请重试",
+    "retry": "重试",
+    "fallback": "来自源数据"
   },
   "comment": {
     "deleteSuccess": "删除成功~",

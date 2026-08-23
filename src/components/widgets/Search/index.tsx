@@ -1,8 +1,9 @@
 import { clsx } from 'clsx'
 import { motion } from 'framer-motion'
-import { Link } from '~/i18n/navigation'
+import { useTranslations } from 'next-intl'
+import { Link, useLocale } from '~/i18n/navigation'
 import type { FC, KeyboardEventHandler } from 'react'
-import { memo, useCallback, useEffect, useRef, useState } from 'react'
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Modifier, useShortcut } from 'react-shortcut-guide'
 import useSWR from 'swr'
 
@@ -18,62 +19,36 @@ import { useDebounceValue } from '~/hooks/common/use-debounce-value'
 import { apiClient } from '~/utils/client'
 
 import styles from './index.module.css'
+import {
+  getHighlightSegments,
+  toSearchListItems,
+  type SearchResultResponse,
+} from './utils'
 
 export type SearchPanelProps = {
   defaultKeyword?: string
 }
 
-type SearchListType = {
-  title: string
-  subtitle?: string
-  url: string
-  id: string
-}
-
-type SearchResultItem =
-  | {
-      type: 'post'
-      title: string
-      id: string
-      slug: string
-      category?: {
-        name: string
-        slug: string
-      }
-    }
-  | {
-      type: 'note'
-      title: string
-      id: string
-      nid: number
-    }
-  | {
-      type: 'page'
-      title: string
-      id: string
-      slug: string
-    }
-
-type SearchResultResponse = {
-  data: SearchResultItem[]
-}
-
 export const SearchPanel: FC<SearchPanelProps> = (props) => {
   const { defaultKeyword } = props
   const [keyword, setKeyword] = useState(defaultKeyword || '')
-  const debouncedKeyword = useDebounceValue(keyword, 360)
-
-  const [list, setList] = useState<SearchListType[]>([])
+  const trimmedKeyword = keyword.trim()
+  const debouncedKeyword = useDebounceValue(trimmedKeyword, 360)
+  const locale = useLocale()
+  const t = useTranslations('search')
   const { event } = useAnalyze()
 
-  const { data, isValidating, isLoading } = useSWR(
-    ['search', debouncedKeyword],
-    ([, keyword]) => {
-      if (!keyword) {
-        return
-      }
+  const isDebouncing =
+    trimmedKeyword.length > 0 && trimmedKeyword !== debouncedKeyword
+  const searchKey =
+    trimmedKeyword.length > 0 && !isDebouncing
+      ? (['search', locale, debouncedKeyword] as const)
+      : null
+  const { data, error, isValidating, isLoading, mutate } = useSWR(
+    searchKey,
+    ([, , searchKeyword]) => {
       return apiClient.search.searchAll(
-        keyword,
+        searchKeyword,
       ) as unknown as Promise<SearchResultResponse>
     },
     {
@@ -82,64 +57,27 @@ export const SearchPanel: FC<SearchPanelProps> = (props) => {
     },
   )
 
-  const loading = isLoading || isValidating
-
-  useEffect(() => {
-    if (!debouncedKeyword) {
-      setCurrentSelect(0)
-      setList([])
-      return
-    }
-
-    if (!data?.data) {
-      return
-    }
-
-    const _list = data.data.reduce<SearchListType[]>((acc, item) => {
-      switch (item.type) {
-        case 'post': {
-          if (!item.category) {
-            return acc
-          }
-          acc.push({
-            title: item.title,
-            subtitle: item.category.name,
-            id: item.id,
-            url: `/posts/${item.category.slug}/${item.slug}`,
-          })
-          return acc
-        }
-        case 'note': {
-          acc.push({
-            title: item.title,
-            subtitle: '手记',
-            id: item.id,
-            url: `/notes/${item.nid}`,
-          })
-          return acc
-        }
-        case 'page': {
-          acc.push({
-            title: item.title,
-            subtitle: '页面',
-            id: item.id,
-            url: `/${item.slug}`,
-          })
-          return acc
-        }
-      }
-    }, [])
-    setCurrentSelect(0)
-    setList(_list)
-  }, [data?.data, debouncedKeyword])
+  const loading = isDebouncing || isLoading || isValidating
+  const list = useMemo(
+    () =>
+      toSearchListItems(data?.data, {
+        note: t('note'),
+        page: t('page'),
+      }),
+    [data?.data, t],
+  )
 
   const [currentSelect, setCurrentSelect] = useState(0)
   const listRef = useRef<HTMLUListElement>(null)
 
+  useEffect(() => {
+    setCurrentSelect(0)
+  }, [list, trimmedKeyword])
+
   const trackerOne = useRef(false)
   const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = useCallback(
     (e) => {
-      if (!listRef.current) {
+      if (!listRef.current || list.length === 0) {
         return
       }
       const $ = listRef.current
@@ -157,35 +95,35 @@ export const SearchPanel: FC<SearchPanelProps> = (props) => {
       }
       switch (e.key) {
         case 'Enter': {
-          ;(
-            ($.children.item(currentSelect) as HTMLLIElement).children.item(
-              0,
-            ) as HTMLLinkElement
-          )?.click()
+          const selectedItem = $.children.item(
+            currentSelect,
+          ) as HTMLLIElement | null
+          selectedItem?.querySelector('a')?.click()
           tracker()
           break
         }
         case 'ArrowDown': {
-          setCurrentSelect((currentSelect) => {
-            const index = currentSelect + 1
-            return index ? index % list.length : 0
+          const nextIndex = (currentSelect + 1) % list.length
+          setCurrentSelect(nextIndex)
+          $.children.item(nextIndex)?.scrollIntoView({
+            behavior: 'smooth',
           })
           tracker()
           break
         }
         case 'ArrowUp': {
-          setCurrentSelect((currentSelect) => {
-            const index = currentSelect - 1
-            return index < 0 ? list.length - 1 : index
+          const nextIndex =
+            currentSelect - 1 < 0 ? list.length - 1 : currentSelect - 1
+          setCurrentSelect(nextIndex)
+          $.children.item(nextIndex)?.scrollIntoView({
+            behavior: 'smooth',
           })
           tracker()
           break
         }
+        default:
+          return
       }
-
-      $.children.item(currentSelect)?.scrollIntoView({
-        behavior: 'smooth',
-      })
     },
     [currentSelect, list.length],
   )
@@ -213,8 +151,8 @@ export const SearchPanel: FC<SearchPanelProps> = (props) => {
       <input
         autoFocus
         className="w-full bg-transparent p-4 px-5 text-[16px] leading-4"
-        placeholder="Search..."
-        defaultValue={defaultKeyword}
+        aria-label={t('inputLabel')}
+        placeholder={t('placeholder')}
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
         onKeyDown={(e) => {
@@ -232,24 +170,46 @@ export const SearchPanel: FC<SearchPanelProps> = (props) => {
       />
       <div className="overflow-overlay relative shrink grow">
         <ul className="h-full px-3 py-4" ref={listRef}>
-          {list.length === 0 && !loading ? (
+          {!trimmedKeyword ? (
             <div className="flex h-full items-center justify-center">
               <div className="flex flex-col items-center space-y-2">
-                {!keyword ? (
-                  <IonSearch className="text-[60px]" />
-                ) : !loading ? (
-                  <EmptyIcon />
-                ) : null}
-                <span>{keyword && '无内容'}</span>
+                <IonSearch className="text-[60px]" />
+                <span>{t('placeholder')}</span>
+              </div>
+            </div>
+          ) : error ? (
+            <div
+              className="flex h-full flex-col items-center justify-center space-y-3"
+              role="alert"
+            >
+              <EmptyIcon />
+              <span>{t('failed')}</span>
+              <button
+                className="rounded-md bg-gray-4 px-3 py-1 transition-opacity hover:opacity-80"
+                type="button"
+                onClick={() => void mutate()}
+              >
+                {t('retry')}
+              </button>
+            </div>
+          ) : loading ? (
+            <div
+              className="flex h-full items-center justify-center"
+              role="status"
+            >
+              <span>{t('loading')}</span>
+            </div>
+          ) : list.length === 0 ? (
+            <div className="flex h-full items-center justify-center">
+              <div className="flex flex-col items-center space-y-2">
+                <EmptyIcon />
+                <span>{t('noResults')}</span>
               </div>
             </div>
           ) : (
             list.map((item, index) => {
               return (
-                <li
-                  key={item.id}
-                  onMouseOver={() => setCurrentSelect(index)}
-                >
+                <li key={item.id} onMouseOver={() => setCurrentSelect(index)}>
                   <Link
                     href={item.url}
                     className={clsx(
@@ -257,11 +217,25 @@ export const SearchPanel: FC<SearchPanelProps> = (props) => {
                       index === currentSelect && styles['active'],
                     )}
                   >
-                    <span className="block flex-1 shrink-0 truncate">
-                      {item.title}
+                    <span className="block min-w-0 flex-1 shrink-0">
+                      <HighlightText
+                        className="block truncate"
+                        keywords={item.highlight?.keywords}
+                        text={item.title}
+                      />
+                      {item.highlight?.snippet && (
+                        <HighlightText
+                          className="text-deepgray mt-1 line-clamp-2 block text-sm"
+                          keywords={item.highlight.keywords}
+                          text={item.highlight.snippet}
+                        />
+                      )}
                     </span>
-                    <span className="text-deepgray text-theme-gray-2 block shrink-0 grow-0">
+                    <span className="text-deepgray text-theme-gray-2 ml-4 flex shrink-0 grow-0 flex-col items-end gap-1">
                       {item.subtitle}
+                      {item.isFallback && (
+                        <span className="text-xs">{t('fallback')}</span>
+                      )}
                     </span>
                   </Link>
                 </li>
@@ -273,10 +247,34 @@ export const SearchPanel: FC<SearchPanelProps> = (props) => {
     </motion.div>
   )
 }
+
+const HighlightText: FC<{
+  className?: string
+  keywords?: readonly string[]
+  text: string
+}> = ({ className, keywords, text }) => {
+  const segments = getHighlightSegments(text, keywords)
+
+  return (
+    <span className={className}>
+      {segments.map((segment) =>
+        segment.highlighted ? (
+          <mark className={styles['highlight']} key={segment.key}>
+            {segment.text}
+          </mark>
+        ) : (
+          <span key={segment.key}>{segment.text}</span>
+        ),
+      )}
+    </span>
+  )
+}
+
 export const SearchOverlay: FC<OverlayProps> = (props) => {
   const { ...rest } = props
 
   const isMobile = useAppStore((state) => state.viewport.mobile)
+  const t = useTranslations('search')
 
   useShortcut(
     'Escape',
@@ -284,7 +282,7 @@ export const SearchOverlay: FC<OverlayProps> = (props) => {
     () => {
       props.onClose()
     },
-    '关闭搜索框',
+    t('close'),
     { hiddenInPanel: true },
   )
   return (
@@ -309,13 +307,16 @@ export const SearchOverlay: FC<OverlayProps> = (props) => {
 export const SearchHotKey: FC = memo(() => {
   const { event } = useAnalyze()
   const [show, setShow] = useState(false)
+  const t = useTranslations('search')
   const handler = () => {
     event({ action: TrackerAction.Click, label: 'cmd+k' })
     setShow(true)
   }
-  useShortcut('K', [Modifier.Command], handler, '搜索')
-  useShortcut('K', [Modifier.Control], handler, '搜索', { hiddenInPanel: true })
-  useShortcut('/', [Modifier.None], handler, '搜索')
+  useShortcut('K', [Modifier.Command], handler, t('open'))
+  useShortcut('K', [Modifier.Control], handler, t('open'), {
+    hiddenInPanel: true,
+  })
+  useShortcut('/', [Modifier.None], handler, t('open'))
 
   return <SearchOverlay show={show} onClose={() => setShow(false)} />
 })
@@ -346,10 +347,8 @@ export const SearchFAB = () => {
     })
 
     return () => {
-       
       actionStore.removeActionById(actionId.current)
     }
-     
   }, [])
 
   return <SearchOverlay show={show} onClose={() => setShow(false)} />
