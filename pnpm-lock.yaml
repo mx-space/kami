@@ -6,7 +6,7 @@ settings:
 
 overrides:
   react-use: 17.6.0
-  '@types/react': 17.0.68
+  '@types/react': 17.0.93
 
 importers:
 
@@ -125,7 +125,7 @@ importers:
         version: 1.0.15
       zustand:
         specifier: ^4.5.7
-        version: 4.5.7(@types/react@17.0.68)(immer@10.2.0)(react@18.3.1)
+        version: 4.5.7(@types/react@17.0.93)(immer@10.2.0)(react@18.3.1)
     devDependencies:
       '@next/bundle-analyzer':
         specifier: 15.5.18
@@ -155,14 +155,14 @@ importers:
         specifier: 0.5.9
         version: 0.5.9
       '@types/react':
-        specifier: 17.0.68
-        version: 17.0.68
+        specifier: 17.0.93
+        version: 17.0.93
       '@types/react-color':
         specifier: 3.0.13
-        version: 3.0.13(@types/react@17.0.68)
+        version: 3.0.13(@types/react@17.0.93)
       '@types/react-dom':
         specifier: 18.3.7
-        version: 18.3.7(@types/react@17.0.68)
+        version: 18.3.7(@types/react@17.0.93)
       '@types/remove-markdown':
         specifier: 0.3.4
         version: 0.3.4
@@ -1847,15 +1847,15 @@ packages:
   '@types/react-color@3.0.13':
     resolution: {integrity: sha512-2c/9FZ4ixC5T3JzN0LP5Cke2Mf0MKOP2Eh0NPDPWmuVH3NjPyhEjqNMQpN1Phr5m74egAy+p2lYNAFrX1z9Yrg==}
     peerDependencies:
-      '@types/react': 17.0.68
+      '@types/react': 17.0.93
 
   '@types/react-dom@18.3.7':
     resolution: {integrity: sha512-MEe3UeoENYVFXzoXEWsvcpg6ZvlrFNlOQ7EOsvhI3CfAXwzPfO8Qwuxd40nepsYKqyyVQnTdEfv68q91yLcKrQ==}
     peerDependencies:
-      '@types/react': 17.0.68
+      '@types/react': 17.0.93
 
-  '@types/react@17.0.68':
-    resolution: {integrity: sha512-y8heXejd/Gi43S28GOqIFmr6BzhLa3anMlPojRu4rHh3MtRrrpB+BtLEcqP3XPO1urXByzBdkOLU7sodYWnpkA==}
+  '@types/react@17.0.93':
+    resolution: {integrity: sha512-KM4Ty/ZTLZupiYxZVAlP+InNJS3De6uBMdq0ePa6/04+eG9Y7ftnWfst1xTLQ5rwAhgHwQ4momt/O4KepdGBTw==}
 
   '@types/reactcss@1.2.6':
     resolution: {integrity: sha512-qaIzpCuXNWomGR1Xq8SCFTtF4v8V27Y6f+b9+bzHiv087MylI/nTCqqdChNeWS7tslgROmYB7yeiruWX7WnqNg==}
@@ -2328,9 +2328,6 @@ packages:
 
   cssfilter@0.0.10:
     resolution: {integrity: sha512-FAaLDaplstoRsDR8XGYH51znUN0UY7nMc6Z9/fvE8EXGwvJE9hu7W2vHwx1+bd6gCYnln9nLbzxFTrcO9YQDZw==}
-
-  csstype@3.1.0:
-    resolution: {integrity: sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==}
 
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
@@ -4620,7 +4617,7 @@ packages:
     resolution: {integrity: sha512-CHOUy7mu3lbD6o6LJLfllpjkzhHXSBlX8B9+qPddUsIfeF5S/UZ5q0kmCsnRqT1UHFQZchNFDDzMbQsuesHWlw==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
-      '@types/react': 17.0.68
+      '@types/react': 17.0.93
       immer: '>=9.0.6'
       react: '>=16.8'
     peerDependenciesMeta:
@@ -6210,24 +6207,24 @@ snapshots:
 
   '@types/randomcolor@0.5.9': {}
 
-  '@types/react-color@3.0.13(@types/react@17.0.68)':
+  '@types/react-color@3.0.13(@types/react@17.0.93)':
     dependencies:
-      '@types/react': 17.0.68
+      '@types/react': 17.0.93
       '@types/reactcss': 1.2.6
 
-  '@types/react-dom@18.3.7(@types/react@17.0.68)':
+  '@types/react-dom@18.3.7(@types/react@17.0.93)':
     dependencies:
-      '@types/react': 17.0.68
+      '@types/react': 17.0.93
 
-  '@types/react@17.0.68':
+  '@types/react@17.0.93':
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
-      csstype: 3.1.0
+      csstype: 3.2.3
 
   '@types/reactcss@1.2.6':
     dependencies:
-      '@types/react': 17.0.68
+      '@types/react': 17.0.93
 
   '@types/remove-markdown@0.3.4': {}
 
@@ -6779,8 +6776,6 @@ snapshots:
   cssesc@3.0.0: {}
 
   cssfilter@0.0.10: {}
-
-  csstype@3.1.0: {}
 
   csstype@3.2.3: {}
 
@@ -9404,11 +9399,11 @@ snapshots:
 
   zod@4.3.6: {}
 
-  zustand@4.5.7(@types/react@17.0.68)(immer@10.2.0)(react@18.3.1):
+  zustand@4.5.7(@types/react@17.0.93)(immer@10.2.0)(react@18.3.1):
     dependencies:
       use-sync-external-store: 1.6.0(react@18.3.1)
     optionalDependencies:
-      '@types/react': 17.0.68
+      '@types/react': 17.0.93
       immer: 10.2.0
       react: 18.3.1
 
