@@ -64,6 +64,19 @@ const getBrowserUrlLocale = () => {
     : defaultLocale
 }
 
+const hasLangParam = (params: unknown) => {
+  if (params instanceof URLSearchParams) {
+    return params.has('lang')
+  }
+  if (typeof params === 'string') {
+    return /(?:^|[?&])lang=/.test(params)
+  }
+  return !!params && typeof params === 'object' && 'lang' in params
+}
+
+const urlHasLangParam = (url: string | undefined) =>
+  !!url && /[?&]lang=/.test(url)
+
 $axios.interceptors.request.use((config) => {
   config.headers = config.headers ?? {}
   config.headers['x-uuid'] = uuid
@@ -71,8 +84,12 @@ $axios.interceptors.request.use((config) => {
   const locale = getBrowserUrlLocale() ?? requestLocale
   if (locale) {
     config.headers['x-lang'] = locale
-    if (isGetRequest) {
-      config.params = { ...config.params, lang: config.params?.lang ?? locale }
+    if (
+      isGetRequest &&
+      !hasLangParam(config.params) &&
+      !urlHasLangParam(config.url)
+    ) {
+      config.params = { ...config.params, lang: locale }
     }
   } else if ('x-lang' in config.headers) {
     delete config.headers['x-lang']
