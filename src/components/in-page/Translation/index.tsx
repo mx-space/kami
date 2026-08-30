@@ -88,7 +88,12 @@ export const TranslationNotice: FC<{ content: unknown }> = ({ content }) => {
 
   if (translation.isTranslated && sourceLang && targetLang) {
     return (
-      <Banner type="info" placement="left" className="mb-6" showIcon={false}>
+      <Banner
+        type="info"
+        placement="left"
+        className="mt-4 mb-6"
+        showIcon={false}
+      >
         <div className="flex w-full flex-wrap items-center gap-x-3 gap-y-2">
           <strong>{t('aiTranslation')}</strong>
           <span>
@@ -116,7 +121,12 @@ export const TranslationNotice: FC<{ content: unknown }> = ({ content }) => {
 
   if (sourceLang && sourceLang !== locale) {
     return (
-      <Banner type="info" placement="left" className="mb-6" showIcon={false}>
+      <Banner
+        type="info"
+        placement="left"
+        className="mt-4 mb-6"
+        showIcon={false}
+      >
         <span>
           {t('originalContent', { language: t(getLanguageNameKey(sourceLang)) })}
         </span>
