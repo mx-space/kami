@@ -3,6 +3,7 @@ import { CanceledError } from 'axios'
 import { message } from 'react-message-popup'
 
 import { allControllers, createClient } from '@mx-space/api-client'
+import { defaultLocale, enabledLocaleSet } from '~/i18n/config'
 import { isClientSide } from './env'
 import { API_URL } from '~/constants/env'
 
@@ -33,10 +34,19 @@ export const $axios = axiosAdaptor.default as AxiosInstance
 $axios.defaults.timeout = 10000
 $axios.defaults.withCredentials = true
 
-/** Current locale for API requests (set by LangSyncProvider). Backend can use x-lang for localized content. */
+/**
+ * Current browser locale for API requests (set by LangSyncProvider).
+ *
+ * This value is deliberately client-only: a module global is unsafe for
+ * concurrent SSR. Server callers must pass `lang` with the individual
+ * request instead.
+ */
 let requestLocale: string | null = null
 
 export function setRequestLocale(locale: string | null) {
+  if (!isClientSide()) {
+    return
+  }
   requestLocale = locale
 }
 
@@ -44,11 +54,26 @@ export function getRequestLocale() {
   return requestLocale
 }
 
+const getBrowserUrlLocale = () => {
+  if (!isClientSide()) {
+    return null
+  }
+  const firstPathSegment = window.location.pathname.split('/').filter(Boolean)[0]
+  return firstPathSegment && enabledLocaleSet.has(firstPathSegment)
+    ? firstPathSegment
+    : defaultLocale
+}
+
 $axios.interceptors.request.use((config) => {
   config.headers = config.headers ?? {}
   config.headers['x-uuid'] = uuid
-  if (requestLocale) {
-    config.headers['x-lang'] = requestLocale
+  const isGetRequest = (config.method ?? 'get').toLowerCase() === 'get'
+  const locale = getBrowserUrlLocale() ?? requestLocale
+  if (locale) {
+    config.headers['x-lang'] = locale
+    if (isGetRequest) {
+      config.params = { ...config.params, lang: config.params?.lang ?? locale }
+    }
   } else if ('x-lang' in config.headers) {
     delete config.headers['x-lang']
   }

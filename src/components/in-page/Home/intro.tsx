@@ -17,6 +17,7 @@ const wrapperProps = { className: '!w-full !h-full !border-none !shadow-none' }
 export const HomeIntro: FC = () => {
   const { doAnimation } = useHomePageViewContext()
   const user = useUserStore((state) => state.master)
+  const config = useThemeConfig()
 
   if (!user) {
     return null
@@ -40,7 +41,7 @@ export const HomeIntro: FC = () => {
           appear={doAnimation}
           className="text-theme-gray-1 mt-2 leading-7"
         >
-          {user.introduce || ''}
+          {config.site.introduction || user.introduce || ''}
         </TextUpTransitionView>
 
         <Social />

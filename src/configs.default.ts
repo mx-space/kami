@@ -2,6 +2,9 @@
 export const defaultConfigs = {
   name: 'kami',
   site: {
+    title: null,
+    description: null,
+    introduction: null,
     favicon: '/favicon.svg',
     logoSvg: null,
     figure: null,

@@ -26,6 +26,7 @@ import Document, {
 } from 'next/document'
 
 import { attachRequestProxy, fetchInitialData } from '~/utils/app'
+import { getLocaleFromContext } from '~/i18n/navigation'
 
 interface MyDocumentProps extends DocumentInitialProps {
   customStylesheetHrefs: string[]
@@ -41,7 +42,7 @@ export default class MyDocument extends Document<MyDocumentProps> {
 
     let customStylesheetHrefs: string[] = []
     try {
-      const data = await fetchInitialData()
+      const data = await fetchInitialData(getLocaleFromContext(ctx))
       customStylesheetHrefs = data?.config?.site?.custom?.css || []
     } catch {
       customStylesheetHrefs = []

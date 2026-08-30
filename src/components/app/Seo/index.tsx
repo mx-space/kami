@@ -5,7 +5,7 @@ import type { OpenGraph } from 'next-seo/lib/types'
 import type { FC } from 'react'
 import { createElement, memo } from 'react'
 
-import { useInitialData } from '~/hooks/app/use-initial-data'
+import { useInitialData, useKamiConfig } from '~/hooks/app/use-initial-data'
 import { useRandomImage } from '~/hooks/app/use-kami-theme'
 
 type SEOProps = {
@@ -31,13 +31,16 @@ export const Seo: FC<SEOProps> = memo((props) => {
     seo,
     user,
   } = useInitialData()
-  const nextTitle = `${title} - ${seo.title}`
+  const config = useKamiConfig()
+  const siteTitle = config.site.title || seo.title
+  const siteDescription = config.site.description || seo.description
+  const nextTitle = `${title} - ${siteTitle}`
 
   const [randomImage] = useRandomImage()
 
   return createElement(NextSeo, {
     title,
-    titleTemplate: `%s - ${seo.title}`,
+    titleTemplate: `%s - ${siteTitle}`,
     openGraph: merge(
       {
         profile: {
@@ -45,8 +48,8 @@ export const Seo: FC<SEOProps> = memo((props) => {
         },
         type: 'article',
         locale: 'zh-cn',
-        site_name: seo.title || '',
-        description: description || seo.description || user.introduce || '',
+        site_name: siteTitle || '',
+        description: description || siteDescription || user.introduce || '',
         article: {
           authors: [user.name],
         },
@@ -56,14 +59,14 @@ export const Seo: FC<SEOProps> = memo((props) => {
             ? [
                 {
                   url: image || randomImage,
-                  alt: `${title} - ${seo.title}`,
+                  alt: `${title} - ${siteTitle}`,
                 },
               ]
             : void 0,
       } as OpenGraph,
       openGraph,
     ),
-    description: description || seo.description || user.introduce || '',
+    description: description || siteDescription || user.introduce || '',
     twitter: {
       cardType: 'summary',
       site: webUrl,

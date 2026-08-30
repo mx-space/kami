@@ -48,6 +48,18 @@
     "thanksLike": "Thanks for your like!",
     "randomSayBy": "Owner"
   },
+  "translation": {
+    "selectLanguage": "Select content language",
+    "aiTranslation": "AI Translation",
+    "viewOriginal": "View Original",
+    "originalContent": "Showing the original content ({language})",
+    "loading": "Switching language…",
+    "language": {
+      "zh": "Simplified Chinese",
+      "en": "English",
+      "ja": "Japanese"
+    }
+  },
   "topic": {
     "title": "Topics",
     "columnTitle": "Topic · {name}",

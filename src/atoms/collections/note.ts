@@ -7,10 +7,19 @@ import type { FetchOption } from '~/atoms/types'
 import type { WithMeta } from '~/types/api-client'
 import { apiClient } from '~/utils/client'
 import { isLikedBefore, setLikeId } from '~/utils/cookie'
+import {
+  type LocalizedContent,
+  withContentLocale,
+} from '~/utils/translation'
 
 import { createCollection } from './utils/base'
 
-type NoteModelWithId = WithMeta<NoteModel> & { id: string; [key: string]: any }
+export type NoteModelWithId = WithMeta<NoteModel> &
+  LocalizedContent & {
+    id: string
+    [key: string]: any
+  }
+const localizedKey = (id: string, locale: string) => `${id}:${locale}`
 
 interface NoteCollection {
   relationMap: Map<
@@ -18,8 +27,11 @@ interface NoteCollection {
     [Partial<NoteModelWithId> | undefined, Partial<NoteModelWithId> | undefined]
   >
   nidToIdMap: Map<number, string>
+  localizedData: Map<string, NoteModelWithId>
   likeIdList: Set<string>
   get(id: string | number): NoteModelWithId | undefined
+  getLocalized(id: string | number, locale: string): NoteModelWithId | undefined
+  cacheLocalized(data: NoteModelWithId, locale: string): void
   like(
     id: number,
     messages?: { alreadyLiked: string; thanksLike: string },
@@ -34,7 +46,7 @@ interface NoteCollection {
       isDeleted?: boolean | undefined
     }
   >
-  fetchLatest(): Promise<ModelWithLiked<NoteModelWithId>>
+  fetchLatest(lang?: string): Promise<ModelWithLiked<NoteModelWithId>>
   bookmark(id: string): Promise<void>
 }
 
@@ -46,10 +58,13 @@ export const useNoteCollection = createCollection<NoteModelWithId, NoteCollectio
       [Partial<NoteModelWithId> | undefined, Partial<NoteModelWithId> | undefined]
     >()
     const nidToIdMap = new Map<number, string>()
+    const localizedData = new Map<string, NoteModelWithId>()
     const likeIdList = new Set<string>()
+    const latestLocaleByResource = new Map<string, string>()
 
     relationMap[immerable] = true
     nidToIdMap[immerable] = true
+    localizedData[immerable] = true
     likeIdList[immerable] = true
 
     const getCollection = () => getState().data
@@ -57,6 +72,7 @@ export const useNoteCollection = createCollection<NoteModelWithId, NoteCollectio
     return {
       relationMap,
       nidToIdMap,
+      localizedData,
       likeIdList,
       get(id: string | number) {
         if (typeof id === 'string') {
@@ -65,6 +81,21 @@ export const useNoteCollection = createCollection<NoteModelWithId, NoteCollectio
           const realId = getState().nidToIdMap.get(id)
           return realId ? getCollection().get(realId) : undefined
         }
+      },
+      getLocalized(id, locale) {
+        const realId =
+          typeof id === 'string' ? id : getState().nidToIdMap.get(id)
+        return realId
+          ? getState().localizedData.get(localizedKey(realId, locale))
+          : undefined
+      },
+      cacheLocalized(data, locale) {
+        const localized = withContentLocale(data, locale)
+        setState((state) => {
+          state.localizedData.set(localizedKey(localized.id, locale), localized)
+          state.data.set(localized.id, localized)
+          state.nidToIdMap.set(localized.nid, localized.id)
+        })
       },
       async like(
         id: number,
@@ -138,7 +169,12 @@ export const useNoteCollection = createCollection<NoteModelWithId, NoteCollectio
       ) {
         const state = getState()
         const collection = getCollection()
+        const locale = options.lang ?? 'zh'
         if (!options.force) {
+          const cachedLocalized = state.getLocalized(id, locale)
+          if (cachedLocalized) {
+            return cachedLocalized
+          }
           if (typeof id === 'string' && collection.has(id)) {
             return collection.get(id)!
           } else if (typeof id === 'number') {
@@ -148,35 +184,46 @@ export const useNoteCollection = createCollection<NoteModelWithId, NoteCollectio
             }
           }
         }
+        const resourceKey = String(id)
+        latestLocaleByResource.set(resourceKey, locale)
         const data =
-          typeof id === 'number' && options.lang != null
+          typeof id === 'number'
             ? await apiClient.note.getNoteByNid(id, {
                 password,
                 lang: options.lang,
               })
-            : await apiClient.note.getNoteById(
-                id as number,
-                password as string,
-              )
-        const noteData = data.data as NoteModelWithId
-        state.add(noteData)
+            : await apiClient.note.proxy(id).get<any>({
+                params: { password, lang: options.lang },
+              })
+        const noteData = (data.data?.id ? data.data : data) as NoteModelWithId
+        const localized = withContentLocale(noteData, locale)
         setState((state) => {
-          state.nidToIdMap.set(noteData.nid, noteData.id)
-          state.relationMap.set(noteData.id, [data.prev, data.next])
+          state.localizedData.set(localizedKey(localized.id, locale), localized)
+          state.nidToIdMap.set(localized.nid, localized.id)
+          state.relationMap.set(localized.id, [data.prev, data.next])
+          if (latestLocaleByResource.get(resourceKey) === locale) {
+            state.data.set(localized.id, localized)
+          }
         })
 
-        return noteData
+        return localized
       },
-      async fetchLatest() {
-        const data = await apiClient.note.getLatest()
-        const noteData = data.data as ModelWithLiked<NoteModelWithId>
-        getState().add(noteData)
+      async fetchLatest(lang = 'zh') {
+        const data = await apiClient.note.proxy.latest.get<any>({
+          params: { lang },
+        })
+        const noteData = (data.data?.id
+          ? data.data
+          : data) as ModelWithLiked<NoteModelWithId>
+        const localized = withContentLocale(noteData, lang)
         setState((state) => {
-          state.nidToIdMap.set(noteData.nid, noteData.id)
-          state.relationMap.set(noteData.id, [data.prev, data.next])
+          state.localizedData.set(localizedKey(localized.id, lang), localized)
+          state.data.set(localized.id, localized)
+          state.nidToIdMap.set(localized.nid, localized.id)
+          state.relationMap.set(localized.id, [data.prev, data.next])
         })
 
-        return noteData
+        return localized
       },
       async bookmark(id: string) {
         const note = getState().get(id)

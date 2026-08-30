@@ -21,7 +21,6 @@ import { InitialContextProvider } from '~/provider/initial-data'
 import { LangSyncProvider } from '~/provider/lang-sync'
 import { LocaleProvider } from '~/provider/locale-context'
 import { SWRProvider } from '~/provider/swr'
-import { setRequestLocale } from '~/utils/client'
 import { attachRequestProxy, fetchInitialData } from '~/utils/app'
 import { isDev } from '~/utils/env'
 
@@ -136,54 +135,45 @@ const App: FC<DataModel & { Component: any; pageProps: any; err: any }> = (
 // @ts-ignore
 App.getInitialProps = async (props: AppContext) => {
   const ctx = props.ctx
-  const request = ctx.req
-
-  attachRequestProxy(request)
+  attachRequestProxy(ctx.req)
 
   const locale = getLocaleFromContext(ctx)
-  setRequestLocale(locale)
-  try {
-    const data: InitialDataType & { reason?: any } = await fetchInitialData()
+  const data: InitialDataType & { reason?: any } = await fetchInitialData(locale)
 
-    const messages = (
-      await import(`../messages/${locale}.json`)
-    ).default as Record<string, unknown>
+  const messages = (
+    await import(`../messages/${locale}.json`)
+  ).default as Record<string, unknown>
 
-    const appProps = await (async () => {
-      try {
+  const appProps = await (async () => {
+    try {
         // Next 会从小组件向上渲染整个页面，有可能在此报错。兜底
-        return await NextApp.getInitialProps(props)
-      } catch (e) {
+      return await NextApp.getInitialProps(props)
+    } catch (e) {
         // TODO next rfc Layout, 出了就重构这里
         // 2023 tmd next rfc 全是大饼，根本没法用
         // 只有无数据 也就是 服务端不跑起来 或者接口不对的时候 捕获异常
         // 这是为什么呢 说来说去还是 nextjs 太辣鸡了 只能各种 hack
         // 只能这样了
 
-        if (!data.reason) {
+      if (!data.reason) {
           // 这里抛出，和官网直接 await getProps 一样，异常走到 _error 处理
-          throw e
-        }
-        // 这里捕获，为了走全局无数据页
-        if (ctx.res) {
-          ctx.res.statusCode = 466
-          ctx.res.statusMessage = 'No Data'
-        }
-        return null
+        throw e
       }
-    })()
-    return {
-      ...appProps,
-      initData: data,
-      locale,
-      messages,
-      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone || FALLBACK_TIME_ZONE,
-      now: Date.now(),
+        // 这里捕获，为了走全局无数据页
+      if (ctx.res) {
+        ctx.res.statusCode = 466
+        ctx.res.statusMessage = 'No Data'
+      }
+      return null
     }
-  } finally {
-    if (request) {
-      setRequestLocale(null)
-    }
+  })()
+  return {
+    ...appProps,
+    initData: data,
+    locale,
+    messages,
+    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone || FALLBACK_TIME_ZONE,
+    now: Date.now(),
   }
 }
 

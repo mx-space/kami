@@ -48,6 +48,18 @@
     "thanksLike": "感谢喜欢！",
     "randomSayBy": "站长说"
   },
+  "translation": {
+    "selectLanguage": "选择内容语言",
+    "aiTranslation": "AI 翻译",
+    "viewOriginal": "查看原文",
+    "originalContent": "当前显示原文（{language}）",
+    "loading": "正在切换语言…",
+    "language": {
+      "zh": "简体中文",
+      "en": "English",
+      "ja": "日本語"
+    }
+  },
   "topic": {
     "title": "专栏",
     "columnTitle": "专栏 · {name}",

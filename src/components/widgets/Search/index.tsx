@@ -49,6 +49,7 @@ export const SearchPanel: FC<SearchPanelProps> = (props) => {
     ([, , searchKeyword]) => {
       return apiClient.search.searchAll(
         searchKeyword,
+        { lang: locale },
       ) as unknown as Promise<SearchResultResponse>
     },
     {

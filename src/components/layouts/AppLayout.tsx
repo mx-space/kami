@@ -8,7 +8,7 @@ import { MetaFooter } from '~/components/app/Meta/footer'
 import { DynamicHeadMeta } from '~/components/app/Meta/head'
 import { Loader } from '~/components/widgets/Loader'
 import { useRootTrackerListener } from '~/hooks/app/use-analyze'
-import { useInitialData } from '~/hooks/app/use-initial-data'
+import { useInitialData, useKamiConfig } from '~/hooks/app/use-initial-data'
 import { useResizeScrollEvent } from '~/hooks/app/use-resize-scroll-event'
 import { useRouterEvent } from '~/hooks/app/use-router-event'
 import { useScreenMedia } from '~/hooks/ui/use-screen-media'
@@ -21,6 +21,7 @@ export const AppLayout: FC = (props) => {
   useResizeScrollEvent()
   useRootTrackerListener()
   const initialData: AggregateRoot | null = useInitialData()
+  const config = useKamiConfig()
 
   useInsertionEffect(() => {
     loadStyleSheet(
@@ -32,8 +33,10 @@ export const AppLayout: FC = (props) => {
     <>
       <DynamicHeadMeta />
       <NextSeo
-        title={`${initialData.seo.title} · ${initialData.seo.description}`}
-        description={initialData.seo.description}
+        title={`${config.site.title || initialData.seo.title} · ${
+          config.site.description || initialData.seo.description
+        }`}
+        description={config.site.description || initialData.seo.description}
       />
 
       <div id="next">{props.children}</div>

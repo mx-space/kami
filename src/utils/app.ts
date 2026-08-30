@@ -1,12 +1,13 @@
 import type { IncomingMessage } from 'http'
 import { version } from 'react'
 
-import type { AggregateRoot } from '@mx-space/api-client'
+import type { AggregateRootWithTheme, PageModel } from '@mx-space/api-client'
 
 import { defaultConfigs } from '~/configs.default'
 import type { KamiConfig } from '~/types/config'
 import { $axios, apiClient } from '~/utils/client'
 import { isClientSide, isServerSide } from '~/utils/env'
+import type { Locale } from '~/i18n/config'
 
 import PKG from '../../package.json'
 import type { InitialDataType } from '../provider'
@@ -38,21 +39,23 @@ export const attachRequestProxy = (request?: IncomingMessage) => {
 
 }
 
-export async function fetchInitialData(): Promise<InitialDataType> {
-  if (isClientSide() && window.data) {
+export async function fetchInitialData(locale: Locale): Promise<InitialDataType> {
+  if (isClientSide() && window.data?.locale === locale) {
     return window.data
   }
 
-  const [aggregateDataState, configSnippetState] = await Promise.allSettled([
-    apiClient.aggregate.getAggregateData(),
-    apiClient.snippet.getByReferenceAndName<KamiConfig>(
-      'theme',
-      process.env.NEXT_PUBLIC_SNIPPET_NAME || 'kami',
-    ),
-  ])
+  const themeName = process.env.NEXT_PUBLIC_SNIPPET_NAME || 'kami'
+  const [aggregateDataState, pageMetaState] =
+    await Promise.allSettled([
+      apiClient.aggregate.proxy.get<AggregateRootWithTheme<KamiConfig>>({
+        params: { theme: themeName, lang: locale },
+      }),
+      apiClient.page.getList(1, 20, { select: ['id', 'slug', 'title'] }),
+    ])
 
-  let aggregateData: AggregateRoot | null = null
+  let aggregateData: AggregateRootWithTheme<KamiConfig> | null = null
   let configSnippet: KamiConfig | null = null
+  let pageMeta: Pick<PageModel, 'id' | 'slug' | 'title'>[] = []
   let reason = undefined as undefined | string
   if (aggregateDataState.status === 'fulfilled') {
     aggregateData = aggregateDataState.value
@@ -62,12 +65,18 @@ export async function fetchInitialData(): Promise<InitialDataType> {
     console.error(`Fetch aggregate data error: ${aggregateDataState.reason}`)
   }
 
-  if (configSnippetState.status === 'fulfilled') {
-    configSnippet = { ...configSnippetState.value }
+  if (aggregateDataState.status === 'fulfilled') {
+    configSnippet = aggregateDataState.value.theme
+      ? { ...aggregateDataState.value.theme }
+      : (defaultConfigs as unknown as KamiConfig)
   } else {
     configSnippet = defaultConfigs as any
   }
 
+  if (pageMetaState.status === 'fulfilled') {
+    pageMeta = pageMetaState.value.data
+  }
+
   // @ts-ignore
-  return { aggregateData, config: configSnippet, reason }
+  return { aggregateData, config: configSnippet, pageMeta, locale, reason }
 }

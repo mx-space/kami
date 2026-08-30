@@ -29,6 +29,10 @@ import { NoteFooterNavigationBarForMobile } from '~/components/in-page/Note/Note
 import { NoteMarkdownRender } from '~/components/in-page/Note/NoteMarkdownRender'
 import { NotePasswordConfrim } from '~/components/in-page/Note/NotePasswordConfirm'
 import { BanCopy } from '~/components/in-page/Note/WarningOverlay/ban-copy'
+import {
+  TranslationLanguageSelector,
+  TranslationNotice,
+} from '~/components/in-page/Translation'
 import { NoteLayout } from '~/components/layouts/NoteLayout'
 import { Banner } from '~/components/ui/Banner'
 import { ImageSizeMetaContext } from '~/components/ui/Image/context'
@@ -52,6 +56,7 @@ import type { WithMeta } from '~/types/api-client'
 import { isEqualObject, omit } from '~/utils/_'
 import { imagesRecord2Map } from '~/utils/images'
 import { getSummaryFromMd } from '~/utils/markdown'
+import { getContentLocale } from '~/utils/translation'
 import { noop } from '~/utils/utils'
 import { isDev } from '~/utils/env'
 
@@ -173,7 +178,8 @@ const NoteView: React.FC<{ id: string; locale?: string }> = memo((props) => {
   const dayjsLocale = dayjsLocaleMap[locale] ?? 'en'
   const intlLocale = intlLocaleMap[locale] ?? 'en-US'
   const note = useNoteCollection(
-    (state) => state.get(props.id) || (noop as NoteModelWithMeta),
+    (state) =>
+      state.getLocalized(props.id, locale) || (noop as NoteModelWithMeta),
   )
 
   const router = useRouter()
@@ -191,9 +197,9 @@ const NoteView: React.FC<{ id: string; locale?: string }> = memo((props) => {
 
   useEffect(() => {
     if (!noteCollection.relationMap.has(props.id)) {
-      noteCollection.fetchById(note.nid, undefined, { force: true })
+      noteCollection.fetchById(note.nid, undefined, { force: true, lang: locale })
     }
-  }, [note.nid, props.id])
+  }, [locale, note.nid, props.id])
 
   useSetHeaderShare(note.title)
   useUpdateNote(note)
@@ -290,7 +296,13 @@ const NoteView: React.FC<{ id: string; locale?: string }> = memo((props) => {
           },
         },
       })}
-      <NoteLayout title={title} date={note.createdAt} tips={tips} id={note.id}>
+      <NoteLayout
+        title={title}
+        date={note.createdAt}
+        tips={tips}
+        id={note.id}
+        titleMeta={<TranslationLanguageSelector content={note} />}
+      >
         {isSecret && !isLogged ? (
           <Banner type="warning" className="mt-4">
             {t('notPublicYet', { date: dateFormat })}
@@ -302,6 +314,7 @@ const NoteView: React.FC<{ id: string; locale?: string }> = memo((props) => {
                 {t('notPublic', { date: dateFormat })}
               </Banner>
             )}
+            <TranslationNotice content={note} />
             <XLogSummaryForNote id={props.id} locale={props.locale} />
 
             <BanCopy>
@@ -353,10 +366,15 @@ NoteView.displayName = 'NoteView'
 
 const PP: NextPage<NoteModelWithMeta | { needPassword: true; id: number }> = (props) => {
   const t = useTranslations('note')
+  const tTranslation = useTranslations('translation')
   const router = useRouter()
   const locale = useLocaleFromContext()
-  const prevLocale = useRef(locale)
-  const noteId = useNoteCollection((state) => state.get(props.id)?.id)
+  const noteId = useNoteCollection((state) =>
+    'needPassword' in props
+      ? state.get(props.id)?.id
+      : state.getLocalized(props.id, locale)?.id,
+  )
+  const propsLocale = 'needPassword' in props ? undefined : getContentLocale(props)
 
   const update = useUpdate()
   useEffect(() => {
@@ -366,8 +384,13 @@ const PP: NextPage<NoteModelWithMeta | { needPassword: true; id: number }> = (pr
   }, [noteId, update])
 
   useEffect(() => {
-    if (prevLocale.current === locale) return
-    prevLocale.current = locale
+    if (propsLocale) {
+      noteCollection.cacheLocalized(props as NoteModelWithMeta, propsLocale)
+    }
+  }, [props, propsLocale])
+
+  useEffect(() => {
+    if (noteId) return
     if ('needPassword' in props) {
       noteCollection.fetchById(props.id, undefined, {
         force: true,
@@ -378,7 +401,7 @@ const PP: NextPage<NoteModelWithMeta | { needPassword: true; id: number }> = (pr
     const nid = (props as NoteModelWithMeta).nid
     if (nid != null)
       noteCollection.fetchById(nid, undefined, { force: true, lang: locale })
-  }, [locale, props])
+  }, [locale, noteId, props])
 
   if ('needPassword' in props) {
     if (!noteId) {
@@ -400,9 +423,7 @@ const PP: NextPage<NoteModelWithMeta | { needPassword: true; id: number }> = (pr
   }
 
   if (!noteId) {
-    noteCollection.add(props)
-
-    return <Loading />
+    return <Loading loadingText={tTranslation('loading')} />
   }
 
   return <NoteView id={props.id} locale={locale} />
@@ -413,7 +434,7 @@ PP.getInitialProps = async (ctx) => {
   const password = ctx.query.password as string
   const locale = getLocaleFromContext(ctx)
   if (id == 'latest') {
-    return await noteCollection.fetchLatest()
+    return await noteCollection.fetchLatest(locale)
   }
   try {
     const res = await noteCollection.fetchById(

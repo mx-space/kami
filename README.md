@@ -181,6 +181,17 @@ interface LinkCardProps {
 
 [配置项](https://mx-docs.shizuri.net/deploy/kami#%E6%9B%B4%E4%B8%BA%E8%AF%A6%E7%BB%86%E7%9A%84%E9%85%8D%E7%BD%AE%E9%A1%B9)
 
+### 多语言主题覆盖
+
+保留基础片段 `theme/kami`，并在 Core 的「区块与片段」中按需新增
+`theme/kami.en` 与 `theme/kami.ja`。Kami 会请求
+`aggregate?theme=kami&lang=<locale>`，由 Core 将对应语言片段深度合并到基础
+主题。
+
+覆盖片段只需要包含变更字段。例如可在其中配置 `site.title`、
+`site.description`、`site.introduction`，以及菜单、首页分区标题、页脚和社交
+提示等已有主题文本；未设置的字段继续使用基础主题或 Core 数据。
+
 ## Notice
 
 可以在此基础上保留署名进行二次创作，但是禁止用于以盈利为目的一切活动。
