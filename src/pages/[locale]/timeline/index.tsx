@@ -11,12 +11,14 @@ import { Seo } from '~/components/app/Seo'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { TimelineListWrapper } from '~/components/in-page/Timeline/TimelineListWrapper'
 import { SolidBookmark } from '~/components/ui/Icons/for-note'
+import { Loading } from '~/components/ui/Loading'
 import { NumberTransition } from '~/components/ui/NumberRecorder'
 import { TrackerAction } from '~/constants/tracker'
 import { useAnalyze } from '~/hooks/app/use-analyze'
 import { useDetectPadOrMobile } from '~/hooks/ui/use-viewport'
 import { getLocaleFromContext, Link, useRouter } from '~/i18n/navigation'
-import { apiClient, setRequestLocale } from '~/utils/client'
+import { useLocaleFromContext } from '~/provider/locale-context'
+import { apiClient } from '~/utils/client'
 import { springScrollToElement } from '~/utils/spring'
 import { dayOfYear, daysOfYear, secondOfDay, secondOfDays } from '~/utils/time'
 
@@ -24,6 +26,7 @@ import styles from './index.module.css'
 
 interface TimeLineViewProps extends TimelineData {
   memory: boolean
+  __contentLocale?: string
 }
 enum ArticleType {
   Post,
@@ -113,37 +116,36 @@ const Progress: FC = memo(() => {
 const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
   const t = useTranslations('timeline')
   const router = useRouter()
+  const locale = useLocaleFromContext()
   const [timelineData, setTimelineData] = useState<TimeLineViewProps>(props)
-  const currentLocaleRef = useRef<string>(getLocaleFromContext({
-    pathname: router.pathname ?? '',
-    asPath: router.asPath ?? '',
-    query: router.query,
-  }))
+  const [contentLocale, setContentLocale] = useState(props.__contentLocale)
+  const requestIdRef = useRef(0)
 
   // Sync props into state when getInitialProps returns new data (e.g. client-side navigation)
   useEffect(() => {
-    setTimelineData(props)
-  }, [props])
+    if (props.__contentLocale === locale) {
+      setTimelineData(props)
+      setContentLocale(props.__contentLocale)
+    }
+  }, [locale, props])
 
   useEffect(() => {
-    const fetchingLocale = getLocaleFromContext({
-      pathname: router.pathname ?? '',
-      asPath: router.asPath ?? '',
-      query: router.query,
-    })
-    currentLocaleRef.current = fetchingLocale
-    setRequestLocale(fetchingLocale)
+    const requestId = ++requestIdRef.current
     const { type, year, memory } = router.query as any
     const TypeMap = { post: 0, note: 1 }
     const Type = TypeMap[type as keyof typeof TypeMap] as number | undefined
-    apiClient.aggregate.getTimeline({ type: Type, year }).then((payload: any) => {
-      if (currentLocaleRef.current !== fetchingLocale) return
+    apiClient.aggregate.proxy.timeline.get<{ data: TimelineData }>({
+      params: { type: Type, year, lang: locale },
+    }).then((payload) => {
+      if (requestId !== requestIdRef.current) return
       setTimelineData({
         ...payload.data,
         memory: !!memory,
+        __contentLocale: locale,
       } as TimeLineViewProps)
+      setContentLocale(locale)
     })
-  }, [router.pathname, router.asPath, router.query])
+  }, [locale, router.query])
 
   const sortedMap = new Map<number, MapType[]>()
   const { posts = [], notes = [] } = timelineData
@@ -248,16 +250,20 @@ const TimeLineView: NextPage<TimeLineViewProps> = (props) => {
   const isMobile = useDetectPadOrMobile()
 
   const totalCount = arr.flat(2).filter((i) => typeof i === 'object').length
-  const subtitleSuffix = !props.memory ? t('keepGoing') : t('lookBack')
+  const subtitleSuffix = !timelineData.memory ? t('keepGoing') : t('lookBack')
+
+  if (contentLocale !== locale) {
+    return <Loading />
+  }
 
   return (
     <ArticleLayout
-      title={!props.memory ? t('title') : t('memory')}
+      title={!timelineData.memory ? t('title') : t('memory')}
       subtitle={[t('totalArticles', { posts: totalCount, suffix: subtitleSuffix })]}
       delay={500}
-      key={props.memory ? 'memory' : 'timeline'}
+      key={timelineData.memory ? 'memory' : 'timeline'}
     >
-      {!props.memory && (
+      {!timelineData.memory && (
         <div className="text-shizuku-text -mt-12 mb-12">
           <Progress />
           <p>{t('livePresent')}</p>
@@ -331,13 +337,19 @@ TimeLineView.getInitialProps = async (ctx) => {
     post: TimelineType.Post,
     note: TimelineType.Note,
   }[type as any] as number | undefined
-  const payload = await apiClient.aggregate.getTimeline({
-    type: Type,
-    year,
+  const payload = await apiClient.aggregate.proxy.timeline.get<{
+    data: TimelineData
+  }>({
+    params: {
+      type: Type,
+      year,
+      lang: getLocaleFromContext(ctx),
+    },
   })
   return {
     ...payload.data,
     memory: !!memory,
+    __contentLocale: getLocaleFromContext(ctx),
   } as TimeLineViewProps
 }
 export default TimeLineView

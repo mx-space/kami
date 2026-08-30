@@ -48,6 +48,18 @@
     "thanksLike": "ありがとう！",
     "randomSayBy": "管理者"
   },
+  "translation": {
+    "selectLanguage": "コンテンツの言語を選択",
+    "aiTranslation": "AI 翻訳",
+    "viewOriginal": "原文を見る",
+    "originalContent": "原文を表示しています（{language}）",
+    "loading": "言語を切り替えています…",
+    "language": {
+      "zh": "簡体字中国語",
+      "en": "English",
+      "ja": "日本語"
+    }
+  },
   "topic": {
     "title": "トピック",
     "columnTitle": "トピック · {name}",

@@ -7,10 +7,9 @@ import { useLocaleFromContext } from '~/provider/locale-context'
 import { setRequestLocale } from '~/utils/client'
 
 /**
- * Syncs current locale to API client so requests include x-lang header.
- * Backend can return localized content (e.g. Shiroi / mx-space).
- * useLayoutEffect ensures x-lang is set before child useEffects (e.g. posts fetch) run.
- * Reads locale from LocaleContext (single source of truth) so x-lang matches UI.
+ * Keeps the compatibility `x-lang` header synchronized with the URL locale.
+ * The request interceptor also reads the URL directly, so child effects cannot
+ * race this provider during a locale switch.
  */
 export const LangSyncProvider: FC<PropsWithChildren<object>> = ({ children }) => {
   const locale = useLocaleFromContext()

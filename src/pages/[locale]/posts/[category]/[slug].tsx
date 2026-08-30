@@ -18,6 +18,10 @@ import { wrapperNextPage } from '~/components/app/WrapperNextPage'
 import { KamiMarkdown } from '~/components/common/KamiMarkdown'
 import { OutdateNotice } from '~/components/in-page/Post/Outdate'
 import { PostRelated } from '~/components/in-page/Post/PostRelated'
+import {
+  TranslationLanguageSelector,
+  TranslationNotice,
+} from '~/components/in-page/Translation'
 import { ArticleLayout } from '~/components/layouts/ArticleLayout'
 import { Banner } from '~/components/ui/Banner'
 import { GgCoffee, PhBookOpen } from '~/components/ui/Icons/for-note'
@@ -49,6 +53,7 @@ import { getLocaleFromContext, Link, useRouter } from '~/i18n/navigation'
 import { useLocaleFromContext } from '~/provider/locale-context'
 import type { WithMeta } from '~/types/api-client'
 import { apiClient } from '~/utils/client'
+import { getContentLocale } from '~/utils/translation'
 import { isEqualObject } from '~/utils/_'
 import { isLikedBefore, setLikeId } from '~/utils/cookie'
 import { imagesRecord2Map } from '~/utils/images'
@@ -117,7 +122,7 @@ const useUpdatePost = (post: ModelWithDeleted<PostModelWithMeta>) => {
   ])
 }
 
-const Seo$: FC<{ id: string }> = ({ id }) => {
+const Seo$: FC<{ id: string; locale: string }> = ({ id, locale }) => {
   const {
     title,
     summary,
@@ -129,7 +134,7 @@ const Seo$: FC<{ id: string }> = ({ id }) => {
     images,
     meta,
   } = usePostCollection((state) =>
-    pick(state.data.get(id)!, [
+    pick((state.getLocalized(id, locale) ?? state.data.get(id))!, [
       'title',
       'summary',
       'createdAt',
@@ -161,12 +166,15 @@ const Seo$: FC<{ id: string }> = ({ id }) => {
   )
 }
 
-const FooterActionBar: FC<{ id: string }> = ({ id }) => {
+const FooterActionBar: FC<{ id: string; locale: string }> = ({ id, locale }) => {
   const t = useTranslations('post')
   const [actions, setActions] = useState<ActionProps>({})
 
   const post = usePostCollection(
-    (state) => state.data.get(id) || (noop as PostModelWithMeta),
+    (state) =>
+      state.getLocalized(id, locale) ??
+      state.data.get(id) ??
+      (noop as PostModelWithMeta),
   )
 
   const themeConfig = useThemeConfig()
@@ -260,8 +268,10 @@ const FooterActionBar: FC<{ id: string }> = ({ id }) => {
   )
 }
 
-const PostUpdateObserver: FC<{ id: string }> = memo(({ id }) => {
-  const post = usePostCollection((state) => state.data.get(id))
+const PostUpdateObserver: FC<{ id: string; locale: string }> = memo(({ id, locale }) => {
+  const post = usePostCollection(
+    (state) => state.getLocalized(id, locale) ?? state.data.get(id),
+  )
   useUpdatePost(post!)
   return null
 })
@@ -270,7 +280,7 @@ PostUpdateObserver.displayName = 'PostUpdateObserver'
 
 export const PostView: FC<IdProps & { locale?: string }> = (props) => {
   const post = usePostCollection(
-    (state) => state.data.get(props.id)!,
+    (state) => state.getLocalized(props.id, props.locale || 'zh')!,
     shallow,
   )
 
@@ -296,12 +306,13 @@ export const PostView: FC<IdProps & { locale?: string }> = (props) => {
   return (
     <>
       <AckRead type='post' id={post.id} />
-      <Seo$ id={post.id} />
+      <Seo$ id={post.id} locale={props.locale || 'zh'} />
       <ArticleLayout
         title={post.title}
         id={post.id}
         type="post"
         titleAnimate={false}
+        titleMeta={<TranslationLanguageSelector content={post} />}
       >
         {post.summary ? (
           <Banner
@@ -316,6 +327,7 @@ export const PostView: FC<IdProps & { locale?: string }> = (props) => {
           <XLogSummaryForPost id={post.id} locale={(props as { locale?: string }).locale} />
         )}
         <OutdateNotice time={post.modifiedAt || post.createdAt} />
+        <TranslationNotice content={post} />
         <ImageSizeMetaContext.Provider value={imagesMap}>
           <article>
             <h1 className="sr-only">{post.title}</h1>
@@ -334,7 +346,7 @@ export const PostView: FC<IdProps & { locale?: string }> = (props) => {
         ) : null}
 
         <XLogInfoForPost id={post.id} />
-        <FooterActionBar id={post.id} />
+        <FooterActionBar id={post.id} locale={props.locale || 'zh'} />
         <Suspense>
           <CommentLazy
             key={post.id}
@@ -346,31 +358,36 @@ export const PostView: FC<IdProps & { locale?: string }> = (props) => {
         <SearchFAB />
       </ArticleLayout>
 
-      <PostUpdateObserver id={post.id} />
+      <PostUpdateObserver id={post.id} locale={props.locale || 'zh'} />
     </>
   )
 }
 
 const NextPostView: NextPage<PostModelWithMeta> = (props) => {
   const { id } = props
+  const tTranslation = useTranslations('translation')
   const router = useRouter()
   const locale = useLocaleFromContext()
-  const prevLocale = useRef(locale)
-  const postId = usePostCollection((state) => state.data.get(id)?.id)
+  const post = usePostCollection((state) => state.getLocalized(id, locale))
+  const propsLocale = getContentLocale(props)
 
   useEffect(() => {
-    if (prevLocale.current === locale) return
-    prevLocale.current = locale
+    if (propsLocale) {
+      usePostCollection.getState().cacheLocalized(props, propsLocale)
+    }
+  }, [props, propsLocale])
+
+  useEffect(() => {
+    if (post) return
     const category = router.query.category as string
     const slug = router.query.slug as string
     if (category && slug) {
       usePostCollection.getState().fetchBySlug(category, slug, locale)
     }
-  }, [locale, router.query.category, router.query.slug])
+  }, [locale, post, router.query.category, router.query.slug])
 
-  if (!postId) {
-    usePostCollection.getState().add(props)
-    return <Loading />
+  if (!post) {
+    return <Loading loadingText={tTranslation('loading')} />
   }
 
   return <PostView id={id} locale={locale} />

@@ -43,8 +43,9 @@ const bannerClassNames = {
 const dayjsLocaleMap = { zh: 'zh-cn', en: 'en', ja: 'ja' } as const
 
 const useNoteMetaBanner = (id: string) => {
+  const locale = useLocaleFromContext()
   const note = useNoteCollection((state) => {
-    const note = state.get(id)
+    const note = state.getLocalized(id, locale) ?? state.get(id)
     if (!note) return null
     return { meta: note.meta }
   }, shallow)
@@ -82,11 +83,20 @@ interface NoteLayoutProps {
   children?: ReactNode
 
   isPreview?: boolean
+  titleMeta?: ReactNode
 }
 
 export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
   (props, ref) => {
-    const { date, id, title, tips, children, isPreview = false } = props
+    const {
+      date,
+      id,
+      title,
+      tips,
+      children,
+      isPreview = false,
+      titleMeta,
+    } = props
     const locale = useLocaleFromContext()
     const dateLocale = dayjsLocaleMap[locale] ?? 'en'
     // autocorrect: false
@@ -96,9 +106,15 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
 
     const url = useAppStore((state) => state.appUrl)
 
-    const bookmark = useNoteCollection((state) => state.get(id)?.bookmark)
+    const bookmark = useNoteCollection(
+      (state) =>
+        state.getLocalized(id, locale)?.bookmark ?? state.get(id)?.bookmark,
+    )
     const isHide = useNoteCollection(
-      (state) => (state.get(id) as { hide?: boolean } | undefined)?.hide,
+      (state) => {
+        const note = state.getLocalized(id, locale) ?? state.get(id)
+        return (note as { hide?: boolean } | undefined)?.hide
+      },
     )
     const banner = useNoteMetaBanner(id)
     const onMarkToggle = useCallback(async () => {
@@ -225,6 +241,9 @@ export const NoteLayout = forwardRef<HTMLElement, NoteLayoutProps>(
                   </a>
                 ) : null}
               </h1>
+              {titleMeta && (
+                <div className="mt-3 flex justify-center">{titleMeta}</div>
+              )}
 
               {children}
             </div>

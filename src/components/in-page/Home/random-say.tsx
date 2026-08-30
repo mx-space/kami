@@ -6,28 +6,34 @@ import useSWR from 'swr'
 import { AnimateChangeInHeight } from '~/components/ui/AnimateChangeInHeight'
 import { TextUpTransitionView } from '~/components/ui/Transition/TextUpTransitionView'
 import { useIsClient } from '~/hooks/common/use-is-client'
+import { useLocaleFromContext } from '~/provider/locale-context'
 import { apiClient } from '~/utils/client'
 
-let isLoaded = false
 export const HomeRandomSay: FC = memo(() => {
   const t = useTranslations('home')
+  const locale = useLocaleFromContext()
   const { data: sayData, mutate } = useSWR(
-    'home-say',
+    ['home-say', locale],
     () =>
-      apiClient.say.getRandom().then(({ data }) => {
-        if (!data) return undefined
-        return { text: data.text, author: data.author, source: data.source }
-      }),
+      apiClient.say.proxy.random
+        .get<{
+          data: {
+            text: string
+            author: string | null
+            source: string | null
+          } | null
+        }>({ params: { lang: locale } })
+        .then(({ data }) => {
+          if (!data) return undefined
+          return { text: data.text, author: data.author, source: data.source }
+        }),
     {
       fallbackData: undefined as
         | { text: string; author: string | null; source: string | null }
         | undefined,
       refreshInterval: 10_000,
       revalidateOnFocus: false,
-      revalidateOnMount: !isLoaded,
-      onSuccess() {
-        isLoaded = true
-      },
+      revalidateOnMount: true,
     },
   )
 

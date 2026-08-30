@@ -5,7 +5,7 @@
  * - Source: current URL only (pathname/asPath). No separate locale store.
  * - Read: server use getLocaleFromContext(ctx); components use useLocaleFromContext() or useLocale().
  * - Write: use Link from ~/i18n/navigation (href + as are localized); programmatic use useRouter().push(pathname, { locale }).
- * - API: setRequestLocale is set only by _app getInitialProps and LangSyncProvider. Components do not call setRequestLocale.
+ * - API: the browser request interceptor derives `lang` from the URL; LangSyncProvider keeps `x-lang` for compatibility.
  */
 
 import React, {
@@ -26,7 +26,7 @@ const LocaleContext = createContext<Locale>(defaultLocale)
  * Provider that supplies the current locale as global state.
  * - Server / first paint: uses initialLocale from _app (getLocaleFromContext in getInitialProps).
  * - Client: uses router (useLocale from i18n/navigation) so locale stays in sync with URL.
- * All components and API request layer (setRequestLocale) should consume this for a single source of truth.
+ * All components and the API request layer should consume this for a single source of truth.
  */
 export const LocaleProvider: FC<
   PropsWithChildren<{ initialLocale: Locale }>

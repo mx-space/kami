@@ -5,10 +5,15 @@ import { shallow } from 'zustand/shallow'
 
 import { usePostCollection } from '~/atoms/collections/post'
 import { Divider } from '~/components/ui/Divider'
+import { useLocaleFromContext } from '~/provider/locale-context'
 
 export const PostRelated = memo<{ id: string }>((props) => {
   const t = useTranslations('post')
-  const post = usePostCollection((state) => state.data.get(props.id), shallow)
+  const locale = useLocaleFromContext()
+  const post = usePostCollection(
+    (state) => state.getLocalized(props.id, locale) ?? state.data.get(props.id),
+    shallow,
+  )
   if (!post) {
     return null
   }

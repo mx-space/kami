@@ -29,7 +29,7 @@ export const Header: FC = () => {
     seo: { title, description },
   } = useInitialData()
   const {
-    site: { subtitle },
+    site: { subtitle, title: siteTitle, description: siteDescription },
   } = useKamiConfig()
   const isLogged = useIsLogged()
 
@@ -87,7 +87,8 @@ export const Header: FC = () => {
 
   const isClient = useIsClient()
 
-  const headerSubTitle = subtitle || description || ''
+  const headerTitle = siteTitle || title
+  const headerSubTitle = subtitle || siteDescription || description || ''
 
   // const headerSubTitle = ''
   if (!isClient) {
@@ -123,7 +124,7 @@ export const Header: FC = () => {
                   headerSubTitle && styles['title-has-sub'],
                 )}
               >
-                {title}
+                {headerTitle}
               </h1>
               {headerSubTitle && (
                 <h2 className={styles['subtitle']}>{headerSubTitle}</h2>

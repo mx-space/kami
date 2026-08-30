@@ -1,6 +1,10 @@
 name: kami
 
 site:
+  # 可在 theme/kami.en、theme/kami.ja 覆盖以下站点文案；未配置时回退到 Core 数据。
+  title: null
+  description: null
+  introduction: null
   favicon: /favicon.svg
   # 开屏图 svg 标签，注意 XSS
   logo_svg: null

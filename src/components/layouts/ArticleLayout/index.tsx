@@ -1,5 +1,5 @@
 import { clsx } from 'clsx'
-import type { DetailedHTMLProps, HTMLAttributes } from 'react'
+import type { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react'
 import { forwardRef, memo, useMemo } from 'react'
 
 import { BottomToUpTransitionView } from '~/components/ui/Transition/BottomToUpTransitionView'
@@ -13,6 +13,7 @@ export interface ArticleLayoutProps {
   subtitle?: string | string[]
   titleAnimate?: boolean
   subtitleAnimation?: boolean
+  titleMeta?: ReactNode
   delay?: number
 
   type?: 'post' | 'page'

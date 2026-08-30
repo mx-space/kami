@@ -15,6 +15,7 @@ export const ArticleLayoutTitle = memo<{ animate?: boolean }>(
       type,
       id,
       subtitle,
+      titleMeta,
       subtitleAnimation = true,
     } = useArticleLayoutProps()
     const isLogged = useIsLogged()
@@ -46,6 +47,10 @@ export const ArticleLayoutTitle = memo<{ animate?: boolean }>(
             </a>
           ) : null}
         </h1>
+
+        {titleMeta && (
+          <div className="mt-3 flex justify-center">{titleMeta}</div>
+        )}
 
         {subtitle && (
           <h2>

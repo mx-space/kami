@@ -10,9 +10,9 @@ import { loadScript } from '~/utils/load-script'
 
 export const DynamicHeadMeta: FC = memo(() => {
   const initialData = useInitialData()
-  const title = initialData.seo.title
 
   const themeConfig = useKamiConfig()
+  const title = themeConfig.site.title || initialData.seo.title
   const favicon = themeConfig.site.favicon || '/favicon.svg'
 
   const { dark: darkBg, light: lightBg } = themeConfig.site.background.src

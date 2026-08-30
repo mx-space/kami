@@ -8,24 +8,39 @@ import { HomePageViewProvider } from '~/components/in-page/Home/context'
 import { HomeIntro } from '~/components/in-page/Home/intro'
 import { HomeRandomSay } from '~/components/in-page/Home/random-say'
 import { HomeSections } from '~/components/in-page/Home/section'
+import { Loading } from '~/components/ui/Loading'
 import { useInitialData, useKamiConfig } from '~/hooks/app/use-initial-data'
-import { getLocaleFromContext, useRouter } from '~/i18n/navigation'
+import { getLocaleFromContext } from '~/i18n/navigation'
+import { useLocaleFromContext } from '~/provider/locale-context'
 import { omit } from '~/utils/_'
-import { apiClient, setRequestLocale } from '~/utils/client'
+import { apiClient } from '~/utils/client'
 import { Notice } from '~/utils/notice'
 
-const IndexView: NextPage<AggregateTop> = (props) => {
-  const router = useRouter()
-  const [aggregateTop, setAggregateTop] = useState<AggregateTop>(props)
+const fetchAggregateTop = (locale: string) =>
+  apiClient.aggregate.proxy.top.get<AggregateTop>({
+    params: { size: 5, lang: locale },
+  })
+
+type HomeAggregateTop = Omit<AggregateTop, 'says'>
+type LocalizedAggregateTop = HomeAggregateTop & { __contentLocale?: string }
+
+const IndexView: NextPage<LocalizedAggregateTop> = (props) => {
+  const locale = useLocaleFromContext()
+  const [aggregateTop, setAggregateTop] = useState<HomeAggregateTop>(props)
+  const [contentLocale, setContentLocale] = useState(props.__contentLocale)
 
   // Sync props into state when getInitialProps returns fresh data on client-side navigation
   useEffect(() => {
-    setAggregateTop(props)
-  }, [props])
+    if (props.__contentLocale === locale) {
+      setAggregateTop(props)
+      setContentLocale(props.__contentLocale)
+    }
+  }, [locale, props])
 
   const initData = useInitialData()
 
-  const { function: fn } = useKamiConfig()
+  const config = useKamiConfig()
+  const { function: fn } = config
   const { notification } = fn
   const doAnimation = Boolean(
     globalThis.history
@@ -59,20 +74,13 @@ const IndexView: NextPage<AggregateTop> = (props) => {
     }
   }, [notification?.welcome])
 
-  useEffect(() => {
-    const effectiveLocale = getLocaleFromContext({
-      pathname: router.pathname ?? '',
-      asPath: router.asPath ?? '',
-      query: router.query,
-    })
-    setRequestLocale(effectiveLocale)
-  }, [router.pathname, router.asPath, router.query])
-
   return (
     <main>
       <NextSeo
-        title={`${initData.seo.title} · ${initData.seo.description}`}
-        description={initData.seo.description}
+        title={`${config.site.title || initData.seo.title} · ${
+          config.site.description || initData.seo.description
+        }`}
+        description={config.site.description || initData.seo.description}
       />
       <HomePageViewProvider
         value={useMemo(() => ({ doAnimation }), [doAnimation])}
@@ -80,16 +88,21 @@ const IndexView: NextPage<AggregateTop> = (props) => {
         <HomeIntro />
 
         <HomeRandomSay />
-        <HomeSections {...aggregateTop} />
+        {contentLocale === locale ? (
+          <HomeSections {...aggregateTop} says={[]} />
+        ) : (
+          <Loading />
+        )}
       </HomePageViewProvider>
     </main>
   )
 }
 
-IndexView.getInitialProps = async () => {
-  const aggregateData = await apiClient.aggregate.getTop()
+IndexView.getInitialProps = async (ctx) => {
+  const locale = getLocaleFromContext(ctx)
+  const aggregateData = await fetchAggregateTop(locale)
 
-  return omit({ ...aggregateData }, ['says']) as any
+  return { ...omit({ ...aggregateData }, ['says']), __contentLocale: locale }
 }
 
 export default IndexView

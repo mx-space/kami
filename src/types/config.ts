@@ -60,6 +60,10 @@ export interface SecondaryColor {
   dark: string
 }
 interface Site {
+  /** Optional localized brand copy, provided by theme/<name>.<locale> overlays. */
+  title?: string | null
+  description?: string | null
+  introduction?: string | null
   themeColor?: ThemeColor | string
   secondaryColor?: SecondaryColor | string
   favicon: string
