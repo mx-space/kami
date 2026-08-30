@@ -29,10 +29,7 @@ import { NoteFooterNavigationBarForMobile } from '~/components/in-page/Note/Note
 import { NoteMarkdownRender } from '~/components/in-page/Note/NoteMarkdownRender'
 import { NotePasswordConfrim } from '~/components/in-page/Note/NotePasswordConfirm'
 import { BanCopy } from '~/components/in-page/Note/WarningOverlay/ban-copy'
-import {
-  TranslationLanguageSelector,
-  TranslationNotice,
-} from '~/components/in-page/Translation'
+import { TranslationNotice } from '~/components/in-page/Translation'
 import { NoteLayout } from '~/components/layouts/NoteLayout'
 import { Banner } from '~/components/ui/Banner'
 import { ImageSizeMetaContext } from '~/components/ui/Image/context'
@@ -301,7 +298,6 @@ const NoteView: React.FC<{ id: string; locale?: string }> = memo((props) => {
         date={note.createdAt}
         tips={tips}
         id={note.id}
-        titleMeta={<TranslationLanguageSelector content={note} />}
       >
         {isSecret && !isLogged ? (
           <Banner type="warning" className="mt-4">
