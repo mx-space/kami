@@ -125,7 +125,7 @@
     "eslint-plugin-unused-imports": "^4.4.1",
     "husky": "9.1.7",
     "js-yaml": "4.3.1",
-    "lint-staged": "15.5.2",
+    "lint-staged": "17.5.0",
     "markdown-to-jsx": "npm:@innei/markdown-to-jsx@7.4.5-fork.4",
     "next-compose-plugins": "2.2.1",
     "npm-check-updates": "^20.0.2",
