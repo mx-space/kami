@@ -145,7 +145,7 @@
   },
   "resolutions": {
     "react-use": "17.6.0",
-    "@types/react": "17.0.68"
+    "@types/react": "17.0.93"
   },
   "nextBundleAnalysis": {
     "budget": 358400,
