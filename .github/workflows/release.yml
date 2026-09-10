@@ -25,7 +25,7 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: 24.x
+          node-version: 24.0.2
 
       - name: Cache pnpm modules
         uses: actions/cache@v5
