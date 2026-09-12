@@ -92,7 +92,7 @@
     "react-use": "17.6.0",
     "remove-markdown": "0.6.4",
     "socket.io-client": "4.8.3",
-    "swr": "2.4.1",
+    "swr": "2.4.2",
     "validator": "13.15.35",
     "xss": "1.0.15",
     "zustand": "^4.5.7"
