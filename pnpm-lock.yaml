@@ -137,8 +137,8 @@ importers:
         specifier: 4.3.0
         version: 4.3.0(prettier@3.9.6)
       '@types/inflection':
-        specifier: 1.13.2
-        version: 1.13.2
+        specifier: 2.0.0
+        version: 2.0.0
       '@types/js-cookie':
         specifier: 3.0.6
         version: 3.0.6
@@ -1857,8 +1857,9 @@ packages:
   '@types/geojson@7946.0.16':
     resolution: {integrity: sha512-6C8nqWur3j98U6+lXDfTUWIfgvZU+EumvpHKcYjujKH7woYyLj2sUmff0tRhrqM7BohUw7Pz3ZB1jj2gW9Fvmg==}
 
-  '@types/inflection@1.13.2':
-    resolution: {integrity: sha512-VxXY8dNLrxn7nDvsud77K60uD3a9RSmKfa0k/N/zvP2G55R5/8DSO5Ferz3mQdlAo8jPnpQLilCx9rABdPHSVg==}
+  '@types/inflection@2.0.0':
+    resolution: {integrity: sha512-wvtAa0dRWFxn/Dw7w7+LySUmN6Yvndvbc87djXaSc0KwhcG2g33LwXdaHg6p2KOddj/1+172GPSeazgandPO2Q==}
+    deprecated: This is a stub types definition. inflection provides its own type definitions, so you do not need this installed.
 
   '@types/js-cookie@3.0.6':
     resolution: {integrity: sha512-wkw9yd1kEXOPnvEeEV1Go1MmxtBJL0RR79aOTAApecWFVu7w0NNXNqhcWgvw2YgZDYadliXkl14pa3WXw5jlCQ==}
@@ -3092,6 +3093,10 @@ packages:
   imurmurhash@0.1.4:
     resolution: {integrity: sha512-JmXMZ6wuvDmLiHEml9ykzqO6lwFbof0GG4IkcGaENdCRDDmMVnny7s5HsIgHCbaq0w2MyPhDqkhTUgS2LU2PHA==}
     engines: {node: '>=0.8.19'}
+
+  inflection@3.0.2:
+    resolution: {integrity: sha512-+Bg3+kg+J6JUWn8J6bzFmOWkTQ6L/NHfDRSYU+EVvuKHDxUDHAXgqixHfVlzuBQaPOTac8hn43aPhMNk6rMe3g==}
+    engines: {node: '>=18.0.0'}
 
   inline-style-prefixer@7.0.1:
     resolution: {integrity: sha512-lhYo5qNTQp3EvSSp3sRvXMbVQTLrvGV6DycRMJ5dm2BLMiJ30wpXKdDdgX+GmJZ5uQMucwRKHamXSst3Sj/Giw==}
@@ -6275,7 +6280,9 @@ snapshots:
 
   '@types/geojson@7946.0.16': {}
 
-  '@types/inflection@1.13.2': {}
+  '@types/inflection@2.0.0':
+    dependencies:
+      inflection: 3.0.2
 
   '@types/js-cookie@3.0.6': {}
 
@@ -7709,6 +7716,8 @@ snapshots:
       module-details-from-path: 1.0.4
 
   imurmurhash@0.1.4: {}
+
+  inflection@3.0.2: {}
 
   inline-style-prefixer@7.0.1:
     dependencies:
