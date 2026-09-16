@@ -182,8 +182,8 @@ importers:
         specifier: 10.1.0
         version: 10.1.0
       dotenv:
-        specifier: 16.6.1
-        version: 16.6.1
+        specifier: 17.4.2
+        version: 17.4.2
       eslint:
         specifier: 9.39.5
         version: 9.39.5(jiti@1.21.7)
