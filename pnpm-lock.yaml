@@ -19,8 +19,8 @@ importers:
         specifier: 0.10.0
         version: 0.10.0
       '@mx-space/api-client':
-        specifier: 4.0.0
-        version: 4.0.0
+        specifier: 4.4.0
+        version: 4.4.0
       '@sentry/nextjs':
         specifier: 10.75.0
         version: 10.75.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(next@15.5.25(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack@5.111.0(postcss@8.5.28))
@@ -884,8 +884,8 @@ packages:
   '@mermaid-js/parser@1.2.1':
     resolution: {integrity: sha512-n12NohV3mrUyUL2o93IgG/ifeW9FTyeJn3zDxkhwa8MJ9Fxg3HQMlA3RiGmD/3UnJvheztkjjQAjA2T4LmUcpw==}
 
-  '@mx-space/api-client@4.0.0':
-    resolution: {integrity: sha512-eN5C4dpj5J6o6jWHaLijwe4oSIef0sWioP0xboEBZuwDc+VognSIUxl9KtEq62162n8NZbEIgGwMZcF3/0z3Og==}
+  '@mx-space/api-client@4.4.0':
+    resolution: {integrity: sha512-hBdEfPBULwaj6qrvn2zbDB8frg6v4aeGTyB07WdAlFDWctuKkTwElBtMljww7+FBNxJl6EyeVQzTmy7xDQb2Gw==}
     engines: {node: '>=22'}
 
   '@napi-rs/lzma-linux-x64-gnu@1.5.1':
@@ -5067,7 +5067,7 @@ snapshots:
     dependencies:
       '@chevrotain/types': 11.1.2
 
-  '@mx-space/api-client@4.0.0':
+  '@mx-space/api-client@4.4.0':
     dependencies:
       rebuild: 0.1.2
 
