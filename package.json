@@ -130,7 +130,7 @@
     "next-compose-plugins": "2.2.1",
     "npm-check-updates": "^20.0.2",
     "postcss": "8.5.28",
-    "postcss-import": "15.1.0",
+    "postcss-import": "17.0.0",
     "postcss-nested": "6.2.0",
     "postcss-preset-env": "9.6.0",
     "prettier": "3.9.8",
