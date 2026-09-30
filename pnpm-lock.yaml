@@ -23,7 +23,7 @@ importers:
         version: 4.0.0
       '@sentry/nextjs':
         specifier: 10.75.0
-        version: 10.75.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(next@15.5.25(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack@5.111.0(postcss@8.5.28))
+        version: 10.75.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(next@15.5.25(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack@5.111.1(postcss@8.5.28))
       axios:
         specifier: 1.20.0
         version: 1.20.0
@@ -132,7 +132,7 @@ importers:
         version: 15.5.25
       '@sentry/webpack-plugin':
         specifier: 5.4.0
-        version: 5.4.0(rollup@4.63.3)(webpack@5.111.0(postcss@8.5.28))
+        version: 5.4.0(rollup@4.63.3)(webpack@5.111.1(postcss@8.5.28))
       '@trivago/prettier-plugin-sort-imports':
         specifier: 6.0.2
         version: 6.0.2(prettier@3.9.9)
@@ -245,8 +245,8 @@ importers:
         specifier: 5.9.3
         version: 5.9.3
       webpack:
-        specifier: ^5.111.0
-        version: 5.111.0(postcss@8.5.28)
+        specifier: ^5.111.1
+        version: 5.111.1(postcss@8.5.28)
       windicss:
         specifier: 3.5.6
         version: 3.5.6
@@ -4323,8 +4323,8 @@ packages:
   webpack-virtual-modules@0.5.0:
     resolution: {integrity: sha512-kyDivFZ7ZM0BVOUteVbDFhlRt7Ah/CSPwJdi8hBpkK7QLumUqdLtVfm/PX/hkcnrvr0i77fO5+TjZ94Pe+C9iw==}
 
-  webpack@5.111.0:
-    resolution: {integrity: sha512-A2R74kfE6b3eLKS91iZiol03Ebx7avmJJBOyiP+4LePW9NNeNJGQkKeSQos4dk6R4H0YAMYlv+aOrs1CyWT3eA==}
+  webpack@5.111.1:
+    resolution: {integrity: sha512-cNypaz0RP+S4cvQVi1M/3bRUkvNP0xZpL0TjFx+c6jg64VbxD+2weWDgY9UnjRI6dhZgtaj8DU76GGFcJ79xPQ==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     peerDependencies:
@@ -5365,7 +5365,7 @@ snapshots:
       - encoding
       - supports-color
 
-  '@sentry/bundler-plugins@10.74.0(rollup@4.63.3)(webpack@5.111.0(postcss@8.5.28))':
+  '@sentry/bundler-plugins@10.74.0(rollup@4.63.3)(webpack@5.111.1(postcss@8.5.28))':
     dependencies:
       '@babel/core': 7.29.0
       '@sentry/cli': 2.58.6
@@ -5376,7 +5376,7 @@ snapshots:
       magic-string: 0.30.21
     optionalDependencies:
       rollup: 4.63.3
-      webpack: 5.111.0(postcss@8.5.28)
+      webpack: 5.111.1(postcss@8.5.28)
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -5439,7 +5439,7 @@ snapshots:
     dependencies:
       '@sentry/core': 10.75.0
 
-  '@sentry/nextjs@10.75.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(next@15.5.25(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack@5.111.0(postcss@8.5.28))':
+  '@sentry/nextjs@10.75.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(next@15.5.25(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack@5.111.1(postcss@8.5.28))':
     dependencies:
       '@opentelemetry/api': 1.9.1
       '@rollup/plugin-commonjs': 28.0.1(rollup@4.63.3)
@@ -5452,7 +5452,7 @@ snapshots:
       '@sentry/react': 10.75.0(react@18.3.1)
       '@sentry/server-utils': 10.75.0
       '@sentry/vercel-edge': 10.75.0
-      '@sentry/webpack-plugin': 5.4.0(rollup@4.63.3)(webpack@5.111.0(postcss@8.5.28))
+      '@sentry/webpack-plugin': 5.4.0(rollup@4.63.3)(webpack@5.111.1(postcss@8.5.28))
       next: 15.5.25(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rollup: 4.63.3
       stacktrace-parser: 0.1.11
@@ -5528,10 +5528,10 @@ snapshots:
       '@opentelemetry/api': 1.9.1
       '@sentry/core': 10.75.0
 
-  '@sentry/webpack-plugin@5.4.0(rollup@4.63.3)(webpack@5.111.0(postcss@8.5.28))':
+  '@sentry/webpack-plugin@5.4.0(rollup@4.63.3)(webpack@5.111.1(postcss@8.5.28))':
     dependencies:
-      '@sentry/bundler-plugins': 10.74.0(rollup@4.63.3)(webpack@5.111.0(postcss@8.5.28))
-      webpack: 5.111.0(postcss@8.5.28)
+      '@sentry/bundler-plugins': 10.74.0(rollup@4.63.3)(webpack@5.111.1(postcss@8.5.28))
+      webpack: 5.111.1(postcss@8.5.28)
     transitivePeerDependencies:
       - encoding
       - rollup
@@ -7543,13 +7543,13 @@ snapshots:
 
   minimist@1.2.8: {}
 
-  minimizer-webpack-plugin@5.10.1(postcss@8.5.28)(webpack@5.111.0(postcss@8.5.28)):
+  minimizer-webpack-plugin@5.10.1(postcss@8.5.28)(webpack@5.111.1(postcss@8.5.28)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
       schema-utils: 4.5.0
       terser: 5.51.2
-      webpack: 5.111.0(postcss@8.5.28)
+      webpack: 5.111.1(postcss@8.5.28)
     optionalDependencies:
       postcss: 8.5.28
 
@@ -8793,9 +8793,9 @@ snapshots:
 
   webpack-virtual-modules@0.5.0: {}
 
-  webpack@5.111.0(postcss@8.5.28):
+  webpack@5.111.1(postcss@8.5.28):
     dependencies:
-      '@types/estree': 1.0.8
+      '@types/estree': 1.0.9
       '@types/json-schema': 7.0.15
       '@webassemblyjs/ast': 1.14.1
       '@webassemblyjs/wasm-edit': 1.14.1
@@ -8807,7 +8807,7 @@ snapshots:
       events: 3.3.0
       graceful-fs: 4.2.11
       mime-db: 1.54.0
-      minimizer-webpack-plugin: 5.10.1(postcss@8.5.28)(webpack@5.111.0(postcss@8.5.28))
+      minimizer-webpack-plugin: 5.10.1(postcss@8.5.28)(webpack@5.111.1(postcss@8.5.28))
       schema-utils: 4.5.0
       tapable: 2.3.3
       watchpack: 2.5.2
