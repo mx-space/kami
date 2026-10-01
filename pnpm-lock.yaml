@@ -109,8 +109,8 @@ importers:
         specifier: 17.6.1
         version: 17.6.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       remove-markdown:
-        specifier: 0.7.0
-        version: 0.7.0
+        specifier: 0.7.1
+        version: 0.7.1
       socket.io-client:
         specifier: 4.8.4
         version: 4.8.4
@@ -3889,8 +3889,8 @@ packages:
     resolution: {integrity: sha512-dYqgNSZbDwkaJ2ceRd9ojCGjBq+mOm9LmtXnAnEGyHhN/5R7iDW2TRw3h+o/jCFxus3P2LfWIIiwowAjANm7IA==}
     engines: {node: '>= 0.4'}
 
-  remove-markdown@0.7.0:
-    resolution: {integrity: sha512-ZMYw/4jLXcO+pZTB8eAjGt48mhAF17yzfkiW4q0tDVLqcsqm39EGSs1XAJLk0i932KfCYc5ixNysn1EsSnMIAw==}
+  remove-markdown@0.7.1:
+    resolution: {integrity: sha512-GjRJsFxQrooAXZbfhrM6JLxTFPUK6L2gtJkY2sxtSWuddqzdX95ZdiVvpDZsb9Z5PJ45f00Oo9fMD+zS8KnqXg==}
 
   require-from-string@2.0.2:
     resolution: {integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==}
@@ -8250,7 +8250,7 @@ snapshots:
       gopd: 1.2.0
       set-function-name: 2.0.2
 
-  remove-markdown@0.7.0: {}
+  remove-markdown@0.7.1: {}
 
   require-from-string@2.0.2: {}
 
