@@ -74,7 +74,7 @@
     "markdown-to-jsx": "npm:@innei/markdown-to-jsx@7.4.5-fork.4",
     "medium-zoom": "1.1.0",
     "mermaid": "11.17.2",
-    "next": "15.5.25",
+    "next": "15.5.27",
     "next-intl": "^4.14.8",
     "next-seo": "6.8.0",
     "next-suspense": "0.2.3",
@@ -98,7 +98,7 @@
     "zustand": "^4.5.7"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "15.5.25",
+    "@next/bundle-analyzer": "15.5.27",
     "@sentry/webpack-plugin": "5.4.0",
     "@trivago/prettier-plugin-sort-imports": "6.0.2",
     "@types/inflection": "2.0.0",
