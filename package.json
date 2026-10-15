@@ -99,7 +99,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "15.5.27",
-    "@sentry/webpack-plugin": "5.4.0",
+    "@sentry/webpack-plugin": "5.4.1",
     "@trivago/prettier-plugin-sort-imports": "6.0.2",
     "@types/inflection": "2.0.0",
     "@types/js-cookie": "3.0.6",
