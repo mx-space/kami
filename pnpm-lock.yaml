@@ -6,7 +6,7 @@ settings:
 
 overrides:
   react-use: 17.6.1
-  '@types/react': 17.0.93
+  '@types/react': 18.3.31
 
 importers:
 
@@ -14,7 +14,7 @@ importers:
     dependencies:
       '@floating-ui/react-dom':
         specifier: 2.1.9
-        version: 2.1.9(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 2.1.9(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@formkit/auto-animate':
         specifier: 0.10.0
         version: 0.10.0
@@ -23,7 +23,7 @@ importers:
         version: 4.0.0
       '@sentry/nextjs':
         specifier: 10.75.3
-        version: 10.75.3(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(next@15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack@5.111.1(postcss@8.5.31))
+        version: 10.75.3(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(next@15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(webpack@5.111.1(postcss@8.5.31))
       axios:
         specifier: 1.20.0
         version: 1.20.0
@@ -38,7 +38,7 @@ importers:
         version: 2.0.25
       framer-motion:
         specifier: 10.18.0
-        version: 10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 10.18.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       immer:
         specifier: ^10.2.0
         version: 10.2.0
@@ -53,7 +53,7 @@ importers:
         version: 2.0.0
       markdown-to-jsx:
         specifier: npm:@innei/markdown-to-jsx@7.4.5-fork.4
-        version: '@innei/markdown-to-jsx@7.4.5-fork.4(react@18.3.1)'
+        version: '@innei/markdown-to-jsx@7.4.5-fork.4(react@19.3.1)'
       medium-zoom:
         specifier: 1.1.0
         version: 1.1.0
@@ -62,52 +62,52 @@ importers:
         version: 11.17.2
       next:
         specifier: 15.5.28
-        version: 15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       next-intl:
         specifier: ^4.14.9
-        version: 4.14.9(@types/react@17.0.93)(next@15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+        version: 4.14.9(@types/react@18.3.31)(next@15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)
       next-seo:
         specifier: 6.8.0
-        version: 6.8.0(next@15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 6.8.0(next@15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       next-suspense:
         specifier: 0.2.3
-        version: 0.2.3(next@15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+        version: 0.2.3(next@15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))
       randomcolor:
         specifier: 0.6.2
         version: 0.6.2
       react:
-        specifier: 18.3.1
-        version: 18.3.1
+        specifier: 19.3.1
+        version: 19.3.1
       react-countup:
         specifier: 6.5.3
-        version: 6.5.3(react@18.3.1)
+        version: 6.5.3(react@19.3.1)
       react-dom:
-        specifier: 18.3.1
-        version: 18.3.1(react@18.3.1)
+        specifier: 19.3.1
+        version: 19.3.1(react@19.3.1)
       react-error-boundary:
         specifier: 4.1.2
-        version: 4.1.2(react@18.3.1)
+        version: 4.1.2(react@19.3.1)
       react-intersection-observer:
         specifier: 9.16.0
-        version: 9.16.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 9.16.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       react-masonry-css:
         specifier: 1.0.16
-        version: 1.0.16(react@18.3.1)
+        version: 1.0.16(react@19.3.1)
       react-message-popup:
         specifier: 1.1.3
-        version: 1.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 1.1.3(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       react-shortcut-guide:
         specifier: 1.0.0
         version: 1.0.0
       react-smooth-number-counter:
         specifier: npm:@reactify-components/smooth-number-counter
-        version: '@reactify-components/smooth-number-counter@0.0.2(react@18.3.1)'
+        version: '@reactify-components/smooth-number-counter@0.0.2(react@19.3.1)'
       react-toastify:
         specifier: 9.1.3
-        version: 9.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 9.1.3(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       react-use:
         specifier: 17.6.1
-        version: 17.6.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 17.6.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       remove-markdown:
         specifier: 0.7.1
         version: 0.7.1
@@ -116,7 +116,7 @@ importers:
         version: 4.8.4
       swr:
         specifier: 2.5.1
-        version: 2.5.1(react@18.3.1)
+        version: 2.5.1(react@19.3.1)
       validator:
         specifier: 13.15.35
         version: 13.15.35
@@ -125,7 +125,7 @@ importers:
         version: 1.0.16
       zustand:
         specifier: ^4.5.7
-        version: 4.5.7(@types/react@17.0.93)(immer@10.2.0)(react@18.3.1)
+        version: 4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@19.3.1)
     devDependencies:
       '@next/bundle-analyzer':
         specifier: 15.5.28
@@ -155,14 +155,14 @@ importers:
         specifier: 0.5.9
         version: 0.5.9
       '@types/react':
-        specifier: 17.0.93
-        version: 17.0.93
+        specifier: 18.3.31
+        version: 18.3.31
       '@types/react-color':
         specifier: 3.0.13
-        version: 3.0.13(@types/react@17.0.93)
+        version: 3.0.13(@types/react@18.3.31)
       '@types/react-dom':
-        specifier: 18.3.7
-        version: 18.3.7(@types/react@17.0.93)
+        specifier: 19.3.0
+        version: 19.3.0(@types/react@18.3.31)
       '@types/remove-markdown':
         specifier: 0.3.4
         version: 0.3.4
@@ -240,7 +240,7 @@ importers:
         version: 6.1.3
       tilg:
         specifier: 0.1.1
-        version: 0.1.1(react@18.3.1)
+        version: 0.1.1(react@19.3.1)
       typescript:
         specifier: 5.9.3
         version: 5.9.3
@@ -1683,24 +1683,21 @@ packages:
   '@types/react-color@3.0.13':
     resolution: {integrity: sha512-2c/9FZ4ixC5T3JzN0LP5Cke2Mf0MKOP2Eh0NPDPWmuVH3NjPyhEjqNMQpN1Phr5m74egAy+p2lYNAFrX1z9Yrg==}
     peerDependencies:
-      '@types/react': 17.0.93
+      '@types/react': 18.3.31
 
-  '@types/react-dom@18.3.7':
-    resolution: {integrity: sha512-MEe3UeoENYVFXzoXEWsvcpg6ZvlrFNlOQ7EOsvhI3CfAXwzPfO8Qwuxd40nepsYKqyyVQnTdEfv68q91yLcKrQ==}
+  '@types/react-dom@19.3.0':
+    resolution: {integrity: sha512-ZI7bU42mZXXKHn/qNLEw2IrbiINU7X5+vfgdixBHkCNpYWXjKgfQ/P+uyGb5CjOLB9UcnTeg3rylQtV2hym44Q==}
     peerDependencies:
-      '@types/react': 17.0.93
+      '@types/react': 18.3.31
 
-  '@types/react@17.0.93':
-    resolution: {integrity: sha512-KM4Ty/ZTLZupiYxZVAlP+InNJS3De6uBMdq0ePa6/04+eG9Y7ftnWfst1xTLQ5rwAhgHwQ4momt/O4KepdGBTw==}
+  '@types/react@18.3.31':
+    resolution: {integrity: sha512-vfEqpXTvwT91yhmwdfouStN2hSKwTvyRs8qpLfADyrq/kxDw0hZM7Wk9Ug1FELj8hIby+S/+kQCSRFF32nv2Qw==}
 
   '@types/reactcss@1.2.6':
     resolution: {integrity: sha512-qaIzpCuXNWomGR1Xq8SCFTtF4v8V27Y6f+b9+bzHiv087MylI/nTCqqdChNeWS7tslgROmYB7yeiruWX7WnqNg==}
 
   '@types/remove-markdown@0.3.4':
     resolution: {integrity: sha512-i753EH/p02bw7bLlpfS/4CV1rdikbGiLabWyVsAvsFid3cA5RNU1frG7JycgY+NSnFwtoGlElvZVceCytecTDA==}
-
-  '@types/scheduler@0.16.2':
-    resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
 
   '@types/trusted-types@2.0.7':
     resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
@@ -3343,7 +3340,7 @@ packages:
   next-intl@4.14.9:
     resolution: {integrity: sha512-uauRtUC+TrYNA1OL/QcwL9irndLrI9jK3Wdaa9W0B5AeKh9cqVdNeT0IWgLnhBqBRrVwppVdI0M+C1+JdGPQ3w==}
     peerDependencies:
-      '@types/react': 17.0.93
+      '@types/react': 18.3.31
       next: ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=19.0.0-rc <19.0.0 || ^19.0.0
     peerDependenciesMeta:
@@ -3816,10 +3813,10 @@ packages:
     peerDependencies:
       react: '>= 16.3.0'
 
-  react-dom@18.3.1:
-    resolution: {integrity: sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==}
+  react-dom@19.3.1:
+    resolution: {integrity: sha512-Y0bARz53lhEC1NMCASs0/j+faB/zqt3R8hpvg1e8+61ZVJ4UL0UdC4cBbXfZMcIuhrfgeILTLe+ZeBCavQPtKQ==}
     peerDependencies:
-      react: ^18.3.1
+      react: ^19.3.1
 
   react-error-boundary@4.1.2:
     resolution: {integrity: sha512-GQDxZ5Jd+Aq/qUxbCm1UtzmL/s++V7zKgE8yMktJiCQXCCFZnMZh9ng+6/Ne6PjNSXH0L9CjeOEREfRnq6Duag==}
@@ -3870,8 +3867,8 @@ packages:
       react: '*'
       react-dom: '*'
 
-  react@18.3.1:
-    resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
+  react@19.3.1:
+    resolution: {integrity: sha512-QNhWdt7nrgVWWQG58QuGsAR3jv3Hbe4mb4vz7w2csnHavciZJgda1CPNaldF6eVxv90ud3jUXpKlHL69gO38yw==}
     engines: {node: '>=0.10.0'}
 
   read-cache@1.0.0:
@@ -3972,8 +3969,8 @@ packages:
   safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
-  scheduler@0.23.2:
-    resolution: {integrity: sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ==}
+  scheduler@0.28.0:
+    resolution: {integrity: sha512-juorfCmIkIw8tT+p5BXSm6PJjQF/ycEYmKyzURCIt/RaZIhL+PulbQ9Yu2z1HdOJDdqDTlxA1+xKBmHXJsczAw==}
 
   schema-utils@4.5.0:
     resolution: {integrity: sha512-zJlMCZ0cAR5p/Y4oVpRoqioDMJcGxaXRrQ/4rP4WyR84vc5z/DolXdbvXeDpTwbtocDFr2rhPqHPErDCUtz2kA==}
@@ -4287,7 +4284,7 @@ packages:
   use-intl@4.14.9:
     resolution: {integrity: sha512-37ktvdCCz+6JY2VFPl/GV69Ds4ahiUT2c2xEZZRZYxdgGLxFsUbdxzjQVRm3YMIOUU0VPs6zvlifb4Yjk4IxIg==}
     peerDependencies:
-      '@types/react': 17.0.93
+      '@types/react': 18.3.31
       react: ^17.0.0 || ^18.0.0 || >=19.0.0-rc <19.0.0 || ^19.0.0
     peerDependenciesMeta:
       '@types/react':
@@ -4448,7 +4445,7 @@ packages:
     resolution: {integrity: sha512-CHOUy7mu3lbD6o6LJLfllpjkzhHXSBlX8B9+qPddUsIfeF5S/UZ5q0kmCsnRqT1UHFQZchNFDDzMbQsuesHWlw==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
-      '@types/react': 17.0.93
+      '@types/react': 18.3.31
       immer: '>=9.0.6'
       react: '>=16.8'
     peerDependenciesMeta:
@@ -4904,11 +4901,11 @@ snapshots:
       '@floating-ui/core': 1.8.0
       '@floating-ui/utils': 0.2.12
 
-  '@floating-ui/react-dom@2.1.9(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@floating-ui/react-dom@2.1.9(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@floating-ui/dom': 1.8.0
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      react: 19.3.1
+      react-dom: 19.3.1(react@19.3.1)
 
   '@floating-ui/utils@0.2.12': {}
 
@@ -5053,9 +5050,9 @@ snapshots:
   '@img/sharp-win32-x64@0.34.5':
     optional: true
 
-  '@innei/markdown-to-jsx@7.4.5-fork.4(react@18.3.1)':
+  '@innei/markdown-to-jsx@7.4.5-fork.4(react@19.3.1)':
     dependencies:
-      react: 18.3.1
+      react: 19.3.1
 
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
@@ -5242,9 +5239,9 @@ snapshots:
 
   '@polka/url@1.0.0-next.29': {}
 
-  '@reactify-components/smooth-number-counter@0.0.2(react@18.3.1)':
+  '@reactify-components/smooth-number-counter@0.0.2(react@19.3.1)':
     dependencies:
-      react: 18.3.1
+      react: 19.3.1
 
   '@rollup/plugin-commonjs@28.0.1(rollup@4.63.3)':
     dependencies:
@@ -5448,7 +5445,7 @@ snapshots:
     dependencies:
       '@sentry/core': 10.75.3
 
-  '@sentry/nextjs@10.75.3(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(next@15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack@5.111.1(postcss@8.5.31))':
+  '@sentry/nextjs@10.75.3(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(next@15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(webpack@5.111.1(postcss@8.5.31))':
     dependencies:
       '@opentelemetry/api': 1.9.1
       '@rollup/plugin-commonjs': 28.0.1(rollup@4.63.3)
@@ -5458,11 +5455,11 @@ snapshots:
       '@sentry/core': 10.75.3
       '@sentry/node': 10.75.3(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))
       '@sentry/opentelemetry': 10.75.3(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))
-      '@sentry/react': 10.75.3(react@18.3.1)
+      '@sentry/react': 10.75.3(react@19.3.1)
       '@sentry/server-utils': 10.75.3
       '@sentry/vercel-edge': 10.75.3
       '@sentry/webpack-plugin': 5.4.1(rollup@4.63.3)(webpack@5.111.1(postcss@8.5.31))
-      next: 15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      next: 15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       rollup: 4.63.3
       stacktrace-parser: 0.1.11
     transitivePeerDependencies:
@@ -5510,12 +5507,12 @@ snapshots:
       '@sentry/conventions': 0.16.0
       '@sentry/core': 10.75.3
 
-  '@sentry/react@10.75.3(react@18.3.1)':
+  '@sentry/react@10.75.3(react@19.3.1)':
     dependencies:
       '@sentry/browser': 10.75.3
       '@sentry/conventions': 0.16.0
       '@sentry/core': 10.75.3
-      react: 18.3.1
+      react: 19.3.1
 
   '@sentry/replay-canvas@10.75.3':
     dependencies:
@@ -5775,28 +5772,25 @@ snapshots:
 
   '@types/randomcolor@0.5.9': {}
 
-  '@types/react-color@3.0.13(@types/react@17.0.93)':
+  '@types/react-color@3.0.13(@types/react@18.3.31)':
     dependencies:
-      '@types/react': 17.0.93
+      '@types/react': 18.3.31
       '@types/reactcss': 1.2.6
 
-  '@types/react-dom@18.3.7(@types/react@17.0.93)':
+  '@types/react-dom@19.3.0(@types/react@18.3.31)':
     dependencies:
-      '@types/react': 17.0.93
+      '@types/react': 18.3.31
 
-  '@types/react@17.0.93':
+  '@types/react@18.3.31':
     dependencies:
       '@types/prop-types': 15.7.5
-      '@types/scheduler': 0.16.2
       csstype: 3.2.3
 
   '@types/reactcss@1.2.6':
     dependencies:
-      '@types/react': 17.0.93
+      '@types/react': 18.3.31
 
   '@types/remove-markdown@0.3.4': {}
-
-  '@types/scheduler@0.16.2': {}
 
   '@types/trusted-types@2.0.7':
     optional: true
@@ -6999,13 +6993,13 @@ snapshots:
 
   fraction.js@5.3.4: {}
 
-  framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  framer-motion@10.18.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
     dependencies:
       tslib: 2.8.1
     optionalDependencies:
       '@emotion/is-prop-valid': 0.8.8
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      react: 19.3.1
+      react-dom: 19.3.1(react@19.3.1)
 
   fsevents@2.3.3:
     optional: true
@@ -7579,15 +7573,15 @@ snapshots:
 
   ms@2.1.3: {}
 
-  nano-css@5.6.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  nano-css@5.6.2(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.5
       css-tree: 1.1.3
       csstype: 3.2.3
       fastest-stable-stringify: 2.0.2
       inline-style-prefixer: 7.0.1
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      react: 19.3.1
+      react-dom: 19.3.1(react@19.3.1)
       rtl-css-js: 1.16.1
       stacktrace-js: 2.0.2
       stylis: 4.3.6
@@ -7602,7 +7596,7 @@ snapshots:
 
   next-intl-swc-plugin-extractor@4.14.9: {}
 
-  next-intl@4.14.9(@types/react@17.0.93)(next@15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1):
+  next-intl@4.14.9(@types/react@18.3.31)(next@15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1):
     dependencies:
       '@eloqnt/config': 0.1.1
       '@eloqnt/format-json': 0.1.0
@@ -7612,34 +7606,34 @@ snapshots:
       '@swc/core': 1.16.2
       icu-minify: 4.14.9
       negotiator: 1.0.0
-      next: 15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      next: 15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       next-intl-swc-plugin-extractor: 4.14.9
-      react: 18.3.1
-      use-intl: 4.14.9(@types/react@17.0.93)(react@18.3.1)
+      react: 19.3.1
+      use-intl: 4.14.9(@types/react@18.3.31)(react@19.3.1)
     optionalDependencies:
-      '@types/react': 17.0.93
+      '@types/react': 18.3.31
     transitivePeerDependencies:
       - '@swc/helpers'
 
-  next-seo@6.8.0(next@15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  next-seo@6.8.0(next@15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
     dependencies:
-      next: 15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      next: 15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      react: 19.3.1
+      react-dom: 19.3.1(react@19.3.1)
 
-  next-suspense@0.2.3(next@15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)):
+  next-suspense@0.2.3(next@15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)):
     dependencies:
-      next: 15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      next: 15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
 
-  next@15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  next@15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
     dependencies:
       '@next/env': 15.5.28
       '@swc/helpers': 0.5.15
       caniuse-lite: 1.0.30001787
       postcss: 8.4.31
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      styled-jsx: 5.1.6(@babel/core@7.29.0)(react@18.3.1)
+      react: 19.3.1
+      react-dom: 19.3.1(react@19.3.1)
+      styled-jsx: 5.1.6(@babel/core@7.29.0)(react@19.3.1)
     optionalDependencies:
       '@next/swc-darwin-arm64': 15.5.28
       '@next/swc-darwin-x64': 15.5.28
@@ -8154,53 +8148,52 @@ snapshots:
 
   randomcolor@0.6.2: {}
 
-  react-countup@6.5.3(react@18.3.1):
+  react-countup@6.5.3(react@19.3.1):
     dependencies:
       countup.js: 2.10.0
-      react: 18.3.1
+      react: 19.3.1
 
-  react-dom@18.3.1(react@18.3.1):
+  react-dom@19.3.1(react@19.3.1):
     dependencies:
-      loose-envify: 1.4.0
-      react: 18.3.1
-      scheduler: 0.23.2
+      react: 19.3.1
+      scheduler: 0.28.0
 
-  react-error-boundary@4.1.2(react@18.3.1):
+  react-error-boundary@4.1.2(react@19.3.1):
     dependencies:
       '@babel/runtime': 7.29.2
-      react: 18.3.1
+      react: 19.3.1
 
-  react-intersection-observer@9.16.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-intersection-observer@9.16.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
     dependencies:
-      react: 18.3.1
+      react: 19.3.1
     optionalDependencies:
-      react-dom: 18.3.1(react@18.3.1)
+      react-dom: 19.3.1(react@19.3.1)
 
   react-is@16.13.1: {}
 
-  react-masonry-css@1.0.16(react@18.3.1):
+  react-masonry-css@1.0.16(react@19.3.1):
     dependencies:
-      react: 18.3.1
+      react: 19.3.1
 
-  react-message-popup@1.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-message-popup@1.1.3(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
     dependencies:
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      react: 19.3.1
+      react-dom: 19.3.1(react@19.3.1)
 
   react-shortcut-guide@1.0.0: {}
 
-  react-toastify@9.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-toastify@9.1.3(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
     dependencies:
       clsx: 1.2.1
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      react: 19.3.1
+      react-dom: 19.3.1(react@19.3.1)
 
-  react-universal-interface@0.6.2(react@18.3.1)(tslib@2.8.1):
+  react-universal-interface@0.6.2(react@19.3.1)(tslib@2.8.1):
     dependencies:
-      react: 18.3.1
+      react: 19.3.1
       tslib: 2.8.1
 
-  react-use@17.6.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-use@17.6.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
     dependencies:
       '@types/js-cookie': 3.0.6
       '@xobotyi/scrollbar-width': 1.9.5
@@ -8208,10 +8201,10 @@ snapshots:
       fast-deep-equal: 3.1.3
       fast-shallow-equal: 1.0.0
       js-cookie: 3.0.8
-      nano-css: 5.6.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      react-universal-interface: 0.6.2(react@18.3.1)(tslib@2.8.1)
+      nano-css: 5.6.2(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      react: 19.3.1
+      react-dom: 19.3.1(react@19.3.1)
+      react-universal-interface: 0.6.2(react@19.3.1)(tslib@2.8.1)
       resize-observer-polyfill: 1.5.1
       screenfull: 5.2.0
       set-harmonic-interval: 1.0.1
@@ -8219,9 +8212,7 @@ snapshots:
       ts-easing: 0.2.0
       tslib: 2.8.1
 
-  react@18.3.1:
-    dependencies:
-      loose-envify: 1.4.0
+  react@19.3.1: {}
 
   read-cache@1.0.0:
     dependencies:
@@ -8373,9 +8364,7 @@ snapshots:
 
   safer-buffer@2.1.2: {}
 
-  scheduler@0.23.2:
-    dependencies:
-      loose-envify: 1.4.0
+  scheduler@0.28.0: {}
 
   schema-utils@4.5.0:
     dependencies:
@@ -8617,10 +8606,10 @@ snapshots:
 
   strip-json-comments@3.1.1: {}
 
-  styled-jsx@5.1.6(@babel/core@7.29.0)(react@18.3.1):
+  styled-jsx@5.1.6(@babel/core@7.29.0)(react@19.3.1):
     dependencies:
       client-only: 0.0.1
-      react: 18.3.1
+      react: 19.3.1
     optionalDependencies:
       '@babel/core': 7.29.0
 
@@ -8636,11 +8625,11 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  swr@2.5.1(react@18.3.1):
+  swr@2.5.1(react@19.3.1):
     dependencies:
       dequal: 2.0.3
-      react: 18.3.1
-      use-sync-external-store: 1.6.0(react@18.3.1)
+      react: 19.3.1
+      use-sync-external-store: 1.6.0(react@19.3.1)
 
   tapable@2.3.3: {}
 
@@ -8653,9 +8642,9 @@ snapshots:
 
   throttle-debounce@3.0.1: {}
 
-  tilg@0.1.1(react@18.3.1):
+  tilg@0.1.1(react@19.3.1):
     dependencies:
-      react: 18.3.1
+      react: 19.3.1
 
   tinyexec@1.1.1: {}
 
@@ -8755,19 +8744,19 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  use-intl@4.14.9(@types/react@17.0.93)(react@18.3.1):
+  use-intl@4.14.9(@types/react@18.3.31)(react@19.3.1):
     dependencies:
       '@formatjs/fast-memoize': 3.1.1
       '@schummar/icu-type-parser': 1.21.5
       icu-minify: 4.14.9
       intl-messageformat: 11.2.0
-      react: 18.3.1
+      react: 19.3.1
     optionalDependencies:
-      '@types/react': 17.0.93
+      '@types/react': 18.3.31
 
-  use-sync-external-store@1.6.0(react@18.3.1):
+  use-sync-external-store@1.6.0(react@19.3.1):
     dependencies:
-      react: 18.3.1
+      react: 19.3.1
 
   util-deprecate@1.0.2: {}
 
@@ -8948,12 +8937,12 @@ snapshots:
 
   zod@4.3.6: {}
 
-  zustand@4.5.7(@types/react@17.0.93)(immer@10.2.0)(react@18.3.1):
+  zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@19.3.1):
     dependencies:
-      use-sync-external-store: 1.6.0(react@18.3.1)
+      use-sync-external-store: 1.6.0(react@19.3.1)
     optionalDependencies:
-      '@types/react': 17.0.93
+      '@types/react': 18.3.31
       immer: 10.2.0
-      react: 18.3.1
+      react: 19.3.1
 
   zx@8.8.5: {}
