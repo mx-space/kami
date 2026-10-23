@@ -23,7 +23,7 @@ importers:
         version: 4.0.0
       '@sentry/nextjs':
         specifier: 10.75.3
-        version: 10.75.3(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(next@15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack@5.111.1(postcss@8.5.31))
+        version: 10.75.3(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(next@15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack@5.112.2(postcss@8.5.31))
       axios:
         specifier: 1.20.0
         version: 1.20.0
@@ -132,7 +132,7 @@ importers:
         version: 15.5.28
       '@sentry/webpack-plugin':
         specifier: 5.4.1
-        version: 5.4.1(rollup@4.63.3)(webpack@5.111.1(postcss@8.5.31))
+        version: 5.4.1(rollup@4.63.3)(webpack@5.112.2(postcss@8.5.31))
       '@trivago/prettier-plugin-sort-imports':
         specifier: 6.0.2
         version: 6.0.2(prettier@3.9.10)
@@ -245,8 +245,8 @@ importers:
         specifier: 5.9.3
         version: 5.9.3
       webpack:
-        specifier: ^5.111.1
-        version: 5.111.1(postcss@8.5.31)
+        specifier: ^5.112.2
+        version: 5.112.2(postcss@8.5.31)
       windicss:
         specifier: 3.5.6
         version: 3.5.6
@@ -2438,8 +2438,8 @@ packages:
     resolution: {integrity: sha512-HqD3yTBfnBxIrbnM1DoD6Pcq8NECnh8d4As1Qgh0z5Gg3jRRIqijury0CL3ghu/edArpUYiYqQiDUQBIs4np3Q==}
     engines: {node: '>=10.0.0'}
 
-  enhanced-resolve@5.25.1:
-    resolution: {integrity: sha512-nGXts5znJzmWPu+mIE9izCOzdg63oJca2mDzGWWTth7sr4aCToKcoyFVBQwN75Ij5Pf6p510EwkTqViTRzDV+w==}
+  enhanced-resolve@5.26.0:
+    resolution: {integrity: sha512-9vhedylFonb2YGogzUKX6+Ja72gOJbN1QHAqdrvqLwhdl/QWbKopzoUC9EbQNVsAns/bx/4uyqalrQAoy1IByw==}
     engines: {node: '>=10.13.0'}
 
   environment@1.1.0:
@@ -3241,8 +3241,8 @@ packages:
   minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
 
-  minimizer-webpack-plugin@5.10.1:
-    resolution: {integrity: sha512-+dsZEyTcy1lkq41lxdiOqvb26gXbYGgwY+30w37f9PqUVkuEBejBLDotsHOTjuga9xJyGLW2DqzKDUyJ4W/PMQ==}
+  minimizer-webpack-plugin@5.13.1:
+    resolution: {integrity: sha512-1mhAfvachWYYOm8tpmany5NLuvP+F2wxZWBSX8DC0uFS2wJpM9q3rWgN9wBooAH9d5V12wX0BjyJe4fMjHMarQ==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
       '@minify-html/node': '*'
@@ -3975,9 +3975,15 @@ packages:
   scheduler@0.23.2:
     resolution: {integrity: sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ==}
 
-  schema-utils@4.5.0:
-    resolution: {integrity: sha512-zJlMCZ0cAR5p/Y4oVpRoqioDMJcGxaXRrQ/4rP4WyR84vc5z/DolXdbvXeDpTwbtocDFr2rhPqHPErDCUtz2kA==}
+  schema-utils@4.8.1:
+    resolution: {integrity: sha512-x39pYlJPyH7Uge5QO64B9XGP9zLDc9WNmiQZc+CE3IzZPvMu3lHOuAMGpYNoPixEL7MSWlGhYTg5UlLSL8G6iw==}
     engines: {node: '>= 10.13.0'}
+    hasBin: true
+    peerDependencies:
+      webpack: ^5.112.0
+    peerDependenciesMeta:
+      webpack:
+        optional: true
 
   screenfull@5.2.0:
     resolution: {integrity: sha512-9BakfsO2aUQN2K9Fdbj87RJIEZ82Q9IGim7FqM5OsebfoFC6ZHXgDq/KvniuLTPdeM8wY2o6Dj3WQ7KeQCj3cA==}
@@ -4313,8 +4319,8 @@ packages:
     resolution: {integrity: sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==}
     engines: {node: '>=0.10.0'}
 
-  watchpack@2.5.2:
-    resolution: {integrity: sha512-6i/00NBjP4yGPs+caKSyRfpTF/8Torsu0MOW3mMzIbhgISFder8i7xbqgHlLMwJrdiN8ndBV3UA1/AfzPSr+jg==}
+  watchpack@2.6.3:
+    resolution: {integrity: sha512-s3NZy0QpTY9qGqzc0wtz4qI28z3+5qKbbAec4MV4G9N3CfgZ9wgvQRr0cl2jh/tqkWG1NWHkmVMHZpCamev5Wg==}
     engines: {node: '>=10.13.0'}
 
   webidl-conversions@3.0.1:
@@ -4325,15 +4331,15 @@ packages:
     engines: {node: '>= 10.13.0'}
     hasBin: true
 
-  webpack-sources@3.5.1:
-    resolution: {integrity: sha512-jyuiGJdtvY434z5bUZrjz67v76/ePNvFZTp9Mdz29IlH4+GPsgyGjiv0fKI+M7BdkU6ADjulUcKAd3tUK3WlEw==}
+  webpack-sources@3.6.0:
+    resolution: {integrity: sha512-EIMmPVvNI0CYXyRPp34F2Qk7W37/BZVZIofS6LAUnrNjCVahS+hO4mxwFJDjQjODTGZDtVzLYoN2+1dYkhk9qA==}
     engines: {node: '>=10.13.0'}
 
   webpack-virtual-modules@0.5.0:
     resolution: {integrity: sha512-kyDivFZ7ZM0BVOUteVbDFhlRt7Ah/CSPwJdi8hBpkK7QLumUqdLtVfm/PX/hkcnrvr0i77fO5+TjZ94Pe+C9iw==}
 
-  webpack@5.111.1:
-    resolution: {integrity: sha512-cNypaz0RP+S4cvQVi1M/3bRUkvNP0xZpL0TjFx+c6jg64VbxD+2weWDgY9UnjRI6dhZgtaj8DU76GGFcJ79xPQ==}
+  webpack@5.112.2:
+    resolution: {integrity: sha512-B2tp1LI9D8GVpPDqprdt12ukTkXXahj9MzqSWJq4faSPgOUM7CdZaGAB6HrL/8E6UwbBpdj4vzWDbKoFnVoU6g==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     peerDependencies:
@@ -5374,7 +5380,7 @@ snapshots:
       - encoding
       - supports-color
 
-  '@sentry/bundler-plugins@10.76.2(rollup@4.63.3)(webpack@5.111.1(postcss@8.5.31))':
+  '@sentry/bundler-plugins@10.76.2(rollup@4.63.3)(webpack@5.112.2(postcss@8.5.31))':
     dependencies:
       '@babel/core': 7.29.0
       '@sentry/cli': 2.58.6
@@ -5385,7 +5391,7 @@ snapshots:
       magic-string: 0.30.21
     optionalDependencies:
       rollup: 4.63.3
-      webpack: 5.111.1(postcss@8.5.31)
+      webpack: 5.112.2(postcss@8.5.31)
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -5448,7 +5454,7 @@ snapshots:
     dependencies:
       '@sentry/core': 10.75.3
 
-  '@sentry/nextjs@10.75.3(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(next@15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack@5.111.1(postcss@8.5.31))':
+  '@sentry/nextjs@10.75.3(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(next@15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack@5.112.2(postcss@8.5.31))':
     dependencies:
       '@opentelemetry/api': 1.9.1
       '@rollup/plugin-commonjs': 28.0.1(rollup@4.63.3)
@@ -5461,7 +5467,7 @@ snapshots:
       '@sentry/react': 10.75.3(react@18.3.1)
       '@sentry/server-utils': 10.75.3
       '@sentry/vercel-edge': 10.75.3
-      '@sentry/webpack-plugin': 5.4.1(rollup@4.63.3)(webpack@5.111.1(postcss@8.5.31))
+      '@sentry/webpack-plugin': 5.4.1(rollup@4.63.3)(webpack@5.112.2(postcss@8.5.31))
       next: 15.5.28(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rollup: 4.63.3
       stacktrace-parser: 0.1.11
@@ -5537,10 +5543,10 @@ snapshots:
       '@opentelemetry/api': 1.9.1
       '@sentry/core': 10.75.3
 
-  '@sentry/webpack-plugin@5.4.1(rollup@4.63.3)(webpack@5.111.1(postcss@8.5.31))':
+  '@sentry/webpack-plugin@5.4.1(rollup@4.63.3)(webpack@5.112.2(postcss@8.5.31))':
     dependencies:
-      '@sentry/bundler-plugins': 10.76.2(rollup@4.63.3)(webpack@5.111.1(postcss@8.5.31))
-      webpack: 5.111.1(postcss@8.5.31)
+      '@sentry/bundler-plugins': 10.76.2(rollup@4.63.3)(webpack@5.112.2(postcss@8.5.31))
+      webpack: 5.112.2(postcss@8.5.31)
     transitivePeerDependencies:
       - encoding
       - rollup
@@ -6633,7 +6639,7 @@ snapshots:
 
   engine.io-parser@5.2.3: {}
 
-  enhanced-resolve@5.25.1:
+  enhanced-resolve@5.26.0:
     dependencies:
       graceful-fs: 4.2.11
       tapable: 2.3.3
@@ -7552,13 +7558,13 @@ snapshots:
 
   minimist@1.2.8: {}
 
-  minimizer-webpack-plugin@5.10.1(postcss@8.5.31)(webpack@5.111.1(postcss@8.5.31)):
+  minimizer-webpack-plugin@5.13.1(postcss@8.5.31)(webpack@5.112.2(postcss@8.5.31)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
-      schema-utils: 4.5.0
+      schema-utils: 4.8.1(webpack@5.112.2(postcss@8.5.31))
       terser: 5.51.2
-      webpack: 5.111.1(postcss@8.5.31)
+      webpack: 5.112.2(postcss@8.5.31)
     optionalDependencies:
       postcss: 8.5.31
 
@@ -8377,12 +8383,14 @@ snapshots:
     dependencies:
       loose-envify: 1.4.0
 
-  schema-utils@4.5.0:
+  schema-utils@4.8.1(webpack@5.112.2(postcss@8.5.31)):
     dependencies:
       '@types/json-schema': 7.0.15
       ajv: 8.20.0
       ajv-formats: 3.0.1(ajv@8.20.0)
       ajv-keywords: 5.1.0(ajv@8.20.0)
+    optionalDependencies:
+      webpack: 5.112.2(postcss@8.5.31)
 
   screenfull@5.2.0: {}
 
@@ -8777,7 +8785,7 @@ snapshots:
 
   void-elements@3.1.0: {}
 
-  watchpack@2.5.2:
+  watchpack@2.6.3:
     dependencies:
       graceful-fs: 4.2.11
 
@@ -8802,11 +8810,11 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  webpack-sources@3.5.1: {}
+  webpack-sources@3.6.0: {}
 
   webpack-virtual-modules@0.5.0: {}
 
-  webpack@5.111.1(postcss@8.5.31):
+  webpack@5.112.2(postcss@8.5.31):
     dependencies:
       '@types/estree': 1.0.9
       '@types/json-schema': 7.0.15
@@ -8815,16 +8823,16 @@ snapshots:
       '@webassemblyjs/wasm-parser': 1.14.1
       browserslist: 4.28.2
       chrome-trace-event: 1.0.4
-      enhanced-resolve: 5.25.1
+      enhanced-resolve: 5.26.0
       es-module-lexer: 2.3.2
       events: 3.3.0
       graceful-fs: 4.2.11
       mime-db: 1.54.0
-      minimizer-webpack-plugin: 5.10.1(postcss@8.5.31)(webpack@5.111.1(postcss@8.5.31))
-      schema-utils: 4.5.0
+      minimizer-webpack-plugin: 5.13.1(postcss@8.5.31)(webpack@5.112.2(postcss@8.5.31))
+      schema-utils: 4.8.1(webpack@5.112.2(postcss@8.5.31))
       tapable: 2.3.3
-      watchpack: 2.5.2
-      webpack-sources: 3.5.1
+      watchpack: 2.6.3
+      webpack-sources: 3.6.0
     transitivePeerDependencies:
       - '@minify-html/node'
       - '@napi-rs/image'
