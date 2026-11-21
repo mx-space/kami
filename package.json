@@ -74,7 +74,7 @@
     "markdown-to-jsx": "npm:@innei/markdown-to-jsx@7.4.5-fork.4",
     "medium-zoom": "1.1.0",
     "mermaid": "11.17.2",
-    "next": "15.5.28",
+    "next": "15.5.29",
     "next-intl": "^4.14.9",
     "next-seo": "6.8.0",
     "next-suspense": "0.2.3",
